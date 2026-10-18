@@ -1,135 +1,154 @@
-# Англійська · Урок 5 · Заняття 16 — Нічого не забули?
+# Англійська · Урок 5 · Заняття 16 — Речі перед вильотом
 
-**Ситуація.** Перед від’їздом із готелю ви з друзями перевіряєте речі. Треба знайти зарядку, повернути чужий зошит і переконатися, що валізи закриті. Заодно друг запитує про басейн.
+**Ситуація.** Уся родина летить у відпустку, і перед вильотом ви перевіряєте речі в аеропорту. Нової граматики немає: ви самі вибираєте слово-власник, has чи have, is чи are й ставите питання про річ.
 
-**Що ви опануєте:** сказати, чия річ, де вона й чого немає
-**Нові слова:** —
+**Що ви опануєте:** самому вибрати, як сказати про речі родини: my, your, his, her, our, their, has, is чи are
+**Нові слова:** passport, sunglasses, sandals, camera
+**Повертаються:** bag, pocket, suitcase, backpack, ticket, boot, sock, brother, sister
 
 ---
 
 ## Інтро 1
 
-### Моє, твоє, наше
+### Паспорт на стійці
 
-`charger` — «зарядка», `pocket` — «кишеня», `backpack` — «рюкзак», `notebook` — «зошит». `I have your notebook` — «Твій зошит у мене». `My charger is in your backpack` — «Моя зарядка у твоєму рюкзаку». Перед назвою речі ставимо власника: `my` — мій, `your` — твій / ваш, `our` — наш, `their` — їхній. Перед цими словами не потрібні `a` і `the`.
+В аеропорту співробітниця на стійці просить ваш документ для поїздки. Ви перевіряєте кишені й згадуєте: він лежить у сумці. passport — «паспорт». Говоримо про себе, тому my: My passport is in my bag — «Мій паспорт у моїй сумці». Паспорт один, отже, is.
 
-**Зошит співрозмовника у вас. Виберіть фразу.**
+**Співробітниця просить паспорт. Він у вашій сумці. Скажіть їй: «Мій паспорт у моїй сумці».**
 
-- ✅ **I have your notebook.**
-- ❌ I have my notebook. — *`my` — мій; зошит співрозмовника: `your`.*
-- ❌ I has your notebook. — *З `I` потрібне `have`.*
+- ✅ **My passport is in my bag.**
+- ❌ My passport is on my bag. — *on — «на», а паспорт лежить усередині сумки: потрібно in.*
+- ❌ Your passport is in my bag. — *your — твій, а паспорт ваш: потрібно my.*
 
 ---
 
 ## Інтро 2
 
-### У кого що лежить
+### Окуляри для брата
 
-`umbrella` — «парасоля», `suitcase` — «валіза», `helmet` — «шолом». `Her umbrella is in his suitcase` — «Її парасоля в його валізі». `his` — його, `her` — її: вибирайте за власником. `Where is my helmet?` — «Де мій шолом?» Спочатку `Where is`, потім одна річ. Якщо шолом уже на голові, пошуки по кімнаті можна закінчувати.
+Брат чекає біля виходу на посадку й мружиться від яскравого сонця. Його окуляри від сонця ви поклали до себе в рюкзак ще вдома. sunglasses — «сонцезахисні окуляри», це пара, тому are: Your sunglasses are in my backpack — «Твої сонцезахисні окуляри в моєму рюкзаку».
 
-**Запитайте, де ваш шолом.**
+**Брат мружиться на сонці. Його сонцезахисні окуляри у вас у рюкзаку. Скажіть йому, що вони там.**
 
-- ✅ **Where is my helmet?**
-- ❌ Where my helmet is? — *У прямому запитанні потрібен порядок `Where is my helmet?`.*
-- ❌ Where are my helmet? — *Один шолом: `Where is`.*
+- ✅ **Your sunglasses are in my backpack.**
+- ❌ Your sunglasses is in my backpack. — *Окуляри — пара, тому потрібно are, а не is.*
+- ❌ My sunglasses are in your backpack. — *my і your помінялися місцями: окуляри брата — your, а рюкзак ваш — my.*
 
 ---
 
 ## Інтро 3
 
-### Що є в готелі
+### Сандалі зникли
 
-`swimming pool` — «басейн». `Our hotel has a swimming pool` — «У нашого готелю є басейн». Один готель, як `it`, потребує `has`. Якщо басейну немає: `There isn’t a swimming pool`. Якщо в кімнаті немає жодної зарядки: `There aren’t any chargers`. `its` без апострофа стосується предмета чи місця, названого `it`: `its swimming pool` — «його басейн», якщо йдеться про готель.
+Сестра збирала спільну сумку на всіх, а ваших сандалів у ній щось не видно. sandals — «сандалі», літнє взуття з відкритим верхом. Це пара, тому are. Спитайте сестру: Where are my sandals? — «Де мої сандалі?» Про її сандалі спитали б Where are your sandals?
 
-**У нашого готелю є басейн. Виберіть фразу.**
+**Сестра збирала сумку, а ваших сандалів не видно. Спитайте її, де ваші сандалі.**
 
-- ✅ **Our hotel has a swimming pool.**
-- ❌ Our hotel have a swimming pool. — *Один готель: `hotel has`.*
-- ❌ Our hotel is a swimming pool. — *Готель не басейн; у нього є басейн: `has a swimming pool`.*
+- ✅ **Where are my sandals?**
+- ❌ Where is my sandals? — *Сандалі — пара, тому потрібно are, а не is.*
+- ❌ Where are your sandals? — *your — твої, а сандалі ваші: потрібно my.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Зошит друга у вас. Скажіть йому «Твій зошит у мене»**
+**1 · Картка слова — passport**
+<!-- interaction_id: en:lesson-05:session-16:word:passport; family: word_card -->
+> **passport** — паспорт. My passport is in my suitcase. — «Мій паспорт у моїй валізі». Про документ, з яким їздять в інші країни.
+
+**2 · Співробітниця просить паспорт вашого брата. Він у нього в кишені. Скажіть їй повною фразою: «Його паспорт у його кишені»**
 <!-- interaction_id: en:lesson-05:session-16:i01; family: phrase_builder -->
-Плитки: `notebook` `your` `have` `I` → **I have your notebook.**
+Плитки: `passport` `is` `in` `his` `pocket` `His` `Her` → **His passport is in his pocket.**
+*(плитка `Her` зайва: тут потрібно `His` — `His passport is in his pocket.`)*
 
-**2 · Послухайте, де зарядка**
+**3 · Картка слова — sunglasses**
+<!-- interaction_id: en:lesson-05:session-16:word:sunglasses; family: word_card -->
+> **sunglasses** — сонцезахисні окуляри. His sunglasses are on the chair. — «Його сонцезахисні окуляри на стільці». Про темні окуляри, що захищають очі від сонця.
+
+**4 · Послухайте співробітницю**
 <!-- interaction_id: en:lesson-05:session-16:i02; family: listen_choose -->
-🔊 *My charger is in your backpack.* → **My charger is in your backpack.** · My charger is in your pocket. · Her charger is in your backpack.
-- My charger is in your pocket. — *У записі останнє слово — `backpack`, а в цьому варіанті — `pocket`.*
-- Her charger is in your backpack. — *У записі перше слово — `My`, а в цьому варіанті — `Her`.*
+🔊 *Their sunglasses are in her bag.* → **Their sunglasses are in her bag.** · Their sunglasses is in her bag. · Their sunglasses are in his bag.
+- Their sunglasses is in her bag. — *У записі `are` — окуляри, пара, а в цьому варіанті `is`.*
+- Their sunglasses are in his bag. — *У записі `her` — її сумка, а в цьому варіанті `his` — його.*
 
-**3 · У кімнаті немає жодної зарядки. Виберіть форму**
+**5 · Картка слова — sandals**
+<!-- interaction_id: en:lesson-05:session-16:word:sandals; family: word_card -->
+> **sandals** — сандалі. Her sandals are in her bag. — «Її сандалі в її сумці». Про літнє взуття з відкритим верхом.
+
+**6 · Легке літнє взуття з відкритим верхом. Як воно називається англійською?**
 <!-- interaction_id: en:lesson-05:session-16:i03; family: context_gap_grammar -->
-There ___ any chargers. → **aren't** · are · isn't
-- are — *Тут немає: `aren’t any chargers`.*
-- isn't — *З `chargers` потрібне `aren’t`.*
+___ → **sandals** · boot · sock
+- boot — *boot — це черевик, а легке літнє взуття називається sandals.*
+- sock — *sock — це шкарпетка, а легке літнє взуття називається sandals.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-16:i04; family: speed_match -->
-charger — зарядка · pocket — кишеня · backpack — рюкзак · notebook — зошит
+passport — паспорт · sunglasses — сонцезахисні окуляри · sandals — сандалі · camera — фотоапарат
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — camera**
+<!-- interaction_id: en:lesson-05:session-16:word:camera; family: word_card -->
+> **camera** — фотоапарат. Our camera is here. — «Наш фотоапарат тут». Про прилад, яким знімають фотографії.
+
+**9 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-16:i05; family: listen_build_dictation -->
-🔊 *Where is my helmet?* Плитки: `helmet` `my` `is` `Where` → **Where is my helmet?**
+🔊 *Our camera is in your suitcase.* Плитки: `camera` `is` `in` `your` `suitcase` `Our` `Their` → **Our camera is in your suitcase.**
+*(плитка `Their` зайва: тут потрібно `Our` — `Our camera is in your suitcase.`)*
 
-**6 · Парасоля подруги у валізі друга. Скажіть «Її парасоля в його валізі»**
+**10 · Ви знайшли паспорт біля виходу й питаєте сестру, чи він її. Задайте питання повністю**
 <!-- interaction_id: en:lesson-05:session-16:i06; family: phrase_builder -->
-Плитки: `suitcase` `his` `in` `is` `umbrella` `Her` `are` → **Her umbrella is in his suitcase.**
-*(плитка `are` зайва: тут потрібно `is` — `Her umbrella is in his suitcase.`)*
+Плитки: `passport` `this` `your` `Is` `Are` → **Is this your passport?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is this your passport?`)*
 
-**7 · Повідомте другу «У нашого готелю є басейн»**
+**11 · Сестра знайшла ваш фотоапарат і питає, чи він ваш. Відповідьте: «Це мій фотоапарат»**
 <!-- interaction_id: en:lesson-05:session-16:i07; family: scripted_repeat_compare -->
-🎙 **Our hotel has a swimming pool.**
+🎙 **It is my camera.**
 
-**8 · Їхня валіза закрита. Валіза одна. Виберіть форму**
+**12 · Ви шукаєте свої сонцезахисні окуляри. Виберіть потрібне слово**
 <!-- interaction_id: en:lesson-05:session-16:i08; family: context_gap_grammar -->
-Their suitcase ___ closed. → **is** · are · has
-- are — *Одна валіза: `suitcase is`.*
-- has — *Тут стан: `suitcase is closed`.*
+Where ___ my sunglasses? → **are** · is · has
+- is — *Окуляри — пара, тому потрібно are, а не is.*
+- has — *has означає «мати», а для питання «де» потрібно are.*
 
-**9 · Послухайте, де ключ**
+**13 · Послухайте сестру**
 <!-- interaction_id: en:lesson-05:session-16:i09; family: listen_choose -->
-🔊 *The key is in her pocket.* → **The key is in her pocket.** · The key is in her backpack. · The key is in her suitcase.
-- The key is in her backpack. — *У записі останнє слово — `pocket`, а в цьому варіанті — `backpack`.*
-- The key is in her suitcase. — *У записі останнє слово — `pocket`, а в цьому варіанті — `suitcase`.*
+🔊 *Is this your camera?* → **Is this your camera?** · Is this my camera? · Is that your camera?
+- Is this my camera? — *У записі `your` — твій, а в цьому варіанті `my` — мій.*
+- Is that your camera? — *У записі `this` — цей, поруч, а в цьому варіанті `that` — той, подалі.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-16:i10; family: speed_match -->
-umbrella — парасоля · suitcase — валіза · helmet — шолом · swimming pool — басейн
+passport — паспорт · suitcase — валіза · ticket — квиток · camera — фотоапарат
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-16:i11; family: listen_build_dictation -->
-🔊 *They have our notebook.* Плитки: `notebook` `our` `have` `They` → **They have our notebook.**
+🔊 *My sister has my camera.* Плитки: `sister` `has` `my` `camera` `My` `have` → **My sister has my camera.**
+*(плитка `have` зайва: тут потрібно `has` — `My sister has my camera.`)*
 
-**12 · Рюкзак друга під столом. Скажіть йому «Твій рюкзак під столом»**
+**16 · Подруга питає, де ваші сандалі. Вони у валізі. Скажіть їй повною фразою: «Мої сандалі в моїй валізі»**
 <!-- interaction_id: en:lesson-05:session-16:i12; family: phrase_builder -->
-Плитки: `table` `the` `under` `is` `backpack` `Your` `are` → **Your backpack is under the table.**
-*(плитка `are` зайва: тут потрібно `is` — `Your backpack is under the table.`)*
+Плитки: `sandals` `are` `in` `my` `suitcase` `My` `is` → **My sandals are in my suitcase.**
+*(плитка `is` зайва: тут потрібно `are` — `My sandals are in my suitcase.`)*
 
-**13 · В іншому готелі басейну немає. Повідомте «Басейну немає»**
+**17 · Сестра шукає свій паспорт. Він у вас. Скажіть їй: «Твій паспорт у мене»**
 <!-- interaction_id: en:lesson-05:session-16:i13; family: scripted_repeat_compare -->
-🎙 **There isn't a swimming pool.**
+🎙 **I have your passport.**
 
-**14 · Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово**
+**18 · Сестра питає: «Is this your camera?» Фотоапарат не ваш. Виберіть початок відповіді**
 <!-- interaction_id: en:lesson-05:session-16:i14; family: context_gap_grammar -->
-___ swimming pool is open. → **Its** · It's · Their
-- It's — *`It’s` — `it is`; тут потрібне `Its swimming pool`.*
-- Their — *Для одного готелю, названого `it`, потрібне `Its`.*
+___, it isn’t. → **No** · Yes · Not
+- Yes — *Після Yes кажуть it is, а тут it isn’t: потрібно No.*
+- Not — *Not не починає відповідь: потрібно No.*
 
-**15 · Послухайте, де шолом**
+**19 · Послухайте сестру**
 <!-- interaction_id: en:lesson-05:session-16:i15; family: listen_choose -->
-🔊 *Your helmet is on the chair.* → **Your helmet is on the chair.** · Your helmet is on the table. · My helmet is on the chair.
-- Your helmet is on the table. — *У записі останнє слово — `chair`, а в цьому варіанті — `table`.*
-- My helmet is on the chair. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
+🔊 *It is their camera.* → **It is their camera.** · It is our camera. · It is their passport.
+- It is our camera. — *У записі `their` — їхній, а в цьому варіанті `our` — наш.*
+- It is their passport. — *У записі останнє слово `camera` — фотоапарат, а в цьому варіанті `passport` — паспорт.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-16:i16; family: speed_match -->
-umbrella — парасоля · suitcase — валіза · helmet — шолом · swimming pool — басейн
+passport — паспорт · sunglasses — сонцезахисні окуляри · sandals — сандалі · camera — фотоапарат
 
-**17 · Ви знайшли свою зарядку в рюкзаку друга. Повідомте йому «Моя зарядка у твоєму рюкзаку»**
+**21 · Співробітниця питає про документи родини. Усі паспорти лежать у вашій сумці. Скажіть їй: «Наші паспорти в моїй сумці»**
 <!-- interaction_id: en:lesson-05:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **My charger is in your backpack.**
-
+🎙 **Our passports are in my bag.**

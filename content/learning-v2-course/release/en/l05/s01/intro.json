@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-01",
   "learningOutcomeByLocale": {
-    "ru": "сказать, у кого есть вещь: have и has",
-    "uk": "сказати, у кого є річ: have і has"
+    "ru": "сказать, у кого есть вещь или родственник: have и has",
+    "uk": "сказати, в кого є річ або родич: have і has"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-05:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ключ есть — можно входить",
-        "uk": "Ключ є — можна заходити"
+        "ru": "Ключ в сумке",
+        "uk": "Ключ у сумці"
       },
       "bodyByLocale": {
-        "ru": "`have` — «иметь», а по-русски обычно «у меня есть», «у нас есть». `I have a key` — «У меня есть ключ». Это не значит «я ключ»: ключ у вас в кармане, а не вы в замочной скважине. С `I`, `you`, `we`, `they` используйте `have`: `We have a key` — «У нас есть ключ».",
-        "uk": "`have` — «мати», а українською часто «у мене є», «у нас є». `I have a key` — «У мене є ключ». Це не означає «я ключ»: ключ у вас у кишені, а не ви в замковій щілині. З `I`, `you`, `we`, `they` використовуйте `have`: `We have a key` — «У нас є ключ»."
+        "ru": "Вы с друзьями стоите у двери нового дома, и все ждут, кто откроет. Вы нащупали в сумке свой ключ и достаёте его. have — «иметь», по-русски «у меня есть»: I have a key. Вы не ключ, а человек, у которого он есть, поэтому I am здесь не подходит.",
+        "uk": "Ви з друзями стоїте біля дверей нового будинку, і всі чекають, хто відчинить. Ви намацали в сумці свій ключ і дістаєте його. have — «мати», по-українськи «у мене є»: I have a key. Ви не ключ, а людина, в якої він є, тому I am тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-05:session-01:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что у вас есть ключ.",
-          "uk": "Скажіть, що у вас є ключ."
+          "ru": "Друзья ждут у двери. Скажите им, что ключ у вас.",
+          "uk": "Друзі чекають біля дверей. Скажіть їм, що ключ у вас."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что у вас есть ключ.",
-          "uk": "Скажіть, що у вас є ключ."
+          "ru": "Друзья ждут у двери. Скажите им, что ключ у вас.",
+          "uk": "Друзі чекають біля дверей. Скажіть їм, що ключ у вас."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "У неё тоже есть ключ",
-        "uk": "У неї теж є ключ"
+        "ru": "Брат у подруги",
+        "uk": "Брат у подруги"
       },
       "bodyByLocale": {
-        "ru": "С `he`, `she`, `it` слово меняется на `has`: `She has a key` — «У неё есть ключ». `have` и `has` здесь сообщают, у кого есть вещь. Добавлять `is` не нужно: `She has`, а не `She is has`. О себе по-прежнему `I have`.",
-        "uk": "З `he`, `she`, `it` слово змінюється на `has`: `She has a key` — «У неї є ключ». `have` і `has` тут повідомляють, у кого є річ. Додавати `is` не потрібно: `She has`, а не `She is has`. Про себе, як і раніше, `I have`."
+        "ru": "Соседка выглядывает из окна и спрашивает, к кому вы пришли. Подруга стоит рядом и молчит, поэтому отвечаете вы. brother — «брат». С she, he, it нужно has, а не have: She has a brother — «У неё есть брат». А с I, you, we, they по-прежнему have.",
+        "uk": "Сусідка визирає з вікна й питає, до кого ви прийшли. Подруга стоїть поруч і мовчить, тому відповідаєте ви. brother — «брат». З she, he, it потрібно has, а не have: She has a brother — «У неї є брат». А з I, you, we, they, як і раніше, have."
       },
       "question": {
         "interactionId": "en:lesson-05:session-01:intro2:q",
         "promptByLocale": {
-          "ru": "Ключ у вашей подруги. Скажите «У неё есть ключ».",
-          "uk": "Ключ у вашої подруги. Скажіть «У неї є ключ»."
+          "ru": "Соседка спрашивает, к кому вы пришли. Скажите ей, что у вашей подруги есть брат.",
+          "uk": "Сусідка питає, до кого ви прийшли. Скажіть їй, що у вашої подруги є брат."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-01:intro2:r1",
-              "text": "She has a key."
+              "text": "She has a brother."
             },
             {
               "responseId": "en:lesson-05:session-01:intro2:r2",
-              "text": "She have a key."
+              "text": "She have a brother."
             },
             {
               "responseId": "en:lesson-05:session-01:intro2:r3",
-              "text": "She is has a key."
+              "text": "She is a brother."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-01:intro2:r1",
-              "text": "She has a key."
+              "text": "She has a brother."
             },
             {
               "responseId": "en:lesson-05:session-01:intro2:r2",
-              "text": "She have a key."
+              "text": "She have a brother."
             },
             {
               "responseId": "en:lesson-05:session-01:intro2:r3",
-              "text": "She is has a key."
+              "text": "She is a brother."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ключ у вашей подруги. Скажите «У неё есть ключ».",
-          "uk": "Ключ у вашої подруги. Скажіть «У неї є ключ»."
+          "ru": "Соседка спрашивает, к кому вы пришли. Скажите ей, что у вашей подруги есть брат.",
+          "uk": "Сусідка питає, до кого ви прийшли. Скажіть їй, що у вашої подруги є брат."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Все собрались",
-        "uk": "Усі зібралися"
+        "ru": "Сестра на двоих",
+        "uk": "Сестра на двох"
       },
       "bodyByLocale": {
-        "ru": "`here` — «здесь», `ready` — «готов», `fine` — «в порядке», `happy` — «счастлив, рад». `I’m here` — «Я здесь», `We are ready` — «Мы готовы». Рядом знакомые места: `pharmacy` — аптека, `library` — библиотека, `bakery` — пекарня, `canal` — канал. Когда говорите, где человек или как он себя чувствует, в этих примерах нужны `am`, `is`, `are`: `She is happy` — «Она рада». А вещь у неё: `She has a key`.",
-        "uk": "`here` — «тут», `ready` — «готовий», `fine` — «у порядку», `happy` — «щасливий, радий». `I’m here` — «Я тут», `We are ready` — «Ми готові». Поруч знайомі місця: `pharmacy` — аптека, `library` — бібліотека, `bakery` — пекарня, `canal` — канал. Коли кажете, де людина або як вона почувається, у цих прикладах потрібні `am`, `is`, `are`: `She is happy` — «Вона рада». А річ у неї: `She has a key`."
+        "ru": "Консьержка составляет список жильцов нового дома и спрашивает вас с братом о семье. Вы отвечаете за двоих, потому что сестра у вас одна на двоих. sister — «сестра». С we, как и с I, you, they, нужно have: We have a sister — «У нас есть сестра».",
+        "uk": "Консьєржка складає список мешканців нового будинку й питає вас із братом про родину. Ви відповідаєте за двох, бо сестра у вас одна на двох. sister — «сестра». З we, як і з I, you, they, потрібно have: We have a sister — «У нас є сестра»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-01:intro3:q",
         "promptByLocale": {
-          "ru": "Она рада. Выберите описание её состояния.",
-          "uk": "Вона рада. Виберіть опис її стану."
+          "ru": "Консьержка спрашивает о семье. Скажите ей за себя и брата, что у вас есть сестра.",
+          "uk": "Консьєржка питає про родину. Скажіть їй за себе й брата, що у вас є сестра."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-01:intro3:r1",
-              "text": "She is happy."
+              "text": "We have a sister."
             },
             {
               "responseId": "en:lesson-05:session-01:intro3:r2",
-              "text": "She has happy."
+              "text": "We has a sister."
             },
             {
               "responseId": "en:lesson-05:session-01:intro3:r3",
-              "text": "She are happy."
+              "text": "We are a sister."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-01:intro3:r1",
-              "text": "She is happy."
+              "text": "We have a sister."
             },
             {
               "responseId": "en:lesson-05:session-01:intro3:r2",
-              "text": "She has happy."
+              "text": "We has a sister."
             },
             {
               "responseId": "en:lesson-05:session-01:intro3:r3",
-              "text": "She are happy."
+              "text": "We are a sister."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Она рада. Выберите описание её состояния.",
-          "uk": "Вона рада. Виберіть опис її стану."
+          "ru": "Консьержка спрашивает о семье. Скажите ей за себя и брата, что у вас есть сестра.",
+          "uk": "Консьєржка питає про родину. Скажіть їй за себе й брата, що у вас є сестра."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "61ff4f69b7b5e391131451895914741ffc1d950d28788f9a4ca2e11e4aa3e5d1"
+  "introFingerprint": "5c321920c0654adac769a8b9fdabf36ba58595680e70cd656908c8d527f598f8"
 }

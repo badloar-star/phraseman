@@ -4,40 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-13:i01",
+      "interactionId": "en:lesson-05:session-13:word:uncle",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — uncle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:word:uncle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — uncle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:word:uncle:audio",
+          "transcript": "uncle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-13:word:uncle:r1",
+            "targetText": "uncle",
+            "meaningByLocale": {
+              "ru": "дядя. My uncle is in the kitchen. — «Мой дядя на кухне». О брате отца или матери.",
+              "uk": "дядько. My uncle is in the kitchen. — «Мій дядько на кухні». Про брата батька або матері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "uncle",
+          "definitionByLocale": {
+            "ru": "дядя. My uncle is in the kitchen. — «Мой дядя на кухне». О брате отца или матери.",
+            "uk": "дядько. My uncle is in the kitchen. — «Мій дядько на кухні». Про брата батька або матері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Наше вікно чисте»",
+      "prompt": "Дядько прийшов на обід і стоїть на кухні. Скажіть подрузі повною фразою: «Мій дядько на кухні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Наше вікно чисте»",
+      "accessibilityLabel": "Дядько прийшов на обід і стоїть на кухні. Скажіть подрузі повною фразою: «Мій дядько на кухні»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our window is clean.",
+        "targetPhrase": "My uncle is in the kitchen.",
         "localizedMeaning": {
-          "ru": "Скажите «Наше окно чистое»",
-          "uk": "Скажіть «Наше вікно чисте»"
+          "ru": "Дядя пришёл на обед и стоит на кухне. Скажите подруге полной фразой: «Мой дядя на кухне»",
+          "uk": "Дядько прийшов на обід і стоїть на кухні. Скажіть подрузі повною фразою: «Мій дядько на кухні»"
         },
         "orderedTokens": [
-          "Our",
-          "window",
+          "My",
+          "uncle",
           "is",
-          "clean"
+          "in",
+          "the",
+          "kitchen"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Her"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Наше вікно чисте»",
+            "testedDimension": "Дядько прийшов на обід і стоїть на кухні. Скажіть подрузі повною фразою: «Мій дядько на кухні»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Our window is clean.`",
-              "uk": "тут потрібно `is` — `Our window is clean.`"
+              "ru": "здесь нужно `My` — `My uncle is in the kitchen.`",
+              "uk": "тут потрібно `My` — `My uncle is in the kitchen.`"
             }
           }
         ],
@@ -49,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-13:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-13:word:aunt",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — aunt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:word:aunt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — aunt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:word:aunt:audio",
+          "transcript": "aunt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-13:word:aunt:r1",
+            "targetText": "aunt",
+            "meaningByLocale": {
+              "ru": "тётя. Our aunt is here. — «Наша тётя здесь». О сестре отца или матери.",
+              "uk": "тітка. Our aunt is here. — «Наша тітка тут». Про сестру батька або матері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aunt",
+          "definitionByLocale": {
+            "ru": "тётя. Our aunt is here. — «Наша тётя здесь». О сестре отца или матери.",
+            "uk": "тітка. Our aunt is here. — «Наша тітка тут». Про сестру батька або матері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-13:i02:r1",
-          "text": "umbrella"
+          "text": "Our aunt is here."
         },
         {
           "responseId": "en:lesson-05:session-13:i02:r2",
-          "text": "umbrellas"
+          "text": "Her aunt is here."
         },
         {
           "responseId": "en:lesson-05:session-13:i02:r3",
-          "text": "window"
+          "text": "Our aunt is there."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i02:audio",
-          "transcript": "umbrella"
+          "transcript": "Our aunt is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-13:i02:r1",
-            "targetText": "umbrella",
+            "targetText": "Our aunt is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-13:i02:r2",
-            "targetText": "umbrellas",
+            "targetText": "Her aunt is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-13:i02:r3",
-            "targetText": "window",
+            "targetText": "Our aunt is there.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-13:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `umbrella`, а в этом варианте — `umbrellas`.",
-              "uk": "У записі перше слово — `umbrella`, а в цьому варіанті — `umbrellas`."
+              "ru": "В записи `Our` — наша, а в этом варианте `Her` — её.",
+              "uk": "У записі `Our` — наша, а в цьому варіанті `Her` — її."
             }
           },
           {
             "responseId": "en:lesson-05:session-13:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `umbrella`, а в этом варианте — `window`.",
-              "uk": "У записі перше слово — `umbrella`, а в цьому варіанті — `window`."
+              "ru": "В записи `here` — здесь, а в этом варианте `there` — там.",
+              "uk": "У записі `here` — тут, а в цьому варіанті `there` — там."
             }
           }
         ],
@@ -125,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-13:word:cousin",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cousin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:word:cousin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cousin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:word:cousin:audio",
+          "transcript": "cousin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-13:word:cousin:r1",
+            "targetText": "cousin",
+            "meaningByLocale": {
+              "ru": "двоюродный брат или двоюродная сестра. Her cousin is here. — «Её двоюродный брат здесь». О ребёнке дяди или тёти.",
+              "uk": "двоюрідний брат або двоюрідна сестра. Her cousin is here. — «Її двоюрідний брат тут». Про дитину дядька або тітки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cousin",
+          "definitionByLocale": {
+            "ru": "двоюродный брат или двоюродная сестра. Her cousin is here. — «Её двоюродный брат здесь». О ребёнке дяди или тёти.",
+            "uk": "двоюрідний брат або двоюрідна сестра. Her cousin is here. — «Її двоюрідний брат тут». Про дитину дядька або тітки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-13:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть парасолю",
+      "prompt": "Син або донька вашого дядька чи тітки. Як називається такий родич англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-13:i03:r1",
-          "text": "umbrella"
+          "text": "cousin"
         },
         {
           "responseId": "en:lesson-05:session-13:i03:r2",
-          "text": "drawer"
+          "text": "brother"
         },
         {
           "responseId": "en:lesson-05:session-13:i03:r3",
-          "text": "backpack"
+          "text": "sister"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть парасолю",
+      "accessibilityLabel": "Син або донька вашого дядька чи тітки. Як називається такий родич англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите зонт",
-          "uk": "Назвіть парасолю"
+          "ru": "Сын или дочь вашего дяди или тёти. Как называется такой родственник по-английски?",
+          "uk": "Син або донька вашого дядька чи тітки. Як називається такий родич англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-13:i03:r1",
-            "text": "umbrella"
+            "text": "cousin"
           },
           {
             "responseId": "en:lesson-05:session-13:i03:r2",
-            "text": "drawer"
+            "text": "brother"
           },
           {
             "responseId": "en:lesson-05:session-13:i03:r3",
-            "text": "backpack"
+            "text": "sister"
           }
         ],
-        "testedDimension": "Назвіть парасолю",
+        "testedDimension": "Син або донька вашого дядька чи тітки. Як називається такий родич англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть парасолю",
+            "testedDimension": "Син або донька вашого дядька чи тітки. Як називається такий родич англійською?",
             "feedbackByLocale": {
-              "ru": "`drawer` — выдвижной ящик; зонт — `umbrella`.",
-              "uk": "`drawer` — шухляда; парасоля — `umbrella`."
+              "ru": "brother — это родной брат, а сын дяди или тёти называется cousin.",
+              "uk": "brother — це рідний брат, а син дядька чи тітки називається cousin."
             }
           },
           {
             "responseId": "en:lesson-05:session-13:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть парасолю",
+            "testedDimension": "Син або донька вашого дядька чи тітки. Як називається такий родич англійською?",
             "feedbackByLocale": {
-              "ru": "`backpack` — рюкзак; зонт — `umbrella`.",
-              "uk": "`backpack` — рюкзак; парасоля — `umbrella`."
+              "ru": "sister — это родная сестра, а дочь дяди или тёти называется cousin.",
+              "uk": "sister — це рідна сестра, а донька дядька чи тітки називається cousin."
             }
           }
         ]
@@ -195,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +340,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-13:i04:p1",
-            "target": "umbrella",
+            "target": "uncle",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "дядя",
+              "uk": "дядько"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i04:p2",
-            "target": "small",
+            "target": "aunt",
             "meaningByLocale": {
-              "ru": "маленький",
-              "uk": "маленький"
+              "ru": "тётя",
+              "uk": "тітка"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i04:p3",
-            "target": "big",
+            "target": "cousin",
             "meaningByLocale": {
-              "ru": "большой",
-              "uk": "великий"
+              "ru": "двоюродный брат или сестра",
+              "uk": "двоюрідний брат або сестра"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i04:p4",
-            "target": "clean",
+            "target": "grandmother",
             "meaningByLocale": {
-              "ru": "чистый",
-              "uk": "чистий"
+              "ru": "бабушка",
+              "uk": "бабуся"
             }
           }
         ],
         "leftColumn": [
-          "umbrella",
-          "small",
-          "big",
-          "clean"
+          "uncle",
+          "aunt",
+          "cousin",
+          "grandmother"
         ],
         "rightColumn": [
-          "парасоля",
-          "маленький",
-          "великий",
-          "чистий"
+          "дядько",
+          "тітка",
+          "двоюрідний брат або сестра",
+          "бабуся"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,43 +398,88 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-13:word:grandmother",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grandmother",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:word:grandmother:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grandmother",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:word:grandmother:audio",
+          "transcript": "grandmother"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-13:word:grandmother:r1",
+            "targetText": "grandmother",
+            "meaningByLocale": {
+              "ru": "бабушка. His grandmother is in the kitchen. — «Его бабушка на кухне». О маме отца или матери.",
+              "uk": "бабуся. His grandmother is in the kitchen. — «Його бабуся на кухні». Про маму батька або матері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grandmother",
+          "definitionByLocale": {
+            "ru": "бабушка. His grandmother is in the kitchen. — «Его бабушка на кухне». О маме отца или матери.",
+            "uk": "бабуся. His grandmother is in the kitchen. — «Його бабуся на кухні». Про маму батька або матері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-13:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i05:audio",
-          "transcript": "I have an umbrella."
+          "transcript": "Our grandmother is in the kitchen."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have an umbrella.",
+        "hiddenTargetPhrase": "Our grandmother is in the kitchen.",
         "orderedTokens": [
-          "I",
-          "have",
-          "an",
-          "umbrella"
+          "Our",
+          "grandmother",
+          "is",
+          "in",
+          "the",
+          "kitchen"
         ],
         "authoredDistractorTokens": [
-          "a"
+          "Their"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `an` — `I have an umbrella.`",
-              "uk": "тут потрібно `an` — `I have an umbrella.`"
+              "ru": "здесь нужно `Our` — `Our grandmother is in the kitchen.`",
+              "uk": "тут потрібно `Our` — `Our grandmother is in the kitchen.`"
             }
           }
         ],
@@ -316,39 +492,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Моя парасоля маленька»",
+      "prompt": "Подруга показує на дівчинку й питає, хто вона. Це донька вашої тітки. Скажіть повною фразою: «Вона моя двоюрідна сестра»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Моя парасоля маленька»",
+      "accessibilityLabel": "Подруга показує на дівчинку й питає, хто вона. Це донька вашої тітки. Скажіть повною фразою: «Вона моя двоюрідна сестра»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "My umbrella is small.",
+        "targetPhrase": "She is my cousin.",
         "localizedMeaning": {
-          "ru": "Скажите «Мой зонт маленький»",
-          "uk": "Скажіть «Моя парасоля маленька»"
+          "ru": "Подруга показывает на девочку и спрашивает, кто она. Это дочь вашей тёти. Скажите полной фразой: «Она моя двоюродная сестра»",
+          "uk": "Подруга показує на дівчинку й питає, хто вона. Це донька вашої тітки. Скажіть повною фразою: «Вона моя двоюрідна сестра»"
         },
         "orderedTokens": [
-          "My",
-          "umbrella",
+          "She",
           "is",
-          "small"
+          "my",
+          "cousin"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "He"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Моя парасоля маленька»",
+            "testedDimension": "Подруга показує на дівчинку й питає, хто вона. Це донька вашої тітки. Скажіть повною фразою: «Вона моя двоюрідна сестра»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `My umbrella is small.`",
-              "uk": "тут потрібно `is` — `My umbrella is small.`"
+              "ru": "здесь нужно `She` — `She is my cousin.`",
+              "uk": "тут потрібно `She` — `She is my cousin.`"
             }
           }
         ],
@@ -361,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Парасоля вашої подруги велика. Скажіть «Її парасоля велика»",
+      "prompt": "Подруга питає, чия це бабуся. Вона бабуся вас обох із братом. Відповідьте: «Це наша бабуся»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Парасоля вашої подруги велика. Скажіть «Її парасоля велика»",
+      "accessibilityLabel": "Подруга питає, чия це бабуся. Вона бабуся вас обох із братом. Відповідьте: «Це наша бабуся»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i07:audio",
-          "transcript": "Her umbrella is big."
+          "transcript": "This is our grandmother."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Her umbrella is big.",
+        "targetPhrase": "This is our grandmother.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -394,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Парасоля належить вашому другу-чоловікові. Скажіть «Це його парасоля»",
+      "prompt": "Ви розповідаєте подрузі, що у вашого дядька є собака. Виберіть потрібне слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-13:i08:r1",
-          "text": "his"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-13:i08:r2",
-          "text": "her"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-13:i08:r3",
-          "text": "their"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Парасоля належить вашому другу-чоловікові. Скажіть «Це його парасоля»",
+      "accessibilityLabel": "Ви розповідаєте подрузі, що у вашого дядька є собака. Виберіть потрібне слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Зонт принадлежит вашему другу-мужчине. Скажите «Это его зонт»",
-          "uk": "Парасоля належить вашому другу-чоловікові. Скажіть «Це його парасоля»"
+          "ru": "Вы рассказываете подруге, что у вашего дяди есть собака. Выберите нужное слово",
+          "uk": "Ви розповідаєте подрузі, що у вашого дядька є собака. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "This is ___ umbrella.",
+        "gappedTargetPhrase": "My uncle ___ a dog.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-13:i08:r1",
-            "text": "his"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-13:i08:r2",
-            "text": "her"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-13:i08:r3",
-            "text": "their"
+            "text": "is"
           }
         ],
-        "testedDimension": "Парасоля належить вашому другу-чоловікові. Скажіть «Це його парасоля»",
+        "testedDimension": "Ви розповідаєте подрузі, що у вашого дядька є собака. Виберіть потрібне слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i08:r2",
             "correct": false,
-            "testedDimension": "Парасоля належить вашому другу-чоловікові. Скажіть «Це його парасоля»",
+            "testedDimension": "Ви розповідаєте подрузі, що у вашого дядька є собака. Виберіть потрібне слово",
             "feedbackByLocale": {
-              "ru": "`her` — её; здесь его: `his`.",
-              "uk": "`her` — її; тут його: `his`."
+              "ru": "С my uncle, то есть с he, нужно has, а не have.",
+              "uk": "З my uncle, тобто з he, потрібно has, а не have."
             }
           },
           {
             "responseId": "en:lesson-05:session-13:i08:r3",
             "correct": false,
-            "testedDimension": "Парасоля належить вашому другу-чоловікові. Скажіть «Це його парасоля»",
+            "testedDimension": "Ви розповідаєте подрузі, що у вашого дядька є собака. Виберіть потрібне слово",
             "feedbackByLocale": {
-              "ru": "`their` — их; здесь его: `his`.",
-              "uk": "`their` — їхня; тут його: `his`."
+              "ru": "My uncle is a dog значит «Мой дядя — собака». Чтобы сказать «у дяди собака», нужно has.",
+              "uk": "My uncle is a dog означає «Мій дядько — собака». Щоб сказати «у дядька собака», потрібно has."
             }
           }
         ]
@@ -463,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де парасоля",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-13:i09:r1",
-          "text": "The umbrella is in my drawer."
+          "text": "My aunt has a cat."
         },
         {
           "responseId": "en:lesson-05:session-13:i09:r2",
-          "text": "The umbrella is in my bag."
+          "text": "My aunt has a dog."
         },
         {
           "responseId": "en:lesson-05:session-13:i09:r3",
-          "text": "The umbrella is in my backpack."
+          "text": "My cousin has a cat."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, де парасоля",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i09:audio",
-          "transcript": "The umbrella is in my drawer."
+          "transcript": "My aunt has a cat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-13:i09:r1",
-            "targetText": "The umbrella is in my drawer.",
+            "targetText": "My aunt has a cat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-13:i09:r2",
-            "targetText": "The umbrella is in my bag.",
+            "targetText": "My aunt has a dog.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-13:i09:r3",
-            "targetText": "The umbrella is in my backpack.",
+            "targetText": "My cousin has a cat.",
             "meaningByLocale": null
           }
         ],
@@ -516,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де парасоля",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `drawer`, а в этом варианте — `bag`.",
-              "uk": "У записі останнє слово — `drawer`, а в цьому варіанті — `bag`."
+              "ru": "В записи `cat` — кошка, а в этом варианте `dog` — собака.",
+              "uk": "У записі `cat` — кішка, а в цьому варіанті `dog` — собака."
             }
           },
           {
             "responseId": "en:lesson-05:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де парасоля",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `drawer`, а в этом варианте — `backpack`.",
-              "uk": "У записі останнє слово — `drawer`, а в цьому варіанті — `backpack`."
+              "ru": "В записи `aunt` — тётя, а в этом варианте `cousin` — двоюродный брат или сестра.",
+              "uk": "У записі `aunt` — тітка, а в цьому варіанті `cousin` — двоюрідний брат або сестра."
             }
           }
         ],
@@ -539,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -553,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-13:i10:p1",
-            "target": "umbrella",
+            "target": "uncle",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "дядя",
+              "uk": "дядько"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i10:p2",
-            "target": "window",
+            "target": "aunt",
             "meaningByLocale": {
-              "ru": "окно",
-              "uk": "вікно"
+              "ru": "тётя",
+              "uk": "тітка"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i10:p3",
-            "target": "taxi",
+            "target": "sister",
             "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
+              "ru": "сестра",
+              "uk": "сестра"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i10:p4",
-            "target": "drawer",
+            "target": "brother",
             "meaningByLocale": {
-              "ru": "выдвижной ящик",
-              "uk": "шухляда"
+              "ru": "брат",
+              "uk": "брат"
             }
           }
         ],
         "leftColumn": [
-          "umbrella",
-          "window",
-          "taxi",
-          "drawer"
+          "uncle",
+          "aunt",
+          "sister",
+          "brother"
         ],
         "rightColumn": [
-          "парасоля",
-          "вікно",
-          "таксі",
-          "шухляда"
+          "дядько",
+          "тітка",
+          "сестра",
+          "брат"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,42 +788,43 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i11:audio",
-          "transcript": "Their window is clean."
+          "transcript": "His grandmother has a bird."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Their window is clean.",
+        "hiddenTargetPhrase": "His grandmother has a bird.",
         "orderedTokens": [
-          "Their",
-          "window",
-          "is",
-          "clean"
+          "His",
+          "grandmother",
+          "has",
+          "a",
+          "bird"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Her"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Their window is clean.`",
-              "uk": "тут потрібно `is` — `Their window is clean.`"
+              "ru": "здесь нужно `His` — `His grandmother has a bird.`",
+              "uk": "тут потрібно `His` — `His grandmother has a bird.`"
             }
           }
         ],
@@ -660,39 +837,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Таксі приїхало по вас із другом. Скажіть «Наше таксі тут»",
+      "prompt": "Подруга питає, чия це тітка. Це тітка вашого друга. Скажіть повною фразою: «Це його тітка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Таксі приїхало по вас із другом. Скажіть «Наше таксі тут»",
+      "accessibilityLabel": "Подруга питає, чия це тітка. Це тітка вашого друга. Скажіть повною фразою: «Це його тітка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our taxi is here.",
+        "targetPhrase": "This is his aunt.",
         "localizedMeaning": {
-          "ru": "Такси приехало за вами с другом. Скажите «Наше такси здесь»",
-          "uk": "Таксі приїхало по вас із другом. Скажіть «Наше таксі тут»"
+          "ru": "Подруга спрашивает, чья это тётя. Это тётя вашего друга. Скажите полной фразой: «Это его тётя»",
+          "uk": "Подруга питає, чия це тітка. Це тітка вашого друга. Скажіть повною фразою: «Це його тітка»"
         },
         "orderedTokens": [
-          "Our",
-          "taxi",
+          "This",
           "is",
-          "here"
+          "his",
+          "aunt"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "her"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Таксі приїхало по вас із другом. Скажіть «Наше таксі тут»",
+            "testedDimension": "Подруга питає, чия це тітка. Це тітка вашого друга. Скажіть повною фразою: «Це його тітка»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Our taxi is here.`",
-              "uk": "тут потрібно `is` — `Our taxi is here.`"
+              "ru": "здесь нужно `his` — `This is his aunt.`",
+              "uk": "тут потрібно `his` — `This is his aunt.`"
             }
           }
         ],
@@ -705,25 +882,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Парасоля співрозмовника у вас. Скажіть «Твоя парасоля в мене»",
+      "prompt": "Бабуся питає, де ваш двоюрідний брат. Він на кухні. Відповідьте: «Мій двоюрідний брат на кухні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i13:audio"
       ],
-      "accessibilityLabel": "Парасоля співрозмовника у вас. Скажіть «Твоя парасоля в мене»",
+      "accessibilityLabel": "Бабуся питає, де ваш двоюрідний брат. Він на кухні. Відповідьте: «Мій двоюрідний брат на кухні»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i13:audio",
-          "transcript": "I have your umbrella."
+          "transcript": "My cousin is in the kitchen."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your umbrella.",
+        "targetPhrase": "My cousin is in the kitchen.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -738,67 +915,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Їхнє таксі велике. Машина одна. Виберіть форму",
+      "prompt": "Ви показуєте братові двоюрідну сестру вашої подруги. Виберіть потрібне слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-13:i14:r1",
-          "text": "is"
+          "text": "her"
         },
         {
           "responseId": "en:lesson-05:session-13:i14:r2",
-          "text": "are"
+          "text": "his"
         },
         {
           "responseId": "en:lesson-05:session-13:i14:r3",
-          "text": "has"
+          "text": "our"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Їхнє таксі велике. Машина одна. Виберіть форму",
+      "accessibilityLabel": "Ви показуєте братові двоюрідну сестру вашої подруги. Виберіть потрібне слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Их такси большое. Машина одна. Выберите форму",
-          "uk": "Їхнє таксі велике. Машина одна. Виберіть форму"
+          "ru": "Вы показываете брату двоюродную сестру вашей подруги. Выберите нужное слово",
+          "uk": "Ви показуєте братові двоюрідну сестру вашої подруги. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "Their taxi ___ big.",
+        "gappedTargetPhrase": "This is ___ cousin.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-13:i14:r1",
-            "text": "is"
+            "text": "her"
           },
           {
             "responseId": "en:lesson-05:session-13:i14:r2",
-            "text": "are"
+            "text": "his"
           },
           {
             "responseId": "en:lesson-05:session-13:i14:r3",
-            "text": "has"
+            "text": "our"
           }
         ],
-        "testedDimension": "Їхнє таксі велике. Машина одна. Виберіть форму",
+        "testedDimension": "Ви показуєте братові двоюрідну сестру вашої подруги. Виберіть потрібне слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-13:i14:r2",
             "correct": false,
-            "testedDimension": "Їхнє таксі велике. Машина одна. Виберіть форму",
+            "testedDimension": "Ви показуєте братові двоюрідну сестру вашої подруги. Виберіть потрібне слово",
             "feedbackByLocale": {
-              "ru": "Одна машина: `taxi is`, даже если пассажиров несколько.",
-              "uk": "Одна машина: `taxi is`, навіть якщо пасажирів кілька."
+              "ru": "his — его, а это родственница подруги: нужно her.",
+              "uk": "his — його, а це родичка подруги: потрібно her."
             }
           },
           {
             "responseId": "en:lesson-05:session-13:i14:r3",
             "correct": false,
-            "testedDimension": "Їхнє таксі велике. Машина одна. Виберіть форму",
+            "testedDimension": "Ви показуєте братові двоюрідну сестру вашої подруги. Виберіть потрібне слово",
             "feedbackByLocale": {
-              "ru": "Здесь описание размера: `taxi is big`.",
-              "uk": "Тут опис розміру: `taxi is big`."
+              "ru": "our — наш, а это родственница подруги, не ваша: нужно her.",
+              "uk": "our — наш, а це родичка подруги, не ваша: потрібно her."
             }
           }
         ]
@@ -807,51 +984,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чия парасоля тут",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-13:i15:r1",
-          "text": "Your umbrella is here."
+          "text": "Their grandmother is here."
         },
         {
           "responseId": "en:lesson-05:session-13:i15:r2",
-          "text": "My umbrella is here."
+          "text": "Our grandmother is here."
         },
         {
           "responseId": "en:lesson-05:session-13:i15:r3",
-          "text": "Her umbrella is here."
+          "text": "Their uncle is here."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чия парасоля тут",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i15:audio",
-          "transcript": "Your umbrella is here."
+          "transcript": "Their grandmother is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-13:i15:r1",
-            "targetText": "Your umbrella is here.",
+            "targetText": "Their grandmother is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-13:i15:r2",
-            "targetText": "My umbrella is here.",
+            "targetText": "Our grandmother is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-13:i15:r3",
-            "targetText": "Her umbrella is here.",
+            "targetText": "Their uncle is here.",
             "meaningByLocale": null
           }
         ],
@@ -860,19 +1037,19 @@
           {
             "responseId": "en:lesson-05:session-13:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чия парасоля тут",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи `Their` — их, а в этом варианте `Our` — наша.",
+              "uk": "У записі `Their` — їхня, а в цьому варіанті `Our` — наша."
             }
           },
           {
             "responseId": "en:lesson-05:session-13:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чия парасоля тут",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `Her`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `Her`."
+              "ru": "В записи `grandmother` — бабушка, а в этом варианте `uncle` — дядя.",
+              "uk": "У записі `grandmother` — бабуся, а в цьому варіанті `uncle` — дядько."
             }
           }
         ],
@@ -883,7 +1060,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,48 +1074,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-13:i16:p1",
-            "target": "umbrella",
+            "target": "uncle",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "дядя",
+              "uk": "дядько"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i16:p2",
-            "target": "window",
+            "target": "aunt",
             "meaningByLocale": {
-              "ru": "окно",
-              "uk": "вікно"
+              "ru": "тётя",
+              "uk": "тітка"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i16:p3",
-            "target": "taxi",
+            "target": "cousin",
             "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
+              "ru": "двоюродный брат или сестра",
+              "uk": "двоюрідний брат або сестра"
             }
           },
           {
             "pairId": "en:lesson-05:session-13:i16:p4",
-            "target": "drawer",
+            "target": "grandmother",
             "meaningByLocale": {
-              "ru": "выдвижной ящик",
-              "uk": "шухляда"
+              "ru": "бабушка",
+              "uk": "бабуся"
             }
           }
         ],
         "leftColumn": [
-          "umbrella",
-          "window",
-          "taxi",
-          "drawer"
+          "uncle",
+          "aunt",
+          "cousin",
+          "grandmother"
         ],
         "rightColumn": [
-          "парасоля",
-          "вікно",
-          "таксі",
-          "шухляда"
+          "дядько",
+          "тітка",
+          "двоюрідний брат або сестра",
+          "бабуся"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1133,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-13:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг шукає парасолю перед виходом. Вона всередині шухляди друга. Скажіть «Парасоля у твоїй шухляді»",
+      "prompt": "Подруга питає, хто прийшов. Прийшли ваші дядько й тітка. Відповідьте: «Мій дядько й моя тітка тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-13:i17:audio"
       ],
-      "accessibilityLabel": "Друг шукає парасолю перед виходом. Вона всередині шухляди друга. Скажіть «Парасоля у твоїй шухляді»",
+      "accessibilityLabel": "Подруга питає, хто прийшов. Прийшли ваші дядько й тітка. Відповідьте: «Мій дядько й моя тітка тут»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-13:i17:audio",
-          "transcript": "The umbrella is in your drawer."
+          "transcript": "My uncle and my aunt are here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The umbrella is in your drawer.",
+        "targetPhrase": "My uncle and my aunt are here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1173,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0e77d313eb1fbb3abfd19fd660a002e391d75d48657853deb409f1d78b7b986c"
+  "learnerFingerprint": "f3b6217e1d3b1a3aa331e064d9c5cbe128430e9f60cc4861ac8c64abd38526ef"
 }

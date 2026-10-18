@@ -2,134 +2,153 @@
 
 **Ситуация.** Друг впервые приходит к вам домой. Вы показываете квартиру и район: где магазин, что есть в комнате и куда опять пропал пульт.
 
-**Что вы освоите:** рассказать о комнате и районе, спросить, где вещь, и сообщить, чего нет
-**Новые слова:** —
+**Что вы освоите:** рассказать, что у кого есть, спросить, где вещь, и сообщить, чего нет
+**Новые слова:** guest, toothbrush, slippers, bathroom
+**Возвращаются:** desk, drawer, remote, curtain, key, bag, corner, shop, cupboard
 
 ---
 
 ## Интро 1
 
-### Что у кого есть
+### Голоса за дверью
 
-`have` — «иметь»: `I have a desk` — «У меня есть письменный стол». `desk` — письменный стол, `drawer` — выдвижной ящик. `The desk has a drawer` — «У стола есть ящик». С `I`, `you`, `we`, `they` нужно `have`; с `he`, `she`, `it` и одним столом — `has`. Число ящиков не меняет выбор: `The desk has drawers`.
+К вам впервые пришёл в гости давний друг, и вы показываете ему квартиру. Соседка по площадке слышит голоса за дверью и громко стучит. guest — «гость». Про себя говорят I have: I have a guest — «У меня гость». I am a guest сказал бы сам гость.
 
-**У стола есть ящики. Выберите форму.**
+**Соседка спрашивает, с кем вы разговариваете. Скажите ей, что у вас гость.**
 
-- ✅ **The desk has drawers.**
-- ❌ The desk have drawers. — *Смотрим на один стол: `has`, даже если ящиков несколько.*
-- ❌ The desk is drawers. — *Сказать, что есть у стола: `has drawers`.*
+- ✅ **I have a guest.**
+- ❌ I am a guest. — *Это значило бы «Я гость». Чтобы сказать «У меня гость», нужно have.*
+- ❌ I has a guest. — *С I нужно have, а не has.*
 
 ---
 
 ## Интро 2
 
-### Пульт и занавеска
+### Пустой шкафчик
 
-`remote` — «пульт», `curtain` — «занавеска», `ceiling` — «потолок». `Where is the remote?` — «Где пульт?» `The remote is in the drawer` — «Пульт в ящике». Кто-то наконец убрал пульт на место — теперь его никто не может найти. `There isn’t a curtain` — «Занавески нет», во множественном числе: `There aren’t any curtains` — «Нет ни одной занавески».
+Гость остаётся ночевать и заглядывает в шкафчик в ванной, но там совсем пусто. toothbrush — «зубная щётка». Когда чего-то нет, говорят isn’t: There isn’t a toothbrush in the cupboard — «В шкафчике нет зубной щётки». Щётка одна, поэтому нужно a.
 
-**Занавесок нет. Выберите фразу.**
+**Гость спрашивает про зубную щётку. Скажите ему, что в шкафчике её нет.**
 
-- ✅ **There aren't any curtains.**
-- ❌ There isn't any curtains. — *С несколькими занавесками `curtains` нужно `aren’t`.*
-- ❌ There are some curtains. — *Здесь занавесок нет: `aren’t any curtains`.*
+- ✅ **There isn’t a toothbrush in the cupboard.**
+- ❌ There aren’t a toothbrush in the cupboard. — *Щётка одна, поэтому нужно isn’t, а не aren’t.*
+- ❌ There isn’t toothbrush in the cupboard. — *Щётка одна, поэтому перед toothbrush нужно a.*
 
 ---
 
 ## Интро 3
 
-### Что рядом с домом
+### Тапочки в прихожей
 
-`neighbourhood` — «район», `corner shop` — «магазин у дома». `There is a corner shop in the neighbourhood` — «В районе есть магазин у дома». `Where is the corner shop?` — «Где магазин у дома?» Сначала `Where is`, затем название одного места или предмета.
+В прихожей гость снимает мокрую уличную обувь и остаётся в одних носках. Вы приносите ему мягкую тёплую домашнюю обувь. slippers — «домашние тапочки»: это пара, поэтому слово во множественном числе. The guest has slippers — «У гостя есть тапочки».
 
-**Спросите, где магазин у дома.**
+**Подруга спрашивает, во что обут гость. Скажите ей, что у гостя есть тапочки.**
 
-- ✅ **Where is the corner shop?**
-- ❌ Where the corner shop is? — *В этом прямом вопросе порядок `Where is the corner shop?`.*
-- ❌ Where are the corner shop? — *Один магазин: `Where is`.*
+- ✅ **The guest has slippers.**
+- ❌ The guest have slippers. — *Гость один, как he или she: нужно has, а не have.*
+- ❌ The guest has a slippers. — *Тапочки — это пара, поэтому a не нужно.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · У вас есть письменный стол. Сообщите об этом**
+**1 · Карточка слова — guest**
+<!-- interaction_id: en:lesson-05:session-08:word:guest; family: word_card -->
+> **guest** — гость. I have a guest. — «У меня гость». О человеке, который пришёл к вам домой на время.
+
+**2 · Соседка слышит голоса за дверью. Скажите ей полной фразой: «У меня гость»**
 <!-- interaction_id: en:lesson-05:session-08:i01; family: phrase_builder -->
-Плитки: `desk` `a` `have` `I` → **I have a desk.**
+Плитки: `guest` `a` `have` `I` `has` → **I have a guest.**
+*(плитка `has` лишняя: здесь нужно `have` — `I have a guest.`)*
 
-**2 · Послушайте описание стола**
+**3 · Послушайте гостя**
 <!-- interaction_id: en:lesson-05:session-08:i02; family: listen_choose -->
 🔊 *The desk has drawers.* → **The desk has drawers.** · The desk has books. · The desk has pens.
 - The desk has books. — *В записи последнее слово — `drawers`, а в этом варианте — `books`.*
 - The desk has pens. — *В записи последнее слово — `drawers`, а в этом варианте — `pens`.*
 
-**3 · Занавесок нет. Выберите форму**
+**4 · Карточка слова — toothbrush**
+<!-- interaction_id: en:lesson-05:session-08:word:toothbrush; family: word_card -->
+> **toothbrush** — зубная щётка. There isn’t a toothbrush in the cupboard. — «В шкафчике нет зубной щётки». О щётке, которой чистят зубы.
+
+**5 · В шкафчике нет зубной щётки. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-08:i03; family: context_gap_grammar -->
-There ___ any curtains. → **aren't** · are · isn't
-- are — *Здесь нет: `aren’t any curtains`.*
-- isn't — *С `curtains` нужно `aren’t`.*
+There ___ a toothbrush in the cupboard. → **isn’t** · aren’t · is
+- aren’t — *Щётка одна, поэтому нужно isn’t, а не aren’t.*
+- is — *Здесь «нет», а is без not — это утверждение.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-08:i04; family: speed_match -->
-desk — письменный стол · curtain — занавеска · drawer — выдвижной ящик · ceiling — потолок
+guest — гость · toothbrush — зубная щётка · slippers — домашние тапочки · bathroom — ванная комната
 
-**5 · Послушайте и соберите вопрос**
+**7 · Карточка слова — bathroom**
+<!-- interaction_id: en:lesson-05:session-08:word:bathroom; family: word_card -->
+> **bathroom** — ванная комната. Where is the bathroom? — «Где ванная комната?» О комнате, где умываются и принимают душ.
+
+**8 · Послушайте гостя и соберите вопрос**
 <!-- interaction_id: en:lesson-05:session-08:i05; family: listen_build_dictation -->
-🔊 *Where is the remote?* Плитки: `remote` `the` `is` `Where` → **Where is the remote?**
+🔊 *Where is the bathroom?* Плитки: `bathroom` `the` `is` `Where` `are` → **Where is the bathroom?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the bathroom?`)*
 
-**6 · Пульт внутри ящика. Скажите, где он**
+**9 · Карточка слова — slippers**
+<!-- interaction_id: en:lesson-05:session-08:word:slippers; family: word_card -->
+> **slippers** — домашние тапочки. The guest has slippers. — «У гостя есть тапочки». О мягкой обуви, которую надевают дома; слово всегда во множественном числе.
+
+**10 · Подруга спрашивает, во что обут гость. Скажите ей полной фразой: «У гостя есть тапочки»**
 <!-- interaction_id: en:lesson-05:session-08:i06; family: phrase_builder -->
-Плитки: `drawer` `the` `in` `is` `remote` `The` `are` → **The remote is in the drawer.**
-*(плитка `are` лишняя: здесь нужно `is` — `The remote is in the drawer.`)*
+Плитки: `slippers` `has` `guest` `The` `have` → **The guest has slippers.**
+*(плитка `have` лишняя: здесь нужно `has` — `The guest has slippers.`)*
 
-**7 · У подруги есть занавеска. Скажите «У неё есть занавеска»**
+**11 · Гость спрашивает, где пульт. Скажите ему: «Пульт в ящике»**
 <!-- interaction_id: en:lesson-05:session-08:i07; family: scripted_repeat_compare -->
-🎙 **She has a curtain.**
+🎙 **The remote is in the drawer.**
 
-**8 · У комнаты есть потолок. Выберите форму**
+**12 · В комнате нет занавесок. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-08:i08; family: context_gap_grammar -->
-The room ___ a ceiling. → **has** · have · is
-- have — *Одна комната, как `it`: `has`.*
-- is — *У комнаты есть потолок: `has a ceiling`.*
+There ___ any curtains. → **aren’t** · are · isn’t
+- are — *Здесь «нет», а are без not — это утверждение.*
+- isn’t — *Занавесок несколько, поэтому нужно aren’t, а не isn’t.*
 
-**9 · Послушайте, где магазин**
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-08:i09; family: listen_choose -->
-🔊 *The corner shop is next to the park.* → **The corner shop is next to the park.** · The corner shop is next to the museum. · The corner shop is next to the nursery.
-- The corner shop is next to the museum. — *В записи последнее слово — `park`, а в этом варианте — `museum`.*
-- The corner shop is next to the nursery. — *В записи последнее слово — `park`, а в этом варианте — `nursery`.*
+🔊 *She has a key.* → **She has a key.** · She has a bag. · He has a key.
+- She has a bag. — *В записи последнее слово — `key`, а в этом варианте — `bag`.*
+- He has a key. — *В записи первое слово — `She`, а в этом варианте — `He`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-08:i10; family: speed_match -->
-have — иметь · remote — пульт · neighbourhood — район · corner shop — магазин у дома
+desk — письменный стол · drawer — выдвижной ящик · remote — пульт · curtain — занавеска
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте гостя и соберите вопрос**
 <!-- interaction_id: en:lesson-05:session-08:i11; family: listen_build_dictation -->
-🔊 *There is a corner shop in the neighbourhood.* Плитки: `neighbourhood` `the` `in` `shop` `corner` `a` `is` `There` `are` → **There is a corner shop in the neighbourhood.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a corner shop in the neighbourhood.`)*
+🔊 *Where is the remote?* Плитки: `remote` `the` `is` `Where` `are` → **Where is the remote?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the remote?`)*
 
-**12 · У вас с другом есть занавески. Скажите «У нас есть занавески»**
+**16 · Гость хочет купить хлеб. Спросите соседа полной фразой: «Где магазин у дома?»**
 <!-- interaction_id: en:lesson-05:session-08:i12; family: phrase_builder -->
-Плитки: `curtains` `have` `We` → **We have curtains.**
+Плитки: `shop` `corner` `the` `is` `Where` `are` → **Where is the corner shop?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the corner shop?`)*
 
-**13 · Спросите, где магазин у дома**
+**17 · В комнате нет занавесок. Скажите гостю: «Занавесок нет»**
 <!-- interaction_id: en:lesson-05:session-08:i13; family: scripted_repeat_compare -->
-🎙 **Where is the corner shop?**
+🎙 **There aren’t any curtains.**
 
-**14 · Пульт упал под стол, на пол. Выберите слово**
+**18 · У стола есть ящики. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-08:i14; family: context_gap_grammar -->
-The remote is ___ the desk. → **under** · on · in
-- on — *`on` — на поверхности; здесь под: `under`.*
-- in — *`in` — внутри; здесь под: `under`.*
+The desk ___ drawers. → **has** · have · is
+- have — *Стол один, как it: нужно has, даже если ящиков несколько.*
+- is — *Речь о том, что есть у стола: has drawers.*
 
-**15 · Послушайте описание потолка**
+**19 · Послушайте гостя**
 <!-- interaction_id: en:lesson-05:session-08:i15; family: listen_choose -->
-🔊 *The ceiling is white.* → **The ceiling is white.** · The ceiling is black. · The ceiling is grey.
-- The ceiling is black. — *В записи последнее слово — `white`, а в этом варианте — `black`.*
-- The ceiling is grey. — *В записи последнее слово — `white`, а в этом варианте — `grey`.*
+🔊 *There isn’t a toothbrush here.* → **There isn’t a toothbrush here.** · There isn’t a bathroom here. · There aren’t any toothbrushes here.
+- There isn’t a bathroom here. — *В записи `toothbrush` — зубная щётка, а в этом варианте `bathroom` — ванная комната.*
+- There aren’t any toothbrushes here. — *В записи `isn’t a` — нет одной, а в этом варианте `aren’t any` — нет нескольких.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-08:i16; family: speed_match -->
-have — иметь · remote — пульт · neighbourhood — район · corner shop — магазин у дома
+guest — гость · slippers — домашние тапочки · bathroom — ванная комната · remote — пульт
 
-**17 · Гость спрашивает о вашем письменном столе. Сообщите «У письменного стола есть ящик»**
+**21 · Гость рассматривает комнату. Скажите ему: «У стола есть ящики»**
 <!-- interaction_id: en:lesson-05:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The desk has a drawer.**
-
+🎙 **The desk has drawers.**

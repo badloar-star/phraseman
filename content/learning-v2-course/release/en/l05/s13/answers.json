@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-13:word:uncle",
+    "correctText": "uncle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-13:i01",
-    "correctText": "Our window is clean.",
+    "correctText": "My uncle is in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:word:aunt",
+    "correctText": "aunt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i02",
-    "correctText": "umbrella",
+    "correctText": "Our aunt is here.",
     "correctResponseId": "en:lesson-05:session-13:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-13:word:cousin",
+    "correctText": "cousin",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-13:i03",
-    "correctText": "umbrella",
+    "correctText": "cousin",
     "correctResponseId": "en:lesson-05:session-13:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-13:i04",
-    "correctText": "en:lesson-05:session-13:i04:p1=umbrella\nen:lesson-05:session-13:i04:p2=small\nen:lesson-05:session-13:i04:p3=big\nen:lesson-05:session-13:i04:p4=clean",
+    "correctText": "en:lesson-05:session-13:i04:p1=uncle\nen:lesson-05:session-13:i04:p2=aunt\nen:lesson-05:session-13:i04:p3=cousin\nen:lesson-05:session-13:i04:p4=grandmother",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:word:grandmother",
+    "correctText": "grandmother",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i05",
-    "correctText": "I have an umbrella.",
+    "correctText": "Our grandmother is in the kitchen.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i06",
-    "correctText": "My umbrella is small.",
+    "correctText": "She is my cousin.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i07",
-    "correctText": "Her umbrella is big.",
+    "correctText": "This is our grandmother.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i08",
-    "correctText": "his",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-13:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-13:i09",
-    "correctText": "The umbrella is in my drawer.",
+    "correctText": "My aunt has a cat.",
     "correctResponseId": "en:lesson-05:session-13:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-13:i10",
-    "correctText": "en:lesson-05:session-13:i10:p1=umbrella\nen:lesson-05:session-13:i10:p2=window\nen:lesson-05:session-13:i10:p3=taxi\nen:lesson-05:session-13:i10:p4=drawer",
+    "correctText": "en:lesson-05:session-13:i10:p1=uncle\nen:lesson-05:session-13:i10:p2=aunt\nen:lesson-05:session-13:i10:p3=sister\nen:lesson-05:session-13:i10:p4=brother",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i11",
-    "correctText": "Their window is clean.",
+    "correctText": "His grandmother has a bird.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i12",
-    "correctText": "Our taxi is here.",
+    "correctText": "This is his aunt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i13",
-    "correctText": "I have your umbrella.",
+    "correctText": "My cousin is in the kitchen.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i14",
-    "correctText": "is",
+    "correctText": "her",
     "correctResponseId": "en:lesson-05:session-13:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-13:i15",
-    "correctText": "Your umbrella is here.",
+    "correctText": "Their grandmother is here.",
     "correctResponseId": "en:lesson-05:session-13:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-13:i16",
-    "correctText": "en:lesson-05:session-13:i16:p1=umbrella\nen:lesson-05:session-13:i16:p2=window\nen:lesson-05:session-13:i16:p3=taxi\nen:lesson-05:session-13:i16:p4=drawer",
+    "correctText": "en:lesson-05:session-13:i16:p1=uncle\nen:lesson-05:session-13:i16:p2=aunt\nen:lesson-05:session-13:i16:p3=cousin\nen:lesson-05:session-13:i16:p4=grandmother",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-13:i17",
-    "correctText": "The umbrella is in your drawer.",
+    "correctText": "My uncle and my aunt are here.",
     "correctResponseId": null
   }
 ]

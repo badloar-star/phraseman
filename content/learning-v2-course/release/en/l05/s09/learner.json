@@ -4,40 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-09:i01",
+      "interactionId": "en:lesson-05:session-09:word:mug",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:word:mug:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:word:mug:audio",
+          "transcript": "mug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-09:word:mug:r1",
+            "targetText": "mug",
+            "meaningByLocale": {
+              "ru": "кружка. Your mug is on the table. — «Твоя кружка на столе». О посуде для чая и кофе с ручкой.",
+              "uk": "кружка. Your mug is on the table. — «Твоя кружка на столі». Про посуд для чаю й кави з ручкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mug",
+          "definitionByLocale": {
+            "ru": "кружка. Your mug is on the table. — «Твоя кружка на столе». О посуде для чая и кофе с ручкой.",
+            "uk": "кружка. Your mug is on the table. — «Твоя кружка на столі». Про посуд для чаю й кави з ручкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Наш стоматолог молодой. Скажите это",
+      "prompt": "Коллега ищет свою кружку, а она стоит на столе. Скажите ему полной фразой: «Твоя кружка на столе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Наш стоматолог молодой. Скажите это",
+      "accessibilityLabel": "Коллега ищет свою кружку, а она стоит на столе. Скажите ему полной фразой: «Твоя кружка на столе»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our dentist is young.",
+        "targetPhrase": "Your mug is on the table.",
         "localizedMeaning": {
-          "ru": "Наш стоматолог молодой. Скажите это",
-          "uk": "Наш стоматолог молодий. Скажіть це"
+          "ru": "Коллега ищет свою кружку, а она стоит на столе. Скажите ему полной фразой: «Твоя кружка на столе»",
+          "uk": "Колега шукає свою кружку, а вона стоїть на столі. Скажіть йому повною фразою: «Твоя кружка на столі»"
         },
         "orderedTokens": [
-          "Our",
-          "dentist",
+          "Your",
+          "mug",
           "is",
-          "young"
+          "on",
+          "the",
+          "table"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "My"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-09:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Наш стоматолог молодой. Скажите это",
+            "testedDimension": "Коллега ищет свою кружку, а она стоит на столе. Скажите ему полной фразой: «Твоя кружка на столе»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Our dentist is young.`",
-              "uk": "тут потрібно `is` — `Our dentist is young.`"
+              "ru": "здесь нужно `Your` — `Your mug is on the table.`",
+              "uk": "тут потрібно `Your` — `Your mug is on the table.`"
             }
           }
         ],
@@ -49,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-09:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-09:word:lunchbox",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — lunchbox",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:word:lunchbox:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lunchbox",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:word:lunchbox:audio",
+          "transcript": "lunchbox"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-09:word:lunchbox:r1",
+            "targetText": "lunchbox",
+            "meaningByLocale": {
+              "ru": "контейнер для обеда. Her lunchbox is on the shelf. — «Её контейнер с обедом на полке». О закрытой коробке, в которой носят еду с собой.",
+              "uk": "контейнер для обіду. Her lunchbox is on the shelf. — «Її контейнер з обідом на полиці». Про закриту коробку, в якій носять їжу із собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lunchbox",
+          "definitionByLocale": {
+            "ru": "контейнер для обеда. Her lunchbox is on the shelf. — «Её контейнер с обедом на полке». О закрытой коробке, в которой носят еду с собой.",
+            "uk": "контейнер для обіду. Her lunchbox is on the shelf. — «Її контейнер з обідом на полиці». Про закриту коробку, в якій носять їжу із собою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-09:i02:r1",
-          "text": "charger"
+          "text": "Her lunchbox is on the shelf."
         },
         {
           "responseId": "en:lesson-05:session-09:i02:r2",
-          "text": "chargers"
+          "text": "His lunchbox is on the shelf."
         },
         {
           "responseId": "en:lesson-05:session-09:i02:r3",
-          "text": "curtain"
+          "text": "Her lunchbox is on the table."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i02:audio",
-          "transcript": "charger"
+          "transcript": "Her lunchbox is on the shelf."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-09:i02:r1",
-            "targetText": "charger",
+            "targetText": "Her lunchbox is on the shelf.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-09:i02:r2",
-            "targetText": "chargers",
+            "targetText": "His lunchbox is on the shelf.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-09:i02:r3",
-            "targetText": "curtain",
+            "targetText": "Her lunchbox is on the table.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-09:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `charger`, а в этом варианте — `chargers`.",
-              "uk": "У записі перше слово — `charger`, а в цьому варіанті — `chargers`."
+              "ru": "В записи `Her` — её, а в этом варианте `His` — его.",
+              "uk": "У записі `Her` — її, а в цьому варіанті `His` — його."
             }
           },
           {
             "responseId": "en:lesson-05:session-09:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `charger`, а в этом варианте — `curtain`.",
-              "uk": "У записі перше слово — `charger`, а в цьому варіанті — `curtain`."
+              "ru": "В записи последнее слово `shelf`, а в этом варианте `table`.",
+              "uk": "У записі останнє слово `shelf`, а в цьому варіанті `table`."
             }
           }
         ],
@@ -125,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-09:word:printer",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — printer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:word:printer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — printer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:word:printer:audio",
+          "transcript": "printer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-09:word:printer:r1",
+            "targetText": "printer",
+            "meaningByLocale": {
+              "ru": "принтер. Our printer is here. — «Наш принтер здесь». О приборе, который печатает документы на бумаге.",
+              "uk": "принтер. Our printer is here. — «Наш принтер тут». Про прилад, який друкує документи на папері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "printer",
+          "definitionByLocale": {
+            "ru": "принтер. Our printer is here. — «Наш принтер здесь». О приборе, который печатает документы на бумаге.",
+            "uk": "принтер. Our printer is here. — «Наш принтер тут». Про прилад, який друкує документи на папері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-09:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите зарядное устройство",
+      "prompt": "Прибор, который печатает документы на бумаге. Как он называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-09:i03:r1",
-          "text": "charger"
+          "text": "printer"
         },
         {
           "responseId": "en:lesson-05:session-09:i03:r2",
-          "text": "remote"
+          "text": "screen"
         },
         {
           "responseId": "en:lesson-05:session-09:i03:r3",
-          "text": "drawer"
+          "text": "speaker"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите зарядное устройство",
+      "accessibilityLabel": "Прибор, который печатает документы на бумаге. Как он называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите зарядное устройство",
-          "uk": "Назвіть зарядний пристрій"
+          "ru": "Прибор, который печатает документы на бумаге. Как он называется по-английски?",
+          "uk": "Прилад, який друкує документи на папері. Як він називається англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-09:i03:r1",
-            "text": "charger"
+            "text": "printer"
           },
           {
             "responseId": "en:lesson-05:session-09:i03:r2",
-            "text": "remote"
+            "text": "screen"
           },
           {
             "responseId": "en:lesson-05:session-09:i03:r3",
-            "text": "drawer"
+            "text": "speaker"
           }
         ],
-        "testedDimension": "Назовите зарядное устройство",
+        "testedDimension": "Прибор, который печатает документы на бумаге. Как он называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите зарядное устройство",
+            "testedDimension": "Прибор, который печатает документы на бумаге. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`remote` — пульт; зарядка — `charger`.",
-              "uk": "`remote` — пульт; зарядка — `charger`."
+              "ru": "screen — это экран, а прибор, который печатает документы, называется printer.",
+              "uk": "screen — це екран, а прилад, який друкує документи, називається printer."
             }
           },
           {
             "responseId": "en:lesson-05:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите зарядное устройство",
+            "testedDimension": "Прибор, который печатает документы на бумаге. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`drawer` — выдвижной ящик; зарядка — `charger`.",
-              "uk": "`drawer` — шухляда; зарядка — `charger`."
+              "ru": "speaker — это колонка, а прибор, который печатает документы, называется printer.",
+              "uk": "speaker — це колонка, а прилад, який друкує документи, називається printer."
             }
           }
         ]
@@ -195,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +340,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-09:i04:p1",
-            "target": "charger",
+            "target": "mug",
             "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
+              "ru": "кружка",
+              "uk": "кухоль"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i04:p2",
-            "target": "tall",
+            "target": "lunchbox",
             "meaningByLocale": {
-              "ru": "высокий (человек)",
-              "uk": "високий (людина)"
+              "ru": "контейнер для обеда",
+              "uk": "контейнер для обіду"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i04:p3",
-            "target": "short",
+            "target": "printer",
             "meaningByLocale": {
-              "ru": "невысокий (человек)",
-              "uk": "невисокий (людина)"
+              "ru": "принтер",
+              "uk": "принтер"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i04:p4",
-            "target": "young",
+            "target": "stapler",
             "meaningByLocale": {
-              "ru": "молодой",
-              "uk": "молодий"
+              "ru": "степлер",
+              "uk": "степлер"
             }
           }
         ],
         "leftColumn": [
-          "charger",
-          "tall",
-          "short",
-          "young"
+          "mug",
+          "lunchbox",
+          "printer",
+          "stapler"
         ],
         "rightColumn": [
-          "зарядное устройство",
-          "высокий (человек)",
-          "невысокий (человек)",
-          "молодой"
+          "кружка",
+          "контейнер для обеда",
+          "принтер",
+          "степлер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +398,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-09:word:stapler",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stapler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:word:stapler:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stapler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:word:stapler:audio",
+          "transcript": "stapler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-09:word:stapler:r1",
+            "targetText": "stapler",
+            "meaningByLocale": {
+              "ru": "степлер. His stapler is on my desk. — «Его степлер на моём столе». О приборе, который скрепляет листы бумаги.",
+              "uk": "степлер. His stapler is on my desk. — «Його степлер на моєму столі». Про прилад, який скріплює аркуші паперу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stapler",
+          "definitionByLocale": {
+            "ru": "степлер. His stapler is on my desk. — «Его степлер на моём столе». О приборе, который скрепляет листы бумаги.",
+            "uk": "степлер. His stapler is on my desk. — «Його степлер на моєму столі». Про прилад, який скріплює аркуші паперу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-09:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i05:audio",
-          "transcript": "This is my charger."
+          "transcript": "My stapler is in your drawer."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is my charger.",
+        "hiddenTargetPhrase": "My stapler is in your drawer.",
         "orderedTokens": [
-          "This",
+          "My",
+          "stapler",
           "is",
-          "my",
-          "charger"
+          "in",
+          "your",
+          "drawer"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Our"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте коллегу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `My` — `My stapler is in your drawer.`",
+              "uk": "тут потрібно `My` — `My stapler is in your drawer.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,30 +492,44 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зарядка собеседника у вас. Скажите «Ваша зарядка у меня»",
+      "prompt": "Степлер вашего коллеги лежит на вашем столе. Скажите полной фразой: «Его степлер на моём столе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зарядка собеседника у вас. Скажите «Ваша зарядка у меня»",
+      "accessibilityLabel": "Степлер вашего коллеги лежит на вашем столе. Скажите полной фразой: «Его степлер на моём столе»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have your charger.",
+        "targetPhrase": "His stapler is on my desk.",
         "localizedMeaning": {
-          "ru": "Зарядка собеседника у вас. Скажите «Ваша зарядка у меня»",
-          "uk": "Зарядка співрозмовника у вас. Скажіть «Ваша зарядка в мене»"
+          "ru": "Степлер вашего коллеги лежит на вашем столе. Скажите полной фразой: «Его степлер на моём столе»",
+          "uk": "Степлер вашого колеги лежить на вашому столі. Скажіть повною фразою: «Його степлер на моєму столі»"
         },
         "orderedTokens": [
-          "I",
-          "have",
-          "your",
-          "charger"
+          "His",
+          "stapler",
+          "is",
+          "on",
+          "my",
+          "desk"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Her"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Степлер вашего коллеги лежит на вашем столе. Скажите полной фразой: «Его степлер на моём столе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `His` — `His stapler is on my desk.`",
+              "uk": "тут потрібно `His` — `His stapler is on my desk.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -337,25 +539,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Стоматолог вашей подруги высокий. Скажите «Её стоматолог высокий»",
+      "prompt": "Коллега видит кружку на столе и спрашивает, чья она. Ответьте: «Это моя кружка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i07:audio"
       ],
-      "accessibilityLabel": "Стоматолог вашей подруги высокий. Скажите «Её стоматолог высокий»",
+      "accessibilityLabel": "Коллега видит кружку на столе и спрашивает, чья она. Ответьте: «Это моя кружка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i07:audio",
-          "transcript": "Her dentist is tall."
+          "transcript": "This is my mug."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Her dentist is tall.",
+        "targetPhrase": "This is my mug.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -370,67 +572,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Покажите зарядку вашего друга-мужчины: «Это его зарядка»",
+      "prompt": "Вы с коллегами говорите о своём общем холодильнике. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-09:i08:r1",
-          "text": "his"
+          "text": "Our"
         },
         {
           "responseId": "en:lesson-05:session-09:i08:r2",
-          "text": "her"
+          "text": "Their"
         },
         {
           "responseId": "en:lesson-05:session-09:i08:r3",
-          "text": "their"
+          "text": "My"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажите зарядку вашего друга-мужчины: «Это его зарядка»",
+      "accessibilityLabel": "Вы с коллегами говорите о своём общем холодильнике. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Покажите зарядку вашего друга-мужчины: «Это его зарядка»",
-          "uk": "Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»"
+          "ru": "Вы с коллегами говорите о своём общем холодильнике. Выберите нужное слово",
+          "uk": "Ви з колегами говорите про свій спільний холодильник. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "This is ___ charger.",
+        "gappedTargetPhrase": "___ fridge is full.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-09:i08:r1",
-            "text": "his"
+            "text": "Our"
           },
           {
             "responseId": "en:lesson-05:session-09:i08:r2",
-            "text": "her"
+            "text": "Their"
           },
           {
             "responseId": "en:lesson-05:session-09:i08:r3",
-            "text": "their"
+            "text": "My"
           }
         ],
-        "testedDimension": "Покажите зарядку вашего друга-мужчины: «Это его зарядка»",
+        "testedDimension": "Вы с коллегами говорите о своём общем холодильнике. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-09:i08:r2",
             "correct": false,
-            "testedDimension": "Покажите зарядку вашего друга-мужчины: «Это его зарядка»",
+            "testedDimension": "Вы с коллегами говорите о своём общем холодильнике. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`her` — её; здесь его: `his`.",
-              "uk": "`her` — її; тут його: `his`."
+              "ru": "Their — их, а вы говорите о холодильнике вашего отдела: нужно Our.",
+              "uk": "Their — їхній, а ви говорите про холодильник вашого відділу: потрібно Our."
             }
           },
           {
             "responseId": "en:lesson-05:session-09:i08:r3",
             "correct": false,
-            "testedDimension": "Покажите зарядку вашего друга-мужчины: «Это его зарядка»",
+            "testedDimension": "Вы с коллегами говорите о своём общем холодильнике. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`their` — их; здесь его: `his`.",
-              "uk": "`their` — їхня; тут його: `his`."
+              "ru": "My — мой, а холодильник общий, ваш с коллегами: нужно Our.",
+              "uk": "My — мій, а холодильник спільний, ваш з колегами: потрібно Our."
             }
           }
         ]
@@ -439,51 +641,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте про дверь",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-09:i09:r1",
-          "text": "Their door is open."
+          "text": "Their stapler is on the chair."
         },
         {
           "responseId": "en:lesson-05:session-09:i09:r2",
-          "text": "Their door is closed."
+          "text": "Our stapler is on the chair."
         },
         {
           "responseId": "en:lesson-05:session-09:i09:r3",
-          "text": "Our door is open."
+          "text": "Their stapler is on the desk."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте про дверь",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i09:audio",
-          "transcript": "Their door is open."
+          "transcript": "Their stapler is on the chair."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-09:i09:r1",
-            "targetText": "Their door is open.",
+            "targetText": "Their stapler is on the chair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-09:i09:r2",
-            "targetText": "Their door is closed.",
+            "targetText": "Our stapler is on the chair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-09:i09:r3",
-            "targetText": "Our door is open.",
+            "targetText": "Their stapler is on the desk.",
             "meaningByLocale": null
           }
         ],
@@ -492,19 +694,19 @@
           {
             "responseId": "en:lesson-05:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте про дверь",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
-              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+              "ru": "В записи `Their` — их, а в этом варианте `Our` — наш.",
+              "uk": "У записі `Their` — їхній, а в цьому варіанті `Our` — наш."
             }
           },
           {
             "responseId": "en:lesson-05:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте про дверь",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Their`, а в этом варианте — `Our`.",
-              "uk": "У записі перше слово — `Their`, а в цьому варіанті — `Our`."
+              "ru": "В записи последнее слово `chair`, а в этом варианте `desk`.",
+              "uk": "У записі останнє слово `chair`, а в цьому варіанті `desk`."
             }
           }
         ],
@@ -515,8 +717,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -529,48 +731,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-09:i10:p1",
-            "target": "charger",
+            "target": "stapler",
             "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
+              "ru": "степлер",
+              "uk": "степлер"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i10:p2",
-            "target": "door",
+            "target": "printer",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "принтер",
+              "uk": "принтер"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i10:p3",
-            "target": "dentist",
+            "target": "fridge",
             "meaningByLocale": {
-              "ru": "стоматолог",
-              "uk": "стоматолог"
+              "ru": "холодильник",
+              "uk": "холодильник"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i10:p4",
-            "target": "have",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "иметь",
-              "uk": "мати"
+              "ru": "полка",
+              "uk": "полиця"
             }
           }
         ],
         "leftColumn": [
-          "charger",
-          "door",
-          "dentist",
-          "have"
+          "stapler",
+          "printer",
+          "fridge",
+          "shelf"
         ],
         "rightColumn": [
-          "зарядное устройство",
-          "дверь",
-          "стоматолог",
-          "иметь"
+          "степлер",
+          "принтер",
+          "холодильник",
+          "полка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -588,33 +790,47 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i11:audio",
-          "transcript": "We have their charger."
+          "transcript": "Their lunchbox is in the fridge."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We have their charger.",
+        "hiddenTargetPhrase": "Their lunchbox is in the fridge.",
         "orderedTokens": [
-          "We",
-          "have",
-          "their",
-          "charger"
+          "Their",
+          "lunchbox",
+          "is",
+          "in",
+          "the",
+          "fridge"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Our"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте коллегу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Their` — `Their lunchbox is in the fridge.`",
+              "uk": "тут потрібно `Their` — `Their lunchbox is in the fridge.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -624,39 +840,41 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Стоматолог вашего друга невысокий. Скажите «Его стоматолог невысокий»",
+      "prompt": "Вы нашли контейнер с обедом собеседника за принтером. Скажите ему полной фразой: «Твой контейнер с обедом за принтером»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Стоматолог вашего друга невысокий. Скажите «Его стоматолог невысокий»",
+      "accessibilityLabel": "Вы нашли контейнер с обедом собеседника за принтером. Скажите ему полной фразой: «Твой контейнер с обедом за принтером»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "His dentist is short.",
+        "targetPhrase": "Your lunchbox is behind the printer.",
         "localizedMeaning": {
-          "ru": "Стоматолог вашего друга невысокий. Скажите «Его стоматолог невысокий»",
-          "uk": "Стоматолог вашого друга невисокий. Скажіть «Його стоматолог невисокий»"
+          "ru": "Вы нашли контейнер с обедом собеседника за принтером. Скажите ему полной фразой: «Твой контейнер с обедом за принтером»",
+          "uk": "Ви знайшли контейнер з обідом співрозмовника за принтером. Скажіть йому повною фразою: «Твій контейнер з обідом за принтером»"
         },
         "orderedTokens": [
-          "His",
-          "dentist",
+          "Your",
+          "lunchbox",
           "is",
-          "short"
+          "behind",
+          "the",
+          "printer"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "My"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-09:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Стоматолог вашего друга невысокий. Скажите «Его стоматолог невысокий»",
+            "testedDimension": "Вы нашли контейнер с обедом собеседника за принтером. Скажите ему полной фразой: «Твой контейнер с обедом за принтером»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `His dentist is short.`",
-              "uk": "тут потрібно `is` — `His dentist is short.`"
+              "ru": "здесь нужно `Your` — `Your lunchbox is behind the printer.`",
+              "uk": "тут потрібно `Your` — `Your lunchbox is behind the printer.`"
             }
           }
         ],
@@ -669,25 +887,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Зарядка общая, ваша и друга. Скажите «Это наша зарядка»",
+      "prompt": "Ваша коллега ищет свой контейнер с обедом. Он в холодильнике. Скажите ей: «Твой контейнер с обедом в холодильнике»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i13:audio"
       ],
-      "accessibilityLabel": "Зарядка общая, ваша и друга. Скажите «Это наша зарядка»",
+      "accessibilityLabel": "Ваша коллега ищет свой контейнер с обедом. Он в холодильнике. Скажите ей: «Твой контейнер с обедом в холодильнике»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i13:audio",
-          "transcript": "This is our charger."
+          "transcript": "Your lunchbox is in the fridge."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is our charger.",
+        "targetPhrase": "Your lunchbox is in the fridge.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -702,67 +920,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Речь об одном шкафе, который вы называете it. Его дверца открыта. Выберите слово",
+      "prompt": "Вы показываете гостю степлер вашей коллеги. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-09:i14:r1",
-          "text": "Its"
+          "text": "her"
         },
         {
           "responseId": "en:lesson-05:session-09:i14:r2",
-          "text": "It's"
+          "text": "his"
         },
         {
           "responseId": "en:lesson-05:session-09:i14:r3",
-          "text": "Their"
+          "text": "their"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Речь об одном шкафе, который вы называете it. Его дверца открыта. Выберите слово",
+      "accessibilityLabel": "Вы показываете гостю степлер вашей коллеги. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одном шкафе, который вы называете it. Его дверца открыта. Выберите слово",
-          "uk": "Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово"
+          "ru": "Вы показываете гостю степлер вашей коллеги. Выберите нужное слово",
+          "uk": "Ви показуєте гостю степлер вашої колеги. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "___ door is open.",
+        "gappedTargetPhrase": "This is ___ stapler.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-09:i14:r1",
-            "text": "Its"
+            "text": "her"
           },
           {
             "responseId": "en:lesson-05:session-09:i14:r2",
-            "text": "It's"
+            "text": "his"
           },
           {
             "responseId": "en:lesson-05:session-09:i14:r3",
-            "text": "Their"
+            "text": "their"
           }
         ],
-        "testedDimension": "Речь об одном шкафе, который вы называете it. Его дверца открыта. Выберите слово",
+        "testedDimension": "Вы показываете гостю степлер вашей коллеги. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-09:i14:r2",
             "correct": false,
-            "testedDimension": "Речь об одном шкафе, который вы называете it. Его дверца открыта. Выберите слово",
+            "testedDimension": "Вы показываете гостю степлер вашей коллеги. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`It’s` — это `it is`; перед дверью нужно `Its` без апострофа.",
-              "uk": "`It’s` — це `it is`; перед назвою дверей потрібне `Its` без апострофа."
+              "ru": "his — его, а степлер принадлежит женщине: нужно her.",
+              "uk": "his — його, а степлер належить жінці: потрібно her."
             }
           },
           {
             "responseId": "en:lesson-05:session-09:i14:r3",
             "correct": false,
-            "testedDimension": "Речь об одном шкафе, который вы называете it. Его дверца открыта. Выберите слово",
+            "testedDimension": "Вы показываете гостю степлер вашей коллеги. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`Their` — их; для одного шкафа, названного `it`, нужно `Its`.",
-              "uk": "`Their` — їхні; для однієї шафи, названої `it`, потрібне `Its`."
+              "ru": "their — их, а степлер одной женщины: нужно her.",
+              "uk": "their — їхній, а степлер однієї жінки: потрібно her."
             }
           }
         ]
@@ -771,51 +989,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чья зарядка здесь",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-09:i15:r1",
-          "text": "Her charger is here."
+          "text": "Your mug is on my desk."
         },
         {
           "responseId": "en:lesson-05:session-09:i15:r2",
-          "text": "His charger is here."
+          "text": "My mug is on your desk."
         },
         {
           "responseId": "en:lesson-05:session-09:i15:r3",
-          "text": "My charger is here."
+          "text": "Your mug is on my chair."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чья зарядка здесь",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i15:audio",
-          "transcript": "Her charger is here."
+          "transcript": "Your mug is on my desk."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-09:i15:r1",
-            "targetText": "Her charger is here.",
+            "targetText": "Your mug is on my desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-09:i15:r2",
-            "targetText": "His charger is here.",
+            "targetText": "My mug is on your desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-09:i15:r3",
-            "targetText": "My charger is here.",
+            "targetText": "Your mug is on my chair.",
             "meaningByLocale": null
           }
         ],
@@ -824,19 +1042,19 @@
           {
             "responseId": "en:lesson-05:session-09:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чья зарядка здесь",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+              "ru": "В записи первое слово `Your` — твоя, а в этом варианте `My` — моя.",
+              "uk": "У записі перше слово `Your` — твоя, а в цьому варіанті `My` — моя."
             }
           },
           {
             "responseId": "en:lesson-05:session-09:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чья зарядка здесь",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `My`."
+              "ru": "В записи последнее слово `desk`, а в этом варианте `chair`.",
+              "uk": "У записі останнє слово `desk`, а в цьому варіанті `chair`."
             }
           }
         ],
@@ -847,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -861,48 +1079,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-09:i16:p1",
-            "target": "charger",
+            "target": "mug",
             "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
+              "ru": "кружка",
+              "uk": "кухоль"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i16:p2",
-            "target": "door",
+            "target": "lunchbox",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "контейнер для обеда",
+              "uk": "контейнер для обіду"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i16:p3",
-            "target": "dentist",
+            "target": "printer",
             "meaningByLocale": {
-              "ru": "стоматолог",
-              "uk": "стоматолог"
+              "ru": "принтер",
+              "uk": "принтер"
             }
           },
           {
             "pairId": "en:lesson-05:session-09:i16:p4",
-            "target": "have",
+            "target": "stapler",
             "meaningByLocale": {
-              "ru": "иметь",
-              "uk": "мати"
+              "ru": "степлер",
+              "uk": "степлер"
             }
           }
         ],
         "leftColumn": [
-          "charger",
-          "door",
-          "dentist",
-          "have"
+          "mug",
+          "lunchbox",
+          "printer",
+          "stapler"
         ],
         "rightColumn": [
-          "зарядное устройство",
-          "дверь",
-          "стоматолог",
-          "иметь"
+          "кружка",
+          "контейнер для обеда",
+          "принтер",
+          "степлер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -920,25 +1138,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-09:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг ищет свою зарядку. Она у вас. Сообщите ему «Твоя зарядка у меня»",
+      "prompt": "Новая коллега спрашивает, чей принтер. Он общий у вас с коллегами. Ответьте: «Это наш принтер»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-09:i17:audio"
       ],
-      "accessibilityLabel": "Друг ищет свою зарядку. Она у вас. Сообщите ему «Твоя зарядка у меня»",
+      "accessibilityLabel": "Новая коллега спрашивает, чей принтер. Он общий у вас с коллегами. Ответьте: «Это наш принтер»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-09:i17:audio",
-          "transcript": "I have your charger."
+          "transcript": "This is our printer."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your charger.",
+        "targetPhrase": "This is our printer.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -960,11 +1178,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "41d3b38051463b79e8d27f5eba20982316e04248216b389e0feffd6b15b29729"
+  "learnerFingerprint": "7a6890c71850a55943c82f4c1fd9aa91256c1f69c25557eb9d579e1ce5702bba"
 }

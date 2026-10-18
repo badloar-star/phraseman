@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-06:intro1:r2": {
-          "ru": "`curtain` — занавеска; потолок — `ceiling`.",
-          "uk": "`curtain` — завіска; стеля — `ceiling`."
+          "ru": "Медсестра одна, как she: нужно has, а не have.",
+          "uk": "Медсестра одна, як she: потрібно has, а не have."
         },
         "en:lesson-05:session-06:intro1:r3": {
-          "ru": "`drawer` — выдвижной ящик; потолок — `ceiling`.",
-          "uk": "`drawer` — шухляда; стеля — `ceiling`."
+          "ru": "Градусник один, поэтому перед thermometer нужно a.",
+          "uk": "Градусник один, тому перед thermometer потрібно a."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-06:intro2:r2": {
-          "ru": "`calm` — спокоен; здесь `nervous`.",
-          "uk": "`calm` — спокійний; тут `nervous`."
+          "ru": "Врач один, как he или she: нужно has, а не have.",
+          "uk": "Лікар один, як he або she: потрібно has, а не have."
         },
         "en:lesson-05:session-06:intro2:r3": {
-          "ru": "Для этого состояния нужно `I’m nervous`.",
-          "uk": "Для цього стану потрібне `I’m nervous`."
+          "ru": "Бинт один, поэтому перед bandage нужно a.",
+          "uk": "Бинт один, тому перед bandage потрібно a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-06:intro3:r2": {
-          "ru": "С `She` нужно `has`.",
-          "uk": "З `She` потрібне `has`."
+          "ru": "С we нужно have, а не has.",
+          "uk": "З we потрібно have, а не has."
         },
         "en:lesson-05:session-06:intro3:r3": {
-          "ru": "Это «Она ручка»; у неё есть ручка — `She has a pen`.",
-          "uk": "Це «Вона ручка»; у неї є ручка — `She has a pen`."
+          "ru": "Здесь лекарство вообще, а не одна вещь, поэтому a не нужно.",
+          "uk": "Тут ліки взагалі, а не одна річ, тому a не потрібно."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1c71d873b6cc4fd08ee68dbf200d4983b3f435920835a8cfc74b6b172a9f231c"
+  "auxiliaryFingerprint": "715e30f0da158ec2a50d46cdb7ee296b8234c964d3cb7a7fdb55d2666617ded4"
 }

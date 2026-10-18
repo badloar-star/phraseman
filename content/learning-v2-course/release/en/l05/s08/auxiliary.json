@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-08:intro1:r2": {
-          "ru": "Смотрим на один стол: `has`, даже если ящиков несколько.",
-          "uk": "Дивимося на один стіл: `has`, навіть якщо шухляд кілька."
+          "ru": "Это значило бы «Я гость». Чтобы сказать «У меня гость», нужно have.",
+          "uk": "Це означало б «Я гість». Щоб сказати «У мене гість», потрібно have."
         },
         "en:lesson-05:session-08:intro1:r3": {
-          "ru": "Сказать, что есть у стола: `has drawers`.",
-          "uk": "Сказати, що є у столу: `has drawers`."
+          "ru": "С I нужно have, а не has.",
+          "uk": "З I потрібно have, а не has."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-08:intro2:r2": {
-          "ru": "С несколькими занавесками `curtains` нужно `aren’t`.",
-          "uk": "З кількома завісками `curtains` потрібне `aren’t`."
+          "ru": "Щётка одна, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Щітка одна, тому потрібно isn’t, а не aren’t."
         },
         "en:lesson-05:session-08:intro2:r3": {
-          "ru": "Здесь занавесок нет: `aren’t any curtains`.",
-          "uk": "Тут завісок немає: `aren’t any curtains`."
+          "ru": "Щётка одна, поэтому перед toothbrush нужно a.",
+          "uk": "Щітка одна, тому перед toothbrush потрібно a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-08:intro3:r2": {
-          "ru": "В этом прямом вопросе порядок `Where is the corner shop?`.",
-          "uk": "У цьому прямому запитанні порядок `Where is the corner shop?`."
+          "ru": "Гость один, как he или she: нужно has, а не have.",
+          "uk": "Гість один, як he або she: потрібно has, а не have."
         },
         "en:lesson-05:session-08:intro3:r3": {
-          "ru": "Один магазин: `Where is`.",
-          "uk": "Один магазин: `Where is`."
+          "ru": "Тапочки — это пара, поэтому a не нужно.",
+          "uk": "Капці — це пара, тому a не потрібно."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "67610e0562dd0c6ddbbdc0cf1b042f9965fffb508735dcfc76261540b6013c89"
+  "auxiliaryFingerprint": "84f34b962eda0ea3c1b66194c2811cb3af833543af6fa4147ab20705998053c5"
 }

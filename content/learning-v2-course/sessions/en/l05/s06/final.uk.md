@@ -1,136 +1,154 @@
 # Англійська · Урок 5 · Заняття 6 — Перший день у клініці
 
-**Ситуація.** Ви прийшли на перший робочий день до клініки поруч із заправкою. Ви хвилюєтеся, колега спокійний. У кабінеті стеля, а для запису вам потрібна ручка.
+**Ситуація.** Ви прийшли на перший робочий день у клініку поруч із заправкою. Ви хвилюєтеся, колега спокійний. У кабінеті працюють лікар і медсестра, а для запису вам потрібна ручка.
 
-**Що ви опануєте:** назвати стелю, описати приміщення й сказати, у кого є ручка
-**Нові слова:** ceiling
+**Що ви опануєте:** сказати, що є в лікаря, медсестри й клініки, та описати хвилювання
+**Нові слова:** thermometer, bandage, medicine, clipboard
+**Повертаються:** calm, nervous, excited, clinic, petrol, station, pen, nurse, doctor
 
 ---
 
 ## Інтро 1
 
-### Зверху, але всередині
+### Градусник на столі
 
-`ceiling` — «стеля»: верхня поверхня всередині кімнати. `The room has a ceiling` — «У кімнати є стеля». Стеля всередині, дах зовні: люстру зазвичай вішають не на даху, інакше читати доведеться воронам. Одна стеля — `a ceiling`.
+На першому робочому дні в клініці медсестра показує вам, як вимірюють температуру. Прилад вона обережно дістає з футляра на столі. thermometer — «градусник». Про медсестру кажуть has: The nurse has a thermometer — «У медсестри є градусник».
 
-**Назвіть стелю.**
+**Пацієнт питає, чим йому виміряють температуру. Скажіть йому, що в медсестри є градусник.**
 
-- ✅ **ceiling**
-- ❌ curtain — *`curtain` — завіска; стеля — `ceiling`.*
-- ❌ drawer — *`drawer` — шухляда; стеля — `ceiling`.*
+- ✅ **The nurse has a thermometer.**
+- ❌ The nurse have a thermometer. — *Медсестра одна, як she: потрібно has, а не have.*
+- ❌ The nurse has thermometer. — *Градусник один, тому перед thermometer потрібно a.*
 
 ---
 
 ## Інтро 2
 
-### Хвилювання буває різним
+### Подряпана рука
 
-`calm` — «спокійний», `nervous` — «знервований», `excited` — «радісно схвильований». `I’m nervous` — «Я нервую»: переживаю, як усе пройде. `I’m excited` — «Я в радісному очікуванні»: чекаю першого дня з натхненням. `He is calm` — «Він спокійний». Для цих станів потрібні `am`, `is`, `are`.
+У кабінет заходить хлопчик, притискаючи до грудей подряпану руку. Лікар бере зі столу довгу м’яку білу смужку чистої тканини, щоб перев’язати рану. bandage — «бинт, пов’язка». Про лікаря кажуть has: The doctor has a bandage — «У лікаря є бинт».
 
-**Ви переживаєте, боїтеся помилитися. Скажіть «Я нервую» зі скороченням.**
+**Мама хлопчика хвилюється. Скажіть їй, що в лікаря є бинт.**
 
-- ✅ **I'm nervous.**
-- ❌ I'm calm. — *`calm` — спокійний; тут `nervous`.*
-- ❌ I have nervous. — *Для цього стану потрібне `I’m nervous`.*
+- ✅ **The doctor has a bandage.**
+- ❌ The doctor have a bandage. — *Лікар один, як he або she: потрібно has, а не have.*
+- ❌ The doctor has bandage. — *Бинт один, тому перед bandage потрібно a.*
 
 ---
 
 ## Інтро 3
 
-### Ручка й адреса
+### Ліки від кашлю
 
-`pen` — «ручка», `clinic` — «клініка», `petrol station` — «заправка». `She has a pen` — «У неї є ручка». `The clinic is next to the petrol station` — «Клініка поруч із заправкою». `has` повідомляє, що є в подруги; `is` у прикладі з клінікою каже, де вона.
+Літня пацієнтка просить допомогти з кашлем. Ви з колегою йдете до шафи в куті й відчиняєте дверцята, де стоять флакони й коробочки. medicine — «ліки»: так називають ліки взагалі, і a не ставлять. We have medicine — «У нас є ліки».
 
-**У подруги є ручка. Виберіть фразу.**
+**Пацієнтка питає, чи є чим лікувати кашель. Скажіть їй за себе й колегу, що у вас є ліки.**
 
-- ✅ **She has a pen.**
-- ❌ She have a pen. — *З `She` потрібне `has`.*
-- ❌ She is a pen. — *Це «Вона ручка»; у неї є ручка — `She has a pen`.*
+- ✅ **We have medicine.**
+- ❌ We has medicine. — *З we потрібно have, а не has.*
+- ❌ We have a medicine. — *Тут ліки взагалі, а не одна річ, тому a не потрібно.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Колега спокійний. Скажіть це без скорочення**
+**1 · Картка слова — thermometer**
+<!-- interaction_id: en:lesson-05:session-06:word:thermometer; family: word_card -->
+> **thermometer** — градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла.
+
+**2 · Пацієнт вимірює температуру. Скажіть йому повною фразою: «У медсестри є градусник»**
 <!-- interaction_id: en:lesson-05:session-06:i01; family: phrase_builder -->
-Плитки: `calm` `is` `He` `are` → **He is calm.**
-*(плитка `are` зайва: тут потрібно `is` — `He is calm.`)*
+Плитки: `thermometer` `a` `has` `nurse` `The` `is` → **The nurse has a thermometer.**
+*(плитка `is` зайва: тут потрібно `has` — `The nurse has a thermometer.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте колегу**
 <!-- interaction_id: en:lesson-05:session-06:i02; family: listen_choose -->
-🔊 *ceiling* → **ceiling** · ceilings · curtain
-- ceilings — *У записі перше слово — `ceiling`, а в цьому варіанті — `ceilings`.*
-- curtain — *У записі перше слово — `ceiling`, а в цьому варіанті — `curtain`.*
+🔊 *I’m nervous.* → **I’m nervous.** · I’m calm. · He’s nervous.
+- I’m calm. — *У записі останнє слово — `nervous`, а в цьому варіанті — `calm`.*
+- He’s nervous. — *У записі перше слово — `I’m`, а в цьому варіанті — `He’s`.*
 
-**3 · Назвіть верхню поверхню всередині кімнати — стелю**
+**4 · Картка слова — bandage**
+<!-- interaction_id: en:lesson-05:session-06:word:bandage; family: word_card -->
+> **bandage** — бинт, пов’язка. The doctor has a bandage. — «У лікаря є бинт». Про м’яку смужку тканини, якою закривають і перев’язують рану.
+
+**5 · Лікар готується перев’язати руку хлопчикові. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-06:i03; family: context_gap_grammar -->
-___ → **ceiling** · drawer · desk
-- drawer — *`drawer` — шухляда; стеля — `ceiling`.*
-- desk — *`desk` — письмовий стіл; стеля — `ceiling`.*
+The doctor ___ a bandage. → **has** · have · is
+- have — *Лікар один, як he або she: потрібно has.*
+- is — *The doctor is a bandage означало б «Лікар — бинт». У лікаря є бинт — The doctor has a bandage.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-06:i04; family: speed_match -->
-ceiling — стеля · calm — спокійний · nervous — знервований · excited — радісно схвильований
+thermometer — градусник · bandage — бинт, пов’язка · medicine — ліки · clipboard — планшет із затискачем для паперів
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — medicine**
+<!-- interaction_id: en:lesson-05:session-06:word:medicine; family: word_card -->
+> **medicine** — ліки. We have medicine. — «У нас є ліки». Про те, що приймають під час хвороби; кажуть про ліки взагалі, без a.
+
+**8 · Послухайте лікаря й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-06:i05; family: listen_build_dictation -->
-🔊 *This is a ceiling.* Плитки: `ceiling` `a` `is` `This` `are` → **This is a ceiling.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a ceiling.`)*
+🔊 *We have medicine.* Плитки: `medicine` `have` `We` `has` → **We have medicine.**
+*(плитка `has` зайва: тут потрібно `have` — `We have medicine.`)*
 
-**6 · У подруги є ручка. Повідомте «У неї є ручка»**
+**9 · Картка слова — clipboard**
+<!-- interaction_id: en:lesson-05:session-06:word:clipboard; family: word_card -->
+> **clipboard** — планшет із затискачем для паперів. She has a clipboard. — «У неї є планшет із затискачем». Про тверду дошку із затискачем, на якій зручно записувати стоячи.
+
+**10 · Колега записує дані пацієнта. Скажіть лікареві повною фразою: «У неї є планшет із затискачем для паперів»**
 <!-- interaction_id: en:lesson-05:session-06:i06; family: phrase_builder -->
-Плитки: `pen` `a` `has` `She` → **She has a pen.**
+Плитки: `clipboard` `a` `has` `She` `is` → **She has a clipboard.**
+*(плитка `is` зайва: тут потрібно `has` — `She has a clipboard.`)*
 
-**7 · Ви боїтеся помилитися першого дня. Скажіть «Я нервую» зі скороченням**
+**11 · Ви переживаєте, що помилитеся. Скажіть «Я нервую» зі скороченням**
 <!-- interaction_id: en:lesson-05:session-06:i07; family: scripted_repeat_compare -->
-🎙 **I'm nervous.**
+🎙 **I’m nervous.**
 
-**8 · Ви з другом радісно чекаєте початку роботи. Скажіть, що ви в радісному очікуванні**
+**12 · Колега зовсім не хвилюється. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-06:i08; family: context_gap_grammar -->
-We ___ excited. → **are** · have · is
-- have — *Для цього стану потрібне `We are excited`.*
-- is — *З `We` потрібне `are`.*
+He ___ calm. → **is** · has · are
+- has — *Тут стан: He is calm.*
+- are — *З he потрібно is, а не are.*
 
-**9 · Послухайте, де ручка**
+**13 · Послухайте, у кого ручка**
 <!-- interaction_id: en:lesson-05:session-06:i09; family: listen_choose -->
-🔊 *The pen is on the desk.* → **The pen is on the desk.** · The pen is on the table. · The pen is on the chair.
-- The pen is on the table. — *У записі останнє слово — `desk`, а в цьому варіанті — `table`.*
-- The pen is on the chair. — *У записі останнє слово — `desk`, а в цьому варіанті — `chair`.*
+🔊 *She has a pen.* → **She has a pen.** · She has a book. · He has a pen.
+- She has a book. — *У записі останнє слово — `pen`, а в цьому варіанті — `book`.*
+- He has a pen. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-06:i10; family: speed_match -->
-ceiling — стеля · pen — ручка · clinic — клініка · petrol station — заправка
+calm — спокійний · nervous — нервовий, той, що хвилюється · excited — радісно схвильований · pen — ручка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте медсестру й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-06:i11; family: listen_build_dictation -->
-🔊 *The room has a ceiling.* Плитки: `ceiling` `a` `has` `room` `The` → **The room has a ceiling.**
+🔊 *The doctor has a pen.* Плитки: `pen` `a` `has` `doctor` `The` `have` → **The doctor has a pen.**
+*(плитка `have` зайва: тут потрібно `has` — `The doctor has a pen.`)*
 
-**12 · Клініка поруч із заправкою. Скажіть, де вона**
+**16 · Пацієнт шукає клініку. Скажіть йому повною фразою: «Клініка поруч із заправкою»**
 <!-- interaction_id: en:lesson-05:session-06:i12; family: phrase_builder -->
 Плитки: `station` `petrol` `the` `to` `next` `is` `clinic` `The` `are` → **The clinic is next to the petrol station.**
 *(плитка `are` зайва: тут потрібно `is` — `The clinic is next to the petrol station.`)*
 
-**13 · Повідомте колезі «У мене є ручка»**
+**17 · Ви чекаєте першого робочого дня з радістю. Скажіть «Я в радісному очікуванні» зі скороченням**
 <!-- interaction_id: en:lesson-05:session-06:i13; family: scripted_repeat_compare -->
-🎙 **I have a pen.**
+🎙 **I’m excited.**
 
-**14 · У кімнати стеля. Виберіть форму**
+**18 · У подруги є ручка. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-06:i14; family: context_gap_grammar -->
-The room ___ a ceiling. → **has** · have · is
-- have — *Одна кімната, як `it`: `has`.*
-- is — *Ідеться про те, що є у кімнати: `has a ceiling`.*
+She ___ a pen. → **has** · have · is
+- have — *З she потрібно has, а не have.*
+- is — *She is a pen означало б «Вона ручка». У неї є ручка — She has a pen.*
 
-**15 · Послухайте, як почувається подруга**
+**19 · Послухайте про колегу**
 <!-- interaction_id: en:lesson-05:session-06:i15; family: listen_choose -->
-🔊 *She's calm.* → **She's calm.** · She's nervous. · He's calm.
-- She's nervous. — *У записі останнє слово — `calm`, а в цьому варіанті — `nervous`.*
-- He's calm. — *У записі перше слово — `She's`, а в цьому варіанті — `He's`.*
+🔊 *He is calm.* → **He is calm.** · He is nervous. · She is calm.
+- He is nervous. — *У записі останнє слово — `calm`, а в цьому варіанті — `nervous`.*
+- She is calm. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-06:i16; family: speed_match -->
-ceiling — стеля · pen — ручка · clinic — клініка · petrol station — заправка
+bandage — бинт, пов’язка · medicine — ліки · clipboard — планшет із затискачем для паперів · excited — радісно схвильований
 
-**17 · Друг запитує про новий кабінет. Повідомте «У кімнати стеля»**
+**21 · Лікар просить ручку. Вона в подруги. Скажіть йому: «У неї є ручка»**
 <!-- interaction_id: en:lesson-05:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The room has a ceiling.**
-
+🎙 **She has a pen.**

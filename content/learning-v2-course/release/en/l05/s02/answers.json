@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-05:session-02:word:baby",
+    "correctText": "baby",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-02:i01",
-    "correctText": "I am tired.",
+    "correctText": "She has a baby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-02:i02",
-    "correctText": "He has an apple.",
+    "correctText": "I am tired.",
     "correctResponseId": "en:lesson-05:session-02:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-02:word:dog",
+    "correctText": "dog",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-02:i03",
-    "correctText": "is",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-02:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-02:i04",
-    "correctText": "en:lesson-05:session-02:i04:p1=sad\nen:lesson-05:session-02:i04:p2=tired\nen:lesson-05:session-02:i04:p3=apple\nen:lesson-05:session-02:i04:p4=hotel",
+    "correctText": "en:lesson-05:session-02:i04:p1=baby\nen:lesson-05:session-02:i04:p2=dog\nen:lesson-05:session-02:i04:p3=cat\nen:lesson-05:session-02:i04:p4=bird",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:word:cat",
+    "correctText": "cat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-02:i05",
-    "correctText": "I have an apple.",
+    "correctText": "He has a cat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:word:bird",
+    "correctText": "bird",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-02:i06",
-    "correctText": "The hotel has a garden.",
+    "correctText": "The hotel has a bird.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-02:i07",
-    "correctText": "He's sad.",
+    "correctText": "He’s sad.",
     "correctResponseId": null
   },
   {
@@ -56,12 +76,12 @@
   },
   {
     "interactionId": "en:lesson-05:session-02:i12",
-    "correctText": "We have apples.",
+    "correctText": "We have a dog.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-02:i13",
-    "correctText": "The garden is next to the river.",
+    "correctText": "I am tired.",
     "correctResponseId": null
   },
   {

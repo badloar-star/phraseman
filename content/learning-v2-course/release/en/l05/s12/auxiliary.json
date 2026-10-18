@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-12:intro1:r2": {
-          "ru": "Перед `my notebook` не нужно `a`.",
-          "uk": "Перед `my notebook` не потрібне `a`."
+          "ru": "a и my вместе не ставим: достаточно my.",
+          "uk": "a і my разом не ставимо: достатньо my."
         },
         "en:lesson-05:session-12:intro1:r3": {
-          "ru": "`your` — твоя / ваша; моя — `my`.",
-          "uk": "`your` — твій / ваш; мій — `my`."
+          "ru": "your — твоя, а тетрадь своя: нужно my.",
+          "uk": "your — твій, а зошит свій: потрібно my."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-12:intro2:r2": {
-          "ru": "`her` — её; здесь его: `his`.",
-          "uk": "`her` — її; тут його: `his`."
+          "ru": "Карандашей несколько, поэтому нужно These are, а не This are.",
+          "uk": "Олівців кілька, тому потрібно These are, а не This are."
         },
         "en:lesson-05:session-12:intro2:r3": {
-          "ru": "Один друг: `friend is`.",
-          "uk": "Один друг: `friend is`."
+          "ru": "После These are нужно несколько вещей: pencils.",
+          "uk": "Після These are потрібно кілька речей: pencils."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-12:intro3:r2": {
-          "ru": "С `music` здесь нужно `is`.",
-          "uk": "З `music` тут потрібне `is`."
+          "ru": "Ножницы — как пара, поэтому нужно are, а не is.",
+          "uk": "Ножиці — як пара, тому потрібно are, а не is."
         },
         "en:lesson-05:session-12:intro3:r3": {
-          "ru": "`quiet` — тихая; громкая — `loud`.",
-          "uk": "`quiet` — тиха; гучна — `loud`."
+          "ru": "your — твои, а ножницы ваши: нужно my.",
+          "uk": "your — твої, а ножиці ваші: потрібно my."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "575bb618c492b7170aa06482f9ef823fc76af2bb03316855ca26f5d3b4a88c3e"
+  "auxiliaryFingerprint": "45b785bcc92ee06dbc6f9c8b2378a5c70575a0392e54ac5b5995425471368818"
 }

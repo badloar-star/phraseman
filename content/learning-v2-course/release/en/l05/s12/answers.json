@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-12:word:notebook",
+    "correctText": "notebook",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-12:i01",
-    "correctText": "Her friend is friendly.",
+    "correctText": "My notebook is in my backpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:word:pencil",
+    "correctText": "pencil",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i02",
-    "correctText": "notebook",
+    "correctText": "These are your pencils.",
     "correctResponseId": "en:lesson-05:session-12:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-12:word:scissors",
+    "correctText": "scissors",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-12:i03",
-    "correctText": "notebook",
+    "correctText": "scissors",
     "correctResponseId": "en:lesson-05:session-12:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-12:i04",
-    "correctText": "en:lesson-05:session-12:i04:p1=notebook\nen:lesson-05:session-12:i04:p2=loud\nen:lesson-05:session-12:i04:p3=friendly\nen:lesson-05:session-12:i04:p4=helpful",
+    "correctText": "en:lesson-05:session-12:i04:p1=notebook\nen:lesson-05:session-12:i04:p2=pencil\nen:lesson-05:session-12:i04:p3=scissors\nen:lesson-05:session-12:i04:p4=glue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:word:glue",
+    "correctText": "glue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i05",
-    "correctText": "This is my notebook.",
+    "correctText": "Your glue is in my bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i06",
-    "correctText": "His friend is helpful.",
+    "correctText": "Her scissors are on my table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i07",
-    "correctText": "The music is loud.",
+    "correctText": "Here is my glue.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i08",
-    "correctText": "their",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-12:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-12:i09",
-    "correctText": "The notebook is on your table.",
+    "correctText": "Those are their pencils.",
     "correctResponseId": "en:lesson-05:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-12:i10",
-    "correctText": "en:lesson-05:session-12:i10:p1=notebook\nen:lesson-05:session-12:i10:p2=table\nen:lesson-05:session-12:i10:p3=platform\nen:lesson-05:session-12:i10:p4=curtain",
+    "correctText": "en:lesson-05:session-12:i10:p1=pencil\nen:lesson-05:session-12:i10:p2=glue\nen:lesson-05:session-12:i10:p3=backpack\nen:lesson-05:session-12:i10:p4=table",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i11",
-    "correctText": "Our curtain is blue.",
+    "correctText": "These are your notebooks.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i12",
-    "correctText": "Our platform is here.",
+    "correctText": "Your pencils are in my backpack.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i13",
-    "correctText": "I have your notebook.",
+    "correctText": "These are my scissors.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i14",
-    "correctText": "is",
+    "correctText": "pencils",
     "correctResponseId": "en:lesson-05:session-12:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-12:i15",
-    "correctText": "Her notebook is here.",
+    "correctText": "Her notebook is in his backpack.",
     "correctResponseId": "en:lesson-05:session-12:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-12:i16",
-    "correctText": "en:lesson-05:session-12:i16:p1=notebook\nen:lesson-05:session-12:i16:p2=table\nen:lesson-05:session-12:i16:p3=platform\nen:lesson-05:session-12:i16:p4=curtain",
+    "correctText": "en:lesson-05:session-12:i16:p1=notebook\nen:lesson-05:session-12:i16:p2=pencil\nen:lesson-05:session-12:i16:p3=scissors\nen:lesson-05:session-12:i16:p4=glue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-12:i17",
-    "correctText": "The notebook is on your table.",
+    "correctText": "Here are my scissors and my glue.",
     "correctResponseId": null
   }
 ]

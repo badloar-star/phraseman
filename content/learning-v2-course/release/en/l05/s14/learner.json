@@ -4,40 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-14:i01",
+      "interactionId": "en:lesson-05:session-14:word:puppy",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — puppy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:word:puppy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — puppy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:word:puppy:audio",
+          "transcript": "puppy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-14:word:puppy:r1",
+            "targetText": "puppy",
+            "meaningByLocale": {
+              "ru": "щенок. Her puppy is in the yard. — «Её щенок во дворе». О молодой собаке, которая ещё маленькая.",
+              "uk": "цуценя. Her puppy is in the yard. — «Її цуценя на подвір’ї». Про молодого собаку, який ще малий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "puppy",
+          "definitionByLocale": {
+            "ru": "щенок. Her puppy is in the yard. — «Её щенок во дворе». О молодой собаке, которая ещё маленькая.",
+            "uk": "цуценя. Her puppy is in the yard. — «Її цуценя на подвір’ї». Про молодого собаку, який ще малий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Наш потолок белый»",
+      "prompt": "Брат ищет щенка соседки. Он во дворе. Скажите ему полной фразой: «Её щенок во дворе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Наш потолок белый»",
+      "accessibilityLabel": "Брат ищет щенка соседки. Он во дворе. Скажите ему полной фразой: «Её щенок во дворе»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our ceiling is white.",
+        "targetPhrase": "Her puppy is in the yard.",
         "localizedMeaning": {
-          "ru": "Скажите «Наш потолок белый»",
-          "uk": "Скажіть «Наша стеля біла»"
+          "ru": "Брат ищет щенка соседки. Он во дворе. Скажите ему полной фразой: «Её щенок во дворе»",
+          "uk": "Брат шукає цуценя сусідки. Воно на подвір’ї. Скажіть йому повною фразою: «Її цуценя на подвір’ї»"
         },
         "orderedTokens": [
-          "Our",
-          "ceiling",
+          "Her",
+          "puppy",
           "is",
-          "white"
+          "in",
+          "the",
+          "yard"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "His"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-14:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Наш потолок белый»",
+            "testedDimension": "Брат ищет щенка соседки. Он во дворе. Скажите ему полной фразой: «Её щенок во дворе»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Our ceiling is white.`",
-              "uk": "тут потрібно `is` — `Our ceiling is white.`"
+              "ru": "здесь нужно `Her` — `Her puppy is in the yard.`",
+              "uk": "тут потрібно `Her` — `Her puppy is in the yard.`"
             }
           }
         ],
@@ -49,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-14:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-14:word:collar",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — collar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:word:collar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — collar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:word:collar:audio",
+          "transcript": "collar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-14:word:collar:r1",
+            "targetText": "collar",
+            "meaningByLocale": {
+              "ru": "ошейник. Its collar is new. — «Его ошейник новый». О ремешке на шее собаки или кошки.",
+              "uk": "нашийник. Its collar is new. — «Його нашийник новий». Про ремінець на шиї собаки чи кішки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "collar",
+          "definitionByLocale": {
+            "ru": "ошейник. Its collar is new. — «Его ошейник новый». О ремешке на шее собаки или кошки.",
+            "uk": "нашийник. Its collar is new. — «Його нашийник новий». Про ремінець на шиї собаки чи кішки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-14:i02:r1",
-          "text": "suitcase"
+          "text": "Its collar is red."
         },
         {
           "responseId": "en:lesson-05:session-14:i02:r2",
-          "text": "suitcases"
+          "text": "Its collar is blue."
         },
         {
           "responseId": "en:lesson-05:session-14:i02:r3",
-          "text": "backpack"
+          "text": "Their collar is red."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i02:audio",
-          "transcript": "suitcase"
+          "transcript": "Its collar is red."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-14:i02:r1",
-            "targetText": "suitcase",
+            "targetText": "Its collar is red.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-14:i02:r2",
-            "targetText": "suitcases",
+            "targetText": "Its collar is blue.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-14:i02:r3",
-            "targetText": "backpack",
+            "targetText": "Their collar is red.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-14:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `suitcase`, а в этом варианте — `suitcases`.",
-              "uk": "У записі перше слово — `suitcase`, а в цьому варіанті — `suitcases`."
+              "ru": "В записи `red` — красный, а в этом варианте `blue` — синий.",
+              "uk": "У записі `red` — червоний, а в цьому варіанті `blue` — синій."
             }
           },
           {
             "responseId": "en:lesson-05:session-14:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `suitcase`, а в этом варианте — `backpack`.",
-              "uk": "У записі перше слово — `suitcase`, а в цьому варіанті — `backpack`."
+              "ru": "В записи `Its` — его (о щенке), а в этом варианте `Their` — их.",
+              "uk": "У записі `Its` — його (про цуценя), а в цьому варіанті `Their` — їхній."
             }
           }
         ],
@@ -125,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-14:word:tail",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:word:tail:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:word:tail:audio",
+          "transcript": "tail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-14:word:tail:r1",
+            "targetText": "tail",
+            "meaningByLocale": {
+              "ru": "хвост. Its tail is long. — «Его хвост длинный». О части тела собаки, которой она машет.",
+              "uk": "хвіст. Its tail is long. — «Його хвіст довгий». Про частину тіла собаки, якою вона махає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tail",
+          "definitionByLocale": {
+            "ru": "хвост. Its tail is long. — «Его хвост длинный». О части тела собаки, которой она машет.",
+            "uk": "хвіст. Its tail is long. — «Його хвіст довгий». Про частину тіла собаки, якою вона махає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-14:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите чемодан",
+      "prompt": "Длинная часть собаки сзади, которой она машет. Как она называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-14:i03:r1",
-          "text": "suitcase"
+          "text": "tail"
         },
         {
           "responseId": "en:lesson-05:session-14:i03:r2",
-          "text": "picture"
+          "text": "collar"
         },
         {
           "responseId": "en:lesson-05:session-14:i03:r3",
-          "text": "umbrella"
+          "text": "bowl"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите чемодан",
+      "accessibilityLabel": "Длинная часть собаки сзади, которой она машет. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите чемодан",
-          "uk": "Назвіть валізу"
+          "ru": "Длинная часть собаки сзади, которой она машет. Как она называется по-английски?",
+          "uk": "Довга частина собаки ззаду, якою вона махає. Як вона називається англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-14:i03:r1",
-            "text": "suitcase"
+            "text": "tail"
           },
           {
             "responseId": "en:lesson-05:session-14:i03:r2",
-            "text": "picture"
+            "text": "collar"
           },
           {
             "responseId": "en:lesson-05:session-14:i03:r3",
-            "text": "umbrella"
+            "text": "bowl"
           }
         ],
-        "testedDimension": "Назовите чемодан",
+        "testedDimension": "Длинная часть собаки сзади, которой она машет. Как она называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-14:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите чемодан",
+            "testedDimension": "Длинная часть собаки сзади, которой она машет. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`picture` — картинка; чемодан — `suitcase`.",
-              "uk": "`picture` — картинка; валіза — `suitcase`."
+              "ru": "collar — это ошейник на шее, а длинная часть сзади называется tail.",
+              "uk": "collar — це нашийник на шиї, а довга частина ззаду називається tail."
             }
           },
           {
             "responseId": "en:lesson-05:session-14:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите чемодан",
+            "testedDimension": "Длинная часть собаки сзади, которой она машет. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`umbrella` — зонт; чемодан — `suitcase`.",
-              "uk": "`umbrella` — парасоля; валіза — `suitcase`."
+              "ru": "bowl — это миска, а длинная часть собаки сзади называется tail.",
+              "uk": "bowl — це миска, а довга частина собаки ззаду називається tail."
             }
           }
         ]
@@ -195,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +340,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-14:i04:p1",
-            "target": "suitcase",
+            "target": "puppy",
             "meaningByLocale": {
-              "ru": "чемодан",
-              "uk": "валіза"
+              "ru": "щенок",
+              "uk": "цуценя"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i04:p2",
-            "target": "dirty",
+            "target": "collar",
             "meaningByLocale": {
-              "ru": "грязный",
-              "uk": "брудний"
+              "ru": "ошейник",
+              "uk": "нашийник"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i04:p3",
-            "target": "open",
+            "target": "tail",
             "meaningByLocale": {
-              "ru": "открытый",
-              "uk": "відкритий"
+              "ru": "хвост",
+              "uk": "хвіст"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i04:p4",
-            "target": "closed",
+            "target": "leash",
             "meaningByLocale": {
-              "ru": "закрытый",
-              "uk": "закритий"
+              "ru": "поводок",
+              "uk": "повідець"
             }
           }
         ],
         "leftColumn": [
-          "suitcase",
-          "dirty",
-          "open",
-          "closed"
+          "puppy",
+          "collar",
+          "tail",
+          "leash"
         ],
         "rightColumn": [
-          "чемодан",
-          "грязный",
-          "открытый",
-          "закрытый"
+          "щенок",
+          "ошейник",
+          "хвост",
+          "поводок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +398,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-14:word:leash",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — leash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:word:leash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — leash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:word:leash:audio",
+          "transcript": "leash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-14:word:leash:r1",
+            "targetText": "leash",
+            "meaningByLocale": {
+              "ru": "поводок. Her leash is on the bench. — «Её поводок на скамейке». О верёвке или ремне, на котором ведут собаку.",
+              "uk": "повідець. Her leash is on the bench. — «Її повідець на лавці». Про мотузку чи ремінь, на якому водять собаку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leash",
+          "definitionByLocale": {
+            "ru": "поводок. Her leash is on the bench. — «Её поводок на скамейке». О верёвке или ремне, на котором ведут собаку.",
+            "uk": "повідець. Her leash is on the bench. — «Її повідець на лавці». Про мотузку чи ремінь, на якому водять собаку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-14:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседку и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседку и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i05:audio",
-          "transcript": "This is my suitcase."
+          "transcript": "Her leash is in my bag."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is my suitcase.",
+        "hiddenTargetPhrase": "Her leash is in my bag.",
         "orderedTokens": [
-          "This",
+          "Her",
+          "leash",
           "is",
+          "in",
           "my",
-          "suitcase"
+          "bag"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Its"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседку и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Her` — `Her leash is in my bag.`",
+              "uk": "тут потрібно `Her` — `Her leash is in my bag.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,39 +492,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
+      "prompt": "Соседка спрашивает, какой хвост у щенка. Он длинный. Скажите ей полной фразой: «Его хвост длинный»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
+      "accessibilityLabel": "Соседка спрашивает, какой хвост у щенка. Он длинный. Скажите ей полной фразой: «Его хвост длинный»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Her suitcase is dirty.",
+        "targetPhrase": "Its tail is long.",
         "localizedMeaning": {
-          "ru": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
-          "uk": "Валіза подруги брудна. Скажіть «Її валіза брудна»"
+          "ru": "Соседка спрашивает, какой хвост у щенка. Он длинный. Скажите ей полной фразой: «Его хвост длинный»",
+          "uk": "Сусідка питає, який хвіст у цуценяти. Він довгий. Скажіть їй повною фразою: «Його хвіст довгий»"
         },
         "orderedTokens": [
-          "Her",
-          "suitcase",
+          "Its",
+          "tail",
           "is",
-          "dirty"
+          "long"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "It’s"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-14:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
+            "testedDimension": "Соседка спрашивает, какой хвост у щенка. Он длинный. Скажите ей полной фразой: «Его хвост длинный»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Her suitcase is dirty.`",
-              "uk": "тут потрібно `is` — `Her suitcase is dirty.`"
+              "ru": "здесь нужно `Its` — `Its tail is long.`",
+              "uk": "тут потрібно `Its` — `Its tail is long.`"
             }
           }
         ],
@@ -349,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Его чемодан открыт»",
+      "prompt": "Брат спрашивает, чей это щенок. Он ваш с сестрой. Ответьте: «Это наш щенок»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Его чемодан открыт»",
+      "accessibilityLabel": "Брат спрашивает, чей это щенок. Он ваш с сестрой. Ответьте: «Это наш щенок»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i07:audio",
-          "transcript": "His suitcase is open."
+          "transcript": "This is our puppy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "His suitcase is open.",
+        "targetPhrase": "This is our puppy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -382,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+      "prompt": "Вы говорите об ошейнике щенка. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-14:i08:r1",
-          "text": "closed"
+          "text": "Its"
         },
         {
           "responseId": "en:lesson-05:session-14:i08:r2",
-          "text": "open"
+          "text": "It’s"
         },
         {
           "responseId": "en:lesson-05:session-14:i08:r3",
-          "text": "dirty"
+          "text": "My"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+      "accessibilityLabel": "Вы говорите об ошейнике щенка. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
-          "uk": "Ви застебнули валізу. Скажіть «Моя валіза закрита»"
+          "ru": "Вы говорите об ошейнике щенка. Выберите нужное слово",
+          "uk": "Ви говорите про нашийник цуценяти. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "My suitcase is ___.",
+        "gappedTargetPhrase": "___ collar is new.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-14:i08:r1",
-            "text": "closed"
+            "text": "Its"
           },
           {
             "responseId": "en:lesson-05:session-14:i08:r2",
-            "text": "open"
+            "text": "It’s"
           },
           {
             "responseId": "en:lesson-05:session-14:i08:r3",
-            "text": "dirty"
+            "text": "My"
           }
         ],
-        "testedDimension": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+        "testedDimension": "Вы говорите об ошейнике щенка. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-14:i08:r2",
             "correct": false,
-            "testedDimension": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+            "testedDimension": "Вы говорите об ошейнике щенка. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`open` — открыт; закрыт — `closed`.",
-              "uk": "`open` — відкрита; закрита — `closed`."
+              "ru": "It’s — это it is; перед ошейником нужно Its без апострофа.",
+              "uk": "It’s — це it is; перед нашийником потрібно Its без апострофа."
             }
           },
           {
             "responseId": "en:lesson-05:session-14:i08:r3",
             "correct": false,
-            "testedDimension": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+            "testedDimension": "Вы говорите об ошейнике щенка. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`dirty` — грязный; закрыт — `closed`.",
-              "uk": "`dirty` — брудна; закрита — `closed`."
+              "ru": "My — мой, а речь об ошейнике щенка, которого называем it: нужно Its.",
+              "uk": "My — мій, а мова про нашийник цуценяти, яке називаємо it: потрібно Its."
             }
           }
         ]
@@ -451,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте про картинку",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-14:i09:r1",
-          "text": "Their picture is on the wall."
+          "text": "Its leash is long."
         },
         {
           "responseId": "en:lesson-05:session-14:i09:r2",
-          "text": "Their picture is on the table."
+          "text": "Its leash is short."
         },
         {
           "responseId": "en:lesson-05:session-14:i09:r3",
-          "text": "Our picture is on the wall."
+          "text": "Her leash is long."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте про картинку",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i09:audio",
-          "transcript": "Their picture is on the wall."
+          "transcript": "Its leash is long."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-14:i09:r1",
-            "targetText": "Their picture is on the wall.",
+            "targetText": "Its leash is long.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-14:i09:r2",
-            "targetText": "Their picture is on the table.",
+            "targetText": "Its leash is short.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-14:i09:r3",
-            "targetText": "Our picture is on the wall.",
+            "targetText": "Her leash is long.",
             "meaningByLocale": null
           }
         ],
@@ -504,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-14:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте про картинку",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wall`, а в этом варианте — `table`.",
-              "uk": "У записі останнє слово — `wall`, а в цьому варіанті — `table`."
+              "ru": "В записи `long` — длинный, а в этом варианте `short` — короткий.",
+              "uk": "У записі `long` — довгий, а в цьому варіанті `short` — короткий."
             }
           },
           {
             "responseId": "en:lesson-05:session-14:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте про картинку",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Their`, а в этом варианте — `Our`.",
-              "uk": "У записі перше слово — `Their`, а в цьому варіанті — `Our`."
+              "ru": "В записи `Its` — его (о щенке), а в этом варианте `Her` — её (о хозяйке).",
+              "uk": "У записі `Its` — його (про цуценя), а в цьому варіанті `Her` — її (про господиню)."
             }
           }
         ],
@@ -527,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -541,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-14:i10:p1",
-            "target": "suitcase",
+            "target": "collar",
             "meaningByLocale": {
-              "ru": "чемодан",
-              "uk": "валіза"
+              "ru": "ошейник",
+              "uk": "нашийник"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i10:p2",
-            "target": "picture",
+            "target": "tail",
             "meaningByLocale": {
-              "ru": "картинка",
-              "uk": "картинка"
+              "ru": "хвост",
+              "uk": "хвіст"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i10:p3",
-            "target": "laundrette",
+            "target": "dog",
             "meaningByLocale": {
-              "ru": "прачечная самообслуживания",
-              "uk": "пральня самообслуговування"
+              "ru": "собака",
+              "uk": "собака"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i10:p4",
-            "target": "ceiling",
+            "target": "bowl",
             "meaningByLocale": {
-              "ru": "потолок",
-              "uk": "стеля"
+              "ru": "миска",
+              "uk": "миска"
             }
           }
         ],
         "leftColumn": [
-          "suitcase",
-          "picture",
-          "laundrette",
-          "ceiling"
+          "collar",
+          "tail",
+          "dog",
+          "bowl"
         ],
         "rightColumn": [
-          "чемодан",
-          "картинка",
-          "прачечная самообслуживания",
-          "потолок"
+          "ошейник",
+          "хвост",
+          "собака",
+          "миска"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -600,42 +788,44 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседку и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседку и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i11:audio",
-          "transcript": "The laundrette is open."
+          "transcript": "Their puppy is in my yard."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The laundrette is open.",
+        "hiddenTargetPhrase": "Their puppy is in my yard.",
         "orderedTokens": [
-          "The",
-          "laundrette",
+          "Their",
+          "puppy",
           "is",
-          "open"
+          "in",
+          "my",
+          "yard"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Our"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-14:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте соседку и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The laundrette is open.`",
-              "uk": "тут потрібно `is` — `The laundrette is open.`"
+              "ru": "здесь нужно `Their` — `Their puppy is in my yard.`",
+              "uk": "тут потрібно `Their` — `Their puppy is in my yard.`"
             }
           }
         ],
@@ -648,39 +838,41 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Их потолок белый»",
+      "prompt": "Вы просите соседку взять поводок. Он на скамейке. Скажите ей полной фразой: «Твой поводок на скамейке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Их потолок белый»",
+      "accessibilityLabel": "Вы просите соседку взять поводок. Он на скамейке. Скажите ей полной фразой: «Твой поводок на скамейке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Their ceiling is white.",
+        "targetPhrase": "Your leash is on the bench.",
         "localizedMeaning": {
-          "ru": "Скажите «Их потолок белый»",
-          "uk": "Скажіть «Їхня стеля біла»"
+          "ru": "Вы просите соседку взять поводок. Он на скамейке. Скажите ей полной фразой: «Твой поводок на скамейке»",
+          "uk": "Ви просите сусідку взяти повідець. Він на лавці. Скажіть їй повною фразою: «Твій повідець на лавці»"
         },
         "orderedTokens": [
-          "Their",
-          "ceiling",
+          "Your",
+          "leash",
           "is",
-          "white"
+          "on",
+          "the",
+          "bench"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "My"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-14:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Их потолок белый»",
+            "testedDimension": "Вы просите соседку взять поводок. Он на скамейке. Скажите ей полной фразой: «Твой поводок на скамейке»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Their ceiling is white.`",
-              "uk": "тут потрібно `is` — `Their ceiling is white.`"
+              "ru": "здесь нужно `Your` — `Your leash is on the bench.`",
+              "uk": "тут потрібно `Your` — `Your leash is on the bench.`"
             }
           }
         ],
@@ -693,25 +885,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Чемодан друга у вас. Скажите ему «Твой чемодан у меня»",
+      "prompt": "Соседка спрашивает, какой ошейник у щенка. Он новый. Ответьте: «Его ошейник новый»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i13:audio"
       ],
-      "accessibilityLabel": "Чемодан друга у вас. Скажите ему «Твой чемодан у меня»",
+      "accessibilityLabel": "Соседка спрашивает, какой ошейник у щенка. Он новый. Ответьте: «Его ошейник новый»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i13:audio",
-          "transcript": "I have your suitcase."
+          "transcript": "Its collar is new."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your suitcase.",
+        "targetPhrase": "Its collar is new.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -726,67 +918,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Их чемодан закрыт. Чемодан один. Выберите форму",
+      "prompt": "Вы рассказываете брату о щенке соседей. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-14:i14:r1",
-          "text": "is"
+          "text": "Its"
         },
         {
           "responseId": "en:lesson-05:session-14:i14:r2",
-          "text": "are"
+          "text": "Their"
         },
         {
           "responseId": "en:lesson-05:session-14:i14:r3",
-          "text": "has"
+          "text": "It’s"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Их чемодан закрыт. Чемодан один. Выберите форму",
+      "accessibilityLabel": "Вы рассказываете брату о щенке соседей. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Их чемодан закрыт. Чемодан один. Выберите форму",
-          "uk": "Їхня валіза закрита. Валіза одна. Виберіть форму"
+          "ru": "Вы рассказываете брату о щенке соседей. Выберите нужное слово",
+          "uk": "Ви розповідаєте братові про цуценя сусідів. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "Their suitcase ___ closed.",
+        "gappedTargetPhrase": "The puppy is small and ___ tail is long.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-14:i14:r1",
-            "text": "is"
+            "text": "Its"
           },
           {
             "responseId": "en:lesson-05:session-14:i14:r2",
-            "text": "are"
+            "text": "Their"
           },
           {
             "responseId": "en:lesson-05:session-14:i14:r3",
-            "text": "has"
+            "text": "It’s"
           }
         ],
-        "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+        "testedDimension": "Вы рассказываете брату о щенке соседей. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-14:i14:r2",
             "correct": false,
-            "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+            "testedDimension": "Вы рассказываете брату о щенке соседей. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Один чемодан: `suitcase is`, даже если владельцев несколько.",
-              "uk": "Одна валіза: `suitcase is`, навіть якщо власників кілька."
+              "ru": "Their — их, а хвост у щенка, которого называем it: нужно Its.",
+              "uk": "Their — їхній, а хвіст у цуценяти, яке називаємо it: потрібно Its."
             }
           },
           {
             "responseId": "en:lesson-05:session-14:i14:r3",
             "correct": false,
-            "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+            "testedDimension": "Вы рассказываете брату о щенке соседей. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Здесь состояние чемодана: `suitcase is closed`.",
-              "uk": "Тут стан валізи: `suitcase is closed`."
+              "ru": "It’s — это it is; перед хвостом нужно Its без апострофа.",
+              "uk": "It’s — це it is; перед хвостом потрібно Its без апострофа."
             }
           }
         ]
@@ -795,51 +987,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что друг говорит о прачечной",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-14:i15:r1",
-          "text": "The laundrette is closed."
+          "text": "Her puppy has a long tail."
         },
         {
           "responseId": "en:lesson-05:session-14:i15:r2",
-          "text": "The laundrette is open."
+          "text": "His puppy has a long tail."
         },
         {
           "responseId": "en:lesson-05:session-14:i15:r3",
-          "text": "The laundrette is dirty."
+          "text": "Her puppy has a short tail."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что друг говорит о прачечной",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i15:audio",
-          "transcript": "The laundrette is closed."
+          "transcript": "Her puppy has a long tail."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-14:i15:r1",
-            "targetText": "The laundrette is closed.",
+            "targetText": "Her puppy has a long tail.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-14:i15:r2",
-            "targetText": "The laundrette is open.",
+            "targetText": "His puppy has a long tail.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-14:i15:r3",
-            "targetText": "The laundrette is dirty.",
+            "targetText": "Her puppy has a short tail.",
             "meaningByLocale": null
           }
         ],
@@ -848,19 +1040,19 @@
           {
             "responseId": "en:lesson-05:session-14:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит о прачечной",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `closed`, а в этом варианте — `open`.",
-              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `open`."
+              "ru": "В записи `Her` — её, а в этом варианте `His` — его.",
+              "uk": "У записі `Her` — її, а в цьому варіанті `His` — його."
             }
           },
           {
             "responseId": "en:lesson-05:session-14:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит о прачечной",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `closed`, а в этом варианте — `dirty`.",
-              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `dirty`."
+              "ru": "В записи `long` — длинный, а в этом варианте `short` — короткий.",
+              "uk": "У записі `long` — довгий, а в цьому варіанті `short` — короткий."
             }
           }
         ],
@@ -871,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -885,48 +1077,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-14:i16:p1",
-            "target": "suitcase",
+            "target": "puppy",
             "meaningByLocale": {
-              "ru": "чемодан",
-              "uk": "валіза"
+              "ru": "щенок",
+              "uk": "цуценя"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i16:p2",
-            "target": "picture",
+            "target": "collar",
             "meaningByLocale": {
-              "ru": "картинка",
-              "uk": "картинка"
+              "ru": "ошейник",
+              "uk": "нашийник"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i16:p3",
-            "target": "laundrette",
+            "target": "tail",
             "meaningByLocale": {
-              "ru": "прачечная самообслуживания",
-              "uk": "пральня самообслуговування"
+              "ru": "хвост",
+              "uk": "хвіст"
             }
           },
           {
             "pairId": "en:lesson-05:session-14:i16:p4",
-            "target": "ceiling",
+            "target": "leash",
             "meaningByLocale": {
-              "ru": "потолок",
-              "uk": "стеля"
+              "ru": "поводок",
+              "uk": "повідець"
             }
           }
         ],
         "leftColumn": [
-          "suitcase",
-          "picture",
-          "laundrette",
-          "ceiling"
+          "puppy",
+          "collar",
+          "tail",
+          "leash"
         ],
         "rightColumn": [
-          "чемодан",
-          "картинка",
-          "прачечная самообслуживания",
-          "потолок"
+          "щенок",
+          "ошейник",
+          "хвост",
+          "поводок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -944,25 +1136,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-14:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг собирается поднять чемодан, но не застегнул его. Предупредите «Твой чемодан открыт»",
+      "prompt": "Брат просит описать щенка соседки. У него длинный хвост. Скажите ему: «У щенка длинный хвост»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-14:i17:audio"
       ],
-      "accessibilityLabel": "Друг собирается поднять чемодан, но не застегнул его. Предупредите «Твой чемодан открыт»",
+      "accessibilityLabel": "Брат просит описать щенка соседки. У него длинный хвост. Скажите ему: «У щенка длинный хвост»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-14:i17:audio",
-          "transcript": "Your suitcase is open."
+          "transcript": "The puppy has a long tail."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Your suitcase is open.",
+        "targetPhrase": "The puppy has a long tail.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -984,11 +1176,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1fdc90174ef132b716463a74fb6b49aa8b976d06d90546945471d116d2dc608a"
+  "learnerFingerprint": "406f986f285002c0450bb3fa545f29165041177585c67e8288b46a8c3d826c2c"
 }

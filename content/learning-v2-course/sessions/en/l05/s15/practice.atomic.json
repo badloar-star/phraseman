@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-15:word:beard",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:beard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:beard:audio",
+            "transcript": "beard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:beard:r1",
+              "targetText": "beard",
+              "meaningByLocale": {
+                "ru": "борода. His beard is grey. — «Его борода серая». О волосах на лице у мужчины.",
+                "uk": "борода. His beard is grey. — «Його борода сива». Про волосся на обличчі в чоловіка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beard",
+            "definitionByLocale": {
+              "ru": "борода. His beard is grey. — «Его борода серая». О волосах на лице у мужчины.",
+              "uk": "борода. His beard is grey. — «Його борода сива». Про волосся на обличчі в чоловіка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дежурный просит описать вашего друга. У него серая борода. Скажите полной фразой: «Его борода серая»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дежурный просит описать вашего друга. У него серая борода. Скажите полной фразой: «Его борода серая»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "His beard is grey.",
+          "localizedMeaning": {
+            "ru": "Дежурный просит описать вашего друга. У него серая борода. Скажите полной фразой: «Его борода серая»",
+            "uk": "Черговий просить описати вашого друга. У нього сива борода. Скажіть повною фразою: «Його борода сива»"
+          },
+          "orderedTokens": [
+            "His",
+            "beard",
+            "is",
+            "grey"
+          ],
+          "authoredDistractorTokens": [
+            "Her"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Дежурный просит описать вашего друга. У него серая борода. Скажите полной фразой: «Его борода серая»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `His` — `His beard is grey.`",
+                "uk": "тут потрібно `His` — `His beard is grey.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:word:ponytail",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ponytail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:ponytail:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ponytail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:ponytail:audio",
+            "transcript": "ponytail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:ponytail:r1",
+              "targetText": "ponytail",
+              "meaningByLocale": {
+                "ru": "хвост на голове (причёска). She has a ponytail. — «У неё хвост на голове». О волосах, собранных высоко на затылке.",
+                "uk": "хвіст на голові (зачіска). She has a ponytail. — «У неї хвіст на голові». Про волосся, зібране високо на потилиці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ponytail",
+            "definitionByLocale": {
+              "ru": "хвост на голове (причёска). She has a ponytail. — «У неё хвост на голове». О волосах, собранных высоко на затылке.",
+              "uk": "хвіст на голові (зачіска). She has a ponytail. — «У неї хвіст на голові». Про волосся, зібране високо на потилиці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте дежурного",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i02:r1",
+            "text": "She has a ponytail."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i02:r2",
+            "text": "Her ponytail is long."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i02:r3",
+            "text": "He has a ponytail."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте дежурного",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i02:audio",
+            "transcript": "She has a ponytail."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:i02:r1",
+              "targetText": "She has a ponytail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i02:r2",
+              "targetText": "Her ponytail is long.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i02:r3",
+              "targetText": "He has a ponytail.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного",
+              "feedbackByLocale": {
+                "ru": "В записи `She has a ponytail` — «У неё хвост», а в этом варианте `Her ponytail is long` — «Её хвост длинный».",
+                "uk": "У записі `She has a ponytail` — «У неї хвіст», а в цьому варіанті `Her ponytail is long` — «Її хвіст довгий»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного",
+              "feedbackByLocale": {
+                "ru": "В записи `She` — она, а в этом варианте `He` — он.",
+                "uk": "У записі `She` — вона, а в цьому варіанті `He` — він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:word:jacket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jacket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:jacket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jacket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:jacket:audio",
+            "transcript": "jacket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:jacket:r1",
+              "targetText": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка. Her jacket is on the bench. — «Её куртка на скамейке». О лёгкой верхней одежде с рукавами.",
+                "uk": "куртка. Her jacket is on the bench. — «Її куртка на лавці». Про легкий верхній одяг із рукавами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jacket",
+            "definitionByLocale": {
+              "ru": "куртка. Her jacket is on the bench. — «Её куртка на скамейке». О лёгкой верхней одежде с рукавами.",
+              "uk": "куртка. Her jacket is on the bench. — «Її куртка на лавці». Про легкий верхній одяг із рукавами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i03:r1",
+            "text": "jacket"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i03:r2",
+            "text": "shirt"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i03:r3",
+            "text": "scarf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?",
+            "uk": "Легкий верхній одяг із рукавами, який вдягають поверх сорочки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-15:i03:r1",
+              "text": "jacket"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i03:r2",
+              "text": "shirt"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i03:r3",
+              "text": "scarf"
+            }
+          ],
+          "testedDimension": "Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "shirt — это рубашка, а верхняя одежда поверх неё называется jacket.",
+                "uk": "shirt — це сорочка, а верхній одяг поверх неї називається jacket."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "scarf — это шарф, а верхняя одежда с рукавами называется jacket.",
+                "uk": "scarf — це шарф, а верхній одяг із рукавами називається jacket."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-15:i04:p1",
+              "target": "beard",
+              "meaningByLocale": {
+                "ru": "борода",
+                "uk": "борода"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i04:p2",
+              "target": "ponytail",
+              "meaningByLocale": {
+                "ru": "хвост на голове (причёска)",
+                "uk": "хвіст на голові (зачіска)"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i04:p3",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i04:p4",
+              "target": "cap",
+              "meaningByLocale": {
+                "ru": "кепка",
+                "uk": "кепка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beard",
+            "ponytail",
+            "jacket",
+            "cap"
+          ],
+          "rightColumn": [
+            "борода",
+            "хвост на голове (причёска)",
+            "куртка",
+            "кепка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:word:cap",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:cap:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:cap:audio",
+            "transcript": "cap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:cap:r1",
+              "targetText": "cap",
+              "meaningByLocale": {
+                "ru": "кепка. His cap is on the chair. — «Его кепка на стуле». О шапке с козырьком.",
+                "uk": "кепка. His cap is on the chair. — «Його кепка на стільці». Про шапку з козирком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cap",
+            "definitionByLocale": {
+              "ru": "кепка. His cap is on the chair. — «Его кепка на стуле». О шапке с козырьком.",
+              "uk": "кепка. His cap is on the chair. — «Його кепка на стільці». Про шапку з козирком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте дежурного и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте дежурного и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i05:audio",
+            "transcript": "His cap is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "His cap is on the chair.",
+          "orderedTokens": [
+            "His",
+            "cap",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "Her"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `His` — `His cap is on the chair.`",
+                "uk": "тут потрібно `His` — `His cap is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра в красной кепке. Скажите дежурному полной фразой: «Её кепка красная»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра в красной кепке. Скажите дежурному полной фразой: «Её кепка красная»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Her cap is red.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра в красной кепке. Скажите дежурному полной фразой: «Её кепка красная»",
+            "uk": "Ваша сестра в червоній кепці. Скажіть черговому повною фразою: «Її кепка червона»"
+          },
+          "orderedTokens": [
+            "Her",
+            "cap",
+            "is",
+            "red"
+          ],
+          "authoredDistractorTokens": [
+            "His"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ваша сестра в красной кепке. Скажите дежурному полной фразой: «Её кепка красная»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Her` — `Her cap is red.`",
+                "uk": "тут потрібно `Her` — `Her cap is red.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дежурный спрашивает, есть ли у вашего друга борода. Есть. Ответьте: «У него борода»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Дежурный спрашивает, есть ли у вашего друга борода. Есть. Ответьте: «У него борода»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i07:audio",
+            "transcript": "He has a beard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has a beard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i08:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово",
+            "uk": "Ви описуєте сестру черговому: у неї хвіст на голові. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "She ___ a ponytail.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-15:i08:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "С she нужно has, а не have.",
+                "uk": "З she потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "She is a ponytail значит «Она — хвост». Чтобы сказать «у неё хвост», нужно has.",
+                "uk": "She is a ponytail означає «Вона — хвіст». Щоб сказати «у неї хвіст», потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте дежурного",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i09:r1",
+            "text": "My jacket is green."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i09:r2",
+            "text": "My jacket is blue."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i09:r3",
+            "text": "Your jacket is green."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте дежурного",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i09:audio",
+            "transcript": "My jacket is green."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:i09:r1",
+              "targetText": "My jacket is green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i09:r2",
+              "targetText": "My jacket is blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i09:r3",
+              "targetText": "Your jacket is green.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного",
+              "feedbackByLocale": {
+                "ru": "В записи `green` — зелёная, а в этом варианте `blue` — синяя.",
+                "uk": "У записі `green` — зелена, а в цьому варіанті `blue` — синя."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного",
+              "feedbackByLocale": {
+                "ru": "В записи `My` — моя, а в этом варианте `Your` — твоя.",
+                "uk": "У записі `My` — моя, а в цьому варіанті `Your` — твоя."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-15:i10:p1",
+              "target": "beard",
+              "meaningByLocale": {
+                "ru": "борода",
+                "uk": "борода"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i10:p2",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i10:p3",
+              "target": "coat",
+              "meaningByLocale": {
+                "ru": "пальто",
+                "uk": "пальто"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i10:p4",
+              "target": "hat",
+              "meaningByLocale": {
+                "ru": "шляпа",
+                "uk": "капелюх"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beard",
+            "jacket",
+            "coat",
+            "hat"
+          ],
+          "rightColumn": [
+            "борода",
+            "куртка",
+            "пальто",
+            "шляпа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте дежурного и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте дежурного и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i11:audio",
+            "transcript": "Her jacket is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Her jacket is on the bench.",
+          "orderedTokens": [
+            "Her",
+            "jacket",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "His"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Her` — `Her jacket is on the bench.`",
+                "uk": "тут потрібно `Her` — `Her jacket is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двое детей потерялись, на них синие куртки. Скажите дежурному полной фразой: «Их куртки синие»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое детей потерялись, на них синие куртки. Скажите дежурному полной фразой: «Их куртки синие»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Their jackets are blue.",
+          "localizedMeaning": {
+            "ru": "Двое детей потерялись, на них синие куртки. Скажите дежурному полной фразой: «Их куртки синие»",
+            "uk": "Двоє дітей загубилися, на них сині куртки. Скажіть черговому повною фразою: «Їхні куртки сині»"
+          },
+          "orderedTokens": [
+            "Their",
+            "jackets",
+            "are",
+            "blue"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двое детей потерялись, на них синие куртки. Скажите дежурному полной фразой: «Их куртки синие»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `Their jackets are blue.`",
+                "uk": "тут потрібно `are` — `Their jackets are blue.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дежурный спрашивает, какая у вас кепка. Она синяя. Ответьте: «Моя кепка синяя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "Дежурный спрашивает, какая у вас кепка. Она синяя. Ответьте: «Моя кепка синяя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i13:audio",
+            "transcript": "My cap is blue."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My cap is blue.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Куртка вашей подруги зелёная. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i14:r1",
+            "text": "Her"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i14:r2",
+            "text": "She"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i14:r3",
+            "text": "His"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Куртка вашей подруги зелёная. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Куртка вашей подруги зелёная. Выберите нужное слово",
+            "uk": "Куртка вашої подруги зелена. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "___ jacket is green.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-15:i14:r1",
+              "text": "Her"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i14:r2",
+              "text": "She"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i14:r3",
+              "text": "His"
+            }
+          ],
+          "testedDimension": "Куртка вашей подруги зелёная. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i14:r2",
+              "correct": false,
+              "testedDimension": "Куртка вашей подруги зелёная. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "She — она, а перед названием вещи нужно Her.",
+                "uk": "She — вона, а перед назвою речі потрібно Her."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Куртка вашей подруги зелёная. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "His — его, а подруга — она: нужно Her.",
+                "uk": "His — його, а подруга — вона: потрібно Her."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте дежурного",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i15:r1",
+            "text": "He has a cap and a jacket."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i15:r2",
+            "text": "He has a cap and a beard."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i15:r3",
+            "text": "She has a cap and a jacket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте дежурного",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i15:audio",
+            "transcript": "He has a cap and a jacket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:i15:r1",
+              "targetText": "He has a cap and a jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i15:r2",
+              "targetText": "He has a cap and a beard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i15:r3",
+              "targetText": "She has a cap and a jacket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `jacket` — куртка, а в этом варианте `beard` — борода.",
+                "uk": "У записі останнє слово `jacket` — куртка, а в цьому варіанті `beard` — борода."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте дежурного",
+              "feedbackByLocale": {
+                "ru": "В записи `He` — он, а в этом варианте `She` — она.",
+                "uk": "У записі `He` — він, а в цьому варіанті `She` — вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-15:i16:p1",
+              "target": "beard",
+              "meaningByLocale": {
+                "ru": "борода",
+                "uk": "борода"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i16:p2",
+              "target": "ponytail",
+              "meaningByLocale": {
+                "ru": "хвост на голове (причёска)",
+                "uk": "хвіст на голові (зачіска)"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i16:p3",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i16:p4",
+              "target": "cap",
+              "meaningByLocale": {
+                "ru": "кепка",
+                "uk": "кепка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beard",
+            "ponytail",
+            "jacket",
+            "cap"
+          ],
+          "rightColumn": [
+            "борода",
+            "хвост на голове (причёска)",
+            "куртка",
+            "кепка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дежурный просит описать вашего друга. У него борода и кепка. Скажите ему: «У него борода и кепка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Дежурный просит описать вашего друга. У него борода и кепка. Скажите ему: «У него борода и кепка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i17:audio",
+            "transcript": "He has a beard and a cap."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has a beard and a cap.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-15:word:beard",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:beard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:beard:audio",
+            "transcript": "beard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:beard:r1",
+              "targetText": "beard",
+              "meaningByLocale": {
+                "ru": "борода. His beard is grey. — «Его борода серая». О волосах на лице у мужчины.",
+                "uk": "борода. His beard is grey. — «Його борода сива». Про волосся на обличчі в чоловіка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beard",
+            "definitionByLocale": {
+              "ru": "борода. His beard is grey. — «Его борода серая». О волосах на лице у мужчины.",
+              "uk": "борода. His beard is grey. — «Його борода сива». Про волосся на обличчі в чоловіка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Черговий просить описати вашого друга. У нього сива борода. Скажіть повною фразою: «Його борода сива»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Черговий просить описати вашого друга. У нього сива борода. Скажіть повною фразою: «Його борода сива»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "His beard is grey.",
+          "localizedMeaning": {
+            "ru": "Дежурный просит описать вашего друга. У него серая борода. Скажите полной фразой: «Его борода серая»",
+            "uk": "Черговий просить описати вашого друга. У нього сива борода. Скажіть повною фразою: «Його борода сива»"
+          },
+          "orderedTokens": [
+            "His",
+            "beard",
+            "is",
+            "grey"
+          ],
+          "authoredDistractorTokens": [
+            "Her"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Черговий просить описати вашого друга. У нього сива борода. Скажіть повною фразою: «Його борода сива»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `His` — `His beard is grey.`",
+                "uk": "тут потрібно `His` — `His beard is grey.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:word:ponytail",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ponytail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:ponytail:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ponytail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:ponytail:audio",
+            "transcript": "ponytail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:ponytail:r1",
+              "targetText": "ponytail",
+              "meaningByLocale": {
+                "ru": "хвост на голове (причёска). She has a ponytail. — «У неё хвост на голове». О волосах, собранных высоко на затылке.",
+                "uk": "хвіст на голові (зачіска). She has a ponytail. — «У неї хвіст на голові». Про волосся, зібране високо на потилиці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ponytail",
+            "definitionByLocale": {
+              "ru": "хвост на голове (причёска). She has a ponytail. — «У неё хвост на голове». О волосах, собранных высоко на затылке.",
+              "uk": "хвіст на голові (зачіска). She has a ponytail. — «У неї хвіст на голові». Про волосся, зібране високо на потилиці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте чергового",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i02:r1",
+            "text": "She has a ponytail."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i02:r2",
+            "text": "Her ponytail is long."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i02:r3",
+            "text": "He has a ponytail."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте чергового",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i02:audio",
+            "transcript": "She has a ponytail."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:i02:r1",
+              "targetText": "She has a ponytail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i02:r2",
+              "targetText": "Her ponytail is long.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i02:r3",
+              "targetText": "He has a ponytail.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте чергового",
+              "feedbackByLocale": {
+                "ru": "В записи `She has a ponytail` — «У неё хвост», а в этом варианте `Her ponytail is long` — «Её хвост длинный».",
+                "uk": "У записі `She has a ponytail` — «У неї хвіст», а в цьому варіанті `Her ponytail is long` — «Її хвіст довгий»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте чергового",
+              "feedbackByLocale": {
+                "ru": "В записи `She` — она, а в этом варианте `He` — он.",
+                "uk": "У записі `She` — вона, а в цьому варіанті `He` — він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:word:jacket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jacket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:jacket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jacket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:jacket:audio",
+            "transcript": "jacket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:jacket:r1",
+              "targetText": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка. Her jacket is on the bench. — «Её куртка на скамейке». О лёгкой верхней одежде с рукавами.",
+                "uk": "куртка. Her jacket is on the bench. — «Її куртка на лавці». Про легкий верхній одяг із рукавами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jacket",
+            "definitionByLocale": {
+              "ru": "куртка. Her jacket is on the bench. — «Её куртка на скамейке». О лёгкой верхней одежде с рукавами.",
+              "uk": "куртка. Her jacket is on the bench. — «Її куртка на лавці». Про легкий верхній одяг із рукавами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Легкий верхній одяг із рукавами, який вдягають поверх сорочки. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i03:r1",
+            "text": "jacket"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i03:r2",
+            "text": "shirt"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i03:r3",
+            "text": "scarf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Легкий верхній одяг із рукавами, який вдягають поверх сорочки. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?",
+            "uk": "Легкий верхній одяг із рукавами, який вдягають поверх сорочки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-15:i03:r1",
+              "text": "jacket"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i03:r2",
+              "text": "shirt"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i03:r3",
+              "text": "scarf"
+            }
+          ],
+          "testedDimension": "Легкий верхній одяг із рукавами, який вдягають поверх сорочки. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Легкий верхній одяг із рукавами, який вдягають поверх сорочки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "shirt — это рубашка, а верхняя одежда поверх неё называется jacket.",
+                "uk": "shirt — це сорочка, а верхній одяг поверх неї називається jacket."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Легкий верхній одяг із рукавами, який вдягають поверх сорочки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "scarf — это шарф, а верхняя одежда с рукавами называется jacket.",
+                "uk": "scarf — це шарф, а верхній одяг із рукавами називається jacket."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-15:i04:p1",
+              "target": "beard",
+              "meaningByLocale": {
+                "ru": "борода",
+                "uk": "борода"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i04:p2",
+              "target": "ponytail",
+              "meaningByLocale": {
+                "ru": "хвост на голове (причёска)",
+                "uk": "хвіст на голові (зачіска)"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i04:p3",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i04:p4",
+              "target": "cap",
+              "meaningByLocale": {
+                "ru": "кепка",
+                "uk": "кепка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beard",
+            "ponytail",
+            "jacket",
+            "cap"
+          ],
+          "rightColumn": [
+            "борода",
+            "хвіст на голові (зачіска)",
+            "куртка",
+            "кепка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:word:cap",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:word:cap:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:word:cap:audio",
+            "transcript": "cap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:word:cap:r1",
+              "targetText": "cap",
+              "meaningByLocale": {
+                "ru": "кепка. His cap is on the chair. — «Его кепка на стуле». О шапке с козырьком.",
+                "uk": "кепка. His cap is on the chair. — «Його кепка на стільці». Про шапку з козирком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cap",
+            "definitionByLocale": {
+              "ru": "кепка. His cap is on the chair. — «Его кепка на стуле». О шапке с козырьком.",
+              "uk": "кепка. His cap is on the chair. — «Його кепка на стільці». Про шапку з козирком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте чергового й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте чергового й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i05:audio",
+            "transcript": "His cap is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "His cap is on the chair.",
+          "orderedTokens": [
+            "His",
+            "cap",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "Her"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте чергового й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `His` — `His cap is on the chair.`",
+                "uk": "тут потрібно `His` — `His cap is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра в червоній кепці. Скажіть черговому повною фразою: «Її кепка червона»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра в червоній кепці. Скажіть черговому повною фразою: «Її кепка червона»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Her cap is red.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра в красной кепке. Скажите дежурному полной фразой: «Её кепка красная»",
+            "uk": "Ваша сестра в червоній кепці. Скажіть черговому повною фразою: «Її кепка червона»"
+          },
+          "orderedTokens": [
+            "Her",
+            "cap",
+            "is",
+            "red"
+          ],
+          "authoredDistractorTokens": [
+            "His"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ваша сестра в червоній кепці. Скажіть черговому повною фразою: «Її кепка червона»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Her` — `Her cap is red.`",
+                "uk": "тут потрібно `Her` — `Her cap is red.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Черговий питає, чи є у вашого друга борода. Є. Відповідьте: «У нього борода»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Черговий питає, чи є у вашого друга борода. Є. Відповідьте: «У нього борода»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i07:audio",
+            "transcript": "He has a beard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has a beard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви описуєте сестру черговому: у неї хвіст на голові. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i08:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви описуєте сестру черговому: у неї хвіст на голові. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово",
+            "uk": "Ви описуєте сестру черговому: у неї хвіст на голові. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "She ___ a ponytail.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-15:i08:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Ви описуєте сестру черговому: у неї хвіст на голові. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви описуєте сестру черговому: у неї хвіст на голові. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "С she нужно has, а не have.",
+                "uk": "З she потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви описуєте сестру черговому: у неї хвіст на голові. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "She is a ponytail значит «Она — хвост». Чтобы сказать «у неё хвост», нужно has.",
+                "uk": "She is a ponytail означає «Вона — хвіст». Щоб сказати «у неї хвіст», потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте чергового",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i09:r1",
+            "text": "My jacket is green."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i09:r2",
+            "text": "My jacket is blue."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i09:r3",
+            "text": "Your jacket is green."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте чергового",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i09:audio",
+            "transcript": "My jacket is green."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:i09:r1",
+              "targetText": "My jacket is green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i09:r2",
+              "targetText": "My jacket is blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i09:r3",
+              "targetText": "Your jacket is green.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте чергового",
+              "feedbackByLocale": {
+                "ru": "В записи `green` — зелёная, а в этом варианте `blue` — синяя.",
+                "uk": "У записі `green` — зелена, а в цьому варіанті `blue` — синя."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте чергового",
+              "feedbackByLocale": {
+                "ru": "В записи `My` — моя, а в этом варианте `Your` — твоя.",
+                "uk": "У записі `My` — моя, а в цьому варіанті `Your` — твоя."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-15:i10:p1",
+              "target": "beard",
+              "meaningByLocale": {
+                "ru": "борода",
+                "uk": "борода"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i10:p2",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i10:p3",
+              "target": "coat",
+              "meaningByLocale": {
+                "ru": "пальто",
+                "uk": "пальто"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i10:p4",
+              "target": "hat",
+              "meaningByLocale": {
+                "ru": "шляпа",
+                "uk": "капелюх"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beard",
+            "jacket",
+            "coat",
+            "hat"
+          ],
+          "rightColumn": [
+            "борода",
+            "куртка",
+            "пальто",
+            "капелюх"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте чергового й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте чергового й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i11:audio",
+            "transcript": "Her jacket is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Her jacket is on the bench.",
+          "orderedTokens": [
+            "Her",
+            "jacket",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "His"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте чергового й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Her` — `Her jacket is on the bench.`",
+                "uk": "тут потрібно `Her` — `Her jacket is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоє дітей загубилися, на них сині куртки. Скажіть черговому повною фразою: «Їхні куртки сині»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє дітей загубилися, на них сині куртки. Скажіть черговому повною фразою: «Їхні куртки сині»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Their jackets are blue.",
+          "localizedMeaning": {
+            "ru": "Двое детей потерялись, на них синие куртки. Скажите дежурному полной фразой: «Их куртки синие»",
+            "uk": "Двоє дітей загубилися, на них сині куртки. Скажіть черговому повною фразою: «Їхні куртки сині»"
+          },
+          "orderedTokens": [
+            "Their",
+            "jackets",
+            "are",
+            "blue"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоє дітей загубилися, на них сині куртки. Скажіть черговому повною фразою: «Їхні куртки сині»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `Their jackets are blue.`",
+                "uk": "тут потрібно `are` — `Their jackets are blue.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Черговий питає, яка у вас кепка. Вона синя. Відповідьте: «Моя кепка синя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "Черговий питає, яка у вас кепка. Вона синя. Відповідьте: «Моя кепка синя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i13:audio",
+            "transcript": "My cap is blue."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My cap is blue.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Куртка вашої подруги зелена. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i14:r1",
+            "text": "Her"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i14:r2",
+            "text": "She"
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i14:r3",
+            "text": "His"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Куртка вашої подруги зелена. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Куртка вашей подруги зелёная. Выберите нужное слово",
+            "uk": "Куртка вашої подруги зелена. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "___ jacket is green.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-15:i14:r1",
+              "text": "Her"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i14:r2",
+              "text": "She"
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i14:r3",
+              "text": "His"
+            }
+          ],
+          "testedDimension": "Куртка вашої подруги зелена. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i14:r2",
+              "correct": false,
+              "testedDimension": "Куртка вашої подруги зелена. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "She — она, а перед названием вещи нужно Her.",
+                "uk": "She — вона, а перед назвою речі потрібно Her."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Куртка вашої подруги зелена. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "His — его, а подруга — она: нужно Her.",
+                "uk": "His — його, а подруга — вона: потрібно Her."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте чергового",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-15:i15:r1",
+            "text": "He has a cap and a jacket."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i15:r2",
+            "text": "He has a cap and a beard."
+          },
+          {
+            "responseId": "en:lesson-05:session-15:i15:r3",
+            "text": "She has a cap and a jacket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте чергового",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i15:audio",
+            "transcript": "He has a cap and a jacket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-15:i15:r1",
+              "targetText": "He has a cap and a jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i15:r2",
+              "targetText": "He has a cap and a beard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i15:r3",
+              "targetText": "She has a cap and a jacket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте чергового",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `jacket` — куртка, а в этом варианте `beard` — борода.",
+                "uk": "У записі останнє слово `jacket` — куртка, а в цьому варіанті `beard` — борода."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте чергового",
+              "feedbackByLocale": {
+                "ru": "В записи `He` — он, а в этом варианте `She` — она.",
+                "uk": "У записі `He` — він, а в цьому варіанті `She` — вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-15:i16:p1",
+              "target": "beard",
+              "meaningByLocale": {
+                "ru": "борода",
+                "uk": "борода"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i16:p2",
+              "target": "ponytail",
+              "meaningByLocale": {
+                "ru": "хвост на голове (причёска)",
+                "uk": "хвіст на голові (зачіска)"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i16:p3",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-15:i16:p4",
+              "target": "cap",
+              "meaningByLocale": {
+                "ru": "кепка",
+                "uk": "кепка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beard",
+            "ponytail",
+            "jacket",
+            "cap"
+          ],
+          "rightColumn": [
+            "борода",
+            "хвіст на голові (зачіска)",
+            "куртка",
+            "кепка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Черговий просить описати вашого друга. У нього борода й кепка. Скажіть йому: «У нього борода й кепка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Черговий просить описати вашого друга. У нього борода й кепка. Скажіть йому: «У нього борода й кепка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-15:i17:audio",
+            "transcript": "He has a beard and a cap."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has a beard and a cap.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-15:word:beard",
+      "correctText": "beard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i01",
+      "correctText": "His beard is grey.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:word:ponytail",
+      "correctText": "ponytail",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i02",
+      "correctText": "She has a ponytail.",
+      "correctResponseId": "en:lesson-05:session-15:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:word:jacket",
+      "correctText": "jacket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i03",
+      "correctText": "jacket",
+      "correctResponseId": "en:lesson-05:session-15:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:word:cap",
+      "correctText": "cap",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i05",
+      "correctText": "His cap is on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i06",
+      "correctText": "Her cap is red.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i07",
+      "correctText": "He has a beard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i08",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-15:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i09",
+      "correctText": "My jacket is green.",
+      "correctResponseId": "en:lesson-05:session-15:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i11",
+      "correctText": "Her jacket is on the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i12",
+      "correctText": "Their jackets are blue.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i13",
+      "correctText": "My cap is blue.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i14",
+      "correctText": "Her",
+      "correctResponseId": "en:lesson-05:session-15:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i15",
+      "correctText": "He has a cap and a jacket.",
+      "correctResponseId": "en:lesson-05:session-15:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:i17",
+      "correctText": "He has a beard and a cap.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,135 +1,154 @@
 # Англійська · Урок 5 · Заняття 3 — Місце для роботи
 
-**Ситуація.** Ви прийшли до громадського центру поруч із банком. Друг зайнятий, а вам потрібен письмовий стіл для роботи з книжкою. Ви уточнюєте, хто вільний і в кого є стіл.
+**Ситуація.** Ви прийшли в громадський центр поруч із банком. Друг зайнятий, а вам потрібен письмовий стіл для роботи з книжкою. Ви уточнюєте, хто вільний і в кого що є.
 
-**Що ви опануєте:** назвати письмовий стіл і сказати, у кого він є
-**Нові слова:** desk
+**Що ви опануєте:** сказати, в кого є одна річ або кілька, і не плутати це зі станом
+**Нові слова:** computer, phone, wallet, colleague
+**Повертаються:** desk, book, bank, busy, free, late, centre, community
 
 ---
 
 ## Інтро 1
 
-### Стіл для роботи
+### Комп’ютер для роботи
 
-`desk` — «письмовий стіл», за яким працюють або навчаються. `I have a desk` — «У мене є письмовий стіл». Чашка кави на ньому не перетворює його на кафе: працювати все одно доведеться. Один стіл — `a desk`.
+Ви прийшли в громадський центр поруч із банком, щоб попрацювати за письмовим столом. Вільний стіл знайшовся біля вікна, і ви дістаєте із сумки свій комп’ютер. computer — «комп’ютер». Про себе кажуть I have: I have a computer — «У мене є комп’ютер».
 
-**Скажіть, що у вас є письмовий стіл.**
+**Працівниця центру питає, на чому ви працюватимете. Скажіть їй, що у вас є комп’ютер.**
 
-- ✅ **I have a desk.**
-- ❌ I has a desk. — *З `I` потрібне `have`.*
-- ❌ I have desk. — *Один стіл: `a desk`.*
+- ✅ **I have a computer.**
+- ❌ I have computer. — *Комп’ютер один, тому перед computer потрібно a.*
+- ❌ I has a computer. — *З I потрібно have, а не has.*
 
 ---
 
 ## Інтро 2
 
-### Хто зайнятий, хто вільний
+### Зайнятий із телефоном
 
-`busy` — «зайнятий», `free` — «вільний», `late` — «запізнився, невчасно». `He is busy` — «Він зайнятий». `I’m free` — «Я вільний», тут ідеться про час. `We are late` — «Ми запізнилися». У цих фразах потрібні `am`, `is`, `are`. Коли повідомляєте, у кого є річ, використовуйте `have` або `has`: `She has a desk` — «У неї є письмовий стіл».
+Друг зайнятий і не може допомогти з пошуком стола: він стоїть біля вікна й розмовляє по телефону. phone — «телефон». Стан називають з is: He is busy — «Він зайнятий». А те, що в нього в руці, називають з has: He has a phone — «У нього є телефон».
 
-**Друг зайнятий. Виберіть фразу.**
+**Працівниця центру питає, що у вашого друга в руці. Скажіть їй, що в нього телефон.**
 
-- ✅ **He is busy.**
-- ❌ He has busy. — *Стан: `He is busy`; `has` тут не підходить.*
-- ❌ He are busy. — *З `He` потрібне `is`.*
+- ✅ **He has a phone.**
+- ❌ He have a phone. — *З he потрібно has, а не have.*
+- ❌ He is a phone. — *Це означало б «Він телефон». Щоб сказати «У нього є телефон», потрібно has.*
 
 ---
 
 ## Інтро 3
 
-### Книжка й місце зустрічі
+### Гаманці біля стійки
 
-`book` — «книжка», `bank` — «банк», `community centre` — «громадський центр». `The book is on the desk` — «Книжка на письмовому столі». `The community centre is next to the bank` — «Громадський центр поруч із банком». З `on` книжка лежить на поверхні столу; з `under` вона була б під столом.
+Ви з друзями хочете записатися в центр, а запис платний. Працівниця чекає біля стійки, і всі дістають гроші. wallet — «гаманець». Коли мова про кількох людей, потрібно have: They have wallets — «У них є гаманці». Перед wallets слово a не ставлять.
 
-**Книжка лежить на письмовому столі. Виберіть опис.**
+**Працівниця питає, чим заплатять ваші друзі. Скажіть їй, що в них є гаманці.**
 
-- ✅ **The book is on the desk.**
-- ❌ The book is under the desk. — *`under` — під; тут на поверхні: `on`.*
-- ❌ The book are on the desk. — *Одна книжка: `The book is`.*
+- ✅ **They have wallets.**
+- ❌ They has wallets. — *З they потрібно have, а не has.*
+- ❌ They have a wallets. — *Гаманців кілька, тому a не потрібно: a ставлять перед одним предметом.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Друг зайнятий. Скажіть це без скорочення**
+**1 · Картка слова — computer**
+<!-- interaction_id: en:lesson-05:session-03:word:computer; family: word_card -->
+> **computer** — комп’ютер. I have a computer. — «У мене є комп’ютер». Про машину з екраном і клавіатурою, на якій працюють і вчаться.
+
+**2 · Працівниця центру питає, на чому ви працюватимете. Скажіть їй повною фразою: «У мене є комп’ютер»**
 <!-- interaction_id: en:lesson-05:session-03:i01; family: phrase_builder -->
-Плитки: `busy` `is` `He` `are` → **He is busy.**
-*(плитка `are` зайва: тут потрібно `is` — `He is busy.`)*
+Плитки: `computer` `a` `have` `I` `has` → **I have a computer.**
+*(плитка `has` зайва: тут потрібно `have` — `I have a computer.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте друга**
 <!-- interaction_id: en:lesson-05:session-03:i02; family: listen_choose -->
-🔊 *desk* → **desk** · desks · door
-- desks — *У записі перше слово — `desk`, а в цьому варіанті — `desks`.*
-- door — *У записі перше слово — `desk`, а в цьому варіанті — `door`.*
+🔊 *He is busy.* → **He is busy.** · He is free. · She is busy.
+- He is free. — *У записі останнє слово — `busy`, а в цьому варіанті — `free`.*
+- She is busy. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 
-**3 · Назвіть письмовий стіл**
+**4 · Картка слова — phone**
+<!-- interaction_id: en:lesson-05:session-03:word:phone; family: word_card -->
+> **phone** — телефон. He has a phone. — «У нього є телефон». Про невеликий пристрій, яким телефонують і пишуть повідомлення.
+
+**5 · Друг розмовляє по телефону біля вікна. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-03:i03; family: context_gap_grammar -->
-___ → **desk** · book · bank
-- book — *`book` — книжка; письмовий стіл — `desk`.*
-- bank — *`bank` — банк; письмовий стіл — `desk`.*
+He ___ a phone. → **has** · have · is
+- have — *З he потрібно has, а не have.*
+- is — *He is a phone означало б «Він телефон». У нього є телефон — He has a phone.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-03:i04; family: speed_match -->
-desk — письмовий стіл · busy — зайнятий · free — вільний · late — той, хто запізнився
+computer — комп’ютер · phone — телефон · wallet — гаманець · colleague — колега
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — wallet**
+<!-- interaction_id: en:lesson-05:session-03:word:wallet; family: word_card -->
+> **wallet** — гаманець. They have wallets. — «У них є гаманці». Про невелику сумочку для грошей і банківських карток, яку носять у кишені.
+
+**8 · Послухайте працівницю й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-03:i05; family: listen_build_dictation -->
-🔊 *I have a desk.* Плитки: `desk` `a` `have` `I` → **I have a desk.**
+🔊 *He has a wallet.* Плитки: `wallet` `a` `has` `He` `have` → **He has a wallet.**
+*(плитка `have` зайва: тут потрібно `has` — `He has a wallet.`)*
 
-**6 · У подруги є письмовий стіл. Скажіть «У неї є письмовий стіл»**
+**9 · Картка слова — colleague**
+<!-- interaction_id: en:lesson-05:session-03:word:colleague; family: word_card -->
+> **colleague** — колега. She has a colleague. — «У неї є колега». Про людину, з якою ви працюєте в одному місці.
+
+**10 · Працівниця питає, чи є у вас у центрі колега. Дайте повну відповідь: «У мене є колега»**
 <!-- interaction_id: en:lesson-05:session-03:i06; family: phrase_builder -->
-Плитки: `desk` `a` `has` `She` → **She has a desk.**
+Плитки: `colleague` `a` `have` `I` `am` → **I have a colleague.**
+*(плитка `am` зайва: тут потрібно `have` — `I have a colleague.`)*
 
-**7 · У вас є час допомогти. Скажіть «Я вільний» зі скороченням**
+**11 · Ви готові допомогти другові. Скажіть «Я вільний» зі скороченням**
 <!-- interaction_id: en:lesson-05:session-03:i07; family: scripted_repeat_compare -->
-🎙 **I'm free.**
+🎙 **I’m free.**
 
-**8 · Ви з другом запізнилися. Виберіть форму**
+**12 · Ви з другом запізнилися в центр. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-03:i08; family: context_gap_grammar -->
 We ___ late. → **are** · have · is
-- have — *Тут стан: `We are late`.*
-- is — *З `We` потрібне `are`.*
+- have — *Тут стан, а не річ: We are late.*
+- is — *З we потрібно are, а не is.*
 
-**9 · Послухайте, де книжка**
+**13 · Послухайте, де книга**
 <!-- interaction_id: en:lesson-05:session-03:i09; family: listen_choose -->
 🔊 *The book is on the desk.* → **The book is on the desk.** · The book is on the table. · The book is on the sofa.
 - The book is on the table. — *У записі останнє слово — `desk`, а в цьому варіанті — `table`.*
 - The book is on the sofa. — *У записі останнє слово — `desk`, а в цьому варіанті — `sofa`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-03:i10; family: speed_match -->
-desk — письмовий стіл · book — книжка · bank — банк · community centre — громадський центр
+desk — письмовий стіл · book — книга · bank — банк · late — той, що запізнився
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-03:i11; family: listen_build_dictation -->
-🔊 *They have desks.* Плитки: `desks` `have` `They` → **They have desks.**
+🔊 *She has a computer.* Плитки: `computer` `a` `has` `She` `have` → **She has a computer.**
+*(плитка `have` зайва: тут потрібно `has` — `She has a computer.`)*
 
-**12 · Громадський центр поруч із банком. Скажіть, де він**
+**16 · Друг питає, де громадський центр. Скажіть йому повною фразою: «Громадський центр поруч із банком»**
 <!-- interaction_id: en:lesson-05:session-03:i12; family: phrase_builder -->
 Плитки: `bank` `the` `to` `next` `is` `centre` `community` `The` `are` → **The community centre is next to the bank.**
 *(плитка `are` зайва: тут потрібно `is` — `The community centre is next to the bank.`)*
 
-**13 · У вас є книжка для роботи. Скажіть «У мене є книжка»**
+**17 · У вас є книжка для роботи. Скажіть «У мене є книжка»**
 <!-- interaction_id: en:lesson-05:session-03:i13; family: scripted_repeat_compare -->
 🎙 **I have a book.**
 
-**14 · У друга є письмовий стіл. Виберіть форму**
+**18 · У друга є письмовий стіл. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-03:i14; family: context_gap_grammar -->
 He ___ a desk. → **has** · have · is
-- have — *З `He` потрібне `has`.*
-- is — *`He is a desk` — він сам стіл; у нього є стіл — `He has a desk`.*
+- have — *З he потрібно has, а не have.*
+- is — *He is a desk означало б «Він стіл». У нього є стіл — He has a desk.*
 
-**15 · Послухайте, у кого є вільний час**
+**19 · Послухайте, хто вільний**
 <!-- interaction_id: en:lesson-05:session-03:i15; family: listen_choose -->
-🔊 *She's free.* → **She's free.** · She's busy. · He's free.
-- She's busy. — *У записі останнє слово — `free`, а в цьому варіанті — `busy`.*
-- He's free. — *У записі перше слово — `She's`, а в цьому варіанті — `He's`.*
+🔊 *She’s free.* → **She’s free.** · She’s busy. · He’s free.
+- She’s busy. — *У записі останнє слово — `free`, а в цьому варіанті — `busy`.*
+- He’s free. — *У записі перше слово — `She’s`, а в цьому варіанті — `He’s`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-03:i16; family: speed_match -->
-desk — письмовий стіл · book — книжка · bank — банк · community centre — громадський центр
+computer — комп’ютер · phone — телефон · busy — зайнятий · free — вільний
 
-**17 · Вам із другом виділили один письмовий стіл. Повідомте «У нас є письмовий стіл»**
+**21 · Вам із другом виділили один письмовий стіл. Скажіть працівниці: «У нас є письмовий стіл»**
 <!-- interaction_id: en:lesson-05:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We have a desk.**
-

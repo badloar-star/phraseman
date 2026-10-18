@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-08:word:guest",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:guest:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:guest:audio",
+            "transcript": "guest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:guest:r1",
+              "targetText": "guest",
+              "meaningByLocale": {
+                "ru": "гость. I have a guest. — «У меня гость». О человеке, который пришёл к вам домой на время.",
+                "uk": "гість. I have a guest. — «У мене гість». Про людину, яка прийшла до вас додому на деякий час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guest",
+            "definitionByLocale": {
+              "ru": "гость. I have a guest. — «У меня гость». О человеке, который пришёл к вам домой на время.",
+              "uk": "гість. I have a guest. — «У мене гість». Про людину, яка прийшла до вас додому на деякий час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка слышит голоса за дверью. Скажите ей полной фразой: «У меня гость»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка слышит голоса за дверью. Скажите ей полной фразой: «У меня гость»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a guest.",
+          "localizedMeaning": {
+            "ru": "Соседка слышит голоса за дверью. Скажите ей полной фразой: «У меня гость»",
+            "uk": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "guest"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка слышит голоса за дверью. Скажите ей полной фразой: «У меня гость»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a guest.`",
+                "uk": "тут потрібно `have` — `I have a guest.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i02:r1",
+            "text": "The desk has drawers."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i02:r2",
+            "text": "The desk has books."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i02:r3",
+            "text": "The desk has pens."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i02:audio",
+            "transcript": "The desk has drawers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:i02:r1",
+              "targetText": "The desk has drawers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i02:r2",
+              "targetText": "The desk has books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i02:r3",
+              "targetText": "The desk has pens.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `drawers`, а в этом варианте — `books`.",
+                "uk": "У записі останнє слово — `drawers`, а в цьому варіанті — `books`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `drawers`, а в этом варианте — `pens`.",
+                "uk": "У записі останнє слово — `drawers`, а в цьому варіанті — `pens`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:word:toothbrush",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — toothbrush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:toothbrush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — toothbrush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:toothbrush:audio",
+            "transcript": "toothbrush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:toothbrush:r1",
+              "targetText": "toothbrush",
+              "meaningByLocale": {
+                "ru": "зубная щётка. There isn’t a toothbrush in the cupboard. — «В шкафчике нет зубной щётки». О щётке, которой чистят зубы.",
+                "uk": "зубна щітка. There isn’t a toothbrush in the cupboard. — «У шафці немає зубної щітки». Про щітку, якою чистять зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toothbrush",
+            "definitionByLocale": {
+              "ru": "зубная щётка. There isn’t a toothbrush in the cupboard. — «В шкафчике нет зубной щётки». О щётке, которой чистят зубы.",
+              "uk": "зубна щітка. There isn’t a toothbrush in the cupboard. — «У шафці немає зубної щітки». Про щітку, якою чистять зуби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В шкафчике нет зубной щётки. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i03:r1",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i03:r2",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В шкафчике нет зубной щётки. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В шкафчике нет зубной щётки. Выберите форму",
+            "uk": "У шафці немає зубної щітки. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a toothbrush in the cupboard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-08:i03:r1",
+              "text": "isn’t"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i03:r2",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В шкафчике нет зубной щётки. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "В шкафчике нет зубной щётки. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Щётка одна, поэтому нужно isn’t, а не aren’t.",
+                "uk": "Щітка одна, тому потрібно isn’t, а не aren’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "В шкафчике нет зубной щётки. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Здесь «нет», а is без not — это утверждение.",
+                "uk": "Тут «немає», а is без not — це ствердження."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-08:i04:p1",
+              "target": "guest",
+              "meaningByLocale": {
+                "ru": "гость",
+                "uk": "гість"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i04:p2",
+              "target": "toothbrush",
+              "meaningByLocale": {
+                "ru": "зубная щётка",
+                "uk": "зубна щітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i04:p3",
+              "target": "slippers",
+              "meaningByLocale": {
+                "ru": "домашние тапочки",
+                "uk": "домашні капці"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i04:p4",
+              "target": "bathroom",
+              "meaningByLocale": {
+                "ru": "ванная комната",
+                "uk": "ванна кімната"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guest",
+            "toothbrush",
+            "slippers",
+            "bathroom"
+          ],
+          "rightColumn": [
+            "гость",
+            "зубная щётка",
+            "домашние тапочки",
+            "ванная комната"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:word:bathroom",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bathroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:bathroom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bathroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:bathroom:audio",
+            "transcript": "bathroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:bathroom:r1",
+              "targetText": "bathroom",
+              "meaningByLocale": {
+                "ru": "ванная комната. Where is the bathroom? — «Где ванная комната?» О комнате, где умываются и принимают душ.",
+                "uk": "ванна кімната. Where is the bathroom? — «Де ванна кімната?» Про кімнату, де вмиваються й приймають душ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bathroom",
+            "definitionByLocale": {
+              "ru": "ванная комната. Where is the bathroom? — «Где ванная комната?» О комнате, где умываются и принимают душ.",
+              "uk": "ванна кімната. Where is the bathroom? — «Де ванна кімната?» Про кімнату, де вмиваються й приймають душ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i05:audio",
+            "transcript": "Where is the bathroom?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where is the bathroom?",
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "bathroom"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the bathroom?`",
+                "uk": "тут потрібно `is` — `Where is the bathroom?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:word:slippers",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — slippers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:slippers:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — slippers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:slippers:audio",
+            "transcript": "slippers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:slippers:r1",
+              "targetText": "slippers",
+              "meaningByLocale": {
+                "ru": "домашние тапочки. The guest has slippers. — «У гостя есть тапочки». О мягкой обуви, которую надевают дома; слово всегда во множественном числе.",
+                "uk": "домашні капці. The guest has slippers. — «У гостя є капці». Про м’яке взуття, яке вдягають удома; слово завжди у множині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slippers",
+            "definitionByLocale": {
+              "ru": "домашние тапочки. The guest has slippers. — «У гостя есть тапочки». О мягкой обуви, которую надевают дома; слово всегда во множественном числе.",
+              "uk": "домашні капці. The guest has slippers. — «У гостя є капці». Про м’яке взуття, яке вдягають удома; слово завжди у множині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, во что обут гость. Скажите ей полной фразой: «У гостя есть тапочки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, во что обут гость. Скажите ей полной фразой: «У гостя есть тапочки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The guest has slippers.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, во что обут гость. Скажите ей полной фразой: «У гостя есть тапочки»",
+            "uk": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»"
+          },
+          "orderedTokens": [
+            "The",
+            "guest",
+            "has",
+            "slippers"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, во что обут гость. Скажите ей полной фразой: «У гостя есть тапочки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The guest has slippers.`",
+                "uk": "тут потрібно `has` — `The guest has slippers.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, где пульт. Скажите ему: «Пульт в ящике»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, где пульт. Скажите ему: «Пульт в ящике»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i07:audio",
+            "transcript": "The remote is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The remote is in the drawer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В комнате нет занавесок. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i08:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i08:r3",
+            "text": "isn’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В комнате нет занавесок. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В комнате нет занавесок. Выберите форму",
+            "uk": "У кімнаті немає завісок. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ any curtains.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-08:i08:r1",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i08:r3",
+              "text": "isn’t"
+            }
+          ],
+          "testedDimension": "В комнате нет занавесок. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "В комнате нет занавесок. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Здесь «нет», а are без not — это утверждение.",
+                "uk": "Тут «немає», а are без not — це ствердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "В комнате нет занавесок. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Занавесок несколько, поэтому нужно aren’t, а не isn’t.",
+                "uk": "Завісок кілька, тому потрібно aren’t, а не isn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i09:r1",
+            "text": "She has a key."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i09:r2",
+            "text": "She has a bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i09:r3",
+            "text": "He has a key."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i09:audio",
+            "transcript": "She has a key."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:i09:r1",
+              "targetText": "She has a key.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i09:r2",
+              "targetText": "She has a bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i09:r3",
+              "targetText": "He has a key.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `key`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `key`, а в цьому варіанті — `bag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-08:i10:p1",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i10:p2",
+              "target": "drawer",
+              "meaningByLocale": {
+                "ru": "выдвижной ящик",
+                "uk": "висувна шухляда"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i10:p3",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i10:p4",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "desk",
+            "drawer",
+            "remote",
+            "curtain"
+          ],
+          "rightColumn": [
+            "письменный стол",
+            "выдвижной ящик",
+            "пульт",
+            "занавеска"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i11:audio",
+            "transcript": "Where is the remote?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where is the remote?",
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "remote"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the remote?`",
+                "uk": "тут потрібно `is` — `Where is the remote?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость хочет купить хлеб. Спросите соседа полной фразой: «Где магазин у дома?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость хочет купить хлеб. Спросите соседа полной фразой: «Где магазин у дома?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the corner shop?",
+          "localizedMeaning": {
+            "ru": "Гость хочет купить хлеб. Спросите соседа полной фразой: «Где магазин у дома?»",
+            "uk": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "corner",
+            "shop"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость хочет купить хлеб. Спросите соседа полной фразой: «Где магазин у дома?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the corner shop?`",
+                "uk": "тут потрібно `is` — `Where is the corner shop?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В комнате нет занавесок. Скажите гостю: «Занавесок нет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "В комнате нет занавесок. Скажите гостю: «Занавесок нет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i13:audio",
+            "transcript": "There aren’t any curtains."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any curtains.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У стола есть ящики. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У стола есть ящики. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У стола есть ящики. Выберите форму",
+            "uk": "У стола є шухляди. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The desk ___ drawers.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-08:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У стола есть ящики. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i14:r2",
+              "correct": false,
+              "testedDimension": "У стола есть ящики. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Стол один, как it: нужно has, даже если ящиков несколько.",
+                "uk": "Стіл один, як it: потрібно has, навіть якщо шухляд кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i14:r3",
+              "correct": false,
+              "testedDimension": "У стола есть ящики. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Речь о том, что есть у стола: has drawers.",
+                "uk": "Мова про те, що є в стола: has drawers."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i15:r1",
+            "text": "There isn’t a toothbrush here."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i15:r2",
+            "text": "There isn’t a bathroom here."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i15:r3",
+            "text": "There aren’t any toothbrushes here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i15:audio",
+            "transcript": "There isn’t a toothbrush here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:i15:r1",
+              "targetText": "There isn’t a toothbrush here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i15:r2",
+              "targetText": "There isn’t a bathroom here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i15:r3",
+              "targetText": "There aren’t any toothbrushes here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `toothbrush` — зубная щётка, а в этом варианте `bathroom` — ванная комната.",
+                "uk": "У записі `toothbrush` — зубна щітка, а в цьому варіанті `bathroom` — ванна кімната."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `isn’t a` — нет одной, а в этом варианте `aren’t any` — нет нескольких.",
+                "uk": "У записі `isn’t a` — немає однієї, а в цьому варіанті `aren’t any` — немає кількох."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-08:i16:p1",
+              "target": "guest",
+              "meaningByLocale": {
+                "ru": "гость",
+                "uk": "гість"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i16:p2",
+              "target": "slippers",
+              "meaningByLocale": {
+                "ru": "домашние тапочки",
+                "uk": "домашні капці"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i16:p3",
+              "target": "bathroom",
+              "meaningByLocale": {
+                "ru": "ванная комната",
+                "uk": "ванна кімната"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i16:p4",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guest",
+            "slippers",
+            "bathroom",
+            "remote"
+          ],
+          "rightColumn": [
+            "гость",
+            "домашние тапочки",
+            "ванная комната",
+            "пульт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость рассматривает комнату. Скажите ему: «У стола есть ящики»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Гость рассматривает комнату. Скажите ему: «У стола есть ящики»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i17:audio",
+            "transcript": "The desk has drawers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The desk has drawers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-08:word:guest",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:guest:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:guest:audio",
+            "transcript": "guest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:guest:r1",
+              "targetText": "guest",
+              "meaningByLocale": {
+                "ru": "гость. I have a guest. — «У меня гость». О человеке, который пришёл к вам домой на время.",
+                "uk": "гість. I have a guest. — «У мене гість». Про людину, яка прийшла до вас додому на деякий час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guest",
+            "definitionByLocale": {
+              "ru": "гость. I have a guest. — «У меня гость». О человеке, который пришёл к вам домой на время.",
+              "uk": "гість. I have a guest. — «У мене гість». Про людину, яка прийшла до вас додому на деякий час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a guest.",
+          "localizedMeaning": {
+            "ru": "Соседка слышит голоса за дверью. Скажите ей полной фразой: «У меня гость»",
+            "uk": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "guest"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a guest.`",
+                "uk": "тут потрібно `have` — `I have a guest.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i02:r1",
+            "text": "The desk has drawers."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i02:r2",
+            "text": "The desk has books."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i02:r3",
+            "text": "The desk has pens."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i02:audio",
+            "transcript": "The desk has drawers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:i02:r1",
+              "targetText": "The desk has drawers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i02:r2",
+              "targetText": "The desk has books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i02:r3",
+              "targetText": "The desk has pens.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `drawers`, а в этом варианте — `books`.",
+                "uk": "У записі останнє слово — `drawers`, а в цьому варіанті — `books`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `drawers`, а в этом варианте — `pens`.",
+                "uk": "У записі останнє слово — `drawers`, а в цьому варіанті — `pens`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:word:toothbrush",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — toothbrush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:toothbrush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — toothbrush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:toothbrush:audio",
+            "transcript": "toothbrush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:toothbrush:r1",
+              "targetText": "toothbrush",
+              "meaningByLocale": {
+                "ru": "зубная щётка. There isn’t a toothbrush in the cupboard. — «В шкафчике нет зубной щётки». О щётке, которой чистят зубы.",
+                "uk": "зубна щітка. There isn’t a toothbrush in the cupboard. — «У шафці немає зубної щітки». Про щітку, якою чистять зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toothbrush",
+            "definitionByLocale": {
+              "ru": "зубная щётка. There isn’t a toothbrush in the cupboard. — «В шкафчике нет зубной щётки». О щётке, которой чистят зубы.",
+              "uk": "зубна щітка. There isn’t a toothbrush in the cupboard. — «У шафці немає зубної щітки». Про щітку, якою чистять зуби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У шафці немає зубної щітки. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i03:r1",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i03:r2",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У шафці немає зубної щітки. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В шкафчике нет зубной щётки. Выберите форму",
+            "uk": "У шафці немає зубної щітки. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a toothbrush in the cupboard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-08:i03:r1",
+              "text": "isn’t"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i03:r2",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У шафці немає зубної щітки. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "У шафці немає зубної щітки. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Щётка одна, поэтому нужно isn’t, а не aren’t.",
+                "uk": "Щітка одна, тому потрібно isn’t, а не aren’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "У шафці немає зубної щітки. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Здесь «нет», а is без not — это утверждение.",
+                "uk": "Тут «немає», а is без not — це ствердження."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-08:i04:p1",
+              "target": "guest",
+              "meaningByLocale": {
+                "ru": "гость",
+                "uk": "гість"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i04:p2",
+              "target": "toothbrush",
+              "meaningByLocale": {
+                "ru": "зубная щётка",
+                "uk": "зубна щітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i04:p3",
+              "target": "slippers",
+              "meaningByLocale": {
+                "ru": "домашние тапочки",
+                "uk": "домашні капці"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i04:p4",
+              "target": "bathroom",
+              "meaningByLocale": {
+                "ru": "ванная комната",
+                "uk": "ванна кімната"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guest",
+            "toothbrush",
+            "slippers",
+            "bathroom"
+          ],
+          "rightColumn": [
+            "гість",
+            "зубна щітка",
+            "домашні капці",
+            "ванна кімната"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:word:bathroom",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bathroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:bathroom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bathroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:bathroom:audio",
+            "transcript": "bathroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:bathroom:r1",
+              "targetText": "bathroom",
+              "meaningByLocale": {
+                "ru": "ванная комната. Where is the bathroom? — «Где ванная комната?» О комнате, где умываются и принимают душ.",
+                "uk": "ванна кімната. Where is the bathroom? — «Де ванна кімната?» Про кімнату, де вмиваються й приймають душ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bathroom",
+            "definitionByLocale": {
+              "ru": "ванная комната. Where is the bathroom? — «Где ванная комната?» О комнате, где умываются и принимают душ.",
+              "uk": "ванна кімната. Where is the bathroom? — «Де ванна кімната?» Про кімнату, де вмиваються й приймають душ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i05:audio",
+            "transcript": "Where is the bathroom?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where is the bathroom?",
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "bathroom"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the bathroom?`",
+                "uk": "тут потрібно `is` — `Where is the bathroom?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:word:slippers",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — slippers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:word:slippers:audio"
+        ],
+        "accessibilityLabel": "Картка слова — slippers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:word:slippers:audio",
+            "transcript": "slippers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:word:slippers:r1",
+              "targetText": "slippers",
+              "meaningByLocale": {
+                "ru": "домашние тапочки. The guest has slippers. — «У гостя есть тапочки». О мягкой обуви, которую надевают дома; слово всегда во множественном числе.",
+                "uk": "домашні капці. The guest has slippers. — «У гостя є капці». Про м’яке взуття, яке вдягають удома; слово завжди у множині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slippers",
+            "definitionByLocale": {
+              "ru": "домашние тапочки. The guest has slippers. — «У гостя есть тапочки». О мягкой обуви, которую надевают дома; слово всегда во множественном числе.",
+              "uk": "домашні капці. The guest has slippers. — «У гостя є капці». Про м’яке взуття, яке вдягають удома; слово завжди у множині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The guest has slippers.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, во что обут гость. Скажите ей полной фразой: «У гостя есть тапочки»",
+            "uk": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»"
+          },
+          "orderedTokens": [
+            "The",
+            "guest",
+            "has",
+            "slippers"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The guest has slippers.`",
+                "uk": "тут потрібно `has` — `The guest has slippers.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, де пульт. Скажіть йому: «Пульт у шухляді»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Гість питає, де пульт. Скажіть йому: «Пульт у шухляді»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i07:audio",
+            "transcript": "The remote is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The remote is in the drawer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У кімнаті немає завісок. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i08:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i08:r3",
+            "text": "isn’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кімнаті немає завісок. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В комнате нет занавесок. Выберите форму",
+            "uk": "У кімнаті немає завісок. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ any curtains.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-08:i08:r1",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i08:r3",
+              "text": "isn’t"
+            }
+          ],
+          "testedDimension": "У кімнаті немає завісок. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "У кімнаті немає завісок. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Здесь «нет», а are без not — это утверждение.",
+                "uk": "Тут «немає», а are без not — це ствердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "У кімнаті немає завісок. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Занавесок несколько, поэтому нужно aren’t, а не isn’t.",
+                "uk": "Завісок кілька, тому потрібно aren’t, а не isn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i09:r1",
+            "text": "She has a key."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i09:r2",
+            "text": "She has a bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i09:r3",
+            "text": "He has a key."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i09:audio",
+            "transcript": "She has a key."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:i09:r1",
+              "targetText": "She has a key.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i09:r2",
+              "targetText": "She has a bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i09:r3",
+              "targetText": "He has a key.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `key`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `key`, а в цьому варіанті — `bag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-08:i10:p1",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i10:p2",
+              "target": "drawer",
+              "meaningByLocale": {
+                "ru": "выдвижной ящик",
+                "uk": "висувна шухляда"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i10:p3",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i10:p4",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "desk",
+            "drawer",
+            "remote",
+            "curtain"
+          ],
+          "rightColumn": [
+            "письмовий стіл",
+            "висувна шухляда",
+            "пульт",
+            "завіса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i11:audio",
+            "transcript": "Where is the remote?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where is the remote?",
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "remote"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the remote?`",
+                "uk": "тут потрібно `is` — `Where is the remote?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the corner shop?",
+          "localizedMeaning": {
+            "ru": "Гость хочет купить хлеб. Спросите соседа полной фразой: «Где магазин у дома?»",
+            "uk": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "corner",
+            "shop"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the corner shop?`",
+                "uk": "тут потрібно `is` — `Where is the corner shop?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У кімнаті немає завісок. Скажіть гостеві: «Завісок немає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "У кімнаті немає завісок. Скажіть гостеві: «Завісок немає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i13:audio",
+            "transcript": "There aren’t any curtains."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any curtains.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У стола є шухляди. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У стола є шухляди. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У стола есть ящики. Выберите форму",
+            "uk": "У стола є шухляди. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The desk ___ drawers.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-08:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У стола є шухляди. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i14:r2",
+              "correct": false,
+              "testedDimension": "У стола є шухляди. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Стол один, как it: нужно has, даже если ящиков несколько.",
+                "uk": "Стіл один, як it: потрібно has, навіть якщо шухляд кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i14:r3",
+              "correct": false,
+              "testedDimension": "У стола є шухляди. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Речь о том, что есть у стола: has drawers.",
+                "uk": "Мова про те, що є в стола: has drawers."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-08:i15:r1",
+            "text": "There isn’t a toothbrush here."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i15:r2",
+            "text": "There isn’t a bathroom here."
+          },
+          {
+            "responseId": "en:lesson-05:session-08:i15:r3",
+            "text": "There aren’t any toothbrushes here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i15:audio",
+            "transcript": "There isn’t a toothbrush here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-08:i15:r1",
+              "targetText": "There isn’t a toothbrush here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i15:r2",
+              "targetText": "There isn’t a bathroom here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i15:r3",
+              "targetText": "There aren’t any toothbrushes here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-08:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `toothbrush` — зубная щётка, а в этом варианте `bathroom` — ванная комната.",
+                "uk": "У записі `toothbrush` — зубна щітка, а в цьому варіанті `bathroom` — ванна кімната."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-08:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `isn’t a` — нет одной, а в этом варианте `aren’t any` — нет нескольких.",
+                "uk": "У записі `isn’t a` — немає однієї, а в цьому варіанті `aren’t any` — немає кількох."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-08:i16:p1",
+              "target": "guest",
+              "meaningByLocale": {
+                "ru": "гость",
+                "uk": "гість"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i16:p2",
+              "target": "slippers",
+              "meaningByLocale": {
+                "ru": "домашние тапочки",
+                "uk": "домашні капці"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i16:p3",
+              "target": "bathroom",
+              "meaningByLocale": {
+                "ru": "ванная комната",
+                "uk": "ванна кімната"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-08:i16:p4",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guest",
+            "slippers",
+            "bathroom",
+            "remote"
+          ],
+          "rightColumn": [
+            "гість",
+            "домашні капці",
+            "ванна кімната",
+            "пульт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість розглядає кімнату. Скажіть йому: «У стола є шухляди»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Гість розглядає кімнату. Скажіть йому: «У стола є шухляди»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-08:i17:audio",
+            "transcript": "The desk has drawers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The desk has drawers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-08:word:guest",
+      "correctText": "guest",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i01",
+      "correctText": "I have a guest.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i02",
+      "correctText": "The desk has drawers.",
+      "correctResponseId": "en:lesson-05:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:word:toothbrush",
+      "correctText": "toothbrush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i03",
+      "correctText": "isn’t",
+      "correctResponseId": "en:lesson-05:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:word:bathroom",
+      "correctText": "bathroom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i05",
+      "correctText": "Where is the bathroom?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:word:slippers",
+      "correctText": "slippers",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i06",
+      "correctText": "The guest has slippers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i07",
+      "correctText": "The remote is in the drawer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i08",
+      "correctText": "aren’t",
+      "correctResponseId": "en:lesson-05:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i09",
+      "correctText": "She has a key.",
+      "correctResponseId": "en:lesson-05:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i11",
+      "correctText": "Where is the remote?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i12",
+      "correctText": "Where is the corner shop?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i13",
+      "correctText": "There aren’t any curtains.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i14",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-08:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i15",
+      "correctText": "There isn’t a toothbrush here.",
+      "correctResponseId": "en:lesson-05:session-08:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i17",
+      "correctText": "The desk has drawers.",
+      "correctResponseId": null
+    }
+  ]
+}

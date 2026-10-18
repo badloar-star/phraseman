@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 14 — Валіза після дороги
+# Англійська · Урок 5 · Заняття 14 — Цуценя сусідки
 
-**Ситуація.** Після поїздки ви розбираєте валізи в кімнаті. Одна брудна, інша ще відкрита. На картинці поруч показана пральня самообслуговування, де можна випрати одяг.
+**Ситуація.** На подвір’ї гуляє сусідка з маленьким цуценям, і ви з братом його розглядаєте. Про людину кажемо her, his, their, а про цуценя й інші речі, які називаємо it, — its. Слово its пишеться без апострофа.
 
-**Що ви опануєте:** назвати валізу, її власника й стан
-**Нові слова:** suitcase
+**Що ви опануєте:** сказати «його», «її» про цуценя чи річ словом its та не плутати його з It’s
+**Нові слова:** puppy, collar, tail, leash
+**Повертаються:** yard, bench, bag, dog, bowl, long, red, blue
 
 ---
 
 ## Інтро 1
 
-### Для речей у дорогу
+### Чиє цуценя
 
-`suitcase` — «валіза». `my suitcase` — «моя валіза», `your suitcase` — «твоя / ваша валіза». `This is my suitcase` — «Це моя валіза». Перед `my suitcase` не ставимо `a` чи `the`. Валіза легко закривається, поки всі речі ще на ліжку.
+На подвір’ї сусідка гуляє з маленьким собакою, який щойно навчився бігати. Ваш брат зупинився поруч і питає, чий він. puppy — «цуценя». Цуценя належить сусідці, отже, her puppy: This is her puppy — «Це її цуценя». Про цуценя сусіда-чоловіка сказали б his puppy.
 
-**Покажіть свою валізу.**
+**Брат питає про цуценя на подвір’ї. Воно належить сусідці. Скажіть йому, що це її цуценя.**
 
-- ✅ **This is my suitcase.**
-- ❌ This is a my suitcase. — *Перед `my suitcase` не потрібне `a`.*
-- ❌ This is your suitcase. — *`your` — твоя / ваша; моя — `my`.*
+- ✅ **This is her puppy.**
+- ❌ This is his puppy. — *his — його, а господиня цуценя жінка: потрібно her.*
+- ❌ This is she puppy. — *Перед назвою потрібно her, а не she.*
 
 ---
 
 ## Інтро 2
 
-### Відкрита чи закрита
+### Червоний нашийник
 
-`dirty` — «брудний», `open` — «відкритий», `closed` — «закритий». `Her suitcase is dirty` — «Її валіза брудна». `His suitcase is open` — «Його валіза відкрита». `My suitcase is closed` — «Моя валіза закрита». `his` і `her` вибираємо за власником, а не за словом «валіза».
+У цуценяти на шиї яскрава стрічка із застібкою, і брат хоче роздивитися її зблизька. collar — «нашийник». Цуценя називаємо it, тому нашийник — its collar: Its collar is red — «Його нашийник червоний». У слові its немає апострофа: It’s — це it is. Перед collar не потрібні a і the.
 
-**Валіза вашого друга відкрита. Виберіть опис.**
+**Брат роздивляється нашийник цуценяти. Він червоний. Скажіть йому: «Його нашийник червоний».**
 
-- ✅ **His suitcase is open.**
-- ❌ Her suitcase is open. — *`her` — її; тут його: `his`.*
-- ❌ His suitcase are open. — *Одна валіза: `suitcase is`.*
+- ✅ **Its collar is red.**
+- ❌ It’s collar is red. — *It’s — це it is; перед нашийником потрібно its без апострофа.*
+- ❌ Its collar are red. — *Нашийник один, тому потрібно is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Картинка на стіні
+### Хвіст цуценяти
 
-`picture` — «картинка», `laundrette` — «пральня самообслуговування», `ceiling` — «стеля». `Their picture is on the wall` — «Їхня картинка на стіні». `The laundrette is open` — «Пральня відкрита». `Our ceiling is white` — «Наша стеля біла». Навіть якщо власників кілька, одна картинка чи одна стеля потребують `is`.
+Цуценя радіє зустрічі й махає хвостом так, що сусідка не може його втримати. tail — «хвіст». Хвіст належить цуценяті, яке називаємо it: Its tail is short — «Його хвіст короткий». Хвіст один, тому після tail стоїть is. Той самий its, що й у нашийника, — без апострофа.
 
-**Їхня картинка на стіні. Виберіть фразу.**
+**Сусідка питає, який хвіст у цуценяти. Він короткий. Скажіть їй: «Його хвіст короткий».**
 
-- ✅ **Their picture is on the wall.**
-- ❌ Their picture are on the wall. — *Одна картинка: `picture is`.*
-- ❌ Our picture is on the wall. — *`our` — наша; тут їхня: `their`.*
+- ✅ **Its tail is short.**
+- ❌ Her tail is short. — *her — її господині, а цуценя називаємо it: потрібно its.*
+- ❌ Its tail are short. — *Хвіст один, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Наша стеля біла»**
+**1 · Картка слова — puppy**
+<!-- interaction_id: en:lesson-05:session-14:word:puppy; family: word_card -->
+> **puppy** — цуценя. Her puppy is in the yard. — «Її цуценя на подвір’ї». Про молодого собаку, який ще малий.
+
+**2 · Брат шукає цуценя сусідки. Воно на подвір’ї. Скажіть йому повною фразою: «Її цуценя на подвір’ї»**
 <!-- interaction_id: en:lesson-05:session-14:i01; family: phrase_builder -->
-Плитки: `white` `is` `ceiling` `Our` `are` → **Our ceiling is white.**
-*(плитка `are` зайва: тут потрібно `is` — `Our ceiling is white.`)*
+Плитки: `puppy` `is` `in` `the` `yard` `Her` `His` → **Her puppy is in the yard.**
+*(плитка `His` зайва: тут потрібно `Her` — `Her puppy is in the yard.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — collar**
+<!-- interaction_id: en:lesson-05:session-14:word:collar; family: word_card -->
+> **collar** — нашийник. Its collar is new. — «Його нашийник новий». Про ремінець на шиї собаки чи кішки.
+
+**4 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-05:session-14:i02; family: listen_choose -->
-🔊 *suitcase* → **suitcase** · suitcases · backpack
-- suitcases — *У записі перше слово — `suitcase`, а в цьому варіанті — `suitcases`.*
-- backpack — *У записі перше слово — `suitcase`, а в цьому варіанті — `backpack`.*
+🔊 *Its collar is red.* → **Its collar is red.** · Its collar is blue. · Their collar is red.
+- Its collar is blue. — *У записі `red` — червоний, а в цьому варіанті `blue` — синій.*
+- Their collar is red. — *У записі `Its` — його (про цуценя), а в цьому варіанті `Their` — їхній.*
 
-**3 · Назвіть валізу**
+**5 · Картка слова — tail**
+<!-- interaction_id: en:lesson-05:session-14:word:tail; family: word_card -->
+> **tail** — хвіст. Its tail is long. — «Його хвіст довгий». Про частину тіла собаки, якою вона махає.
+
+**6 · Довга частина собаки ззаду, якою вона махає. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-05:session-14:i03; family: context_gap_grammar -->
-___ → **suitcase** · picture · umbrella
-- picture — *`picture` — картинка; валіза — `suitcase`.*
-- umbrella — *`umbrella` — парасоля; валіза — `suitcase`.*
+___ → **tail** · collar · bowl
+- collar — *collar — це нашийник на шиї, а довга частина ззаду називається tail.*
+- bowl — *bowl — це миска, а довга частина собаки ззаду називається tail.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-14:i04; family: speed_match -->
-suitcase — валіза · dirty — брудний · open — відкритий · closed — закритий
+puppy — цуценя · collar — нашийник · tail — хвіст · leash — повідець
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — leash**
+<!-- interaction_id: en:lesson-05:session-14:word:leash; family: word_card -->
+> **leash** — повідець. Her leash is on the bench. — «Її повідець на лавці». Про мотузку чи ремінь, на якому водять собаку.
+
+**9 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-14:i05; family: listen_build_dictation -->
-🔊 *This is my suitcase.* Плитки: `suitcase` `my` `is` `This` → **This is my suitcase.**
+🔊 *Her leash is in my bag.* Плитки: `leash` `is` `in` `my` `bag` `Her` `Its` → **Her leash is in my bag.**
+*(плитка `Its` зайва: тут потрібно `Her` — `Her leash is in my bag.`)*
 
-**6 · Валіза подруги брудна. Скажіть «Її валіза брудна»**
+**10 · Сусідка питає, який хвіст у цуценяти. Він довгий. Скажіть їй повною фразою: «Його хвіст довгий»**
 <!-- interaction_id: en:lesson-05:session-14:i06; family: phrase_builder -->
-Плитки: `dirty` `is` `suitcase` `Her` `are` → **Her suitcase is dirty.**
-*(плитка `are` зайва: тут потрібно `is` — `Her suitcase is dirty.`)*
+Плитки: `tail` `is` `long` `Its` `It’s` → **Its tail is long.**
+*(плитка `It’s` зайва: тут потрібно `Its` — `Its tail is long.`)*
 
-**7 · Скажіть «Його валіза відкрита»**
+**11 · Брат питає, чиє це цуценя. Воно ваше з сестрою. Відповідьте: «Це наше цуценя»**
 <!-- interaction_id: en:lesson-05:session-14:i07; family: scripted_repeat_compare -->
-🎙 **His suitcase is open.**
+🎙 **This is our puppy.**
 
-**8 · Ви застебнули валізу. Скажіть «Моя валіза закрита»**
+**12 · Ви говорите про нашийник цуценяти. Виберіть потрібне слово**
 <!-- interaction_id: en:lesson-05:session-14:i08; family: context_gap_grammar -->
-My suitcase is ___. → **closed** · open · dirty
-- open — *`open` — відкрита; закрита — `closed`.*
-- dirty — *`dirty` — брудна; закрита — `closed`.*
+___ collar is new. → **Its** · It’s · My
+- It’s — *It’s — це it is; перед нашийником потрібно Its без апострофа.*
+- My — *My — мій, а мова про нашийник цуценяти, яке називаємо it: потрібно Its.*
 
-**9 · Послухайте про картинку**
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-05:session-14:i09; family: listen_choose -->
-🔊 *Their picture is on the wall.* → **Their picture is on the wall.** · Their picture is on the table. · Our picture is on the wall.
-- Their picture is on the table. — *У записі останнє слово — `wall`, а в цьому варіанті — `table`.*
-- Our picture is on the wall. — *У записі перше слово — `Their`, а в цьому варіанті — `Our`.*
+🔊 *Its leash is long.* → **Its leash is long.** · Its leash is short. · Her leash is long.
+- Its leash is short. — *У записі `long` — довгий, а в цьому варіанті `short` — короткий.*
+- Her leash is long. — *У записі `Its` — його (про цуценя), а в цьому варіанті `Her` — її (про господиню).*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-14:i10; family: speed_match -->
-suitcase — валіза · picture — картинка · laundrette — пральня самообслуговування · ceiling — стеля
+collar — нашийник · tail — хвіст · dog — собака · bowl — миска
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-14:i11; family: listen_build_dictation -->
-🔊 *The laundrette is open.* Плитки: `open` `is` `laundrette` `The` `are` → **The laundrette is open.**
-*(плитка `are` зайва: тут потрібно `is` — `The laundrette is open.`)*
+🔊 *Their puppy is in my yard.* Плитки: `puppy` `is` `in` `my` `yard` `Their` `Our` → **Their puppy is in my yard.**
+*(плитка `Our` зайва: тут потрібно `Their` — `Their puppy is in my yard.`)*
 
-**12 · Скажіть «Їхня стеля біла»**
+**16 · Ви просите сусідку взяти повідець. Він на лавці. Скажіть їй повною фразою: «Твій повідець на лавці»**
 <!-- interaction_id: en:lesson-05:session-14:i12; family: phrase_builder -->
-Плитки: `white` `is` `ceiling` `Their` `are` → **Their ceiling is white.**
-*(плитка `are` зайва: тут потрібно `is` — `Their ceiling is white.`)*
+Плитки: `leash` `is` `on` `the` `bench` `Your` `My` → **Your leash is on the bench.**
+*(плитка `My` зайва: тут потрібно `Your` — `Your leash is on the bench.`)*
 
-**13 · Валіза друга у вас. Скажіть йому «Твоя валіза в мене»**
+**17 · Сусідка питає, який нашийник у цуценяти. Він новий. Відповідьте: «Його нашийник новий»**
 <!-- interaction_id: en:lesson-05:session-14:i13; family: scripted_repeat_compare -->
-🎙 **I have your suitcase.**
+🎙 **Its collar is new.**
 
-**14 · Їхня валіза закрита. Валіза одна. Виберіть форму**
+**18 · Ви розповідаєте братові про цуценя сусідів. Виберіть потрібне слово**
 <!-- interaction_id: en:lesson-05:session-14:i14; family: context_gap_grammar -->
-Their suitcase ___ closed. → **is** · are · has
-- are — *Одна валіза: `suitcase is`, навіть якщо власників кілька.*
-- has — *Тут стан валізи: `suitcase is closed`.*
+The puppy is small and ___ tail is long. → **Its** · Their · It’s
+- Their — *Their — їхній, а хвіст у цуценяти, яке називаємо it: потрібно Its.*
+- It’s — *It’s — це it is; перед хвостом потрібно Its без апострофа.*
 
-**15 · Послухайте, що друг каже про пральню**
+**19 · Послухайте брата**
 <!-- interaction_id: en:lesson-05:session-14:i15; family: listen_choose -->
-🔊 *The laundrette is closed.* → **The laundrette is closed.** · The laundrette is open. · The laundrette is dirty.
-- The laundrette is open. — *У записі останнє слово — `closed`, а в цьому варіанті — `open`.*
-- The laundrette is dirty. — *У записі останнє слово — `closed`, а в цьому варіанті — `dirty`.*
+🔊 *Her puppy has a long tail.* → **Her puppy has a long tail.** · His puppy has a long tail. · Her puppy has a short tail.
+- His puppy has a long tail. — *У записі `Her` — її, а в цьому варіанті `His` — його.*
+- Her puppy has a short tail. — *У записі `long` — довгий, а в цьому варіанті `short` — короткий.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-14:i16; family: speed_match -->
-suitcase — валіза · picture — картинка · laundrette — пральня самообслуговування · ceiling — стеля
+puppy — цуценя · collar — нашийник · tail — хвіст · leash — повідець
 
-**17 · Друг збирається підняти валізу, але не застебнув її. Попередьте «Твоя валіза відкрита»**
+**21 · Брат просить описати цуценя сусідки. У нього довгий хвіст. Скажіть йому: «У цуценяти довгий хвіст»**
 <!-- interaction_id: en:lesson-05:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Your suitcase is open.**
-
+🎙 **The puppy has a long tail.**

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-10",
   "learningOutcomeByLocale": {
-    "ru": "назвать карман и уточнить, в чьём кармане вещь",
-    "uk": "назвати кишеню й уточнити, у чиїй кишені річ"
+    "ru": "сказать, чья вещь и где она лежит, и согласовать are с вещами в паре",
+    "uk": "сказати, чия річ і де вона лежить, та узгодити are з речами в парі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Проверить карманы",
-        "uk": "Перевірити кишені"
+        "ru": "Билет в кармане",
+        "uk": "Квиток у кишені"
       },
       "bodyByLocale": {
-        "ru": "`pocket` — «карман». `my pocket` — «мой карман», `your pocket` — «твой / ваш карман». `The key is in my pocket` — «Ключ в моём кармане». Перед поисковой операцией по всему отелю полезно проверить карман: ключ часто не знает, что его уже потеряли. Перед `my pocket` не нужно `a` или `the`.",
-        "uk": "`pocket` — «кишеня». `my pocket` — «моя кишеня», `your pocket` — «твоя / ваша кишеня». `The key is in my pocket` — «Ключ у моїй кишені». Перед пошуковою операцією по всьому готелю корисно перевірити кишеню: ключ часто не знає, що його вже загубили. Перед `my pocket` не потрібне `a` чи `the`."
+        "ru": "Вы стоите в очереди в кинотеатр, и кассир просит билет. Вы точно помните: убрали его в карман куртки. pocket — «карман». Свой карман называем my pocket, а место — in: The ticket is in my pocket — «Билет в моём кармане». Перед my не ставим the.",
+        "uk": "Ви стоїте в черзі до кінотеатру, і касир просить квиток. Ви точно пам’ятаєте: поклали його в кишеню куртки. pocket — «кишеня». Свою кишеню називаємо my pocket, а місце — in: The ticket is in my pocket — «Квиток у моїй кишені». Перед my не ставимо the."
       },
       "question": {
         "interactionId": "en:lesson-05:session-10:intro1:q",
         "promptByLocale": {
-          "ru": "Ключ в вашем собственном кармане. Выберите фразу.",
-          "uk": "Ключ у вашій власній кишені. Виберіть фразу."
+          "ru": "Кассир просит билет, он у вас в кармане. Скажите ему, что билет в вашем кармане.",
+          "uk": "Касир просить квиток, він у вас у кишені. Скажіть йому, що квиток у вашій кишені."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-10:intro1:r1",
-              "text": "The key is in my pocket."
+              "text": "The ticket is in my pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro1:r2",
-              "text": "The key is in a my pocket."
+              "text": "The ticket is on my pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro1:r3",
-              "text": "The key is in your pocket."
+              "text": "The ticket is in the my pocket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-10:intro1:r1",
-              "text": "The key is in my pocket."
+              "text": "The ticket is in my pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro1:r2",
-              "text": "The key is in a my pocket."
+              "text": "The ticket is on my pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro1:r3",
-              "text": "The key is in your pocket."
+              "text": "The ticket is in the my pocket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ключ в вашем собственном кармане. Выберите фразу.",
-          "uk": "Ключ у вашій власній кишені. Виберіть фразу."
+          "ru": "Кассир просит билет, он у вас в кармане. Скажите ему, что билет в вашем кармане.",
+          "uk": "Касир просить квиток, він у вас у кишені. Скажіть йому, що квиток у вашій кишені."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Люди рядом",
-        "uk": "Люди поруч"
+        "ru": "Грустный фильм",
+        "uk": "Сумний фільм"
       },
       "bodyByLocale": {
-        "ru": "`old` о человеке — «пожилой», `kind` — «добрый», `funny` — «забавный, смешной». `My friend is old` — «Мой друг пожилой». `Your friend is kind` — «Твой друг добрый». `Our friend is funny` — «Наш друг забавный». Слова `my`, `your`, `our` стоят перед `friend`; описание человека — после `is`.",
-        "uk": "`old` про людину — «літній», `kind` — «добрий», `funny` — «кумедний, смішний». `My friend is old` — «Мій друг літній». `Your friend is kind` — «Твій друг добрий». `Our friend is funny` — «Наш друг кумедний». Слова `my`, `your`, `our` стоять перед `friend`; опис людини — після `is`."
+        "ru": "На грустном фильме ваша подруга всхлипывает и просит салфетку. Её бумажную салфетку вы уже убрали к себе. tissue — «бумажная салфетка». Салфетка подруги — your tissue, ваш карман — my pocket: Your tissue is in my pocket — «Твоя салфетка в моём кармане».",
+        "uk": "На сумному фільмі ваша подруга схлипує й просить серветку. Її паперову серветку ви вже сховали до себе. tissue — «паперова серветка». Серветка подруги — your tissue, ваша кишеня — my pocket: Your tissue is in my pocket — «Твоя серветка в моїй кишені»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-10:intro2:q",
         "promptByLocale": {
-          "ru": "Ваш общий друг забавный. Выберите описание.",
-          "uk": "Ваш спільний друг кумедний. Виберіть опис."
+          "ru": "Подруга просит салфетку, а она у вас в кармане. Скажите ей: «Твоя салфетка в моём кармане».",
+          "uk": "Подруга просить серветку, а вона у вас у кишені. Скажіть їй: «Твоя серветка в моїй кишені»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-10:intro2:r1",
-              "text": "Our friend is funny."
+              "text": "Your tissue is in my pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro2:r2",
-              "text": "Their friend is funny."
+              "text": "My tissue is in your pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro2:r3",
-              "text": "Our friend are funny."
+              "text": "Your tissue are in my pocket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-10:intro2:r1",
-              "text": "Our friend is funny."
+              "text": "Your tissue is in my pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro2:r2",
-              "text": "Their friend is funny."
+              "text": "My tissue is in your pocket."
             },
             {
               "responseId": "en:lesson-05:session-10:intro2:r3",
-              "text": "Our friend are funny."
+              "text": "Your tissue are in my pocket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ваш общий друг забавный. Выберите описание.",
-          "uk": "Ваш спільний друг кумедний. Виберіть опис."
+          "ru": "Подруга просит салфетку, а она у вас в кармане. Скажите ей: «Твоя салфетка в моём кармане».",
+          "uk": "Подруга просить серветку, а вона у вас у кишені. Скажіть їй: «Твоя серветка в моїй кишені»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Номер и замок",
-        "uk": "Номер і замок"
+        "ru": "Наушники в трамвае",
+        "uk": "Навушники в трамваї"
       },
       "bodyByLocale": {
-        "ru": "`hotel` — «отель», `lock` — «замок», который открывают ключом. `Their hotel is next to the park` — «Их отель рядом с парком». `Her key is in his pocket` — «Её ключ в его кармане»: ключ принадлежит женщине, карман — мужчине. Для двери, которую назвали `it`: `its lock` — «её замок». `its` без апострофа сообщает, чей замок; `it’s` означает `it is`.",
-        "uk": "`hotel` — «готель», `lock` — «замок», який відчиняють ключем. `Their hotel is next to the park` — «Їхній готель поруч із парком». `Her key is in his pocket` — «Її ключ у його кишені»: ключ належить жінці, кишеня — чоловікові. Для дверей, які назвали `it`: `its lock` — «їхній замок». `its` без апострофа повідомляє, чий замок; `it’s` означає `it is`."
+        "ru": "В трамвае по дороге домой ваш брат ищет наушники и не находит. Вы видели, как он убрал их в свой рюкзак. headphones — «наушники», это пара, поэтому в предложении are: Your headphones are in your backpack — «Твои наушники в твоём рюкзаке». Перед your не ставим the.",
+        "uk": "У трамваї дорогою додому ваш брат шукає навушники й не знаходить. Ви бачили, як він поклав їх у свій рюкзак. headphones — «навушники», це пара, тому в реченні are: Your headphones are in your backpack — «Твої навушники у твоєму рюкзаку». Перед your не ставимо the."
       },
       "question": {
         "interactionId": "en:lesson-05:session-10:intro3:q",
         "promptByLocale": {
-          "ru": "Дверь назвали it. Как сказать «её замок»?",
-          "uk": "Двері назвали it. Як сказати «замок цих дверей»?"
+          "ru": "Брат ищет наушники. Скажите ему: «Твои наушники в твоём рюкзаке».",
+          "uk": "Брат шукає навушники. Скажіть йому: «Твої навушники у твоєму рюкзаку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-10:intro3:r1",
-              "text": "its lock"
+              "text": "Your headphones are in your backpack."
             },
             {
               "responseId": "en:lesson-05:session-10:intro3:r2",
-              "text": "it's lock"
+              "text": "Your headphones is in your backpack."
             },
             {
               "responseId": "en:lesson-05:session-10:intro3:r3",
-              "text": "their lock"
+              "text": "His headphones are in your backpack."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-10:intro3:r1",
-              "text": "its lock"
+              "text": "Your headphones are in your backpack."
             },
             {
               "responseId": "en:lesson-05:session-10:intro3:r2",
-              "text": "it's lock"
+              "text": "Your headphones is in your backpack."
             },
             {
               "responseId": "en:lesson-05:session-10:intro3:r3",
-              "text": "their lock"
+              "text": "His headphones are in your backpack."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Дверь назвали it. Как сказать «её замок»?",
-          "uk": "Двері назвали it. Як сказати «замок цих дверей»?"
+          "ru": "Брат ищет наушники. Скажите ему: «Твои наушники в твоём рюкзаке».",
+          "uk": "Брат шукає навушники. Скажіть йому: «Твої навушники у твоєму рюкзаку»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "30b4f12b7bf22be8bc37c81dd61b28352144401ffc8ba79327591e9b9cde0528"
+  "introFingerprint": "741fb39869e18bc4da6649d23d4becc00503182bc6bea38cd248a331b56bf582"
 }

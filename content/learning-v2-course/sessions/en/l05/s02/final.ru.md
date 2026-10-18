@@ -3,134 +3,152 @@
 **Ситуация.** Вы приехали в отель у реки. Друг устал и немного грустит. У вас есть яблоко, а у отеля — сад, где можно отдохнуть.
 
 **Что вы освоите:** различать состояние человека и то, что у него есть
-**Новые слова:** —
+**Новые слова:** baby, dog, cat, bird
+**Возвращаются:** tired, sad, apple, hotel, garden, river
 
 ---
 
 ## Интро 1
 
-### Устал, но не яблоко
+### Малыш в холле
 
-`tired` — «усталый»: `I am tired` — «Я устал». `apple` — «яблоко»: `I have an apple` — «У меня есть яблоко». Перед `apple` нужно `an`. Перепутаете `am` и `have` — вместо человека с яблоком получится человек-яблоко. Лучше оставить яблоко в руке.
+Вы вернулись в холл отеля после долгой дороги. На диване сидит гостья и тихо качает на руках малыша. baby — «малыш, младенец». С she нужно has: She has a baby — «У неё есть малыш». Если сказать She is a baby, получится, что сама гостья младенец.
 
-**Скажите, что у вас есть яблоко.**
+**Администратор спрашивает, почему в холле так тихо. Скажите ему, что у гостьи есть малыш.**
 
-- ✅ **I have an apple.**
-- ❌ I am an apple. — *Это «Я яблоко»; у меня есть яблоко — `I have an apple`.*
-- ❌ I have a apple. — *Перед `apple` нужно `an`.*
+- ✅ **She has a baby.**
+- ❌ She is a baby. — *Это значило бы «Она младенец». Чтобы сказать «У неё есть малыш», нужно has.*
+- ❌ She have a baby. — *С she нужно has, а не have.*
 
 ---
 
 ## Интро 2
 
-### У друга есть перекус
+### Собака в саду
 
-`sad` — «грустный»: `He is sad` — «Он грустит». Но яблоко у него: `He has an apple` — «У него есть яблоко». С `he`, `she`, `it` нужно `has`; с `I`, `you`, `we`, `they` — `have`. `She is tired` описывает состояние, `She has an apple` — то, что у неё есть.
+Друг выбирает, где отдохнуть после дороги, и вы показываете ему сад отеля. На траве лежит большая собака и греется на солнце и никого не трогает. dog — «собака». Про отель как про одно место говорят has: The hotel has a dog — «У отеля есть собака».
 
-**Друг грустит. Выберите описание его состояния.**
+**Друг спрашивает, чем хорош этот отель. Скажите ему, что у отеля есть собака.**
 
-- ✅ **He is sad.**
-- ❌ He has sad. — *Для состояния здесь нужно `is`: `He is sad`.*
-- ❌ He are sad. — *С `He` нужно `is`.*
+- ✅ **The hotel has a dog.**
+- ❌ The hotel have a dog. — *Отель один, как it: нужно has, а не have.*
+- ❌ The hotel is a dog. — *Это значило бы «Отель — собака». Чтобы сказать «У отеля есть собака», нужно has.*
 
 ---
 
 ## Интро 3
 
-### Сад при отеле
+### Грустный друг и кот
 
-`hotel` — «отель», `garden` — «сад», `river` — «река». `The hotel has a garden` — «У отеля есть сад». Один отель, как `it`, требует `has`. `The hotel is next to the river` — «Отель рядом с рекой»: здесь мы говорим, где он, поэтому `is`.
+Друг сел на скамейку у реки, смотрит на воду и грустит: дома остался кот, которого нельзя было взять с собой. cat — «кот, кошка». Состояние называют с is: He is sad — «Он грустит». А то, что у человека есть, называют с has: He has a cat — «У него есть кот».
 
-**У отеля есть сад. Выберите фразу.**
+**Подруга спрашивает, кто ждёт друга дома. Скажите ей, что у него есть кот.**
 
-- ✅ **The hotel has a garden.**
-- ❌ The hotel have a garden. — *Один отель: `The hotel has`.*
-- ❌ The hotel is a garden. — *Это «Отель — сад»; у отеля есть сад — `The hotel has a garden`.*
+- ✅ **He has a cat.**
+- ❌ He has cat. — *Кот один, поэтому перед cat нужно a.*
+- ❌ He is a cat. — *Это значило бы «Он кот». Чтобы сказать «У него есть кот», нужно has.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я устал» без сокращения**
+**1 · Карточка слова — baby**
+<!-- interaction_id: en:lesson-05:session-02:word:baby; family: word_card -->
+> **baby** — малыш, младенец. She has a baby. — «У неё есть малыш». О совсем маленьком ребёнке, которого носят на руках.
+
+**2 · Администратор спрашивает, что с гостьей. Скажите ему полной фразой: «У неё есть малыш»**
 <!-- interaction_id: en:lesson-05:session-02:i01; family: phrase_builder -->
-Плитки: `tired` `am` `I` `is` → **I am tired.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am tired.`)*
+Плитки: `baby` `a` `has` `She` `is` → **She has a baby.**
+*(плитка `is` лишняя: здесь нужно `has` — `She has a baby.`)*
 
-**2 · Послушайте, у кого что есть**
+**3 · Послушайте друга**
 <!-- interaction_id: en:lesson-05:session-02:i02; family: listen_choose -->
-🔊 *He has an apple.* → **He has an apple.** · He has an orange. · She has an apple.
-- He has an orange. — *В записи последнее слово — `apple`, а в этом варианте — `orange`.*
-- She has an apple. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+🔊 *I am tired.* → **I am tired.** · I am sad. · We are tired.
+- I am sad. — *В записи последнее слово — `tired`, а в этом варианте — `sad`.*
+- We are tired. — *В записи первое слово — `I`, а в этом варианте — `We`.*
 
-**3 · Подруга устала. Выберите форму**
+**4 · Карточка слова — dog**
+<!-- interaction_id: en:lesson-05:session-02:word:dog; family: word_card -->
+> **dog** — собака. The hotel has a dog. — «У отеля есть собака». О домашнем животном, которое лает и охраняет двор.
+
+**5 · Друг показывает на сад отеля, где лежит собака. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-02:i03; family: context_gap_grammar -->
-She ___ tired. → **is** · has · are
-- has — *Здесь состояние: `She is tired`.*
-- are — *С `She` нужно `is`.*
+The hotel ___ a dog. → **has** · have · is
+- have — *Отель один, как it: нужно has.*
+- is — *The hotel is a dog значило бы «Отель — собака». У отеля есть собака — The hotel has a dog.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-02:i04; family: speed_match -->
-sad — грустный · tired — усталый · apple — яблоко · hotel — отель
+baby — малыш, младенец · dog — собака · cat — кот, кошка · bird — птица
 
-**5 · Послушайте и соберите фразу**
+**7 · Карточка слова — cat**
+<!-- interaction_id: en:lesson-05:session-02:word:cat; family: word_card -->
+> **cat** — кот, кошка. He has a cat. — «У него есть кот». О домашнем животном, которое мурлычет и ловит мышей.
+
+**8 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-02:i05; family: listen_build_dictation -->
-🔊 *I have an apple.* Плитки: `apple` `an` `have` `I` `a` → **I have an apple.**
-*(плитка `a` лишняя: здесь нужно `an` — `I have an apple.`)*
+🔊 *He has a cat.* Плитки: `cat` `a` `has` `He` `have` → **He has a cat.**
+*(плитка `have` лишняя: здесь нужно `has` — `He has a cat.`)*
 
-**6 · У отеля есть сад. Сообщите об этом**
+**9 · Карточка слова — bird**
+<!-- interaction_id: en:lesson-05:session-02:word:bird; family: word_card -->
+> **bird** — птица. The garden has a bird. — «В саду есть птица». О животном с крыльями и перьями, которое умеет летать и петь.
+
+**10 · Друг спрашивает, какие животные живут при отеле. Скажите ему полной фразой: «У отеля есть птица»**
 <!-- interaction_id: en:lesson-05:session-02:i06; family: phrase_builder -->
-Плитки: `garden` `a` `has` `hotel` `The` → **The hotel has a garden.**
+Плитки: `bird` `a` `has` `hotel` `The` `is` → **The hotel has a bird.**
+*(плитка `is` лишняя: здесь нужно `has` — `The hotel has a bird.`)*
 
-**7 · Друг грустит. Скажите «Он грустит» с сокращением**
+**11 · Друг грустит на скамейке. Скажите «Он грустит» с сокращением**
 <!-- interaction_id: en:lesson-05:session-02:i07; family: scripted_repeat_compare -->
-🎙 **He's sad.**
+🎙 **He’s sad.**
 
-**8 · У друзей есть яблоки. Выберите форму**
+**12 · У друзей есть яблоки. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-02:i08; family: context_gap_grammar -->
 They ___ apples. → **have** · has · are
-- has — *С `They` нужно `have`.*
-- are — *`They are apples` — они яблоки; у них есть яблоки — `They have apples`.*
+- has — *С they нужно have, а не has.*
+- are — *They are apples значило бы «Они яблоки». «У них есть яблоки» — They have apples.*
 
-**9 · Послушайте, где отель**
+**13 · Послушайте, где отель**
 <!-- interaction_id: en:lesson-05:session-02:i09; family: listen_choose -->
 🔊 *The hotel is next to the river.* → **The hotel is next to the river.** · The hotel is next to the canal. · The hotel is next to the park.
 - The hotel is next to the canal. — *В записи последнее слово — `river`, а в этом варианте — `canal`.*
 - The hotel is next to the park. — *В записи последнее слово — `river`, а в этом варианте — `park`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-02:i10; family: speed_match -->
 garden — сад · river — река · sad — грустный · tired — усталый
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте администратора и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-02:i11; family: listen_build_dictation -->
 🔊 *She has an apple.* Плитки: `apple` `an` `has` `She` `a` → **She has an apple.**
 *(плитка `a` лишняя: здесь нужно `an` — `She has an apple.`)*
 
-**12 · У вас с другом есть яблоки. Скажите «У нас есть яблоки»**
+**16 · Вы с подругой гладите собаку во дворе. Скажите администратору: «У нас есть собака»**
 <!-- interaction_id: en:lesson-05:session-02:i12; family: phrase_builder -->
-Плитки: `apples` `have` `We` → **We have apples.**
+Плитки: `dog` `a` `have` `We` `has` → **We have a dog.**
+*(плитка `has` лишняя: здесь нужно `have` — `We have a dog.`)*
 
-**13 · Сад рядом с рекой. Скажите, где сад**
+**17 · Вы устали после дороги. Скажите «Я устал» без сокращения**
 <!-- interaction_id: en:lesson-05:session-02:i13; family: scripted_repeat_compare -->
-🎙 **The garden is next to the river.**
+🎙 **I am tired.**
 
-**14 · У отеля есть сад. Выберите форму**
+**18 · У отеля есть сад. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-02:i14; family: context_gap_grammar -->
 The hotel ___ a garden. → **has** · have · is
-- have — *Один отель: `has`, как с `it`.*
-- is — *Речь о том, что есть у отеля: `has a garden`.*
+- have — *Отель один, как it: нужно has.*
+- is — *Речь о том, что есть у отеля: has a garden.*
 
-**15 · Послушайте, как чувствуют себя гости**
+**19 · Послушайте, как чувствуют себя гости**
 <!-- interaction_id: en:lesson-05:session-02:i15; family: listen_choose -->
 🔊 *We are tired.* → **We are tired.** · We are sad. · They are tired.
 - We are sad. — *В записи последнее слово — `tired`, а в этом варианте — `sad`.*
 - They are tired. — *В записи первое слово — `We`, а в этом варианте — `They`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-02:i16; family: speed_match -->
 hotel — отель · apple — яблоко · garden — сад · river — река
 
-**17 · Друг выбирает место для отдыха. Сообщите ему одним предложением: «У отеля есть сад»**
+**21 · Друг выбирает место для отдыха. Скажите ему: «У отеля есть сад»**
 <!-- interaction_id: en:lesson-05:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **The hotel has a garden.**
-

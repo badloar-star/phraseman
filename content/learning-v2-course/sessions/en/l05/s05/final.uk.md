@@ -1,134 +1,154 @@
-# Англійська · Урок 5 · Заняття 5 — Карта в шухляді
+# Англійська · Урок 5 · Заняття 5 — Мапа в шухляді
 
-**Ситуація.** Ви облаштовуєте робоче місце. У столі є шухляда, куди поклали карту району. Надворі холодно, усередині тепло; на карті треба знайти супермаркет поруч із поліцейським відділком.
+**Ситуація.** Ви облаштовуєте робоче місце. У столі є висувна шухляда, куди прибрали мапу району. Надворі холодно, всередині тепло; за мапою треба знайти супермаркет поруч із поліційною дільницею.
 
-**Що ви опануєте:** назвати шухляду, описати меблі й сказати, де карта
-**Нові слова:** drawer
+**Що ви опануєте:** сказати, що лежить у шухляді й що є в столі, та описати, холодно чи тепло
+**Нові слова:** ruler, notepad, paper, eraser
+**Повертаються:** drawer, desk, map, cold, hot, warm, supermarket, police, station, pen, bag
 
 ---
 
 ## Інтро 1
 
-### Ящик, що висувається
+### Що в шухляді
 
-`drawer` — «шухляда» в столі, шафі чи інших меблях. Це не окрема коробка. `The desk has a drawer` — «У письмового столу є шухляда». Шухляду висувають, а не несуть разом зі столом: спина скаже спасибі. Одна шухляда — `a drawer`.
+Ви облаштовуєте робоче місце й відчиняєте висувну шухляду нового стола. Всередині лежить довга пласка планка з поділками для ліній і вимірювань. ruler — «лінійка». Про шухляду як про одну річ кажуть has: The drawer has a ruler — «У шухляді є лінійка».
 
-**У письмового столу є шухляда. Виберіть фразу.**
+**Подруга питає, що в шухляді. Скажіть їй, що в шухляді є лінійка.**
 
-- ✅ **The desk has a drawer.**
-- ❌ The desk have a drawer. — *Один стіл, як `it`: `has`.*
-- ❌ The desk is a drawer. — *Це «Стіл — шухляда»; у столу є шухляда — `The desk has a drawer`.*
+- ✅ **The drawer has a ruler.**
+- ❌ The drawer have a ruler. — *Шухляда одна, як it: потрібно has, а не have.*
+- ❌ The drawer is a ruler. — *Це означало б «Шухляда — лінійка». Щоб сказати «У шухляді є лінійка», потрібно has.*
 
 ---
 
 ## Інтро 2
 
-### Холодно чи тепло
+### Аркуш для адреси
 
-`cold` — «холодний», `hot` — «гарячий, спекотний», `warm` — «теплий». Про свої відчуття: `I’m cold` — «Мені холодно», `I’m hot` — «Мені спекотно», `I’m warm` — «Мені тепло». Тут потрібні форми `am`, `is`, `are`. А коли кажемо, що є в людини чи предмета, використовуємо `have` або `has`.
+Вам треба швидко записати чужу адресу, а чистих аркушів у руках немає. Подруга показує на стіл: потрібне лежить там. paper — «папір»: так називають увесь папір разом, а не один аркуш, тому a не ставлять. The desk has paper — «На столі є папір».
 
-**Ви зігрілися: вам тепло. Виберіть фразу.**
+**Вам треба записати адресу. Скажіть подрузі, що на столі є папір.**
 
-- ✅ **I'm warm.**
-- ❌ I have warm. — *Для відчуття тут потрібне `I’m warm`.*
-- ❌ I'm cold. — *`cold` — холодно; тепло — `warm`.*
+- ✅ **The desk has paper.**
+- ❌ The desk has a paper. — *Тут папір узагалі, а не один предмет, тому a не потрібно.*
+- ❌ The desk have paper. — *Стіл один, як it: потрібно has, а не have.*
 
 ---
 
 ## Інтро 3
 
-### Де лежить карта
+### Блокнот у сумці
 
-`map` — «карта», `supermarket` — «супермаркет», `police station` — «поліцейський відділок». `The map is in the drawer` — «Карта в шухляді». `The supermarket is next to the police station` — «Супермаркет поруч із поліцейським відділком». `in` — усередині шухляди, `under` — під нею.
+Працівниця магазину диктує адресу, а ручка в подруги є, аркушів немає. Подруга дістає із сумки невеликий чистий блокнот. notepad — «блокнот». Про подругу кажуть has: She has a notepad — «У неї є блокнот». Перед notepad ставлять a, а не an.
 
-**Карта всередині шухляди. Виберіть опис.**
+**Працівниця питає, на чому подруга записуватиме. Скажіть їй, що в подруги є блокнот.**
 
-- ✅ **The map is in the drawer.**
-- ❌ The map is under the drawer. — *`under` — під; тут усередині: `in`.*
-- ❌ The map are in the drawer. — *Одна карта: `The map is`.*
+- ✅ **She has a notepad.**
+- ❌ She has an notepad. — *Слово notepad починається з приголосного звуку, тому потрібно a, а не an.*
+- ❌ She is a notepad. — *Це означало б «Вона блокнот». Щоб сказати «У неї є блокнот», потрібно has.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Мені холодно» зі скороченням**
+**1 · Картка слова — ruler**
+<!-- interaction_id: en:lesson-05:session-05:word:ruler; family: word_card -->
+> **ruler** — лінійка. The drawer has a ruler. — «У шухляді є лінійка». Про пласку планку з поділками, за якою креслять прямі лінії.
+
+**2 · Подруга питає, що в шухляді. Скажіть їй повною фразою: «У шухляді є лінійка»**
 <!-- interaction_id: en:lesson-05:session-05:i01; family: phrase_builder -->
-Плитки: `cold` `I'm` → **I'm cold.**
+Плитки: `ruler` `a` `has` `drawer` `The` `is` → **The drawer has a ruler.**
+*(плитка `is` зайва: тут потрібно `has` — `The drawer has a ruler.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-05:i02; family: listen_choose -->
-🔊 *drawer* → **drawer** · drawers · door
-- drawers — *У записі перше слово — `drawer`, а в цьому варіанті — `drawers`.*
-- door — *У записі перше слово — `drawer`, а в цьому варіанті — `door`.*
+🔊 *I’m cold.* → **I’m cold.** · I’m hot. · He’s cold.
+- I’m hot. — *У записі останнє слово — `cold`, а в цьому варіанті — `hot`.*
+- He’s cold. — *У записі перше слово — `I’m`, а в цьому варіанті — `He’s`.*
 
-**3 · Назвіть шухляду в меблях**
+**4 · Картка слова — paper**
+<!-- interaction_id: en:lesson-05:session-05:word:paper; family: word_card -->
+> **paper** — папір. The desk has paper. — «На столі є папір». Про матеріал для письма й малювання; кажуть про весь папір одразу, без a.
+
+**5 · Подруга просить папір для запису. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-05:i03; family: context_gap_grammar -->
-___ → **drawer** · desk · curtain
-- desk — *`desk` — письмовий стіл; шухляда — `drawer`.*
-- curtain — *`curtain` — завіска; шухляда — `drawer`.*
+The desk ___ paper. → **has** · have · is
+- have — *Стіл один, як it: потрібно has.*
+- is — *The desk is paper означало б «Стіл — папір». На столі є папір — The desk has paper.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-05:i04; family: speed_match -->
-drawer — шухляда · cold — холодний · hot — гарячий · warm — теплий
+ruler — лінійка · notepad — блокнот · paper — папір · eraser — гумка
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — notepad**
+<!-- interaction_id: en:lesson-05:session-05:word:notepad; family: word_card -->
+> **notepad** — блокнот. She has a notepad. — «У неї є блокнот». Про невеликий зошит, у який швидко записують нотатки.
+
+**8 · Послухайте працівницю й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-05:i05; family: listen_build_dictation -->
-🔊 *The desk has a drawer.* Плитки: `drawer` `a` `has` `desk` `The` → **The desk has a drawer.**
+🔊 *She has a notepad.* Плитки: `notepad` `a` `has` `She` `have` → **She has a notepad.**
+*(плитка `have` зайва: тут потрібно `has` — `She has a notepad.`)*
 
-**6 · У подруги є карта. Скажіть «У неї є карта»**
+**9 · Картка слова — eraser**
+<!-- interaction_id: en:lesson-05:session-05:word:eraser; family: word_card -->
+> **eraser** — гумка. The drawer has an eraser. — «У шухляді є гумка». Про маленьку гумку, якою стирають олівець. Перед eraser ставлять an: слово починається з голосного звуку.
+
+**10 · Ви знайшли в шухляді маленьку гумку для олівця. Скажіть подрузі повною фразою: «У шухляді є гумка»**
 <!-- interaction_id: en:lesson-05:session-05:i06; family: phrase_builder -->
-Плитки: `map` `a` `has` `She` → **She has a map.**
+Плитки: `eraser` `an` `has` `drawer` `The` `a` → **The drawer has an eraser.**
+*(плитка `a` зайва: тут потрібно `an` — `The drawer has an eraser.`)*
 
-**7 · У кімнаті задушливо. Скажіть «Мені спекотно» зі скороченням**
+**11 · Ви зігрілися в кімнаті. Скажіть «Мені тепло» зі скороченням**
 <!-- interaction_id: en:lesson-05:session-05:i07; family: scripted_repeat_compare -->
-🎙 **I'm hot.**
+🎙 **I’m warm.**
 
-**8 · Ви з другом зігрілися. Скажіть «Нам тепло»**
+**12 · Подруга змерзла надворі. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-05:i08; family: context_gap_grammar -->
-We ___ warm. → **are** · have · is
-- have — *Для відчуття тут потрібне `We are warm`.*
-- is — *З `We` потрібне `are`.*
+She ___ cold. → **is** · has · are
+- has — *Тут стан: She is cold.*
+- are — *З she потрібно is, а не are.*
 
-**9 · Послухайте, де карта**
+**13 · Послухайте, де мапа**
 <!-- interaction_id: en:lesson-05:session-05:i09; family: listen_choose -->
-🔊 *The map is in the drawer.* → **The map is in the drawer.** · The map is in the bag. · The map is in the box.
+🔊 *The map is in the drawer.* → **The map is in the drawer.** · The map is under the drawer. · The map is in the bag.
+- The map is under the drawer. — *У записі `in` — «всередині», а в цьому варіанті `under` — «під».*
 - The map is in the bag. — *У записі останнє слово — `drawer`, а в цьому варіанті — `bag`.*
-- The map is in the box. — *У записі останнє слово — `drawer`, а в цьому варіанті — `box`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-05:i10; family: speed_match -->
-drawer — шухляда · map — карта · supermarket — супермаркет · police station — поліцейський відділок
+drawer — висувна шухляда · map — мапа · hot — гарячий, спекотний · warm — теплий
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-05:i11; family: listen_build_dictation -->
-🔊 *They have drawers.* Плитки: `drawers` `have` `They` → **They have drawers.**
+🔊 *The desk has a drawer.* Плитки: `drawer` `a` `has` `desk` `The` `have` → **The desk has a drawer.**
+*(плитка `have` зайва: тут потрібно `has` — `The desk has a drawer.`)*
 
-**12 · Супермаркет поруч із поліцейським відділком. Скажіть, де він**
+**16 · Подруга шукає магазин. Скажіть їй повною фразою: «Супермаркет поруч із поліційною дільницею»**
 <!-- interaction_id: en:lesson-05:session-05:i12; family: phrase_builder -->
-Плитки: `station` `police` `the` `to` `next` `is` `supermarket` `The` `are` → **The supermarket is next to the police station.**
+Плитки: `station` `the` `to` `next` `is` `supermarket` `police` `The` `are` → **The supermarket is next to the police station.**
 *(плитка `are` зайва: тут потрібно `is` — `The supermarket is next to the police station.`)*
 
-**13 · Повідомте другу «У мене є карта»**
+**17 · У кімнаті задушливо. Скажіть про подругу «Їй жарко» зі скороченням**
 <!-- interaction_id: en:lesson-05:session-05:i13; family: scripted_repeat_compare -->
-🎙 **I have a map.**
+🎙 **She’s hot.**
 
-**14 · У письмового столу є шухляди. Виберіть форму**
+**18 · У стола є висувна шухляда. Виберіть форму**
 <!-- interaction_id: en:lesson-05:session-05:i14; family: context_gap_grammar -->
-The desk ___ drawers. → **has** · have · is
-- have — *Один стіл: `has`; кількість шухляд цього не змінює.*
-- is — *Ідеться про те, що є у столу: `has drawers`.*
+The desk ___ a drawer. → **has** · have · is
+- have — *Стіл один, як it: потрібно has.*
+- is — *Мова про те, що є в стола: has a drawer.*
 
-**15 · Послухайте, як почувається подруга**
+**19 · Послухайте, у кого мапа**
 <!-- interaction_id: en:lesson-05:session-05:i15; family: listen_choose -->
-🔊 *She's cold.* → **She's cold.** · She's hot. · He's cold.
-- She's hot. — *У записі останнє слово — `cold`, а в цьому варіанті — `hot`.*
-- He's cold. — *У записі перше слово — `She's`, а в цьому варіанті — `He's`.*
+🔊 *She has a map.* → **She has a map.** · She has a pen. · He has a map.
+- She has a pen. — *У записі останнє слово — `map`, а в цьому варіанті — `pen`.*
+- He has a map. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-05:i16; family: speed_match -->
-drawer — шухляда · map — карта · supermarket — супермаркет · police station — поліцейський відділок
+paper — папір · eraser — гумка · cold — холодний · hot — гарячий, спекотний
 
-**17 · Друг обирає письмовий стіл. У цього столу є одна шухляда. Повідомте «У письмового столу є шухляда»**
+**21 · Подруга шукає гумку. Скажіть їй: «У шухляді є гумка»**
 <!-- interaction_id: en:lesson-05:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The desk has a drawer.**
-
+🎙 **The drawer has an eraser.**

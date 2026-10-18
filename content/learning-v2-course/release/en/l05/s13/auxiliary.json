@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-13:intro1:r2": {
-          "ru": "Перед `umbrella` нужно `an`.",
-          "uk": "Перед `umbrella` потрібне `an`."
+          "ru": "your — твой, а дядя ваш: нужно my.",
+          "uk": "your — твій, а дядько ваш: потрібно my."
         },
         "en:lesson-05:session-13:intro1:r3": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "Дядя один, поэтому нужно This is, а не This are.",
+          "uk": "Дядько один, тому потрібно This is, а не This are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-13:intro2:r2": {
-          "ru": "`his` — его; здесь её: `her`.",
-          "uk": "`his` — його; тут її: `her`."
+          "ru": "his — его, а тётя принадлежит подруге: нужно her.",
+          "uk": "his — його, а тітка належить подрузі: потрібно her."
         },
         "en:lesson-05:session-13:intro2:r3": {
-          "ru": "Один зонт: `umbrella is`.",
-          "uk": "Одна парасоля: `umbrella is`."
+          "ru": "Тётя одна, поэтому нужно is, а не are.",
+          "uk": "Тітка одна, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-13:intro3:r2": {
-          "ru": "`under` — под; внутри — `in`.",
-          "uk": "`under` — під; усередині — `in`."
+          "ru": "she — она, а речь о мальчике: нужно he.",
+          "uk": "she — вона, а мова про хлопчика: потрібно he."
         },
         "en:lesson-05:session-13:intro3:r3": {
-          "ru": "`your` — твоём / вашем; о своём здесь `my`.",
-          "uk": "`your` — твоїй / вашій; про свою тут `my`."
+          "ru": "your — твой, а он ваш двоюродный брат: нужно my.",
+          "uk": "your — твій, а він ваш двоюрідний брат: потрібно my."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c28fd01789d5a4617eeae94882a28b75d95caa40f02a27efac0a22ba80649be5"
+  "auxiliaryFingerprint": "ff902cd59ce466b1d7bc833ef1ad58dbe71f6f99a9e94791c1d0c66f03f53c33"
 }

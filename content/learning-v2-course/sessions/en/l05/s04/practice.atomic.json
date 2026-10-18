@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-04:word:ball",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ball",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:ball:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ball",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:ball:audio",
+            "transcript": "ball"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:ball:r1",
+              "targetText": "ball",
+              "meaningByLocale": {
+                "ru": "мяч. She has a ball. — «У неё есть мяч». О круглой вещи, которую бросают, ловят и пинают в играх.",
+                "uk": "м’яч. She has a ball. — «У неї є м’яч». Про круглу річ, яку кидають, ловлять і копають у іграх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ball",
+            "definitionByLocale": {
+              "ru": "мяч. She has a ball. — «У неё есть мяч». О круглой вещи, которую бросают, ловят и пинают в играх.",
+              "uk": "м’яч. She has a ball. — «У неї є м’яч». Про круглу річ, яку кидають, ловлять і копають у іграх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Воспитательница ищет мяч. Он у девочки. Скажите ей полной фразой: «У неё есть мяч»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Воспитательница ищет мяч. Он у девочки. Скажите ей полной фразой: «У неё есть мяч»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has a ball.",
+          "localizedMeaning": {
+            "ru": "Воспитательница ищет мяч. Он у девочки. Скажите ей полной фразой: «У неё есть мяч»",
+            "uk": "Вихователька шукає м’яч. Він у дівчинки. Скажіть їй повною фразою: «У неї є м’яч»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "a",
+            "ball"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Воспитательница ищет мяч. Он у девочки. Скажите ей полной фразой: «У неё есть мяч»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `She has a ball.`",
+                "uk": "тут потрібно `has` — `She has a ball.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте воспитательницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i02:r1",
+            "text": "I am hungry."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i02:r2",
+            "text": "I am thirsty."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i02:r3",
+            "text": "We are hungry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте воспитательницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i02:audio",
+            "transcript": "I am hungry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:i02:r1",
+              "targetText": "I am hungry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i02:r2",
+              "targetText": "I am thirsty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i02:r3",
+              "targetText": "We are hungry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте воспитательницу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hungry`, а в этом варианте — `thirsty`.",
+                "uk": "У записі останнє слово — `hungry`, а в цьому варіанті — `thirsty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте воспитательницу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:word:children",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — children",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:children:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — children",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:children:audio",
+            "transcript": "children"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:children:r1",
+              "targetText": "children",
+              "meaningByLocale": {
+                "ru": "дети. The nursery has children. — «В детском саду есть дети». Слово для нескольких детей сразу; для одного ребёнка говорят child.",
+                "uk": "діти. The nursery has children. — «У дитячому садку є діти». Слово для кількох дітей одразу; для однієї дитини кажуть child."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "children",
+            "definitionByLocale": {
+              "ru": "дети. The nursery has children. — «В детском саду есть дети». Слово для нескольких детей сразу; для одного ребёнка говорят child.",
+              "uk": "діти. The nursery has children. — «У дитячому садку є діти». Слово для кількох дітей одразу; для однієї дитини кажуть child."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прохожий смотрит на здание, из которого слышны голоса. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прохожий смотрит на здание, из которого слышны голоса. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прохожий смотрит на здание, из которого слышны голоса. Выберите форму",
+            "uk": "Перехожий дивиться на будівлю, з якої чутно голоси. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The nursery ___ children.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-04:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Прохожий смотрит на здание, из которого слышны голоса. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Прохожий смотрит на здание, из которого слышны голоса. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Детский сад один, как it: нужно has.",
+                "uk": "Дитячий садок один, як it: потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Прохожий смотрит на здание, из которого слышны голоса. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "The nursery are children значило бы «Детский сад — дети». У детского сада есть дети — The nursery has children.",
+                "uk": "The nursery are children означало б «Дитячий садок — діти». У дитячого садка є діти — The nursery has children."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-04:i04:p1",
+              "target": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i04:p2",
+              "target": "children",
+              "meaningByLocale": {
+                "ru": "дети",
+                "uk": "діти"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i04:p3",
+              "target": "teacher",
+              "meaningByLocale": {
+                "ru": "учитель, воспитатель",
+                "uk": "учитель, вихователь"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i04:p4",
+              "target": "crayon",
+              "meaningByLocale": {
+                "ru": "цветной карандаш, мелок",
+                "uk": "кольоровий олівець, крейда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ball",
+            "children",
+            "teacher",
+            "crayon"
+          ],
+          "rightColumn": [
+            "мяч",
+            "дети",
+            "учитель, воспитатель",
+            "цветной карандаш, мелок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:word:teacher",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — teacher",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:teacher:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — teacher",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:teacher:audio",
+            "transcript": "teacher"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:teacher:r1",
+              "targetText": "teacher",
+              "meaningByLocale": {
+                "ru": "учитель, воспитатель. He has a teacher. — «У него есть воспитатель». О человеке, который занимается с детьми и учит их.",
+                "uk": "учитель, вихователь. He has a teacher. — «У нього є вихователь». Про людину, яка займається з дітьми й навчає їх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "teacher",
+            "definitionByLocale": {
+              "ru": "учитель, воспитатель. He has a teacher. — «У него есть воспитатель». О человеке, который занимается с детьми и учит их.",
+              "uk": "учитель, вихователь. He has a teacher. — «У нього є вихователь». Про людину, яка займається з дітьми й навчає їх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте маму мальчика и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте маму мальчика и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i05:audio",
+            "transcript": "He has a teacher."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He has a teacher.",
+          "orderedTokens": [
+            "He",
+            "has",
+            "a",
+            "teacher"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте маму мальчика и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `He has a teacher.`",
+                "uk": "тут потрібно `has` — `He has a teacher.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:word:crayon",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crayon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:crayon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crayon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:crayon:audio",
+            "transcript": "crayon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:crayon:r1",
+              "targetText": "crayon",
+              "meaningByLocale": {
+                "ru": "цветной карандаш, мелок. I have a crayon. — «У меня есть цветной карандаш». О мягком карандаше из воска, которым рисуют дети.",
+                "uk": "кольоровий олівець, крейда. I have a crayon. — «У мене є кольоровий олівець». Про м’який олівець із воску, яким малюють діти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crayon",
+            "definitionByLocale": {
+              "ru": "цветной карандаш, мелок. I have a crayon. — «У меня есть цветной карандаш». О мягком карандаше из воска, которым рисуют дети.",
+              "uk": "кольоровий олівець, крейда. I have a crayon. — «У мене є кольоровий олівець». Про м’який олівець із воску, яким малюють діти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Девочка просит что-нибудь для рисования. Скажите ей полной фразой: «У меня есть цветной карандаш»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Девочка просит что-нибудь для рисования. Скажите ей полной фразой: «У меня есть цветной карандаш»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a crayon.",
+          "localizedMeaning": {
+            "ru": "Девочка просит что-нибудь для рисования. Скажите ей полной фразой: «У меня есть цветной карандаш»",
+            "uk": "Дівчинка просить щось для малювання. Скажіть їй повною фразою: «У мене є кольоровий олівець»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "crayon"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Девочка просит что-нибудь для рисования. Скажите ей полной фразой: «У меня есть цветной карандаш»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a crayon.`",
+                "uk": "тут потрібно `have` — `I have a crayon.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега заболела и осталась дома. Скажите «Она больна» без сокращения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Коллега заболела и осталась дома. Скажите «Она больна» без сокращения",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i07:audio",
+            "transcript": "She is sick."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is sick.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга хочет пить. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хочет пить. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга хочет пить. Выберите форму",
+            "uk": "Подруга хоче пити. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ thirsty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-04:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга хочет пить. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга хочет пить. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние: She is thirsty.",
+                "uk": "Тут стан: She is thirsty."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга хочет пить. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С she нужно is, а не are.",
+                "uk": "З she потрібно is, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, где занавеска",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i09:r1",
+            "text": "The curtain is in the bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i09:r2",
+            "text": "The curtain is in the box."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i09:r3",
+            "text": "The curtain is in the cupboard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, где занавеска",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i09:audio",
+            "transcript": "The curtain is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:i09:r1",
+              "targetText": "The curtain is in the bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i09:r2",
+              "targetText": "The curtain is in the box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i09:r3",
+              "targetText": "The curtain is in the cupboard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, где занавеска",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `box`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `box`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, где занавеска",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `cupboard`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `cupboard`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-04:i10:p1",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i10:p2",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i10:p3",
+              "target": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад (для малышей)",
+                "uk": "дитячий садок (для малюків)"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i10:p4",
+              "target": "sick",
+              "meaningByLocale": {
+                "ru": "больной",
+                "uk": "хворий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "curtain",
+            "bag",
+            "nursery",
+            "sick"
+          ],
+          "rightColumn": [
+            "занавеска",
+            "сумка",
+            "детский сад (для малышей)",
+            "больной"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте воспитательницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте воспитательницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i11:audio",
+            "transcript": "They have curtains."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They have curtains.",
+          "orderedTokens": [
+            "They",
+            "have",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте воспитательницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `They have curtains.`",
+                "uk": "тут потрібно `have` — `They have curtains.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама спрашивает, где детский сад. Скажите ей полной фразой: «Детский сад рядом с библиотекой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама спрашивает, где детский сад. Скажите ей полной фразой: «Детский сад рядом с библиотекой»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The nursery is next to the library.",
+          "localizedMeaning": {
+            "ru": "Мама спрашивает, где детский сад. Скажите ей полной фразой: «Детский сад рядом с библиотекой»",
+            "uk": "Мама питає, де дитячий садок. Скажіть їй повною фразою: «Дитячий садок поруч із бібліотекою»"
+          },
+          "orderedTokens": [
+            "The",
+            "nursery",
+            "is",
+            "next",
+            "to",
+            "the",
+            "library"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама спрашивает, где детский сад. Скажите ей полной фразой: «Детский сад рядом с библиотекой»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The nursery is next to the library.`",
+                "uk": "тут потрібно `is` — `The nursery is next to the library.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У вас с подругой есть одна занавеска. Скажите воспитательнице: «У нас есть занавеска»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "У вас с подругой есть одна занавеска. Скажите воспитательнице: «У нас есть занавеска»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i13:audio",
+            "transcript": "We have a curtain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a curtain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У друга есть занавеска. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У друга есть занавеска. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У друга есть занавеска. Выберите форму",
+            "uk": "У друга є завіса. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a curtain.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-04:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У друга есть занавеска. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "У друга есть занавеска. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "У друга есть занавеска. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "He is a curtain значило бы «Он занавеска». У него есть занавеска — He has a curtain.",
+                "uk": "He is a curtain означало б «Він завіса». У нього є завіса — He has a curtain."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друзей",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i15:r1",
+            "text": "We are hungry."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i15:r2",
+            "text": "We are thirsty."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i15:r3",
+            "text": "They are hungry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте друзей",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i15:audio",
+            "transcript": "We are hungry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:i15:r1",
+              "targetText": "We are hungry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i15:r2",
+              "targetText": "We are thirsty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i15:r3",
+              "targetText": "They are hungry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друзей",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hungry`, а в этом варианте — `thirsty`.",
+                "uk": "У записі останнє слово — `hungry`, а в цьому варіанті — `thirsty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друзей",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+                "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-04:i16:p1",
+              "target": "hungry",
+              "meaningByLocale": {
+                "ru": "голодный",
+                "uk": "голодний"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i16:p2",
+              "target": "thirsty",
+              "meaningByLocale": {
+                "ru": "хочет пить",
+                "uk": "хоче пити"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i16:p3",
+              "target": "sick",
+              "meaningByLocale": {
+                "ru": "больной",
+                "uk": "хворий"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i16:p4",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hungry",
+            "thirsty",
+            "sick",
+            "curtain"
+          ],
+          "rightColumn": [
+            "голодный",
+            "хочет пить",
+            "больной",
+            "занавеска"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Воспитательница ищет занавеску. Она у вашей подруги. Скажите ей: «У неё есть занавеска»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Воспитательница ищет занавеску. Она у вашей подруги. Скажите ей: «У неё есть занавеска»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i17:audio",
+            "transcript": "She has a curtain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has a curtain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-04:word:ball",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ball",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:ball:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ball",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:ball:audio",
+            "transcript": "ball"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:ball:r1",
+              "targetText": "ball",
+              "meaningByLocale": {
+                "ru": "мяч. She has a ball. — «У неё есть мяч». О круглой вещи, которую бросают, ловят и пинают в играх.",
+                "uk": "м’яч. She has a ball. — «У неї є м’яч». Про круглу річ, яку кидають, ловлять і копають у іграх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ball",
+            "definitionByLocale": {
+              "ru": "мяч. She has a ball. — «У неё есть мяч». О круглой вещи, которую бросают, ловят и пинают в играх.",
+              "uk": "м’яч. She has a ball. — «У неї є м’яч». Про круглу річ, яку кидають, ловлять і копають у іграх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вихователька шукає м’яч. Він у дівчинки. Скажіть їй повною фразою: «У неї є м’яч»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вихователька шукає м’яч. Він у дівчинки. Скажіть їй повною фразою: «У неї є м’яч»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has a ball.",
+          "localizedMeaning": {
+            "ru": "Воспитательница ищет мяч. Он у девочки. Скажите ей полной фразой: «У неё есть мяч»",
+            "uk": "Вихователька шукає м’яч. Він у дівчинки. Скажіть їй повною фразою: «У неї є м’яч»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "a",
+            "ball"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вихователька шукає м’яч. Він у дівчинки. Скажіть їй повною фразою: «У неї є м’яч»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `She has a ball.`",
+                "uk": "тут потрібно `has` — `She has a ball.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте виховательку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i02:r1",
+            "text": "I am hungry."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i02:r2",
+            "text": "I am thirsty."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i02:r3",
+            "text": "We are hungry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте виховательку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i02:audio",
+            "transcript": "I am hungry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:i02:r1",
+              "targetText": "I am hungry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i02:r2",
+              "targetText": "I am thirsty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i02:r3",
+              "targetText": "We are hungry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте виховательку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hungry`, а в этом варианте — `thirsty`.",
+                "uk": "У записі останнє слово — `hungry`, а в цьому варіанті — `thirsty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте виховательку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:word:children",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — children",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:children:audio"
+        ],
+        "accessibilityLabel": "Картка слова — children",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:children:audio",
+            "transcript": "children"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:children:r1",
+              "targetText": "children",
+              "meaningByLocale": {
+                "ru": "дети. The nursery has children. — «В детском саду есть дети». Слово для нескольких детей сразу; для одного ребёнка говорят child.",
+                "uk": "діти. The nursery has children. — «У дитячому садку є діти». Слово для кількох дітей одразу; для однієї дитини кажуть child."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "children",
+            "definitionByLocale": {
+              "ru": "дети. The nursery has children. — «В детском саду есть дети». Слово для нескольких детей сразу; для одного ребёнка говорят child.",
+              "uk": "діти. The nursery has children. — «У дитячому садку є діти». Слово для кількох дітей одразу; для однієї дитини кажуть child."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перехожий дивиться на будівлю, з якої чутно голоси. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перехожий дивиться на будівлю, з якої чутно голоси. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прохожий смотрит на здание, из которого слышны голоса. Выберите форму",
+            "uk": "Перехожий дивиться на будівлю, з якої чутно голоси. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The nursery ___ children.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-04:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Перехожий дивиться на будівлю, з якої чутно голоси. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Перехожий дивиться на будівлю, з якої чутно голоси. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Детский сад один, как it: нужно has.",
+                "uk": "Дитячий садок один, як it: потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Перехожий дивиться на будівлю, з якої чутно голоси. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "The nursery are children значило бы «Детский сад — дети». У детского сада есть дети — The nursery has children.",
+                "uk": "The nursery are children означало б «Дитячий садок — діти». У дитячого садка є діти — The nursery has children."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-04:i04:p1",
+              "target": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i04:p2",
+              "target": "children",
+              "meaningByLocale": {
+                "ru": "дети",
+                "uk": "діти"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i04:p3",
+              "target": "teacher",
+              "meaningByLocale": {
+                "ru": "учитель, воспитатель",
+                "uk": "учитель, вихователь"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i04:p4",
+              "target": "crayon",
+              "meaningByLocale": {
+                "ru": "цветной карандаш, мелок",
+                "uk": "кольоровий олівець, крейда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ball",
+            "children",
+            "teacher",
+            "crayon"
+          ],
+          "rightColumn": [
+            "м’яч",
+            "діти",
+            "учитель, вихователь",
+            "кольоровий олівець, крейда"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:word:teacher",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — teacher",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:teacher:audio"
+        ],
+        "accessibilityLabel": "Картка слова — teacher",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:teacher:audio",
+            "transcript": "teacher"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:teacher:r1",
+              "targetText": "teacher",
+              "meaningByLocale": {
+                "ru": "учитель, воспитатель. He has a teacher. — «У него есть воспитатель». О человеке, который занимается с детьми и учит их.",
+                "uk": "учитель, вихователь. He has a teacher. — «У нього є вихователь». Про людину, яка займається з дітьми й навчає їх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "teacher",
+            "definitionByLocale": {
+              "ru": "учитель, воспитатель. He has a teacher. — «У него есть воспитатель». О человеке, который занимается с детьми и учит их.",
+              "uk": "учитель, вихователь. He has a teacher. — «У нього є вихователь». Про людину, яка займається з дітьми й навчає їх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте маму хлопчика й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте маму хлопчика й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i05:audio",
+            "transcript": "He has a teacher."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He has a teacher.",
+          "orderedTokens": [
+            "He",
+            "has",
+            "a",
+            "teacher"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте маму хлопчика й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `He has a teacher.`",
+                "uk": "тут потрібно `has` — `He has a teacher.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:word:crayon",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crayon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:word:crayon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crayon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:word:crayon:audio",
+            "transcript": "crayon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:word:crayon:r1",
+              "targetText": "crayon",
+              "meaningByLocale": {
+                "ru": "цветной карандаш, мелок. I have a crayon. — «У меня есть цветной карандаш». О мягком карандаше из воска, которым рисуют дети.",
+                "uk": "кольоровий олівець, крейда. I have a crayon. — «У мене є кольоровий олівець». Про м’який олівець із воску, яким малюють діти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crayon",
+            "definitionByLocale": {
+              "ru": "цветной карандаш, мелок. I have a crayon. — «У меня есть цветной карандаш». О мягком карандаше из воска, которым рисуют дети.",
+              "uk": "кольоровий олівець, крейда. I have a crayon. — «У мене є кольоровий олівець». Про м’який олівець із воску, яким малюють діти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дівчинка просить щось для малювання. Скажіть їй повною фразою: «У мене є кольоровий олівець»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дівчинка просить щось для малювання. Скажіть їй повною фразою: «У мене є кольоровий олівець»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a crayon.",
+          "localizedMeaning": {
+            "ru": "Девочка просит что-нибудь для рисования. Скажите ей полной фразой: «У меня есть цветной карандаш»",
+            "uk": "Дівчинка просить щось для малювання. Скажіть їй повною фразою: «У мене є кольоровий олівець»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "crayon"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Дівчинка просить щось для малювання. Скажіть їй повною фразою: «У мене є кольоровий олівець»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a crayon.`",
+                "uk": "тут потрібно `have` — `I have a crayon.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега захворіла й лишилася вдома. Скажіть «Вона хвора» без скорочення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Колега захворіла й лишилася вдома. Скажіть «Вона хвора» без скорочення",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i07:audio",
+            "transcript": "She is sick."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is sick.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга хоче пити. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хоче пити. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга хочет пить. Выберите форму",
+            "uk": "Подруга хоче пити. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ thirsty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-04:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга хоче пити. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга хоче пити. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние: She is thirsty.",
+                "uk": "Тут стан: She is thirsty."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга хоче пити. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С she нужно is, а не are.",
+                "uk": "З she потрібно is, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, де завіса",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i09:r1",
+            "text": "The curtain is in the bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i09:r2",
+            "text": "The curtain is in the box."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i09:r3",
+            "text": "The curtain is in the cupboard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, де завіса",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i09:audio",
+            "transcript": "The curtain is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:i09:r1",
+              "targetText": "The curtain is in the bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i09:r2",
+              "targetText": "The curtain is in the box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i09:r3",
+              "targetText": "The curtain is in the cupboard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, де завіса",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `box`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `box`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, де завіса",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `cupboard`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `cupboard`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-04:i10:p1",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i10:p2",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i10:p3",
+              "target": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад (для малышей)",
+                "uk": "дитячий садок (для малюків)"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i10:p4",
+              "target": "sick",
+              "meaningByLocale": {
+                "ru": "больной",
+                "uk": "хворий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "curtain",
+            "bag",
+            "nursery",
+            "sick"
+          ],
+          "rightColumn": [
+            "завіса",
+            "сумка",
+            "дитячий садок (для малюків)",
+            "хворий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте виховательку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте виховательку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i11:audio",
+            "transcript": "They have curtains."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They have curtains.",
+          "orderedTokens": [
+            "They",
+            "have",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте виховательку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `They have curtains.`",
+                "uk": "тут потрібно `have` — `They have curtains.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама питає, де дитячий садок. Скажіть їй повною фразою: «Дитячий садок поруч із бібліотекою»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама питає, де дитячий садок. Скажіть їй повною фразою: «Дитячий садок поруч із бібліотекою»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The nursery is next to the library.",
+          "localizedMeaning": {
+            "ru": "Мама спрашивает, где детский сад. Скажите ей полной фразой: «Детский сад рядом с библиотекой»",
+            "uk": "Мама питає, де дитячий садок. Скажіть їй повною фразою: «Дитячий садок поруч із бібліотекою»"
+          },
+          "orderedTokens": [
+            "The",
+            "nursery",
+            "is",
+            "next",
+            "to",
+            "the",
+            "library"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама питає, де дитячий садок. Скажіть їй повною фразою: «Дитячий садок поруч із бібліотекою»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The nursery is next to the library.`",
+                "uk": "тут потрібно `is` — `The nursery is next to the library.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У вас із подругою є одна завіса. Скажіть виховательці: «У нас є завіса»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "У вас із подругою є одна завіса. Скажіть виховательці: «У нас є завіса»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i13:audio",
+            "transcript": "We have a curtain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a curtain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У друга є завіса. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У друга є завіса. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У друга есть занавеска. Выберите форму",
+            "uk": "У друга є завіса. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a curtain.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-04:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У друга є завіса. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "У друга є завіса. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "У друга є завіса. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "He is a curtain значило бы «Он занавеска». У него есть занавеска — He has a curtain.",
+                "uk": "He is a curtain означало б «Він завіса». У нього є завіса — He has a curtain."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друзів",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-04:i15:r1",
+            "text": "We are hungry."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i15:r2",
+            "text": "We are thirsty."
+          },
+          {
+            "responseId": "en:lesson-05:session-04:i15:r3",
+            "text": "They are hungry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте друзів",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i15:audio",
+            "transcript": "We are hungry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-04:i15:r1",
+              "targetText": "We are hungry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i15:r2",
+              "targetText": "We are thirsty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i15:r3",
+              "targetText": "They are hungry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друзів",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hungry`, а в этом варианте — `thirsty`.",
+                "uk": "У записі останнє слово — `hungry`, а в цьому варіанті — `thirsty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друзів",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+                "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-04:i16:p1",
+              "target": "hungry",
+              "meaningByLocale": {
+                "ru": "голодный",
+                "uk": "голодний"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i16:p2",
+              "target": "thirsty",
+              "meaningByLocale": {
+                "ru": "хочет пить",
+                "uk": "хоче пити"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i16:p3",
+              "target": "sick",
+              "meaningByLocale": {
+                "ru": "больной",
+                "uk": "хворий"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-04:i16:p4",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hungry",
+            "thirsty",
+            "sick",
+            "curtain"
+          ],
+          "rightColumn": [
+            "голодний",
+            "хоче пити",
+            "хворий",
+            "завіса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вихователька шукає завісу. Вона в вашої подруги. Скажіть їй: «У неї є завіса»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Вихователька шукає завісу. Вона в вашої подруги. Скажіть їй: «У неї є завіса»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-04:i17:audio",
+            "transcript": "She has a curtain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has a curtain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-04:word:ball",
+      "correctText": "ball",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i01",
+      "correctText": "She has a ball.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i02",
+      "correctText": "I am hungry.",
+      "correctResponseId": "en:lesson-05:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:word:children",
+      "correctText": "children",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i03",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:word:teacher",
+      "correctText": "teacher",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i05",
+      "correctText": "He has a teacher.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:word:crayon",
+      "correctText": "crayon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i06",
+      "correctText": "I have a crayon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i07",
+      "correctText": "She is sick.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i09",
+      "correctText": "The curtain is in the bag.",
+      "correctResponseId": "en:lesson-05:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i11",
+      "correctText": "They have curtains.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i12",
+      "correctText": "The nursery is next to the library.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i13",
+      "correctText": "We have a curtain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i14",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-04:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i15",
+      "correctText": "We are hungry.",
+      "correctResponseId": "en:lesson-05:session-04:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:i17",
+      "correctText": "She has a curtain.",
+      "correctResponseId": null
+    }
+  ]
+}

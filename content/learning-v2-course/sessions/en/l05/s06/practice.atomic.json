@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-06:word:thermometer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thermometer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:thermometer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thermometer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:thermometer:audio",
+            "transcript": "thermometer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:thermometer:r1",
+              "targetText": "thermometer",
+              "meaningByLocale": {
+                "ru": "градусник. The nurse has a thermometer. — «У медсестры есть градусник». О приборе, которым измеряют температуру тела.",
+                "uk": "градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thermometer",
+            "definitionByLocale": {
+              "ru": "градусник. The nurse has a thermometer. — «У медсестры есть градусник». О приборе, которым измеряют температуру тела.",
+              "uk": "градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пациент измеряет температуру. Скажите ему полной фразой: «У медсестры есть градусник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пациент измеряет температуру. Скажите ему полной фразой: «У медсестры есть градусник»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The nurse has a thermometer.",
+          "localizedMeaning": {
+            "ru": "Пациент измеряет температуру. Скажите ему полной фразой: «У медсестры есть градусник»",
+            "uk": "Пацієнт вимірює температуру. Скажіть йому повною фразою: «У медсестри є градусник»"
+          },
+          "orderedTokens": [
+            "The",
+            "nurse",
+            "has",
+            "a",
+            "thermometer"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Пациент измеряет температуру. Скажите ему полной фразой: «У медсестры есть градусник»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The nurse has a thermometer.`",
+                "uk": "тут потрібно `has` — `The nurse has a thermometer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i02:r1",
+            "text": "I’m nervous."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i02:r2",
+            "text": "I’m calm."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i02:r3",
+            "text": "He’s nervous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i02:audio",
+            "transcript": "I’m nervous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:i02:r1",
+              "targetText": "I’m nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i02:r2",
+              "targetText": "I’m calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i02:r3",
+              "targetText": "He’s nervous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `calm`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I’m`, а в этом варианте — `He’s`.",
+                "uk": "У записі перше слово — `I’m`, а в цьому варіанті — `He’s`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:word:bandage",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bandage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:bandage:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bandage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:bandage:audio",
+            "transcript": "bandage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:bandage:r1",
+              "targetText": "bandage",
+              "meaningByLocale": {
+                "ru": "бинт, повязка. The doctor has a bandage. — «У врача есть бинт». О мягкой полоске ткани, которой закрывают и перевязывают рану.",
+                "uk": "бинт, пов’язка. The doctor has a bandage. — «У лікаря є бинт». Про м’яку смужку тканини, якою закривають і перев’язують рану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bandage",
+            "definitionByLocale": {
+              "ru": "бинт, повязка. The doctor has a bandage. — «У врача есть бинт». О мягкой полоске ткани, которой закрывают и перевязывают рану.",
+              "uk": "бинт, пов’язка. The doctor has a bandage. — «У лікаря є бинт». Про м’яку смужку тканини, якою закривають і перев’язують рану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Врач готовится перевязать руку мальчику. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Врач готовится перевязать руку мальчику. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Врач готовится перевязать руку мальчику. Выберите форму",
+            "uk": "Лікар готується перев’язати руку хлопчикові. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The doctor ___ a bandage.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-06:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Врач готовится перевязать руку мальчику. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Врач готовится перевязать руку мальчику. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Врач один, как he или she: нужно has.",
+                "uk": "Лікар один, як he або she: потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Врач готовится перевязать руку мальчику. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "The doctor is a bandage значило бы «Врач — бинт». У врача есть бинт — The doctor has a bandage.",
+                "uk": "The doctor is a bandage означало б «Лікар — бинт». У лікаря є бинт — The doctor has a bandage."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-06:i04:p1",
+              "target": "thermometer",
+              "meaningByLocale": {
+                "ru": "градусник",
+                "uk": "градусник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i04:p2",
+              "target": "bandage",
+              "meaningByLocale": {
+                "ru": "бинт, повязка",
+                "uk": "бинт, пов’язка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i04:p3",
+              "target": "medicine",
+              "meaningByLocale": {
+                "ru": "лекарство",
+                "uk": "ліки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i04:p4",
+              "target": "clipboard",
+              "meaningByLocale": {
+                "ru": "планшет с зажимом для бумаг",
+                "uk": "планшет із затискачем для паперів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermometer",
+            "bandage",
+            "medicine",
+            "clipboard"
+          ],
+          "rightColumn": [
+            "градусник",
+            "бинт, повязка",
+            "лекарство",
+            "планшет с зажимом для бумаг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:word:medicine",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — medicine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:medicine:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — medicine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:medicine:audio",
+            "transcript": "medicine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:medicine:r1",
+              "targetText": "medicine",
+              "meaningByLocale": {
+                "ru": "лекарство. We have medicine. — «У нас есть лекарство». О том, что принимают при болезни; говорят про лекарство вообще, без a.",
+                "uk": "ліки. We have medicine. — «У нас є ліки». Про те, що приймають під час хвороби; кажуть про ліки взагалі, без a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "medicine",
+            "definitionByLocale": {
+              "ru": "лекарство. We have medicine. — «У нас есть лекарство». О том, что принимают при болезни; говорят про лекарство вообще, без a.",
+              "uk": "ліки. We have medicine. — «У нас є ліки». Про те, що приймають під час хвороби; кажуть про ліки взагалі, без a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте врача и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте врача и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i05:audio",
+            "transcript": "We have medicine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have medicine.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "medicine"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте врача и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `We have medicine.`",
+                "uk": "тут потрібно `have` — `We have medicine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:word:clipboard",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clipboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:clipboard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clipboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:clipboard:audio",
+            "transcript": "clipboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:clipboard:r1",
+              "targetText": "clipboard",
+              "meaningByLocale": {
+                "ru": "планшет с зажимом для бумаг. She has a clipboard. — «У неё есть планшет с зажимом». О твёрдой доске с зажимом, на которой удобно записывать стоя.",
+                "uk": "планшет із затискачем для паперів. She has a clipboard. — «У неї є планшет із затискачем». Про тверду дошку із затискачем, на якій зручно записувати стоячи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clipboard",
+            "definitionByLocale": {
+              "ru": "планшет с зажимом для бумаг. She has a clipboard. — «У неё есть планшет с зажимом». О твёрдой доске с зажимом, на которой удобно записывать стоя.",
+              "uk": "планшет із затискачем для паперів. She has a clipboard. — «У неї є планшет із затискачем». Про тверду дошку із затискачем, на якій зручно записувати стоячи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега записывает данные пациента. Скажите врачу полной фразой: «У неё есть планшет с зажимом для бумаг»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега записывает данные пациента. Скажите врачу полной фразой: «У неё есть планшет с зажимом для бумаг»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has a clipboard.",
+          "localizedMeaning": {
+            "ru": "Коллега записывает данные пациента. Скажите врачу полной фразой: «У неё есть планшет с зажимом для бумаг»",
+            "uk": "Колега записує дані пацієнта. Скажіть лікареві повною фразою: «У неї є планшет із затискачем для паперів»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "a",
+            "clipboard"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Коллега записывает данные пациента. Скажите врачу полной фразой: «У неё есть планшет с зажимом для бумаг»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `She has a clipboard.`",
+                "uk": "тут потрібно `has` — `She has a clipboard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы переживаете, что ошибётесь. Скажите «Я нервничаю» с сокращением",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Вы переживаете, что ошибётесь. Скажите «Я нервничаю» с сокращением",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i07:audio",
+            "transcript": "I’m nervous."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m nervous.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коллега совсем не волнуется. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега совсем не волнуется. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега совсем не волнуется. Выберите форму",
+            "uk": "Колега зовсім не хвилюється. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ calm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-06:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Коллега совсем не волнуется. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Коллега совсем не волнуется. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние: He is calm.",
+                "uk": "Тут стан: He is calm."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Коллега совсем не волнуется. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно is, а не are.",
+                "uk": "З he потрібно is, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, у кого ручка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i09:r1",
+            "text": "She has a pen."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i09:r2",
+            "text": "She has a book."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i09:r3",
+            "text": "He has a pen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, у кого ручка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i09:audio",
+            "transcript": "She has a pen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:i09:r1",
+              "targetText": "She has a pen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i09:r2",
+              "targetText": "She has a book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i09:r3",
+              "targetText": "He has a pen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, у кого ручка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pen`, а в этом варианте — `book`.",
+                "uk": "У записі останнє слово — `pen`, а в цьому варіанті — `book`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, у кого ручка",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-06:i10:p1",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i10:p2",
+              "target": "nervous",
+              "meaningByLocale": {
+                "ru": "нервничающий",
+                "uk": "нервовий, той, що хвилюється"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i10:p3",
+              "target": "excited",
+              "meaningByLocale": {
+                "ru": "радостно взволнованный",
+                "uk": "радісно схвильований"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i10:p4",
+              "target": "pen",
+              "meaningByLocale": {
+                "ru": "ручка",
+                "uk": "ручка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "calm",
+            "nervous",
+            "excited",
+            "pen"
+          ],
+          "rightColumn": [
+            "спокойный",
+            "нервничающий",
+            "радостно взволнованный",
+            "ручка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте медсестру и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте медсестру и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i11:audio",
+            "transcript": "The doctor has a pen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The doctor has a pen.",
+          "orderedTokens": [
+            "The",
+            "doctor",
+            "has",
+            "a",
+            "pen"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте медсестру и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The doctor has a pen.`",
+                "uk": "тут потрібно `has` — `The doctor has a pen.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пациент ищет клинику. Скажите ему полной фразой: «Клиника рядом с заправкой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пациент ищет клинику. Скажите ему полной фразой: «Клиника рядом с заправкой»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The clinic is next to the petrol station.",
+          "localizedMeaning": {
+            "ru": "Пациент ищет клинику. Скажите ему полной фразой: «Клиника рядом с заправкой»",
+            "uk": "Пацієнт шукає клініку. Скажіть йому повною фразою: «Клініка поруч із заправкою»"
+          },
+          "orderedTokens": [
+            "The",
+            "clinic",
+            "is",
+            "next",
+            "to",
+            "the",
+            "petrol",
+            "station"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Пациент ищет клинику. Скажите ему полной фразой: «Клиника рядом с заправкой»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The clinic is next to the petrol station.`",
+                "uk": "тут потрібно `is` — `The clinic is next to the petrol station.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы ждёте первого рабочего дня с радостью. Скажите «Я в радостном предвкушении» с сокращением",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Вы ждёте первого рабочего дня с радостью. Скажите «Я в радостном предвкушении» с сокращением",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i13:audio",
+            "transcript": "I’m excited."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m excited.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У подруги есть ручка. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У подруги есть ручка. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У подруги есть ручка. Выберите форму",
+            "uk": "У подруги є ручка. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ a pen.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-06:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У подруги есть ручка. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "У подруги есть ручка. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С she нужно has, а не have.",
+                "uk": "З she потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "У подруги есть ручка. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "She is a pen значило бы «Она ручка». У неё есть ручка — She has a pen.",
+                "uk": "She is a pen означало б «Вона ручка». У неї є ручка — She has a pen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте о коллеге",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i15:r1",
+            "text": "He is calm."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i15:r2",
+            "text": "He is nervous."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i15:r3",
+            "text": "She is calm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте о коллеге",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i15:audio",
+            "transcript": "He is calm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:i15:r1",
+              "targetText": "He is calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i15:r2",
+              "targetText": "He is nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i15:r3",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте о коллеге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `nervous`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `nervous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте о коллеге",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-06:i16:p1",
+              "target": "bandage",
+              "meaningByLocale": {
+                "ru": "бинт, повязка",
+                "uk": "бинт, пов’язка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i16:p2",
+              "target": "medicine",
+              "meaningByLocale": {
+                "ru": "лекарство",
+                "uk": "ліки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i16:p3",
+              "target": "clipboard",
+              "meaningByLocale": {
+                "ru": "планшет с зажимом для бумаг",
+                "uk": "планшет із затискачем для паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i16:p4",
+              "target": "excited",
+              "meaningByLocale": {
+                "ru": "радостно взволнованный",
+                "uk": "радісно схвильований"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bandage",
+            "medicine",
+            "clipboard",
+            "excited"
+          ],
+          "rightColumn": [
+            "бинт, повязка",
+            "лекарство",
+            "планшет с зажимом для бумаг",
+            "радостно взволнованный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Врач просит ручку. Она у подруги. Скажите ему: «У неё есть ручка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Врач просит ручку. Она у подруги. Скажите ему: «У неё есть ручка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i17:audio",
+            "transcript": "She has a pen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has a pen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-06:word:thermometer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thermometer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:thermometer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thermometer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:thermometer:audio",
+            "transcript": "thermometer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:thermometer:r1",
+              "targetText": "thermometer",
+              "meaningByLocale": {
+                "ru": "градусник. The nurse has a thermometer. — «У медсестры есть градусник». О приборе, которым измеряют температуру тела.",
+                "uk": "градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thermometer",
+            "definitionByLocale": {
+              "ru": "градусник. The nurse has a thermometer. — «У медсестры есть градусник». О приборе, которым измеряют температуру тела.",
+              "uk": "градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пацієнт вимірює температуру. Скажіть йому повною фразою: «У медсестри є градусник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пацієнт вимірює температуру. Скажіть йому повною фразою: «У медсестри є градусник»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The nurse has a thermometer.",
+          "localizedMeaning": {
+            "ru": "Пациент измеряет температуру. Скажите ему полной фразой: «У медсестры есть градусник»",
+            "uk": "Пацієнт вимірює температуру. Скажіть йому повною фразою: «У медсестри є градусник»"
+          },
+          "orderedTokens": [
+            "The",
+            "nurse",
+            "has",
+            "a",
+            "thermometer"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Пацієнт вимірює температуру. Скажіть йому повною фразою: «У медсестри є градусник»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The nurse has a thermometer.`",
+                "uk": "тут потрібно `has` — `The nurse has a thermometer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i02:r1",
+            "text": "I’m nervous."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i02:r2",
+            "text": "I’m calm."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i02:r3",
+            "text": "He’s nervous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i02:audio",
+            "transcript": "I’m nervous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:i02:r1",
+              "targetText": "I’m nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i02:r2",
+              "targetText": "I’m calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i02:r3",
+              "targetText": "He’s nervous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `calm`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I’m`, а в этом варианте — `He’s`.",
+                "uk": "У записі перше слово — `I’m`, а в цьому варіанті — `He’s`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:word:bandage",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bandage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:bandage:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bandage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:bandage:audio",
+            "transcript": "bandage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:bandage:r1",
+              "targetText": "bandage",
+              "meaningByLocale": {
+                "ru": "бинт, повязка. The doctor has a bandage. — «У врача есть бинт». О мягкой полоске ткани, которой закрывают и перевязывают рану.",
+                "uk": "бинт, пов’язка. The doctor has a bandage. — «У лікаря є бинт». Про м’яку смужку тканини, якою закривають і перев’язують рану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bandage",
+            "definitionByLocale": {
+              "ru": "бинт, повязка. The doctor has a bandage. — «У врача есть бинт». О мягкой полоске ткани, которой закрывают и перевязывают рану.",
+              "uk": "бинт, пов’язка. The doctor has a bandage. — «У лікаря є бинт». Про м’яку смужку тканини, якою закривають і перев’язують рану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Лікар готується перев’язати руку хлопчикові. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лікар готується перев’язати руку хлопчикові. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Врач готовится перевязать руку мальчику. Выберите форму",
+            "uk": "Лікар готується перев’язати руку хлопчикові. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The doctor ___ a bandage.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-06:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Лікар готується перев’язати руку хлопчикові. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Лікар готується перев’язати руку хлопчикові. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Врач один, как he или she: нужно has.",
+                "uk": "Лікар один, як he або she: потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Лікар готується перев’язати руку хлопчикові. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "The doctor is a bandage значило бы «Врач — бинт». У врача есть бинт — The doctor has a bandage.",
+                "uk": "The doctor is a bandage означало б «Лікар — бинт». У лікаря є бинт — The doctor has a bandage."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-06:i04:p1",
+              "target": "thermometer",
+              "meaningByLocale": {
+                "ru": "градусник",
+                "uk": "градусник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i04:p2",
+              "target": "bandage",
+              "meaningByLocale": {
+                "ru": "бинт, повязка",
+                "uk": "бинт, пов’язка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i04:p3",
+              "target": "medicine",
+              "meaningByLocale": {
+                "ru": "лекарство",
+                "uk": "ліки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i04:p4",
+              "target": "clipboard",
+              "meaningByLocale": {
+                "ru": "планшет с зажимом для бумаг",
+                "uk": "планшет із затискачем для паперів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermometer",
+            "bandage",
+            "medicine",
+            "clipboard"
+          ],
+          "rightColumn": [
+            "градусник",
+            "бинт, пов’язка",
+            "ліки",
+            "планшет із затискачем для паперів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:word:medicine",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — medicine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:medicine:audio"
+        ],
+        "accessibilityLabel": "Картка слова — medicine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:medicine:audio",
+            "transcript": "medicine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:medicine:r1",
+              "targetText": "medicine",
+              "meaningByLocale": {
+                "ru": "лекарство. We have medicine. — «У нас есть лекарство». О том, что принимают при болезни; говорят про лекарство вообще, без a.",
+                "uk": "ліки. We have medicine. — «У нас є ліки». Про те, що приймають під час хвороби; кажуть про ліки взагалі, без a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "medicine",
+            "definitionByLocale": {
+              "ru": "лекарство. We have medicine. — «У нас есть лекарство». О том, что принимают при болезни; говорят про лекарство вообще, без a.",
+              "uk": "ліки. We have medicine. — «У нас є ліки». Про те, що приймають під час хвороби; кажуть про ліки взагалі, без a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте лікаря й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте лікаря й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i05:audio",
+            "transcript": "We have medicine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have medicine.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "medicine"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте лікаря й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `We have medicine.`",
+                "uk": "тут потрібно `have` — `We have medicine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:word:clipboard",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clipboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:word:clipboard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clipboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:word:clipboard:audio",
+            "transcript": "clipboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:word:clipboard:r1",
+              "targetText": "clipboard",
+              "meaningByLocale": {
+                "ru": "планшет с зажимом для бумаг. She has a clipboard. — «У неё есть планшет с зажимом». О твёрдой доске с зажимом, на которой удобно записывать стоя.",
+                "uk": "планшет із затискачем для паперів. She has a clipboard. — «У неї є планшет із затискачем». Про тверду дошку із затискачем, на якій зручно записувати стоячи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clipboard",
+            "definitionByLocale": {
+              "ru": "планшет с зажимом для бумаг. She has a clipboard. — «У неё есть планшет с зажимом». О твёрдой доске с зажимом, на которой удобно записывать стоя.",
+              "uk": "планшет із затискачем для паперів. She has a clipboard. — «У неї є планшет із затискачем». Про тверду дошку із затискачем, на якій зручно записувати стоячи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега записує дані пацієнта. Скажіть лікареві повною фразою: «У неї є планшет із затискачем для паперів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега записує дані пацієнта. Скажіть лікареві повною фразою: «У неї є планшет із затискачем для паперів»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has a clipboard.",
+          "localizedMeaning": {
+            "ru": "Коллега записывает данные пациента. Скажите врачу полной фразой: «У неё есть планшет с зажимом для бумаг»",
+            "uk": "Колега записує дані пацієнта. Скажіть лікареві повною фразою: «У неї є планшет із затискачем для паперів»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "a",
+            "clipboard"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Колега записує дані пацієнта. Скажіть лікареві повною фразою: «У неї є планшет із затискачем для паперів»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `She has a clipboard.`",
+                "uk": "тут потрібно `has` — `She has a clipboard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви переживаєте, що помилитеся. Скажіть «Я нервую» зі скороченням",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Ви переживаєте, що помилитеся. Скажіть «Я нервую» зі скороченням",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i07:audio",
+            "transcript": "I’m nervous."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m nervous.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега зовсім не хвилюється. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега зовсім не хвилюється. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега совсем не волнуется. Выберите форму",
+            "uk": "Колега зовсім не хвилюється. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ calm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-06:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Колега зовсім не хвилюється. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Колега зовсім не хвилюється. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние: He is calm.",
+                "uk": "Тут стан: He is calm."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Колега зовсім не хвилюється. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно is, а не are.",
+                "uk": "З he потрібно is, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, у кого ручка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i09:r1",
+            "text": "She has a pen."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i09:r2",
+            "text": "She has a book."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i09:r3",
+            "text": "He has a pen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, у кого ручка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i09:audio",
+            "transcript": "She has a pen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:i09:r1",
+              "targetText": "She has a pen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i09:r2",
+              "targetText": "She has a book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i09:r3",
+              "targetText": "He has a pen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, у кого ручка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pen`, а в этом варианте — `book`.",
+                "uk": "У записі останнє слово — `pen`, а в цьому варіанті — `book`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, у кого ручка",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-06:i10:p1",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i10:p2",
+              "target": "nervous",
+              "meaningByLocale": {
+                "ru": "нервничающий",
+                "uk": "нервовий, той, що хвилюється"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i10:p3",
+              "target": "excited",
+              "meaningByLocale": {
+                "ru": "радостно взволнованный",
+                "uk": "радісно схвильований"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i10:p4",
+              "target": "pen",
+              "meaningByLocale": {
+                "ru": "ручка",
+                "uk": "ручка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "calm",
+            "nervous",
+            "excited",
+            "pen"
+          ],
+          "rightColumn": [
+            "спокійний",
+            "нервовий, той, що хвилюється",
+            "радісно схвильований",
+            "ручка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте медсестру й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте медсестру й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i11:audio",
+            "transcript": "The doctor has a pen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The doctor has a pen.",
+          "orderedTokens": [
+            "The",
+            "doctor",
+            "has",
+            "a",
+            "pen"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте медсестру й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The doctor has a pen.`",
+                "uk": "тут потрібно `has` — `The doctor has a pen.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пацієнт шукає клініку. Скажіть йому повною фразою: «Клініка поруч із заправкою»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пацієнт шукає клініку. Скажіть йому повною фразою: «Клініка поруч із заправкою»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The clinic is next to the petrol station.",
+          "localizedMeaning": {
+            "ru": "Пациент ищет клинику. Скажите ему полной фразой: «Клиника рядом с заправкой»",
+            "uk": "Пацієнт шукає клініку. Скажіть йому повною фразою: «Клініка поруч із заправкою»"
+          },
+          "orderedTokens": [
+            "The",
+            "clinic",
+            "is",
+            "next",
+            "to",
+            "the",
+            "petrol",
+            "station"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Пацієнт шукає клініку. Скажіть йому повною фразою: «Клініка поруч із заправкою»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The clinic is next to the petrol station.`",
+                "uk": "тут потрібно `is` — `The clinic is next to the petrol station.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви чекаєте першого робочого дня з радістю. Скажіть «Я в радісному очікуванні» зі скороченням",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Ви чекаєте першого робочого дня з радістю. Скажіть «Я в радісному очікуванні» зі скороченням",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i13:audio",
+            "transcript": "I’m excited."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m excited.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У подруги є ручка. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У подруги є ручка. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У подруги есть ручка. Выберите форму",
+            "uk": "У подруги є ручка. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ a pen.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-06:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У подруги є ручка. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "У подруги є ручка. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С she нужно has, а не have.",
+                "uk": "З she потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "У подруги є ручка. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "She is a pen значило бы «Она ручка». У неё есть ручка — She has a pen.",
+                "uk": "She is a pen означало б «Вона ручка». У неї є ручка — She has a pen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте про колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i15:r1",
+            "text": "He is calm."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i15:r2",
+            "text": "He is nervous."
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i15:r3",
+            "text": "She is calm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте про колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i15:audio",
+            "transcript": "He is calm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-06:i15:r1",
+              "targetText": "He is calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i15:r2",
+              "targetText": "He is nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i15:r3",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте про колегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `nervous`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `nervous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте про колегу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-06:i16:p1",
+              "target": "bandage",
+              "meaningByLocale": {
+                "ru": "бинт, повязка",
+                "uk": "бинт, пов’язка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i16:p2",
+              "target": "medicine",
+              "meaningByLocale": {
+                "ru": "лекарство",
+                "uk": "ліки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i16:p3",
+              "target": "clipboard",
+              "meaningByLocale": {
+                "ru": "планшет с зажимом для бумаг",
+                "uk": "планшет із затискачем для паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-06:i16:p4",
+              "target": "excited",
+              "meaningByLocale": {
+                "ru": "радостно взволнованный",
+                "uk": "радісно схвильований"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bandage",
+            "medicine",
+            "clipboard",
+            "excited"
+          ],
+          "rightColumn": [
+            "бинт, пов’язка",
+            "ліки",
+            "планшет із затискачем для паперів",
+            "радісно схвильований"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Лікар просить ручку. Вона в подруги. Скажіть йому: «У неї є ручка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Лікар просить ручку. Вона в подруги. Скажіть йому: «У неї є ручка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-06:i17:audio",
+            "transcript": "She has a pen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has a pen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-06:word:thermometer",
+      "correctText": "thermometer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i01",
+      "correctText": "The nurse has a thermometer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i02",
+      "correctText": "I’m nervous.",
+      "correctResponseId": "en:lesson-05:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:word:bandage",
+      "correctText": "bandage",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i03",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:word:medicine",
+      "correctText": "medicine",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i05",
+      "correctText": "We have medicine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:word:clipboard",
+      "correctText": "clipboard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i06",
+      "correctText": "She has a clipboard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i07",
+      "correctText": "I’m nervous.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i09",
+      "correctText": "She has a pen.",
+      "correctResponseId": "en:lesson-05:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i11",
+      "correctText": "The doctor has a pen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i12",
+      "correctText": "The clinic is next to the petrol station.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i13",
+      "correctText": "I’m excited.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i14",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-06:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i15",
+      "correctText": "He is calm.",
+      "correctResponseId": "en:lesson-05:session-06:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i17",
+      "correctText": "She has a pen.",
+      "correctResponseId": null
+    }
+  ]
+}

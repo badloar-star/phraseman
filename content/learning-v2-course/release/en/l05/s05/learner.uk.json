@@ -4,29 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-05:i01",
+      "interactionId": "en:lesson-05:session-05:word:ruler",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ruler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-05:word:ruler:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ruler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-05:word:ruler:audio",
+          "transcript": "ruler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-05:word:ruler:r1",
+            "targetText": "ruler",
+            "meaningByLocale": {
+              "ru": "линейка. The drawer has a ruler. — «В ящике есть линейка». О плоской планке с делениями, по которой чертят прямые линии.",
+              "uk": "лінійка. The drawer has a ruler. — «У шухляді є лінійка». Про пласку планку з поділками, за якою креслять прямі лінії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ruler",
+          "definitionByLocale": {
+            "ru": "линейка. The drawer has a ruler. — «В ящике есть линейка». О плоской планке с делениями, по которой чертят прямые линии.",
+            "uk": "лінійка. The drawer has a ruler. — «У шухляді є лінійка». Про пласку планку з поділками, за якою креслять прямі лінії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Мені холодно» зі скороченням",
+      "prompt": "Подруга питає, що в шухляді. Скажіть їй повною фразою: «У шухляді є лінійка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Мені холодно» зі скороченням",
+      "accessibilityLabel": "Подруга питає, що в шухляді. Скажіть їй повною фразою: «У шухляді є лінійка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I'm cold.",
+        "targetPhrase": "The drawer has a ruler.",
         "localizedMeaning": {
-          "ru": "Скажите «Мне холодно» с сокращением",
-          "uk": "Скажіть «Мені холодно» зі скороченням"
+          "ru": "Подруга спрашивает, что в ящике. Скажите ей полной фразой: «В ящике есть линейка»",
+          "uk": "Подруга питає, що в шухляді. Скажіть їй повною фразою: «У шухляді є лінійка»"
         },
         "orderedTokens": [
-          "I'm",
-          "cold"
+          "The",
+          "drawer",
+          "has",
+          "a",
+          "ruler"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-05:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга питає, що в шухляді. Скажіть їй повною фразою: «У шухляді є лінійка»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `The drawer has a ruler.`",
+              "uk": "тут потрібно `has` — `The drawer has a ruler.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,51 +94,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-05:i02:r1",
-          "text": "drawer"
+          "text": "I’m cold."
         },
         {
           "responseId": "en:lesson-05:session-05:i02:r2",
-          "text": "drawers"
+          "text": "I’m hot."
         },
         {
           "responseId": "en:lesson-05:session-05:i02:r3",
-          "text": "door"
+          "text": "He’s cold."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-05:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-05:i02:audio",
-          "transcript": "drawer"
+          "transcript": "I’m cold."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-05:i02:r1",
-            "targetText": "drawer",
+            "targetText": "I’m cold.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-05:i02:r2",
-            "targetText": "drawers",
+            "targetText": "I’m hot.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-05:i02:r3",
-            "targetText": "door",
+            "targetText": "He’s cold.",
             "meaningByLocale": null
           }
         ],
@@ -89,19 +147,19 @@
           {
             "responseId": "en:lesson-05:session-05:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `drawer`, а в этом варианте — `drawers`.",
-              "uk": "У записі перше слово — `drawer`, а в цьому варіанті — `drawers`."
+              "ru": "В записи последнее слово — `cold`, а в этом варианте — `hot`.",
+              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `hot`."
             }
           },
           {
             "responseId": "en:lesson-05:session-05:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `drawer`, а в этом варианте — `door`.",
-              "uk": "У записі перше слово — `drawer`, а в цьому варіанті — `door`."
+              "ru": "В записи первое слово — `I’m`, а в этом варианте — `He’s`.",
+              "uk": "У записі перше слово — `I’m`, а в цьому варіанті — `He’s`."
             }
           }
         ],
@@ -111,68 +169,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-05:word:paper",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-05:word:paper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-05:word:paper:audio",
+          "transcript": "paper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-05:word:paper:r1",
+            "targetText": "paper",
+            "meaningByLocale": {
+              "ru": "бумага. The desk has paper. — «На столе есть бумага». О материале для письма и рисования; говорят про всю бумагу сразу, без a.",
+              "uk": "папір. The desk has paper. — «На столі є папір». Про матеріал для письма й малювання; кажуть про весь папір одразу, без a."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paper",
+          "definitionByLocale": {
+            "ru": "бумага. The desk has paper. — «На столе есть бумага». О материале для письма и рисования; говорят про всю бумагу сразу, без a.",
+            "uk": "папір. The desk has paper. — «На столі є папір». Про матеріал для письма й малювання; кажуть про весь папір одразу, без a."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-05:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть шухляду в меблях",
+      "prompt": "Подруга просить папір для запису. Виберіть форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-05:i03:r1",
-          "text": "drawer"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-05:i03:r2",
-          "text": "desk"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-05:i03:r3",
-          "text": "curtain"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть шухляду в меблях",
+      "accessibilityLabel": "Подруга просить папір для запису. Виберіть форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите выдвижной ящик в мебели",
-          "uk": "Назвіть шухляду в меблях"
+          "ru": "Подруга просит бумагу для записи. Выберите форму",
+          "uk": "Подруга просить папір для запису. Виберіть форму"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The desk ___ paper.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-05:i03:r1",
-            "text": "drawer"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-05:i03:r2",
-            "text": "desk"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-05:i03:r3",
-            "text": "curtain"
+            "text": "is"
           }
         ],
-        "testedDimension": "Назвіть шухляду в меблях",
+        "testedDimension": "Подруга просить папір для запису. Виберіть форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-05:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть шухляду в меблях",
+            "testedDimension": "Подруга просить папір для запису. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "`desk` — письменный стол; выдвижной ящик — `drawer`.",
-              "uk": "`desk` — письмовий стіл; шухляда — `drawer`."
+              "ru": "Стол один, как it: нужно has.",
+              "uk": "Стіл один, як it: потрібно has."
             }
           },
           {
             "responseId": "en:lesson-05:session-05:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть шухляду в меблях",
+            "testedDimension": "Подруга просить папір для запису. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "`curtain` — занавеска; выдвижной ящик — `drawer`.",
-              "uk": "`curtain` — завіска; шухляда — `drawer`."
+              "ru": "The desk is paper значило бы «Стол — бумага». На столе есть бумага — The desk has paper.",
+              "uk": "The desk is paper означало б «Стіл — папір». На столі є папір — The desk has paper."
             }
           }
         ]
@@ -181,7 +282,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -195,30 +296,461 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-05:i04:p1",
-            "target": "drawer",
+            "target": "ruler",
             "meaningByLocale": {
-              "ru": "выдвижной ящик",
-              "uk": "шухляда"
+              "ru": "линейка",
+              "uk": "лінійка"
             }
           },
           {
             "pairId": "en:lesson-05:session-05:i04:p2",
-            "target": "cold",
+            "target": "notepad",
             "meaningByLocale": {
-              "ru": "холодный",
-              "uk": "холодний"
+              "ru": "блокнот",
+              "uk": "блокнот"
             }
           },
           {
             "pairId": "en:lesson-05:session-05:i04:p3",
-            "target": "hot",
+            "target": "paper",
             "meaningByLocale": {
-              "ru": "горячий",
-              "uk": "гарячий"
+              "ru": "бумага",
+              "uk": "папір"
             }
           },
           {
             "pairId": "en:lesson-05:session-05:i04:p4",
+            "target": "eraser",
+            "meaningByLocale": {
+              "ru": "ластик",
+              "uk": "гумка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ruler",
+          "notepad",
+          "paper",
+          "eraser"
+        ],
+        "rightColumn": [
+          "лінійка",
+          "блокнот",
+          "папір",
+          "гумка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:word:notepad",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — notepad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-05:word:notepad:audio"
+      ],
+      "accessibilityLabel": "Картка слова — notepad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-05:word:notepad:audio",
+          "transcript": "notepad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-05:word:notepad:r1",
+            "targetText": "notepad",
+            "meaningByLocale": {
+              "ru": "блокнот. She has a notepad. — «У неё есть блокнот». О небольшой тетради, в которую быстро записывают заметки.",
+              "uk": "блокнот. She has a notepad. — «У неї є блокнот». Про невеликий зошит, у який швидко записують нотатки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "notepad",
+          "definitionByLocale": {
+            "ru": "блокнот. She has a notepad. — «У неё есть блокнот». О небольшой тетради, в которую быстро записывают заметки.",
+            "uk": "блокнот. She has a notepad. — «У неї є блокнот». Про невеликий зошит, у який швидко записують нотатки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте працівницю й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте працівницю й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-05:i05:audio",
+          "transcript": "She has a notepad."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has a notepad.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "a",
+          "notepad"
+        ],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-05:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте працівницю й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `She has a notepad.`",
+              "uk": "тут потрібно `has` — `She has a notepad.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:word:eraser",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eraser",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-05:word:eraser:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eraser",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-05:word:eraser:audio",
+          "transcript": "eraser"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-05:word:eraser:r1",
+            "targetText": "eraser",
+            "meaningByLocale": {
+              "ru": "ластик. The drawer has an eraser. — «В ящике есть ластик». О маленькой резинке, которой стирают карандаш. Перед eraser ставят an: слово начинается с гласного звука.",
+              "uk": "гумка. The drawer has an eraser. — «У шухляді є гумка». Про маленьку гумку, якою стирають олівець. Перед eraser ставлять an: слово починається з голосного звуку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eraser",
+          "definitionByLocale": {
+            "ru": "ластик. The drawer has an eraser. — «В ящике есть ластик». О маленькой резинке, которой стирают карандаш. Перед eraser ставят an: слово начинается с гласного звука.",
+            "uk": "гумка. The drawer has an eraser. — «У шухляді є гумка». Про маленьку гумку, якою стирають олівець. Перед eraser ставлять an: слово починається з голосного звуку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:i06",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли в шухляді маленьку гумку для олівця. Скажіть подрузі повною фразою: «У шухляді є гумка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли в шухляді маленьку гумку для олівця. Скажіть подрузі повною фразою: «У шухляді є гумка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The drawer has an eraser.",
+        "localizedMeaning": {
+          "ru": "Вы нашли в ящике маленькую резинку для карандаша. Скажите подруге полной фразой: «В ящике есть ластик»",
+          "uk": "Ви знайшли в шухляді маленьку гумку для олівця. Скажіть подрузі повною фразою: «У шухляді є гумка»"
+        },
+        "orderedTokens": [
+          "The",
+          "drawer",
+          "has",
+          "an",
+          "eraser"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-05:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли в шухляді маленьку гумку для олівця. Скажіть подрузі повною фразою: «У шухляді є гумка»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `an` — `The drawer has an eraser.`",
+              "uk": "тут потрібно `an` — `The drawer has an eraser.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви зігрілися в кімнаті. Скажіть «Мені тепло» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Ви зігрілися в кімнаті. Скажіть «Мені тепло» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-05:i07:audio",
+          "transcript": "I’m warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I’m warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга змерзла надворі. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-05:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-05:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-05:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга змерзла надворі. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга замёрзла на улице. Выберите форму",
+          "uk": "Подруга змерзла надворі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-05:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-05:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-05:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Подруга змерзла надворі. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга змерзла надворі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Здесь состояние: She is cold.",
+              "uk": "Тут стан: She is cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга змерзла надворі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С she нужно is, а не are.",
+              "uk": "З she потрібно is, а не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де мапа",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-05:i09:r1",
+          "text": "The map is in the drawer."
+        },
+        {
+          "responseId": "en:lesson-05:session-05:i09:r2",
+          "text": "The map is under the drawer."
+        },
+        {
+          "responseId": "en:lesson-05:session-05:i09:r3",
+          "text": "The map is in the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де мапа",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-05:i09:audio",
+          "transcript": "The map is in the drawer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-05:i09:r1",
+            "targetText": "The map is in the drawer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-05:i09:r2",
+            "targetText": "The map is under the drawer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-05:i09:r3",
+            "targetText": "The map is in the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де мапа",
+            "feedbackByLocale": {
+              "ru": "В записи `in` — «внутри», а в этом варианте `under` — «под».",
+              "uk": "У записі `in` — «всередині», а в цьому варіанті `under` — «під»."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де мапа",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `drawer`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `drawer`, а в цьому варіанті — `bag`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-05:i10:p1",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "выдвижной ящик",
+              "uk": "висувна шухляда"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-05:i10:p2",
+            "target": "map",
+            "meaningByLocale": {
+              "ru": "карта",
+              "uk": "мапа"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-05:i10:p3",
+            "target": "hot",
+            "meaningByLocale": {
+              "ru": "горячий, жаркий",
+              "uk": "гарячий, спекотний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-05:i10:p4",
             "target": "warm",
             "meaningByLocale": {
               "ru": "тёплый",
@@ -228,14 +760,14 @@
         ],
         "leftColumn": [
           "drawer",
-          "cold",
+          "map",
           "hot",
           "warm"
         ],
         "rightColumn": [
-          "шухляда",
-          "холодний",
-          "гарячий",
+          "висувна шухляда",
+          "мапа",
+          "гарячий, спекотний",
           "теплий"
         ],
         "pairingKey": "pair_id",
@@ -253,22 +785,22 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-05:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "interactionId": "en:lesson-05:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-05:session-05:i05:audio"
+        "en:lesson-05:session-05:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-05:session-05:i05:audio",
+          "audioTargetId": "en:lesson-05:session-05:i11:audio",
           "transcript": "The desk has a drawer."
         },
         "slowReferenceAudio": null,
@@ -280,327 +812,20 @@
           "a",
           "drawer"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-05:session-05:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "У подруги є карта. Скажіть «У неї є карта»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "У подруги є карта. Скажіть «У неї є карта»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She has a map.",
-        "localizedMeaning": {
-          "ru": "У подруги есть карта. Скажите «У неё есть карта»",
-          "uk": "У подруги є карта. Скажіть «У неї є карта»"
-        },
-        "orderedTokens": [
-          "She",
-          "has",
-          "a",
-          "map"
+        "authoredDistractorTokens": [
+          "have"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-05:session-05:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "У кімнаті задушливо. Скажіть «Мені спекотно» зі скороченням",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-05:session-05:i07:audio"
-      ],
-      "accessibilityLabel": "У кімнаті задушливо. Скажіть «Мені спекотно» зі скороченням",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-05:session-05:i07:audio",
-          "transcript": "I'm hot."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I'm hot.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-05:session-05:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Ви з другом зігрілися. Скажіть «Нам тепло»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-05:session-05:i08:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-05:session-05:i08:r2",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-05:session-05:i08:r3",
-          "text": "is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви з другом зігрілися. Скажіть «Нам тепло»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы с другом согрелись. Скажите «Нам тепло»",
-          "uk": "Ви з другом зігрілися. Скажіть «Нам тепло»"
-        },
-        "gappedTargetPhrase": "We ___ warm.",
-        "gapOptions": [
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-05:session-05:i08:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-05:session-05:i08:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-05:session-05:i08:r3",
-            "text": "is"
-          }
-        ],
-        "testedDimension": "Ви з другом зігрілися. Скажіть «Нам тепло»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-05:session-05:i08:r2",
+            "responseId": "en:lesson-05:session-05:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Ви з другом зігрілися. Скажіть «Нам тепло»",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "Для ощущения здесь нужно `We are warm`.",
-              "uk": "Для відчуття тут потрібне `We are warm`."
-            }
-          },
-          {
-            "responseId": "en:lesson-05:session-05:i08:r3",
-            "correct": false,
-            "testedDimension": "Ви з другом зігрілися. Скажіть «Нам тепло»",
-            "feedbackByLocale": {
-              "ru": "С `We` нужно `are`.",
-              "uk": "З `We` потрібне `are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-05:session-05:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, де карта",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-05:session-05:i09:r1",
-          "text": "The map is in the drawer."
-        },
-        {
-          "responseId": "en:lesson-05:session-05:i09:r2",
-          "text": "The map is in the bag."
-        },
-        {
-          "responseId": "en:lesson-05:session-05:i09:r3",
-          "text": "The map is in the box."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-05:session-05:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте, де карта",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-05:session-05:i09:audio",
-          "transcript": "The map is in the drawer."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-05:session-05:i09:r1",
-            "targetText": "The map is in the drawer.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-05:session-05:i09:r2",
-            "targetText": "The map is in the bag.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-05:session-05:i09:r3",
-            "targetText": "The map is in the box.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-05:session-05:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, де карта",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `drawer`, а в этом варианте — `bag`.",
-              "uk": "У записі останнє слово — `drawer`, а в цьому варіанті — `bag`."
-            }
-          },
-          {
-            "responseId": "en:lesson-05:session-05:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, де карта",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `drawer`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `drawer`, а в цьому варіанті — `box`."
+              "ru": "здесь нужно `has` — `The desk has a drawer.`",
+              "uk": "тут потрібно `has` — `The desk has a drawer.`"
             }
           }
         ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-05:session-05:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
-      "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-05:session-05:i10:p1",
-            "target": "drawer",
-            "meaningByLocale": {
-              "ru": "выдвижной ящик",
-              "uk": "шухляда"
-            }
-          },
-          {
-            "pairId": "en:lesson-05:session-05:i10:p2",
-            "target": "map",
-            "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
-            }
-          },
-          {
-            "pairId": "en:lesson-05:session-05:i10:p3",
-            "target": "supermarket",
-            "meaningByLocale": {
-              "ru": "супермаркет",
-              "uk": "супермаркет"
-            }
-          },
-          {
-            "pairId": "en:lesson-05:session-05:i10:p4",
-            "target": "police station",
-            "meaningByLocale": {
-              "ru": "полицейский участок",
-              "uk": "поліцейський відділок"
-            }
-          }
-        ],
-        "leftColumn": [
-          "drawer",
-          "map",
-          "supermarket",
-          "police station"
-        ],
-        "rightColumn": [
-          "шухляда",
-          "карта",
-          "супермаркет",
-          "поліцейський відділок"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-05:session-05:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-05:session-05:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-05:session-05:i11:audio",
-          "transcript": "They have drawers."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They have drawers.",
-        "orderedTokens": [
-          "They",
-          "have",
-          "drawers"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -610,21 +835,21 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Супермаркет поруч із поліцейським відділком. Скажіть, де він",
+      "prompt": "Подруга шукає магазин. Скажіть їй повною фразою: «Супермаркет поруч із поліційною дільницею»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Супермаркет поруч із поліцейським відділком. Скажіть, де він",
+      "accessibilityLabel": "Подруга шукає магазин. Скажіть їй повною фразою: «Супермаркет поруч із поліційною дільницею»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "The supermarket is next to the police station.",
         "localizedMeaning": {
-          "ru": "Супермаркет рядом с полицейским участком. Скажите, где он",
-          "uk": "Супермаркет поруч із поліцейським відділком. Скажіть, де він"
+          "ru": "Подруга ищет магазин. Скажите ей полной фразой: «Супермаркет рядом с полицейским участком»",
+          "uk": "Подруга шукає магазин. Скажіть їй повною фразою: «Супермаркет поруч із поліційною дільницею»"
         },
         "orderedTokens": [
           "The",
@@ -643,7 +868,7 @@
           {
             "responseId": "en:lesson-05:session-05:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Супермаркет поруч із поліцейським відділком. Скажіть, де він",
+            "testedDimension": "Подруга шукає магазин. Скажіть їй повною фразою: «Супермаркет поруч із поліційною дільницею»",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `The supermarket is next to the police station.`",
               "uk": "тут потрібно `is` — `The supermarket is next to the police station.`"
@@ -659,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Повідомте другу «У мене є карта»",
+      "prompt": "У кімнаті задушливо. Скажіть про подругу «Їй жарко» зі скороченням",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-05:i13:audio"
       ],
-      "accessibilityLabel": "Повідомте другу «У мене є карта»",
+      "accessibilityLabel": "У кімнаті задушливо. Скажіть про подругу «Їй жарко» зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-05:i13:audio",
-          "transcript": "I have a map."
+          "transcript": "She’s hot."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have a map.",
+        "targetPhrase": "She’s hot.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -692,11 +917,11 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У письмового столу є шухляди. Виберіть форму",
+      "prompt": "У стола є висувна шухляда. Виберіть форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-05:i14:r1",
@@ -713,14 +938,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У письмового столу є шухляди. Виберіть форму",
+      "accessibilityLabel": "У стола є висувна шухляда. Виберіть форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "У письменного стола есть ящики. Выберите форму",
-          "uk": "У письмового столу є шухляди. Виберіть форму"
+          "ru": "У стола есть выдвижной ящик. Выберите форму",
+          "uk": "У стола є висувна шухляда. Виберіть форму"
         },
-        "gappedTargetPhrase": "The desk ___ drawers.",
+        "gappedTargetPhrase": "The desk ___ a drawer.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-05:i14:r1",
@@ -735,24 +960,24 @@
             "text": "is"
           }
         ],
-        "testedDimension": "У письмового столу є шухляди. Виберіть форму",
+        "testedDimension": "У стола є висувна шухляда. Виберіть форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-05:i14:r2",
             "correct": false,
-            "testedDimension": "У письмового столу є шухляди. Виберіть форму",
+            "testedDimension": "У стола є висувна шухляда. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Один стол: `has`; число ящиков этого не меняет.",
-              "uk": "Один стіл: `has`; кількість шухляд цього не змінює."
+              "ru": "Стол один, как it: нужно has.",
+              "uk": "Стіл один, як it: потрібно has."
             }
           },
           {
             "responseId": "en:lesson-05:session-05:i14:r3",
             "correct": false,
-            "testedDimension": "У письмового столу є шухляди. Виберіть форму",
+            "testedDimension": "У стола є висувна шухляда. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Речь о том, что есть у стола: `has drawers`.",
-              "uk": "Ідеться про те, що є у столу: `has drawers`."
+              "ru": "Речь о том, что есть у стола: has a drawer.",
+              "uk": "Мова про те, що є в стола: has a drawer."
             }
           }
         ]
@@ -761,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, як почувається подруга",
+      "prompt": "Послухайте, у кого мапа",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-05:i15:r1",
-          "text": "She's cold."
+          "text": "She has a map."
         },
         {
           "responseId": "en:lesson-05:session-05:i15:r2",
-          "text": "She's hot."
+          "text": "She has a pen."
         },
         {
           "responseId": "en:lesson-05:session-05:i15:r3",
-          "text": "He's cold."
+          "text": "He has a map."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, як почувається подруга",
+      "accessibilityLabel": "Послухайте, у кого мапа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-05:i15:audio",
-          "transcript": "She's cold."
+          "transcript": "She has a map."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-05:i15:r1",
-            "targetText": "She's cold.",
+            "targetText": "She has a map.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-05:i15:r2",
-            "targetText": "She's hot.",
+            "targetText": "She has a pen.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-05:i15:r3",
-            "targetText": "He's cold.",
+            "targetText": "He has a map.",
             "meaningByLocale": null
           }
         ],
@@ -814,19 +1039,19 @@
           {
             "responseId": "en:lesson-05:session-05:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, як почувається подруга",
+            "testedDimension": "Послухайте, у кого мапа",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cold`, а в этом варианте — `hot`.",
-              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `hot`."
+              "ru": "В записи последнее слово — `map`, а в этом варианте — `pen`.",
+              "uk": "У записі останнє слово — `map`, а в цьому варіанті — `pen`."
             }
           },
           {
             "responseId": "en:lesson-05:session-05:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, як почувається подруга",
+            "testedDimension": "Послухайте, у кого мапа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
-              "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
             }
           }
         ],
@@ -837,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -851,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-05:i16:p1",
-            "target": "drawer",
+            "target": "paper",
             "meaningByLocale": {
-              "ru": "выдвижной ящик",
-              "uk": "шухляда"
+              "ru": "бумага",
+              "uk": "папір"
             }
           },
           {
             "pairId": "en:lesson-05:session-05:i16:p2",
-            "target": "map",
+            "target": "eraser",
             "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
+              "ru": "ластик",
+              "uk": "гумка"
             }
           },
           {
             "pairId": "en:lesson-05:session-05:i16:p3",
-            "target": "supermarket",
+            "target": "cold",
             "meaningByLocale": {
-              "ru": "супермаркет",
-              "uk": "супермаркет"
+              "ru": "холодный",
+              "uk": "холодний"
             }
           },
           {
             "pairId": "en:lesson-05:session-05:i16:p4",
-            "target": "police station",
+            "target": "hot",
             "meaningByLocale": {
-              "ru": "полицейский участок",
-              "uk": "поліцейський відділок"
+              "ru": "горячий, жаркий",
+              "uk": "гарячий, спекотний"
             }
           }
         ],
         "leftColumn": [
-          "drawer",
-          "map",
-          "supermarket",
-          "police station"
+          "paper",
+          "eraser",
+          "cold",
+          "hot"
         ],
         "rightColumn": [
-          "шухляда",
-          "карта",
-          "супермаркет",
-          "поліцейський відділок"
+          "папір",
+          "гумка",
+          "холодний",
+          "гарячий, спекотний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -910,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-05:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг обирає письмовий стіл. У цього столу є одна шухляда. Повідомте «У письмового столу є шухляда»",
+      "prompt": "Подруга шукає гумку. Скажіть їй: «У шухляді є гумка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-05:i17:audio"
       ],
-      "accessibilityLabel": "Друг обирає письмовий стіл. У цього столу є одна шухляда. Повідомте «У письмового столу є шухляда»",
+      "accessibilityLabel": "Подруга шукає гумку. Скажіть їй: «У шухляді є гумка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-05:i17:audio",
-          "transcript": "The desk has a drawer."
+          "transcript": "The drawer has an eraser."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The desk has a drawer.",
+        "targetPhrase": "The drawer has an eraser.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -950,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "995e23ccec6b9850f3a1fe5dd643ef1b53e8896a3c3e28fc90c6b4b26f80359d"
+  "learnerFingerprint": "b57a74974f6745c8a1e2f9f8984be711d9911769613369c497160166496403cb"
 }

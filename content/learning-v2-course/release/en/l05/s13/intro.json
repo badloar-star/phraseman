@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-13",
   "learningOutcomeByLocale": {
-    "ru": "назвать зонт, его владельца и размер",
-    "uk": "назвати парасолю, її власника й розмір"
+    "ru": "назвать родственника со словом-владельцем и сказать, что у него есть: My uncle has a dog",
+    "uk": "назвати родича зі словом-власником і сказати, що в нього є: My uncle has a dog"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Без мокрых плеч",
-        "uk": "Без мокрих плечей"
+        "ru": "Знакомство с дядей",
+        "uk": "Знайомство з дядьком"
       },
       "bodyByLocale": {
-        "ru": "`umbrella` — «зонт». Один зонт — `an umbrella`: перед начальным звуком слова нужно `an`, не `a`. `I have an umbrella` — «У меня есть зонт». `my umbrella` — «мой зонт»: перед `my` уже не нужны ни `a`, ни `an`. Зонт в ящике отлично остаётся сухим; вы без него — не очень.",
-        "uk": "`umbrella` — «парасоля». Одна парасоля — `an umbrella`: перед початковим звуком слова потрібне `an`, не `a`. `I have an umbrella` — «У мене є парасоля». `my umbrella` — «моя парасоля»: перед `my` уже не потрібні ні `a`, ні `an`. Парасоля в шухляді чудово залишається сухою; ви без неї — не дуже."
+        "ru": "В воскресенье вы встречаете семью на обед. Приезжает брат вашей мамы с большим тортом, и вы знакомите его с подругой. uncle — «дядя». О своём дяде говорим my: This is my uncle — «Это мой дядя». Перед my не ставим a и the. Дядя подруги — her uncle.",
+        "uk": "У неділю ви зустрічаєте родину на обід. Приїжджає брат вашої мами з великим тортом, і ви знайомите його з подругою. uncle — «дядько». Про свого дядька кажемо my: This is my uncle — «Це мій дядько». Перед my не ставимо a і the. Дядько подруги — her uncle."
       },
       "question": {
         "interactionId": "en:lesson-05:session-13:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что у вас есть зонт.",
-          "uk": "Скажіть, що у вас є парасоля."
+          "ru": "Вы знакомите дядю с подругой. Скажите ей: «Это мой дядя».",
+          "uk": "Ви знайомите дядька з подругою. Скажіть їй: «Це мій дядько»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-13:intro1:r1",
-              "text": "I have an umbrella."
+              "text": "This is my uncle."
             },
             {
               "responseId": "en:lesson-05:session-13:intro1:r2",
-              "text": "I have a umbrella."
+              "text": "This is your uncle."
             },
             {
               "responseId": "en:lesson-05:session-13:intro1:r3",
-              "text": "I has an umbrella."
+              "text": "This are my uncle."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-13:intro1:r1",
-              "text": "I have an umbrella."
+              "text": "This is my uncle."
             },
             {
               "responseId": "en:lesson-05:session-13:intro1:r2",
-              "text": "I have a umbrella."
+              "text": "This is your uncle."
             },
             {
               "responseId": "en:lesson-05:session-13:intro1:r3",
-              "text": "I has an umbrella."
+              "text": "This are my uncle."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что у вас есть зонт.",
-          "uk": "Скажіть, що у вас є парасоля."
+          "ru": "Вы знакомите дядю с подругой. Скажите ей: «Это мой дядя».",
+          "uk": "Ви знайомите дядька з подругою. Скажіть їй: «Це мій дядько»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Маленький и большой",
-        "uk": "Маленький і великий"
+        "ru": "Гостья с тётей",
+        "uk": "Гостя з тіткою"
       },
       "bodyByLocale": {
-        "ru": "`small` — «маленький», `big` — «большой», `clean` — «чистый». `My umbrella is small` — «Мой зонт маленький». `Her umbrella is big` — «Её зонт большой». Смотрим, чей зонт: женщины — `her`, мужчины — `his`. `Our window is clean` — «Наше окно чистое». Владельцев несколько, окно одно, поэтому `is`.",
-        "uk": "`small` — «маленький», `big` — «великий», `clean` — «чистий». `My umbrella is small` — «Моя парасоля маленька». `Her umbrella is big` — «Її парасоля велика». Дивимося, чия парасоля: жінки — `her`, чоловіка — `his`. `Our window is clean` — «Наше вікно чисте». Власників кілька, вікно одне, тому `is`."
+        "ru": "К обеду пришла ваша подруга, и вместе с ней её тётя. Тётя сразу ушла на кухню помогать, а вы говорите об этом брату. aunt — «тётя». Тётя подруги, значит, her aunt: Her aunt is in the kitchen — «Её тётя на кухне». О своей тёте сказали бы my aunt.",
+        "uk": "До обіду прийшла ваша подруга, а разом із нею її тітка. Тітка одразу пішла на кухню допомагати, а ви говорите про це братові. aunt — «тітка». Тітка подруги, отже, her aunt: Her aunt is in the kitchen — «Її тітка на кухні». Про свою тітку сказали б my aunt."
       },
       "question": {
         "interactionId": "en:lesson-05:session-13:intro2:q",
         "promptByLocale": {
-          "ru": "Зонт вашей подруги большой. Выберите фразу.",
-          "uk": "Парасоля вашої подруги велика. Виберіть фразу."
+          "ru": "К обеду пришла подруга со своей тётей. Скажите брату, что её тётя на кухне.",
+          "uk": "До обіду прийшла подруга зі своєю тіткою. Скажіть братові, що її тітка на кухні."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-13:intro2:r1",
-              "text": "Her umbrella is big."
+              "text": "Her aunt is in the kitchen."
             },
             {
               "responseId": "en:lesson-05:session-13:intro2:r2",
-              "text": "His umbrella is big."
+              "text": "His aunt is in the kitchen."
             },
             {
               "responseId": "en:lesson-05:session-13:intro2:r3",
-              "text": "Her umbrella are big."
+              "text": "Her aunt are in the kitchen."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-13:intro2:r1",
-              "text": "Her umbrella is big."
+              "text": "Her aunt is in the kitchen."
             },
             {
               "responseId": "en:lesson-05:session-13:intro2:r2",
-              "text": "His umbrella is big."
+              "text": "His aunt is in the kitchen."
             },
             {
               "responseId": "en:lesson-05:session-13:intro2:r3",
-              "text": "Her umbrella are big."
+              "text": "Her aunt are in the kitchen."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Зонт вашей подруги большой. Выберите фразу.",
-          "uk": "Парасоля вашої подруги велика. Виберіть фразу."
+          "ru": "К обеду пришла подруга со своей тётей. Скажите брату, что её тётя на кухне.",
+          "uk": "До обіду прийшла подруга зі своєю тіткою. Скажіть братові, що її тітка на кухні."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Окно, ящик и такси",
-        "uk": "Вікно, шухляда й таксі"
+        "ru": "Мальчик во дворе",
+        "uk": "Хлопчик на подвір’ї"
       },
       "bodyByLocale": {
-        "ru": "`window` — «окно», `drawer` — «выдвижной ящик», `taxi` — «такси». `The umbrella is in my drawer` — «Зонт в моём ящике». `Our taxi is here` — «Наше такси здесь»: такси, которое приехало за нами. `Their window is clean` — «Их окно чистое». Перед названием говорим, с кем связана вещь: `my drawer`, `our taxi`, `their window`.",
-        "uk": "`window` — «вікно», `drawer` — «шухляда», `taxi` — «таксі». `The umbrella is in my drawer` — «Парасоля в моїй шухляді». `Our taxi is here` — «Наше таксі тут»: таксі, яке приїхало по нас. `Their window is clean` — «Їхнє вікно чисте». Перед назвою кажемо, з ким пов’язана річ: `my drawer`, `our taxi`, `their window`."
+        "ru": "После обеда дети играют во дворе, и подруга спрашивает, кто тот мальчик у калитки. Это сын вашей тёти. cousin — «двоюродный брат или сестра». Слово одно и для мальчика, и для девочки: He is my cousin — «Он мой двоюродный брат». Двоюродная сестра подруги — her cousin.",
+        "uk": "Після обіду діти граються на подвір’ї, і подруга питає, хто той хлопчик біля хвіртки. Це син вашої тітки. cousin — «двоюрідний брат або сестра». Слово одне і для хлопчика, і для дівчинки: He is my cousin — «Він мій двоюрідний брат». Двоюрідна сестра подруги — her cousin."
       },
       "question": {
         "interactionId": "en:lesson-05:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "Вы нашли зонт внутри собственного ящика. Выберите фразу.",
-          "uk": "Ви знайшли парасолю всередині власної шухляди. Виберіть фразу."
+          "ru": "Подруга спрашивает про мальчика у калитки. Он сын вашей тёти. Скажите ей: «Он мой двоюродный брат».",
+          "uk": "Подруга питає про хлопчика біля хвіртки. Він син вашої тітки. Скажіть їй: «Він мій двоюрідний брат»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-13:intro3:r1",
-              "text": "The umbrella is in my drawer."
+              "text": "He is my cousin."
             },
             {
               "responseId": "en:lesson-05:session-13:intro3:r2",
-              "text": "The umbrella is under my drawer."
+              "text": "She is my cousin."
             },
             {
               "responseId": "en:lesson-05:session-13:intro3:r3",
-              "text": "The umbrella is in your drawer."
+              "text": "He is your cousin."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-13:intro3:r1",
-              "text": "The umbrella is in my drawer."
+              "text": "He is my cousin."
             },
             {
               "responseId": "en:lesson-05:session-13:intro3:r2",
-              "text": "The umbrella is under my drawer."
+              "text": "She is my cousin."
             },
             {
               "responseId": "en:lesson-05:session-13:intro3:r3",
-              "text": "The umbrella is in your drawer."
+              "text": "He is your cousin."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы нашли зонт внутри собственного ящика. Выберите фразу.",
-          "uk": "Ви знайшли парасолю всередині власної шухляди. Виберіть фразу."
+          "ru": "Подруга спрашивает про мальчика у калитки. Он сын вашей тёти. Скажите ей: «Он мой двоюродный брат».",
+          "uk": "Подруга питає про хлопчика біля хвіртки. Він син вашої тітки. Скажіть їй: «Він мій двоюрідний брат»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7d31c97a85f96191989b01c13a6b1785bd3e5a3d802f521bd243dea4dddd3f42"
+  "introFingerprint": "77dc7bb03973dcf9d3c7255545ab8e9c47ae2c633d88aae10a7142b1c03e6ed6"
 }

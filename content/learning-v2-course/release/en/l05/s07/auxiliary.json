@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-07:intro1:r2": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "С I нужно have, а не has.",
+          "uk": "З I потрібно have, а не has."
         },
         "en:lesson-05:session-07:intro1:r3": {
-          "ru": "Один пульт: `a remote`.",
-          "uk": "Один пульт: `a remote`."
+          "ru": "Попкорн называют вообще, а не по штуке, поэтому a не нужно.",
+          "uk": "Попкорн називають узагалі, а не поштучно, тому a не потрібно."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-07:intro2:r2": {
-          "ru": "`angry` — злой; здесь страшно: `scared`.",
-          "uk": "`angry` — злий; тут страшно: `scared`."
+          "ru": "С she нужно has, а не have.",
+          "uk": "З she потрібно has, а не have."
         },
         "en:lesson-05:session-07:intro2:r3": {
-          "ru": "Для этого состояния нужно `I’m scared`.",
-          "uk": "Для цього стану потрібне `I’m scared`."
+          "ru": "Это значило бы «Она фильм». Чтобы сказать «У неё есть фильм», нужно has.",
+          "uk": "Це означало б «Вона фільм». Щоб сказати «У неї є фільм», потрібно has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-07:intro3:r2": {
-          "ru": "`in` — внутри; здесь рядом: `next to`.",
-          "uk": "`in` — усередині; тут поруч: `next to`."
+          "ru": "Это значило бы «Он перекус». Чтобы сказать «У него есть перекус», нужно has.",
+          "uk": "Це означало б «Він перекус». Щоб сказати «У нього є перекус», потрібно has."
         },
         "en:lesson-05:session-07:intro3:r3": {
-          "ru": "Один пульт: `The remote is`.",
-          "uk": "Один пульт: `The remote is`."
+          "ru": "С he нужно has, а не have.",
+          "uk": "З he потрібно has, а не have."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c8d63d47adc160490df14ad189adc3b6bea68e022c33b88f325965aca9a99a39"
+  "auxiliaryFingerprint": "570ca9675892f28bbbac553cd02a03d070f156cfb1df1225f9e1a396b49ee6df"
 }

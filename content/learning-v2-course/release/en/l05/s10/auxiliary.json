@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-10:intro1:r2": {
-          "ru": "Перед `my pocket` не нужно `a`.",
-          "uk": "Перед `my pocket` не потрібне `a`."
+          "ru": "on — «на», а билет внутри кармана: нужно in.",
+          "uk": "on — «на», а квиток усередині кишені: потрібно in."
         },
         "en:lesson-05:session-10:intro1:r3": {
-          "ru": "`your` — твоём / вашем; о своём кармане здесь `my`.",
-          "uk": "`your` — твоїй / вашій; про свою кишеню тут `my`."
+          "ru": "Перед my не ставим the: my уже показывает, чей карман.",
+          "uk": "Перед my не ставимо the: my уже показує, чия кишеня."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-10:intro2:r2": {
-          "ru": "`their` — их; наш — `our`.",
-          "uk": "`their` — їхній; наш — `our`."
+          "ru": "my и your поменялись местами: салфетка подруги — your, а карман ваш — my.",
+          "uk": "my і your помінялися місцями: серветка подруги — your, а кишеня ваша — my."
         },
         "en:lesson-05:session-10:intro2:r3": {
-          "ru": "Один друг: `friend is`.",
-          "uk": "Один друг: `friend is`."
+          "ru": "Салфетка одна, поэтому нужно is, а не are.",
+          "uk": "Серветка одна, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-10:intro3:r2": {
-          "ru": "`it’s` — `it is`; здесь нужно `its lock`.",
-          "uk": "`it’s` — `it is`; тут потрібне `its lock`."
+          "ru": "Наушники — пара, поэтому нужно are, а не is.",
+          "uk": "Навушники — пара, тому потрібно are, а не is."
         },
         "en:lesson-05:session-10:intro3:r3": {
-          "ru": "`their` — их; для одной двери, названной `it`, нужно `its`.",
-          "uk": "Для одних дверей, названих англійською `it`, потрібне `its`, а не `their`."
+          "ru": "his — его, а вы говорите с братом: нужно your.",
+          "uk": "his — його, а ви говорите з братом: потрібно your."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8f5be33b64a14d06d582678f3aa13b64baee25d5303aea0b6b13bf6967a3f220"
+  "auxiliaryFingerprint": "f8d760c91ad89602d100feb6c4d97df33f922eb95d22fc17a2fdf0babe1f7772"
 }

@@ -1,137 +1,154 @@
-# Английский · Урок 5 · Занятие 14 — Чемодан после дороги
+# Английский · Урок 5 · Занятие 14 — Щенок соседки
 
-**Ситуация.** После поездки вы разбираете чемоданы в комнате. Один грязный, другой ещё открыт. На картинке рядом показана прачечная самообслуживания, где можно постирать одежду.
+**Ситуация.** Во дворе гуляет соседка с маленьким щенком, и вы с братом его разглядываете. О человеке говорим her, his, their, а о щенке и других вещах, которых называем it, — its. Слово its пишется без апострофа.
 
-**Что вы освоите:** назвать чемодан, его владельца и состояние
-**Новые слова:** suitcase
+**Что вы освоите:** сказать «его», «её» о щенке или вещи словом its и не путать его с It’s
+**Новые слова:** puppy, collar, tail, leash
+**Возвращаются:** yard, bench, bag, dog, bowl, long, red, blue
 
 ---
 
 ## Интро 1
 
-### Для вещей в дорогу
+### Чей щенок
 
-`suitcase` — «чемодан». `my suitcase` — «мой чемодан», `your suitcase` — «твой / ваш чемодан». `This is my suitcase` — «Это мой чемодан». Перед `my suitcase` не ставим `a` или `the`. Чемодан легко закрывается, пока все вещи ещё на кровати.
+Во дворе соседка гуляет с маленькой собакой, которая только научилась бегать. Ваш брат остановился рядом и спрашивает, чья она. puppy — «щенок». Щенок принадлежит соседке, значит, her puppy: This is her puppy — «Это её щенок». Про щенка соседа-мужчины сказали бы his puppy.
 
-**Покажите свой чемодан.**
+**Брат спрашивает про щенка во дворе. Он принадлежит соседке. Скажите ему, что это её щенок.**
 
-- ✅ **This is my suitcase.**
-- ❌ This is a my suitcase. — *Перед `my suitcase` не нужно `a`.*
-- ❌ This is your suitcase. — *`your` — твой / ваш; мой — `my`.*
+- ✅ **This is her puppy.**
+- ❌ This is his puppy. — *his — его, а хозяйка щенка женщина: нужно her.*
+- ❌ This is she puppy. — *Перед названием нужно her, а не she.*
 
 ---
 
 ## Интро 2
 
-### Открыт или закрыт
+### Красный ошейник
 
-`dirty` — «грязный», `open` — «открытый», `closed` — «закрытый». `Her suitcase is dirty` — «Её чемодан грязный». `His suitcase is open` — «Его чемодан открыт». `My suitcase is closed` — «Мой чемодан закрыт». `his` и `her` выбираем по владельцу, а не по слову «чемодан».
+У щенка на шее яркая лента с застёжкой, и брат хочет рассмотреть её поближе. collar — «ошейник». Щенка называем it, поэтому ошейник — its collar: Its collar is red — «Его ошейник красный». В слове its нет апострофа: It’s — это it is. Перед collar не нужны a и the.
 
-**Чемодан вашего друга открыт. Выберите описание.**
+**Брат разглядывает ошейник щенка. Он красный. Скажите ему: «Его ошейник красный».**
 
-- ✅ **His suitcase is open.**
-- ❌ Her suitcase is open. — *`her` — её; здесь его: `his`.*
-- ❌ His suitcase are open. — *Один чемодан: `suitcase is`.*
+- ✅ **Its collar is red.**
+- ❌ It’s collar is red. — *It’s — это it is; перед ошейником нужно its без апострофа.*
+- ❌ Its collar are red. — *Ошейник один, поэтому нужно is, а не are.*
 
 ---
 
 ## Интро 3
 
-### Картинка на стене
+### Хвост щенка
 
-`picture` — «картинка», `laundrette` — «прачечная самообслуживания», `ceiling` — «потолок». `Their picture is on the wall` — «Их картинка на стене». `The laundrette is open` — «Прачечная открыта». `Our ceiling is white` — «Наш потолок белый». Даже если владельцев несколько, одна картинка или один потолок требуют `is`.
+Щенок радуется встрече и машет хвостом так, что соседка не может его удержать. tail — «хвост». Хвост принадлежит щенку, которого называем it: Its tail is short — «Его хвост короткий». Хвост один, поэтому после tail стоит is. Тот же its, что и у ошейника, — без апострофа.
 
-**Их картинка на стене. Выберите фразу.**
+**Соседка спрашивает, какой хвост у щенка. Он короткий. Скажите ей: «Его хвост короткий».**
 
-- ✅ **Their picture is on the wall.**
-- ❌ Their picture are on the wall. — *Одна картинка: `picture is`.*
-- ❌ Our picture is on the wall. — *`our` — наша; здесь их: `their`.*
+- ✅ **Its tail is short.**
+- ❌ Her tail is short. — *her — её хозяйки, а щенка называем it: нужно its.*
+- ❌ Its tail are short. — *Хвост один, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Наш потолок белый»**
+**1 · Карточка слова — puppy**
+<!-- interaction_id: en:lesson-05:session-14:word:puppy; family: word_card -->
+> **puppy** — щенок. Her puppy is in the yard. — «Её щенок во дворе». О молодой собаке, которая ещё маленькая.
+
+**2 · Брат ищет щенка соседки. Он во дворе. Скажите ему полной фразой: «Её щенок во дворе»**
 <!-- interaction_id: en:lesson-05:session-14:i01; family: phrase_builder -->
-Плитки: `white` `is` `ceiling` `Our` `are` → **Our ceiling is white.**
-*(плитка `are` лишняя: здесь нужно `is` — `Our ceiling is white.`)*
+Плитки: `puppy` `is` `in` `the` `yard` `Her` `His` → **Her puppy is in the yard.**
+*(плитка `His` лишняя: здесь нужно `Her` — `Her puppy is in the yard.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — collar**
+<!-- interaction_id: en:lesson-05:session-14:word:collar; family: word_card -->
+> **collar** — ошейник. Its collar is new. — «Его ошейник новый». О ремешке на шее собаки или кошки.
+
+**4 · Послушайте соседку**
 <!-- interaction_id: en:lesson-05:session-14:i02; family: listen_choose -->
-🔊 *suitcase* → **suitcase** · suitcases · backpack
-- suitcases — *В записи первое слово — `suitcase`, а в этом варианте — `suitcases`.*
-- backpack — *В записи первое слово — `suitcase`, а в этом варианте — `backpack`.*
+🔊 *Its collar is red.* → **Its collar is red.** · Its collar is blue. · Their collar is red.
+- Its collar is blue. — *В записи `red` — красный, а в этом варианте `blue` — синий.*
+- Their collar is red. — *В записи `Its` — его (о щенке), а в этом варианте `Their` — их.*
 
-**3 · Назовите чемодан**
+**5 · Карточка слова — tail**
+<!-- interaction_id: en:lesson-05:session-14:word:tail; family: word_card -->
+> **tail** — хвост. Its tail is long. — «Его хвост длинный». О части тела собаки, которой она машет.
+
+**6 · Длинная часть собаки сзади, которой она машет. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-05:session-14:i03; family: context_gap_grammar -->
-___ → **suitcase** · picture · umbrella
-- picture — *`picture` — картинка; чемодан — `suitcase`.*
-- umbrella — *`umbrella` — зонт; чемодан — `suitcase`.*
+___ → **tail** · collar · bowl
+- collar — *collar — это ошейник на шее, а длинная часть сзади называется tail.*
+- bowl — *bowl — это миска, а длинная часть собаки сзади называется tail.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-14:i04; family: speed_match -->
-suitcase — чемодан · dirty — грязный · open — открытый · closed — закрытый
+puppy — щенок · collar — ошейник · tail — хвост · leash — поводок
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — leash**
+<!-- interaction_id: en:lesson-05:session-14:word:leash; family: word_card -->
+> **leash** — поводок. Her leash is on the bench. — «Её поводок на скамейке». О верёвке или ремне, на котором ведут собаку.
+
+**9 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-14:i05; family: listen_build_dictation -->
-🔊 *This is my suitcase.* Плитки: `suitcase` `my` `is` `This` → **This is my suitcase.**
+🔊 *Her leash is in my bag.* Плитки: `leash` `is` `in` `my` `bag` `Her` `Its` → **Her leash is in my bag.**
+*(плитка `Its` лишняя: здесь нужно `Her` — `Her leash is in my bag.`)*
 
-**6 · Чемодан подруги грязный. Скажите «Её чемодан грязный»**
+**10 · Соседка спрашивает, какой хвост у щенка. Он длинный. Скажите ей полной фразой: «Его хвост длинный»**
 <!-- interaction_id: en:lesson-05:session-14:i06; family: phrase_builder -->
-Плитки: `dirty` `is` `suitcase` `Her` `are` → **Her suitcase is dirty.**
-*(плитка `are` лишняя: здесь нужно `is` — `Her suitcase is dirty.`)*
+Плитки: `tail` `is` `long` `Its` `It’s` → **Its tail is long.**
+*(плитка `It’s` лишняя: здесь нужно `Its` — `Its tail is long.`)*
 
-**7 · Скажите «Его чемодан открыт»**
+**11 · Брат спрашивает, чей это щенок. Он ваш с сестрой. Ответьте: «Это наш щенок»**
 <!-- interaction_id: en:lesson-05:session-14:i07; family: scripted_repeat_compare -->
-🎙 **His suitcase is open.**
+🎙 **This is our puppy.**
 
-**8 · Вы застегнули чемодан. Скажите «Мой чемодан закрыт»**
+**12 · Вы говорите об ошейнике щенка. Выберите нужное слово**
 <!-- interaction_id: en:lesson-05:session-14:i08; family: context_gap_grammar -->
-My suitcase is ___. → **closed** · open · dirty
-- open — *`open` — открыт; закрыт — `closed`.*
-- dirty — *`dirty` — грязный; закрыт — `closed`.*
+___ collar is new. → **Its** · It’s · My
+- It’s — *It’s — это it is; перед ошейником нужно Its без апострофа.*
+- My — *My — мой, а речь об ошейнике щенка, которого называем it: нужно Its.*
 
-**9 · Послушайте про картинку**
+**13 · Послушайте соседку**
 <!-- interaction_id: en:lesson-05:session-14:i09; family: listen_choose -->
-🔊 *Their picture is on the wall.* → **Their picture is on the wall.** · Their picture is on the table. · Our picture is on the wall.
-- Their picture is on the table. — *В записи последнее слово — `wall`, а в этом варианте — `table`.*
-- Our picture is on the wall. — *В записи первое слово — `Their`, а в этом варианте — `Our`.*
+🔊 *Its leash is long.* → **Its leash is long.** · Its leash is short. · Her leash is long.
+- Its leash is short. — *В записи `long` — длинный, а в этом варианте `short` — короткий.*
+- Her leash is long. — *В записи `Its` — его (о щенке), а в этом варианте `Her` — её (о хозяйке).*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-14:i10; family: speed_match -->
-suitcase — чемодан · picture — картинка · laundrette — прачечная самообслуживания · ceiling — потолок
+collar — ошейник · tail — хвост · dog — собака · bowl — миска
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-14:i11; family: listen_build_dictation -->
-🔊 *The laundrette is open.* Плитки: `open` `is` `laundrette` `The` `are` → **The laundrette is open.**
-*(плитка `are` лишняя: здесь нужно `is` — `The laundrette is open.`)*
+🔊 *Their puppy is in my yard.* Плитки: `puppy` `is` `in` `my` `yard` `Their` `Our` → **Their puppy is in my yard.**
+*(плитка `Our` лишняя: здесь нужно `Their` — `Their puppy is in my yard.`)*
 
-**12 · Скажите «Их потолок белый»**
+**16 · Вы просите соседку взять поводок. Он на скамейке. Скажите ей полной фразой: «Твой поводок на скамейке»**
 <!-- interaction_id: en:lesson-05:session-14:i12; family: phrase_builder -->
-Плитки: `white` `is` `ceiling` `Their` `are` → **Their ceiling is white.**
-*(плитка `are` лишняя: здесь нужно `is` — `Their ceiling is white.`)*
+Плитки: `leash` `is` `on` `the` `bench` `Your` `My` → **Your leash is on the bench.**
+*(плитка `My` лишняя: здесь нужно `Your` — `Your leash is on the bench.`)*
 
-**13 · Чемодан друга у вас. Скажите ему «Твой чемодан у меня»**
+**17 · Соседка спрашивает, какой ошейник у щенка. Он новый. Ответьте: «Его ошейник новый»**
 <!-- interaction_id: en:lesson-05:session-14:i13; family: scripted_repeat_compare -->
-🎙 **I have your suitcase.**
+🎙 **Its collar is new.**
 
-**14 · Их чемодан закрыт. Чемодан один. Выберите форму**
+**18 · Вы рассказываете брату о щенке соседей. Выберите нужное слово**
 <!-- interaction_id: en:lesson-05:session-14:i14; family: context_gap_grammar -->
-Their suitcase ___ closed. → **is** · are · has
-- are — *Один чемодан: `suitcase is`, даже если владельцев несколько.*
-- has — *Здесь состояние чемодана: `suitcase is closed`.*
+The puppy is small and ___ tail is long. → **Its** · Their · It’s
+- Their — *Their — их, а хвост у щенка, которого называем it: нужно Its.*
+- It’s — *It’s — это it is; перед хвостом нужно Its без апострофа.*
 
-**15 · Послушайте, что друг говорит о прачечной**
+**19 · Послушайте брата**
 <!-- interaction_id: en:lesson-05:session-14:i15; family: listen_choose -->
-🔊 *The laundrette is closed.* → **The laundrette is closed.** · The laundrette is open. · The laundrette is dirty.
-- The laundrette is open. — *В записи последнее слово — `closed`, а в этом варианте — `open`.*
-- The laundrette is dirty. — *В записи последнее слово — `closed`, а в этом варианте — `dirty`.*
+🔊 *Her puppy has a long tail.* → **Her puppy has a long tail.** · His puppy has a long tail. · Her puppy has a short tail.
+- His puppy has a long tail. — *В записи `Her` — её, а в этом варианте `His` — его.*
+- Her puppy has a short tail. — *В записи `long` — длинный, а в этом варианте `short` — короткий.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-14:i16; family: speed_match -->
-suitcase — чемодан · picture — картинка · laundrette — прачечная самообслуживания · ceiling — потолок
+puppy — щенок · collar — ошейник · tail — хвост · leash — поводок
 
-**17 · Друг собирается поднять чемодан, но не застегнул его. Предупредите «Твой чемодан открыт»**
+**21 · Брат просит описать щенка соседки. У него длинный хвост. Скажите ему: «У щенка длинный хвост»**
 <!-- interaction_id: en:lesson-05:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Your suitcase is open.**
-
+🎙 **The puppy has a long tail.**

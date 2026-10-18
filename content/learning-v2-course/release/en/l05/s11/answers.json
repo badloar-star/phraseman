@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-11:word:bedroom",
+    "correctText": "bedroom",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-11:i01",
-    "correctText": "Her friend is smart.",
+    "correctText": "This is your bedroom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:word:bookcase",
+    "correctText": "bookcase",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i02",
-    "correctText": "backpack",
+    "correctText": "Is this your bookcase?",
     "correctResponseId": "en:lesson-05:session-11:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-11:word:laptop",
+    "correctText": "laptop",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-11:i03",
-    "correctText": "backpack",
+    "correctText": "laptop",
     "correctResponseId": "en:lesson-05:session-11:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-11:i04",
-    "correctText": "en:lesson-05:session-11:i04:p1=backpack\nen:lesson-05:session-11:i04:p2=smart\nen:lesson-05:session-11:i04:p3=strong\nen:lesson-05:session-11:i04:p4=quiet",
+    "correctText": "en:lesson-05:session-11:i04:p1=bedroom\nen:lesson-05:session-11:i04:p2=bookcase\nen:lesson-05:session-11:i04:p3=laptop\nen:lesson-05:session-11:i04:p4=poster",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:word:poster",
+    "correctText": "poster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i05",
-    "correctText": "This is my backpack.",
+    "correctText": "Our poster is on the wall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i06",
-    "correctText": "His friend is strong.",
+    "correctText": "Your laptop is in your bedroom.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i07",
-    "correctText": "Our room is quiet.",
+    "correctText": "No, it isn’t.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i08",
-    "correctText": "her",
+    "correctText": "Yes",
     "correctResponseId": "en:lesson-05:session-11:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-11:i09",
-    "correctText": "The backpack is under your desk.",
+    "correctText": "Where is your laptop?",
     "correctResponseId": "en:lesson-05:session-11:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-11:i10",
-    "correctText": "en:lesson-05:session-11:i10:p1=backpack\nen:lesson-05:session-11:i10:p2=room\nen:lesson-05:session-11:i10:p3=tram\nen:lesson-05:session-11:i10:p4=desk",
+    "correctText": "en:lesson-05:session-11:i10:p1=laptop\nen:lesson-05:session-11:i10:p2=poster\nen:lesson-05:session-11:i10:p3=window\nen:lesson-05:session-11:i10:p4=wall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i11",
-    "correctText": "Their room is quiet.",
+    "correctText": "Their bookcase is in your bedroom.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i12",
-    "correctText": "Our tram is here.",
+    "correctText": "Where is your poster?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i13",
-    "correctText": "I have your backpack.",
+    "correctText": "My laptop is in my bedroom.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i14",
-    "correctText": "is",
+    "correctText": "her",
     "correctResponseId": "en:lesson-05:session-11:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-11:i15",
-    "correctText": "His backpack is here.",
+    "correctText": "It is her laptop.",
     "correctResponseId": "en:lesson-05:session-11:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-11:i16",
-    "correctText": "en:lesson-05:session-11:i16:p1=backpack\nen:lesson-05:session-11:i16:p2=room\nen:lesson-05:session-11:i16:p3=tram\nen:lesson-05:session-11:i16:p4=desk",
+    "correctText": "en:lesson-05:session-11:i16:p1=bedroom\nen:lesson-05:session-11:i16:p2=bookcase\nen:lesson-05:session-11:i16:p3=laptop\nen:lesson-05:session-11:i16:p4=poster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-11:i17",
-    "correctText": "The backpack is under your desk.",
+    "correctText": "It is my laptop.",
     "correctResponseId": null
   }
 ]

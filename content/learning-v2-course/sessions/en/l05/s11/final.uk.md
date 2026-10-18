@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 11 — Рюкзак перед виходом
+# Англійська · Урок 5 · Заняття 11 — Переїзд брата
 
-**Ситуація.** Ви з друзями збираєтеся на заняття та їдете трамваєм. Рюкзаки схожі, один залишився під столом у тихій кімнаті. Треба розібратися, чий рюкзак де.
+**Ситуація.** Ваш брат переїжджає в нову квартиру, а ви допомагаєте розставити речі. Ви питаєте, чиє це, і відповідаєте коротко: Yes, it is або No, it isn’t, а потім називаєте господаря.
 
-**Що ви опануєте:** назвати рюкзак і вказати власника речі або кімнати
-**Нові слова:** backpack
+**Що ви опануєте:** спитати, чия річ, і відповісти коротко, назвавши господаря: Is this your…? No, it isn’t. It is her…
+**Нові слова:** bedroom, bookcase, laptop, poster
+**Повертаються:** wall, window, phone, printer
 
 ---
 
 ## Інтро 1
 
-### За спиною
+### Яка кімната твоя
 
-`backpack` — «рюкзак», сумка, яку носять на спині. `my backpack` — «мій рюкзак», `your backpack` — «твій / ваш рюкзак». `This is my backpack` — «Це мій рюкзак». Рюкзак залишає руки вільними — наприклад, щоб шукати телефон, який лежить у рюкзаку. Перед `my backpack` не додавайте `a` чи `the`.
+Ваш брат приїхав у нову квартиру й не знає, яка кімната його. Ви показуєте на кімнату з вікном, де можна поставити ліжко. bedroom — «спальня». Щоб спитати про кімнату брата, кажемо your: Is this your bedroom? — «Це твоя спальня?» Про свою спальню скажемо my bedroom.
 
-**Покажіть свій рюкзак.**
+**Ви показуєте братові кімнату з вікном. Спитайте його, це його спальня?**
 
-- ✅ **This is my backpack.**
-- ❌ This is a my backpack. — *Перед `my backpack` не потрібне `a`.*
-- ❌ This is your backpack. — *`your` — твій / ваш; мій — `my`.*
+- ✅ **Is this your bedroom?**
+- ❌ This is your bedroom? — *У питанні спочатку Is: Is this your bedroom?*
+- ❌ Are this your bedroom? — *З this потрібно Is, а не Are.*
 
 ---
 
 ## Інтро 2
 
-### Хто допомагає зібратися
+### Чия це книжкова шафа
 
-`smart` — «розумний», `strong` — «сильний», `quiet` — «тихий». `Her friend is smart` — «Її друг розумний». `His friend is strong` — «Його друг сильний». Вибирайте `her` чи `his` за тим, чий це друг, а не за словом «друг». `Our room is quiet` — «Наша кімната тиха»: `our` — наша, `room` — кімната.
+У коридорі стоїть висока шафа з полицями для книжок. Брат показує на неї й питає: «Is this my bookcase?» bookcase — «книжкова шафа». Шафа належить вашій сестрі, тому називаємо господиню: It is her bookcase — «Це її книжкова шафа». Для чоловіка сказали б his.
 
-**Друг вашої подруги розумний. Виберіть опис.**
+**Брат показує на шафу й питає, чи вона його. Шафа вашої сестри. Скажіть йому, що це її книжкова шафа.**
 
-- ✅ **Her friend is smart.**
-- ❌ His friend is smart. — *Друг жінки: `her friend`, а не `his friend`.*
-- ❌ Her friend are smart. — *Один друг: `friend is`.*
+- ✅ **It is her bookcase.**
+- ❌ It is his bookcase. — *his — його, а шафа вашої сестри: потрібно her.*
+- ❌ It is she bookcase. — *Перед назвою речі потрібно her, а не she.*
 
 ---
 
 ## Інтро 3
 
-### У кімнаті й у трамваї
+### Де мій ноутбук
 
-`desk` — «письмовий стіл», `tram` — «трамвай». `The backpack is under your desk` — «Рюкзак під твоїм столом». `Their room is quiet` — «Їхня кімната тиха». `Our tram is here` — «Наш трамвай тут». `our tram` може означати трамвай, яким ми поїдемо: купувати цілий трамвай для такої фрази не потрібно.
+Ввечері в новій квартирі ви ніяк не знайдете свій ноутбук. Сестра приїхала разом із вами й могла бачити, куди його поклали. laptop — «ноутбук». Річ одна, тому в питанні is: Where is my laptop? — «Де мій ноутбук?» Про ноутбук сестри спитаємо: Where is her laptop?
 
-**Рюкзак під столом співрозмовника. Виберіть фразу.**
+**Сестра могла бачити, куди поклали ваш ноутбук. Спитайте її, де він.**
 
-- ✅ **The backpack is under your desk.**
-- ❌ The backpack is on your desk. — *`on` — на столі; під — `under`.*
-- ❌ The backpack is under my desk. — *`my` — моїм; тут твоїм / вашим: `your`.*
+- ✅ **Where is my laptop?**
+- ❌ Where my laptop is? — *У питанні спочатку Where is: Where is my laptop?*
+- ❌ Where are my laptop? — *Ноутбук один, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Друг вашої подруги розумний. Скажіть «Її друг розумний»**
+**1 · Картка слова — bedroom**
+<!-- interaction_id: en:lesson-05:session-11:word:bedroom; family: word_card -->
+> **bedroom** — спальня. This is my bedroom. — «Це моя спальня». Про кімнату, де стоїть ліжко й де сплять.
+
+**2 · Брат стоїть у дверях кімнати. Скажіть йому повною фразою: «Це твоя спальня»**
 <!-- interaction_id: en:lesson-05:session-11:i01; family: phrase_builder -->
-Плитки: `smart` `is` `friend` `Her` `are` → **Her friend is smart.**
-*(плитка `are` зайва: тут потрібно `is` — `Her friend is smart.`)*
+Плитки: `bedroom` `is` `your` `This` `my` → **This is your bedroom.**
+*(плитка `my` зайва: тут потрібно `your` — `This is your bedroom.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — bookcase**
+<!-- interaction_id: en:lesson-05:session-11:word:bookcase; family: word_card -->
+> **bookcase** — книжкова шафа. Your bookcase is in the hall. — «Твоя книжкова шафа в коридорі». Про високу шафу з полицями для книжок.
+
+**4 · Послухайте брата**
 <!-- interaction_id: en:lesson-05:session-11:i02; family: listen_choose -->
-🔊 *backpack* → **backpack** · backpacks · bag
-- backpacks — *У записі перше слово — `backpack`, а в цьому варіанті — `backpacks`.*
-- bag — *У записі перше слово — `backpack`, а в цьому варіанті — `bag`.*
+🔊 *Is this your bookcase?* → **Is this your bookcase?** · Is that your bookcase? · Is this my bookcase?
+- Is that your bookcase? — *У записі `this` — цей, поруч, а в цьому варіанті `that` — той, подалі.*
+- Is this my bookcase? — *У записі `your` — твій, а в цьому варіанті `my` — мій.*
 
-**3 · Назвіть рюкзак**
+**5 · Картка слова — laptop**
+<!-- interaction_id: en:lesson-05:session-11:word:laptop; family: word_card -->
+> **laptop** — ноутбук. Her laptop is on the desk. — «Її ноутбук на письмовому столі». Про комп’ютер, який складається й вміщається в сумку.
+
+**6 · Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?**
 <!-- interaction_id: en:lesson-05:session-11:i03; family: context_gap_grammar -->
-___ → **backpack** · desk · pocket
-- desk — *`desk` — письмовий стіл; рюкзак — `backpack`.*
-- pocket — *`pocket` — кишеня; рюкзак — `backpack`.*
+___ → **laptop** · phone · printer
+- phone — *phone — це телефон, а комп’ютер, який складається, називається laptop.*
+- printer — *printer — це принтер, а комп’ютер, який складається, називається laptop.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-11:i04; family: speed_match -->
-backpack — рюкзак · smart — розумний · strong — сильний · quiet — тихий
+bedroom — спальня · bookcase — книжкова шафа · laptop — ноутбук · poster — постер
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — poster**
+<!-- interaction_id: en:lesson-05:session-11:word:poster; family: word_card -->
+> **poster** — постер. His poster is on the wall. — «Його постер на стіні». Про велику паперову картинку, яку вішають на стіну.
+
+**9 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-11:i05; family: listen_build_dictation -->
-🔊 *This is my backpack.* Плитки: `backpack` `my` `is` `This` → **This is my backpack.**
+🔊 *Our poster is on the wall.* Плитки: `poster` `is` `on` `the` `wall` `Our` `Their` → **Our poster is on the wall.**
+*(плитка `Their` зайва: тут потрібно `Our` — `Our poster is on the wall.`)*
 
-**6 · Друг вашого брата сильний. Скажіть «Його друг сильний»**
+**10 · Сестра шукає ноутбук. Він лежить у її спальні. Скажіть їй повною фразою: «Твій ноутбук у твоїй спальні»**
 <!-- interaction_id: en:lesson-05:session-11:i06; family: phrase_builder -->
-Плитки: `strong` `is` `friend` `His` `are` → **His friend is strong.**
-*(плитка `are` зайва: тут потрібно `is` — `His friend is strong.`)*
+Плитки: `laptop` `is` `in` `your` `bedroom` `Your` `My` → **Your laptop is in your bedroom.**
+*(плитка `My` зайва: тут потрібно `Your` — `Your laptop is in your bedroom.`)*
 
-**7 · Скажіть «Наша кімната тиха»**
+**11 · Брат показує на постер і питає, чи він його. Постер ваш. Відповідьте коротко: «Ні»**
 <!-- interaction_id: en:lesson-05:session-11:i07; family: scripted_repeat_compare -->
-🎙 **Our room is quiet.**
+🎙 **No, it isn’t.**
 
-**8 · Рюкзак належить вашій подрузі. Скажіть «Це її рюкзак»**
+**12 · Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді**
 <!-- interaction_id: en:lesson-05:session-11:i08; family: context_gap_grammar -->
-This is ___ backpack. → **her** · his · their
-- his — *`his` — його; тут її: `her`.*
-- their — *`their` — їхній; тут її: `her`.*
+___, it is. → **Yes** · No · Not
+- No — *Після No кажуть it isn’t, а тут it is: потрібно Yes.*
+- Not — *Not не починає відповідь: потрібно Yes.*
 
-**9 · Послухайте, де рюкзак**
+**13 · Послухайте сестру**
 <!-- interaction_id: en:lesson-05:session-11:i09; family: listen_choose -->
-🔊 *The backpack is under your desk.* → **The backpack is under your desk.** · The backpack is under your chair. · The backpack is under your table.
-- The backpack is under your chair. — *У записі останнє слово — `desk`, а в цьому варіанті — `chair`.*
-- The backpack is under your table. — *У записі останнє слово — `desk`, а в цьому варіанті — `table`.*
+🔊 *Where is your laptop?* → **Where is your laptop?** · Where are your laptops? · Where is her laptop?
+- Where are your laptops? — *У записі `is` й один ноутбук, а в цьому варіанті `are` й кілька.*
+- Where is her laptop? — *У записі `your` — твій, а в цьому варіанті `her` — її.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-11:i10; family: speed_match -->
-backpack — рюкзак · room — кімната · tram — трамвай · desk — письмовий стіл
+laptop — ноутбук · poster — постер · window — вікно · wall — стіна
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-11:i11; family: listen_build_dictation -->
-🔊 *Their room is quiet.* Плитки: `quiet` `is` `room` `Their` `are` → **Their room is quiet.**
-*(плитка `are` зайва: тут потрібно `is` — `Their room is quiet.`)*
+🔊 *Their bookcase is in your bedroom.* Плитки: `bookcase` `is` `in` `your` `bedroom` `Their` `Our` → **Their bookcase is in your bedroom.**
+*(плитка `Our` зайва: тут потрібно `Their` — `Their bookcase is in your bedroom.`)*
 
-**12 · Підійшов потрібний вам із другом трамвай. Скажіть «Наш трамвай тут»**
+**16 · Ви питаєте сестру, де її постер. Задайте питання повністю**
 <!-- interaction_id: en:lesson-05:session-11:i12; family: phrase_builder -->
-Плитки: `here` `is` `tram` `Our` `are` → **Our tram is here.**
-*(плитка `are` зайва: тут потрібно `is` — `Our tram is here.`)*
+Плитки: `poster` `is` `Where` `your` `are` → **Where is your poster?**
+*(плитка `are` зайва: тут потрібно `is` — `Where is your poster?`)*
 
-**13 · Рюкзак друга у вас. Повідомте йому «Твій рюкзак у мене»**
+**17 · Сестра питає, де ваш ноутбук. Він у вашій спальні. Відповідьте: «Мій ноутбук у моїй спальні»**
 <!-- interaction_id: en:lesson-05:session-11:i13; family: scripted_repeat_compare -->
-🎙 **I have your backpack.**
+🎙 **My laptop is in my bedroom.**
 
-**14 · Їхня кімната тиха. Власників кілька, кімната одна. Виберіть форму**
+**18 · Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-11:i14; family: context_gap_grammar -->
-Their room ___ quiet. → **is** · are · has
-- are — *Одна кімната: `room is`; кількість власників цього не змінює.*
-- has — *Тут описуємо кімнату: `room is quiet`.*
+It is ___ poster. → **her** · his · their
+- his — *his — його, а постер вашої сестри: потрібно her.*
+- their — *their — їхній, а постер однієї сестри: потрібно her.*
 
-**15 · Послухайте, чий рюкзак тут**
+**19 · Послухайте брата**
 <!-- interaction_id: en:lesson-05:session-11:i15; family: listen_choose -->
-🔊 *His backpack is here.* → **His backpack is here.** · Her backpack is here. · My backpack is here.
-- Her backpack is here. — *У записі перше слово — `His`, а в цьому варіанті — `Her`.*
-- My backpack is here. — *У записі перше слово — `His`, а в цьому варіанті — `My`.*
+🔊 *It is her laptop.* → **It is her laptop.** · It is his laptop. · It is her poster.
+- It is his laptop. — *У записі `her` — її, а в цьому варіанті `his` — його.*
+- It is her poster. — *У записі останнє слово `laptop` — ноутбук, а в цьому варіанті `poster` — постер.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-11:i16; family: speed_match -->
-backpack — рюкзак · room — кімната · tram — трамвай · desk — письмовий стіл
+bedroom — спальня · bookcase — книжкова шафа · laptop — ноутбук · poster — постер
 
-**17 · Друг шукає рюкзак. Він під письмовим столом друга. Поясніть йому «Рюкзак під твоїм письмовим столом»**
+**21 · Брат показує на ваш ноутбук і питає, чи він ваш. Ноутбук ваш. Відповідьте: «Це мій ноутбук»**
 <!-- interaction_id: en:lesson-05:session-11:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The backpack is under your desk.**
-
+🎙 **It is my laptop.**

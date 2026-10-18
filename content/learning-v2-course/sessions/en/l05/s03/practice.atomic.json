@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-03",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-03:word:computer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — computer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:computer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — computer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:computer:audio",
+            "transcript": "computer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:computer:r1",
+              "targetText": "computer",
+              "meaningByLocale": {
+                "ru": "компьютер. I have a computer. — «У меня есть компьютер». О машине с экраном и клавиатурой, на которой работают и учатся.",
+                "uk": "комп’ютер. I have a computer. — «У мене є комп’ютер». Про машину з екраном і клавіатурою, на якій працюють і вчаться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "computer",
+            "definitionByLocale": {
+              "ru": "компьютер. I have a computer. — «У меня есть компьютер». О машине с экраном и клавиатурой, на которой работают и учатся.",
+              "uk": "комп’ютер. I have a computer. — «У мене є комп’ютер». Про машину з екраном і клавіатурою, на якій працюють і вчаться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сотрудница центра спрашивает, на чём вы будете работать. Скажите ей полной фразой: «У меня есть компьютер»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сотрудница центра спрашивает, на чём вы будете работать. Скажите ей полной фразой: «У меня есть компьютер»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a computer.",
+          "localizedMeaning": {
+            "ru": "Сотрудница центра спрашивает, на чём вы будете работать. Скажите ей полной фразой: «У меня есть компьютер»",
+            "uk": "Працівниця центру питає, на чому ви працюватимете. Скажіть їй повною фразою: «У мене є комп’ютер»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "computer"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сотрудница центра спрашивает, на чём вы будете работать. Скажите ей полной фразой: «У меня есть компьютер»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a computer.`",
+                "uk": "тут потрібно `have` — `I have a computer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i02:r1",
+            "text": "He is busy."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i02:r2",
+            "text": "He is free."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i02:r3",
+            "text": "She is busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i02:audio",
+            "transcript": "He is busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:i02:r1",
+              "targetText": "He is busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i02:r2",
+              "targetText": "He is free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i02:r3",
+              "targetText": "She is busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `busy`, а в этом варианте — `free`.",
+                "uk": "У записі останнє слово — `busy`, а в цьому варіанті — `free`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:word:phone",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — phone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:phone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — phone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:phone:audio",
+            "transcript": "phone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:phone:r1",
+              "targetText": "phone",
+              "meaningByLocale": {
+                "ru": "телефон. He has a phone. — «У него есть телефон». О небольшом устройстве, по которому звонят и пишут сообщения.",
+                "uk": "телефон. He has a phone. — «У нього є телефон». Про невеликий пристрій, яким телефонують і пишуть повідомлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "phone",
+            "definitionByLocale": {
+              "ru": "телефон. He has a phone. — «У него есть телефон». О небольшом устройстве, по которому звонят и пишут сообщения.",
+              "uk": "телефон. He has a phone. — «У нього є телефон». Про невеликий пристрій, яким телефонують і пишуть повідомлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг разговаривает по телефону у окна. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг разговаривает по телефону у окна. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг разговаривает по телефону у окна. Выберите форму",
+            "uk": "Друг розмовляє по телефону біля вікна. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a phone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-03:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Друг разговаривает по телефону у окна. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг разговаривает по телефону у окна. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг разговаривает по телефону у окна. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "He is a phone значило бы «Он телефон». У него есть телефон — He has a phone.",
+                "uk": "He is a phone означало б «Він телефон». У нього є телефон — He has a phone."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-03:i04:p1",
+              "target": "computer",
+              "meaningByLocale": {
+                "ru": "компьютер",
+                "uk": "комп’ютер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i04:p2",
+              "target": "phone",
+              "meaningByLocale": {
+                "ru": "телефон",
+                "uk": "телефон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i04:p3",
+              "target": "wallet",
+              "meaningByLocale": {
+                "ru": "кошелёк",
+                "uk": "гаманець"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i04:p4",
+              "target": "colleague",
+              "meaningByLocale": {
+                "ru": "коллега",
+                "uk": "колега"
+              }
+            }
+          ],
+          "leftColumn": [
+            "computer",
+            "phone",
+            "wallet",
+            "colleague"
+          ],
+          "rightColumn": [
+            "компьютер",
+            "телефон",
+            "кошелёк",
+            "коллега"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:word:wallet",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wallet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:wallet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wallet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:wallet:audio",
+            "transcript": "wallet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:wallet:r1",
+              "targetText": "wallet",
+              "meaningByLocale": {
+                "ru": "кошелёк. They have wallets. — «У них есть кошельки». О небольшой сумочке для денег и банковских карт, которую носят в кармане.",
+                "uk": "гаманець. They have wallets. — «У них є гаманці». Про невелику сумочку для грошей і банківських карток, яку носять у кишені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wallet",
+            "definitionByLocale": {
+              "ru": "кошелёк. They have wallets. — «У них есть кошельки». О небольшой сумочке для денег и банковских карт, которую носят в кармане.",
+              "uk": "гаманець. They have wallets. — «У них є гаманці». Про невелику сумочку для грошей і банківських карток, яку носять у кишені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сотрудницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сотрудницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i05:audio",
+            "transcript": "He has a wallet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He has a wallet.",
+          "orderedTokens": [
+            "He",
+            "has",
+            "a",
+            "wallet"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `He has a wallet.`",
+                "uk": "тут потрібно `has` — `He has a wallet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:word:colleague",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — colleague",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:colleague:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — colleague",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:colleague:audio",
+            "transcript": "colleague"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:colleague:r1",
+              "targetText": "colleague",
+              "meaningByLocale": {
+                "ru": "коллега. She has a colleague. — «У неё есть коллега». О человеке, с которым вы работаете в одном месте.",
+                "uk": "колега. She has a colleague. — «У неї є колега». Про людину, з якою ви працюєте в одному місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "colleague",
+            "definitionByLocale": {
+              "ru": "коллега. She has a colleague. — «У неё есть коллега». О человеке, с которым вы работаете в одном месте.",
+              "uk": "колега. She has a colleague. — «У неї є колега». Про людину, з якою ви працюєте в одному місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сотрудница спрашивает, есть ли у вас в центре коллега. Ответьте полной фразой: «У меня есть коллега»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сотрудница спрашивает, есть ли у вас в центре коллега. Ответьте полной фразой: «У меня есть коллега»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a colleague.",
+          "localizedMeaning": {
+            "ru": "Сотрудница спрашивает, есть ли у вас в центре коллега. Ответьте полной фразой: «У меня есть коллега»",
+            "uk": "Працівниця питає, чи є у вас у центрі колега. Дайте повну відповідь: «У мене є колега»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "colleague"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сотрудница спрашивает, есть ли у вас в центре коллега. Ответьте полной фразой: «У меня есть коллега»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a colleague.`",
+                "uk": "тут потрібно `have` — `I have a colleague.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы готовы помочь другу. Скажите «Я свободен» с сокращением",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i07:audio"
+        ],
+        "accessibilityLabel": "Вы готовы помочь другу. Скажите «Я свободен» с сокращением",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i07:audio",
+            "transcript": "I’m free."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m free.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с другом опоздали в центр. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом опоздали в центр. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом опоздали в центр. Выберите форму",
+            "uk": "Ви з другом запізнилися в центр. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ late.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-03:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вы с другом опоздали в центр. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы с другом опоздали в центр. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние, а не вещь: We are late.",
+                "uk": "Тут стан, а не річ: We are late."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы с другом опоздали в центр. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С we нужно are, а не is.",
+                "uk": "З we потрібно are, а не is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, где книга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i09:r1",
+            "text": "The book is on the desk."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i09:r2",
+            "text": "The book is on the table."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i09:r3",
+            "text": "The book is on the sofa."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, где книга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i09:audio",
+            "transcript": "The book is on the desk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:i09:r1",
+              "targetText": "The book is on the desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i09:r2",
+              "targetText": "The book is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i09:r3",
+              "targetText": "The book is on the sofa.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, где книга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `desk`, а в этом варианте — `table`.",
+                "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `table`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, где книга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `desk`, а в этом варианте — `sofa`.",
+                "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `sofa`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-03:i10:p1",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i10:p2",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i10:p3",
+              "target": "bank",
+              "meaningByLocale": {
+                "ru": "банк",
+                "uk": "банк"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i10:p4",
+              "target": "late",
+              "meaningByLocale": {
+                "ru": "опоздавший",
+                "uk": "той, що запізнився"
+              }
+            }
+          ],
+          "leftColumn": [
+            "desk",
+            "book",
+            "bank",
+            "late"
+          ],
+          "rightColumn": [
+            "письменный стол",
+            "книга",
+            "банк",
+            "опоздавший"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i11:audio",
+            "transcript": "She has a computer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has a computer.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "a",
+            "computer"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `She has a computer.`",
+                "uk": "тут потрібно `has` — `She has a computer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, где общественный центр. Скажите ему полной фразой: «Общественный центр рядом с банком»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, где общественный центр. Скажите ему полной фразой: «Общественный центр рядом с банком»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The community centre is next to the bank.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, где общественный центр. Скажите ему полной фразой: «Общественный центр рядом с банком»",
+            "uk": "Друг питає, де громадський центр. Скажіть йому повною фразою: «Громадський центр поруч із банком»"
+          },
+          "orderedTokens": [
+            "The",
+            "community",
+            "centre",
+            "is",
+            "next",
+            "to",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, где общественный центр. Скажите ему полной фразой: «Общественный центр рядом с банком»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The community centre is next to the bank.`",
+                "uk": "тут потрібно `is` — `The community centre is next to the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У вас есть книга для работы. Скажите «У меня есть книга»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i13:audio"
+        ],
+        "accessibilityLabel": "У вас есть книга для работы. Скажите «У меня есть книга»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i13:audio",
+            "transcript": "I have a book."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have a book.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У друга есть письменный стол. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У друга есть письменный стол. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У друга есть письменный стол. Выберите форму",
+            "uk": "У друга є письмовий стіл. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a desk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-03:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У друга есть письменный стол. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i14:r2",
+              "correct": false,
+              "testedDimension": "У друга есть письменный стол. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i14:r3",
+              "correct": false,
+              "testedDimension": "У друга есть письменный стол. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "He is a desk значило бы «Он стол». У него есть стол — He has a desk.",
+                "uk": "He is a desk означало б «Він стіл». У нього є стіл — He has a desk."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, кто свободен",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i15:r1",
+            "text": "She’s free."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i15:r2",
+            "text": "She’s busy."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i15:r3",
+            "text": "He’s free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, кто свободен",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i15:audio",
+            "transcript": "She’s free."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:i15:r1",
+              "targetText": "She’s free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i15:r2",
+              "targetText": "She’s busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i15:r3",
+              "targetText": "He’s free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, кто свободен",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `free`, а в этом варианте — `busy`.",
+                "uk": "У записі останнє слово — `free`, а в цьому варіанті — `busy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, кто свободен",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She’s`, а в этом варианте — `He’s`.",
+                "uk": "У записі перше слово — `She’s`, а в цьому варіанті — `He’s`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-03:i16:p1",
+              "target": "computer",
+              "meaningByLocale": {
+                "ru": "компьютер",
+                "uk": "комп’ютер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i16:p2",
+              "target": "phone",
+              "meaningByLocale": {
+                "ru": "телефон",
+                "uk": "телефон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i16:p3",
+              "target": "busy",
+              "meaningByLocale": {
+                "ru": "занятый",
+                "uk": "зайнятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i16:p4",
+              "target": "free",
+              "meaningByLocale": {
+                "ru": "свободный",
+                "uk": "вільний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "computer",
+            "phone",
+            "busy",
+            "free"
+          ],
+          "rightColumn": [
+            "компьютер",
+            "телефон",
+            "занятый",
+            "свободный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам с другом выделили один письменный стол. Скажите сотруднице: «У нас есть письменный стол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Вам с другом выделили один письменный стол. Скажите сотруднице: «У нас есть письменный стол»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i17:audio",
+            "transcript": "We have a desk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a desk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-03:word:computer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — computer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:computer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — computer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:computer:audio",
+            "transcript": "computer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:computer:r1",
+              "targetText": "computer",
+              "meaningByLocale": {
+                "ru": "компьютер. I have a computer. — «У меня есть компьютер». О машине с экраном и клавиатурой, на которой работают и учатся.",
+                "uk": "комп’ютер. I have a computer. — «У мене є комп’ютер». Про машину з екраном і клавіатурою, на якій працюють і вчаться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "computer",
+            "definitionByLocale": {
+              "ru": "компьютер. I have a computer. — «У меня есть компьютер». О машине с экраном и клавиатурой, на которой работают и учатся.",
+              "uk": "комп’ютер. I have a computer. — «У мене є комп’ютер». Про машину з екраном і клавіатурою, на якій працюють і вчаться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працівниця центру питає, на чому ви працюватимете. Скажіть їй повною фразою: «У мене є комп’ютер»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Працівниця центру питає, на чому ви працюватимете. Скажіть їй повною фразою: «У мене є комп’ютер»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a computer.",
+          "localizedMeaning": {
+            "ru": "Сотрудница центра спрашивает, на чём вы будете работать. Скажите ей полной фразой: «У меня есть компьютер»",
+            "uk": "Працівниця центру питає, на чому ви працюватимете. Скажіть їй повною фразою: «У мене є комп’ютер»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "computer"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Працівниця центру питає, на чому ви працюватимете. Скажіть їй повною фразою: «У мене є комп’ютер»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a computer.`",
+                "uk": "тут потрібно `have` — `I have a computer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i02:r1",
+            "text": "He is busy."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i02:r2",
+            "text": "He is free."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i02:r3",
+            "text": "She is busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i02:audio",
+            "transcript": "He is busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:i02:r1",
+              "targetText": "He is busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i02:r2",
+              "targetText": "He is free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i02:r3",
+              "targetText": "She is busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `busy`, а в этом варианте — `free`.",
+                "uk": "У записі останнє слово — `busy`, а в цьому варіанті — `free`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:word:phone",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — phone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:phone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — phone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:phone:audio",
+            "transcript": "phone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:phone:r1",
+              "targetText": "phone",
+              "meaningByLocale": {
+                "ru": "телефон. He has a phone. — «У него есть телефон». О небольшом устройстве, по которому звонят и пишут сообщения.",
+                "uk": "телефон. He has a phone. — «У нього є телефон». Про невеликий пристрій, яким телефонують і пишуть повідомлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "phone",
+            "definitionByLocale": {
+              "ru": "телефон. He has a phone. — «У него есть телефон». О небольшом устройстве, по которому звонят и пишут сообщения.",
+              "uk": "телефон. He has a phone. — «У нього є телефон». Про невеликий пристрій, яким телефонують і пишуть повідомлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг розмовляє по телефону біля вікна. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг розмовляє по телефону біля вікна. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг разговаривает по телефону у окна. Выберите форму",
+            "uk": "Друг розмовляє по телефону біля вікна. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a phone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-03:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Друг розмовляє по телефону біля вікна. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг розмовляє по телефону біля вікна. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг розмовляє по телефону біля вікна. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "He is a phone значило бы «Он телефон». У него есть телефон — He has a phone.",
+                "uk": "He is a phone означало б «Він телефон». У нього є телефон — He has a phone."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-03:i04:p1",
+              "target": "computer",
+              "meaningByLocale": {
+                "ru": "компьютер",
+                "uk": "комп’ютер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i04:p2",
+              "target": "phone",
+              "meaningByLocale": {
+                "ru": "телефон",
+                "uk": "телефон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i04:p3",
+              "target": "wallet",
+              "meaningByLocale": {
+                "ru": "кошелёк",
+                "uk": "гаманець"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i04:p4",
+              "target": "colleague",
+              "meaningByLocale": {
+                "ru": "коллега",
+                "uk": "колега"
+              }
+            }
+          ],
+          "leftColumn": [
+            "computer",
+            "phone",
+            "wallet",
+            "colleague"
+          ],
+          "rightColumn": [
+            "комп’ютер",
+            "телефон",
+            "гаманець",
+            "колега"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:word:wallet",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wallet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:wallet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wallet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:wallet:audio",
+            "transcript": "wallet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:wallet:r1",
+              "targetText": "wallet",
+              "meaningByLocale": {
+                "ru": "кошелёк. They have wallets. — «У них есть кошельки». О небольшой сумочке для денег и банковских карт, которую носят в кармане.",
+                "uk": "гаманець. They have wallets. — «У них є гаманці». Про невелику сумочку для грошей і банківських карток, яку носять у кишені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wallet",
+            "definitionByLocale": {
+              "ru": "кошелёк. They have wallets. — «У них есть кошельки». О небольшой сумочке для денег и банковских карт, которую носят в кармане.",
+              "uk": "гаманець. They have wallets. — «У них є гаманці». Про невелику сумочку для грошей і банківських карток, яку носять у кишені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте працівницю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте працівницю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i05:audio",
+            "transcript": "He has a wallet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He has a wallet.",
+          "orderedTokens": [
+            "He",
+            "has",
+            "a",
+            "wallet"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте працівницю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `He has a wallet.`",
+                "uk": "тут потрібно `has` — `He has a wallet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:word:colleague",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — colleague",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:word:colleague:audio"
+        ],
+        "accessibilityLabel": "Картка слова — colleague",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:word:colleague:audio",
+            "transcript": "colleague"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:word:colleague:r1",
+              "targetText": "colleague",
+              "meaningByLocale": {
+                "ru": "коллега. She has a colleague. — «У неё есть коллега». О человеке, с которым вы работаете в одном месте.",
+                "uk": "колега. She has a colleague. — «У неї є колега». Про людину, з якою ви працюєте в одному місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "colleague",
+            "definitionByLocale": {
+              "ru": "коллега. She has a colleague. — «У неё есть коллега». О человеке, с которым вы работаете в одном месте.",
+              "uk": "колега. She has a colleague. — «У неї є колега». Про людину, з якою ви працюєте в одному місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працівниця питає, чи є у вас у центрі колега. Дайте повну відповідь: «У мене є колега»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Працівниця питає, чи є у вас у центрі колега. Дайте повну відповідь: «У мене є колега»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have a colleague.",
+          "localizedMeaning": {
+            "ru": "Сотрудница спрашивает, есть ли у вас в центре коллега. Ответьте полной фразой: «У меня есть коллега»",
+            "uk": "Працівниця питає, чи є у вас у центрі колега. Дайте повну відповідь: «У мене є колега»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "colleague"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Працівниця питає, чи є у вас у центрі колега. Дайте повну відповідь: «У мене є колега»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a colleague.`",
+                "uk": "тут потрібно `have` — `I have a colleague.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви готові допомогти другові. Скажіть «Я вільний» зі скороченням",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i07:audio"
+        ],
+        "accessibilityLabel": "Ви готові допомогти другові. Скажіть «Я вільний» зі скороченням",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i07:audio",
+            "transcript": "I’m free."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m free.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з другом запізнилися в центр. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом запізнилися в центр. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом опоздали в центр. Выберите форму",
+            "uk": "Ви з другом запізнилися в центр. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ late.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-03:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Ви з другом запізнилися в центр. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви з другом запізнилися в центр. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние, а не вещь: We are late.",
+                "uk": "Тут стан, а не річ: We are late."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви з другом запізнилися в центр. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С we нужно are, а не is.",
+                "uk": "З we потрібно are, а не is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, де книга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i09:r1",
+            "text": "The book is on the desk."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i09:r2",
+            "text": "The book is on the table."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i09:r3",
+            "text": "The book is on the sofa."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, де книга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i09:audio",
+            "transcript": "The book is on the desk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:i09:r1",
+              "targetText": "The book is on the desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i09:r2",
+              "targetText": "The book is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i09:r3",
+              "targetText": "The book is on the sofa.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, де книга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `desk`, а в этом варианте — `table`.",
+                "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `table`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, де книга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `desk`, а в этом варианте — `sofa`.",
+                "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `sofa`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-03:i10:p1",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i10:p2",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i10:p3",
+              "target": "bank",
+              "meaningByLocale": {
+                "ru": "банк",
+                "uk": "банк"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i10:p4",
+              "target": "late",
+              "meaningByLocale": {
+                "ru": "опоздавший",
+                "uk": "той, що запізнився"
+              }
+            }
+          ],
+          "leftColumn": [
+            "desk",
+            "book",
+            "bank",
+            "late"
+          ],
+          "rightColumn": [
+            "письмовий стіл",
+            "книга",
+            "банк",
+            "той, що запізнився"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i11:audio",
+            "transcript": "She has a computer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has a computer.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "a",
+            "computer"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `She has a computer.`",
+                "uk": "тут потрібно `has` — `She has a computer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає, де громадський центр. Скажіть йому повною фразою: «Громадський центр поруч із банком»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, де громадський центр. Скажіть йому повною фразою: «Громадський центр поруч із банком»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The community centre is next to the bank.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, где общественный центр. Скажите ему полной фразой: «Общественный центр рядом с банком»",
+            "uk": "Друг питає, де громадський центр. Скажіть йому повною фразою: «Громадський центр поруч із банком»"
+          },
+          "orderedTokens": [
+            "The",
+            "community",
+            "centre",
+            "is",
+            "next",
+            "to",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає, де громадський центр. Скажіть йому повною фразою: «Громадський центр поруч із банком»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The community centre is next to the bank.`",
+                "uk": "тут потрібно `is` — `The community centre is next to the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У вас є книжка для роботи. Скажіть «У мене є книжка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i13:audio"
+        ],
+        "accessibilityLabel": "У вас є книжка для роботи. Скажіть «У мене є книжка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i13:audio",
+            "transcript": "I have a book."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have a book.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У друга є письмовий стіл. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У друга є письмовий стіл. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У друга есть письменный стол. Выберите форму",
+            "uk": "У друга є письмовий стіл. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a desk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-03:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У друга є письмовий стіл. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i14:r2",
+              "correct": false,
+              "testedDimension": "У друга є письмовий стіл. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i14:r3",
+              "correct": false,
+              "testedDimension": "У друга є письмовий стіл. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "He is a desk значило бы «Он стол». У него есть стол — He has a desk.",
+                "uk": "He is a desk означало б «Він стіл». У нього є стіл — He has a desk."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, хто вільний",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i15:r1",
+            "text": "She’s free."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i15:r2",
+            "text": "She’s busy."
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i15:r3",
+            "text": "He’s free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, хто вільний",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i15:audio",
+            "transcript": "She’s free."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-03:i15:r1",
+              "targetText": "She’s free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i15:r2",
+              "targetText": "She’s busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i15:r3",
+              "targetText": "He’s free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, хто вільний",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `free`, а в этом варианте — `busy`.",
+                "uk": "У записі останнє слово — `free`, а в цьому варіанті — `busy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, хто вільний",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She’s`, а в этом варианте — `He’s`.",
+                "uk": "У записі перше слово — `She’s`, а в цьому варіанті — `He’s`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-03:i16:p1",
+              "target": "computer",
+              "meaningByLocale": {
+                "ru": "компьютер",
+                "uk": "комп’ютер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i16:p2",
+              "target": "phone",
+              "meaningByLocale": {
+                "ru": "телефон",
+                "uk": "телефон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i16:p3",
+              "target": "busy",
+              "meaningByLocale": {
+                "ru": "занятый",
+                "uk": "зайнятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-03:i16:p4",
+              "target": "free",
+              "meaningByLocale": {
+                "ru": "свободный",
+                "uk": "вільний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "computer",
+            "phone",
+            "busy",
+            "free"
+          ],
+          "rightColumn": [
+            "комп’ютер",
+            "телефон",
+            "зайнятий",
+            "вільний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам із другом виділили один письмовий стіл. Скажіть працівниці: «У нас є письмовий стіл»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Вам із другом виділили один письмовий стіл. Скажіть працівниці: «У нас є письмовий стіл»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-03:i17:audio",
+            "transcript": "We have a desk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a desk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-03:word:computer",
+      "correctText": "computer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i01",
+      "correctText": "I have a computer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i02",
+      "correctText": "He is busy.",
+      "correctResponseId": "en:lesson-05:session-03:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:word:phone",
+      "correctText": "phone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i03",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-03:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:word:wallet",
+      "correctText": "wallet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i05",
+      "correctText": "He has a wallet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:word:colleague",
+      "correctText": "colleague",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i06",
+      "correctText": "I have a colleague.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i07",
+      "correctText": "I’m free.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-03:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i09",
+      "correctText": "The book is on the desk.",
+      "correctResponseId": "en:lesson-05:session-03:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i11",
+      "correctText": "She has a computer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i12",
+      "correctText": "The community centre is next to the bank.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i13",
+      "correctText": "I have a book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i14",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-03:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i15",
+      "correctText": "She’s free.",
+      "correctResponseId": "en:lesson-05:session-03:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i17",
+      "correctText": "We have a desk.",
+      "correctResponseId": null
+    }
+  ]
+}

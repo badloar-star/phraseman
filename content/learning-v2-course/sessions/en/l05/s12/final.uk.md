@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 12 — Зошит перед поїздкою
+# Англійська · Урок 5 · Заняття 12 — Усе для уроків
 
-**Ситуація.** Перед поїздкою ви шукаєте зошит із записами. Він на столі поруч із завіскою. Друзі допомагають зібратися, а на платформі стає шумно.
+**Ситуація.** Ви допомагаєте дітям робити уроки за кухонним столом. Зошити, олівці, ножиці та клей лежать упереміш, і треба сказати, що чиє. Слово-власник замінює a, а кілька речей потребують are.
 
-**Що ви опануєте:** назвати зошит і сказати, кому належить річ
-**Нові слова:** notebook
+**Що ви опануєте:** сказати, чиї речі, не ставлячи a поруч із my, та узгодити are з кількома речами
+**Нові слова:** notebook, pencil, scissors, glue
+**Повертаються:** backpack, bag, table, desk, chair, here
 
 ---
 
 ## Інтро 1
 
-### Для записів
+### Зошит для вчительки
 
-`notebook` тут — «зошит»: паперові сторінки для записів, не комп’ютер. `my notebook` — «мій зошит», `your notebook` — «твій / ваш зошит». `This is my notebook` — «Це мій зошит». Батарейка такому зошиту не потрібна; головне, щоб ручка писала. Перед `my notebook` не ставимо `a` чи `the`.
+На занятті з англійської вчителька просить дістати зошит. У вас він один. notebook — «зошит». З a: I have a notebook — «У мене є зошит». Коли показуємо свій, a не потрібно: Here is my notebook — «Ось мій зошит». Слова a і my разом не ставимо.
 
-**Покажіть свій зошит.**
+**Вчителька просить показати зошит. Скажіть їй: «Ось мій зошит».**
 
-- ✅ **This is my notebook.**
-- ❌ This is a my notebook. — *Перед `my notebook` не потрібне `a`.*
-- ❌ This is your notebook. — *`your` — твій / ваш; мій — `my`.*
+- ✅ **Here is my notebook.**
+- ❌ Here is a my notebook. — *a і my разом не ставимо: достатньо my.*
+- ❌ Here is your notebook. — *your — твій, а зошит свій: потрібно my.*
 
 ---
 
 ## Інтро 2
 
-### Друзі допомагають
+### Олівці на столі
 
-`friendly` — «дружній, привітний»: людина привітна у спілкуванні. `helpful` про людину — «чуйний: охоче допомагає іншим». `Her friend is friendly` — «Її друг привітний». `His friend is helpful` — «Його друг чуйний». Слова `her` і `his` вибираємо за тим, чий це друг: її чи його.
+На кухонному столі лежать ваші олівці, і дитина, яка робить уроки поруч, взяла їх, не спитавши. pencil — «олівець». Якщо він один, кажемо This is my pencil. Якщо кілька, потрібно These are й pencils із -s: These are my pencils — «Це мої олівці».
 
-**Друг вашого брата чуйний. Скажіть «Його друг чуйний».**
+**Дитина взяла ваші олівці. Скажіть їй, що це ваші олівці.**
 
-- ✅ **His friend is helpful.**
-- ❌ Her friend is helpful. — *`her` — її; тут його: `his`.*
-- ❌ His friend are helpful. — *Один друг: `friend is`.*
+- ✅ **These are my pencils.**
+- ❌ This are my pencils. — *Олівців кілька, тому потрібно These are, а не This are.*
+- ❌ These are my pencil. — *Після These are потрібно кілька речей: pencils.*
 
 ---
 
 ## Інтро 3
 
-### Стіл, завіска й платформа
+### Ножиці для саморобки
 
-`table` — «стіл», `curtain` — «завіска», `platform` — «платформа», `loud` — «гучний». `The notebook is on your table` — «Зошит на твоєму столі». `Our curtain is blue` — «Наша завіска синя». `The music is loud` — «Музика гучна». `Our platform is here` — «Наша платформа тут»: платформа, з якої ми вирушаємо, не обов’язково наша власність.
+Для саморобки дитині потрібні ножиці, і ви простягаєте їй свої власні. scissors — «ножиці». У них два леза, тому слово завжди у множині й кажемо are, як про навушники: Here are my scissors — «Ось мої ножиці». Тому саме Here are, а не Here is.
 
-**Музика гучна. Виберіть фразу.**
+**Дитина просить ножиці. Простягніть їй свої й скажіть: «Ось мої ножиці».**
 
-- ✅ **The music is loud.**
-- ❌ The music are loud. — *З `music` тут потрібне `is`.*
-- ❌ The music is quiet. — *`quiet` — тиха; гучна — `loud`.*
+- ✅ **Here are my scissors.**
+- ❌ Here is my scissors. — *Ножиці — як пара, тому потрібно are, а не is.*
+- ❌ Here are your scissors. — *your — твої, а ножиці ваші: потрібно my.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Друг вашої подруги привітний. Скажіть «Її друг привітний»**
+**1 · Картка слова — notebook**
+<!-- interaction_id: en:lesson-05:session-12:word:notebook; family: word_card -->
+> **notebook** — зошит. My notebook is on the desk. — «Мій зошит на письмовому столі». Про зошит для записів і уроків.
+
+**2 · Вчителька просить дістати зошит. Він у вашому рюкзаку. Скажіть їй повною фразою: «Мій зошит у моєму рюкзаку»**
 <!-- interaction_id: en:lesson-05:session-12:i01; family: phrase_builder -->
-Плитки: `friendly` `is` `friend` `Her` `are` → **Her friend is friendly.**
-*(плитка `are` зайва: тут потрібно `is` — `Her friend is friendly.`)*
+Плитки: `notebook` `is` `in` `my` `backpack` `My` `Your` → **My notebook is in my backpack.**
+*(плитка `Your` зайва: тут потрібно `My` — `My notebook is in my backpack.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — pencil**
+<!-- interaction_id: en:lesson-05:session-12:word:pencil; family: word_card -->
+> **pencil** — олівець. Her pencil is in my bag. — «Її олівець у моїй сумці». Про паличку для письма й малювання.
+
+**4 · Послухайте дитину**
 <!-- interaction_id: en:lesson-05:session-12:i02; family: listen_choose -->
-🔊 *notebook* → **notebook** · notebooks · book
-- notebooks — *У записі перше слово — `notebook`, а в цьому варіанті — `notebooks`.*
-- book — *У записі перше слово — `notebook`, а в цьому варіанті — `book`.*
+🔊 *These are your pencils.* → **These are your pencils.** · This is your pencil. · These are my pencils.
+- This is your pencil. — *У записі `These are` й `pencils` — кілька, а в цьому варіанті `This is` й `pencil` — один.*
+- These are my pencils. — *У записі `your` — твої, а в цьому варіанті `my` — мої.*
 
-**3 · Назвіть зошит для записів**
+**5 · Картка слова — scissors**
+<!-- interaction_id: en:lesson-05:session-12:word:scissors; family: word_card -->
+> **scissors** — ножиці. His scissors are on the chair. — «Його ножиці на стільці». Про прилад із двома лезами, яким ріжуть папір.
+
+**6 · Інструмент із двома лезами, яким ріжуть папір. Як він називається англійською?**
 <!-- interaction_id: en:lesson-05:session-12:i03; family: context_gap_grammar -->
-___ → **notebook** · backpack · curtain
-- backpack — *`backpack` — рюкзак; зошит — `notebook`.*
-- curtain — *`curtain` — завіска; зошит — `notebook`.*
+___ → **scissors** · brush · comb
+- brush — *brush — це пензель, а інструмент для різання паперу називається scissors.*
+- comb — *comb — це гребінець, а інструмент для різання паперу називається scissors.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-12:i04; family: speed_match -->
-notebook — зошит · loud — гучний · friendly — привітний · helpful — чуйний
+notebook — зошит · pencil — олівець · scissors — ножиці · glue — клей
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — glue**
+<!-- interaction_id: en:lesson-05:session-12:word:glue; family: word_card -->
+> **glue** — клей. Their glue is on the table. — «Їхній клей на столі». Про речовину, якою склеюють папір.
+
+**9 · Послухайте дитину й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-12:i05; family: listen_build_dictation -->
-🔊 *This is my notebook.* Плитки: `notebook` `my` `is` `This` → **This is my notebook.**
+🔊 *Your glue is in my bag.* Плитки: `glue` `is` `in` `my` `bag` `Your` `Her` → **Your glue is in my bag.**
+*(плитка `Her` зайва: тут потрібно `Your` — `Your glue is in my bag.`)*
 
-**6 · Друг вашого брата чуйний. Скажіть «Його друг чуйний»**
+**10 · Ножиці вашої сусідки лежать на вашому столі. Скажіть повною фразою: «Її ножиці на моєму столі»**
 <!-- interaction_id: en:lesson-05:session-12:i06; family: phrase_builder -->
-Плитки: `helpful` `is` `friend` `His` `are` → **His friend is helpful.**
-*(плитка `are` зайва: тут потрібно `is` — `His friend is helpful.`)*
+Плитки: `scissors` `are` `on` `my` `table` `Her` `is` → **Her scissors are on my table.**
+*(плитка `is` зайва: тут потрібно `are` — `Her scissors are on my table.`)*
 
-**7 · Музика гучна. Скажіть це**
+**11 · Сусідка просить клей. Він у вас. Скажіть їй: «Ось мій клей»**
 <!-- interaction_id: en:lesson-05:session-12:i07; family: scripted_repeat_compare -->
-🎙 **The music is loud.**
+🎙 **Here is my glue.**
 
-**8 · Зошит належить двом вашим друзям, не вам. Скажіть «Це їхній зошит»**
+**12 · Ножиці вашої дитини лежать на столі. Виберіть потрібне слово**
 <!-- interaction_id: en:lesson-05:session-12:i08; family: context_gap_grammar -->
-This is ___ notebook. → **their** · my · our
-- my — *`my` — мій; їхній — `their`.*
-- our — *`our` — наш; ви не власник, тут їхній: `their`.*
+Her scissors ___ on the table. → **are** · is · am
+- is — *Ножиці — як пара, тому потрібно are, а не is.*
+- am — *am стоїть лише після I, а тут потрібно are.*
 
-**9 · Послухайте, де зошит**
+**13 · Послухайте дитину**
 <!-- interaction_id: en:lesson-05:session-12:i09; family: listen_choose -->
-🔊 *The notebook is on your table.* → **The notebook is on your table.** · The notebook is on your desk. · The notebook is on your chair.
-- The notebook is on your desk. — *У записі останнє слово — `table`, а в цьому варіанті — `desk`.*
-- The notebook is on your chair. — *У записі останнє слово — `table`, а в цьому варіанті — `chair`.*
+🔊 *Those are their pencils.* → **Those are their pencils.** · These are their pencils. · Those are our pencils.
+- These are their pencils. — *У записі `Those` — ті, подалі, а в цьому варіанті `These` — ці, поруч.*
+- Those are our pencils. — *У записі `their` — їхні, а в цьому варіанті `our` — наші.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-12:i10; family: speed_match -->
-notebook — зошит · table — стіл · platform — платформа · curtain — завіска
+pencil — олівець · glue — клей · backpack — рюкзак · table — стіл
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте дитину й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-12:i11; family: listen_build_dictation -->
-🔊 *Our curtain is blue.* Плитки: `blue` `is` `curtain` `Our` `are` → **Our curtain is blue.**
-*(плитка `are` зайва: тут потрібно `is` — `Our curtain is blue.`)*
+🔊 *These are your notebooks.* Плитки: `notebooks` `are` `your` `These` `This` → **These are your notebooks.**
+*(плитка `This` зайва: тут потрібно `These` — `These are your notebooks.`)*
 
-**12 · Ви знайшли платформу для вашого з другом потяга. Скажіть «Наша платформа тут»**
+**16 · Дитина шукає олівці брата. Вони у вашому рюкзаку. Скажіть їй повною фразою: «Твої олівці в моєму рюкзаку»**
 <!-- interaction_id: en:lesson-05:session-12:i12; family: phrase_builder -->
-Плитки: `here` `is` `platform` `Our` `are` → **Our platform is here.**
-*(плитка `are` зайва: тут потрібно `is` — `Our platform is here.`)*
+Плитки: `pencils` `are` `in` `my` `backpack` `Your` `is` → **Your pencils are in my backpack.**
+*(плитка `is` зайва: тут потрібно `are` — `Your pencils are in my backpack.`)*
 
-**13 · Зошит друга у вас. Скажіть йому «Твій зошит у мене»**
+**17 · Вчителька питає, чиї це ножиці. Вони ваші. Відповідьте: «Це мої ножиці»**
 <!-- interaction_id: en:lesson-05:session-12:i13; family: scripted_repeat_compare -->
-🎙 **I have your notebook.**
+🎙 **These are my scissors.**
 
-**14 · Їхній стіл білий. Стіл один. Виберіть форму**
+**18 · Ви показуєте дитині свої олівці. Виберіть потрібне слово**
 <!-- interaction_id: en:lesson-05:session-12:i14; family: context_gap_grammar -->
-Their table ___ white. → **is** · are · has
-- are — *Один стіл: `table is`, навіть якщо власників кілька.*
-- has — *Тут опис: `table is white`.*
+These are my ___. → **pencils** · pencil · glue
+- pencil — *Після These are потрібно кілька речей: pencils.*
+- glue — *glue — клей, а олівці називаються pencils.*
 
-**15 · Послухайте, чий зошит тут**
+**19 · Послухайте вчительку**
 <!-- interaction_id: en:lesson-05:session-12:i15; family: listen_choose -->
-🔊 *Her notebook is here.* → **Her notebook is here.** · His notebook is here. · My notebook is here.
-- His notebook is here. — *У записі перше слово — `Her`, а в цьому варіанті — `His`.*
-- My notebook is here. — *У записі перше слово — `Her`, а в цьому варіанті — `My`.*
+🔊 *Her notebook is in his backpack.* → **Her notebook is in his backpack.** · His notebook is in her backpack. · Her notebook is in his bag.
+- His notebook is in her backpack. — *У записі зошит її (`Her`), а рюкзак його (`his`); у цьому варіанті навпаки.*
+- Her notebook is in his bag. — *У записі останнє слово `backpack`, а в цьому варіанті `bag`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-12:i16; family: speed_match -->
-notebook — зошит · table — стіл · platform — платформа · curtain — завіска
+notebook — зошит · pencil — олівець · scissors — ножиці · glue — клей
 
-**17 · Друг шукає зошит. Він на його столі. Поясніть йому «Зошит на твоєму столі»**
+**21 · Дитина просить ножиці та клей. Вони у вас. Скажіть їй: «Ось мої ножиці та мій клей»**
 <!-- interaction_id: en:lesson-05:session-12:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The notebook is on your table.**
-
+🎙 **Here are my scissors and my glue.**

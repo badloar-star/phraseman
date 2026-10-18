@@ -1,138 +1,154 @@
-# Английский · Урок 5 · Занятие 10 — Ключ в вашем кармане
+# Английский · Урок 5 · Занятие 10 — Что лежит в карманах
 
-**Ситуация.** Вы заселяетесь в отель с пожилым другом. Добрый сотрудник помогает с замком, а ключ, который вы ищете, всё время лежит в кармане.
+**Ситуация.** Вечер в кино и поездка домой на трамвае: билеты, мелочь, салфетки и наушники лежат то в ваших карманах, то в чужих. Вы говорите, чьё это и где лежит: in my pocket, in her bag.
 
-**Что вы освоите:** назвать карман и уточнить, в чьём кармане вещь
-**Новые слова:** pocket
+**Что вы освоите:** сказать, чья вещь и где она лежит, и согласовать are с вещами в паре
+**Новые слова:** pocket, tissue, headphones, purse
+**Возвращаются:** ticket, coin, key, bag, backpack, chair, table
 
 ---
 
 ## Интро 1
 
-### Проверить карманы
+### Билет в кармане
 
-`pocket` — «карман». `my pocket` — «мой карман», `your pocket` — «твой / ваш карман». `The key is in my pocket` — «Ключ в моём кармане». Перед поисковой операцией по всему отелю полезно проверить карман: ключ часто не знает, что его уже потеряли. Перед `my pocket` не нужно `a` или `the`.
+Вы стоите в очереди в кинотеатр, и кассир просит билет. Вы точно помните: убрали его в карман куртки. pocket — «карман». Свой карман называем my pocket, а место — in: The ticket is in my pocket — «Билет в моём кармане». Перед my не ставим the.
 
-**Ключ в вашем собственном кармане. Выберите фразу.**
+**Кассир просит билет, он у вас в кармане. Скажите ему, что билет в вашем кармане.**
 
-- ✅ **The key is in my pocket.**
-- ❌ The key is in a my pocket. — *Перед `my pocket` не нужно `a`.*
-- ❌ The key is in your pocket. — *`your` — твоём / вашем; о своём кармане здесь `my`.*
+- ✅ **The ticket is in my pocket.**
+- ❌ The ticket is on my pocket. — *on — «на», а билет внутри кармана: нужно in.*
+- ❌ The ticket is in the my pocket. — *Перед my не ставим the: my уже показывает, чей карман.*
 
 ---
 
 ## Интро 2
 
-### Люди рядом
+### Грустный фильм
 
-`old` о человеке — «пожилой», `kind` — «добрый», `funny` — «забавный, смешной». `My friend is old` — «Мой друг пожилой». `Your friend is kind` — «Твой друг добрый». `Our friend is funny` — «Наш друг забавный». Слова `my`, `your`, `our` стоят перед `friend`; описание человека — после `is`.
+На грустном фильме ваша подруга всхлипывает и просит салфетку. Её бумажную салфетку вы уже убрали к себе. tissue — «бумажная салфетка». Салфетка подруги — your tissue, ваш карман — my pocket: Your tissue is in my pocket — «Твоя салфетка в моём кармане».
 
-**Ваш общий друг забавный. Выберите описание.**
+**Подруга просит салфетку, а она у вас в кармане. Скажите ей: «Твоя салфетка в моём кармане».**
 
-- ✅ **Our friend is funny.**
-- ❌ Their friend is funny. — *`their` — их; наш — `our`.*
-- ❌ Our friend are funny. — *Один друг: `friend is`.*
+- ✅ **Your tissue is in my pocket.**
+- ❌ My tissue is in your pocket. — *my и your поменялись местами: салфетка подруги — your, а карман ваш — my.*
+- ❌ Your tissue are in my pocket. — *Салфетка одна, поэтому нужно is, а не are.*
 
 ---
 
 ## Интро 3
 
-### Номер и замок
+### Наушники в трамвае
 
-`hotel` — «отель», `lock` — «замок», который открывают ключом. `Their hotel is next to the park` — «Их отель рядом с парком». `Her key is in his pocket` — «Её ключ в его кармане»: ключ принадлежит женщине, карман — мужчине. Для двери, которую назвали `it`: `its lock` — «её замок». `its` без апострофа сообщает, чей замок; `it’s` означает `it is`.
+В трамвае по дороге домой ваш брат ищет наушники и не находит. Вы видели, как он убрал их в свой рюкзак. headphones — «наушники», это пара, поэтому в предложении are: Your headphones are in your backpack — «Твои наушники в твоём рюкзаке». Перед your не ставим the.
 
-**Дверь назвали it. Как сказать «её замок»?**
+**Брат ищет наушники. Скажите ему: «Твои наушники в твоём рюкзаке».**
 
-- ✅ **its lock**
-- ❌ it's lock — *`it’s` — `it is`; здесь нужно `its lock`.*
-- ❌ their lock — *`their` — их; для одной двери, названной `it`, нужно `its`.*
+- ✅ **Your headphones are in your backpack.**
+- ❌ Your headphones is in your backpack. — *Наушники — пара, поэтому нужно are, а не is.*
+- ❌ His headphones are in your backpack. — *his — его, а вы говорите с братом: нужно your.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Мой друг пожилой. Скажите это**
+**1 · Карточка слова — pocket**
+<!-- interaction_id: en:lesson-05:session-10:word:pocket; family: word_card -->
+> **pocket** — карман. The key is in his pocket. — «Ключ в его кармане». О месте в одежде, куда кладут мелкие вещи.
+
+**2 · Кассир просит монету. Она у вас в кармане. Скажите ему полной фразой: «Монета в моём кармане»**
 <!-- interaction_id: en:lesson-05:session-10:i01; family: phrase_builder -->
-Плитки: `old` `is` `friend` `My` `are` → **My friend is old.**
-*(плитка `are` лишняя: здесь нужно `is` — `My friend is old.`)*
+Плитки: `coin` `is` `in` `my` `pocket` `The` `your` → **The coin is in my pocket.**
+*(плитка `your` лишняя: здесь нужно `my` — `The coin is in my pocket.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — tissue**
+<!-- interaction_id: en:lesson-05:session-10:word:tissue; family: word_card -->
+> **tissue** — бумажная салфетка. Her tissue is on the chair. — «Её салфетка на стуле». Об одноразовом бумажном платке.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-10:i02; family: listen_choose -->
-🔊 *pocket* → **pocket** · pockets · packet
-- pockets — *В записи первое слово — `pocket`, а в этом варианте — `pockets`.*
-- packet — *В записи первое слово — `pocket`, а в этом варианте — `packet`.*
+🔊 *Your tissue is in her pocket.* → **Your tissue is in her pocket.** · Your tissue is in his pocket. · My tissue is in her pocket.
+- Your tissue is in his pocket. — *В записи последнее слово `her` — её, а в этом варианте `his` — его.*
+- My tissue is in her pocket. — *В записи первое слово `Your` — твоя, а в этом варианте `My` — моя.*
 
-**3 · Назовите карман**
+**5 · Карточка слова — headphones**
+<!-- interaction_id: en:lesson-05:session-10:word:headphones; family: word_card -->
+> **headphones** — наушники. His headphones are on the table. — «Его наушники на столе». О паре маленьких динамиков, которые надевают на уши.
+
+**6 · Две маленькие колонки, которые надевают на уши, чтобы слушать музыку. Как они называются по-английски?**
 <!-- interaction_id: en:lesson-05:session-10:i03; family: context_gap_grammar -->
-___ → **pocket** · lock · drawer
-- lock — *`lock` — замок; карман — `pocket`.*
-- drawer — *`drawer` — выдвижной ящик; карман — `pocket`.*
+___ → **headphones** · speaker · screen
+- speaker — *speaker — это колонка, а то, что надевают на уши, называется headphones.*
+- screen — *screen — это экран, а то, что надевают на уши, называется headphones.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-10:i04; family: speed_match -->
-pocket — карман · old — пожилой · kind — добрый · funny — забавный
+pocket — карман · tissue — бумажная салфетка · headphones — наушники · purse — кошелёк для мелочи
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — purse**
+<!-- interaction_id: en:lesson-05:session-10:word:purse; family: word_card -->
+> **purse** — небольшой кошелёк для денег. My purse is in my bag. — «Мой кошелёк в моей сумке». О кошельке, где носят монеты и карточки.
+
+**9 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-10:i05; family: listen_build_dictation -->
-🔊 *The key is in my pocket.* Плитки: `pocket` `my` `in` `is` `key` `The` `are` → **The key is in my pocket.**
-*(плитка `are` лишняя: здесь нужно `is` — `The key is in my pocket.`)*
+🔊 *Her purse is in her bag.* Плитки: `purse` `is` `in` `her` `bag` `Her` `His` → **Her purse is in her bag.**
+*(плитка `His` лишняя: здесь нужно `Her` — `Her purse is in her bag.`)*
 
-**6 · Друг собеседника добрый. Скажите «Твой друг добрый»**
+**10 · Ваши наушники лежат в сумке подруги. Скажите полной фразой: «Мои наушники в её сумке»**
 <!-- interaction_id: en:lesson-05:session-10:i06; family: phrase_builder -->
-Плитки: `kind` `is` `friend` `Your` `are` → **Your friend is kind.**
-*(плитка `are` лишняя: здесь нужно `is` — `Your friend is kind.`)*
+Плитки: `headphones` `are` `in` `her` `bag` `My` `is` → **My headphones are in her bag.**
+*(плитка `is` лишняя: здесь нужно `are` — `My headphones are in her bag.`)*
 
-**7 · Скажите «Наш друг забавный»**
+**11 · Кассир просит билет. Он в вашем кармане. Скажите ему: «Мой билет в моём кармане»**
 <!-- interaction_id: en:lesson-05:session-10:i07; family: scripted_repeat_compare -->
-🎙 **Our friend is funny.**
+🎙 **My ticket is in my pocket.**
 
-**8 · Ключ в кармане вашего друга-мужчины. Выберите слово**
+**12 · Вы говорите подруге, что её кошелёк в вашем кармане. Выберите нужное слово**
 <!-- interaction_id: en:lesson-05:session-10:i08; family: context_gap_grammar -->
-The key is in ___ pocket. → **his** · her · their
-- her — *`her` — её; здесь его: `his`.*
-- their — *`their` — их; здесь его: `his`.*
+Your purse is in ___ pocket. → **my** · your · her
+- your — *your — твой, а карман ваш: нужно my.*
+- her — *her — её, а вы говорите о своём кармане: нужно my.*
 
-**9 · Послушайте, где отель**
+**13 · Послушайте брата**
 <!-- interaction_id: en:lesson-05:session-10:i09; family: listen_choose -->
-🔊 *Their hotel is next to the park.* → **Their hotel is next to the park.** · Their hotel is next to the bank. · Our hotel is next to the park.
-- Their hotel is next to the bank. — *В записи последнее слово — `park`, а в этом варианте — `bank`.*
-- Our hotel is next to the park. — *В записи первое слово — `Their`, а в этом варианте — `Our`.*
+🔊 *Their headphones are on the table.* → **Their headphones are on the table.** · Their headphones is on the table. · Their headphones are on the chair.
+- Their headphones is on the table. — *В записи `are` — наушники, пара, а в этом варианте `is`.*
+- Their headphones are on the chair. — *В записи последнее слово `table`, а в этом варианте `chair`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-10:i10; family: speed_match -->
-pocket — карман · lock — замок для ключа · hotel — отель · kind — добрый
+tissue — бумажная салфетка · purse — кошелёк для мелочи · ticket — билет · coin — монета
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-10:i11; family: listen_build_dictation -->
-🔊 *Her key is in his pocket.* Плитки: `pocket` `his` `in` `is` `key` `Her` `are` → **Her key is in his pocket.**
-*(плитка `are` лишняя: здесь нужно `is` — `Her key is in his pocket.`)*
+🔊 *His tissue is in my pocket.* Плитки: `tissue` `is` `in` `my` `pocket` `His` `Your` → **His tissue is in my pocket.**
+*(плитка `Your` лишняя: здесь нужно `His` — `His tissue is in my pocket.`)*
 
-**12 · Скажите «Наш отель здесь»**
+**16 · Наушники брата лежат у вас в кармане. Скажите ему полной фразой: «Твои наушники в моём кармане»**
 <!-- interaction_id: en:lesson-05:session-10:i12; family: phrase_builder -->
-Плитки: `here` `is` `hotel` `Our` `are` → **Our hotel is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `Our hotel is here.`)*
+Плитки: `headphones` `are` `in` `my` `pocket` `Your` `is` → **Your headphones are in my pocket.**
+*(плитка `is` лишняя: здесь нужно `are` — `Your headphones are in my pocket.`)*
 
-**13 · У вас ключ собеседника. Скажите «Твой ключ у меня»**
+**17 · Ваша подруга ищет свой кошелёк. Он в её сумке. Скажите ей: «Твой кошелёк в твоей сумке»**
 <!-- interaction_id: en:lesson-05:session-10:i13; family: scripted_repeat_compare -->
-🎙 **I have your key.**
+🎙 **Your purse is in your bag.**
 
-**14 · Речь об одной двери, названной it. Её замок новый. Выберите слово**
+**18 · Вы говорите брату, где наушники подруги. Выберите нужное слово**
 <!-- interaction_id: en:lesson-05:session-10:i14; family: context_gap_grammar -->
-___ lock is new. → **Its** · It's · Their
-- It's — *`It’s` — `it is`; здесь нужно `Its lock`.*
-- Their — *Для одной двери, названной `it`, нужно `Its`.*
+Her headphones ___ in her bag. → **are** · is · has
+- is — *Наушники — пара, поэтому нужно are, а не is.*
+- has — *has значит «иметь», а здесь нужно сказать, где наушники: are.*
 
-**15 · Послушайте, чей карман пуст**
+**19 · Послушайте кассира**
 <!-- interaction_id: en:lesson-05:session-10:i15; family: listen_choose -->
-🔊 *Her pocket is empty.* → **Her pocket is empty.** · His pocket is empty. · My pocket is empty.
-- His pocket is empty. — *В записи первое слово — `Her`, а в этом варианте — `His`.*
-- My pocket is empty. — *В записи первое слово — `Her`, а в этом варианте — `My`.*
+🔊 *The ticket is in his pocket.* → **The ticket is in his pocket.** · The ticket is in her pocket. · The coin is in his pocket.
+- The ticket is in her pocket. — *В записи `his` — его, а в этом варианте `her` — её.*
+- The coin is in his pocket. — *В записи `ticket` — билет, а в этом варианте `coin` — монета.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-10:i16; family: speed_match -->
-pocket — карман · lock — замок для ключа · hotel — отель · funny — забавный
+pocket — карман · tissue — бумажная салфетка · headphones — наушники · purse — кошелёк для мелочи
 
-**17 · Друг ищет ключ. Вы видите его в кармане друга. Скажите ему «Ключ в твоём кармане»**
+**21 · Брат спрашивает, где его наушники. Они в вашем рюкзаке. Ответьте: «Твои наушники в моём рюкзаке»**
 <!-- interaction_id: en:lesson-05:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The key is in your pocket.**
-
+🎙 **Your headphones are in my backpack.**

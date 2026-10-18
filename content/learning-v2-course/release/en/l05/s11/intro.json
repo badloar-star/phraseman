@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-11",
   "learningOutcomeByLocale": {
-    "ru": "назвать рюкзак и указать владельца вещи или комнаты",
-    "uk": "назвати рюкзак і вказати власника речі або кімнати"
+    "ru": "спросить, чья вещь, и ответить коротко, назвав хозяина: Is this your…? No, it isn’t. It is her…",
+    "uk": "спитати, чия річ, і відповісти коротко, назвавши господаря: Is this your…? No, it isn’t. It is her…"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "За спиной",
-        "uk": "За спиною"
+        "ru": "Какая комната твоя",
+        "uk": "Яка кімната твоя"
       },
       "bodyByLocale": {
-        "ru": "`backpack` — «рюкзак», сумка, которую носят на спине. `my backpack` — «мой рюкзак», `your backpack` — «твой / ваш рюкзак». `This is my backpack` — «Это мой рюкзак». Рюкзак оставляет руки свободными — например, чтобы искать телефон, который лежит в рюкзаке. Перед `my backpack` не добавляйте `a` или `the`.",
-        "uk": "`backpack` — «рюкзак», сумка, яку носять на спині. `my backpack` — «мій рюкзак», `your backpack` — «твій / ваш рюкзак». `This is my backpack` — «Це мій рюкзак». Рюкзак залишає руки вільними — наприклад, щоб шукати телефон, який лежить у рюкзаку. Перед `my backpack` не додавайте `a` чи `the`."
+        "ru": "Ваш брат приехал в новую квартиру и не знает, какая комната его. Вы показываете на комнату с окном, где можно поставить кровать. bedroom — «спальня». Чтобы спросить про комнату брата, говорим your: Is this your bedroom? — «Это твоя спальня?» Про свою спальню скажем my bedroom.",
+        "uk": "Ваш брат приїхав у нову квартиру й не знає, яка кімната його. Ви показуєте на кімнату з вікном, де можна поставити ліжко. bedroom — «спальня». Щоб спитати про кімнату брата, кажемо your: Is this your bedroom? — «Це твоя спальня?» Про свою спальню скажемо my bedroom."
       },
       "question": {
         "interactionId": "en:lesson-05:session-11:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите свой рюкзак.",
-          "uk": "Покажіть свій рюкзак."
+          "ru": "Вы показываете брату комнату с окном. Спросите его, это его спальня?",
+          "uk": "Ви показуєте братові кімнату з вікном. Спитайте його, це його спальня?"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-11:intro1:r1",
-              "text": "This is my backpack."
+              "text": "Is this your bedroom?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro1:r2",
-              "text": "This is a my backpack."
+              "text": "This is your bedroom?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro1:r3",
-              "text": "This is your backpack."
+              "text": "Are this your bedroom?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-11:intro1:r1",
-              "text": "This is my backpack."
+              "text": "Is this your bedroom?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro1:r2",
-              "text": "This is a my backpack."
+              "text": "This is your bedroom?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro1:r3",
-              "text": "This is your backpack."
+              "text": "Are this your bedroom?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите свой рюкзак.",
-          "uk": "Покажіть свій рюкзак."
+          "ru": "Вы показываете брату комнату с окном. Спросите его, это его спальня?",
+          "uk": "Ви показуєте братові кімнату з вікном. Спитайте його, це його спальня?"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто помогает собраться",
-        "uk": "Хто допомагає зібратися"
+        "ru": "Чей это книжный шкаф",
+        "uk": "Чия це книжкова шафа"
       },
       "bodyByLocale": {
-        "ru": "`smart` — «умный», `strong` — «сильный», `quiet` — «тихий». `Her friend is smart` — «Её друг умный». `His friend is strong` — «Его друг сильный». Выбирайте `her` или `his` по тому, чей это друг, а не по слову «друг». `Our room is quiet` — «Наша комната тихая»: `our` — наша, `room` — комната.",
-        "uk": "`smart` — «розумний», `strong` — «сильний», `quiet` — «тихий». `Her friend is smart` — «Її друг розумний». `His friend is strong` — «Його друг сильний». Вибирайте `her` чи `his` за тим, чий це друг, а не за словом «друг». `Our room is quiet` — «Наша кімната тиха»: `our` — наша, `room` — кімната."
+        "ru": "В коридоре стоит высокий шкаф с полками для книг. Брат показывает на него и спрашивает: «Is this my bookcase?» bookcase — «книжный шкаф». Шкаф принадлежит вашей сестре, поэтому называем хозяйку: It is her bookcase — «Это её книжный шкаф». Для мужчины сказали бы his.",
+        "uk": "У коридорі стоїть висока шафа з полицями для книжок. Брат показує на неї й питає: «Is this my bookcase?» bookcase — «книжкова шафа». Шафа належить вашій сестрі, тому називаємо господиню: It is her bookcase — «Це її книжкова шафа». Для чоловіка сказали б his."
       },
       "question": {
         "interactionId": "en:lesson-05:session-11:intro2:q",
         "promptByLocale": {
-          "ru": "Друг вашей подруги умный. Выберите описание.",
-          "uk": "Друг вашої подруги розумний. Виберіть опис."
+          "ru": "Брат показывает на шкаф и спрашивает, его ли он. Шкаф вашей сестры. Скажите ему, что это её книжный шкаф.",
+          "uk": "Брат показує на шафу й питає, чи вона його. Шафа вашої сестри. Скажіть йому, що це її книжкова шафа."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-11:intro2:r1",
-              "text": "Her friend is smart."
+              "text": "It is her bookcase."
             },
             {
               "responseId": "en:lesson-05:session-11:intro2:r2",
-              "text": "His friend is smart."
+              "text": "It is his bookcase."
             },
             {
               "responseId": "en:lesson-05:session-11:intro2:r3",
-              "text": "Her friend are smart."
+              "text": "It is she bookcase."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-11:intro2:r1",
-              "text": "Her friend is smart."
+              "text": "It is her bookcase."
             },
             {
               "responseId": "en:lesson-05:session-11:intro2:r2",
-              "text": "His friend is smart."
+              "text": "It is his bookcase."
             },
             {
               "responseId": "en:lesson-05:session-11:intro2:r3",
-              "text": "Her friend are smart."
+              "text": "It is she bookcase."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг вашей подруги умный. Выберите описание.",
-          "uk": "Друг вашої подруги розумний. Виберіть опис."
+          "ru": "Брат показывает на шкаф и спрашивает, его ли он. Шкаф вашей сестры. Скажите ему, что это её книжный шкаф.",
+          "uk": "Брат показує на шафу й питає, чи вона його. Шафа вашої сестри. Скажіть йому, що це її книжкова шафа."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "В комнате и в трамвае",
-        "uk": "У кімнаті й у трамваї"
+        "ru": "Где мой ноутбук",
+        "uk": "Де мій ноутбук"
       },
       "bodyByLocale": {
-        "ru": "`desk` — «письменный стол», `tram` — «трамвай». `The backpack is under your desk` — «Рюкзак под твоим столом». `Their room is quiet` — «Их комната тихая». `Our tram is here` — «Наш трамвай здесь». `our tram` может означать трамвай, на котором мы поедем: покупать целый трамвай для такой фразы не нужно.",
-        "uk": "`desk` — «письмовий стіл», `tram` — «трамвай». `The backpack is under your desk` — «Рюкзак під твоїм столом». `Their room is quiet` — «Їхня кімната тиха». `Our tram is here` — «Наш трамвай тут». `our tram` може означати трамвай, яким ми поїдемо: купувати цілий трамвай для такої фрази не потрібно."
+        "ru": "Вечером в новой квартире вы никак не найдёте свой ноутбук. Сестра приехала вместе с вами и могла видеть, куда его положили. laptop — «ноутбук». Вещь одна, поэтому в вопросе is: Where is my laptop? — «Где мой ноутбук?» О ноутбуке сестры спросим: Where is her laptop?",
+        "uk": "Ввечері в новій квартирі ви ніяк не знайдете свій ноутбук. Сестра приїхала разом із вами й могла бачити, куди його поклали. laptop — «ноутбук». Річ одна, тому в питанні is: Where is my laptop? — «Де мій ноутбук?» Про ноутбук сестри спитаємо: Where is her laptop?"
       },
       "question": {
         "interactionId": "en:lesson-05:session-11:intro3:q",
         "promptByLocale": {
-          "ru": "Рюкзак под столом собеседника. Выберите фразу.",
-          "uk": "Рюкзак під столом співрозмовника. Виберіть фразу."
+          "ru": "Сестра могла видеть, куда положили ваш ноутбук. Спросите её, где он.",
+          "uk": "Сестра могла бачити, куди поклали ваш ноутбук. Спитайте її, де він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-11:intro3:r1",
-              "text": "The backpack is under your desk."
+              "text": "Where is my laptop?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro3:r2",
-              "text": "The backpack is on your desk."
+              "text": "Where my laptop is?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro3:r3",
-              "text": "The backpack is under my desk."
+              "text": "Where are my laptop?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-11:intro3:r1",
-              "text": "The backpack is under your desk."
+              "text": "Where is my laptop?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro3:r2",
-              "text": "The backpack is on your desk."
+              "text": "Where my laptop is?"
             },
             {
               "responseId": "en:lesson-05:session-11:intro3:r3",
-              "text": "The backpack is under my desk."
+              "text": "Where are my laptop?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Рюкзак под столом собеседника. Выберите фразу.",
-          "uk": "Рюкзак під столом співрозмовника. Виберіть фразу."
+          "ru": "Сестра могла видеть, куда положили ваш ноутбук. Спросите её, где он.",
+          "uk": "Сестра могла бачити, куди поклали ваш ноутбук. Спитайте її, де він."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b79e7363876f56a34aa3706dd6bd58d68bb7c0030921e9c7ad6075944a4bd0a2"
+  "introFingerprint": "ee67217e6233fb30f553582a6ef30c3c439daa549dab9ac682cdb36db5b1ee8c"
 }

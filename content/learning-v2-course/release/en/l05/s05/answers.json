@@ -1,42 +1,62 @@
 [
   {
+    "interactionId": "en:lesson-05:session-05:word:ruler",
+    "correctText": "ruler",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-05:i01",
-    "correctText": "I'm cold.",
+    "correctText": "The drawer has a ruler.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-05:i02",
-    "correctText": "drawer",
+    "correctText": "I’m cold.",
     "correctResponseId": "en:lesson-05:session-05:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-05:word:paper",
+    "correctText": "paper",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-05:i03",
-    "correctText": "drawer",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-05:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-05:i04",
-    "correctText": "en:lesson-05:session-05:i04:p1=drawer\nen:lesson-05:session-05:i04:p2=cold\nen:lesson-05:session-05:i04:p3=hot\nen:lesson-05:session-05:i04:p4=warm",
+    "correctText": "en:lesson-05:session-05:i04:p1=ruler\nen:lesson-05:session-05:i04:p2=notepad\nen:lesson-05:session-05:i04:p3=paper\nen:lesson-05:session-05:i04:p4=eraser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-05:word:notepad",
+    "correctText": "notepad",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-05:i05",
-    "correctText": "The desk has a drawer.",
+    "correctText": "She has a notepad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-05:word:eraser",
+    "correctText": "eraser",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-05:i06",
-    "correctText": "She has a map.",
+    "correctText": "The drawer has an eraser.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-05:i07",
-    "correctText": "I'm hot.",
+    "correctText": "I’m warm.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-05:i08",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-05:i08:r1"
   },
   {
@@ -46,12 +66,12 @@
   },
   {
     "interactionId": "en:lesson-05:session-05:i10",
-    "correctText": "en:lesson-05:session-05:i10:p1=drawer\nen:lesson-05:session-05:i10:p2=map\nen:lesson-05:session-05:i10:p3=supermarket\nen:lesson-05:session-05:i10:p4=police station",
+    "correctText": "en:lesson-05:session-05:i10:p1=drawer\nen:lesson-05:session-05:i10:p2=map\nen:lesson-05:session-05:i10:p3=hot\nen:lesson-05:session-05:i10:p4=warm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-05:i11",
-    "correctText": "They have drawers.",
+    "correctText": "The desk has a drawer.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-05:session-05:i13",
-    "correctText": "I have a map.",
+    "correctText": "She’s hot.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-05:session-05:i15",
-    "correctText": "She's cold.",
+    "correctText": "She has a map.",
     "correctResponseId": "en:lesson-05:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-05:i16",
-    "correctText": "en:lesson-05:session-05:i16:p1=drawer\nen:lesson-05:session-05:i16:p2=map\nen:lesson-05:session-05:i16:p3=supermarket\nen:lesson-05:session-05:i16:p4=police station",
+    "correctText": "en:lesson-05:session-05:i16:p1=paper\nen:lesson-05:session-05:i16:p2=eraser\nen:lesson-05:session-05:i16:p3=cold\nen:lesson-05:session-05:i16:p4=hot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-05:i17",
-    "correctText": "The desk has a drawer.",
+    "correctText": "The drawer has an eraser.",
     "correctResponseId": null
   }
 ]

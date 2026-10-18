@@ -1,0 +1,2457 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-11",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-11:word:bedroom",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bedroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:bedroom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bedroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:bedroom:audio",
+            "transcript": "bedroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:bedroom:r1",
+              "targetText": "bedroom",
+              "meaningByLocale": {
+                "ru": "спальня. This is my bedroom. — «Это моя спальня». О комнате, где стоит кровать и где спят.",
+                "uk": "спальня. This is my bedroom. — «Це моя спальня». Про кімнату, де стоїть ліжко й де сплять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bedroom",
+            "definitionByLocale": {
+              "ru": "спальня. This is my bedroom. — «Это моя спальня». О комнате, где стоит кровать и где спят.",
+              "uk": "спальня. This is my bedroom. — «Це моя спальня». Про кімнату, де стоїть ліжко й де сплять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат стоит в дверях комнаты. Скажите ему полной фразой: «Это твоя спальня»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат стоит в дверях комнаты. Скажите ему полной фразой: «Это твоя спальня»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is your bedroom.",
+          "localizedMeaning": {
+            "ru": "Брат стоит в дверях комнаты. Скажите ему полной фразой: «Это твоя спальня»",
+            "uk": "Брат стоїть у дверях кімнати. Скажіть йому повною фразою: «Це твоя спальня»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "your",
+            "bedroom"
+          ],
+          "authoredDistractorTokens": [
+            "my"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат стоит в дверях комнаты. Скажите ему полной фразой: «Это твоя спальня»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `your` — `This is your bedroom.`",
+                "uk": "тут потрібно `your` — `This is your bedroom.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:word:bookcase",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bookcase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:bookcase:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bookcase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:bookcase:audio",
+            "transcript": "bookcase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:bookcase:r1",
+              "targetText": "bookcase",
+              "meaningByLocale": {
+                "ru": "книжный шкаф. Your bookcase is in the hall. — «Твой книжный шкаф в коридоре». О высоком шкафе с полками для книг.",
+                "uk": "книжкова шафа. Your bookcase is in the hall. — «Твоя книжкова шафа в коридорі». Про високу шафу з полицями для книжок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bookcase",
+            "definitionByLocale": {
+              "ru": "книжный шкаф. Your bookcase is in the hall. — «Твой книжный шкаф в коридоре». О высоком шкафе с полками для книг.",
+              "uk": "книжкова шафа. Your bookcase is in the hall. — «Твоя книжкова шафа в коридорі». Про високу шафу з полицями для книжок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i02:r1",
+            "text": "Is this your bookcase?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i02:r2",
+            "text": "Is that your bookcase?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i02:r3",
+            "text": "Is this my bookcase?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i02:audio",
+            "transcript": "Is this your bookcase?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:i02:r1",
+              "targetText": "Is this your bookcase?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i02:r2",
+              "targetText": "Is that your bookcase?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i02:r3",
+              "targetText": "Is this my bookcase?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `this` — этот, рядом, а в этом варианте `that` — тот, подальше.",
+                "uk": "У записі `this` — цей, поруч, а в цьому варіанті `that` — той, подалі."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `your` — твой, а в этом варианте `my` — мой.",
+                "uk": "У записі `your` — твій, а в цьому варіанті `my` — мій."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:word:laptop",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — laptop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:laptop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — laptop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:laptop:audio",
+            "transcript": "laptop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:laptop:r1",
+              "targetText": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук. Her laptop is on the desk. — «Её ноутбук на письменном столе». О компьютере, который складывается и помещается в сумку.",
+                "uk": "ноутбук. Her laptop is on the desk. — «Її ноутбук на письмовому столі». Про комп’ютер, який складається й вміщається в сумку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laptop",
+            "definitionByLocale": {
+              "ru": "ноутбук. Her laptop is on the desk. — «Её ноутбук на письменном столе». О компьютере, который складывается и помещается в сумку.",
+              "uk": "ноутбук. Her laptop is on the desk. — «Її ноутбук на письмовому столі». Про комп’ютер, який складається й вміщається в сумку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Компьютер, который складывается и помещается в сумку. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i03:r1",
+            "text": "laptop"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i03:r2",
+            "text": "phone"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i03:r3",
+            "text": "printer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Компьютер, который складывается и помещается в сумку. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Компьютер, который складывается и помещается в сумку. Как он называется по-английски?",
+            "uk": "Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-11:i03:r1",
+              "text": "laptop"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i03:r2",
+              "text": "phone"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i03:r3",
+              "text": "printer"
+            }
+          ],
+          "testedDimension": "Компьютер, который складывается и помещается в сумку. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Компьютер, который складывается и помещается в сумку. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "phone — это телефон, а компьютер, который складывается, называется laptop.",
+                "uk": "phone — це телефон, а комп’ютер, який складається, називається laptop."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Компьютер, который складывается и помещается в сумку. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "printer — это принтер, а компьютер, который складывается, называется laptop.",
+                "uk": "printer — це принтер, а комп’ютер, який складається, називається laptop."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-11:i04:p1",
+              "target": "bedroom",
+              "meaningByLocale": {
+                "ru": "спальня",
+                "uk": "спальня"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i04:p2",
+              "target": "bookcase",
+              "meaningByLocale": {
+                "ru": "книжный шкаф",
+                "uk": "книжкова шафа"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i04:p3",
+              "target": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук",
+                "uk": "ноутбук"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i04:p4",
+              "target": "poster",
+              "meaningByLocale": {
+                "ru": "постер",
+                "uk": "постер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bedroom",
+            "bookcase",
+            "laptop",
+            "poster"
+          ],
+          "rightColumn": [
+            "спальня",
+            "книжный шкаф",
+            "ноутбук",
+            "постер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:word:poster",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — poster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:poster:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — poster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:poster:audio",
+            "transcript": "poster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:poster:r1",
+              "targetText": "poster",
+              "meaningByLocale": {
+                "ru": "постер. His poster is on the wall. — «Его постер на стене». О большой бумажной картинке, которую вешают на стену.",
+                "uk": "постер. His poster is on the wall. — «Його постер на стіні». Про велику паперову картинку, яку вішають на стіну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "poster",
+            "definitionByLocale": {
+              "ru": "постер. His poster is on the wall. — «Его постер на стене». О большой бумажной картинке, которую вешают на стену.",
+              "uk": "постер. His poster is on the wall. — «Його постер на стіні». Про велику паперову картинку, яку вішають на стіну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сестру и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i05:audio",
+            "transcript": "Our poster is on the wall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Our poster is on the wall.",
+          "orderedTokens": [
+            "Our",
+            "poster",
+            "is",
+            "on",
+            "the",
+            "wall"
+          ],
+          "authoredDistractorTokens": [
+            "Their"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сестру и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Our` — `Our poster is on the wall.`",
+                "uk": "тут потрібно `Our` — `Our poster is on the wall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра ищет ноутбук. Он лежит в её спальне. Скажите ей полной фразой: «Твой ноутбук в твоей спальне»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра ищет ноутбук. Он лежит в её спальне. Скажите ей полной фразой: «Твой ноутбук в твоей спальне»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Your laptop is in your bedroom.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет ноутбук. Он лежит в её спальне. Скажите ей полной фразой: «Твой ноутбук в твоей спальне»",
+            "uk": "Сестра шукає ноутбук. Він лежить у її спальні. Скажіть їй повною фразою: «Твій ноутбук у твоїй спальні»"
+          },
+          "orderedTokens": [
+            "Your",
+            "laptop",
+            "is",
+            "in",
+            "your",
+            "bedroom"
+          ],
+          "authoredDistractorTokens": [
+            "My"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра ищет ноутбук. Он лежит в её спальне. Скажите ей полной фразой: «Твой ноутбук в твоей спальне»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Your` — `Your laptop is in your bedroom.`",
+                "uk": "тут потрібно `Your` — `Your laptop is in your bedroom.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показывает на постер и спрашивает, его ли он. Постер ваш. Ответьте коротко: «Нет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i07:audio"
+        ],
+        "accessibilityLabel": "Брат показывает на постер и спрашивает, его ли он. Постер ваш. Ответьте коротко: «Нет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i07:audio",
+            "transcript": "No, it isn’t."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, it isn’t.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат спрашивает: «Is this your bedroom?» Спальня его. Выберите начало ответа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i08:r1",
+            "text": "Yes"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i08:r2",
+            "text": "No"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i08:r3",
+            "text": "Not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спрашивает: «Is this your bedroom?» Спальня его. Выберите начало ответа",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спрашивает: «Is this your bedroom?» Спальня его. Выберите начало ответа",
+            "uk": "Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді"
+          },
+          "gappedTargetPhrase": "___, it is.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-11:i08:r1",
+              "text": "Yes"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i08:r2",
+              "text": "No"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i08:r3",
+              "text": "Not"
+            }
+          ],
+          "testedDimension": "Брат спрашивает: «Is this your bedroom?» Спальня его. Выберите начало ответа",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат спрашивает: «Is this your bedroom?» Спальня его. Выберите начало ответа",
+              "feedbackByLocale": {
+                "ru": "После No говорят it isn’t, а здесь it is: нужно Yes.",
+                "uk": "Після No кажуть it isn’t, а тут it is: потрібно Yes."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат спрашивает: «Is this your bedroom?» Спальня его. Выберите начало ответа",
+              "feedbackByLocale": {
+                "ru": "Not не начинает ответ: нужно Yes.",
+                "uk": "Not не починає відповідь: потрібно Yes."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i09:r1",
+            "text": "Where is your laptop?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i09:r2",
+            "text": "Where are your laptops?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i09:r3",
+            "text": "Where is her laptop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i09:audio",
+            "transcript": "Where is your laptop?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:i09:r1",
+              "targetText": "Where is your laptop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i09:r2",
+              "targetText": "Where are your laptops?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i09:r3",
+              "targetText": "Where is her laptop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `is` и один ноутбук, а в этом варианте `are` и несколько.",
+                "uk": "У записі `is` й один ноутбук, а в цьому варіанті `are` й кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `your` — твой, а в этом варианте `her` — её.",
+                "uk": "У записі `your` — твій, а в цьому варіанті `her` — її."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-11:i10:p1",
+              "target": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук",
+                "uk": "ноутбук"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i10:p2",
+              "target": "poster",
+              "meaningByLocale": {
+                "ru": "постер",
+                "uk": "постер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laptop",
+            "poster",
+            "window",
+            "wall"
+          ],
+          "rightColumn": [
+            "ноутбук",
+            "постер",
+            "окно",
+            "стена"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i11:audio",
+            "transcript": "Their bookcase is in your bedroom."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Their bookcase is in your bedroom.",
+          "orderedTokens": [
+            "Their",
+            "bookcase",
+            "is",
+            "in",
+            "your",
+            "bedroom"
+          ],
+          "authoredDistractorTokens": [
+            "Our"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Their` — `Their bookcase is in your bedroom.`",
+                "uk": "тут потрібно `Their` — `Their bookcase is in your bedroom.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы спрашиваете сестру, где её постер. Задайте вопрос полностью",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете сестру, где её постер. Задайте вопрос полностью",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is your poster?",
+          "localizedMeaning": {
+            "ru": "Вы спрашиваете сестру, где её постер. Задайте вопрос полностью",
+            "uk": "Ви питаєте сестру, де її постер. Задайте питання повністю"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "your",
+            "poster"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете сестру, где её постер. Задайте вопрос полностью",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is your poster?`",
+                "uk": "тут потрібно `is` — `Where is your poster?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, где ваш ноутбук. Он в вашей спальне. Ответьте: «Мой ноутбук в моей спальне»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, где ваш ноутбук. Он в вашей спальне. Ответьте: «Мой ноутбук в моей спальне»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i13:audio",
+            "transcript": "My laptop is in my bedroom."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My laptop is in my bedroom.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат спрашивает, его ли этот постер. Постер вашей сестры. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i14:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i14:r2",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i14:r3",
+            "text": "their"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спрашивает, его ли этот постер. Постер вашей сестры. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спрашивает, его ли этот постер. Постер вашей сестры. Выберите слово",
+            "uk": "Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово"
+          },
+          "gappedTargetPhrase": "It is ___ poster.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-11:i14:r1",
+              "text": "her"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i14:r2",
+              "text": "his"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i14:r3",
+              "text": "their"
+            }
+          ],
+          "testedDimension": "Брат спрашивает, его ли этот постер. Постер вашей сестры. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат спрашивает, его ли этот постер. Постер вашей сестры. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "his — его, а постер вашей сестры: нужно her.",
+                "uk": "his — його, а постер вашої сестри: потрібно her."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат спрашивает, его ли этот постер. Постер вашей сестры. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "their — их, а постер одной сестры: нужно her.",
+                "uk": "their — їхній, а постер однієї сестри: потрібно her."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i15:r1",
+            "text": "It is her laptop."
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i15:r2",
+            "text": "It is his laptop."
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i15:r3",
+            "text": "It is her poster."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i15:audio",
+            "transcript": "It is her laptop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:i15:r1",
+              "targetText": "It is her laptop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i15:r2",
+              "targetText": "It is his laptop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i15:r3",
+              "targetText": "It is her poster.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `her` — её, а в этом варианте `his` — его.",
+                "uk": "У записі `her` — її, а в цьому варіанті `his` — його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `laptop` — ноутбук, а в этом варианте `poster` — постер.",
+                "uk": "У записі останнє слово `laptop` — ноутбук, а в цьому варіанті `poster` — постер."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-11:i16:p1",
+              "target": "bedroom",
+              "meaningByLocale": {
+                "ru": "спальня",
+                "uk": "спальня"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i16:p2",
+              "target": "bookcase",
+              "meaningByLocale": {
+                "ru": "книжный шкаф",
+                "uk": "книжкова шафа"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i16:p3",
+              "target": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук",
+                "uk": "ноутбук"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i16:p4",
+              "target": "poster",
+              "meaningByLocale": {
+                "ru": "постер",
+                "uk": "постер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bedroom",
+            "bookcase",
+            "laptop",
+            "poster"
+          ],
+          "rightColumn": [
+            "спальня",
+            "книжный шкаф",
+            "ноутбук",
+            "постер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показывает на ваш ноутбук и спрашивает, ваш ли он. Ноутбук ваш. Ответьте: «Это мой ноутбук»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Брат показывает на ваш ноутбук и спрашивает, ваш ли он. Ноутбук ваш. Ответьте: «Это мой ноутбук»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i17:audio",
+            "transcript": "It is my laptop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my laptop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-11:word:bedroom",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bedroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:bedroom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bedroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:bedroom:audio",
+            "transcript": "bedroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:bedroom:r1",
+              "targetText": "bedroom",
+              "meaningByLocale": {
+                "ru": "спальня. This is my bedroom. — «Это моя спальня». О комнате, где стоит кровать и где спят.",
+                "uk": "спальня. This is my bedroom. — «Це моя спальня». Про кімнату, де стоїть ліжко й де сплять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bedroom",
+            "definitionByLocale": {
+              "ru": "спальня. This is my bedroom. — «Это моя спальня». О комнате, где стоит кровать и где спят.",
+              "uk": "спальня. This is my bedroom. — «Це моя спальня». Про кімнату, де стоїть ліжко й де сплять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат стоїть у дверях кімнати. Скажіть йому повною фразою: «Це твоя спальня»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат стоїть у дверях кімнати. Скажіть йому повною фразою: «Це твоя спальня»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is your bedroom.",
+          "localizedMeaning": {
+            "ru": "Брат стоит в дверях комнаты. Скажите ему полной фразой: «Это твоя спальня»",
+            "uk": "Брат стоїть у дверях кімнати. Скажіть йому повною фразою: «Це твоя спальня»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "your",
+            "bedroom"
+          ],
+          "authoredDistractorTokens": [
+            "my"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат стоїть у дверях кімнати. Скажіть йому повною фразою: «Це твоя спальня»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `your` — `This is your bedroom.`",
+                "uk": "тут потрібно `your` — `This is your bedroom.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:word:bookcase",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bookcase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:bookcase:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bookcase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:bookcase:audio",
+            "transcript": "bookcase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:bookcase:r1",
+              "targetText": "bookcase",
+              "meaningByLocale": {
+                "ru": "книжный шкаф. Your bookcase is in the hall. — «Твой книжный шкаф в коридоре». О высоком шкафе с полками для книг.",
+                "uk": "книжкова шафа. Your bookcase is in the hall. — «Твоя книжкова шафа в коридорі». Про високу шафу з полицями для книжок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bookcase",
+            "definitionByLocale": {
+              "ru": "книжный шкаф. Your bookcase is in the hall. — «Твой книжный шкаф в коридоре». О высоком шкафе с полками для книг.",
+              "uk": "книжкова шафа. Your bookcase is in the hall. — «Твоя книжкова шафа в коридорі». Про високу шафу з полицями для книжок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i02:r1",
+            "text": "Is this your bookcase?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i02:r2",
+            "text": "Is that your bookcase?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i02:r3",
+            "text": "Is this my bookcase?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i02:audio",
+            "transcript": "Is this your bookcase?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:i02:r1",
+              "targetText": "Is this your bookcase?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i02:r2",
+              "targetText": "Is that your bookcase?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i02:r3",
+              "targetText": "Is this my bookcase?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `this` — этот, рядом, а в этом варианте `that` — тот, подальше.",
+                "uk": "У записі `this` — цей, поруч, а в цьому варіанті `that` — той, подалі."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `your` — твой, а в этом варианте `my` — мой.",
+                "uk": "У записі `your` — твій, а в цьому варіанті `my` — мій."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:word:laptop",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — laptop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:laptop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — laptop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:laptop:audio",
+            "transcript": "laptop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:laptop:r1",
+              "targetText": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук. Her laptop is on the desk. — «Её ноутбук на письменном столе». О компьютере, который складывается и помещается в сумку.",
+                "uk": "ноутбук. Her laptop is on the desk. — «Її ноутбук на письмовому столі». Про комп’ютер, який складається й вміщається в сумку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laptop",
+            "definitionByLocale": {
+              "ru": "ноутбук. Her laptop is on the desk. — «Её ноутбук на письменном столе». О компьютере, который складывается и помещается в сумку.",
+              "uk": "ноутбук. Her laptop is on the desk. — «Її ноутбук на письмовому столі». Про комп’ютер, який складається й вміщається в сумку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i03:r1",
+            "text": "laptop"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i03:r2",
+            "text": "phone"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i03:r3",
+            "text": "printer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Компьютер, который складывается и помещается в сумку. Как он называется по-английски?",
+            "uk": "Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-11:i03:r1",
+              "text": "laptop"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i03:r2",
+              "text": "phone"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i03:r3",
+              "text": "printer"
+            }
+          ],
+          "testedDimension": "Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "phone — это телефон, а компьютер, который складывается, называется laptop.",
+                "uk": "phone — це телефон, а комп’ютер, який складається, називається laptop."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Комп’ютер, який складається й вміщається в сумку. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "printer — это принтер, а компьютер, который складывается, называется laptop.",
+                "uk": "printer — це принтер, а комп’ютер, який складається, називається laptop."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-11:i04:p1",
+              "target": "bedroom",
+              "meaningByLocale": {
+                "ru": "спальня",
+                "uk": "спальня"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i04:p2",
+              "target": "bookcase",
+              "meaningByLocale": {
+                "ru": "книжный шкаф",
+                "uk": "книжкова шафа"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i04:p3",
+              "target": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук",
+                "uk": "ноутбук"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i04:p4",
+              "target": "poster",
+              "meaningByLocale": {
+                "ru": "постер",
+                "uk": "постер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bedroom",
+            "bookcase",
+            "laptop",
+            "poster"
+          ],
+          "rightColumn": [
+            "спальня",
+            "книжкова шафа",
+            "ноутбук",
+            "постер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:word:poster",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — poster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:word:poster:audio"
+        ],
+        "accessibilityLabel": "Картка слова — poster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:word:poster:audio",
+            "transcript": "poster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:word:poster:r1",
+              "targetText": "poster",
+              "meaningByLocale": {
+                "ru": "постер. His poster is on the wall. — «Его постер на стене». О большой бумажной картинке, которую вешают на стену.",
+                "uk": "постер. His poster is on the wall. — «Його постер на стіні». Про велику паперову картинку, яку вішають на стіну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "poster",
+            "definitionByLocale": {
+              "ru": "постер. His poster is on the wall. — «Его постер на стене». О большой бумажной картинке, которую вешают на стену.",
+              "uk": "постер. His poster is on the wall. — «Його постер на стіні». Про велику паперову картинку, яку вішають на стіну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сестру й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i05:audio",
+            "transcript": "Our poster is on the wall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Our poster is on the wall.",
+          "orderedTokens": [
+            "Our",
+            "poster",
+            "is",
+            "on",
+            "the",
+            "wall"
+          ],
+          "authoredDistractorTokens": [
+            "Their"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сестру й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Our` — `Our poster is on the wall.`",
+                "uk": "тут потрібно `Our` — `Our poster is on the wall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра шукає ноутбук. Він лежить у її спальні. Скажіть їй повною фразою: «Твій ноутбук у твоїй спальні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра шукає ноутбук. Він лежить у її спальні. Скажіть їй повною фразою: «Твій ноутбук у твоїй спальні»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Your laptop is in your bedroom.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет ноутбук. Он лежит в её спальне. Скажите ей полной фразой: «Твой ноутбук в твоей спальне»",
+            "uk": "Сестра шукає ноутбук. Він лежить у її спальні. Скажіть їй повною фразою: «Твій ноутбук у твоїй спальні»"
+          },
+          "orderedTokens": [
+            "Your",
+            "laptop",
+            "is",
+            "in",
+            "your",
+            "bedroom"
+          ],
+          "authoredDistractorTokens": [
+            "My"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра шукає ноутбук. Він лежить у її спальні. Скажіть їй повною фразою: «Твій ноутбук у твоїй спальні»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Your` — `Your laptop is in your bedroom.`",
+                "uk": "тут потрібно `Your` — `Your laptop is in your bedroom.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показує на постер і питає, чи він його. Постер ваш. Відповідьте коротко: «Ні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i07:audio"
+        ],
+        "accessibilityLabel": "Брат показує на постер і питає, чи він його. Постер ваш. Відповідьте коротко: «Ні»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i07:audio",
+            "transcript": "No, it isn’t."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, it isn’t.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i08:r1",
+            "text": "Yes"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i08:r2",
+            "text": "No"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i08:r3",
+            "text": "Not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спрашивает: «Is this your bedroom?» Спальня его. Выберите начало ответа",
+            "uk": "Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді"
+          },
+          "gappedTargetPhrase": "___, it is.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-11:i08:r1",
+              "text": "Yes"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i08:r2",
+              "text": "No"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i08:r3",
+              "text": "Not"
+            }
+          ],
+          "testedDimension": "Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді",
+              "feedbackByLocale": {
+                "ru": "После No говорят it isn’t, а здесь it is: нужно Yes.",
+                "uk": "Після No кажуть it isn’t, а тут it is: потрібно Yes."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат питає: «Is this your bedroom?» Спальня його. Виберіть початок відповіді",
+              "feedbackByLocale": {
+                "ru": "Not не начинает ответ: нужно Yes.",
+                "uk": "Not не починає відповідь: потрібно Yes."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i09:r1",
+            "text": "Where is your laptop?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i09:r2",
+            "text": "Where are your laptops?"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i09:r3",
+            "text": "Where is her laptop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i09:audio",
+            "transcript": "Where is your laptop?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:i09:r1",
+              "targetText": "Where is your laptop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i09:r2",
+              "targetText": "Where are your laptops?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i09:r3",
+              "targetText": "Where is her laptop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `is` и один ноутбук, а в этом варианте `are` и несколько.",
+                "uk": "У записі `is` й один ноутбук, а в цьому варіанті `are` й кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `your` — твой, а в этом варианте `her` — её.",
+                "uk": "У записі `your` — твій, а в цьому варіанті `her` — її."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-11:i10:p1",
+              "target": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук",
+                "uk": "ноутбук"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i10:p2",
+              "target": "poster",
+              "meaningByLocale": {
+                "ru": "постер",
+                "uk": "постер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laptop",
+            "poster",
+            "window",
+            "wall"
+          ],
+          "rightColumn": [
+            "ноутбук",
+            "постер",
+            "вікно",
+            "стіна"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i11:audio",
+            "transcript": "Their bookcase is in your bedroom."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Their bookcase is in your bedroom.",
+          "orderedTokens": [
+            "Their",
+            "bookcase",
+            "is",
+            "in",
+            "your",
+            "bedroom"
+          ],
+          "authoredDistractorTokens": [
+            "Our"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Their` — `Their bookcase is in your bedroom.`",
+                "uk": "тут потрібно `Their` — `Their bookcase is in your bedroom.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви питаєте сестру, де її постер. Задайте питання повністю",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте сестру, де її постер. Задайте питання повністю",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is your poster?",
+          "localizedMeaning": {
+            "ru": "Вы спрашиваете сестру, где её постер. Задайте вопрос полностью",
+            "uk": "Ви питаєте сестру, де її постер. Задайте питання повністю"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "your",
+            "poster"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви питаєте сестру, де її постер. Задайте питання повністю",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is your poster?`",
+                "uk": "тут потрібно `is` — `Where is your poster?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра питає, де ваш ноутбук. Він у вашій спальні. Відповідьте: «Мій ноутбук у моїй спальні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра питає, де ваш ноутбук. Він у вашій спальні. Відповідьте: «Мій ноутбук у моїй спальні»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i13:audio",
+            "transcript": "My laptop is in my bedroom."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My laptop is in my bedroom.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i14:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i14:r2",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i14:r3",
+            "text": "their"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спрашивает, его ли этот постер. Постер вашей сестры. Выберите слово",
+            "uk": "Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово"
+          },
+          "gappedTargetPhrase": "It is ___ poster.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-11:i14:r1",
+              "text": "her"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i14:r2",
+              "text": "his"
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i14:r3",
+              "text": "their"
+            }
+          ],
+          "testedDimension": "Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "his — его, а постер вашей сестры: нужно her.",
+                "uk": "his — його, а постер вашої сестри: потрібно her."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат питає, чи цей постер його. Постер вашої сестри. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "their — их, а постер одной сестры: нужно her.",
+                "uk": "their — їхній, а постер однієї сестри: потрібно her."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i15:r1",
+            "text": "It is her laptop."
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i15:r2",
+            "text": "It is his laptop."
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i15:r3",
+            "text": "It is her poster."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i15:audio",
+            "transcript": "It is her laptop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-11:i15:r1",
+              "targetText": "It is her laptop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i15:r2",
+              "targetText": "It is his laptop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i15:r3",
+              "targetText": "It is her poster.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-11:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `her` — её, а в этом варианте `his` — его.",
+                "uk": "У записі `her` — її, а в цьому варіанті `his` — його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-11:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `laptop` — ноутбук, а в этом варианте `poster` — постер.",
+                "uk": "У записі останнє слово `laptop` — ноутбук, а в цьому варіанті `poster` — постер."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-11:i16:p1",
+              "target": "bedroom",
+              "meaningByLocale": {
+                "ru": "спальня",
+                "uk": "спальня"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i16:p2",
+              "target": "bookcase",
+              "meaningByLocale": {
+                "ru": "книжный шкаф",
+                "uk": "книжкова шафа"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i16:p3",
+              "target": "laptop",
+              "meaningByLocale": {
+                "ru": "ноутбук",
+                "uk": "ноутбук"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-11:i16:p4",
+              "target": "poster",
+              "meaningByLocale": {
+                "ru": "постер",
+                "uk": "постер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bedroom",
+            "bookcase",
+            "laptop",
+            "poster"
+          ],
+          "rightColumn": [
+            "спальня",
+            "книжкова шафа",
+            "ноутбук",
+            "постер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-11:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показує на ваш ноутбук і питає, чи він ваш. Ноутбук ваш. Відповідьте: «Це мій ноутбук»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Брат показує на ваш ноутбук і питає, чи він ваш. Ноутбук ваш. Відповідьте: «Це мій ноутбук»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-11:i17:audio",
+            "transcript": "It is my laptop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my laptop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-11:word:bedroom",
+      "correctText": "bedroom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i01",
+      "correctText": "This is your bedroom.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:word:bookcase",
+      "correctText": "bookcase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i02",
+      "correctText": "Is this your bookcase?",
+      "correctResponseId": "en:lesson-05:session-11:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:word:laptop",
+      "correctText": "laptop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i03",
+      "correctText": "laptop",
+      "correctResponseId": "en:lesson-05:session-11:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:word:poster",
+      "correctText": "poster",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i05",
+      "correctText": "Our poster is on the wall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i06",
+      "correctText": "Your laptop is in your bedroom.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i07",
+      "correctText": "No, it isn’t.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i08",
+      "correctText": "Yes",
+      "correctResponseId": "en:lesson-05:session-11:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i09",
+      "correctText": "Where is your laptop?",
+      "correctResponseId": "en:lesson-05:session-11:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i11",
+      "correctText": "Their bookcase is in your bedroom.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i12",
+      "correctText": "Where is your poster?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i13",
+      "correctText": "My laptop is in my bedroom.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i14",
+      "correctText": "her",
+      "correctResponseId": "en:lesson-05:session-11:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i15",
+      "correctText": "It is her laptop.",
+      "correctResponseId": "en:lesson-05:session-11:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i17",
+      "correctText": "It is my laptop.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,42 +1,62 @@
 [
   {
+    "interactionId": "en:lesson-05:session-07:word:popcorn",
+    "correctText": "popcorn",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-07:i01",
-    "correctText": "He is angry.",
+    "correctText": "I have popcorn.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i02",
-    "correctText": "remote",
+    "correctText": "He is angry.",
     "correctResponseId": "en:lesson-05:session-07:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-07:word:film",
+    "correctText": "film",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-07:i03",
-    "correctText": "remote",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-07:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-07:i04",
-    "correctText": "en:lesson-05:session-07:i04:p1=remote\nen:lesson-05:session-07:i04:p2=angry\nen:lesson-05:session-07:i04:p3=scared\nen:lesson-05:session-07:i04:p4=cup",
+    "correctText": "en:lesson-05:session-07:i04:p1=popcorn\nen:lesson-05:session-07:i04:p2=film\nen:lesson-05:session-07:i04:p3=snack\nen:lesson-05:session-07:i04:p4=pizza",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:word:snack",
+    "correctText": "snack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i05",
-    "correctText": "I have a remote.",
+    "correctText": "He has a snack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:word:pizza",
+    "correctText": "pizza",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i06",
-    "correctText": "She has the remote.",
+    "correctText": "We have a pizza.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i07",
-    "correctText": "I'm scared.",
+    "correctText": "I’m scared.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i08",
-    "correctText": "have",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-07:i08:r1"
   },
   {
@@ -46,12 +66,12 @@
   },
   {
     "interactionId": "en:lesson-05:session-07:i10",
-    "correctText": "en:lesson-05:session-07:i10:p1=remote\nen:lesson-05:session-07:i10:p2=cup\nen:lesson-05:session-07:i10:p3=playground\nen:lesson-05:session-07:i10:p4=shortcut",
+    "correctText": "en:lesson-05:session-07:i10:p1=remote\nen:lesson-05:session-07:i10:p2=cup\nen:lesson-05:session-07:i10:p3=angry\nen:lesson-05:session-07:i10:p4=scared",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i11",
-    "correctText": "We have cups.",
+    "correctText": "I have a remote.",
     "correctResponseId": null
   },
   {
@@ -61,27 +81,27 @@
   },
   {
     "interactionId": "en:lesson-05:session-07:i13",
-    "correctText": "Is there a shortcut?",
+    "correctText": "I have a remote.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i14",
-    "correctText": "is",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-07:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-07:i15",
-    "correctText": "He's scared.",
+    "correctText": "We have popcorn.",
     "correctResponseId": "en:lesson-05:session-07:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-07:i16",
-    "correctText": "en:lesson-05:session-07:i16:p1=remote\nen:lesson-05:session-07:i16:p2=cup\nen:lesson-05:session-07:i16:p3=playground\nen:lesson-05:session-07:i16:p4=shortcut",
+    "correctText": "en:lesson-05:session-07:i16:p1=film\nen:lesson-05:session-07:i16:p2=snack\nen:lesson-05:session-07:i16:p3=pizza\nen:lesson-05:session-07:i16:p4=remote",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-07:i17",
-    "correctText": "I have the remote.",
+    "correctText": "We have a pizza.",
     "correctResponseId": null
   }
 ]

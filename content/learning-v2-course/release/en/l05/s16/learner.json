@@ -4,31 +4,88 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-16:i01",
+      "interactionId": "en:lesson-05:session-16:word:passport",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — passport",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:word:passport:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — passport",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:word:passport:audio",
+          "transcript": "passport"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-16:word:passport:r1",
+            "targetText": "passport",
+            "meaningByLocale": {
+              "ru": "паспорт. My passport is in my suitcase. — «Мой паспорт в моём чемодане». О документе, с которым ездят в другие страны.",
+              "uk": "паспорт. My passport is in my suitcase. — «Мій паспорт у моїй валізі». Про документ, з яким їздять в інші країни."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "passport",
+          "definitionByLocale": {
+            "ru": "паспорт. My passport is in my suitcase. — «Мой паспорт в моём чемодане». О документе, с которым ездят в другие страны.",
+            "uk": "паспорт. My passport is in my suitcase. — «Мій паспорт у моїй валізі». Про документ, з яким їздять в інші країни."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Тетрадь друга у вас. Скажите ему «Твоя тетрадь у меня»",
+      "prompt": "Сотрудница просит паспорт вашего брата. Он у него в кармане. Скажите ей полной фразой: «Его паспорт в его кармане»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тетрадь друга у вас. Скажите ему «Твоя тетрадь у меня»",
+      "accessibilityLabel": "Сотрудница просит паспорт вашего брата. Он у него в кармане. Скажите ей полной фразой: «Его паспорт в его кармане»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have your notebook.",
+        "targetPhrase": "His passport is in his pocket.",
         "localizedMeaning": {
-          "ru": "Тетрадь друга у вас. Скажите ему «Твоя тетрадь у меня»",
-          "uk": "Зошит друга у вас. Скажіть йому «Твій зошит у мене»"
+          "ru": "Сотрудница просит паспорт вашего брата. Он у него в кармане. Скажите ей полной фразой: «Его паспорт в его кармане»",
+          "uk": "Співробітниця просить паспорт вашого брата. Він у нього в кишені. Скажіть їй повною фразою: «Його паспорт у його кишені»"
         },
         "orderedTokens": [
-          "I",
-          "have",
-          "your",
-          "notebook"
+          "His",
+          "passport",
+          "is",
+          "in",
+          "his",
+          "pocket"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Her"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сотрудница просит паспорт вашего брата. Он у него в кармане. Скажите ей полной фразой: «Его паспорт в его кармане»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `His` — `His passport is in his pocket.`",
+              "uk": "тут потрібно `His` — `His passport is in his pocket.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-16:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-16:word:sunglasses",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где зарядка",
+      "prompt": "Карточка слова — sunglasses",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:word:sunglasses:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sunglasses",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:word:sunglasses:audio",
+          "transcript": "sunglasses"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-16:word:sunglasses:r1",
+            "targetText": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнечные очки. His sunglasses are on the chair. — «Его солнечные очки на стуле». О тёмных очках, которые защищают глаза от солнца.",
+              "uk": "сонцезахисні окуляри. His sunglasses are on the chair. — «Його сонцезахисні окуляри на стільці». Про темні окуляри, що захищають очі від сонця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunglasses",
+          "definitionByLocale": {
+            "ru": "солнечные очки. His sunglasses are on the chair. — «Его солнечные очки на стуле». О тёмных очках, которые защищают глаза от солнца.",
+            "uk": "сонцезахисні окуляри. His sunglasses are on the chair. — «Його сонцезахисні окуляри на стільці». Про темні окуляри, що захищають очі від сонця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сотрудницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-16:i02:r1",
-          "text": "My charger is in your backpack."
+          "text": "Their sunglasses are in her bag."
         },
         {
           "responseId": "en:lesson-05:session-16:i02:r2",
-          "text": "My charger is in your pocket."
+          "text": "Their sunglasses is in her bag."
         },
         {
           "responseId": "en:lesson-05:session-16:i02:r3",
-          "text": "Her charger is in your backpack."
+          "text": "Their sunglasses are in his bag."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, где зарядка",
+      "accessibilityLabel": "Послушайте сотрудницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i02:audio",
-          "transcript": "My charger is in your backpack."
+          "transcript": "Their sunglasses are in her bag."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-16:i02:r1",
-            "targetText": "My charger is in your backpack.",
+            "targetText": "Their sunglasses are in her bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-16:i02:r2",
-            "targetText": "My charger is in your pocket.",
+            "targetText": "Their sunglasses is in her bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-16:i02:r3",
-            "targetText": "Her charger is in your backpack.",
+            "targetText": "Their sunglasses are in his bag.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-16:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где зарядка",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `backpack`, а в этом варианте — `pocket`.",
-              "uk": "У записі останнє слово — `backpack`, а в цьому варіанті — `pocket`."
+              "ru": "В записи `are` — очки, пара, а в этом варианте `is`.",
+              "uk": "У записі `are` — окуляри, пара, а в цьому варіанті `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-16:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где зарядка",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Her`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Her`."
+              "ru": "В записи `her` — её сумка, а в этом варианте `his` — его.",
+              "uk": "У записі `her` — її сумка, а в цьому варіанті `his` — його."
             }
           }
         ],
@@ -113,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-16:word:sandals",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sandals",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:word:sandals:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sandals",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:word:sandals:audio",
+          "transcript": "sandals"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-16:word:sandals:r1",
+            "targetText": "sandals",
+            "meaningByLocale": {
+              "ru": "сандалии. Her sandals are in her bag. — «Её сандалии в её сумке». О летней обуви с открытым верхом.",
+              "uk": "сандалі. Her sandals are in her bag. — «Її сандалі в її сумці». Про літнє взуття з відкритим верхом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sandals",
+          "definitionByLocale": {
+            "ru": "сандалии. Her sandals are in her bag. — «Её сандалии в её сумке». О летней обуви с открытым верхом.",
+            "uk": "сандалі. Her sandals are in her bag. — «Її сандалі в її сумці». Про літнє взуття з відкритим верхом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-16:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В комнате нет ни одной зарядки. Выберите форму",
+      "prompt": "Лёгкая летняя обувь с открытым верхом. Как она называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-16:i03:r1",
-          "text": "aren't"
+          "text": "sandals"
         },
         {
           "responseId": "en:lesson-05:session-16:i03:r2",
-          "text": "are"
+          "text": "boot"
         },
         {
           "responseId": "en:lesson-05:session-16:i03:r3",
-          "text": "isn't"
+          "text": "sock"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В комнате нет ни одной зарядки. Выберите форму",
+      "accessibilityLabel": "Лёгкая летняя обувь с открытым верхом. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В комнате нет ни одной зарядки. Выберите форму",
-          "uk": "У кімнаті немає жодної зарядки. Виберіть форму"
+          "ru": "Лёгкая летняя обувь с открытым верхом. Как она называется по-английски?",
+          "uk": "Легке літнє взуття з відкритим верхом. Як воно називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ any chargers.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-16:i03:r1",
-            "text": "aren't"
+            "text": "sandals"
           },
           {
             "responseId": "en:lesson-05:session-16:i03:r2",
-            "text": "are"
+            "text": "boot"
           },
           {
             "responseId": "en:lesson-05:session-16:i03:r3",
-            "text": "isn't"
+            "text": "sock"
           }
         ],
-        "testedDimension": "В комнате нет ни одной зарядки. Выберите форму",
+        "testedDimension": "Лёгкая летняя обувь с открытым верхом. Как она называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-16:i03:r2",
             "correct": false,
-            "testedDimension": "В комнате нет ни одной зарядки. Выберите форму",
+            "testedDimension": "Лёгкая летняя обувь с открытым верхом. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Здесь нет: `aren’t any chargers`.",
-              "uk": "Тут немає: `aren’t any chargers`."
+              "ru": "boot — это ботинок, а лёгкая летняя обувь называется sandals.",
+              "uk": "boot — це черевик, а легке літнє взуття називається sandals."
             }
           },
           {
             "responseId": "en:lesson-05:session-16:i03:r3",
             "correct": false,
-            "testedDimension": "В комнате нет ни одной зарядки. Выберите форму",
+            "testedDimension": "Лёгкая летняя обувь с открытым верхом. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "С `chargers` нужно `aren’t`.",
-              "uk": "З `chargers` потрібне `aren’t`."
+              "ru": "sock — это носок, а лёгкая летняя обувь называется sandals.",
+              "uk": "sock — це шкарпетка, а легке літнє взуття називається sandals."
             }
           }
         ]
@@ -183,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +340,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-16:i04:p1",
-            "target": "charger",
+            "target": "passport",
             "meaningByLocale": {
-              "ru": "зарядка",
-              "uk": "зарядка"
+              "ru": "паспорт",
+              "uk": "паспорт"
             }
           },
           {
             "pairId": "en:lesson-05:session-16:i04:p2",
-            "target": "pocket",
+            "target": "sunglasses",
             "meaningByLocale": {
-              "ru": "карман",
-              "uk": "кишеня"
+              "ru": "солнечные очки",
+              "uk": "сонцезахисні окуляри"
             }
           },
           {
             "pairId": "en:lesson-05:session-16:i04:p3",
-            "target": "backpack",
+            "target": "sandals",
             "meaningByLocale": {
-              "ru": "рюкзак",
-              "uk": "рюкзак"
+              "ru": "сандалии",
+              "uk": "сандалі"
             }
           },
           {
             "pairId": "en:lesson-05:session-16:i04:p4",
-            "target": "notebook",
+            "target": "camera",
             "meaningByLocale": {
-              "ru": "тетрадь",
-              "uk": "зошит"
+              "ru": "фотоаппарат",
+              "uk": "фотоапарат"
             }
           }
         ],
         "leftColumn": [
-          "charger",
-          "pocket",
-          "backpack",
-          "notebook"
+          "passport",
+          "sunglasses",
+          "sandals",
+          "camera"
         ],
         "rightColumn": [
-          "зарядка",
-          "карман",
-          "рюкзак",
-          "тетрадь"
+          "паспорт",
+          "солнечные очки",
+          "сандалии",
+          "фотоаппарат"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +398,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-16:word:camera",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — camera",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:word:camera:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — camera",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:word:camera:audio",
+          "transcript": "camera"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-16:word:camera:r1",
+            "targetText": "camera",
+            "meaningByLocale": {
+              "ru": "фотоаппарат. Our camera is here. — «Наш фотоаппарат здесь». О приборе, которым снимают фотографии.",
+              "uk": "фотоапарат. Our camera is here. — «Наш фотоапарат тут». Про прилад, яким знімають фотографії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "camera",
+          "definitionByLocale": {
+            "ru": "фотоаппарат. Our camera is here. — «Наш фотоаппарат здесь». О приборе, которым снимают фотографии.",
+            "uk": "фотоапарат. Our camera is here. — «Наш фотоапарат тут». Про прилад, яким знімають фотографії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-16:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте сестру и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте сестру и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i05:audio",
-          "transcript": "Where is my helmet?"
+          "transcript": "Our camera is in your suitcase."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is my helmet?",
+        "hiddenTargetPhrase": "Our camera is in your suitcase.",
         "orderedTokens": [
-          "Where",
+          "Our",
+          "camera",
           "is",
-          "my",
-          "helmet"
+          "in",
+          "your",
+          "suitcase"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Their"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте сестру и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Our` — `Our camera is in your suitcase.`",
+              "uk": "тут потрібно `Our` — `Our camera is in your suitcase.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -292,41 +492,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зонт подруги в чемодане друга. Скажите «Её зонт в его чемодане»",
+      "prompt": "Вы нашли паспорт у выхода и спрашиваете сестру, её ли он. Задайте вопрос полностью",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зонт подруги в чемодане друга. Скажите «Её зонт в его чемодане»",
+      "accessibilityLabel": "Вы нашли паспорт у выхода и спрашиваете сестру, её ли он. Задайте вопрос полностью",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Her umbrella is in his suitcase.",
+        "targetPhrase": "Is this your passport?",
         "localizedMeaning": {
-          "ru": "Зонт подруги в чемодане друга. Скажите «Её зонт в его чемодане»",
-          "uk": "Парасоля подруги у валізі друга. Скажіть «Її парасоля в його валізі»"
+          "ru": "Вы нашли паспорт у выхода и спрашиваете сестру, её ли он. Задайте вопрос полностью",
+          "uk": "Ви знайшли паспорт біля виходу й питаєте сестру, чи він її. Задайте питання повністю"
         },
         "orderedTokens": [
-          "Her",
-          "umbrella",
-          "is",
-          "in",
-          "his",
-          "suitcase"
+          "Is",
+          "this",
+          "your",
+          "passport"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-16:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Зонт подруги в чемодане друга. Скажите «Её зонт в его чемодане»",
+            "testedDimension": "Вы нашли паспорт у выхода и спрашиваете сестру, её ли он. Задайте вопрос полностью",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Her umbrella is in his suitcase.`",
-              "uk": "тут потрібно `is` — `Her umbrella is in his suitcase.`"
+              "ru": "здесь нужно `Is` — `Is this your passport?`",
+              "uk": "тут потрібно `Is` — `Is this your passport?`"
             }
           }
         ],
@@ -339,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сообщите другу «У нашего отеля есть бассейн»",
+      "prompt": "Сестра нашла ваш фотоаппарат и спрашивает, ваш ли он. Ответьте: «Это мой фотоаппарат»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i07:audio"
       ],
-      "accessibilityLabel": "Сообщите другу «У нашего отеля есть бассейн»",
+      "accessibilityLabel": "Сестра нашла ваш фотоаппарат и спрашивает, ваш ли он. Ответьте: «Это мой фотоаппарат»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i07:audio",
-          "transcript": "Our hotel has a swimming pool."
+          "transcript": "It is my camera."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Our hotel has a swimming pool.",
+        "targetPhrase": "It is my camera.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -372,19 +570,19 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Их чемодан закрыт. Чемодан один. Выберите форму",
+      "prompt": "Вы ищете свои солнечные очки. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-16:i08:r1",
-          "text": "is"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-16:i08:r2",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-16:i08:r3",
@@ -393,46 +591,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Их чемодан закрыт. Чемодан один. Выберите форму",
+      "accessibilityLabel": "Вы ищете свои солнечные очки. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Их чемодан закрыт. Чемодан один. Выберите форму",
-          "uk": "Їхня валіза закрита. Валіза одна. Виберіть форму"
+          "ru": "Вы ищете свои солнечные очки. Выберите нужное слово",
+          "uk": "Ви шукаєте свої сонцезахисні окуляри. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "Their suitcase ___ closed.",
+        "gappedTargetPhrase": "Where ___ my sunglasses?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-16:i08:r1",
-            "text": "is"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-16:i08:r2",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-16:i08:r3",
             "text": "has"
           }
         ],
-        "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+        "testedDimension": "Вы ищете свои солнечные очки. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-16:i08:r2",
             "correct": false,
-            "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+            "testedDimension": "Вы ищете свои солнечные очки. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Один чемодан: `suitcase is`.",
-              "uk": "Одна валіза: `suitcase is`."
+              "ru": "Очки — пара, поэтому нужно are, а не is.",
+              "uk": "Окуляри — пара, тому потрібно are, а не is."
             }
           },
           {
             "responseId": "en:lesson-05:session-16:i08:r3",
             "correct": false,
-            "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+            "testedDimension": "Вы ищете свои солнечные очки. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Здесь состояние: `suitcase is closed`.",
-              "uk": "Тут стан: `suitcase is closed`."
+              "ru": "has значит «иметь», а для вопроса «где» нужно are.",
+              "uk": "has означає «мати», а для питання «де» потрібно are."
             }
           }
         ]
@@ -441,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где ключ",
+      "prompt": "Послушайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-16:i09:r1",
-          "text": "The key is in her pocket."
+          "text": "Is this your camera?"
         },
         {
           "responseId": "en:lesson-05:session-16:i09:r2",
-          "text": "The key is in her backpack."
+          "text": "Is this my camera?"
         },
         {
           "responseId": "en:lesson-05:session-16:i09:r3",
-          "text": "The key is in her suitcase."
+          "text": "Is that your camera?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, где ключ",
+      "accessibilityLabel": "Послушайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i09:audio",
-          "transcript": "The key is in her pocket."
+          "transcript": "Is this your camera?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-16:i09:r1",
-            "targetText": "The key is in her pocket.",
+            "targetText": "Is this your camera?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-16:i09:r2",
-            "targetText": "The key is in her backpack.",
+            "targetText": "Is this my camera?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-16:i09:r3",
-            "targetText": "The key is in her suitcase.",
+            "targetText": "Is that your camera?",
             "meaningByLocale": null
           }
         ],
@@ -494,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-16:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где ключ",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pocket`, а в этом варианте — `backpack`.",
-              "uk": "У записі останнє слово — `pocket`, а в цьому варіанті — `backpack`."
+              "ru": "В записи `your` — твой, а в этом варианте `my` — мой.",
+              "uk": "У записі `your` — твій, а в цьому варіанті `my` — мій."
             }
           },
           {
             "responseId": "en:lesson-05:session-16:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где ключ",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pocket`, а в этом варианте — `suitcase`.",
-              "uk": "У записі останнє слово — `pocket`, а в цьому варіанті — `suitcase`."
+              "ru": "В записи `this` — этот, рядом, а в этом варианте `that` — тот, подальше.",
+              "uk": "У записі `this` — цей, поруч, а в цьому варіанті `that` — той, подалі."
             }
           }
         ],
@@ -517,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -531,10 +729,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-16:i10:p1",
-            "target": "umbrella",
+            "target": "passport",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "паспорт",
+              "uk": "паспорт"
             }
           },
           {
@@ -547,32 +745,32 @@
           },
           {
             "pairId": "en:lesson-05:session-16:i10:p3",
-            "target": "helmet",
+            "target": "ticket",
             "meaningByLocale": {
-              "ru": "шлем",
-              "uk": "шолом"
+              "ru": "билет",
+              "uk": "квиток"
             }
           },
           {
             "pairId": "en:lesson-05:session-16:i10:p4",
-            "target": "swimming pool",
+            "target": "camera",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "фотоаппарат",
+              "uk": "фотоапарат"
             }
           }
         ],
         "leftColumn": [
-          "umbrella",
+          "passport",
           "suitcase",
-          "helmet",
-          "swimming pool"
+          "ticket",
+          "camera"
         ],
         "rightColumn": [
-          "зонт",
+          "паспорт",
           "чемодан",
-          "шлем",
-          "бассейн"
+          "билет",
+          "фотоаппарат"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -590,33 +788,46 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте брата и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте брата и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i11:audio",
-          "transcript": "They have our notebook."
+          "transcript": "My sister has my camera."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They have our notebook.",
+        "hiddenTargetPhrase": "My sister has my camera.",
         "orderedTokens": [
-          "They",
-          "have",
-          "our",
-          "notebook"
+          "My",
+          "sister",
+          "has",
+          "my",
+          "camera"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте брата и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `My sister has my camera.`",
+              "uk": "тут потрібно `has` — `My sister has my camera.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -626,41 +837,41 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Рюкзак друга под столом. Скажите ему «Твой рюкзак под столом»",
+      "prompt": "Подруга спрашивает, где ваши сандалии. Они в чемодане. Скажите ей полной фразой: «Мои сандалии в моём чемодане»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Рюкзак друга под столом. Скажите ему «Твой рюкзак под столом»",
+      "accessibilityLabel": "Подруга спрашивает, где ваши сандалии. Они в чемодане. Скажите ей полной фразой: «Мои сандалии в моём чемодане»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Your backpack is under the table.",
+        "targetPhrase": "My sandals are in my suitcase.",
         "localizedMeaning": {
-          "ru": "Рюкзак друга под столом. Скажите ему «Твой рюкзак под столом»",
-          "uk": "Рюкзак друга під столом. Скажіть йому «Твій рюкзак під столом»"
+          "ru": "Подруга спрашивает, где ваши сандалии. Они в чемодане. Скажите ей полной фразой: «Мои сандалии в моём чемодане»",
+          "uk": "Подруга питає, де ваші сандалі. Вони у валізі. Скажіть їй повною фразою: «Мої сандалі в моїй валізі»"
         },
         "orderedTokens": [
-          "Your",
-          "backpack",
-          "is",
-          "under",
-          "the",
-          "table"
+          "My",
+          "sandals",
+          "are",
+          "in",
+          "my",
+          "suitcase"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-16:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Рюкзак друга под столом. Скажите ему «Твой рюкзак под столом»",
+            "testedDimension": "Подруга спрашивает, где ваши сандалии. Они в чемодане. Скажите ей полной фразой: «Мои сандалии в моём чемодане»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Your backpack is under the table.`",
-              "uk": "тут потрібно `is` — `Your backpack is under the table.`"
+              "ru": "здесь нужно `are` — `My sandals are in my suitcase.`",
+              "uk": "тут потрібно `are` — `My sandals are in my suitcase.`"
             }
           }
         ],
@@ -673,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В другом отеле бассейна нет. Сообщите «Бассейна нет»",
+      "prompt": "Сестра ищет свой паспорт. Он у вас. Скажите ей: «Твой паспорт у меня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i13:audio"
       ],
-      "accessibilityLabel": "В другом отеле бассейна нет. Сообщите «Бассейна нет»",
+      "accessibilityLabel": "Сестра ищет свой паспорт. Он у вас. Скажите ей: «Твой паспорт у меня»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i13:audio",
-          "transcript": "There isn't a swimming pool."
+          "transcript": "I have your passport."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There isn't a swimming pool.",
+        "targetPhrase": "I have your passport.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -706,67 +917,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Речь об одном отеле, названном it. Его бассейн открыт. Выберите слово",
+      "prompt": "Сестра спрашивает: «Is this your camera?» Фотоаппарат не ваш. Выберите начало ответа",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-16:i14:r1",
-          "text": "Its"
+          "text": "No"
         },
         {
           "responseId": "en:lesson-05:session-16:i14:r2",
-          "text": "It's"
+          "text": "Yes"
         },
         {
           "responseId": "en:lesson-05:session-16:i14:r3",
-          "text": "Their"
+          "text": "Not"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Речь об одном отеле, названном it. Его бассейн открыт. Выберите слово",
+      "accessibilityLabel": "Сестра спрашивает: «Is this your camera?» Фотоаппарат не ваш. Выберите начало ответа",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одном отеле, названном it. Его бассейн открыт. Выберите слово",
-          "uk": "Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово"
+          "ru": "Сестра спрашивает: «Is this your camera?» Фотоаппарат не ваш. Выберите начало ответа",
+          "uk": "Сестра питає: «Is this your camera?» Фотоапарат не ваш. Виберіть початок відповіді"
         },
-        "gappedTargetPhrase": "___ swimming pool is open.",
+        "gappedTargetPhrase": "___, it isn’t.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-16:i14:r1",
-            "text": "Its"
+            "text": "No"
           },
           {
             "responseId": "en:lesson-05:session-16:i14:r2",
-            "text": "It's"
+            "text": "Yes"
           },
           {
             "responseId": "en:lesson-05:session-16:i14:r3",
-            "text": "Their"
+            "text": "Not"
           }
         ],
-        "testedDimension": "Речь об одном отеле, названном it. Его бассейн открыт. Выберите слово",
+        "testedDimension": "Сестра спрашивает: «Is this your camera?» Фотоаппарат не ваш. Выберите начало ответа",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-16:i14:r2",
             "correct": false,
-            "testedDimension": "Речь об одном отеле, названном it. Его бассейн открыт. Выберите слово",
+            "testedDimension": "Сестра спрашивает: «Is this your camera?» Фотоаппарат не ваш. Выберите начало ответа",
             "feedbackByLocale": {
-              "ru": "`It’s` — `it is`; здесь нужно `Its swimming pool`.",
-              "uk": "`It’s` — `it is`; тут потрібне `Its swimming pool`."
+              "ru": "После Yes говорят it is, а здесь it isn’t: нужно No.",
+              "uk": "Після Yes кажуть it is, а тут it isn’t: потрібно No."
             }
           },
           {
             "responseId": "en:lesson-05:session-16:i14:r3",
             "correct": false,
-            "testedDimension": "Речь об одном отеле, названном it. Его бассейн открыт. Выберите слово",
+            "testedDimension": "Сестра спрашивает: «Is this your camera?» Фотоаппарат не ваш. Выберите начало ответа",
             "feedbackByLocale": {
-              "ru": "Для одного отеля, названного `it`, нужно `Its`.",
-              "uk": "Для одного готелю, названого `it`, потрібне `Its`."
+              "ru": "Not не начинает ответ: нужно No.",
+              "uk": "Not не починає відповідь: потрібно No."
             }
           }
         ]
@@ -775,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где шлем",
+      "prompt": "Послушайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-16:i15:r1",
-          "text": "Your helmet is on the chair."
+          "text": "It is their camera."
         },
         {
           "responseId": "en:lesson-05:session-16:i15:r2",
-          "text": "Your helmet is on the table."
+          "text": "It is our camera."
         },
         {
           "responseId": "en:lesson-05:session-16:i15:r3",
-          "text": "My helmet is on the chair."
+          "text": "It is their passport."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где шлем",
+      "accessibilityLabel": "Послушайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i15:audio",
-          "transcript": "Your helmet is on the chair."
+          "transcript": "It is their camera."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-16:i15:r1",
-            "targetText": "Your helmet is on the chair.",
+            "targetText": "It is their camera.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-16:i15:r2",
-            "targetText": "Your helmet is on the table.",
+            "targetText": "It is our camera.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-16:i15:r3",
-            "targetText": "My helmet is on the chair.",
+            "targetText": "It is their passport.",
             "meaningByLocale": null
           }
         ],
@@ -828,19 +1039,19 @@
           {
             "responseId": "en:lesson-05:session-16:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где шлем",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `chair`, а в этом варианте — `table`.",
-              "uk": "У записі останнє слово — `chair`, а в цьому варіанті — `table`."
+              "ru": "В записи `their` — их, а в этом варианте `our` — наш.",
+              "uk": "У записі `their` — їхній, а в цьому варіанті `our` — наш."
             }
           },
           {
             "responseId": "en:lesson-05:session-16:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где шлем",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи последнее слово `camera` — фотоаппарат, а в этом варианте `passport` — паспорт.",
+              "uk": "У записі останнє слово `camera` — фотоапарат, а в цьому варіанті `passport` — паспорт."
             }
           }
         ],
@@ -851,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -865,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-16:i16:p1",
-            "target": "umbrella",
+            "target": "passport",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "паспорт",
+              "uk": "паспорт"
             }
           },
           {
             "pairId": "en:lesson-05:session-16:i16:p2",
-            "target": "suitcase",
+            "target": "sunglasses",
             "meaningByLocale": {
-              "ru": "чемодан",
-              "uk": "валіза"
+              "ru": "солнечные очки",
+              "uk": "сонцезахисні окуляри"
             }
           },
           {
             "pairId": "en:lesson-05:session-16:i16:p3",
-            "target": "helmet",
+            "target": "sandals",
             "meaningByLocale": {
-              "ru": "шлем",
-              "uk": "шолом"
+              "ru": "сандалии",
+              "uk": "сандалі"
             }
           },
           {
             "pairId": "en:lesson-05:session-16:i16:p4",
-            "target": "swimming pool",
+            "target": "camera",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "фотоаппарат",
+              "uk": "фотоапарат"
             }
           }
         ],
         "leftColumn": [
-          "umbrella",
-          "suitcase",
-          "helmet",
-          "swimming pool"
+          "passport",
+          "sunglasses",
+          "sandals",
+          "camera"
         ],
         "rightColumn": [
-          "зонт",
-          "чемодан",
-          "шлем",
-          "бассейн"
+          "паспорт",
+          "солнечные очки",
+          "сандалии",
+          "фотоаппарат"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -924,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-16:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы нашли свою зарядку в рюкзаке друга. Сообщите ему «Моя зарядка в твоём рюкзаке»",
+      "prompt": "Сотрудница спрашивает про документы семьи. Все паспорта лежат в вашей сумке. Скажите ей: «Наши паспорта в моей сумке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Вы нашли свою зарядку в рюкзаке друга. Сообщите ему «Моя зарядка в твоём рюкзаке»",
+      "accessibilityLabel": "Сотрудница спрашивает про документы семьи. Все паспорта лежат в вашей сумке. Скажите ей: «Наши паспорта в моей сумке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-16:i17:audio",
-          "transcript": "My charger is in your backpack."
+          "transcript": "Our passports are in my bag."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "My charger is in your backpack.",
+        "targetPhrase": "Our passports are in my bag.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -964,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cc2a69b0823148d5cd50635800f630d06d04aa4f96c432da75ca55b1924a1171"
+  "learnerFingerprint": "8e3bbe7c546c744d87510c6547df907694b34cf537d6d022a769bb21bc33db30"
 }

@@ -1,137 +1,154 @@
-# Английский · Урок 5 · Занятие 15 — Шлем перед поездкой
+# Английский · Урок 5 · Занятие 15 — Как он выглядит
 
-**Ситуация.** Вы собираетесь ехать с другом в тренажёрный зал на велосипедах. Шлемы похожи; один лежит рядом с пальто. Перед выходом вы выключаете телевизор и оставляете пульт на столе.
+**Ситуация.** На вокзале вы потеряли друга и сестру в толпе и описываете их дежурному. Есть два способа: «у него есть» — He has a beard и «его вещь такая» — His beard is grey. Слова в них разные: has a или His … is.
 
-**Что вы освоите:** назвать шлем и уточнить, кому принадлежит снаряжение
-**Новые слова:** helmet
+**Что вы освоите:** описать человека двумя способами: «у него есть» (has a) и «его вещь такая» (His … is)
+**Новые слова:** beard, ponytail, jacket, cap
+**Возвращаются:** chair, bench, coat, hat, shirt, scarf, long, grey, blue, green, red
 
 ---
 
 ## Интро 1
 
-### Для головы
+### Друг с бородой
 
-`helmet` — «шлем»: защищает голову, например при езде на велосипеде. `my helmet` — «мой шлем», `your helmet` — «твой / ваш шлем». `This is my helmet` — «Это мой шлем». Шлем на полке хорошо защищает полку; перед поездкой ему лучше быть на голове. Перед `my helmet` не ставим `a` или `the`.
+Вы потеряли друга в толпе на вокзале, и дежурный просит рассказать, как он выглядит. У вашего друга густая борода. beard — «борода». Чтобы сказать «у него есть», берём has: He has a beard — «У него борода». С he нужно has, не have. Борода одна, поэтому a beard.
 
-**Покажите свой шлем.**
+**Дежурный просит описать вашего друга. У него борода. Скажите ему: «У него борода».**
 
-- ✅ **This is my helmet.**
-- ❌ This is a my helmet. — *Перед `my helmet` не нужно `a`.*
-- ❌ This is your helmet. — *`your` — твой / ваш; мой — `my`.*
+- ✅ **He has a beard.**
+- ❌ He have a beard. — *С he нужно has, а не have.*
+- ❌ He is a beard. — *He is a beard значит «Он — борода». Чтобы сказать «у него борода», нужно has.*
 
 ---
 
 ## Интро 2
 
-### Легко, сложно, важно
+### Хвост у сестры
 
-`easy` — «лёгкий» по сложности, `difficult` — «сложный», `important` — «важный». `It is easy` — «Это легко», `It is difficult` — «Это сложно», `It is important` — «Это важно». Здесь `easy` не означает «мало весит»: речь о том, насколько трудно что-то сделать.
+Теперь дежурный спрашивает про вашу сестру, которая тоже потерялась. Волосы у неё собраны высоко на затылке. ponytail — «хвост на голове (причёска)». Теперь не «у неё есть», а «её хвост какой»: Her ponytail is long — «Её хвост длинный». Перед ponytail нужно her, не she.
 
-**Вы легко справились с заданием. Скажите «Это легко» без сокращения.**
+**Дежурный спрашивает про волосы вашей сестры. Хвост у неё длинный. Скажите ему: «Её хвост длинный».**
 
-- ✅ **It is easy.**
-- ❌ It is difficult. — *`difficult` — сложно; легко — `easy`.*
-- ❌ It are easy. — *С `It` нужно `is`.*
+- ✅ **Her ponytail is long.**
+- ❌ She ponytail is long. — *Перед названием нужно her, а не she.*
+- ❌ Her ponytail are long. — *Хвост один, поэтому нужно is, а не are.*
 
 ---
 
 ## Интро 3
 
-### Пальто, зал и пульт
+### Моя куртка
 
-`coat` — «пальто», `gym` — «тренажёрный зал», `remote` — «пульт». `Her helmet is next to his coat` — «Её шлем рядом с его пальто»: владельцы могут быть разными. `Our gym is open` — «Наш тренажёрный зал открыт». `Their remote is on the table` — «Их пульт на столе»: несколько владельцев, один пульт, поэтому `is`.
+Дежурный нашёл на скамейке куртку и просит вас её описать, чтобы убедиться, что она ваша. Вы узнали её по цвету. jacket — «куртка». Вы говорите о себе, поэтому my: My jacket is green — «Моя куртка зелёная». Не I, а my. Куртка одна, поэтому после неё is.
 
-**Пульт друзей на столе. Выберите фразу.**
+**Дежурный просит описать вашу куртку. Она зелёная. Скажите ему: «Моя куртка зелёная».**
 
-- ✅ **Their remote is on the table.**
-- ❌ Their remote are on the table. — *Один пульт: `remote is`.*
-- ❌ Our remote is on the table. — *`our` — наш; здесь их: `their`.*
+- ✅ **My jacket is green.**
+- ❌ I jacket is green. — *Перед названием вещи нужно my, а не I.*
+- ❌ My jacket are green. — *Куртка одна, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы без труда справились с заданием. Скажите «Это легко» без сокращения**
+**1 · Карточка слова — beard**
+<!-- interaction_id: en:lesson-05:session-15:word:beard; family: word_card -->
+> **beard** — борода. His beard is grey. — «Его борода серая». О волосах на лице у мужчины.
+
+**2 · Дежурный просит описать вашего друга. У него серая борода. Скажите полной фразой: «Его борода серая»**
 <!-- interaction_id: en:lesson-05:session-15:i01; family: phrase_builder -->
-Плитки: `easy` `is` `It` `are` → **It is easy.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is easy.`)*
+Плитки: `beard` `is` `grey` `His` `Her` → **His beard is grey.**
+*(плитка `Her` лишняя: здесь нужно `His` — `His beard is grey.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — ponytail**
+<!-- interaction_id: en:lesson-05:session-15:word:ponytail; family: word_card -->
+> **ponytail** — хвост на голове (причёска). She has a ponytail. — «У неё хвост на голове». О волосах, собранных высоко на затылке.
+
+**4 · Послушайте дежурного**
 <!-- interaction_id: en:lesson-05:session-15:i02; family: listen_choose -->
-🔊 *helmet* → **helmet** · helmets · coat
-- helmets — *В записи первое слово — `helmet`, а в этом варианте — `helmets`.*
-- coat — *В записи первое слово — `helmet`, а в этом варианте — `coat`.*
+🔊 *She has a ponytail.* → **She has a ponytail.** · Her ponytail is long. · He has a ponytail.
+- Her ponytail is long. — *В записи `She has a ponytail` — «У неё хвост», а в этом варианте `Her ponytail is long` — «Её хвост длинный».*
+- He has a ponytail. — *В записи `She` — она, а в этом варианте `He` — он.*
 
-**3 · Назовите шлем**
+**5 · Карточка слова — jacket**
+<!-- interaction_id: en:lesson-05:session-15:word:jacket; family: word_card -->
+> **jacket** — куртка. Her jacket is on the bench. — «Её куртка на скамейке». О лёгкой верхней одежде с рукавами.
+
+**6 · Лёгкая верхняя одежда с рукавами, которую надевают поверх рубашки. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-05:session-15:i03; family: context_gap_grammar -->
-___ → **helmet** · remote · backpack
-- remote — *`remote` — пульт; шлем — `helmet`.*
-- backpack — *`backpack` — рюкзак; шлем — `helmet`.*
+___ → **jacket** · shirt · scarf
+- shirt — *shirt — это рубашка, а верхняя одежда поверх неё называется jacket.*
+- scarf — *scarf — это шарф, а верхняя одежда с рукавами называется jacket.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-15:i04; family: speed_match -->
-helmet — шлем · easy — лёгкий по сложности · difficult — сложный · important — важный
+beard — борода · ponytail — хвост на голове (причёска) · jacket — куртка · cap — кепка
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — cap**
+<!-- interaction_id: en:lesson-05:session-15:word:cap; family: word_card -->
+> **cap** — кепка. His cap is on the chair. — «Его кепка на стуле». О шапке с козырьком.
+
+**9 · Послушайте дежурного и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-15:i05; family: listen_build_dictation -->
-🔊 *This is my helmet.* Плитки: `helmet` `my` `is` `This` → **This is my helmet.**
+🔊 *His cap is on the chair.* Плитки: `cap` `is` `on` `the` `chair` `His` `Her` → **His cap is on the chair.**
+*(плитка `Her` лишняя: здесь нужно `His` — `His cap is on the chair.`)*
 
-**6 · Шлем подруги рядом с пальто друга. Скажите «Её шлем рядом с его пальто»**
+**10 · Ваша сестра в красной кепке. Скажите дежурному полной фразой: «Её кепка красная»**
 <!-- interaction_id: en:lesson-05:session-15:i06; family: phrase_builder -->
-Плитки: `coat` `his` `to` `next` `is` `helmet` `Her` `are` → **Her helmet is next to his coat.**
-*(плитка `are` лишняя: здесь нужно `is` — `Her helmet is next to his coat.`)*
+Плитки: `cap` `is` `red` `Her` `His` → **Her cap is red.**
+*(плитка `His` лишняя: здесь нужно `Her` — `Her cap is red.`)*
 
-**7 · Задание даётся с трудом. Скажите «Это сложно» с сокращением**
+**11 · Дежурный спрашивает, есть ли у вашего друга борода. Есть. Ответьте: «У него борода»**
 <!-- interaction_id: en:lesson-05:session-15:i07; family: scripted_repeat_compare -->
-🎙 **It's difficult.**
+🎙 **He has a beard.**
 
-**8 · Вы считаете проверку шлема важной. Скажите именно «Это важно», не оценивая сложность**
+**12 · Вы описываете сестру дежурному: у неё хвост на голове. Выберите нужное слово**
 <!-- interaction_id: en:lesson-05:session-15:i08; family: context_gap_grammar -->
-It is ___. → **important** · easy · difficult
-- easy — *`easy` — легко; важно — `important`.*
-- difficult — *`difficult` — сложно; важно — `important`.*
+She ___ a ponytail. → **has** · have · is
+- have — *С she нужно has, а не have.*
+- is — *She is a ponytail значит «Она — хвост». Чтобы сказать «у неё хвост», нужно has.*
 
-**9 · Послушайте, где пульт друзей**
+**13 · Послушайте дежурного**
 <!-- interaction_id: en:lesson-05:session-15:i09; family: listen_choose -->
-🔊 *Their remote is on the table.* → **Their remote is on the table.** · Their remote is on the desk. · Our remote is on the table.
-- Their remote is on the desk. — *В записи последнее слово — `table`, а в этом варианте — `desk`.*
-- Our remote is on the table. — *В записи первое слово — `Their`, а в этом варианте — `Our`.*
+🔊 *My jacket is green.* → **My jacket is green.** · My jacket is blue. · Your jacket is green.
+- My jacket is blue. — *В записи `green` — зелёная, а в этом варианте `blue` — синяя.*
+- Your jacket is green. — *В записи `My` — моя, а в этом варианте `Your` — твоя.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-15:i10; family: speed_match -->
-helmet — шлем · coat — пальто · gym — тренажёрный зал · remote — пульт
+beard — борода · jacket — куртка · coat — пальто · hat — шляпа
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте дежурного и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-15:i11; family: listen_build_dictation -->
-🔊 *Our gym is open.* Плитки: `open` `is` `gym` `Our` `are` → **Our gym is open.**
-*(плитка `are` лишняя: здесь нужно `is` — `Our gym is open.`)*
+🔊 *Her jacket is on the bench.* Плитки: `jacket` `is` `on` `the` `bench` `Her` `His` → **Her jacket is on the bench.**
+*(плитка `His` лишняя: здесь нужно `Her` — `Her jacket is on the bench.`)*
 
-**12 · Пальто друга здесь. Скажите «Его пальто здесь»**
+**16 · Двое детей потерялись, на них синие куртки. Скажите дежурному полной фразой: «Их куртки синие»**
 <!-- interaction_id: en:lesson-05:session-15:i12; family: phrase_builder -->
-Плитки: `here` `is` `coat` `His` `are` → **His coat is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `His coat is here.`)*
+Плитки: `jackets` `are` `blue` `Their` `is` → **Their jackets are blue.**
+*(плитка `is` лишняя: здесь нужно `are` — `Their jackets are blue.`)*
 
-**13 · Шлем друга у вас. Скажите ему «Твой шлем у меня»**
+**17 · Дежурный спрашивает, какая у вас кепка. Она синяя. Ответьте: «Моя кепка синяя»**
 <!-- interaction_id: en:lesson-05:session-15:i13; family: scripted_repeat_compare -->
-🎙 **I have your helmet.**
+🎙 **My cap is blue.**
 
-**14 · Их тренажёрный зал закрыт. Зал один. Выберите форму**
+**18 · Куртка вашей подруги зелёная. Выберите нужное слово**
 <!-- interaction_id: en:lesson-05:session-15:i14; family: context_gap_grammar -->
-Their gym ___ closed. → **is** · are · has
-- are — *Один зал: `gym is`.*
-- has — *Состояние зала здесь: `gym is closed`.*
+___ jacket is green. → **Her** · She · His
+- She — *She — она, а перед названием вещи нужно Her.*
+- His — *His — его, а подруга — она: нужно Her.*
 
-**15 · Послушайте, чей шлем здесь**
+**19 · Послушайте дежурного**
 <!-- interaction_id: en:lesson-05:session-15:i15; family: listen_choose -->
-🔊 *Your helmet is here.* → **Your helmet is here.** · My helmet is here. · Her helmet is here.
-- My helmet is here. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- Her helmet is here. — *В записи первое слово — `Your`, а в этом варианте — `Her`.*
+🔊 *He has a cap and a jacket.* → **He has a cap and a jacket.** · He has a cap and a beard. · She has a cap and a jacket.
+- He has a cap and a beard. — *В записи последнее слово `jacket` — куртка, а в этом варианте `beard` — борода.*
+- She has a cap and a jacket. — *В записи `He` — он, а в этом варианте `She` — она.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-15:i16; family: speed_match -->
-helmet — шлем · coat — пальто · gym — тренажёрный зал · remote — пульт
+beard — борода · ponytail — хвост на голове (причёска) · jacket — куртка · cap — кепка
 
-**17 · Друг ищет шлем. Он рядом с пальто друга. Объясните ему «Шлем рядом с твоим пальто»**
+**21 · Дежурный просит описать вашего друга. У него борода и кепка. Скажите ему: «У него борода и кепка»**
 <!-- interaction_id: en:lesson-05:session-15:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The helmet is next to your coat.**
-
+🎙 **He has a beard and a cap.**

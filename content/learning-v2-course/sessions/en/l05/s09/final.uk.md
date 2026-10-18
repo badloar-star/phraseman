@@ -1,135 +1,154 @@
-# Англійська · Урок 5 · Заняття 9 — Чия зарядка на столі
+# Англійська · Урок 5 · Заняття 9 — Чия кружка на офісній кухні
 
-**Ситуація.** У приймальні стоматолога лежать схожі зарядки. Ви показуєте свою, допомагаєте друзям знайти їхні речі й пояснюєте, кому що належить.
+**Ситуація.** На роботі у вас спільна кухня, і речі в колег схожі. Ви розбираєтеся, що чиє: моє, твоє, його, її, наше чи їхнє. Слово-власник стоїть просто перед назвою речі.
 
-**Що ви опануєте:** поставити my, your, his, her, its, our або their перед назвою речі
-**Нові слова:** charger
+**Що ви опануєте:** показати, чия річ, словами my, your, his, her, our та their перед назвою
+**Нові слова:** mug, lunchbox, printer, stapler
+**Повертаються:** fridge, table, shelf, desk, chair, drawer, window, behind
 
 ---
 
 ## Інтро 1
 
-### Моя чи ваша
+### Дві білі кружки
 
-`charger` — «зарядний пристрій», у побуті «зарядка». `my charger` — «моя зарядка», `your charger` — «твоя / ваша зарядка». `This is my charger` — «Це моя зарядка». Перед `my` чи `your` не додавайте `a` і `the`. Зарядки однакові, але «моя» чомусь завжди та, яка працює. `have` — «мати»: `I have your charger` — «Ваша зарядка в мене».
+Уранці на офісній кухні стоять дві однакові білі кружки, і колега питає, чи не ваша одна з них. Ви поставили її самі. mug — «кружка». Свою називаємо my: This is my mug — «Це моя кружка». Перед my не ставимо a і the. Кружка співрозмовника — your mug.
 
-**Покажіть свою зарядку.**
+**Колега питає про білу кружку, вона ваша. Скажіть йому, що це ваша кружка.**
 
-- ✅ **This is my charger.**
-- ❌ This is a my charger. — *Перед `my charger` не потрібне `a`.*
-- ❌ This is your charger. — *`your` — твоя / ваша; моя — `my`.*
+- ✅ **This is my mug.**
+- ❌ This is a my mug. — *Перед my не потрібен a: my уже показує, чия кружка.*
+- ❌ This is your mug. — *your — твоя або ваша, а кружка своя: потрібно my.*
 
 ---
 
 ## Інтро 2
 
-### Його, її, наше та їхнє
+### Обід у холодильнику
 
-`his charger` — «його зарядка», `her charger` — «її зарядка», `our charger` — «наша зарядка», `their charger` — «їхня зарядка». Вибираємо за власником: чоловік — `his`, жінка — `her`; ми — `our`, вони — `their`. Рід українського слова «зарядка» не робить кожну зарядку `her`. `its` — «його / її» для предмета чи тварини, про яку кажемо `it`: `its door` — «її двері», якщо йдеться про шафу. В `its` тут немає апострофа.
+У холодильнику лежить контейнер з обідом, і ваш колега не знає, чий він. Ви бачили, як його принесла інша колега. lunchbox — «контейнер для обіду». Господиня — жінка, тому her: Her lunchbox is in the fridge — «Її контейнер з обідом у холодильнику». Про чоловіка скажемо his.
 
-**Зарядка належить чоловікові. Виберіть сполучення.**
+**Контейнер належить вашій колезі. Скажіть вашому колезі, що її контейнер з обідом у холодильнику.**
 
-- ✅ **his charger**
-- ❌ her charger — *`her` — її; власник чоловік: `his`.*
-- ❌ their charger — *`their` — їхня; тут його: `his`.*
+- ✅ **Her lunchbox is in the fridge.**
+- ❌ His lunchbox is in the fridge. — *his — його, а господиня контейнера жінка: потрібно her.*
+- ❌ Her lunchbox are in the fridge. — *Контейнер один, тому потрібно is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Хто стоїть біля дверей
+### Принтер біля вікна
 
-`door` — «двері», `dentist` — «стоматолог». `tall` — «високий» про людину, `short` — «невисокий», `young` — «молодий». `Our dentist is young` — «Наш стоматолог молодий». Слово перед назвою підходить не лише речам: `our dentist` — наш стоматолог. `Their door is open` — «Їхні двері відчинені»: власників кілька, але англійське `door` означає одні двері, тому `is`.
+Новий співробітник шукає, де друкувати. У вашому відділі принтер один на всіх, він стоїть біля вікна. printer — «принтер». Говоріть про себе й колег — our: Our printer is next to the window — «Наш принтер поруч із вікном». Про інший відділ сказали б their.
 
-**Їхні двері відчинені. Виберіть фразу.**
+**Новачок шукає принтер вашого відділу. Скажіть йому, що ваш принтер поруч із вікном.**
 
-- ✅ **Their door is open.**
-- ❌ Their door are open. — *Одні двері: `door is`, навіть якщо власників кілька.*
-- ❌ Our door is open. — *`our` — наші; тут їхні: `their`.*
+- ✅ **Our printer is next to the window.**
+- ❌ Their printer is next to the window. — *their — їхній, а ви говорите про себе й своїх колег: потрібно our.*
+- ❌ Our printer are next to the window. — *Принтер один, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Наш стоматолог молодий. Скажіть це**
+**1 · Картка слова — mug**
+<!-- interaction_id: en:lesson-05:session-09:word:mug; family: word_card -->
+> **mug** — кружка. Your mug is on the table. — «Твоя кружка на столі». Про посуд для чаю й кави з ручкою.
+
+**2 · Колега шукає свою кружку, а вона стоїть на столі. Скажіть йому повною фразою: «Твоя кружка на столі»**
 <!-- interaction_id: en:lesson-05:session-09:i01; family: phrase_builder -->
-Плитки: `young` `is` `dentist` `Our` `are` → **Our dentist is young.**
-*(плитка `are` зайва: тут потрібно `is` — `Our dentist is young.`)*
+Плитки: `mug` `is` `on` `the` `table` `Your` `My` → **Your mug is on the table.**
+*(плитка `My` зайва: тут потрібно `Your` — `Your mug is on the table.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — lunchbox**
+<!-- interaction_id: en:lesson-05:session-09:word:lunchbox; family: word_card -->
+> **lunchbox** — контейнер для обіду. Her lunchbox is on the shelf. — «Її контейнер з обідом на полиці». Про закриту коробку, в якій носять їжу із собою.
+
+**4 · Послухайте колегу**
 <!-- interaction_id: en:lesson-05:session-09:i02; family: listen_choose -->
-🔊 *charger* → **charger** · chargers · curtain
-- chargers — *У записі перше слово — `charger`, а в цьому варіанті — `chargers`.*
-- curtain — *У записі перше слово — `charger`, а в цьому варіанті — `curtain`.*
+🔊 *Her lunchbox is on the shelf.* → **Her lunchbox is on the shelf.** · His lunchbox is on the shelf. · Her lunchbox is on the table.
+- His lunchbox is on the shelf. — *У записі `Her` — її, а в цьому варіанті `His` — його.*
+- Her lunchbox is on the table. — *У записі останнє слово `shelf`, а в цьому варіанті `table`.*
 
-**3 · Назвіть зарядний пристрій**
+**5 · Картка слова — printer**
+<!-- interaction_id: en:lesson-05:session-09:word:printer; family: word_card -->
+> **printer** — принтер. Our printer is here. — «Наш принтер тут». Про прилад, який друкує документи на папері.
+
+**6 · Прилад, який друкує документи на папері. Як він називається англійською?**
 <!-- interaction_id: en:lesson-05:session-09:i03; family: context_gap_grammar -->
-___ → **charger** · remote · drawer
-- remote — *`remote` — пульт; зарядка — `charger`.*
-- drawer — *`drawer` — шухляда; зарядка — `charger`.*
+___ → **printer** · screen · speaker
+- screen — *screen — це екран, а прилад, який друкує документи, називається printer.*
+- speaker — *speaker — це колонка, а прилад, який друкує документи, називається printer.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-09:i04; family: speed_match -->
-charger — зарядний пристрій · tall — високий (людина) · short — невисокий (людина) · young — молодий
+mug — кухоль · lunchbox — контейнер для обіду · printer — принтер · stapler — степлер
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — stapler**
+<!-- interaction_id: en:lesson-05:session-09:word:stapler; family: word_card -->
+> **stapler** — степлер. His stapler is on my desk. — «Його степлер на моєму столі». Про прилад, який скріплює аркуші паперу.
+
+**9 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-09:i05; family: listen_build_dictation -->
-🔊 *This is my charger.* Плитки: `charger` `my` `is` `This` → **This is my charger.**
+🔊 *My stapler is in your drawer.* Плитки: `stapler` `is` `in` `your` `drawer` `My` `Our` → **My stapler is in your drawer.**
+*(плитка `Our` зайва: тут потрібно `My` — `My stapler is in your drawer.`)*
 
-**6 · Зарядка співрозмовника у вас. Скажіть «Ваша зарядка в мене»**
+**10 · Степлер вашого колеги лежить на вашому столі. Скажіть повною фразою: «Його степлер на моєму столі»**
 <!-- interaction_id: en:lesson-05:session-09:i06; family: phrase_builder -->
-Плитки: `charger` `your` `have` `I` → **I have your charger.**
+Плитки: `stapler` `is` `on` `my` `desk` `His` `Her` → **His stapler is on my desk.**
+*(плитка `Her` зайва: тут потрібно `His` — `His stapler is on my desk.`)*
 
-**7 · Стоматолог вашої подруги високий. Скажіть «Її стоматолог високий»**
+**11 · Колега бачить кружку на столі й питає, чия вона. Відповідьте: «Це моя кружка»**
 <!-- interaction_id: en:lesson-05:session-09:i07; family: scripted_repeat_compare -->
-🎙 **Her dentist is tall.**
+🎙 **This is my mug.**
 
-**8 · Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»**
+**12 · Ви з колегами говорите про свій спільний холодильник. Виберіть потрібне слово**
 <!-- interaction_id: en:lesson-05:session-09:i08; family: context_gap_grammar -->
-This is ___ charger. → **his** · her · their
-- her — *`her` — її; тут його: `his`.*
-- their — *`their` — їхня; тут його: `his`.*
+___ fridge is full. → **Our** · Their · My
+- Their — *Their — їхній, а ви говорите про холодильник вашого відділу: потрібно Our.*
+- My — *My — мій, а холодильник спільний, ваш з колегами: потрібно Our.*
 
-**9 · Послухайте про двері**
+**13 · Послухайте колегу**
 <!-- interaction_id: en:lesson-05:session-09:i09; family: listen_choose -->
-🔊 *Their door is open.* → **Their door is open.** · Their door is closed. · Our door is open.
-- Their door is closed. — *У записі останнє слово — `open`, а в цьому варіанті — `closed`.*
-- Our door is open. — *У записі перше слово — `Their`, а в цьому варіанті — `Our`.*
+🔊 *Their stapler is on the chair.* → **Their stapler is on the chair.** · Our stapler is on the chair. · Their stapler is on the desk.
+- Our stapler is on the chair. — *У записі `Their` — їхній, а в цьому варіанті `Our` — наш.*
+- Their stapler is on the desk. — *У записі останнє слово `chair`, а в цьому варіанті `desk`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-09:i10; family: speed_match -->
-charger — зарядний пристрій · door — двері · dentist — стоматолог · have — мати
+stapler — степлер · printer — принтер · fridge — холодильник · shelf — полиця
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-09:i11; family: listen_build_dictation -->
-🔊 *We have their charger.* Плитки: `charger` `their` `have` `We` → **We have their charger.**
+🔊 *Their lunchbox is in the fridge.* Плитки: `lunchbox` `is` `in` `the` `fridge` `Their` `Our` → **Their lunchbox is in the fridge.**
+*(плитка `Our` зайва: тут потрібно `Their` — `Their lunchbox is in the fridge.`)*
 
-**12 · Стоматолог вашого друга невисокий. Скажіть «Його стоматолог невисокий»**
+**16 · Ви знайшли контейнер з обідом співрозмовника за принтером. Скажіть йому повною фразою: «Твій контейнер з обідом за принтером»**
 <!-- interaction_id: en:lesson-05:session-09:i12; family: phrase_builder -->
-Плитки: `short` `is` `dentist` `His` `are` → **His dentist is short.**
-*(плитка `are` зайва: тут потрібно `is` — `His dentist is short.`)*
+Плитки: `lunchbox` `is` `behind` `the` `printer` `Your` `My` → **Your lunchbox is behind the printer.**
+*(плитка `My` зайва: тут потрібно `Your` — `Your lunchbox is behind the printer.`)*
 
-**13 · Зарядка спільна, ваша й друга. Скажіть «Це наша зарядка»**
+**17 · Ваша колега шукає свій контейнер з обідом. Він у холодильнику. Скажіть їй: «Твій контейнер з обідом у холодильнику»**
 <!-- interaction_id: en:lesson-05:session-09:i13; family: scripted_repeat_compare -->
-🎙 **This is our charger.**
+🎙 **Your lunchbox is in the fridge.**
 
-**14 · Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово**
+**18 · Ви показуєте гостю степлер вашої колеги. Виберіть потрібне слово**
 <!-- interaction_id: en:lesson-05:session-09:i14; family: context_gap_grammar -->
-___ door is open. → **Its** · It's · Their
-- It's — *`It’s` — це `it is`; перед назвою дверей потрібне `Its` без апострофа.*
-- Their — *`Their` — їхні; для однієї шафи, названої `it`, потрібне `Its`.*
+This is ___ stapler. → **her** · his · their
+- his — *his — його, а степлер належить жінці: потрібно her.*
+- their — *their — їхній, а степлер однієї жінки: потрібно her.*
 
-**15 · Послухайте, чия зарядка тут**
+**19 · Послухайте колегу**
 <!-- interaction_id: en:lesson-05:session-09:i15; family: listen_choose -->
-🔊 *Her charger is here.* → **Her charger is here.** · His charger is here. · My charger is here.
-- His charger is here. — *У записі перше слово — `Her`, а в цьому варіанті — `His`.*
-- My charger is here. — *У записі перше слово — `Her`, а в цьому варіанті — `My`.*
+🔊 *Your mug is on my desk.* → **Your mug is on my desk.** · My mug is on your desk. · Your mug is on my chair.
+- My mug is on your desk. — *У записі перше слово `Your` — твоя, а в цьому варіанті `My` — моя.*
+- Your mug is on my chair. — *У записі останнє слово `desk`, а в цьому варіанті `chair`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-09:i16; family: speed_match -->
-charger — зарядний пристрій · door — двері · dentist — стоматолог · have — мати
+mug — кухоль · lunchbox — контейнер для обіду · printer — принтер · stapler — степлер
 
-**17 · Друг шукає свою зарядку. Вона у вас. Повідомте йому «Твоя зарядка в мене»**
+**21 · Нова колега питає, чий принтер. Він спільний у вас з колегами. Відповідьте: «Це наш принтер»**
 <!-- interaction_id: en:lesson-05:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I have your charger.**
-
+🎙 **This is our printer.**

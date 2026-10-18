@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-14",
   "learningOutcomeByLocale": {
-    "ru": "назвать чемодан, его владельца и состояние",
-    "uk": "назвати валізу, її власника й стан"
+    "ru": "сказать «его», «её» о щенке или вещи словом its и не путать его с It’s",
+    "uk": "сказати «його», «її» про цуценя чи річ словом its та не плутати його з It’s"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Для вещей в дорогу",
-        "uk": "Для речей у дорогу"
+        "ru": "Чей щенок",
+        "uk": "Чиє цуценя"
       },
       "bodyByLocale": {
-        "ru": "`suitcase` — «чемодан». `my suitcase` — «мой чемодан», `your suitcase` — «твой / ваш чемодан». `This is my suitcase` — «Это мой чемодан». Перед `my suitcase` не ставим `a` или `the`. Чемодан легко закрывается, пока все вещи ещё на кровати.",
-        "uk": "`suitcase` — «валіза». `my suitcase` — «моя валіза», `your suitcase` — «твоя / ваша валіза». `This is my suitcase` — «Це моя валіза». Перед `my suitcase` не ставимо `a` чи `the`. Валіза легко закривається, поки всі речі ще на ліжку."
+        "ru": "Во дворе соседка гуляет с маленькой собакой, которая только научилась бегать. Ваш брат остановился рядом и спрашивает, чья она. puppy — «щенок». Щенок принадлежит соседке, значит, her puppy: This is her puppy — «Это её щенок». Про щенка соседа-мужчины сказали бы his puppy.",
+        "uk": "На подвір’ї сусідка гуляє з маленьким собакою, який щойно навчився бігати. Ваш брат зупинився поруч і питає, чий він. puppy — «цуценя». Цуценя належить сусідці, отже, her puppy: This is her puppy — «Це її цуценя». Про цуценя сусіда-чоловіка сказали б his puppy."
       },
       "question": {
         "interactionId": "en:lesson-05:session-14:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите свой чемодан.",
-          "uk": "Покажіть свою валізу."
+          "ru": "Брат спрашивает про щенка во дворе. Он принадлежит соседке. Скажите ему, что это её щенок.",
+          "uk": "Брат питає про цуценя на подвір’ї. Воно належить сусідці. Скажіть йому, що це її цуценя."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-14:intro1:r1",
-              "text": "This is my suitcase."
+              "text": "This is her puppy."
             },
             {
               "responseId": "en:lesson-05:session-14:intro1:r2",
-              "text": "This is a my suitcase."
+              "text": "This is his puppy."
             },
             {
               "responseId": "en:lesson-05:session-14:intro1:r3",
-              "text": "This is your suitcase."
+              "text": "This is she puppy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-14:intro1:r1",
-              "text": "This is my suitcase."
+              "text": "This is her puppy."
             },
             {
               "responseId": "en:lesson-05:session-14:intro1:r2",
-              "text": "This is a my suitcase."
+              "text": "This is his puppy."
             },
             {
               "responseId": "en:lesson-05:session-14:intro1:r3",
-              "text": "This is your suitcase."
+              "text": "This is she puppy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите свой чемодан.",
-          "uk": "Покажіть свою валізу."
+          "ru": "Брат спрашивает про щенка во дворе. Он принадлежит соседке. Скажите ему, что это её щенок.",
+          "uk": "Брат питає про цуценя на подвір’ї. Воно належить сусідці. Скажіть йому, що це її цуценя."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Открыт или закрыт",
-        "uk": "Відкрита чи закрита"
+        "ru": "Красный ошейник",
+        "uk": "Червоний нашийник"
       },
       "bodyByLocale": {
-        "ru": "`dirty` — «грязный», `open` — «открытый», `closed` — «закрытый». `Her suitcase is dirty` — «Её чемодан грязный». `His suitcase is open` — «Его чемодан открыт». `My suitcase is closed` — «Мой чемодан закрыт». `his` и `her` выбираем по владельцу, а не по слову «чемодан».",
-        "uk": "`dirty` — «брудний», `open` — «відкритий», `closed` — «закритий». `Her suitcase is dirty` — «Її валіза брудна». `His suitcase is open` — «Його валіза відкрита». `My suitcase is closed` — «Моя валіза закрита». `his` і `her` вибираємо за власником, а не за словом «валіза»."
+        "ru": "У щенка на шее яркая лента с застёжкой, и брат хочет рассмотреть её поближе. collar — «ошейник». Щенка называем it, поэтому ошейник — its collar: Its collar is red — «Его ошейник красный». В слове its нет апострофа: It’s — это it is. Перед collar не нужны a и the.",
+        "uk": "У цуценяти на шиї яскрава стрічка із застібкою, і брат хоче роздивитися її зблизька. collar — «нашийник». Цуценя називаємо it, тому нашийник — its collar: Its collar is red — «Його нашийник червоний». У слові its немає апострофа: It’s — це it is. Перед collar не потрібні a і the."
       },
       "question": {
         "interactionId": "en:lesson-05:session-14:intro2:q",
         "promptByLocale": {
-          "ru": "Чемодан вашего друга открыт. Выберите описание.",
-          "uk": "Валіза вашого друга відкрита. Виберіть опис."
+          "ru": "Брат разглядывает ошейник щенка. Он красный. Скажите ему: «Его ошейник красный».",
+          "uk": "Брат роздивляється нашийник цуценяти. Він червоний. Скажіть йому: «Його нашийник червоний»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-14:intro2:r1",
-              "text": "His suitcase is open."
+              "text": "Its collar is red."
             },
             {
               "responseId": "en:lesson-05:session-14:intro2:r2",
-              "text": "Her suitcase is open."
+              "text": "It’s collar is red."
             },
             {
               "responseId": "en:lesson-05:session-14:intro2:r3",
-              "text": "His suitcase are open."
+              "text": "Its collar are red."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-14:intro2:r1",
-              "text": "His suitcase is open."
+              "text": "Its collar is red."
             },
             {
               "responseId": "en:lesson-05:session-14:intro2:r2",
-              "text": "Her suitcase is open."
+              "text": "It’s collar is red."
             },
             {
               "responseId": "en:lesson-05:session-14:intro2:r3",
-              "text": "His suitcase are open."
+              "text": "Its collar are red."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Чемодан вашего друга открыт. Выберите описание.",
-          "uk": "Валіза вашого друга відкрита. Виберіть опис."
+          "ru": "Брат разглядывает ошейник щенка. Он красный. Скажите ему: «Его ошейник красный».",
+          "uk": "Брат роздивляється нашийник цуценяти. Він червоний. Скажіть йому: «Його нашийник червоний»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Картинка на стене",
-        "uk": "Картинка на стіні"
+        "ru": "Хвост щенка",
+        "uk": "Хвіст цуценяти"
       },
       "bodyByLocale": {
-        "ru": "`picture` — «картинка», `laundrette` — «прачечная самообслуживания», `ceiling` — «потолок». `Their picture is on the wall` — «Их картинка на стене». `The laundrette is open` — «Прачечная открыта». `Our ceiling is white` — «Наш потолок белый». Даже если владельцев несколько, одна картинка или один потолок требуют `is`.",
-        "uk": "`picture` — «картинка», `laundrette` — «пральня самообслуговування», `ceiling` — «стеля». `Their picture is on the wall` — «Їхня картинка на стіні». `The laundrette is open` — «Пральня відкрита». `Our ceiling is white` — «Наша стеля біла». Навіть якщо власників кілька, одна картинка чи одна стеля потребують `is`."
+        "ru": "Щенок радуется встрече и машет хвостом так, что соседка не может его удержать. tail — «хвост». Хвост принадлежит щенку, которого называем it: Its tail is short — «Его хвост короткий». Хвост один, поэтому после tail стоит is. Тот же its, что и у ошейника, — без апострофа.",
+        "uk": "Цуценя радіє зустрічі й махає хвостом так, що сусідка не може його втримати. tail — «хвіст». Хвіст належить цуценяті, яке називаємо it: Its tail is short — «Його хвіст короткий». Хвіст один, тому після tail стоїть is. Той самий its, що й у нашийника, — без апострофа."
       },
       "question": {
         "interactionId": "en:lesson-05:session-14:intro3:q",
         "promptByLocale": {
-          "ru": "Их картинка на стене. Выберите фразу.",
-          "uk": "Їхня картинка на стіні. Виберіть фразу."
+          "ru": "Соседка спрашивает, какой хвост у щенка. Он короткий. Скажите ей: «Его хвост короткий».",
+          "uk": "Сусідка питає, який хвіст у цуценяти. Він короткий. Скажіть їй: «Його хвіст короткий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-14:intro3:r1",
-              "text": "Their picture is on the wall."
+              "text": "Its tail is short."
             },
             {
               "responseId": "en:lesson-05:session-14:intro3:r2",
-              "text": "Their picture are on the wall."
+              "text": "Her tail is short."
             },
             {
               "responseId": "en:lesson-05:session-14:intro3:r3",
-              "text": "Our picture is on the wall."
+              "text": "Its tail are short."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-14:intro3:r1",
-              "text": "Their picture is on the wall."
+              "text": "Its tail is short."
             },
             {
               "responseId": "en:lesson-05:session-14:intro3:r2",
-              "text": "Their picture are on the wall."
+              "text": "Her tail is short."
             },
             {
               "responseId": "en:lesson-05:session-14:intro3:r3",
-              "text": "Our picture is on the wall."
+              "text": "Its tail are short."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Их картинка на стене. Выберите фразу.",
-          "uk": "Їхня картинка на стіні. Виберіть фразу."
+          "ru": "Соседка спрашивает, какой хвост у щенка. Он короткий. Скажите ей: «Его хвост короткий».",
+          "uk": "Сусідка питає, який хвіст у цуценяти. Він короткий. Скажіть їй: «Його хвіст короткий»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6247682359c1507b65c1e805726fadd880ee904180923cd3ba256de9a979e6db"
+  "introFingerprint": "c1e7bbaeec95f9c34557c511ae231b306e03239d5318bd7b24279938f8fc936f"
 }

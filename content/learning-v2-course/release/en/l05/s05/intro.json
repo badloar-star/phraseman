@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-05",
   "learningOutcomeByLocale": {
-    "ru": "назвать выдвижной ящик, описать мебель и сказать, где карта",
-    "uk": "назвати шухляду, описати меблі й сказати, де карта"
+    "ru": "сказать, что лежит в ящике и что есть у стола, и описать, холодно или тепло",
+    "uk": "сказати, що лежить у шухляді й що є в столі, та описати, холодно чи тепло"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ящик, который выдвигается",
-        "uk": "Ящик, що висувається"
+        "ru": "Что в ящике",
+        "uk": "Що в шухляді"
       },
       "bodyByLocale": {
-        "ru": "`drawer` — выдвижной «ящик» в столе, шкафу или другой мебели. Это не отдельная коробка. `The desk has a drawer` — «У письменного стола есть ящик». Ящик выдвигают, а не уносят вместе со столом: спина скажет спасибо. Один ящик — `a drawer`.",
-        "uk": "`drawer` — «шухляда» в столі, шафі чи інших меблях. Це не окрема коробка. `The desk has a drawer` — «У письмового столу є шухляда». Шухляду висувають, а не несуть разом зі столом: спина скаже спасибі. Одна шухляда — `a drawer`."
+        "ru": "Вы обустраиваете рабочее место и открываете выдвижной ящик нового стола. Внутри лежит длинная плоская планка с делениями для линий и измерений. ruler — «линейка». Про ящик как про одну вещь говорят has: The drawer has a ruler — «В ящике есть линейка».",
+        "uk": "Ви облаштовуєте робоче місце й відчиняєте висувну шухляду нового стола. Всередині лежить довга пласка планка з поділками для ліній і вимірювань. ruler — «лінійка». Про шухляду як про одну річ кажуть has: The drawer has a ruler — «У шухляді є лінійка»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-05:intro1:q",
         "promptByLocale": {
-          "ru": "У письменного стола есть ящик. Выберите фразу.",
-          "uk": "У письмового столу є шухляда. Виберіть фразу."
+          "ru": "Подруга спрашивает, что в ящике. Скажите ей, что в ящике есть линейка.",
+          "uk": "Подруга питає, що в шухляді. Скажіть їй, що в шухляді є лінійка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-05:intro1:r1",
-              "text": "The desk has a drawer."
+              "text": "The drawer has a ruler."
             },
             {
               "responseId": "en:lesson-05:session-05:intro1:r2",
-              "text": "The desk have a drawer."
+              "text": "The drawer have a ruler."
             },
             {
               "responseId": "en:lesson-05:session-05:intro1:r3",
-              "text": "The desk is a drawer."
+              "text": "The drawer is a ruler."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-05:intro1:r1",
-              "text": "The desk has a drawer."
+              "text": "The drawer has a ruler."
             },
             {
               "responseId": "en:lesson-05:session-05:intro1:r2",
-              "text": "The desk have a drawer."
+              "text": "The drawer have a ruler."
             },
             {
               "responseId": "en:lesson-05:session-05:intro1:r3",
-              "text": "The desk is a drawer."
+              "text": "The drawer is a ruler."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У письменного стола есть ящик. Выберите фразу.",
-          "uk": "У письмового столу є шухляда. Виберіть фразу."
+          "ru": "Подруга спрашивает, что в ящике. Скажите ей, что в ящике есть линейка.",
+          "uk": "Подруга питає, що в шухляді. Скажіть їй, що в шухляді є лінійка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Холодно или тепло",
-        "uk": "Холодно чи тепло"
+        "ru": "Лист для адреса",
+        "uk": "Аркуш для адреси"
       },
       "bodyByLocale": {
-        "ru": "`cold` — «холодный», `hot` — «горячий, жаркий», `warm` — «тёплый». О своих ощущениях: `I’m cold` — «Мне холодно», `I’m hot` — «Мне жарко», `I’m warm` — «Мне тепло». Здесь нужны формы `am`, `is`, `are`. А когда говорим, что есть у человека или предмета, используем `have` или `has`.",
-        "uk": "`cold` — «холодний», `hot` — «гарячий, спекотний», `warm` — «теплий». Про свої відчуття: `I’m cold` — «Мені холодно», `I’m hot` — «Мені спекотно», `I’m warm` — «Мені тепло». Тут потрібні форми `am`, `is`, `are`. А коли кажемо, що є в людини чи предмета, використовуємо `have` або `has`."
+        "ru": "Вам нужно быстро записать чужой адрес, а чистых листов в руках нет. Подруга показывает на стол: нужное лежит там. paper — «бумага»: так называют всю бумагу вместе, а не один лист, поэтому a не ставят. The desk has paper — «На столе есть бумага».",
+        "uk": "Вам треба швидко записати чужу адресу, а чистих аркушів у руках немає. Подруга показує на стіл: потрібне лежить там. paper — «папір»: так називають увесь папір разом, а не один аркуш, тому a не ставлять. The desk has paper — «На столі є папір»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-05:intro2:q",
         "promptByLocale": {
-          "ru": "Вы согрелись: вам тепло. Выберите фразу.",
-          "uk": "Ви зігрілися: вам тепло. Виберіть фразу."
+          "ru": "Вам нужно записать адрес. Скажите подруге, что на столе есть бумага.",
+          "uk": "Вам треба записати адресу. Скажіть подрузі, що на столі є папір."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-05:intro2:r1",
-              "text": "I'm warm."
+              "text": "The desk has paper."
             },
             {
               "responseId": "en:lesson-05:session-05:intro2:r2",
-              "text": "I have warm."
+              "text": "The desk has a paper."
             },
             {
               "responseId": "en:lesson-05:session-05:intro2:r3",
-              "text": "I'm cold."
+              "text": "The desk have paper."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-05:intro2:r1",
-              "text": "I'm warm."
+              "text": "The desk has paper."
             },
             {
               "responseId": "en:lesson-05:session-05:intro2:r2",
-              "text": "I have warm."
+              "text": "The desk has a paper."
             },
             {
               "responseId": "en:lesson-05:session-05:intro2:r3",
-              "text": "I'm cold."
+              "text": "The desk have paper."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы согрелись: вам тепло. Выберите фразу.",
-          "uk": "Ви зігрілися: вам тепло. Виберіть фразу."
+          "ru": "Вам нужно записать адрес. Скажите подруге, что на столе есть бумага.",
+          "uk": "Вам треба записати адресу. Скажіть подрузі, що на столі є папір."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где лежит карта",
-        "uk": "Де лежить карта"
+        "ru": "Блокнот в сумке",
+        "uk": "Блокнот у сумці"
       },
       "bodyByLocale": {
-        "ru": "`map` — «карта», `supermarket` — «супермаркет», `police station` — «полицейский участок». `The map is in the drawer` — «Карта в ящике». `The supermarket is next to the police station` — «Супермаркет рядом с полицейским участком». `in` — внутри ящика, `under` — под ним.",
-        "uk": "`map` — «карта», `supermarket` — «супермаркет», `police station` — «поліцейський відділок». `The map is in the drawer` — «Карта в шухляді». `The supermarket is next to the police station` — «Супермаркет поруч із поліцейським відділком». `in` — усередині шухляди, `under` — під нею."
+        "ru": "Сотрудница магазина диктует адрес, а ручка у подруги есть, листов нет. Подруга достаёт из сумки небольшой чистый блокнот. notepad — «блокнот». Про подругу говорят has: She has a notepad — «У неё есть блокнот». Перед notepad ставят a, а не an.",
+        "uk": "Працівниця магазину диктує адресу, а ручка в подруги є, аркушів немає. Подруга дістає із сумки невеликий чистий блокнот. notepad — «блокнот». Про подругу кажуть has: She has a notepad — «У неї є блокнот». Перед notepad ставлять a, а не an."
       },
       "question": {
         "interactionId": "en:lesson-05:session-05:intro3:q",
         "promptByLocale": {
-          "ru": "Карта внутри ящика. Выберите описание.",
-          "uk": "Карта всередині шухляди. Виберіть опис."
+          "ru": "Сотрудница спрашивает, на чём подруга будет записывать. Скажите ей, что у подруги есть блокнот.",
+          "uk": "Працівниця питає, на чому подруга записуватиме. Скажіть їй, що в подруги є блокнот."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-05:intro3:r1",
-              "text": "The map is in the drawer."
+              "text": "She has a notepad."
             },
             {
               "responseId": "en:lesson-05:session-05:intro3:r2",
-              "text": "The map is under the drawer."
+              "text": "She has an notepad."
             },
             {
               "responseId": "en:lesson-05:session-05:intro3:r3",
-              "text": "The map are in the drawer."
+              "text": "She is a notepad."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-05:intro3:r1",
-              "text": "The map is in the drawer."
+              "text": "She has a notepad."
             },
             {
               "responseId": "en:lesson-05:session-05:intro3:r2",
-              "text": "The map is under the drawer."
+              "text": "She has an notepad."
             },
             {
               "responseId": "en:lesson-05:session-05:intro3:r3",
-              "text": "The map are in the drawer."
+              "text": "She is a notepad."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Карта внутри ящика. Выберите описание.",
-          "uk": "Карта всередині шухляди. Виберіть опис."
+          "ru": "Сотрудница спрашивает, на чём подруга будет записывать. Скажите ей, что у подруги есть блокнот.",
+          "uk": "Працівниця питає, на чому подруга записуватиме. Скажіть їй, що в подруги є блокнот."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1842c9d25451bb9ad25a42c2f8a2d1ff3e04dc25079246a6116e77433684d361"
+  "introFingerprint": "ca3fe4ce81f989eab6972867eefd01dc1e64d262bf8a56041ecc77a55594afc0"
 }

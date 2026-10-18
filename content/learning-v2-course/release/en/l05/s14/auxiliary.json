@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-14:intro1:r2": {
-          "ru": "Перед `my suitcase` не нужно `a`.",
-          "uk": "Перед `my suitcase` не потрібне `a`."
+          "ru": "his — его, а хозяйка щенка женщина: нужно her.",
+          "uk": "his — його, а господиня цуценя жінка: потрібно her."
         },
         "en:lesson-05:session-14:intro1:r3": {
-          "ru": "`your` — твой / ваш; мой — `my`.",
-          "uk": "`your` — твоя / ваша; моя — `my`."
+          "ru": "Перед названием нужно her, а не she.",
+          "uk": "Перед назвою потрібно her, а не she."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-14:intro2:r2": {
-          "ru": "`her` — её; здесь его: `his`.",
-          "uk": "`her` — її; тут його: `his`."
+          "ru": "It’s — это it is; перед ошейником нужно its без апострофа.",
+          "uk": "It’s — це it is; перед нашийником потрібно its без апострофа."
         },
         "en:lesson-05:session-14:intro2:r3": {
-          "ru": "Один чемодан: `suitcase is`.",
-          "uk": "Одна валіза: `suitcase is`."
+          "ru": "Ошейник один, поэтому нужно is, а не are.",
+          "uk": "Нашийник один, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-14:intro3:r2": {
-          "ru": "Одна картинка: `picture is`.",
-          "uk": "Одна картинка: `picture is`."
+          "ru": "her — её хозяйки, а щенка называем it: нужно its.",
+          "uk": "her — її господині, а цуценя називаємо it: потрібно its."
         },
         "en:lesson-05:session-14:intro3:r3": {
-          "ru": "`our` — наша; здесь их: `their`.",
-          "uk": "`our` — наша; тут їхня: `their`."
+          "ru": "Хвост один, поэтому нужно is, а не are.",
+          "uk": "Хвіст один, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "08952978e2b5d3ab148536cff85802babc0bdba8472a7cf56d939e1d1836194d"
+  "auxiliaryFingerprint": "3ef05aad847bc839fee98c10de64d20990050ce8a3db3947ff026b55dcb00998"
 }

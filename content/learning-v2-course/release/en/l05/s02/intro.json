@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Устал, но не яблоко",
-        "uk": "Утомлений, але не яблуко"
+        "ru": "Малыш в холле",
+        "uk": "Малюк у холі"
       },
       "bodyByLocale": {
-        "ru": "`tired` — «усталый»: `I am tired` — «Я устал». `apple` — «яблоко»: `I have an apple` — «У меня есть яблоко». Перед `apple` нужно `an`. Перепутаете `am` и `have` — вместо человека с яблоком получится человек-яблоко. Лучше оставить яблоко в руке.",
-        "uk": "`tired` — «утомлений»: `I am tired` — «Я втомився». `apple` — «яблуко»: `I have an apple` — «У мене є яблуко». Перед `apple` потрібне `an`. Переплутаєте `am` і `have` — замість людини з яблуком вийде людина-яблуко. Краще залишити яблуко в руці."
+        "ru": "Вы вернулись в холл отеля после долгой дороги. На диване сидит гостья и тихо качает на руках малыша. baby — «малыш, младенец». С she нужно has: She has a baby — «У неё есть малыш». Если сказать She is a baby, получится, что сама гостья младенец.",
+        "uk": "Ви повернулися в хол готелю після довгої дороги. На дивані сидить гостя й тихо колише на руках малюка. baby — «малюк, немовля». З she потрібно has: She has a baby — «У неї є малюк». Якщо сказати She is a baby, вийде, що сама гостя немовля."
       },
       "question": {
         "interactionId": "en:lesson-05:session-02:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что у вас есть яблоко.",
-          "uk": "Скажіть, що у вас є яблуко."
+          "ru": "Администратор спрашивает, почему в холле так тихо. Скажите ему, что у гостьи есть малыш.",
+          "uk": "Адміністратор питає, чому в холі так тихо. Скажіть йому, що в гості є малюк."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-02:intro1:r1",
-              "text": "I have an apple."
+              "text": "She has a baby."
             },
             {
               "responseId": "en:lesson-05:session-02:intro1:r2",
-              "text": "I am an apple."
+              "text": "She is a baby."
             },
             {
               "responseId": "en:lesson-05:session-02:intro1:r3",
-              "text": "I have a apple."
+              "text": "She have a baby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-02:intro1:r1",
-              "text": "I have an apple."
+              "text": "She has a baby."
             },
             {
               "responseId": "en:lesson-05:session-02:intro1:r2",
-              "text": "I am an apple."
+              "text": "She is a baby."
             },
             {
               "responseId": "en:lesson-05:session-02:intro1:r3",
-              "text": "I have a apple."
+              "text": "She have a baby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что у вас есть яблоко.",
-          "uk": "Скажіть, що у вас є яблуко."
+          "ru": "Администратор спрашивает, почему в холле так тихо. Скажите ему, что у гостьи есть малыш.",
+          "uk": "Адміністратор питає, чому в холі так тихо. Скажіть йому, що в гості є малюк."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "У друга есть перекус",
-        "uk": "У друга є перекус"
+        "ru": "Собака в саду",
+        "uk": "Собака в саду"
       },
       "bodyByLocale": {
-        "ru": "`sad` — «грустный»: `He is sad` — «Он грустит». Но яблоко у него: `He has an apple` — «У него есть яблоко». С `he`, `she`, `it` нужно `has`; с `I`, `you`, `we`, `they` — `have`. `She is tired` описывает состояние, `She has an apple` — то, что у неё есть.",
-        "uk": "`sad` — «сумний»: `He is sad` — «Він сумує». А яблуко в нього: `He has an apple` — «У нього є яблуко». З `he`, `she`, `it` потрібне `has`; з `I`, `you`, `we`, `they` — `have`. `She is tired` описує стан, `She has an apple` — те, що в неї є."
+        "ru": "Друг выбирает, где отдохнуть после дороги, и вы показываете ему сад отеля. На траве лежит большая собака и греется на солнце и никого не трогает. dog — «собака». Про отель как про одно место говорят has: The hotel has a dog — «У отеля есть собака».",
+        "uk": "Друг вибирає, де відпочити після дороги, і ви показуєте йому сад готелю. На траві лежить велика собака й гріється на сонці та нікого не чіпає. dog — «собака». Про готель як про одне місце кажуть has: The hotel has a dog — «У готелю є собака»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-02:intro2:q",
         "promptByLocale": {
-          "ru": "Друг грустит. Выберите описание его состояния.",
-          "uk": "Друг сумує. Виберіть опис його стану."
+          "ru": "Друг спрашивает, чем хорош этот отель. Скажите ему, что у отеля есть собака.",
+          "uk": "Друг питає, чим добрий цей готель. Скажіть йому, що в готелю є собака."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-02:intro2:r1",
-              "text": "He is sad."
+              "text": "The hotel has a dog."
             },
             {
               "responseId": "en:lesson-05:session-02:intro2:r2",
-              "text": "He has sad."
+              "text": "The hotel have a dog."
             },
             {
               "responseId": "en:lesson-05:session-02:intro2:r3",
-              "text": "He are sad."
+              "text": "The hotel is a dog."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-02:intro2:r1",
-              "text": "He is sad."
+              "text": "The hotel has a dog."
             },
             {
               "responseId": "en:lesson-05:session-02:intro2:r2",
-              "text": "He has sad."
+              "text": "The hotel have a dog."
             },
             {
               "responseId": "en:lesson-05:session-02:intro2:r3",
-              "text": "He are sad."
+              "text": "The hotel is a dog."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг грустит. Выберите описание его состояния.",
-          "uk": "Друг сумує. Виберіть опис його стану."
+          "ru": "Друг спрашивает, чем хорош этот отель. Скажите ему, что у отеля есть собака.",
+          "uk": "Друг питає, чим добрий цей готель. Скажіть йому, що в готелю є собака."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сад при отеле",
-        "uk": "Сад при готелі"
+        "ru": "Грустный друг и кот",
+        "uk": "Сумний друг і кіт"
       },
       "bodyByLocale": {
-        "ru": "`hotel` — «отель», `garden` — «сад», `river` — «река». `The hotel has a garden` — «У отеля есть сад». Один отель, как `it`, требует `has`. `The hotel is next to the river` — «Отель рядом с рекой»: здесь мы говорим, где он, поэтому `is`.",
-        "uk": "`hotel` — «готель», `garden` — «сад», `river` — «річка». `The hotel has a garden` — «У готелю є сад». Один готель, як `it`, потребує `has`. `The hotel is next to the river` — «Готель поруч із річкою»: тут ми кажемо, де він, тому `is`."
+        "ru": "Друг сел на скамейку у реки, смотрит на воду и грустит: дома остался кот, которого нельзя было взять с собой. cat — «кот, кошка». Состояние называют с is: He is sad — «Он грустит». А то, что у человека есть, называют с has: He has a cat — «У него есть кот».",
+        "uk": "Друг сів на лавку біля річки, дивиться на воду й сумує: вдома лишився кіт, якого не можна було взяти з собою. cat — «кіт, кішка». Стан називають з is: He is sad — «Він сумує». А те, що в людини є, називають з has: He has a cat — «У нього є кіт»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-02:intro3:q",
         "promptByLocale": {
-          "ru": "У отеля есть сад. Выберите фразу.",
-          "uk": "У готелю є сад. Виберіть фразу."
+          "ru": "Подруга спрашивает, кто ждёт друга дома. Скажите ей, что у него есть кот.",
+          "uk": "Подруга питає, хто чекає на друга вдома. Скажіть їй, що в нього є кіт."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-02:intro3:r1",
-              "text": "The hotel has a garden."
+              "text": "He has a cat."
             },
             {
               "responseId": "en:lesson-05:session-02:intro3:r2",
-              "text": "The hotel have a garden."
+              "text": "He has cat."
             },
             {
               "responseId": "en:lesson-05:session-02:intro3:r3",
-              "text": "The hotel is a garden."
+              "text": "He is a cat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-02:intro3:r1",
-              "text": "The hotel has a garden."
+              "text": "He has a cat."
             },
             {
               "responseId": "en:lesson-05:session-02:intro3:r2",
-              "text": "The hotel have a garden."
+              "text": "He has cat."
             },
             {
               "responseId": "en:lesson-05:session-02:intro3:r3",
-              "text": "The hotel is a garden."
+              "text": "He is a cat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У отеля есть сад. Выберите фразу.",
-          "uk": "У готелю є сад. Виберіть фразу."
+          "ru": "Подруга спрашивает, кто ждёт друга дома. Скажите ей, что у него есть кот.",
+          "uk": "Подруга питає, хто чекає на друга вдома. Скажіть їй, що в нього є кіт."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "391e60613d1a3b491344b1979c5631f81123ee741cc97d1569332d97a43e55ae"
+  "introFingerprint": "964d53fa83267158371090159cd5638d525e770e08f6684da9b173983acf46b2"
 }

@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-07",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-07:word:popcorn",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — popcorn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:popcorn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — popcorn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:popcorn:audio",
+            "transcript": "popcorn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:popcorn:r1",
+              "targetText": "popcorn",
+              "meaningByLocale": {
+                "ru": "попкорн. I have popcorn. — «У меня есть попкорн». О лёгких хрустящих зёрнах, которые едят в кино; говорят про него вообще, без a.",
+                "uk": "попкорн. I have popcorn. — «У мене є попкорн». Про легкі хрусткі зерна, які їдять у кіно; кажуть про нього взагалі, без a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "popcorn",
+            "definitionByLocale": {
+              "ru": "попкорн. I have popcorn. — «У меня есть попкорн». О лёгких хрустящих зёрнах, которые едят в кино; говорят про него вообще, без a.",
+              "uk": "попкорн. I have popcorn. — «У мене є попкорн». Про легкі хрусткі зерна, які їдять у кіно; кажуть про нього взагалі, без a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, чем заедать фильм. Скажите ему полной фразой: «У меня есть попкорн»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, чем заедать фильм. Скажите ему полной фразой: «У меня есть попкорн»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have popcorn.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, чем заедать фильм. Скажите ему полной фразой: «У меня есть попкорн»",
+            "uk": "Друг питає, чим заїдати фільм. Скажіть йому повною фразою: «У мене є попкорн»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "popcorn"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, чем заедать фильм. Скажите ему полной фразой: «У меня есть попкорн»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have popcorn.`",
+                "uk": "тут потрібно `have` — `I have popcorn.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i02:r1",
+            "text": "He is angry."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i02:r2",
+            "text": "He is scared."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i02:r3",
+            "text": "She is angry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i02:audio",
+            "transcript": "He is angry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:i02:r1",
+              "targetText": "He is angry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i02:r2",
+              "targetText": "He is scared.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i02:r3",
+              "targetText": "She is angry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `angry`, а в этом варианте — `scared`.",
+                "uk": "У записі останнє слово — `angry`, а в цьому варіанті — `scared`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:word:film",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — film",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:film:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — film",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:film:audio",
+            "transcript": "film"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:film:r1",
+              "targetText": "film",
+              "meaningByLocale": {
+                "ru": "фильм. She has a film. — «У неё есть фильм». О картине, которую смотрят в кино или дома на экране.",
+                "uk": "фільм. She has a film. — «У неї є фільм». Про картину, яку дивляться в кіно або вдома на екрані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "film",
+            "definitionByLocale": {
+              "ru": "фильм. She has a film. — «У неё есть фильм». О картине, которую смотрят в кино или дома на экране.",
+              "uk": "фільм. She has a film. — «У неї є фільм». Про картину, яку дивляться в кіно або вдома на екрані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга принесла фильм на вечер. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга принесла фильм на вечер. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга принесла фильм на вечер. Выберите форму",
+            "uk": "Подруга принесла фільм на вечір. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ a film.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-07:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга принесла фильм на вечер. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга принесла фильм на вечер. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С she нужно has, а не have.",
+                "uk": "З she потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга принесла фильм на вечер. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "She is a film значило бы «Она фильм». У неё есть фильм — She has a film.",
+                "uk": "She is a film означало б «Вона фільм». У неї є фільм — She has a film."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-07:i04:p1",
+              "target": "popcorn",
+              "meaningByLocale": {
+                "ru": "попкорн",
+                "uk": "попкорн"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i04:p2",
+              "target": "film",
+              "meaningByLocale": {
+                "ru": "фильм",
+                "uk": "фільм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i04:p3",
+              "target": "snack",
+              "meaningByLocale": {
+                "ru": "перекус",
+                "uk": "перекус"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i04:p4",
+              "target": "pizza",
+              "meaningByLocale": {
+                "ru": "пицца",
+                "uk": "піца"
+              }
+            }
+          ],
+          "leftColumn": [
+            "popcorn",
+            "film",
+            "snack",
+            "pizza"
+          ],
+          "rightColumn": [
+            "попкорн",
+            "фильм",
+            "перекус",
+            "пицца"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:word:snack",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:snack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:snack:audio",
+            "transcript": "snack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:snack:r1",
+              "targetText": "snack",
+              "meaningByLocale": {
+                "ru": "перекус, лёгкая закуска. He has a snack. — «У него есть перекус». О небольшой еде между обычными приёмами пищи.",
+                "uk": "перекус, легка закуска. He has a snack. — «У нього є перекус». Про невелику їжу між звичайними прийомами їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snack",
+            "definitionByLocale": {
+              "ru": "перекус, лёгкая закуска. He has a snack. — «У него есть перекус». О небольшой еде между обычными приёмами пищи.",
+              "uk": "перекус, легка закуска. He has a snack. — «У нього є перекус». Про невелику їжу між звичайними прийомами їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i05:audio",
+            "transcript": "He has a snack."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He has a snack.",
+          "orderedTokens": [
+            "He",
+            "has",
+            "a",
+            "snack"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `He has a snack.`",
+                "uk": "тут потрібно `has` — `He has a snack.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:word:pizza",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pizza",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:pizza:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pizza",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:pizza:audio",
+            "transcript": "pizza"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:pizza:r1",
+              "targetText": "pizza",
+              "meaningByLocale": {
+                "ru": "пицца. We have a pizza. — «У нас есть пицца». О круглой лепёшке с сыром и начинкой, которую запекают в печи.",
+                "uk": "піца. We have a pizza. — «У нас є піца». Про круглий корж із сиром і начинкою, який запікають у печі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pizza",
+            "definitionByLocale": {
+              "ru": "пицца. We have a pizza. — «У нас есть пицца». О круглой лепёшке с сыром и начинкой, которую запекают в печи.",
+              "uk": "піца. We have a pizza. — «У нас є піца». Про круглий корж із сиром і начинкою, який запікають у печі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы заказали пиццу на всех. Скажите друзьям полной фразой: «У нас есть пицца»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заказали пиццу на всех. Скажите друзьям полной фразой: «У нас есть пицца»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a pizza.",
+          "localizedMeaning": {
+            "ru": "Вы заказали пиццу на всех. Скажите друзьям полной фразой: «У нас есть пицца»",
+            "uk": "Ви замовили піцу на всіх. Скажіть друзям повною фразою: «У нас є піца»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "pizza"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы заказали пиццу на всех. Скажите друзьям полной фразой: «У нас есть пицца»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `We have a pizza.`",
+                "uk": "тут потрібно `have` — `We have a pizza.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам страшно во время фильма. Скажите «Мне страшно» с сокращением",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i07:audio"
+        ],
+        "accessibilityLabel": "Вам страшно во время фильма. Скажите «Мне страшно» с сокращением",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i07:audio",
+            "transcript": "I’m scared."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m scared.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг злится на громкий звук. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг злится на громкий звук. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг злится на громкий звук. Выберите форму",
+            "uk": "Друг сердиться на гучний звук. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ angry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-07:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг злится на громкий звук. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг злится на громкий звук. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние: He is angry.",
+                "uk": "Тут стан: He is angry."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг злится на громкий звук. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно is, а не are.",
+                "uk": "З he потрібно is, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, где пульт",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i09:r1",
+            "text": "The remote is next to the cup."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i09:r2",
+            "text": "The remote is in the cup."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i09:r3",
+            "text": "The remote is next to the lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, где пульт",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i09:audio",
+            "transcript": "The remote is next to the cup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:i09:r1",
+              "targetText": "The remote is next to the cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i09:r2",
+              "targetText": "The remote is in the cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i09:r3",
+              "targetText": "The remote is next to the lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, где пульт",
+              "feedbackByLocale": {
+                "ru": "В записи `next to` — «рядом», а в этом варианте `in` — «внутри».",
+                "uk": "У записі `next to` — «поруч», а в цьому варіанті `in` — «всередині»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, где пульт",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cup`, а в этом варианте — `lamp`.",
+                "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `lamp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-07:i10:p1",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i10:p2",
+              "target": "cup",
+              "meaningByLocale": {
+                "ru": "чашка",
+                "uk": "чашка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i10:p3",
+              "target": "angry",
+              "meaningByLocale": {
+                "ru": "сердитый",
+                "uk": "сердитий"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i10:p4",
+              "target": "scared",
+              "meaningByLocale": {
+                "ru": "испуганный",
+                "uk": "наляканий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remote",
+            "cup",
+            "angry",
+            "scared"
+          ],
+          "rightColumn": [
+            "пульт",
+            "чашка",
+            "сердитый",
+            "испуганный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i11:audio",
+            "transcript": "I have a remote."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have a remote.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "remote"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a remote.`",
+                "uk": "тут потрібно `have` — `I have a remote.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, где детская площадка. Скажите ему полной фразой: «Детская площадка рядом с парком»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, где детская площадка. Скажите ему полной фразой: «Детская площадка рядом с парком»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The playground is next to the park.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, где детская площадка. Скажите ему полной фразой: «Детская площадка рядом с парком»",
+            "uk": "Друг питає, де дитячий майданчик. Скажіть йому повною фразою: «Дитячий майданчик поруч із парком»"
+          },
+          "orderedTokens": [
+            "The",
+            "playground",
+            "is",
+            "next",
+            "to",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, где детская площадка. Скажите ему полной фразой: «Детская площадка рядом с парком»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The playground is next to the park.`",
+                "uk": "тут потрібно `is` — `The playground is next to the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли в комнате ещё один пульт. Скажите подруге: «У меня есть пульт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i13:audio"
+        ],
+        "accessibilityLabel": "Вы нашли в комнате ещё один пульт. Скажите подруге: «У меня есть пульт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i13:audio",
+            "transcript": "I have a remote."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have a remote.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У друга есть пульт от телевизора. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У друга есть пульт от телевизора. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У друга есть пульт от телевизора. Выберите форму",
+            "uk": "У друга є пульт від телевізора. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a remote.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-07:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У друга есть пульт от телевизора. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i14:r2",
+              "correct": false,
+              "testedDimension": "У друга есть пульт от телевизора. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i14:r3",
+              "correct": false,
+              "testedDimension": "У друга есть пульт от телевизора. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "He is a remote значило бы «Он пульт». У него есть пульт — He has a remote.",
+                "uk": "He is a remote означало б «Він пульт». У нього є пульт — He has a remote."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что есть у друзей",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i15:r1",
+            "text": "We have popcorn."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i15:r2",
+            "text": "We have a snack."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i15:r3",
+            "text": "They have popcorn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что есть у друзей",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i15:audio",
+            "transcript": "We have popcorn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:i15:r1",
+              "targetText": "We have popcorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i15:r2",
+              "targetText": "We have a snack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i15:r3",
+              "targetText": "They have popcorn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что есть у друзей",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `popcorn`, а в этом варианте — `snack`.",
+                "uk": "У записі останнє слово — `popcorn`, а в цьому варіанті — `snack`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что есть у друзей",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+                "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-07:i16:p1",
+              "target": "film",
+              "meaningByLocale": {
+                "ru": "фильм",
+                "uk": "фільм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i16:p2",
+              "target": "snack",
+              "meaningByLocale": {
+                "ru": "перекус",
+                "uk": "перекус"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i16:p3",
+              "target": "pizza",
+              "meaningByLocale": {
+                "ru": "пицца",
+                "uk": "піца"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i16:p4",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "film",
+            "snack",
+            "pizza",
+            "remote"
+          ],
+          "rightColumn": [
+            "фильм",
+            "перекус",
+            "пицца",
+            "пульт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзья проголодались. Скажите им: «У нас есть пицца»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Друзья проголодались. Скажите им: «У нас есть пицца»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i17:audio",
+            "transcript": "We have a pizza."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a pizza.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-07:word:popcorn",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — popcorn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:popcorn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — popcorn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:popcorn:audio",
+            "transcript": "popcorn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:popcorn:r1",
+              "targetText": "popcorn",
+              "meaningByLocale": {
+                "ru": "попкорн. I have popcorn. — «У меня есть попкорн». О лёгких хрустящих зёрнах, которые едят в кино; говорят про него вообще, без a.",
+                "uk": "попкорн. I have popcorn. — «У мене є попкорн». Про легкі хрусткі зерна, які їдять у кіно; кажуть про нього взагалі, без a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "popcorn",
+            "definitionByLocale": {
+              "ru": "попкорн. I have popcorn. — «У меня есть попкорн». О лёгких хрустящих зёрнах, которые едят в кино; говорят про него вообще, без a.",
+              "uk": "попкорн. I have popcorn. — «У мене є попкорн». Про легкі хрусткі зерна, які їдять у кіно; кажуть про нього взагалі, без a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає, чим заїдати фільм. Скажіть йому повною фразою: «У мене є попкорн»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, чим заїдати фільм. Скажіть йому повною фразою: «У мене є попкорн»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have popcorn.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, чем заедать фильм. Скажите ему полной фразой: «У меня есть попкорн»",
+            "uk": "Друг питає, чим заїдати фільм. Скажіть йому повною фразою: «У мене є попкорн»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "popcorn"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає, чим заїдати фільм. Скажіть йому повною фразою: «У мене є попкорн»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have popcorn.`",
+                "uk": "тут потрібно `have` — `I have popcorn.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i02:r1",
+            "text": "He is angry."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i02:r2",
+            "text": "He is scared."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i02:r3",
+            "text": "She is angry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i02:audio",
+            "transcript": "He is angry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:i02:r1",
+              "targetText": "He is angry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i02:r2",
+              "targetText": "He is scared.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i02:r3",
+              "targetText": "She is angry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `angry`, а в этом варианте — `scared`.",
+                "uk": "У записі останнє слово — `angry`, а в цьому варіанті — `scared`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:word:film",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — film",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:film:audio"
+        ],
+        "accessibilityLabel": "Картка слова — film",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:film:audio",
+            "transcript": "film"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:film:r1",
+              "targetText": "film",
+              "meaningByLocale": {
+                "ru": "фильм. She has a film. — «У неё есть фильм». О картине, которую смотрят в кино или дома на экране.",
+                "uk": "фільм. She has a film. — «У неї є фільм». Про картину, яку дивляться в кіно або вдома на екрані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "film",
+            "definitionByLocale": {
+              "ru": "фильм. She has a film. — «У неё есть фильм». О картине, которую смотрят в кино или дома на экране.",
+              "uk": "фільм. She has a film. — «У неї є фільм». Про картину, яку дивляться в кіно або вдома на екрані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга принесла фільм на вечір. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i03:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга принесла фільм на вечір. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга принесла фильм на вечер. Выберите форму",
+            "uk": "Подруга принесла фільм на вечір. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ a film.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-07:i03:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга принесла фільм на вечір. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга принесла фільм на вечір. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С she нужно has, а не have.",
+                "uk": "З she потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга принесла фільм на вечір. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "She is a film значило бы «Она фильм». У неё есть фильм — She has a film.",
+                "uk": "She is a film означало б «Вона фільм». У неї є фільм — She has a film."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-07:i04:p1",
+              "target": "popcorn",
+              "meaningByLocale": {
+                "ru": "попкорн",
+                "uk": "попкорн"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i04:p2",
+              "target": "film",
+              "meaningByLocale": {
+                "ru": "фильм",
+                "uk": "фільм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i04:p3",
+              "target": "snack",
+              "meaningByLocale": {
+                "ru": "перекус",
+                "uk": "перекус"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i04:p4",
+              "target": "pizza",
+              "meaningByLocale": {
+                "ru": "пицца",
+                "uk": "піца"
+              }
+            }
+          ],
+          "leftColumn": [
+            "popcorn",
+            "film",
+            "snack",
+            "pizza"
+          ],
+          "rightColumn": [
+            "попкорн",
+            "фільм",
+            "перекус",
+            "піца"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:word:snack",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:snack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:snack:audio",
+            "transcript": "snack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:snack:r1",
+              "targetText": "snack",
+              "meaningByLocale": {
+                "ru": "перекус, лёгкая закуска. He has a snack. — «У него есть перекус». О небольшой еде между обычными приёмами пищи.",
+                "uk": "перекус, легка закуска. He has a snack. — «У нього є перекус». Про невелику їжу між звичайними прийомами їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snack",
+            "definitionByLocale": {
+              "ru": "перекус, лёгкая закуска. He has a snack. — «У него есть перекус». О небольшой еде между обычными приёмами пищи.",
+              "uk": "перекус, легка закуска. He has a snack. — «У нього є перекус». Про невелику їжу між звичайними прийомами їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i05:audio",
+            "transcript": "He has a snack."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He has a snack.",
+          "orderedTokens": [
+            "He",
+            "has",
+            "a",
+            "snack"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `He has a snack.`",
+                "uk": "тут потрібно `has` — `He has a snack.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:word:pizza",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pizza",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:word:pizza:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pizza",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:word:pizza:audio",
+            "transcript": "pizza"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:word:pizza:r1",
+              "targetText": "pizza",
+              "meaningByLocale": {
+                "ru": "пицца. We have a pizza. — «У нас есть пицца». О круглой лепёшке с сыром и начинкой, которую запекают в печи.",
+                "uk": "піца. We have a pizza. — «У нас є піца». Про круглий корж із сиром і начинкою, який запікають у печі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pizza",
+            "definitionByLocale": {
+              "ru": "пицца. We have a pizza. — «У нас есть пицца». О круглой лепёшке с сыром и начинкой, которую запекают в печи.",
+              "uk": "піца. We have a pizza. — «У нас є піца». Про круглий корж із сиром і начинкою, який запікають у печі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви замовили піцу на всіх. Скажіть друзям повною фразою: «У нас є піца»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви замовили піцу на всіх. Скажіть друзям повною фразою: «У нас є піца»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a pizza.",
+          "localizedMeaning": {
+            "ru": "Вы заказали пиццу на всех. Скажите друзьям полной фразой: «У нас есть пицца»",
+            "uk": "Ви замовили піцу на всіх. Скажіть друзям повною фразою: «У нас є піца»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "pizza"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви замовили піцу на всіх. Скажіть друзям повною фразою: «У нас є піца»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `We have a pizza.`",
+                "uk": "тут потрібно `have` — `We have a pizza.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам страшно під час фільму. Скажіть «Мені страшно» зі скороченням",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i07:audio"
+        ],
+        "accessibilityLabel": "Вам страшно під час фільму. Скажіть «Мені страшно» зі скороченням",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i07:audio",
+            "transcript": "I’m scared."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I’m scared.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг сердиться на гучний звук. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг сердиться на гучний звук. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг злится на громкий звук. Выберите форму",
+            "uk": "Друг сердиться на гучний звук. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ angry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-07:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг сердиться на гучний звук. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг сердиться на гучний звук. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Здесь состояние: He is angry.",
+                "uk": "Тут стан: He is angry."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг сердиться на гучний звук. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно is, а не are.",
+                "uk": "З he потрібно is, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, де пульт",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i09:r1",
+            "text": "The remote is next to the cup."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i09:r2",
+            "text": "The remote is in the cup."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i09:r3",
+            "text": "The remote is next to the lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, де пульт",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i09:audio",
+            "transcript": "The remote is next to the cup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:i09:r1",
+              "targetText": "The remote is next to the cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i09:r2",
+              "targetText": "The remote is in the cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i09:r3",
+              "targetText": "The remote is next to the lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, де пульт",
+              "feedbackByLocale": {
+                "ru": "В записи `next to` — «рядом», а в этом варианте `in` — «внутри».",
+                "uk": "У записі `next to` — «поруч», а в цьому варіанті `in` — «всередині»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, де пульт",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cup`, а в этом варианте — `lamp`.",
+                "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `lamp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-07:i10:p1",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i10:p2",
+              "target": "cup",
+              "meaningByLocale": {
+                "ru": "чашка",
+                "uk": "чашка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i10:p3",
+              "target": "angry",
+              "meaningByLocale": {
+                "ru": "сердитый",
+                "uk": "сердитий"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i10:p4",
+              "target": "scared",
+              "meaningByLocale": {
+                "ru": "испуганный",
+                "uk": "наляканий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remote",
+            "cup",
+            "angry",
+            "scared"
+          ],
+          "rightColumn": [
+            "пульт",
+            "чашка",
+            "сердитий",
+            "наляканий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i11:audio",
+            "transcript": "I have a remote."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have a remote.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "a",
+            "remote"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `I have a remote.`",
+                "uk": "тут потрібно `have` — `I have a remote.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає, де дитячий майданчик. Скажіть йому повною фразою: «Дитячий майданчик поруч із парком»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, де дитячий майданчик. Скажіть йому повною фразою: «Дитячий майданчик поруч із парком»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The playground is next to the park.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, где детская площадка. Скажите ему полной фразой: «Детская площадка рядом с парком»",
+            "uk": "Друг питає, де дитячий майданчик. Скажіть йому повною фразою: «Дитячий майданчик поруч із парком»"
+          },
+          "orderedTokens": [
+            "The",
+            "playground",
+            "is",
+            "next",
+            "to",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає, де дитячий майданчик. Скажіть йому повною фразою: «Дитячий майданчик поруч із парком»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The playground is next to the park.`",
+                "uk": "тут потрібно `is` — `The playground is next to the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли в кімнаті ще один пульт. Скажіть подрузі: «У мене є пульт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i13:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли в кімнаті ще один пульт. Скажіть подрузі: «У мене є пульт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i13:audio",
+            "transcript": "I have a remote."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have a remote.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У друга є пульт від телевізора. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У друга є пульт від телевізора. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У друга есть пульт от телевизора. Выберите форму",
+            "uk": "У друга є пульт від телевізора. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a remote.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-07:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У друга є пульт від телевізора. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i14:r2",
+              "correct": false,
+              "testedDimension": "У друга є пульт від телевізора. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С he нужно has, а не have.",
+                "uk": "З he потрібно has, а не have."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i14:r3",
+              "correct": false,
+              "testedDimension": "У друга є пульт від телевізора. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "He is a remote значило бы «Он пульт». У него есть пульт — He has a remote.",
+                "uk": "He is a remote означало б «Він пульт». У нього є пульт — He has a remote."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що є в друзів",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i15:r1",
+            "text": "We have popcorn."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i15:r2",
+            "text": "We have a snack."
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i15:r3",
+            "text": "They have popcorn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що є в друзів",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i15:audio",
+            "transcript": "We have popcorn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-07:i15:r1",
+              "targetText": "We have popcorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i15:r2",
+              "targetText": "We have a snack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i15:r3",
+              "targetText": "They have popcorn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-07:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що є в друзів",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `popcorn`, а в этом варианте — `snack`.",
+                "uk": "У записі останнє слово — `popcorn`, а в цьому варіанті — `snack`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-07:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що є в друзів",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+                "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-07:i16:p1",
+              "target": "film",
+              "meaningByLocale": {
+                "ru": "фильм",
+                "uk": "фільм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i16:p2",
+              "target": "snack",
+              "meaningByLocale": {
+                "ru": "перекус",
+                "uk": "перекус"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i16:p3",
+              "target": "pizza",
+              "meaningByLocale": {
+                "ru": "пицца",
+                "uk": "піца"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-07:i16:p4",
+              "target": "remote",
+              "meaningByLocale": {
+                "ru": "пульт",
+                "uk": "пульт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "film",
+            "snack",
+            "pizza",
+            "remote"
+          ],
+          "rightColumn": [
+            "фільм",
+            "перекус",
+            "піца",
+            "пульт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-07:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзі зголодніли. Скажіть їм: «У нас є піца»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Друзі зголодніли. Скажіть їм: «У нас є піца»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-07:i17:audio",
+            "transcript": "We have a pizza."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a pizza.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-07:word:popcorn",
+      "correctText": "popcorn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i01",
+      "correctText": "I have popcorn.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i02",
+      "correctText": "He is angry.",
+      "correctResponseId": "en:lesson-05:session-07:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:word:film",
+      "correctText": "film",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i03",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-07:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:word:snack",
+      "correctText": "snack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i05",
+      "correctText": "He has a snack.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:word:pizza",
+      "correctText": "pizza",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i06",
+      "correctText": "We have a pizza.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i07",
+      "correctText": "I’m scared.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-07:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i09",
+      "correctText": "The remote is next to the cup.",
+      "correctResponseId": "en:lesson-05:session-07:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i11",
+      "correctText": "I have a remote.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i12",
+      "correctText": "The playground is next to the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i13",
+      "correctText": "I have a remote.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i14",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-07:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i15",
+      "correctText": "We have popcorn.",
+      "correctResponseId": "en:lesson-05:session-07:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i17",
+      "correctText": "We have a pizza.",
+      "correctResponseId": null
+    }
+  ]
+}

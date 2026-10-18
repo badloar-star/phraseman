@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-11:intro1:r2": {
-          "ru": "Перед `my backpack` не нужно `a`.",
-          "uk": "Перед `my backpack` не потрібне `a`."
+          "ru": "В вопросе сначала Is: Is this your bedroom?",
+          "uk": "У питанні спочатку Is: Is this your bedroom?"
         },
         "en:lesson-05:session-11:intro1:r3": {
-          "ru": "`your` — твой / ваш; мой — `my`.",
-          "uk": "`your` — твій / ваш; мій — `my`."
+          "ru": "С this нужно Is, а не Are.",
+          "uk": "З this потрібно Is, а не Are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-11:intro2:r2": {
-          "ru": "Друг женщины: `her friend`, а не `his friend`.",
-          "uk": "Друг жінки: `her friend`, а не `his friend`."
+          "ru": "his — его, а шкаф вашей сестры: нужно her.",
+          "uk": "his — його, а шафа вашої сестри: потрібно her."
         },
         "en:lesson-05:session-11:intro2:r3": {
-          "ru": "Один друг: `friend is`.",
-          "uk": "Один друг: `friend is`."
+          "ru": "Перед названием вещи нужно her, а не she.",
+          "uk": "Перед назвою речі потрібно her, а не she."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-11:intro3:r2": {
-          "ru": "`on` — на столе; под — `under`.",
-          "uk": "`on` — на столі; під — `under`."
+          "ru": "В вопросе сначала Where is: Where is my laptop?",
+          "uk": "У питанні спочатку Where is: Where is my laptop?"
         },
         "en:lesson-05:session-11:intro3:r3": {
-          "ru": "`my` — моим; здесь твоим / вашим: `your`.",
-          "uk": "`my` — моїм; тут твоїм / вашим: `your`."
+          "ru": "Ноутбук один, поэтому нужно is, а не are.",
+          "uk": "Ноутбук один, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3c75b3b60f9c1617b786f820f6495a38fc2fd547ea3475b9a782006f3a2e3196"
+  "auxiliaryFingerprint": "3a9dc8f5d966d91e40a6a77262eabe85dbda818fa48bc74676b2a912f4d427cf"
 }

@@ -2,134 +2,153 @@
 
 **Ситуация.** Вы смотрите фильм с друзьями. Один злится из-за громкого звука, другому страшно. Нужно найти пульт рядом с чашкой, а после фильма можно выйти к детской площадке коротким путём.
 
-**Что вы освоите:** назвать пульт и сказать, у кого он есть
-**Новые слова:** remote
+**Что вы освоите:** сказать, у кого есть еда, фильм или пульт, и описать, злится человек или боится
+**Новые слова:** popcorn, film, snack, pizza
+**Возвращаются:** remote, cup, angry, scared, lamp, park, playground
 
 ---
 
 ## Интро 1
 
-### Маленький, но главный
+### Миска на диване
 
-`remote` здесь — «пульт», например от телевизора. `I have a remote` — «У меня есть пульт». Пульт маленький, но без него иногда приходится вставать с дивана — вот и вся домашняя зарядка. Один пульт — `a remote`. Если всем понятно, какой именно пульт вы ищете, говорим `the remote`: `She has the remote` — «Пульт у неё».
+Вечером вы устроились на мягком диване смотреть фильм с друзьями. Перед вами стоит большая миска с лёгкими белыми зёрнами, которые хрустят. popcorn — «попкорн»: так называют его вообще, и a не ставят. I have popcorn — «У меня есть попкорн».
 
-**У вас есть один пульт. Выберите фразу.**
+**Друг спрашивает, чем вы заедаете фильм. Скажите ему, что у вас есть попкорн.**
 
-- ✅ **I have a remote.**
-- ❌ I has a remote. — *С `I` нужно `have`.*
-- ❌ I have remote. — *Один пульт: `a remote`.*
+- ✅ **I have popcorn.**
+- ❌ I has popcorn. — *С I нужно have, а не has.*
+- ❌ I have a popcorn. — *Попкорн называют вообще, а не по штуке, поэтому a не нужно.*
 
 ---
 
 ## Интро 2
 
-### Злится или боится
+### Что смотреть
 
-`angry` — «злой, сердитый», `scared` — «испуганный». `He is angry` — «Он злится». `I’m scared` — «Мне страшно». Для этих состояний нужны `am`, `is`, `are`. А чтобы сказать, у кого пульт, нужны `have` или `has`: `They have the remote` — «Пульт у них».
+Друзья спорят, что смотреть вечером, и никак не могут выбрать. Каждый предлагает своё, и спор затягивается. Подруга молча достаёт старый фильм, о котором давно мечтала. film — «фильм». Про подругу говорят has: She has a film — «У неё есть фильм».
 
-**Вам страшно во время фильма. Скажите это с сокращением.**
+**Друг спрашивает, что будете смотреть. Скажите ему, что у подруги есть фильм.**
 
-- ✅ **I'm scared.**
-- ❌ I'm angry. — *`angry` — злой; здесь страшно: `scared`.*
-- ❌ I have scared. — *Для этого состояния нужно `I’m scared`.*
+- ✅ **She has a film.**
+- ❌ She have a film. — *С she нужно has, а не have.*
+- ❌ She is a film. — *Это значило бы «Она фильм». Чтобы сказать «У неё есть фильм», нужно has.*
 
 ---
 
 ## Интро 3
 
-### Рядом с чашкой
+### Страшная сцена
 
-`cup` — «чашка», `playground` — «детская площадка», `shortcut` — «короткий путь». `The remote is next to the cup` — «Пульт рядом с чашкой». `The playground is next to the park` — «Детская площадка рядом с парком». Спросить о коротком пути: `Is there a shortcut?` — «Есть ли короткий путь?»
+В самый страшный момент один из друзей не говорит ни слова: ему не по себе. Зато в руке он сжимает пачку чего-нибудь лёгкого, чтобы заесть страх. snack — «перекус, лёгкая закуска». Про него говорят has: He has a snack — «У него есть перекус».
 
-**Пульт рядом с чашкой. Выберите описание.**
+**Подруга спрашивает, что у испуганного друга в руке. Скажите ей, что у него перекус.**
 
-- ✅ **The remote is next to the cup.**
-- ❌ The remote is in the cup. — *`in` — внутри; здесь рядом: `next to`.*
-- ❌ The remote are next to the cup. — *Один пульт: `The remote is`.*
+- ✅ **He has a snack.**
+- ❌ He is a snack. — *Это значило бы «Он перекус». Чтобы сказать «У него есть перекус», нужно has.*
+- ❌ He have a snack. — *С he нужно has, а не have.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Друг злится. Скажите это без сокращения**
+**1 · Карточка слова — popcorn**
+<!-- interaction_id: en:lesson-05:session-07:word:popcorn; family: word_card -->
+> **popcorn** — попкорн. I have popcorn. — «У меня есть попкорн». О лёгких хрустящих зёрнах, которые едят в кино; говорят про него вообще, без a.
+
+**2 · Друг спрашивает, чем заедать фильм. Скажите ему полной фразой: «У меня есть попкорн»**
 <!-- interaction_id: en:lesson-05:session-07:i01; family: phrase_builder -->
-Плитки: `angry` `is` `He` `are` → **He is angry.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is angry.`)*
+Плитки: `popcorn` `have` `I` `has` → **I have popcorn.**
+*(плитка `has` лишняя: здесь нужно `have` — `I have popcorn.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте друга**
 <!-- interaction_id: en:lesson-05:session-07:i02; family: listen_choose -->
-🔊 *remote* → **remote** · remotes · drawer
-- remotes — *В записи первое слово — `remote`, а в этом варианте — `remotes`.*
-- drawer — *В записи первое слово — `remote`, а в этом варианте — `drawer`.*
+🔊 *He is angry.* → **He is angry.** · He is scared. · She is angry.
+- He is scared. — *В записи последнее слово — `angry`, а в этом варианте — `scared`.*
+- She is angry. — *В записи первое слово — `He`, а в этом варианте — `She`.*
 
-**3 · Назовите пульт от телевизора**
+**4 · Карточка слова — film**
+<!-- interaction_id: en:lesson-05:session-07:word:film; family: word_card -->
+> **film** — фильм. She has a film. — «У неё есть фильм». О картине, которую смотрят в кино или дома на экране.
+
+**5 · Подруга принесла фильм на вечер. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-07:i03; family: context_gap_grammar -->
-___ → **remote** · cup · curtain
-- cup — *`cup` — чашка; пульт — `remote`.*
-- curtain — *`curtain` — занавеска; пульт — `remote`.*
+She ___ a film. → **has** · have · is
+- have — *С she нужно has, а не have.*
+- is — *She is a film значило бы «Она фильм». У неё есть фильм — She has a film.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-07:i04; family: speed_match -->
-remote — пульт · angry — сердитый · scared — испуганный · cup — чашка
+popcorn — попкорн · film — фильм · snack — перекус · pizza — пицца
 
-**5 · Послушайте и соберите фразу**
+**7 · Карточка слова — snack**
+<!-- interaction_id: en:lesson-05:session-07:word:snack; family: word_card -->
+> **snack** — перекус, лёгкая закуска. He has a snack. — «У него есть перекус». О небольшой еде между обычными приёмами пищи.
+
+**8 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-07:i05; family: listen_build_dictation -->
-🔊 *I have a remote.* Плитки: `remote` `a` `have` `I` → **I have a remote.**
+🔊 *He has a snack.* Плитки: `snack` `a` `has` `He` `have` → **He has a snack.**
+*(плитка `have` лишняя: здесь нужно `has` — `He has a snack.`)*
 
-**6 · Вы ищете пульт от этого телевизора. Он у подруги. Скажите «Пульт у неё»**
+**9 · Карточка слова — pizza**
+<!-- interaction_id: en:lesson-05:session-07:word:pizza; family: word_card -->
+> **pizza** — пицца. We have a pizza. — «У нас есть пицца». О круглой лепёшке с сыром и начинкой, которую запекают в печи.
+
+**10 · Вы заказали пиццу на всех. Скажите друзьям полной фразой: «У нас есть пицца»**
 <!-- interaction_id: en:lesson-05:session-07:i06; family: phrase_builder -->
-Плитки: `remote` `the` `has` `She` → **She has the remote.**
+Плитки: `pizza` `a` `have` `We` `has` → **We have a pizza.**
+*(плитка `has` лишняя: здесь нужно `have` — `We have a pizza.`)*
 
-**7 · Вам страшно смотреть фильм. Скажите «Мне страшно» с сокращением**
+**11 · Вам страшно во время фильма. Скажите «Мне страшно» с сокращением**
 <!-- interaction_id: en:lesson-05:session-07:i07; family: scripted_repeat_compare -->
-🎙 **I'm scared.**
+🎙 **I’m scared.**
 
-**8 · Пульт от вашего телевизора у друзей. Выберите форму**
+**12 · Друг злится на громкий звук. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-07:i08; family: context_gap_grammar -->
-They ___ the remote. → **have** · has · are
-- has — *С `They` нужно `have`.*
-- are — *Чтобы сказать, у кого пульт, нужно `have`: `They have the remote`.*
+He ___ angry. → **is** · has · are
+- has — *Здесь состояние: He is angry.*
+- are — *С he нужно is, а не are.*
 
-**9 · Послушайте, где пульт**
+**13 · Послушайте, где пульт**
 <!-- interaction_id: en:lesson-05:session-07:i09; family: listen_choose -->
-🔊 *The remote is next to the cup.* → **The remote is next to the cup.** · The remote is next to the book. · The remote is next to the bag.
-- The remote is next to the book. — *В записи последнее слово — `cup`, а в этом варианте — `book`.*
-- The remote is next to the bag. — *В записи последнее слово — `cup`, а в этом варианте — `bag`.*
+🔊 *The remote is next to the cup.* → **The remote is next to the cup.** · The remote is in the cup. · The remote is next to the lamp.
+- The remote is in the cup. — *В записи `next to` — «рядом», а в этом варианте `in` — «внутри».*
+- The remote is next to the lamp. — *В записи последнее слово — `cup`, а в этом варианте — `lamp`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-07:i10; family: speed_match -->
-remote — пульт · cup — чашка · playground — детская площадка · shortcut — короткий путь
+remote — пульт · cup — чашка · angry — сердитый · scared — испуганный
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте друга и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-07:i11; family: listen_build_dictation -->
-🔊 *We have cups.* Плитки: `cups` `have` `We` → **We have cups.**
+🔊 *I have a remote.* Плитки: `remote` `a` `have` `I` `has` → **I have a remote.**
+*(плитка `has` лишняя: здесь нужно `have` — `I have a remote.`)*
 
-**12 · Детская площадка рядом с парком. Скажите, где она**
+**16 · Друг спрашивает, где детская площадка. Скажите ему полной фразой: «Детская площадка рядом с парком»**
 <!-- interaction_id: en:lesson-05:session-07:i12; family: phrase_builder -->
 Плитки: `park` `the` `to` `next` `is` `playground` `The` `are` → **The playground is next to the park.**
 *(плитка `are` лишняя: здесь нужно `is` — `The playground is next to the park.`)*
 
-**13 · До площадки далеко. Спросите, есть ли короткий путь**
+**17 · Вы нашли в комнате ещё один пульт. Скажите подруге: «У меня есть пульт»**
 <!-- interaction_id: en:lesson-05:session-07:i13; family: scripted_repeat_compare -->
-🎙 **Is there a shortcut?**
+🎙 **I have a remote.**
 
-**14 · Подруга сердится из-за громкого звука. Выберите форму**
+**18 · У друга есть пульт от телевизора. Выберите форму**
 <!-- interaction_id: en:lesson-05:session-07:i14; family: context_gap_grammar -->
-She ___ angry. → **is** · has · are
-- has — *Для состояния здесь нужно `She is angry`.*
-- are — *С `She` нужно `is`.*
+He ___ a remote. → **has** · have · is
+- have — *С he нужно has, а не have.*
+- is — *He is a remote значило бы «Он пульт». У него есть пульт — He has a remote.*
 
-**15 · Послушайте, как чувствует себя друг**
+**19 · Послушайте, что есть у друзей**
 <!-- interaction_id: en:lesson-05:session-07:i15; family: listen_choose -->
-🔊 *He's scared.* → **He's scared.** · He's angry. · She's scared.
-- He's angry. — *В записи последнее слово — `scared`, а в этом варианте — `angry`.*
-- She's scared. — *В записи первое слово — `He's`, а в этом варианте — `She's`.*
+🔊 *We have popcorn.* → **We have popcorn.** · We have a snack. · They have popcorn.
+- We have a snack. — *В записи последнее слово — `popcorn`, а в этом варианте — `snack`.*
+- They have popcorn. — *В записи первое слово — `We`, а в этом варианте — `They`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-07:i16; family: speed_match -->
-remote — пульт · cup — чашка · playground — детская площадка · shortcut — короткий путь
+film — фильм · snack — перекус · pizza — пицца · remote — пульт
 
-**17 · Все ищут пульт от телевизора. Вы нашли его у себя. Сообщите «Пульт у меня»**
+**21 · Друзья проголодались. Скажите им: «У нас есть пицца»**
 <!-- interaction_id: en:lesson-05:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I have the remote.**
-
+🎙 **We have a pizza.**

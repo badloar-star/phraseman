@@ -4,29 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-01:i01",
+      "interactionId": "en:lesson-05:session-01:word:have",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — have",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:word:have:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — have",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:word:have:audio",
+          "transcript": "have"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-01:word:have:r1",
+            "targetText": "have",
+            "meaningByLocale": {
+              "ru": "иметь. I have a key. — «У меня есть ключ». Слово для вещей и близких людей, которые у вас есть: с I, you, we, they говорят have, с he, she, it — has.",
+              "uk": "мати. I have a key. — «У мене є ключ». Слово для речей і близьких людей, які у вас є: з I, you, we, they кажуть have, з he, she, it — has."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "have",
+          "definitionByLocale": {
+            "ru": "иметь. I have a key. — «У меня есть ключ». Слово для вещей и близких людей, которые у вас есть: с I, you, we, they говорят have, с he, she, it — has.",
+            "uk": "мати. I have a key. — «У мене є ключ». Слово для речей і близьких людей, які у вас є: з I, you, we, they кажуть have, з he, she, it — has."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сообщите друзьям «Я здесь» с сокращением",
+      "prompt": "Подруга ищет ключ. Скажите ей полной фразой: «У тебя есть ключ»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите друзьям «Я здесь» с сокращением",
+      "accessibilityLabel": "Подруга ищет ключ. Скажите ей полной фразой: «У тебя есть ключ»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I'm here.",
+        "targetPhrase": "You have a key.",
         "localizedMeaning": {
-          "ru": "Сообщите друзьям «Я здесь» с сокращением",
-          "uk": "Повідомте друзям «Я тут» зі скороченням"
+          "ru": "Подруга ищет ключ. Скажите ей полной фразой: «У тебя есть ключ»",
+          "uk": "Подруга шукає ключ. Скажіть їй повною фразою: «У тебе є ключ»"
         },
         "orderedTokens": [
-          "I'm",
-          "here"
+          "You",
+          "have",
+          "a",
+          "key"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга ищет ключ. Скажите ей полной фразой: «У тебя есть ключ»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `You have a key.`",
+              "uk": "тут потрібно `have` — `You have a key.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте друга у двери",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-01:i02:r1",
-          "text": "have"
+          "text": "I have a key."
         },
         {
           "responseId": "en:lesson-05:session-01:i02:r2",
-          "text": "has"
+          "text": "I have a bag."
         },
         {
           "responseId": "en:lesson-05:session-01:i02:r3",
-          "text": "here"
+          "text": "We have a key."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте друга у двери",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-01:i02:audio",
-          "transcript": "have"
+          "transcript": "I have a key."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-01:i02:r1",
-            "targetText": "have",
+            "targetText": "I have a key.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-01:i02:r2",
-            "targetText": "has",
+            "targetText": "I have a bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-01:i02:r3",
-            "targetText": "here",
+            "targetText": "We have a key.",
             "meaningByLocale": null
           }
         ],
@@ -89,19 +146,19 @@
           {
             "responseId": "en:lesson-05:session-01:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга у двери",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `have`, а в этом варианте — `has`.",
-              "uk": "У записі перше слово — `have`, а в цьому варіанті — `has`."
+              "ru": "В записи последнее слово — `key`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `key`, а в цьому варіанті — `bag`."
             }
           },
           {
             "responseId": "en:lesson-05:session-01:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга у двери",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `have`, а в этом варианте — `here`.",
-              "uk": "У записі перше слово — `have`, а в цьому варіанті — `here`."
+              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
             }
           }
         ],
@@ -111,68 +168,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-01:word:brother",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brother",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:word:brother:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brother",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:word:brother:audio",
+          "transcript": "brother"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-01:word:brother:r1",
+            "targetText": "brother",
+            "meaningByLocale": {
+              "ru": "брат. She has a brother. — «У неё есть брат». О мужчине или мальчике из той же семьи, что и вы или тот, о ком речь.",
+              "uk": "брат. She has a brother. — «У неї є брат». Про чоловіка або хлопчика з тієї самої родини, що й ви чи той, про кого мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brother",
+          "definitionByLocale": {
+            "ru": "брат. She has a brother. — «У неё есть брат». О мужчине или мальчике из той же семьи, что и вы или тот, о ком речь.",
+            "uk": "брат. She has a brother. — «У неї є брат». Про чоловіка або хлопчика з тієї самої родини, що й ви чи той, про кого мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-01:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Какое слово значит «иметь»?",
+      "prompt": "Подруга приехала со старшим братом. Выберите форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-01:i03:r1",
-          "text": "have"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-01:i03:r2",
-          "text": "here"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-01:i03:r3",
-          "text": "happy"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Какое слово значит «иметь»?",
+      "accessibilityLabel": "Подруга приехала со старшим братом. Выберите форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Какое слово значит «иметь»?",
-          "uk": "Яке слово означає «мати»?"
+          "ru": "Подруга приехала со старшим братом. Выберите форму",
+          "uk": "Подруга приїхала зі старшим братом. Виберіть форму"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "She ___ a brother.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-01:i03:r1",
-            "text": "have"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-01:i03:r2",
-            "text": "here"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-01:i03:r3",
-            "text": "happy"
+            "text": "is"
           }
         ],
-        "testedDimension": "Какое слово значит «иметь»?",
+        "testedDimension": "Подруга приехала со старшим братом. Выберите форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-01:i03:r2",
             "correct": false,
-            "testedDimension": "Какое слово значит «иметь»?",
+            "testedDimension": "Подруга приехала со старшим братом. Выберите форму",
             "feedbackByLocale": {
-              "ru": "`here` — здесь; иметь — `have`.",
-              "uk": "`here` — тут; мати — `have`."
+              "ru": "С she нужно has, а не have.",
+              "uk": "З she потрібно has, а не have."
             }
           },
           {
             "responseId": "en:lesson-05:session-01:i03:r3",
             "correct": false,
-            "testedDimension": "Какое слово значит «иметь»?",
+            "testedDimension": "Подруга приехала со старшим братом. Выберите форму",
             "feedbackByLocale": {
-              "ru": "`happy` — счастливый; иметь — `have`.",
-              "uk": "`happy` — щасливий; мати — `have`."
+              "ru": "She is a brother значило бы «Она брат». «У неё есть брат» — She has a brother.",
+              "uk": "She is a brother означало б «Вона брат». «У неї є брат» — She has a brother."
             }
           }
         ]
@@ -181,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -203,40 +303,40 @@
           },
           {
             "pairId": "en:lesson-05:session-01:i04:p2",
-            "target": "here",
+            "target": "brother",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "брат",
+              "uk": "брат"
             }
           },
           {
             "pairId": "en:lesson-05:session-01:i04:p3",
-            "target": "ready",
+            "target": "sister",
             "meaningByLocale": {
-              "ru": "готовый",
-              "uk": "готовий"
+              "ru": "сестра",
+              "uk": "сестра"
             }
           },
           {
             "pairId": "en:lesson-05:session-01:i04:p4",
-            "target": "key",
+            "target": "friend",
             "meaningByLocale": {
-              "ru": "ключ",
-              "uk": "ключ"
+              "ru": "друг",
+              "uk": "друг"
             }
           }
         ],
         "leftColumn": [
           "have",
-          "here",
-          "ready",
-          "key"
+          "brother",
+          "sister",
+          "friend"
         ],
         "rightColumn": [
           "иметь",
-          "здесь",
-          "готовый",
-          "ключ"
+          "брат",
+          "сестра",
+          "друг"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -253,34 +353,89 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-01:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-05:session-01:word:sister",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sister",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:word:sister:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sister",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:word:sister:audio",
+          "transcript": "sister"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-01:word:sister:r1",
+            "targetText": "sister",
+            "meaningByLocale": {
+              "ru": "сестра. We have a sister. — «У нас есть сестра». О женщине или девочке из той же семьи, что и вы или тот, о ком речь.",
+              "uk": "сестра. We have a sister. — «У нас є сестра». Про жінку або дівчинку з тієї самої родини, що й ви чи той, про кого мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sister",
+          "definitionByLocale": {
+            "ru": "сестра. We have a sister. — «У нас есть сестра». О женщине или девочке из той же семьи, что и вы или тот, о ком речь.",
+            "uk": "сестра. We have a sister. — «У нас є сестра». Про жінку або дівчинку з тієї самої родини, що й ви чи той, про кого мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте консьержку и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте консьержку и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-01:i05:audio",
-          "transcript": "You have a key."
+          "transcript": "We have a sister."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "You have a key.",
+        "hiddenTargetPhrase": "We have a sister.",
         "orderedTokens": [
-          "You",
+          "We",
           "have",
           "a",
-          "key"
+          "sister"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте консьержку и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `We have a sister.`",
+              "uk": "тут потрібно `have` — `We have a sister.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,31 +444,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-01:word:friend",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — friend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:word:friend:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — friend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:word:friend:audio",
+          "transcript": "friend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-01:word:friend:r1",
+            "targetText": "friend",
+            "meaningByLocale": {
+              "ru": "друг. I have a friend. — «У меня есть друг». О человеке, с которым вы близко общаетесь и которому доверяете, не родственнике.",
+              "uk": "друг. I have a friend. — «У мене є друг». Про людину, з якою ви близько спілкуєтеся й якій довіряєте, не родича."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "friend",
+          "definitionByLocale": {
+            "ru": "друг. I have a friend. — «У меня есть друг». О человеке, с которым вы близко общаетесь и которому доверяете, не родственнике.",
+            "uk": "друг. I have a friend. — «У мене є друг». Про людину, з якою ви близько спілкуєтеся й якій довіряєте, не родича."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-01:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ключ в вашем кармане. Скажите «У меня есть ключ»",
+      "prompt": "Сосед спрашивает, есть ли у вас друг в этом городе. Ответьте полной фразой: «У меня есть друг»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ключ в вашем кармане. Скажите «У меня есть ключ»",
+      "accessibilityLabel": "Сосед спрашивает, есть ли у вас друг в этом городе. Ответьте полной фразой: «У меня есть друг»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have a key.",
+        "targetPhrase": "I have a friend.",
         "localizedMeaning": {
-          "ru": "Ключ в вашем кармане. Скажите «У меня есть ключ»",
-          "uk": "Ключ у вашій кишені. Скажіть «У мене є ключ»"
+          "ru": "Сосед спрашивает, есть ли у вас друг в этом городе. Ответьте полной фразой: «У меня есть друг»",
+          "uk": "Сусід питає, чи є у вас друг у цьому місті. Дайте повну відповідь: «У мене є друг»"
         },
         "orderedTokens": [
           "I",
           "have",
           "a",
-          "key"
+          "friend"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед спрашивает, есть ли у вас друг в этом городе. Ответьте полной фразой: «У меня есть друг»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `I have a friend.`",
+              "uk": "тут потрібно `have` — `I have a friend.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, всё ли с вами хорошо. Скажите «Я в порядке» с сокращением",
+      "prompt": "Подруга спрашивает, у кого ключ. Он у брата. Скажите ей: «У него есть ключ»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i07:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, всё ли с вами хорошо. Скажите «Я в порядке» с сокращением",
+      "accessibilityLabel": "Подруга спрашивает, у кого ключ. Он у брата. Скажите ей: «У него есть ключ»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-01:i07:audio",
-          "transcript": "I'm fine."
+          "transcript": "He has a key."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm fine.",
+        "targetPhrase": "He has a key.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,15 +566,15 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подруга рада. Выберите форму",
+      "prompt": "Консьержка спрашивает, кто у вас есть. Вы отвечаете за себя и брата. Выберите форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-01:i08:r1",
-          "text": "is"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-01:i08:r2",
@@ -377,18 +587,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга рада. Выберите форму",
+      "accessibilityLabel": "Консьержка спрашивает, кто у вас есть. Вы отвечаете за себя и брата. Выберите форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подруга рада. Выберите форму",
-          "uk": "Подруга рада. Виберіть форму"
+          "ru": "Консьержка спрашивает, кто у вас есть. Вы отвечаете за себя и брата. Выберите форму",
+          "uk": "Консьєржка питає, хто у вас є. Ви відповідаєте за себе й брата. Виберіть форму"
         },
-        "gappedTargetPhrase": "She ___ happy.",
+        "gappedTargetPhrase": "We ___ a sister.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-01:i08:r1",
-            "text": "is"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-01:i08:r2",
@@ -399,24 +609,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Подруга рада. Выберите форму",
+        "testedDimension": "Консьержка спрашивает, кто у вас есть. Вы отвечаете за себя и брата. Выберите форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-01:i08:r2",
             "correct": false,
-            "testedDimension": "Подруга рада. Выберите форму",
+            "testedDimension": "Консьержка спрашивает, кто у вас есть. Вы отвечаете за себя и брата. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Здесь состояние: `She is happy`, а не вещь у неё.",
-              "uk": "Тут стан: `She is happy`, а не річ у неї."
+              "ru": "С we нужно have, а не has.",
+              "uk": "З we потрібно have, а не has."
             }
           },
           {
             "responseId": "en:lesson-05:session-01:i08:r3",
             "correct": false,
-            "testedDimension": "Подруга рада. Выберите форму",
+            "testedDimension": "Консьержка спрашивает, кто у вас есть. Вы отвечаете за себя и брата. Выберите форму",
             "feedbackByLocale": {
-              "ru": "С `She` нужно `is`.",
-              "uk": "З `She` потрібне `is`."
+              "ru": "We are a sister значило бы «Мы сестра». «У нас есть сестра» — We have a sister.",
+              "uk": "We are a sister означало б «Ми сестра». «У нас є сестра» — We have a sister."
             }
           }
         ]
@@ -425,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, как дела у друга",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-01:i09:r1",
-          "text": "He's fine."
+          "text": "She has a friend."
         },
         {
           "responseId": "en:lesson-05:session-01:i09:r2",
-          "text": "He's happy."
+          "text": "She has a brother."
         },
         {
           "responseId": "en:lesson-05:session-01:i09:r3",
-          "text": "She's fine."
+          "text": "He has a friend."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, как дела у друга",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-01:i09:audio",
-          "transcript": "He's fine."
+          "transcript": "She has a friend."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-01:i09:r1",
-            "targetText": "He's fine.",
+            "targetText": "She has a friend.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-01:i09:r2",
-            "targetText": "He's happy.",
+            "targetText": "She has a brother.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-01:i09:r3",
-            "targetText": "She's fine.",
+            "targetText": "He has a friend.",
             "meaningByLocale": null
           }
         ],
@@ -478,19 +688,19 @@
           {
             "responseId": "en:lesson-05:session-01:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, как дела у друга",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `fine`, а в этом варианте — `happy`.",
-              "uk": "У записі останнє слово — `fine`, а в цьому варіанті — `happy`."
+              "ru": "В записи последнее слово — `friend`, а в этом варианте — `brother`.",
+              "uk": "У записі останнє слово — `friend`, а в цьому варіанті — `brother`."
             }
           },
           {
             "responseId": "en:lesson-05:session-01:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, как дела у друга",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `He's`, а в этом варианте — `She's`.",
-              "uk": "У записі перше слово — `He's`, а в цьому варіанті — `She's`."
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
             }
           }
         ],
@@ -501,15 +711,15 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините места со значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините места со значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -574,38 +784,83 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте друга и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте друга и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-01:i11:audio",
-          "transcript": "We are ready."
+          "transcript": "They have a key."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are ready.",
+        "hiddenTargetPhrase": "They have a key.",
+        "orderedTokens": [
+          "They",
+          "have",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте друга и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `They have a key.`",
+              "uk": "тут потрібно `have` — `They have a key.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Все собрались у двери. Скажите им полной фразой: «Мы готовы»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Все собрались у двери. Скажите им полной фразой: «Мы готовы»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are ready.",
+        "localizedMeaning": {
+          "ru": "Все собрались у двери. Скажите им полной фразой: «Мы готовы»",
+          "uk": "Усі зібралися біля дверей. Скажіть їм повною фразою: «Ми готові»"
+        },
         "orderedTokens": [
           "We",
           "are",
           "ready"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "have"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-05:session-01:i11:tile:d1",
+            "responseId": "en:lesson-05:session-01:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Все собрались у двери. Скажите им полной фразой: «Мы готовы»",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `We are ready.`",
               "uk": "тут потрібно `are` — `We are ready.`"
@@ -620,59 +875,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-01:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "У соседей есть ключ. Скажите «У них есть ключ»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "У соседей есть ключ. Скажите «У них есть ключ»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They have a key.",
-        "localizedMeaning": {
-          "ru": "У соседей есть ключ. Скажите «У них есть ключ»",
-          "uk": "У сусідів є ключ. Скажіть «У них є ключ»"
-        },
-        "orderedTokens": [
-          "They",
-          "have",
-          "a",
-          "key"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-05:session-01:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы с другом рады. Скажите «Мы рады» без сокращения",
+      "prompt": "Друг спрашивает, как вы после дороги. Скажите ему «Я в порядке» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i13:audio"
       ],
-      "accessibilityLabel": "Вы с другом рады. Скажите «Мы рады» без сокращения",
+      "accessibilityLabel": "Друг спрашивает, как вы после дороги. Скажите ему «Я в порядке» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-01:i13:audio",
-          "transcript": "We are happy."
+          "transcript": "I’m fine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are happy.",
+        "targetPhrase": "I’m fine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -687,67 +909,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У друга есть ключ. Выберите форму",
+      "prompt": "Подруга рада, что все дошли. Выберите форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-01:i14:r1",
-          "text": "has"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-01:i14:r2",
-          "text": "have"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-01:i14:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У друга есть ключ. Выберите форму",
+      "accessibilityLabel": "Подруга рада, что все дошли. Выберите форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "У друга есть ключ. Выберите форму",
-          "uk": "У друга є ключ. Виберіть форму"
+          "ru": "Подруга рада, что все дошли. Выберите форму",
+          "uk": "Подруга рада, що всі дійшли. Виберіть форму"
         },
-        "gappedTargetPhrase": "He ___ a key.",
+        "gappedTargetPhrase": "She ___ happy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-01:i14:r1",
-            "text": "has"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-01:i14:r2",
-            "text": "have"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-01:i14:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "У друга есть ключ. Выберите форму",
+        "testedDimension": "Подруга рада, что все дошли. Выберите форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-01:i14:r2",
             "correct": false,
-            "testedDimension": "У друга есть ключ. Выберите форму",
+            "testedDimension": "Подруга рада, что все дошли. Выберите форму",
             "feedbackByLocale": {
-              "ru": "С `He` нужно `has`: `He has a key`.",
-              "uk": "З `He` потрібне `has`: `He has a key`."
+              "ru": "Здесь состояние, а не вещь: She is happy.",
+              "uk": "Тут стан, а не річ: She is happy."
             }
           },
           {
             "responseId": "en:lesson-05:session-01:i14:r3",
             "correct": false,
-            "testedDimension": "У друга есть ключ. Выберите форму",
+            "testedDimension": "Подруга рада, что все дошли. Выберите форму",
             "feedbackByLocale": {
-              "ru": "`He is a key` — он сам ключ. У него есть ключ: `He has a key`.",
-              "uk": "`He is a key` — він сам ключ. У нього є ключ: `He has a key`."
+              "ru": "С she нужно is, а не are.",
+              "uk": "З she потрібно is, а не are."
             }
           }
         ]
@@ -756,51 +978,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, у кого что есть",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-01:i15:r1",
-          "text": "She has a key."
+          "text": "He has a key."
         },
         {
           "responseId": "en:lesson-05:session-01:i15:r2",
-          "text": "She has a bag."
+          "text": "He has a bag."
         },
         {
           "responseId": "en:lesson-05:session-01:i15:r3",
-          "text": "He has a key."
+          "text": "She has a key."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, у кого что есть",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-01:i15:audio",
-          "transcript": "She has a key."
+          "transcript": "He has a key."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-01:i15:r1",
-            "targetText": "She has a key.",
+            "targetText": "He has a key.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-01:i15:r2",
-            "targetText": "She has a bag.",
+            "targetText": "He has a bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-01:i15:r3",
-            "targetText": "He has a key.",
+            "targetText": "She has a key.",
             "meaningByLocale": null
           }
         ],
@@ -809,7 +1031,7 @@
           {
             "responseId": "en:lesson-05:session-01:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, у кого что есть",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `key`, а в этом варианте — `bag`.",
               "uk": "У записі останнє слово — `key`, а в цьому варіанті — `bag`."
@@ -818,10 +1040,10 @@
           {
             "responseId": "en:lesson-05:session-01:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, у кого что есть",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
-              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
             }
           }
         ],
@@ -832,62 +1054,62 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините места со значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините места со значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-01:i16:p1",
-            "target": "pharmacy",
+            "target": "brother",
             "meaningByLocale": {
-              "ru": "аптека",
-              "uk": "аптека"
+              "ru": "брат",
+              "uk": "брат"
             }
           },
           {
             "pairId": "en:lesson-05:session-01:i16:p2",
-            "target": "library",
+            "target": "sister",
             "meaningByLocale": {
-              "ru": "библиотека",
-              "uk": "бібліотека"
+              "ru": "сестра",
+              "uk": "сестра"
             }
           },
           {
             "pairId": "en:lesson-05:session-01:i16:p3",
-            "target": "bakery",
+            "target": "friend",
             "meaningByLocale": {
-              "ru": "пекарня",
-              "uk": "пекарня"
+              "ru": "друг",
+              "uk": "друг"
             }
           },
           {
             "pairId": "en:lesson-05:session-01:i16:p4",
-            "target": "canal",
+            "target": "key",
             "meaningByLocale": {
-              "ru": "канал",
-              "uk": "канал"
+              "ru": "ключ",
+              "uk": "ключ"
             }
           }
         ],
         "leftColumn": [
-          "pharmacy",
-          "library",
-          "bakery",
-          "canal"
+          "brother",
+          "sister",
+          "friend",
+          "key"
         ],
         "rightColumn": [
-          "аптека",
-          "библиотека",
-          "пекарня",
-          "канал"
+          "брат",
+          "сестра",
+          "друг",
+          "ключ"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -905,17 +1127,17 @@
     },
     {
       "interactionId": "en:lesson-05:session-01:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы уже у двери. Ключ у вашей подруги. Сообщите остальным «У неё есть ключ»",
+      "prompt": "Вы уже у двери. Ключ у вашей подруги. Скажите остальным: «У неё есть ключ»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-01:i17:audio"
       ],
-      "accessibilityLabel": "Вы уже у двери. Ключ у вашей подруги. Сообщите остальным «У неё есть ключ»",
+      "accessibilityLabel": "Вы уже у двери. Ключ у вашей подруги. Скажите остальным: «У неё есть ключ»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -945,11 +1167,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "df050deb28c66ef6d5e7b9b14815836f18427abbffe951243d3d10c8ac7ed96d"
+  "learnerFingerprint": "080e7bf30c9a2785aff740780f1c2a3de93ed5297c520af76d9ccc91b72f8ed2"
 }

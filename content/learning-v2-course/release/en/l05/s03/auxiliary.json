@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-03:intro1:r2": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "Компьютер один, поэтому перед computer нужно a.",
+          "uk": "Комп’ютер один, тому перед computer потрібно a."
         },
         "en:lesson-05:session-03:intro1:r3": {
-          "ru": "Один стол: `a desk`.",
-          "uk": "Один стіл: `a desk`."
+          "ru": "С I нужно have, а не has.",
+          "uk": "З I потрібно have, а не has."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-03:intro2:r2": {
-          "ru": "Состояние: `He is busy`; `has` здесь не подходит.",
-          "uk": "Стан: `He is busy`; `has` тут не підходить."
+          "ru": "С he нужно has, а не have.",
+          "uk": "З he потрібно has, а не have."
         },
         "en:lesson-05:session-03:intro2:r3": {
-          "ru": "С `He` нужно `is`.",
-          "uk": "З `He` потрібне `is`."
+          "ru": "Это значило бы «Он телефон». Чтобы сказать «У него есть телефон», нужно has.",
+          "uk": "Це означало б «Він телефон». Щоб сказати «У нього є телефон», потрібно has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-03:intro3:r2": {
-          "ru": "`under` — под; здесь на поверхности: `on`.",
-          "uk": "`under` — під; тут на поверхні: `on`."
+          "ru": "С they нужно have, а не has.",
+          "uk": "З they потрібно have, а не has."
         },
         "en:lesson-05:session-03:intro3:r3": {
-          "ru": "Одна книга: `The book is`.",
-          "uk": "Одна книжка: `The book is`."
+          "ru": "Кошельков несколько, поэтому a не нужно: a ставят перед одним предметом.",
+          "uk": "Гаманців кілька, тому a не потрібно: a ставлять перед одним предметом."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f5ab3ed9518b72597124aab97ae25a4e4ebe45a68d420719e37d33a26af85c23"
+  "auxiliaryFingerprint": "6de934ca499ab36196a474106dbee55131b4dd9a7219bf6dbdaf35c4e17269c0"
 }

@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { switchOffTrackTone, switchOnTone } from './switch_chrome';
-import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
@@ -116,6 +116,13 @@ export function SettingsGlassCard({ glass, children, testID, style }: { glass: S
   );
 }
 
+/**
+ * Порог крупного системного шрифта, с которого строки Настроек раскладываются стопкой (как Dynamic Type у Apple).
+ * зачем (Макеты 18.10, font13/light_check.png): при 1,3 значение справа (≤ 45 %) сжимало название — «Notificaci / ones» рвалось
+ * посреди слова, «Idioma de la / interfaz» уходило в 2 строки. Шрифт не ужимаем — значение уходит строкой под название.
+ */
+export const SETTINGS_LARGE_TEXT_STACK_AT = 1.2;
+
 type RowProps = {
   glass: SettingsGlass;
   testID?: string;
@@ -140,6 +147,8 @@ type RowProps = {
 
 export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leading, onPress, right, haptic = true, accessibilityLabel, titleColor, titleTestID, subTestID }: RowProps) {
   const grouped = useContext(SettingsGroupContext);
+  const { fontScale } = useWindowDimensions();
+  const stackValue = !!value && !right && fontScale >= SETTINGS_LARGE_TEXT_STACK_AT;
   const label = accessibilityLabel ?? [title, value, sub].filter(Boolean).join(', ');
   const containerStyle = grouped ? GROUPED_ROW_STYLE : settingsGlassCardStyle(glass);
   const body = (
@@ -162,11 +171,12 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
         {/* `.row .tt` 17/22/600 в группе A — шкала D145: 16/22. */}
         <Text testID={titleTestID} style={{ color: titleColor ?? glass.text, fontSize: 16, lineHeight: grouped ? 22 : 21, fontWeight: grouped ? '600' : '700' }}>{title}</Text>
         {sub ? <Text testID={subTestID} style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{sub}</Text> : null}
+        {stackValue ? <Text style={{ color: glass.secondary, fontSize: grouped ? 16 : 13, lineHeight: grouped ? 22 : 18, marginTop: 2 }}>{value}</Text> : null}
       </View>
       {right ?? (
         <>
           {/* `.row .val` 15 вторичным (D145: 16), `.ch` — шеврон приглушённым тоном. */}
-          {value ? <Text style={{ color: glass.secondary, fontSize: grouped ? 16 : 13, lineHeight: grouped ? 22 : 18, textAlign: 'right', flexShrink: 1, maxWidth: '45%' }}>{value}</Text> : null}
+          {value && !stackValue ? <Text style={{ color: glass.secondary, fontSize: grouped ? 16 : 13, lineHeight: grouped ? 22 : 18, textAlign: 'right', flexShrink: 1, maxWidth: '45%' }}>{value}</Text> : null}
           {onPress ? <Ionicons name="chevron-forward" size={18} color={grouped ? glass.mutedText : glass.secondary} /> : null}
         </>
       )}

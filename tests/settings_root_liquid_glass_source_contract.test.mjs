@@ -43,7 +43,9 @@ test('header, profile card and section titles follow the round-1 A geometry', ()
   assert.match(body, /renderRankCoin\('settings-header-coin', 44\)/);
   assert.match(body, /testID="settings-profile-card"[\s\S]*?renderRankCoin\('settings-profile-coin', 52\)/);
   assert.match(body, /testID="settings-profile-sign-in"[\s\S]*?onPress=\{\(\) => setAuthPromptVisible\(true\)\}/);
-  assert.match(body, /authReady && !linkedAuth \? \(/);
+  // зачем (Макеты 18.10, font13): «Войти» справа при обычном шрифте, под подписью — при крупном; условие показа прежнее (authReady && !linkedAuth)
+  assert.match(body, /authReady && !linkedAuth && !profileStacked \? \(/);
+  assert.match(body, /authReady && !linkedAuth && profileStacked \? \(/);
   assert.match(source, /const myCoinRank = useMyCoinRank\(\);/);
   assert.match(source, /coinRankRowForDisplay\(myCoinRank\)/);
   // 01.10 (PM-128): звание на языке интерфейса — на pt-BR раньше стояло «Агент».

@@ -5,6 +5,7 @@ import {
   Modal, DeviceEventEmitter,
   InteractionManager,
   Platform,
+  useWindowDimensions,
 } from 'react-native';
 import Reanimated from 'react-native-reanimated';
 import { Image } from 'expo-image';
@@ -25,6 +26,7 @@ import {
   SettingsGlassRow,
   SettingsGlassSwitch,
   SettingsGlassTile,
+  SETTINGS_LARGE_TEXT_STACK_AT,
 } from '../../components/settings/SettingsGlassRows';
 import { KitGlassLayer } from '../../components/v2/KitLiquidGlass';
 import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
@@ -237,6 +239,8 @@ export default function SettingsMain() {
   // зачем (владелец 2026-09-29): корень «Настройки» — 1 в 1 по макету PRF-01; все цвета плашек
   // берутся из общих токенов 13 тем Liquid Glass, как на уже перенесённых дочерних экранах.
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (Макеты 18.10, font13/light_check.png): при крупном шрифте «Войти» справа сжимало подпись профиля до 4 строк — кнопка уходит под подпись
+  const profileStacked = useWindowDimensions().fontScale >= SETTINGS_LARGE_TEXT_STACK_AT;
   // зачем: нативные Alert.alert заменены стеклянными окнами (тот же текст/кнопки/обработчики)
   const { showGlassAlert, node: glassAlertNode } = useGlassAlert();
   const [notifEnabled, setNotifEnabled] = React.useState(() => readSettingsPeek()?.notifEnabled ?? false);
@@ -1104,8 +1108,24 @@ export default function SettingsMain() {
             {profileCardSub ? (
               <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>{profileCardSub}</Text>
             ) : null}
+            {authReady && !linkedAuth && profileStacked ? (
+              <View style={{ alignSelf: 'flex-start', marginTop: 8 }}>
+                <PressableHybrid
+                  testID="settings-profile-sign-in"
+                  accessibilityLabel={L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')}
+                  onPress={() => setAuthPromptVisible(true)}
+                  withSound={false}
+                  variant="chip"
+                  contentStyle={{ minHeight: 30, paddingHorizontal: 12, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
+                >
+                  <Text style={{ color: glass.text, fontSize: 13, fontWeight: '700' }}>
+                    {L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')}
+                  </Text>
+                </PressableHybrid>
+              </View>
+            ) : null}
           </View>
-          {authReady && !linkedAuth ? (
+          {authReady && !linkedAuth && !profileStacked ? (
             <PressableHybrid
               testID="settings-profile-sign-in"
               accessibilityLabel={L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')}

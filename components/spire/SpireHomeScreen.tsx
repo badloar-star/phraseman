@@ -49,7 +49,7 @@ import { logSpireDock, logSpireLayout, roundLayout } from './spire_layout_log';
 import SpireFloorInfo from './SpireFloorInfo';
 import SpireFriendsRow from './SpireFriendsRow';
 import SpireLockedState from './SpireLockedState';
-import { SPIRE_CONFIG_OFFLINE, spireConfigFallback } from './spire_config_offline';
+import { useSpireConfigQuietRetry } from './use_spire_config_quiet_retry';
 import SpirePodium from './SpirePodium';
 import SpireResultPanel from './SpireResultPanel';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
@@ -92,7 +92,7 @@ export default function SpireHomeScreen() {
 
   // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled.
   // зачем (аудит Optimistic UI Шпиля, 13.10): повторный заход не рисует пустой `spire-loading` — берём последний настоящий конфиг из памяти процесса; loadSpireConfig ниже освежает его фоном.
-  const [config, setConfig] = useState<SpireConfigDoc | null>(() => preview?.config ?? peekSpireConfig());
+  const [config, setConfig] = useState<SpireConfigDoc | null>(() => preview?.config ?? peekSpireConfig()); const configQuietRetry = useSpireConfigQuietRetry(!preview, config, setConfig); // зачем (правило владельца 18.10): сбой чтения конфига — тихие повторы вместо «Нет интернета»
   const [week, setWeek] = useState<SpireWeekLocal | null>(() => preview?.week ?? peekFirstFrameWeek(studyTarget));
   const [selected, setSelected] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(preview?.showAll ?? false);
@@ -128,7 +128,7 @@ export default function SpireHomeScreen() {
       })
       .catch((error: unknown) => {
         spireLoadMark('config:failed', { error: String(error) }); DebugLogger.warn(LOG, `home: конфиг не прочитался, остаёмся под замком (${String(error)})`);
-        void spireConfigFallback(error).then((fallback) => { if (alive) setConfig(fallback); }); // зачем (решение координатора 15.10): сеть → «Нет интернета», иначе прежний замок
+        configQuietRetry.handleLoadFailure(error, () => alive); // зачем (правило владельца 18.10 «экранов-ошибок нигде»): сохранённый конфиг не затираем, чтение повторяется тихо
       });
     return () => { alive = false; };
   }, []);
@@ -266,7 +266,7 @@ export default function SpireHomeScreen() {
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
   // зачем (правило 10г, координатор 13.10): пока конфиг не прочитан (холодный старт, память пуста) — не пустой View, а скелет по форме экрана (SpireHomeSkeleton, testID spire-loading).
   if (config === null) return <SpireHomeSkeleton lang={lang} />;
-  if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} offline={config === SPIRE_CONFIG_OFFLINE} /></View>;
+  if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем (правило владельца 18.10): без сети и кэша — спокойная фраза замка, не «Нет интернета»
   if (game.roomLoad?.status === 'paused' && !game.roomLoad.room) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
   if (showAll && members) {
     return <View style={s.root}><SpireAllMembers lang={lang} members={members} subtitle={allSubtitle} onBack={closeAll} rankBy={game.rankBy} /></View>;

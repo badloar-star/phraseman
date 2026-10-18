@@ -105,6 +105,7 @@ import {
 } from '../friend_activity_likes';
 import { trackActivity } from '../app_activity';
 import { friendsAccountStore } from '../friends_account_store';
+import { useLoadGate } from '../use_load_gate';
 import { createPendingFriendOps } from '../friends_pending_ops';
 import { emitAppEvent, onAppEvent } from '../events';
 import { checkAchievements } from '../achievements';
@@ -1239,6 +1240,14 @@ export default function FriendsTabScreen() {
   const [friends, setFriends] = useState<FriendEntry[]>(() => warmFriendsSnapshot?.friends ?? friendsSnapshot?.friends ?? []);
   // зачем (макет COM-04-OFFLINE): подписка на список упала — показать «Связь пропала · Повторить».
   const [friendsListError, setFriendsListError] = useState(false);
+  // зачем (правило владельца 18.10 «экранов-ошибок нигде»): кнопки «Повторить» больше нет — подписка на список друзей
+  // перечитывается тихо (паузы useLoadGate, затем при возврате в приложение); успех подписки сам снимает friendsListError.
+  useLoadGate({
+    id: 'friends_list',
+    status: friendsListError ? 'error' : 'ready',
+    retry: () => { friendsAccountStore.retry(); },
+    enabled: friendsRuntimeActive && friendsListError,
+  });
   const [requests, setRequests] = useState<FriendRequestEntry[]>(() => warmFriendsSnapshot?.requests ?? friendsSnapshot?.requests ?? []);
   const [profiles, setProfiles] = useState<Record<string, FriendProfile>>(() => {
     // Модульный кеш переживает ремаунты — показываем мгновенно без async.
@@ -2420,12 +2429,6 @@ export default function FriendsTabScreen() {
     <FriendsEmptyState
       onAdd={() => { hapticTap(); setAddModalOpen(true); }}
       error={friendsListError}
-      onRetry={() => {
-        hapticTap();
-        // Оптимистично убираем плашку сразу; новая ошибка вернёт её сама.
-        setFriendsListError(false);
-        friendsAccountStore.retry();
-      }}
     />
   );
 

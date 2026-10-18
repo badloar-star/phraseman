@@ -37,10 +37,15 @@ describe('Пик: что показать, когда конфиг не проч
     expect((console.warn as jest.Mock).mock.calls.some((c) => String(c[0]).includes('[SPIRE-OFFLINE]') && String(c[0]).includes('netinfo_down'))).toBe(true);
   });
 
-  it('проводка: экран берёт fallback по сети и передаёт offline в замок; строка «Нет интернета» — из OfflineBanner; экран ≤ 400 строк', () => {
+  // 18.10: правило владельца «экранов-ошибок нигде» заменило решение 15.10 — «Нет интернета» на всю вкладку больше не показывается;
+  // сбой чтения: сохранённый конфиг не затирается, без него — спокойная фраза замка, чтение повторяется тихо (use_spire_config_quiet_retry).
+  it('проводка: сбой конфига → тихий повтор без «Нет интернета»; fallback по сети — только для журнала; экран ≤ 400 строк', () => {
     const screen = read('components/spire/SpireHomeScreen.tsx');
-    expect(screen).toContain('spireConfigFallback(error)');
-    expect(screen).toContain('offline={config === SPIRE_CONFIG_OFFLINE}');
+    const hook = read('components/spire/use_spire_config_quiet_retry.ts');
+    expect(screen).toContain('configQuietRetry.handleLoadFailure(error, () => alive)');
+    expect(screen).not.toContain('offline={config === SPIRE_CONFIG_OFFLINE}');
+    expect(hook).toContain('spireConfigFallback(error)');
+    expect(hook).toContain('setConfig((cur) => cur ?? fallback)');
     expect(screen.split('\n').length).toBeLessThanOrEqual(400);
     expect(read('components/spire/SpireLockedState.tsx')).toContain("offline ? offlineBannerText(lang)");
     expect(read('components/OfflineBanner.tsx')).toContain('export function offlineBannerText(lang: string): string');

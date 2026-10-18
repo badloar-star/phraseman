@@ -111,6 +111,26 @@ describe('источники: правки аудита на месте', () => 
     expect(bar).toMatch(/if \(res\.rejected\) \{[\s\S]{0,200}likeFailedToast\(\);/);
   });
 
+  // 18.10 (координатор, решения по аудиту (в)(д)): счётчик отзывов +1 сразу и −1 при сбое; замок на «закрепить / скрыть / удалить».
+  it('Отзывы: счётчик растёт сразу и откатывается при сбое, модерация под замком', () => {
+    const sheet = read('app/community_packs/PackCommentsSheet.tsx');
+    const send = sheet.slice(sheet.indexOf('const handleSend = useCallback('), sheet.indexOf('const retryLocksRef'));
+    const plus = send.indexOf("emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });");
+    const call = send.indexOf('res = await publishPackComment(');
+    expect(plus).toBeGreaterThan(-1);
+    expect(plus).toBeLessThan(call);
+    expect(send.match(/delta: 1 \}/g)?.length).toBe(1);
+    expect(send.match(/delta: -1 \}/g)?.length).toBe(2);
+    const retry = sheet.slice(sheet.indexOf('const handleRetry = useCallback('), sheet.indexOf('const handleRetry = useCallback(') + 3000);
+    expect(retry.indexOf('delta: 1 }')).toBeLessThan(retry.indexOf('res = await publishPackComment('));
+    for (const [op, handler] of [['hide', 'handleHideByAuthor'], ['delete', 'handleDeleteMine'], ['pin', 'handleTogglePin']] as const) {
+      const body = sheet.slice(sheet.indexOf(`const ${handler} = useCallback(`), sheet.indexOf(`const ${handler} = useCallback(`) + 2600);
+      expect(body).toContain(`if (!claimModeration('${op}', comment.id)) return;`);
+      expect(body).toContain('releaseModeration(comment.id)');
+    }
+    expect(sheet).toContain('[OPT-UI] comment_${op} skipped reason=in_flight');
+  });
+
   it('Жалобы и Шпиль: нет немых catch, ранний выход итога ступени называет причину', () => {
     const report = read('app/user_report.ts');
     expect(report).not.toMatch(/catch \{\n\s+return 'failed'/);

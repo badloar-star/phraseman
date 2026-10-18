@@ -451,6 +451,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       status: 'sending',
     };
     setComments((prev) => sortPackComments([...prev, optimistic]));
+    // зачем (координатор 18.10, аудит (д)): счётчик отзывов на карточке растёт СРАЗУ, а не после ответа сервера; при сбое — −1 откатом.
+    emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
     setDraft('');
     setSending(true);
     Keyboard.dismiss();
@@ -489,17 +491,18 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       // сервер уже принял комментарий, локальный state больше никому не нужен.
       if (unmountedRef.current) {
         sendLockRef.current = false;
-        if (res.ok) emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
+        if (!res.ok) emitAppEvent('community_pack_comments_changed', { packId, delta: -1 });
         return;
       }
       setSending(false);
       sendLockRef.current = false;
       if (res.ok) {
         hapticSuccess();
-        emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
         setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: res.commentId, status: 'published' } : c)));
       } else {
         hapticError();
+        console.warn(`[PACK-COMMENTS-COMPOSER] отправка не принята packId=${packId} reason=${res.reason} → строка failed, счётчик −1`); // guard-ok: сбой отправки
+        emitAppEvent('community_pack_comments_changed', { packId, delta: -1 });
         setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, status: 'failed' } : c)));
       }
     })();
@@ -517,6 +520,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     retryLocksRef.current.add(comment.id);
     hapticTap();
     setComments((prev) => prev.map((c) => (c.id === comment.id ? { ...c, status: 'sending' } : c)));
+    // зачем (координатор 18.10, аудит (д)): повтор снова считает отклик сразу; сбой снимает −1.
+    emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
     void (async () => {
       let res: Awaited<ReturnType<typeof publishPackComment>>;
       try {
@@ -532,15 +537,16 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         retryLocksRef.current.delete(comment.id);
       }
       if (unmountedRef.current) {
-        if (res.ok) emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
+        if (!res.ok) emitAppEvent('community_pack_comments_changed', { packId, delta: -1 });
         return;
       }
       if (res.ok) {
         hapticSuccess();
-        emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
         setComments((prev) => prev.map((c) => (c.id === comment.id ? { ...c, id: res.commentId, status: 'published' } : c)));
       } else {
         hapticError();
+        console.warn(`[PACK-COMMENTS-COMPOSER] повтор не принят packId=${packId} commentId=${comment.id} reason=${res.reason} → failed, счётчик −1`); // guard-ok: сбой повтора
+        emitAppEvent('community_pack_comments_changed', { packId, delta: -1 });
         setComments((prev) => prev.map((c) => (c.id === comment.id ? { ...c, status: 'failed' } : c)));
       }
     })();
@@ -615,11 +621,26 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
    * и написавшего — то же поведение, что owner описал как «просто исчезает,
    * без уведомления автору комментария».
    */
+  // зачем (координатор 18.10, аудит (в)): «закрепить / скрыть / удалить» не имели замка — двойной тап по пункту меню давал два вызова
+  // и двойной откат. Замок по id отклика общий для трёх действий: пока одно в полёте, другое по тому же отклику не стартует.
+  const moderationLocksRef = useRef<Set<string>>(new Set());
+  const claimModeration = useCallback((op: 'hide' | 'delete' | 'pin', commentId: string): boolean => {
+    if (moderationLocksRef.current.has(commentId)) {
+      console.log(`[OPT-UI] comment_${op} skipped reason=in_flight commentId=${commentId}`); // guard-ok: ранний выход называет причину
+      return false;
+    }
+    moderationLocksRef.current.add(commentId);
+    return true;
+  }, []);
+  const releaseModeration = useCallback((commentId: string) => { moderationLocksRef.current.delete(commentId); }, []);
+
   const handleHideByAuthor = useCallback((comment: PackComment) => {
     setMenuFor(null);
+    if (!claimModeration('hide', comment.id)) return;
     hapticTap();
     setComments((prev) => prev.filter((c) => c.id !== comment.id));
     void (async () => {
+      try {
       // зачем передаём comment.pinned (владелец 17.09.2026): скрытие
       // закреплённого комментария автоматически снимает закрепление — см.
       // докстринг hidePackCommentByAuthor.
@@ -640,14 +661,19 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       // Раньше здесь эмитился delta:-1, и счётчик локально проседал, а на
       // следующем чтении каталога прыгал обратно — «прыжок числа», запрещённый
       // правилом Optimistic UI.
+      } finally {
+        releaseModeration(comment.id);
+      }
     })();
-  }, [packId]);
+  }, [claimModeration, packId, releaseModeration]);
 
   const handleDeleteMine = useCallback((comment: PackComment) => {
     setMenuFor(null);
+    if (!claimModeration('delete', comment.id)) return;
     hapticTap();
     setComments((prev) => prev.filter((c) => c.id !== comment.id));
     void (async () => {
+      try {
       const ok = await deletePackComment(packId, comment.id);
       if (ok) {
         emitAppEvent('community_pack_comments_changed', { packId, delta: -1 });
@@ -660,11 +686,15 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
           'pt-BR': 'Não foi possível excluir o comentário. Tente de novo.', vi: 'Không xóa được bình luận. Hãy thử lại.', id: 'Komentar tidak bisa dihapus. Coba lagi.', tr: 'Yorum silinemedi. Tekrar dene.', pl: 'Nie udało się usunąć komentarza. Spróbuj ponownie.',
         }));
       }
+      } finally {
+        releaseModeration(comment.id);
+      }
     })();
-  }, [packId]);
+  }, [claimModeration, packId, releaseModeration]);
 
   const handleTogglePin = useCallback((comment: PackComment) => {
     setMenuFor(null);
+    if (!claimModeration('pin', comment.id)) return;
     hapticTap();
     const nextPinned = !comment.pinned;
     // зачем (координатор 12.10, аудит Optimistic UI R1): отказ записи закрепления — откат к прежнему набору закреплённых + сообщение.
@@ -683,8 +713,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         ru: 'Не удалось изменить закрепление. Попробуй ещё раз.', uk: 'Не вдалося змінити закріплення. Спробуй ще раз.', en: "Couldn't change the pin. Try again.", es: 'No se pudo cambiar el anclaje. Inténtalo de nuevo.',
         'pt-BR': 'Não foi possível alterar a fixação. Tente de novo.', vi: 'Không đổi được trạng thái ghim. Hãy thử lại.', id: 'Sematan tidak bisa diubah. Coba lagi.', tr: 'Sabitleme değiştirilemedi. Tekrar dene.', pl: 'Nie udało się zmienić przypięcia. Spróbuj ponownie.',
       }));
-    });
-  }, [packId]);
+    }).finally(() => releaseModeration(comment.id));
+  }, [claimModeration, packId, releaseModeration]);
 
   const emptyTitle = triLang(lang, { ru: 'Пока тихо', uk: 'Поки тихо', en: 'Quiet so far', es: 'Todavía en silencio', 'pt-BR': 'Ainda em silêncio', vi: 'Vẫn còn yên tĩnh', id: 'Masih sepi', tr: 'Şimdilik sessiz', pl: 'Na razie cicho' });
   const emptyBody = triLang(lang, {

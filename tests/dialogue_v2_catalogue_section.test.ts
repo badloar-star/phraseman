@@ -10,7 +10,7 @@ jest.mock('../app/smooth_layout', () => ({ animateNextLayoutTransition: () => un
 // The component's native dependencies are deliberately mocked above; loading
 // after those mocks keeps this node-level catalogue contract deterministic.
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const { groupDialogueV2CatalogueItemsByWorld, titleBrokeMidWord, glueRankNumber }: typeof import('../components/dialogs/DialogueV2CatalogueSection') = require(
+const { groupDialogueV2CatalogueItemsByWorld, titleBrokeMidWord, glueRankNumber, counterBelowAllReasonAfterLayout }: typeof import('../components/dialogs/DialogueV2CatalogueSection') = require(
   '../components/dialogs/DialogueV2CatalogueSection',
 );
 
@@ -125,5 +125,45 @@ describe('DialogueV2CatalogueSection', () => {
     expect(source).toContain('{countStacked ? null : countNode}');
     expect(source).toContain("fontVariant: ['tabular-nums'], flexShrink: 0");
     expect(source).not.toContain('adjustsFontSizeToFit');
+  });
+
+  // 18.10 (координатор 05:06/05:19): раскрытая шапка рвала «Повседневно/е»; решение «счётчик под название» одно на весь список
+  // и действует в обоих видах (поведение — tests/dialogue_v2_catalogue_counter_uniform.test.tsx).
+  test('counter placement is one list-level decision for both views', () => {
+    const source = fs.readFileSync(
+      path.join(__dirname, '..', 'components', 'dialogs', 'DialogueV2CatalogueSection.tsx'),
+      'utf8',
+    ).replace(/\r\n/g, '\n');
+    expect(source).toContain('const countStacked = counterBelowAllReason !== null;');
+    expect(source).not.toContain('!expanded && stackedCountWorldIds');
+    expect(source).toContain('setCounterBelowAllReason((current) => current ?? reason);');
+    // заголовок с onTextLayout один на оба вида — раскрытая шапка проходит ту же проверку titleBrokeMidWord
+    expect(source.match(/onTextLayout=/g)?.length).toBe(1);
+    expect(source).toContain('counterBelowAllReasonAfterLayout(counterBelowAllReason, world.id, expanded, event.nativeEvent.lines)');
+    expect(source).toContain('[DIALOGUE-V2] catalogue:counter_below_all reason=${reason}');
+  });
+
+  // 18.10 (координатор 05:19, Макеты 680f1372c): однородность — раскладка всех карточек решается одним значением на список.
+  test('one mid-word break anywhere moves every counter below, once, in both views', () => {
+    const split = [{ text: 'Повседневно' }, { text: 'е' }];
+    const whole = [{ text: 'Поездки' }];
+    // Все названия переносятся по словам — решение не принимается, счётчики справа у всех.
+    let reason: string | null = null;
+    for (const [id, lines] of [['everyday', whole], ['travel', whole]] as const) reason = counterBelowAllReasonAfterLayout(reason, id, false, lines);
+    expect(reason).toBeNull();
+    // Разрыв у одной карточки — причина названа её id; соседние раскладки и раскрытие решение не меняют (без мигания).
+    reason = counterBelowAllReasonAfterLayout(reason, 'everyday', false, split);
+    expect(reason).toBe('everyday');
+    reason = counterBelowAllReasonAfterLayout(reason, 'travel', false, whole);
+    reason = counterBelowAllReasonAfterLayout(reason, 'travel', true, split);
+    expect(reason).toBe('everyday');
+    // Разрыв только в раскрытой шапке тоже решает за весь список.
+    expect(counterBelowAllReasonAfterLayout(null, 'everyday', true, split)).toBe('everyday#open');
+    // Место счётчика у карточки зависит только от решения списка — одно и то же для каждой карточки в обоих видах.
+    const source = fs.readFileSync(
+      path.join(__dirname, '..', 'components', 'dialogs', 'DialogueV2CatalogueSection.tsx'),
+      'utf8',
+    ).replace(/\r\n/g, '\n');
+    expect(source).not.toMatch(/const countStacked = [^;]*(world\.id|expanded)/);
   });
 });

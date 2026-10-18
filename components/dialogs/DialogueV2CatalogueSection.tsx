@@ -24,9 +24,9 @@ const ROW_TONE_ALPHA = 0.045;
 const NO_BREAK_SPACE = '\u00a0';
 
 /**
- * \u0437\u0430\u0447\u0435\u043c (\u041c\u0430\u043a\u0435\u0442\u044b 4a2237e12, dialogs-006 \u043f\u0440\u0438 \u0448\u0440\u0438\u0444\u0442\u0435 1,3): \u00ab\u041f\u043e\u0432\u0441\u0435\u0434\u043d\u0435\u0432\u043d\u043e/\u0435\u00bb \u0440\u0432\u0430\u043b\u043e\u0441\u044c \u043f\u043e\u0441\u0440\u0435\u0434\u0438 \u0441\u043b\u043e\u0432\u0430 \u2014 \u043e\u0434\u043d\u043e \u0434\u043b\u0438\u043d\u043d\u043e\u0435 \u0441\u043b\u043e\u0432\u043e \u043d\u0435 \u043f\u043e\u043c\u0435\u0449\u0430\u043b\u043e\u0441\u044c \u0432 \u043a\u043e\u043b\u043e\u043d\u043a\u0443
- * \u0440\u044f\u0434\u043e\u043c \u0441\u043e \u0441\u0447\u0451\u0442\u0447\u0438\u043a\u043e\u043c. \u0423\u0436\u0438\u043c\u0430\u0442\u044c \u0448\u0440\u0438\u0444\u0442 \u043d\u0435\u043b\u044c\u0437\u044f (D145, \u0437\u0430\u043f\u0440\u0435\u0442 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430): \u043b\u043e\u0432\u0438\u043c \u0440\u0430\u0437\u0440\u044b\u0432 \u043f\u043e\u0441\u0440\u0435\u0434\u0438 \u0441\u043b\u043e\u0432\u0430 \u043f\u043e \u0440\u0430\u0441\u043a\u043b\u0430\u0434\u043a\u0435 \u0441\u0442\u0440\u043e\u043a \u0438 \u0442\u043e\u0433\u0434\u0430 \u043f\u0435\u0440\u0435\u043d\u043e\u0441\u0438\u043c
- * \u00ab0 /19\u00bb \u043f\u043e\u0434 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u2014 \u043a\u043e\u043b\u043e\u043d\u043a\u0430 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f \u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0441\u044f \u0448\u0438\u0440\u0435, \u043f\u0435\u0440\u0435\u043d\u043e\u0441 \u043e\u0441\u0442\u0430\u0451\u0442\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u043e \u0441\u043b\u043e\u0432\u0430\u043c.
+ * зачем (Макеты 4a2237e12, dialogs-006 при шрифте 1,3): «Повседневно/е» рвалось посреди слова — одно длинное слово не помещалось в колонку
+ * рядом со счётчиком. Ужимать шрифт нельзя (D145, запрет владельца): ловим разрыв посреди слова по раскладке строк и тогда переносим
+ * «0 /19» под название — колонка названия становится шире, перенос остаётся только по словам.
  */
 export function titleBrokeMidWord(lines: ReadonlyArray<Readonly<{ text: string }>>): boolean {
   for (let index = 0; index < lines.length - 1; index += 1) {
@@ -37,7 +37,22 @@ export function titleBrokeMidWord(lines: ReadonlyArray<Readonly<{ text: string }
   return false;
 }
 
-/** \u00ab\u041e\u0442\u043a\u0440\u043e\u0435\u0442\u0441\u044f \u043d\u0430 \u0440\u0430\u043d\u0433\u0435 1\u00bb \u2014 \u043f\u0440\u043e\u0431\u0435\u043b \u043f\u0435\u0440\u0435\u0434 \u043d\u043e\u043c\u0435\u0440\u043e\u043c \u0440\u0430\u043d\u0433\u0430 \u043d\u0435\u0440\u0430\u0437\u0440\u044b\u0432\u043d\u044b\u0439: \u0447\u0438\u0441\u043b\u043e \u043d\u0435 \u043e\u0442\u0440\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043e\u0442 \u0441\u043b\u043e\u0432\u0430 (\u0438 \u043c\u043e\u043d\u0435\u0442\u0430 \u0437\u0430 \u043d\u0438\u043c). */
+/**
+ * зачем (координатор 05:19, Макеты 680f1372c): решение «счётчик под названием» одно на весь каталог. Возвращает причину
+ * (`<id карточки>` или `<id>#open` для раскрытой шапки) при первом разрыве посреди слова; уже принятое решение не меняется —
+ * без мигания раскладки. null — счётчики справа у всех.
+ */
+export function counterBelowAllReasonAfterLayout(
+  current: string | null,
+  worldId: string,
+  expanded: boolean,
+  lines: ReadonlyArray<Readonly<{ text: string }>>,
+): string | null {
+  if (current !== null || !titleBrokeMidWord(lines)) return current;
+  return `${worldId}${expanded ? '#open' : ''}`;
+}
+
+/** Подпись закрытой строки («…ранге 1») — пробел перед номером ранга неразрывный: число не отрывается от слова (и монета за ним). */
 export function glueRankNumber(label: string, rank: number): string {
   return label.replace(new RegExp(`\\s(${rank})(?=\\D*$)`), `${NO_BREAK_SPACE}$1`);
 }
@@ -115,8 +130,11 @@ export function DialogueV2CatalogueSection({
   // compact until the learner chooses one world; access still comes entirely
   // from the projection supplied by the caller.
   const [activeWorldId, setActiveWorldId] = useState<string | null>(null);
-  // Миры, у которых название рвалось посреди слова: счётчик у них стоит под названием (обратно не возвращаем — без мигания раскладки).
-  const [stackedCountWorldIds, setStackedCountWorldIds] = useState<ReadonlySet<string>>(() => new Set());
+  // зачем (координатор 05:19, Макеты 680f1372c): при 1,3 «Повседневное» уносило счётчик под название, а соседние «Поездки» — нет; на одном
+  // экране разнобой. Решение одно на весь список: хоть одно название (свёрнутое или раскрытое) рвётся посреди слова → счётчик под
+  // названием у ВСЕХ карточек в обоих видах. Принимается один раз и обратно не возвращается — без мигания раскладки.
+  // Значение — какая карточка и вид это решили (для лога), null — счётчики справа.
+  const [counterBelowAllReason, setCounterBelowAllReason] = useState<string | null>(null);
   // зачем (dialogs-003, координатор 13.10): шапка хаба схлопывается, пока открыта категория (образец №4). Сообщаем «открыта/закрыта» через стабильный контекст действий — состояние шапки живёт не здесь,
   // поэтому этот список от него не перерисовывается. Вне хаба (вкладка «Уроки») действий нет.
   const collapseActions = useHubHeaderCollapseActions();
@@ -139,7 +157,8 @@ export function DialogueV2CatalogueSection({
         const progress = totalCount > 0 ? doneCount / totalCount : 0;
         const subtitle = labels.worldSubtitle?.(world.id) ?? null;
         // зачем (dialogs-006, 1,3): счётчик не сжимается (flexShrink 0); если название рвалось посреди слова — он под названием.
-        const countStacked = !expanded && stackedCountWorldIds.has(world.id);
+        // зачем (координатор 05:06, сверка a1fa9d2e0 l_ru_open/d_ru_open): у раскрытой шапки свой шрифт 20 — она проходит ту же проверку разрыва.
+        const countStacked = counterBelowAllReason !== null;
         const countNode = (
           // `.frac`: «пройдено» 28/700, «/всего» 16 вторичным с отступом 3.
           <Text testID={`dialogue-v2-world-count-${world.id}`} style={{ color: glass.text, fontSize: 28, lineHeight: 34, fontWeight: '700', fontVariant: ['tabular-nums'], flexShrink: 0, marginTop: countStacked ? 4 : 0 }} maxFontSizeMultiplier={1.3}>
@@ -178,9 +197,10 @@ export function DialogueV2CatalogueSection({
                   style={{ color: glass.text, fontSize: expanded ? 20 : 19, lineHeight: expanded ? 25 : 24, fontWeight: '700' }}
                   maxFontSizeMultiplier={1.3}
                   onTextLayout={(event) => {
-                    if (countStacked || !titleBrokeMidWord(event.nativeEvent.lines)) return;
-                    console.log(`[DIALOGUE-V2] catalogue:title_mid_word world=${world.id} lines=${JSON.stringify(event.nativeEvent.lines.map((line) => line.text))} → счётчик под названием`); // guard-ok: одна строка на мир, раз
-                    setStackedCountWorldIds((current) => new Set(current).add(world.id));
+                    const reason = counterBelowAllReasonAfterLayout(counterBelowAllReason, world.id, expanded, event.nativeEvent.lines);
+                    if (reason === counterBelowAllReason) return;
+                    console.log(`[DIALOGUE-V2] catalogue:counter_below_all reason=${reason} lines=${JSON.stringify(event.nativeEvent.lines.map((line) => line.text))} → счётчик под названием у всех карточек`); // guard-ok: один раз на раскладку
+                    setCounterBelowAllReason((current) => current ?? reason);
                   }}
                 >
                   {world.title}

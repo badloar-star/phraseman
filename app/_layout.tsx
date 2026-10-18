@@ -547,6 +547,8 @@ DefaultText.defaultProps = {
 
 // зачем (координатор 18.10, theme_boot): тёмный фон остаётся только запасным для тёмной системы; заставка красится startupSplashPalette
 const STARTUP_SPLASH_BG = STARTUP_SPLASH_DARK_BG;
+/** Смена фона заставки на фон прочитанной темы — плавно, как переход шторки kit (240 мс). */
+const SPLASH_THEME_FADE_MS = 240;
 /** Потолок ожидания рантайм-шрифтов: сломанный ассет не должен держать сплэш вечно.
  * зачем (владелец, 2026-08-25): срезано 2500→1000 — гейт живёт ТОЛЬКО в дев-сборках
  * (runtimeFontsExpected=false в проде, шрифты вшиты нативно), а при перегруженном
@@ -691,6 +693,16 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   useEffect(() => {
     bootMark('[THEME-BOOT] splash-hold', { visible, canHideNativeSplash, bg: splashPalette.bg, light: splashPalette.light, source: splashPalette.source, systemScheme: Appearance.getColorScheme() ?? null, choiceReady: liquidGlassChoiceReady, theme: liquidGlassThemeId });
   }, [visible, canHideNativeSplash, splashPalette, liquidGlassChoiceReady, liquidGlassThemeId]);
+  // зачем (координатор 18.10, вариант (б)): тема читается через ~0,3 с после старта — фон заставки сменялся скачком
+  // (#101214 → фон темы). Нижний слой держит первый цвет, слой темы проявляется за 240 мс прозрачностью на нативном драйвере (UI-поток, без setState в кадрах).
+  const splashFirstBgRef = useRef(splashPalette.bg);
+  const splashThemeFade = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (splashPalette.bg === splashFirstBgRef.current) return;
+    bootMark('[THEME-BOOT] splash-hold: плавная смена фона', { from: splashFirstBgRef.current, to: splashPalette.bg, ms: SPLASH_THEME_FADE_MS });
+    splashThemeFade.setValue(0);
+    Animated.timing(splashThemeFade, { toValue: 1, duration: SPLASH_THEME_FADE_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
+  }, [splashPalette.bg, splashThemeFade]);
 
   // Как только анимированный оверлей смонтирован и отрисован — прячем нативный сплэш,
   // чтобы застывшая нативная картинка сразу уступила место анимации (фон тот же #101214,
@@ -762,8 +774,9 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
     <Animated.View
       pointerEvents="none"
       onLayout={() => bootMark('[THEME-BOOT] splash-hold: первый кадр', { bg: splashPalette.bg })}
-      style={[styles.startupSplashAnimatedRoot, { backgroundColor: splashPalette.bg, opacity: startupHoldEarlyDismissOpacity }]}
+      style={[styles.startupSplashAnimatedRoot, { backgroundColor: splashFirstBgRef.current, opacity: startupHoldEarlyDismissOpacity }]}
     >
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: splashPalette.bg, opacity: splashThemeFade }]} />
       <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphEnterScale }] }}>
         <Animated.View style={[styles.startupSplashGlyphPulse, { transform: [{ scale: glyphPulseScale }] }]}>
           <Image

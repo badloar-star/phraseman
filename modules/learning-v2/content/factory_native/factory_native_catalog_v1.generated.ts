@@ -58,7 +58,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 1, sessionOrdinal: 8,
-    sourceFingerprint: "aabfb4cd1ed30bdb7abd96f9bfac6c2c3c1d6aadab6e18751e186dec0110680a",
+    sourceFingerprint: "7be5af114c71623a6ae4534ee1f67ff8313de318041b0b005271a9da7fa76aa4",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"как отвечать о себе с `I am` и `I am not`","uk":"як відповідати про себе з `I am` та `I am not`"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 1","uk":"Англійська · Урок 1"}),
@@ -933,7 +933,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 3, sessionOrdinal: 21,
-    sourceFingerprint: "88d6a7c0618226f730213cc6f57fdebf7ec022b9eba31229fc8bd5bea09e4909",
+    sourceFingerprint: "8f95b09d90584b8536ca66a0f8047891e563c5111cd335042aaaf8fd4b011d2f",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различать один предмет с a и несколько предметов без a","uk":"розрізняти один предмет з a і кілька предметів без a"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 3","uk":"Англійська · Урок 3"}),
@@ -1598,7 +1598,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 5, sessionOrdinal: 4,
-    sourceFingerprint: "4961be58df49359dd07a482acdffd997965c8d63950cb0f8e49246583935ce18",
+    sourceFingerprint: "188d1b972390243e3f5e69927f681ce54f7622cc4cb725b5dcab7f61d97caae1",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, что есть у детей и воспитателей и у кого занавеска, и описать самочувствие","uk":"сказати, що є в дітей і вихователів і в кого завіса, та описати самопочуття"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 5","uk":"Англійська · Урок 5"}),
@@ -1612,7 +1612,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 5, sessionOrdinal: 6,
-    sourceFingerprint: "d60c06d142afdf660a053287ba7d032c92fca3f9aa4a0915e250ffce70f5c375",
+    sourceFingerprint: "12971d6a8cfa5c071048821a7b357b6b16b0177d5693f04a27f1c43b30efe621",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, что есть у врача, медсестры и клиники, и описать волнение","uk":"сказати, що є в лікаря, медсестри й клініки, та описати хвилювання"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 5","uk":"Англійська · Урок 5"}),

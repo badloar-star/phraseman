@@ -54,7 +54,7 @@
 
 **1 · Картка слова — thermometer**
 <!-- interaction_id: en:lesson-05:session-06:word:thermometer; family: word_card -->
-> **thermometer** — градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла.
+> **thermometer** — термометр. The nurse has a thermometer. — «У медсестри є термометр». Про прилад, яким вимірюють температуру тіла.
 
 **2 · Пацієнт вимірює температуру. Скажіть йому повною фразою: «У медсестри є градусник»**
 <!-- interaction_id: en:lesson-05:session-06:i01; family: phrase_builder -->

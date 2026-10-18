@@ -65,7 +65,7 @@ I am ___. → **calm** · nervous · thirsty
 
 **3 · Карточка слова — nervous**
 <!-- interaction_id: en:lesson-01:session-08:word:nervous; family: word_card -->
-> **nervous** — «нервничающий»: вы волнуетесь перед выступлением.
+> **nervous** — «взволнованный»: вы волнуетесь перед выступлением.
 
 **4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-01:session-08:i02; family: listen_choose -->

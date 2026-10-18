@@ -116,7 +116,7 @@
             "targetText": "curtain",
             "meaningByLocale": {
               "ru": "занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.",
-              "uk": "завіса. It is a curtain — «Це завіса». Про завісу на вікні або у ванній."
+              "uk": "фіранка, штора. It is a curtain — «Це фіранка». Про фіранку на вікні або у ванній."
             }
           }
         ],
@@ -127,7 +127,7 @@
           "word": "curtain",
           "definitionByLocale": {
             "ru": "занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.",
-            "uk": "завіса. It is a curtain — «Це завіса». Про завісу на вікні або у ванній."
+            "uk": "фіранка, штора. It is a curtain — «Це фіранка». Про фіранку на вікні або у ванній."
           }
         }
       },
@@ -1172,5 +1172,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "26a0d371137ee57a0552f44e5730d51e2e00c474b5908f48a529d5eb4e796291"
+  "learnerFingerprint": "76c8e8c19a246dc547144b39ab0be356a33a3b33b8ca9a29e5c0e5cfa9bdb5ea"
 }

@@ -29,7 +29,7 @@
             "targetText": "thermometer",
             "meaningByLocale": {
               "ru": "градусник. The nurse has a thermometer. — «У медсестры есть градусник». О приборе, которым измеряют температуру тела.",
-              "uk": "градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла."
+              "uk": "термометр. The nurse has a thermometer. — «У медсестри є термометр». Про прилад, яким вимірюють температуру тіла."
             }
           }
         ],
@@ -40,7 +40,7 @@
           "word": "thermometer",
           "definitionByLocale": {
             "ru": "градусник. The nurse has a thermometer. — «У медсестры есть градусник». О приборе, которым измеряют температуру тела.",
-            "uk": "градусник. The nurse has a thermometer. — «У медсестри є градусник». Про прилад, яким вимірюють температуру тіла."
+            "uk": "термометр. The nurse has a thermometer. — «У медсестри є термометр». Про прилад, яким вимірюють температуру тіла."
           }
         }
       },
@@ -1179,5 +1179,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "307dc0e11f634e35d4d227ffdeaef222292104e63819265e0ac3b2febe53e52e"
+  "learnerFingerprint": "8d4fed83f6d593ab896a61bf0bbac4a1438094d647365cde6ad2cae553b1012b"
 }

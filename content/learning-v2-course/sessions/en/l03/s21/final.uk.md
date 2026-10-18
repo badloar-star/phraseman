@@ -63,7 +63,7 @@
 
 **3 · Картка слова — curtain**
 <!-- interaction_id: en:lesson-03:session-21:word:curtain; family: word_card -->
-> **curtain** — завіса. It is a curtain — «Це завіса». Про завісу на вікні або у ванній.
+> **curtain** — фіранка, штора. It is a curtain — «Це фіранка». Про фіранку на вікні або у ванній.
 
 **4 · Послухайте брата: він говорить про другий рядок накладної**
 <!-- interaction_id: en:lesson-03:session-21:i02; family: listen_choose -->

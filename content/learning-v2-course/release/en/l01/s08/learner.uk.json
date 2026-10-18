@@ -140,8 +140,8 @@
             "responseId": "en:lesson-01:session-08:word:nervous:r1",
             "targetText": "nervous",
             "meaningByLocale": {
-              "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
-              "uk": "«знервований»: ви хвилюєтеся перед виступом."
+              "ru": "«взволнованный»: вы волнуетесь перед выступлением.",
+              "uk": "«схвильований»: ви хвилюєтеся перед виступом."
             }
           }
         ],
@@ -151,8 +151,8 @@
         "wordCard": {
           "word": "nervous",
           "definitionByLocale": {
-            "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
-            "uk": "«знервований»: ви хвилюєтеся перед виступом."
+            "ru": "«взволнованный»: вы волнуетесь перед выступлением.",
+            "uk": "«схвильований»: ви хвилюєтеся перед виступом."
           }
         }
       },
@@ -1271,5 +1271,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e3c85411e70bf9eb59b35ede21a30414187a0a70e8604185e92c39a9e8f7c004"
+  "learnerFingerprint": "dcbb464c1486d60a86950bab8f197cbdec9578b02d3be6d582cdf74ae28cdedc"
 }

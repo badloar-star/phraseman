@@ -11,7 +11,10 @@ import { triLang } from '../../constants/i18n';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
-import { addFlashcard, alignSavedVideoFlashcardsWithChannel, loadFlashcards } from '../../hooks/use-flashcards';
+import { useRouter } from 'expo-router';
+import { addFlashcard, alignSavedVideoFlashcardsWithChannel, loadFlashcards, removeFlashcard } from '../../hooks/use-flashcards';
+import { trackEvent } from '../../app/analytics';
+import { usePremium } from '../PremiumContext';
 import { loadVideoPhrasesCached, peekCachedVideoPhrases, type VideoPhrasesSource } from '../../app/video_phrases_client';
 import { isVideoPhrasesEnabled } from '../../app/remote_flags';
 import type { VideoPhrase } from '../../shared/video_phrases_contract';
@@ -74,8 +77,27 @@ function toastPhraseSaveRollback(reason: string): void {
 const PHRASES_SILENT_RETRIES = 5;
 const PHRASES_RETRY_BASE_MS = 4000;
 
+/**
+ * зачем (координатор 18.10): снять сохранённую фразу не вышло — закладка возвращается, тост по-человечески (как откат сохранения).
+ */
+function toastPhraseUnsaveRollback(): void {
+  emitAppEvent('action_toast', actionToastTri('error', {
+    ru: 'Не удалось убрать фразу. Попробуй ещё раз',
+    uk: 'Не вдалося прибрати вислів. Спробуй ще раз',
+    en: "Couldn't remove the phrase. Try again",
+    es: 'No se pudo quitar la frase. Inténtalo de nuevo',
+    'pt-BR': 'Não foi possível remover a frase. Tente de novo',
+    vi: 'Không bỏ lưu được cụm từ. Hãy thử lại',
+    id: 'Gagal menghapus frasa. Coba lagi',
+    tr: 'İfade kaldırılamadı. Tekrar dene',
+    pl: 'Nie udało się usunąć frazy. Spróbuj ponownie',
+  }));
+}
+
 export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sourceTitle, expanded, defaultExpanded = false, onToggle, testID, onSourceResolved }: YoutubeVideoPhrasesProps) {
   const { lang } = useLang();
+  const router = useRouter();
+  const { hasPremiumAccess } = usePremium();
   const studyTarget = packLanguage;
   // зачем: Liquid Glass (макет video.html «Фразы из видео») — все цвета из токенов
   // активной темы, шторка «Фраза» на HybridSheetShell material="liquid-glass".
@@ -222,12 +244,19 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       if (result !== 'added' && result !== 'duplicate') {
         // зачем (аудит Optimistic UI 05.10): откат обязан называть причину — иначе закладка «сама» снимается без следа.
         console.warn(`[VIDEO-PHRASE-SAVE] rollback reason=${String(result)} phrase=${phrase.id}`); // guard-ok: ранний выход логируется
-        toastPhraseSaveRollback(String(result));
         setSavedIds((current) => {
           const next = new Set(current);
           next.delete(phrase.id);
           return next;
         });
+        // зачем (координатор 18.10): лимит Free — окно оплаты, как у карточки из набора (закрытие окна закрывает только шторку, ролик остаётся); тост — для Plus и прочих причин
+        if (result === 'limit_reached' && !hasPremiumAccess) {
+          console.log(`[VIDEO-PHRASE-SAVE] paywall phrase=${phrase.id} context=flashcard_limit`); // guard-ok: ветвление называет решение
+          void trackEvent('paywall_shown', { context: 'flashcard_limit', source: 'video_card_save' });
+          router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'video_card_save' } } as never);
+        } else {
+          toastPhraseSaveRollback(String(result));
+        }
       }
     } catch (error) {
       // зачем: запрет немого catch — причина отката в журнал.
@@ -241,7 +270,41 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     } finally {
       savingIdsRef.current.delete(phrase.id);
     }
-  }, [savedIds, studyTarget, sourceTitle]);
+  }, [savedIds, studyTarget, sourceTitle, hasPremiumAccess, router]);
+
+  // зачем (координатор 18.10): повторный тап по сохранённой фразе снимает её — закладка гаснет сразу, запись догоняет, при отказе закладка возвращается; один проход на фразу (savingIdsRef).
+  const unsave = useCallback(async (phrase: VideoPhrase) => {
+    if (!savedIds.has(phrase.id) || savingIdsRef.current.has(phrase.id)) {
+      console.log(`[VIDEO-PHRASE-SAVE] unsave skipped phrase=${phrase.id} saved=${String(savedIds.has(phrase.id))} busy=${String(savingIdsRef.current.has(phrase.id))}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    savingIdsRef.current.add(phrase.id);
+    setSavedIds((current) => {
+      const next = new Set(current);
+      next.delete(phrase.id);
+      return next;
+    });
+    const restore = () => setSavedIds((current) => new Set(current).add(phrase.id));
+    try {
+      const all = await loadFlashcards(studyTarget);
+      // зачем: сперва по sourceId; если выравнивание канала успело переписать префикс id — по тексту фразы, но только среди карточек из видео (одноимённую карточку урока не трогаем)
+      const textKey = phrase.phrase.trim().toLowerCase();
+      const found = all.find((card) => card.source === 'video_phrase' && card.sourceId === phrase.id)
+        ?? all.find((card) => card.source === 'video_phrase' && card.sourceId?.startsWith(`${videoId}:`) && card.en.trim().toLowerCase() === textKey);
+      if (!found) {
+        console.warn(`[VIDEO-PHRASE-SAVE] unsave nothing_to_remove phrase=${phrase.id}`); // guard-ok: ранний выход называет причину; закладка остаётся погашенной
+        return;
+      }
+      await removeFlashcard(found.id, studyTarget);
+      console.log(`[VIDEO-PHRASE-SAVE] unsave done phrase=${phrase.id} card=${found.id}`); // guard-ok: итог
+    } catch (error) {
+      console.warn(`[VIDEO-PHRASE-SAVE] unsave rollback reason=threw phrase=${phrase.id} message=${error instanceof Error ? error.message : String(error)}`); // guard-ok: откат называет причину
+      restore();
+      toastPhraseUnsaveRollback();
+    } finally {
+      savingIdsRef.current.delete(phrase.id);
+    }
+  }, [savedIds, studyTarget, videoId]);
 
   if (!enabled) return null;
   if (state === 'loading') {
@@ -293,7 +356,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
         {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: index === activeIndex ? glass.accentText : glass.secondary }]}>{formatTimecode(phrase.startSec)}</Text> : null}
         <View style={styles.rowCopy}><Text style={[styles.phrase, { color: index === activeIndex ? glass.accentText : glass.text }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: glass.secondary }]}>{phrase.translation}</Text></View>
       </Pressable>
-      <View style={styles.rowSave}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(phrase.id)} pulse={false} onSave={() => void save(phrase)} colors={{ surface: 'transparent', text: glass.secondary, muted: glass.secondary, accent: glass.text }} testID={`video-phrase-save-${phrase.ordinal}`} /></View>
+      <View style={styles.rowSave}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(phrase.id)} pulse={false} onSave={() => void save(phrase)} onUnsave={() => void unsave(phrase)} colors={{ surface: 'transparent', text: glass.secondary, muted: glass.secondary, accent: glass.text }} testID={`video-phrase-save-${phrase.ordinal}`} /></View>
     </View>)}
     <HybridSheetShell
       visible={!!selected}

@@ -78,4 +78,22 @@ describe('«Сохранить» на карточках из видео', () =>
     expect(phrases).toContain('<SaveToCardsButton');
     expect(phrases).toContain("source: 'video_phrase'");
   });
+
+  // зачем (координатор 18.10, обход Optimistic UI): фраза на экране ролика — при лимите Free окно оплаты (как у карточки из набора), тост убран; повторный тап снимает сохранение мгновенно с откатом
+  it('экран ролика: лимит Free открывает окно оплаты, сохранённую фразу можно снять повторным тапом', () => {
+    const phrases = read('components/youtube/YoutubeVideoPhrases.tsx');
+    expect(phrases).toContain("result === 'limit_reached' && !hasPremiumAccess");
+    expect(phrases).toContain("pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'video_card_save' }");
+    expect(phrases).toContain("void trackEvent('paywall_shown', { context: 'flashcard_limit', source: 'video_card_save' });");
+    // тост лимита — только в ветке else (Plus и прочие причины)
+    expect(phrases.indexOf("toastPhraseSaveRollback(String(result));")).toBeGreaterThan(phrases.indexOf("router.push({ pathname: '/premium_modal'"));
+    expect(phrases).toContain('const unsave = useCallback(async (phrase: VideoPhrase) => {');
+    expect(phrases).toContain("card.source === 'video_phrase' && card.sourceId === phrase.id");
+    expect(phrases).toContain('await removeFlashcard(found.id, studyTarget);');
+    expect(phrases).toContain('restore();');
+    expect(phrases).toContain('onUnsave={() => void unsave(phrase)}');
+    const button = read('components/SaveToCardsButton.tsx');
+    expect(button).toContain('readonly onUnsave?: () => void;');
+    expect(button).toContain('if (!onUnsave) return;');
+  });
 });

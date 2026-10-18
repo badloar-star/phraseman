@@ -40,6 +40,8 @@ export interface SaveToCardsButtonProps {
   readonly pulse: boolean;
   readonly disabled?: boolean;
   readonly onSave: () => void;
+  /** Повторный тап по сохранённому снимает сохранение (координатор 18.10: фраза на экране ролика). Без обработчика сохранённая кнопка по-прежнему молчит. */
+  readonly onUnsave?: () => void;
   readonly colors: {
     readonly surface: string;
     readonly text: string;
@@ -56,6 +58,7 @@ export function SaveToCardsButton({
   pulse,
   disabled = false,
   onSave,
+  onUnsave,
   colors,
   testID,
 }: SaveToCardsButtonProps) {
@@ -90,7 +93,18 @@ export function SaveToCardsButton({
   }, [glow, invite]);
 
   const handlePress = useCallback(() => {
-    if (disabled || saved) return;
+    if (disabled) return;
+    if (saved) {
+      // зачем (координатор 18.10): сохранённую фразу можно снять повторным тапом — мгновенно, откат делает вызывающий
+      if (!onUnsave) return;
+      void hapticTap();
+      scale.value = withSequence(
+        withTiming(0.92, { duration: 90, easing: Easing.out(Easing.quad) }),
+        withSpring(1, { damping: 9, stiffness: 220 }),
+      );
+      onUnsave();
+      return;
+    }
     // Optimistic UI: отклик мгновенный — пружина и хаптик срабатывают до того,
     // как карточка реально записана. Сеть догоняет фоном.
     void hapticTap();
@@ -100,7 +114,7 @@ export function SaveToCardsButton({
     );
     void hapticSuccess();
     onSave();
-  }, [disabled, onSave, saved, scale]);
+  }, [disabled, onSave, onUnsave, saved, scale]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],

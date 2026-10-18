@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "mode": "exact-home-poll-v2-overlay",
+  "projectId": "phraseman-ea0b3",
+  "releaseName": "projects/phraseman-ea0b3/releases/cloud.firestore",
+  "expectedLiveRulesetName": "projects/phraseman-ea0b3/rulesets/a0825b49-c444-4404-ac55-77ff58a9f8d6",
+  "expectedLiveReleaseUpdateTime": "2026-10-11T09:36:02.666200Z",
+  "expectedLiveSha256": "2e5cc2004b9ca95352ac8f3b2f73fdb26c2cb435ac6f091b02b4be2df25d5cbc",
+  "expectedOverlaySha256": "5ce1ff1c509304c211e5a2116245b5e9d5394eeacde15b590c6e56e30d2762bb",
+  "expectedAddedLines": 13
+}

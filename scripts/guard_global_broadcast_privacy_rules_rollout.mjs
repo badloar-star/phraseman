@@ -11,6 +11,10 @@ const {
   validateGlobalBroadcastRolloutConfig,
   verifyGlobalBroadcastPrivacyRollout,
 } = require('./global_broadcast_privacy_rollout_verifier.cjs');
+const {
+  MODE: HOME_POLL_MODE,
+  verifyHomePollV2RulesOverlay,
+} = require('./home_poll_v2_rules_overlay_verifier.cjs');
 const stages = [
   '1. Deploy safe functions and admin hosting',
   '2. Owner dry-run and idempotent scrub to zero unsafe documents',
@@ -23,6 +27,53 @@ function block(message, details = []) {
   process.stderr.write(`[global-broadcast-privacy] BLOCKED: ${message}\n`);
   if (details.length) process.stderr.write(`Failures: ${details.join('; ')}\n`);
   process.exit(1);
+}
+
+async function googleRulesGet(url, projectId) {
+  const functionsRequire = createRequire(path.join(repoRoot, 'functions', 'package.json'));
+  const { GoogleAuth } = functionsRequire('google-auth-library');
+  const auth = new GoogleAuth({ scopes: ['https://www.googleapis.com/auth/cloud-platform'] });
+  const client = await auth.getClient();
+  const response = await client.request({ url, headers: { 'x-goog-user-project': projectId } });
+  return response.data;
+}
+
+async function verifyExactHomePollOverlay() {
+  const modeArg = process.argv.slice(2).find((arg) => arg.startsWith('--mode='));
+  const projectArg = process.argv.slice(2).find((arg) => arg.startsWith('--project='));
+  if (modeArg !== `--mode=${HOME_POLL_MODE}`) block('exact Home Poll v2 overlay requires --mode=exact-home-poll-v2-overlay.');
+  const manifest = JSON.parse(fs.readFileSync(path.join(repoRoot, 'config', 'home-poll-v2-rules-overlay.json'), 'utf8'));
+  const projectId = projectArg?.slice('--project='.length);
+  if (projectId !== manifest.projectId) block('exact Home Poll v2 overlay project does not match the bound production project.');
+  if (process.env.FIRESTORE_EMULATOR_HOST) block('production Rules overlay cannot run with a Firestore emulator override.');
+  const release = await googleRulesGet(`https://firebaserules.googleapis.com/v1/projects/${projectId}/releases/cloud.firestore`, projectId);
+  const ruleset = await googleRulesGet(`https://firebaserules.googleapis.com/v1/${release.rulesetName}`, projectId);
+  const rulesFile = ruleset?.source?.files?.find((file) => file.name === 'firestore.rules') ?? ruleset?.source?.files?.[0];
+  if (!rulesFile?.content) block('released Rules API source is missing.');
+  const result = verifyHomePollV2RulesOverlay({
+    mode: HOME_POLL_MODE,
+    projectId,
+    manifest,
+    release,
+    liveSource: rulesFile.content,
+  });
+  if (!result.ok) block('exact Home Poll v2 overlay does not match the bound live release.', result.errors);
+  const outputDir = path.join(repoRoot, '.codex-tmp', 'handoff-134');
+  fs.mkdirSync(outputDir, { recursive: true });
+  const rulesPath = path.join(outputDir, 'poll-overlay-firestore.rules');
+  const configOutputPath = path.join(outputDir, 'poll-overlay-firebase.json');
+  fs.writeFileSync(rulesPath, result.overlaySource, 'utf8');
+  fs.writeFileSync(configOutputPath, JSON.stringify({ firestore: { rules: '.codex-tmp/handoff-134/poll-overlay-firestore.rules' } }, null, 2) + '\n', 'utf8');
+  process.stdout.write(`[home-poll-v2-rules] READY: live ruleset=${release.rulesetName} liveSha256=${manifest.expectedLiveSha256} overlaySha256=${manifest.expectedOverlaySha256} addedLines=13 output=${rulesPath}\n`);
+}
+
+if (process.argv.slice(2).some((arg) => arg.startsWith('--mode='))) {
+  try {
+    await verifyExactHomePollOverlay();
+    process.exit(0);
+  } catch (error) {
+    block(`cannot verify exact Home Poll v2 overlay: ${String(error)}`);
+  }
 }
 
 let readiness;

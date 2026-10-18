@@ -47,6 +47,24 @@ Guard fail-closed обращается к production Firestore только по
 пока хотя бы одно доказательство отсутствует. Не подменять доказательства
 предположением и не объединять этапы в broad/one-step профиль.
 
+### Узкое разрешение владельца: Home Polls v2, 18.10.2026
+
+Единственное исключение из глобальной готовности — явно запрошенный режим
+`--mode=exact-home-poll-v2-overlay` для 13 уже проверенных строк Home Polls v2.
+Он не меняет readiness-флаги и не принимает произвольный rules-файл: guard
+сам повторно читает текущий production release через Rules API, требует точные
+project/release/updateTime и SHA-256 живого исходника из
+`config/home-poll-v2-rules-overlay.json`, строит только фиксированный блок и
+проверяет SHA-256 результата, +13/-0 и обратимость до живого исходника.
+Любой drift живых правил, overlay, проекта, release или hash останавливает deploy.
+
+Разрешённая команда одна:
+`node scripts/deploy_home_poll_v2_rules_overlay.mjs --apply --confirm=DEPLOY_EXACT_HOME_POLL_V2_RULES`.
+Она вызывает обязательный guard с явным режимом непосредственно перед узким
+`firestore:rules` deploy для фиксированного проекта, а после deploy заново читает
+активный Rules API source и сверяет hash overlay. После успешного deploy режим
+автоматически становится неповторяемым: live hash уже не равен исходному hash.
+
 ## Формат evidence (заполняется только реальными данными)
 
 - `functionsStageEvidence`: `deployedAtMs`, SHA-256 внешнего deploy evidence,

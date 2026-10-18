@@ -10,8 +10,10 @@
  * 45 с (+ локальный набег с последнего чтения). Конфиг spend_cap_config/global — тоже в памяти 60 с. Порог и оценки — в конфиге.
  * Флаг paidDisabled ставит аварийный выключатель по бюджету Cloud Billing (spend_cap_billing_kill_switch.ts) или админ.
  *
- * Сбой чтения счётчика/конфига — пропуск с журналом (fail-open): потолок не должен ронять честный вызов при сбое базы; бюджет Billing
- * (слой 3) прикрывает и этот случай. Журнал: [SPEND-CAP].
+ * Сбои (Ревизор 3.116/3.117): пропуск (fail-open) — только при настоящей недоступности Firestore (gRPC UNAVAILABLE). Таймаут чтения
+ * суммы — берём последнюю сумму дня из памяти; её нет — отказ «попробуйте ещё раз». Бюджет Cloud Billing (слой 3) OpenAI НЕ
+ * прикрывает: счёт OpenAI идёт мимо Google, от него страхует только лимит расходов в кабинете OpenAI (его ставит владелец).
+ * Выше 80 % порога сумма перечитывается раз в 10 с, а не 45 с: перелёт за порог ограничен 10 секундами вызовов. Журнал: [SPEND-CAP].
  */
 import * as admin from 'firebase-admin';
 import { HttpsError } from 'firebase-functions/v2/https';
@@ -24,6 +26,9 @@ export const DEFAULT_DAILY_LIMIT_CENTS = 1500;
 const LOG = '[SPEND-CAP]';
 const CONFIG_TTL_MS = 60_000;
 const TOTAL_TTL_MS = 45_000;
+/** Выше этой доли порога сумма перечитывается чаще — перелёт ограничен 10 с вызовов, а не 45 с. */
+const NEAR_LIMIT_SHARE = 0.8;
+const NEAR_LIMIT_TOTAL_TTL_MS = 10_000;
 /** Потолок ожидания базы: счётчик не держит платный вызов дольше секунды; иначе — пропуск с журналом. */
 const DB_TIMEOUT_MS = 1_000;
 
@@ -112,8 +117,17 @@ async function loadConfig(db: FirebaseFirestore.Firestore, nowMs: number): Promi
   return state.config;
 }
 
-async function loadTotal(db: FirebaseFirestore.Firestore, dateKey: string, nowMs: number): Promise<number> {
-  if (state.totalDateKey === dateKey && nowMs - state.totalAtMs < TOTAL_TTL_MS) return state.totalCents + state.localSinceRead;
+/** Настоящая недоступность Firestore (gRPC UNAVAILABLE) — единственный случай пропуска. */
+function isFirestoreUnavailable(error: unknown): boolean {
+  const code = (error as { code?: unknown } | null)?.code;
+  return code === 14 || code === 'unavailable' || code === 'firestore/unavailable';
+}
+
+async function loadTotal(db: FirebaseFirestore.Firestore, dateKey: string, nowMs: number, limitCents: number): Promise<number> {
+  const cached = state.totalCents + state.localSinceRead;
+  // зачем (Ревизор 3.117): у порога кэш 45 с давал перелёт на 45 с вызовов всех инстансов — у края читаем раз в 10 с.
+  const ttl = cached >= limitCents * NEAR_LIMIT_SHARE ? NEAR_LIMIT_TOTAL_TTL_MS : TOTAL_TTL_MS;
+  if (state.totalDateKey === dateKey && nowMs - state.totalAtMs < ttl) return cached;
   const refs = Array.from({ length: SPEND_SHARD_COUNT }, (_, i) => db.collection(SPEND_DAILY_SHARDS_COLLECTION).doc(`${dateKey}_${i}`));
   const snaps = await withTimeout(db.getAll(...refs), 'total');
   state.totalCents = snaps.reduce((sum, snap) => sum + Number((snap.data() as { cents?: unknown } | undefined)?.cents ?? 0), 0);
@@ -156,10 +170,20 @@ export async function reserveDailySpend(input: Readonly<{
   const cents = config.estimateCentsByFn[input.fn] ?? estimateSpendCents(input);
   let total: number;
   try {
-    total = await loadTotal(db, dateKey, nowMs);
+    total = await loadTotal(db, dateKey, nowMs, config.dailyLimitCents);
   } catch (error: unknown) {
-    console.warn(LOG, JSON.stringify({ fn: input.fn, decision: 'fail_open', reason: 'total_read_failed', detail: error instanceof Error ? error.message.slice(0, 120) : String(error) }));
-    return null;
+    const detail = error instanceof Error ? error.message.slice(0, 120) : String(error);
+    if (isFirestoreUnavailable(error)) {
+      console.warn(LOG, JSON.stringify({ fn: input.fn, decision: 'fail_open', reason: 'firestore_unavailable', detail }));
+      return null;
+    }
+    if (state.totalDateKey !== dateKey) {
+      // зачем: таймаут — не повод пропускать платный вызов вслепую; суммы дня в памяти нет — отказ «попробуйте ещё раз».
+      console.warn(LOG, JSON.stringify({ fn: input.fn, decision: 'refused_busy', reason: 'total_read_failed_no_cache', detail }));
+      throw new HttpsError('unavailable', 'spend_cap_busy');
+    }
+    total = state.totalCents + state.localSinceRead;
+    console.warn(LOG, JSON.stringify({ fn: input.fn, decision: 'use_cached_total', reason: 'total_read_failed', detail, cents: Math.round(total * 100) / 100, ageMs: nowMs - state.totalAtMs }));
   }
   if (total + cents > config.dailyLimitCents) {
     console.warn(LOG, JSON.stringify({ fn: input.fn, decision: 'refused', reason: 'daily_limit', cents: Math.round(total * 100) / 100, limit: config.dailyLimitCents, date: dateKey }));
@@ -175,7 +199,9 @@ export async function reserveDailySpend(input: Readonly<{
     }, { merge: true }), 'increment');
     state.localSinceRead += cents;
   } catch (error: unknown) {
-    console.warn(LOG, JSON.stringify({ fn: input.fn, decision: 'fail_open', reason: 'increment_failed', detail: error instanceof Error ? error.message.slice(0, 120) : String(error) }));
+    // Порог уже проверен; не записали только счёт. Учитываем вызов в памяти инстанса, чтобы набег не потерялся совсем.
+    state.localSinceRead += cents;
+    console.warn(LOG, JSON.stringify({ fn: input.fn, decision: 'allowed_unrecorded', reason: 'increment_failed', cents, detail: error instanceof Error ? error.message.slice(0, 120) : String(error) }));
     return null;
   }
   return Object.freeze({ fn: input.fn, cents, dateKey });

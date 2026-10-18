@@ -79,10 +79,39 @@ test('флаг paidDisabled — отказ сразу; enabled:false — пот�
   await expect(reserveDailySpend({ db: disabled.db, fn: 't', kind: 'chat', nowMs: T0 })).resolves.toBeNull();
 });
 
-test('сбой чтения счётчика — пропуск (fail-open), вызов не роняется', async () => {
+test('сбои чтения суммы: UNAVAILABLE — пропуск; таймаут без суммы в памяти — отказ «занято»; с суммой — по памяти', async () => {
   const { db } = makeDb({ dailyLimitCents: 100 });
-  (db as unknown as { getAll: () => Promise<never> }).getAll = async () => { throw new Error('unavailable'); };
+  const holder = db as unknown as { getAll: (...a: unknown[]) => Promise<unknown> };
+  holder.getAll = async () => { throw Object.assign(new Error('14 UNAVAILABLE'), { code: 14 }); };
   await expect(reserveDailySpend({ db, fn: 't', kind: 'chat', nowMs: T0 })).resolves.toBeNull();
+  resetSpendCapStateForTest();
+  holder.getAll = async () => { throw new Error('spend_cap_timeout_total'); };
+  await expect(reserveDailySpend({ db, fn: 't', kind: 'chat', nowMs: T0 })).rejects.toMatchObject({ code: 'unavailable', message: 'spend_cap_busy' });
+  // Сумма дня уже была в памяти и у порога — таймаут не открывает дверь.
+  resetSpendCapStateForTest();
+  const near = makeDb({ dailyLimitCents: 1 });
+  await near.docs.set('spend_daily_shards/' + utcDateKey(T0) + '_0', { cents: 0.99 });
+  await reserveDailySpend({ db: near.db, fn: 't', kind: 'chat', model: 'gpt-4.1-nano', inTokens: 10, outTokens: 10, nowMs: T0 });
+  (near.db as unknown as { getAll: () => Promise<never> }).getAll = async () => { throw new Error('spend_cap_timeout_total'); };
+  await expect(reserveDailySpend({ db: near.db, fn: 't', kind: 'chat', nowMs: T0 + 60_000 })).rejects.toMatchObject({ message: 'daily_spend_cap' });
+});
+
+test('выше 80 % порога сумма перечитывается через 10 с, ниже — держится 45 с', async () => {
+  const { db, docs } = makeDb({ dailyLimitCents: 100 });
+  const reads: number[] = [];
+  const holder = db as unknown as { getAll: (...a: { path: string }[]) => Promise<unknown> };
+  const realGetAll = holder.getAll;
+  holder.getAll = async (...refs) => { reads.push(1); return realGetAll(...refs); };
+  const date = utcDateKey(T0);
+  docs.set(`spend_daily_shards/${date}_0`, { cents: 50 });
+  await reserveDailySpend({ db, fn: 't', kind: 'tts', nowMs: T0 });
+  await reserveDailySpend({ db, fn: 't', kind: 'tts', nowMs: T0 + 15_000 });
+  expect(reads.length).toBe(1); // 50 % — кэш 45 с
+  docs.set(`spend_daily_shards/${date}_0`, { cents: 85 });
+  await reserveDailySpend({ db, fn: 't', kind: 'tts', nowMs: T0 + 46_000 });
+  expect(reads.length).toBe(2);
+  await reserveDailySpend({ db, fn: 't', kind: 'tts', nowMs: T0 + 57_000 });
+  expect(reads.length).toBe(3); // 85 % — перечитали через 11 с
 });
 
 test('уведомление бюджета Billing: ≥100 % выключает платное, меньше — нет, мусор — игнор', () => {

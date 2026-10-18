@@ -8,6 +8,7 @@ import { defineSecret, defineString } from 'firebase-functions/params';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { callerIpFromRawRequest, ipRateKey } from './caller_rate_window';
 import { maskEmailForRecoveryHint } from './auth_identity';
 import {
   ACCOUNT_DELETE_AUTH_MARKERS,
@@ -165,13 +166,14 @@ function recoveryLog(outcome: string, extra: Record<string, unknown> = {}): void
   console.log(JSON.stringify({ event: 'auth_recovery', tag: '[AUTH-RECOVERY]', outcome, ...extra }));
 }
 
-/** IP вызывающего: первый адрес из x-forwarded-for, иначе rawRequest.ip; нет — пусто (лимит тогда только по uid). */
+/**
+ * IP вызывающего для лимита: общий помощник caller_rate_window — правый адрес x-forwarded-for без адресов инфраструктуры,
+ * IPv6 сведён к /64; нет — пусто (лимит тогда только по uid).
+ * зачем (Ревизор 3.116): первый адрес цепочки клиент пишет сам — по нему лимит обходился подменой заголовка.
+ */
 export function recoveryCallerIp(rawRequest: unknown): string {
-  const req = (rawRequest ?? {}) as { headers?: Record<string, unknown>; ip?: unknown };
-  const forwarded = req.headers?.['x-forwarded-for'];
-  const first = (Array.isArray(forwarded) ? String(forwarded[0] ?? '') : String(forwarded ?? '')).split(',')[0].trim();
-  const ip = first || (typeof req.ip === 'string' ? req.ip.trim() : '');
-  return ip.slice(0, 64);
+  const ip = callerIpFromRawRequest(rawRequest);
+  return ip ? ipRateKey(ip) : '';
 }
 
 export async function consumeRecoveryCallerRate(

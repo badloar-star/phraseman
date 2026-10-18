@@ -1211,6 +1211,18 @@
   ],
   "fieldOverrides": [
     {
+      "collectionGroup": "callable_rate_windows",
+      "fieldPath": "expiresAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
+      "collectionGroup": "spend_daily_shards",
+      "fieldPath": "expiresAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
       "collectionGroup": "anon_relink_audit",
       "fieldPath": "expiresAt",
       "ttl": true,

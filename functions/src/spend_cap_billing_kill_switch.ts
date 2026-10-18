@@ -7,7 +7,9 @@
  * отвечают «на сегодня всё». Снимает флаг владелец (поле paidDisabled в spend_cap_config/global → false), не автоматика:
  * иначе перерасход повторился бы на следующие сутки.
  *
- * Тему и бюджет создаёт владелец в консоли — docs/work/tasks/spend-cap-billing-budget-setup-2026-10-18.md. Имя темы: billing-budget-alerts.
+ * Тему billing-budget-alerts создаёт сама выкладка (триггер Pub/Sub функции v2) — ручной шаг для выкладки не нужен. Бюджет и его связь
+ * с темой создаёт владелец в консоли — docs/work/tasks/spend-cap-billing-budget-setup-2026-10-18.md.
+ * Флаг здесь только ставится, никогда не снимается: уведомления ниже 100 % его не трогают (Ревизор 3.117 — «не включается сам»).
  * Журнал: [SPEND-CAP] step=billing_alert.
  */
 import * as admin from 'firebase-admin';

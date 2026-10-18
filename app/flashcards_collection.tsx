@@ -68,6 +68,7 @@ import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './
 import { packDeckLevel } from '../components/packs/packDeckModel';
 import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
 import { VideoSetView } from './flashcards/VideoSetView';
+import { useVideoCardSave, VideoCardSaveContext } from './flashcards/use_video_card_save';
 import { togglePackCardSaved } from './flashcards/save_pack_card';
 import { schedulePublishedPackCardRemoval, type PublishedPackCardRemovalOutcome } from './community_packs/publishedPackCardRemoval';
 import { removeCardFromLocalPack, restoreCardToLocalPack, type LocalPackCardSnapshot } from './community_packs/localPackCardOps';
@@ -770,6 +771,8 @@ export default function FlashcardsScreen() {
    */
   const [videoMoment, setVideoMoment] = useState<VideoMoment | null>(null);
   const videoMomentPack = packDeeplink && packSupportsVideoMoments(currentMarketPack) ? currentMarketPack : null;
+  // зачем (владелец 18.10): «Сохранить» на каждой карточке набора из видео — сохранение кладём в контекст, строки списка читают его (кнопка только в наборах из видео).
+  const videoPackCardSave = useVideoCardSave({ lang, packLanguage: currentMarketPack?.packLanguage, sourceTitle: currentMarketPack ? packTitleForInterface(currentMarketPack, strLang) : undefined, enabled: !!videoMomentPack });
   const openVideoMoment = useCallback((card: CardItem) => {
     const moment = resolveVideoMoment(videoMomentPack, card);
     if (!moment) return;
@@ -1784,6 +1787,7 @@ export default function FlashcardsScreen() {
             activeCat={activeCat}
           />
         ) : (
+          <VideoCardSaveContext.Provider value={videoMomentPack ? videoPackCardSave : null}>
           <CollectionListView
             cards={listCards}
             hiddenByLimitCount={hiddenByLimitCount}
@@ -1828,6 +1832,7 @@ export default function FlashcardsScreen() {
             onOpenVideoMoment={videoMomentPack ? openVideoMoment : null}
             videoMomentLabel={videoMomentLabel}
           />
+          </VideoCardSaveContext.Provider>
         )}
 
         </>)}

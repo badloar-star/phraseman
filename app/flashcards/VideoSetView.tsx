@@ -29,6 +29,8 @@ import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import type { FlashcardMarketPack } from './marketplace';
 import { formatDuration, openVideo, packVideoProgress } from './VideoPackRow';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
+import { VideoCardSaveButton } from '../../components/cards-grid/VideoCardSaveButton';
+import { useVideoCardSave, videoCardSaveLabels } from './use_video_card_save';
 
 type Props = Readonly<{
   pack: FlashcardMarketPack;
@@ -105,6 +107,9 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
     DebugLogger.info('[VIDEO-PHRASE-JUMP]', `открываю видео: набор=${pack.id} ролик=${String(pack.videoId ?? '')} карточка=${card.id} старт=${String(card.videoStartSec)}с`);
     onOpenMoment(card);
   }, [onOpenMoment, pack.id, pack.videoId]);
+  // зачем (владелец 18.10): сохранение отдельной карточки набора из видео (мгновенно, откат при отказе, без двойных тапов).
+  const cardSave = useVideoCardSave({ lang, packLanguage: pack.packLanguage, sourceTitle: title });
+  const saveLabels = useMemo(() => videoCardSaveLabels(lang), [lang]);
   const videoId = String(pack.videoId ?? '').trim();
   const thumbUrl = videoId ? `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/hqdefault.jpg` : null;
   const count = cards.length > 0 ? cards.length : pack.cardCount;
@@ -197,9 +202,23 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
                       <Text style={[styles.stampText, { color: g.text }]}>{time}</Text>
                     </View>
                   ) : <View />}
-                  <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={6} onPress={() => onSpeak(card.en)} style={({ pressed }) => [styles.vol, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }, pressed && styles.pressed]}>
-                    <Ionicons name="volume-high" size={16} color={g.text} />
-                  </Pressable>
+                  {/* зачем (владелец 18.10): «Сохранить» на КАЖДОЙ карточке из видео — только те, что человек сам хочет, а не весь набор. */}
+                  <View style={styles.rowActions}>
+                    <VideoCardSaveButton
+                      testID={`video-set-save-${card.id}`}
+                      saved={cardSave.isSaved(card)}
+                      onPress={() => cardSave.toggle(card)}
+                      saveLabel={saveLabels.save}
+                      savedLabel={saveLabels.saved}
+                      ink={g.text}
+                      savedInk={g.accentText}
+                      backgroundColor={g.dividerTone}
+                      boxShadow={nestedBoxShadow(g)}
+                    />
+                    <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={6} onPress={() => onSpeak(card.en)} style={({ pressed }) => [styles.vol, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }, pressed && styles.pressed]}>
+                      <Ionicons name="volume-high" size={16} color={g.text} />
+                    </Pressable>
+                  </View>
                 </View>
                 <Text style={[styles.phrase, { color: g.text }]}>{card.en}</Text>
                 {back ? <Text style={[styles.tr, { color: g.secondary }]}>{back}</Text> : null}
@@ -260,6 +279,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   stamp: { minHeight: 26, borderRadius: 13, paddingLeft: 8, paddingRight: 10, flexDirection: 'row', alignItems: 'center', gap: 5 },
   stampText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   vol: { width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' },
+  rowActions: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   phrase: { marginTop: 10, fontSize: 21, lineHeight: 27, fontWeight: '600' },
   tr: { marginTop: 3, fontSize: 16, lineHeight: 21 },
 });

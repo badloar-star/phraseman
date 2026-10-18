@@ -1,4 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { fitPhraseFontSize } from './fit_phrase_font';
+import { VideoCardSaveButton } from '../../components/cards-grid/VideoCardSaveButton';
+import { useVideoCardSaveContext } from './use_video_card_save';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../../components/ThemeContext';
 import { FlowText } from '../../components/text-integrity/FlowText';
@@ -266,7 +269,7 @@ function FlashcardListItemImpl({
   /** E7: ряд действий (редактировать / удалить) в деталях — детали появляются даже без описания. */
   const hasDetailsActions = !!(onEditCard || onDeleteFromDetails);
   const hasDetails = !isModernAbbrevCard && (cardHasDetails(item) || hasDetailsActions);
-  const { height: winH } = useWindowDimensions();
+  const { width: winW, height: winH } = useWindowDimensions();
   // зачем: на низких экранах (iPhone SE 667pt, Android 360x800) текст фразы почти
   // не ужимался — uiScale в ThemeContext считается от ШИРИНЫ, а она у телефонов
   // почти одинаковая (360-430 против эталона 390) и даёт всего -3%. Короткая у
@@ -587,6 +590,7 @@ function FlashcardListItemImpl({
   // зачем: D131 — кнопка «к моменту ролика» есть ТОЛЬКО у фразы с таймкодом в
   // наборе из видео. Без транскрипта фраза выглядит как обычная карточка.
   const videoMomentSec = onOpenVideoMoment && typeof item.videoStartSec === 'number' ? item.videoStartSec : null;
+  const videoCardSave = useVideoCardSaveContext();
   const openVideoMoment = useCallback(() => {
     if (!onOpenVideoMoment) {
       console.warn(`[VIDEO-SEEK] тап по моменту ${item.id}: обработчика нет`);
@@ -609,6 +613,11 @@ function FlashcardListItemImpl({
   const isDeleting = deletingId === item.id;
   /** Область під шапкою: EN + IPA вміщаються за рахунок, без скролу */
   const frontTextMaxH = Math.max(92, cardHeight - 74);
+  // зачем (владелец 18.10, координатор 10:10): длинная фраза (особенно из видео) должна ПОМЕЩАТЬСЯ на карточку — кегль уменьшается расчётом по длине (до 14), перенос по словам, без «…» и без прокрутки;
+  // короткие фразы и обычные карточки получают прежний базовый размер без изменений.
+  const faceTextWidth = Math.max(120, winW - 92);
+  const frontPhraseSize = fitPhraseFontSize({ text: item.en, baseSize: cardFont(f.h1 + 2, 17), widthPx: faceTextWidth, maxHeightPx: frontTextMaxH - 16 - (item.transcription?.trim() ? Math.round(24 * cardScale) : 0) });
+  const backPhraseSize = fitPhraseFontSize({ text: tr, baseSize: cardFont(f.h1 + 2, 17), widthPx: faceTextWidth, maxHeightPx: frontTextMaxH - 8 });
   const overlayOpacity = getOverlayAnim(item.id);
   const delAnim = getDeleteAnim(item.id);
   const overlayBtnScale = overlayOpacity.interpolate({ inputRange: [0, 0.6, 1], outputRange: [0.7, 1.05, 1] });
@@ -847,7 +856,7 @@ function FlashcardListItemImpl({
                       maxFontSizeMultiplier={1.35}
                       style={{
                         color: t.textPrimary,
-                        fontSize: cardFont(f.h1 + 2, 17),
+                        fontSize: frontPhraseSize,
                         fontWeight: '700',
                         textAlign: 'center',
                         width: '100%',
@@ -975,7 +984,7 @@ function FlashcardListItemImpl({
                   ) : (
                     <Text
                       maxFontSizeMultiplier={1.35}
-                      style={{ color: t.textPrimary, fontSize: cardFont(f.h1 + 2, 17), fontWeight: '700', textAlign: 'center', width: '100%' }}
+                      style={{ color: t.textPrimary, fontSize: backPhraseSize, fontWeight: '700', textAlign: 'center', width: '100%' }}
                     >
                       {tr}
                     </Text>
@@ -1110,6 +1119,23 @@ function FlashcardListItemImpl({
                 <Ionicons name="play" size={12} color={t.accentText} />
                 <Text style={[styles.videoMomentText, { color: t.accentText }]}>{formatVideoMoment(videoMomentSec)}</Text>
               </TouchableOpacity>
+            </View>
+          ) : null}
+
+          {/* зачем (владелец 18.10): «Сохранить» на КАЖДОЙ карточке из видео — только нужные, а не весь набор; кнопка есть, когда экран набора из видео положил сохранение в контекст. */}
+          {videoCardSave && !savedGlass ? (
+            <View onStartShouldSetResponder={() => true} style={{ position: 'absolute', bottom: 8, right: 10, zIndex: 7 }}>
+              <VideoCardSaveButton
+                testID={`fc-video-card-save-${item.id}`}
+                saved={videoCardSave.isSaved(item)}
+                onPress={() => videoCardSave.toggle(item)}
+                saveLabel={videoCardSave.labels.save}
+                savedLabel={videoCardSave.labels.saved}
+                ink={t.accentText}
+                backgroundColor={`${t.bgSurface}F0`}
+                boxShadow={nestedBoxShadow(g)}
+                size={32}
+              />
             </View>
           ) : null}
 

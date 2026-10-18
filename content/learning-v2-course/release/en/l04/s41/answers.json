@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-41:i01",
-    "correctText": "It is accurate.",
+    "correctText": "en:lesson-04:session-41:i01:p1=cashpoint\nen:lesson-04:session-41:i01:p2=postbox\nen:lesson-04:session-41:i01:p3=vending machine\nen:lesson-04:session-41:i01:p4=newsagent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:word:cashpoint",
+    "correctText": "cashpoint",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i02",
     "correctText": "cashpoint",
-    "correctResponseId": "en:lesson-04:session-41:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-41:i03",
-    "correctText": "cashpoint",
-    "correctResponseId": "en:lesson-04:session-41:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-41:i04",
-    "correctText": "en:lesson-04:session-41:i04:p1=cashpoint\nen:lesson-04:session-41:i04:p2=accurate\nen:lesson-04:session-41:i04:p3=kitchen\nen:lesson-04:session-41:i04:p4=doorbell",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-41:i03",
+    "correctText": "There’s a cashpoint next to the bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:word:postbox",
+    "correctText": "postbox",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i04",
+    "correctText": "postbox",
+    "correctResponseId": "en:lesson-04:session-41:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-41:i05",
-    "correctText": "This is a cashpoint.",
+    "correctText": "There’s a postbox in the yard.",
+    "correctResponseId": "en:lesson-04:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:word:vending machine",
+    "correctText": "vending machine",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i06",
-    "correctText": "He is in the kitchen.",
+    "correctText": "vending machine",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i07",
-    "correctText": "It's accurate.",
+    "correctText": "There’s a vending machine next to the lift.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:word:newsagent",
+    "correctText": "newsagent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i08",
-    "correctText": "isn't",
+    "correctText": "newsagent",
     "correctResponseId": "en:lesson-04:session-41:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-41:i09",
-    "correctText": "The cashpoint is next to the shop.",
-    "correctResponseId": "en:lesson-04:session-41:i09:r1"
+    "correctText": "There’s a newsagent near the bus stop.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i10",
-    "correctText": "en:lesson-04:session-41:i10:p1=cashpoint\nen:lesson-04:session-41:i10:p2=accurate\nen:lesson-04:session-41:i10:p3=kitchen\nen:lesson-04:session-41:i10:p4=doorbell",
+    "correctText": "en:lesson-04:session-41:i10:p1=newsagent\nen:lesson-04:session-41:i10:p2=vending machine\nen:lesson-04:session-41:i10:p3=bench\nen:lesson-04:session-41:i10:p4=gate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i11",
-    "correctText": "There aren't any cashpoints.",
-    "correctResponseId": null
+    "correctText": "There are some benches near the cashpoint.",
+    "correctResponseId": "en:lesson-04:session-41:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-41:i12",
-    "correctText": "There is a cashpoint.",
-    "correctResponseId": null
+    "correctText": "There’s",
+    "correctResponseId": "en:lesson-04:session-41:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-41:i13",
-    "correctText": "Is there a cashpoint?",
+    "correctText": "There’s a postbox next to the cashpoint.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-41:i14:r1"
+    "correctText": "There’s a vending machine here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i15",
-    "correctText": "That is a cashpoint.",
-    "correctResponseId": "en:lesson-04:session-41:i15:r1"
+    "correctText": "There’s a newsagent next to the cashpoint.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i16",
-    "correctText": "en:lesson-04:session-41:i16:p1=cashpoint\nen:lesson-04:session-41:i16:p2=accurate\nen:lesson-04:session-41:i16:p3=kitchen\nen:lesson-04:session-41:i16:p4=doorbell",
+    "correctText": "en:lesson-04:session-41:i16:p1=cashpoint\nen:lesson-04:session-41:i16:p2=postbox\nen:lesson-04:session-41:i16:p3=vending machine\nen:lesson-04:session-41:i16:p4=newsagent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-41:i17",
-    "correctText": "There isn't a cashpoint.",
+    "correctText": "There’s a cashpoint near here.",
     "correctResponseId": null
   }
 ]

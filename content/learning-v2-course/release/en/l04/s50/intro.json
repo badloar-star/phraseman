@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-50",
   "learningOutcomeByLocale": {
-    "ru": "назвать реку, описать расположение и сказать, что способ даёт результат",
-    "uk": "назвати річку, описати розташування й сказати, що спосіб дає результат"
+    "ru": "самому задать вопрос Is there a…? или Are there…? и отдельно ответить коротко",
+    "uk": "самому поставити запитання Is there a…? або Are there…? і окремо відповісти коротко"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вода течёт",
-        "uk": "Вода тече"
+        "ru": "Новое место для пробежки",
+        "uk": "Нове місце для пробіжки"
       },
       "bodyByLocale": {
-        "ru": "`river` — «река», естественный водный поток. В прошлом занятии был искусственный канал, `canal`; теперь река, `river`. Одна река — `a river`. `This is a river` — «Это река». Река течёт без расписания: в отличие от автобуса, её не нужно ждать на остановке.",
-        "uk": "`river` — «річка», природний водний потік. У минулому занятті був штучний канал, `canal`; тепер річка, `river`. Одна річка — `a river`. `This is a river` — «Це річка». Річка тече без розкладу: на відміну від автобуса, її не потрібно чекати на зупинці."
+        "ru": "Вы недавно переехали и хотите бегать по утрам рядом с водой. Соседка говорит, что где-то в городе течёт большая вода, длинная, как лента, и впадает в море. river — «река». Спросите у неё про одну реку: Is there a river near the park? — «Есть ли река возле парка?»",
+        "uk": "Ви нещодавно переїхали й хочете бігати вранці поряд із водою. Сусідка каже, що десь у місті тече велика вода, довга, як стрічка, і впадає в море. river — «річка». Запитайте в неї про одну річку: Is there a river near the park? — «Чи є річка біля парку?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-50:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите одну реку рядом.",
-          "uk": "Назвіть одну річку поруч."
+          "ru": "Вы ищете воду для пробежки. Спросите соседку, есть ли река возле парка.",
+          "uk": "Ви шукаєте воду для пробіжки. Запитайте сусідку, чи є річка біля парку."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-50:intro1:r1",
-              "text": "This is a river."
+              "text": "Is there a river near the park?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro1:r2",
-              "text": "This is river."
+              "text": "Are there a river near the park?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro1:r3",
-              "text": "These are rivers."
+              "text": "Is there river near the park?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-50:intro1:r1",
-              "text": "This is a river."
+              "text": "Is there a river near the park?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro1:r2",
-              "text": "This is river."
+              "text": "Are there a river near the park?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro1:r3",
-              "text": "These are rivers."
+              "text": "Is there river near the park?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите одну реку рядом.",
-          "uk": "Назвіть одну річку поруч."
+          "ru": "Вы ищете воду для пробежки. Спросите соседку, есть ли река возле парка.",
+          "uk": "Ви шукаєте воду для пробіжки. Запитайте сусідку, чи є річка біля парку."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где встречаемся",
-        "uk": "Де зустрічаємося"
+        "ru": "Оранжевые пятна",
+        "uk": "Помаранчеві плями"
       },
       "bodyByLocale": {
-        "ru": "`cinema` — «кинотеатр», `bus shelter` — «остановочный павильон». `The cinema is next to the river` — «Кинотеатр рядом с рекой». `He is in the bus shelter` — «Он в остановочном павильоне». `Is there a cinema?` — «Есть кинотеатр?» Один кинотеатр или павильон требует `is`.",
-        "uk": "`cinema` — «кінотеатр», `bus shelter` — «зупинковий павільйон». `The cinema is next to the river` — «Кінотеатр поруч із річкою». `He is in the bus shelter` — «Він у зупинковому павільйоні». `Is there a cinema?` — «Є кінотеатр?» Один кінотеатр чи павільйон потребує `is`."
+        "ru": "Вы вышли на тротуар у реки и издали видите на нём оранжевые пятна. Навстречу бежит другой бегун. Это пластиковые остроконечные колпаки, которыми закрывают проход. cone — «конус». Их несколько, поэтому: Are there cones on the pavement? — «На тропе есть конусы?»",
+        "uk": "Ви вийшли на тротуар біля річки й здалеку бачите на ньому помаранчеві плями. Назустріч біжить інший бігун. Це пластикові гостроверхі ковпаки, якими закривають прохід. cone — «конус». Їх кілька, тому: Are there cones on the pavement? — «На стежці є конуси?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-50:intro2:q",
         "promptByLocale": {
-          "ru": "Друг внутри остановочного павильона. Выберите описание.",
-          "uk": "Друг усередині зупинкового павільйону. Виберіть опис."
+          "ru": "Вы видите на тротуаре оранжевые пятна. Спросите встречного бегуна, есть ли на тротуаре конусы.",
+          "uk": "Ви бачите на тротуарі помаранчеві плями. Запитайте зустрічного бігуна, чи є на тротуарі конуси."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-50:intro2:r1",
-              "text": "He is in the bus shelter."
+              "text": "Are there cones on the pavement?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro2:r2",
-              "text": "He is next to the bus shelter."
+              "text": "Is there cones on the pavement?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro2:r3",
-              "text": "He are in the bus shelter."
+              "text": "Are there cone on the pavement?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-50:intro2:r1",
-              "text": "He is in the bus shelter."
+              "text": "Are there cones on the pavement?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro2:r2",
-              "text": "He is next to the bus shelter."
+              "text": "Is there cones on the pavement?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro2:r3",
-              "text": "He are in the bus shelter."
+              "text": "Are there cone on the pavement?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг внутри остановочного павильона. Выберите описание.",
-          "uk": "Друг усередині зупинкового павільйону. Виберіть опис."
+          "ru": "Вы видите на тротуаре оранжевые пятна. Спросите встречного бегуна, есть ли на тротуаре конусы.",
+          "uk": "Ви бачите на тротуарі помаранчеві плями. Запитайте зустрічного бігуна, чи є на тротуарі конуси."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Даёт результат",
-        "uk": "Дає результат"
+        "ru": "Как обойти",
+        "uk": "Як обійти"
       },
       "bodyByLocale": {
-        "ru": "`effective` — «эффективный, действенный»: способ даёт нужный результат. Вы объясняете дорогу через знакомые ориентиры, и люди находят место: `It is effective`, короче `It’s effective`. Это не просто красивый способ: он помогает достичь цели.",
-        "uk": "`effective` — «ефективний, дієвий»: спосіб дає потрібний результат. Ви пояснюєте дорогу через знайомі орієнтири, і люди знаходять місце: `It is effective`, коротше `It’s effective`. Це не просто гарний спосіб: він допомагає досягти мети."
+        "ru": "Бегун отвечает, что тропу закрыли, и вы просите подсказать, как перейти на другой берег. Он вспоминает узкий мост, по которому ходят только пешком, без машин. footbridge — «пешеходный мостик». Спросите: Is there a footbridge near the cafe? — «Есть ли мостик возле кафе?»",
+        "uk": "Бігун відповідає, що стежку закрили, і ви просите підказати, як перейти на інший берег. Він згадує вузький міст, яким ходять лише пішки, без машин. footbridge — «пішохідний місток». Запитайте: Is there a footbridge near the cafe? — «Чи є місток біля кафе?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-50:intro3:q",
         "promptByLocale": {
-          "ru": "Способ помогает людям находить место. Скажите «Это эффективно» с сокращением.",
-          "uk": "Спосіб допомагає людям знаходити місце. Скажіть «Це ефективно» зі скороченням."
+          "ru": "Вы ищете, как перейти на другой берег. Спросите бегуна, есть ли пешеходный мостик возле кафе.",
+          "uk": "Ви шукаєте, як перейти на інший берег. Запитайте бігуна, чи є пішохідний місток біля кафе."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-50:intro3:r1",
-              "text": "It's effective."
+              "text": "Is there a footbridge near the cafe?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro3:r2",
-              "text": "It's ineffective."
+              "text": "Are there a footbridge near the cafe?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro3:r3",
-              "text": "It are effective."
+              "text": "Is there a footbridge the cafe?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-50:intro3:r1",
-              "text": "It's effective."
+              "text": "Is there a footbridge near the cafe?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro3:r2",
-              "text": "It's ineffective."
+              "text": "Are there a footbridge near the cafe?"
             },
             {
               "responseId": "en:lesson-04:session-50:intro3:r3",
-              "text": "It are effective."
+              "text": "Is there a footbridge the cafe?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Способ помогает людям находить место. Скажите «Это эффективно» с сокращением.",
-          "uk": "Спосіб допомагає людям знаходити місце. Скажіть «Це ефективно» зі скороченням."
+          "ru": "Вы ищете, как перейти на другой берег. Спросите бегуна, есть ли пешеходный мостик возле кафе.",
+          "uk": "Ви шукаєте, як перейти на інший берег. Запитайте бігуна, чи є пішохідний місток біля кафе."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7abd2ffcf0d0cf5aaebae69777c219dfcd461922371740a4f2c3ce676c1e10af"
+  "introFingerprint": "fd8505acdce6c8ca87d65e30faf3ff9e6e79abb5e6fc94320f770d1632fb0dfc"
 }

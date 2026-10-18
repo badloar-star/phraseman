@@ -1,137 +1,152 @@
-# Англійська · Урок 4 · Заняття 47 — Після вечері
+# Англійська · Урок 4 · Заняття 47 — Залишки в холодильнику
 
-**Ситуація.** Після вечері ви обговорюєте їжу, що залишилася, і варіант на завтра. Поруч кілька ресторанів, а господар будинку відповідає на запитання про опалювальний котел.
+**Ситуація.** Ви їдете й передаєте сусідові вміст холодильника: що залишилося, чого немає і де що стоїть. Нової граматики немає: ствердження, запитання, заперечення й місце йдуть упереміш, і ви самі вибираєте потрібне.
 
-**Що ви опануєте:** назвати їжу, що залишилася, повідомити про її наявність і оцінити прийнятність варіанта
-**Нові слова:** leftover
+**Що ви опануєте:** самому вибрати: сказати, що є, запитати, сказати, що немає, або назвати місце
+**Нові слова:** leftovers, lasagne, pie, curry
+**Повертаються:** fridge, oven, worktop, shelf, table, kitchen, soup, rice, salad, omelette, juice
 
 ---
 
 ## Інтро 1
 
-### Їжа залишилася
+### Вчорашня вечеря
 
-`leftover` — «залишок їжі». Коли говорять про порцію чи кілька продуктів, що залишилися після їжі, зазвичай використовують множину `leftovers` — «залишки їжі». `There are some leftovers` — «Залишилася їжа». З `leftovers` потрібне `are`. Вечеря закінчилася, а їжа вирішила залишитися на другий сезон.
+Вечеря була вчора, а сьогодні ви їдете. У холодильнику стоять контейнери з їжею, яку ніхто не доїв. Викидати шкода, нехай сусід доїсть. leftovers — «залишки їжі». Їх там кілька: There are some leftovers in the fridge — «У холодильнику є залишки їжі».
 
-**Повідомте, що залишилася їжа, використовуючи leftovers.**
+**Сусід забирає ключі. Скажіть йому, що в холодильнику є залишки їжі.**
 
-- ✅ **There are some leftovers.**
-- ❌ There is some leftovers. — *`leftovers` — множина: `are`.*
-- ❌ There aren’t any leftovers. — *Це означає, що нічого не залишилося; тут їжа є.*
+- ✅ **There are some leftovers in the fridge.**
+- ❌ There is some leftovers in the fridge. — *Залишки — це кілька порцій, тому потрібно There are, а не There is.*
+- ❌ There are some leftovers on the fridge. — *Усередині холодильника кажуть in the fridge, а не on.*
 
 ---
 
 ## Інтро 2
 
-### Що поруч
+### Голодний сусід
 
-`restaurants` — «ресторани», `boiler` — «опалювальний котел». `The restaurants are next to the hotel` — «Ресторани поруч із готелем». `Is there a boiler?` — «Є опалювальний котел?» `There isn’t a boiler` — «Опалювального котла немає». Кілька ресторанів — `are`, один котел — `is`.
+Сусід зголоднів після роботи й шукає, що з’їсти. Ви згадуєте запечену страву з шарів тіста, м’яса й сиру: вона залишилася в духовці. lasagne — «лазанья». Її не рахують поштучно, тому в запитанні ставлять any: Is there any lasagne in the oven?
 
-**Ресторани поруч із готелем. Виберіть опис.**
+**Сусід хоче їсти. Запитайте його, чи залишилася лазанья в духовці.**
 
-- ✅ **The restaurants are next to the hotel.**
-- ❌ The restaurants is next to the hotel. — *Кілька ресторанів: `The restaurants are`.*
-- ❌ The restaurants are in the hotel. — *`in` — усередині; тут поруч: `next to`.*
+- ✅ **Is there any lasagne in the oven?**
+- ❌ Is there some lasagne in the oven? — *У запитанні про наявність ставлять any, а не some.*
+- ❌ Are there any lasagne in the oven? — *Лазанья — одна страва без рахунку, тому Is there, а не Are there.*
 
 ---
 
 ## Інтро 3
 
-### Можна прийняти
+### Куди зник пиріг
 
-`acceptable` — «прийнятний»: варіант відповідає вимогам, його можна прийняти, навіть якщо він не ідеальний. `It is acceptable` — «Це прийнятно», коротше `It’s acceptable`. Наприклад, ви обговорюєте час зустрічі: запропонований час вас влаштовує.
+Сусід питає про пиріг, який ви купили вчора ввечері в пекарні. Ви заглядаєте в духовку, на підвіконня й на полицю: пирога ніде немає. pie — «пиріг». Він один, а «немає» сказано один раз: There isn’t a pie in the kitchen — «На кухні немає пирога».
 
-**Запропонований час зустрічі вас влаштовує. Скажіть «Це прийнятно» зі скороченням.**
+**Сусід чекає на відповідь. Скажіть йому, що на кухні немає пирога.**
 
-- ✅ **It's acceptable.**
-- ❌ It's unacceptable. — *`unacceptable` — неприйнятно; тут `acceptable`.*
-- ❌ It are acceptable. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **There isn’t a pie in the kitchen.**
+- ❌ There isn’t no pie in the kitchen. — *Слова isn’t уже достатньо для «немає». Друге заперечення no не потрібне.*
+- ❌ There aren’t a pie in the kitchen. — *Пиріг один, тому потрібно isn’t, а не aren’t.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Варіант вас влаштовує. Скажіть «Це прийнятно» без скорочення**
-<!-- interaction_id: en:lesson-04:session-47:i01; family: phrase_builder -->
-Плитки: `acceptable` `is` `It` `are` → **It is acceptable.**
-*(плитка `are` зайва: тут потрібно `is` — `It is acceptable.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-47:i01; family: speed_match -->
+leftovers — залишки їжі · lasagne — лазанья · pie — пиріг · curry — карі
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-47:i02; family: listen_choose -->
-🔊 *leftover* → **leftover** · leftovers · boiler
-- leftovers — *У записі перше слово — `leftover`, а в цьому варіанті — `leftovers`.*
-- boiler — *У записі перше слово — `leftover`, а в цьому варіанті — `boiler`.*
+**2 · Картка слова — leftovers**
+<!-- interaction_id: en:lesson-04:session-47:word:leftovers; family: word_card -->
+> **leftovers** — залишки їжі. There are some leftovers on the table. — «На столі є залишки їжі». Про їжу, яку приготували, але не доїли.
 
-**3 · Виберіть словникову форму іменника «залишок їжі»**
-<!-- interaction_id: en:lesson-04:session-47:i03; family: context_gap_grammar -->
-___ → **leftover** · pantry · freezer
-- pantry — *`pantry` — комора; залишок їжі — `leftover`.*
-- freezer — *`freezer` — морозильник; залишок їжі — `leftover`.*
+**3 · Сусід показує в холодильнику контейнери з їжею, яку не доїли, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-47:i02; family: scripted_repeat_compare -->
+🎙 **leftovers**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-47:i04; family: speed_match -->
-leftover — залишок їжі · acceptable — прийнятний · restaurants — ресторани · boiler — опалювальний котел
+**4 · Сусід записує. Скажіть йому повною фразою: на стільниці є залишки їжі**
+<!-- interaction_id: en:lesson-04:session-47:i03; family: phrase_builder -->
+Плитки: `leftovers` `some` `on` `the` `worktop` `There` `are` `is` → **There are some leftovers on the worktop.**
+*(плитка `is` зайва: тут потрібно `are` — `There are some leftovers on the worktop.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-47:i05; family: listen_build_dictation -->
-🔊 *There are some leftovers.* Плитки: `leftovers` `some` `are` `There` `is` → **There are some leftovers.**
-*(плитка `is` зайва: тут потрібно `are` — `There are some leftovers.`)*
+**5 · Картка слова — lasagne**
+<!-- interaction_id: en:lesson-04:session-47:word:lasagne; family: word_card -->
+> **lasagne** — лазанья. There is some lasagne on the shelf. — «На полиці є лазанья». Про запечену страву з шарів тіста, м’яса й сиру.
 
-**6 · Ресторани поруч із готелем. Скажіть, де вони**
-<!-- interaction_id: en:lesson-04:session-47:i06; family: phrase_builder -->
-Плитки: `hotel` `the` `to` `next` `are` `restaurants` `The` `is` → **The restaurants are next to the hotel.**
-*(плитка `is` зайва: тут потрібно `are` — `The restaurants are next to the hotel.`)*
+**6 · Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?**
+<!-- interaction_id: en:lesson-04:session-47:i04; family: context_gap_grammar -->
+___ → **lasagne** · salad · omelette
+- salad — *salad — це салат, а запечена страва з шарів тіста називається lasagne.*
+- omelette — *omelette — це омлет, а запечена страва з шарів тіста називається lasagne.*
 
-**7 · Час зустрічі вас влаштовує. Скажіть «Це прийнятно» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-47:i07; family: scripted_repeat_compare -->
-🎙 **It's acceptable.**
+**7 · Послухайте сусіда**
+<!-- interaction_id: en:lesson-04:session-47:i05; family: listen_choose -->
+🔊 *Is there any lasagne in the fridge?* → **Is there any lasagne in the fridge?** · Is there any lasagne on the shelf? · Are there any leftovers in the fridge?
+- Is there any lasagne on the shelf? — *У записі останнє слово — `fridge`, а в цьому варіанті — `shelf`.*
+- Are there any leftovers in the fridge? — *У записі `Is there any lasagne` — питають про лазанью, а в цьому варіанті `Are there any leftovers` — про залишки.*
 
-**8 · Після вечері їжі не залишилося. Виберіть форму**
+**8 · Картка слова — pie**
+<!-- interaction_id: en:lesson-04:session-47:word:pie; family: word_card -->
+> **pie** — пиріг. There is a pie on the table. — «На столі є пиріг». Про страву з тіста з начинкою, яку запікають у духовці.
+
+**9 · Сусід показує на столі кругле блюдо з тіста з начинкою, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-47:i06; family: scripted_repeat_compare -->
+🎙 **pie**
+
+**10 · Послухайте сусіда й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-47:i07; family: listen_build_dictation -->
+🔊 *There isn’t a pie in the fridge.* Плитки: `pie` `a` `in` `the` `fridge` `There` `isn’t` `aren’t` → **There isn’t a pie in the fridge.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a pie in the fridge.`)*
+
+**11 · Картка слова — curry**
+<!-- interaction_id: en:lesson-04:session-47:word:curry; family: word_card -->
+> **curry** — карі. There is some curry in the oven. — «У духовці є карі». Про страву з густим гострим соусом, яку зазвичай їдять із рисом.
+
+**12 · Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-47:i08; family: context_gap_grammar -->
-There ___ any leftovers. → **aren't** · are · isn't
-- are — *Тут відсутність: `There aren’t any leftovers`.*
-- isn't — *З leftovers потрібне `aren’t`: множина.*
+___ → **curry** · soup · juice
+- soup — *soup — це суп, а страва з густим гострим соусом називається curry.*
+- juice — *juice — це сік, а страва з густим гострим соусом називається curry.*
 
-**9 · Послухайте, де котел**
-<!-- interaction_id: en:lesson-04:session-47:i09; family: listen_choose -->
-🔊 *The boiler is in the kitchen.* → **The boiler is in the kitchen.** · The boiler is in the office. · The boiler is in the bathroom.
-- The boiler is in the office. — *У записі останнє слово — `kitchen`, а в цьому варіанті — `office`.*
-- The boiler is in the bathroom. — *У записі останнє слово — `kitchen`, а в цьому варіанті — `bathroom`.*
+**13 · Сусід перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є карі**
+<!-- interaction_id: en:lesson-04:session-47:i09; family: phrase_builder -->
+Плитки: `curry` `some` `in` `the` `fridge` `There` `is` `are` → **There is some curry in the fridge.**
+*(плитка `are` зайва: тут потрібно `is` — `There is some curry in the fridge.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-47:i10; family: speed_match -->
-leftovers — залишки їжі · acceptable — прийнятний · restaurants — ресторани · boiler — опалювальний котел
+curry — карі · pie — пиріг · soup — суп · rice — рис
 
-**11 · Послухайте й складіть запитання**
-<!-- interaction_id: en:lesson-04:session-47:i11; family: listen_build_dictation -->
-🔊 *Are there any leftovers?* Плитки: `leftovers` `any` `there` `Are` → **Are there any leftovers?**
+**15 · Послухайте сусіда**
+<!-- interaction_id: en:lesson-04:session-47:i11; family: listen_choose -->
+🔊 *There isn’t any curry in the fridge.* → **There isn’t any curry in the fridge.** · There isn’t a pie in the fridge. · There isn’t any curry in the oven.
+- There isn’t a pie in the fridge. — *У записі `any curry` — карі без рахунку, а в цьому варіанті `a pie` — один пиріг.*
+- There isn’t any curry in the oven. — *У записі останнє слово — `fridge`, а в цьому варіанті — `oven`.*
 
-**12 · Залишки їжі на кухні. Скажіть, де вони**
-<!-- interaction_id: en:lesson-04:session-47:i12; family: phrase_builder -->
-Плитки: `kitchen` `the` `in` `are` `leftovers` `The` `is` → **The leftovers are in the kitchen.**
-*(плитка `is` зайва: тут потрібно `are` — `The leftovers are in the kitchen.`)*
+**16 · Сусід питає, чи залишилася лазанья. Виберіть потрібне слово**
+<!-- interaction_id: en:lesson-04:session-47:i12; family: context_gap_grammar -->
+___ there any lasagne on the shelf? → **Is** · Are · There
+- Are — *Лазанья — одна страва без рахунку, тому Is there, а не Are there.*
+- There — *Запитання про наявність починають з Is, а не з There.*
 
-**13 · Ви оглядаєте будинок. Запитайте, чи є опалювальний котел**
-<!-- interaction_id: en:lesson-04:session-47:i13; family: scripted_repeat_compare -->
-🎙 **Is there a boiler?**
+**17 · Послухайте сусіда й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-47:i13; family: listen_build_dictation -->
+🔊 *Are there any leftovers in the oven?* Плитки: `leftovers` `any` `in` `the` `oven` `Are` `there` `Is` → **Are there any leftovers in the oven?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are there any leftovers in the oven?`)*
 
-**14 · Їжа, що залишилася, на поверхні столу, не всередині й не під ним. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-47:i14; family: context_gap_grammar -->
-The leftovers are ___ the table. → **on** · in · under
-- in — *`in` — усередині; на поверхні — `on`.*
-- under — *`under` — під; на поверхні — `on`.*
+**18 · Сусід питає, чи є в холодильнику залишки їжі. Вони є. Дайте коротку відповідь**
+<!-- interaction_id: en:lesson-04:session-47:i14; family: scripted_repeat_compare -->
+🎙 **Yes, there are.**
 
-**15 · Послухайте, що тут є**
-<!-- interaction_id: en:lesson-04:session-47:i15; family: listen_choose -->
-🔊 *There are some restaurants.* → **There are some restaurants.** · There are some hotels. · There are some shops.
-- There are some hotels. — *У записі останнє слово — `restaurants`, а в цьому варіанті — `hotels`.*
-- There are some shops. — *У записі останнє слово — `restaurants`, а в цьому варіанті — `shops`.*
+**19 · Сусід заглядає в духовку. Скажіть йому повною фразою: у духовці немає пирога**
+<!-- interaction_id: en:lesson-04:session-47:i15; family: phrase_builder -->
+Плитки: `pie` `a` `in` `the` `oven` `There` `isn’t` `aren’t` → **There isn’t a pie in the oven.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a pie in the oven.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-47:i16; family: speed_match -->
-leftovers — залишки їжі · acceptable — прийнятний · restaurants — ресторани · boiler — опалювальний котел
+leftovers — залишки їжі · lasagne — лазанья · pie — пиріг · curry — карі
 
-**17 · Наступного дня після іншої вечері запитайте, чи залишилася їжа, використовуючи leftovers**
+**21 · Сусід питає про вечерю. Скажіть йому: «Тут є залишки їжі»**
 <!-- interaction_id: en:lesson-04:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Are there any leftovers?**
-
+🎙 **There are some leftovers here.**

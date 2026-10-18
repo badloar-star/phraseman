@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 43 — Контейнер у входа
+# Английский · Урок 4 · Занятие 43 — Контейнеры под дождём
 
-**Ситуация.** Вы осматриваете гостевой дом. Спальни наверху, у входа пандус. Друг спрашивает о контейнере для вторсырья, но вы пока не уверены, есть ли он.
+**Ситуация.** Идёт дождь, а у вас мешок вторсырья, и вы ищете, куда его отнести. Новой грамматики нет: вы учитесь узнавать на слух вопрос Are there any…? и отвечать на него, не глядя в записанный текст.
 
-**Что вы освоите:** назвать контейнер для вторсырья, спросить о нём и выразить неуверенность
-**Новые слова:** recycling bin
+**Что вы освоите:** понимать на слух вопрос Are there any…? о нескольких предметах
+**Новые слова:** recycling bin, bottle bank, raincoat, drain
+**Возвращаются:** school, market, church, gate, hall, yard, kerb, pavement, hook, bank
 
 ---
 
 ## Интро 1
 
-### Для вторсырья
+### Мешок под дождём
 
-`recycling bin` — «контейнер для вторсырья». В него собирают отходы для переработки; что именно можно положить, указывает маркировка. Один контейнер — `a recycling bin`. `This is a recycling bin` — «Это контейнер для вторсырья». Два слова, но один контейнер: вторую ёмкость для второго слова искать не нужно.
+Вы вышли из дома с мешком бумаги и пластика, а на улице льёт дождь. Нужны баки, куда сортируют отходы для переработки. recycling bin — «контейнер для вторсырья». Таких баков обычно несколько, поэтому: Are there any recycling bins near the school?
 
-**Назовите один такой контейнер.**
+**Прохожий стоит под зонтом. Спросите его, есть ли рядом со школой контейнеры для вторсырья.**
 
-- ✅ **This is a recycling bin.**
-- ❌ This is recycling bin. — *Перед одним контейнером нужно `a`: `a recycling bin`.*
-- ❌ These are recycling bins. — *Здесь один контейнер: `This is a recycling bin`.*
+- ✅ **Are there any recycling bins near the school?**
+- ❌ Is there any recycling bins near the school? — *Контейнеров несколько, поэтому вопрос начинают с Are there, а не с Is there.*
+- ❌ Are there any recycling bin near the school? — *После any слово ставят во множественном числе: recycling bins.*
 
 ---
 
 ## Интро 2
 
-### Дом и вход
+### Пустые бутылки
 
-`bedrooms` — «спальни», `ramp` — «пандус». `The bedrooms are upstairs` — «Спальни наверху». `The recycling bin is next to the ramp` — «Контейнер для вторсырья рядом с пандусом». Несколько спален требуют `are`, один контейнер — `is`.
+Вы несёте пустые стеклянные бутылки из-под сока. В обычный бак их не бросают: для стекла нужен особый контейнер. bottle bank — «контейнер для стекла». Продавец у ларька показывает рукой: There is a bottle bank behind the market — «За рынком есть контейнер для стекла».
 
-**Спальни наверху. Выберите описание.**
+**Соседка тоже хочет сдать бутылки. Скажите ей, что за рынком есть контейнер для стекла.**
 
-- ✅ **The bedrooms are upstairs.**
-- ❌ The bedrooms is upstairs. — *Несколько спален: `The bedrooms are`.*
-- ❌ The bedrooms are downstairs. — *`downstairs` — внизу; здесь наверху: `upstairs`.*
+- ✅ **There is a bottle bank behind the market.**
+- ❌ There is a bottle bank behind market. — *Это конкретный рынок рядом, поэтому перед market нужно the: behind the market.*
+- ❌ There are a bottle bank behind the market. — *Контейнер один, поэтому нужно There is, а не There are.*
 
 ---
 
 ## Интро 3
 
-### Пока не уверен
+### Дождь не стихает
 
-`uncertain` — «неуверенный»: вы не знаете наверняка. `I am uncertain` — «Я не уверен», короче `I’m uncertain`. Неуверенность не означает, что предмета нет. Можно уточнить: `Is there a recycling bin?` — «Есть контейнер для вторсырья?» Только если отсутствие известно: `There isn’t a recycling bin`.
+Дождь не стихает, а зонт остался дома. Подруга зовёт вас в прихожую, где на вешалке висит верхняя одежда. raincoat — «плащ», он не пропускает воду. Плащей там несколько, поэтому: There are some raincoats in the hall — «В прихожей есть плащи».
 
-**Вы не знаете наверняка, есть ли контейнер. Скажите «Я не уверен» с сокращением.**
+**Подруга ищет, что надеть под дождь. Скажите ей, что в прихожей есть плащи.**
 
-- ✅ **I'm uncertain.**
-- ❌ I'm certain. — *`certain` — уверен; здесь `uncertain`.*
-- ❌ I is uncertain. — *С `I` нужно `am`, сокращённо `I’m`.*
+- ✅ **There are some raincoats in the hall.**
+- ❌ There is some raincoats in the hall. — *Плащей несколько, поэтому нужно There are, а не There is.*
+- ❌ There are some raincoat in the hall. — *После some слово ставят во множественном числе: raincoats.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы не знаете наверняка. Скажите «Я не уверен» без сокращения**
-<!-- interaction_id: en:lesson-04:session-43:i01; family: phrase_builder -->
-Плитки: `uncertain` `am` `I` `is` → **I am uncertain.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am uncertain.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-43:i01; family: speed_match -->
+recycling bin — контейнер для вторсырья · bottle bank — контейнер для стекла · raincoat — плащ · drain — сток, решётка водостока
 
-**2 · Послушайте и выберите название**
-<!-- interaction_id: en:lesson-04:session-43:i02; family: listen_choose -->
-🔊 *recycling bin* → **recycling bin** · recycling bins · ramp
-- recycling bins — *В записи последнее слово — `bin`, а в этом варианте — `bins`.*
-- ramp — *В записи первое слово — `recycling`, а в этом варианте — `ramp`.*
+**2 · Карточка слова — recycling bin**
+<!-- interaction_id: en:lesson-04:session-43:word:recycling bin; family: word_card -->
+> **recycling bin** — контейнер для вторсырья. There are some recycling bins behind the school. — «За школой есть контейнеры для вторсырья». О баке, куда кладут бумагу, пластик и стекло для переработки.
 
-**3 · Назовите контейнер для вторсырья**
-<!-- interaction_id: en:lesson-04:session-43:i03; family: context_gap_grammar -->
-___ → **recycling bin** · parcel locker · bike shed
-- parcel locker — *`parcel locker` — постамат; здесь `recycling bin`.*
-- bike shed — *`bike shed` — сарай для велосипедов; здесь `recycling bin`.*
+**3 · Прохожий показывает на улице бак для сортировки отходов, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-43:i02; family: scripted_repeat_compare -->
+🎙 **recycling bin**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-43:i04; family: speed_match -->
-recycling bin — контейнер для вторсырья · uncertain — неуверенный · bedrooms — спальни · ramp — пандус
+**4 · Прохожий слушает. Задайте ему полным вопросом: есть ли у ворот контейнеры для вторсырья?**
+<!-- interaction_id: en:lesson-04:session-43:i03; family: phrase_builder -->
+Плитки: `recycling` `bins` `any` `near` `the` `gate` `Are` `there` `Is` → **Are there any recycling bins near the gate?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there any recycling bins near the gate?`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-43:i05; family: listen_build_dictation -->
-🔊 *This is a recycling bin.* Плитки: `bin` `recycling` `a` `is` `This` `are` → **This is a recycling bin.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a recycling bin.`)*
+**5 · Карточка слова — bottle bank**
+<!-- interaction_id: en:lesson-04:session-43:word:bottle bank; family: word_card -->
+> **bottle bank** — контейнер для стекла. There is a bottle bank near the church. — «Рядом с церковью есть контейнер для стекла». О большом баке, куда бросают пустые стеклянные бутылки и банки.
 
-**6 · Спальни наверху. Скажите, где они**
-<!-- interaction_id: en:lesson-04:session-43:i06; family: phrase_builder -->
-Плитки: `upstairs` `are` `bedrooms` `The` `is` → **The bedrooms are upstairs.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bedrooms are upstairs.`)*
+**6 · Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-43:i04; family: context_gap_grammar -->
+___ → **bottle bank** · bucket · basket
+- bucket — *bucket — это ведро, а бак для стеклянных бутылок называется bottle bank.*
+- basket — *basket — это корзина, а бак для стеклянных бутылок называется bottle bank.*
 
-**7 · Друг ждёт ответа, но вы не знаете наверняка. Скажите «Я не уверен» с сокращением**
-<!-- interaction_id: en:lesson-04:session-43:i07; family: scripted_repeat_compare -->
-🎙 **I'm uncertain.**
+**7 · Послушайте вопрос прохожего**
+<!-- interaction_id: en:lesson-04:session-43:i05; family: listen_choose -->
+🔊 *Are there any bottle banks behind the school?* → **Are there any bottle banks behind the school?** · Are there any bottle banks behind the market? · Is there a bottle bank behind the school?
+- Are there any bottle banks behind the market? — *В записи последнее слово — `school`, а в этом варианте — `market`.*
+- Is there a bottle bank behind the school? — *В записи `Are there any` — спрашивают о нескольких, а в этом варианте `Is there a` — об одном.*
 
-**8 · Вы осмотрели место: контейнера для вторсырья нет. Выберите форму**
+**8 · Карточка слова — raincoat**
+<!-- interaction_id: en:lesson-04:session-43:word:raincoat; family: word_card -->
+> **raincoat** — плащ. There are some raincoats near the door. — «У двери есть плащи». Об одежде, которая не пропускает воду, когда идёт дождь.
+
+**9 · Подруга достаёт из шкафа одежду, которую надевают под дождь, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-43:i06; family: scripted_repeat_compare -->
+🎙 **raincoat**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-43:i07; family: listen_build_dictation -->
+🔊 *There are some raincoats on the hooks.* Плитки: `raincoats` `some` `on` `the` `hooks` `There` `are` `is` → **There are some raincoats on the hooks.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some raincoats on the hooks.`)*
+
+**11 · Карточка слова — drain**
+<!-- interaction_id: en:lesson-04:session-43:word:drain; family: word_card -->
+> **drain** — решётка стока. There is a drain near the kerb. — «У бордюра есть решётка стока». О решётке в земле, куда уходит дождевая вода.
+
+**12 · Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?**
 <!-- interaction_id: en:lesson-04:session-43:i08; family: context_gap_grammar -->
-There ___ a recycling bin. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Один контейнер: `isn’t a recycling bin`.*
+___ → **drain** · kerb · pavement
+- kerb — *kerb — это бордюр, а решётка, куда уходит вода, называется drain.*
+- pavement — *pavement — это тротуар, а решётка, куда уходит вода, называется drain.*
 
-**9 · Послушайте, где контейнер**
-<!-- interaction_id: en:lesson-04:session-43:i09; family: listen_choose -->
-🔊 *The recycling bin is next to the ramp.* → **The recycling bin is next to the ramp.** · The recycling bin is next to the door. · The recycling bin is next to the table.
-- The recycling bin is next to the door. — *В записи последнее слово — `ramp`, а в этом варианте — `door`.*
-- The recycling bin is next to the table. — *В записи последнее слово — `ramp`, а в этом варианте — `table`.*
+**13 · Подруга боится наступить в воду. Скажите ей полной фразой: рядом с бордюром есть решётка стока**
+<!-- interaction_id: en:lesson-04:session-43:i09; family: phrase_builder -->
+Плитки: `drain` `a` `next` `to` `the` `kerb` `There` `is` `are` → **There is a drain next to the kerb.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a drain next to the kerb.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-43:i10; family: speed_match -->
-recycling bin — контейнер для вторсырья · uncertain — неуверенный · bedrooms — спальни · ramp — пандус
+drain — сток, решётка водостока · raincoat — плащ · kerb — бордюр · pavement — тротуар
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-43:i11; family: listen_build_dictation -->
-🔊 *There aren't any recycling bins.* Плитки: `bins` `recycling` `any` `aren't` `There` → **There aren't any recycling bins.**
+**15 · Послушайте вопрос подруги**
+<!-- interaction_id: en:lesson-04:session-43:i11; family: listen_choose -->
+🔊 *Are there any raincoats in the hall?* → **Are there any raincoats in the hall?** · Are there any raincoats in the yard? · There are some raincoats in the hall.
+- Are there any raincoats in the yard? — *В записи последнее слово — `hall`, а в этом варианте — `yard`.*
+- There are some raincoats in the hall. — *В записи вопрос `Are there any`, а в этом варианте утверждение `There are some`.*
 
-**12 · Здесь есть контейнер для вторсырья. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-43:i12; family: phrase_builder -->
-Плитки: `bin` `recycling` `a` `is` `There` `are` → **There is a recycling bin.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a recycling bin.`)*
+**16 · Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-43:i12; family: context_gap_grammar -->
+Are there ___ recycling bins near the bank? → **any** · a · no
+- a — *a ставят перед одним предметом, а контейнеров несколько.*
+- no — *В вопросе слово no не нужно: после Are there ставят any.*
 
-**13 · Вы ещё не осмотрели двор. Спросите, есть ли контейнер для вторсырья**
-<!-- interaction_id: en:lesson-04:session-43:i13; family: scripted_repeat_compare -->
-🎙 **Is there a recycling bin?**
+**17 · Послушайте прохожего и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-43:i13; family: listen_build_dictation -->
+🔊 *Are there any drains near the bank?* Плитки: `drains` `any` `near` `the` `bank` `Are` `there` `Is` → **Are there any drains near the bank?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there any drains near the bank?`)*
 
-**14 · В другом доме спальни внизу. Выберите форму**
-<!-- interaction_id: en:lesson-04:session-43:i14; family: context_gap_grammar -->
-The bedrooms ___ downstairs. → **are** · is · am
-- is — *Несколько спален: `The bedrooms are`.*
-- am — *`am` используется с I; со спальнями нужно `are`.*
+**18 · Прохожий спрашивает, есть ли рядом контейнер для стекла. Он есть. Ответьте коротко**
+<!-- interaction_id: en:lesson-04:session-43:i14; family: scripted_repeat_compare -->
+🎙 **Yes, there is.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-43:i15; family: listen_choose -->
-🔊 *That is a recycling bin.* → **That is a recycling bin.** · This is a recycling bin. · There is a recycling bin.
-- This is a recycling bin. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- There is a recycling bin. — *В записи первое слово — `That`, а в этом варианте — `There`.*
+**19 · Прохожий записывает ваш ответ. Скажите ему полной фразой: за рынком есть контейнеры для вторсырья**
+<!-- interaction_id: en:lesson-04:session-43:i15; family: phrase_builder -->
+Плитки: `recycling` `bins` `some` `behind` `the` `market` `There` `are` `is` → **There are some recycling bins behind the market.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some recycling bins behind the market.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-43:i16; family: speed_match -->
-recycling bin — контейнер для вторсырья · uncertain — неуверенный · bedrooms — спальни · ramp — пандус
+recycling bin — контейнер для вторсырья · bottle bank — контейнер для стекла · raincoat — плащ · drain — сток, решётка водостока
 
-**17 · В другом городе контейнер для вторсырья рядом с магазином. Объясните другу, где он, полной фразой**
+**21 · Вы под дождём ищете, куда сдать бумагу. Спросите прохожего: «Здесь есть контейнеры для вторсырья?»**
 <!-- interaction_id: en:lesson-04:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The recycling bin is next to the shop.**
-
+🎙 **Are there any recycling bins here?**

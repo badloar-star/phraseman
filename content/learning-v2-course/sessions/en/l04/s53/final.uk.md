@@ -1,136 +1,152 @@
-# Англійська · Урок 4 · Заняття 53 — Відділок поруч із музеєм
+# Англійська · Урок 4 · Заняття 53 — Дільниця поруч із музеєм
 
-**Ситуація.** Ви допомагаєте гостю знайти поліцейський відділок поруч із музеєм. На роботі обговорюють спільну кухню: одному працівнику дозволяють користуватися мікрохвильовкою, іншому без причини забороняють.
+**Ситуація.** Ви допомагаєте гостю міста знайти поліцейську дільницю поруч із музеєм. Нової граматики немає: місце, яке ви називаєте вперше, вводите словами There is a…, а місце, про яке ви з гостем уже говорили, називаєте словом It.
 
-**Що ви опануєте:** назвати поліцейський відділок, пояснити дорогу й сказати, що рішення несправедливе
-**Нові слова:** police station
+**Що ви опануєте:** розрізняти There is a… (місце називаємо вперше) і It is… (місце вже відоме)
+**Нові слова:** police station, gift shop, officer, tourist
+**Повертаються:** museum, bank, library, desk, door, doctor, nurse
 
 ---
 
 ## Інтро 1
 
-### Два слова — одне місце
+### Загублений гаманець
 
-`police station` — «поліцейський відділок». Тут `station` не залізнична станція: слово `police` уточнює, що це за місце. `This is a police station` — «Це поліцейський відділок». Квиток на потяг тут купувати не варто: каси ви не знайдете. Перед одним відділком потрібне `a`: `a police station`.
+Приїжджий загубив на вулиці гаманець і питає, куди з цим іти. Ви дивитеся на будівлю з синьою табличкою, де приймають заяви про пропажі й крадіжки. police station — «поліцейська дільниця». Гість про неї ще не знає: There is a police station near the museum.
 
-**Назвіть один поліцейський відділок.**
+**Гість загубив гаманець. Скажіть йому, що біля музею є поліцейська дільниця.**
 
-- ✅ **This is a police station.**
-- ❌ This is police station. — *Перед одним відділком потрібне `a`: `a police station`.*
-- ❌ These are police stations. — *Тут один відділок: `This is a police station`.*
+- ✅ **There is a police station near the museum.**
+- ❌ It is a police station near the museum. — *It — для того, про що ви обоє вже говорили, а дільниця для гостя нова: There is a police station.*
+- ❌ There is police station near the museum. — *Дільниця одна й названа вперше, тому потрібно a: a police station.*
 
 ---
 
 ## Інтро 2
 
-### Поруч із музеєм
+### Куди саме йти
 
-`museum` — «музей». `The police station is next to the museum` — «Поліцейський відділок поруч із музеєм». Щоб запитати, чи є відділок: `Is there a police station?` Якщо його немає: `There isn’t a police station`.
+Гість іде за вашою підказкою й телефонує: він стоїть біля музею й не бачить дільниці. Ви обоє вже говорили про неї, тому називати її заново не треба. Поруч із дільницею вітрина з листівками й брелоками. gift shop — «магазин сувенірів». Скажіть: It is next to the gift shop.
 
-**У цьому районі немає поліцейського відділку. Повідомте про це.**
+**Гість стоїть біля музею й не бачить дільниці. Скажіть йому, що дільниця поруч із магазином сувенірів.**
 
-- ✅ **There isn't a police station.**
-- ❌ There aren't a police station. — *Один відділок: `isn’t a police station`.*
-- ❌ There is a police station. — *Так ви повідомите, що відділок є; тут `isn’t`.*
+- ✅ **It is next to the gift shop.**
+- ❌ There is a police station next to the gift shop. — *There is a… — для нового місця, а дільницю ви з гостем уже знаєте: It is.*
+- ❌ It are next to the gift shop. — *Дільниця одна, тому потрібно is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Однакова кухня, різні правила
+### Біля столу в дільниці
 
-`microwave` — «мікрохвильова піч», у побуті «мікрохвильовка». `The microwave is in the kitchen` — «Мікрохвильовка на кухні». Одному працівнику можна розігріти обід, іншому без причини не можна. Ви вважаєте це несправедливим: `It is unfair`, коротше `It’s unfair`. `unfair` — «несправедливий».
+Ви зайшли з гостем усередину, і він питає, до кого тут звернутися із заявою. Біля столу в кутку стоїть людина у формі з нашивкою на рукаві й рацією на грудях. officer — «співробітник поліції». Для гостя він новий: There is an officer next to the desk.
 
-**Скажіть «Це несправедливо» зі скороченням.**
+**Гість питає, хто прийме заяву. Скажіть йому, що біля столу стоїть співробітник поліції.**
 
-- ✅ **It's unfair.**
-- ❌ It's fair. — *`fair` — справедливо; тут `unfair`.*
-- ❌ It are unfair. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **There is an officer next to the desk.**
+- ❌ The officer is next to the desk. — *The — для того, кого ви обоє вже знаєте, а співробітник для гостя новий: There is an officer.*
+- ❌ There is a officer next to the desk. — *Слово officer починається з голосного звуку, тому потрібно an: an officer.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви вважаєте заборону несправедливою. Скажіть «Це несправедливо» без скорочення**
-<!-- interaction_id: en:lesson-04:session-53:i01; family: phrase_builder -->
-Плитки: `unfair` `is` `It` `are` → **It is unfair.**
-*(плитка `are` зайва: тут потрібно `is` — `It is unfair.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-53:i01; family: speed_match -->
+police station — поліцейська дільниця · gift shop — магазин сувенірів · officer — поліцейський (співробітник) · tourist — турист
 
-**2 · Послухайте й виберіть назву**
-<!-- interaction_id: en:lesson-04:session-53:i02; family: listen_choose -->
-🔊 *police station* → **police station** · police stations · bus station
-- police stations — *У записі останнє слово — `station`, а в цьому варіанті — `stations`.*
-- bus station — *У записі перше слово — `police`, а в цьому варіанті — `bus`.*
+**2 · Картка слова — police station**
+<!-- interaction_id: en:lesson-04:session-53:word:police station; family: word_card -->
+> **police station** — поліцейська дільниця. There is a police station next to the library. — «Поруч із бібліотекою є поліцейська дільниця». Про будівлю, де приймають заяви про пропажі й крадіжки.
 
-**3 · Назвіть поліцейський відділок**
-<!-- interaction_id: en:lesson-04:session-53:i03; family: context_gap_grammar -->
-___ → **police station** · nursery · museum
-- nursery — *`nursery` — дитячий садок; тут `police station`.*
-- museum — *`museum` — музей; тут `police station`.*
+**3 · Гість показує на будівлю, де приймають заяви про пропажі, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-53:i02; family: scripted_repeat_compare -->
+🎙 **police station**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-53:i04; family: speed_match -->
-police station — поліцейський відділок · unfair — несправедливий · museum — музей · microwave — мікрохвильова піч
+**4 · Гість питає, що біля банку. Скажіть йому повною фразою: поруч із банком є поліцейська дільниця**
+<!-- interaction_id: en:lesson-04:session-53:i03; family: phrase_builder -->
+Плитки: `police` `station` `a` `next` `to` `the` `bank` `There` `is` `It` → **There is a police station next to the bank.**
+*(плитка `It` зайва: тут потрібно `There` — `There is a police station next to the bank.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-53:i05; family: listen_build_dictation -->
-🔊 *This is a police station.* Плитки: `station` `police` `a` `is` `This` `are` → **This is a police station.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a police station.`)*
+**5 · Картка слова — gift shop**
+<!-- interaction_id: en:lesson-04:session-53:word:gift shop; family: word_card -->
+> **gift shop** — магазин сувенірів. There is a gift shop near the bank. — «Біля банку є магазин сувенірів». Про магазин, де продають листівки й подарунки на згадку.
 
-**6 · Музей поруч із парком. Скажіть, де він**
-<!-- interaction_id: en:lesson-04:session-53:i06; family: phrase_builder -->
-Плитки: `park` `the` `to` `next` `is` `museum` `The` `are` → **The museum is next to the park.**
-*(плитка `are` зайва: тут потрібно `is` — `The museum is next to the park.`)*
+**6 · Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?**
+<!-- interaction_id: en:lesson-04:session-53:i04; family: context_gap_grammar -->
+___ → **gift shop** · bakery · bank
+- bakery — *bakery — це пекарня, а магазин подарунків на згадку називається gift shop.*
+- bank — *bank — це банк, а магазин подарунків на згадку називається gift shop.*
 
-**7 · Одному можна розігріти обід, іншому без причини не можна. Скажіть «Це несправедливо» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-53:i07; family: scripted_repeat_compare -->
-🎙 **It's unfair.**
+**7 · Послухайте гостя**
+<!-- interaction_id: en:lesson-04:session-53:i05; family: listen_choose -->
+🔊 *It is behind the gift shop.* → **It is behind the gift shop.** · There is a gift shop behind the bank. · It is behind the museum.
+- There is a gift shop behind the bank. — *У записі `It is` — місце вже відоме, а в цьому варіанті `There is a gift shop` — нове.*
+- It is behind the museum. — *У записі останнє місце `gift shop`, а в цьому варіанті `museum`.*
 
-**8 · На спільній кухні немає мікрохвильовки. Виберіть форму**
+**8 · Картка слова — officer**
+<!-- interaction_id: en:lesson-04:session-53:word:officer; family: word_card -->
+> **officer** — співробітник поліції. There is an officer next to the door. — «Поруч із дверима стоїть співробітник поліції». Про людину у формі, яка працює в поліції.
+
+**9 · Гість показує на людину у формі, яка працює в поліції, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-53:i06; family: scripted_repeat_compare -->
+🎙 **officer**
+
+**10 · Послухайте гостя й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-53:i07; family: listen_build_dictation -->
+🔊 *There is an officer in the police station.* Плитки: `officer` `an` `in` `the` `police` `station` `There` `is` `It` → **There is an officer in the police station.**
+*(плитка `It` зайва: тут потрібно `There` — `There is an officer in the police station.`)*
+
+**11 · Картка слова — tourist**
+<!-- interaction_id: en:lesson-04:session-53:word:tourist; family: word_card -->
+> **tourist** — турист. There are tourists near the museum. — «Біля музею є туристи». Про людину, яка приїхала до міста подивитися на нього.
+
+**12 · Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-53:i08; family: context_gap_grammar -->
-There ___ a microwave. → **isn't** · is · aren't
-- is — *`is` — є; тут немає: `isn’t`.*
-- aren't — *Одна мікрохвильовка: `isn’t a microwave`.*
+___ → **tourist** · doctor · nurse
+- doctor — *doctor — це лікар, а людина, яка приїхала подивитися місто, називається tourist.*
+- nurse — *nurse — це медсестра, а людина, яка приїхала подивитися місто, називається tourist.*
 
-**9 · Послухайте, де мікрохвильовка**
-<!-- interaction_id: en:lesson-04:session-53:i09; family: listen_choose -->
-🔊 *The microwave is in the kitchen.* → **The microwave is in the kitchen.** · The microwave is in the pantry. · The microwave is in the garage.
-- The microwave is in the pantry. — *У записі останнє слово — `kitchen`, а в цьому варіанті — `pantry`.*
-- The microwave is in the garage. — *У записі останнє слово — `kitchen`, а в цьому варіанті — `garage`.*
+**13 · Гість дивиться на площу. Скажіть йому повною фразою: біля музею є туристи**
+<!-- interaction_id: en:lesson-04:session-53:i09; family: phrase_builder -->
+Плитки: `tourists` `near` `the` `museum` `There` `are` `is` → **There are tourists near the museum.**
+*(плитка `is` зайва: тут потрібно `are` — `There are tourists near the museum.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-53:i10; family: speed_match -->
-police station — поліцейський відділок · unfair — несправедливий · museum — музей · microwave — мікрохвильова піч
+gift shop — магазин сувенірів · tourist — турист · museum — музей · bank — банк
 
-**11 · Послухайте й складіть запитання**
-<!-- interaction_id: en:lesson-04:session-53:i11; family: listen_build_dictation -->
-🔊 *Is there a police station?* Плитки: `station` `police` `a` `there` `Is` → **Is there a police station?**
+**15 · Послухайте гостя**
+<!-- interaction_id: en:lesson-04:session-53:i11; family: listen_choose -->
+🔊 *There is a gift shop next to the library.* → **There is a gift shop next to the library.** · It is next to the library. · There is a gift shop next to the bank.
+- It is next to the library. — *У записі `There is a gift shop` — магазин називають вперше, а в цьому варіанті `It is` — він уже відомий.*
+- There is a gift shop next to the bank. — *У записі останнє місце `library`, а в цьому варіанті `bank`.*
 
-**12 · У цьому районі немає поліцейського відділку. Скажіть «Поліцейського відділку немає»**
-<!-- interaction_id: en:lesson-04:session-53:i12; family: phrase_builder -->
-Плитки: `station` `police` `a` `isn't` `There` → **There isn't a police station.**
+**16 · Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово**
+<!-- interaction_id: en:lesson-04:session-53:i12; family: context_gap_grammar -->
+___ is next to the museum. → **It** · There · They
+- There — *There is a… називає місце вперше, а дільницю ви з гостем уже знаєте: потрібно It.*
+- They — *They — це «вони», а дільниця одна: потрібно It.*
 
-**13 · Запитайте, чи є мікрохвильовка**
-<!-- interaction_id: en:lesson-04:session-53:i13; family: scripted_repeat_compare -->
-🎙 **Is there a microwave?**
+**17 · Послухайте гостя й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-53:i13; family: listen_build_dictation -->
+🔊 *It is next to the police station.* Плитки: `next` `to` `the` `police` `station` `It` `is` `There` → **It is next to the police station.**
+*(плитка `There` зайва: тут потрібно `It` — `It is next to the police station.`)*
 
-**14 · Відділок між двома магазинами, не всередині й не під ними. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-53:i14; family: context_gap_grammar -->
-The police station is ___ the shops. → **between** · in · under
-- in — *`in` — усередині; між — `between`.*
-- under — *`under` — під; між — `between`.*
+**18 · Гість питає, чи є поруч дільниця. Вона є, і ви називаєте її вперше. Скажіть йому: «Поруч є поліцейська дільниця»**
+<!-- interaction_id: en:lesson-04:session-53:i14; family: scripted_repeat_compare -->
+🎙 **There is a police station near here.**
 
-**15 · Послухайте, що показує друг**
-<!-- interaction_id: en:lesson-04:session-53:i15; family: listen_choose -->
-🔊 *That is a police station.* → **That is a police station.** · This is a police station. · That is a police officer.
-- This is a police station. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- That is a police officer. — *У записі останнє слово — `station`, а в цьому варіанті — `officer`.*
+**19 · Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції**
+<!-- interaction_id: en:lesson-04:session-53:i15; family: phrase_builder -->
+Плитки: `officer` `an` `next` `to` `the` `door` `There` `is` `a` → **There is an officer next to the door.**
+*(плитка `a` зайва: тут потрібно `an` — `There is an officer next to the door.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-53:i16; family: speed_match -->
-police station — поліцейський відділок · unfair — несправедливий · museum — музей · microwave — мікрохвильова піч
+police station — поліцейська дільниця · gift shop — магазин сувенірів · officer — поліцейський (співробітник) · tourist — турист
 
-**17 · Гість шукає відділок. Він поруч із музеєм. Скажіть повною фразою, де поліцейський відділок**
+**21 · Гість питає, де дільниця, про яку ви вже говорили. Скажіть йому: «Вона біля музею»**
 <!-- interaction_id: en:lesson-04:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The police station is next to the museum.**
-
+🎙 **It is near the museum.**

@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 46 — Запасы перед поездкой
+# Английский · Урок 4 · Занятие 46 — Кладовая для продуктов
 
-**Ситуация.** Вы собираетесь в аэропорт и помогаете другу осмотреть дом перед отъездом. Находите кладовую для продуктов, уточняете, есть ли сарай для велосипедов, и обсуждаете подходящий выбор.
+**Ситуация.** Перед отъездом вы помогаете другу осмотреть общую кухню и заглядываете в кладовую для продуктов. Новой грамматики нет: вы сами выбираете, что нужно — утверждение There is, вопрос Is there…? или отрицание There isn’t.
 
-**Что вы освоите:** назвать кладовую для продуктов, спросить о ней и выразить уместность выбора
-**Новые слова:** pantry
+**Что вы освоите:** самому выбрать: сказать, что есть, спросить или сказать, что нет
+**Новые слова:** pantry, sack, packet, carton
+**Возвращаются:** fridge, shelf, hall, sink, table, worktop, kettle, jar, tin, cooker, bottle
 
 ---
 
 ## Интро 1
 
-### Место для запасов
+### Дверь без окон
 
-`pantry` — «кладовая для продуктов»: место, где хранят продукты и кухонные запасы. Одна кладовая — `a pantry`. `This is a pantry` — «Это кладовая для продуктов». Запас печенья здесь считается запасом, даже если вы уже строите на него планы.
+Друг показывает общую кухню и открывает дверь в узкую комнату без окон. Там на полках стоят крупы, банки и пачки. pantry — «кладовая для продуктов». Она рядом с холодильником: There is a pantry next to the fridge — «Рядом с холодильником есть кладовая для продуктов».
 
-**Назовите одну кладовую для продуктов.**
+**Друг ждёт ответа. Скажите ему, что рядом с холодильником есть кладовая для продуктов.**
 
-- ✅ **This is a pantry.**
-- ❌ This is pantry. — *Перед одной кладовой нужно `a`: `a pantry`.*
-- ❌ These are pantries. — *Здесь одна кладовая: `This is a pantry`.*
+- ✅ **There is a pantry next to the fridge.**
+- ❌ There is pantry next to the fridge. — *Кладовая одна, поэтому перед pantry нужно a.*
+- ❌ There is a pantry under the fridge. — *under — это «под», а «рядом» говорят next to.*
 
 ---
 
 ## Интро 2
 
-### Дом и дорога
+### Картошка с рынка
 
-`bike shed` — «сарай для велосипедов», `airport` — «аэропорт». `The bike shed is next to the house` — «Сарай для велосипедов рядом с домом». `The hotel is next to the airport` — «Отель рядом с аэропортом». `Is there a pantry?` — «Есть кладовая для продуктов?»
+Вы ищете, куда друг ссыпал картошку с рынка. Он говорит, что овощи убирают в кладовую, в большой мешок из плотной ткани. sack — «мешок». Вы заглядываете в кладовую, не видите его и спрашиваете: Is there a sack in the pantry? — «В кладовой есть мешок?»
 
-**Отель рядом с аэропортом. Выберите описание.**
+**Друг стоит у двери. Спросите его, есть ли в кладовой мешок.**
 
-- ✅ **The hotel is next to the airport.**
-- ❌ The hotel is in the airport. — *`in` — внутри; здесь рядом: `next to`.*
-- ❌ The hotel are next to the airport. — *Один отель: `The hotel is`.*
+- ✅ **Is there a sack in the pantry?**
+- ❌ There is a sack in the pantry? — *Вопрос о наличии начинают с Is there, а не с There is.*
+- ❌ Is there sack in the pantry? — *Мешок один, поэтому перед sack нужно a.*
 
 ---
 
 ## Интро 3
 
-### Подходит к ситуации
+### Пустая полка
 
-`appropriate` — «уместный, подходящий для ситуации». Вы выбираете одежду для встречи; друг подтверждает, что она подходит к формату: `It is appropriate`, короче `It’s appropriate`. Это оценка соответствия ситуации, а не просто симпатия: вещь может нравиться, но не подходить к случаю.
+Утром вы хотите завтрак, а на полке в кладовой пусто. Раньше там стояли небольшие картонные упаковки с хлопьями, а теперь нет ни одной. packet — «пачка, пакетик». Пачек несколько, значит: There aren’t any packets on the shelf — «На полке нет пачек».
 
-**Выбранная одежда подходит к формату встречи. Скажите, что она уместна, с сокращением.**
+**Друг спрашивает, что на полке. Скажите ему, что пачек на полке нет.**
 
-- ✅ **It's appropriate.**
-- ❌ It's inappropriate. — *`inappropriate` — неуместно; здесь `appropriate`.*
-- ❌ It are appropriate. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **There aren’t any packets on the shelf.**
+- ❌ There isn’t any packets on the shelf. — *Пачек несколько, поэтому нужно aren’t, а не isn’t.*
+- ❌ There aren’t any packet on the shelf. — *После any слово ставят во множественном числе: packets.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Выбор подходит к ситуации. Скажите «Это уместно» без сокращения**
-<!-- interaction_id: en:lesson-04:session-46:i01; family: phrase_builder -->
-Плитки: `appropriate` `is` `It` `are` → **It is appropriate.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is appropriate.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-46:i01; family: speed_match -->
+pantry — кладовая для продуктов · sack — мешок · packet — пачка, пакетик · carton — картонная упаковка
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-46:i02; family: listen_choose -->
-🔊 *pantry* → **pantry** · pantries · kitchen
-- pantries — *В записи первое слово — `pantry`, а в этом варианте — `pantries`.*
-- kitchen — *В записи первое слово — `pantry`, а в этом варианте — `kitchen`.*
+**2 · Карточка слова — pantry**
+<!-- interaction_id: en:lesson-04:session-46:word:pantry; family: word_card -->
+> **pantry** — кладовая для продуктов. There is a pantry next to the cooker. — «Рядом с плитой есть кладовая для продуктов». О маленькой комнате или шкафе, где хранят крупы, консервы и запасы еды.
 
-**3 · Назовите кладовую для продуктов одним словом**
-<!-- interaction_id: en:lesson-04:session-46:i03; family: context_gap_grammar -->
-___ → **pantry** · office · bathroom
-- office — *`office` — офис; кладовая для продуктов — `pantry`.*
-- bathroom — *`bathroom` — ванная; кладовая для продуктов — `pantry`.*
+**3 · Друг открывает дверь в комнату без окон, где хранят крупы и банки, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-46:i02; family: scripted_repeat_compare -->
+🎙 **pantry**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-46:i04; family: speed_match -->
-pantry — кладовая для продуктов · appropriate — уместный · airport — аэропорт · bike shed — сарай для велосипедов
+**4 · Друг записывает. Скажите ему полной фразой: за холлом есть кладовая для продуктов**
+<!-- interaction_id: en:lesson-04:session-46:i03; family: phrase_builder -->
+Плитки: `pantry` `a` `behind` `the` `hall` `There` `is` `are` → **There is a pantry behind the hall.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a pantry behind the hall.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-46:i05; family: listen_build_dictation -->
-🔊 *This is a pantry.* Плитки: `pantry` `a` `is` `This` `are` → **This is a pantry.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a pantry.`)*
+**5 · Карточка слова — sack**
+<!-- interaction_id: en:lesson-04:session-46:word:sack; family: word_card -->
+> **sack** — мешок. There is a sack under the table. — «Под столом есть мешок». О большом мешке из плотной ткани или бумаги, в котором хранят картошку или муку.
 
-**6 · Отель рядом с аэропортом. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-46:i06; family: phrase_builder -->
-Плитки: `airport` `the` `to` `next` `is` `hotel` `The` `are` → **The hotel is next to the airport.**
-*(плитка `are` лишняя: здесь нужно `is` — `The hotel is next to the airport.`)*
+**6 · Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-46:i04; family: context_gap_grammar -->
+___ → **sack** · bag · box
+- bag — *bag — это сумка, а большой мешок для картошки называется sack.*
+- box — *box — это коробка, а большой мешок для картошки называется sack.*
 
-**7 · Выбранная одежда подходит к формату встречи. Скажите «Это уместно» с сокращением**
-<!-- interaction_id: en:lesson-04:session-46:i07; family: scripted_repeat_compare -->
-🎙 **It's appropriate.**
+**7 · Послушайте друга**
+<!-- interaction_id: en:lesson-04:session-46:i05; family: listen_choose -->
+🔊 *Is there a sack under the shelf?* → **Is there a sack under the shelf?** · Is there a sack on the shelf? · Are there any sacks under the shelf?
+- Is there a sack on the shelf? — *В записи `under` — под, а в этом варианте `on` — на.*
+- Are there any sacks under the shelf? — *В записи `Is there a` — спрашивают об одном, а в этом варианте `Are there any` — о нескольких.*
 
-**8 · Кладовой для продуктов нет. Выберите форму**
+**8 · Карточка слова — packet**
+<!-- interaction_id: en:lesson-04:session-46:word:packet; family: word_card -->
+> **packet** — пачка, пакетик. There is a packet on the worktop. — «На столешнице есть пачка». О небольшой упаковке из картона или бумаги, например с чаем, рисом или хлопьями.
+
+**9 · Друг показывает на полке небольшую упаковку, в которой лежат хлопья, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-46:i06; family: scripted_repeat_compare -->
+🎙 **packet**
+
+**10 · Послушайте друга и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-46:i07; family: listen_build_dictation -->
+🔊 *There aren’t any packets near the sink.* Плитки: `packets` `any` `near` `the` `sink` `There` `aren’t` `isn’t` → **There aren’t any packets near the sink.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any packets near the sink.`)*
+
+**11 · Карточка слова — carton**
+<!-- interaction_id: en:lesson-04:session-46:word:carton; family: word_card -->
+> **carton** — картонная упаковка. There is a carton next to the kettle. — «Рядом с чайником есть картонная упаковка». О картонной коробке для молока или сока.
+
+**12 · Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?**
 <!-- interaction_id: en:lesson-04:session-46:i08; family: context_gap_grammar -->
-There ___ a pantry. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Одна кладовая: `isn’t a pantry`.*
+___ → **carton** · bottle · jar
+- bottle — *bottle — это бутылка, а картонная упаковка молока называется carton.*
+- jar — *jar — это стеклянная банка, а картонная упаковка молока называется carton.*
 
-**9 · Послушайте, где сарай для велосипедов**
-<!-- interaction_id: en:lesson-04:session-46:i09; family: listen_choose -->
-🔊 *The bike shed is next to the house.* → **The bike shed is next to the house.** · The bike shed is next to the shop. · The bike shed is next to the hotel.
-- The bike shed is next to the shop. — *В записи последнее слово — `house`, а в этом варианте — `shop`.*
-- The bike shed is next to the hotel. — *В записи последнее слово — `house`, а в этом варианте — `hotel`.*
+**13 · Друг проверяет холодильник. Скажите ему полной фразой: в холодильнике есть картонные упаковки**
+<!-- interaction_id: en:lesson-04:session-46:i09; family: phrase_builder -->
+Плитки: `cartons` `some` `in` `the` `fridge` `There` `are` `is` → **There are some cartons in the fridge.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some cartons in the fridge.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-46:i10; family: speed_match -->
-pantry — кладовая для продуктов · appropriate — уместный · airport — аэропорт · bike shed — сарай для велосипедов
+carton — картонная упаковка · sack — мешок · jar — банка (стеклянная) · tin — консервная банка
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-46:i11; family: listen_build_dictation -->
-🔊 *There aren't any pantries.* Плитки: `pantries` `any` `aren't` `There` → **There aren't any pantries.**
+**15 · Послушайте друга**
+<!-- interaction_id: en:lesson-04:session-46:i11; family: listen_choose -->
+🔊 *There aren’t any cartons in the pantry.* → **There aren’t any cartons in the pantry.** · There isn’t a carton in the pantry. · There aren’t any cartons in the fridge.
+- There isn’t a carton in the pantry. — *В записи `aren’t any` — нет нескольких, а в этом варианте `isn’t a` — нет одной.*
+- There aren’t any cartons in the fridge. — *В записи последнее слово — `pantry`, а в этом варианте — `fridge`.*
 
-**12 · Здесь есть кладовая для продуктов. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-46:i12; family: phrase_builder -->
-Плитки: `pantry` `a` `is` `There` `are` → **There is a pantry.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a pantry.`)*
+**16 · Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-46:i12; family: context_gap_grammar -->
+There isn’t ___ sack in the pantry. → **a** · any · no
+- any — *any ставят перед несколькими предметами, а мешок один.*
+- no — *Слова isn’t уже достаточно для «нет»: второе отрицание no не нужно.*
 
-**13 · Друг приехал на велосипеде. Спросите, есть ли сарай для велосипедов**
-<!-- interaction_id: en:lesson-04:session-46:i13; family: scripted_repeat_compare -->
-🎙 **Is there a bike shed?**
+**17 · Послушайте друга и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-46:i13; family: listen_build_dictation -->
+🔊 *Is there a packet on the shelf?* Плитки: `packet` `a` `on` `the` `shelf` `Is` `there` `Are` → **Is there a packet on the shelf?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a packet on the shelf?`)*
 
-**14 · Бутылки внутри кладовой для продуктов, не на её крыше и не под полом. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-46:i14; family: context_gap_grammar -->
-The bottles are ___ the pantry. → **in** · on · under
-- on — *Внутри кладовой — `in the pantry`.*
-- under — *`under` — под; внутри — `in`.*
+**18 · Друг спрашивает, есть ли мешок в кладовой. Мешка там нет. Ответьте коротко**
+<!-- interaction_id: en:lesson-04:session-46:i14; family: scripted_repeat_compare -->
+🎙 **No, there isn’t.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-46:i15; family: listen_choose -->
-🔊 *That is a pantry.* → **That is a pantry.** · This is a pantry. · That is a kitchen.
-- This is a pantry. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a kitchen. — *В записи последнее слово — `pantry`, а в этом варианте — `kitchen`.*
+**19 · Друг ждёт вопроса. Спросите его полной фразой: есть ли в кладовой картонные упаковки?**
+<!-- interaction_id: en:lesson-04:session-46:i15; family: phrase_builder -->
+Плитки: `cartons` `any` `in` `the` `pantry` `Are` `there` `Is` → **Are there any cartons in the pantry?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there any cartons in the pantry?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-46:i16; family: speed_match -->
-pantry — кладовая для продуктов · appropriate — уместный · airport — аэропорт · bike shed — сарай для велосипедов
+pantry — кладовая для продуктов · sack — мешок · packet — пачка, пакетик · carton — картонная упаковка
 
-**17 · Вы осматриваете другой дом. Спросите, есть ли кладовая для продуктов**
+**21 · Друг спрашивает, что вы увидели в доме. Скажите ему: «Кладовой для продуктов здесь нет»**
 <!-- interaction_id: en:lesson-04:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there a pantry?**
-
+🎙 **There isn’t a pantry here.**

@@ -1,0 +1,2395 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-53:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-53:i01:p1",
+              "target": "police station",
+              "meaningByLocale": {
+                "ru": "полицейский участок",
+                "uk": "поліцейська дільниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i01:p2",
+              "target": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров",
+                "uk": "магазин сувенірів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i01:p3",
+              "target": "officer",
+              "meaningByLocale": {
+                "ru": "полицейский (сотрудник)",
+                "uk": "поліцейський (співробітник)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i01:p4",
+              "target": "tourist",
+              "meaningByLocale": {
+                "ru": "турист",
+                "uk": "турист"
+              }
+            }
+          ],
+          "leftColumn": [
+            "police station",
+            "gift shop",
+            "officer",
+            "tourist"
+          ],
+          "rightColumn": [
+            "полицейский участок",
+            "магазин сувениров",
+            "полицейский (сотрудник)",
+            "турист"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:police station",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — police station",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:police station:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — police station",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:police station:audio",
+            "transcript": "police station"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:police station:r1",
+              "targetText": "police station",
+              "meaningByLocale": {
+                "ru": "полицейский участок. There is a police station next to the library. — «Рядом с библиотекой есть полицейский участок». О здании, где принимают заявления о пропажах и кражах.",
+                "uk": "поліцейська дільниця. There is a police station next to the library. — «Поруч із бібліотекою є поліцейська дільниця». Про будівлю, де приймають заяви про пропажі й крадіжки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "police station",
+            "definitionByLocale": {
+              "ru": "полицейский участок. There is a police station next to the library. — «Рядом с библиотекой есть полицейский участок». О здании, где принимают заявления о пропажах и кражах.",
+              "uk": "поліцейська дільниця. There is a police station next to the library. — «Поруч із бібліотекою є поліцейська дільниця». Про будівлю, де приймають заяви про пропажі й крадіжки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость показывает на здание, где принимают заявления о пропажах, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Гость показывает на здание, где принимают заявления о пропажах, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i02:audio",
+            "transcript": "police station"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "police station",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость спрашивает, что возле банка. Скажите ему полной фразой: рядом с банком есть полицейский участок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость спрашивает, что возле банка. Скажите ему полной фразой: рядом с банком есть полицейский участок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a police station next to the bank.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает, что возле банка. Скажите ему полной фразой: рядом с банком есть полицейский участок",
+            "uk": "Гість питає, що біля банку. Скажіть йому повною фразою: поруч із банком є поліцейська дільниця"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "police",
+            "station",
+            "next",
+            "to",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "It"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость спрашивает, что возле банка. Скажите ему полной фразой: рядом с банком есть полицейский участок",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There` — `There is a police station next to the bank.`",
+                "uk": "тут потрібно `There` — `There is a police station next to the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:gift shop",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gift shop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:gift shop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gift shop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:gift shop:audio",
+            "transcript": "gift shop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:gift shop:r1",
+              "targetText": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров. There is a gift shop near the bank. — «Возле банка есть магазин сувениров». О магазине, где продают открытки и подарки на память.",
+                "uk": "магазин сувенірів. There is a gift shop near the bank. — «Біля банку є магазин сувенірів». Про магазин, де продають листівки й подарунки на згадку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gift shop",
+            "definitionByLocale": {
+              "ru": "магазин сувениров. There is a gift shop near the bank. — «Возле банка есть магазин сувениров». О магазине, где продают открытки и подарки на память.",
+              "uk": "магазин сувенірів. There is a gift shop near the bank. — «Біля банку є магазин сувенірів». Про магазин, де продають листівки й подарунки на згадку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Магазин, где продают открытки и подарки на память. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i04:r1",
+            "text": "gift shop"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i04:r2",
+            "text": "bakery"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i04:r3",
+            "text": "bank"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин, где продают открытки и подарки на память. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Магазин, где продают открытки и подарки на память. Как он называется по-английски?",
+            "uk": "Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-53:i04:r1",
+              "text": "gift shop"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i04:r2",
+              "text": "bakery"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i04:r3",
+              "text": "bank"
+            }
+          ],
+          "testedDimension": "Магазин, где продают открытки и подарки на память. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i04:r2",
+              "correct": false,
+              "testedDimension": "Магазин, где продают открытки и подарки на память. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bakery — это булочная, а магазин подарков на память называется gift shop.",
+                "uk": "bakery — це пекарня, а магазин подарунків на згадку називається gift shop."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i04:r3",
+              "correct": false,
+              "testedDimension": "Магазин, где продают открытки и подарки на память. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bank — это банк, а магазин подарков на память называется gift shop.",
+                "uk": "bank — це банк, а магазин подарунків на згадку називається gift shop."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i05:r1",
+            "text": "It is behind the gift shop."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i05:r2",
+            "text": "There is a gift shop behind the bank."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i05:r3",
+            "text": "It is behind the museum."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i05:audio",
+            "transcript": "It is behind the gift shop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:i05:r1",
+              "targetText": "It is behind the gift shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i05:r2",
+              "targetText": "There is a gift shop behind the bank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i05:r3",
+              "targetText": "It is behind the museum.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `It is` — место уже известно, а в этом варианте `There is a gift shop` — новое.",
+                "uk": "У записі `It is` — місце вже відоме, а в цьому варіанті `There is a gift shop` — нове."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `gift shop`, а в этом варианте `museum`.",
+                "uk": "У записі останнє місце `gift shop`, а в цьому варіанті `museum`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:officer",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — officer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:officer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — officer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:officer:audio",
+            "transcript": "officer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:officer:r1",
+              "targetText": "officer",
+              "meaningByLocale": {
+                "ru": "сотрудник полиции. There is an officer next to the door. — «Рядом с дверью стоит сотрудник полиции». О человеке в форме, который работает в полиции.",
+                "uk": "співробітник поліції. There is an officer next to the door. — «Поруч із дверима стоїть співробітник поліції». Про людину у формі, яка працює в поліції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "officer",
+            "definitionByLocale": {
+              "ru": "сотрудник полиции. There is an officer next to the door. — «Рядом с дверью стоит сотрудник полиции». О человеке в форме, который работает в полиции.",
+              "uk": "співробітник поліції. There is an officer next to the door. — «Поруч із дверима стоїть співробітник поліції». Про людину у формі, яка працює в поліції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость показывает на человека в форме, который работает в полиции, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i06:audio"
+        ],
+        "accessibilityLabel": "Гость показывает на человека в форме, который работает в полиции, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i06:audio",
+            "transcript": "officer"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "officer",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i07:audio",
+            "transcript": "There is an officer in the police station."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is an officer in the police station.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "an",
+            "officer",
+            "in",
+            "the",
+            "police",
+            "station"
+          ],
+          "authoredDistractorTokens": [
+            "It"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There` — `There is an officer in the police station.`",
+                "uk": "тут потрібно `There` — `There is an officer in the police station.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:tourist",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tourist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:tourist:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tourist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:tourist:audio",
+            "transcript": "tourist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:tourist:r1",
+              "targetText": "tourist",
+              "meaningByLocale": {
+                "ru": "турист. There are tourists near the museum. — «Возле музея есть туристы». О человеке, который приехал в город посмотреть на него.",
+                "uk": "турист. There are tourists near the museum. — «Біля музею є туристи». Про людину, яка приїхала до міста подивитися на нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tourist",
+            "definitionByLocale": {
+              "ru": "турист. There are tourists near the museum. — «Возле музея есть туристы». О человеке, который приехал в город посмотреть на него.",
+              "uk": "турист. There are tourists near the museum. — «Біля музею є туристи». Про людину, яка приїхала до міста подивитися на нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Человек, который приехал в город посмотреть на него. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i08:r1",
+            "text": "tourist"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i08:r2",
+            "text": "doctor"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i08:r3",
+            "text": "nurse"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Человек, который приехал в город посмотреть на него. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Человек, который приехал в город посмотреть на него. Как он называется по-английски?",
+            "uk": "Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-53:i08:r1",
+              "text": "tourist"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i08:r2",
+              "text": "doctor"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i08:r3",
+              "text": "nurse"
+            }
+          ],
+          "testedDimension": "Человек, который приехал в город посмотреть на него. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Человек, который приехал в город посмотреть на него. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "doctor — это врач, а человек, приехавший посмотреть город, называется tourist.",
+                "uk": "doctor — це лікар, а людина, яка приїхала подивитися місто, називається tourist."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Человек, который приехал в город посмотреть на него. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "nurse — это медсестра, а человек, приехавший посмотреть город, называется tourist.",
+                "uk": "nurse — це медсестра, а людина, яка приїхала подивитися місто, називається tourist."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость смотрит на площадь. Скажите ему полной фразой: возле музея есть туристы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость смотрит на площадь. Скажите ему полной фразой: возле музея есть туристы",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are tourists near the museum.",
+          "localizedMeaning": {
+            "ru": "Гость смотрит на площадь. Скажите ему полной фразой: возле музея есть туристы",
+            "uk": "Гість дивиться на площу. Скажіть йому повною фразою: біля музею є туристи"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "tourists",
+            "near",
+            "the",
+            "museum"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость смотрит на площадь. Скажите ему полной фразой: возле музея есть туристы",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are tourists near the museum.`",
+                "uk": "тут потрібно `are` — `There are tourists near the museum.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-53:i10:p1",
+              "target": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров",
+                "uk": "магазин сувенірів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i10:p2",
+              "target": "tourist",
+              "meaningByLocale": {
+                "ru": "турист",
+                "uk": "турист"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i10:p3",
+              "target": "museum",
+              "meaningByLocale": {
+                "ru": "музей",
+                "uk": "музей"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i10:p4",
+              "target": "bank",
+              "meaningByLocale": {
+                "ru": "банк",
+                "uk": "банк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gift shop",
+            "tourist",
+            "museum",
+            "bank"
+          ],
+          "rightColumn": [
+            "магазин сувениров",
+            "турист",
+            "музей",
+            "банк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i11:r1",
+            "text": "There is a gift shop next to the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i11:r2",
+            "text": "It is next to the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i11:r3",
+            "text": "There is a gift shop next to the bank."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i11:audio",
+            "transcript": "There is a gift shop next to the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:i11:r1",
+              "targetText": "There is a gift shop next to the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i11:r2",
+              "targetText": "It is next to the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i11:r3",
+              "targetText": "There is a gift shop next to the bank.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `There is a gift shop` — магазин называют впервые, а в этом варианте `It is` — он уже известен.",
+                "uk": "У записі `There is a gift shop` — магазин називають вперше, а в цьому варіанті `It is` — він уже відомий."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `library`, а в этом варианте `bank`.",
+                "uk": "У записі останнє місце `library`, а в цьому варіанті `bank`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с гостем уже говорили об участке. Скажите, где он. Выберите первое слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i12:r1",
+            "text": "It"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i12:r2",
+            "text": "There"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i12:r3",
+            "text": "They"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с гостем уже говорили об участке. Скажите, где он. Выберите первое слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с гостем уже говорили об участке. Скажите, где он. Выберите первое слово",
+            "uk": "Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово"
+          },
+          "gappedTargetPhrase": "___ is next to the museum.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-53:i12:r1",
+              "text": "It"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i12:r2",
+              "text": "There"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i12:r3",
+              "text": "They"
+            }
+          ],
+          "testedDimension": "Вы с гостем уже говорили об участке. Скажите, где он. Выберите первое слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы с гостем уже говорили об участке. Скажите, где он. Выберите первое слово",
+              "feedbackByLocale": {
+                "ru": "There is a… называет место впервые, а участок вы с гостем уже знаете: нужно It.",
+                "uk": "There is a… називає місце вперше, а дільницю ви з гостем уже знаєте: потрібно It."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы с гостем уже говорили об участке. Скажите, где он. Выберите первое слово",
+              "feedbackByLocale": {
+                "ru": "They — это «они», а участок один: нужно It.",
+                "uk": "They — це «вони», а дільниця одна: потрібно It."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i13:audio",
+            "transcript": "It is next to the police station."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is next to the police station.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "next",
+            "to",
+            "the",
+            "police",
+            "station"
+          ],
+          "authoredDistractorTokens": [
+            "There"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is next to the police station.`",
+                "uk": "тут потрібно `It` — `It is next to the police station.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, есть ли рядом участок. Он есть, и вы называете его впервые. Скажите ему: «Рядом есть полицейский участок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, есть ли рядом участок. Он есть, и вы называете его впервые. Скажите ему: «Рядом есть полицейский участок»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i14:audio",
+            "transcript": "There is a police station near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a police station near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is an officer next to the door.",
+          "localizedMeaning": {
+            "ru": "Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции",
+            "uk": "Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "an",
+            "officer",
+            "next",
+            "to",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `There is an officer next to the door.`",
+                "uk": "тут потрібно `an` — `There is an officer next to the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-53:i16:p1",
+              "target": "police station",
+              "meaningByLocale": {
+                "ru": "полицейский участок",
+                "uk": "поліцейська дільниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i16:p2",
+              "target": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров",
+                "uk": "магазин сувенірів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i16:p3",
+              "target": "officer",
+              "meaningByLocale": {
+                "ru": "полицейский (сотрудник)",
+                "uk": "поліцейський (співробітник)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i16:p4",
+              "target": "tourist",
+              "meaningByLocale": {
+                "ru": "турист",
+                "uk": "турист"
+              }
+            }
+          ],
+          "leftColumn": [
+            "police station",
+            "gift shop",
+            "officer",
+            "tourist"
+          ],
+          "rightColumn": [
+            "полицейский участок",
+            "магазин сувениров",
+            "полицейский (сотрудник)",
+            "турист"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, где участок, о котором вы уже говорили. Скажите ему: «Он возле музея»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, где участок, о котором вы уже говорили. Скажите ему: «Он возле музея»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i17:audio",
+            "transcript": "It is near the museum."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is near the museum.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-53:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-53:i01:p1",
+              "target": "police station",
+              "meaningByLocale": {
+                "ru": "полицейский участок",
+                "uk": "поліцейська дільниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i01:p2",
+              "target": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров",
+                "uk": "магазин сувенірів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i01:p3",
+              "target": "officer",
+              "meaningByLocale": {
+                "ru": "полицейский (сотрудник)",
+                "uk": "поліцейський (співробітник)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i01:p4",
+              "target": "tourist",
+              "meaningByLocale": {
+                "ru": "турист",
+                "uk": "турист"
+              }
+            }
+          ],
+          "leftColumn": [
+            "police station",
+            "gift shop",
+            "officer",
+            "tourist"
+          ],
+          "rightColumn": [
+            "поліцейська дільниця",
+            "магазин сувенірів",
+            "поліцейський (співробітник)",
+            "турист"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:police station",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — police station",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:police station:audio"
+        ],
+        "accessibilityLabel": "Картка слова — police station",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:police station:audio",
+            "transcript": "police station"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:police station:r1",
+              "targetText": "police station",
+              "meaningByLocale": {
+                "ru": "полицейский участок. There is a police station next to the library. — «Рядом с библиотекой есть полицейский участок». О здании, где принимают заявления о пропажах и кражах.",
+                "uk": "поліцейська дільниця. There is a police station next to the library. — «Поруч із бібліотекою є поліцейська дільниця». Про будівлю, де приймають заяви про пропажі й крадіжки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "police station",
+            "definitionByLocale": {
+              "ru": "полицейский участок. There is a police station next to the library. — «Рядом с библиотекой есть полицейский участок». О здании, где принимают заявления о пропажах и кражах.",
+              "uk": "поліцейська дільниця. There is a police station next to the library. — «Поруч із бібліотекою є поліцейська дільниця». Про будівлю, де приймають заяви про пропажі й крадіжки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість показує на будівлю, де приймають заяви про пропажі, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Гість показує на будівлю, де приймають заяви про пропажі, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i02:audio",
+            "transcript": "police station"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "police station",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість питає, що біля банку. Скажіть йому повною фразою: поруч із банком є поліцейська дільниця",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість питає, що біля банку. Скажіть йому повною фразою: поруч із банком є поліцейська дільниця",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a police station next to the bank.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает, что возле банка. Скажите ему полной фразой: рядом с банком есть полицейский участок",
+            "uk": "Гість питає, що біля банку. Скажіть йому повною фразою: поруч із банком є поліцейська дільниця"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "police",
+            "station",
+            "next",
+            "to",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "It"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість питає, що біля банку. Скажіть йому повною фразою: поруч із банком є поліцейська дільниця",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There` — `There is a police station next to the bank.`",
+                "uk": "тут потрібно `There` — `There is a police station next to the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:gift shop",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gift shop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:gift shop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gift shop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:gift shop:audio",
+            "transcript": "gift shop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:gift shop:r1",
+              "targetText": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров. There is a gift shop near the bank. — «Возле банка есть магазин сувениров». О магазине, где продают открытки и подарки на память.",
+                "uk": "магазин сувенірів. There is a gift shop near the bank. — «Біля банку є магазин сувенірів». Про магазин, де продають листівки й подарунки на згадку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gift shop",
+            "definitionByLocale": {
+              "ru": "магазин сувениров. There is a gift shop near the bank. — «Возле банка есть магазин сувениров». О магазине, где продают открытки и подарки на память.",
+              "uk": "магазин сувенірів. There is a gift shop near the bank. — «Біля банку є магазин сувенірів». Про магазин, де продають листівки й подарунки на згадку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i04:r1",
+            "text": "gift shop"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i04:r2",
+            "text": "bakery"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i04:r3",
+            "text": "bank"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Магазин, где продают открытки и подарки на память. Как он называется по-английски?",
+            "uk": "Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-53:i04:r1",
+              "text": "gift shop"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i04:r2",
+              "text": "bakery"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i04:r3",
+              "text": "bank"
+            }
+          ],
+          "testedDimension": "Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i04:r2",
+              "correct": false,
+              "testedDimension": "Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bakery — это булочная, а магазин подарков на память называется gift shop.",
+                "uk": "bakery — це пекарня, а магазин подарунків на згадку називається gift shop."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i04:r3",
+              "correct": false,
+              "testedDimension": "Магазин, де продають листівки й подарунки на згадку. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bank — это банк, а магазин подарков на память называется gift shop.",
+                "uk": "bank — це банк, а магазин подарунків на згадку називається gift shop."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i05:r1",
+            "text": "It is behind the gift shop."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i05:r2",
+            "text": "There is a gift shop behind the bank."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i05:r3",
+            "text": "It is behind the museum."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i05:audio",
+            "transcript": "It is behind the gift shop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:i05:r1",
+              "targetText": "It is behind the gift shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i05:r2",
+              "targetText": "There is a gift shop behind the bank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i05:r3",
+              "targetText": "It is behind the museum.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `It is` — место уже известно, а в этом варианте `There is a gift shop` — новое.",
+                "uk": "У записі `It is` — місце вже відоме, а в цьому варіанті `There is a gift shop` — нове."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `gift shop`, а в этом варианте `museum`.",
+                "uk": "У записі останнє місце `gift shop`, а в цьому варіанті `museum`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:officer",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — officer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:officer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — officer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:officer:audio",
+            "transcript": "officer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:officer:r1",
+              "targetText": "officer",
+              "meaningByLocale": {
+                "ru": "сотрудник полиции. There is an officer next to the door. — «Рядом с дверью стоит сотрудник полиции». О человеке в форме, который работает в полиции.",
+                "uk": "співробітник поліції. There is an officer next to the door. — «Поруч із дверима стоїть співробітник поліції». Про людину у формі, яка працює в поліції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "officer",
+            "definitionByLocale": {
+              "ru": "сотрудник полиции. There is an officer next to the door. — «Рядом с дверью стоит сотрудник полиции». О человеке в форме, который работает в полиции.",
+              "uk": "співробітник поліції. There is an officer next to the door. — «Поруч із дверима стоїть співробітник поліції». Про людину у формі, яка працює в поліції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість показує на людину у формі, яка працює в поліції, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i06:audio"
+        ],
+        "accessibilityLabel": "Гість показує на людину у формі, яка працює в поліції, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i06:audio",
+            "transcript": "officer"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "officer",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i07:audio",
+            "transcript": "There is an officer in the police station."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is an officer in the police station.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "an",
+            "officer",
+            "in",
+            "the",
+            "police",
+            "station"
+          ],
+          "authoredDistractorTokens": [
+            "It"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There` — `There is an officer in the police station.`",
+                "uk": "тут потрібно `There` — `There is an officer in the police station.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:word:tourist",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tourist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:word:tourist:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tourist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:word:tourist:audio",
+            "transcript": "tourist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:word:tourist:r1",
+              "targetText": "tourist",
+              "meaningByLocale": {
+                "ru": "турист. There are tourists near the museum. — «Возле музея есть туристы». О человеке, который приехал в город посмотреть на него.",
+                "uk": "турист. There are tourists near the museum. — «Біля музею є туристи». Про людину, яка приїхала до міста подивитися на нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tourist",
+            "definitionByLocale": {
+              "ru": "турист. There are tourists near the museum. — «Возле музея есть туристы». О человеке, который приехал в город посмотреть на него.",
+              "uk": "турист. There are tourists near the museum. — «Біля музею є туристи». Про людину, яка приїхала до міста подивитися на нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i08:r1",
+            "text": "tourist"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i08:r2",
+            "text": "doctor"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i08:r3",
+            "text": "nurse"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Человек, который приехал в город посмотреть на него. Как он называется по-английски?",
+            "uk": "Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-53:i08:r1",
+              "text": "tourist"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i08:r2",
+              "text": "doctor"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i08:r3",
+              "text": "nurse"
+            }
+          ],
+          "testedDimension": "Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "doctor — это врач, а человек, приехавший посмотреть город, называется tourist.",
+                "uk": "doctor — це лікар, а людина, яка приїхала подивитися місто, називається tourist."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Людина, яка приїхала до міста подивитися на нього. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "nurse — это медсестра, а человек, приехавший посмотреть город, называется tourist.",
+                "uk": "nurse — це медсестра, а людина, яка приїхала подивитися місто, називається tourist."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість дивиться на площу. Скажіть йому повною фразою: біля музею є туристи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість дивиться на площу. Скажіть йому повною фразою: біля музею є туристи",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are tourists near the museum.",
+          "localizedMeaning": {
+            "ru": "Гость смотрит на площадь. Скажите ему полной фразой: возле музея есть туристы",
+            "uk": "Гість дивиться на площу. Скажіть йому повною фразою: біля музею є туристи"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "tourists",
+            "near",
+            "the",
+            "museum"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість дивиться на площу. Скажіть йому повною фразою: біля музею є туристи",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are tourists near the museum.`",
+                "uk": "тут потрібно `are` — `There are tourists near the museum.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-53:i10:p1",
+              "target": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров",
+                "uk": "магазин сувенірів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i10:p2",
+              "target": "tourist",
+              "meaningByLocale": {
+                "ru": "турист",
+                "uk": "турист"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i10:p3",
+              "target": "museum",
+              "meaningByLocale": {
+                "ru": "музей",
+                "uk": "музей"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i10:p4",
+              "target": "bank",
+              "meaningByLocale": {
+                "ru": "банк",
+                "uk": "банк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gift shop",
+            "tourist",
+            "museum",
+            "bank"
+          ],
+          "rightColumn": [
+            "магазин сувенірів",
+            "турист",
+            "музей",
+            "банк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i11:r1",
+            "text": "There is a gift shop next to the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i11:r2",
+            "text": "It is next to the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i11:r3",
+            "text": "There is a gift shop next to the bank."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i11:audio",
+            "transcript": "There is a gift shop next to the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-53:i11:r1",
+              "targetText": "There is a gift shop next to the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i11:r2",
+              "targetText": "It is next to the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i11:r3",
+              "targetText": "There is a gift shop next to the bank.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи `There is a gift shop` — магазин называют впервые, а в этом варианте `It is` — он уже известен.",
+                "uk": "У записі `There is a gift shop` — магазин називають вперше, а в цьому варіанті `It is` — він уже відомий."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `library`, а в этом варианте `bank`.",
+                "uk": "У записі останнє місце `library`, а в цьому варіанті `bank`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-53:i12:r1",
+            "text": "It"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i12:r2",
+            "text": "There"
+          },
+          {
+            "responseId": "en:lesson-04:session-53:i12:r3",
+            "text": "They"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с гостем уже говорили об участке. Скажите, где он. Выберите первое слово",
+            "uk": "Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово"
+          },
+          "gappedTargetPhrase": "___ is next to the museum.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-53:i12:r1",
+              "text": "It"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i12:r2",
+              "text": "There"
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i12:r3",
+              "text": "They"
+            }
+          ],
+          "testedDimension": "Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово",
+              "feedbackByLocale": {
+                "ru": "There is a… называет место впервые, а участок вы с гостем уже знаете: нужно It.",
+                "uk": "There is a… називає місце вперше, а дільницю ви з гостем уже знаєте: потрібно It."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви з гостем уже говорили про дільницю. Скажіть, де вона. Виберіть перше слово",
+              "feedbackByLocale": {
+                "ru": "They — это «они», а участок один: нужно It.",
+                "uk": "They — це «вони», а дільниця одна: потрібно It."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i13:audio",
+            "transcript": "It is next to the police station."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is next to the police station.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "next",
+            "to",
+            "the",
+            "police",
+            "station"
+          ],
+          "authoredDistractorTokens": [
+            "There"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is next to the police station.`",
+                "uk": "тут потрібно `It` — `It is next to the police station.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, чи є поруч дільниця. Вона є, і ви називаєте її вперше. Скажіть йому: «Поруч є поліцейська дільниця»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Гість питає, чи є поруч дільниця. Вона є, і ви називаєте її вперше. Скажіть йому: «Поруч є поліцейська дільниця»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i14:audio",
+            "transcript": "There is a police station near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a police station near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is an officer next to the door.",
+          "localizedMeaning": {
+            "ru": "Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции",
+            "uk": "Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "an",
+            "officer",
+            "next",
+            "to",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-53:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `There is an officer next to the door.`",
+                "uk": "тут потрібно `an` — `There is an officer next to the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-53:i16:p1",
+              "target": "police station",
+              "meaningByLocale": {
+                "ru": "полицейский участок",
+                "uk": "поліцейська дільниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i16:p2",
+              "target": "gift shop",
+              "meaningByLocale": {
+                "ru": "магазин сувениров",
+                "uk": "магазин сувенірів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i16:p3",
+              "target": "officer",
+              "meaningByLocale": {
+                "ru": "полицейский (сотрудник)",
+                "uk": "поліцейський (співробітник)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-53:i16:p4",
+              "target": "tourist",
+              "meaningByLocale": {
+                "ru": "турист",
+                "uk": "турист"
+              }
+            }
+          ],
+          "leftColumn": [
+            "police station",
+            "gift shop",
+            "officer",
+            "tourist"
+          ],
+          "rightColumn": [
+            "поліцейська дільниця",
+            "магазин сувенірів",
+            "поліцейський (співробітник)",
+            "турист"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, де дільниця, про яку ви вже говорили. Скажіть йому: «Вона біля музею»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Гість питає, де дільниця, про яку ви вже говорили. Скажіть йому: «Вона біля музею»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-53:i17:audio",
+            "transcript": "It is near the museum."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is near the museum.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-53:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:word:police station",
+      "correctText": "police station",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i02",
+      "correctText": "police station",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i03",
+      "correctText": "There is a police station next to the bank.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:word:gift shop",
+      "correctText": "gift shop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i04",
+      "correctText": "gift shop",
+      "correctResponseId": "en:lesson-04:session-53:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i05",
+      "correctText": "It is behind the gift shop.",
+      "correctResponseId": "en:lesson-04:session-53:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:word:officer",
+      "correctText": "officer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i06",
+      "correctText": "officer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i07",
+      "correctText": "There is an officer in the police station.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:word:tourist",
+      "correctText": "tourist",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i08",
+      "correctText": "tourist",
+      "correctResponseId": "en:lesson-04:session-53:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i09",
+      "correctText": "There are tourists near the museum.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i11",
+      "correctText": "There is a gift shop next to the library.",
+      "correctResponseId": "en:lesson-04:session-53:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i12",
+      "correctText": "It",
+      "correctResponseId": "en:lesson-04:session-53:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i13",
+      "correctText": "It is next to the police station.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i14",
+      "correctText": "There is a police station near here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i15",
+      "correctText": "There is an officer next to the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:i17",
+      "correctText": "It is near the museum.",
+      "correctResponseId": null
+    }
+  ]
+}

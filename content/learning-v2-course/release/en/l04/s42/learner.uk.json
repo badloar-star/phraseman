@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-42:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "В інформації помилка. Скажіть, що вона неточна, без скорочення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "В інформації помилка. Скажіть, що вона неточна, без скорочення",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is inaccurate.",
-        "localizedMeaning": {
-          "ru": "В информации ошибка. Скажите, что она неточна, без сокращения",
-          "uk": "В інформації помилка. Скажіть, що вона неточна, без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "inaccurate"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-42:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "В інформації помилка. Скажіть, що вона неточна, без скорочення",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is inaccurate.`",
-              "uk": "тут потрібно `is` — `It is inaccurate.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-42:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть назву",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-42:i02:r1",
-          "text": "bus shelter"
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i02:r2",
-          "text": "bus shelters"
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i02:r3",
-          "text": "bus stop"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-42:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть назву",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-42:i02:audio",
-          "transcript": "bus shelter"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-42:i02:r1",
-            "targetText": "bus shelter",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i02:r2",
-            "targetText": "bus shelters",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i02:r3",
-            "targetText": "bus stop",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-42:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shelter`, а в этом варианте — `shelters`.",
-              "uk": "У записі останнє слово — `shelter`, а в цьому варіанті — `shelters`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shelter`, а в этом варианте — `stop`.",
-              "uk": "У записі останнє слово — `shelter`, а в цьому варіанті — `stop`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-42:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть укриття з дахом на автобусній зупинці",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-42:i03:r1",
-          "text": "bus shelter"
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i03:r2",
-          "text": "bus stop"
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i03:r3",
-          "text": "bike shed"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть укриття з дахом на автобусній зупинці",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите укрытие с крышей на автобусной остановке",
-          "uk": "Назвіть укриття з дахом на автобусній зупинці"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-42:i03:r1",
-            "text": "bus shelter"
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i03:r2",
-            "text": "bus stop"
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i03:r3",
-            "text": "bike shed"
-          }
-        ],
-        "testedDimension": "Назвіть укриття з дахом на автобусній зупинці",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-42:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть укриття з дахом на автобусній зупинці",
-            "feedbackByLocale": {
-              "ru": "`bus stop` — сама остановка; павильон — `bus shelter`.",
-              "uk": "`bus stop` — сама зупинка; павільйон — `bus shelter`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть укриття з дахом на автобусній зупинці",
-            "feedbackByLocale": {
-              "ru": "`bike shed` — сарай для велосипедов; здесь `bus shelter`.",
-              "uk": "`bike shed` — сарай для велосипедів; тут `bus shelter`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-42:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -207,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-42:i04:p1",
+            "pairId": "en:lesson-04:session-42:i01:p1",
             "target": "bus shelter",
             "meaningByLocale": {
               "ru": "остановочный павильон",
@@ -215,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-42:i04:p2",
-            "target": "inaccurate",
+            "pairId": "en:lesson-04:session-42:i01:p2",
+            "target": "ticket machine",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "автомат для билетов",
+              "uk": "автомат для квитків"
             }
           },
           {
-            "pairId": "en:lesson-04:session-42:i04:p3",
-            "target": "bathroom",
+            "pairId": "en:lesson-04:session-42:i01:p3",
+            "target": "turnstile",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "турникет",
+              "uk": "турнікет"
             }
           },
           {
-            "pairId": "en:lesson-04:session-42:i04:p4",
-            "target": "handrail",
+            "pairId": "en:lesson-04:session-42:i01:p4",
+            "target": "information desk",
             "meaningByLocale": {
-              "ru": "поручень",
-              "uk": "поручень"
+              "ru": "справочная стойка",
+              "uk": "довідкова стійка"
             }
           }
         ],
         "leftColumn": [
           "bus shelter",
-          "inaccurate",
-          "bathroom",
-          "handrail"
+          "ticket machine",
+          "turnstile",
+          "information desk"
         ],
         "rightColumn": [
           "зупинковий павільйон",
-          "неточний",
-          "ванна кімната",
-          "поручень"
+          "автомат для квитків",
+          "турнікет",
+          "довідкова стійка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,122 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-42:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-42:word:bus shelter",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bus shelter",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-42:i05:audio"
+        "en:lesson-04:session-42:word:bus shelter:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — bus shelter",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-42:i05:audio",
-          "transcript": "This is a bus shelter."
+          "audioTargetId": "en:lesson-04:session-42:word:bus shelter:audio",
+          "transcript": "bus shelter"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a bus shelter.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "bus",
-          "shelter"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-42:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a bus shelter.`",
-              "uk": "тут потрібно `is` — `This is a bus shelter.`"
+            "responseId": "en:lesson-04:session-42:word:bus shelter:r1",
+            "targetText": "bus shelter",
+            "meaningByLocale": {
+              "ru": "остановочный павильон. There is a bus shelter next to the bank. — «Рядом с банком есть остановочный павильон». О навесе на остановке, где пережидают дождь и ждут автобус.",
+              "uk": "зупинковий павільйон. There is a bus shelter next to the bank. — «Поруч із банком є зупинковий павільйон». Про навіс на зупинці, де пережидають дощ і чекають автобус."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus shelter",
+          "definitionByLocale": {
+            "ru": "остановочный павильон. There is a bus shelter next to the bank. — «Рядом с банком есть остановочный павильон». О навесе на остановке, где пережидают дождь и ждут автобус.",
+            "uk": "зупинковий павільйон. There is a bus shelter next to the bank. — «Поруч із банком є зупинковий павільйон». Про навіс на зупинці, де пережидають дощ і чекають автобус."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-42:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поручень у ванній кімнаті. Скажіть, де він",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Поручень у ванній кімнаті. Скажіть, де він",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The handrail is in the bathroom.",
-        "localizedMeaning": {
-          "ru": "Поручень в ванной комнате. Скажите, где он",
-          "uk": "Поручень у ванній кімнаті. Скажіть, де він"
-        },
-        "orderedTokens": [
-          "The",
-          "handrail",
-          "is",
-          "in",
-          "the",
-          "bathroom"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-42:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Поручень у ванній кімнаті. Скажіть, де він",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The handrail is in the bathroom.`",
-              "uk": "тут потрібно `is` — `The handrail is in the bathroom.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-42:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-42:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Відомості про павільйон помилкові. Скажіть, що інформація неточна, зі скороченням",
+      "prompt": "Працівник показує на зупинці навіс із дахом і лавкою, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-42:i07:audio"
+        "en:lesson-04:session-42:i02:audio"
       ],
-      "accessibilityLabel": "Відомості про павільйон помилкові. Скажіть, що інформація неточна, зі скороченням",
+      "accessibilityLabel": "Працівник показує на зупинці навіс із дахом і лавкою, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-42:i07:audio",
-          "transcript": "It's inaccurate."
+          "audioTargetId": "en:lesson-04:session-42:i02:audio",
+          "transcript": "bus shelter"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's inaccurate.",
+        "targetPhrase": "bus shelter",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -395,68 +153,160 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-42:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівник слухає. Поставте йому повне запитання: чи є поруч із банком зупинковий павільйон?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник слухає. Поставте йому повне запитання: чи є поруч із банком зупинковий павільйон?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a bus shelter near the bank?",
+        "localizedMeaning": {
+          "ru": "Сотрудник слушает. Задайте ему полным вопросом: есть ли рядом с банком остановочный павильон?",
+          "uk": "Працівник слухає. Поставте йому повне запитання: чи є поруч із банком зупинковий павільйон?"
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "bus",
+          "shelter",
+          "near",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-42:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Працівник слухає. Поставте йому повне запитання: чи є поруч із банком зупинковий павільйон?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a bus shelter near the bank?`",
+              "uk": "тут потрібно `Is` — `Is there a bus shelter near the bank?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:word:ticket machine",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ticket machine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-42:word:ticket machine:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ticket machine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-42:word:ticket machine:audio",
+          "transcript": "ticket machine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-42:word:ticket machine:r1",
+            "targetText": "ticket machine",
+            "meaningByLocale": {
+              "ru": "автомат для билетов. There are some ticket machines near the gate. — «У ворот есть несколько автоматов для билетов». Об аппарате, где билет покупают сами, без кассира.",
+              "uk": "автомат для квитків. There are some ticket machines near the gate. — «Біля воріт є кілька автоматів для квитків». Про апарат, де квиток купують самі, без касира."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ticket machine",
+          "definitionByLocale": {
+            "ru": "автомат для билетов. There are some ticket machines near the gate. — «У ворот есть несколько автоматов для билетов». Об аппарате, где билет покупают сами, без кассира.",
+            "uk": "автомат для квитків. There are some ticket machines near the gate. — «Біля воріт є кілька автоматів для квитків». Про апарат, де квиток купують самі, без касира."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Поручня немає. Виберіть форму",
+      "prompt": "Працівник показує на платформі апарат, де квиток купують самі. Як він називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-42:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-42:i04:r1",
+          "text": "ticket machine"
         },
         {
-          "responseId": "en:lesson-04:session-42:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-42:i04:r2",
+          "text": "timetable"
         },
         {
-          "responseId": "en:lesson-04:session-42:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-42:i04:r3",
+          "text": "map"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поручня немає. Виберіть форму",
+      "accessibilityLabel": "Працівник показує на платформі апарат, де квиток купують самі. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Поручня нет. Выберите форму",
-          "uk": "Поручня немає. Виберіть форму"
+          "ru": "Сотрудник показывает на платформе аппарат, где билет покупают сами. Как он называется по-английски?",
+          "uk": "Працівник показує на платформі апарат, де квиток купують самі. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a handrail.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-42:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-42:i04:r1",
+            "text": "ticket machine"
           },
           {
-            "responseId": "en:lesson-04:session-42:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-42:i04:r2",
+            "text": "timetable"
           },
           {
-            "responseId": "en:lesson-04:session-42:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-42:i04:r3",
+            "text": "map"
           }
         ],
-        "testedDimension": "Поручня немає. Виберіть форму",
+        "testedDimension": "Працівник показує на платформі апарат, де квиток купують самі. Як він називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-42:i08:r2",
+            "responseId": "en:lesson-04:session-42:i04:r2",
             "correct": false,
-            "testedDimension": "Поручня немає. Виберіть форму",
+            "testedDimension": "Працівник показує на платформі апарат, де квиток купують самі. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`is` — есть; здесь нет: `isn’t`.",
-              "uk": "`is` — є; тут немає: `isn’t`."
+              "ru": "timetable — это расписание, а аппарат для покупки билета называется ticket machine.",
+              "uk": "timetable — це розклад, а апарат для купівлі квитка називається ticket machine."
             }
           },
           {
-            "responseId": "en:lesson-04:session-42:i08:r3",
+            "responseId": "en:lesson-04:session-42:i04:r3",
             "correct": false,
-            "testedDimension": "Поручня немає. Виберіть форму",
+            "testedDimension": "Працівник показує на платформі апарат, де квиток купують самі. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "Один поручень: `isn’t a handrail`.",
-              "uk": "Один поручень: `isn’t a handrail`."
+              "ru": "map — это карта, а аппарат для покупки билета называется ticket machine.",
+              "uk": "map — це мапа, а апарат для купівлі квитка називається ticket machine."
             }
           }
         ]
@@ -464,73 +314,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-42:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де павільйон",
+      "prompt": "Послухайте запитання працівника",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-42:i09:r1",
-          "text": "The bus shelter is next to the shop."
+          "responseId": "en:lesson-04:session-42:i05:r1",
+          "text": "Are there any ticket machines near the entrance?"
         },
         {
-          "responseId": "en:lesson-04:session-42:i09:r2",
-          "text": "The bus shelter is next to the hotel."
+          "responseId": "en:lesson-04:session-42:i05:r2",
+          "text": "Are there any ticket machines near the platform?"
         },
         {
-          "responseId": "en:lesson-04:session-42:i09:r3",
-          "text": "The bus shelter is next to the gym."
+          "responseId": "en:lesson-04:session-42:i05:r3",
+          "text": "Is there a ticket machine near the entrance?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-42:i09:audio"
+        "en:lesson-04:session-42:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де павільйон",
+      "accessibilityLabel": "Послухайте запитання працівника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-42:i09:audio",
-          "transcript": "The bus shelter is next to the shop."
+          "audioTargetId": "en:lesson-04:session-42:i05:audio",
+          "transcript": "Are there any ticket machines near the entrance?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-42:i09:r1",
-            "targetText": "The bus shelter is next to the shop.",
+            "responseId": "en:lesson-04:session-42:i05:r1",
+            "targetText": "Are there any ticket machines near the entrance?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-42:i09:r2",
-            "targetText": "The bus shelter is next to the hotel.",
+            "responseId": "en:lesson-04:session-42:i05:r2",
+            "targetText": "Are there any ticket machines near the platform?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-42:i09:r3",
-            "targetText": "The bus shelter is next to the gym.",
+            "responseId": "en:lesson-04:session-42:i05:r3",
+            "targetText": "Is there a ticket machine near the entrance?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-42:i09:r2",
+            "responseId": "en:lesson-04:session-42:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де павільйон",
+            "testedDimension": "Послухайте запитання працівника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shop`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `hotel`."
+              "ru": "В записи последнее слово — `entrance`, а в этом варианте — `platform`.",
+              "uk": "У записі останнє слово — `entrance`, а в цьому варіанті — `platform`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-42:i09:r3",
+            "responseId": "en:lesson-04:session-42:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де павільйон",
+            "testedDimension": "Послухайте запитання працівника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shop`, а в этом варианте — `gym`.",
-              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `gym`."
+              "ru": "В записи `Are there any` — спрашивают о нескольких, а в этом варианте `Is there a` — об одном.",
+              "uk": "У записі `Are there any` — питають про кілька, а в цьому варіанті `Is there a` — про один."
             }
           }
         ],
@@ -540,9 +390,297 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-42:i10",
+      "interactionId": "en:lesson-04:session-42:word:turnstile",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — turnstile",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-42:word:turnstile:audio"
+      ],
+      "accessibilityLabel": "Картка слова — turnstile",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-42:word:turnstile:audio",
+          "transcript": "turnstile"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-42:word:turnstile:r1",
+            "targetText": "turnstile",
+            "meaningByLocale": {
+              "ru": "турникет. There is a turnstile between the gate and the hall. — «Между воротами и холлом есть турникет». О вращающейся перекладине на входе, которая пропускает людей по одному.",
+              "uk": "турнікет. There is a turnstile between the gate and the hall. — «Між воротами й холом є турнікет». Про обертову перекладину на вході, яка пропускає людей по одному."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "turnstile",
+          "definitionByLocale": {
+            "ru": "турникет. There is a turnstile between the gate and the hall. — «Между воротами и холлом есть турникет». О вращающейся перекладине на входе, которая пропускает людей по одному.",
+            "uk": "турнікет. There is a turnstile between the gate and the hall. — «Між воротами й холом є турнікет». Про обертову перекладину на вході, яка пропускає людей по одному."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Працівник показує біля входу обертову перекладину для проходу по одному, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Працівник показує біля входу обертову перекладину для проходу по одному, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-42:i06:audio",
+          "transcript": "turnstile"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "turnstile",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте працівника й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте працівника й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-42:i07:audio",
+          "transcript": "Is there a turnstile near the platform?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a turnstile near the platform?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "turnstile",
+          "near",
+          "the",
+          "platform"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-42:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте працівника й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a turnstile near the platform?`",
+              "uk": "тут потрібно `Is` — `Is there a turnstile near the platform?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:word:information desk",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — information desk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-42:word:information desk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — information desk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-42:word:information desk:audio",
+          "transcript": "information desk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-42:word:information desk:r1",
+            "targetText": "information desk",
+            "meaningByLocale": {
+              "ru": "справочная стойка. There is an information desk in the hall. — «В холле есть справочная стойка». О стойке, где сотрудник подсказывает, как проехать, и показывает карту.",
+              "uk": "довідкова стійка. There is an information desk in the hall. — «У холі є довідкова стійка». Про стійку, де працівник підказує, як проїхати, і показує мапу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "information desk",
+          "definitionByLocale": {
+            "ru": "справочная стойка. There is an information desk in the hall. — «В холле есть справочная стойка». О стойке, где сотрудник подсказывает, как проехать, и показывает карту.",
+            "uk": "довідкова стійка. There is an information desk in the hall. — «У холі є довідкова стійка». Про стійку, де працівник підказує, як проїхати, і показує мапу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівник сидить за стійкою, де підказують, як проїхати. Як називається така стійка?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-42:i08:r1",
+          "text": "information desk"
+        },
+        {
+          "responseId": "en:lesson-04:session-42:i08:r2",
+          "text": "reception"
+        },
+        {
+          "responseId": "en:lesson-04:session-42:i08:r3",
+          "text": "timetable"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник сидить за стійкою, де підказують, як проїхати. Як називається така стійка?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник сидит за стойкой, где подсказывают, как проехать. Как называется такая стойка?",
+          "uk": "Працівник сидить за стійкою, де підказують, як проїхати. Як називається така стійка?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-42:i08:r1",
+            "text": "information desk"
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i08:r2",
+            "text": "reception"
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i08:r3",
+            "text": "timetable"
+          }
+        ],
+        "testedDimension": "Працівник сидить за стійкою, де підказують, як проїхати. Як називається така стійка?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Працівник сидить за стійкою, де підказують, як проїхати. Як називається така стійка?",
+            "feedbackByLocale": {
+              "ru": "reception — это стойка регистрации в отеле, а на станции подсказывают у information desk.",
+              "uk": "reception — це стійка реєстрації в готелі, а на станції підказують біля information desk."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Працівник сидить за стійкою, де підказують, як проїхати. Як називається така стійка?",
+            "feedbackByLocale": {
+              "ru": "timetable — это расписание, а стойка с подсказками называется information desk.",
+              "uk": "timetable — це розклад, а стійка з підказками називається information desk."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівник зайнятий. Поставте йому повне запитання: чи є у вестибюлі довідкова стійка?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник зайнятий. Поставте йому повне запитання: чи є у вестибюлі довідкова стійка?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there an information desk in the lobby?",
+        "localizedMeaning": {
+          "ru": "Сотрудник занят. Задайте ему полным вопросом: есть ли в вестибюле справочная стойка?",
+          "uk": "Працівник зайнятий. Поставте йому повне запитання: чи є у вестибюлі довідкова стійка?"
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "an",
+          "information",
+          "desk",
+          "in",
+          "the",
+          "lobby"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-42:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Працівник зайнятий. Поставте йому повне запитання: чи є у вестибюлі довідкова стійка?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there an information desk in the lobby?`",
+              "uk": "тут потрібно `Is` — `Is there an information desk in the lobby?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -555,48 +693,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-42:i10:p1",
-            "target": "bus shelter",
+            "target": "information desk",
             "meaningByLocale": {
-              "ru": "остановочный павильон",
-              "uk": "зупинковий павільйон"
+              "ru": "справочная стойка",
+              "uk": "довідкова стійка"
             }
           },
           {
             "pairId": "en:lesson-04:session-42:i10:p2",
-            "target": "inaccurate",
+            "target": "turnstile",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "турникет",
+              "uk": "турнікет"
             }
           },
           {
             "pairId": "en:lesson-04:session-42:i10:p3",
-            "target": "bathroom",
+            "target": "timetable",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "расписание",
+              "uk": "розклад"
             }
           },
           {
             "pairId": "en:lesson-04:session-42:i10:p4",
-            "target": "handrail",
+            "target": "platform",
             "meaningByLocale": {
-              "ru": "поручень",
-              "uk": "поручень"
+              "ru": "платформа (на вокзале)",
+              "uk": "платформа (на вокзалі)"
             }
           }
         ],
         "leftColumn": [
-          "bus shelter",
-          "inaccurate",
-          "bathroom",
-          "handrail"
+          "information desk",
+          "turnstile",
+          "timetable",
+          "platform"
         ],
         "rightColumn": [
-          "зупинковий павільйон",
-          "неточний",
-          "ванна кімната",
-          "поручень"
+          "довідкова стійка",
+          "турнікет",
+          "розклад",
+          "платформа (на вокзалі)"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -614,77 +752,191 @@
     },
     {
       "interactionId": "en:lesson-04:session-42:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте відповідь працівника",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-42:i11:r1",
+          "text": "Yes, there is."
+        },
+        {
+          "responseId": "en:lesson-04:session-42:i11:r2",
+          "text": "Yes, there are."
+        },
+        {
+          "responseId": "en:lesson-04:session-42:i11:r3",
+          "text": "No, there isn’t."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-42:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте відповідь працівника",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-42:i11:audio",
-          "transcript": "There aren't any bus shelters."
+          "transcript": "Yes, there is."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There aren't any bus shelters.",
-        "orderedTokens": [
-          "There",
-          "aren't",
-          "any",
-          "bus",
-          "shelters"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-42:i11:r1",
+            "targetText": "Yes, there is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i11:r2",
+            "targetText": "Yes, there are.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i11:r3",
+            "targetText": "No, there isn’t.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте відповідь працівника",
+            "feedbackByLocale": {
+              "ru": "В записи `is` — один предмет, а в этом варианте `are` — несколько.",
+              "uk": "У записі `is` — один предмет, а в цьому варіанті `are` — кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте відповідь працівника",
+            "feedbackByLocale": {
+              "ru": "В записи `Yes` — да, а в этом варианте `No` — нет.",
+              "uk": "У записі `Yes` — так, а в цьому варіанті `No` — ні."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-42:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Тут є зупинковий павільйон. Повідомте про це",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівник показує на один турнікет біля воріт. Виберіть потрібне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-42:i12:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-42:i12:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-04:session-42:i12:r3",
+          "text": "any"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тут є зупинковий павільйон. Повідомте про це",
+      "accessibilityLabel": "Працівник показує на один турнікет біля воріт. Виберіть потрібне слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a bus shelter.",
-        "localizedMeaning": {
-          "ru": "Здесь есть остановочный павильон. Сообщите об этом",
-          "uk": "Тут є зупинковий павільйон. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник показывает на один турникет у ворот. Выберите нужное слово",
+          "uk": "Працівник показує на один турнікет біля воріт. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "Is there ___ turnstile near the gate?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-42:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i12:r3",
+            "text": "any"
+          }
+        ],
+        "testedDimension": "Працівник показує на один турнікет біля воріт. Виберіть потрібне слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Працівник показує на один турнікет біля воріт. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "Слово turnstile начинается с согласного звука, поэтому нужно a, а не an.",
+              "uk": "Слово turnstile починається з приголосного звуку, тому потрібно a, а не an."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Працівник показує на один турнікет біля воріт. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "Турникет один, а any ставят перед несколькими предметами.",
+              "uk": "Турнікет один, а any ставлять перед кількома предметами."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте працівника й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте працівника й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-42:i13:audio",
+          "transcript": "Are there any bus shelters near the market?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are there any bus shelters near the market?",
         "orderedTokens": [
-          "There",
-          "is",
-          "a",
+          "Are",
+          "there",
+          "any",
           "bus",
-          "shelter"
+          "shelters",
+          "near",
+          "the",
+          "market"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-42:i12:tile:d1",
+            "responseId": "en:lesson-04:session-42:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Тут є зупинковий павільйон. Повідомте про це",
+            "testedDimension": "Послухайте працівника й складіть запитання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a bus shelter.`",
-              "uk": "тут потрібно `is` — `There is a bus shelter.`"
+              "ru": "здесь нужно `Are` — `Are there any bus shelters near the market?`",
+              "uk": "тут потрібно `Are` — `Are there any bus shelters near the market?`"
             }
           }
         ],
@@ -696,26 +948,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-42:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-42:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви ще не бачили зупинку. Запитайте, чи є зупинковий павільйон",
+      "prompt": "Працівник питає, чи є у вас поруч зупинковий павільйон. Павільйону немає. Дайте коротку відповідь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-42:i13:audio"
+        "en:lesson-04:session-42:i14:audio"
       ],
-      "accessibilityLabel": "Ви ще не бачили зупинку. Запитайте, чи є зупинковий павільйон",
+      "accessibilityLabel": "Працівник питає, чи є у вас поруч зупинковий павільйон. Павільйону немає. Дайте коротку відповідь",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-42:i13:audio",
-          "transcript": "Is there a bus shelter?"
+          "audioTargetId": "en:lesson-04:session-42:i14:audio",
+          "transcript": "No, there isn’t."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a bus shelter?",
+        "targetPhrase": "No, there isn’t.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -729,161 +981,65 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-42:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Сумка всередині павільйону, не на даху й не зовні поруч. Виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-42:i14:r1",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i14:r2",
-          "text": "on"
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i14:r3",
-          "text": "next to"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівник записує вашу відповідь. Скажіть йому повною фразою: біля входу є автомат для квитків",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумка всередині павільйону, не на даху й не зовні поруч. Виберіть слово",
+      "accessibilityLabel": "Працівник записує вашу відповідь. Скажіть йому повною фразою: біля входу є автомат для квитків",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Сумка внутри павильона, не на крыше и не снаружи рядом. Выберите слово",
-          "uk": "Сумка всередині павільйону, не на даху й не зовні поруч. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "There is a ticket machine near the entrance.",
+        "localizedMeaning": {
+          "ru": "Сотрудник записывает ваш ответ. Скажите ему полной фразой: у входа есть автомат для билетов",
+          "uk": "Працівник записує вашу відповідь. Скажіть йому повною фразою: біля входу є автомат для квитків"
         },
-        "gappedTargetPhrase": "The bag is ___ the bus shelter.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "ticket",
+          "machine",
+          "near",
+          "the",
+          "entrance"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-42:i14:r1",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i14:r2",
-            "text": "on"
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i14:r3",
-            "text": "next to"
+            "responseId": "en:lesson-04:session-42:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Працівник записує вашу відповідь. Скажіть йому повною фразою: біля входу є автомат для квитків",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a ticket machine near the entrance.`",
+              "uk": "тут потрібно `is` — `There is a ticket machine near the entrance.`"
+            }
           }
         ],
-        "testedDimension": "Сумка всередині павільйону, не на даху й не зовні поруч. Виберіть слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-42:i14:r2",
-            "correct": false,
-            "testedDimension": "Сумка всередині павільйону, не на даху й не зовні поруч. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`on` — на поверхности; внутри — `in`.",
-              "uk": "`on` — на поверхні; всередині — `in`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i14:r3",
-            "correct": false,
-            "testedDimension": "Сумка всередині павільйону, не на даху й не зовні поруч. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`next to` — рядом; внутри павильона — `in the bus shelter`.",
-              "uk": "`next to` — поруч; усередині павільйону — `in the bus shelter`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-42:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, що показує друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-42:i15:r1",
-          "text": "That is a bus shelter."
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i15:r2",
-          "text": "This is a bus shelter."
-        },
-        {
-          "responseId": "en:lesson-04:session-42:i15:r3",
-          "text": "That is a bus stop."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-42:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, що показує друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-42:i15:audio",
-          "transcript": "That is a bus shelter."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-42:i15:r1",
-            "targetText": "That is a bus shelter.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i15:r2",
-            "targetText": "This is a bus shelter.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i15:r3",
-            "targetText": "That is a bus stop.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-42:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-42:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shelter`, а в этом варианте — `stop`.",
-              "uk": "У записі останнє слово — `shelter`, а в цьому варіанті — `stop`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-42:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви зі значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви зі значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -897,40 +1053,40 @@
           },
           {
             "pairId": "en:lesson-04:session-42:i16:p2",
-            "target": "inaccurate",
+            "target": "ticket machine",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "автомат для билетов",
+              "uk": "автомат для квитків"
             }
           },
           {
             "pairId": "en:lesson-04:session-42:i16:p3",
-            "target": "bathroom",
+            "target": "turnstile",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "турникет",
+              "uk": "турнікет"
             }
           },
           {
             "pairId": "en:lesson-04:session-42:i16:p4",
-            "target": "handrail",
+            "target": "information desk",
             "meaningByLocale": {
-              "ru": "поручень",
-              "uk": "поручень"
+              "ru": "справочная стойка",
+              "uk": "довідкова стійка"
             }
           }
         ],
         "leftColumn": [
           "bus shelter",
-          "inaccurate",
-          "bathroom",
-          "handrail"
+          "ticket machine",
+          "turnstile",
+          "information desk"
         ],
         "rightColumn": [
           "зупинковий павільйон",
-          "неточний",
-          "ванна кімната",
-          "поручень"
+          "автомат для квитків",
+          "турнікет",
+          "довідкова стійка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -948,25 +1104,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-42:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На іншій зупинці немає павільйону. Повідомте «Зупинкового павільйону немає»",
+      "prompt": "Ви на станції й не бачите довідкової. Запитайте працівника: «Тут є довідкова стійка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-42:i17:audio"
       ],
-      "accessibilityLabel": "На іншій зупинці немає павільйону. Повідомте «Зупинкового павільйону немає»",
+      "accessibilityLabel": "Ви на станції й не бачите довідкової. Запитайте працівника: «Тут є довідкова стійка?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-42:i17:audio",
-          "transcript": "There isn't a bus shelter."
+          "transcript": "Is there an information desk here?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There isn't a bus shelter.",
+        "targetPhrase": "Is there an information desk here?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -988,11 +1144,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c3f39e2fb821e47ce317d4e6ffe4f8b59facc4fc74f0c24963cb95aad199fce2"
+  "learnerFingerprint": "4e6f2e1829ef422c94a21130914e46cdbf3812531d6f7b67c829e6130aff16d2"
 }

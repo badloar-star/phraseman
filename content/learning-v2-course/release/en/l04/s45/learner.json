@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-45:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Передайте «Это незаконно» без сокращения",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Передайте «Это незаконно» без сокращения",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is illegal.",
-        "localizedMeaning": {
-          "ru": "Передайте «Это незаконно» без сокращения",
-          "uk": "Передайте «Це незаконно» без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "illegal"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-45:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Передайте «Это незаконно» без сокращения",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is illegal.`",
-              "uk": "тут потрібно `is` — `It is illegal.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-45:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-45:i02:r1",
-          "text": "microwave"
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i02:r2",
-          "text": "microwaves"
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i02:r3",
-          "text": "freezer"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-45:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-45:i02:audio",
-          "transcript": "microwave"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-45:i02:r1",
-            "targetText": "microwave",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i02:r2",
-            "targetText": "microwaves",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i02:r3",
-            "targetText": "freezer",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-45:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `microwave`, а в этом варианте — `microwaves`.",
-              "uk": "У записі перше слово — `microwave`, а в цьому варіанті — `microwaves`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `microwave`, а в этом варианте — `freezer`.",
-              "uk": "У записі перше слово — `microwave`, а в цьому варіанті — `freezer`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-45:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите микроволновку одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-45:i03:r1",
-          "text": "microwave"
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i03:r2",
-          "text": "boiler"
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i03:r3",
-          "text": "sink"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите микроволновку одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите микроволновку одним словом",
-          "uk": "Назвіть мікрохвильовку одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-45:i03:r1",
-            "text": "microwave"
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i03:r2",
-            "text": "boiler"
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i03:r3",
-            "text": "sink"
-          }
-        ],
-        "testedDimension": "Назовите микроволновку одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-45:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите микроволновку одним словом",
-            "feedbackByLocale": {
-              "ru": "`boiler` — отопительный котёл; микроволновка — `microwave`.",
-              "uk": "`boiler` — опалювальний котел; мікрохвильовка — `microwave`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите микроволновку одним словом",
-            "feedbackByLocale": {
-              "ru": "`sink` — раковина; микроволновка — `microwave`.",
-              "uk": "`sink` — раковина; мікрохвильовка — `microwave`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-45:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -207,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-45:i04:p1",
+            "pairId": "en:lesson-04:session-45:i01:p1",
             "target": "microwave",
             "meaningByLocale": {
               "ru": "микроволновка",
@@ -215,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-45:i04:p2",
-            "target": "illegal",
+            "pairId": "en:lesson-04:session-45:i01:p2",
+            "target": "washing machine",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "стиральная машина",
+              "uk": "пральна машина"
             }
           },
           {
-            "pairId": "en:lesson-04:session-45:i04:p3",
-            "target": "office",
+            "pairId": "en:lesson-04:session-45:i01:p3",
+            "target": "ironing board",
             "meaningByLocale": {
-              "ru": "офис",
-              "uk": "офіс"
+              "ru": "гладильная доска",
+              "uk": "прасувальна дошка"
             }
           },
           {
-            "pairId": "en:lesson-04:session-45:i04:p4",
-            "target": "parcel locker",
+            "pairId": "en:lesson-04:session-45:i01:p4",
+            "target": "hairdryer",
             "meaningByLocale": {
-              "ru": "постамат",
-              "uk": "поштомат"
+              "ru": "фен",
+              "uk": "фен"
             }
           }
         ],
         "leftColumn": [
           "microwave",
-          "illegal",
-          "office",
-          "parcel locker"
+          "washing machine",
+          "ironing board",
+          "hairdryer"
         ],
         "rightColumn": [
           "микроволновка",
-          "незаконный",
-          "офис",
-          "постамат"
+          "стиральная машина",
+          "гладильная доска",
+          "фен"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,121 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-45:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-45:word:microwave",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — microwave",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-45:i05:audio"
+        "en:lesson-04:session-45:word:microwave:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Карточка слова — microwave",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-45:i05:audio",
-          "transcript": "This is a microwave."
+          "audioTargetId": "en:lesson-04:session-45:word:microwave:audio",
+          "transcript": "microwave"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a microwave.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "microwave"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-45:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a microwave.`",
-              "uk": "тут потрібно `is` — `This is a microwave.`"
+            "responseId": "en:lesson-04:session-45:word:microwave:r1",
+            "targetText": "microwave",
+            "meaningByLocale": {
+              "ru": "микроволновка. There is a microwave on the worktop. — «На столешнице есть микроволновка». О приборе, в котором быстро разогревают еду.",
+              "uk": "мікрохвильовка. There is a microwave on the worktop. — «На стільниці є мікрохвильовка». Про прилад, у якому швидко розігрівають їжу."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "microwave",
+          "definitionByLocale": {
+            "ru": "микроволновка. There is a microwave on the worktop. — «На столешнице есть микроволновка». О приборе, в котором быстро разогревают еду.",
+            "uk": "мікрохвильовка. There is a microwave on the worktop. — «На стільниці є мікрохвильовка». Про прилад, у якому швидко розігрівають їжу."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-45:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Микроволновка в офисе. Скажите, где она",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Микроволновка в офисе. Скажите, где она",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The microwave is in the office.",
-        "localizedMeaning": {
-          "ru": "Микроволновка в офисе. Скажите, где она",
-          "uk": "Мікрохвильовка в офісі. Скажіть, де вона"
-        },
-        "orderedTokens": [
-          "The",
-          "microwave",
-          "is",
-          "in",
-          "the",
-          "office"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-45:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Микроволновка в офисе. Скажите, где она",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The microwave is in the office.`",
-              "uk": "тут потрібно `is` — `The microwave is in the office.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-45:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-45:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте «Это незаконно» с сокращением",
+      "prompt": "Агент показывает на кухне прибор, в котором быстро греют еду, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-45:i07:audio"
+        "en:lesson-04:session-45:i02:audio"
       ],
-      "accessibilityLabel": "Передайте «Это незаконно» с сокращением",
+      "accessibilityLabel": "Агент показывает на кухне прибор, в котором быстро греют еду, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-45:i07:audio",
-          "transcript": "It's illegal."
+          "audioTargetId": "en:lesson-04:session-45:i02:audio",
+          "transcript": "microwave"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's illegal.",
+        "targetPhrase": "microwave",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -394,68 +153,160 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-45:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Агент просит поправить строку. Скажите полной фразой: рядом с холодильником есть микроволновка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Агент просит поправить строку. Скажите полной фразой: рядом с холодильником есть микроволновка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a microwave next to the fridge.",
+        "localizedMeaning": {
+          "ru": "Агент просит поправить строку. Скажите полной фразой: рядом с холодильником есть микроволновка",
+          "uk": "Агент просить виправити рядок. Скажіть повною фразою: поруч із холодильником є мікрохвильовка"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "microwave",
+          "next",
+          "to",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-45:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Агент просит поправить строку. Скажите полной фразой: рядом с холодильником есть микроволновка",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a microwave next to the fridge.`",
+              "uk": "тут потрібно `is` — `There is a microwave next to the fridge.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:word:washing machine",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — washing machine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-45:word:washing machine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — washing machine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-45:word:washing machine:audio",
+          "transcript": "washing machine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-45:word:washing machine:r1",
+            "targetText": "washing machine",
+            "meaningByLocale": {
+              "ru": "стиральная машина. There are some washing machines in the laundrette. — «В прачечной есть стиральные машины». О машине, в которой стирают бельё и одежду.",
+              "uk": "пральна машина. There are some washing machines in the laundrette. — «У пральні є пральні машини». Про машину, у якій перуть білизну й одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "washing machine",
+          "definitionByLocale": {
+            "ru": "стиральная машина. There are some washing machines in the laundrette. — «В прачечной есть стиральные машины». О машине, в которой стирают бельё и одежду.",
+            "uk": "пральна машина. There are some washing machines in the laundrette. — «У пральні є пральні машини». Про машину, у якій перуть білизну й одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Микроволновки нет. Выберите форму",
+      "prompt": "Агент показывает в подвале машину, в которую загружают бельё и включают стирку. Как она называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-45:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-45:i04:r1",
+          "text": "washing machine"
         },
         {
-          "responseId": "en:lesson-04:session-45:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-45:i04:r2",
+          "text": "oven"
         },
         {
-          "responseId": "en:lesson-04:session-45:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-45:i04:r3",
+          "text": "kettle"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Микроволновки нет. Выберите форму",
+      "accessibilityLabel": "Агент показывает в подвале машину, в которую загружают бельё и включают стирку. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Микроволновки нет. Выберите форму",
-          "uk": "Мікрохвильовки немає. Виберіть форму"
+          "ru": "Агент показывает в подвале машину, в которую загружают бельё и включают стирку. Как она называется по-английски?",
+          "uk": "Агент показує в підвалі машину, у яку завантажують білизну й вмикають прання. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a microwave.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-45:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-45:i04:r1",
+            "text": "washing machine"
           },
           {
-            "responseId": "en:lesson-04:session-45:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-45:i04:r2",
+            "text": "oven"
           },
           {
-            "responseId": "en:lesson-04:session-45:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-45:i04:r3",
+            "text": "kettle"
           }
         ],
-        "testedDimension": "Микроволновки нет. Выберите форму",
+        "testedDimension": "Агент показывает в подвале машину, в которую загружают бельё и включают стирку. Как она называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-45:i08:r2",
+            "responseId": "en:lesson-04:session-45:i04:r2",
             "correct": false,
-            "testedDimension": "Микроволновки нет. Выберите форму",
+            "testedDimension": "Агент показывает в подвале машину, в которую загружают бельё и включают стирку. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`is` — есть; здесь нет: `isn’t`.",
-              "uk": "`is` — є; тут немає: `isn’t`."
+              "ru": "oven — это духовка, а машина для стирки называется washing machine.",
+              "uk": "oven — це духовка, а машина для прання називається washing machine."
             }
           },
           {
-            "responseId": "en:lesson-04:session-45:i08:r3",
+            "responseId": "en:lesson-04:session-45:i04:r3",
             "correct": false,
-            "testedDimension": "Микроволновки нет. Выберите форму",
+            "testedDimension": "Агент показывает в подвале машину, в которую загружают бельё и включают стирку. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Один прибор: `isn’t a microwave`.",
-              "uk": "Один прилад: `isn’t a microwave`."
+              "ru": "kettle — это чайник, а машина для стирки называется washing machine.",
+              "uk": "kettle — це чайник, а машина для прання називається washing machine."
             }
           }
         ]
@@ -463,73 +314,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-45:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где постамат",
+      "prompt": "Послушайте агента",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-45:i09:r1",
-          "text": "The parcel locker is next to the door."
+          "responseId": "en:lesson-04:session-45:i05:r1",
+          "text": "There are some washing machines near the sink."
         },
         {
-          "responseId": "en:lesson-04:session-45:i09:r2",
-          "text": "The parcel locker is next to the shop."
+          "responseId": "en:lesson-04:session-45:i05:r2",
+          "text": "There are some washing machines near the stairs."
         },
         {
-          "responseId": "en:lesson-04:session-45:i09:r3",
-          "text": "The parcel locker is next to the hotel."
+          "responseId": "en:lesson-04:session-45:i05:r3",
+          "text": "There is a washing machine near the sink."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-45:i09:audio"
+        "en:lesson-04:session-45:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте, где постамат",
+      "accessibilityLabel": "Послушайте агента",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-45:i09:audio",
-          "transcript": "The parcel locker is next to the door."
+          "audioTargetId": "en:lesson-04:session-45:i05:audio",
+          "transcript": "There are some washing machines near the sink."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-45:i09:r1",
-            "targetText": "The parcel locker is next to the door.",
+            "responseId": "en:lesson-04:session-45:i05:r1",
+            "targetText": "There are some washing machines near the sink.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-45:i09:r2",
-            "targetText": "The parcel locker is next to the shop.",
+            "responseId": "en:lesson-04:session-45:i05:r2",
+            "targetText": "There are some washing machines near the stairs.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-45:i09:r3",
-            "targetText": "The parcel locker is next to the hotel.",
+            "responseId": "en:lesson-04:session-45:i05:r3",
+            "targetText": "There is a washing machine near the sink.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-45:i09:r2",
+            "responseId": "en:lesson-04:session-45:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где постамат",
+            "testedDimension": "Послушайте агента",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `shop`."
+              "ru": "В записи последнее слово — `sink`, а в этом варианте — `stairs`.",
+              "uk": "У записі останнє слово — `sink`, а в цьому варіанті — `stairs`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-45:i09:r3",
+            "responseId": "en:lesson-04:session-45:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где постамат",
+            "testedDimension": "Послушайте агента",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `hotel`."
+              "ru": "В записи `are` — несколько машин, а в этом варианте `is` — одна.",
+              "uk": "У записі `are` — кілька машин, а в цьому варіанті `is` — одна."
             }
           }
         ],
@@ -539,9 +390,297 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-45:i10",
+      "interactionId": "en:lesson-04:session-45:word:ironing board",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ironing board",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-45:word:ironing board:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ironing board",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-45:word:ironing board:audio",
+          "transcript": "ironing board"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-45:word:ironing board:r1",
+            "targetText": "ironing board",
+            "meaningByLocale": {
+              "ru": "гладильная доска. There is an ironing board behind the door. — «За дверью есть гладильная доска». О длинной узкой доске на ножках, на которой гладят бельё.",
+              "uk": "прасувальна дошка. There is an ironing board behind the door. — «За дверима є прасувальна дошка». Про довгу вузьку дошку на ніжках, на якій прасують білизну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ironing board",
+          "definitionByLocale": {
+            "ru": "гладильная доска. There is an ironing board behind the door. — «За дверью есть гладильная доска». О длинной узкой доске на ножках, на которой гладят бельё.",
+            "uk": "прасувальна дошка. There is an ironing board behind the door. — «За дверима є прасувальна дошка». Про довгу вузьку дошку на ніжках, на якій прасують білизну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Агент показывает в холле длинную узкую доску на ножках, на которой гладят бельё, а вы повторяете за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Агент показывает в холле длинную узкую доску на ножках, на которой гладят бельё, а вы повторяете за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-45:i06:audio",
+          "transcript": "ironing board"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "ironing board",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте агента и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-45:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте агента и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-45:i07:audio",
+          "transcript": "There isn’t an ironing board near the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There isn’t an ironing board near the door.",
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "an",
+          "ironing",
+          "board",
+          "near",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-45:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте агента и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t an ironing board near the door.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t an ironing board near the door.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:word:hairdryer",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hairdryer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-45:word:hairdryer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hairdryer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-45:word:hairdryer:audio",
+          "transcript": "hairdryer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-45:word:hairdryer:r1",
+            "targetText": "hairdryer",
+            "meaningByLocale": {
+              "ru": "фен. There is a hairdryer next to the bathtub. — «Рядом с ванной есть фен». О приборе, которым сушат волосы тёплым воздухом.",
+              "uk": "фен. There is a hairdryer next to the bathtub. — «Поруч із ванною є фен». Про прилад, яким сушать волосся теплим повітрям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hairdryer",
+          "definitionByLocale": {
+            "ru": "фен. There is a hairdryer next to the bathtub. — «Рядом с ванной есть фен». О приборе, которым сушат волосы тёплым воздухом.",
+            "uk": "фен. There is a hairdryer next to the bathtub. — «Поруч із ванною є фен». Про прилад, яким сушать волосся теплим повітрям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Агент показывает в ванной прибор, которым сушат волосы тёплым воздухом. Как он называется по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-45:i08:r1",
+          "text": "hairdryer"
+        },
+        {
+          "responseId": "en:lesson-04:session-45:i08:r2",
+          "text": "toaster"
+        },
+        {
+          "responseId": "en:lesson-04:session-45:i08:r3",
+          "text": "kettle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Агент показывает в ванной прибор, которым сушат волосы тёплым воздухом. Как он называется по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Агент показывает в ванной прибор, которым сушат волосы тёплым воздухом. Как он называется по-английски?",
+          "uk": "Агент показує у ванній прилад, яким сушать волосся теплим повітрям. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-45:i08:r1",
+            "text": "hairdryer"
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i08:r2",
+            "text": "toaster"
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i08:r3",
+            "text": "kettle"
+          }
+        ],
+        "testedDimension": "Агент показывает в ванной прибор, которым сушат волосы тёплым воздухом. Как он называется по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Агент показывает в ванной прибор, которым сушат волосы тёплым воздухом. Как он называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "toaster — это тостер, а прибор для сушки волос называется hairdryer.",
+              "uk": "toaster — це тостер, а прилад для сушіння волосся називається hairdryer."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Агент показывает в ванной прибор, которым сушат волосы тёплым воздухом. Как он называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "kettle — это чайник, а прибор для сушки волос называется hairdryer.",
+              "uk": "kettle — це чайник, а прилад для сушіння волосся називається hairdryer."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Агент ждёт ответа. Скажите ему полной фразой: на полке есть фен",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Агент ждёт ответа. Скажите ему полной фразой: на полке есть фен",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a hairdryer on the shelf.",
+        "localizedMeaning": {
+          "ru": "Агент ждёт ответа. Скажите ему полной фразой: на полке есть фен",
+          "uk": "Агент чекає відповіді. Скажіть йому повною фразою: на полиці є фен"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "hairdryer",
+          "on",
+          "the",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-45:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Агент ждёт ответа. Скажите ему полной фразой: на полке есть фен",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a hairdryer on the shelf.`",
+              "uk": "тут потрібно `is` — `There is a hairdryer on the shelf.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -554,48 +693,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-45:i10:p1",
-            "target": "microwave",
+            "target": "hairdryer",
             "meaningByLocale": {
-              "ru": "микроволновка",
-              "uk": "мікрохвильовка"
+              "ru": "фен",
+              "uk": "фен"
             }
           },
           {
             "pairId": "en:lesson-04:session-45:i10:p2",
-            "target": "illegal",
+            "target": "ironing board",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "гладильная доска",
+              "uk": "прасувальна дошка"
             }
           },
           {
             "pairId": "en:lesson-04:session-45:i10:p3",
-            "target": "office",
+            "target": "toaster",
             "meaningByLocale": {
-              "ru": "офис",
-              "uk": "офіс"
+              "ru": "тостер",
+              "uk": "тостер"
             }
           },
           {
             "pairId": "en:lesson-04:session-45:i10:p4",
-            "target": "parcel locker",
+            "target": "kettle",
             "meaningByLocale": {
-              "ru": "постамат",
-              "uk": "поштомат"
+              "ru": "чайник",
+              "uk": "чайник"
             }
           }
         ],
         "leftColumn": [
-          "microwave",
-          "illegal",
-          "office",
-          "parcel locker"
+          "hairdryer",
+          "ironing board",
+          "toaster",
+          "kettle"
         ],
         "rightColumn": [
-          "микроволновка",
-          "незаконный",
-          "офис",
-          "постамат"
+          "фен",
+          "гладильная доска",
+          "тостер",
+          "чайник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -613,75 +752,190 @@
     },
     {
       "interactionId": "en:lesson-04:session-45:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте агента",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-45:i11:r1",
+          "text": "There are some hairdryers near the bathtub."
+        },
+        {
+          "responseId": "en:lesson-04:session-45:i11:r2",
+          "text": "There is a hairdryer near the bathtub."
+        },
+        {
+          "responseId": "en:lesson-04:session-45:i11:r3",
+          "text": "There are some hairdryers near the basement."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-45:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте агента",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-45:i11:audio",
-          "transcript": "There aren't any microwaves."
+          "transcript": "There are some hairdryers near the bathtub."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There aren't any microwaves.",
-        "orderedTokens": [
-          "There",
-          "aren't",
-          "any",
-          "microwaves"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-45:i11:r1",
+            "targetText": "There are some hairdryers near the bathtub.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i11:r2",
+            "targetText": "There is a hairdryer near the bathtub.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i11:r3",
+            "targetText": "There are some hairdryers near the basement.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте агента",
+            "feedbackByLocale": {
+              "ru": "В записи `are` — несколько приборов, а в этом варианте `is` — один.",
+              "uk": "У записі `are` — кілька приладів, а в цьому варіанті `is` — один."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте агента",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bathtub`, а в этом варианте — `basement`.",
+              "uk": "У записі останнє слово — `bathtub`, а в цьому варіанті — `basement`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-45:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Здесь есть микроволновка. Сообщите об этом",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Агент пишет о нескольких микроволновках в кафе. Выберите нужное слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-45:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-45:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-45:i12:r3",
+          "text": "isn’t"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Здесь есть микроволновка. Сообщите об этом",
+      "accessibilityLabel": "Агент пишет о нескольких микроволновках в кафе. Выберите нужное слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a microwave.",
-        "localizedMeaning": {
-          "ru": "Здесь есть микроволновка. Сообщите об этом",
-          "uk": "Тут є мікрохвильовка. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Агент пишет о нескольких микроволновках в кафе. Выберите нужное слово",
+          "uk": "Агент пише про кілька мікрохвильовок у кафе. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "There ___ some microwaves in the cafe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-45:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i12:r3",
+            "text": "isn’t"
+          }
+        ],
+        "testedDimension": "Агент пишет о нескольких микроволновках в кафе. Выберите нужное слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Агент пишет о нескольких микроволновках в кафе. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "Микроволновок несколько, поэтому нужно are, а не is.",
+              "uk": "Мікрохвильовок кілька, тому потрібно are, а не is."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Агент пишет о нескольких микроволновках в кафе. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "Здесь утверждение, а isn’t — это отрицание.",
+              "uk": "Тут ствердження, а isn’t — це заперечення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте агента и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте агента и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-45:i13:audio",
+          "transcript": "There are some hairdryers on the shelves."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There are some hairdryers on the shelves.",
         "orderedTokens": [
           "There",
-          "is",
-          "a",
-          "microwave"
+          "are",
+          "some",
+          "hairdryers",
+          "on",
+          "the",
+          "shelves"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-45:i12:tile:d1",
+            "responseId": "en:lesson-04:session-45:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Здесь есть микроволновка. Сообщите об этом",
+            "testedDimension": "Послушайте агента и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a microwave.`",
-              "uk": "тут потрібно `is` — `There is a microwave.`"
+              "ru": "здесь нужно `are` — `There are some hairdryers on the shelves.`",
+              "uk": "тут потрібно `are` — `There are some hairdryers on the shelves.`"
             }
           }
         ],
@@ -693,26 +947,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-45:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-45:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ждёте посылку. Спросите, есть ли постамат",
+      "prompt": "Агент проверяет строку про технику. Скажите ему: «В подвале нет стиральной машины»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-45:i13:audio"
+        "en:lesson-04:session-45:i14:audio"
       ],
-      "accessibilityLabel": "Вы ждёте посылку. Спросите, есть ли постамат",
+      "accessibilityLabel": "Агент проверяет строку про технику. Скажите ему: «В подвале нет стиральной машины»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-45:i13:audio",
-          "transcript": "Is there a parcel locker?"
+          "audioTargetId": "en:lesson-04:session-45:i14:audio",
+          "transcript": "There isn’t a washing machine in the basement."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a parcel locker?",
+        "targetPhrase": "There isn’t a washing machine in the basement.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -726,153 +980,57 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-45:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Микроволновка стоит на поверхности столешницы, не внутри и не под ней. Выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-45:i14:r1",
-          "text": "on"
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i14:r2",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Агент исправляет описание. Скажите ему полной фразой: в шкафчике нет гладильной доски",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Микроволновка стоит на поверхности столешницы, не внутри и не под ней. Выберите слово",
+      "accessibilityLabel": "Агент исправляет описание. Скажите ему полной фразой: в шкафчике нет гладильной доски",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Микроволновка стоит на поверхности столешницы, не внутри и не под ней. Выберите слово",
-          "uk": "Мікрохвильовка стоїть на поверхні стільниці, не всередині й не під нею. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t an ironing board in the cupboard.",
+        "localizedMeaning": {
+          "ru": "Агент исправляет описание. Скажите ему полной фразой: в шкафчике нет гладильной доски",
+          "uk": "Агент виправляє опис. Скажіть йому повною фразою: у шафці немає прасувальної дошки"
         },
-        "gappedTargetPhrase": "The microwave is ___ the worktop.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "an",
+          "ironing",
+          "board",
+          "in",
+          "the",
+          "cupboard"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-45:i14:r1",
-            "text": "on"
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i14:r2",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-45:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Агент исправляет описание. Скажите ему полной фразой: в шкафчике нет гладильной доски",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t an ironing board in the cupboard.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t an ironing board in the cupboard.`"
+            }
           }
         ],
-        "testedDimension": "Микроволновка стоит на поверхности столешницы, не внутри и не под ней. Выберите слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-45:i14:r2",
-            "correct": false,
-            "testedDimension": "Микроволновка стоит на поверхности столешницы, не внутри и не под ней. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; на поверхности — `on`.",
-              "uk": "`in` — усередині; на поверхні — `on`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i14:r3",
-            "correct": false,
-            "testedDimension": "Микроволновка стоит на поверхности столешницы, не внутри и не под ней. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; на поверхности — `on`.",
-              "uk": "`under` — під; на поверхні — `on`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-45:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте, что показывает друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-45:i15:r1",
-          "text": "That is a microwave."
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i15:r2",
-          "text": "This is a microwave."
-        },
-        {
-          "responseId": "en:lesson-04:session-45:i15:r3",
-          "text": "That is a freezer."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-45:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте, что показывает друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-45:i15:audio",
-          "transcript": "That is a microwave."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-45:i15:r1",
-            "targetText": "That is a microwave.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i15:r2",
-            "targetText": "This is a microwave.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i15:r3",
-            "targetText": "That is a freezer.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-45:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-45:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `microwave`, а в этом варианте — `freezer`.",
-              "uk": "У записі останнє слово — `microwave`, а в цьому варіанті — `freezer`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-45:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,40 +1052,40 @@
           },
           {
             "pairId": "en:lesson-04:session-45:i16:p2",
-            "target": "illegal",
+            "target": "washing machine",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "стиральная машина",
+              "uk": "пральна машина"
             }
           },
           {
             "pairId": "en:lesson-04:session-45:i16:p3",
-            "target": "office",
+            "target": "ironing board",
             "meaningByLocale": {
-              "ru": "офис",
-              "uk": "офіс"
+              "ru": "гладильная доска",
+              "uk": "прасувальна дошка"
             }
           },
           {
             "pairId": "en:lesson-04:session-45:i16:p4",
-            "target": "parcel locker",
+            "target": "hairdryer",
             "meaningByLocale": {
-              "ru": "постамат",
-              "uk": "поштомат"
+              "ru": "фен",
+              "uk": "фен"
             }
           }
         ],
         "leftColumn": [
           "microwave",
-          "illegal",
-          "office",
-          "parcel locker"
+          "washing machine",
+          "ironing board",
+          "hairdryer"
         ],
         "rightColumn": [
           "микроволновка",
-          "незаконный",
-          "офис",
-          "постамат"
+          "стиральная машина",
+          "гладильная доска",
+          "фен"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -945,25 +1103,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-45:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы принесли обед в другой офис. Спросите, есть ли микроволновка",
+      "prompt": "Агент спрашивает, что есть на кухне из техники. Скажите ему: «Здесь есть микроволновка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-45:i17:audio"
       ],
-      "accessibilityLabel": "Вы принесли обед в другой офис. Спросите, есть ли микроволновка",
+      "accessibilityLabel": "Агент спрашивает, что есть на кухне из техники. Скажите ему: «Здесь есть микроволновка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-45:i17:audio",
-          "transcript": "Is there a microwave?"
+          "transcript": "There is a microwave here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a microwave?",
+        "targetPhrase": "There is a microwave here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -985,11 +1143,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "613d4ffe157402e058cc5b5488fa88001ba2ad85160f4d7afa4b80ac4145aa24"
+  "learnerFingerprint": "4a2996054995ecef15f9a41613315862e2879f9e7ea25489a2f786d1f2a224d0"
 }

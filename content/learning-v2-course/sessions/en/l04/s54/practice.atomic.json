@@ -1,0 +1,2393 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-54:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-54:i01:p1",
+              "target": "junction",
+              "meaningByLocale": {
+                "ru": "перекрёсток",
+                "uk": "перехрестя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i01:p2",
+              "target": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик",
+                "uk": "вантажівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i01:p3",
+              "target": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы",
+                "uk": "дорожні роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i01:p4",
+              "target": "motorway",
+              "meaningByLocale": {
+                "ru": "скоростное шоссе",
+                "uk": "швидкісна траса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "junction",
+            "lorry",
+            "roadworks",
+            "motorway"
+          ],
+          "rightColumn": [
+            "перекрёсток",
+            "грузовик",
+            "дорожные работы",
+            "скоростное шоссе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:junction",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — junction",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:junction:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — junction",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:junction:audio",
+            "transcript": "junction"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:junction:r1",
+              "targetText": "junction",
+              "meaningByLocale": {
+                "ru": "перекрёсток. There is a junction behind the bank. — «За банком есть перекрёсток». О месте, где сходятся две дороги.",
+                "uk": "перехрестя. There is a junction behind the bank. — «За банком є перехрестя». Про місце, де сходяться дві дороги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "junction",
+            "definitionByLocale": {
+              "ru": "перекрёсток. There is a junction behind the bank. — «За банком есть перекрёсток». О месте, где сходятся две дороги.",
+              "uk": "перехрестя. There is a junction behind the bank. — «За банком є перехрестя». Про місце, де сходяться дві дороги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водитель называет место, где сходятся две дороги, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Водитель называет место, где сходятся две дороги, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i02:audio",
+            "transcript": "junction"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "junction",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Водитель спрашивает, что за банком. Скажите ему полной фразой: за банком есть перекрёсток",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Водитель спрашивает, что за банком. Скажите ему полной фразой: за банком есть перекрёсток",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a junction behind the bank.",
+          "localizedMeaning": {
+            "ru": "Водитель спрашивает, что за банком. Скажите ему полной фразой: за банком есть перекрёсток",
+            "uk": "Водій питає, що за банком. Скажіть йому повною фразою: за банком є перехрестя"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "junction",
+            "behind",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Водитель спрашивает, что за банком. Скажите ему полной фразой: за банком есть перекрёсток",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a junction behind the bank.`",
+                "uk": "тут потрібно `is` — `There is a junction behind the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:lorry",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lorry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:lorry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lorry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:lorry:audio",
+            "transcript": "lorry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:lorry:r1",
+              "targetText": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик. There is a lorry behind the taxi. — «Позади такси едет грузовик». О большой машине, которая возит грузы.",
+                "uk": "вантажівка. There is a lorry behind the taxi. — «Позаду таксі їде вантажівка». Про велику машину, яка возить вантажі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lorry",
+            "definitionByLocale": {
+              "ru": "грузовик. There is a lorry behind the taxi. — «Позади такси едет грузовик». О большой машине, которая возит грузы.",
+              "uk": "вантажівка. There is a lorry behind the taxi. — «Позаду таксі їде вантажівка». Про велику машину, яка возить вантажі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Большая машина, которая возит грузы по дорогам. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i04:r1",
+            "text": "lorry"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i04:r2",
+            "text": "taxi"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i04:r3",
+            "text": "bus"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Большая машина, которая возит грузы по дорогам. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Большая машина, которая возит грузы по дорогам. Как она называется по-английски?",
+            "uk": "Велика машина, яка возить вантажі дорогами. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-54:i04:r1",
+              "text": "lorry"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i04:r2",
+              "text": "taxi"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i04:r3",
+              "text": "bus"
+            }
+          ],
+          "testedDimension": "Большая машина, которая возит грузы по дорогам. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i04:r2",
+              "correct": false,
+              "testedDimension": "Большая машина, которая возит грузы по дорогам. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "taxi — это такси, а большая машина для грузов называется lorry.",
+                "uk": "taxi — це таксі, а велика машина для вантажів називається lorry."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i04:r3",
+              "correct": false,
+              "testedDimension": "Большая машина, которая возит грузы по дорогам. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bus — это автобус, а большая машина для грузов называется lorry.",
+                "uk": "bus — це автобус, а велика машина для вантажів називається lorry."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i05:r1",
+            "text": "Are there any lorries near the junction?"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i05:r2",
+            "text": "There aren’t any lorries near the junction."
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i05:r3",
+            "text": "Are there any lorries near the bank?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i05:audio",
+            "transcript": "Are there any lorries near the junction?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:i05:r1",
+              "targetText": "Are there any lorries near the junction?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i05:r2",
+              "targetText": "There aren’t any lorries near the junction.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i05:r3",
+              "targetText": "Are there any lorries near the bank?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there any`, а в этом варианте отрицание `aren’t any`.",
+                "uk": "У записі запитання `Are there any`, а в цьому варіанті заперечення `aren’t any`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `junction`, а в этом варианте `bank`.",
+                "uk": "У записі останнє місце `junction`, а в цьому варіанті `bank`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:roadworks",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — roadworks",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:roadworks:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — roadworks",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:roadworks:audio",
+            "transcript": "roadworks"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:roadworks:r1",
+              "targetText": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы. There are roadworks near the bridge. — «Возле моста идут дорожные работы». О месте, где чинят дорогу и ставят заборчики.",
+                "uk": "дорожні роботи. There are roadworks near the bridge. — «Біля мосту йдуть дорожні роботи». Про місце, де ремонтують дорогу й ставлять загорожі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "roadworks",
+            "definitionByLocale": {
+              "ru": "дорожные работы. There are roadworks near the bridge. — «Возле моста идут дорожные работы». О месте, где чинят дорогу и ставят заборчики.",
+              "uk": "дорожні роботи. There are roadworks near the bridge. — «Біля мосту йдуть дорожні роботи». Про місце, де ремонтують дорогу й ставлять загорожі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водитель показывает на оранжевые заборчики и мигающие огни там, где чинят дорогу, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i06:audio"
+        ],
+        "accessibilityLabel": "Водитель показывает на оранжевые заборчики и мигающие огни там, где чинят дорогу, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i06:audio",
+            "transcript": "roadworks"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "roadworks",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте водителя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте водителя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i07:audio",
+            "transcript": "There are roadworks near the bridge."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are roadworks near the bridge.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "roadworks",
+            "near",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте водителя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are roadworks near the bridge.`",
+                "uk": "тут потрібно `are` — `There are roadworks near the bridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:motorway",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — motorway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:motorway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — motorway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:motorway:audio",
+            "transcript": "motorway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:motorway:r1",
+              "targetText": "motorway",
+              "meaningByLocale": {
+                "ru": "скоростное шоссе. There isn’t a motorway near the park. — «Возле парка нет скоростного шоссе». О широкой дороге для быстрой езды между городами.",
+                "uk": "швидкісна траса. There isn’t a motorway near the park. — «Біля парку немає швидкісної траси». Про широку дорогу для швидкої їзди між містами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "motorway",
+            "definitionByLocale": {
+              "ru": "скоростное шоссе. There isn’t a motorway near the park. — «Возле парка нет скоростного шоссе». О широкой дороге для быстрой езды между городами.",
+              "uk": "швидкісна траса. There isn’t a motorway near the park. — «Біля парку немає швидкісної траси». Про широку дорогу для швидкої їзди між містами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Широкая дорога для быстрой езды между городами. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i08:r1",
+            "text": "motorway"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i08:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i08:r3",
+            "text": "pavement"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Широкая дорога для быстрой езды между городами. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Широкая дорога для быстрой езды между городами. Как она называется по-английски?",
+            "uk": "Широка дорога для швидкої їзди між містами. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-54:i08:r1",
+              "text": "motorway"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i08:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i08:r3",
+              "text": "pavement"
+            }
+          ],
+          "testedDimension": "Широкая дорога для быстрой езды между городами. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Широкая дорога для быстрой езды между городами. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "road — это любая дорога, а широкая дорога для быстрой езды называется motorway.",
+                "uk": "road — це будь-яка дорога, а широка дорога для швидкої їзди називається motorway."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Широкая дорога для быстрой езды между городами. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "pavement — это тротуар, а широкая дорога для быстрой езды называется motorway.",
+                "uk": "pavement — це тротуар, а широка дорога для швидкої їзди називається motorway."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает про парк. Скажите ей полной фразой: возле парка нет скоростного шоссе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает про парк. Скажите ей полной фразой: возле парка нет скоростного шоссе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a motorway near the park.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает про парк. Скажите ей полной фразой: возле парка нет скоростного шоссе",
+            "uk": "Подруга питає про парк. Скажіть їй повною фразою: біля парку немає швидкісної траси"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "motorway",
+            "near",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про парк. Скажите ей полной фразой: возле парка нет скоростного шоссе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a motorway near the park.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a motorway near the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-54:i10:p1",
+              "target": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик",
+                "uk": "вантажівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i10:p2",
+              "target": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы",
+                "uk": "дорожні роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i10:p3",
+              "target": "petrol station",
+              "meaningByLocale": {
+                "ru": "заправка",
+                "uk": "заправка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i10:p4",
+              "target": "bridge",
+              "meaningByLocale": {
+                "ru": "мост",
+                "uk": "міст"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lorry",
+            "roadworks",
+            "petrol station",
+            "bridge"
+          ],
+          "rightColumn": [
+            "грузовик",
+            "дорожные работы",
+            "заправка",
+            "мост"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте водителя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i11:r1",
+            "text": "There aren’t any lorries on the motorway."
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i11:r2",
+            "text": "There are some lorries on the motorway."
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i11:r3",
+            "text": "Are there any lorries on the motorway?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте водителя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i11:audio",
+            "transcript": "There aren’t any lorries on the motorway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:i11:r1",
+              "targetText": "There aren’t any lorries on the motorway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i11:r2",
+              "targetText": "There are some lorries on the motorway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i11:r3",
+              "targetText": "Are there any lorries on the motorway?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте водителя",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — грузовиков нет, а в этом варианте `are some` — они есть.",
+                "uk": "У записі `aren’t any` — вантажівок немає, а в цьому варіанті `are some` — вони є."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте водителя",
+              "feedbackByLocale": {
+                "ru": "В записи отрицание, а в этом варианте вопрос `Are there any`.",
+                "uk": "У записі заперечення, а в цьому варіанті запитання `Are there any`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
+            "uk": "Подруга хоче дізнатися про ремонт на трасі. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "Are there ___ roadworks on the motorway?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-54:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "В вопросе говорим any, а не some: Are there any.",
+                "uk": "У запитанні кажемо any, а не some: Are there any."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Дорожные работы — слово во множественном числе, поэтому нужно any, а не a.",
+                "uk": "Дорожні роботи — слово у множині, тому потрібно any, а не a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте водителя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте водителя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i13:audio",
+            "transcript": "There is a junction between the bank and the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a junction between the bank and the park.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "junction",
+            "between",
+            "the",
+            "bank",
+            "and",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте водителя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a junction between the bank and the park.`",
+                "uk": "тут потрібно `is` — `There is a junction between the bank and the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водитель ищет заправку, но рядом её нет. Скажите ему: «Рядом нет заправки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Водитель ищет заправку, но рядом её нет. Скажите ему: «Рядом нет заправки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i14:audio",
+            "transcript": "There isn’t a petrol station near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a petrol station near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга смотрит на карту. Спросите водителя полной фразой: возле моста есть дорожные работы?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга смотрит на карту. Спросите водителя полной фразой: возле моста есть дорожные работы?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any roadworks near the bridge?",
+          "localizedMeaning": {
+            "ru": "Подруга смотрит на карту. Спросите водителя полной фразой: возле моста есть дорожные работы?",
+            "uk": "Подруга дивиться на мапу. Запитайте водія повною фразою: чи є біля мосту дорожні роботи?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "roadworks",
+            "near",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга смотрит на карту. Спросите водителя полной фразой: возле моста есть дорожные работы?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any roadworks near the bridge?`",
+                "uk": "тут потрібно `Are` — `Are there any roadworks near the bridge?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-54:i16:p1",
+              "target": "junction",
+              "meaningByLocale": {
+                "ru": "перекрёсток",
+                "uk": "перехрестя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i16:p2",
+              "target": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик",
+                "uk": "вантажівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i16:p3",
+              "target": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы",
+                "uk": "дорожні роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i16:p4",
+              "target": "motorway",
+              "meaningByLocale": {
+                "ru": "скоростное шоссе",
+                "uk": "швидкісна траса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "junction",
+            "lorry",
+            "roadworks",
+            "motorway"
+          ],
+          "rightColumn": [
+            "перекрёсток",
+            "грузовик",
+            "дорожные работы",
+            "скоростное шоссе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водитель спрашивает, есть ли на дороге грузовики. Они есть. Скажите ему: «На дороге есть грузовики»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Водитель спрашивает, есть ли на дороге грузовики. Они есть. Скажите ему: «На дороге есть грузовики»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i17:audio",
+            "transcript": "There are lorries on the road."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are lorries on the road.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-54:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-54:i01:p1",
+              "target": "junction",
+              "meaningByLocale": {
+                "ru": "перекрёсток",
+                "uk": "перехрестя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i01:p2",
+              "target": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик",
+                "uk": "вантажівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i01:p3",
+              "target": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы",
+                "uk": "дорожні роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i01:p4",
+              "target": "motorway",
+              "meaningByLocale": {
+                "ru": "скоростное шоссе",
+                "uk": "швидкісна траса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "junction",
+            "lorry",
+            "roadworks",
+            "motorway"
+          ],
+          "rightColumn": [
+            "перехрестя",
+            "вантажівка",
+            "дорожні роботи",
+            "швидкісна траса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:junction",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — junction",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:junction:audio"
+        ],
+        "accessibilityLabel": "Картка слова — junction",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:junction:audio",
+            "transcript": "junction"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:junction:r1",
+              "targetText": "junction",
+              "meaningByLocale": {
+                "ru": "перекрёсток. There is a junction behind the bank. — «За банком есть перекрёсток». О месте, где сходятся две дороги.",
+                "uk": "перехрестя. There is a junction behind the bank. — «За банком є перехрестя». Про місце, де сходяться дві дороги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "junction",
+            "definitionByLocale": {
+              "ru": "перекрёсток. There is a junction behind the bank. — «За банком есть перекрёсток». О месте, где сходятся две дороги.",
+              "uk": "перехрестя. There is a junction behind the bank. — «За банком є перехрестя». Про місце, де сходяться дві дороги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водій називає місце, де сходяться дві дороги, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Водій називає місце, де сходяться дві дороги, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i02:audio",
+            "transcript": "junction"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "junction",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Водій питає, що за банком. Скажіть йому повною фразою: за банком є перехрестя",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Водій питає, що за банком. Скажіть йому повною фразою: за банком є перехрестя",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a junction behind the bank.",
+          "localizedMeaning": {
+            "ru": "Водитель спрашивает, что за банком. Скажите ему полной фразой: за банком есть перекрёсток",
+            "uk": "Водій питає, що за банком. Скажіть йому повною фразою: за банком є перехрестя"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "junction",
+            "behind",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Водій питає, що за банком. Скажіть йому повною фразою: за банком є перехрестя",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a junction behind the bank.`",
+                "uk": "тут потрібно `is` — `There is a junction behind the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:lorry",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lorry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:lorry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lorry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:lorry:audio",
+            "transcript": "lorry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:lorry:r1",
+              "targetText": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик. There is a lorry behind the taxi. — «Позади такси едет грузовик». О большой машине, которая возит грузы.",
+                "uk": "вантажівка. There is a lorry behind the taxi. — «Позаду таксі їде вантажівка». Про велику машину, яка возить вантажі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lorry",
+            "definitionByLocale": {
+              "ru": "грузовик. There is a lorry behind the taxi. — «Позади такси едет грузовик». О большой машине, которая возит грузы.",
+              "uk": "вантажівка. There is a lorry behind the taxi. — «Позаду таксі їде вантажівка». Про велику машину, яка возить вантажі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Велика машина, яка возить вантажі дорогами. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i04:r1",
+            "text": "lorry"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i04:r2",
+            "text": "taxi"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i04:r3",
+            "text": "bus"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Велика машина, яка возить вантажі дорогами. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Большая машина, которая возит грузы по дорогам. Как она называется по-английски?",
+            "uk": "Велика машина, яка возить вантажі дорогами. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-54:i04:r1",
+              "text": "lorry"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i04:r2",
+              "text": "taxi"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i04:r3",
+              "text": "bus"
+            }
+          ],
+          "testedDimension": "Велика машина, яка возить вантажі дорогами. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i04:r2",
+              "correct": false,
+              "testedDimension": "Велика машина, яка возить вантажі дорогами. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "taxi — это такси, а большая машина для грузов называется lorry.",
+                "uk": "taxi — це таксі, а велика машина для вантажів називається lorry."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i04:r3",
+              "correct": false,
+              "testedDimension": "Велика машина, яка возить вантажі дорогами. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bus — это автобус, а большая машина для грузов называется lorry.",
+                "uk": "bus — це автобус, а велика машина для вантажів називається lorry."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i05:r1",
+            "text": "Are there any lorries near the junction?"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i05:r2",
+            "text": "There aren’t any lorries near the junction."
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i05:r3",
+            "text": "Are there any lorries near the bank?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i05:audio",
+            "transcript": "Are there any lorries near the junction?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:i05:r1",
+              "targetText": "Are there any lorries near the junction?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i05:r2",
+              "targetText": "There aren’t any lorries near the junction.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i05:r3",
+              "targetText": "Are there any lorries near the bank?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there any`, а в этом варианте отрицание `aren’t any`.",
+                "uk": "У записі запитання `Are there any`, а в цьому варіанті заперечення `aren’t any`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `junction`, а в этом варианте `bank`.",
+                "uk": "У записі останнє місце `junction`, а в цьому варіанті `bank`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:roadworks",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — roadworks",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:roadworks:audio"
+        ],
+        "accessibilityLabel": "Картка слова — roadworks",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:roadworks:audio",
+            "transcript": "roadworks"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:roadworks:r1",
+              "targetText": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы. There are roadworks near the bridge. — «Возле моста идут дорожные работы». О месте, где чинят дорогу и ставят заборчики.",
+                "uk": "дорожні роботи. There are roadworks near the bridge. — «Біля мосту йдуть дорожні роботи». Про місце, де ремонтують дорогу й ставлять загорожі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "roadworks",
+            "definitionByLocale": {
+              "ru": "дорожные работы. There are roadworks near the bridge. — «Возле моста идут дорожные работы». О месте, где чинят дорогу и ставят заборчики.",
+              "uk": "дорожні роботи. There are roadworks near the bridge. — «Біля мосту йдуть дорожні роботи». Про місце, де ремонтують дорогу й ставлять загорожі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водій показує на помаранчеві загорожі й миготливі вогні там, де ремонтують дорогу, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i06:audio"
+        ],
+        "accessibilityLabel": "Водій показує на помаранчеві загорожі й миготливі вогні там, де ремонтують дорогу, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i06:audio",
+            "transcript": "roadworks"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "roadworks",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте водія й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте водія й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i07:audio",
+            "transcript": "There are roadworks near the bridge."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are roadworks near the bridge.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "roadworks",
+            "near",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте водія й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are roadworks near the bridge.`",
+                "uk": "тут потрібно `are` — `There are roadworks near the bridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:word:motorway",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — motorway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:word:motorway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — motorway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:word:motorway:audio",
+            "transcript": "motorway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:word:motorway:r1",
+              "targetText": "motorway",
+              "meaningByLocale": {
+                "ru": "скоростное шоссе. There isn’t a motorway near the park. — «Возле парка нет скоростного шоссе». О широкой дороге для быстрой езды между городами.",
+                "uk": "швидкісна траса. There isn’t a motorway near the park. — «Біля парку немає швидкісної траси». Про широку дорогу для швидкої їзди між містами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "motorway",
+            "definitionByLocale": {
+              "ru": "скоростное шоссе. There isn’t a motorway near the park. — «Возле парка нет скоростного шоссе». О широкой дороге для быстрой езды между городами.",
+              "uk": "швидкісна траса. There isn’t a motorway near the park. — «Біля парку немає швидкісної траси». Про широку дорогу для швидкої їзди між містами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Широка дорога для швидкої їзди між містами. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i08:r1",
+            "text": "motorway"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i08:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i08:r3",
+            "text": "pavement"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Широка дорога для швидкої їзди між містами. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Широкая дорога для быстрой езды между городами. Как она называется по-английски?",
+            "uk": "Широка дорога для швидкої їзди між містами. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-54:i08:r1",
+              "text": "motorway"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i08:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i08:r3",
+              "text": "pavement"
+            }
+          ],
+          "testedDimension": "Широка дорога для швидкої їзди між містами. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Широка дорога для швидкої їзди між містами. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "road — это любая дорога, а широкая дорога для быстрой езды называется motorway.",
+                "uk": "road — це будь-яка дорога, а широка дорога для швидкої їзди називається motorway."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Широка дорога для швидкої їзди між містами. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "pavement — это тротуар, а широкая дорога для быстрой езды называется motorway.",
+                "uk": "pavement — це тротуар, а широка дорога для швидкої їзди називається motorway."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає про парк. Скажіть їй повною фразою: біля парку немає швидкісної траси",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про парк. Скажіть їй повною фразою: біля парку немає швидкісної траси",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a motorway near the park.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает про парк. Скажите ей полной фразой: возле парка нет скоростного шоссе",
+            "uk": "Подруга питає про парк. Скажіть їй повною фразою: біля парку немає швидкісної траси"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "motorway",
+            "near",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає про парк. Скажіть їй повною фразою: біля парку немає швидкісної траси",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a motorway near the park.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a motorway near the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-54:i10:p1",
+              "target": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик",
+                "uk": "вантажівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i10:p2",
+              "target": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы",
+                "uk": "дорожні роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i10:p3",
+              "target": "petrol station",
+              "meaningByLocale": {
+                "ru": "заправка",
+                "uk": "заправка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i10:p4",
+              "target": "bridge",
+              "meaningByLocale": {
+                "ru": "мост",
+                "uk": "міст"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lorry",
+            "roadworks",
+            "petrol station",
+            "bridge"
+          ],
+          "rightColumn": [
+            "вантажівка",
+            "дорожні роботи",
+            "заправка",
+            "міст"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте водія",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i11:r1",
+            "text": "There aren’t any lorries on the motorway."
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i11:r2",
+            "text": "There are some lorries on the motorway."
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i11:r3",
+            "text": "Are there any lorries on the motorway?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте водія",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i11:audio",
+            "transcript": "There aren’t any lorries on the motorway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-54:i11:r1",
+              "targetText": "There aren’t any lorries on the motorway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i11:r2",
+              "targetText": "There are some lorries on the motorway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i11:r3",
+              "targetText": "Are there any lorries on the motorway?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте водія",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — грузовиков нет, а в этом варианте `are some` — они есть.",
+                "uk": "У записі `aren’t any` — вантажівок немає, а в цьому варіанті `are some` — вони є."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте водія",
+              "feedbackByLocale": {
+                "ru": "В записи отрицание, а в этом варианте вопрос `Are there any`.",
+                "uk": "У записі заперечення, а в цьому варіанті запитання `Are there any`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга хоче дізнатися про ремонт на трасі. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-54:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-54:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хоче дізнатися про ремонт на трасі. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
+            "uk": "Подруга хоче дізнатися про ремонт на трасі. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "Are there ___ roadworks on the motorway?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-54:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Подруга хоче дізнатися про ремонт на трасі. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга хоче дізнатися про ремонт на трасі. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "В вопросе говорим any, а не some: Are there any.",
+                "uk": "У запитанні кажемо any, а не some: Are there any."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга хоче дізнатися про ремонт на трасі. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Дорожные работы — слово во множественном числе, поэтому нужно any, а не a.",
+                "uk": "Дорожні роботи — слово у множині, тому потрібно any, а не a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте водія й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте водія й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i13:audio",
+            "transcript": "There is a junction between the bank and the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a junction between the bank and the park.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "junction",
+            "between",
+            "the",
+            "bank",
+            "and",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте водія й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a junction between the bank and the park.`",
+                "uk": "тут потрібно `is` — `There is a junction between the bank and the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водій шукає заправку, але поруч її немає. Скажіть йому: «Поруч немає заправки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Водій шукає заправку, але поруч її немає. Скажіть йому: «Поруч немає заправки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i14:audio",
+            "transcript": "There isn’t a petrol station near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a petrol station near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дивиться на мапу. Запитайте водія повною фразою: чи є біля мосту дорожні роботи?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дивиться на мапу. Запитайте водія повною фразою: чи є біля мосту дорожні роботи?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any roadworks near the bridge?",
+          "localizedMeaning": {
+            "ru": "Подруга смотрит на карту. Спросите водителя полной фразой: возле моста есть дорожные работы?",
+            "uk": "Подруга дивиться на мапу. Запитайте водія повною фразою: чи є біля мосту дорожні роботи?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "roadworks",
+            "near",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-54:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дивиться на мапу. Запитайте водія повною фразою: чи є біля мосту дорожні роботи?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any roadworks near the bridge?`",
+                "uk": "тут потрібно `Are` — `Are there any roadworks near the bridge?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-54:i16:p1",
+              "target": "junction",
+              "meaningByLocale": {
+                "ru": "перекрёсток",
+                "uk": "перехрестя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i16:p2",
+              "target": "lorry",
+              "meaningByLocale": {
+                "ru": "грузовик",
+                "uk": "вантажівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i16:p3",
+              "target": "roadworks",
+              "meaningByLocale": {
+                "ru": "дорожные работы",
+                "uk": "дорожні роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-54:i16:p4",
+              "target": "motorway",
+              "meaningByLocale": {
+                "ru": "скоростное шоссе",
+                "uk": "швидкісна траса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "junction",
+            "lorry",
+            "roadworks",
+            "motorway"
+          ],
+          "rightColumn": [
+            "перехрестя",
+            "вантажівка",
+            "дорожні роботи",
+            "швидкісна траса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Водій питає, чи є на дорозі вантажівки. Вони є. Скажіть йому: «На дорозі є вантажівки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Водій питає, чи є на дорозі вантажівки. Вони є. Скажіть йому: «На дорозі є вантажівки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-54:i17:audio",
+            "transcript": "There are lorries on the road."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are lorries on the road.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-54:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:word:junction",
+      "correctText": "junction",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i02",
+      "correctText": "junction",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i03",
+      "correctText": "There is a junction behind the bank.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:word:lorry",
+      "correctText": "lorry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i04",
+      "correctText": "lorry",
+      "correctResponseId": "en:lesson-04:session-54:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i05",
+      "correctText": "Are there any lorries near the junction?",
+      "correctResponseId": "en:lesson-04:session-54:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:word:roadworks",
+      "correctText": "roadworks",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i06",
+      "correctText": "roadworks",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i07",
+      "correctText": "There are roadworks near the bridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:word:motorway",
+      "correctText": "motorway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i08",
+      "correctText": "motorway",
+      "correctResponseId": "en:lesson-04:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i09",
+      "correctText": "There isn’t a motorway near the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i11",
+      "correctText": "There aren’t any lorries on the motorway.",
+      "correctResponseId": "en:lesson-04:session-54:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-04:session-54:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i13",
+      "correctText": "There is a junction between the bank and the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i14",
+      "correctText": "There isn’t a petrol station near here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i15",
+      "correctText": "Are there any roadworks near the bridge?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-54:i17",
+      "correctText": "There are lorries on the road.",
+      "correctResponseId": null
+    }
+  ]
+}

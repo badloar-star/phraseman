@@ -1,136 +1,152 @@
-# Английский · Урок 4 · Занятие 54 — Перед дальней дорогой
+# Английский · Урок 4 · Занятие 54 — Ночная дорога
 
-**Ситуация.** Перед поездкой вы ищете заправку, обсуждаете надёжность машины и собираете вещи. Полосатая сумка с продуктами пока стоит в кладовой.
+**Ситуация.** Вы едете ночью в такси с подругой и говорите водителю, что видите за окном: что есть, чего нет, и спрашиваете про ремонт дороги. Новой грамматики нет: вы сами выбираете, что нужно сказать, — утверждение, вопрос или отрицание.
 
-**Что вы освоите:** назвать заправку, спросить о ней и описать вещи перед поездкой
-**Новые слова:** petrol station
+**Что вы освоите:** самому выбрать по смыслу утверждение, вопрос или отрицание о том, что есть
+**Новые слова:** junction, lorry, roadworks, motorway
+**Возвращаются:** taxi, petrol station, road, bridge, bank, park
 
 ---
 
 ## Интро 1
 
-### Заправка, а не вокзал
+### Где повернуть
 
-`petrol station` — «заправочная станция», обычно просто «заправка». Здесь пополняют запас топлива. `This is a petrol station` — «Это заправка». На такой станции поезд ждать не нужно: заправляете машину и едете сами. Перед одной заправкой ставим `a`: `a petrol station`.
+Вы едете ночью в такси, и водитель, который не знает этот район, просит подсказать, где поворачивать. За заправкой дорога делится надвое: влево и вправо, и там сходятся две дороги. junction — «перекрёсток». Он один: There is a junction near the petrol station.
 
-**Назовите одну заправку.**
+**Водитель просит подсказать поворот. Скажите ему, что возле заправки есть перекрёсток.**
 
-- ✅ **This is a petrol station.**
-- ❌ This is petrol station. — *Перед одной заправкой нужно `a`: `a petrol station`.*
-- ❌ These are petrol stations. — *Здесь одна заправка: `This is a petrol station`.*
+- ✅ **There is a junction near the petrol station.**
+- ❌ There are a junction near the petrol station. — *Перекрёсток один, поэтому нужно is, а не are.*
+- ❌ There is junction near the petrol station. — *Перекрёсток один, поэтому перед ним нужно a: a junction.*
 
 ---
 
 ## Интро 2
 
-### Есть ли заправка
+### Пустая ночная дорога
 
-`Is there a petrol station?` — «Есть ли заправка?» Если поблизости её нет: `There isn’t a petrol station`. Чтобы сказать «Нет ни одной заправки», можно использовать форму для нескольких: `There aren’t any petrol stations`. `reliable` — «надёжный». О машине, которая не подводит: `The car is reliable`.
+Подруга уснула на заднем сиденье, а водитель шёпотом спрашивает вас, много ли на дороге больших машин, которые возят грузы. Вы смотрите в окно: они обычно медленные, а сегодня ни одной не видно. lorry — «грузовик». Скажите: There aren’t any lorries on the road.
 
-**Скажите, что машина надёжная.**
+**Водитель спрашивает про большие машины. Скажите ему, что на дороге грузовиков нет.**
 
-- ✅ **The car is reliable.**
-- ❌ The car are reliable. — *Одна машина: `The car is`.*
-- ❌ The car is unreliable. — *`unreliable` — ненадёжный; здесь `reliable`.*
+- ✅ **There aren’t any lorries on the road.**
+- ❌ There isn’t any lorries on the road. — *Грузовиков несколько, поэтому нужно aren’t, а не isn’t.*
+- ❌ There aren’t any lorry on the road. — *Грузовиков несколько, поэтому на конце lorries, а не lorry.*
 
 ---
 
 ## Интро 3
 
-### Где сумка с продуктами
+### Мигающие огни
 
-`striped` — «полосатый»: `The bag is striped` — «Сумка полосатая». `pantry` — «кладовая для продуктов». `The bag is in the pantry` — «Сумка в кладовой». `in` говорит, что сумка внутри; `next to` означало бы рядом.
+Впереди вдруг загорелись жёлтые мигающие огни, а дорогу перегородили оранжевыми заборчиками. Подруга проснулась, испугалась и просит узнать у водителя, что случилось. roadworks — «дорожные работы». Спросите: Are there roadworks near the junction?
 
-**Сумка внутри кладовой. Выберите описание.**
+**Подруга проснулась и спрашивает про огни. Спросите водителя, есть ли дорожные работы возле перекрёстка.**
 
-- ✅ **The bag is in the pantry.**
-- ❌ The bag is next to the pantry. — *Здесь внутри: `in`, а не рядом — `next to`.*
-- ❌ The bag are in the pantry. — *Одна сумка: `The bag is`.*
+- ✅ **Are there roadworks near the junction?**
+- ❌ Is there roadworks near the junction? — *Дорожные работы — слово во множественном числе, поэтому вопрос начинаем с Are there.*
+- ❌ There are roadworks near the junction? — *Это порядок слов утверждения. В вопросе сначала Are: Are there roadworks?*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Машина не подводит. Скажите «Машина надёжная»**
-<!-- interaction_id: en:lesson-04:session-54:i01; family: phrase_builder -->
-Плитки: `reliable` `is` `car` `The` `are` → **The car is reliable.**
-*(плитка `are` лишняя: здесь нужно `is` — `The car is reliable.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-54:i01; family: speed_match -->
+junction — перекрёсток · lorry — грузовик · roadworks — дорожные работы · motorway — скоростное шоссе
 
-**2 · Послушайте и выберите название**
-<!-- interaction_id: en:lesson-04:session-54:i02; family: listen_choose -->
-🔊 *petrol station* → **petrol station** · petrol stations · police station
-- petrol stations — *В записи последнее слово — `station`, а в этом варианте — `stations`.*
-- police station — *В записи первое слово — `petrol`, а в этом варианте — `police`.*
+**2 · Карточка слова — junction**
+<!-- interaction_id: en:lesson-04:session-54:word:junction; family: word_card -->
+> **junction** — перекрёсток. There is a junction behind the bank. — «За банком есть перекрёсток». О месте, где сходятся две дороги.
 
-**3 · Назовите место, где заправляют машину**
-<!-- interaction_id: en:lesson-04:session-54:i03; family: context_gap_grammar -->
-___ → **petrol station** · pantry · nursery
-- pantry — *`pantry` — кладовая для продуктов; заправка — `petrol station`.*
-- nursery — *`nursery` — детский сад; заправка — `petrol station`.*
+**3 · Водитель называет место, где сходятся две дороги, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-54:i02; family: scripted_repeat_compare -->
+🎙 **junction**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-54:i04; family: speed_match -->
-petrol station — заправка · reliable — надёжный · striped — полосатый · pantry — кладовая для продуктов
+**4 · Водитель спрашивает, что за банком. Скажите ему полной фразой: за банком есть перекрёсток**
+<!-- interaction_id: en:lesson-04:session-54:i03; family: phrase_builder -->
+Плитки: `junction` `a` `behind` `the` `bank` `There` `is` `are` → **There is a junction behind the bank.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a junction behind the bank.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-54:i05; family: listen_build_dictation -->
-🔊 *This is a petrol station.* Плитки: `station` `petrol` `a` `is` `This` `are` → **This is a petrol station.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a petrol station.`)*
+**5 · Карточка слова — lorry**
+<!-- interaction_id: en:lesson-04:session-54:word:lorry; family: word_card -->
+> **lorry** — грузовик. There is a lorry behind the taxi. — «Позади такси едет грузовик». О большой машине, которая возит грузы.
 
-**6 · Скажите, что сумка полосатая**
-<!-- interaction_id: en:lesson-04:session-54:i06; family: phrase_builder -->
-Плитки: `striped` `is` `bag` `The` `are` → **The bag is striped.**
-*(плитка `are` лишняя: здесь нужно `is` — `The bag is striped.`)*
+**6 · Большая машина, которая возит грузы по дорогам. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-54:i04; family: context_gap_grammar -->
+___ → **lorry** · taxi · bus
+- taxi — *taxi — это такси, а большая машина для грузов называется lorry.*
+- bus — *bus — это автобус, а большая машина для грузов называется lorry.*
 
-**7 · Друг спрашивает, не подводит ли машина. Ответьте «Она надёжная» с сокращением и словом it**
-<!-- interaction_id: en:lesson-04:session-54:i07; family: scripted_repeat_compare -->
-🎙 **It's reliable.**
+**7 · Послушайте подругу**
+<!-- interaction_id: en:lesson-04:session-54:i05; family: listen_choose -->
+🔊 *Are there any lorries near the junction?* → **Are there any lorries near the junction?** · There aren’t any lorries near the junction. · Are there any lorries near the bank?
+- There aren’t any lorries near the junction. — *В записи вопрос `Are there any`, а в этом варианте отрицание `aren’t any`.*
+- Are there any lorries near the bank? — *В записи последнее место `junction`, а в этом варианте `bank`.*
 
-**8 · В новом доме нет кладовой для продуктов. Выберите форму**
+**8 · Карточка слова — roadworks**
+<!-- interaction_id: en:lesson-04:session-54:word:roadworks; family: word_card -->
+> **roadworks** — дорожные работы. There are roadworks near the bridge. — «Возле моста идут дорожные работы». О месте, где чинят дорогу и ставят заборчики.
+
+**9 · Водитель показывает на оранжевые заборчики и мигающие огни там, где чинят дорогу, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-54:i06; family: scripted_repeat_compare -->
+🎙 **roadworks**
+
+**10 · Послушайте водителя и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-54:i07; family: listen_build_dictation -->
+🔊 *There are roadworks near the bridge.* Плитки: `roadworks` `near` `the` `bridge` `There` `are` `is` → **There are roadworks near the bridge.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are roadworks near the bridge.`)*
+
+**11 · Карточка слова — motorway**
+<!-- interaction_id: en:lesson-04:session-54:word:motorway; family: word_card -->
+> **motorway** — скоростное шоссе. There isn’t a motorway near the park. — «Возле парка нет скоростного шоссе». О широкой дороге для быстрой езды между городами.
+
+**12 · Широкая дорога для быстрой езды между городами. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-54:i08; family: context_gap_grammar -->
-There ___ a pantry. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Одна кладовая: `isn’t a pantry`.*
+___ → **motorway** · road · pavement
+- road — *road — это любая дорога, а широкая дорога для быстрой езды называется motorway.*
+- pavement — *pavement — это тротуар, а широкая дорога для быстрой езды называется motorway.*
 
-**9 · Послушайте, где сумка**
-<!-- interaction_id: en:lesson-04:session-54:i09; family: listen_choose -->
-🔊 *The bag is in the pantry.* → **The bag is in the pantry.** · The bag is in the kitchen. · The bag is in the garage.
-- The bag is in the kitchen. — *В записи последнее слово — `pantry`, а в этом варианте — `kitchen`.*
-- The bag is in the garage. — *В записи последнее слово — `pantry`, а в этом варианте — `garage`.*
+**13 · Подруга спрашивает про парк. Скажите ей полной фразой: возле парка нет скоростного шоссе**
+<!-- interaction_id: en:lesson-04:session-54:i09; family: phrase_builder -->
+Плитки: `motorway` `a` `near` `the` `park` `There` `isn’t` `aren’t` → **There isn’t a motorway near the park.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a motorway near the park.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-54:i10; family: speed_match -->
-petrol station — заправка · reliable — надёжный · striped — полосатый · pantry — кладовая для продуктов
+lorry — грузовик · roadworks — дорожные работы · petrol station — заправка · bridge — мост
 
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-54:i11; family: listen_build_dictation -->
-🔊 *Is there a petrol station?* Плитки: `station` `petrol` `a` `there` `Is` → **Is there a petrol station?**
+**15 · Послушайте водителя**
+<!-- interaction_id: en:lesson-04:session-54:i11; family: listen_choose -->
+🔊 *There aren’t any lorries on the motorway.* → **There aren’t any lorries on the motorway.** · There are some lorries on the motorway. · Are there any lorries on the motorway?
+- There are some lorries on the motorway. — *В записи `aren’t any` — грузовиков нет, а в этом варианте `are some` — они есть.*
+- Are there any lorries on the motorway? — *В записи отрицание, а в этом варианте вопрос `Are there any`.*
 
-**12 · В этой деревне нет заправки. Скажите «Заправки нет»**
-<!-- interaction_id: en:lesson-04:session-54:i12; family: phrase_builder -->
-Плитки: `station` `petrol` `a` `isn't` `There` → **There isn't a petrol station.**
+**16 · Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-54:i12; family: context_gap_grammar -->
+Are there ___ roadworks on the motorway? → **any** · some · a
+- some — *В вопросе говорим any, а не some: Are there any.*
+- a — *Дорожные работы — слово во множественном числе, поэтому нужно any, а не a.*
 
-**13 · Спросите, есть ли кладовая для продуктов**
-<!-- interaction_id: en:lesson-04:session-54:i13; family: scripted_repeat_compare -->
-🎙 **Is there a pantry?**
+**17 · Послушайте водителя и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-54:i13; family: listen_build_dictation -->
+🔊 *There is a junction between the bank and the park.* Плитки: `junction` `a` `between` `the` `bank` `and` `the` `park` `There` `is` `are` → **There is a junction between the bank and the park.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a junction between the bank and the park.`)*
 
-**14 · Заправка между двумя магазинами, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-54:i14; family: context_gap_grammar -->
-The petrol station is ___ the shops. → **between** · in · under
-- in — *`in` — внутри; между — `between`.*
-- under — *`under` — под; между — `between`.*
+**18 · Водитель ищет заправку, но рядом её нет. Скажите ему: «Рядом нет заправки»**
+<!-- interaction_id: en:lesson-04:session-54:i14; family: scripted_repeat_compare -->
+🎙 **There isn’t a petrol station near here.**
 
-**15 · Послушайте описание рубашки**
-<!-- interaction_id: en:lesson-04:session-54:i15; family: listen_choose -->
-🔊 *The shirt is striped.* → **The shirt is striped.** · The shirt is checked. · The shirt is plain.
-- The shirt is checked. — *В записи последнее слово — `striped`, а в этом варианте — `checked`.*
-- The shirt is plain. — *В записи последнее слово — `striped`, а в этом варианте — `plain`.*
+**19 · Подруга смотрит на карту. Спросите водителя полной фразой: возле моста есть дорожные работы?**
+<!-- interaction_id: en:lesson-04:session-54:i15; family: phrase_builder -->
+Плитки: `roadworks` `any` `near` `the` `bridge` `Are` `there` `Is` → **Are there any roadworks near the bridge?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there any roadworks near the bridge?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-54:i16; family: speed_match -->
-petrol station — заправка · reliable — надёжный · striped — полосатый · pantry — кладовая для продуктов
+junction — перекрёсток · lorry — грузовик · roadworks — дорожные работы · motorway — скоростное шоссе
 
-**17 · Вы нашли заправку рядом с супермаркетом. Объясните другу, где заправка, полной фразой**
+**21 · Водитель спрашивает, есть ли на дороге грузовики. Они есть. Скажите ему: «На дороге есть грузовики»**
 <!-- interaction_id: en:lesson-04:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The petrol station is next to the supermarket.**
-
+🎙 **There are lorries on the road.**

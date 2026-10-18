@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-43",
   "learningOutcomeByLocale": {
-    "ru": "назвать контейнер для вторсырья, спросить о нём и выразить неуверенность",
-    "uk": "назвати контейнер для вторсировини, запитати про нього й висловити невпевненість"
+    "ru": "понимать на слух вопрос Are there any…? о нескольких предметах",
+    "uk": "розуміти на слух запитання Are there any…? про кілька предметів"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Для вторсырья",
-        "uk": "Для вторсировини"
+        "ru": "Мешок под дождём",
+        "uk": "Мішок під дощем"
       },
       "bodyByLocale": {
-        "ru": "`recycling bin` — «контейнер для вторсырья». В него собирают отходы для переработки; что именно можно положить, указывает маркировка. Один контейнер — `a recycling bin`. `This is a recycling bin` — «Это контейнер для вторсырья». Два слова, но один контейнер: вторую ёмкость для второго слова искать не нужно.",
-        "uk": "`recycling bin` — «контейнер для вторсировини». У нього збирають відходи для переробки; що саме можна покласти, вказує маркування. Один контейнер — `a recycling bin`. `This is a recycling bin` — «Це контейнер для вторсировини». Два слова, але один контейнер: другу ємність для другого слова шукати не потрібно."
+        "ru": "Вы вышли из дома с мешком бумаги и пластика, а на улице льёт дождь. Нужны баки, куда сортируют отходы для переработки. recycling bin — «контейнер для вторсырья». Таких баков обычно несколько, поэтому: Are there any recycling bins near the school?",
+        "uk": "Ви вийшли з дому з мішком паперу й пластику, а на вулиці ллє дощ. Потрібні баки, куди сортують відходи для переробки. recycling bin — «контейнер для вторсировини». Таких баків зазвичай кілька, тому: Are there any recycling bins near the school?"
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один такой контейнер.",
-          "uk": "Назвіть один такий контейнер."
+          "ru": "Прохожий стоит под зонтом. Спросите его, есть ли рядом со школой контейнеры для вторсырья.",
+          "uk": "Перехожий стоїть під парасолькою. Запитайте його, чи є поруч зі школою контейнери для вторсировини."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-43:intro1:r1",
-              "text": "This is a recycling bin."
+              "text": "Are there any recycling bins near the school?"
             },
             {
               "responseId": "en:lesson-04:session-43:intro1:r2",
-              "text": "This is recycling bin."
+              "text": "Is there any recycling bins near the school?"
             },
             {
               "responseId": "en:lesson-04:session-43:intro1:r3",
-              "text": "These are recycling bins."
+              "text": "Are there any recycling bin near the school?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-43:intro1:r1",
-              "text": "This is a recycling bin."
+              "text": "Are there any recycling bins near the school?"
             },
             {
               "responseId": "en:lesson-04:session-43:intro1:r2",
-              "text": "This is recycling bin."
+              "text": "Is there any recycling bins near the school?"
             },
             {
               "responseId": "en:lesson-04:session-43:intro1:r3",
-              "text": "These are recycling bins."
+              "text": "Are there any recycling bin near the school?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один такой контейнер.",
-          "uk": "Назвіть один такий контейнер."
+          "ru": "Прохожий стоит под зонтом. Спросите его, есть ли рядом со школой контейнеры для вторсырья.",
+          "uk": "Перехожий стоїть під парасолькою. Запитайте його, чи є поруч зі школою контейнери для вторсировини."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дом и вход",
-        "uk": "Будинок і вхід"
+        "ru": "Пустые бутылки",
+        "uk": "Порожні пляшки"
       },
       "bodyByLocale": {
-        "ru": "`bedrooms` — «спальни», `ramp` — «пандус». `The bedrooms are upstairs` — «Спальни наверху». `The recycling bin is next to the ramp` — «Контейнер для вторсырья рядом с пандусом». Несколько спален требуют `are`, один контейнер — `is`.",
-        "uk": "`bedrooms` — «спальні», `ramp` — «пандус». `The bedrooms are upstairs` — «Спальні нагорі». `The recycling bin is next to the ramp` — «Контейнер для вторсировини поруч із пандусом». Кілька спалень потребують `are`, один контейнер — `is`."
+        "ru": "Вы несёте пустые стеклянные бутылки из-под сока. В обычный бак их не бросают: для стекла нужен особый контейнер. bottle bank — «контейнер для стекла». Продавец у ларька показывает рукой: There is a bottle bank behind the market — «За рынком есть контейнер для стекла».",
+        "uk": "Ви несете порожні скляні пляшки з-під соку. У звичайний бак їх не кидають: для скла потрібен особливий контейнер. bottle bank — «контейнер для скла». Продавець біля ятки показує рукою: There is a bottle bank behind the market — «За ринком є контейнер для скла»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "Спальни наверху. Выберите описание.",
-          "uk": "Спальні нагорі. Виберіть опис."
+          "ru": "Соседка тоже хочет сдать бутылки. Скажите ей, что за рынком есть контейнер для стекла.",
+          "uk": "Сусідка теж хоче здати пляшки. Скажіть їй, що за ринком є контейнер для скла."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-43:intro2:r1",
-              "text": "The bedrooms are upstairs."
+              "text": "There is a bottle bank behind the market."
             },
             {
               "responseId": "en:lesson-04:session-43:intro2:r2",
-              "text": "The bedrooms is upstairs."
+              "text": "There is a bottle bank behind market."
             },
             {
               "responseId": "en:lesson-04:session-43:intro2:r3",
-              "text": "The bedrooms are downstairs."
+              "text": "There are a bottle bank behind the market."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-43:intro2:r1",
-              "text": "The bedrooms are upstairs."
+              "text": "There is a bottle bank behind the market."
             },
             {
               "responseId": "en:lesson-04:session-43:intro2:r2",
-              "text": "The bedrooms is upstairs."
+              "text": "There is a bottle bank behind market."
             },
             {
               "responseId": "en:lesson-04:session-43:intro2:r3",
-              "text": "The bedrooms are downstairs."
+              "text": "There are a bottle bank behind the market."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спальни наверху. Выберите описание.",
-          "uk": "Спальні нагорі. Виберіть опис."
+          "ru": "Соседка тоже хочет сдать бутылки. Скажите ей, что за рынком есть контейнер для стекла.",
+          "uk": "Сусідка теж хоче здати пляшки. Скажіть їй, що за ринком є контейнер для скла."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пока не уверен",
-        "uk": "Поки не впевнений"
+        "ru": "Дождь не стихает",
+        "uk": "Дощ не вщухає"
       },
       "bodyByLocale": {
-        "ru": "`uncertain` — «неуверенный»: вы не знаете наверняка. `I am uncertain` — «Я не уверен», короче `I’m uncertain`. Неуверенность не означает, что предмета нет. Можно уточнить: `Is there a recycling bin?` — «Есть контейнер для вторсырья?» Только если отсутствие известно: `There isn’t a recycling bin`.",
-        "uk": "`uncertain` — «невпевнений»: ви не знаєте напевно. `I am uncertain` — «Я не впевнений», коротше `I’m uncertain`. Невпевненість не означає, що предмета немає. Можна уточнити: `Is there a recycling bin?` — «Є контейнер для вторсировини?» Лише якщо відсутність відома: `There isn’t a recycling bin`."
+        "ru": "Дождь не стихает, а зонт остался дома. Подруга зовёт вас в прихожую, где на вешалке висит верхняя одежда. raincoat — «плащ», он не пропускает воду. Плащей там несколько, поэтому: There are some raincoats in the hall — «В прихожей есть плащи».",
+        "uk": "Дощ не вщухає, а парасолька залишилася вдома. Подруга кличе вас у передпокій, де на вішаку висить верхній одяг. raincoat — «плащ», він не пропускає воду. Плащів там кілька, тому: There are some raincoats in the hall — «У передпокої є плащі»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Вы не знаете наверняка, есть ли контейнер. Скажите «Я не уверен» с сокращением.",
-          "uk": "Ви не знаєте напевно, чи є контейнер. Скажіть «Я не впевнений» зі скороченням."
+          "ru": "Подруга ищет, что надеть под дождь. Скажите ей, что в прихожей есть плащи.",
+          "uk": "Подруга шукає, що вдягнути під дощ. Скажіть їй, що в передпокої є плащі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-43:intro3:r1",
-              "text": "I'm uncertain."
+              "text": "There are some raincoats in the hall."
             },
             {
               "responseId": "en:lesson-04:session-43:intro3:r2",
-              "text": "I'm certain."
+              "text": "There is some raincoats in the hall."
             },
             {
               "responseId": "en:lesson-04:session-43:intro3:r3",
-              "text": "I is uncertain."
+              "text": "There are some raincoat in the hall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-43:intro3:r1",
-              "text": "I'm uncertain."
+              "text": "There are some raincoats in the hall."
             },
             {
               "responseId": "en:lesson-04:session-43:intro3:r2",
-              "text": "I'm certain."
+              "text": "There is some raincoats in the hall."
             },
             {
               "responseId": "en:lesson-04:session-43:intro3:r3",
-              "text": "I is uncertain."
+              "text": "There are some raincoat in the hall."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы не знаете наверняка, есть ли контейнер. Скажите «Я не уверен» с сокращением.",
-          "uk": "Ви не знаєте напевно, чи є контейнер. Скажіть «Я не впевнений» зі скороченням."
+          "ru": "Подруга ищет, что надеть под дождь. Скажите ей, что в прихожей есть плащи.",
+          "uk": "Подруга шукає, що вдягнути під дощ. Скажіть їй, що в передпокої є плащі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7d22ac433c02caf820acf72922ffdddb19765dd676189c710ed1d38c73f03edb"
+  "introFingerprint": "ec5a7c3202d1884b6d38185c39a83e8775a2dd6dd90622b5dae45f46ba5d4227"
 }

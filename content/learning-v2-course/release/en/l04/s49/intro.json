@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-49",
   "learningOutcomeByLocale": {
-    "ru": "назвать канал, объяснить расположение и выразить неприемлемость предложения",
-    "uk": "назвати канал, пояснити розташування й висловити неприйнятність пропозиції"
+    "ru": "самому выбрать There is a… для одного предмета и There are… для нескольких",
+    "uk": "самому вибрати There is a… для одного предмета й There are… для кількох"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вода по маршруту",
-        "uk": "Вода за маршрутом"
+        "ru": "Вода за парком",
+        "uk": "Вода за парком"
       },
       "bodyByLocale": {
-        "ru": "`canal` — «канал»: здесь искусственный водный путь, например для лодок. Это не телеканал. Один канал — `a canal`. `This is a canal` — «Это канал». Воду можно увидеть, но пультом на другую передачу её не переключить.",
-        "uk": "`canal` — «канал»: тут штучний водний шлях, наприклад для човнів. Це не телеканал. Один канал — `a canal`. `This is a canal` — «Це канал». Воду можна побачити, але пультом на іншу передачу її не перемкнути."
+        "ru": "Соседка хочет прогуляться и спрашивает, есть ли рядом вода, вдоль которой можно пройтись. Вы показываете на длинную узкую полосу воды, по которой ходят лодки. canal — «канал». Он один, поэтому: There is a canal behind the park — «За парком есть канал».",
+        "uk": "Сусідка хоче прогулятися й питає, чи є поряд вода, уздовж якої можна пройтися. Ви показуєте на довгу вузьку смугу води, по якій ходять човни. canal — «канал». Він один, тому: There is a canal behind the park — «За парком є канал»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-49:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один водный канал рядом.",
-          "uk": "Назвіть один водний канал поруч."
+          "ru": "Соседка ищет воду для прогулки. Скажите ей, что за парком есть канал.",
+          "uk": "Сусідка шукає воду для прогулянки. Скажіть їй, що за парком є канал."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-49:intro1:r1",
-              "text": "This is a canal."
+              "text": "There is a canal behind the park."
             },
             {
               "responseId": "en:lesson-04:session-49:intro1:r2",
-              "text": "This is canal."
+              "text": "There are a canal behind the park."
             },
             {
               "responseId": "en:lesson-04:session-49:intro1:r3",
-              "text": "These are canals."
+              "text": "There is canal behind the park."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-49:intro1:r1",
-              "text": "This is a canal."
+              "text": "There is a canal behind the park."
             },
             {
               "responseId": "en:lesson-04:session-49:intro1:r2",
-              "text": "This is canal."
+              "text": "There are a canal behind the park."
             },
             {
               "responseId": "en:lesson-04:session-49:intro1:r3",
-              "text": "These are canals."
+              "text": "There is canal behind the park."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один водный канал рядом.",
-          "uk": "Назвіть один водний канал поруч."
+          "ru": "Соседка ищет воду для прогулки. Скажите ей, что за парком есть канал.",
+          "uk": "Сусідка шукає воду для прогулянки. Скажіть їй, що за парком є канал."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ориентиры",
-        "uk": "Орієнтири"
+        "ru": "Белые птицы",
+        "uk": "Білі птахи"
       },
       "bodyByLocale": {
-        "ru": "`hospital` — «больница», `cashpoint` — «банкомат». `The hospital is next to the canal` — «Больница рядом с каналом». `The cashpoint is next to the hospital` — «Банкомат рядом с больницей». `Is there a cashpoint?` — «Есть банкомат?» Одно место или устройство требует `is`.",
-        "uk": "`hospital` — «лікарня», `cashpoint` — «банкомат». `The hospital is next to the canal` — «Лікарня поруч із каналом». `The cashpoint is next to the hospital` — «Банкомат поруч із лікарнею». `Is there a cashpoint?` — «Є банкомат?» Одне місце чи пристрій потребує `is`."
+        "ru": "По дороге к каналу соседка просит показать, на что там посмотреть. У моста плавают большие белые птицы с длинной шеей, и их несколько. swan — «лебедь». Птиц много, поэтому swans без a: There are swans near the bridge — «Возле моста есть лебеди».",
+        "uk": "Дорогою до каналу сусідка просить показати, на що там подивитися. Біля мосту плавають великі білі птахи з довгою шиєю, і їх кілька. swan — «лебідь». Птахів багато, тому swans без a: There are swans near the bridge — «Біля мосту є лебеді»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-49:intro2:q",
         "promptByLocale": {
-          "ru": "Банкомат рядом с больницей. Выберите описание.",
-          "uk": "Банкомат поруч із лікарнею. Виберіть опис."
+          "ru": "Соседка спрашивает, на что посмотреть. Скажите ей, что возле моста есть лебеди.",
+          "uk": "Сусідка питає, на що подивитися. Скажіть їй, що біля мосту є лебеді."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-49:intro2:r1",
-              "text": "The cashpoint is next to the hospital."
+              "text": "There are swans near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro2:r2",
-              "text": "The cashpoint is in the hospital."
+              "text": "There is swans near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro2:r3",
-              "text": "The cashpoint are next to the hospital."
+              "text": "There are swan near the bridge."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-49:intro2:r1",
-              "text": "The cashpoint is next to the hospital."
+              "text": "There are swans near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro2:r2",
-              "text": "The cashpoint is in the hospital."
+              "text": "There is swans near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro2:r3",
-              "text": "The cashpoint are next to the hospital."
+              "text": "There are swan near the bridge."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Банкомат рядом с больницей. Выберите описание.",
-          "uk": "Банкомат поруч із лікарнею. Виберіть опис."
+          "ru": "Соседка спрашивает, на что посмотреть. Скажите ей, что возле моста есть лебеди.",
+          "uk": "Сусідка питає, на що подивитися. Скажіть їй, що біля мосту є лебеді."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Так не подходит",
-        "uk": "Так не підходить"
+        "ru": "Дорожка для пешеходов",
+        "uk": "Доріжка для пішоходів"
       },
       "bodyByLocale": {
-        "ru": "`unacceptable` — «неприемлемый»: вариант нельзя принять. `It is unacceptable` — «Это неприемлемо», короче `It’s unacceptable`. Это сильная оценка, а не просто «я предпочёл бы другое». Например, предложенное время полностью противоречит уже согласованным условиям.",
-        "uk": "`unacceptable` — «неприйнятний»: варіант не можна прийняти. `It is unacceptable` — «Це неприйнятно», коротше `It’s unacceptable`. Це сильна оцінка, а не просто «я волів би інше». Наприклад, запропонований час повністю суперечить уже погодженим умовам."
+        "ru": "Соседка боится, что на узкой набережной её собьёт велосипед, и ищет, где ходят только пешком. Между каналом и живой изгородью тянется ровная дорожка. towpath — «тропа вдоль канала». Она одна: There is a towpath between the canal and the hedge.",
+        "uk": "Сусідка боїться, що на вузькій набережній її зіб’є велосипед, і шукає, де ходять лише пішки. Між каналом і живоплотом тягнеться рівна доріжка. towpath — «стежка вздовж каналу». Вона одна: There is a towpath between the canal and the hedge."
       },
       "question": {
         "interactionId": "en:lesson-04:session-49:intro3:q",
         "promptByLocale": {
-          "ru": "Предложение невозможно принять. Передайте «Это неприемлемо» с сокращением.",
-          "uk": "Пропозицію неможливо прийняти. Передайте «Це неприйнятно» зі скороченням."
+          "ru": "Соседка ищет, где ходят только пешком. Скажите ей, что между каналом и изгородью есть тропа.",
+          "uk": "Сусідка шукає, де ходять лише пішки. Скажіть їй, що між каналом і живоплотом є стежка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-49:intro3:r1",
-              "text": "It's unacceptable."
+              "text": "There is a towpath between the canal and the hedge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro3:r2",
-              "text": "It's acceptable."
+              "text": "There are a towpath between the canal and the hedge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro3:r3",
-              "text": "It are unacceptable."
+              "text": "There is a towpath between the canal."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-49:intro3:r1",
-              "text": "It's unacceptable."
+              "text": "There is a towpath between the canal and the hedge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro3:r2",
-              "text": "It's acceptable."
+              "text": "There are a towpath between the canal and the hedge."
             },
             {
               "responseId": "en:lesson-04:session-49:intro3:r3",
-              "text": "It are unacceptable."
+              "text": "There is a towpath between the canal."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предложение невозможно принять. Передайте «Это неприемлемо» с сокращением.",
-          "uk": "Пропозицію неможливо прийняти. Передайте «Це неприйнятно» зі скороченням."
+          "ru": "Соседка ищет, где ходят только пешком. Скажите ей, что между каналом и изгородью есть тропа.",
+          "uk": "Сусідка шукає, де ходять лише пішки. Скажіть їй, що між каналом і живоплотом є стежка."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "be8afbbb3bd588e353f3f8134a3f6c3a6e5a60c32d3c7e37bfba07236fdf3f1c"
+  "introFingerprint": "f18c135507d46bbddfa249997e8af1cfe70adabe36d3275b696973765c3ae0df"
 }

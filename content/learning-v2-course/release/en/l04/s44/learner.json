@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-44:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Передайте «Это законно» без сокращения",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Передайте «Это законно» без сокращения",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is legal.",
-        "localizedMeaning": {
-          "ru": "Передайте «Это законно» без сокращения",
-          "uk": "Передайте «Це законно» без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "legal"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-44:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Передайте «Это законно» без сокращения",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is legal.`",
-              "uk": "тут потрібно `is` — `It is legal.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-44:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-44:i02:r1",
-          "text": "freezer"
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i02:r2",
-          "text": "freezers"
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i02:r3",
-          "text": "boiler"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-44:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-44:i02:audio",
-          "transcript": "freezer"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-44:i02:r1",
-            "targetText": "freezer",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i02:r2",
-            "targetText": "freezers",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i02:r3",
-            "targetText": "boiler",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-44:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `freezer`, а в этом варианте — `freezers`.",
-              "uk": "У записі перше слово — `freezer`, а в цьому варіанті — `freezers`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `freezer`, а в этом варианте — `boiler`.",
-              "uk": "У записі перше слово — `freezer`, а в цьому варіанті — `boiler`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-44:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите морозильник одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-44:i03:r1",
-          "text": "freezer"
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i03:r2",
-          "text": "sink"
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i03:r3",
-          "text": "thermostat"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите морозильник одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите морозильник одним словом",
-          "uk": "Назвіть морозильник одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-44:i03:r1",
-            "text": "freezer"
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i03:r2",
-            "text": "sink"
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i03:r3",
-            "text": "thermostat"
-          }
-        ],
-        "testedDimension": "Назовите морозильник одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-44:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите морозильник одним словом",
-            "feedbackByLocale": {
-              "ru": "`sink` — раковина; морозильник — `freezer`.",
-              "uk": "`sink` — раковина; морозильник — `freezer`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите морозильник одним словом",
-            "feedbackByLocale": {
-              "ru": "`thermostat` — термостат; морозильник — `freezer`.",
-              "uk": "`thermostat` — термостат; морозильник — `freezer`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-44:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -207,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-44:i04:p1",
+            "pairId": "en:lesson-04:session-44:i01:p1",
             "target": "freezer",
             "meaningByLocale": {
               "ru": "морозильник",
@@ -215,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-44:i04:p2",
-            "target": "legal",
+            "pairId": "en:lesson-04:session-44:i01:p2",
+            "target": "storeroom",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "кладовка",
+              "uk": "комора"
             }
           },
           {
-            "pairId": "en:lesson-04:session-44:i04:p3",
-            "target": "hotels",
+            "pairId": "en:lesson-04:session-44:i01:p3",
+            "target": "coat rack",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "вешалка для одежды",
+              "uk": "вішак для одягу"
             }
           },
           {
-            "pairId": "en:lesson-04:session-44:i04:p4",
-            "target": "smoke alarm",
+            "pairId": "en:lesson-04:session-44:i01:p4",
+            "target": "tin",
             "meaningByLocale": {
-              "ru": "дымовой пожарный извещатель",
-              "uk": "димовий пожежний сповіщувач"
+              "ru": "консервная банка",
+              "uk": "консервна банка"
             }
           }
         ],
         "leftColumn": [
           "freezer",
-          "legal",
-          "hotels",
-          "smoke alarm"
+          "storeroom",
+          "coat rack",
+          "tin"
         ],
         "rightColumn": [
           "морозильник",
-          "законный",
-          "отели",
-          "дымовой пожарный извещатель"
+          "кладовка",
+          "вешалка для одежды",
+          "консервная банка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,122 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-44:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-44:word:freezer",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — freezer",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-44:i05:audio"
+        "en:lesson-04:session-44:word:freezer:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Карточка слова — freezer",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-44:i05:audio",
-          "transcript": "This is a freezer."
+          "audioTargetId": "en:lesson-04:session-44:word:freezer:audio",
+          "transcript": "freezer"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a freezer.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "freezer"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-44:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a freezer.`",
-              "uk": "тут потрібно `is` — `This is a freezer.`"
+            "responseId": "en:lesson-04:session-44:word:freezer:r1",
+            "targetText": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник. The freezer is next to the sink. — «Морозильник стоит рядом с раковиной». О шкафе, где продукты хранят при сильном холоде.",
+              "uk": "морозильник. The freezer is next to the sink. — «Морозильник стоїть поруч із раковиною». Про шафу, де продукти зберігають за сильного холоду."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freezer",
+          "definitionByLocale": {
+            "ru": "морозильник. The freezer is next to the sink. — «Морозильник стоит рядом с раковиной». О шкафе, где продукты хранят при сильном холоде.",
+            "uk": "морозильник. The freezer is next to the sink. — «Морозильник стоїть поруч із раковиною». Про шафу, де продукти зберігають за сильного холоду."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-44:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Отели рядом с парком. Скажите, где они",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Отели рядом с парком. Скажите, где они",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The hotels are next to the park.",
-        "localizedMeaning": {
-          "ru": "Отели рядом с парком. Скажите, где они",
-          "uk": "Готелі поруч із парком. Скажіть, де вони"
-        },
-        "orderedTokens": [
-          "The",
-          "hotels",
-          "are",
-          "next",
-          "to",
-          "the",
-          "park"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-44:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Отели рядом с парком. Скажите, где они",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The hotels are next to the park.`",
-              "uk": "тут потрібно `are` — `The hotels are next to the park.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-44:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-44:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте фразу «Это законно» с сокращением",
+      "prompt": "Управляющий открывает белый шкаф, где продукты держат замороженными, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-44:i07:audio"
+        "en:lesson-04:session-44:i02:audio"
       ],
-      "accessibilityLabel": "Передайте фразу «Это законно» с сокращением",
+      "accessibilityLabel": "Управляющий открывает белый шкаф, где продукты держат замороженными, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-44:i07:audio",
-          "transcript": "It's legal."
+          "audioTargetId": "en:lesson-04:session-44:i02:audio",
+          "transcript": "freezer"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's legal.",
+        "targetPhrase": "freezer",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -395,68 +153,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-44:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Управляющий записывает. Скажите ему полной фразой: морозильник стоит на кухне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Управляющий записывает. Скажите ему полной фразой: морозильник стоит на кухне",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The freezer is in the kitchen.",
+        "localizedMeaning": {
+          "ru": "Управляющий записывает. Скажите ему полной фразой: морозильник стоит на кухне",
+          "uk": "Управитель записує. Скажіть йому повною фразою: морозильник стоїть на кухні"
+        },
+        "orderedTokens": [
+          "The",
+          "freezer",
+          "is",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Управляющий записывает. Скажите ему полной фразой: морозильник стоит на кухне",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The freezer is in the kitchen.`",
+              "uk": "тут потрібно `is` — `The freezer is in the kitchen.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:word:storeroom",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — storeroom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:word:storeroom:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — storeroom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:word:storeroom:audio",
+          "transcript": "storeroom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-44:word:storeroom:r1",
+            "targetText": "storeroom",
+            "meaningByLocale": {
+              "ru": "кладовая. There is a storeroom behind the hall. — «За холлом есть кладовая». О небольшой комнате, где держат запасные вещи и продукты.",
+              "uk": "комора. There is a storeroom behind the hall. — «За холом є комора». Про невелику кімнату, де тримають запасні речі й продукти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "storeroom",
+          "definitionByLocale": {
+            "ru": "кладовая. There is a storeroom behind the hall. — «За холлом есть кладовая». О небольшой комнате, где держат запасные вещи и продукты.",
+            "uk": "комора. There is a storeroom behind the hall. — «За холом є комора». Про невелику кімнату, де тримають запасні речі й продукти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Морозильника нет. Выберите форму",
+      "prompt": "Управляющий открывает маленькую комнату без окон, где держат запасные вещи. Как она называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-44:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-44:i04:r1",
+          "text": "storeroom"
         },
         {
-          "responseId": "en:lesson-04:session-44:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-44:i04:r2",
+          "text": "hall"
         },
         {
-          "responseId": "en:lesson-04:session-44:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-44:i04:r3",
+          "text": "balcony"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Морозильника нет. Выберите форму",
+      "accessibilityLabel": "Управляющий открывает маленькую комнату без окон, где держат запасные вещи. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Морозильника нет. Выберите форму",
-          "uk": "Морозильника немає. Виберіть форму"
+          "ru": "Управляющий открывает маленькую комнату без окон, где держат запасные вещи. Как она называется по-английски?",
+          "uk": "Управитель відчиняє маленьку кімнату без вікон, де тримають запасні речі. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a freezer.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-44:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-44:i04:r1",
+            "text": "storeroom"
           },
           {
-            "responseId": "en:lesson-04:session-44:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-44:i04:r2",
+            "text": "hall"
           },
           {
-            "responseId": "en:lesson-04:session-44:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-44:i04:r3",
+            "text": "balcony"
           }
         ],
-        "testedDimension": "Морозильника нет. Выберите форму",
+        "testedDimension": "Управляющий открывает маленькую комнату без окон, где держат запасные вещи. Как она называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-44:i08:r2",
+            "responseId": "en:lesson-04:session-44:i04:r2",
             "correct": false,
-            "testedDimension": "Морозильника нет. Выберите форму",
+            "testedDimension": "Управляющий открывает маленькую комнату без окон, где держат запасные вещи. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`is` — есть; здесь нет: `isn’t`.",
-              "uk": "`is` — є; тут немає: `isn’t`."
+              "ru": "hall — это холл, а маленькая комната для запасов называется storeroom.",
+              "uk": "hall — це хол, а маленька кімната для запасів називається storeroom."
             }
           },
           {
-            "responseId": "en:lesson-04:session-44:i08:r3",
+            "responseId": "en:lesson-04:session-44:i04:r3",
             "correct": false,
-            "testedDimension": "Морозильника нет. Выберите форму",
+            "testedDimension": "Управляющий открывает маленькую комнату без окон, где держат запасные вещи. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Один морозильник: `isn’t a freezer`.",
-              "uk": "Один морозильник: `isn’t a freezer`."
+              "ru": "balcony — это балкон, а маленькая комната для запасов называется storeroom.",
+              "uk": "balcony — це балкон, а маленька кімната для запасів називається storeroom."
             }
           }
         ]
@@ -464,73 +312,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-44:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где отели",
+      "prompt": "Послушайте управляющего",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-44:i09:r1",
-          "text": "The hotels are next to the shop."
+          "responseId": "en:lesson-04:session-44:i05:r1",
+          "text": "The storeroom is next to the hall."
         },
         {
-          "responseId": "en:lesson-04:session-44:i09:r2",
-          "text": "The hotels are next to the park."
+          "responseId": "en:lesson-04:session-44:i05:r2",
+          "text": "The storeroom is under the hall."
         },
         {
-          "responseId": "en:lesson-04:session-44:i09:r3",
-          "text": "The hotels are next to the gym."
+          "responseId": "en:lesson-04:session-44:i05:r3",
+          "text": "The storeroom is next to the kitchen."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-44:i09:audio"
+        "en:lesson-04:session-44:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте, где отели",
+      "accessibilityLabel": "Послушайте управляющего",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-44:i09:audio",
-          "transcript": "The hotels are next to the shop."
+          "audioTargetId": "en:lesson-04:session-44:i05:audio",
+          "transcript": "The storeroom is next to the hall."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-44:i09:r1",
-            "targetText": "The hotels are next to the shop.",
+            "responseId": "en:lesson-04:session-44:i05:r1",
+            "targetText": "The storeroom is next to the hall.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-44:i09:r2",
-            "targetText": "The hotels are next to the park.",
+            "responseId": "en:lesson-04:session-44:i05:r2",
+            "targetText": "The storeroom is under the hall.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-44:i09:r3",
-            "targetText": "The hotels are next to the gym.",
+            "responseId": "en:lesson-04:session-44:i05:r3",
+            "targetText": "The storeroom is next to the kitchen.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-44:i09:r2",
+            "responseId": "en:lesson-04:session-44:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где отели",
+            "testedDimension": "Послушайте управляющего",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shop`, а в этом варианте — `park`.",
-              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `park`."
+              "ru": "В записи `next to` — рядом, а в этом варианте `under` — под.",
+              "uk": "У записі `next to` — поруч, а в цьому варіанті `under` — під."
             }
           },
           {
-            "responseId": "en:lesson-04:session-44:i09:r3",
+            "responseId": "en:lesson-04:session-44:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где отели",
+            "testedDimension": "Послушайте управляющего",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shop`, а в этом варианте — `gym`.",
-              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `gym`."
+              "ru": "В записи последнее слово — `hall`, а в этом варианте — `kitchen`.",
+              "uk": "У записі останнє слово — `hall`, а в цьому варіанті — `kitchen`."
             }
           }
         ],
@@ -540,9 +388,299 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-44:i10",
+      "interactionId": "en:lesson-04:session-44:word:coat rack",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coat rack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:word:coat rack:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coat rack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:word:coat rack:audio",
+          "transcript": "coat rack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-44:word:coat rack:r1",
+            "targetText": "coat rack",
+            "meaningByLocale": {
+              "ru": "вешалка для одежды. There is a coat rack in the hall. — «В холле есть вешалка для одежды». О подставке с крючками для курток и пальто.",
+              "uk": "вішак для одягу. There is a coat rack in the hall. — «У холі є вішак для одягу». Про підставку з гачками для курток і пальт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat rack",
+          "definitionByLocale": {
+            "ru": "вешалка для одежды. There is a coat rack in the hall. — «В холле есть вешалка для одежды». О подставке с крючками для курток и пальто.",
+            "uk": "вішак для одягу. There is a coat rack in the hall. — «У холі є вішак для одягу». Про підставку з гачками для курток і пальт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга показывает в холле подставку с крючками для курток, а вы повторяете за ней слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Подруга показывает в холле подставку с крючками для курток, а вы повторяете за ней слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i06:audio",
+          "transcript": "coat rack"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "coat rack",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте подругу и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i07:audio",
+          "transcript": "The coat rack is between the door and the window."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The coat rack is between the door and the window.",
+        "orderedTokens": [
+          "The",
+          "coat",
+          "rack",
+          "is",
+          "between",
+          "the",
+          "door",
+          "and",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The coat rack is between the door and the window.`",
+              "uk": "тут потрібно `is` — `The coat rack is between the door and the window.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:word:tin",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:word:tin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:word:tin:audio",
+          "transcript": "tin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-44:word:tin:r1",
+            "targetText": "tin",
+            "meaningByLocale": {
+              "ru": "консервная банка. The tin is on the shelf. — «Консервная банка стоит на полке». О закрытой металлической банке с едой, например с супом или фасолью.",
+              "uk": "консервна банка. The tin is on the shelf. — «Консервна банка стоїть на полиці». Про закриту металеву банку з їжею, наприклад із супом чи квасолею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tin",
+          "definitionByLocale": {
+            "ru": "консервная банка. The tin is on the shelf. — «Консервная банка стоит на полке». О закрытой металлической банке с едой, например с супом или фасолью.",
+            "uk": "консервна банка. The tin is on the shelf. — «Консервна банка стоїть на полиці». Про закриту металеву банку з їжею, наприклад із супом чи квасолею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Управляющий достаёт с полки закрытую металлическую банку с супом. Как она называется по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i08:r1",
+          "text": "tin"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i08:r2",
+          "text": "jar"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i08:r3",
+          "text": "bottle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Управляющий достаёт с полки закрытую металлическую банку с супом. Как она называется по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Управляющий достаёт с полки закрытую металлическую банку с супом. Как она называется по-английски?",
+          "uk": "Управитель дістає з полиці закриту металеву банку із супом. Як вона називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-44:i08:r1",
+            "text": "tin"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i08:r2",
+            "text": "jar"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i08:r3",
+            "text": "bottle"
+          }
+        ],
+        "testedDimension": "Управляющий достаёт с полки закрытую металлическую банку с супом. Как она называется по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Управляющий достаёт с полки закрытую металлическую банку с супом. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "jar — это стеклянная банка, а металлическая банка с едой называется tin.",
+              "uk": "jar — це скляна банка, а металева банка з їжею називається tin."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Управляющий достаёт с полки закрытую металлическую банку с супом. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "bottle — это бутылка, а металлическая банка с едой называется tin.",
+              "uk": "bottle — це пляшка, а металева банка з їжею називається tin."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Управляющий ищет суп. Скажите ему полной фразой: консервная банка стоит рядом со стеклянной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Управляющий ищет суп. Скажите ему полной фразой: консервная банка стоит рядом со стеклянной",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tin is next to the jar.",
+        "localizedMeaning": {
+          "ru": "Управляющий ищет суп. Скажите ему полной фразой: консервная банка стоит рядом со стеклянной",
+          "uk": "Управитель шукає суп. Скажіть йому повною фразою: консервна банка стоїть поруч зі скляною"
+        },
+        "orderedTokens": [
+          "The",
+          "tin",
+          "is",
+          "next",
+          "to",
+          "the",
+          "jar"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Управляющий ищет суп. Скажите ему полной фразой: консервная банка стоит рядом со стеклянной",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The tin is next to the jar.`",
+              "uk": "тут потрібно `is` — `The tin is next to the jar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -555,48 +693,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-44:i10:p1",
-            "target": "freezer",
+            "target": "tin",
             "meaningByLocale": {
-              "ru": "морозильник",
-              "uk": "морозильник"
+              "ru": "консервная банка",
+              "uk": "консервна банка"
             }
           },
           {
             "pairId": "en:lesson-04:session-44:i10:p2",
-            "target": "legal",
+            "target": "coat rack",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "вешалка для одежды",
+              "uk": "вішак для одягу"
             }
           },
           {
             "pairId": "en:lesson-04:session-44:i10:p3",
-            "target": "hotels",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "полка",
+              "uk": "полиця"
             }
           },
           {
             "pairId": "en:lesson-04:session-44:i10:p4",
-            "target": "smoke alarm",
+            "target": "hook",
             "meaningByLocale": {
-              "ru": "дымовой пожарный извещатель",
-              "uk": "димовий пожежний сповіщувач"
+              "ru": "крючок",
+              "uk": "гачок"
             }
           }
         ],
         "leftColumn": [
-          "freezer",
-          "legal",
-          "hotels",
-          "smoke alarm"
+          "tin",
+          "coat rack",
+          "shelf",
+          "hook"
         ],
         "rightColumn": [
-          "морозильник",
-          "законный",
-          "отели",
-          "дымовой пожарный извещатель"
+          "консервная банка",
+          "вешалка для одежды",
+          "полка",
+          "крючок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -614,75 +752,192 @@
     },
     {
       "interactionId": "en:lesson-04:session-44:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте управляющего",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i11:r1",
+          "text": "The tin is in the storeroom."
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i11:r2",
+          "text": "The tin is in the freezer."
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i11:r3",
+          "text": "The tin is next to the storeroom."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-44:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте управляющего",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-44:i11:audio",
-          "transcript": "There aren't any freezers."
+          "transcript": "The tin is in the storeroom."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There aren't any freezers.",
-        "orderedTokens": [
-          "There",
-          "aren't",
-          "any",
-          "freezers"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-44:i11:r1",
+            "targetText": "The tin is in the storeroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i11:r2",
+            "targetText": "The tin is in the freezer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i11:r3",
+            "targetText": "The tin is next to the storeroom.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте управляющего",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `storeroom`, а в этом варианте — `freezer`.",
+              "uk": "У записі останнє слово — `storeroom`, а в цьому варіанті — `freezer`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте управляющего",
+            "feedbackByLocale": {
+              "ru": "В записи `in` — внутри, а в этом варианте `next to` — рядом.",
+              "uk": "У записі `in` — всередині, а в цьому варіанті `next to` — поруч."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-44:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Здесь есть морозильник. Сообщите об этом",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Управляющий показывает, что консервная банка стоит прямо сверху на полке. Выберите нужное слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i12:r1",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i12:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i12:r3",
+          "text": "between"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Здесь есть морозильник. Сообщите об этом",
+      "accessibilityLabel": "Управляющий показывает, что консервная банка стоит прямо сверху на полке. Выберите нужное слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a freezer.",
-        "localizedMeaning": {
-          "ru": "Здесь есть морозильник. Сообщите об этом",
-          "uk": "Тут є морозильник. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Управляющий показывает, что консервная банка стоит прямо сверху на полке. Выберите нужное слово",
+          "uk": "Управитель показує, що консервна банка стоїть просто зверху на полиці. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "The tin is ___ the shelf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-44:i12:r1",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i12:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i12:r3",
+            "text": "between"
+          }
+        ],
+        "testedDimension": "Управляющий показывает, что консервная банка стоит прямо сверху на полке. Выберите нужное слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Управляющий показывает, что консервная банка стоит прямо сверху на полке. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "in — внутри чего-то закрытого, а на поверхности полки говорят on.",
+              "uk": "in — усередині чогось закритого, а на поверхні полиці кажуть on."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Управляющий показывает, что консервная банка стоит прямо сверху на полке. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "between нужен, когда предмет стоит между двумя ориентирами.",
+              "uk": "between потрібен, коли предмет стоїть між двома орієнтирами."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте управляющего и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте управляющего и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i13:audio",
+          "transcript": "The freezer is between the sink and the wall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The freezer is between the sink and the wall.",
         "orderedTokens": [
-          "There",
+          "The",
+          "freezer",
           "is",
-          "a",
-          "freezer"
+          "between",
+          "the",
+          "sink",
+          "and",
+          "the",
+          "wall"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-44:i12:tile:d1",
+            "responseId": "en:lesson-04:session-44:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Здесь есть морозильник. Сообщите об этом",
+            "testedDimension": "Послушайте управляющего и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a freezer.`",
-              "uk": "тут потрібно `is` — `There is a freezer.`"
+              "ru": "здесь нужно `is` — `The freezer is between the sink and the wall.`",
+              "uk": "тут потрібно `is` — `The freezer is between the sink and the wall.`"
             }
           }
         ],
@@ -694,26 +949,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-44:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-44:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ещё не осмотрели номер. Спросите, есть ли дымовой пожарный извещатель",
+      "prompt": "Соседка спрашивает, где вешалка. Она рядом с дверью. Скажите ей, где вешалка",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-44:i13:audio"
+        "en:lesson-04:session-44:i14:audio"
       ],
-      "accessibilityLabel": "Вы ещё не осмотрели номер. Спросите, есть ли дымовой пожарный извещатель",
+      "accessibilityLabel": "Соседка спрашивает, где вешалка. Она рядом с дверью. Скажите ей, где вешалка",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-44:i13:audio",
-          "transcript": "Is there a smoke alarm?"
+          "audioTargetId": "en:lesson-04:session-44:i14:audio",
+          "transcript": "The coat rack is next to the door."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a smoke alarm?",
+        "targetPhrase": "The coat rack is next to the door.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -727,153 +982,55 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-44:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-44:i14:r1",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i14:r2",
-          "text": "on"
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Управляющий проверяет склад. Скажите ему полной фразой: консервная банка стоит под полкой",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
+      "accessibilityLabel": "Управляющий проверяет склад. Скажите ему полной фразой: консервная банка стоит под полкой",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
-          "uk": "Морозильник усередині кухні, не на її даху й не поверхом нижче під нею. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "The tin is under the shelf.",
+        "localizedMeaning": {
+          "ru": "Управляющий проверяет склад. Скажите ему полной фразой: консервная банка стоит под полкой",
+          "uk": "Управитель перевіряє склад. Скажіть йому повною фразою: консервна банка стоїть під полицею"
         },
-        "gappedTargetPhrase": "The freezer is ___ the kitchen.",
-        "gapOptions": [
+        "orderedTokens": [
+          "The",
+          "tin",
+          "is",
+          "under",
+          "the",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-44:i14:r1",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i14:r2",
-            "text": "on"
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-44:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Управляющий проверяет склад. Скажите ему полной фразой: консервная банка стоит под полкой",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The tin is under the shelf.`",
+              "uk": "тут потрібно `is` — `The tin is under the shelf.`"
+            }
           }
         ],
-        "testedDimension": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-44:i14:r2",
-            "correct": false,
-            "testedDimension": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "Внутри кухни: `in the kitchen`.",
-              "uk": "Усередині кухні: `in the kitchen`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i14:r3",
-            "correct": false,
-            "testedDimension": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; на кухне — `in the kitchen`.",
-              "uk": "`under` — під; на кухні — `in the kitchen`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-44:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте, что показывает друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-44:i15:r1",
-          "text": "That is a freezer."
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i15:r2",
-          "text": "This is a freezer."
-        },
-        {
-          "responseId": "en:lesson-04:session-44:i15:r3",
-          "text": "That is a boiler."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-44:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте, что показывает друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-44:i15:audio",
-          "transcript": "That is a freezer."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-44:i15:r1",
-            "targetText": "That is a freezer.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i15:r2",
-            "targetText": "This is a freezer.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i15:r3",
-            "targetText": "That is a boiler.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-44:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-44:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `freezer`, а в этом варианте — `boiler`.",
-              "uk": "У записі останнє слово — `freezer`, а в цьому варіанті — `boiler`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-44:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -895,40 +1052,40 @@
           },
           {
             "pairId": "en:lesson-04:session-44:i16:p2",
-            "target": "legal",
+            "target": "storeroom",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "кладовка",
+              "uk": "комора"
             }
           },
           {
             "pairId": "en:lesson-04:session-44:i16:p3",
-            "target": "hotels",
+            "target": "coat rack",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "вешалка для одежды",
+              "uk": "вішак для одягу"
             }
           },
           {
             "pairId": "en:lesson-04:session-44:i16:p4",
-            "target": "smoke alarm",
+            "target": "tin",
             "meaningByLocale": {
-              "ru": "дымовой пожарный извещатель",
-              "uk": "димовий пожежний сповіщувач"
+              "ru": "консервная банка",
+              "uk": "консервна банка"
             }
           }
         ],
         "leftColumn": [
           "freezer",
-          "legal",
-          "hotels",
-          "smoke alarm"
+          "storeroom",
+          "coat rack",
+          "tin"
         ],
         "rightColumn": [
           "морозильник",
-          "законный",
-          "отели",
-          "дымовой пожарный извещатель"
+          "кладовка",
+          "вешалка для одежды",
+          "консервная банка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -946,25 +1103,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-44:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы выбираете другой отель. Спросите, есть ли морозильник",
+      "prompt": "Управляющий спрашивает про морозильник. Скажите ему, что он стоит в кладовой",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-44:i17:audio"
       ],
-      "accessibilityLabel": "Вы выбираете другой отель. Спросите, есть ли морозильник",
+      "accessibilityLabel": "Управляющий спрашивает про морозильник. Скажите ему, что он стоит в кладовой",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-44:i17:audio",
-          "transcript": "Is there a freezer?"
+          "transcript": "The freezer is in the storeroom."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a freezer?",
+        "targetPhrase": "The freezer is in the storeroom.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -986,11 +1143,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "892a00cd5da0ad1b3acae8a47aec4ea3ee1efade99b851497afd03ec5dd2626f"
+  "learnerFingerprint": "81c4a6e290d53e12fb99a01e01e1d8a731ff1ae71ce47b53dc4ba51eadc61be8"
 }

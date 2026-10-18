@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-41:intro1:r2": {
-          "ru": "Перед одним банкоматом нужно `a`: `a cashpoint`.",
-          "uk": "Перед одним банкоматом потрібне `a`: `a cashpoint`."
+          "ru": "Банкомат один, поэтому перед cashpoint нужно a.",
+          "uk": "Банкомат один, тому перед cashpoint потрібно a."
         },
         "en:lesson-04:session-41:intro1:r3": {
-          "ru": "Здесь один банкомат: `This is a cashpoint`.",
-          "uk": "Тут один банкомат: `This is a cashpoint`."
+          "ru": "Банкомат один, поэтому нужно There’s, а не There are.",
+          "uk": "Банкомат один, тому потрібно There’s, а не There are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-41:intro2:r2": {
-          "ru": "`under` — под; на кухне — `in the kitchen`.",
-          "uk": "`under` — під; на кухні — `in the kitchen`."
+          "ru": "Ящик один: после a слово стоит без -es, a postbox.",
+          "uk": "Скринька одна: після a слово стоїть без -es, a postbox."
         },
         "en:lesson-04:session-41:intro2:r3": {
-          "ru": "С `He` нужно `is`.",
-          "uk": "З `He` потрібне `is`."
+          "ru": "under — это «под», а «у ворот, рядом» говорят next to.",
+          "uk": "under — це «під», а «біля воріт, поруч» кажуть next to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-41:intro3:r2": {
-          "ru": "`inaccurate` — неточно; здесь `accurate`.",
-          "uk": "`inaccurate` — неточно; тут `accurate`."
+          "ru": "Внутри помещения говорят in the hall, а не on.",
+          "uk": "Усередині приміщення кажуть in the hall, а не on."
         },
         "en:lesson-04:session-41:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Автомат один: после a слово стоит без -s.",
+          "uk": "Автомат один: після a слово стоїть без -s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c822698d836a2310a7b1216d43ec4fd8d2ad5ddf48e8ca110ef5994146b89413"
+  "auxiliaryFingerprint": "2a094c6085a35149ec0fab9608389db48bc2fa3531dc029168f9164cc7e91da9"
 }

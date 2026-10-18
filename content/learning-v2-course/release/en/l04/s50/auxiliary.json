@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-50:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-50:intro1:r2": {
-          "ru": "Перед одной рекой нужно `a`: `a river`.",
-          "uk": "Перед однією річкою потрібне `a`: `a river`."
+          "ru": "Река одна, поэтому вопрос начинаем с Is there, а не с Are there.",
+          "uk": "Річка одна, тому запитання починаємо з Is there, а не з Are there."
         },
         "en:lesson-04:session-50:intro1:r3": {
-          "ru": "Здесь одна река: `This is a river`.",
-          "uk": "Тут одна річка: `This is a river`."
+          "ru": "Река одна, поэтому перед ней нужно a: a river.",
+          "uk": "Річка одна, тому перед нею потрібно a: a river."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-50:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-50:intro2:r2": {
-          "ru": "`next to` — рядом; здесь внутри: `in`.",
-          "uk": "`next to` — поруч; тут усередині: `in`."
+          "ru": "Конусов несколько, поэтому вопрос начинаем с Are there, а не с Is there.",
+          "uk": "Конусів кілька, тому запитання починаємо з Are there, а не з Is there."
         },
         "en:lesson-04:session-50:intro2:r3": {
-          "ru": "С `He` нужно `is`.",
-          "uk": "З `He` потрібне `is`."
+          "ru": "Конусов несколько, поэтому на конце cones, а не cone.",
+          "uk": "Конусів кілька, тому наприкінці cones, а не cone."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-50:intro3:r2": {
-          "ru": "`ineffective` — неэффективно; здесь `effective`.",
-          "uk": "`ineffective` — неефективно; тут `effective`."
+          "ru": "Мостик один, поэтому вопрос начинаем с Is there, а не с Are there.",
+          "uk": "Місток один, тому запитання починаємо з Is there, а не з Are there."
         },
         "en:lesson-04:session-50:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "После footbridge нужно near: near the cafe.",
+          "uk": "Після footbridge потрібно near: near the cafe."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0d24ebafa97121fa38b6c50892cc503311a3769fc91533bf1d38df13b467a9c8"
+  "auxiliaryFingerprint": "8e4a16765a78c6da12b373d2554a0d3b16fd44018c412998816fac9904662eb5"
 }

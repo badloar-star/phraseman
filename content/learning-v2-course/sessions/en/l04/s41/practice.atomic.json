@@ -1,0 +1,2391 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-41:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-41:i01:p1",
+              "target": "cashpoint",
+              "meaningByLocale": {
+                "ru": "банкомат",
+                "uk": "банкомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i01:p2",
+              "target": "postbox",
+              "meaningByLocale": {
+                "ru": "уличный почтовый ящик",
+                "uk": "вулична поштова скринька"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i01:p3",
+              "target": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат",
+                "uk": "торговий автомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i01:p4",
+              "target": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск",
+                "uk": "газетний кіоск"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cashpoint",
+            "postbox",
+            "vending machine",
+            "newsagent"
+          ],
+          "rightColumn": [
+            "банкомат",
+            "уличный почтовый ящик",
+            "торговый автомат",
+            "газетный киоск"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:cashpoint",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cashpoint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:cashpoint:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cashpoint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:cashpoint:audio",
+            "transcript": "cashpoint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:cashpoint:r1",
+              "targetText": "cashpoint",
+              "meaningByLocale": {
+                "ru": "банкомат. There’s a cashpoint near the school. — «Рядом со школой есть банкомат». Об аппарате, из которого по карте берут наличные деньги.",
+                "uk": "банкомат. There’s a cashpoint near the school. — «Поруч зі школою є банкомат». Про апарат, з якого за карткою беруть готівку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cashpoint",
+            "definitionByLocale": {
+              "ru": "банкомат. There’s a cashpoint near the school. — «Рядом со школой есть банкомат». Об аппарате, из которого по карте берут наличные деньги.",
+              "uk": "банкомат. There’s a cashpoint near the school. — «Поруч зі школою є банкомат». Про апарат, з якого за карткою беруть готівку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед показывает на улице аппарат, из которого берут наличные, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Сосед показывает на улице аппарат, из которого берут наличные, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i02:audio",
+            "transcript": "cashpoint"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "cashpoint",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед просит ответить на сообщение. Скажите ему полной фразой: у банка есть банкомат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед просит ответить на сообщение. Скажите ему полной фразой: у банка есть банкомат",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There’s a cashpoint next to the bank.",
+          "localizedMeaning": {
+            "ru": "Сосед просит ответить на сообщение. Скажите ему полной фразой: у банка есть банкомат",
+            "uk": "Сусід просить відповісти на повідомлення. Скажіть йому повною фразою: біля банку є банкомат"
+          },
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "cashpoint",
+            "next",
+            "to",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед просит ответить на сообщение. Скажите ему полной фразой: у банка есть банкомат",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a cashpoint next to the bank.`",
+                "uk": "тут потрібно `There’s` — `There’s a cashpoint next to the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:postbox",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — postbox",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:postbox:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — postbox",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:postbox:audio",
+            "transcript": "postbox"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:postbox:r1",
+              "targetText": "postbox",
+              "meaningByLocale": {
+                "ru": "уличный почтовый ящик. There’s a postbox near the church. — «Рядом с церковью есть почтовый ящик». О ящике на улице, куда бросают письма и открытки.",
+                "uk": "вулична поштова скринька. There’s a postbox near the church. — «Поруч із церквою є поштова скринька». Про скриньку на вулиці, куди кидають листи й листівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postbox",
+            "definitionByLocale": {
+              "ru": "уличный почтовый ящик. There’s a postbox near the church. — «Рядом с церковью есть почтовый ящик». О ящике на улице, куда бросают письма и открытки.",
+              "uk": "вулична поштова скринька. There’s a postbox near the church. — «Поруч із церквою є поштова скринька». Про скриньку на вулиці, куди кидають листи й листівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i04:r1",
+            "text": "postbox"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i04:r2",
+            "text": "stamp"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i04:r3",
+            "text": "letter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?",
+            "uk": "Подруга показує червону скриньку на вулиці, куди кидають листи. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-41:i04:r1",
+              "text": "postbox"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i04:r2",
+              "text": "stamp"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i04:r3",
+              "text": "letter"
+            }
+          ],
+          "testedDimension": "Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "stamp — это марка, а ящик на улице для писем называется postbox.",
+                "uk": "stamp — це марка, а скринька на вулиці для листів називається postbox."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а ящик на улице для писем называется postbox.",
+                "uk": "letter — це лист, а скринька на вулиці для листів називається postbox."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сообщение соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i05:r1",
+            "text": "There’s a postbox in the yard."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i05:r2",
+            "text": "There’s a postbox in the hall."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i05:r3",
+            "text": "There are some postboxes in the yard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сообщение соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i05:audio",
+            "transcript": "There’s a postbox in the yard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:i05:r1",
+              "targetText": "There’s a postbox in the yard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i05:r2",
+              "targetText": "There’s a postbox in the hall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i05:r3",
+              "targetText": "There are some postboxes in the yard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `yard` — двор, а в этом варианте `hall` — холл.",
+                "uk": "У записі `yard` — двір, а в цьому варіанті `hall` — хол."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `There’s a postbox` — один, а в этом варианте `There are some postboxes` — несколько.",
+                "uk": "У записі `There’s a postbox` — один, а в цьому варіанті `There are some postboxes` — кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:vending machine",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vending machine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:vending machine:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vending machine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:vending machine:audio",
+            "transcript": "vending machine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:vending machine:r1",
+              "targetText": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат. There’s a vending machine near the gym. — «Рядом с залом есть торговый автомат». Об аппарате, где за монеты получают воду, еду или сладости.",
+                "uk": "торговий автомат. There’s a vending machine near the gym. — «Поруч із залом є торговий автомат». Про апарат, де за монети отримують воду, їжу чи солодощі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vending machine",
+            "definitionByLocale": {
+              "ru": "торговый автомат. There’s a vending machine near the gym. — «Рядом с залом есть торговый автомат». Об аппарате, где за монеты получают воду, еду или сладости.",
+              "uk": "торговий автомат. There’s a vending machine near the gym. — «Поруч із залом є торговий автомат». Про апарат, де за монети отримують воду, їжу чи солодощі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показывает в холле автомат, из которого за монеты достают воду, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i06:audio"
+        ],
+        "accessibilityLabel": "Брат показывает в холле автомат, из которого за монеты достают воду, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i06:audio",
+            "transcript": "vending machine"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "vending machine",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i07:audio",
+            "transcript": "There’s a vending machine next to the lift."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There’s a vending machine next to the lift.",
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "vending",
+            "machine",
+            "next",
+            "to",
+            "the",
+            "lift"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a vending machine next to the lift.`",
+                "uk": "тут потрібно `There’s` — `There’s a vending machine next to the lift.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:newsagent",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — newsagent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:newsagent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — newsagent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:newsagent:audio",
+            "transcript": "newsagent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:newsagent:r1",
+              "targetText": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск. There’s a newsagent in the market. — «На рынке есть газетный киоск». О маленьком магазине, где продают газеты, журналы и открытки.",
+                "uk": "газетний кіоск. There’s a newsagent in the market. — «На ринку є газетний кіоск». Про маленьку крамницю, де продають газети, журнали й листівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "newsagent",
+            "definitionByLocale": {
+              "ru": "газетный киоск. There’s a newsagent in the market. — «На рынке есть газетный киоск». О маленьком магазине, где продают газеты, журналы и открытки.",
+              "uk": "газетний кіоск. There’s a newsagent in the market. — «На ринку є газетний кіоск». Про маленьку крамницю, де продають газети, журнали й листівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i08:r1",
+            "text": "newsagent"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i08:r2",
+            "text": "bakery"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i08:r3",
+            "text": "pharmacy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?",
+            "uk": "Сусід каже, що вранці купив газету в маленькій крамниці на розі. Як називається крамниця, де продають газети?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-41:i08:r1",
+              "text": "newsagent"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i08:r2",
+              "text": "bakery"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i08:r3",
+              "text": "pharmacy"
+            }
+          ],
+          "testedDimension": "Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?",
+              "feedbackByLocale": {
+                "ru": "bakery — это пекарня, а газеты продают в newsagent.",
+                "uk": "bakery — це пекарня, а газети продають у newsagent."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?",
+              "feedbackByLocale": {
+                "ru": "pharmacy — это аптека, а газеты продают в newsagent.",
+                "uk": "pharmacy — це аптека, а газети продають у newsagent."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед ждёт ответа. Скажите ему полной фразой: рядом с остановкой есть газетный киоск",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед ждёт ответа. Скажите ему полной фразой: рядом с остановкой есть газетный киоск",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There’s a newsagent near the bus stop.",
+          "localizedMeaning": {
+            "ru": "Сосед ждёт ответа. Скажите ему полной фразой: рядом с остановкой есть газетный киоск",
+            "uk": "Сусід чекає відповіді. Скажіть йому повною фразою: поруч із зупинкою є газетний кіоск"
+          },
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "newsagent",
+            "near",
+            "the",
+            "bus",
+            "stop"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед ждёт ответа. Скажите ему полной фразой: рядом с остановкой есть газетный киоск",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a newsagent near the bus stop.`",
+                "uk": "тут потрібно `There’s` — `There’s a newsagent near the bus stop.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-41:i10:p1",
+              "target": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск",
+                "uk": "газетний кіоск"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i10:p2",
+              "target": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат",
+                "uk": "торговий автомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i10:p3",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i10:p4",
+              "target": "gate",
+              "meaningByLocale": {
+                "ru": "ворота, калитка",
+                "uk": "ворота, хвіртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "newsagent",
+            "vending machine",
+            "bench",
+            "gate"
+          ],
+          "rightColumn": [
+            "газетный киоск",
+            "торговый автомат",
+            "скамейка",
+            "ворота, калитка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сообщение соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i11:r1",
+            "text": "There are some benches near the cashpoint."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i11:r2",
+            "text": "There’s a bench near the cashpoint."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i11:r3",
+            "text": "There are some benches near the postbox."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте сообщение соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i11:audio",
+            "transcript": "There are some benches near the cashpoint."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:i11:r1",
+              "targetText": "There are some benches near the cashpoint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i11:r2",
+              "targetText": "There’s a bench near the cashpoint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i11:r3",
+              "targetText": "There are some benches near the postbox.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `There are some benches` — несколько, а в этом варианте `There’s a bench` — одна.",
+                "uk": "У записі `There are some benches` — кілька, а в цьому варіанті `There’s a bench` — одна."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cashpoint`, а в этом варианте — `postbox`.",
+                "uk": "У записі останнє слово — `cashpoint`, а в цьому варіанті — `postbox`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i12:r1",
+            "text": "There’s"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i12:r2",
+            "text": "There are"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i12:r3",
+            "text": "Is there"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова",
+            "uk": "Сусід пише про ринок, де лише один банкомат. Виберіть потрібні слова"
+          },
+          "gappedTargetPhrase": "___ a cashpoint in the market.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-41:i12:r1",
+              "text": "There’s"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i12:r2",
+              "text": "There are"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i12:r3",
+              "text": "Is there"
+            }
+          ],
+          "testedDimension": "Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова",
+              "feedbackByLocale": {
+                "ru": "После There are идёт несколько предметов, а a cashpoint — один.",
+                "uk": "Після There are йде кілька предметів, а a cashpoint — один."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова",
+              "feedbackByLocale": {
+                "ru": "Is there — это вопрос, а здесь нужно утверждение.",
+                "uk": "Is there — це запитання, а тут потрібне ствердження."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i13:audio",
+            "transcript": "There’s a postbox next to the cashpoint."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There’s a postbox next to the cashpoint.",
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "postbox",
+            "next",
+            "to",
+            "the",
+            "cashpoint"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a postbox next to the cashpoint.`",
+                "uk": "тут потрібно `There’s` — `There’s a postbox next to the cashpoint.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает про воду. Скажите ей: «Здесь есть торговый автомат»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про воду. Скажите ей: «Здесь есть торговый автомат»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i14:audio",
+            "transcript": "There’s a vending machine here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There’s a vending machine here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед просит пересказать сообщение. Скажите ему полной фразой: рядом с банкоматом есть газетный киоск",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед просит пересказать сообщение. Скажите ему полной фразой: рядом с банкоматом есть газетный киоск",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There’s a newsagent next to the cashpoint.",
+          "localizedMeaning": {
+            "ru": "Сосед просит пересказать сообщение. Скажите ему полной фразой: рядом с банкоматом есть газетный киоск",
+            "uk": "Сусід просить переказати повідомлення. Скажіть йому повною фразою: поруч із банкоматом є газетний кіоск"
+          },
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "newsagent",
+            "next",
+            "to",
+            "the",
+            "cashpoint"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед просит пересказать сообщение. Скажите ему полной фразой: рядом с банкоматом есть газетный киоск",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a newsagent next to the cashpoint.`",
+                "uk": "тут потрібно `There’s` — `There’s a newsagent next to the cashpoint.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-41:i16:p1",
+              "target": "cashpoint",
+              "meaningByLocale": {
+                "ru": "банкомат",
+                "uk": "банкомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i16:p2",
+              "target": "postbox",
+              "meaningByLocale": {
+                "ru": "уличный почтовый ящик",
+                "uk": "вулична поштова скринька"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i16:p3",
+              "target": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат",
+                "uk": "торговий автомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i16:p4",
+              "target": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск",
+                "uk": "газетний кіоск"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cashpoint",
+            "postbox",
+            "vending machine",
+            "newsagent"
+          ],
+          "rightColumn": [
+            "банкомат",
+            "уличный почтовый ящик",
+            "торговый автомат",
+            "газетный киоск"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, где взять наличные. Скажите ему: «Рядом есть банкомат»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, где взять наличные. Скажите ему: «Рядом есть банкомат»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i17:audio",
+            "transcript": "There’s a cashpoint near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There’s a cashpoint near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-41:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-41:i01:p1",
+              "target": "cashpoint",
+              "meaningByLocale": {
+                "ru": "банкомат",
+                "uk": "банкомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i01:p2",
+              "target": "postbox",
+              "meaningByLocale": {
+                "ru": "уличный почтовый ящик",
+                "uk": "вулична поштова скринька"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i01:p3",
+              "target": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат",
+                "uk": "торговий автомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i01:p4",
+              "target": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск",
+                "uk": "газетний кіоск"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cashpoint",
+            "postbox",
+            "vending machine",
+            "newsagent"
+          ],
+          "rightColumn": [
+            "банкомат",
+            "вулична поштова скринька",
+            "торговий автомат",
+            "газетний кіоск"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:cashpoint",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cashpoint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:cashpoint:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cashpoint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:cashpoint:audio",
+            "transcript": "cashpoint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:cashpoint:r1",
+              "targetText": "cashpoint",
+              "meaningByLocale": {
+                "ru": "банкомат. There’s a cashpoint near the school. — «Рядом со школой есть банкомат». Об аппарате, из которого по карте берут наличные деньги.",
+                "uk": "банкомат. There’s a cashpoint near the school. — «Поруч зі школою є банкомат». Про апарат, з якого за карткою беруть готівку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cashpoint",
+            "definitionByLocale": {
+              "ru": "банкомат. There’s a cashpoint near the school. — «Рядом со школой есть банкомат». Об аппарате, из которого по карте берут наличные деньги.",
+              "uk": "банкомат. There’s a cashpoint near the school. — «Поруч зі школою є банкомат». Про апарат, з якого за карткою беруть готівку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід показує на вулиці апарат, з якого беруть готівку, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Сусід показує на вулиці апарат, з якого беруть готівку, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i02:audio",
+            "transcript": "cashpoint"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "cashpoint",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід просить відповісти на повідомлення. Скажіть йому повною фразою: біля банку є банкомат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід просить відповісти на повідомлення. Скажіть йому повною фразою: біля банку є банкомат",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There’s a cashpoint next to the bank.",
+          "localizedMeaning": {
+            "ru": "Сосед просит ответить на сообщение. Скажите ему полной фразой: у банка есть банкомат",
+            "uk": "Сусід просить відповісти на повідомлення. Скажіть йому повною фразою: біля банку є банкомат"
+          },
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "cashpoint",
+            "next",
+            "to",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід просить відповісти на повідомлення. Скажіть йому повною фразою: біля банку є банкомат",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a cashpoint next to the bank.`",
+                "uk": "тут потрібно `There’s` — `There’s a cashpoint next to the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:postbox",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — postbox",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:postbox:audio"
+        ],
+        "accessibilityLabel": "Картка слова — postbox",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:postbox:audio",
+            "transcript": "postbox"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:postbox:r1",
+              "targetText": "postbox",
+              "meaningByLocale": {
+                "ru": "уличный почтовый ящик. There’s a postbox near the church. — «Рядом с церковью есть почтовый ящик». О ящике на улице, куда бросают письма и открытки.",
+                "uk": "вулична поштова скринька. There’s a postbox near the church. — «Поруч із церквою є поштова скринька». Про скриньку на вулиці, куди кидають листи й листівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postbox",
+            "definitionByLocale": {
+              "ru": "уличный почтовый ящик. There’s a postbox near the church. — «Рядом с церковью есть почтовый ящик». О ящике на улице, куда бросают письма и открытки.",
+              "uk": "вулична поштова скринька. There’s a postbox near the church. — «Поруч із церквою є поштова скринька». Про скриньку на вулиці, куди кидають листи й листівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує червону скриньку на вулиці, куди кидають листи. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i04:r1",
+            "text": "postbox"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i04:r2",
+            "text": "stamp"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i04:r3",
+            "text": "letter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує червону скриньку на вулиці, куди кидають листи. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?",
+            "uk": "Подруга показує червону скриньку на вулиці, куди кидають листи. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-41:i04:r1",
+              "text": "postbox"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i04:r2",
+              "text": "stamp"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i04:r3",
+              "text": "letter"
+            }
+          ],
+          "testedDimension": "Подруга показує червону скриньку на вулиці, куди кидають листи. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує червону скриньку на вулиці, куди кидають листи. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "stamp — это марка, а ящик на улице для писем называется postbox.",
+                "uk": "stamp — це марка, а скринька на вулиці для листів називається postbox."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує червону скриньку на вулиці, куди кидають листи. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а ящик на улице для писем называется postbox.",
+                "uk": "letter — це лист, а скринька на вулиці для листів називається postbox."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте повідомлення сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i05:r1",
+            "text": "There’s a postbox in the yard."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i05:r2",
+            "text": "There’s a postbox in the hall."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i05:r3",
+            "text": "There are some postboxes in the yard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте повідомлення сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i05:audio",
+            "transcript": "There’s a postbox in the yard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:i05:r1",
+              "targetText": "There’s a postbox in the yard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i05:r2",
+              "targetText": "There’s a postbox in the hall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i05:r3",
+              "targetText": "There are some postboxes in the yard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `yard` — двор, а в этом варианте `hall` — холл.",
+                "uk": "У записі `yard` — двір, а в цьому варіанті `hall` — хол."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `There’s a postbox` — один, а в этом варианте `There are some postboxes` — несколько.",
+                "uk": "У записі `There’s a postbox` — один, а в цьому варіанті `There are some postboxes` — кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:vending machine",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vending machine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:vending machine:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vending machine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:vending machine:audio",
+            "transcript": "vending machine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:vending machine:r1",
+              "targetText": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат. There’s a vending machine near the gym. — «Рядом с залом есть торговый автомат». Об аппарате, где за монеты получают воду, еду или сладости.",
+                "uk": "торговий автомат. There’s a vending machine near the gym. — «Поруч із залом є торговий автомат». Про апарат, де за монети отримують воду, їжу чи солодощі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vending machine",
+            "definitionByLocale": {
+              "ru": "торговый автомат. There’s a vending machine near the gym. — «Рядом с залом есть торговый автомат». Об аппарате, где за монеты получают воду, еду или сладости.",
+              "uk": "торговий автомат. There’s a vending machine near the gym. — «Поруч із залом є торговий автомат». Про апарат, де за монети отримують воду, їжу чи солодощі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показує в холі автомат, з якого за монети дістають воду, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i06:audio"
+        ],
+        "accessibilityLabel": "Брат показує в холі автомат, з якого за монети дістають воду, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i06:audio",
+            "transcript": "vending machine"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "vending machine",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i07:audio",
+            "transcript": "There’s a vending machine next to the lift."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There’s a vending machine next to the lift.",
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "vending",
+            "machine",
+            "next",
+            "to",
+            "the",
+            "lift"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a vending machine next to the lift.`",
+                "uk": "тут потрібно `There’s` — `There’s a vending machine next to the lift.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:word:newsagent",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — newsagent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:word:newsagent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — newsagent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:word:newsagent:audio",
+            "transcript": "newsagent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:word:newsagent:r1",
+              "targetText": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск. There’s a newsagent in the market. — «На рынке есть газетный киоск». О маленьком магазине, где продают газеты, журналы и открытки.",
+                "uk": "газетний кіоск. There’s a newsagent in the market. — «На ринку є газетний кіоск». Про маленьку крамницю, де продають газети, журнали й листівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "newsagent",
+            "definitionByLocale": {
+              "ru": "газетный киоск. There’s a newsagent in the market. — «На рынке есть газетный киоск». О маленьком магазине, где продают газеты, журналы и открытки.",
+              "uk": "газетний кіоск. There’s a newsagent in the market. — «На ринку є газетний кіоск». Про маленьку крамницю, де продають газети, журнали й листівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід каже, що вранці купив газету в маленькій крамниці на розі. Як називається крамниця, де продають газети?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i08:r1",
+            "text": "newsagent"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i08:r2",
+            "text": "bakery"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i08:r3",
+            "text": "pharmacy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід каже, що вранці купив газету в маленькій крамниці на розі. Як називається крамниця, де продають газети?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?",
+            "uk": "Сусід каже, що вранці купив газету в маленькій крамниці на розі. Як називається крамниця, де продають газети?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-41:i08:r1",
+              "text": "newsagent"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i08:r2",
+              "text": "bakery"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i08:r3",
+              "text": "pharmacy"
+            }
+          ],
+          "testedDimension": "Сусід каже, що вранці купив газету в маленькій крамниці на розі. Як називається крамниця, де продають газети?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Сусід каже, що вранці купив газету в маленькій крамниці на розі. Як називається крамниця, де продають газети?",
+              "feedbackByLocale": {
+                "ru": "bakery — это пекарня, а газеты продают в newsagent.",
+                "uk": "bakery — це пекарня, а газети продають у newsagent."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Сусід каже, що вранці купив газету в маленькій крамниці на розі. Як називається крамниця, де продають газети?",
+              "feedbackByLocale": {
+                "ru": "pharmacy — это аптека, а газеты продают в newsagent.",
+                "uk": "pharmacy — це аптека, а газети продають у newsagent."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід чекає відповіді. Скажіть йому повною фразою: поруч із зупинкою є газетний кіоск",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід чекає відповіді. Скажіть йому повною фразою: поруч із зупинкою є газетний кіоск",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There’s a newsagent near the bus stop.",
+          "localizedMeaning": {
+            "ru": "Сосед ждёт ответа. Скажите ему полной фразой: рядом с остановкой есть газетный киоск",
+            "uk": "Сусід чекає відповіді. Скажіть йому повною фразою: поруч із зупинкою є газетний кіоск"
+          },
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "newsagent",
+            "near",
+            "the",
+            "bus",
+            "stop"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід чекає відповіді. Скажіть йому повною фразою: поруч із зупинкою є газетний кіоск",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a newsagent near the bus stop.`",
+                "uk": "тут потрібно `There’s` — `There’s a newsagent near the bus stop.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-41:i10:p1",
+              "target": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск",
+                "uk": "газетний кіоск"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i10:p2",
+              "target": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат",
+                "uk": "торговий автомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i10:p3",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i10:p4",
+              "target": "gate",
+              "meaningByLocale": {
+                "ru": "ворота, калитка",
+                "uk": "ворота, хвіртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "newsagent",
+            "vending machine",
+            "bench",
+            "gate"
+          ],
+          "rightColumn": [
+            "газетний кіоск",
+            "торговий автомат",
+            "лавка",
+            "ворота, хвіртка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте повідомлення сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i11:r1",
+            "text": "There are some benches near the cashpoint."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i11:r2",
+            "text": "There’s a bench near the cashpoint."
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i11:r3",
+            "text": "There are some benches near the postbox."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте повідомлення сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i11:audio",
+            "transcript": "There are some benches near the cashpoint."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-41:i11:r1",
+              "targetText": "There are some benches near the cashpoint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i11:r2",
+              "targetText": "There’s a bench near the cashpoint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i11:r3",
+              "targetText": "There are some benches near the postbox.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `There are some benches` — несколько, а в этом варианте `There’s a bench` — одна.",
+                "uk": "У записі `There are some benches` — кілька, а в цьому варіанті `There’s a bench` — одна."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cashpoint`, а в этом варианте — `postbox`.",
+                "uk": "У записі останнє слово — `cashpoint`, а в цьому варіанті — `postbox`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід пише про ринок, де лише один банкомат. Виберіть потрібні слова",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i12:r1",
+            "text": "There’s"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i12:r2",
+            "text": "There are"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i12:r3",
+            "text": "Is there"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід пише про ринок, де лише один банкомат. Виберіть потрібні слова",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова",
+            "uk": "Сусід пише про ринок, де лише один банкомат. Виберіть потрібні слова"
+          },
+          "gappedTargetPhrase": "___ a cashpoint in the market.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-41:i12:r1",
+              "text": "There’s"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i12:r2",
+              "text": "There are"
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i12:r3",
+              "text": "Is there"
+            }
+          ],
+          "testedDimension": "Сусід пише про ринок, де лише один банкомат. Виберіть потрібні слова",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Сусід пише про ринок, де лише один банкомат. Виберіть потрібні слова",
+              "feedbackByLocale": {
+                "ru": "После There are идёт несколько предметов, а a cashpoint — один.",
+                "uk": "Після There are йде кілька предметів, а a cashpoint — один."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Сусід пише про ринок, де лише один банкомат. Виберіть потрібні слова",
+              "feedbackByLocale": {
+                "ru": "Is there — это вопрос, а здесь нужно утверждение.",
+                "uk": "Is there — це запитання, а тут потрібне ствердження."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i13:audio",
+            "transcript": "There’s a postbox next to the cashpoint."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There’s a postbox next to the cashpoint.",
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "postbox",
+            "next",
+            "to",
+            "the",
+            "cashpoint"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a postbox next to the cashpoint.`",
+                "uk": "тут потрібно `There’s` — `There’s a postbox next to the cashpoint.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про воду. Скажіть їй: «Тут є торговий автомат»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про воду. Скажіть їй: «Тут є торговий автомат»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i14:audio",
+            "transcript": "There’s a vending machine here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There’s a vending machine here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід просить переказати повідомлення. Скажіть йому повною фразою: поруч із банкоматом є газетний кіоск",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід просить переказати повідомлення. Скажіть йому повною фразою: поруч із банкоматом є газетний кіоск",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There’s a newsagent next to the cashpoint.",
+          "localizedMeaning": {
+            "ru": "Сосед просит пересказать сообщение. Скажите ему полной фразой: рядом с банкоматом есть газетный киоск",
+            "uk": "Сусід просить переказати повідомлення. Скажіть йому повною фразою: поруч із банкоматом є газетний кіоск"
+          },
+          "orderedTokens": [
+            "There’s",
+            "a",
+            "newsagent",
+            "next",
+            "to",
+            "the",
+            "cashpoint"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-41:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід просить переказати повідомлення. Скажіть йому повною фразою: поруч із банкоматом є газетний кіоск",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `There’s` — `There’s a newsagent next to the cashpoint.`",
+                "uk": "тут потрібно `There’s` — `There’s a newsagent next to the cashpoint.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-41:i16:p1",
+              "target": "cashpoint",
+              "meaningByLocale": {
+                "ru": "банкомат",
+                "uk": "банкомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i16:p2",
+              "target": "postbox",
+              "meaningByLocale": {
+                "ru": "уличный почтовый ящик",
+                "uk": "вулична поштова скринька"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i16:p3",
+              "target": "vending machine",
+              "meaningByLocale": {
+                "ru": "торговый автомат",
+                "uk": "торговий автомат"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-41:i16:p4",
+              "target": "newsagent",
+              "meaningByLocale": {
+                "ru": "газетный киоск",
+                "uk": "газетний кіоск"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cashpoint",
+            "postbox",
+            "vending machine",
+            "newsagent"
+          ],
+          "rightColumn": [
+            "банкомат",
+            "вулична поштова скринька",
+            "торговий автомат",
+            "газетний кіоск"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, де взяти готівку. Скажіть йому: «Поруч є банкомат»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, де взяти готівку. Скажіть йому: «Поруч є банкомат»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-41:i17:audio",
+            "transcript": "There’s a cashpoint near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There’s a cashpoint near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-41:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:word:cashpoint",
+      "correctText": "cashpoint",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i02",
+      "correctText": "cashpoint",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i03",
+      "correctText": "There’s a cashpoint next to the bank.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:word:postbox",
+      "correctText": "postbox",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i04",
+      "correctText": "postbox",
+      "correctResponseId": "en:lesson-04:session-41:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i05",
+      "correctText": "There’s a postbox in the yard.",
+      "correctResponseId": "en:lesson-04:session-41:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:word:vending machine",
+      "correctText": "vending machine",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i06",
+      "correctText": "vending machine",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i07",
+      "correctText": "There’s a vending machine next to the lift.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:word:newsagent",
+      "correctText": "newsagent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i08",
+      "correctText": "newsagent",
+      "correctResponseId": "en:lesson-04:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i09",
+      "correctText": "There’s a newsagent near the bus stop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i11",
+      "correctText": "There are some benches near the cashpoint.",
+      "correctResponseId": "en:lesson-04:session-41:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i12",
+      "correctText": "There’s",
+      "correctResponseId": "en:lesson-04:session-41:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i13",
+      "correctText": "There’s a postbox next to the cashpoint.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i14",
+      "correctText": "There’s a vending machine here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i15",
+      "correctText": "There’s a newsagent next to the cashpoint.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i17",
+      "correctText": "There’s a cashpoint near here.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-42:i01",
-    "correctText": "It is inaccurate.",
+    "correctText": "en:lesson-04:session-42:i01:p1=bus shelter\nen:lesson-04:session-42:i01:p2=ticket machine\nen:lesson-04:session-42:i01:p3=turnstile\nen:lesson-04:session-42:i01:p4=information desk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-42:word:bus shelter",
+    "correctText": "bus shelter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i02",
     "correctText": "bus shelter",
-    "correctResponseId": "en:lesson-04:session-42:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-42:i03",
-    "correctText": "bus shelter",
-    "correctResponseId": "en:lesson-04:session-42:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-42:i04",
-    "correctText": "en:lesson-04:session-42:i04:p1=bus shelter\nen:lesson-04:session-42:i04:p2=inaccurate\nen:lesson-04:session-42:i04:p3=bathroom\nen:lesson-04:session-42:i04:p4=handrail",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-42:i03",
+    "correctText": "Is there a bus shelter near the bank?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-42:word:ticket machine",
+    "correctText": "ticket machine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-42:i04",
+    "correctText": "ticket machine",
+    "correctResponseId": "en:lesson-04:session-42:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-42:i05",
-    "correctText": "This is a bus shelter.",
+    "correctText": "Are there any ticket machines near the entrance?",
+    "correctResponseId": "en:lesson-04:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-42:word:turnstile",
+    "correctText": "turnstile",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i06",
-    "correctText": "The handrail is in the bathroom.",
+    "correctText": "turnstile",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i07",
-    "correctText": "It's inaccurate.",
+    "correctText": "Is there a turnstile near the platform?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-42:word:information desk",
+    "correctText": "information desk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i08",
-    "correctText": "isn't",
+    "correctText": "information desk",
     "correctResponseId": "en:lesson-04:session-42:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-42:i09",
-    "correctText": "The bus shelter is next to the shop.",
-    "correctResponseId": "en:lesson-04:session-42:i09:r1"
+    "correctText": "Is there an information desk in the lobby?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i10",
-    "correctText": "en:lesson-04:session-42:i10:p1=bus shelter\nen:lesson-04:session-42:i10:p2=inaccurate\nen:lesson-04:session-42:i10:p3=bathroom\nen:lesson-04:session-42:i10:p4=handrail",
+    "correctText": "en:lesson-04:session-42:i10:p1=information desk\nen:lesson-04:session-42:i10:p2=turnstile\nen:lesson-04:session-42:i10:p3=timetable\nen:lesson-04:session-42:i10:p4=platform",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i11",
-    "correctText": "There aren't any bus shelters.",
-    "correctResponseId": null
+    "correctText": "Yes, there is.",
+    "correctResponseId": "en:lesson-04:session-42:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-42:i12",
-    "correctText": "There is a bus shelter.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-42:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-42:i13",
-    "correctText": "Is there a bus shelter?",
+    "correctText": "Are there any bus shelters near the market?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i14",
-    "correctText": "in",
-    "correctResponseId": "en:lesson-04:session-42:i14:r1"
+    "correctText": "No, there isn’t.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i15",
-    "correctText": "That is a bus shelter.",
-    "correctResponseId": "en:lesson-04:session-42:i15:r1"
+    "correctText": "There is a ticket machine near the entrance.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i16",
-    "correctText": "en:lesson-04:session-42:i16:p1=bus shelter\nen:lesson-04:session-42:i16:p2=inaccurate\nen:lesson-04:session-42:i16:p3=bathroom\nen:lesson-04:session-42:i16:p4=handrail",
+    "correctText": "en:lesson-04:session-42:i16:p1=bus shelter\nen:lesson-04:session-42:i16:p2=ticket machine\nen:lesson-04:session-42:i16:p3=turnstile\nen:lesson-04:session-42:i16:p4=information desk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-42:i17",
-    "correctText": "There isn't a bus shelter.",
+    "correctText": "Is there an information desk here?",
     "correctResponseId": null
   }
 ]

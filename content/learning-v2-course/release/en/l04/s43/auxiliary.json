@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-43:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-43:intro1:r2": {
-          "ru": "Перед одним контейнером нужно `a`: `a recycling bin`.",
-          "uk": "Перед одним контейнером потрібне `a`: `a recycling bin`."
+          "ru": "Контейнеров несколько, поэтому вопрос начинают с Are there, а не с Is there.",
+          "uk": "Контейнерів кілька, тому запитання починають з Are there, а не з Is there."
         },
         "en:lesson-04:session-43:intro1:r3": {
-          "ru": "Здесь один контейнер: `This is a recycling bin`.",
-          "uk": "Тут один контейнер: `This is a recycling bin`."
+          "ru": "После any слово ставят во множественном числе: recycling bins.",
+          "uk": "Після any слово ставлять у множині: recycling bins."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-43:intro2:r2": {
-          "ru": "Несколько спален: `The bedrooms are`.",
-          "uk": "Кілька спалень: `The bedrooms are`."
+          "ru": "Это конкретный рынок рядом, поэтому перед market нужно the: behind the market.",
+          "uk": "Це конкретний ринок поруч, тому перед market потрібно the: behind the market."
         },
         "en:lesson-04:session-43:intro2:r3": {
-          "ru": "`downstairs` — внизу; здесь наверху: `upstairs`.",
-          "uk": "`downstairs` — унизу; тут нагорі: `upstairs`."
+          "ru": "Контейнер один, поэтому нужно There is, а не There are.",
+          "uk": "Контейнер один, тому потрібно There is, а не There are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-43:intro3:r2": {
-          "ru": "`certain` — уверен; здесь `uncertain`.",
-          "uk": "`certain` — впевнений; тут `uncertain`."
+          "ru": "Плащей несколько, поэтому нужно There are, а не There is.",
+          "uk": "Плащів кілька, тому потрібно There are, а не There is."
         },
         "en:lesson-04:session-43:intro3:r3": {
-          "ru": "С `I` нужно `am`, сокращённо `I’m`.",
-          "uk": "З `I` потрібне `am`, скорочено `I’m`."
+          "ru": "После some слово ставят во множественном числе: raincoats.",
+          "uk": "Після some слово ставлять у множині: raincoats."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c40468d4ad99fb8d6909960c9dc69aab57f136c10598e6bdd4a52f13b04ef376"
+  "auxiliaryFingerprint": "84cf9fcb49d247dea0a5082f45363961b40e704eb22cb1a9754caf7a16aab790"
 }

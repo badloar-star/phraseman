@@ -1,0 +1,2395 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-43:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-43:i01:p1",
+              "target": "recycling bin",
+              "meaningByLocale": {
+                "ru": "контейнер для вторсырья",
+                "uk": "контейнер для вторсировини"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i01:p2",
+              "target": "bottle bank",
+              "meaningByLocale": {
+                "ru": "контейнер для стекла",
+                "uk": "контейнер для скла"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i01:p3",
+              "target": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ",
+                "uk": "плащ"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i01:p4",
+              "target": "drain",
+              "meaningByLocale": {
+                "ru": "сток, решётка водостока",
+                "uk": "стік, ґрати водостоку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recycling bin",
+            "bottle bank",
+            "raincoat",
+            "drain"
+          ],
+          "rightColumn": [
+            "контейнер для вторсырья",
+            "контейнер для стекла",
+            "плащ",
+            "сток, решётка водостока"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:recycling bin",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recycling bin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:recycling bin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recycling bin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:recycling bin:audio",
+            "transcript": "recycling bin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:recycling bin:r1",
+              "targetText": "recycling bin",
+              "meaningByLocale": {
+                "ru": "контейнер для вторсырья. There are some recycling bins behind the school. — «За школой есть контейнеры для вторсырья». О баке, куда кладут бумагу, пластик и стекло для переработки.",
+                "uk": "контейнер для вторсировини. There are some recycling bins behind the school. — «За школою є контейнери для вторсировини». Про бак, куди кладуть папір, пластик і скло для переробки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recycling bin",
+            "definitionByLocale": {
+              "ru": "контейнер для вторсырья. There are some recycling bins behind the school. — «За школой есть контейнеры для вторсырья». О баке, куда кладут бумагу, пластик и стекло для переработки.",
+              "uk": "контейнер для вторсировини. There are some recycling bins behind the school. — «За школою є контейнери для вторсировини». Про бак, куди кладуть папір, пластик і скло для переробки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Прохожий показывает на улице бак для сортировки отходов, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Прохожий показывает на улице бак для сортировки отходов, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i02:audio",
+            "transcript": "recycling bin"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "recycling bin",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Прохожий слушает. Задайте ему полным вопросом: есть ли у ворот контейнеры для вторсырья?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прохожий слушает. Задайте ему полным вопросом: есть ли у ворот контейнеры для вторсырья?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any recycling bins near the gate?",
+          "localizedMeaning": {
+            "ru": "Прохожий слушает. Задайте ему полным вопросом: есть ли у ворот контейнеры для вторсырья?",
+            "uk": "Перехожий слухає. Поставте йому повне запитання: чи є біля воріт контейнери для вторсировини?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "recycling",
+            "bins",
+            "near",
+            "the",
+            "gate"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Прохожий слушает. Задайте ему полным вопросом: есть ли у ворот контейнеры для вторсырья?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any recycling bins near the gate?`",
+                "uk": "тут потрібно `Are` — `Are there any recycling bins near the gate?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:bottle bank",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bottle bank",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:bottle bank:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bottle bank",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:bottle bank:audio",
+            "transcript": "bottle bank"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:bottle bank:r1",
+              "targetText": "bottle bank",
+              "meaningByLocale": {
+                "ru": "контейнер для стекла. There is a bottle bank near the church. — «Рядом с церковью есть контейнер для стекла». О большом баке, куда бросают пустые стеклянные бутылки и банки.",
+                "uk": "контейнер для скла. There is a bottle bank near the church. — «Поруч із церквою є контейнер для скла». Про великий бак, куди кидають порожні скляні пляшки й банки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle bank",
+            "definitionByLocale": {
+              "ru": "контейнер для стекла. There is a bottle bank near the church. — «Рядом с церковью есть контейнер для стекла». О большом баке, куда бросают пустые стеклянные бутылки и банки.",
+              "uk": "контейнер для скла. There is a bottle bank near the church. — «Поруч із церквою є контейнер для скла». Про великий бак, куди кидають порожні скляні пляшки й банки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i04:r1",
+            "text": "bottle bank"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i04:r2",
+            "text": "bucket"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i04:r3",
+            "text": "basket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?",
+            "uk": "Перехожий показує на вулиці бак, куди кидають скляні пляшки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-43:i04:r1",
+              "text": "bottle bank"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i04:r2",
+              "text": "bucket"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i04:r3",
+              "text": "basket"
+            }
+          ],
+          "testedDimension": "Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i04:r2",
+              "correct": false,
+              "testedDimension": "Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bucket — это ведро, а бак для стеклянных бутылок называется bottle bank.",
+                "uk": "bucket — це відро, а бак для скляних пляшок називається bottle bank."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i04:r3",
+              "correct": false,
+              "testedDimension": "Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "basket — это корзина, а бак для стеклянных бутылок называется bottle bank.",
+                "uk": "basket — це кошик, а бак для скляних пляшок називається bottle bank."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос прохожего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i05:r1",
+            "text": "Are there any bottle banks behind the school?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i05:r2",
+            "text": "Are there any bottle banks behind the market?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i05:r3",
+            "text": "Is there a bottle bank behind the school?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос прохожего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i05:audio",
+            "transcript": "Are there any bottle banks behind the school?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:i05:r1",
+              "targetText": "Are there any bottle banks behind the school?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i05:r2",
+              "targetText": "Are there any bottle banks behind the market?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i05:r3",
+              "targetText": "Is there a bottle bank behind the school?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `school`, а в этом варианте — `market`.",
+                "uk": "У записі останнє слово — `school`, а в цьому варіанті — `market`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи `Are there any` — спрашивают о нескольких, а в этом варианте `Is there a` — об одном.",
+                "uk": "У записі `Are there any` — питають про кілька, а в цьому варіанті `Is there a` — про один."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:raincoat",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — raincoat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:raincoat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — raincoat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:raincoat:audio",
+            "transcript": "raincoat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:raincoat:r1",
+              "targetText": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ. There are some raincoats near the door. — «У двери есть плащи». Об одежде, которая не пропускает воду, когда идёт дождь.",
+                "uk": "плащ. There are some raincoats near the door. — «Біля дверей є плащі». Про одяг, який не пропускає воду, коли йде дощ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "raincoat",
+            "definitionByLocale": {
+              "ru": "плащ. There are some raincoats near the door. — «У двери есть плащи». Об одежде, которая не пропускает воду, когда идёт дождь.",
+              "uk": "плащ. There are some raincoats near the door. — «Біля дверей є плащі». Про одяг, який не пропускає воду, коли йде дощ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга достаёт из шкафа одежду, которую надевают под дождь, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга достаёт из шкафа одежду, которую надевают под дождь, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i06:audio",
+            "transcript": "raincoat"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "raincoat",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i07:audio",
+            "transcript": "There are some raincoats on the hooks."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some raincoats on the hooks.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "raincoats",
+            "on",
+            "the",
+            "hooks"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some raincoats on the hooks.`",
+                "uk": "тут потрібно `are` — `There are some raincoats on the hooks.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:drain",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — drain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:drain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — drain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:drain:audio",
+            "transcript": "drain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:drain:r1",
+              "targetText": "drain",
+              "meaningByLocale": {
+                "ru": "решётка стока. There is a drain near the kerb. — «У бордюра есть решётка стока». О решётке в земле, куда уходит дождевая вода.",
+                "uk": "решітка стоку. There is a drain near the kerb. — «Біля бордюра є решітка стоку». Про решітку в землі, куди йде дощова вода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drain",
+            "definitionByLocale": {
+              "ru": "решётка стока. There is a drain near the kerb. — «У бордюра есть решётка стока». О решётке в земле, куда уходит дождевая вода.",
+              "uk": "решітка стоку. There is a drain near the kerb. — «Біля бордюра є решітка стоку». Про решітку в землі, куди йде дощова вода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i08:r1",
+            "text": "drain"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i08:r2",
+            "text": "kerb"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i08:r3",
+            "text": "pavement"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?",
+            "uk": "Вода з дороги йде в решітку в землі біля бордюра. Як називається така решітка?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-43:i08:r1",
+              "text": "drain"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i08:r2",
+              "text": "kerb"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i08:r3",
+              "text": "pavement"
+            }
+          ],
+          "testedDimension": "Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?",
+              "feedbackByLocale": {
+                "ru": "kerb — это бордюр, а решётка, куда уходит вода, называется drain.",
+                "uk": "kerb — це бордюр, а решітка, куди йде вода, називається drain."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?",
+              "feedbackByLocale": {
+                "ru": "pavement — это тротуар, а решётка, куда уходит вода, называется drain.",
+                "uk": "pavement — це тротуар, а решітка, куди йде вода, називається drain."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга боится наступить в воду. Скажите ей полной фразой: рядом с бордюром есть решётка стока",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга боится наступить в воду. Скажите ей полной фразой: рядом с бордюром есть решётка стока",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a drain next to the kerb.",
+          "localizedMeaning": {
+            "ru": "Подруга боится наступить в воду. Скажите ей полной фразой: рядом с бордюром есть решётка стока",
+            "uk": "Подруга боїться наступити у воду. Скажіть їй повною фразою: поруч із бордюром є решітка стоку"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "drain",
+            "next",
+            "to",
+            "the",
+            "kerb"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга боится наступить в воду. Скажите ей полной фразой: рядом с бордюром есть решётка стока",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a drain next to the kerb.`",
+                "uk": "тут потрібно `is` — `There is a drain next to the kerb.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-43:i10:p1",
+              "target": "drain",
+              "meaningByLocale": {
+                "ru": "сток, решётка водостока",
+                "uk": "стік, ґрати водостоку"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i10:p2",
+              "target": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ",
+                "uk": "плащ"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i10:p3",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i10:p4",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "drain",
+            "raincoat",
+            "kerb",
+            "pavement"
+          ],
+          "rightColumn": [
+            "сток, решётка водостока",
+            "плащ",
+            "бордюр",
+            "тротуар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i11:r1",
+            "text": "Are there any raincoats in the hall?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i11:r2",
+            "text": "Are there any raincoats in the yard?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i11:r3",
+            "text": "There are some raincoats in the hall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i11:audio",
+            "transcript": "Are there any raincoats in the hall?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:i11:r1",
+              "targetText": "Are there any raincoats in the hall?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i11:r2",
+              "targetText": "Are there any raincoats in the yard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i11:r3",
+              "targetText": "There are some raincoats in the hall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hall`, а в этом варианте — `yard`.",
+                "uk": "У записі останнє слово — `hall`, а в цьому варіанті — `yard`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there any`, а в этом варианте утверждение `There are some`.",
+                "uk": "У записі запитання `Are there any`, а в цьому варіанті ствердження `There are some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i12:r3",
+            "text": "no"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово",
+            "uk": "Ви питаєте перехожого про кілька контейнерів. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "Are there ___ recycling bins near the bank?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-43:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i12:r3",
+              "text": "no"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "a ставят перед одним предметом, а контейнеров несколько.",
+                "uk": "a ставлять перед одним предметом, а контейнерів кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "В вопросе слово no не нужно: после Are there ставят any.",
+                "uk": "У запитанні слово no не потрібне: після Are there ставлять any."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте прохожего и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте прохожего и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i13:audio",
+            "transcript": "Are there any drains near the bank?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any drains near the bank?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "drains",
+            "near",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте прохожего и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any drains near the bank?`",
+                "uk": "тут потрібно `Are` — `Are there any drains near the bank?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Прохожий спрашивает, есть ли рядом контейнер для стекла. Он есть. Ответьте коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Прохожий спрашивает, есть ли рядом контейнер для стекла. Он есть. Ответьте коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i14:audio",
+            "transcript": "Yes, there is."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, there is.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Прохожий записывает ваш ответ. Скажите ему полной фразой: за рынком есть контейнеры для вторсырья",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прохожий записывает ваш ответ. Скажите ему полной фразой: за рынком есть контейнеры для вторсырья",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some recycling bins behind the market.",
+          "localizedMeaning": {
+            "ru": "Прохожий записывает ваш ответ. Скажите ему полной фразой: за рынком есть контейнеры для вторсырья",
+            "uk": "Перехожий записує вашу відповідь. Скажіть йому повною фразою: за ринком є контейнери для вторсировини"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "recycling",
+            "bins",
+            "behind",
+            "the",
+            "market"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Прохожий записывает ваш ответ. Скажите ему полной фразой: за рынком есть контейнеры для вторсырья",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some recycling bins behind the market.`",
+                "uk": "тут потрібно `are` — `There are some recycling bins behind the market.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-43:i16:p1",
+              "target": "recycling bin",
+              "meaningByLocale": {
+                "ru": "контейнер для вторсырья",
+                "uk": "контейнер для вторсировини"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i16:p2",
+              "target": "bottle bank",
+              "meaningByLocale": {
+                "ru": "контейнер для стекла",
+                "uk": "контейнер для скла"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i16:p3",
+              "target": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ",
+                "uk": "плащ"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i16:p4",
+              "target": "drain",
+              "meaningByLocale": {
+                "ru": "сток, решётка водостока",
+                "uk": "стік, ґрати водостоку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recycling bin",
+            "bottle bank",
+            "raincoat",
+            "drain"
+          ],
+          "rightColumn": [
+            "контейнер для вторсырья",
+            "контейнер для стекла",
+            "плащ",
+            "сток, решётка водостока"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы под дождём ищете, куда сдать бумагу. Спросите прохожего: «Здесь есть контейнеры для вторсырья?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Вы под дождём ищете, куда сдать бумагу. Спросите прохожего: «Здесь есть контейнеры для вторсырья?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i17:audio",
+            "transcript": "Are there any recycling bins here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there any recycling bins here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-43:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-43:i01:p1",
+              "target": "recycling bin",
+              "meaningByLocale": {
+                "ru": "контейнер для вторсырья",
+                "uk": "контейнер для вторсировини"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i01:p2",
+              "target": "bottle bank",
+              "meaningByLocale": {
+                "ru": "контейнер для стекла",
+                "uk": "контейнер для скла"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i01:p3",
+              "target": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ",
+                "uk": "плащ"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i01:p4",
+              "target": "drain",
+              "meaningByLocale": {
+                "ru": "сток, решётка водостока",
+                "uk": "стік, ґрати водостоку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recycling bin",
+            "bottle bank",
+            "raincoat",
+            "drain"
+          ],
+          "rightColumn": [
+            "контейнер для вторсировини",
+            "контейнер для скла",
+            "плащ",
+            "стік, ґрати водостоку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:recycling bin",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recycling bin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:recycling bin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recycling bin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:recycling bin:audio",
+            "transcript": "recycling bin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:recycling bin:r1",
+              "targetText": "recycling bin",
+              "meaningByLocale": {
+                "ru": "контейнер для вторсырья. There are some recycling bins behind the school. — «За школой есть контейнеры для вторсырья». О баке, куда кладут бумагу, пластик и стекло для переработки.",
+                "uk": "контейнер для вторсировини. There are some recycling bins behind the school. — «За школою є контейнери для вторсировини». Про бак, куди кладуть папір, пластик і скло для переробки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recycling bin",
+            "definitionByLocale": {
+              "ru": "контейнер для вторсырья. There are some recycling bins behind the school. — «За школой есть контейнеры для вторсырья». О баке, куда кладут бумагу, пластик и стекло для переработки.",
+              "uk": "контейнер для вторсировини. There are some recycling bins behind the school. — «За школою є контейнери для вторсировини». Про бак, куди кладуть папір, пластик і скло для переробки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Перехожий показує на вулиці бак для сортування відходів, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Перехожий показує на вулиці бак для сортування відходів, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i02:audio",
+            "transcript": "recycling bin"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "recycling bin",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перехожий слухає. Поставте йому повне запитання: чи є біля воріт контейнери для вторсировини?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перехожий слухає. Поставте йому повне запитання: чи є біля воріт контейнери для вторсировини?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any recycling bins near the gate?",
+          "localizedMeaning": {
+            "ru": "Прохожий слушает. Задайте ему полным вопросом: есть ли у ворот контейнеры для вторсырья?",
+            "uk": "Перехожий слухає. Поставте йому повне запитання: чи є біля воріт контейнери для вторсировини?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "recycling",
+            "bins",
+            "near",
+            "the",
+            "gate"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Перехожий слухає. Поставте йому повне запитання: чи є біля воріт контейнери для вторсировини?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any recycling bins near the gate?`",
+                "uk": "тут потрібно `Are` — `Are there any recycling bins near the gate?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:bottle bank",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bottle bank",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:bottle bank:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bottle bank",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:bottle bank:audio",
+            "transcript": "bottle bank"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:bottle bank:r1",
+              "targetText": "bottle bank",
+              "meaningByLocale": {
+                "ru": "контейнер для стекла. There is a bottle bank near the church. — «Рядом с церковью есть контейнер для стекла». О большом баке, куда бросают пустые стеклянные бутылки и банки.",
+                "uk": "контейнер для скла. There is a bottle bank near the church. — «Поруч із церквою є контейнер для скла». Про великий бак, куди кидають порожні скляні пляшки й банки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle bank",
+            "definitionByLocale": {
+              "ru": "контейнер для стекла. There is a bottle bank near the church. — «Рядом с церковью есть контейнер для стекла». О большом баке, куда бросают пустые стеклянные бутылки и банки.",
+              "uk": "контейнер для скла. There is a bottle bank near the church. — «Поруч із церквою є контейнер для скла». Про великий бак, куди кидають порожні скляні пляшки й банки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перехожий показує на вулиці бак, куди кидають скляні пляшки. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i04:r1",
+            "text": "bottle bank"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i04:r2",
+            "text": "bucket"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i04:r3",
+            "text": "basket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перехожий показує на вулиці бак, куди кидають скляні пляшки. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прохожий показывает на улице бак, куда бросают стеклянные бутылки. Как он называется по-английски?",
+            "uk": "Перехожий показує на вулиці бак, куди кидають скляні пляшки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-43:i04:r1",
+              "text": "bottle bank"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i04:r2",
+              "text": "bucket"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i04:r3",
+              "text": "basket"
+            }
+          ],
+          "testedDimension": "Перехожий показує на вулиці бак, куди кидають скляні пляшки. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i04:r2",
+              "correct": false,
+              "testedDimension": "Перехожий показує на вулиці бак, куди кидають скляні пляшки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bucket — это ведро, а бак для стеклянных бутылок называется bottle bank.",
+                "uk": "bucket — це відро, а бак для скляних пляшок називається bottle bank."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i04:r3",
+              "correct": false,
+              "testedDimension": "Перехожий показує на вулиці бак, куди кидають скляні пляшки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "basket — это корзина, а бак для стеклянных бутылок называется bottle bank.",
+                "uk": "basket — це кошик, а бак для скляних пляшок називається bottle bank."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання перехожого",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i05:r1",
+            "text": "Are there any bottle banks behind the school?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i05:r2",
+            "text": "Are there any bottle banks behind the market?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i05:r3",
+            "text": "Is there a bottle bank behind the school?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання перехожого",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i05:audio",
+            "transcript": "Are there any bottle banks behind the school?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:i05:r1",
+              "targetText": "Are there any bottle banks behind the school?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i05:r2",
+              "targetText": "Are there any bottle banks behind the market?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i05:r3",
+              "targetText": "Is there a bottle bank behind the school?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `school`, а в этом варианте — `market`.",
+                "uk": "У записі останнє слово — `school`, а в цьому варіанті — `market`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи `Are there any` — спрашивают о нескольких, а в этом варианте `Is there a` — об одном.",
+                "uk": "У записі `Are there any` — питають про кілька, а в цьому варіанті `Is there a` — про один."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:raincoat",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — raincoat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:raincoat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — raincoat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:raincoat:audio",
+            "transcript": "raincoat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:raincoat:r1",
+              "targetText": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ. There are some raincoats near the door. — «У двери есть плащи». Об одежде, которая не пропускает воду, когда идёт дождь.",
+                "uk": "плащ. There are some raincoats near the door. — «Біля дверей є плащі». Про одяг, який не пропускає воду, коли йде дощ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "raincoat",
+            "definitionByLocale": {
+              "ru": "плащ. There are some raincoats near the door. — «У двери есть плащи». Об одежде, которая не пропускает воду, когда идёт дождь.",
+              "uk": "плащ. There are some raincoats near the door. — «Біля дверей є плащі». Про одяг, який не пропускає воду, коли йде дощ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга дістає з шафи одяг, який вдягають під дощ, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга дістає з шафи одяг, який вдягають під дощ, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i06:audio",
+            "transcript": "raincoat"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "raincoat",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i07:audio",
+            "transcript": "There are some raincoats on the hooks."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some raincoats on the hooks.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "raincoats",
+            "on",
+            "the",
+            "hooks"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some raincoats on the hooks.`",
+                "uk": "тут потрібно `are` — `There are some raincoats on the hooks.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:word:drain",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — drain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:word:drain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — drain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:word:drain:audio",
+            "transcript": "drain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:word:drain:r1",
+              "targetText": "drain",
+              "meaningByLocale": {
+                "ru": "решётка стока. There is a drain near the kerb. — «У бордюра есть решётка стока». О решётке в земле, куда уходит дождевая вода.",
+                "uk": "решітка стоку. There is a drain near the kerb. — «Біля бордюра є решітка стоку». Про решітку в землі, куди йде дощова вода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drain",
+            "definitionByLocale": {
+              "ru": "решётка стока. There is a drain near the kerb. — «У бордюра есть решётка стока». О решётке в земле, куда уходит дождевая вода.",
+              "uk": "решітка стоку. There is a drain near the kerb. — «Біля бордюра є решітка стоку». Про решітку в землі, куди йде дощова вода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вода з дороги йде в решітку в землі біля бордюра. Як називається така решітка?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i08:r1",
+            "text": "drain"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i08:r2",
+            "text": "kerb"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i08:r3",
+            "text": "pavement"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вода з дороги йде в решітку в землі біля бордюра. Як називається така решітка?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вода с дороги уходит в решётку в земле у бордюра. Как называется такая решётка?",
+            "uk": "Вода з дороги йде в решітку в землі біля бордюра. Як називається така решітка?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-43:i08:r1",
+              "text": "drain"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i08:r2",
+              "text": "kerb"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i08:r3",
+              "text": "pavement"
+            }
+          ],
+          "testedDimension": "Вода з дороги йде в решітку в землі біля бордюра. Як називається така решітка?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Вода з дороги йде в решітку в землі біля бордюра. Як називається така решітка?",
+              "feedbackByLocale": {
+                "ru": "kerb — это бордюр, а решётка, куда уходит вода, называется drain.",
+                "uk": "kerb — це бордюр, а решітка, куди йде вода, називається drain."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Вода з дороги йде в решітку в землі біля бордюра. Як називається така решітка?",
+              "feedbackByLocale": {
+                "ru": "pavement — это тротуар, а решётка, куда уходит вода, называется drain.",
+                "uk": "pavement — це тротуар, а решітка, куди йде вода, називається drain."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга боїться наступити у воду. Скажіть їй повною фразою: поруч із бордюром є решітка стоку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга боїться наступити у воду. Скажіть їй повною фразою: поруч із бордюром є решітка стоку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a drain next to the kerb.",
+          "localizedMeaning": {
+            "ru": "Подруга боится наступить в воду. Скажите ей полной фразой: рядом с бордюром есть решётка стока",
+            "uk": "Подруга боїться наступити у воду. Скажіть їй повною фразою: поруч із бордюром є решітка стоку"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "drain",
+            "next",
+            "to",
+            "the",
+            "kerb"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга боїться наступити у воду. Скажіть їй повною фразою: поруч із бордюром є решітка стоку",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a drain next to the kerb.`",
+                "uk": "тут потрібно `is` — `There is a drain next to the kerb.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-43:i10:p1",
+              "target": "drain",
+              "meaningByLocale": {
+                "ru": "сток, решётка водостока",
+                "uk": "стік, ґрати водостоку"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i10:p2",
+              "target": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ",
+                "uk": "плащ"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i10:p3",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i10:p4",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "drain",
+            "raincoat",
+            "kerb",
+            "pavement"
+          ],
+          "rightColumn": [
+            "стік, ґрати водостоку",
+            "плащ",
+            "бордюр",
+            "тротуар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i11:r1",
+            "text": "Are there any raincoats in the hall?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i11:r2",
+            "text": "Are there any raincoats in the yard?"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i11:r3",
+            "text": "There are some raincoats in the hall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i11:audio",
+            "transcript": "Are there any raincoats in the hall?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-43:i11:r1",
+              "targetText": "Are there any raincoats in the hall?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i11:r2",
+              "targetText": "Are there any raincoats in the yard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i11:r3",
+              "targetText": "There are some raincoats in the hall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hall`, а в этом варианте — `yard`.",
+                "uk": "У записі останнє слово — `hall`, а в цьому варіанті — `yard`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there any`, а в этом варианте утверждение `There are some`.",
+                "uk": "У записі запитання `Are there any`, а в цьому варіанті ствердження `There are some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви питаєте перехожого про кілька контейнерів. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i12:r3",
+            "text": "no"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте перехожого про кілька контейнерів. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете прохожего о нескольких контейнерах. Выберите нужное слово",
+            "uk": "Ви питаєте перехожого про кілька контейнерів. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "Are there ___ recycling bins near the bank?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-43:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i12:r3",
+              "text": "no"
+            }
+          ],
+          "testedDimension": "Ви питаєте перехожого про кілька контейнерів. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви питаєте перехожого про кілька контейнерів. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "a ставят перед одним предметом, а контейнеров несколько.",
+                "uk": "a ставлять перед одним предметом, а контейнерів кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви питаєте перехожого про кілька контейнерів. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "В вопросе слово no не нужно: после Are there ставят any.",
+                "uk": "У запитанні слово no не потрібне: після Are there ставлять any."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте перехожого й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте перехожого й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i13:audio",
+            "transcript": "Are there any drains near the bank?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any drains near the bank?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "drains",
+            "near",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте перехожого й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any drains near the bank?`",
+                "uk": "тут потрібно `Are` — `Are there any drains near the bank?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Перехожий питає, чи є поруч контейнер для скла. Він є. Дайте коротку відповідь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Перехожий питає, чи є поруч контейнер для скла. Він є. Дайте коротку відповідь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i14:audio",
+            "transcript": "Yes, there is."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, there is.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перехожий записує вашу відповідь. Скажіть йому повною фразою: за ринком є контейнери для вторсировини",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перехожий записує вашу відповідь. Скажіть йому повною фразою: за ринком є контейнери для вторсировини",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some recycling bins behind the market.",
+          "localizedMeaning": {
+            "ru": "Прохожий записывает ваш ответ. Скажите ему полной фразой: за рынком есть контейнеры для вторсырья",
+            "uk": "Перехожий записує вашу відповідь. Скажіть йому повною фразою: за ринком є контейнери для вторсировини"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "recycling",
+            "bins",
+            "behind",
+            "the",
+            "market"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-43:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Перехожий записує вашу відповідь. Скажіть йому повною фразою: за ринком є контейнери для вторсировини",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some recycling bins behind the market.`",
+                "uk": "тут потрібно `are` — `There are some recycling bins behind the market.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-43:i16:p1",
+              "target": "recycling bin",
+              "meaningByLocale": {
+                "ru": "контейнер для вторсырья",
+                "uk": "контейнер для вторсировини"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i16:p2",
+              "target": "bottle bank",
+              "meaningByLocale": {
+                "ru": "контейнер для стекла",
+                "uk": "контейнер для скла"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i16:p3",
+              "target": "raincoat",
+              "meaningByLocale": {
+                "ru": "плащ",
+                "uk": "плащ"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-43:i16:p4",
+              "target": "drain",
+              "meaningByLocale": {
+                "ru": "сток, решётка водостока",
+                "uk": "стік, ґрати водостоку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recycling bin",
+            "bottle bank",
+            "raincoat",
+            "drain"
+          ],
+          "rightColumn": [
+            "контейнер для вторсировини",
+            "контейнер для скла",
+            "плащ",
+            "стік, ґрати водостоку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-43:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви під дощем шукаєте, куди здати папір. Запитайте перехожого: «Тут є контейнери для вторсировини?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Ви під дощем шукаєте, куди здати папір. Запитайте перехожого: «Тут є контейнери для вторсировини?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-43:i17:audio",
+            "transcript": "Are there any recycling bins here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there any recycling bins here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-43:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:word:recycling bin",
+      "correctText": "recycling bin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i02",
+      "correctText": "recycling bin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i03",
+      "correctText": "Are there any recycling bins near the gate?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:word:bottle bank",
+      "correctText": "bottle bank",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i04",
+      "correctText": "bottle bank",
+      "correctResponseId": "en:lesson-04:session-43:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i05",
+      "correctText": "Are there any bottle banks behind the school?",
+      "correctResponseId": "en:lesson-04:session-43:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:word:raincoat",
+      "correctText": "raincoat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i06",
+      "correctText": "raincoat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i07",
+      "correctText": "There are some raincoats on the hooks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:word:drain",
+      "correctText": "drain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i08",
+      "correctText": "drain",
+      "correctResponseId": "en:lesson-04:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i09",
+      "correctText": "There is a drain next to the kerb.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i11",
+      "correctText": "Are there any raincoats in the hall?",
+      "correctResponseId": "en:lesson-04:session-43:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-04:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i13",
+      "correctText": "Are there any drains near the bank?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i14",
+      "correctText": "Yes, there is.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i15",
+      "correctText": "There are some recycling bins behind the market.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i17",
+      "correctText": "Are there any recycling bins here?",
+      "correctResponseId": null
+    }
+  ]
+}

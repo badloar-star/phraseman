@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-55:i01",
-    "correctText": "The map is unreliable.",
+    "correctText": "en:lesson-04:session-55:i01:p1=shortcut\nen:lesson-04:session-55:i01:p2=footpath\nen:lesson-04:session-55:i01:p3=puddle\nen:lesson-04:session-55:i01:p4=underpass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-55:word:shortcut",
+    "correctText": "shortcut",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i02",
     "correctText": "shortcut",
-    "correctResponseId": "en:lesson-04:session-55:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-55:i03",
-    "correctText": "shortcut",
-    "correctResponseId": "en:lesson-04:session-55:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-55:i04",
-    "correctText": "en:lesson-04:session-55:i04:p1=shortcut\nen:lesson-04:session-55:i04:p2=unreliable\nen:lesson-04:session-55:i04:p3=cafes\nen:lesson-04:session-55:i04:p4=leftover",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-55:i03",
+    "correctText": "There is a shortcut behind the community centre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-55:word:footpath",
+    "correctText": "footpath",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-55:i04",
+    "correctText": "footpath",
+    "correctResponseId": "en:lesson-04:session-55:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-55:i05",
-    "correctText": "This is a shortcut.",
+    "correctText": "Is there a footpath behind the park?",
+    "correctResponseId": "en:lesson-04:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-55:word:puddle",
+    "correctText": "puddle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i06",
-    "correctText": "The cafes are next to the park.",
+    "correctText": "puddle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i07",
-    "correctText": "It's unreliable.",
+    "correctText": "There aren’t any puddles near the bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-55:word:underpass",
+    "correctText": "underpass",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i08",
-    "correctText": "aren't",
+    "correctText": "underpass",
     "correctResponseId": "en:lesson-04:session-55:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-55:i09",
-    "correctText": "The leftovers are in the fridge.",
-    "correctResponseId": "en:lesson-04:session-55:i09:r1"
+    "correctText": "Is there an underpass near the bank?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i10",
-    "correctText": "en:lesson-04:session-55:i10:p1=shortcut\nen:lesson-04:session-55:i10:p2=unreliable\nen:lesson-04:session-55:i10:p3=cafes\nen:lesson-04:session-55:i10:p4=leftover",
+    "correctText": "en:lesson-04:session-55:i10:p1=shortcut\nen:lesson-04:session-55:i10:p2=puddle\nen:lesson-04:session-55:i10:p3=community centre\nen:lesson-04:session-55:i10:p4=park",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i11",
-    "correctText": "Is there a shortcut?",
-    "correctResponseId": null
+    "correctText": "There aren’t any puddles in the underpass.",
+    "correctResponseId": "en:lesson-04:session-55:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-55:i12",
-    "correctText": "There isn't a shortcut.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-55:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-55:i13",
-    "correctText": "Are there any leftovers?",
+    "correctText": "There are some puddles under the bridge.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i14",
-    "correctText": "in",
-    "correctResponseId": "en:lesson-04:session-55:i14:r1"
+    "correctText": "Is there a shortcut near here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i15",
-    "correctText": "That is a shortcut.",
-    "correctResponseId": "en:lesson-04:session-55:i15:r1"
+    "correctText": "There isn’t an underpass behind the park.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i16",
-    "correctText": "en:lesson-04:session-55:i16:p1=shortcut\nen:lesson-04:session-55:i16:p2=unreliable\nen:lesson-04:session-55:i16:p3=cafes\nen:lesson-04:session-55:i16:p4=leftover",
+    "correctText": "en:lesson-04:session-55:i16:p1=shortcut\nen:lesson-04:session-55:i16:p2=footpath\nen:lesson-04:session-55:i16:p3=puddle\nen:lesson-04:session-55:i16:p4=underpass",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-55:i17",
-    "correctText": "There is a shortcut.",
+    "correctText": "There aren’t any puddles here.",
     "correctResponseId": null
   }
 ]

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-44:intro1:r2": {
-          "ru": "Перед одним морозильником нужно `a`: `a freezer`.",
-          "uk": "Перед одним морозильником потрібне `a`: `a freezer`."
+          "ru": "between ставят, когда предмет стоит между двумя ориентирами: between X and Y.",
+          "uk": "between ставлять, коли предмет стоїть між двома орієнтирами: between X and Y."
         },
         "en:lesson-04:session-44:intro1:r3": {
-          "ru": "Здесь один морозильник: `This is a freezer`.",
-          "uk": "Тут один морозильник: `This is a freezer`."
+          "ru": "Морозильник один, поэтому нужно is, а не are.",
+          "uk": "Морозильник один, тому потрібно is, а не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-44:intro2:r2": {
-          "ru": "Несколько отелей: `The hotels are`.",
-          "uk": "Кілька готелів: `The hotels are`."
+          "ru": "Между двумя ориентирами ставят and: between the kitchen and the hall.",
+          "uk": "Між двома орієнтирами ставлять and: between the kitchen and the hall."
         },
         "en:lesson-04:session-44:intro2:r3": {
-          "ru": "`under` — под; здесь рядом: `next to`.",
-          "uk": "`under` — під; тут поруч: `next to`."
+          "ru": "under — это «под», а «между двумя» говорят between.",
+          "uk": "under — це «під», а «між двома» кажуть between."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-44:intro3:r2": {
-          "ru": "`illegal` — незаконно; здесь `legal`.",
-          "uk": "`illegal` — незаконно; тут `legal`."
+          "ru": "under — это «под», а «за дверью» говорят behind.",
+          "uk": "under — це «під», а «за дверима» кажуть behind."
         },
         "en:lesson-04:session-44:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Вешалка одна, поэтому нужно is, а не are.",
+          "uk": "Вішак один, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e96a6472e9976a8a19a771c837b7ad653174f35133ee5e0430d1afe60130461d"
+  "auxiliaryFingerprint": "ef312635a98c94c86fcd2b664ccacd04bc00c64bcb47e156949a48780d62c5d9"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-48:intro1:r2": {
-          "ru": "Перед одной кухней нужно `a`: `a community kitchen`.",
-          "uk": "Перед однією кухнею потрібне `a`: `a community kitchen`."
+          "ru": "Кухня одна, поэтому перед community kitchen нужно a.",
+          "uk": "Кухня одна, тому перед community kitchen потрібно a."
         },
         "en:lesson-04:session-48:intro1:r3": {
-          "ru": "Здесь одна кухня: `This is a community kitchen`.",
-          "uk": "Тут одна кухня: `This is a community kitchen`."
+          "ru": "Кухня одна, поэтому нужно There is, а не There are.",
+          "uk": "Кухня одна, тому потрібно There is, а не There are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-48:intro2:r2": {
-          "ru": "`leftovers` — множественное число: `Are there`.",
-          "uk": "`leftovers` — множина: `Are there`."
+          "ru": "Фартуков несколько, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Фартухів кілька, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-48:intro2:r3": {
-          "ru": "Это сообщение о наличии; нужен вопрос: `Are there any leftovers?`.",
-          "uk": "Це повідомлення про наявність; потрібне запитання: `Are there any leftovers?`."
+          "ru": "После any слово ставят во множественном числе: aprons.",
+          "uk": "Після any слово ставлять у множині: aprons."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-48:intro3:r2": {
-          "ru": "Один контейнер: `is`.",
-          "uk": "Один контейнер: `is`."
+          "ru": "Кастрюля одна, поэтому перед saucepan нужно a.",
+          "uk": "Каструля одна, тому перед saucepan потрібно a."
         },
         "en:lesson-04:session-48:intro3:r3": {
-          "ru": "`under` — под; здесь рядом: `next to`.",
-          "uk": "`under` — під; тут поруч: `next to`."
+          "ru": "Кастрюля одна, поэтому вопрос начинают с Is there, а не с Are there.",
+          "uk": "Каструля одна, тому запитання починають з Is there, а не з Are there."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1a2d7139ca973e27415b650468285695086243d22acb25a0aab91a41cb15ab36"
+  "auxiliaryFingerprint": "a03ecfcdb4697ae72ded7dd3748eb36372d835c52e55722711a7589dc0e33f97"
 }

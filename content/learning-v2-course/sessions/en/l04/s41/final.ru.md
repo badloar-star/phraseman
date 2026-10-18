@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 41 — Банкомат рядом
+# Английский · Урок 4 · Занятие 41 — Сообщение от соседа
 
-**Ситуация.** Вы гостите у друга. Перед выходом уточняете, есть ли рядом банкомат. Друг на кухне, дверного звонка нет, а сведения о расположении банкомата вы сверили с действительностью.
+**Ситуация.** Сосед оставил вам голосовое сообщение о том, что есть рядом с домом. Вы слушаете его и пересказываете. Новое здесь одно: в речи для одного предмета говорят коротко There’s, а для нескольких по-прежнему There are.
 
-**Что вы освоите:** назвать банкомат, спросить о его наличии и подтвердить точность информации
-**Новые слова:** cashpoint
+**Что вы освоите:** узнавать и произносить короткое There’s для одного предмета
+**Новые слова:** cashpoint, postbox, vending machine, newsagent
+**Возвращаются:** bank, market, bench, gate, yard, hall, lift, school, church, gym
 
 ---
 
 ## Интро 1
 
-### Где снять наличные
+### Наличные для рынка
 
-`cashpoint` — «банкомат». Один банкомат — `a cashpoint`. `This is a cashpoint` — «Это банкомат». Деньги он выдаёт, но подарком их считать не стоит: это ваши деньги со счёта.
+Вы вышли из дома, а наличных нет, и на рынке карту не принимают. Сосед в голосовом сообщении говорит, что аппарат, который выдаёт деньги по карте, стоит у банка. cashpoint — «банкомат». В речи говорят коротко: There’s a cashpoint near the bank — «Рядом с банком есть банкомат».
 
-**Назовите один банкомат рядом.**
+**Сосед спрашивает, где взять наличные. Скажите ему, что рядом с банком есть банкомат.**
 
-- ✅ **This is a cashpoint.**
-- ❌ This is cashpoint. — *Перед одним банкоматом нужно `a`: `a cashpoint`.*
-- ❌ These are cashpoints. — *Здесь один банкомат: `This is a cashpoint`.*
+- ✅ **There’s a cashpoint near the bank.**
+- ❌ There’s cashpoint near the bank. — *Банкомат один, поэтому перед cashpoint нужно a.*
+- ❌ There are a cashpoint near the bank. — *Банкомат один, поэтому нужно There’s, а не There are.*
 
 ---
 
 ## Интро 2
 
-### Перед выходом
+### Открытка для подруги
 
-`kitchen` — «кухня», `doorbell` — «дверной звонок». `He is in the kitchen` — «Он на кухне»: по-английски здесь `in`. `There isn’t a doorbell` — «Дверного звонка нет». `Is there a cashpoint?` — «Есть банкомат?» `The cashpoint is next to the shop` — «Банкомат рядом с магазином».
+Вы написали подруге открытку и хотите отправить её сегодня. Сосед в сообщении говорит про красный ящик на улице, куда бросают письма. postbox — «уличный почтовый ящик». Ящик один, поэтому в речи: There’s a postbox next to the gate — «У ворот есть почтовый ящик».
 
-**Друг на кухне. Выберите описание.**
+**Подруга ищет, куда бросить открытку. Скажите ей, что у ворот есть почтовый ящик.**
 
-- ✅ **He is in the kitchen.**
-- ❌ He is under the kitchen. — *`under` — под; на кухне — `in the kitchen`.*
-- ❌ He are in the kitchen. — *С `He` нужно `is`.*
+- ✅ **There’s a postbox next to the gate.**
+- ❌ There’s a postboxes next to the gate. — *Ящик один: после a слово стоит без -es, a postbox.*
+- ❌ There’s a postbox under the gate. — *under — это «под», а «у ворот, рядом» говорят next to.*
 
 ---
 
 ## Интро 3
 
-### Точно, без ошибки
+### Вечер без магазинов
 
-`accurate` — «точный, соответствующий действительности». Вы проверили информацию о расположении банкомата: ошибок нет. `It is accurate` — «Это точно», короче `It’s accurate`. Здесь речь о точности сведений, а не об аккуратном почерке или чистоте.
+Вечером магазины закрыты, а брат голоден. Сосед пишет про автомат, в который бросают монеты и получают воду или шоколадку. vending machine — «торговый автомат». Он один и стоит внутри здания, в холле у входа: There’s a vending machine in the hall.
 
-**Информация проверена и соответствует действительности. Скажите о её точности с сокращением.**
+**Брат хочет пить. Скажите ему, что в холле есть торговый автомат.**
 
-- ✅ **It's accurate.**
-- ❌ It's inaccurate. — *`inaccurate` — неточно; здесь `accurate`.*
-- ❌ It are accurate. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **There’s a vending machine in the hall.**
+- ❌ There’s a vending machine on the hall. — *Внутри помещения говорят in the hall, а не on.*
+- ❌ There’s a vending machines in the hall. — *Автомат один: после a слово стоит без -s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Информация проверена и точна. Скажите об этом без сокращения**
-<!-- interaction_id: en:lesson-04:session-41:i01; family: phrase_builder -->
-Плитки: `accurate` `is` `It` `are` → **It is accurate.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is accurate.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-41:i01; family: speed_match -->
+cashpoint — банкомат · postbox — уличный почтовый ящик · vending machine — торговый автомат · newsagent — газетный киоск
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-41:i02; family: listen_choose -->
-🔊 *cashpoint* → **cashpoint** · cashpoints · doorbell
-- cashpoints — *В записи первое слово — `cashpoint`, а в этом варианте — `cashpoints`.*
-- doorbell — *В записи первое слово — `cashpoint`, а в этом варианте — `doorbell`.*
+**2 · Карточка слова — cashpoint**
+<!-- interaction_id: en:lesson-04:session-41:word:cashpoint; family: word_card -->
+> **cashpoint** — банкомат. There’s a cashpoint near the school. — «Рядом со школой есть банкомат». Об аппарате, из которого по карте берут наличные деньги.
 
-**3 · Назовите банкомат одним словом**
-<!-- interaction_id: en:lesson-04:session-41:i03; family: context_gap_grammar -->
-___ → **cashpoint** · parcel locker · signpost
-- parcel locker — *`parcel locker` — постамат; банкомат — `cashpoint`.*
-- signpost — *`signpost` — столб с указателями; банкомат — `cashpoint`.*
+**3 · Сосед показывает на улице аппарат, из которого берут наличные, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-41:i02; family: scripted_repeat_compare -->
+🎙 **cashpoint**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-41:i04; family: speed_match -->
-cashpoint — банкомат · accurate — точный · kitchen — кухня · doorbell — дверной звонок
+**4 · Сосед просит ответить на сообщение. Скажите ему полной фразой: у банка есть банкомат**
+<!-- interaction_id: en:lesson-04:session-41:i03; family: phrase_builder -->
+Плитки: `cashpoint` `a` `next` `to` `the` `bank` `There’s` `are` → **There’s a cashpoint next to the bank.**
+*(плитка `are` лишняя: здесь нужно `There’s` — `There’s a cashpoint next to the bank.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-41:i05; family: listen_build_dictation -->
-🔊 *This is a cashpoint.* Плитки: `cashpoint` `a` `is` `This` `are` → **This is a cashpoint.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a cashpoint.`)*
+**5 · Карточка слова — postbox**
+<!-- interaction_id: en:lesson-04:session-41:word:postbox; family: word_card -->
+> **postbox** — уличный почтовый ящик. There’s a postbox near the church. — «Рядом с церковью есть почтовый ящик». О ящике на улице, куда бросают письма и открытки.
 
-**6 · Друг на кухне. Скажите, где он, без сокращения**
-<!-- interaction_id: en:lesson-04:session-41:i06; family: phrase_builder -->
-Плитки: `kitchen` `the` `in` `is` `He` `are` → **He is in the kitchen.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is in the kitchen.`)*
+**6 · Подруга показывает красный ящик на улице, куда бросают письма. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-41:i04; family: context_gap_grammar -->
+___ → **postbox** · stamp · letter
+- stamp — *stamp — это марка, а ящик на улице для писем называется postbox.*
+- letter — *letter — это письмо, а ящик на улице для писем называется postbox.*
 
-**7 · Друг спрашивает о точности информации. Она проверена, ошибок нет. Ответьте с сокращением**
-<!-- interaction_id: en:lesson-04:session-41:i07; family: scripted_repeat_compare -->
-🎙 **It's accurate.**
+**7 · Послушайте сообщение соседа**
+<!-- interaction_id: en:lesson-04:session-41:i05; family: listen_choose -->
+🔊 *There’s a postbox in the yard.* → **There’s a postbox in the yard.** · There’s a postbox in the hall. · There are some postboxes in the yard.
+- There’s a postbox in the hall. — *В записи `yard` — двор, а в этом варианте `hall` — холл.*
+- There are some postboxes in the yard. — *В записи `There’s a postbox` — один, а в этом варианте `There are some postboxes` — несколько.*
 
-**8 · Дверного звонка нет. Выберите форму**
+**8 · Карточка слова — vending machine**
+<!-- interaction_id: en:lesson-04:session-41:word:vending machine; family: word_card -->
+> **vending machine** — торговый автомат. There’s a vending machine near the gym. — «Рядом с залом есть торговый автомат». Об аппарате, где за монеты получают воду, еду или сладости.
+
+**9 · Брат показывает в холле автомат, из которого за монеты достают воду, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-41:i06; family: scripted_repeat_compare -->
+🎙 **vending machine**
+
+**10 · Послушайте брата и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-41:i07; family: listen_build_dictation -->
+🔊 *There’s a vending machine next to the lift.* Плитки: `vending` `machine` `a` `next` `to` `the` `lift` `There’s` `are` → **There’s a vending machine next to the lift.**
+*(плитка `are` лишняя: здесь нужно `There’s` — `There’s a vending machine next to the lift.`)*
+
+**11 · Карточка слова — newsagent**
+<!-- interaction_id: en:lesson-04:session-41:word:newsagent; family: word_card -->
+> **newsagent** — газетный киоск. There’s a newsagent in the market. — «На рынке есть газетный киоск». О маленьком магазине, где продают газеты, журналы и открытки.
+
+**12 · Сосед говорит, что утром купил газету в маленьком магазине на углу. Как называется магазин, где продают газеты?**
 <!-- interaction_id: en:lesson-04:session-41:i08; family: context_gap_grammar -->
-There ___ a doorbell. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Один звонок: `isn’t a doorbell`.*
+___ → **newsagent** · bakery · pharmacy
+- bakery — *bakery — это пекарня, а газеты продают в newsagent.*
+- pharmacy — *pharmacy — это аптека, а газеты продают в newsagent.*
 
-**9 · Послушайте, где банкомат**
-<!-- interaction_id: en:lesson-04:session-41:i09; family: listen_choose -->
-🔊 *The cashpoint is next to the shop.* → **The cashpoint is next to the shop.** · The cashpoint is next to the hotel. · The cashpoint is next to the gym.
-- The cashpoint is next to the hotel. — *В записи последнее слово — `shop`, а в этом варианте — `hotel`.*
-- The cashpoint is next to the gym. — *В записи последнее слово — `shop`, а в этом варианте — `gym`.*
+**13 · Сосед ждёт ответа. Скажите ему полной фразой: рядом с остановкой есть газетный киоск**
+<!-- interaction_id: en:lesson-04:session-41:i09; family: phrase_builder -->
+Плитки: `newsagent` `a` `near` `the` `bus` `stop` `There’s` `are` → **There’s a newsagent near the bus stop.**
+*(плитка `are` лишняя: здесь нужно `There’s` — `There’s a newsagent near the bus stop.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-41:i10; family: speed_match -->
-cashpoint — банкомат · accurate — точный · kitchen — кухня · doorbell — дверной звонок
+newsagent — газетный киоск · vending machine — торговый автомат · bench — скамейка · gate — ворота, калитка
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-41:i11; family: listen_build_dictation -->
-🔊 *There aren't any cashpoints.* Плитки: `cashpoints` `any` `aren't` `There` → **There aren't any cashpoints.**
+**15 · Послушайте сообщение соседа**
+<!-- interaction_id: en:lesson-04:session-41:i11; family: listen_choose -->
+🔊 *There are some benches near the cashpoint.* → **There are some benches near the cashpoint.** · There’s a bench near the cashpoint. · There are some benches near the postbox.
+- There’s a bench near the cashpoint. — *В записи `There are some benches` — несколько, а в этом варианте `There’s a bench` — одна.*
+- There are some benches near the postbox. — *В записи последнее слово — `cashpoint`, а в этом варианте — `postbox`.*
 
-**12 · Здесь есть банкомат. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-41:i12; family: phrase_builder -->
-Плитки: `cashpoint` `a` `is` `There` `are` → **There is a cashpoint.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a cashpoint.`)*
+**16 · Сосед пишет про рынок, где всего один банкомат. Выберите нужные слова**
+<!-- interaction_id: en:lesson-04:session-41:i12; family: context_gap_grammar -->
+___ a cashpoint in the market. → **There’s** · There are · Is there
+- There are — *После There are идёт несколько предметов, а a cashpoint — один.*
+- Is there — *Is there — это вопрос, а здесь нужно утверждение.*
 
-**13 · Вы в новом районе. Спросите, есть ли банкомат**
-<!-- interaction_id: en:lesson-04:session-41:i13; family: scripted_repeat_compare -->
-🎙 **Is there a cashpoint?**
+**17 · Послушайте соседа и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-41:i13; family: listen_build_dictation -->
+🔊 *There’s a postbox next to the cashpoint.* Плитки: `postbox` `a` `next` `to` `the` `cashpoint` `There’s` `are` → **There’s a postbox next to the cashpoint.**
+*(плитка `are` лишняя: здесь нужно `There’s` — `There’s a postbox next to the cashpoint.`)*
 
-**14 · Банкомат между двумя магазинами, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-41:i14; family: context_gap_grammar -->
-The cashpoint is ___ the shops. → **between** · in · under
-- in — *`in` — внутри; между — `between`.*
-- under — *`under` — под; между — `between`.*
+**18 · Подруга спрашивает про воду. Скажите ей: «Здесь есть торговый автомат»**
+<!-- interaction_id: en:lesson-04:session-41:i14; family: scripted_repeat_compare -->
+🎙 **There’s a vending machine here.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-41:i15; family: listen_choose -->
-🔊 *That is a cashpoint.* → **That is a cashpoint.** · This is a cashpoint. · That is a doorbell.
-- This is a cashpoint. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a doorbell. — *В записи последнее слово — `cashpoint`, а в этом варианте — `doorbell`.*
+**19 · Сосед просит пересказать сообщение. Скажите ему полной фразой: рядом с банкоматом есть газетный киоск**
+<!-- interaction_id: en:lesson-04:session-41:i15; family: phrase_builder -->
+Плитки: `newsagent` `a` `next` `to` `the` `cashpoint` `There’s` `are` → **There’s a newsagent next to the cashpoint.**
+*(плитка `are` лишняя: здесь нужно `There’s` — `There’s a newsagent next to the cashpoint.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-41:i16; family: speed_match -->
-cashpoint — банкомат · accurate — точный · kitchen — кухня · doorbell — дверной звонок
+cashpoint — банкомат · postbox — уличный почтовый ящик · vending machine — торговый автомат · newsagent — газетный киоск
 
-**17 · У другого магазина банкомата нет. Сообщите «Банкомата нет»**
+**21 · Сосед спрашивает, где взять наличные. Скажите ему: «Рядом есть банкомат»**
 <!-- interaction_id: en:lesson-04:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a cashpoint.**
-
+🎙 **There’s a cashpoint near here.**

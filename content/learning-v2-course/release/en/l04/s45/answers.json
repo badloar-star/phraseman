@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-45:i01",
-    "correctText": "It is illegal.",
+    "correctText": "en:lesson-04:session-45:i01:p1=microwave\nen:lesson-04:session-45:i01:p2=washing machine\nen:lesson-04:session-45:i01:p3=ironing board\nen:lesson-04:session-45:i01:p4=hairdryer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:word:microwave",
+    "correctText": "microwave",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i02",
     "correctText": "microwave",
-    "correctResponseId": "en:lesson-04:session-45:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-45:i03",
-    "correctText": "microwave",
-    "correctResponseId": "en:lesson-04:session-45:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-45:i04",
-    "correctText": "en:lesson-04:session-45:i04:p1=microwave\nen:lesson-04:session-45:i04:p2=illegal\nen:lesson-04:session-45:i04:p3=office\nen:lesson-04:session-45:i04:p4=parcel locker",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-45:i03",
+    "correctText": "There is a microwave next to the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:word:washing machine",
+    "correctText": "washing machine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i04",
+    "correctText": "washing machine",
+    "correctResponseId": "en:lesson-04:session-45:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-45:i05",
-    "correctText": "This is a microwave.",
+    "correctText": "There are some washing machines near the sink.",
+    "correctResponseId": "en:lesson-04:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:word:ironing board",
+    "correctText": "ironing board",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i06",
-    "correctText": "The microwave is in the office.",
+    "correctText": "ironing board",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i07",
-    "correctText": "It's illegal.",
+    "correctText": "There isn’t an ironing board near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:word:hairdryer",
+    "correctText": "hairdryer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i08",
-    "correctText": "isn't",
+    "correctText": "hairdryer",
     "correctResponseId": "en:lesson-04:session-45:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-45:i09",
-    "correctText": "The parcel locker is next to the door.",
-    "correctResponseId": "en:lesson-04:session-45:i09:r1"
+    "correctText": "There is a hairdryer on the shelf.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i10",
-    "correctText": "en:lesson-04:session-45:i10:p1=microwave\nen:lesson-04:session-45:i10:p2=illegal\nen:lesson-04:session-45:i10:p3=office\nen:lesson-04:session-45:i10:p4=parcel locker",
+    "correctText": "en:lesson-04:session-45:i10:p1=hairdryer\nen:lesson-04:session-45:i10:p2=ironing board\nen:lesson-04:session-45:i10:p3=toaster\nen:lesson-04:session-45:i10:p4=kettle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i11",
-    "correctText": "There aren't any microwaves.",
-    "correctResponseId": null
+    "correctText": "There are some hairdryers near the bathtub.",
+    "correctResponseId": "en:lesson-04:session-45:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-45:i12",
-    "correctText": "There is a microwave.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-45:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-45:i13",
-    "correctText": "Is there a parcel locker?",
+    "correctText": "There are some hairdryers on the shelves.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i14",
-    "correctText": "on",
-    "correctResponseId": "en:lesson-04:session-45:i14:r1"
+    "correctText": "There isn’t a washing machine in the basement.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i15",
-    "correctText": "That is a microwave.",
-    "correctResponseId": "en:lesson-04:session-45:i15:r1"
+    "correctText": "There isn’t an ironing board in the cupboard.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i16",
-    "correctText": "en:lesson-04:session-45:i16:p1=microwave\nen:lesson-04:session-45:i16:p2=illegal\nen:lesson-04:session-45:i16:p3=office\nen:lesson-04:session-45:i16:p4=parcel locker",
+    "correctText": "en:lesson-04:session-45:i16:p1=microwave\nen:lesson-04:session-45:i16:p2=washing machine\nen:lesson-04:session-45:i16:p3=ironing board\nen:lesson-04:session-45:i16:p4=hairdryer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-45:i17",
-    "correctText": "Is there a microwave?",
+    "correctText": "There is a microwave here.",
     "correctResponseId": null
   }
 ]

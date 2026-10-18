@@ -1,0 +1,2391 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-55:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-55:i01:p1",
+              "target": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь",
+                "uk": "короткий шлях"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i01:p2",
+              "target": "footpath",
+              "meaningByLocale": {
+                "ru": "пешая тропа",
+                "uk": "піша стежка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i01:p3",
+              "target": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа",
+                "uk": "калюжа"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i01:p4",
+              "target": "underpass",
+              "meaningByLocale": {
+                "ru": "подземный переход",
+                "uk": "підземний перехід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shortcut",
+            "footpath",
+            "puddle",
+            "underpass"
+          ],
+          "rightColumn": [
+            "короткий путь",
+            "пешая тропа",
+            "лужа",
+            "подземный переход"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:shortcut",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shortcut",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:shortcut:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shortcut",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:shortcut:audio",
+            "transcript": "shortcut"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:shortcut:r1",
+              "targetText": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь. There is a shortcut behind the community centre. — «За районным центром есть короткий путь». О дороге, которая короче обычной.",
+                "uk": "короткий шлях. There is a shortcut behind the community centre. — «За районним центром є короткий шлях». Про дорогу, яка коротша за звичайну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shortcut",
+            "definitionByLocale": {
+              "ru": "короткий путь. There is a shortcut behind the community centre. — «За районным центром есть короткий путь». О дороге, которая короче обычной.",
+              "uk": "короткий шлях. There is a shortcut behind the community centre. — «За районним центром є короткий шлях». Про дорогу, яка коротша за звичайну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга называет дорогу, которая короче обычной, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга называет дорогу, которая короче обычной, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i02:audio",
+            "transcript": "shortcut"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "shortcut",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что за районным центром. Скажите ей полной фразой: за районным центром есть короткий путь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что за районным центром. Скажите ей полной фразой: за районным центром есть короткий путь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a shortcut behind the community centre.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что за районным центром. Скажите ей полной фразой: за районным центром есть короткий путь",
+            "uk": "Подруга питає, що за районним центром. Скажіть їй повною фразою: за районним центром є короткий шлях"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "shortcut",
+            "behind",
+            "the",
+            "community",
+            "centre"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, что за районным центром. Скажите ей полной фразой: за районным центром есть короткий путь",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a shortcut behind the community centre.`",
+                "uk": "тут потрібно `is` — `There is a shortcut behind the community centre.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:footpath",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — footpath",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:footpath:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — footpath",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:footpath:audio",
+            "transcript": "footpath"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:footpath:r1",
+              "targetText": "footpath",
+              "meaningByLocale": {
+                "ru": "пешая тропа. There is a footpath behind the park. — «За парком есть пешая тропа». О дорожке, по которой ходят только пешком.",
+                "uk": "піша стежка. There is a footpath behind the park. — «За парком є піша стежка». Про доріжку, по якій ходять лише пішки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "footpath",
+            "definitionByLocale": {
+              "ru": "пешая тропа. There is a footpath behind the park. — «За парком есть пешая тропа». О дорожке, по которой ходят только пешком.",
+              "uk": "піша стежка. There is a footpath behind the park. — «За парком є піша стежка». Про доріжку, по якій ходять лише пішки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Узкая дорожка в траве, по которой ходят только пешком. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i04:r1",
+            "text": "footpath"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i04:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i04:r3",
+            "text": "pavement"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Узкая дорожка в траве, по которой ходят только пешком. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Узкая дорожка в траве, по которой ходят только пешком. Как она называется по-английски?",
+            "uk": "Вузька доріжка в траві, по якій ходять лише пішки. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-55:i04:r1",
+              "text": "footpath"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i04:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i04:r3",
+              "text": "pavement"
+            }
+          ],
+          "testedDimension": "Узкая дорожка в траве, по которой ходят только пешком. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i04:r2",
+              "correct": false,
+              "testedDimension": "Узкая дорожка в траве, по которой ходят только пешком. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "road — это дорога для машин, а дорожка для пеших прогулок называется footpath.",
+                "uk": "road — це дорога для машин, а доріжка для піших прогулянок називається footpath."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i04:r3",
+              "correct": false,
+              "testedDimension": "Узкая дорожка в траве, по которой ходят только пешком. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "pavement — это тротуар, а дорожка в траве называется footpath.",
+                "uk": "pavement — це тротуар, а доріжка в траві називається footpath."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте прохожего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i05:r1",
+            "text": "Is there a footpath behind the park?"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i05:r2",
+            "text": "There is a footpath behind the park."
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i05:r3",
+            "text": "Is there a footpath behind the school?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте прохожего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i05:audio",
+            "transcript": "Is there a footpath behind the park?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:i05:r1",
+              "targetText": "Is there a footpath behind the park?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i05:r2",
+              "targetText": "There is a footpath behind the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i05:r3",
+              "targetText": "Is there a footpath behind the school?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there`, а в этом варианте утверждение `There is`.",
+                "uk": "У записі запитання `Is there`, а в цьому варіанті твердження `There is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `park`, а в этом варианте `school`.",
+                "uk": "У записі останнє місце `park`, а в цьому варіанті `school`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:puddle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — puddle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:puddle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — puddle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:puddle:audio",
+            "transcript": "puddle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:puddle:r1",
+              "targetText": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа. There are some puddles near the bench. — «Возле скамейки есть несколько луж». О воде в ямке на земле после дождя.",
+                "uk": "калюжа. There are some puddles near the bench. — «Біля лавки є кілька калюж». Про воду в ямці на землі після дощу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "puddle",
+            "definitionByLocale": {
+              "ru": "лужа. There are some puddles near the bench. — «Возле скамейки есть несколько луж». О воде в ямке на земле после дождя.",
+              "uk": "калюжа. There are some puddles near the bench. — «Біля лавки є кілька калюж». Про воду в ямці на землі після дощу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на воду в ямке на земле после дождя, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на воду в ямке на земле после дождя, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i06:audio",
+            "transcript": "puddle"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "puddle",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i07:audio",
+            "transcript": "There aren’t any puddles near the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any puddles near the bench.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "puddles",
+            "near",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any puddles near the bench.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any puddles near the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:underpass",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — underpass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:underpass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — underpass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:underpass:audio",
+            "transcript": "underpass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:underpass:r1",
+              "targetText": "underpass",
+              "meaningByLocale": {
+                "ru": "подземный переход. There is an underpass near the bank. — «Возле банка есть подземный переход». О проходе под дорогой, по которому ходят пешком.",
+                "uk": "підземний перехід. There is an underpass near the bank. — «Біля банку є підземний перехід». Про прохід під дорогою, яким ходять пішки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underpass",
+            "definitionByLocale": {
+              "ru": "подземный переход. There is an underpass near the bank. — «Возле банка есть подземный переход». О проходе под дорогой, по которому ходят пешком.",
+              "uk": "підземний перехід. There is an underpass near the bank. — «Біля банку є підземний перехід». Про прохід під дорогою, яким ходять пішки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Проход под дорогой, по которому ходят пешком. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i08:r1",
+            "text": "underpass"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i08:r2",
+            "text": "bridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i08:r3",
+            "text": "gate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Проход под дорогой, по которому ходят пешком. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Проход под дорогой, по которому ходят пешком. Как он называется по-английски?",
+            "uk": "Прохід під дорогою, яким ходять пішки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-55:i08:r1",
+              "text": "underpass"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i08:r2",
+              "text": "bridge"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i08:r3",
+              "text": "gate"
+            }
+          ],
+          "testedDimension": "Проход под дорогой, по которому ходят пешком. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Проход под дорогой, по которому ходят пешком. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост над водой или дорогой, а проход под дорогой называется underpass.",
+                "uk": "bridge — це міст над водою чи дорогою, а прохід під дорогою називається underpass."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Проход под дорогой, по которому ходят пешком. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "gate — это ворота или калитка, а проход под дорогой называется underpass.",
+                "uk": "gate — це ворота або хвіртка, а прохід під дорогою називається underpass."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет проход под дорогой. Спросите прохожего полной фразой: возле банка есть подземный переход?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет проход под дорогой. Спросите прохожего полной фразой: возле банка есть подземный переход?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there an underpass near the bank?",
+          "localizedMeaning": {
+            "ru": "Подруга ищет проход под дорогой. Спросите прохожего полной фразой: возле банка есть подземный переход?",
+            "uk": "Подруга шукає прохід під дорогою. Запитайте перехожого повною фразою: чи є біля банку підземний перехід?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "an",
+            "underpass",
+            "near",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет проход под дорогой. Спросите прохожего полной фразой: возле банка есть подземный переход?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there an underpass near the bank?`",
+                "uk": "тут потрібно `Is` — `Is there an underpass near the bank?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-55:i10:p1",
+              "target": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь",
+                "uk": "короткий шлях"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i10:p2",
+              "target": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа",
+                "uk": "калюжа"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i10:p3",
+              "target": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр для жителей",
+                "uk": "районний центр для мешканців"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i10:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shortcut",
+            "puddle",
+            "community centre",
+            "park"
+          ],
+          "rightColumn": [
+            "короткий путь",
+            "лужа",
+            "районный центр для жителей",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i11:r1",
+            "text": "There aren’t any puddles in the underpass."
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i11:r2",
+            "text": "There are some puddles in the underpass."
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i11:r3",
+            "text": "Are there any puddles in the underpass?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i11:audio",
+            "transcript": "There aren’t any puddles in the underpass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:i11:r1",
+              "targetText": "There aren’t any puddles in the underpass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i11:r2",
+              "targetText": "There are some puddles in the underpass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i11:r3",
+              "targetText": "Are there any puddles in the underpass?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — луж нет, а в этом варианте `are some` — они есть.",
+                "uk": "У записі `aren’t any` — калюж немає, а в цьому варіанті `are some` — вони є."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи отрицание, а в этом варианте вопрос `Are there any`.",
+                "uk": "У записі заперечення, а в цьому варіанті запитання `Are there any`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на дорожку за районным центром. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i12:r3",
+            "text": "some"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на дорожку за районным центром. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на дорожку за районным центром. Выберите нужное слово",
+            "uk": "Подруга показує на доріжку за районним центром. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There is ___ footpath behind the community centre.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-55:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i12:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i12:r3",
+              "text": "some"
+            }
+          ],
+          "testedDimension": "Подруга показывает на дорожку за районным центром. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на дорожку за районным центром. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Слово footpath начинается с согласного звука, поэтому нужно a, а не an.",
+                "uk": "Слово footpath починається з приголосного звуку, тому потрібно a, а не an."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на дорожку за районным центром. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Тропа одна, поэтому нужно a, а не some.",
+                "uk": "Стежка одна, тому потрібно a, а не some."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i13:audio",
+            "transcript": "There are some puddles under the bridge."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some puddles under the bridge.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "puddles",
+            "under",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some puddles under the bridge.`",
+                "uk": "тут потрібно `are` — `There are some puddles under the bridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы вышли из центра и ищете путь покороче. Спросите прохожего: «Здесь рядом есть короткий путь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Вы вышли из центра и ищете путь покороче. Спросите прохожего: «Здесь рядом есть короткий путь?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i14:audio",
+            "transcript": "Is there a shortcut near here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a shortcut near here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга смотрит на карту. Скажите ей полной фразой: за парком нет подземного перехода",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга смотрит на карту. Скажите ей полной фразой: за парком нет подземного перехода",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t an underpass behind the park.",
+          "localizedMeaning": {
+            "ru": "Подруга смотрит на карту. Скажите ей полной фразой: за парком нет подземного перехода",
+            "uk": "Подруга дивиться на мапу. Скажіть їй повною фразою: за парком немає підземного переходу"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "an",
+            "underpass",
+            "behind",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга смотрит на карту. Скажите ей полной фразой: за парком нет подземного перехода",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t an underpass behind the park.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t an underpass behind the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-55:i16:p1",
+              "target": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь",
+                "uk": "короткий шлях"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i16:p2",
+              "target": "footpath",
+              "meaningByLocale": {
+                "ru": "пешая тропа",
+                "uk": "піша стежка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i16:p3",
+              "target": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа",
+                "uk": "калюжа"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i16:p4",
+              "target": "underpass",
+              "meaningByLocale": {
+                "ru": "подземный переход",
+                "uk": "підземний перехід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shortcut",
+            "footpath",
+            "puddle",
+            "underpass"
+          ],
+          "rightColumn": [
+            "короткий путь",
+            "пешая тропа",
+            "лужа",
+            "подземный переход"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, есть ли на пути лужи. Их нет. Скажите ей: «Луж здесь нет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, есть ли на пути лужи. Их нет. Скажите ей: «Луж здесь нет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i17:audio",
+            "transcript": "There aren’t any puddles here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any puddles here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-55:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-55:i01:p1",
+              "target": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь",
+                "uk": "короткий шлях"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i01:p2",
+              "target": "footpath",
+              "meaningByLocale": {
+                "ru": "пешая тропа",
+                "uk": "піша стежка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i01:p3",
+              "target": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа",
+                "uk": "калюжа"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i01:p4",
+              "target": "underpass",
+              "meaningByLocale": {
+                "ru": "подземный переход",
+                "uk": "підземний перехід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shortcut",
+            "footpath",
+            "puddle",
+            "underpass"
+          ],
+          "rightColumn": [
+            "короткий шлях",
+            "піша стежка",
+            "калюжа",
+            "підземний перехід"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:shortcut",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shortcut",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:shortcut:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shortcut",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:shortcut:audio",
+            "transcript": "shortcut"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:shortcut:r1",
+              "targetText": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь. There is a shortcut behind the community centre. — «За районным центром есть короткий путь». О дороге, которая короче обычной.",
+                "uk": "короткий шлях. There is a shortcut behind the community centre. — «За районним центром є короткий шлях». Про дорогу, яка коротша за звичайну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shortcut",
+            "definitionByLocale": {
+              "ru": "короткий путь. There is a shortcut behind the community centre. — «За районным центром есть короткий путь». О дороге, которая короче обычной.",
+              "uk": "короткий шлях. There is a shortcut behind the community centre. — «За районним центром є короткий шлях». Про дорогу, яка коротша за звичайну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга називає дорогу, яка коротша за звичайну, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга називає дорогу, яка коротша за звичайну, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i02:audio",
+            "transcript": "shortcut"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "shortcut",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що за районним центром. Скажіть їй повною фразою: за районним центром є короткий шлях",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що за районним центром. Скажіть їй повною фразою: за районним центром є короткий шлях",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a shortcut behind the community centre.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что за районным центром. Скажите ей полной фразой: за районным центром есть короткий путь",
+            "uk": "Подруга питає, що за районним центром. Скажіть їй повною фразою: за районним центром є короткий шлях"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "shortcut",
+            "behind",
+            "the",
+            "community",
+            "centre"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, що за районним центром. Скажіть їй повною фразою: за районним центром є короткий шлях",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a shortcut behind the community centre.`",
+                "uk": "тут потрібно `is` — `There is a shortcut behind the community centre.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:footpath",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — footpath",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:footpath:audio"
+        ],
+        "accessibilityLabel": "Картка слова — footpath",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:footpath:audio",
+            "transcript": "footpath"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:footpath:r1",
+              "targetText": "footpath",
+              "meaningByLocale": {
+                "ru": "пешая тропа. There is a footpath behind the park. — «За парком есть пешая тропа». О дорожке, по которой ходят только пешком.",
+                "uk": "піша стежка. There is a footpath behind the park. — «За парком є піша стежка». Про доріжку, по якій ходять лише пішки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "footpath",
+            "definitionByLocale": {
+              "ru": "пешая тропа. There is a footpath behind the park. — «За парком есть пешая тропа». О дорожке, по которой ходят только пешком.",
+              "uk": "піша стежка. There is a footpath behind the park. — «За парком є піша стежка». Про доріжку, по якій ходять лише пішки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вузька доріжка в траві, по якій ходять лише пішки. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i04:r1",
+            "text": "footpath"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i04:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i04:r3",
+            "text": "pavement"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вузька доріжка в траві, по якій ходять лише пішки. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Узкая дорожка в траве, по которой ходят только пешком. Как она называется по-английски?",
+            "uk": "Вузька доріжка в траві, по якій ходять лише пішки. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-55:i04:r1",
+              "text": "footpath"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i04:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i04:r3",
+              "text": "pavement"
+            }
+          ],
+          "testedDimension": "Вузька доріжка в траві, по якій ходять лише пішки. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i04:r2",
+              "correct": false,
+              "testedDimension": "Вузька доріжка в траві, по якій ходять лише пішки. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "road — это дорога для машин, а дорожка для пеших прогулок называется footpath.",
+                "uk": "road — це дорога для машин, а доріжка для піших прогулянок називається footpath."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i04:r3",
+              "correct": false,
+              "testedDimension": "Вузька доріжка в траві, по якій ходять лише пішки. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "pavement — это тротуар, а дорожка в траве называется footpath.",
+                "uk": "pavement — це тротуар, а доріжка в траві називається footpath."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте перехожого",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i05:r1",
+            "text": "Is there a footpath behind the park?"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i05:r2",
+            "text": "There is a footpath behind the park."
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i05:r3",
+            "text": "Is there a footpath behind the school?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте перехожого",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i05:audio",
+            "transcript": "Is there a footpath behind the park?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:i05:r1",
+              "targetText": "Is there a footpath behind the park?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i05:r2",
+              "targetText": "There is a footpath behind the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i05:r3",
+              "targetText": "Is there a footpath behind the school?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there`, а в этом варианте утверждение `There is`.",
+                "uk": "У записі запитання `Is there`, а в цьому варіанті твердження `There is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `park`, а в этом варианте `school`.",
+                "uk": "У записі останнє місце `park`, а в цьому варіанті `school`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:puddle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — puddle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:puddle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — puddle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:puddle:audio",
+            "transcript": "puddle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:puddle:r1",
+              "targetText": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа. There are some puddles near the bench. — «Возле скамейки есть несколько луж». О воде в ямке на земле после дождя.",
+                "uk": "калюжа. There are some puddles near the bench. — «Біля лавки є кілька калюж». Про воду в ямці на землі після дощу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "puddle",
+            "definitionByLocale": {
+              "ru": "лужа. There are some puddles near the bench. — «Возле скамейки есть несколько луж». О воде в ямке на земле после дождя.",
+              "uk": "калюжа. There are some puddles near the bench. — «Біля лавки є кілька калюж». Про воду в ямці на землі після дощу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на воду в ямці на землі після дощу, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на воду в ямці на землі після дощу, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i06:audio",
+            "transcript": "puddle"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "puddle",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i07:audio",
+            "transcript": "There aren’t any puddles near the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any puddles near the bench.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "puddles",
+            "near",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any puddles near the bench.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any puddles near the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:word:underpass",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — underpass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:word:underpass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — underpass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:word:underpass:audio",
+            "transcript": "underpass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:word:underpass:r1",
+              "targetText": "underpass",
+              "meaningByLocale": {
+                "ru": "подземный переход. There is an underpass near the bank. — «Возле банка есть подземный переход». О проходе под дорогой, по которому ходят пешком.",
+                "uk": "підземний перехід. There is an underpass near the bank. — «Біля банку є підземний перехід». Про прохід під дорогою, яким ходять пішки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underpass",
+            "definitionByLocale": {
+              "ru": "подземный переход. There is an underpass near the bank. — «Возле банка есть подземный переход». О проходе под дорогой, по которому ходят пешком.",
+              "uk": "підземний перехід. There is an underpass near the bank. — «Біля банку є підземний перехід». Про прохід під дорогою, яким ходять пішки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прохід під дорогою, яким ходять пішки. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i08:r1",
+            "text": "underpass"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i08:r2",
+            "text": "bridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i08:r3",
+            "text": "gate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прохід під дорогою, яким ходять пішки. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Проход под дорогой, по которому ходят пешком. Как он называется по-английски?",
+            "uk": "Прохід під дорогою, яким ходять пішки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-55:i08:r1",
+              "text": "underpass"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i08:r2",
+              "text": "bridge"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i08:r3",
+              "text": "gate"
+            }
+          ],
+          "testedDimension": "Прохід під дорогою, яким ходять пішки. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Прохід під дорогою, яким ходять пішки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост над водой или дорогой, а проход под дорогой называется underpass.",
+                "uk": "bridge — це міст над водою чи дорогою, а прохід під дорогою називається underpass."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Прохід під дорогою, яким ходять пішки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "gate — это ворота или калитка, а проход под дорогой называется underpass.",
+                "uk": "gate — це ворота або хвіртка, а прохід під дорогою називається underpass."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає прохід під дорогою. Запитайте перехожого повною фразою: чи є біля банку підземний перехід?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає прохід під дорогою. Запитайте перехожого повною фразою: чи є біля банку підземний перехід?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there an underpass near the bank?",
+          "localizedMeaning": {
+            "ru": "Подруга ищет проход под дорогой. Спросите прохожего полной фразой: возле банка есть подземный переход?",
+            "uk": "Подруга шукає прохід під дорогою. Запитайте перехожого повною фразою: чи є біля банку підземний перехід?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "an",
+            "underpass",
+            "near",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає прохід під дорогою. Запитайте перехожого повною фразою: чи є біля банку підземний перехід?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there an underpass near the bank?`",
+                "uk": "тут потрібно `Is` — `Is there an underpass near the bank?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-55:i10:p1",
+              "target": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь",
+                "uk": "короткий шлях"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i10:p2",
+              "target": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа",
+                "uk": "калюжа"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i10:p3",
+              "target": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр для жителей",
+                "uk": "районний центр для мешканців"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i10:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shortcut",
+            "puddle",
+            "community centre",
+            "park"
+          ],
+          "rightColumn": [
+            "короткий шлях",
+            "калюжа",
+            "районний центр для мешканців",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i11:r1",
+            "text": "There aren’t any puddles in the underpass."
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i11:r2",
+            "text": "There are some puddles in the underpass."
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i11:r3",
+            "text": "Are there any puddles in the underpass?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i11:audio",
+            "transcript": "There aren’t any puddles in the underpass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-55:i11:r1",
+              "targetText": "There aren’t any puddles in the underpass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i11:r2",
+              "targetText": "There are some puddles in the underpass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i11:r3",
+              "targetText": "Are there any puddles in the underpass?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — луж нет, а в этом варианте `are some` — они есть.",
+                "uk": "У записі `aren’t any` — калюж немає, а в цьому варіанті `are some` — вони є."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи отрицание, а в этом варианте вопрос `Are there any`.",
+                "uk": "У записі заперечення, а в цьому варіанті запитання `Are there any`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на доріжку за районним центром. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i12:r3",
+            "text": "some"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на доріжку за районним центром. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на дорожку за районным центром. Выберите нужное слово",
+            "uk": "Подруга показує на доріжку за районним центром. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There is ___ footpath behind the community centre.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-55:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i12:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i12:r3",
+              "text": "some"
+            }
+          ],
+          "testedDimension": "Подруга показує на доріжку за районним центром. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на доріжку за районним центром. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Слово footpath начинается с согласного звука, поэтому нужно a, а не an.",
+                "uk": "Слово footpath починається з приголосного звуку, тому потрібно a, а не an."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на доріжку за районним центром. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Тропа одна, поэтому нужно a, а не some.",
+                "uk": "Стежка одна, тому потрібно a, а не some."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i13:audio",
+            "transcript": "There are some puddles under the bridge."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some puddles under the bridge.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "puddles",
+            "under",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some puddles under the bridge.`",
+                "uk": "тут потрібно `are` — `There are some puddles under the bridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви вийшли з центру й шукаєте шлях коротший. Запитайте перехожого: «Тут поруч є короткий шлях?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Ви вийшли з центру й шукаєте шлях коротший. Запитайте перехожого: «Тут поруч є короткий шлях?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i14:audio",
+            "transcript": "Is there a shortcut near here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a shortcut near here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дивиться на мапу. Скажіть їй повною фразою: за парком немає підземного переходу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дивиться на мапу. Скажіть їй повною фразою: за парком немає підземного переходу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t an underpass behind the park.",
+          "localizedMeaning": {
+            "ru": "Подруга смотрит на карту. Скажите ей полной фразой: за парком нет подземного перехода",
+            "uk": "Подруга дивиться на мапу. Скажіть їй повною фразою: за парком немає підземного переходу"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "an",
+            "underpass",
+            "behind",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-55:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дивиться на мапу. Скажіть їй повною фразою: за парком немає підземного переходу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t an underpass behind the park.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t an underpass behind the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-55:i16:p1",
+              "target": "shortcut",
+              "meaningByLocale": {
+                "ru": "короткий путь",
+                "uk": "короткий шлях"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i16:p2",
+              "target": "footpath",
+              "meaningByLocale": {
+                "ru": "пешая тропа",
+                "uk": "піша стежка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i16:p3",
+              "target": "puddle",
+              "meaningByLocale": {
+                "ru": "лужа",
+                "uk": "калюжа"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-55:i16:p4",
+              "target": "underpass",
+              "meaningByLocale": {
+                "ru": "подземный переход",
+                "uk": "підземний перехід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shortcut",
+            "footpath",
+            "puddle",
+            "underpass"
+          ],
+          "rightColumn": [
+            "короткий шлях",
+            "піша стежка",
+            "калюжа",
+            "підземний перехід"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чи є на шляху калюжі. Їх немає. Скажіть їй: «Калюж тут немає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чи є на шляху калюжі. Їх немає. Скажіть їй: «Калюж тут немає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-55:i17:audio",
+            "transcript": "There aren’t any puddles here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any puddles here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-55:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:word:shortcut",
+      "correctText": "shortcut",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i02",
+      "correctText": "shortcut",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i03",
+      "correctText": "There is a shortcut behind the community centre.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:word:footpath",
+      "correctText": "footpath",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i04",
+      "correctText": "footpath",
+      "correctResponseId": "en:lesson-04:session-55:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i05",
+      "correctText": "Is there a footpath behind the park?",
+      "correctResponseId": "en:lesson-04:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:word:puddle",
+      "correctText": "puddle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i06",
+      "correctText": "puddle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i07",
+      "correctText": "There aren’t any puddles near the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:word:underpass",
+      "correctText": "underpass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i08",
+      "correctText": "underpass",
+      "correctResponseId": "en:lesson-04:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i09",
+      "correctText": "Is there an underpass near the bank?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i11",
+      "correctText": "There aren’t any puddles in the underpass.",
+      "correctResponseId": "en:lesson-04:session-55:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i12",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-04:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i13",
+      "correctText": "There are some puddles under the bridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i14",
+      "correctText": "Is there a shortcut near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i15",
+      "correctText": "There isn’t an underpass behind the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i17",
+      "correctText": "There aren’t any puddles here.",
+      "correctResponseId": null
+    }
+  ]
+}

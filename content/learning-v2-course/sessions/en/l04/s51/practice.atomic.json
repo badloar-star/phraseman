@@ -1,0 +1,2395 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-51",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-51:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-51:i01:p1",
+              "target": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр для жителей",
+                "uk": "районний центр для мешканців"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i01:p2",
+              "target": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i01:p3",
+              "target": "stage",
+              "meaningByLocale": {
+                "ru": "сцена",
+                "uk": "сцена"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i01:p4",
+              "target": "board game",
+              "meaningByLocale": {
+                "ru": "настольная игра",
+                "uk": "настільна гра"
+              }
+            }
+          ],
+          "leftColumn": [
+            "community centre",
+            "leaflet",
+            "stage",
+            "board game"
+          ],
+          "rightColumn": [
+            "районный центр для жителей",
+            "листовка",
+            "сцена",
+            "настольная игра"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:community centre",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — community centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:community centre:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — community centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:community centre:audio",
+            "transcript": "community centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:community centre:r1",
+              "targetText": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр. There is a community centre near the bank. — «Возле банка есть районный центр». О здании, где жители района собираются на занятия и праздники.",
+                "uk": "районний центр. There is a community centre near the bank. — «Біля банку є районний центр». Про будівлю, де мешканці району збираються на заняття й свята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "community centre",
+            "definitionByLocale": {
+              "ru": "районный центр. There is a community centre near the bank. — «Возле банка есть районный центр». О здании, где жители района собираются на занятия и праздники.",
+              "uk": "районний центр. There is a community centre near the bank. — «Біля банку є районний центр». Про будівлю, де мешканці району збираються на заняття й свята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор называет здание, где жители района собираются на занятия, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Администратор называет здание, где жители района собираются на занятия, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i02:audio",
+            "transcript": "community centre"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "community centre",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед спрашивает, что возле банка. Скажите ему полной фразой: возле банка есть районный центр",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает, что возле банка. Скажите ему полной фразой: возле банка есть районный центр",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a community centre near the bank.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает, что возле банка. Скажите ему полной фразой: возле банка есть районный центр",
+            "uk": "Сусід питає, що біля банку. Скажіть йому повною фразою: біля банку є районний центр"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "community",
+            "centre",
+            "near",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, что возле банка. Скажите ему полной фразой: возле банка есть районный центр",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a community centre near the bank.`",
+                "uk": "тут потрібно `is` — `There is a community centre near the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:leaflet",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leaflet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:leaflet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leaflet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:leaflet:audio",
+            "transcript": "leaflet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:leaflet:r1",
+              "targetText": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка. There are some leaflets near the door. — «Возле двери есть несколько листовок». О бумажном листе, на котором напечатаны новости или расписание.",
+                "uk": "листівка. There are some leaflets near the door. — «Біля дверей є кілька листівок». Про паперовий аркуш, на якому надруковано новини або розклад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leaflet",
+            "definitionByLocale": {
+              "ru": "листовка. There are some leaflets near the door. — «Возле двери есть несколько листовок». О бумажном листе, на котором напечатаны новости или расписание.",
+              "uk": "листівка. There are some leaflets near the door. — «Біля дверей є кілька листівок». Про паперовий аркуш, на якому надруковано новини або розклад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i04:r1",
+            "text": "leaflet"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i04:r2",
+            "text": "ticket"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i04:r3",
+            "text": "letter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?",
+            "uk": "Паперовий аркуш, на якому надруковано новини або розклад занять. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-51:i04:r1",
+              "text": "leaflet"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i04:r2",
+              "text": "ticket"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i04:r3",
+              "text": "letter"
+            }
+          ],
+          "testedDimension": "Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i04:r2",
+              "correct": false,
+              "testedDimension": "Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "ticket — это билет, а бумажный лист с расписанием называется leaflet.",
+                "uk": "ticket — це квиток, а паперовий аркуш із розкладом називається leaflet."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i04:r3",
+              "correct": false,
+              "testedDimension": "Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а бумажный лист с расписанием называется leaflet.",
+                "uk": "letter — це лист, а паперовий аркуш із розкладом називається leaflet."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте администратора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i05:r1",
+            "text": "There are some leaflets near the door."
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i05:r2",
+            "text": "There aren’t any leaflets near the door."
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i05:r3",
+            "text": "There are some leaflets near the bench."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i05:audio",
+            "transcript": "There are some leaflets near the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:i05:r1",
+              "targetText": "There are some leaflets near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i05:r2",
+              "targetText": "There aren’t any leaflets near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i05:r3",
+              "targetText": "There are some leaflets near the bench.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте администратора",
+              "feedbackByLocale": {
+                "ru": "В записи `are some` — листовки есть, а в этом варианте `aren’t any` — их нет.",
+                "uk": "У записі `are some` — листівки є, а в цьому варіанті `aren’t any` — їх немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте администратора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `door`, а в этом варианте `bench`.",
+                "uk": "У записі останнє місце `door`, а в цьому варіанті `bench`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:board game",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — board game",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:board game:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — board game",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:board game:audio",
+            "transcript": "board game"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:board game:r1",
+              "targetText": "board game",
+              "meaningByLocale": {
+                "ru": "настольная игра. There aren’t any board games on the table. — «На столе нет настольных игр». О коробке с полем и фишками, в которую играют за столом.",
+                "uk": "настільна гра. There aren’t any board games on the table. — «На столі немає настільних ігор». Про коробку з полем і фішками, у яку грають за столом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "board game",
+            "definitionByLocale": {
+              "ru": "настольная игра. There aren’t any board games on the table. — «На столе нет настольных игр». О коробке с полем и фишками, в которую играют за столом.",
+              "uk": "настільна гра. There aren’t any board games on the table. — «На столі немає настільних ігор». Про коробку з полем і фішками, у яку грають за столом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор показывает коробку с полем и фишками, в которую играют за столом, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i06:audio"
+        ],
+        "accessibilityLabel": "Администратор показывает коробку с полем и фишками, в которую играют за столом, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i06:audio",
+            "transcript": "board game"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "board game",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте администратора и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i07:audio",
+            "transcript": "Are there any board games on the table?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any board games on the table?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "board",
+            "games",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any board games on the table?`",
+                "uk": "тут потрібно `Are` — `Are there any board games on the table?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:stage",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:stage:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:stage:audio",
+            "transcript": "stage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:stage:r1",
+              "targetText": "stage",
+              "meaningByLocale": {
+                "ru": "сцена. There isn’t a stage in the hall. — «В зале нет сцены». О высокой площадке в зале, на которой выступают.",
+                "uk": "сцена. There isn’t a stage in the hall. — «У залі немає сцени». Про високий майданчик у залі, на якому виступають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stage",
+            "definitionByLocale": {
+              "ru": "сцена. There isn’t a stage in the hall. — «В зале нет сцены». О высокой площадке в зале, на которой выступают.",
+              "uk": "сцена. There isn’t a stage in the hall. — «У залі немає сцени». Про високий майданчик у залі, на якому виступають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i08:r1",
+            "text": "stage"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i08:r2",
+            "text": "bench"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i08:r3",
+            "text": "floor"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?",
+            "uk": "Високий майданчик у залі, на якому виступають артисти. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-51:i08:r1",
+              "text": "stage"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i08:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i08:r3",
+              "text": "floor"
+            }
+          ],
+          "testedDimension": "Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а высокая площадка для артистов называется stage.",
+                "uk": "bench — це лавка, а високий майданчик для артистів називається stage."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а высокая площадка для артистов называется stage.",
+                "uk": "floor — це підлога, а високий майданчик для артистів називається stage."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет сцену. Скажите ей полной фразой: в зале нет сцены",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет сцену. Скажите ей полной фразой: в зале нет сцены",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a stage in the hall.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет сцену. Скажите ей полной фразой: в зале нет сцены",
+            "uk": "Подруга шукає сцену. Скажіть їй повною фразою: у залі немає сцени"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "stage",
+            "in",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет сцену. Скажите ей полной фразой: в зале нет сцены",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a stage in the hall.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a stage in the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-51:i10:p1",
+              "target": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i10:p2",
+              "target": "stage",
+              "meaningByLocale": {
+                "ru": "сцена",
+                "uk": "сцена"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i10:p3",
+              "target": "hall",
+              "meaningByLocale": {
+                "ru": "холл, коридор",
+                "uk": "хол, коридор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i10:p4",
+              "target": "noticeboard",
+              "meaningByLocale": {
+                "ru": "доска объявлений",
+                "uk": "дошка оголошень"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leaflet",
+            "stage",
+            "hall",
+            "noticeboard"
+          ],
+          "rightColumn": [
+            "листовка",
+            "сцена",
+            "холл, коридор",
+            "доска объявлений"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сотрудницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i11:r1",
+            "text": "Are there any leaflets here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i11:r2",
+            "text": "Are there some leaflets here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i11:r3",
+            "text": "Is there a leaflet here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте сотрудницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i11:audio",
+            "transcript": "Are there any leaflets here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:i11:r1",
+              "targetText": "Are there any leaflets here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i11:r2",
+              "targetText": "Are there some leaflets here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i11:r3",
+              "targetText": "Is there a leaflet here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудницу",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос с `any`, а в этом варианте `some`: в вопросе говорят any.",
+                "uk": "У записі запитання з `any`, а в цьому варіанті `some`: у запитанні кажуть any."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудницу",
+              "feedbackByLocale": {
+                "ru": "В записи `Are there any` — о нескольких, а в этом варианте `Is there a` — об одной.",
+                "uk": "У записі `Are there any` — про кілька, а в цьому варіанті `Is there a` — про одну."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столе нет настольных игр. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе нет настольных игр. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе нет настольных игр. Выберите нужное слово",
+            "uk": "На столі немає настільних ігор. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There aren’t ___ board games on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-51:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "На столе нет настольных игр. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "На столе нет настольных игр. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "В отрицании говорим any, а не some: aren’t any.",
+                "uk": "У запереченні кажемо any, а не some: aren’t any."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "На столе нет настольных игр. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Игр несколько, поэтому перед ними нужно any, а не a.",
+                "uk": "Ігор кілька, тому перед ними потрібно any, а не a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сотрудницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте сотрудницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i13:audio",
+            "transcript": "There are some board games in the hall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some board games in the hall.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "board",
+            "games",
+            "in",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some board games in the hall.`",
+                "uk": "тут потрібно `are` — `There are some board games in the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы вышли из центра и ждёте автобус. Спросите прохожего: «Здесь рядом есть районный центр?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Вы вышли из центра и ждёте автобус. Спросите прохожего: «Здесь рядом есть районный центр?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i14:audio",
+            "transcript": "Is there a community centre near here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a community centre near here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Администратор ищет листовки. Скажите ему полной фразой: на сцене нет листовок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Администратор ищет листовки. Скажите ему полной фразой: на сцене нет листовок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren’t any leaflets on the stage.",
+          "localizedMeaning": {
+            "ru": "Администратор ищет листовки. Скажите ему полной фразой: на сцене нет листовок",
+            "uk": "Адміністратор шукає листівки. Скажіть йому повною фразою: на сцені немає листівок"
+          },
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "leaflets",
+            "on",
+            "the",
+            "stage"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Администратор ищет листовки. Скажите ему полной фразой: на сцене нет листовок",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any leaflets on the stage.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any leaflets on the stage.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-51:i16:p1",
+              "target": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр для жителей",
+                "uk": "районний центр для мешканців"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i16:p2",
+              "target": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i16:p3",
+              "target": "stage",
+              "meaningByLocale": {
+                "ru": "сцена",
+                "uk": "сцена"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i16:p4",
+              "target": "board game",
+              "meaningByLocale": {
+                "ru": "настольная игра",
+                "uk": "настільна гра"
+              }
+            }
+          ],
+          "leftColumn": [
+            "community centre",
+            "leaflet",
+            "stage",
+            "board game"
+          ],
+          "rightColumn": [
+            "районный центр для жителей",
+            "листовка",
+            "сцена",
+            "настольная игра"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор спрашивает, остались ли листовки. Их нет. Скажите ему: «Листовок здесь нет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Администратор спрашивает, остались ли листовки. Их нет. Скажите ему: «Листовок здесь нет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i17:audio",
+            "transcript": "There aren’t any leaflets here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any leaflets here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-51:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-51:i01:p1",
+              "target": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр для жителей",
+                "uk": "районний центр для мешканців"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i01:p2",
+              "target": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i01:p3",
+              "target": "stage",
+              "meaningByLocale": {
+                "ru": "сцена",
+                "uk": "сцена"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i01:p4",
+              "target": "board game",
+              "meaningByLocale": {
+                "ru": "настольная игра",
+                "uk": "настільна гра"
+              }
+            }
+          ],
+          "leftColumn": [
+            "community centre",
+            "leaflet",
+            "stage",
+            "board game"
+          ],
+          "rightColumn": [
+            "районний центр для мешканців",
+            "листівка",
+            "сцена",
+            "настільна гра"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:community centre",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — community centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:community centre:audio"
+        ],
+        "accessibilityLabel": "Картка слова — community centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:community centre:audio",
+            "transcript": "community centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:community centre:r1",
+              "targetText": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр. There is a community centre near the bank. — «Возле банка есть районный центр». О здании, где жители района собираются на занятия и праздники.",
+                "uk": "районний центр. There is a community centre near the bank. — «Біля банку є районний центр». Про будівлю, де мешканці району збираються на заняття й свята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "community centre",
+            "definitionByLocale": {
+              "ru": "районный центр. There is a community centre near the bank. — «Возле банка есть районный центр». О здании, где жители района собираются на занятия и праздники.",
+              "uk": "районний центр. There is a community centre near the bank. — «Біля банку є районний центр». Про будівлю, де мешканці району збираються на заняття й свята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор називає будівлю, де мешканці району збираються на заняття, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Адміністратор називає будівлю, де мешканці району збираються на заняття, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i02:audio",
+            "transcript": "community centre"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "community centre",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід питає, що біля банку. Скажіть йому повною фразою: біля банку є районний центр",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає, що біля банку. Скажіть йому повною фразою: біля банку є районний центр",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a community centre near the bank.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает, что возле банка. Скажите ему полной фразой: возле банка есть районный центр",
+            "uk": "Сусід питає, що біля банку. Скажіть йому повною фразою: біля банку є районний центр"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "community",
+            "centre",
+            "near",
+            "the",
+            "bank"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід питає, що біля банку. Скажіть йому повною фразою: біля банку є районний центр",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a community centre near the bank.`",
+                "uk": "тут потрібно `is` — `There is a community centre near the bank.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:leaflet",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leaflet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:leaflet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leaflet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:leaflet:audio",
+            "transcript": "leaflet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:leaflet:r1",
+              "targetText": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка. There are some leaflets near the door. — «Возле двери есть несколько листовок». О бумажном листе, на котором напечатаны новости или расписание.",
+                "uk": "листівка. There are some leaflets near the door. — «Біля дверей є кілька листівок». Про паперовий аркуш, на якому надруковано новини або розклад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leaflet",
+            "definitionByLocale": {
+              "ru": "листовка. There are some leaflets near the door. — «Возле двери есть несколько листовок». О бумажном листе, на котором напечатаны новости или расписание.",
+              "uk": "листівка. There are some leaflets near the door. — «Біля дверей є кілька листівок». Про паперовий аркуш, на якому надруковано новини або розклад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Паперовий аркуш, на якому надруковано новини або розклад занять. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i04:r1",
+            "text": "leaflet"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i04:r2",
+            "text": "ticket"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i04:r3",
+            "text": "letter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Паперовий аркуш, на якому надруковано новини або розклад занять. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?",
+            "uk": "Паперовий аркуш, на якому надруковано новини або розклад занять. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-51:i04:r1",
+              "text": "leaflet"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i04:r2",
+              "text": "ticket"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i04:r3",
+              "text": "letter"
+            }
+          ],
+          "testedDimension": "Паперовий аркуш, на якому надруковано новини або розклад занять. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i04:r2",
+              "correct": false,
+              "testedDimension": "Паперовий аркуш, на якому надруковано новини або розклад занять. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "ticket — это билет, а бумажный лист с расписанием называется leaflet.",
+                "uk": "ticket — це квиток, а паперовий аркуш із розкладом називається leaflet."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i04:r3",
+              "correct": false,
+              "testedDimension": "Паперовий аркуш, на якому надруковано новини або розклад занять. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а бумажный лист с расписанием называется leaflet.",
+                "uk": "letter — це лист, а паперовий аркуш із розкладом називається leaflet."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте адміністратора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i05:r1",
+            "text": "There are some leaflets near the door."
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i05:r2",
+            "text": "There aren’t any leaflets near the door."
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i05:r3",
+            "text": "There are some leaflets near the bench."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i05:audio",
+            "transcript": "There are some leaflets near the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:i05:r1",
+              "targetText": "There are some leaflets near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i05:r2",
+              "targetText": "There aren’t any leaflets near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i05:r3",
+              "targetText": "There are some leaflets near the bench.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора",
+              "feedbackByLocale": {
+                "ru": "В записи `are some` — листовки есть, а в этом варианте `aren’t any` — их нет.",
+                "uk": "У записі `are some` — листівки є, а в цьому варіанті `aren’t any` — їх немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `door`, а в этом варианте `bench`.",
+                "uk": "У записі останнє місце `door`, а в цьому варіанті `bench`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:board game",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — board game",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:board game:audio"
+        ],
+        "accessibilityLabel": "Картка слова — board game",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:board game:audio",
+            "transcript": "board game"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:board game:r1",
+              "targetText": "board game",
+              "meaningByLocale": {
+                "ru": "настольная игра. There aren’t any board games on the table. — «На столе нет настольных игр». О коробке с полем и фишками, в которую играют за столом.",
+                "uk": "настільна гра. There aren’t any board games on the table. — «На столі немає настільних ігор». Про коробку з полем і фішками, у яку грають за столом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "board game",
+            "definitionByLocale": {
+              "ru": "настольная игра. There aren’t any board games on the table. — «На столе нет настольных игр». О коробке с полем и фишками, в которую играют за столом.",
+              "uk": "настільна гра. There aren’t any board games on the table. — «На столі немає настільних ігор». Про коробку з полем і фішками, у яку грають за столом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор показує коробку з полем і фішками, у яку грають за столом, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i06:audio"
+        ],
+        "accessibilityLabel": "Адміністратор показує коробку з полем і фішками, у яку грають за столом, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i06:audio",
+            "transcript": "board game"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "board game",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте адміністратора й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i07:audio",
+            "transcript": "Are there any board games on the table?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any board games on the table?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "board",
+            "games",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any board games on the table?`",
+                "uk": "тут потрібно `Are` — `Are there any board games on the table?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:word:stage",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:word:stage:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:word:stage:audio",
+            "transcript": "stage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:word:stage:r1",
+              "targetText": "stage",
+              "meaningByLocale": {
+                "ru": "сцена. There isn’t a stage in the hall. — «В зале нет сцены». О высокой площадке в зале, на которой выступают.",
+                "uk": "сцена. There isn’t a stage in the hall. — «У залі немає сцени». Про високий майданчик у залі, на якому виступають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stage",
+            "definitionByLocale": {
+              "ru": "сцена. There isn’t a stage in the hall. — «В зале нет сцены». О высокой площадке в зале, на которой выступают.",
+              "uk": "сцена. There isn’t a stage in the hall. — «У залі немає сцени». Про високий майданчик у залі, на якому виступають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Високий майданчик у залі, на якому виступають артисти. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i08:r1",
+            "text": "stage"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i08:r2",
+            "text": "bench"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i08:r3",
+            "text": "floor"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Високий майданчик у залі, на якому виступають артисти. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?",
+            "uk": "Високий майданчик у залі, на якому виступають артисти. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-51:i08:r1",
+              "text": "stage"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i08:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i08:r3",
+              "text": "floor"
+            }
+          ],
+          "testedDimension": "Високий майданчик у залі, на якому виступають артисти. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Високий майданчик у залі, на якому виступають артисти. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а высокая площадка для артистов называется stage.",
+                "uk": "bench — це лавка, а високий майданчик для артистів називається stage."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Високий майданчик у залі, на якому виступають артисти. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а высокая площадка для артистов называется stage.",
+                "uk": "floor — це підлога, а високий майданчик для артистів називається stage."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає сцену. Скажіть їй повною фразою: у залі немає сцени",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає сцену. Скажіть їй повною фразою: у залі немає сцени",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a stage in the hall.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет сцену. Скажите ей полной фразой: в зале нет сцены",
+            "uk": "Подруга шукає сцену. Скажіть їй повною фразою: у залі немає сцени"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "stage",
+            "in",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає сцену. Скажіть їй повною фразою: у залі немає сцени",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a stage in the hall.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a stage in the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-51:i10:p1",
+              "target": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i10:p2",
+              "target": "stage",
+              "meaningByLocale": {
+                "ru": "сцена",
+                "uk": "сцена"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i10:p3",
+              "target": "hall",
+              "meaningByLocale": {
+                "ru": "холл, коридор",
+                "uk": "хол, коридор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i10:p4",
+              "target": "noticeboard",
+              "meaningByLocale": {
+                "ru": "доска объявлений",
+                "uk": "дошка оголошень"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leaflet",
+            "stage",
+            "hall",
+            "noticeboard"
+          ],
+          "rightColumn": [
+            "листівка",
+            "сцена",
+            "хол, коридор",
+            "дошка оголошень"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте співробітницю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i11:r1",
+            "text": "Are there any leaflets here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i11:r2",
+            "text": "Are there some leaflets here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i11:r3",
+            "text": "Is there a leaflet here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте співробітницю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i11:audio",
+            "transcript": "Are there any leaflets here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-51:i11:r1",
+              "targetText": "Are there any leaflets here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i11:r2",
+              "targetText": "Are there some leaflets here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i11:r3",
+              "targetText": "Is there a leaflet here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте співробітницю",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос с `any`, а в этом варианте `some`: в вопросе говорят any.",
+                "uk": "У записі запитання з `any`, а в цьому варіанті `some`: у запитанні кажуть any."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте співробітницю",
+              "feedbackByLocale": {
+                "ru": "В записи `Are there any` — о нескольких, а в этом варианте `Is there a` — об одной.",
+                "uk": "У записі `Are there any` — про кілька, а в цьому варіанті `Is there a` — про одну."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столі немає настільних ігор. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі немає настільних ігор. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе нет настольных игр. Выберите нужное слово",
+            "uk": "На столі немає настільних ігор. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There aren’t ___ board games on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-51:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "На столі немає настільних ігор. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "На столі немає настільних ігор. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "В отрицании говорим any, а не some: aren’t any.",
+                "uk": "У запереченні кажемо any, а не some: aren’t any."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "На столі немає настільних ігор. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Игр несколько, поэтому перед ними нужно any, а не a.",
+                "uk": "Ігор кілька, тому перед ними потрібно any, а не a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте співробітницю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте співробітницю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i13:audio",
+            "transcript": "There are some board games in the hall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some board games in the hall.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "board",
+            "games",
+            "in",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте співробітницю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some board games in the hall.`",
+                "uk": "тут потрібно `are` — `There are some board games in the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви вийшли з центру й чекаєте автобус. Запитайте перехожого: «Тут поруч є районний центр?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Ви вийшли з центру й чекаєте автобус. Запитайте перехожого: «Тут поруч є районний центр?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i14:audio",
+            "transcript": "Is there a community centre near here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a community centre near here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Адміністратор шукає листівки. Скажіть йому повною фразою: на сцені немає листівок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Адміністратор шукає листівки. Скажіть йому повною фразою: на сцені немає листівок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren’t any leaflets on the stage.",
+          "localizedMeaning": {
+            "ru": "Администратор ищет листовки. Скажите ему полной фразой: на сцене нет листовок",
+            "uk": "Адміністратор шукає листівки. Скажіть йому повною фразою: на сцені немає листівок"
+          },
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "leaflets",
+            "on",
+            "the",
+            "stage"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-51:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Адміністратор шукає листівки. Скажіть йому повною фразою: на сцені немає листівок",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any leaflets on the stage.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any leaflets on the stage.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-51:i16:p1",
+              "target": "community centre",
+              "meaningByLocale": {
+                "ru": "районный центр для жителей",
+                "uk": "районний центр для мешканців"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i16:p2",
+              "target": "leaflet",
+              "meaningByLocale": {
+                "ru": "листовка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i16:p3",
+              "target": "stage",
+              "meaningByLocale": {
+                "ru": "сцена",
+                "uk": "сцена"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-51:i16:p4",
+              "target": "board game",
+              "meaningByLocale": {
+                "ru": "настольная игра",
+                "uk": "настільна гра"
+              }
+            }
+          ],
+          "leftColumn": [
+            "community centre",
+            "leaflet",
+            "stage",
+            "board game"
+          ],
+          "rightColumn": [
+            "районний центр для мешканців",
+            "листівка",
+            "сцена",
+            "настільна гра"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор питає, чи залишилися листівки. Їх немає. Скажіть йому: «Листівок тут немає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Адміністратор питає, чи залишилися листівки. Їх немає. Скажіть йому: «Листівок тут немає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-51:i17:audio",
+            "transcript": "There aren’t any leaflets here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any leaflets here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-51:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:word:community centre",
+      "correctText": "community centre",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i02",
+      "correctText": "community centre",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i03",
+      "correctText": "There is a community centre near the bank.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:word:leaflet",
+      "correctText": "leaflet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i04",
+      "correctText": "leaflet",
+      "correctResponseId": "en:lesson-04:session-51:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i05",
+      "correctText": "There are some leaflets near the door.",
+      "correctResponseId": "en:lesson-04:session-51:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:word:board game",
+      "correctText": "board game",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i06",
+      "correctText": "board game",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i07",
+      "correctText": "Are there any board games on the table?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:word:stage",
+      "correctText": "stage",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i08",
+      "correctText": "stage",
+      "correctResponseId": "en:lesson-04:session-51:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i09",
+      "correctText": "There isn’t a stage in the hall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i11",
+      "correctText": "Are there any leaflets here?",
+      "correctResponseId": "en:lesson-04:session-51:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-04:session-51:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i13",
+      "correctText": "There are some board games in the hall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i14",
+      "correctText": "Is there a community centre near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i15",
+      "correctText": "There aren’t any leaflets on the stage.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i17",
+      "correctText": "There aren’t any leaflets here.",
+      "correctResponseId": null
+    }
+  ]
+}

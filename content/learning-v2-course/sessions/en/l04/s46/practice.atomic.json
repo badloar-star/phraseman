@@ -1,0 +1,2389 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-46:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-46:i01:p1",
+              "target": "pantry",
+              "meaningByLocale": {
+                "ru": "кладовая для продуктов",
+                "uk": "комора для продуктів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i01:p2",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i01:p3",
+              "target": "packet",
+              "meaningByLocale": {
+                "ru": "пачка, пакетик",
+                "uk": "пачка, пакетик"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i01:p4",
+              "target": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка",
+                "uk": "картонна упаковка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pantry",
+            "sack",
+            "packet",
+            "carton"
+          ],
+          "rightColumn": [
+            "кладовая для продуктов",
+            "мешок",
+            "пачка, пакетик",
+            "картонная упаковка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:pantry",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pantry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:pantry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pantry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:pantry:audio",
+            "transcript": "pantry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:pantry:r1",
+              "targetText": "pantry",
+              "meaningByLocale": {
+                "ru": "кладовая для продуктов. There is a pantry next to the cooker. — «Рядом с плитой есть кладовая для продуктов». О маленькой комнате или шкафе, где хранят крупы, консервы и запасы еды.",
+                "uk": "комора для продуктів. There is a pantry next to the cooker. — «Поруч із плитою є комора для продуктів». Про маленьку кімнату чи шафу, де зберігають крупи, консерви й запаси їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pantry",
+            "definitionByLocale": {
+              "ru": "кладовая для продуктов. There is a pantry next to the cooker. — «Рядом с плитой есть кладовая для продуктов». О маленькой комнате или шкафе, где хранят крупы, консервы и запасы еды.",
+              "uk": "комора для продуктів. There is a pantry next to the cooker. — «Поруч із плитою є комора для продуктів». Про маленьку кімнату чи шафу, де зберігають крупи, консерви й запаси їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг открывает дверь в комнату без окон, где хранят крупы и банки, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Друг открывает дверь в комнату без окон, где хранят крупы и банки, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i02:audio",
+            "transcript": "pantry"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pantry",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг записывает. Скажите ему полной фразой: за холлом есть кладовая для продуктов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг записывает. Скажите ему полной фразой: за холлом есть кладовая для продуктов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a pantry behind the hall.",
+          "localizedMeaning": {
+            "ru": "Друг записывает. Скажите ему полной фразой: за холлом есть кладовая для продуктов",
+            "uk": "Друг записує. Скажіть йому повною фразою: за холом є комора для продуктів"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "pantry",
+            "behind",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг записывает. Скажите ему полной фразой: за холлом есть кладовая для продуктов",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a pantry behind the hall.`",
+                "uk": "тут потрібно `is` — `There is a pantry behind the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:sack",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:sack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:sack:audio",
+            "transcript": "sack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:sack:r1",
+              "targetText": "sack",
+              "meaningByLocale": {
+                "ru": "мешок. There is a sack under the table. — «Под столом есть мешок». О большом мешке из плотной ткани или бумаги, в котором хранят картошку или муку.",
+                "uk": "мішок. There is a sack under the table. — «Під столом є мішок». Про великий мішок із щільної тканини чи паперу, у якому зберігають картоплю чи борошно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sack",
+            "definitionByLocale": {
+              "ru": "мешок. There is a sack under the table. — «Под столом есть мешок». О большом мешке из плотной ткани или бумаги, в котором хранят картошку или муку.",
+              "uk": "мішок. There is a sack under the table. — «Під столом є мішок». Про великий мішок із щільної тканини чи паперу, у якому зберігають картоплю чи борошно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i04:r1",
+            "text": "sack"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i04:r2",
+            "text": "bag"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i04:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?",
+            "uk": "Друг показує великий мішок із щільної тканини, у якому зберігають картоплю. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-46:i04:r1",
+              "text": "sack"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i04:r2",
+              "text": "bag"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i04:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i04:r2",
+              "correct": false,
+              "testedDimension": "Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bag — это сумка, а большой мешок для картошки называется sack.",
+                "uk": "bag — це сумка, а великий мішок для картоплі називається sack."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i04:r3",
+              "correct": false,
+              "testedDimension": "Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а большой мешок для картошки называется sack.",
+                "uk": "box — це коробка, а великий мішок для картоплі називається sack."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i05:r1",
+            "text": "Is there a sack under the shelf?"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i05:r2",
+            "text": "Is there a sack on the shelf?"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i05:r3",
+            "text": "Are there any sacks under the shelf?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i05:audio",
+            "transcript": "Is there a sack under the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:i05:r1",
+              "targetText": "Is there a sack under the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i05:r2",
+              "targetText": "Is there a sack on the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i05:r3",
+              "targetText": "Are there any sacks under the shelf?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `under` — под, а в этом варианте `on` — на.",
+                "uk": "У записі `under` — під, а в цьому варіанті `on` — на."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `Is there a` — спрашивают об одном, а в этом варианте `Are there any` — о нескольких.",
+                "uk": "У записі `Is there a` — питають про один, а в цьому варіанті `Are there any` — про кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:packet",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — packet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:packet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — packet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:packet:audio",
+            "transcript": "packet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:packet:r1",
+              "targetText": "packet",
+              "meaningByLocale": {
+                "ru": "пачка, пакетик. There is a packet on the worktop. — «На столешнице есть пачка». О небольшой упаковке из картона или бумаги, например с чаем, рисом или хлопьями.",
+                "uk": "пачка, пакетик. There is a packet on the worktop. — «На стільниці є пачка». Про невелику упаковку з картону чи паперу, наприклад із чаєм, рисом чи пластівцями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packet",
+            "definitionByLocale": {
+              "ru": "пачка, пакетик. There is a packet on the worktop. — «На столешнице есть пачка». О небольшой упаковке из картона или бумаги, например с чаем, рисом или хлопьями.",
+              "uk": "пачка, пакетик. There is a packet on the worktop. — «На стільниці є пачка». Про невелику упаковку з картону чи паперу, наприклад із чаєм, рисом чи пластівцями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показывает на полке небольшую упаковку, в которой лежат хлопья, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i06:audio"
+        ],
+        "accessibilityLabel": "Друг показывает на полке небольшую упаковку, в которой лежат хлопья, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i06:audio",
+            "transcript": "packet"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "packet",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i07:audio",
+            "transcript": "There aren’t any packets near the sink."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any packets near the sink.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "packets",
+            "near",
+            "the",
+            "sink"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any packets near the sink.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any packets near the sink.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:carton",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — carton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:carton:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — carton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:carton:audio",
+            "transcript": "carton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:carton:r1",
+              "targetText": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка. There is a carton next to the kettle. — «Рядом с чайником есть картонная упаковка». О картонной коробке для молока или сока.",
+                "uk": "картонна упаковка. There is a carton next to the kettle. — «Поруч із чайником є картонна упаковка». Про картонну коробку для молока чи соку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carton",
+            "definitionByLocale": {
+              "ru": "картонная упаковка. There is a carton next to the kettle. — «Рядом с чайником есть картонная упаковка». О картонной коробке для молока или сока.",
+              "uk": "картонна упаковка. There is a carton next to the kettle. — «Поруч із чайником є картонна упаковка». Про картонну коробку для молока чи соку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i08:r1",
+            "text": "carton"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i08:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i08:r3",
+            "text": "jar"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?",
+            "uk": "Друг дістає з холодильника картонну упаковку молока. Як називається така упаковка?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-46:i08:r1",
+              "text": "carton"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i08:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i08:r3",
+              "text": "jar"
+            }
+          ],
+          "testedDimension": "Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?",
+              "feedbackByLocale": {
+                "ru": "bottle — это бутылка, а картонная упаковка молока называется carton.",
+                "uk": "bottle — це пляшка, а картонна упаковка молока називається carton."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?",
+              "feedbackByLocale": {
+                "ru": "jar — это стеклянная банка, а картонная упаковка молока называется carton.",
+                "uk": "jar — це скляна банка, а картонна упаковка молока називається carton."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг проверяет холодильник. Скажите ему полной фразой: в холодильнике есть картонные упаковки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг проверяет холодильник. Скажите ему полной фразой: в холодильнике есть картонные упаковки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some cartons in the fridge.",
+          "localizedMeaning": {
+            "ru": "Друг проверяет холодильник. Скажите ему полной фразой: в холодильнике есть картонные упаковки",
+            "uk": "Друг перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є картонні упаковки"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "cartons",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг проверяет холодильник. Скажите ему полной фразой: в холодильнике есть картонные упаковки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some cartons in the fridge.`",
+                "uk": "тут потрібно `are` — `There are some cartons in the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-46:i10:p1",
+              "target": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка",
+                "uk": "картонна упаковка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i10:p2",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i10:p3",
+              "target": "jar",
+              "meaningByLocale": {
+                "ru": "банка (стеклянная)",
+                "uk": "банка (скляна)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i10:p4",
+              "target": "tin",
+              "meaningByLocale": {
+                "ru": "консервная банка",
+                "uk": "консервна банка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carton",
+            "sack",
+            "jar",
+            "tin"
+          ],
+          "rightColumn": [
+            "картонная упаковка",
+            "мешок",
+            "банка (стеклянная)",
+            "консервная банка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i11:r1",
+            "text": "There aren’t any cartons in the pantry."
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i11:r2",
+            "text": "There isn’t a carton in the pantry."
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i11:r3",
+            "text": "There aren’t any cartons in the fridge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i11:audio",
+            "transcript": "There aren’t any cartons in the pantry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:i11:r1",
+              "targetText": "There aren’t any cartons in the pantry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i11:r2",
+              "targetText": "There isn’t a carton in the pantry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i11:r3",
+              "targetText": "There aren’t any cartons in the fridge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — нет нескольких, а в этом варианте `isn’t a` — нет одной.",
+                "uk": "У записі `aren’t any` — немає кількох, а в цьому варіанті `isn’t a` — немає однієї."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pantry`, а в этом варианте — `fridge`.",
+                "uk": "У записі останнє слово — `pantry`, а в цьому варіанті — `fridge`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i12:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i12:r3",
+            "text": "no"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово",
+            "uk": "Друг питає, чи є мішок. Мішка немає. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There isn’t ___ sack in the pantry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-46:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i12:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i12:r3",
+              "text": "no"
+            }
+          ],
+          "testedDimension": "Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "any ставят перед несколькими предметами, а мешок один.",
+                "uk": "any ставлять перед кількома предметами, а мішок один."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Слова isn’t уже достаточно для «нет»: второе отрицание no не нужно.",
+                "uk": "Слова isn’t уже достатньо для «немає»: друге заперечення no не потрібне."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i13:audio",
+            "transcript": "Is there a packet on the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there a packet on the shelf?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "packet",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a packet on the shelf?`",
+                "uk": "тут потрібно `Is` — `Is there a packet on the shelf?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, есть ли мешок в кладовой. Мешка там нет. Ответьте коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, есть ли мешок в кладовой. Мешка там нет. Ответьте коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i14:audio",
+            "transcript": "No, there isn’t."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there isn’t.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ждёт вопроса. Спросите его полной фразой: есть ли в кладовой картонные упаковки?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ждёт вопроса. Спросите его полной фразой: есть ли в кладовой картонные упаковки?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any cartons in the pantry?",
+          "localizedMeaning": {
+            "ru": "Друг ждёт вопроса. Спросите его полной фразой: есть ли в кладовой картонные упаковки?",
+            "uk": "Друг чекає на запитання. Запитайте його повною фразою: чи є в коморі картонні упаковки?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "cartons",
+            "in",
+            "the",
+            "pantry"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг ждёт вопроса. Спросите его полной фразой: есть ли в кладовой картонные упаковки?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any cartons in the pantry?`",
+                "uk": "тут потрібно `Are` — `Are there any cartons in the pantry?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-46:i16:p1",
+              "target": "pantry",
+              "meaningByLocale": {
+                "ru": "кладовая для продуктов",
+                "uk": "комора для продуктів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i16:p2",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i16:p3",
+              "target": "packet",
+              "meaningByLocale": {
+                "ru": "пачка, пакетик",
+                "uk": "пачка, пакетик"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i16:p4",
+              "target": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка",
+                "uk": "картонна упаковка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pantry",
+            "sack",
+            "packet",
+            "carton"
+          ],
+          "rightColumn": [
+            "кладовая для продуктов",
+            "мешок",
+            "пачка, пакетик",
+            "картонная упаковка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, что вы увидели в доме. Скажите ему: «Кладовой для продуктов здесь нет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, что вы увидели в доме. Скажите ему: «Кладовой для продуктов здесь нет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i17:audio",
+            "transcript": "There isn’t a pantry here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a pantry here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-46:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-46:i01:p1",
+              "target": "pantry",
+              "meaningByLocale": {
+                "ru": "кладовая для продуктов",
+                "uk": "комора для продуктів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i01:p2",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i01:p3",
+              "target": "packet",
+              "meaningByLocale": {
+                "ru": "пачка, пакетик",
+                "uk": "пачка, пакетик"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i01:p4",
+              "target": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка",
+                "uk": "картонна упаковка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pantry",
+            "sack",
+            "packet",
+            "carton"
+          ],
+          "rightColumn": [
+            "комора для продуктів",
+            "мішок",
+            "пачка, пакетик",
+            "картонна упаковка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:pantry",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pantry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:pantry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pantry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:pantry:audio",
+            "transcript": "pantry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:pantry:r1",
+              "targetText": "pantry",
+              "meaningByLocale": {
+                "ru": "кладовая для продуктов. There is a pantry next to the cooker. — «Рядом с плитой есть кладовая для продуктов». О маленькой комнате или шкафе, где хранят крупы, консервы и запасы еды.",
+                "uk": "комора для продуктів. There is a pantry next to the cooker. — «Поруч із плитою є комора для продуктів». Про маленьку кімнату чи шафу, де зберігають крупи, консерви й запаси їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pantry",
+            "definitionByLocale": {
+              "ru": "кладовая для продуктов. There is a pantry next to the cooker. — «Рядом с плитой есть кладовая для продуктов». О маленькой комнате или шкафе, где хранят крупы, консервы и запасы еды.",
+              "uk": "комора для продуктів. There is a pantry next to the cooker. — «Поруч із плитою є комора для продуктів». Про маленьку кімнату чи шафу, де зберігають крупи, консерви й запаси їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг відчиняє двері до кімнати без вікон, де зберігають крупи й банки, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Друг відчиняє двері до кімнати без вікон, де зберігають крупи й банки, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i02:audio",
+            "transcript": "pantry"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pantry",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг записує. Скажіть йому повною фразою: за холом є комора для продуктів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг записує. Скажіть йому повною фразою: за холом є комора для продуктів",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a pantry behind the hall.",
+          "localizedMeaning": {
+            "ru": "Друг записывает. Скажите ему полной фразой: за холлом есть кладовая для продуктов",
+            "uk": "Друг записує. Скажіть йому повною фразою: за холом є комора для продуктів"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "pantry",
+            "behind",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг записує. Скажіть йому повною фразою: за холом є комора для продуктів",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a pantry behind the hall.`",
+                "uk": "тут потрібно `is` — `There is a pantry behind the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:sack",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:sack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:sack:audio",
+            "transcript": "sack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:sack:r1",
+              "targetText": "sack",
+              "meaningByLocale": {
+                "ru": "мешок. There is a sack under the table. — «Под столом есть мешок». О большом мешке из плотной ткани или бумаги, в котором хранят картошку или муку.",
+                "uk": "мішок. There is a sack under the table. — «Під столом є мішок». Про великий мішок із щільної тканини чи паперу, у якому зберігають картоплю чи борошно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sack",
+            "definitionByLocale": {
+              "ru": "мешок. There is a sack under the table. — «Под столом есть мешок». О большом мешке из плотной ткани или бумаги, в котором хранят картошку или муку.",
+              "uk": "мішок. There is a sack under the table. — «Під столом є мішок». Про великий мішок із щільної тканини чи паперу, у якому зберігають картоплю чи борошно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг показує великий мішок із щільної тканини, у якому зберігають картоплю. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i04:r1",
+            "text": "sack"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i04:r2",
+            "text": "bag"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i04:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг показує великий мішок із щільної тканини, у якому зберігають картоплю. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг показывает большой мешок из плотной ткани, в котором хранят картошку. Как он называется по-английски?",
+            "uk": "Друг показує великий мішок із щільної тканини, у якому зберігають картоплю. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-46:i04:r1",
+              "text": "sack"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i04:r2",
+              "text": "bag"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i04:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "Друг показує великий мішок із щільної тканини, у якому зберігають картоплю. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i04:r2",
+              "correct": false,
+              "testedDimension": "Друг показує великий мішок із щільної тканини, у якому зберігають картоплю. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bag — это сумка, а большой мешок для картошки называется sack.",
+                "uk": "bag — це сумка, а великий мішок для картоплі називається sack."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i04:r3",
+              "correct": false,
+              "testedDimension": "Друг показує великий мішок із щільної тканини, у якому зберігають картоплю. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а большой мешок для картошки называется sack.",
+                "uk": "box — це коробка, а великий мішок для картоплі називається sack."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i05:r1",
+            "text": "Is there a sack under the shelf?"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i05:r2",
+            "text": "Is there a sack on the shelf?"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i05:r3",
+            "text": "Are there any sacks under the shelf?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i05:audio",
+            "transcript": "Is there a sack under the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:i05:r1",
+              "targetText": "Is there a sack under the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i05:r2",
+              "targetText": "Is there a sack on the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i05:r3",
+              "targetText": "Are there any sacks under the shelf?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `under` — под, а в этом варианте `on` — на.",
+                "uk": "У записі `under` — під, а в цьому варіанті `on` — на."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `Is there a` — спрашивают об одном, а в этом варианте `Are there any` — о нескольких.",
+                "uk": "У записі `Is there a` — питають про один, а в цьому варіанті `Are there any` — про кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:packet",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — packet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:packet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — packet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:packet:audio",
+            "transcript": "packet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:packet:r1",
+              "targetText": "packet",
+              "meaningByLocale": {
+                "ru": "пачка, пакетик. There is a packet on the worktop. — «На столешнице есть пачка». О небольшой упаковке из картона или бумаги, например с чаем, рисом или хлопьями.",
+                "uk": "пачка, пакетик. There is a packet on the worktop. — «На стільниці є пачка». Про невелику упаковку з картону чи паперу, наприклад із чаєм, рисом чи пластівцями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packet",
+            "definitionByLocale": {
+              "ru": "пачка, пакетик. There is a packet on the worktop. — «На столешнице есть пачка». О небольшой упаковке из картона или бумаги, например с чаем, рисом или хлопьями.",
+              "uk": "пачка, пакетик. There is a packet on the worktop. — «На стільниці є пачка». Про невелику упаковку з картону чи паперу, наприклад із чаєм, рисом чи пластівцями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показує на полиці невелику упаковку, у якій лежать пластівці, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i06:audio"
+        ],
+        "accessibilityLabel": "Друг показує на полиці невелику упаковку, у якій лежать пластівці, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i06:audio",
+            "transcript": "packet"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "packet",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i07:audio",
+            "transcript": "There aren’t any packets near the sink."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any packets near the sink.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "packets",
+            "near",
+            "the",
+            "sink"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any packets near the sink.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any packets near the sink.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:word:carton",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — carton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:word:carton:audio"
+        ],
+        "accessibilityLabel": "Картка слова — carton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:word:carton:audio",
+            "transcript": "carton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:word:carton:r1",
+              "targetText": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка. There is a carton next to the kettle. — «Рядом с чайником есть картонная упаковка». О картонной коробке для молока или сока.",
+                "uk": "картонна упаковка. There is a carton next to the kettle. — «Поруч із чайником є картонна упаковка». Про картонну коробку для молока чи соку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carton",
+            "definitionByLocale": {
+              "ru": "картонная упаковка. There is a carton next to the kettle. — «Рядом с чайником есть картонная упаковка». О картонной коробке для молока или сока.",
+              "uk": "картонна упаковка. There is a carton next to the kettle. — «Поруч із чайником є картонна упаковка». Про картонну коробку для молока чи соку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг дістає з холодильника картонну упаковку молока. Як називається така упаковка?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i08:r1",
+            "text": "carton"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i08:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i08:r3",
+            "text": "jar"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг дістає з холодильника картонну упаковку молока. Як називається така упаковка?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг достаёт из холодильника картонную упаковку молока. Как называется такая упаковка?",
+            "uk": "Друг дістає з холодильника картонну упаковку молока. Як називається така упаковка?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-46:i08:r1",
+              "text": "carton"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i08:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i08:r3",
+              "text": "jar"
+            }
+          ],
+          "testedDimension": "Друг дістає з холодильника картонну упаковку молока. Як називається така упаковка?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг дістає з холодильника картонну упаковку молока. Як називається така упаковка?",
+              "feedbackByLocale": {
+                "ru": "bottle — это бутылка, а картонная упаковка молока называется carton.",
+                "uk": "bottle — це пляшка, а картонна упаковка молока називається carton."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг дістає з холодильника картонну упаковку молока. Як називається така упаковка?",
+              "feedbackByLocale": {
+                "ru": "jar — это стеклянная банка, а картонная упаковка молока называется carton.",
+                "uk": "jar — це скляна банка, а картонна упаковка молока називається carton."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є картонні упаковки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є картонні упаковки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some cartons in the fridge.",
+          "localizedMeaning": {
+            "ru": "Друг проверяет холодильник. Скажите ему полной фразой: в холодильнике есть картонные упаковки",
+            "uk": "Друг перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є картонні упаковки"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "cartons",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є картонні упаковки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some cartons in the fridge.`",
+                "uk": "тут потрібно `are` — `There are some cartons in the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-46:i10:p1",
+              "target": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка",
+                "uk": "картонна упаковка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i10:p2",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i10:p3",
+              "target": "jar",
+              "meaningByLocale": {
+                "ru": "банка (стеклянная)",
+                "uk": "банка (скляна)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i10:p4",
+              "target": "tin",
+              "meaningByLocale": {
+                "ru": "консервная банка",
+                "uk": "консервна банка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carton",
+            "sack",
+            "jar",
+            "tin"
+          ],
+          "rightColumn": [
+            "картонна упаковка",
+            "мішок",
+            "банка (скляна)",
+            "консервна банка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i11:r1",
+            "text": "There aren’t any cartons in the pantry."
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i11:r2",
+            "text": "There isn’t a carton in the pantry."
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i11:r3",
+            "text": "There aren’t any cartons in the fridge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i11:audio",
+            "transcript": "There aren’t any cartons in the pantry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-46:i11:r1",
+              "targetText": "There aren’t any cartons in the pantry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i11:r2",
+              "targetText": "There isn’t a carton in the pantry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i11:r3",
+              "targetText": "There aren’t any cartons in the fridge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — нет нескольких, а в этом варианте `isn’t a` — нет одной.",
+                "uk": "У записі `aren’t any` — немає кількох, а в цьому варіанті `isn’t a` — немає однієї."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pantry`, а в этом варианте — `fridge`.",
+                "uk": "У записі останнє слово — `pantry`, а в цьому варіанті — `fridge`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг питає, чи є мішок. Мішка немає. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-46:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i12:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-46:i12:r3",
+            "text": "no"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, чи є мішок. Мішка немає. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, есть ли мешок. Мешка нет. Выберите нужное слово",
+            "uk": "Друг питає, чи є мішок. Мішка немає. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There isn’t ___ sack in the pantry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-46:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i12:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i12:r3",
+              "text": "no"
+            }
+          ],
+          "testedDimension": "Друг питає, чи є мішок. Мішка немає. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг питає, чи є мішок. Мішка немає. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "any ставят перед несколькими предметами, а мешок один.",
+                "uk": "any ставлять перед кількома предметами, а мішок один."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг питає, чи є мішок. Мішка немає. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Слова isn’t уже достаточно для «нет»: второе отрицание no не нужно.",
+                "uk": "Слова isn’t уже достатньо для «немає»: друге заперечення no не потрібне."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i13:audio",
+            "transcript": "Is there a packet on the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there a packet on the shelf?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "packet",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a packet on the shelf?`",
+                "uk": "тут потрібно `Is` — `Is there a packet on the shelf?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, чи є мішок у коморі. Мішка там немає. Дайте коротку відповідь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Друг питає, чи є мішок у коморі. Мішка там немає. Дайте коротку відповідь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i14:audio",
+            "transcript": "No, there isn’t."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there isn’t.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг чекає на запитання. Запитайте його повною фразою: чи є в коморі картонні упаковки?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг чекає на запитання. Запитайте його повною фразою: чи є в коморі картонні упаковки?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any cartons in the pantry?",
+          "localizedMeaning": {
+            "ru": "Друг ждёт вопроса. Спросите его полной фразой: есть ли в кладовой картонные упаковки?",
+            "uk": "Друг чекає на запитання. Запитайте його повною фразою: чи є в коморі картонні упаковки?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "cartons",
+            "in",
+            "the",
+            "pantry"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-46:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг чекає на запитання. Запитайте його повною фразою: чи є в коморі картонні упаковки?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any cartons in the pantry?`",
+                "uk": "тут потрібно `Are` — `Are there any cartons in the pantry?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-46:i16:p1",
+              "target": "pantry",
+              "meaningByLocale": {
+                "ru": "кладовая для продуктов",
+                "uk": "комора для продуктів"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i16:p2",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i16:p3",
+              "target": "packet",
+              "meaningByLocale": {
+                "ru": "пачка, пакетик",
+                "uk": "пачка, пакетик"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-46:i16:p4",
+              "target": "carton",
+              "meaningByLocale": {
+                "ru": "картонная упаковка",
+                "uk": "картонна упаковка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pantry",
+            "sack",
+            "packet",
+            "carton"
+          ],
+          "rightColumn": [
+            "комора для продуктів",
+            "мішок",
+            "пачка, пакетик",
+            "картонна упаковка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, що ви побачили в домі. Скажіть йому: «Комори для продуктів тут немає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Друг питає, що ви побачили в домі. Скажіть йому: «Комори для продуктів тут немає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-46:i17:audio",
+            "transcript": "There isn’t a pantry here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a pantry here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-46:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:word:pantry",
+      "correctText": "pantry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i02",
+      "correctText": "pantry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i03",
+      "correctText": "There is a pantry behind the hall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:word:sack",
+      "correctText": "sack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i04",
+      "correctText": "sack",
+      "correctResponseId": "en:lesson-04:session-46:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i05",
+      "correctText": "Is there a sack under the shelf?",
+      "correctResponseId": "en:lesson-04:session-46:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:word:packet",
+      "correctText": "packet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i06",
+      "correctText": "packet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i07",
+      "correctText": "There aren’t any packets near the sink.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:word:carton",
+      "correctText": "carton",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i08",
+      "correctText": "carton",
+      "correctResponseId": "en:lesson-04:session-46:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i09",
+      "correctText": "There are some cartons in the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i11",
+      "correctText": "There aren’t any cartons in the pantry.",
+      "correctResponseId": "en:lesson-04:session-46:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i12",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-04:session-46:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i13",
+      "correctText": "Is there a packet on the shelf?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i14",
+      "correctText": "No, there isn’t.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i15",
+      "correctText": "Are there any cartons in the pantry?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:i17",
+      "correctText": "There isn’t a pantry here.",
+      "correctResponseId": null
+    }
+  ]
+}

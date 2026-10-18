@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 50 — Кино у реки
+# Английский · Урок 4 · Занятие 50 — Тропа у реки перекрыта
 
-**Ситуация.** Вы встречаетесь у кинотеатра рядом с рекой. Друг ждёт в остановочном павильоне. Вы обсуждаете способ объяснять дорогу, который помогает людям находить нужное место.
+**Ситуация.** Вы бегаете по утрам у реки, но однажды тропу перекрыли, и вы ищете обход. Новой грамматики нет: вы сами выбираете, спросить Is there a… про один предмет или Are there… про несколько, а ответ даёте отдельным коротким ходом.
 
-**Что вы освоите:** назвать реку, описать расположение и сказать, что способ даёт результат
-**Новые слова:** river
+**Что вы освоите:** самому задать вопрос Is there a…? или Are there…? и отдельно ответить коротко
+**Новые слова:** river, detour, footbridge, cone
+**Возвращаются:** park, bridge, cafe, library, bench, pavement, road
 
 ---
 
 ## Интро 1
 
-### Вода течёт
+### Новое место для пробежки
 
-`river` — «река», естественный водный поток. В прошлом занятии был искусственный канал, `canal`; теперь река, `river`. Одна река — `a river`. `This is a river` — «Это река». Река течёт без расписания: в отличие от автобуса, её не нужно ждать на остановке.
+Вы недавно переехали и хотите бегать по утрам рядом с водой. Соседка говорит, что где-то в городе течёт большая вода, длинная, как лента, и впадает в море. river — «река». Спросите у неё про одну реку: Is there a river near the park? — «Есть ли река возле парка?»
 
-**Назовите одну реку рядом.**
+**Вы ищете воду для пробежки. Спросите соседку, есть ли река возле парка.**
 
-- ✅ **This is a river.**
-- ❌ This is river. — *Перед одной рекой нужно `a`: `a river`.*
-- ❌ These are rivers. — *Здесь одна река: `This is a river`.*
+- ✅ **Is there a river near the park?**
+- ❌ Are there a river near the park? — *Река одна, поэтому вопрос начинаем с Is there, а не с Are there.*
+- ❌ Is there river near the park? — *Река одна, поэтому перед ней нужно a: a river.*
 
 ---
 
 ## Интро 2
 
-### Где встречаемся
+### Оранжевые пятна
 
-`cinema` — «кинотеатр», `bus shelter` — «остановочный павильон». `The cinema is next to the river` — «Кинотеатр рядом с рекой». `He is in the bus shelter` — «Он в остановочном павильоне». `Is there a cinema?` — «Есть кинотеатр?» Один кинотеатр или павильон требует `is`.
+Вы вышли на тротуар у реки и издали видите на нём оранжевые пятна. Навстречу бежит другой бегун. Это пластиковые остроконечные колпаки, которыми закрывают проход. cone — «конус». Их несколько, поэтому: Are there cones on the pavement? — «На тропе есть конусы?»
 
-**Друг внутри остановочного павильона. Выберите описание.**
+**Вы видите на тротуаре оранжевые пятна. Спросите встречного бегуна, есть ли на тротуаре конусы.**
 
-- ✅ **He is in the bus shelter.**
-- ❌ He is next to the bus shelter. — *`next to` — рядом; здесь внутри: `in`.*
-- ❌ He are in the bus shelter. — *С `He` нужно `is`.*
+- ✅ **Are there cones on the pavement?**
+- ❌ Is there cones on the pavement? — *Конусов несколько, поэтому вопрос начинаем с Are there, а не с Is there.*
+- ❌ Are there cone on the pavement? — *Конусов несколько, поэтому на конце cones, а не cone.*
 
 ---
 
 ## Интро 3
 
-### Даёт результат
+### Как обойти
 
-`effective` — «эффективный, действенный»: способ даёт нужный результат. Вы объясняете дорогу через знакомые ориентиры, и люди находят место: `It is effective`, короче `It’s effective`. Это не просто красивый способ: он помогает достичь цели.
+Бегун отвечает, что тропу закрыли, и вы просите подсказать, как перейти на другой берег. Он вспоминает узкий мост, по которому ходят только пешком, без машин. footbridge — «пешеходный мостик». Спросите: Is there a footbridge near the cafe? — «Есть ли мостик возле кафе?»
 
-**Способ помогает людям находить место. Скажите «Это эффективно» с сокращением.**
+**Вы ищете, как перейти на другой берег. Спросите бегуна, есть ли пешеходный мостик возле кафе.**
 
-- ✅ **It's effective.**
-- ❌ It's ineffective. — *`ineffective` — неэффективно; здесь `effective`.*
-- ❌ It are effective. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **Is there a footbridge near the cafe?**
+- ❌ Are there a footbridge near the cafe? — *Мостик один, поэтому вопрос начинаем с Is there, а не с Are there.*
+- ❌ Is there a footbridge the cafe? — *После footbridge нужно near: near the cafe.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Способ даёт нужный результат. Скажите «Это эффективно» без сокращения**
-<!-- interaction_id: en:lesson-04:session-50:i01; family: phrase_builder -->
-Плитки: `effective` `is` `It` `are` → **It is effective.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is effective.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-50:i01; family: speed_match -->
+river — река · detour — объезд, обход · footbridge — пешеходный мостик · cone — дорожный конус
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-50:i02; family: listen_choose -->
-🔊 *river* → **river** · rivers · canal
-- rivers — *В записи первое слово — `river`, а в этом варианте — `rivers`.*
-- canal — *В записи первое слово — `river`, а в этом варианте — `canal`.*
+**2 · Карточка слова — river**
+<!-- interaction_id: en:lesson-04:session-50:word:river; family: word_card -->
+> **river** — река. Is there a river behind the library? — «Есть ли река за библиотекой?» О длинной воде, которая течёт через город.
 
-**3 · Назовите реку одним словом**
-<!-- interaction_id: en:lesson-04:session-50:i03; family: context_gap_grammar -->
-___ → **river** · canal · fountain
-- canal — *`canal` — искусственный канал; река — `river`.*
-- fountain — *`fountain` — фонтан; река — `river`.*
+**3 · Соседка показывает на длинную воду, которая течёт через город, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-50:i02; family: scripted_repeat_compare -->
+🎙 **river**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-50:i04; family: speed_match -->
-river — река · effective — действенный · cinema — кинотеатр · bus shelter — остановочный павильон
+**4 · Вы ищете воду за библиотекой. Спросите соседку полной фразой: за библиотекой есть река?**
+<!-- interaction_id: en:lesson-04:session-50:i03; family: phrase_builder -->
+Плитки: `river` `a` `behind` `the` `library` `Is` `there` `Are` → **Is there a river behind the library?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a river behind the library?`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-50:i05; family: listen_build_dictation -->
-🔊 *This is a river.* Плитки: `river` `a` `is` `This` `are` → **This is a river.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a river.`)*
+**5 · Карточка слова — cone**
+<!-- interaction_id: en:lesson-04:session-50:word:cone; family: word_card -->
+> **cone** — дорожный конус. Are there cones near the bridge? — «Есть ли конусы возле моста?» О пластиковом колпаке, которым закрывают проход.
 
-**6 · Кинотеатр рядом с рекой. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-50:i06; family: phrase_builder -->
-Плитки: `river` `the` `to` `next` `is` `cinema` `The` `are` → **The cinema is next to the river.**
-*(плитка `are` лишняя: здесь нужно `is` — `The cinema is next to the river.`)*
+**6 · Оранжевый пластиковый колпак, которым закрывают проход. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-50:i04; family: context_gap_grammar -->
+___ → **cone** · barrier · sign
+- barrier — *barrier — это шлагбаум, а оранжевый колпак на тротуаре называется cone.*
+- sign — *sign — это табличка, а оранжевый колпак на тротуаре называется cone.*
 
-**7 · Ваш способ объяснять дорогу помогает находить место. Скажите «Это эффективно» с сокращением**
-<!-- interaction_id: en:lesson-04:session-50:i07; family: scripted_repeat_compare -->
-🎙 **It's effective.**
+**7 · Послушайте бегуна**
+<!-- interaction_id: en:lesson-04:session-50:i05; family: listen_choose -->
+🔊 *Are there cones on the pavement?* → **Are there cones on the pavement?** · Is there a cone on the pavement? · Are there cones on the bridge?
+- Is there a cone on the pavement? — *В записи вопрос `Are there cones` о нескольких, а в этом варианте `Is there a cone` об одном.*
+- Are there cones on the bridge? — *В записи место `pavement`, а в этом варианте `bridge`.*
 
-**8 · Кинотеатра нет. Выберите форму**
+**8 · Карточка слова — detour**
+<!-- interaction_id: en:lesson-04:session-50:word:detour; family: word_card -->
+> **detour** — объезд, обход. Is there a detour near the park? — «Есть ли обход возле парка?» О пути в стороне, когда прямой путь закрыт.
+
+**9 · Бегун называет путь в стороне, когда прямая тропа закрыта, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-50:i06; family: scripted_repeat_compare -->
+🎙 **detour**
+
+**10 · Послушайте бегуна и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-50:i07; family: listen_build_dictation -->
+🔊 *Is there a detour near the bridge?* Плитки: `detour` `a` `near` `the` `bridge` `Is` `there` `Are` → **Is there a detour near the bridge?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a detour near the bridge?`)*
+
+**11 · Карточка слова — footbridge**
+<!-- interaction_id: en:lesson-04:session-50:word:footbridge; family: word_card -->
+> **footbridge** — пешеходный мостик. Is there a footbridge behind the cafe? — «Есть ли мостик за кафе?» О маленьком мосту только для пешеходов.
+
+**12 · Узкий мост, по которому ходят только пешком. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-50:i08; family: context_gap_grammar -->
-There ___ a cinema. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Один кинотеатр: `isn’t a cinema`.*
+___ → **footbridge** · bridge · pavement
+- bridge — *bridge — это любой мост, а мост только для пешеходов называется footbridge.*
+- pavement — *pavement — это тротуар, а мост только для пешеходов называется footbridge.*
 
-**9 · Послушайте, где павильон**
-<!-- interaction_id: en:lesson-04:session-50:i09; family: listen_choose -->
-🔊 *The bus shelter is next to the cinema.* → **The bus shelter is next to the cinema.** · The bus shelter is next to the hospital. · The bus shelter is next to the shop.
-- The bus shelter is next to the hospital. — *В записи последнее слово — `cinema`, а в этом варианте — `hospital`.*
-- The bus shelter is next to the shop. — *В записи последнее слово — `cinema`, а в этом варианте — `shop`.*
+**13 · Вы ищете переход на другой берег. Спросите бегуна полной фразой: возле кафе есть мостики?**
+<!-- interaction_id: en:lesson-04:session-50:i09; family: phrase_builder -->
+Плитки: `footbridges` `near` `the` `cafe` `Are` `there` `Is` → **Are there footbridges near the cafe?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there footbridges near the cafe?`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-50:i10; family: speed_match -->
-river — река · effective — действенный · cinema — кинотеатр · bus shelter — остановочный павильон
+cone — дорожный конус · footbridge — пешеходный мостик · pond — пруд · bridge — мост
 
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-50:i11; family: listen_build_dictation -->
-🔊 *Is there a river?* Плитки: `river` `a` `there` `Is` → **Is there a river?**
+**15 · Послушайте короткий ответ бегуна**
+<!-- interaction_id: en:lesson-04:session-50:i11; family: listen_choose -->
+🔊 *Yes, there is.* → **Yes, there is.** · No, there isn’t. · Yes, there are.
+- No, there isn’t. — *В записи ответ начинается с `Yes`, а в этом варианте — с `No`.*
+- Yes, there are. — *В записи `there is` — один, а в этом варианте `there are` — несколько.*
 
-**12 · Друг в остановочном павильоне. Скажите, где он, без сокращения**
-<!-- interaction_id: en:lesson-04:session-50:i12; family: phrase_builder -->
-Плитки: `shelter` `bus` `the` `in` `is` `He` `are` → **He is in the bus shelter.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is in the bus shelter.`)*
+**16 · Бегун спросил, есть ли обход. Вы знаете, что обхода нет. Дополните ваш короткий ответ**
+<!-- interaction_id: en:lesson-04:session-50:i12; family: context_gap_grammar -->
+No, there ___. → **isn’t** · aren’t · is
+- aren’t — *Обход один, поэтому нужно isn’t, а не aren’t.*
+- is — *После No нужно isn’t: No, there isn’t.*
 
-**13 · Вы хотите посмотреть фильм. Спросите, есть ли кинотеатр**
-<!-- interaction_id: en:lesson-04:session-50:i13; family: scripted_repeat_compare -->
-🎙 **Is there a cinema?**
+**17 · Послушайте бегуна и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-50:i13; family: listen_build_dictation -->
+🔊 *Are there cones near the cafe?* Плитки: `cones` `near` `the` `cafe` `Are` `there` `Is` → **Are there cones near the cafe?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there cones near the cafe?`)*
 
-**14 · Отель рядом с рекой, не в воде и не под рекой. Выберите слова**
-<!-- interaction_id: en:lesson-04:session-50:i14; family: context_gap_grammar -->
-The hotel is ___ the river. → **next to** · in · under
-- in — *`in` — внутри; рядом — `next to`.*
-- under — *`under` — под; рядом — `next to`.*
+**18 · Встречный бегун спрашивает, есть ли на тротуаре конусы. Они там есть. Ответьте ему коротко**
+<!-- interaction_id: en:lesson-04:session-50:i14; family: scripted_repeat_compare -->
+🎙 **Yes, there are.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-50:i15; family: listen_choose -->
-🔊 *That is a river.* → **That is a river.** · This is a river. · That is a canal.
-- This is a river. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a canal. — *В записи последнее слово — `river`, а в этом варианте — `canal`.*
+**19 · Вы смотрите на карту. Спросите бегуна полной фразой: за кафе есть мостик?**
+<!-- interaction_id: en:lesson-04:session-50:i15; family: phrase_builder -->
+Плитки: `footbridge` `a` `behind` `the` `cafe` `Is` `there` `Are` → **Is there a footbridge behind the cafe?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a footbridge behind the cafe?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-50:i16; family: speed_match -->
-river — река · effective — действенный · cinema — кинотеатр · bus shelter — остановочный павильон
+river — река · detour — объезд, обход · footbridge — пешеходный мостик · cone — дорожный конус
 
-**17 · В другом городе друг ищет кинотеатр. Он рядом с рекой. Объясните, где кинотеатр, полной фразой**
+**21 · Бегун спрашивает, есть ли здесь пешеходные мостики. Их нет. Ответьте ему коротко**
 <!-- interaction_id: en:lesson-04:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The cinema is next to the river.**
-
+🎙 **No, there aren’t.**

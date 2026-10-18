@@ -1,137 +1,152 @@
 # Англійська · Урок 4 · Заняття 42 — Укриття на зупинці
 
-**Ситуація.** Ви збираєтеся їхати автобусом. Друг стверджує, що на зупинці є павільйон, але ви бачите лише знак: інформація неточна. Перед виходом ви також уточнюєте, чи є поручень у ванній.
+**Ситуація.** Ви приїхали на станцію й розпитуєте працівника, що є поруч. Нової граматики немає: ви ставите запитання Is there…? або Are there any…?, а короткі відповіді Yes, there is і No, there isn’t даєте окремим ходом.
 
-**Що ви опануєте:** назвати зупинковий павільйон і повідомити, що інформація неточна
-**Нові слова:** bus shelter
+**Що ви опануєте:** запитати про наявність одного чи кількох предметів і окремо відповісти коротко
+**Нові слова:** bus shelter, ticket machine, turnstile, information desk
+**Повертаються:** platform, timetable, entrance, bench, map, hall, lobby, reception, bank, gate, market
 
 ---
 
 ## Інтро 1
 
-### Під дахом
+### Дощ на зупинці
 
-`bus shelter` — «зупинковий павільйон»: укриття на автобусній зупинці, зазвичай із дахом. Це не сама зупинка `bus stop`, а місце, де можна сховатися від дощу. Один павільйон — `a bus shelter`. `This is a bus shelter` — «Це зупинковий павільйон». Дах чекає на автобус разом із вами, але нікуди не їде.
+Ви стоїте на зупинці, дощ посилюється, а сумка вже геть мокра. Потрібен дах із лавкою, щоб спокійно перечекати автобус. bus shelter — «зупинковий павільйон». Один павільйон — Is there a bus shelter near here? — «Поруч є зупинковий павільйон?»
 
-**Назвіть один зупинковий павільйон.**
+**Працівник станції стоїть поруч. Запитайте його, чи є поруч зупинковий павільйон.**
 
-- ✅ **This is a bus shelter.**
-- ❌ This is bus shelter. — *Перед одним павільйоном потрібне `a`: `a bus shelter`.*
-- ❌ These are bus shelters. — *Тут один павільйон: `This is a bus shelter`.*
+- ✅ **Is there a bus shelter near here?**
+- ❌ There is a bus shelter near here? — *Запитання про наявність починають з Is there, а не з There is.*
+- ❌ Is there bus shelter near here? — *Павільйон один, тому перед bus shelter потрібно a.*
 
 ---
 
 ## Інтро 2
 
-### Поручень у ванній
+### Черга біля каси
 
-`bathroom` — «ванна кімната», `handrail` — «поручень». `The handrail is in the bathroom` — «Поручень у ванній». `Is there a handrail?` — «Є поручень?» `There isn’t a handrail` — «Поручня немає». У запитанні `is` стоїть перед `there`.
+У каси довга черга, а потяг скоро відійде. Працівник каже, що на платформі стоять апарати, де квиток купують самі. ticket machine — «автомат для квитків». Ви не бачите жодного й питаєте про кілька: Are there any ticket machines on the platform?
 
-**Запитайте, чи є поручень.**
+**Запитайте працівника, чи є на платформі автомати для квитків.**
 
-- ✅ **Is there a handrail?**
-- ❌ There is a handrail. — *Це повідомлення про наявність; запитання починається з `Is there`.*
-- ❌ Are there a handrail? — *Один поручень: `Is there a handrail?`.*
+- ✅ **Are there any ticket machines on the platform?**
+- ❌ Is there any ticket machines on the platform? — *Автоматів кілька, тому запитання починають з Are there, а не з Is there.*
+- ❌ Are there any ticket machine on the platform? — *Після any слово ставлять у множині: ticket machines.*
 
 ---
 
 ## Інтро 3
 
-### Відомості з помилкою
+### Вхід на платформу
 
-`inaccurate` — «неточний». Вам сказали, що павільйон є, але на місці його немає: відомості не відповідають дійсності. `It is inaccurate` — «Це неточно», коротше `It’s inaccurate`. Тут ідеться про помилку в інформації, а не про неохайний вигляд. `There isn’t a bus shelter` — «Зупинкового павільйону немає».
+Працівник питає, що ви бачите біля входу на платформу. Ви помічаєте високу обертову перекладину, яка пропускає людей строго по одному. turnstile — «турнікет». Він один, тому: There is a turnstile near the entrance — «Поруч зі входом є турнікет».
 
-**Інформація про павільйон містить помилку. Скажіть, що вона неточна, зі скороченням.**
+**Працівник чекає відповіді. Скажіть йому, що поруч зі входом є турнікет.**
 
-- ✅ **It's inaccurate.**
-- ❌ It's accurate. — *`accurate` — точно; тут помилка: `inaccurate`.*
-- ❌ It are inaccurate. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **There is a turnstile near the entrance.**
+- ❌ There is turnstile near the entrance. — *Турнікет один, тому перед turnstile потрібно a.*
+- ❌ There are a turnstile near the entrance. — *Турнікет один, тому потрібно There is, а не There are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · В інформації помилка. Скажіть, що вона неточна, без скорочення**
-<!-- interaction_id: en:lesson-04:session-42:i01; family: phrase_builder -->
-Плитки: `inaccurate` `is` `It` `are` → **It is inaccurate.**
-*(плитка `are` зайва: тут потрібно `is` — `It is inaccurate.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-42:i01; family: speed_match -->
+bus shelter — зупинковий павільйон · ticket machine — автомат для квитків · turnstile — турнікет · information desk — довідкова стійка
 
-**2 · Послухайте й виберіть назву**
-<!-- interaction_id: en:lesson-04:session-42:i02; family: listen_choose -->
-🔊 *bus shelter* → **bus shelter** · bus shelters · bus stop
-- bus shelters — *У записі останнє слово — `shelter`, а в цьому варіанті — `shelters`.*
-- bus stop — *У записі останнє слово — `shelter`, а в цьому варіанті — `stop`.*
+**2 · Картка слова — bus shelter**
+<!-- interaction_id: en:lesson-04:session-42:word:bus shelter; family: word_card -->
+> **bus shelter** — зупинковий павільйон. There is a bus shelter next to the bank. — «Поруч із банком є зупинковий павільйон». Про навіс на зупинці, де пережидають дощ і чекають автобус.
 
-**3 · Назвіть укриття з дахом на автобусній зупинці**
-<!-- interaction_id: en:lesson-04:session-42:i03; family: context_gap_grammar -->
-___ → **bus shelter** · bus stop · bike shed
-- bus stop — *`bus stop` — сама зупинка; павільйон — `bus shelter`.*
-- bike shed — *`bike shed` — сарай для велосипедів; тут `bus shelter`.*
+**3 · Працівник показує на зупинці навіс із дахом і лавкою, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-42:i02; family: scripted_repeat_compare -->
+🎙 **bus shelter**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-42:i04; family: speed_match -->
-bus shelter — зупинковий павільйон · inaccurate — неточний · bathroom — ванна кімната · handrail — поручень
+**4 · Працівник слухає. Поставте йому повне запитання: чи є поруч із банком зупинковий павільйон?**
+<!-- interaction_id: en:lesson-04:session-42:i03; family: phrase_builder -->
+Плитки: `bus` `shelter` `a` `near` `the` `bank` `Is` `there` `Are` → **Is there a bus shelter near the bank?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there a bus shelter near the bank?`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-42:i05; family: listen_build_dictation -->
-🔊 *This is a bus shelter.* Плитки: `shelter` `bus` `a` `is` `This` `are` → **This is a bus shelter.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a bus shelter.`)*
+**5 · Картка слова — ticket machine**
+<!-- interaction_id: en:lesson-04:session-42:word:ticket machine; family: word_card -->
+> **ticket machine** — автомат для квитків. There are some ticket machines near the gate. — «Біля воріт є кілька автоматів для квитків». Про апарат, де квиток купують самі, без касира.
 
-**6 · Поручень у ванній кімнаті. Скажіть, де він**
-<!-- interaction_id: en:lesson-04:session-42:i06; family: phrase_builder -->
-Плитки: `bathroom` `the` `in` `is` `handrail` `The` `are` → **The handrail is in the bathroom.**
-*(плитка `are` зайва: тут потрібно `is` — `The handrail is in the bathroom.`)*
+**6 · Працівник показує на платформі апарат, де квиток купують самі. Як він називається англійською?**
+<!-- interaction_id: en:lesson-04:session-42:i04; family: context_gap_grammar -->
+___ → **ticket machine** · timetable · map
+- timetable — *timetable — це розклад, а апарат для купівлі квитка називається ticket machine.*
+- map — *map — це мапа, а апарат для купівлі квитка називається ticket machine.*
 
-**7 · Відомості про павільйон помилкові. Скажіть, що інформація неточна, зі скороченням**
-<!-- interaction_id: en:lesson-04:session-42:i07; family: scripted_repeat_compare -->
-🎙 **It's inaccurate.**
+**7 · Послухайте запитання працівника**
+<!-- interaction_id: en:lesson-04:session-42:i05; family: listen_choose -->
+🔊 *Are there any ticket machines near the entrance?* → **Are there any ticket machines near the entrance?** · Are there any ticket machines near the platform? · Is there a ticket machine near the entrance?
+- Are there any ticket machines near the platform? — *У записі останнє слово — `entrance`, а в цьому варіанті — `platform`.*
+- Is there a ticket machine near the entrance? — *У записі `Are there any` — питають про кілька, а в цьому варіанті `Is there a` — про один.*
 
-**8 · Поручня немає. Виберіть форму**
+**8 · Картка слова — turnstile**
+<!-- interaction_id: en:lesson-04:session-42:word:turnstile; family: word_card -->
+> **turnstile** — турнікет. There is a turnstile between the gate and the hall. — «Між воротами й холом є турнікет». Про обертову перекладину на вході, яка пропускає людей по одному.
+
+**9 · Працівник показує біля входу обертову перекладину для проходу по одному, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-42:i06; family: scripted_repeat_compare -->
+🎙 **turnstile**
+
+**10 · Послухайте працівника й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-42:i07; family: listen_build_dictation -->
+🔊 *Is there a turnstile near the platform?* Плитки: `turnstile` `a` `near` `the` `platform` `Is` `there` `Are` → **Is there a turnstile near the platform?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there a turnstile near the platform?`)*
+
+**11 · Картка слова — information desk**
+<!-- interaction_id: en:lesson-04:session-42:word:information desk; family: word_card -->
+> **information desk** — довідкова стійка. There is an information desk in the hall. — «У холі є довідкова стійка». Про стійку, де працівник підказує, як проїхати, і показує мапу.
+
+**12 · Працівник сидить за стійкою, де підказують, як проїхати. Як називається така стійка?**
 <!-- interaction_id: en:lesson-04:session-42:i08; family: context_gap_grammar -->
-There ___ a handrail. → **isn't** · is · aren't
-- is — *`is` — є; тут немає: `isn’t`.*
-- aren't — *Один поручень: `isn’t a handrail`.*
+___ → **information desk** · reception · timetable
+- reception — *reception — це стійка реєстрації в готелі, а на станції підказують біля information desk.*
+- timetable — *timetable — це розклад, а стійка з підказками називається information desk.*
 
-**9 · Послухайте, де павільйон**
-<!-- interaction_id: en:lesson-04:session-42:i09; family: listen_choose -->
-🔊 *The bus shelter is next to the shop.* → **The bus shelter is next to the shop.** · The bus shelter is next to the hotel. · The bus shelter is next to the gym.
-- The bus shelter is next to the hotel. — *У записі останнє слово — `shop`, а в цьому варіанті — `hotel`.*
-- The bus shelter is next to the gym. — *У записі останнє слово — `shop`, а в цьому варіанті — `gym`.*
+**13 · Працівник зайнятий. Поставте йому повне запитання: чи є у вестибюлі довідкова стійка?**
+<!-- interaction_id: en:lesson-04:session-42:i09; family: phrase_builder -->
+Плитки: `information` `desk` `an` `in` `the` `lobby` `Is` `there` `Are` → **Is there an information desk in the lobby?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there an information desk in the lobby?`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-42:i10; family: speed_match -->
-bus shelter — зупинковий павільйон · inaccurate — неточний · bathroom — ванна кімната · handrail — поручень
+information desk — довідкова стійка · turnstile — турнікет · timetable — розклад · platform — платформа (на вокзалі)
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-42:i11; family: listen_build_dictation -->
-🔊 *There aren't any bus shelters.* Плитки: `shelters` `bus` `any` `aren't` `There` → **There aren't any bus shelters.**
+**15 · Послухайте відповідь працівника**
+<!-- interaction_id: en:lesson-04:session-42:i11; family: listen_choose -->
+🔊 *Yes, there is.* → **Yes, there is.** · Yes, there are. · No, there isn’t.
+- Yes, there are. — *У записі `is` — один предмет, а в цьому варіанті `are` — кілька.*
+- No, there isn’t. — *У записі `Yes` — так, а в цьому варіанті `No` — ні.*
 
-**12 · Тут є зупинковий павільйон. Повідомте про це**
-<!-- interaction_id: en:lesson-04:session-42:i12; family: phrase_builder -->
-Плитки: `shelter` `bus` `a` `is` `There` `are` → **There is a bus shelter.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a bus shelter.`)*
+**16 · Працівник показує на один турнікет біля воріт. Виберіть потрібне слово**
+<!-- interaction_id: en:lesson-04:session-42:i12; family: context_gap_grammar -->
+Is there ___ turnstile near the gate? → **a** · an · any
+- an — *Слово turnstile починається з приголосного звуку, тому потрібно a, а не an.*
+- any — *Турнікет один, а any ставлять перед кількома предметами.*
 
-**13 · Ви ще не бачили зупинку. Запитайте, чи є зупинковий павільйон**
-<!-- interaction_id: en:lesson-04:session-42:i13; family: scripted_repeat_compare -->
-🎙 **Is there a bus shelter?**
+**17 · Послухайте працівника й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-42:i13; family: listen_build_dictation -->
+🔊 *Are there any bus shelters near the market?* Плитки: `bus` `shelters` `any` `near` `the` `market` `Are` `there` `Is` → **Are there any bus shelters near the market?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are there any bus shelters near the market?`)*
 
-**14 · Сумка всередині павільйону, не на даху й не зовні поруч. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-42:i14; family: context_gap_grammar -->
-The bag is ___ the bus shelter. → **in** · on · next to
-- on — *`on` — на поверхні; всередині — `in`.*
-- next to — *`next to` — поруч; усередині павільйону — `in the bus shelter`.*
+**18 · Працівник питає, чи є у вас поруч зупинковий павільйон. Павільйону немає. Дайте коротку відповідь**
+<!-- interaction_id: en:lesson-04:session-42:i14; family: scripted_repeat_compare -->
+🎙 **No, there isn’t.**
 
-**15 · Послухайте, що показує друг**
-<!-- interaction_id: en:lesson-04:session-42:i15; family: listen_choose -->
-🔊 *That is a bus shelter.* → **That is a bus shelter.** · This is a bus shelter. · That is a bus stop.
-- This is a bus shelter. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- That is a bus stop. — *У записі останнє слово — `shelter`, а в цьому варіанті — `stop`.*
+**19 · Працівник записує вашу відповідь. Скажіть йому повною фразою: біля входу є автомат для квитків**
+<!-- interaction_id: en:lesson-04:session-42:i15; family: phrase_builder -->
+Плитки: `ticket` `machine` `a` `near` `the` `entrance` `There` `is` `are` → **There is a ticket machine near the entrance.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a ticket machine near the entrance.`)*
 
-**16 · З’єднайте назви зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-42:i16; family: speed_match -->
-bus shelter — зупинковий павільйон · inaccurate — неточний · bathroom — ванна кімната · handrail — поручень
+bus shelter — зупинковий павільйон · ticket machine — автомат для квитків · turnstile — турнікет · information desk — довідкова стійка
 
-**17 · На іншій зупинці немає павільйону. Повідомте «Зупинкового павільйону немає»**
+**21 · Ви на станції й не бачите довідкової. Запитайте працівника: «Тут є довідкова стійка?»**
 <!-- interaction_id: en:lesson-04:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a bus shelter.**
-
+🎙 **Is there an information desk here?**

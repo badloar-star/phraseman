@@ -1,137 +1,152 @@
 # Английский · Урок 4 · Занятие 51 — В районном центре
 
-**Ситуация.** Вы ищете центр для жителей района. Рядом библиотеки, у входа контейнер для вторсырья. Старый способ объяснять дорогу не помогает: гости всё равно теряются.
+**Ситуация.** Вы пришли в районный центр и осматриваете, что там есть: стол с листовками, зал, сцену. Новой грамматики нет: some вы говорите в утверждении, any — в вопросе и отрицании, и только про то, что есть или чего нет.
 
-**Что вы освоите:** назвать общественный центр, объяснить расположение и сказать, что способ не даёт результата
-**Новые слова:** community centre
+**Что вы освоите:** самому выбрать some в утверждении и any в вопросе или отрицании
+**Новые слова:** community centre, leaflet, stage, board game
+**Возвращаются:** hall, library, bank, door, bench, table
 
 ---
 
 ## Интро 1
 
-### Место для жителей
+### Куда сходить в дождь
 
-`community centre` — «общественный центр», место встреч и занятий для жителей района. Два слова называют одно место: `a community centre`. `This is a community centre` — «Это общественный центр». Здесь могут встречаться и шахматисты, и танцоры; главное, чтобы шахматные фигуры не начали танцевать.
+Сосед хочет провести дождливый вечер с детьми не дома. Вы вспоминаете большое здание, где жители района собираются на занятия и праздники. community centre — «районный центр». Он один, и стоит между банком и библиотекой: There is a community centre between the bank and the library.
 
-**Назовите один общественный центр.**
+**Сосед ищет, куда сходить с детьми. Скажите ему, что между банком и библиотекой есть районный центр.**
 
-- ✅ **This is a community centre.**
-- ❌ This is community centre. — *Перед одним центром нужно `a`: `a community centre`.*
-- ❌ These are community centres. — *Здесь один центр: `This is a community centre`.*
+- ✅ **There is a community centre between the bank and the library.**
+- ❌ There are a community centre between the bank and the library. — *Центр один, поэтому нужно is, а не are.*
+- ❌ There is a community centre between the bank. — *Для слова between нужны два ориентира: between the bank and the library.*
 
 ---
 
 ## Интро 2
 
-### Библиотеки и контейнер
+### Что лежит на столе
 
-`libraries` — «библиотеки», `recycling bin` — «контейнер для вторсырья». `The libraries are next to the park` — «Библиотеки рядом с парком». `The recycling bin is next to the door` — «Контейнер для вторсырья рядом с дверью». Несколько библиотек требуют `are`, один контейнер — `is`.
+Вы вошли в центр, и подруга спрашивает, как узнать, какие здесь занятия. У входа стоит стол, а на нём лежат бумажные листы с расписанием кружков, и их несколько. leaflet — «листовка». There are some leaflets on the table — «На столе есть несколько листовок».
 
-**Библиотеки рядом с парком. Выберите описание.**
+**Подруга спрашивает, как узнать про занятия. Скажите ей, что на столе есть несколько листовок.**
 
-- ✅ **The libraries are next to the park.**
-- ❌ The libraries is next to the park. — *Несколько библиотек: `The libraries are`.*
-- ❌ The libraries are in the park. — *`in` — внутри; здесь рядом: `next to`.*
+- ✅ **There are some leaflets on the table.**
+- ❌ There is some leaflets on the table. — *Листовок несколько, поэтому нужно are, а не is.*
+- ❌ There are some leaflet on the table. — *Листовок несколько, поэтому на конце leaflets, а не leaflet.*
 
 ---
 
 ## Интро 3
 
-### Результата нет
+### Скучные дети
 
-`ineffective` — «неэффективный, недейственный»: способ не даёт нужного результата. Вы объясняете дорогу, но люди всё равно не находят центр: `It is ineffective`, короче `It’s ineffective`. Речь о результате, а не о том, нравится ли вам способ.
+Дети соседа заскучали и просят во что-нибудь сыграть за столом. Вы подходите к администратору и спрашиваете про коробки с полем, фишками и кубиком, в которые играют вдвоём или втроём. board game — «настольная игра». Are there any board games in the hall?
 
-**Способ не помогает гостям находить центр. Скажите «Это неэффективно» с сокращением.**
+**Дети просят во что-нибудь сыграть. Спросите администратора, есть ли в зале настольные игры.**
 
-- ✅ **It's ineffective.**
-- ❌ It's effective. — *`effective` — эффективно; здесь `ineffective`.*
-- ❌ It are ineffective. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **Are there any board games in the hall?**
+- ❌ Are there some board games in the hall? — *В вопросе говорим any, а не some: Are there any.*
+- ❌ Is there any board games in the hall? — *Игр несколько, поэтому вопрос начинаем с Are there, а не с Is there.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Способ не даёт нужного результата. Скажите «Это неэффективно» без сокращения**
-<!-- interaction_id: en:lesson-04:session-51:i01; family: phrase_builder -->
-Плитки: `ineffective` `is` `It` `are` → **It is ineffective.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is ineffective.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-51:i01; family: speed_match -->
+community centre — районный центр для жителей · leaflet — листовка · stage — сцена · board game — настольная игра
 
-**2 · Послушайте и выберите название**
-<!-- interaction_id: en:lesson-04:session-51:i02; family: listen_choose -->
-🔊 *community centre* → **community centre** · community centres · community kitchen
-- community centres — *В записи последнее слово — `centre`, а в этом варианте — `centres`.*
-- community kitchen — *В записи последнее слово — `centre`, а в этом варианте — `kitchen`.*
+**2 · Карточка слова — community centre**
+<!-- interaction_id: en:lesson-04:session-51:word:community centre; family: word_card -->
+> **community centre** — районный центр. There is a community centre near the bank. — «Возле банка есть районный центр». О здании, где жители района собираются на занятия и праздники.
 
-**3 · Назовите общественный центр для встреч и занятий жителей**
-<!-- interaction_id: en:lesson-04:session-51:i03; family: context_gap_grammar -->
-___ → **community centre** · bus shelter · parcel locker
-- bus shelter — *`bus shelter` — остановочный павильон; здесь `community centre`.*
-- parcel locker — *`parcel locker` — постамат; здесь `community centre`.*
+**3 · Администратор называет здание, где жители района собираются на занятия, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-51:i02; family: scripted_repeat_compare -->
+🎙 **community centre**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-51:i04; family: speed_match -->
-community centre — общественный центр · ineffective — недейственный · libraries — библиотеки · recycling bin — контейнер для вторсырья
+**4 · Сосед спрашивает, что возле банка. Скажите ему полной фразой: возле банка есть районный центр**
+<!-- interaction_id: en:lesson-04:session-51:i03; family: phrase_builder -->
+Плитки: `community` `centre` `a` `near` `the` `bank` `There` `is` `are` → **There is a community centre near the bank.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a community centre near the bank.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-51:i05; family: listen_build_dictation -->
-🔊 *This is a community centre.* Плитки: `centre` `community` `a` `is` `This` `are` → **This is a community centre.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a community centre.`)*
+**5 · Карточка слова — leaflet**
+<!-- interaction_id: en:lesson-04:session-51:word:leaflet; family: word_card -->
+> **leaflet** — листовка. There are some leaflets near the door. — «Возле двери есть несколько листовок». О бумажном листе, на котором напечатаны новости или расписание.
 
-**6 · Библиотеки рядом с парком. Скажите, где они**
-<!-- interaction_id: en:lesson-04:session-51:i06; family: phrase_builder -->
-Плитки: `park` `the` `to` `next` `are` `libraries` `The` `is` → **The libraries are next to the park.**
-*(плитка `is` лишняя: здесь нужно `are` — `The libraries are next to the park.`)*
+**6 · Бумажный лист, на котором напечатаны новости или расписание занятий. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-51:i04; family: context_gap_grammar -->
+___ → **leaflet** · ticket · letter
+- ticket — *ticket — это билет, а бумажный лист с расписанием называется leaflet.*
+- letter — *letter — это письмо, а бумажный лист с расписанием называется leaflet.*
 
-**7 · Способ объяснять дорогу не помогает гостям находить место. Скажите «Это неэффективно» с сокращением**
-<!-- interaction_id: en:lesson-04:session-51:i07; family: scripted_repeat_compare -->
-🎙 **It's ineffective.**
+**7 · Послушайте администратора**
+<!-- interaction_id: en:lesson-04:session-51:i05; family: listen_choose -->
+🔊 *There are some leaflets near the door.* → **There are some leaflets near the door.** · There aren’t any leaflets near the door. · There are some leaflets near the bench.
+- There aren’t any leaflets near the door. — *В записи `are some` — листовки есть, а в этом варианте `aren’t any` — их нет.*
+- There are some leaflets near the bench. — *В записи последнее место `door`, а в этом варианте `bench`.*
 
-**8 · Контейнера для вторсырья нет. Выберите форму**
+**8 · Карточка слова — board game**
+<!-- interaction_id: en:lesson-04:session-51:word:board game; family: word_card -->
+> **board game** — настольная игра. There aren’t any board games on the table. — «На столе нет настольных игр». О коробке с полем и фишками, в которую играют за столом.
+
+**9 · Администратор показывает коробку с полем и фишками, в которую играют за столом, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-51:i06; family: scripted_repeat_compare -->
+🎙 **board game**
+
+**10 · Послушайте администратора и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-51:i07; family: listen_build_dictation -->
+🔊 *Are there any board games on the table?* Плитки: `board` `games` `any` `on` `the` `table` `Are` `there` `Is` → **Are there any board games on the table?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there any board games on the table?`)*
+
+**11 · Карточка слова — stage**
+<!-- interaction_id: en:lesson-04:session-51:word:stage; family: word_card -->
+> **stage** — сцена. There isn’t a stage in the hall. — «В зале нет сцены». О высокой площадке в зале, на которой выступают.
+
+**12 · Высокая площадка в зале, на которой выступают артисты. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-51:i08; family: context_gap_grammar -->
-There ___ a recycling bin. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Один контейнер: `isn’t a recycling bin`.*
+___ → **stage** · bench · floor
+- bench — *bench — это скамейка, а высокая площадка для артистов называется stage.*
+- floor — *floor — это пол, а высокая площадка для артистов называется stage.*
 
-**9 · Послушайте, где контейнер**
-<!-- interaction_id: en:lesson-04:session-51:i09; family: listen_choose -->
-🔊 *The recycling bin is next to the door.* → **The recycling bin is next to the door.** · The recycling bin is next to the table. · The recycling bin is next to the shop.
-- The recycling bin is next to the table. — *В записи последнее слово — `door`, а в этом варианте — `table`.*
-- The recycling bin is next to the shop. — *В записи последнее слово — `door`, а в этом варианте — `shop`.*
+**13 · Подруга ищет сцену. Скажите ей полной фразой: в зале нет сцены**
+<!-- interaction_id: en:lesson-04:session-51:i09; family: phrase_builder -->
+Плитки: `stage` `a` `in` `the` `hall` `There` `isn’t` `aren’t` → **There isn’t a stage in the hall.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a stage in the hall.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-51:i10; family: speed_match -->
-community centre — общественный центр · ineffective — недейственный · libraries — библиотеки · recycling bin — контейнер для вторсырья
+leaflet — листовка · stage — сцена · hall — холл, коридор · noticeboard — доска объявлений
 
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-51:i11; family: listen_build_dictation -->
-🔊 *Is there a community centre?* Плитки: `centre` `community` `a` `there` `Is` → **Is there a community centre?**
+**15 · Послушайте сотрудницу**
+<!-- interaction_id: en:lesson-04:session-51:i11; family: listen_choose -->
+🔊 *Are there any leaflets here?* → **Are there any leaflets here?** · Are there some leaflets here? · Is there a leaflet here?
+- Are there some leaflets here? — *В записи вопрос с `any`, а в этом варианте `some`: в вопросе говорят any.*
+- Is there a leaflet here? — *В записи `Are there any` — о нескольких, а в этом варианте `Is there a` — об одной.*
 
-**12 · Здесь есть общественный центр. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-51:i12; family: phrase_builder -->
-Плитки: `centre` `community` `a` `is` `There` `are` → **There is a community centre.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a community centre.`)*
+**16 · На столе нет настольных игр. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-51:i12; family: context_gap_grammar -->
+There aren’t ___ board games on the table. → **any** · some · a
+- some — *В отрицании говорим any, а не some: aren’t any.*
+- a — *Игр несколько, поэтому перед ними нужно any, а не a.*
 
-**13 · Спросите, есть ли контейнер для вторсырья**
-<!-- interaction_id: en:lesson-04:session-51:i13; family: scripted_repeat_compare -->
-🎙 **Is there a recycling bin?**
+**17 · Послушайте сотрудницу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-51:i13; family: listen_build_dictation -->
+🔊 *There are some board games in the hall.* Плитки: `board` `games` `some` `in` `the` `hall` `There` `are` `is` → **There are some board games in the hall.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some board games in the hall.`)*
 
-**14 · Центр между двумя магазинами, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-51:i14; family: context_gap_grammar -->
-The community centre is ___ the shops. → **between** · in · under
-- in — *`in` — внутри; между — `between`.*
-- under — *`under` — под; между — `between`.*
+**18 · Вы вышли из центра и ждёте автобус. Спросите прохожего: «Здесь рядом есть районный центр?»**
+<!-- interaction_id: en:lesson-04:session-51:i14; family: scripted_repeat_compare -->
+🎙 **Is there a community centre near here?**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-51:i15; family: listen_choose -->
-🔊 *That is a community centre.* → **That is a community centre.** · This is a community centre. · That is a community kitchen.
-- This is a community centre. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a community kitchen. — *В записи последнее слово — `centre`, а в этом варианте — `kitchen`.*
+**19 · Администратор ищет листовки. Скажите ему полной фразой: на сцене нет листовок**
+<!-- interaction_id: en:lesson-04:session-51:i15; family: phrase_builder -->
+Плитки: `leaflets` `any` `on` `the` `stage` `There` `aren’t` `isn’t` → **There aren’t any leaflets on the stage.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any leaflets on the stage.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-51:i16; family: speed_match -->
-community centre — общественный центр · ineffective — недейственный · libraries — библиотеки · recycling bin — контейнер для вторсырья
+community centre — районный центр для жителей · leaflet — листовка · stage — сцена · board game — настольная игра
 
-**17 · В другом районе общественный центр рядом с парком. Объясните другу, где он, полной фразой**
+**21 · Администратор спрашивает, остались ли листовки. Их нет. Скажите ему: «Листовок здесь нет»**
 <!-- interaction_id: en:lesson-04:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The community centre is next to the park.**
-
+🎙 **There aren’t any leaflets here.**

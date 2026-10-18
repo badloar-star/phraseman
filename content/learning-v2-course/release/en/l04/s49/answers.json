@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-49:i01",
-    "correctText": "It is unacceptable.",
+    "correctText": "en:lesson-04:session-49:i01:p1=canal\nen:lesson-04:session-49:i01:p2=towpath\nen:lesson-04:session-49:i01:p3=narrowboat\nen:lesson-04:session-49:i01:p4=swan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-49:word:canal",
+    "correctText": "canal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i02",
     "correctText": "canal",
-    "correctResponseId": "en:lesson-04:session-49:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-49:i03",
-    "correctText": "canal",
-    "correctResponseId": "en:lesson-04:session-49:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-49:i04",
-    "correctText": "en:lesson-04:session-49:i04:p1=canal\nen:lesson-04:session-49:i04:p2=unacceptable\nen:lesson-04:session-49:i04:p3=hospital\nen:lesson-04:session-49:i04:p4=cashpoint",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-49:i03",
+    "correctText": "There is a canal near the bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-49:word:swan",
+    "correctText": "swan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-49:i04",
+    "correctText": "swan",
+    "correctResponseId": "en:lesson-04:session-49:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-49:i05",
-    "correctText": "This is a canal.",
+    "correctText": "There are swans on the canal.",
+    "correctResponseId": "en:lesson-04:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-49:word:towpath",
+    "correctText": "towpath",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i06",
-    "correctText": "The hospital is next to the canal.",
+    "correctText": "towpath",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i07",
-    "correctText": "It's unacceptable.",
+    "correctText": "There is a towpath behind the hedge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-49:word:narrowboat",
+    "correctText": "narrowboat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i08",
-    "correctText": "isn't",
+    "correctText": "narrowboat",
     "correctResponseId": "en:lesson-04:session-49:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-49:i09",
-    "correctText": "The cashpoint is next to the hospital.",
-    "correctResponseId": "en:lesson-04:session-49:i09:r1"
+    "correctText": "There is a narrowboat near the bridge.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i10",
-    "correctText": "en:lesson-04:session-49:i10:p1=canal\nen:lesson-04:session-49:i10:p2=unacceptable\nen:lesson-04:session-49:i10:p3=hospital\nen:lesson-04:session-49:i10:p4=cashpoint",
+    "correctText": "en:lesson-04:session-49:i10:p1=swan\nen:lesson-04:session-49:i10:p2=narrowboat\nen:lesson-04:session-49:i10:p3=bridge\nen:lesson-04:session-49:i10:p4=pond",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i11",
-    "correctText": "Is there a canal?",
-    "correctResponseId": null
+    "correctText": "There are narrowboats near the bridge.",
+    "correctResponseId": "en:lesson-04:session-49:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-49:i12",
-    "correctText": "There is a canal.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-49:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-49:i13",
-    "correctText": "Is there a cashpoint?",
+    "correctText": "There are swans near the bench.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i14",
-    "correctText": "next to",
-    "correctResponseId": "en:lesson-04:session-49:i14:r1"
+    "correctText": "There is a towpath next to the canal.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i15",
-    "correctText": "That is a canal.",
-    "correctResponseId": "en:lesson-04:session-49:i15:r1"
+    "correctText": "There are swans near the pond.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i16",
-    "correctText": "en:lesson-04:session-49:i16:p1=canal\nen:lesson-04:session-49:i16:p2=unacceptable\nen:lesson-04:session-49:i16:p3=hospital\nen:lesson-04:session-49:i16:p4=cashpoint",
+    "correctText": "en:lesson-04:session-49:i16:p1=canal\nen:lesson-04:session-49:i16:p2=towpath\nen:lesson-04:session-49:i16:p3=narrowboat\nen:lesson-04:session-49:i16:p4=swan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-49:i17",
-    "correctText": "The hospital is next to the canal.",
+    "correctText": "There are narrowboats under the bridge.",
     "correctResponseId": null
   }
 ]

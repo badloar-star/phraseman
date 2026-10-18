@@ -1,0 +1,2391 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-52:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-52:i01:p1",
+              "target": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад (для малышей)",
+                "uk": "дитячий садок (для малюків)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i01:p2",
+              "target": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница",
+                "uk": "пісочниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i01:p3",
+              "target": "swing",
+              "meaningByLocale": {
+                "ru": "качели",
+                "uk": "гойдалка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i01:p4",
+              "target": "slide",
+              "meaningByLocale": {
+                "ru": "горка",
+                "uk": "гірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nursery",
+            "sandpit",
+            "swing",
+            "slide"
+          ],
+          "rightColumn": [
+            "детский сад (для малышей)",
+            "песочница",
+            "качели",
+            "горка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:nursery",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nursery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:nursery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nursery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:nursery:audio",
+            "transcript": "nursery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:nursery:r1",
+              "targetText": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад для малышей. There is a nursery near the park. — «Возле парка есть детский сад». О месте, где присматривают за маленькими детьми.",
+                "uk": "дитячий садок для малюків. There is a nursery near the park. — «Біля парку є дитячий садок». Про місце, де наглядають за маленькими дітьми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nursery",
+            "definitionByLocale": {
+              "ru": "детский сад для малышей. There is a nursery near the park. — «Возле парка есть детский сад». О месте, где присматривают за маленькими детьми.",
+              "uk": "дитячий садок для малюків. There is a nursery near the park. — «Біля парку є дитячий садок». Про місце, де наглядають за маленькими дітьми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Папа называет место, где присматривают за маленькими детьми, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Папа называет место, где присматривают за маленькими детьми, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i02:audio",
+            "transcript": "nursery"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "nursery",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Папа ищет сад для малыша. Скажите ему полной фразой: возле парка есть детский сад",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Папа ищет сад для малыша. Скажите ему полной фразой: возле парка есть детский сад",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a nursery near the park.",
+          "localizedMeaning": {
+            "ru": "Папа ищет сад для малыша. Скажите ему полной фразой: возле парка есть детский сад",
+            "uk": "Тато шукає садок для малюка. Скажіть йому повною фразою: біля парку є дитячий садок"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "nursery",
+            "near",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Папа ищет сад для малыша. Скажите ему полной фразой: возле парка есть детский сад",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a nursery near the park.`",
+                "uk": "тут потрібно `is` — `There is a nursery near the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:sandpit",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sandpit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:sandpit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sandpit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:sandpit:audio",
+            "transcript": "sandpit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:sandpit:r1",
+              "targetText": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница. There is a sandpit behind the nursery. — «За садом есть песочница». О ящике с песком, где дети копают и лепят.",
+                "uk": "пісочниця. There is a sandpit behind the nursery. — «За садком є пісочниця». Про ящик із піском, де діти копають і ліплять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandpit",
+            "definitionByLocale": {
+              "ru": "песочница. There is a sandpit behind the nursery. — «За садом есть песочница». О ящике с песком, где дети копают и лепят.",
+              "uk": "пісочниця. There is a sandpit behind the nursery. — «За садком є пісочниця». Про ящик із піском, де діти копають і ліплять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ящик с мелким песком во дворе, где малыши копают лопаткой. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i04:r1",
+            "text": "sandpit"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i04:r2",
+            "text": "bucket"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i04:r3",
+            "text": "shed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ящик с мелким песком во дворе, где малыши копают лопаткой. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ящик с мелким песком во дворе, где малыши копают лопаткой. Как он называется по-английски?",
+            "uk": "Ящик із дрібним піском у дворі, де малюки копають лопаткою. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-52:i04:r1",
+              "text": "sandpit"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i04:r2",
+              "text": "bucket"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i04:r3",
+              "text": "shed"
+            }
+          ],
+          "testedDimension": "Ящик с мелким песком во дворе, где малыши копают лопаткой. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i04:r2",
+              "correct": false,
+              "testedDimension": "Ящик с мелким песком во дворе, где малыши копают лопаткой. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bucket — это ведро, а ящик с песком для игр называется sandpit.",
+                "uk": "bucket — це відро, а ящик із піском для ігор називається sandpit."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i04:r3",
+              "correct": false,
+              "testedDimension": "Ящик с мелким песком во дворе, где малыши копают лопаткой. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "shed — это сарай, а ящик с песком для игр называется sandpit.",
+                "uk": "shed — це сарай, а ящик із піском для ігор називається sandpit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте воспитательницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i05:r1",
+            "text": "Is there a sandpit behind the nursery?"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i05:r2",
+            "text": "There is a sandpit behind the nursery."
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i05:r3",
+            "text": "There isn’t a sandpit behind the nursery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте воспитательницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i05:audio",
+            "transcript": "Is there a sandpit behind the nursery?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:i05:r1",
+              "targetText": "Is there a sandpit behind the nursery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i05:r2",
+              "targetText": "There is a sandpit behind the nursery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i05:r3",
+              "targetText": "There isn’t a sandpit behind the nursery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте воспитательницу",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there`, а в этом варианте утверждение `There is`.",
+                "uk": "У записі запитання `Is there`, а в цьому варіанті твердження `There is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте воспитательницу",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there`, а в этом варианте отрицание `isn’t`.",
+                "uk": "У записі запитання `Is there`, а в цьому варіанті заперечення `isn’t`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:swing",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — swing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:swing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — swing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:swing:audio",
+            "transcript": "swing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:swing:r1",
+              "targetText": "swing",
+              "meaningByLocale": {
+                "ru": "качели. There are swings next to the slide. — «Рядом с горкой есть качели». О сиденье на цепях, на котором раскачиваются.",
+                "uk": "гойдалка. There are swings next to the slide. — «Поруч із гіркою є гойдалки». Про сидіння на ланцюгах, на якому розгойдуються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swing",
+            "definitionByLocale": {
+              "ru": "качели. There are swings next to the slide. — «Рядом с горкой есть качели». О сиденье на цепях, на котором раскачиваются.",
+              "uk": "гойдалка. There are swings next to the slide. — «Поруч із гіркою є гойдалки». Про сидіння на ланцюгах, на якому розгойдуються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Воспитательница показывает сиденье на цепях, на котором раскачиваются, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Воспитательница показывает сиденье на цепях, на котором раскачиваются, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i06:audio",
+            "transcript": "swing"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "swing",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте воспитательницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте воспитательницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i07:audio",
+            "transcript": "There aren’t any swings near the nursery."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any swings near the nursery.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "swings",
+            "near",
+            "the",
+            "nursery"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте воспитательницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any swings near the nursery.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any swings near the nursery.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:slide",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — slide",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:slide:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — slide",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:slide:audio",
+            "transcript": "slide"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:slide:r1",
+              "targetText": "slide",
+              "meaningByLocale": {
+                "ru": "горка. There is a slide in the garden. — «В саду есть горка». О наклонной доске, с которой дети съезжают вниз.",
+                "uk": "гірка. There is a slide in the garden. — «У саду є гірка». Про похилу дошку, з якої діти з’їжджають вниз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slide",
+            "definitionByLocale": {
+              "ru": "горка. There is a slide in the garden. — «В саду есть горка». О наклонной доске, с которой дети съезжают вниз.",
+              "uk": "гірка. There is a slide in the garden. — «У саду є гірка». Про похилу дошку, з якої діти з’їжджають вниз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Наклонная доска, с которой малыши съезжают вниз. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i08:r1",
+            "text": "slide"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i08:r2",
+            "text": "swing"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i08:r3",
+            "text": "ladder"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Наклонная доска, с которой малыши съезжают вниз. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Наклонная доска, с которой малыши съезжают вниз. Как она называется по-английски?",
+            "uk": "Похила дошка, з якої малюки з’їжджають вниз. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-52:i08:r1",
+              "text": "slide"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i08:r2",
+              "text": "swing"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i08:r3",
+              "text": "ladder"
+            }
+          ],
+          "testedDimension": "Наклонная доска, с которой малыши съезжают вниз. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Наклонная доска, с которой малыши съезжают вниз. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "swing — это качели, а наклонная доска для съезда называется slide.",
+                "uk": "swing — це гойдалка, а похила дошка для з’їзду називається slide."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Наклонная доска, с которой малыши съезжают вниз. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "ladder — это лестница, а наклонная доска для съезда называется slide.",
+                "uk": "ladder — це драбина, а похила дошка для з’їзду називається slide."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Папа спрашивает про двор. Спросите воспитательницу полной фразой: во дворе есть горки?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Папа спрашивает про двор. Спросите воспитательницу полной фразой: во дворе есть горки?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any slides in the yard?",
+          "localizedMeaning": {
+            "ru": "Папа спрашивает про двор. Спросите воспитательницу полной фразой: во дворе есть горки?",
+            "uk": "Тато питає про двір. Запитайте виховательку повною фразою: чи є у дворі гірки?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "slides",
+            "in",
+            "the",
+            "yard"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Папа спрашивает про двор. Спросите воспитательницу полной фразой: во дворе есть горки?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any slides in the yard?`",
+                "uk": "тут потрібно `Are` — `Are there any slides in the yard?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-52:i10:p1",
+              "target": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница",
+                "uk": "пісочниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i10:p2",
+              "target": "swing",
+              "meaningByLocale": {
+                "ru": "качели",
+                "uk": "гойдалка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i10:p3",
+              "target": "slide",
+              "meaningByLocale": {
+                "ru": "горка",
+                "uk": "гірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i10:p4",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sandpit",
+            "swing",
+            "slide",
+            "yard"
+          ],
+          "rightColumn": [
+            "песочница",
+            "качели",
+            "горка",
+            "двор"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте папу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i11:r1",
+            "text": "There are swings behind the nursery."
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i11:r2",
+            "text": "Are there swings behind the nursery?"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i11:r3",
+            "text": "There aren’t any swings behind the nursery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте папу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i11:audio",
+            "transcript": "There are swings behind the nursery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:i11:r1",
+              "targetText": "There are swings behind the nursery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i11:r2",
+              "targetText": "Are there swings behind the nursery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i11:r3",
+              "targetText": "There aren’t any swings behind the nursery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте папу",
+              "feedbackByLocale": {
+                "ru": "В записи утверждение `There are`, а в этом варианте вопрос `Are there`.",
+                "uk": "У записі твердження `There are`, а в цьому варіанті запитання `Are there`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте папу",
+              "feedbackByLocale": {
+                "ru": "В записи качели есть (`are`), а в этом варианте их нет (`aren’t any`).",
+                "uk": "У записі гойдалки є (`are`), а в цьому варіанті їх немає (`aren’t any`)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Папа спрашивает про горку. Выберите первое слово вопроса",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i12:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i12:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i12:r3",
+            "text": "There"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Папа спрашивает про горку. Выберите первое слово вопроса",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Папа спрашивает про горку. Выберите первое слово вопроса",
+            "uk": "Тато питає про гірку. Виберіть перше слово запитання"
+          },
+          "gappedTargetPhrase": "___ there a slide in the garden?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-52:i12:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i12:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i12:r3",
+              "text": "There"
+            }
+          ],
+          "testedDimension": "Папа спрашивает про горку. Выберите первое слово вопроса",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Папа спрашивает про горку. Выберите первое слово вопроса",
+              "feedbackByLocale": {
+                "ru": "Горка одна, поэтому вопрос начинаем с Is there, а не с Are there.",
+                "uk": "Гірка одна, тому запитання починаємо з Is there, а не з Are there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Папа спрашивает про горку. Выберите первое слово вопроса",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым ставим Is, а There идёт после него: Is there.",
+                "uk": "У запитанні першим ставимо Is, а There йде після нього: Is there."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте папу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте папу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i13:audio",
+            "transcript": "There is a slide next to the sandpit."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a slide next to the sandpit.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "slide",
+            "next",
+            "to",
+            "the",
+            "sandpit"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте папу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a slide next to the sandpit.`",
+                "uk": "тут потрібно `is` — `There is a slide next to the sandpit.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Папа спрашивает, есть ли рядом детский сад. Он есть. Скажите ему: «Рядом есть детский сад»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Папа спрашивает, есть ли рядом детский сад. Он есть. Скажите ему: «Рядом есть детский сад»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i14:audio",
+            "transcript": "There is a nursery near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a nursery near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Воспитательница спрашивает про двор. Скажите ей полной фразой: во дворе нет песочницы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Воспитательница спрашивает про двор. Скажите ей полной фразой: во дворе нет песочницы",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a sandpit in the yard.",
+          "localizedMeaning": {
+            "ru": "Воспитательница спрашивает про двор. Скажите ей полной фразой: во дворе нет песочницы",
+            "uk": "Вихователька питає про двір. Скажіть їй повною фразою: у дворі немає пісочниці"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "sandpit",
+            "in",
+            "the",
+            "yard"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Воспитательница спрашивает про двор. Скажите ей полной фразой: во дворе нет песочницы",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a sandpit in the yard.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a sandpit in the yard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-52:i16:p1",
+              "target": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад (для малышей)",
+                "uk": "дитячий садок (для малюків)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i16:p2",
+              "target": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница",
+                "uk": "пісочниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i16:p3",
+              "target": "swing",
+              "meaningByLocale": {
+                "ru": "качели",
+                "uk": "гойдалка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i16:p4",
+              "target": "slide",
+              "meaningByLocale": {
+                "ru": "горка",
+                "uk": "гірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nursery",
+            "sandpit",
+            "swing",
+            "slide"
+          ],
+          "rightColumn": [
+            "детский сад (для малышей)",
+            "песочница",
+            "качели",
+            "горка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Папа спрашивает, есть ли здесь горки. Их нет. Скажите ему: «Горок здесь нет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Папа спрашивает, есть ли здесь горки. Их нет. Скажите ему: «Горок здесь нет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i17:audio",
+            "transcript": "There aren’t any slides here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any slides here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-52:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-52:i01:p1",
+              "target": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад (для малышей)",
+                "uk": "дитячий садок (для малюків)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i01:p2",
+              "target": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница",
+                "uk": "пісочниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i01:p3",
+              "target": "swing",
+              "meaningByLocale": {
+                "ru": "качели",
+                "uk": "гойдалка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i01:p4",
+              "target": "slide",
+              "meaningByLocale": {
+                "ru": "горка",
+                "uk": "гірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nursery",
+            "sandpit",
+            "swing",
+            "slide"
+          ],
+          "rightColumn": [
+            "дитячий садок (для малюків)",
+            "пісочниця",
+            "гойдалка",
+            "гірка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:nursery",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nursery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:nursery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nursery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:nursery:audio",
+            "transcript": "nursery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:nursery:r1",
+              "targetText": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад для малышей. There is a nursery near the park. — «Возле парка есть детский сад». О месте, где присматривают за маленькими детьми.",
+                "uk": "дитячий садок для малюків. There is a nursery near the park. — «Біля парку є дитячий садок». Про місце, де наглядають за маленькими дітьми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nursery",
+            "definitionByLocale": {
+              "ru": "детский сад для малышей. There is a nursery near the park. — «Возле парка есть детский сад». О месте, где присматривают за маленькими детьми.",
+              "uk": "дитячий садок для малюків. There is a nursery near the park. — «Біля парку є дитячий садок». Про місце, де наглядають за маленькими дітьми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тато називає місце, де наглядають за маленькими дітьми, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Тато називає місце, де наглядають за маленькими дітьми, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i02:audio",
+            "transcript": "nursery"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "nursery",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тато шукає садок для малюка. Скажіть йому повною фразою: біля парку є дитячий садок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тато шукає садок для малюка. Скажіть йому повною фразою: біля парку є дитячий садок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a nursery near the park.",
+          "localizedMeaning": {
+            "ru": "Папа ищет сад для малыша. Скажите ему полной фразой: возле парка есть детский сад",
+            "uk": "Тато шукає садок для малюка. Скажіть йому повною фразою: біля парку є дитячий садок"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "nursery",
+            "near",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Тато шукає садок для малюка. Скажіть йому повною фразою: біля парку є дитячий садок",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a nursery near the park.`",
+                "uk": "тут потрібно `is` — `There is a nursery near the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:sandpit",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sandpit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:sandpit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sandpit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:sandpit:audio",
+            "transcript": "sandpit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:sandpit:r1",
+              "targetText": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница. There is a sandpit behind the nursery. — «За садом есть песочница». О ящике с песком, где дети копают и лепят.",
+                "uk": "пісочниця. There is a sandpit behind the nursery. — «За садком є пісочниця». Про ящик із піском, де діти копають і ліплять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandpit",
+            "definitionByLocale": {
+              "ru": "песочница. There is a sandpit behind the nursery. — «За садом есть песочница». О ящике с песком, где дети копают и лепят.",
+              "uk": "пісочниця. There is a sandpit behind the nursery. — «За садком є пісочниця». Про ящик із піском, де діти копають і ліплять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ящик із дрібним піском у дворі, де малюки копають лопаткою. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i04:r1",
+            "text": "sandpit"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i04:r2",
+            "text": "bucket"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i04:r3",
+            "text": "shed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ящик із дрібним піском у дворі, де малюки копають лопаткою. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ящик с мелким песком во дворе, где малыши копают лопаткой. Как он называется по-английски?",
+            "uk": "Ящик із дрібним піском у дворі, де малюки копають лопаткою. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-52:i04:r1",
+              "text": "sandpit"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i04:r2",
+              "text": "bucket"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i04:r3",
+              "text": "shed"
+            }
+          ],
+          "testedDimension": "Ящик із дрібним піском у дворі, де малюки копають лопаткою. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i04:r2",
+              "correct": false,
+              "testedDimension": "Ящик із дрібним піском у дворі, де малюки копають лопаткою. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bucket — это ведро, а ящик с песком для игр называется sandpit.",
+                "uk": "bucket — це відро, а ящик із піском для ігор називається sandpit."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i04:r3",
+              "correct": false,
+              "testedDimension": "Ящик із дрібним піском у дворі, де малюки копають лопаткою. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "shed — это сарай, а ящик с песком для игр называется sandpit.",
+                "uk": "shed — це сарай, а ящик із піском для ігор називається sandpit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте виховательку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i05:r1",
+            "text": "Is there a sandpit behind the nursery?"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i05:r2",
+            "text": "There is a sandpit behind the nursery."
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i05:r3",
+            "text": "There isn’t a sandpit behind the nursery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте виховательку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i05:audio",
+            "transcript": "Is there a sandpit behind the nursery?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:i05:r1",
+              "targetText": "Is there a sandpit behind the nursery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i05:r2",
+              "targetText": "There is a sandpit behind the nursery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i05:r3",
+              "targetText": "There isn’t a sandpit behind the nursery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте виховательку",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there`, а в этом варианте утверждение `There is`.",
+                "uk": "У записі запитання `Is there`, а в цьому варіанті твердження `There is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте виховательку",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there`, а в этом варианте отрицание `isn’t`.",
+                "uk": "У записі запитання `Is there`, а в цьому варіанті заперечення `isn’t`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:swing",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — swing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:swing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — swing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:swing:audio",
+            "transcript": "swing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:swing:r1",
+              "targetText": "swing",
+              "meaningByLocale": {
+                "ru": "качели. There are swings next to the slide. — «Рядом с горкой есть качели». О сиденье на цепях, на котором раскачиваются.",
+                "uk": "гойдалка. There are swings next to the slide. — «Поруч із гіркою є гойдалки». Про сидіння на ланцюгах, на якому розгойдуються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swing",
+            "definitionByLocale": {
+              "ru": "качели. There are swings next to the slide. — «Рядом с горкой есть качели». О сиденье на цепях, на котором раскачиваются.",
+              "uk": "гойдалка. There are swings next to the slide. — «Поруч із гіркою є гойдалки». Про сидіння на ланцюгах, на якому розгойдуються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вихователька показує сидіння на ланцюгах, на якому розгойдуються, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Вихователька показує сидіння на ланцюгах, на якому розгойдуються, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i06:audio",
+            "transcript": "swing"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "swing",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте виховательку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте виховательку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i07:audio",
+            "transcript": "There aren’t any swings near the nursery."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any swings near the nursery.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "swings",
+            "near",
+            "the",
+            "nursery"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте виховательку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any swings near the nursery.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any swings near the nursery.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:word:slide",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — slide",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:word:slide:audio"
+        ],
+        "accessibilityLabel": "Картка слова — slide",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:word:slide:audio",
+            "transcript": "slide"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:word:slide:r1",
+              "targetText": "slide",
+              "meaningByLocale": {
+                "ru": "горка. There is a slide in the garden. — «В саду есть горка». О наклонной доске, с которой дети съезжают вниз.",
+                "uk": "гірка. There is a slide in the garden. — «У саду є гірка». Про похилу дошку, з якої діти з’їжджають вниз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slide",
+            "definitionByLocale": {
+              "ru": "горка. There is a slide in the garden. — «В саду есть горка». О наклонной доске, с которой дети съезжают вниз.",
+              "uk": "гірка. There is a slide in the garden. — «У саду є гірка». Про похилу дошку, з якої діти з’їжджають вниз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Похила дошка, з якої малюки з’їжджають вниз. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i08:r1",
+            "text": "slide"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i08:r2",
+            "text": "swing"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i08:r3",
+            "text": "ladder"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Похила дошка, з якої малюки з’їжджають вниз. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Наклонная доска, с которой малыши съезжают вниз. Как она называется по-английски?",
+            "uk": "Похила дошка, з якої малюки з’їжджають вниз. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-52:i08:r1",
+              "text": "slide"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i08:r2",
+              "text": "swing"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i08:r3",
+              "text": "ladder"
+            }
+          ],
+          "testedDimension": "Похила дошка, з якої малюки з’їжджають вниз. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Похила дошка, з якої малюки з’їжджають вниз. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "swing — это качели, а наклонная доска для съезда называется slide.",
+                "uk": "swing — це гойдалка, а похила дошка для з’їзду називається slide."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Похила дошка, з якої малюки з’їжджають вниз. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "ladder — это лестница, а наклонная доска для съезда называется slide.",
+                "uk": "ladder — це драбина, а похила дошка для з’їзду називається slide."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тато питає про двір. Запитайте виховательку повною фразою: чи є у дворі гірки?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тато питає про двір. Запитайте виховательку повною фразою: чи є у дворі гірки?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any slides in the yard?",
+          "localizedMeaning": {
+            "ru": "Папа спрашивает про двор. Спросите воспитательницу полной фразой: во дворе есть горки?",
+            "uk": "Тато питає про двір. Запитайте виховательку повною фразою: чи є у дворі гірки?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "slides",
+            "in",
+            "the",
+            "yard"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Тато питає про двір. Запитайте виховательку повною фразою: чи є у дворі гірки?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any slides in the yard?`",
+                "uk": "тут потрібно `Are` — `Are there any slides in the yard?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-52:i10:p1",
+              "target": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница",
+                "uk": "пісочниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i10:p2",
+              "target": "swing",
+              "meaningByLocale": {
+                "ru": "качели",
+                "uk": "гойдалка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i10:p3",
+              "target": "slide",
+              "meaningByLocale": {
+                "ru": "горка",
+                "uk": "гірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i10:p4",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sandpit",
+            "swing",
+            "slide",
+            "yard"
+          ],
+          "rightColumn": [
+            "пісочниця",
+            "гойдалка",
+            "гірка",
+            "двір"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i11:r1",
+            "text": "There are swings behind the nursery."
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i11:r2",
+            "text": "Are there swings behind the nursery?"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i11:r3",
+            "text": "There aren’t any swings behind the nursery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте тата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i11:audio",
+            "transcript": "There are swings behind the nursery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-52:i11:r1",
+              "targetText": "There are swings behind the nursery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i11:r2",
+              "targetText": "Are there swings behind the nursery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i11:r3",
+              "targetText": "There aren’t any swings behind the nursery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тата",
+              "feedbackByLocale": {
+                "ru": "В записи утверждение `There are`, а в этом варианте вопрос `Are there`.",
+                "uk": "У записі твердження `There are`, а в цьому варіанті запитання `Are there`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тата",
+              "feedbackByLocale": {
+                "ru": "В записи качели есть (`are`), а в этом варианте их нет (`aren’t any`).",
+                "uk": "У записі гойдалки є (`are`), а в цьому варіанті їх немає (`aren’t any`)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тато питає про гірку. Виберіть перше слово запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-52:i12:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i12:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-52:i12:r3",
+            "text": "There"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тато питає про гірку. Виберіть перше слово запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Папа спрашивает про горку. Выберите первое слово вопроса",
+            "uk": "Тато питає про гірку. Виберіть перше слово запитання"
+          },
+          "gappedTargetPhrase": "___ there a slide in the garden?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-52:i12:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i12:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i12:r3",
+              "text": "There"
+            }
+          ],
+          "testedDimension": "Тато питає про гірку. Виберіть перше слово запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Тато питає про гірку. Виберіть перше слово запитання",
+              "feedbackByLocale": {
+                "ru": "Горка одна, поэтому вопрос начинаем с Is there, а не с Are there.",
+                "uk": "Гірка одна, тому запитання починаємо з Is there, а не з Are there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Тато питає про гірку. Виберіть перше слово запитання",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым ставим Is, а There идёт после него: Is there.",
+                "uk": "У запитанні першим ставимо Is, а There йде після нього: Is there."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте тата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i13:audio",
+            "transcript": "There is a slide next to the sandpit."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a slide next to the sandpit.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "slide",
+            "next",
+            "to",
+            "the",
+            "sandpit"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a slide next to the sandpit.`",
+                "uk": "тут потрібно `is` — `There is a slide next to the sandpit.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тато питає, чи є поруч дитячий садок. Він є. Скажіть йому: «Поруч є дитячий садок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Тато питає, чи є поруч дитячий садок. Він є. Скажіть йому: «Поруч є дитячий садок»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i14:audio",
+            "transcript": "There is a nursery near here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a nursery near here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вихователька питає про двір. Скажіть їй повною фразою: у дворі немає пісочниці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вихователька питає про двір. Скажіть їй повною фразою: у дворі немає пісочниці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a sandpit in the yard.",
+          "localizedMeaning": {
+            "ru": "Воспитательница спрашивает про двор. Скажите ей полной фразой: во дворе нет песочницы",
+            "uk": "Вихователька питає про двір. Скажіть їй повною фразою: у дворі немає пісочниці"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "sandpit",
+            "in",
+            "the",
+            "yard"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-52:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Вихователька питає про двір. Скажіть їй повною фразою: у дворі немає пісочниці",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a sandpit in the yard.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a sandpit in the yard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-52:i16:p1",
+              "target": "nursery",
+              "meaningByLocale": {
+                "ru": "детский сад (для малышей)",
+                "uk": "дитячий садок (для малюків)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i16:p2",
+              "target": "sandpit",
+              "meaningByLocale": {
+                "ru": "песочница",
+                "uk": "пісочниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i16:p3",
+              "target": "swing",
+              "meaningByLocale": {
+                "ru": "качели",
+                "uk": "гойдалка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-52:i16:p4",
+              "target": "slide",
+              "meaningByLocale": {
+                "ru": "горка",
+                "uk": "гірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nursery",
+            "sandpit",
+            "swing",
+            "slide"
+          ],
+          "rightColumn": [
+            "дитячий садок (для малюків)",
+            "пісочниця",
+            "гойдалка",
+            "гірка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тато питає, чи є тут гірки. Їх немає. Скажіть йому: «Гірок тут немає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Тато питає, чи є тут гірки. Їх немає. Скажіть йому: «Гірок тут немає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-52:i17:audio",
+            "transcript": "There aren’t any slides here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any slides here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-52:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:word:nursery",
+      "correctText": "nursery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i02",
+      "correctText": "nursery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i03",
+      "correctText": "There is a nursery near the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:word:sandpit",
+      "correctText": "sandpit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i04",
+      "correctText": "sandpit",
+      "correctResponseId": "en:lesson-04:session-52:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i05",
+      "correctText": "Is there a sandpit behind the nursery?",
+      "correctResponseId": "en:lesson-04:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:word:swing",
+      "correctText": "swing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i06",
+      "correctText": "swing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i07",
+      "correctText": "There aren’t any swings near the nursery.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:word:slide",
+      "correctText": "slide",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i08",
+      "correctText": "slide",
+      "correctResponseId": "en:lesson-04:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i09",
+      "correctText": "Are there any slides in the yard?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i11",
+      "correctText": "There are swings behind the nursery.",
+      "correctResponseId": "en:lesson-04:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i12",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-04:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i13",
+      "correctText": "There is a slide next to the sandpit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i14",
+      "correctText": "There is a nursery near here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i15",
+      "correctText": "There isn’t a sandpit in the yard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:i17",
+      "correctText": "There aren’t any slides here.",
+      "correctResponseId": null
+    }
+  ]
+}

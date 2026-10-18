@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-46:i01",
-    "correctText": "It is appropriate.",
+    "correctText": "en:lesson-04:session-46:i01:p1=pantry\nen:lesson-04:session-46:i01:p2=sack\nen:lesson-04:session-46:i01:p3=packet\nen:lesson-04:session-46:i01:p4=carton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:word:pantry",
+    "correctText": "pantry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i02",
     "correctText": "pantry",
-    "correctResponseId": "en:lesson-04:session-46:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-46:i03",
-    "correctText": "pantry",
-    "correctResponseId": "en:lesson-04:session-46:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-46:i04",
-    "correctText": "en:lesson-04:session-46:i04:p1=pantry\nen:lesson-04:session-46:i04:p2=appropriate\nen:lesson-04:session-46:i04:p3=airport\nen:lesson-04:session-46:i04:p4=bike shed",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-46:i03",
+    "correctText": "There is a pantry behind the hall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:word:sack",
+    "correctText": "sack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i04",
+    "correctText": "sack",
+    "correctResponseId": "en:lesson-04:session-46:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-46:i05",
-    "correctText": "This is a pantry.",
+    "correctText": "Is there a sack under the shelf?",
+    "correctResponseId": "en:lesson-04:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:word:packet",
+    "correctText": "packet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i06",
-    "correctText": "The hotel is next to the airport.",
+    "correctText": "packet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i07",
-    "correctText": "It's appropriate.",
+    "correctText": "There aren’t any packets near the sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:word:carton",
+    "correctText": "carton",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i08",
-    "correctText": "isn't",
+    "correctText": "carton",
     "correctResponseId": "en:lesson-04:session-46:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-46:i09",
-    "correctText": "The bike shed is next to the house.",
-    "correctResponseId": "en:lesson-04:session-46:i09:r1"
+    "correctText": "There are some cartons in the fridge.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i10",
-    "correctText": "en:lesson-04:session-46:i10:p1=pantry\nen:lesson-04:session-46:i10:p2=appropriate\nen:lesson-04:session-46:i10:p3=airport\nen:lesson-04:session-46:i10:p4=bike shed",
+    "correctText": "en:lesson-04:session-46:i10:p1=carton\nen:lesson-04:session-46:i10:p2=sack\nen:lesson-04:session-46:i10:p3=jar\nen:lesson-04:session-46:i10:p4=tin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i11",
-    "correctText": "There aren't any pantries.",
-    "correctResponseId": null
+    "correctText": "There aren’t any cartons in the pantry.",
+    "correctResponseId": "en:lesson-04:session-46:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-46:i12",
-    "correctText": "There is a pantry.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-46:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-46:i13",
-    "correctText": "Is there a bike shed?",
+    "correctText": "Is there a packet on the shelf?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i14",
-    "correctText": "in",
-    "correctResponseId": "en:lesson-04:session-46:i14:r1"
+    "correctText": "No, there isn’t.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i15",
-    "correctText": "That is a pantry.",
-    "correctResponseId": "en:lesson-04:session-46:i15:r1"
+    "correctText": "Are there any cartons in the pantry?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i16",
-    "correctText": "en:lesson-04:session-46:i16:p1=pantry\nen:lesson-04:session-46:i16:p2=appropriate\nen:lesson-04:session-46:i16:p3=airport\nen:lesson-04:session-46:i16:p4=bike shed",
+    "correctText": "en:lesson-04:session-46:i16:p1=pantry\nen:lesson-04:session-46:i16:p2=sack\nen:lesson-04:session-46:i16:p3=packet\nen:lesson-04:session-46:i16:p4=carton",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-46:i17",
-    "correctText": "Is there a pantry?",
+    "correctText": "There isn’t a pantry here.",
     "correctResponseId": null
   }
 ]

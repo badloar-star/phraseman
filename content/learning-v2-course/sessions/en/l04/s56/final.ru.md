@@ -1,137 +1,152 @@
 # Английский · Урок 4 · Занятие 56 — Теперь вы знаете район
 
-**Ситуация.** Вы показываете новому соседу район: магазин у дома, детский сад, общественный центр и воду за парком. Нужно объяснить, что здесь есть, чего нет и где пройти короче.
+**Ситуация.** К вам въехал новый сосед, а в холодильнике у него пусто. Вы показываете ему район: что есть, чего нет и где что стоит. Новой грамматики нет: вы сами выбираете, что сказать, — есть, вопрос, нет, some или any, и называете место.
 
-**Что вы освоите:** описать район и спросить о нужных местах
-**Новые слова:** corner shop
+**Что вы освоите:** самому сказать, что есть и чего нет, и спросить о наличии, назвав место
+**Новые слова:** corner shop, florist, takeaway, butcher
+**Возвращаются:** bakery, pharmacy, bank, library, bus stop, street, fridge
 
 ---
 
 ## Интро 1
 
-### Магазин у дома
+### Пустой холодильник
 
-`corner shop` — небольшой «магазин у дома», где покупают повседневные мелочи. `This is a corner shop` — «Это магазин у дома». В названии есть «угол», но магазин не обязан стоять точно на углу: линейку для проверки брать не надо. Перед одним магазином нужно `a`: `a corner shop`.
+Новый сосед въехал вчера, холодильник у него пустой, а большие магазины далеко. Он спрашивает, где купить хлеб и молоко. Вы вспоминаете маленький магазин в доме на углу. corner shop — «магазин у дома». Он один: There is a corner shop between the bank and the bakery.
 
-**Покажите один магазин у дома.**
+**Сосед ищет, где купить хлеб и молоко. Скажите ему, что между банком и булочной есть магазин у дома.**
 
-- ✅ **This is a corner shop.**
-- ❌ This is corner shop. — *Нужно `a corner shop`: один магазин.*
-- ❌ These are corner shops. — *Здесь один магазин: `This is a corner shop`.*
+- ✅ **There is a corner shop between the bank and the bakery.**
+- ❌ There are a corner shop between the bank and the bakery. — *Магазин один, поэтому нужно is, а не are.*
+- ❌ There is a corner shop between the bank. — *Для слова between нужны два ориентира: between the bank and the bakery.*
 
 ---
 
 ## Интро 2
 
-### Места для соседей
+### Ужин без плиты
 
-`community centre` — «общественный центр», `community kitchen` — «общая кухня», `nursery` — «детский сад». `The nursery is next to the community centre` — «Детский сад рядом с общественным центром». `Is there a community kitchen?` — «Есть ли общая кухня?» В ответ о её наличии можно сказать `There is a community kitchen`.
+В первый вечер соседу нечем готовить, плиту ещё не подключили. Вы стоите с ним на остановке, и он просит узнать, где купить горячую еду, чтобы забрать её с собой. takeaway — «заведение с едой на вынос». Спросите прохожего: Is there a takeaway near the bus stop?
 
-**Спросите, есть ли общая кухня.**
+**Сосед хочет горячий ужин с собой. Спросите прохожего, есть ли возле остановки заведение с едой на вынос.**
 
-- ✅ **Is there a community kitchen?**
-- ❌ Are there a community kitchen? — *Одна кухня: `Is there a community kitchen?`.*
-- ❌ There is a community kitchen. — *Это сообщение; вопрос начинается с `Is there`.*
+- ✅ **Is there a takeaway near the bus stop?**
+- ❌ Are there a takeaway near the bus stop? — *Заведение одно, поэтому вопрос начинаем с Is there, а не с Are there.*
+- ❌ There is a takeaway near the bus stop? — *Это порядок слов утверждения. В вопросе сначала Is: Is there a takeaway?*
 
 ---
 
 ## Интро 3
 
-### Вода и дорога
+### Мясо на выходные
 
-`canal` — «канал», `river` — «река», `police station` — «полицейский участок», `petrol station` — «заправка», `shortcut` — «короткий путь». `There isn’t a petrol station` — «Заправки нет». `Are there any shortcuts?` — «Есть ли какие-нибудь короткие пути?» Если их нет: `There aren’t any shortcuts`.
+Сосед любит готовить и мечтает о куске мяса на выходные. Он спрашивает про лавку, где мясо рубят и взвешивают при покупателе. Вы много раз ходили по этой улице и знаете: такой лавки на ней нет. butcher — «мясная лавка». There isn’t a butcher on this street.
 
-**Коротких путей нет. Выберите ответ.**
+**Сосед ищет мясную лавку. Скажите ему, что на этой улице мясной лавки нет.**
 
-- ✅ **There aren't any shortcuts.**
-- ❌ There isn't any shortcuts. — *С несколькими путями `shortcuts` нужно `aren’t`.*
-- ❌ There are some shortcuts. — *Так вы скажете, что короткие пути есть; здесь `aren’t any`.*
+- ✅ **There isn’t a butcher on this street.**
+- ❌ There aren’t a butcher on this street. — *Лавка одна, поэтому нужно isn’t, а не aren’t.*
+- ❌ There isn’t butcher on this street. — *Лавка одна, поэтому после isn’t нужно a: isn’t a butcher.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Сообщите соседу: «Есть общая кухня»**
-<!-- interaction_id: en:lesson-04:session-56:i01; family: phrase_builder -->
-Плитки: `kitchen` `community` `a` `is` `There` `are` → **There is a community kitchen.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a community kitchen.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-56:i01; family: speed_match -->
+corner shop — магазин у дома · florist — цветочный магазин · takeaway — еда навынос (заведение) · butcher — мясная лавка
 
-**2 · Послушайте и выберите название**
-<!-- interaction_id: en:lesson-04:session-56:i02; family: listen_choose -->
-🔊 *corner shop* → **corner shop** · corner shops · coffee shop
-- corner shops — *В записи последнее слово — `shop`, а в этом варианте — `shops`.*
-- coffee shop — *В записи первое слово — `corner`, а в этом варианте — `coffee`.*
+**2 · Карточка слова — corner shop**
+<!-- interaction_id: en:lesson-04:session-56:word:corner shop; family: word_card -->
+> **corner shop** — магазин у дома. There is a corner shop next to the bank. — «Рядом с банком есть магазин у дома». О маленьком магазине на углу, где берут хлеб и молоко.
 
-**3 · Назовите небольшой магазин у дома**
-<!-- interaction_id: en:lesson-04:session-56:i03; family: context_gap_grammar -->
-___ → **corner shop** · nursery · police station
-- nursery — *`nursery` — детский сад; магазин у дома — `corner shop`.*
-- police station — *`police station` — полицейский участок; магазин у дома — `corner shop`.*
+**3 · Сосед показывает на маленький магазин на углу, где берут хлеб и молоко, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-56:i02; family: scripted_repeat_compare -->
+🎙 **corner shop**
 
-**4 · Соедините места со значениями**
-<!-- interaction_id: en:lesson-04:session-56:i04; family: speed_match -->
-corner shop — магазин у дома · canal — канал · river — река · community centre — общественный центр
+**4 · Сосед спрашивает, что возле банка. Скажите ему полной фразой: рядом с банком есть магазин у дома**
+<!-- interaction_id: en:lesson-04:session-56:i03; family: phrase_builder -->
+Плитки: `corner` `shop` `a` `next` `to` `the` `bank` `There` `is` `are` → **There is a corner shop next to the bank.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a corner shop next to the bank.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-56:i05; family: listen_build_dictation -->
-🔊 *This is a corner shop.* Плитки: `shop` `corner` `a` `is` `This` `are` → **This is a corner shop.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a corner shop.`)*
+**5 · Карточка слова — florist**
+<!-- interaction_id: en:lesson-04:session-56:word:florist; family: word_card -->
+> **florist** — цветочный магазин. There is a florist behind the library. — «За библиотекой есть цветочный магазин». О магазине, где продают цветы.
 
-**6 · Детский сад рядом с общественным центром. Скажите, где сад**
-<!-- interaction_id: en:lesson-04:session-56:i06; family: phrase_builder -->
-Плитки: `centre` `community` `the` `to` `next` `is` `nursery` `The` `are` → **The nursery is next to the community centre.**
-*(плитка `are` лишняя: здесь нужно `is` — `The nursery is next to the community centre.`)*
+**6 · Магазин, где продают цветы. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-56:i04; family: context_gap_grammar -->
+___ → **florist** · bakery · pharmacy
+- bakery — *bakery — это булочная, а магазин цветов называется florist.*
+- pharmacy — *pharmacy — это аптека, а магазин цветов называется florist.*
 
-**7 · Спросите, есть ли полицейский участок**
-<!-- interaction_id: en:lesson-04:session-56:i07; family: scripted_repeat_compare -->
-🎙 **Is there a police station?**
+**7 · Послушайте соседа**
+<!-- interaction_id: en:lesson-04:session-56:i05; family: listen_choose -->
+🔊 *There is a florist behind the library.* → **There is a florist behind the library.** · Is there a florist behind the library? · There isn’t a florist behind the library.
+- Is there a florist behind the library? — *В записи утверждение `There is`, а в этом варианте вопрос `Is there`.*
+- There isn’t a florist behind the library. — *В записи цветочный магазин есть (`is`), а в этом варианте его нет (`isn’t`).*
 
-**8 · Заправки здесь нет. Выберите форму**
+**8 · Карточка слова — takeaway**
+<!-- interaction_id: en:lesson-04:session-56:word:takeaway; family: word_card -->
+> **takeaway** — еда навынос (заведение). There is a takeaway next to the pharmacy. — «Рядом с аптекой есть заведение с едой навынос». О месте, где покупают горячую еду и уносят с собой.
+
+**9 · Сосед показывает на окно, где продают горячую еду с собой, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-56:i06; family: scripted_repeat_compare -->
+🎙 **takeaway**
+
+**10 · Послушайте соседа и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-56:i07; family: listen_build_dictation -->
+🔊 *Is there a takeaway between the bank and the library?* Плитки: `takeaway` `a` `between` `the` `bank` `and` `the` `library` `Is` `there` `Are` → **Is there a takeaway between the bank and the library?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a takeaway between the bank and the library?`)*
+
+**11 · Карточка слова — butcher**
+<!-- interaction_id: en:lesson-04:session-56:word:butcher; family: word_card -->
+> **butcher** — мясная лавка. There isn’t a butcher near the bus stop. — «Возле остановки нет мясной лавки». О магазине, где продают мясо.
+
+**12 · Магазин, где продают мясо. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-56:i08; family: context_gap_grammar -->
-There ___ a petrol station. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Одна заправка: `isn’t a petrol station`.*
+___ → **butcher** · bakery · pharmacy
+- bakery — *bakery — это булочная, а магазин мяса называется butcher.*
+- pharmacy — *pharmacy — это аптека, а магазин мяса называется butcher.*
 
-**9 · Послушайте, где канал**
-<!-- interaction_id: en:lesson-04:session-56:i09; family: listen_choose -->
-🔊 *The canal is next to the park.* → **The canal is next to the park.** · The canal is next to the museum. · The canal is next to the supermarket.
-- The canal is next to the museum. — *В записи последнее слово — `park`, а в этом варианте — `museum`.*
-- The canal is next to the supermarket. — *В записи последнее слово — `park`, а в этом варианте — `supermarket`.*
+**13 · Сосед ищет мясо. Скажите ему полной фразой: возле остановки нет мясной лавки**
+<!-- interaction_id: en:lesson-04:session-56:i09; family: phrase_builder -->
+Плитки: `butcher` `a` `near` `the` `bus` `stop` `There` `isn’t` `aren’t` → **There isn’t a butcher near the bus stop.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a butcher near the bus stop.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-56:i10; family: speed_match -->
-nursery — детский сад · police station — полицейский участок · petrol station — заправка · shortcut — короткий путь
+florist — цветочный магазин · butcher — мясная лавка · bakery — пекарня · pharmacy — аптека
 
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-56:i11; family: listen_build_dictation -->
-🔊 *Is there a corner shop?* Плитки: `shop` `corner` `a` `there` `Is` → **Is there a corner shop?**
+**15 · Послушайте прохожего**
+<!-- interaction_id: en:lesson-04:session-56:i11; family: listen_choose -->
+🔊 *There aren’t any takeaways on this street.* → **There aren’t any takeaways on this street.** · There are some takeaways on this street. · Are there any takeaways on this street?
+- There are some takeaways on this street. — *В записи `aren’t any` — заведений нет, а в этом варианте `are some` — они есть.*
+- Are there any takeaways on this street? — *В записи отрицание, а в этом варианте вопрос `Are there any`.*
 
-**12 · Река рядом с парком. Скажите, где она**
-<!-- interaction_id: en:lesson-04:session-56:i12; family: phrase_builder -->
-Плитки: `park` `the` `to` `next` `is` `river` `The` `are` → **The river is next to the park.**
-*(плитка `are` лишняя: здесь нужно `is` — `The river is next to the park.`)*
+**16 · Сосед спрашивает прохожего про мясную лавку. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-56:i12; family: context_gap_grammar -->
+Is there ___ butcher on this street? → **a** · any · an
+- any — *Лавка одна, поэтому нужно a, а не any: any нужно перед несколькими предметами.*
+- an — *Слово butcher начинается с согласного звука, поэтому нужно a, а не an.*
 
-**13 · До магазина долго идти. Спросите, есть ли короткий путь**
-<!-- interaction_id: en:lesson-04:session-56:i13; family: scripted_repeat_compare -->
-🎙 **Is there a shortcut?**
+**17 · Послушайте соседа и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-56:i13; family: listen_build_dictation -->
+🔊 *There is a florist between the corner shop and the takeaway.* Плитки: `florist` `a` `between` `the` `corner` `shop` `and` `the` `takeaway` `There` `is` `are` → **There is a florist between the corner shop and the takeaway.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a florist between the corner shop and the takeaway.`)*
 
-**14 · Коротких путей нет. Выберите форму**
-<!-- interaction_id: en:lesson-04:session-56:i14; family: context_gap_grammar -->
-There ___ any shortcuts. → **aren't** · are · isn't
-- are — *Здесь нет: `aren’t any shortcuts`.*
-- isn't — *С `shortcuts` нужно `aren’t`.*
+**18 · Сосед ищет магазин, чтобы купить хлеб. Спросите прохожего: «Здесь рядом есть магазин у дома?»**
+<!-- interaction_id: en:lesson-04:session-56:i14; family: scripted_repeat_compare -->
+🎙 **Is there a corner shop near here?**
 
-**15 · Послушайте, что это за место**
-<!-- interaction_id: en:lesson-04:session-56:i15; family: listen_choose -->
-🔊 *It's a community kitchen.* → **It's a community kitchen.** · It's a community centre. · That's a community kitchen.
-- It's a community centre. — *В записи последнее слово — `kitchen`, а в этом варианте — `centre`.*
-- That's a community kitchen. — *В записи первое слово — `It's`, а в этом варианте — `That's`.*
+**19 · Сосед смотрит на улицу. Скажите ему полной фразой: на этой улице нет мясных лавок**
+<!-- interaction_id: en:lesson-04:session-56:i15; family: phrase_builder -->
+Плитки: `butchers` `any` `on` `this` `street` `There` `aren’t` `isn’t` → **There aren’t any butchers on this street.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any butchers on this street.`)*
 
-**16 · Соедините места со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-56:i16; family: speed_match -->
-corner shop — магазин у дома · community kitchen — общая кухня · canal — канал · river — река
+corner shop — магазин у дома · florist — цветочный магазин · takeaway — еда навынос (заведение) · butcher — мясная лавка
 
-**17 · Новый сосед ищет магазин у дома. Он рядом с детским садом. Объясните, где магазин, полной фразой**
+**21 · Сосед спрашивает, где купить цветы. Цветочный магазин рядом. Скажите ему: «Рядом есть цветочный магазин»**
 <!-- interaction_id: en:lesson-04:session-56:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The corner shop is next to the nursery.**
-
+🎙 **There is a florist near here.**

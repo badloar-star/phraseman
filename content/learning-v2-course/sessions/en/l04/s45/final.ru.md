@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 45 — Обед в офисе
+# Английский · Урок 4 · Занятие 45 — Техника в описании
 
-**Ситуация.** Вы пришли в новый офис с обедом. Ищете микроволновку и замечаете постамат рядом с входом. Во время разговора друг просит перевести слово «незаконно».
+**Ситуация.** Агент прислал описание квартиры, а в строках про технику есть ошибки. Вы идёте по квартире, сверяете и исправляете каждую строку. Новой грамматики нет: остаются обычные There is для одного предмета и There are для нескольких.
 
-**Что вы освоите:** назвать микроволновку, спросить о её наличии и понять слово illegal
-**Новые слова:** microwave
+**Что вы освоите:** исправить в описании ошибку в числе и в отрицании: There is, There are, There isn’t
+**Новые слова:** microwave, washing machine, ironing board, hairdryer
+**Возвращаются:** kitchen, basement, hall, cupboard, shelf, worktop, laundrette, fridge, toaster, kettle, door, sink
 
 ---
 
 ## Интро 1
 
-### Разогреть обед
+### Строка про кухню
 
-`microwave` — «микроволновка». Здесь это название прибора для разогрева еды. Один прибор — `a microwave`. `This is a microwave` — «Это микроволновка». Обед после неё теплее, а рабочий день, увы, не короче.
+В описании квартиры написано: There are a microwave in the kitchen. Вы стоите на кухне и видите одну печку, в которой еду разогревают за минуту. microwave — «микроволновка». Она одна, поэтому строку исправляют: There is a microwave in the kitchen.
 
-**Назовите одну микроволновку.**
+**Агент ждёт поправки. Скажите ему верную фразу: на кухне есть микроволновка.**
 
-- ✅ **This is a microwave.**
-- ❌ This is microwave. — *Перед одним прибором нужно `a`: `a microwave`.*
-- ❌ These are microwaves. — *Здесь один прибор: `This is a microwave`.*
+- ✅ **There is a microwave in the kitchen.**
+- ❌ There are a microwave in the kitchen. — *Микроволновка одна, поэтому нужно There is, а не There are.*
+- ❌ There is microwave in the kitchen. — *Микроволновка одна, поэтому перед microwave нужно a.*
 
 ---
 
 ## Интро 2
 
-### В офисе
+### Строка про подвал
 
-`office` — «офис», `parcel locker` — «постамат». `The microwave is in the office` — «Микроволновка в офисе». `The parcel locker is next to the door` — «Постамат рядом с дверью». `Is there a microwave?` — «Есть микроволновка?» В вопросе `is` идёт перед `there`.
+Дальше в описании: There is some washing machines in the basement. Вы спускаетесь в подвал и видите там несколько машин, в которые загружают бельё и включают стирку. washing machine — «стиральная машина». Машин несколько, поэтому: There are some washing machines in the basement.
 
-**Спросите, есть ли микроволновка.**
+**Агент ждёт поправки. Скажите ему верную фразу: в подвале есть стиральные машины.**
 
-- ✅ **Is there a microwave?**
-- ❌ There is a microwave. — *Это сообщение о наличии; вопрос начинается с `Is there`.*
-- ❌ Are there a microwave? — *Одна микроволновка: `Is there a microwave?`.*
+- ✅ **There are some washing machines in the basement.**
+- ❌ There is some washing machines in the basement. — *Машин несколько, поэтому нужно There are, а не There is.*
+- ❌ There are some washing machine in the basement. — *После some слово ставят во множественном числе: washing machines.*
 
 ---
 
 ## Интро 3
 
-### Против закона
+### Строка про холл
 
-`illegal` — «незаконный, запрещённый законом». `It is illegal` — «Это незаконно», короче `It’s illegal`. Слово относится к закону: оно не означает просто «мне не нравится» или «начальник против». Для законного действия было `legal`; здесь противоположный смысл — `illegal`.
+В описании записано: There isn’t no ironing board in the hall. Вы смотрите в холл: длинной узкой доски на ножках, на которой гладят бельё, там нет. ironing board — «гладильная доска». Достаточно одного «нет»: There isn’t an ironing board in the hall.
 
-**Переведите «Это незаконно» с сокращением.**
+**Агент ждёт поправки. Скажите ему верную фразу: в холле нет гладильной доски.**
 
-- ✅ **It's illegal.**
-- ❌ It's legal. — *`legal` — законно; здесь `illegal`.*
-- ❌ It are illegal. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **There isn’t an ironing board in the hall.**
+- ❌ There isn’t no ironing board in the hall. — *Слова isn’t уже достаточно для «нет». Второе отрицание no не нужно.*
+- ❌ There isn’t a ironing board in the hall. — *Слово ironing начинается с гласного звука, поэтому нужно an, а не a.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Передайте «Это незаконно» без сокращения**
-<!-- interaction_id: en:lesson-04:session-45:i01; family: phrase_builder -->
-Плитки: `illegal` `is` `It` `are` → **It is illegal.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is illegal.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-45:i01; family: speed_match -->
+microwave — микроволновка · washing machine — стиральная машина · ironing board — гладильная доска · hairdryer — фен
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-45:i02; family: listen_choose -->
-🔊 *microwave* → **microwave** · microwaves · freezer
-- microwaves — *В записи первое слово — `microwave`, а в этом варианте — `microwaves`.*
-- freezer — *В записи первое слово — `microwave`, а в этом варианте — `freezer`.*
+**2 · Карточка слова — microwave**
+<!-- interaction_id: en:lesson-04:session-45:word:microwave; family: word_card -->
+> **microwave** — микроволновка. There is a microwave on the worktop. — «На столешнице есть микроволновка». О приборе, в котором быстро разогревают еду.
 
-**3 · Назовите микроволновку одним словом**
-<!-- interaction_id: en:lesson-04:session-45:i03; family: context_gap_grammar -->
-___ → **microwave** · boiler · sink
-- boiler — *`boiler` — отопительный котёл; микроволновка — `microwave`.*
-- sink — *`sink` — раковина; микроволновка — `microwave`.*
+**3 · Агент показывает на кухне прибор, в котором быстро греют еду, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-45:i02; family: scripted_repeat_compare -->
+🎙 **microwave**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-45:i04; family: speed_match -->
-microwave — микроволновка · illegal — незаконный · office — офис · parcel locker — постамат
+**4 · Агент просит поправить строку. Скажите полной фразой: рядом с холодильником есть микроволновка**
+<!-- interaction_id: en:lesson-04:session-45:i03; family: phrase_builder -->
+Плитки: `microwave` `a` `next` `to` `the` `fridge` `There` `is` `are` → **There is a microwave next to the fridge.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a microwave next to the fridge.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-45:i05; family: listen_build_dictation -->
-🔊 *This is a microwave.* Плитки: `microwave` `a` `is` `This` `are` → **This is a microwave.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a microwave.`)*
+**5 · Карточка слова — washing machine**
+<!-- interaction_id: en:lesson-04:session-45:word:washing machine; family: word_card -->
+> **washing machine** — стиральная машина. There are some washing machines in the laundrette. — «В прачечной есть стиральные машины». О машине, в которой стирают бельё и одежду.
 
-**6 · Микроволновка в офисе. Скажите, где она**
-<!-- interaction_id: en:lesson-04:session-45:i06; family: phrase_builder -->
-Плитки: `office` `the` `in` `is` `microwave` `The` `are` → **The microwave is in the office.**
-*(плитка `are` лишняя: здесь нужно `is` — `The microwave is in the office.`)*
+**6 · Агент показывает в подвале машину, в которую загружают бельё и включают стирку. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-45:i04; family: context_gap_grammar -->
+___ → **washing machine** · oven · kettle
+- oven — *oven — это духовка, а машина для стирки называется washing machine.*
+- kettle — *kettle — это чайник, а машина для стирки называется washing machine.*
 
-**7 · Передайте «Это незаконно» с сокращением**
-<!-- interaction_id: en:lesson-04:session-45:i07; family: scripted_repeat_compare -->
-🎙 **It's illegal.**
+**7 · Послушайте агента**
+<!-- interaction_id: en:lesson-04:session-45:i05; family: listen_choose -->
+🔊 *There are some washing machines near the sink.* → **There are some washing machines near the sink.** · There are some washing machines near the stairs. · There is a washing machine near the sink.
+- There are some washing machines near the stairs. — *В записи последнее слово — `sink`, а в этом варианте — `stairs`.*
+- There is a washing machine near the sink. — *В записи `are` — несколько машин, а в этом варианте `is` — одна.*
 
-**8 · Микроволновки нет. Выберите форму**
+**8 · Карточка слова — ironing board**
+<!-- interaction_id: en:lesson-04:session-45:word:ironing board; family: word_card -->
+> **ironing board** — гладильная доска. There is an ironing board behind the door. — «За дверью есть гладильная доска». О длинной узкой доске на ножках, на которой гладят бельё.
+
+**9 · Агент показывает в холле длинную узкую доску на ножках, на которой гладят бельё, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-45:i06; family: scripted_repeat_compare -->
+🎙 **ironing board**
+
+**10 · Послушайте агента и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-45:i07; family: listen_build_dictation -->
+🔊 *There isn’t an ironing board near the door.* Плитки: `ironing` `board` `an` `near` `the` `door` `There` `isn’t` `aren’t` → **There isn’t an ironing board near the door.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t an ironing board near the door.`)*
+
+**11 · Карточка слова — hairdryer**
+<!-- interaction_id: en:lesson-04:session-45:word:hairdryer; family: word_card -->
+> **hairdryer** — фен. There is a hairdryer next to the bathtub. — «Рядом с ванной есть фен». О приборе, которым сушат волосы тёплым воздухом.
+
+**12 · Агент показывает в ванной прибор, которым сушат волосы тёплым воздухом. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-45:i08; family: context_gap_grammar -->
-There ___ a microwave. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Один прибор: `isn’t a microwave`.*
+___ → **hairdryer** · toaster · kettle
+- toaster — *toaster — это тостер, а прибор для сушки волос называется hairdryer.*
+- kettle — *kettle — это чайник, а прибор для сушки волос называется hairdryer.*
 
-**9 · Послушайте, где постамат**
-<!-- interaction_id: en:lesson-04:session-45:i09; family: listen_choose -->
-🔊 *The parcel locker is next to the door.* → **The parcel locker is next to the door.** · The parcel locker is next to the shop. · The parcel locker is next to the hotel.
-- The parcel locker is next to the shop. — *В записи последнее слово — `door`, а в этом варианте — `shop`.*
-- The parcel locker is next to the hotel. — *В записи последнее слово — `door`, а в этом варианте — `hotel`.*
+**13 · Агент ждёт ответа. Скажите ему полной фразой: на полке есть фен**
+<!-- interaction_id: en:lesson-04:session-45:i09; family: phrase_builder -->
+Плитки: `hairdryer` `a` `on` `the` `shelf` `There` `is` `are` → **There is a hairdryer on the shelf.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a hairdryer on the shelf.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-45:i10; family: speed_match -->
-microwave — микроволновка · illegal — незаконный · office — офис · parcel locker — постамат
+hairdryer — фен · ironing board — гладильная доска · toaster — тостер · kettle — чайник
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-45:i11; family: listen_build_dictation -->
-🔊 *There aren't any microwaves.* Плитки: `microwaves` `any` `aren't` `There` → **There aren't any microwaves.**
+**15 · Послушайте агента**
+<!-- interaction_id: en:lesson-04:session-45:i11; family: listen_choose -->
+🔊 *There are some hairdryers near the bathtub.* → **There are some hairdryers near the bathtub.** · There is a hairdryer near the bathtub. · There are some hairdryers near the basement.
+- There is a hairdryer near the bathtub. — *В записи `are` — несколько приборов, а в этом варианте `is` — один.*
+- There are some hairdryers near the basement. — *В записи последнее слово — `bathtub`, а в этом варианте — `basement`.*
 
-**12 · Здесь есть микроволновка. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-45:i12; family: phrase_builder -->
-Плитки: `microwave` `a` `is` `There` `are` → **There is a microwave.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a microwave.`)*
+**16 · Агент пишет о нескольких микроволновках в кафе. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-45:i12; family: context_gap_grammar -->
+There ___ some microwaves in the cafe. → **are** · is · isn’t
+- is — *Микроволновок несколько, поэтому нужно are, а не is.*
+- isn’t — *Здесь утверждение, а isn’t — это отрицание.*
 
-**13 · Вы ждёте посылку. Спросите, есть ли постамат**
-<!-- interaction_id: en:lesson-04:session-45:i13; family: scripted_repeat_compare -->
-🎙 **Is there a parcel locker?**
+**17 · Послушайте агента и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-45:i13; family: listen_build_dictation -->
+🔊 *There are some hairdryers on the shelves.* Плитки: `hairdryers` `some` `on` `the` `shelves` `There` `are` `is` → **There are some hairdryers on the shelves.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some hairdryers on the shelves.`)*
 
-**14 · Микроволновка стоит на поверхности столешницы, не внутри и не под ней. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-45:i14; family: context_gap_grammar -->
-The microwave is ___ the worktop. → **on** · in · under
-- in — *`in` — внутри; на поверхности — `on`.*
-- under — *`under` — под; на поверхности — `on`.*
+**18 · Агент проверяет строку про технику. Скажите ему: «В подвале нет стиральной машины»**
+<!-- interaction_id: en:lesson-04:session-45:i14; family: scripted_repeat_compare -->
+🎙 **There isn’t a washing machine in the basement.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-45:i15; family: listen_choose -->
-🔊 *That is a microwave.* → **That is a microwave.** · This is a microwave. · That is a freezer.
-- This is a microwave. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a freezer. — *В записи последнее слово — `microwave`, а в этом варианте — `freezer`.*
+**19 · Агент исправляет описание. Скажите ему полной фразой: в шкафчике нет гладильной доски**
+<!-- interaction_id: en:lesson-04:session-45:i15; family: phrase_builder -->
+Плитки: `ironing` `board` `an` `in` `the` `cupboard` `There` `isn’t` `aren’t` → **There isn’t an ironing board in the cupboard.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t an ironing board in the cupboard.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-45:i16; family: speed_match -->
-microwave — микроволновка · illegal — незаконный · office — офис · parcel locker — постамат
+microwave — микроволновка · washing machine — стиральная машина · ironing board — гладильная доска · hairdryer — фен
 
-**17 · Вы принесли обед в другой офис. Спросите, есть ли микроволновка**
+**21 · Агент спрашивает, что есть на кухне из техники. Скажите ему: «Здесь есть микроволновка»**
 <!-- interaction_id: en:lesson-04:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there a microwave?**
-
+🎙 **There is a microwave here.**

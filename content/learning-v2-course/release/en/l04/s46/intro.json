@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-46",
   "learningOutcomeByLocale": {
-    "ru": "назвать кладовую для продуктов, спросить о ней и выразить уместность выбора",
-    "uk": "назвати комору для продуктів, запитати про неї й висловити доречність вибору"
+    "ru": "самому выбрать: сказать, что есть, спросить или сказать, что нет",
+    "uk": "самому вибрати: сказати, що є, запитати чи сказати, що немає"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для запасов",
-        "uk": "Місце для запасів"
+        "ru": "Дверь без окон",
+        "uk": "Двері без вікон"
       },
       "bodyByLocale": {
-        "ru": "`pantry` — «кладовая для продуктов»: место, где хранят продукты и кухонные запасы. Одна кладовая — `a pantry`. `This is a pantry` — «Это кладовая для продуктов». Запас печенья здесь считается запасом, даже если вы уже строите на него планы.",
-        "uk": "`pantry` — «комора для продуктів»: місце, де зберігають продукти й кухонні запаси. Одна комора — `a pantry`. `This is a pantry` — «Це комора для продуктів». Запас печива тут вважається запасом, навіть якщо ви вже маєте на нього плани."
+        "ru": "Друг показывает общую кухню и открывает дверь в узкую комнату без окон. Там на полках стоят крупы, банки и пачки. pantry — «кладовая для продуктов». Она рядом с холодильником: There is a pantry next to the fridge — «Рядом с холодильником есть кладовая для продуктов».",
+        "uk": "Друг показує спільну кухню й відчиняє двері до вузької кімнати без вікон. Там на полицях стоять крупи, банки й пачки. pantry — «комора для продуктів». Вона поруч із холодильником: There is a pantry next to the fridge — «Поруч із холодильником є комора для продуктів»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-46:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите одну кладовую для продуктов.",
-          "uk": "Назвіть одну комору для продуктів."
+          "ru": "Друг ждёт ответа. Скажите ему, что рядом с холодильником есть кладовая для продуктов.",
+          "uk": "Друг чекає на відповідь. Скажіть йому, що поруч із холодильником є комора для продуктів."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-46:intro1:r1",
-              "text": "This is a pantry."
+              "text": "There is a pantry next to the fridge."
             },
             {
               "responseId": "en:lesson-04:session-46:intro1:r2",
-              "text": "This is pantry."
+              "text": "There is pantry next to the fridge."
             },
             {
               "responseId": "en:lesson-04:session-46:intro1:r3",
-              "text": "These are pantries."
+              "text": "There is a pantry under the fridge."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-46:intro1:r1",
-              "text": "This is a pantry."
+              "text": "There is a pantry next to the fridge."
             },
             {
               "responseId": "en:lesson-04:session-46:intro1:r2",
-              "text": "This is pantry."
+              "text": "There is pantry next to the fridge."
             },
             {
               "responseId": "en:lesson-04:session-46:intro1:r3",
-              "text": "These are pantries."
+              "text": "There is a pantry under the fridge."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите одну кладовую для продуктов.",
-          "uk": "Назвіть одну комору для продуктів."
+          "ru": "Друг ждёт ответа. Скажите ему, что рядом с холодильником есть кладовая для продуктов.",
+          "uk": "Друг чекає на відповідь. Скажіть йому, що поруч із холодильником є комора для продуктів."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дом и дорога",
-        "uk": "Будинок і дорога"
+        "ru": "Картошка с рынка",
+        "uk": "Картопля з ринку"
       },
       "bodyByLocale": {
-        "ru": "`bike shed` — «сарай для велосипедов», `airport` — «аэропорт». `The bike shed is next to the house` — «Сарай для велосипедов рядом с домом». `The hotel is next to the airport` — «Отель рядом с аэропортом». `Is there a pantry?` — «Есть кладовая для продуктов?»",
-        "uk": "`bike shed` — «сарай для велосипедів», `airport` — «аеропорт». `The bike shed is next to the house` — «Сарай для велосипедів поруч із будинком». `The hotel is next to the airport` — «Готель поруч з аеропортом». `Is there a pantry?` — «Є комора для продуктів?»"
+        "ru": "Вы ищете, куда друг ссыпал картошку с рынка. Он говорит, что овощи убирают в кладовую, в большой мешок из плотной ткани. sack — «мешок». Вы заглядываете в кладовую, не видите его и спрашиваете: Is there a sack in the pantry? — «В кладовой есть мешок?»",
+        "uk": "Ви шукаєте, куди друг висипав картоплю з ринку. Він каже, що овочі прибирають до комори, у великий мішок із щільної тканини. sack — «мішок». Ви заглядаєте до комори, не бачите його й питаєте: Is there a sack in the pantry? — «У коморі є мішок?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-46:intro2:q",
         "promptByLocale": {
-          "ru": "Отель рядом с аэропортом. Выберите описание.",
-          "uk": "Готель поруч з аеропортом. Виберіть опис."
+          "ru": "Друг стоит у двери. Спросите его, есть ли в кладовой мешок.",
+          "uk": "Друг стоїть біля дверей. Запитайте його, чи є в коморі мішок."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-46:intro2:r1",
-              "text": "The hotel is next to the airport."
+              "text": "Is there a sack in the pantry?"
             },
             {
               "responseId": "en:lesson-04:session-46:intro2:r2",
-              "text": "The hotel is in the airport."
+              "text": "There is a sack in the pantry?"
             },
             {
               "responseId": "en:lesson-04:session-46:intro2:r3",
-              "text": "The hotel are next to the airport."
+              "text": "Is there sack in the pantry?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-46:intro2:r1",
-              "text": "The hotel is next to the airport."
+              "text": "Is there a sack in the pantry?"
             },
             {
               "responseId": "en:lesson-04:session-46:intro2:r2",
-              "text": "The hotel is in the airport."
+              "text": "There is a sack in the pantry?"
             },
             {
               "responseId": "en:lesson-04:session-46:intro2:r3",
-              "text": "The hotel are next to the airport."
+              "text": "Is there sack in the pantry?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Отель рядом с аэропортом. Выберите описание.",
-          "uk": "Готель поруч з аеропортом. Виберіть опис."
+          "ru": "Друг стоит у двери. Спросите его, есть ли в кладовой мешок.",
+          "uk": "Друг стоїть біля дверей. Запитайте його, чи є в коморі мішок."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подходит к ситуации",
-        "uk": "Пасує до ситуації"
+        "ru": "Пустая полка",
+        "uk": "Порожня полиця"
       },
       "bodyByLocale": {
-        "ru": "`appropriate` — «уместный, подходящий для ситуации». Вы выбираете одежду для встречи; друг подтверждает, что она подходит к формату: `It is appropriate`, короче `It’s appropriate`. Это оценка соответствия ситуации, а не просто симпатия: вещь может нравиться, но не подходить к случаю.",
-        "uk": "`appropriate` — «доречний, відповідний для ситуації». Ви вибираєте одяг для зустрічі; друг підтверджує, що він відповідає формату: `It is appropriate`, коротше `It’s appropriate`. Це оцінка відповідності ситуації, а не просто симпатія: річ може подобатися, але не пасувати до нагоди."
+        "ru": "Утром вы хотите завтрак, а на полке в кладовой пусто. Раньше там стояли небольшие картонные упаковки с хлопьями, а теперь нет ни одной. packet — «пачка, пакетик». Пачек несколько, значит: There aren’t any packets on the shelf — «На полке нет пачек».",
+        "uk": "Зранку ви хочете снідати, а на полиці в коморі порожньо. Раніше там стояли невеликі картонні упаковки з пластівцями, а тепер немає жодної. packet — «пачка, пакетик». Пачок кілька, отже: There aren’t any packets on the shelf — «На полиці немає пачок»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-46:intro3:q",
         "promptByLocale": {
-          "ru": "Выбранная одежда подходит к формату встречи. Скажите, что она уместна, с сокращением.",
-          "uk": "Вибраний одяг відповідає формату зустрічі. Скажіть, що він доречний, зі скороченням."
+          "ru": "Друг спрашивает, что на полке. Скажите ему, что пачек на полке нет.",
+          "uk": "Друг питає, що на полиці. Скажіть йому, що пачок на полиці немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-46:intro3:r1",
-              "text": "It's appropriate."
+              "text": "There aren’t any packets on the shelf."
             },
             {
               "responseId": "en:lesson-04:session-46:intro3:r2",
-              "text": "It's inappropriate."
+              "text": "There isn’t any packets on the shelf."
             },
             {
               "responseId": "en:lesson-04:session-46:intro3:r3",
-              "text": "It are appropriate."
+              "text": "There aren’t any packet on the shelf."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-46:intro3:r1",
-              "text": "It's appropriate."
+              "text": "There aren’t any packets on the shelf."
             },
             {
               "responseId": "en:lesson-04:session-46:intro3:r2",
-              "text": "It's inappropriate."
+              "text": "There isn’t any packets on the shelf."
             },
             {
               "responseId": "en:lesson-04:session-46:intro3:r3",
-              "text": "It are appropriate."
+              "text": "There aren’t any packet on the shelf."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Выбранная одежда подходит к формату встречи. Скажите, что она уместна, с сокращением.",
-          "uk": "Вибраний одяг відповідає формату зустрічі. Скажіть, що він доречний, зі скороченням."
+          "ru": "Друг спрашивает, что на полке. Скажите ему, что пачек на полке нет.",
+          "uk": "Друг питає, що на полиці. Скажіть йому, що пачок на полиці немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "409024a6a832f91113f9b348d7235a54be5a913a221f99cb6b8741953b05b46c"
+  "introFingerprint": "012dbfb50d07ed8fd6133010f2c91f965b66c41425fb1bed81f7e28555c7afcf"
 }

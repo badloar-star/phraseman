@@ -1,0 +1,2389 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-47",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-47:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-47:i01:p1",
+              "target": "leftovers",
+              "meaningByLocale": {
+                "ru": "остатки еды",
+                "uk": "залишки їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i01:p2",
+              "target": "lasagne",
+              "meaningByLocale": {
+                "ru": "лазанья",
+                "uk": "лазанья"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i01:p3",
+              "target": "pie",
+              "meaningByLocale": {
+                "ru": "пирог",
+                "uk": "пиріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i01:p4",
+              "target": "curry",
+              "meaningByLocale": {
+                "ru": "карри",
+                "uk": "карі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leftovers",
+            "lasagne",
+            "pie",
+            "curry"
+          ],
+          "rightColumn": [
+            "остатки еды",
+            "лазанья",
+            "пирог",
+            "карри"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:leftovers",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leftovers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:leftovers:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leftovers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:leftovers:audio",
+            "transcript": "leftovers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:leftovers:r1",
+              "targetText": "leftovers",
+              "meaningByLocale": {
+                "ru": "остатки еды. There are some leftovers on the table. — «На столе есть остатки еды». О еде, которую приготовили, но не доели.",
+                "uk": "залишки їжі. There are some leftovers on the table. — «На столі є залишки їжі». Про їжу, яку приготували, але не доїли."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leftovers",
+            "definitionByLocale": {
+              "ru": "остатки еды. There are some leftovers on the table. — «На столе есть остатки еды». О еде, которую приготовили, но не доели.",
+              "uk": "залишки їжі. There are some leftovers on the table. — «На столі є залишки їжі». Про їжу, яку приготували, але не доїли."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед показывает в холодильнике контейнеры с едой, которую не доели, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Сосед показывает в холодильнике контейнеры с едой, которую не доели, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i02:audio",
+            "transcript": "leftovers"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "leftovers",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед записывает. Скажите ему полной фразой: на столешнице есть остатки еды",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед записывает. Скажите ему полной фразой: на столешнице есть остатки еды",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some leftovers on the worktop.",
+          "localizedMeaning": {
+            "ru": "Сосед записывает. Скажите ему полной фразой: на столешнице есть остатки еды",
+            "uk": "Сусід записує. Скажіть йому повною фразою: на стільниці є залишки їжі"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "leftovers",
+            "on",
+            "the",
+            "worktop"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед записывает. Скажите ему полной фразой: на столешнице есть остатки еды",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some leftovers on the worktop.`",
+                "uk": "тут потрібно `are` — `There are some leftovers on the worktop.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:lasagne",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lasagne",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:lasagne:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lasagne",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:lasagne:audio",
+            "transcript": "lasagne"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:lasagne:r1",
+              "targetText": "lasagne",
+              "meaningByLocale": {
+                "ru": "лазанья. There is some lasagne on the shelf. — «На полке есть лазанья». О запечённом блюде из слоёв теста, мяса и сыра.",
+                "uk": "лазанья. There is some lasagne on the shelf. — «На полиці є лазанья». Про запечену страву з шарів тіста, м’яса й сиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lasagne",
+            "definitionByLocale": {
+              "ru": "лазанья. There is some lasagne on the shelf. — «На полке есть лазанья». О запечённом блюде из слоёв теста, мяса и сыра.",
+              "uk": "лазанья. There is some lasagne on the shelf. — «На полиці є лазанья». Про запечену страву з шарів тіста, м’яса й сиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед достаёт из духовки запечённое блюдо из слоёв теста, мяса и сыра. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i04:r1",
+            "text": "lasagne"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i04:r2",
+            "text": "salad"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i04:r3",
+            "text": "omelette"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед достаёт из духовки запечённое блюдо из слоёв теста, мяса и сыра. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед достаёт из духовки запечённое блюдо из слоёв теста, мяса и сыра. Как оно называется по-английски?",
+            "uk": "Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-47:i04:r1",
+              "text": "lasagne"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i04:r2",
+              "text": "salad"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i04:r3",
+              "text": "omelette"
+            }
+          ],
+          "testedDimension": "Сосед достаёт из духовки запечённое блюдо из слоёв теста, мяса и сыра. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i04:r2",
+              "correct": false,
+              "testedDimension": "Сосед достаёт из духовки запечённое блюдо из слоёв теста, мяса и сыра. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "salad — это салат, а запечённое блюдо из слоёв теста называется lasagne.",
+                "uk": "salad — це салат, а запечена страва з шарів тіста називається lasagne."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i04:r3",
+              "correct": false,
+              "testedDimension": "Сосед достаёт из духовки запечённое блюдо из слоёв теста, мяса и сыра. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "omelette — это омлет, а запечённое блюдо из слоёв теста называется lasagne.",
+                "uk": "omelette — це омлет, а запечена страва з шарів тіста називається lasagne."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i05:r1",
+            "text": "Is there any lasagne in the fridge?"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i05:r2",
+            "text": "Is there any lasagne on the shelf?"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i05:r3",
+            "text": "Are there any leftovers in the fridge?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i05:audio",
+            "transcript": "Is there any lasagne in the fridge?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:i05:r1",
+              "targetText": "Is there any lasagne in the fridge?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i05:r2",
+              "targetText": "Is there any lasagne on the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i05:r3",
+              "targetText": "Are there any leftovers in the fridge?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fridge`, а в этом варианте — `shelf`.",
+                "uk": "У записі останнє слово — `fridge`, а в цьому варіанті — `shelf`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `Is there any lasagne` — спрашивают о лазанье, а в этом варианте `Are there any leftovers` — об остатках.",
+                "uk": "У записі `Is there any lasagne` — питають про лазанью, а в цьому варіанті `Are there any leftovers` — про залишки."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:pie",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:pie:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:pie:audio",
+            "transcript": "pie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:pie:r1",
+              "targetText": "pie",
+              "meaningByLocale": {
+                "ru": "пирог. There is a pie on the table. — «На столе есть пирог». О блюде из теста с начинкой, которое запекают в духовке.",
+                "uk": "пиріг. There is a pie on the table. — «На столі є пиріг». Про страву з тіста з начинкою, яку запікають у духовці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pie",
+            "definitionByLocale": {
+              "ru": "пирог. There is a pie on the table. — «На столе есть пирог». О блюде из теста с начинкой, которое запекают в духовке.",
+              "uk": "пиріг. There is a pie on the table. — «На столі є пиріг». Про страву з тіста з начинкою, яку запікають у духовці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед показывает на столе круглое блюдо из теста с начинкой, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i06:audio"
+        ],
+        "accessibilityLabel": "Сосед показывает на столе круглое блюдо из теста с начинкой, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i06:audio",
+            "transcript": "pie"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pie",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i07:audio",
+            "transcript": "There isn’t a pie in the fridge."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a pie in the fridge.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "pie",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a pie in the fridge.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a pie in the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:curry",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — curry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:curry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — curry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:curry:audio",
+            "transcript": "curry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:curry:r1",
+              "targetText": "curry",
+              "meaningByLocale": {
+                "ru": "карри. There is some curry in the oven. — «В духовке есть карри». О блюде с густым острым соусом, которое обычно едят с рисом.",
+                "uk": "карі. There is some curry in the oven. — «У духовці є карі». Про страву з густим гострим соусом, яку зазвичай їдять із рисом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curry",
+            "definitionByLocale": {
+              "ru": "карри. There is some curry in the oven. — «В духовке есть карри». О блюде с густым острым соусом, которое обычно едят с рисом.",
+              "uk": "карі. There is some curry in the oven. — «У духовці є карі». Про страву з густим гострим соусом, яку зазвичай їдять із рисом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед разогревает вчерашнее блюдо с густым острым соусом и рисом. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i08:r1",
+            "text": "curry"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i08:r2",
+            "text": "soup"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i08:r3",
+            "text": "juice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед разогревает вчерашнее блюдо с густым острым соусом и рисом. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед разогревает вчерашнее блюдо с густым острым соусом и рисом. Как оно называется по-английски?",
+            "uk": "Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-47:i08:r1",
+              "text": "curry"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i08:r2",
+              "text": "soup"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i08:r3",
+              "text": "juice"
+            }
+          ],
+          "testedDimension": "Сосед разогревает вчерашнее блюдо с густым острым соусом и рисом. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Сосед разогревает вчерашнее блюдо с густым острым соусом и рисом. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "soup — это суп, а блюдо с густым острым соусом называется curry.",
+                "uk": "soup — це суп, а страва з густим гострим соусом називається curry."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Сосед разогревает вчерашнее блюдо с густым острым соусом и рисом. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "juice — это сок, а блюдо с густым острым соусом называется curry.",
+                "uk": "juice — це сік, а страва з густим гострим соусом називається curry."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед проверяет холодильник. Скажите ему полной фразой: в холодильнике есть карри",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед проверяет холодильник. Скажите ему полной фразой: в холодильнике есть карри",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some curry in the fridge.",
+          "localizedMeaning": {
+            "ru": "Сосед проверяет холодильник. Скажите ему полной фразой: в холодильнике есть карри",
+            "uk": "Сусід перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є карі"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "curry",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед проверяет холодильник. Скажите ему полной фразой: в холодильнике есть карри",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some curry in the fridge.`",
+                "uk": "тут потрібно `is` — `There is some curry in the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-47:i10:p1",
+              "target": "curry",
+              "meaningByLocale": {
+                "ru": "карри",
+                "uk": "карі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i10:p2",
+              "target": "pie",
+              "meaningByLocale": {
+                "ru": "пирог",
+                "uk": "пиріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i10:p3",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i10:p4",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            }
+          ],
+          "leftColumn": [
+            "curry",
+            "pie",
+            "soup",
+            "rice"
+          ],
+          "rightColumn": [
+            "карри",
+            "пирог",
+            "суп",
+            "рис"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i11:r1",
+            "text": "There isn’t any curry in the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i11:r2",
+            "text": "There isn’t a pie in the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i11:r3",
+            "text": "There isn’t any curry in the oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i11:audio",
+            "transcript": "There isn’t any curry in the fridge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:i11:r1",
+              "targetText": "There isn’t any curry in the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i11:r2",
+              "targetText": "There isn’t a pie in the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i11:r3",
+              "targetText": "There isn’t any curry in the oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `any curry` — карри без счёта, а в этом варианте `a pie` — один пирог.",
+                "uk": "У записі `any curry` — карі без рахунку, а в цьому варіанті `a pie` — один пиріг."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fridge`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `fridge`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед спрашивает, осталась ли лазанья. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i12:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i12:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i12:r3",
+            "text": "There"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает, осталась ли лазанья. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, осталась ли лазанья. Выберите нужное слово",
+            "uk": "Сусід питає, чи залишилася лазанья. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "___ there any lasagne on the shelf?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-47:i12:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i12:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i12:r3",
+              "text": "There"
+            }
+          ],
+          "testedDimension": "Сосед спрашивает, осталась ли лазанья. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, осталась ли лазанья. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Лазанья — одно блюдо без счёта, поэтому Is there, а не Are there.",
+                "uk": "Лазанья — одна страва без рахунку, тому Is there, а не Are there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, осталась ли лазанья. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Вопрос о наличии начинают с Is, а не с There.",
+                "uk": "Запитання про наявність починають з Is, а не з There."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i13:audio",
+            "transcript": "Are there any leftovers in the oven?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any leftovers in the oven?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "leftovers",
+            "in",
+            "the",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any leftovers in the oven?`",
+                "uk": "тут потрібно `Are` — `Are there any leftovers in the oven?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, есть ли в холодильнике остатки еды. Они есть. Ответьте коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, есть ли в холодильнике остатки еды. Они есть. Ответьте коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i14:audio",
+            "transcript": "Yes, there are."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, there are.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед заглядывает в духовку. Скажите ему полной фразой: в духовке нет пирога",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед заглядывает в духовку. Скажите ему полной фразой: в духовке нет пирога",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a pie in the oven.",
+          "localizedMeaning": {
+            "ru": "Сосед заглядывает в духовку. Скажите ему полной фразой: в духовке нет пирога",
+            "uk": "Сусід заглядає в духовку. Скажіть йому повною фразою: у духовці немає пирога"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "pie",
+            "in",
+            "the",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед заглядывает в духовку. Скажите ему полной фразой: в духовке нет пирога",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a pie in the oven.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a pie in the oven.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-47:i16:p1",
+              "target": "leftovers",
+              "meaningByLocale": {
+                "ru": "остатки еды",
+                "uk": "залишки їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i16:p2",
+              "target": "lasagne",
+              "meaningByLocale": {
+                "ru": "лазанья",
+                "uk": "лазанья"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i16:p3",
+              "target": "pie",
+              "meaningByLocale": {
+                "ru": "пирог",
+                "uk": "пиріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i16:p4",
+              "target": "curry",
+              "meaningByLocale": {
+                "ru": "карри",
+                "uk": "карі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leftovers",
+            "lasagne",
+            "pie",
+            "curry"
+          ],
+          "rightColumn": [
+            "остатки еды",
+            "лазанья",
+            "пирог",
+            "карри"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает про ужин. Скажите ему: «Здесь есть остатки еды»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает про ужин. Скажите ему: «Здесь есть остатки еды»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i17:audio",
+            "transcript": "There are some leftovers here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are some leftovers here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-47:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-47:i01:p1",
+              "target": "leftovers",
+              "meaningByLocale": {
+                "ru": "остатки еды",
+                "uk": "залишки їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i01:p2",
+              "target": "lasagne",
+              "meaningByLocale": {
+                "ru": "лазанья",
+                "uk": "лазанья"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i01:p3",
+              "target": "pie",
+              "meaningByLocale": {
+                "ru": "пирог",
+                "uk": "пиріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i01:p4",
+              "target": "curry",
+              "meaningByLocale": {
+                "ru": "карри",
+                "uk": "карі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leftovers",
+            "lasagne",
+            "pie",
+            "curry"
+          ],
+          "rightColumn": [
+            "залишки їжі",
+            "лазанья",
+            "пиріг",
+            "карі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:leftovers",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leftovers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:leftovers:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leftovers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:leftovers:audio",
+            "transcript": "leftovers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:leftovers:r1",
+              "targetText": "leftovers",
+              "meaningByLocale": {
+                "ru": "остатки еды. There are some leftovers on the table. — «На столе есть остатки еды». О еде, которую приготовили, но не доели.",
+                "uk": "залишки їжі. There are some leftovers on the table. — «На столі є залишки їжі». Про їжу, яку приготували, але не доїли."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leftovers",
+            "definitionByLocale": {
+              "ru": "остатки еды. There are some leftovers on the table. — «На столе есть остатки еды». О еде, которую приготовили, но не доели.",
+              "uk": "залишки їжі. There are some leftovers on the table. — «На столі є залишки їжі». Про їжу, яку приготували, але не доїли."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід показує в холодильнику контейнери з їжею, яку не доїли, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Сусід показує в холодильнику контейнери з їжею, яку не доїли, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i02:audio",
+            "transcript": "leftovers"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "leftovers",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід записує. Скажіть йому повною фразою: на стільниці є залишки їжі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід записує. Скажіть йому повною фразою: на стільниці є залишки їжі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some leftovers on the worktop.",
+          "localizedMeaning": {
+            "ru": "Сосед записывает. Скажите ему полной фразой: на столешнице есть остатки еды",
+            "uk": "Сусід записує. Скажіть йому повною фразою: на стільниці є залишки їжі"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "leftovers",
+            "on",
+            "the",
+            "worktop"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід записує. Скажіть йому повною фразою: на стільниці є залишки їжі",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some leftovers on the worktop.`",
+                "uk": "тут потрібно `are` — `There are some leftovers on the worktop.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:lasagne",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lasagne",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:lasagne:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lasagne",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:lasagne:audio",
+            "transcript": "lasagne"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:lasagne:r1",
+              "targetText": "lasagne",
+              "meaningByLocale": {
+                "ru": "лазанья. There is some lasagne on the shelf. — «На полке есть лазанья». О запечённом блюде из слоёв теста, мяса и сыра.",
+                "uk": "лазанья. There is some lasagne on the shelf. — «На полиці є лазанья». Про запечену страву з шарів тіста, м’яса й сиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lasagne",
+            "definitionByLocale": {
+              "ru": "лазанья. There is some lasagne on the shelf. — «На полке есть лазанья». О запечённом блюде из слоёв теста, мяса и сыра.",
+              "uk": "лазанья. There is some lasagne on the shelf. — «На полиці є лазанья». Про запечену страву з шарів тіста, м’яса й сиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i04:r1",
+            "text": "lasagne"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i04:r2",
+            "text": "salad"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i04:r3",
+            "text": "omelette"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед достаёт из духовки запечённое блюдо из слоёв теста, мяса и сыра. Как оно называется по-английски?",
+            "uk": "Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-47:i04:r1",
+              "text": "lasagne"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i04:r2",
+              "text": "salad"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i04:r3",
+              "text": "omelette"
+            }
+          ],
+          "testedDimension": "Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i04:r2",
+              "correct": false,
+              "testedDimension": "Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "salad — это салат, а запечённое блюдо из слоёв теста называется lasagne.",
+                "uk": "salad — це салат, а запечена страва з шарів тіста називається lasagne."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i04:r3",
+              "correct": false,
+              "testedDimension": "Сусід дістає з духовки запечену страву з шарів тіста, м’яса й сиру. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "omelette — это омлет, а запечённое блюдо из слоёв теста называется lasagne.",
+                "uk": "omelette — це омлет, а запечена страва з шарів тіста називається lasagne."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i05:r1",
+            "text": "Is there any lasagne in the fridge?"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i05:r2",
+            "text": "Is there any lasagne on the shelf?"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i05:r3",
+            "text": "Are there any leftovers in the fridge?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i05:audio",
+            "transcript": "Is there any lasagne in the fridge?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:i05:r1",
+              "targetText": "Is there any lasagne in the fridge?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i05:r2",
+              "targetText": "Is there any lasagne on the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i05:r3",
+              "targetText": "Are there any leftovers in the fridge?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fridge`, а в этом варианте — `shelf`.",
+                "uk": "У записі останнє слово — `fridge`, а в цьому варіанті — `shelf`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `Is there any lasagne` — спрашивают о лазанье, а в этом варианте `Are there any leftovers` — об остатках.",
+                "uk": "У записі `Is there any lasagne` — питають про лазанью, а в цьому варіанті `Are there any leftovers` — про залишки."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:pie",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:pie:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:pie:audio",
+            "transcript": "pie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:pie:r1",
+              "targetText": "pie",
+              "meaningByLocale": {
+                "ru": "пирог. There is a pie on the table. — «На столе есть пирог». О блюде из теста с начинкой, которое запекают в духовке.",
+                "uk": "пиріг. There is a pie on the table. — «На столі є пиріг». Про страву з тіста з начинкою, яку запікають у духовці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pie",
+            "definitionByLocale": {
+              "ru": "пирог. There is a pie on the table. — «На столе есть пирог». О блюде из теста с начинкой, которое запекают в духовке.",
+              "uk": "пиріг. There is a pie on the table. — «На столі є пиріг». Про страву з тіста з начинкою, яку запікають у духовці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід показує на столі кругле блюдо з тіста з начинкою, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i06:audio"
+        ],
+        "accessibilityLabel": "Сусід показує на столі кругле блюдо з тіста з начинкою, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i06:audio",
+            "transcript": "pie"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pie",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i07:audio",
+            "transcript": "There isn’t a pie in the fridge."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a pie in the fridge.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "pie",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a pie in the fridge.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a pie in the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:word:curry",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — curry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:word:curry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — curry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:word:curry:audio",
+            "transcript": "curry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:word:curry:r1",
+              "targetText": "curry",
+              "meaningByLocale": {
+                "ru": "карри. There is some curry in the oven. — «В духовке есть карри». О блюде с густым острым соусом, которое обычно едят с рисом.",
+                "uk": "карі. There is some curry in the oven. — «У духовці є карі». Про страву з густим гострим соусом, яку зазвичай їдять із рисом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curry",
+            "definitionByLocale": {
+              "ru": "карри. There is some curry in the oven. — «В духовке есть карри». О блюде с густым острым соусом, которое обычно едят с рисом.",
+              "uk": "карі. There is some curry in the oven. — «У духовці є карі». Про страву з густим гострим соусом, яку зазвичай їдять із рисом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i08:r1",
+            "text": "curry"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i08:r2",
+            "text": "soup"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i08:r3",
+            "text": "juice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед разогревает вчерашнее блюдо с густым острым соусом и рисом. Как оно называется по-английски?",
+            "uk": "Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-47:i08:r1",
+              "text": "curry"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i08:r2",
+              "text": "soup"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i08:r3",
+              "text": "juice"
+            }
+          ],
+          "testedDimension": "Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "soup — это суп, а блюдо с густым острым соусом называется curry.",
+                "uk": "soup — це суп, а страва з густим гострим соусом називається curry."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Сусід розігріває вчорашню страву з густим гострим соусом і рисом. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "juice — это сок, а блюдо с густым острым соусом называется curry.",
+                "uk": "juice — це сік, а страва з густим гострим соусом називається curry."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є карі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є карі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some curry in the fridge.",
+          "localizedMeaning": {
+            "ru": "Сосед проверяет холодильник. Скажите ему полной фразой: в холодильнике есть карри",
+            "uk": "Сусід перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є карі"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "curry",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід перевіряє холодильник. Скажіть йому повною фразою: у холодильнику є карі",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some curry in the fridge.`",
+                "uk": "тут потрібно `is` — `There is some curry in the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-47:i10:p1",
+              "target": "curry",
+              "meaningByLocale": {
+                "ru": "карри",
+                "uk": "карі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i10:p2",
+              "target": "pie",
+              "meaningByLocale": {
+                "ru": "пирог",
+                "uk": "пиріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i10:p3",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i10:p4",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            }
+          ],
+          "leftColumn": [
+            "curry",
+            "pie",
+            "soup",
+            "rice"
+          ],
+          "rightColumn": [
+            "карі",
+            "пиріг",
+            "суп",
+            "рис"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i11:r1",
+            "text": "There isn’t any curry in the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i11:r2",
+            "text": "There isn’t a pie in the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i11:r3",
+            "text": "There isn’t any curry in the oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i11:audio",
+            "transcript": "There isn’t any curry in the fridge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-47:i11:r1",
+              "targetText": "There isn’t any curry in the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i11:r2",
+              "targetText": "There isn’t a pie in the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i11:r3",
+              "targetText": "There isn’t any curry in the oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `any curry` — карри без счёта, а в этом варианте `a pie` — один пирог.",
+                "uk": "У записі `any curry` — карі без рахунку, а в цьому варіанті `a pie` — один пиріг."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fridge`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `fridge`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід питає, чи залишилася лазанья. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i12:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i12:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i12:r3",
+            "text": "There"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає, чи залишилася лазанья. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, осталась ли лазанья. Выберите нужное слово",
+            "uk": "Сусід питає, чи залишилася лазанья. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "___ there any lasagne on the shelf?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-47:i12:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i12:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i12:r3",
+              "text": "There"
+            }
+          ],
+          "testedDimension": "Сусід питає, чи залишилася лазанья. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Сусід питає, чи залишилася лазанья. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Лазанья — одно блюдо без счёта, поэтому Is there, а не Are there.",
+                "uk": "Лазанья — одна страва без рахунку, тому Is there, а не Are there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Сусід питає, чи залишилася лазанья. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Вопрос о наличии начинают с Is, а не с There.",
+                "uk": "Запитання про наявність починають з Is, а не з There."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i13:audio",
+            "transcript": "Are there any leftovers in the oven?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any leftovers in the oven?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "leftovers",
+            "in",
+            "the",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any leftovers in the oven?`",
+                "uk": "тут потрібно `Are` — `Are there any leftovers in the oven?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, чи є в холодильнику залишки їжі. Вони є. Дайте коротку відповідь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, чи є в холодильнику залишки їжі. Вони є. Дайте коротку відповідь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i14:audio",
+            "transcript": "Yes, there are."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, there are.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід заглядає в духовку. Скажіть йому повною фразою: у духовці немає пирога",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід заглядає в духовку. Скажіть йому повною фразою: у духовці немає пирога",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a pie in the oven.",
+          "localizedMeaning": {
+            "ru": "Сосед заглядывает в духовку. Скажите ему полной фразой: в духовке нет пирога",
+            "uk": "Сусід заглядає в духовку. Скажіть йому повною фразою: у духовці немає пирога"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "pie",
+            "in",
+            "the",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-47:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід заглядає в духовку. Скажіть йому повною фразою: у духовці немає пирога",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a pie in the oven.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a pie in the oven.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-47:i16:p1",
+              "target": "leftovers",
+              "meaningByLocale": {
+                "ru": "остатки еды",
+                "uk": "залишки їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i16:p2",
+              "target": "lasagne",
+              "meaningByLocale": {
+                "ru": "лазанья",
+                "uk": "лазанья"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i16:p3",
+              "target": "pie",
+              "meaningByLocale": {
+                "ru": "пирог",
+                "uk": "пиріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-47:i16:p4",
+              "target": "curry",
+              "meaningByLocale": {
+                "ru": "карри",
+                "uk": "карі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leftovers",
+            "lasagne",
+            "pie",
+            "curry"
+          ],
+          "rightColumn": [
+            "залишки їжі",
+            "лазанья",
+            "пиріг",
+            "карі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-47:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає про вечерю. Скажіть йому: «Тут є залишки їжі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Сусід питає про вечерю. Скажіть йому: «Тут є залишки їжі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-47:i17:audio",
+            "transcript": "There are some leftovers here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are some leftovers here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-47:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:word:leftovers",
+      "correctText": "leftovers",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i02",
+      "correctText": "leftovers",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i03",
+      "correctText": "There are some leftovers on the worktop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:word:lasagne",
+      "correctText": "lasagne",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i04",
+      "correctText": "lasagne",
+      "correctResponseId": "en:lesson-04:session-47:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i05",
+      "correctText": "Is there any lasagne in the fridge?",
+      "correctResponseId": "en:lesson-04:session-47:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:word:pie",
+      "correctText": "pie",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i06",
+      "correctText": "pie",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i07",
+      "correctText": "There isn’t a pie in the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:word:curry",
+      "correctText": "curry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i08",
+      "correctText": "curry",
+      "correctResponseId": "en:lesson-04:session-47:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i09",
+      "correctText": "There is some curry in the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i11",
+      "correctText": "There isn’t any curry in the fridge.",
+      "correctResponseId": "en:lesson-04:session-47:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i12",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-04:session-47:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i13",
+      "correctText": "Are there any leftovers in the oven?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i14",
+      "correctText": "Yes, there are.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i15",
+      "correctText": "There isn’t a pie in the oven.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i17",
+      "correctText": "There are some leftovers here.",
+      "correctResponseId": null
+    }
+  ]
+}

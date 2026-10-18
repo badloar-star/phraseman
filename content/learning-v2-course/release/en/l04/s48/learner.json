@@ -7,196 +7,18 @@
       "interactionId": "en:lesson-04:session-48:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Спросите, есть ли морозильник",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, есть ли морозильник",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is there a freezer?",
-        "localizedMeaning": {
-          "ru": "Спросите, есть ли морозильник",
-          "uk": "Запитайте, чи є морозильник"
-        },
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "freezer"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-48:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите название",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-48:i02:r1",
-          "text": "community kitchen"
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i02:r2",
-          "text": "community kitchens"
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i02:r3",
-          "text": "kitchen"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-48:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите название",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-48:i02:audio",
-          "transcript": "community kitchen"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-48:i02:r1",
-            "targetText": "community kitchen",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i02:r2",
-            "targetText": "community kitchens",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i02:r3",
-            "targetText": "kitchen",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-48:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите название",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `kitchen`, а в этом варианте — `kitchens`.",
-              "uk": "У записі останнє слово — `kitchen`, а в цьому варіанті — `kitchens`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите название",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `community`, а в этом варианте — `kitchen`.",
-              "uk": "У записі перше слово — `community`, а в цьому варіанті — `kitchen`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-48:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите общественную кухню для жителей района",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-48:i03:r1",
-          "text": "community kitchen"
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i03:r2",
-          "text": "pantry"
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i03:r3",
-          "text": "bike shed"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите общественную кухню для жителей района",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите общественную кухню для жителей района",
-          "uk": "Назвіть громадську кухню для мешканців району"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-48:i03:r1",
-            "text": "community kitchen"
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i03:r2",
-            "text": "pantry"
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i03:r3",
-            "text": "bike shed"
-          }
-        ],
-        "testedDimension": "Назовите общественную кухню для жителей района",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-48:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите общественную кухню для жителей района",
-            "feedbackByLocale": {
-              "ru": "`pantry` — кладовая для продуктов; здесь `community kitchen`.",
-              "uk": "`pantry` — комора для продуктів; тут `community kitchen`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите общественную кухню для жителей района",
-            "feedbackByLocale": {
-              "ru": "`bike shed` — сарай для велосипедов; здесь `community kitchen`.",
-              "uk": "`bike shed` — сарай для велосипедів; тут `community kitchen`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-48:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините названия со значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините названия со значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-48:i04:p1",
+            "pairId": "en:lesson-04:session-48:i01:p1",
             "target": "community kitchen",
             "meaningByLocale": {
               "ru": "общественная кухня",
@@ -204,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-48:i04:p2",
-            "target": "freezer",
+            "pairId": "en:lesson-04:session-48:i01:p2",
+            "target": "apron",
             "meaningByLocale": {
-              "ru": "морозильник",
-              "uk": "морозильник"
+              "ru": "фартук",
+              "uk": "фартух"
             }
           },
           {
-            "pairId": "en:lesson-04:session-48:i04:p3",
-            "target": "microwave",
+            "pairId": "en:lesson-04:session-48:i01:p3",
+            "target": "saucepan",
             "meaningByLocale": {
-              "ru": "микроволновка",
-              "uk": "мікрохвильовка"
+              "ru": "кастрюля",
+              "uk": "каструля"
             }
           },
           {
-            "pairId": "en:lesson-04:session-48:i04:p4",
-            "target": "pantry",
+            "pairId": "en:lesson-04:session-48:i01:p4",
+            "target": "frying pan",
             "meaningByLocale": {
-              "ru": "кладовая для продуктов",
-              "uk": "комора для продуктів"
+              "ru": "сковорода",
+              "uk": "сковорідка"
             }
           }
         ],
         "leftColumn": [
           "community kitchen",
-          "freezer",
-          "microwave",
-          "pantry"
+          "apron",
+          "saucepan",
+          "frying pan"
         ],
         "rightColumn": [
           "общественная кухня",
-          "морозильник",
-          "микроволновка",
-          "кладовая для продуктов"
+          "фартук",
+          "кастрюля",
+          "сковорода"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,122 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-48:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-48:word:community kitchen",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — community kitchen",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-48:i05:audio"
+        "en:lesson-04:session-48:word:community kitchen:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Карточка слова — community kitchen",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-48:i05:audio",
-          "transcript": "This is a community kitchen."
+          "audioTargetId": "en:lesson-04:session-48:word:community kitchen:audio",
+          "transcript": "community kitchen"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a community kitchen.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "community",
-          "kitchen"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-48:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a community kitchen.`",
-              "uk": "тут потрібно `is` — `This is a community kitchen.`"
+            "responseId": "en:lesson-04:session-48:word:community kitchen:r1",
+            "targetText": "community kitchen",
+            "meaningByLocale": {
+              "ru": "общественная кухня. There is a community kitchen near the market. — «Рядом с рынком есть общественная кухня». О большой кухне для всех жильцов района, где готовят вместе.",
+              "uk": "громадська кухня. There is a community kitchen near the market. — «Поруч із ринком є громадська кухня». Про велику кухню для всіх мешканців району, де готують разом."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "community kitchen",
+          "definitionByLocale": {
+            "ru": "общественная кухня. There is a community kitchen near the market. — «Рядом с рынком есть общественная кухня». О большой кухне для всех жильцов района, где готовят вместе.",
+            "uk": "громадська кухня. There is a community kitchen near the market. — «Поруч із ринком є громадська кухня». Про велику кухню для всіх мешканців району, де готують разом."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-48:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Микроволновка на столешнице. Скажите, где она",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Микроволновка на столешнице. Скажите, где она",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The microwave is on the worktop.",
-        "localizedMeaning": {
-          "ru": "Микроволновка на столешнице. Скажите, где она",
-          "uk": "Мікрохвильовка на стільниці. Скажіть, де вона"
-        },
-        "orderedTokens": [
-          "The",
-          "microwave",
-          "is",
-          "on",
-          "the",
-          "worktop"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-48:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Микроволновка на столешнице. Скажите, где она",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The microwave is on the worktop.`",
-              "uk": "тут потрібно `is` — `The microwave is on the worktop.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-48:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-48:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После обеда спросите, осталась ли еда, используя leftovers",
+      "prompt": "Организатор показывает большой зал, где соседи готовят вместе, а вы повторяете за ним название",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-48:i07:audio"
+        "en:lesson-04:session-48:i02:audio"
       ],
-      "accessibilityLabel": "После обеда спросите, осталась ли еда, используя leftovers",
+      "accessibilityLabel": "Организатор показывает большой зал, где соседи готовят вместе, а вы повторяете за ним название",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-48:i07:audio",
-          "transcript": "Are there any leftovers?"
+          "audioTargetId": "en:lesson-04:session-48:i02:audio",
+          "transcript": "community kitchen"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are there any leftovers?",
+        "targetPhrase": "community kitchen",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -384,68 +153,160 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-48:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-48:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Новый жилец записывает. Скажите ему полной фразой: рядом со школой есть общественная кухня",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Новый жилец записывает. Скажите ему полной фразой: рядом со школой есть общественная кухня",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a community kitchen near the school.",
+        "localizedMeaning": {
+          "ru": "Новый жилец записывает. Скажите ему полной фразой: рядом со школой есть общественная кухня",
+          "uk": "Новий мешканець записує. Скажіть йому повною фразою: поруч зі школою є громадська кухня"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "community",
+          "kitchen",
+          "near",
+          "the",
+          "school"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-48:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Новый жилец записывает. Скажите ему полной фразой: рядом со школой есть общественная кухня",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a community kitchen near the school.`",
+              "uk": "тут потрібно `is` — `There is a community kitchen near the school.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:word:apron",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — apron",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-48:word:apron:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — apron",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-48:word:apron:audio",
+          "transcript": "apron"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-48:word:apron:r1",
+            "targetText": "apron",
+            "meaningByLocale": {
+              "ru": "фартук. There is an apron on the chair. — «На стуле есть фартук». Об одежде, которую надевают поверх своей, чтобы не испачкаться при готовке.",
+              "uk": "фартух. There is an apron on the chair. — «На стільці є фартух». Про одяг, який вдягають поверх свого, щоб не забруднитися під час готування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apron",
+          "definitionByLocale": {
+            "ru": "фартук. There is an apron on the chair. — «На стуле есть фартук». Об одежде, которую надевают поверх своей, чтобы не испачкаться при готовке.",
+            "uk": "фартух. There is an apron on the chair. — «На стільці є фартух». Про одяг, який вдягають поверх свого, щоб не забруднитися під час готування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Термостата нет. Выберите форму",
+      "prompt": "Организатор подаёт одежду, которую надевают поверх своей, чтобы не испачкаться при готовке. Как она называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-48:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-48:i04:r1",
+          "text": "apron"
         },
         {
-          "responseId": "en:lesson-04:session-48:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-48:i04:r2",
+          "text": "raincoat"
         },
         {
-          "responseId": "en:lesson-04:session-48:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-48:i04:r3",
+          "text": "coat"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Термостата нет. Выберите форму",
+      "accessibilityLabel": "Организатор подаёт одежду, которую надевают поверх своей, чтобы не испачкаться при готовке. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Термостата нет. Выберите форму",
-          "uk": "Термостата немає. Виберіть форму"
+          "ru": "Организатор подаёт одежду, которую надевают поверх своей, чтобы не испачкаться при готовке. Как она называется по-английски?",
+          "uk": "Організатор подає одяг, який вдягають поверх свого, щоб не забруднитися під час готування. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a thermostat.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-48:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-48:i04:r1",
+            "text": "apron"
           },
           {
-            "responseId": "en:lesson-04:session-48:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-48:i04:r2",
+            "text": "raincoat"
           },
           {
-            "responseId": "en:lesson-04:session-48:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-48:i04:r3",
+            "text": "coat"
           }
         ],
-        "testedDimension": "Термостата нет. Выберите форму",
+        "testedDimension": "Организатор подаёт одежду, которую надевают поверх своей, чтобы не испачкаться при готовке. Как она называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-48:i08:r2",
+            "responseId": "en:lesson-04:session-48:i04:r2",
             "correct": false,
-            "testedDimension": "Термостата нет. Выберите форму",
+            "testedDimension": "Организатор подаёт одежду, которую надевают поверх своей, чтобы не испачкаться при готовке. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`is` — есть; здесь нет: `isn’t`.",
-              "uk": "`is` — є; тут немає: `isn’t`."
+              "ru": "raincoat — это плащ от дождя, а одежда для готовки называется apron.",
+              "uk": "raincoat — це плащ від дощу, а одяг для готування називається apron."
             }
           },
           {
-            "responseId": "en:lesson-04:session-48:i08:r3",
+            "responseId": "en:lesson-04:session-48:i04:r3",
             "correct": false,
-            "testedDimension": "Термостата нет. Выберите форму",
+            "testedDimension": "Организатор подаёт одежду, которую надевают поверх своей, чтобы не испачкаться при готовке. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Один термостат: `isn’t a thermostat`.",
-              "uk": "Один термостат: `isn’t a thermostat`."
+              "ru": "coat — это пальто, а одежда для готовки называется apron.",
+              "uk": "coat — це пальто, а одяг для готування називається apron."
             }
           }
         ]
@@ -453,73 +314,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-48:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-48:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где контейнер",
+      "prompt": "Послушайте организатора",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-48:i09:r1",
-          "text": "The recycling bin is next to the door."
+          "responseId": "en:lesson-04:session-48:i05:r1",
+          "text": "There aren’t any aprons near the door."
         },
         {
-          "responseId": "en:lesson-04:session-48:i09:r2",
-          "text": "The recycling bin is next to the table."
+          "responseId": "en:lesson-04:session-48:i05:r2",
+          "text": "There aren’t any aprons near the sink."
         },
         {
-          "responseId": "en:lesson-04:session-48:i09:r3",
-          "text": "The recycling bin is next to the shop."
+          "responseId": "en:lesson-04:session-48:i05:r3",
+          "text": "There isn’t an apron near the door."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-48:i09:audio"
+        "en:lesson-04:session-48:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте, где контейнер",
+      "accessibilityLabel": "Послушайте организатора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-48:i09:audio",
-          "transcript": "The recycling bin is next to the door."
+          "audioTargetId": "en:lesson-04:session-48:i05:audio",
+          "transcript": "There aren’t any aprons near the door."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-48:i09:r1",
-            "targetText": "The recycling bin is next to the door.",
+            "responseId": "en:lesson-04:session-48:i05:r1",
+            "targetText": "There aren’t any aprons near the door.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-48:i09:r2",
-            "targetText": "The recycling bin is next to the table.",
+            "responseId": "en:lesson-04:session-48:i05:r2",
+            "targetText": "There aren’t any aprons near the sink.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-48:i09:r3",
-            "targetText": "The recycling bin is next to the shop.",
+            "responseId": "en:lesson-04:session-48:i05:r3",
+            "targetText": "There isn’t an apron near the door.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-48:i09:r2",
+            "responseId": "en:lesson-04:session-48:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где контейнер",
+            "testedDimension": "Послушайте организатора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `table`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `table`."
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `sink`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `sink`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-48:i09:r3",
+            "responseId": "en:lesson-04:session-48:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где контейнер",
+            "testedDimension": "Послушайте организатора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `shop`."
+              "ru": "В записи `aren’t any` — нет нескольких, а в этом варианте `isn’t an` — нет одного.",
+              "uk": "У записі `aren’t any` — немає кількох, а в цьому варіанті `isn’t an` — немає одного."
             }
           }
         ],
@@ -529,63 +390,352 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-48:i10",
+      "interactionId": "en:lesson-04:session-48:word:saucepan",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — saucepan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-48:word:saucepan:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — saucepan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-48:word:saucepan:audio",
+          "transcript": "saucepan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-48:word:saucepan:r1",
+            "targetText": "saucepan",
+            "meaningByLocale": {
+              "ru": "кастрюля. There is a saucepan under the table. — «Под столом есть кастрюля». О высокой круглой посуде с ручкой, в которой варят суп и кашу.",
+              "uk": "каструля. There is a saucepan under the table. — «Під столом є каструля». Про висока кругла посудина з ручкою, у якому варять суп і кашу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "saucepan",
+          "definitionByLocale": {
+            "ru": "кастрюля. There is a saucepan under the table. — «Под столом есть кастрюля». О высокой круглой посуде с ручкой, в которой варят суп и кашу.",
+            "uk": "каструля. There is a saucepan under the table. — «Під столом є каструля». Про висока кругла посудина з ручкою, у якому варять суп і кашу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Организатор показывает высокую круглую посуду с ручкой, в которой варят суп, а вы повторяете за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-48:i06:audio"
+      ],
+      "accessibilityLabel": "Организатор показывает высокую круглую посуду с ручкой, в которой варят суп, а вы повторяете за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-48:i06:audio",
+          "transcript": "saucepan"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "saucepan",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "Соедините названия со значениями",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте организатора и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте организатора и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-48:i07:audio",
+          "transcript": "Is there a saucepan next to the cooker?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a saucepan next to the cooker?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "saucepan",
+          "next",
+          "to",
+          "the",
+          "cooker"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-48:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте организатора и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a saucepan next to the cooker?`",
+              "uk": "тут потрібно `Is` — `Is there a saucepan next to the cooker?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:word:frying pan",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — frying pan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-48:word:frying pan:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — frying pan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-48:word:frying pan:audio",
+          "transcript": "frying pan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-48:word:frying pan:r1",
+            "targetText": "frying pan",
+            "meaningByLocale": {
+              "ru": "сковорода. There is a frying pan next to the sink. — «Рядом с раковиной есть сковорода». О плоской круглой посуде с длинной ручкой, на которой жарят.",
+              "uk": "сковорода. There is a frying pan next to the sink. — «Поруч із раковиною є сковорода». Про пласку круглу посудину з довгою ручкою, на якій смажать."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frying pan",
+          "definitionByLocale": {
+            "ru": "сковорода. There is a frying pan next to the sink. — «Рядом с раковиной есть сковорода». О плоской круглой посуде с длинной ручкой, на которой жарят.",
+            "uk": "сковорода. There is a frying pan next to the sink. — «Поруч із раковиною є сковорода». Про пласку круглу посудину з довгою ручкою, на якій смажать."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Организатор жарит яичницу на плоской круглой посуде с длинной ручкой. Как она называется по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-48:i08:r1",
+          "text": "frying pan"
+        },
+        {
+          "responseId": "en:lesson-04:session-48:i08:r2",
+          "text": "saucepan"
+        },
+        {
+          "responseId": "en:lesson-04:session-48:i08:r3",
+          "text": "kettle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Организатор жарит яичницу на плоской круглой посуде с длинной ручкой. Как она называется по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Организатор жарит яичницу на плоской круглой посуде с длинной ручкой. Как она называется по-английски?",
+          "uk": "Організатор смажить яєчню на пласкій круглій посудині з довгою ручкою. Як вона називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-48:i08:r1",
+            "text": "frying pan"
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i08:r2",
+            "text": "saucepan"
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i08:r3",
+            "text": "kettle"
+          }
+        ],
+        "testedDimension": "Организатор жарит яичницу на плоской круглой посуде с длинной ручкой. Как она называется по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Организатор жарит яичницу на плоской круглой посуде с длинной ручкой. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "saucepan — это высокая кастрюля для супа, а плоская посуда для жарки называется frying pan.",
+              "uk": "saucepan — це висока каструля для супу, а пласка посудина для смаження називається frying pan."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Организатор жарит яичницу на плоской круглой посуде с длинной ручкой. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "kettle — это чайник, а плоская посуда для жарки называется frying pan.",
+              "uk": "kettle — це чайник, а пласка посудина для смаження називається frying pan."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Организатор показывает на плиту. Скажите ему полной фразой: на плите есть сковорода",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините названия со значениями",
+      "accessibilityLabel": "Организатор показывает на плиту. Скажите ему полной фразой: на плите есть сковорода",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a frying pan on the cooker.",
+        "localizedMeaning": {
+          "ru": "Организатор показывает на плиту. Скажите ему полной фразой: на плите есть сковорода",
+          "uk": "Організатор показує на плиту. Скажіть йому повною фразою: на плиті є сковорода"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "frying",
+          "pan",
+          "on",
+          "the",
+          "cooker"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-48:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Организатор показывает на плиту. Скажите ему полной фразой: на плите есть сковорода",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a frying pan on the cooker.`",
+              "uk": "тут потрібно `is` — `There is a frying pan on the cooker.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-48:i10:p1",
-            "target": "thermostat",
+            "target": "frying pan",
             "meaningByLocale": {
-              "ru": "термостат",
-              "uk": "термостат"
+              "ru": "сковорода",
+              "uk": "сковорідка"
             }
           },
           {
             "pairId": "en:lesson-04:session-48:i10:p2",
-            "target": "cashpoint",
+            "target": "apron",
             "meaningByLocale": {
-              "ru": "банкомат",
-              "uk": "банкомат"
+              "ru": "фартук",
+              "uk": "фартух"
             }
           },
           {
             "pairId": "en:lesson-04:session-48:i10:p3",
-            "target": "bus shelter",
+            "target": "freezer",
             "meaningByLocale": {
-              "ru": "остановочный павильон",
-              "uk": "зупинковий павільйон"
+              "ru": "морозильник",
+              "uk": "морозильник"
             }
           },
           {
             "pairId": "en:lesson-04:session-48:i10:p4",
-            "target": "recycling bin",
+            "target": "microwave",
             "meaningByLocale": {
-              "ru": "контейнер для вторсырья",
-              "uk": "контейнер для вторсировини"
+              "ru": "микроволновка",
+              "uk": "мікрохвильовка"
             }
           }
         ],
         "leftColumn": [
-          "thermostat",
-          "cashpoint",
-          "bus shelter",
-          "recycling bin"
+          "frying pan",
+          "apron",
+          "freezer",
+          "microwave"
         ],
         "rightColumn": [
-          "термостат",
-          "банкомат",
-          "остановочный павильон",
-          "контейнер для вторсырья"
+          "сковорода",
+          "фартук",
+          "морозильник",
+          "микроволновка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -603,92 +753,191 @@
     },
     {
       "interactionId": "en:lesson-04:session-48:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите описание",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте организатора",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-48:i11:r1",
+          "text": "There isn’t a microwave in the community kitchen."
+        },
+        {
+          "responseId": "en:lesson-04:session-48:i11:r2",
+          "text": "There isn’t a freezer in the community kitchen."
+        },
+        {
+          "responseId": "en:lesson-04:session-48:i11:r3",
+          "text": "There aren’t any microwaves in the community kitchen."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-48:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите описание",
+      "accessibilityLabel": "Послушайте организатора",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-48:i11:audio",
-          "transcript": "The cashpoint is next to the bus shelter."
+          "transcript": "There isn’t a microwave in the community kitchen."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cashpoint is next to the bus shelter.",
-        "orderedTokens": [
-          "The",
-          "cashpoint",
-          "is",
-          "next",
-          "to",
-          "the",
-          "bus",
-          "shelter"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-48:i11:tile:d1",
+            "responseId": "en:lesson-04:session-48:i11:r1",
+            "targetText": "There isn’t a microwave in the community kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i11:r2",
+            "targetText": "There isn’t a freezer in the community kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i11:r3",
+            "targetText": "There aren’t any microwaves in the community kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-48:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите описание",
+            "testedDimension": "Послушайте организатора",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The cashpoint is next to the bus shelter.`",
-              "uk": "тут потрібно `is` — `The cashpoint is next to the bus shelter.`"
+              "ru": "В записи `microwave` — микроволновка, а в этом варианте `freezer` — морозильник.",
+              "uk": "У записі `microwave` — мікрохвильовка, а в цьому варіанті `freezer` — морозильник."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте организатора",
+            "feedbackByLocale": {
+              "ru": "В записи `isn’t a` — нет одной, а в этом варианте `aren’t any` — нет нескольких.",
+              "uk": "У записі `isn’t a` — немає однієї, а в цьому варіанті `aren’t any` — немає кількох."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-48:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Здесь есть общественная кухня. Сообщите об этом",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Организатор говорит, что кастрюль на полке нет. Выберите нужное слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-48:i12:r1",
+          "text": "aren’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-48:i12:r2",
+          "text": "isn’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-48:i12:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Здесь есть общественная кухня. Сообщите об этом",
+      "accessibilityLabel": "Организатор говорит, что кастрюль на полке нет. Выберите нужное слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a community kitchen.",
-        "localizedMeaning": {
-          "ru": "Здесь есть общественная кухня. Сообщите об этом",
-          "uk": "Тут є громадська кухня. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Организатор говорит, что кастрюль на полке нет. Выберите нужное слово",
+          "uk": "Організатор каже, що каструль на полиці немає. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "There ___ any saucepans on the shelf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-48:i12:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i12:r2",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Организатор говорит, что кастрюль на полке нет. Выберите нужное слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Организатор говорит, что кастрюль на полке нет. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "Кастрюль несколько, поэтому нужно aren’t, а не isn’t.",
+              "uk": "Каструль кілька, тому потрібно aren’t, а не isn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Организатор говорит, что кастрюль на полке нет. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "Здесь «нет», а are без not — это утверждение.",
+              "uk": "Тут «немає», а are без not — це ствердження."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-48:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте организатора и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте организатора и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-48:i13:audio",
+          "transcript": "There are some frying pans under the worktop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There are some frying pans under the worktop.",
         "orderedTokens": [
           "There",
-          "is",
-          "a",
-          "community",
-          "kitchen"
+          "are",
+          "some",
+          "frying",
+          "pans",
+          "under",
+          "the",
+          "worktop"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-48:i12:tile:d1",
+            "responseId": "en:lesson-04:session-48:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Здесь есть общественная кухня. Сообщите об этом",
+            "testedDimension": "Послушайте организатора и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a community kitchen.`",
-              "uk": "тут потрібно `is` — `There is a community kitchen.`"
+              "ru": "здесь нужно `are` — `There are some frying pans under the worktop.`",
+              "uk": "тут потрібно `are` — `There are some frying pans under the worktop.`"
             }
           }
         ],
@@ -700,26 +949,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-48:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-48:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите, есть ли кладовая для продуктов",
+      "prompt": "Другу нужны наличные. Скажите ему: «Рядом с кухней есть банкомат»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-48:i13:audio"
+        "en:lesson-04:session-48:i14:audio"
       ],
-      "accessibilityLabel": "Спросите, есть ли кладовая для продуктов",
+      "accessibilityLabel": "Другу нужны наличные. Скажите ему: «Рядом с кухней есть банкомат»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-48:i13:audio",
-          "transcript": "Is there a pantry?"
+          "audioTargetId": "en:lesson-04:session-48:i14:audio",
+          "transcript": "There’s a cashpoint next to the kitchen."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a pantry?",
+        "targetPhrase": "There’s a cashpoint next to the kitchen.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -733,208 +982,113 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-48:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Оставшаяся еда на поверхности стола, не под ним и не внутри. Выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-48:i14:r1",
-          "text": "on"
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i14:r2",
-          "text": "under"
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i14:r3",
-          "text": "in"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-48:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ищет остановку. Скажите ему полной фразой: за общественной кухней есть остановочный павильон",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Оставшаяся еда на поверхности стола, не под ним и не внутри. Выберите слово",
+      "accessibilityLabel": "Друг ищет остановку. Скажите ему полной фразой: за общественной кухней есть остановочный павильон",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Оставшаяся еда на поверхности стола, не под ним и не внутри. Выберите слово",
-          "uk": "Їжа, що залишилася, на поверхні столу, не під ним і не всередині. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "There is a bus shelter behind the community kitchen.",
+        "localizedMeaning": {
+          "ru": "Друг ищет остановку. Скажите ему полной фразой: за общественной кухней есть остановочный павильон",
+          "uk": "Друг шукає зупинку. Скажіть йому повною фразою: за громадською кухнею є зупинковий павільйон"
         },
-        "gappedTargetPhrase": "The leftovers are ___ the table.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "bus",
+          "shelter",
+          "behind",
+          "the",
+          "community",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-48:i14:r1",
-            "text": "on"
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i14:r2",
-            "text": "under"
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i14:r3",
-            "text": "in"
+            "responseId": "en:lesson-04:session-48:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг ищет остановку. Скажите ему полной фразой: за общественной кухней есть остановочный павильон",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a bus shelter behind the community kitchen.`",
+              "uk": "тут потрібно `is` — `There is a bus shelter behind the community kitchen.`"
+            }
           }
         ],
-        "testedDimension": "Оставшаяся еда на поверхности стола, не под ним и не внутри. Выберите слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-48:i14:r2",
-            "correct": false,
-            "testedDimension": "Оставшаяся еда на поверхности стола, не под ним и не внутри. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; на поверхности — `on`.",
-              "uk": "`under` — під; на поверхні — `on`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i14:r3",
-            "correct": false,
-            "testedDimension": "Оставшаяся еда на поверхности стола, не под ним и не внутри. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; на поверхности — `on`.",
-              "uk": "`in` — усередині; на поверхні — `on`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-48:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте, что показывает друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-48:i15:r1",
-          "text": "That is a community kitchen."
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i15:r2",
-          "text": "This is a community kitchen."
-        },
-        {
-          "responseId": "en:lesson-04:session-48:i15:r3",
-          "text": "There is a community kitchen."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-48:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте, что показывает друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-48:i15:audio",
-          "transcript": "That is a community kitchen."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-48:i15:r1",
-            "targetText": "That is a community kitchen.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i15:r2",
-            "targetText": "This is a community kitchen.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i15:r3",
-            "targetText": "There is a community kitchen.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-48:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-48:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `There`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `There`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-48:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините названия со значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините названия со значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-48:i16:p1",
-            "target": "leftovers",
-            "meaningByLocale": {
-              "ru": "остатки еды",
-              "uk": "залишки їжі"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-48:i16:p2",
-            "target": "pantry",
-            "meaningByLocale": {
-              "ru": "кладовая для продуктов",
-              "uk": "комора для продуктів"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-48:i16:p3",
-            "target": "thermostat",
-            "meaningByLocale": {
-              "ru": "термостат",
-              "uk": "термостат"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-48:i16:p4",
             "target": "community kitchen",
             "meaningByLocale": {
               "ru": "общественная кухня",
               "uk": "громадська кухня"
             }
+          },
+          {
+            "pairId": "en:lesson-04:session-48:i16:p2",
+            "target": "apron",
+            "meaningByLocale": {
+              "ru": "фартук",
+              "uk": "фартух"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-48:i16:p3",
+            "target": "saucepan",
+            "meaningByLocale": {
+              "ru": "кастрюля",
+              "uk": "каструля"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-48:i16:p4",
+            "target": "frying pan",
+            "meaningByLocale": {
+              "ru": "сковорода",
+              "uk": "сковорідка"
+            }
           }
         ],
         "leftColumn": [
-          "leftovers",
-          "pantry",
-          "thermostat",
-          "community kitchen"
+          "community kitchen",
+          "apron",
+          "saucepan",
+          "frying pan"
         ],
         "rightColumn": [
-          "остатки еды",
-          "кладовая для продуктов",
-          "термостат",
-          "общественная кухня"
+          "общественная кухня",
+          "фартук",
+          "кастрюля",
+          "сковорода"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1106,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-48:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы приехали в другой район. Спросите, есть ли общественная кухня для жителей",
+      "prompt": "Новый жилец спрашивает, есть ли в кухне фартуки. Скажите ему: «Фартуков здесь нет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-48:i17:audio"
       ],
-      "accessibilityLabel": "Вы приехали в другой район. Спросите, есть ли общественная кухня для жителей",
+      "accessibilityLabel": "Новый жилец спрашивает, есть ли в кухне фартуки. Скажите ему: «Фартуков здесь нет»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-48:i17:audio",
-          "transcript": "Is there a community kitchen?"
+          "transcript": "There aren’t any aprons here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a community kitchen?",
+        "targetPhrase": "There aren’t any aprons here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1146,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5ed5226e875b89b70830b484b6cd1ea28c1b389f506c5449c686e2b96288c43b"
+  "learnerFingerprint": "e18e7b389589966a3e4224950c3f11e86210f81621b76bd99ca0fe0e01f6f8ba"
 }

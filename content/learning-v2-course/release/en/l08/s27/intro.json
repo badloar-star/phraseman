@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Свежий воздух",
-        "uk": "Свіже повітря"
+        "ru": "Запас энергии для ночного поезда",
+        "uk": "Запас енергії для нічного потяга"
       },
       "bodyByLocale": {
-        "ru": "Вы занимаетесь дома с другом, и в комнате стало душно. Друг стоит возле окна. `Open the window` — «Открой окно». Короткое указание начинается сразу с `Open`.",
-        "uk": "Ви займаєтеся вдома з другом, і в кімнаті стало душно. Друг стоїть біля вікна. `Open the window` — «Відчини вікно». Коротка вказівка починається одразу з `Open`."
+        "ru": "Друг собирает вещи в ночной поезд. Он берёт внешний аккумулятор, чтобы телефон работал в дороге, но сам аккумулятор разряжен. Power bank — «внешний аккумулятор». `Charge the power bank` — «Заряди внешний аккумулятор». Называем устройство после Charge; the указывает на тот аккумулятор, который друг собирается взять.",
+        "uk": "Друг збирає речі в нічний потяг. Він бере зовнішній акумулятор, щоб телефон працював у дорозі, але сам акумулятор розряджений. Power bank — «зовнішній акумулятор». `Charge the power bank` — «Заряди зовнішній акумулятор». Називаємо пристрій після Charge; the вказує на той акумулятор, який друг збирається взяти."
       },
       "question": {
         "interactionId": "en:lesson-08:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "Дайте другу короткое указание открыть окно.",
-          "uk": "Дайте другові коротку вказівку відчинити вікно."
+          "ru": "Скажите другу зарядить внешний аккумулятор.",
+          "uk": "Скажіть другові зарядити зовнішній акумулятор."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-27:intro2:r1",
-              "text": "Open the window."
+              "text": "Charge the power bank."
             },
             {
               "responseId": "en:lesson-08:session-27:intro2:r2",
-              "text": "Opens the window."
+              "text": "Charges the power bank."
             },
             {
               "responseId": "en:lesson-08:session-27:intro2:r3",
-              "text": "To open the window."
+              "text": "To charge the power bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-27:intro2:r1",
-              "text": "Open the window."
+              "text": "Charge the power bank."
             },
             {
               "responseId": "en:lesson-08:session-27:intro2:r2",
-              "text": "Opens the window."
+              "text": "Charges the power bank."
             },
             {
               "responseId": "en:lesson-08:session-27:intro2:r3",
-              "text": "To open the window."
+              "text": "To charge the power bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Дайте другу короткое указание открыть окно.",
-          "uk": "Дайте другові коротку вказівку відчинити вікно."
+          "ru": "Скажите другу зарядить внешний аккумулятор.",
+          "uk": "Скажіть другові зарядити зовнішній акумулятор."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Непонятное правило",
-        "uk": "Незрозуміле правило"
+        "ru": "Колонка перед репетицией",
+        "uk": "Колонка перед репетицією"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказал правило игры, но вы его не поняли. `Can you explain it?` — «Можешь это объяснить?» Здесь `it` — правило. Для этой просьбы начните с `Can you`, затем `explain it`.",
-        "uk": "Друг розповів правило гри, але ви його не зрозуміли. `Can you explain it?` — «Можеш це пояснити?» Тут `it` — правило. Для цього прохання почніть із `Can you`, потім `explain it`."
+        "ru": "Перед репетицией друг подключил колонку к зарядке и спрашивает, идёт ли зарядка. У этой колонки состояние показывает маленький световой индикатор. Indicator — «индикатор», сигнал или отметка состояния. `Check the indicator` — «Проверь индикатор». Вы просите посмотреть на него; значение цвета можно уточнить в инструкции к колонке.",
+        "uk": "Перед репетицією друг підключив колонку до заряджання й запитує, чи вона заряджається. У цієї колонки стан показує маленький світловий індикатор. Indicator — «індикатор», сигнал або позначка стану. `Check the indicator` — «Перевір індикатор». Ви просите подивитися на нього; значення кольору можна уточнити в інструкції до колонки."
       },
       "question": {
         "interactionId": "en:lesson-08:session-27:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга объяснить правило.",
-          "uk": "Попросіть друга пояснити правило."
+          "ru": "Дайте короткое указание проверить индикатор.",
+          "uk": "Дайте коротку вказівку перевірити індикатор."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-27:intro3:r1",
-              "text": "Can you explain it?"
+              "text": "Check the indicator."
             },
             {
               "responseId": "en:lesson-08:session-27:intro3:r2",
-              "text": "Can you explains it?"
+              "text": "Checks the indicator."
             },
             {
               "responseId": "en:lesson-08:session-27:intro3:r3",
-              "text": "Can you to explain it?"
+              "text": "To check the indicator."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-27:intro3:r1",
-              "text": "Can you explain it?"
+              "text": "Check the indicator."
             },
             {
               "responseId": "en:lesson-08:session-27:intro3:r2",
-              "text": "Can you explains it?"
+              "text": "Checks the indicator."
             },
             {
               "responseId": "en:lesson-08:session-27:intro3:r3",
-              "text": "Can you to explain it?"
+              "text": "To check the indicator."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга объяснить правило.",
-          "uk": "Попросіть друга пояснити правило."
+          "ru": "Дайте короткое указание проверить индикатор.",
+          "uk": "Дайте коротку вказівку перевірити індикатор."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "86f061aec5134fad398196ccc4cfa7dc128a20558dd6e8fcfcd0eedbaa4f42bd"
+  "introFingerprint": "ce619b124150100bd7f1de13822deb096e317c7b2ed1887785b9962741de0ffd"
 }

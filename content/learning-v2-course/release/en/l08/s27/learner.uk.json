@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-27:i01",
+      "interactionId": "en:lesson-08:session-27:word:charge",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — charge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-27:word:charge:audio"
+      ],
+      "accessibilityLabel": "Картка слова — charge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-27:word:charge:audio",
+          "transcript": "charge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-27:word:charge:r1",
+            "targetText": "charge",
+            "meaningByLocale": {
+              "ru": "зарядить. Charge it. — «Заряди его». Здесь речь о телефоне и его батарее; charge обозначает процесс зарядки.",
+              "uk": "зарядити. Charge it. — «Заряди його». Тут ідеться про телефон і його батарею; charge означає процес заряджання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "charge",
+          "definitionByLocale": {
+            "ru": "зарядить. Charge it. — «Заряди его». Здесь речь о телефоне и его батарее; charge обозначает процесс зарядки.",
+            "uk": "зарядити. Charge it. — «Заряди його». Тут ідеться про телефон і його батарею; charge означає процес заряджання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-27:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -36,7 +79,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +155,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте коротку вказівку зарядити телефон",
+      "prompt": "Виберіть форму для вказівки зарядити телефон",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-27:i03:r1",
@@ -133,12 +176,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте коротку вказівку зарядити телефон",
+      "accessibilityLabel": "Виберіть форму для вказівки зарядити телефон",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание зарядить телефон",
-          "uk": "Дайте коротку вказівку зарядити телефон"
+          "ru": "Выберите форму для указания зарядить телефон",
+          "uk": "Виберіть форму для вказівки зарядити телефон"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -155,24 +198,24 @@
             "text": "To charge"
           }
         ],
-        "testedDimension": "Дайте коротку вказівку зарядити телефон",
+        "testedDimension": "Виберіть форму для вказівки зарядити телефон",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-27:i03:r2",
             "correct": false,
-            "testedDimension": "Дайте коротку вказівку зарядити телефон",
+            "testedDimension": "Виберіть форму для вказівки зарядити телефон",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Charge`, без `s`.",
-              "uk": "Для вказівки потрібне `Charge`, без `s`."
+              "ru": "Для указания нужно Charge, без s.",
+              "uk": "Для вказівки потрібне Charge, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-27:i03:r3",
             "correct": false,
-            "testedDimension": "Дайте коротку вказівку зарядити телефон",
+            "testedDimension": "Виберіть форму для вказівки зарядити телефон",
             "feedbackByLocale": {
-              "ru": "Начните с `Charge`, без `to`.",
-              "uk": "Почніть із `Charge`, без `to`."
+              "ru": "Начните с Charge, без to.",
+              "uk": "Почніть з Charge, без to."
             }
           }
         ]
@@ -181,7 +224,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -203,40 +246,40 @@
           },
           {
             "pairId": "en:lesson-08:session-27:i04:p2",
-            "target": "awning",
+            "target": "battery",
             "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
+              "ru": "батарея",
+              "uk": "батарея"
             }
           },
           {
             "pairId": "en:lesson-08:session-27:i04:p3",
-            "target": "stay",
+            "target": "cable",
             "meaningByLocale": {
-              "ru": "оставаться",
-              "uk": "залишатися"
+              "ru": "кабель",
+              "uk": "кабель"
             }
           },
           {
             "pairId": "en:lesson-08:session-27:i04:p4",
-            "target": "exercise",
+            "target": "phone",
             "meaningByLocale": {
-              "ru": "тренироваться",
-              "uk": "тренуватися"
+              "ru": "телефон",
+              "uk": "телефон"
             }
           }
         ],
         "leftColumn": [
           "charge",
-          "awning",
-          "stay",
-          "exercise"
+          "battery",
+          "cable",
+          "phone"
         ],
         "rightColumn": [
           "зарядити",
-          "навіс",
-          "залишатися",
-          "тренуватися"
+          "батарея",
+          "кабель",
+          "телефон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +330,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-27:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-27:word:power-bank",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — power bank",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-27:word:power-bank:audio"
+      ],
+      "accessibilityLabel": "Картка слова — power bank",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-27:word:power-bank:audio",
+          "transcript": "power bank"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-27:word:power-bank:r1",
+            "targetText": "power bank",
+            "meaningByLocale": {
+              "ru": "внешний аккумулятор. Charge the power bank. — «Заряди внешний аккумулятор». Переносной запас энергии для телефона и других устройств.",
+              "uk": "зовнішній акумулятор. Charge the power bank. — «Заряди зовнішній акумулятор». Переносний запас енергії для телефона та інших пристроїв."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "power bank",
+          "definitionByLocale": {
+            "ru": "внешний аккумулятор. Charge the power bank. — «Заряди внешний аккумулятор». Переносной запас энергии для телефона и других устройств.",
+            "uk": "зовнішній акумулятор. Charge the power bank. — «Заряди зовнішній акумулятор». Переносний запас енергії для телефона та інших пристроїв."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте коротку вказівку «Відчини вікно»",
+      "prompt": "Дайте вказівку «Заряди зовнішній акумулятор»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте коротку вказівку «Відчини вікно»",
+      "accessibilityLabel": "Дайте вказівку «Заряди зовнішній акумулятор»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Open the window.",
+        "targetPhrase": "Charge the power bank.",
         "localizedMeaning": {
-          "ru": "Дайте короткое указание «Открой окно»",
-          "uk": "Дайте коротку вказівку «Відчини вікно»"
+          "ru": "Дайте указание «Заряди внешний аккумулятор»",
+          "uk": "Дайте вказівку «Заряди зовнішній акумулятор»"
         },
         "orderedTokens": [
-          "Open",
+          "Charge",
           "the",
-          "window"
+          "power",
+          "bank"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +406,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-27:word:indicator",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — indicator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-27:word:indicator:audio"
+      ],
+      "accessibilityLabel": "Картка слова — indicator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-27:word:indicator:audio",
+          "transcript": "indicator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-27:word:indicator:r1",
+            "targetText": "indicator",
+            "meaningByLocale": {
+              "ru": "индикатор. Check the indicator. — «Проверь индикатор». Здесь маленький световой сигнал состояния прибора.",
+              "uk": "індикатор. Check the indicator. — «Перевір індикатор». Тут маленький світловий сигнал стану приладу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "indicator",
+          "definitionByLocale": {
+            "ru": "индикатор. Check the indicator. — «Проверь индикатор». Здесь маленький световой сигнал состояния прибора.",
+            "uk": "індикатор. Check the indicator. — «Перевір індикатор». Тут маленький світловий сигнал стану приладу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-27:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На прогулянці підкажіть другові «Поверни ліворуч»",
+      "prompt": "Друг підключив колонку до заряджання. Скажіть «Перевір індикатор»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-27:i07:audio"
       ],
-      "accessibilityLabel": "На прогулянці підкажіть другові «Поверни ліворуч»",
+      "accessibilityLabel": "Друг підключив колонку до заряджання. Скажіть «Перевір індикатор»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-27:i07:audio",
-          "transcript": "Turn left."
+          "transcript": "Check the indicator."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Turn left.",
+        "targetPhrase": "Check the indicator.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,67 +483,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте коротку вказівку відчинити вікно",
+      "prompt": "Виберіть форму для вказівки перевірити індикатор",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-27:i08:r1",
-          "text": "Open"
+          "text": "Check"
         },
         {
           "responseId": "en:lesson-08:session-27:i08:r2",
-          "text": "Opens"
+          "text": "Checks"
         },
         {
           "responseId": "en:lesson-08:session-27:i08:r3",
-          "text": "To open"
+          "text": "To check"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте коротку вказівку відчинити вікно",
+      "accessibilityLabel": "Виберіть форму для вказівки перевірити індикатор",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание открыть окно",
-          "uk": "Дайте коротку вказівку відчинити вікно"
+          "ru": "Выберите форму для указания проверить индикатор",
+          "uk": "Виберіть форму для вказівки перевірити індикатор"
         },
-        "gappedTargetPhrase": "___ the window.",
+        "gappedTargetPhrase": "___ the indicator.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-27:i08:r1",
-            "text": "Open"
+            "text": "Check"
           },
           {
             "responseId": "en:lesson-08:session-27:i08:r2",
-            "text": "Opens"
+            "text": "Checks"
           },
           {
             "responseId": "en:lesson-08:session-27:i08:r3",
-            "text": "To open"
+            "text": "To check"
           }
         ],
-        "testedDimension": "Дайте коротку вказівку відчинити вікно",
+        "testedDimension": "Виберіть форму для вказівки перевірити індикатор",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-27:i08:r2",
             "correct": false,
-            "testedDimension": "Дайте коротку вказівку відчинити вікно",
+            "testedDimension": "Виберіть форму для вказівки перевірити індикатор",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Open`, без `s`.",
-              "uk": "Для вказівки потрібне `Open`, без `s`."
+              "ru": "Для указания нужно Check, без s.",
+              "uk": "Для вказівки потрібне Check, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-27:i08:r3",
             "correct": false,
-            "testedDimension": "Дайте коротку вказівку відчинити вікно",
+            "testedDimension": "Виберіть форму для вказівки перевірити індикатор",
             "feedbackByLocale": {
-              "ru": "Начните с `Open`, без `to`.",
-              "uk": "Почніть із `Open`, без `to`."
+              "ru": "Начните с Check, без to.",
+              "uk": "Почніть з Check, без to."
             }
           }
         ]
@@ -422,7 +552,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +628,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,14 +642,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-27:i10:p1",
-            "target": "explain",
-            "meaningByLocale": {
-              "ru": "объяснить",
-              "uk": "пояснити"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-27:i10:p2",
             "target": "charge",
             "meaningByLocale": {
               "ru": "зарядить",
@@ -527,33 +649,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-27:i10:p3",
-            "target": "awning",
+            "pairId": "en:lesson-08:session-27:i10:p2",
+            "target": "power bank",
             "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
+              "ru": "внешний аккумулятор",
+              "uk": "зовнішній акумулятор"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-27:i10:p3",
+            "target": "indicator",
+            "meaningByLocale": {
+              "ru": "индикатор",
+              "uk": "індикатор"
             }
           },
           {
             "pairId": "en:lesson-08:session-27:i10:p4",
-            "target": "stay",
+            "target": "cable",
             "meaningByLocale": {
-              "ru": "оставаться",
-              "uk": "залишатися"
+              "ru": "кабель",
+              "uk": "кабель"
             }
           }
         ],
         "leftColumn": [
-          "explain",
           "charge",
-          "awning",
-          "stay"
+          "power bank",
+          "indicator",
+          "cable"
         ],
         "rightColumn": [
-          "пояснити",
           "зарядити",
-          "навіс",
-          "залишатися"
+          "зовнішній акумулятор",
+          "індикатор",
+          "кабель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +701,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -586,13 +716,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-27:i11:audio",
-          "transcript": "Turn left."
+          "transcript": "Check the indicator."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Turn left.",
+        "hiddenTargetPhrase": "Check the indicator.",
         "orderedTokens": [
-          "Turn",
-          "left"
+          "Check",
+          "the",
+          "indicator"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -604,28 +735,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-27:word:percentage",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — percentage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-27:word:percentage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — percentage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-27:word:percentage:audio",
+          "transcript": "percentage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-27:word:percentage:r1",
+            "targetText": "percentage",
+            "meaningByLocale": {
+              "ru": "процентная доля. Check the battery percentage. — «Проверь процент заряда батареи». Battery percentage показывает оставшийся заряд в процентах, например 40%.",
+              "uk": "відсоткова частка. Check the battery percentage. — «Перевір відсоток заряду батареї». Battery percentage показує залишок заряду у відсотках, наприклад 40%."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "percentage",
+          "definitionByLocale": {
+            "ru": "процентная доля. Check the battery percentage. — «Проверь процент заряда батареи». Battery percentage показывает оставшийся заряд в процентах, например 40%.",
+            "uk": "відсоткова частка. Check the battery percentage. — «Перевір відсоток заряду батареї». Battery percentage показує залишок заряду у відсотках, наприклад 40%."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-27:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросіть «Можеш це пояснити?»",
+      "prompt": "Друг хоче дізнатися залишок заряду телефона. Скажіть «Перевір відсоток заряду батареї»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть «Можеш це пояснити?»",
+      "accessibilityLabel": "Друг хоче дізнатися залишок заряду телефона. Скажіть «Перевір відсоток заряду батареї»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you explain it?",
+        "targetPhrase": "Check the battery percentage.",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь это объяснить?»",
-          "uk": "Попросіть «Можеш це пояснити?»"
+          "ru": "Друг хочет узнать остаток заряда телефона. Скажите «Проверь процент заряда батареи»",
+          "uk": "Друг хоче дізнатися залишок заряду телефона. Скажіть «Перевір відсоток заряду батареї»"
         },
         "orderedTokens": [
-          "Can",
-          "you",
-          "explain",
-          "it"
+          "Check",
+          "the",
+          "battery",
+          "percentage"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -638,25 +812,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про ваші тренування. Використайте exercise: «Я часто тренуюся»",
+      "prompt": "У друга немає зарядного пристрою, а у вас є. Запропонуйте допомогу: «Я можу зарядити твій телефон»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-27:i13:audio"
       ],
-      "accessibilityLabel": "Друг запитує про ваші тренування. Використайте exercise: «Я часто тренуюся»",
+      "accessibilityLabel": "У друга немає зарядного пристрою, а у вас є. Запропонуйте допомогу: «Я можу зарядити твій телефон»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-27:i13:audio",
-          "transcript": "I often exercise."
+          "transcript": "I can charge your phone."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often exercise.",
+        "targetPhrase": "I can charge your phone.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -671,67 +845,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте вказівку повернути ліворуч",
+      "prompt": "Виберіть форму для вказівки зарядити зовнішній акумулятор",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-27:i14:r1",
-          "text": "Turn"
+          "text": "Charge"
         },
         {
           "responseId": "en:lesson-08:session-27:i14:r2",
-          "text": "Turns"
+          "text": "Charges"
         },
         {
           "responseId": "en:lesson-08:session-27:i14:r3",
-          "text": "To turn"
+          "text": "To charge"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте вказівку повернути ліворуч",
+      "accessibilityLabel": "Виберіть форму для вказівки зарядити зовнішній акумулятор",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте указание повернуть налево",
-          "uk": "Дайте вказівку повернути ліворуч"
+          "ru": "Выберите форму для указания зарядить внешний аккумулятор",
+          "uk": "Виберіть форму для вказівки зарядити зовнішній акумулятор"
         },
-        "gappedTargetPhrase": "___ left.",
+        "gappedTargetPhrase": "___ the power bank.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-27:i14:r1",
-            "text": "Turn"
+            "text": "Charge"
           },
           {
             "responseId": "en:lesson-08:session-27:i14:r2",
-            "text": "Turns"
+            "text": "Charges"
           },
           {
             "responseId": "en:lesson-08:session-27:i14:r3",
-            "text": "To turn"
+            "text": "To charge"
           }
         ],
-        "testedDimension": "Дайте вказівку повернути ліворуч",
+        "testedDimension": "Виберіть форму для вказівки зарядити зовнішній акумулятор",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-27:i14:r2",
             "correct": false,
-            "testedDimension": "Дайте вказівку повернути ліворуч",
+            "testedDimension": "Виберіть форму для вказівки зарядити зовнішній акумулятор",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Turn`, без `s`.",
-              "uk": "Для вказівки потрібне `Turn`, без `s`."
+              "ru": "Для указания нужно Charge, без s.",
+              "uk": "Для вказівки потрібне Charge, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-27:i14:r3",
             "correct": false,
-            "testedDimension": "Дайте вказівку повернути ліворуч",
+            "testedDimension": "Виберіть форму для вказівки зарядити зовнішній акумулятор",
             "feedbackByLocale": {
-              "ru": "Начните с `Turn`, без `to`.",
-              "uk": "Почніть із `Turn`, без `to`."
+              "ru": "Начните с Charge, без to.",
+              "uk": "Почніть з Charge, без to."
             }
           }
         ]
@@ -740,7 +914,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -748,15 +922,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-27:i15:r1",
-          "text": "Open the window."
+          "text": "Charge the power bank."
         },
         {
           "responseId": "en:lesson-08:session-27:i15:r2",
-          "text": "Open the door."
+          "text": "Charge the phone."
         },
         {
           "responseId": "en:lesson-08:session-27:i15:r3",
-          "text": "Open the box."
+          "text": "Charge the tablet."
         }
       ],
       "mediaIds": [],
@@ -768,23 +942,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-27:i15:audio",
-          "transcript": "Open the window."
+          "transcript": "Charge the power bank."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-27:i15:r1",
-            "targetText": "Open the window.",
+            "targetText": "Charge the power bank.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-27:i15:r2",
-            "targetText": "Open the door.",
+            "targetText": "Charge the phone.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-27:i15:r3",
-            "targetText": "Open the box.",
+            "targetText": "Charge the tablet.",
             "meaningByLocale": null
           }
         ],
@@ -795,8 +969,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `door`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `door`."
+              "ru": "В записи power bank — «внешний аккумулятор», а не phone — «телефон».",
+              "uk": "У записі power bank — «зовнішній акумулятор», а не phone — «телефон»."
             }
           },
           {
@@ -804,8 +978,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `box`."
+              "ru": "В записи power bank, а не tablet — «планшет».",
+              "uk": "У записі power bank, а не tablet — «планшет»."
             }
           }
         ],
@@ -816,7 +990,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -838,40 +1012,40 @@
           },
           {
             "pairId": "en:lesson-08:session-27:i16:p2",
-            "target": "exercise",
+            "target": "power bank",
             "meaningByLocale": {
-              "ru": "тренироваться",
-              "uk": "тренуватися"
+              "ru": "внешний аккумулятор",
+              "uk": "зовнішній акумулятор"
             }
           },
           {
             "pairId": "en:lesson-08:session-27:i16:p3",
-            "target": "explain",
+            "target": "indicator",
             "meaningByLocale": {
-              "ru": "объяснить",
-              "uk": "пояснити"
+              "ru": "индикатор",
+              "uk": "індикатор"
             }
           },
           {
             "pairId": "en:lesson-08:session-27:i16:p4",
-            "target": "awning",
+            "target": "percentage",
             "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
+              "ru": "процентная доля",
+              "uk": "відсоткова частка"
             }
           }
         ],
         "leftColumn": [
           "charge",
-          "exercise",
-          "explain",
-          "awning"
+          "power bank",
+          "indicator",
+          "percentage"
         ],
         "rightColumn": [
           "зарядити",
-          "тренуватися",
-          "пояснити",
-          "навіс"
+          "зовнішній акумулятор",
+          "індикатор",
+          "відсоткова частка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -889,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-27:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -929,11 +1103,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2897dd3d9e4062d93fc4d9da8b7f65cdb3e4b2a2781a2b2e0bf1b9fe35007dba"
+  "learnerFingerprint": "5b544ca38af05ee41189b8c7d0ea5a39c6d224249f805b31c0a37d545fed2c36"
 }

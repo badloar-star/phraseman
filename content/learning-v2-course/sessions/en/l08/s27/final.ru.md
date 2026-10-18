@@ -1,9 +1,9 @@
 # Английский · Урок 8 · Занятие 27 — Заряди телефон
 
-**Ситуация.** Вы напоминаете другу зарядить телефон, проветриваете комнату и просите объяснить правило.
+**Ситуация.** Зарядить телефон перед прогулкой, подготовить внешний аккумулятор к поездке и проверить индикатор колонки.
 
 **Что вы освоите:** закрепить короткие указания со словом charge
-**Новые слова:** charge
+**Новые слова:** charge, power bank, indicator, percentage
 
 ---
 
@@ -23,111 +23,127 @@
 
 ## Интро 2
 
-### Свежий воздух
+### Запас энергии для ночного поезда
 
-Вы занимаетесь дома с другом, и в комнате стало душно. Друг стоит возле окна. `Open the window` — «Открой окно». Короткое указание начинается сразу с `Open`.
+Друг собирает вещи в ночной поезд. Он берёт внешний аккумулятор, чтобы телефон работал в дороге, но сам аккумулятор разряжен. Power bank — «внешний аккумулятор». `Charge the power bank` — «Заряди внешний аккумулятор». Называем устройство после Charge; the указывает на тот аккумулятор, который друг собирается взять.
 
-**Дайте другу короткое указание открыть окно.**
+**Скажите другу зарядить внешний аккумулятор.**
 
-- ✅ **Open the window.**
-- ❌ Opens the window. — *Для указания нужно `Open`, без `s`.*
-- ❌ To open the window. — *Начните с `Open`, без `to`.*
+- ✅ **Charge the power bank.**
+- ❌ Charges the power bank. — *Для указания нужно Charge, без s.*
+- ❌ To charge the power bank. — *Начните с Charge, без to.*
 
 ---
 
 ## Интро 3
 
-### Непонятное правило
+### Колонка перед репетицией
 
-Друг рассказал правило игры, но вы его не поняли. `Can you explain it?` — «Можешь это объяснить?» Здесь `it` — правило. Для этой просьбы начните с `Can you`, затем `explain it`.
+Перед репетицией друг подключил колонку к зарядке и спрашивает, идёт ли зарядка. У этой колонки состояние показывает маленький световой индикатор. Indicator — «индикатор», сигнал или отметка состояния. `Check the indicator` — «Проверь индикатор». Вы просите посмотреть на него; значение цвета можно уточнить в инструкции к колонке.
 
-**Попросите друга объяснить правило.**
+**Дайте короткое указание проверить индикатор.**
 
-- ✅ **Can you explain it?**
-- ❌ Can you explains it? — *После `can` нужно `explain`, без `s`.*
-- ❌ Can you to explain it? — *После `can` нужно `explain`, без `to`.*
+- ✅ **Check the indicator.**
+- ❌ Checks the indicator. — *Для указания нужно Check, без s.*
+- ❌ To check the indicator. — *Начните с Check, без to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Дайте указание «Заряди его»**
+**1 · Карточка слова — charge**
+<!-- interaction_id: en:lesson-08:session-27:word:charge; family: word_card -->
+> **charge** — зарядить. Charge it. — «Заряди его». Здесь речь о телефоне и его батарее; charge обозначает процесс зарядки.
+
+**2 · Дайте указание «Заряди его»**
 <!-- interaction_id: en:lesson-08:session-27:i01; family: phrase_builder -->
 Плитки: `it` `Charge` → **Charge it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-27:i02; family: listen_choose -->
 🔊 *charge* → **charge** · explain · exercise
 - explain — *В записи первое слово — `charge`, а в этом варианте — `explain`.*
 - exercise — *В записи первое слово — `charge`, а в этом варианте — `exercise`.*
 
-**3 · Дайте короткое указание зарядить телефон**
+**4 · Выберите форму для указания зарядить телефон**
 <!-- interaction_id: en:lesson-08:session-27:i03; family: context_gap_grammar -->
 ___ it. → **Charge** · Charges · To charge
-- Charges — *Для указания нужно `Charge`, без `s`.*
-- To charge — *Начните с `Charge`, без `to`.*
+- Charges — *Для указания нужно Charge, без s.*
+- To charge — *Начните с Charge, без to.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-27:i04; family: speed_match -->
-charge — зарядить · awning — навес · stay — оставаться · exercise — тренироваться
+charge — зарядить · battery — батарея · cable — кабель · phone — телефон
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-27:i05; family: listen_build_dictation -->
 🔊 *Charge it.* Плитки: `it` `Charge` → **Charge it.**
 
-**6 · Дайте короткое указание «Открой окно»**
+**7 · Карточка слова — power bank**
+<!-- interaction_id: en:lesson-08:session-27:word:power-bank; family: word_card -->
+> **power bank** — внешний аккумулятор. Charge the power bank. — «Заряди внешний аккумулятор». Переносной запас энергии для телефона и других устройств.
+
+**8 · Дайте указание «Заряди внешний аккумулятор»**
 <!-- interaction_id: en:lesson-08:session-27:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `bank` `power` `the` `Charge` → **Charge the power bank.**
 
-**7 · На прогулке подскажите другу «Поверни налево»**
+**9 · Карточка слова — indicator**
+<!-- interaction_id: en:lesson-08:session-27:word:indicator; family: word_card -->
+> **indicator** — индикатор. Check the indicator. — «Проверь индикатор». Здесь маленький световой сигнал состояния прибора.
+
+**10 · Друг подключил колонку к зарядке. Скажите «Проверь индикатор»**
 <!-- interaction_id: en:lesson-08:session-27:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Check the indicator.**
 
-**8 · Дайте короткое указание открыть окно**
+**11 · Выберите форму для указания проверить индикатор**
 <!-- interaction_id: en:lesson-08:session-27:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для указания нужно `Open`, без `s`.*
-- To open — *Начните с `Open`, без `to`.*
+___ the indicator. → **Check** · Checks · To check
+- Checks — *Для указания нужно Check, без s.*
+- To check — *Начните с Check, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-27:i09; family: listen_choose -->
 🔊 *Charge it.* → **Charge it.** · Charge this. · Charge that.
 - Charge this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Charge that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-27:i10; family: speed_match -->
-explain — объяснить · charge — зарядить · awning — навес · stay — оставаться
+charge — зарядить · power bank — внешний аккумулятор · indicator — индикатор · cable — кабель
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-27:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Check the indicator.* Плитки: `indicator` `the` `Check` → **Check the indicator.**
 
-**12 · Попросите «Можешь это объяснить?»**
+**15 · Карточка слова — percentage**
+<!-- interaction_id: en:lesson-08:session-27:word:percentage; family: word_card -->
+> **percentage** — процентная доля. Check the battery percentage. — «Проверь процент заряда батареи». Battery percentage показывает оставшийся заряд в процентах, например 40%.
+
+**16 · Друг хочет узнать остаток заряда телефона. Скажите «Проверь процент заряда батареи»**
 <!-- interaction_id: en:lesson-08:session-27:i12; family: phrase_builder -->
-Плитки: `it` `explain` `you` `Can` → **Can you explain it?**
+Плитки: `percentage` `battery` `the` `Check` → **Check the battery percentage.**
 
-**13 · Друг спрашивает о ваших тренировках. Используйте exercise: «Я часто тренируюсь»**
+**17 · У друга нет зарядного устройства, а у вас есть. Предложите помощь: «Я могу зарядить твой телефон»**
 <!-- interaction_id: en:lesson-08:session-27:i13; family: scripted_repeat_compare -->
-🎙 **I often exercise.**
+🎙 **I can charge your phone.**
 
-**14 · Дайте указание повернуть налево**
+**18 · Выберите форму для указания зарядить внешний аккумулятор**
 <!-- interaction_id: en:lesson-08:session-27:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для указания нужно `Turn`, без `s`.*
-- To turn — *Начните с `Turn`, без `to`.*
+___ the power bank. → **Charge** · Charges · To charge
+- Charges — *Для указания нужно Charge, без s.*
+- To charge — *Начните с Charge, без to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-27:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *В записи последнее слово — `window`, а в этом варианте — `door`.*
-- Open the box. — *В записи последнее слово — `window`, а в этом варианте — `box`.*
+🔊 *Charge the power bank.* → **Charge the power bank.** · Charge the phone. · Charge the tablet.
+- Charge the phone. — *В записи power bank — «внешний аккумулятор», а не phone — «телефон».*
+- Charge the tablet. — *В записи power bank, а не tablet — «планшет».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-27:i16; family: speed_match -->
-charge — зарядить · exercise — тренироваться · explain — объяснить · awning — навес
+charge — зарядить · power bank — внешний аккумулятор · indicator — индикатор · percentage — процентная доля
 
-**17 · Друг собирается взять планшет в поездку. Заряда почти не осталось. Дайте короткое указание «Заряди его»**
+**21 · Друг собирается взять планшет в поездку. Заряда почти не осталось. Дайте короткое указание «Заряди его»**
 <!-- interaction_id: en:lesson-08:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Charge it.**
 

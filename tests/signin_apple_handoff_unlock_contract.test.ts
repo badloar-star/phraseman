@@ -55,6 +55,29 @@ describe('вход: аноним + существующий Apple/Google-акк�
     expect(fn).not.toMatch(/console\.\w+\([^)]*idToken/); // токен в журнал не пишется
   });
 
+  // зачем (координатор 18.10, iPhone 13:59): второе окно Apple — токен тратила обречённая привязка к гостю. Серверная привязка
+  // уходит сразу после окна Apple; успех → к гостю не привязываем, входим нетронутым токеном в охраняемом пути (Ревизор 3.139).
+  it('Apple: серверная привязка ДО привязки к гостю, успех → без linkWithCredential и без второго окна', () => {
+    const prelinkStart = src.indexOf('const applePrelink: Promise<boolean> | null = provider === \'apple\'');
+    const anonAwait = src.indexOf('await anonPreparation;', prelinkStart);
+    const guestLink = src.indexOf('userCredential = await anonUser.linkWithCredential(credential);');
+    const skip = src.indexOf("throw Object.assign(new Error('apple_prelinked_skip_guest_link'), { code: 'auth/credential-already-in-use' });");
+    expect(prelinkStart).toBeGreaterThan(0);
+    // стартует параллельно с подготовкой гостя, а не после неё
+    expect(prelinkStart).toBeLessThan(anonAwait);
+    expect(skip).toBeGreaterThan(prelinkStart);
+    expect(skip).toBeLessThan(guestLink);
+    expect(src).toContain('[AUTH-APPLE-LINK] prelink outcome=');
+    // охраняемый путь не обходится: после пропуска — тот же конфликт со шторкой правила 2 и отметкой credential_ready
+    expect(src.indexOf("return { result: 'error', error: 'account_switch_required' };", skip)).toBeLessThan(
+      src.indexOf('providerHandoffMarker = await markProviderCredentialHandoffCredentialReady(', skip),
+    );
+    // шторка правила 2 получает нетронутый токен
+    expect(src).toContain('storeAccountSwitchResumeCredential(provider, cred, { unconsumed: appleTokenUnconsumed });');
+    // уже отказавший сервер не зовётся второй раз
+    expect(src).toContain('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=prelink_already_refused');
+  });
+
   // зачем (прогон 18.10): после отказа/убийства процесса следующий вход молча брал прежний аккаунт Google без окна выбора.
   it('каждое новое окно входа Google сперва снимает прежнюю нативную сессию — в одной цепочке с signIn', () => {
     expect(src).toContain('promise: clearPreviousGoogleNativeSession(mod).then(() => mod.GoogleSignin.signIn()),');

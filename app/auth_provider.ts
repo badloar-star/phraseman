@@ -2930,6 +2930,30 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     deferIdentityPreparation,
   });
 
+  // зачем (координатор 18.10, iPhone 13:59: «окно Apple должно быть одно»): токен Apple одноразовый для Firebase, и тратила его
+  // заранее обречённая привязка к гостю (email-already-in-use) — повтор тем же токеном давал auth/unknown и второе окно Apple.
+  // Сервер проверяет токен сам, по ключам Apple, Firebase его не видит. Поэтому привязка по проверенной почте уходит СРАЗУ после
+  // окна, параллельно с подготовкой гостя; Apple теперь у существующего аккаунта → привязку к гостю пропускаем и входим нетронутым
+  // токеном внутри того же охраняемого пути (запись передачи, чистота гостя, шторка правила 2). Custom token не нужен.
+  const applePrelinkIdToken = cred.idToken;
+  const applePrelinkNonce = cred.appleNonce ?? null;
+  const applePrelink: Promise<boolean> | null = provider === 'apple' && !deferIdentityPreparation && applePrelinkNonce
+    ? anonPreparation.then(
+      () => {
+        if (!auth.currentUser?.isAnonymous) {
+          console.log(`[AUTH-APPLE-LINK] prelink skipped reason=not_guest anonymous=${String(auth.currentUser?.isAnonymous ?? 'none')}`); // guard-ok: ранний выход пишет причину
+          return false;
+        }
+        console.log('[AUTH-APPLE-LINK] prelink start next=authAppleLinkByVerifiedEmail'); // guard-ok: ветка решения
+        return requestAppleLinkByVerifiedEmail(applePrelinkIdToken, applePrelinkNonce);
+      },
+      (prepError: unknown) => {
+        console.warn(`[AUTH-APPLE-LINK] prelink skipped reason=anon_preparation_failed code=${identityErrorCode(prepError)}`); // guard-ok: catch пишет причину
+        return false;
+      },
+    )
+    : null;
+
   try {
     await anonPreparation;
   } catch (error) {
@@ -2985,6 +3009,8 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     // зачем (блокер 18.10, журнал iPhone 08:41/08:47): у Apple id_token с nonce одноразовый — неудачная привязка гостя его тратит,
     // и повторный вход тем же credential падал auth/unknown. Firebase отдаёт в ошибке привязки обновлённый credential — входим им.
     let conflictUpdatedCredential: any = null;
+    // true — сервер уже отдал Apple существующему аккаунту, токен Firebase ещё не видел (годится и для входа, и для шторки правила 2)
+    let appleTokenUnconsumed = false;
     identityTrace('[AUTH-LINK-GOOGLE]', 'link decision', {
       provider,
       canTryLink,
@@ -2997,6 +3023,15 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         // Firebase credential mutations are not cancellable. A Promise.race timeout
         // here used to start signInWithCredential while the timed-out link could
         // still complete in the background, racing two identity mutations.
+        if (applePrelink) {
+          const prelinkStartedAtMs = Date.now();
+          appleTokenUnconsumed = await applePrelink;
+          console.log(`[AUTH-APPLE-LINK] prelink outcome=${appleTokenUnconsumed ? 'apple_owned_by_existing_account' : 'not_linked'} next=${appleTokenUnconsumed ? 'skip_guest_link' : 'guest_link'} waitedMs=${Date.now() - prelinkStartedAtMs}`); // guard-ok: ветка и значение, без токена
+          if (appleTokenUnconsumed) {
+            // привязка к гостю гарантированно упала бы и потратила токен — идём сразу в охраняемый путь конфликта
+            throw Object.assign(new Error('apple_prelinked_skip_guest_link'), { code: 'auth/credential-already-in-use' });
+          }
+        }
         userCredential = await anonUser.linkWithCredential(credential);
         identityTrace('[AUTH-LINK-GOOGLE]', 'link linked_in_place', { provider });
         logAuthEvent('auth_signin_linked_in_place', { provider });
@@ -3103,12 +3138,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             if (resumeCredential) {
               console.warn(`[AUTH-SWITCH-OFFER] resume_credential rejected provider=${provider} reason=switch_still_required`);
             } else {
-              storeAccountSwitchResumeCredential(provider, cred);
+              // зачем: после серверной привязки токен Apple цел — шторка «Войти» войдёт им без второго окна Apple
+              storeAccountSwitchResumeCredential(provider, cred, { unconsumed: appleTokenUnconsumed });
             }
             authSwitchTrace('rule2 guest_with_progress_existing_account', {
               provider,
               localStable: identityTag(preProviderStableId),
-              captured: resumeCredential ? 'no_resume_attempt' : provider === 'google' ? 'yes' : 'apple_second_picker',
+              captured: resumeCredential ? 'no_resume_attempt' : provider === 'google' || appleTokenUnconsumed ? 'yes' : 'apple_second_picker',
               next: 'guest_switch_sheet',
             });
             return { result: 'error', error: 'account_switch_required' };
@@ -3132,7 +3168,10 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             && (linkCode === 'auth/email-already-in-use' || linkCode === 'auth/account-exists-with-different-credential')
             && !conflictUpdatedCredential;
           let appleLinkedByServer = false;
-          if (appleEmailInUse) {
+          if (appleEmailInUse && applePrelink) {
+            // сервер уже ответил до привязки к гостю (отказ/сбой) — второй такой же вызов ничего не изменит
+            console.warn('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=prelink_already_refused'); // guard-ok: ранний путь пишет причину
+          } else if (appleEmailInUse) {
             console.warn('[AUTH-APPLE-LINK] email_in_use branch=server_link next=authAppleLinkByVerifiedEmail'); // guard-ok: ветка решения
             appleLinkedByServer = await requestAppleLinkByVerifiedEmail(cred.idToken, cred.appleNonce ?? null);
             if (!appleLinkedByServer) console.warn('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=server_refused_or_unavailable'); // guard-ok: ранний путь пишет причину

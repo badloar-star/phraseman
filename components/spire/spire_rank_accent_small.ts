@@ -7,12 +7,12 @@ import type { ImageSourcePropType } from 'react-native';
 type Tone = 'dark' | 'light';
 
 const SMALL_ACCENT: Readonly<Record<string, Readonly<Record<Tone, ImageSourcePropType>>>> = {
-  spire_rank_1: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_1.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_1.accent.webp') },
-  spire_rank_2: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_2.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_2.accent.webp') },
-  spire_rank_3: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_3.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_3.accent.webp') },
-  spire_rank_4: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_4.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_4.accent.webp') },
-  spire_rank_5: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_5.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_5.accent.webp') },
-  spire_rank_6: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_6.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_6.accent.webp') },
+  spire_rank_1: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_1.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_1.accent.webp') }, // light-accent-ok: путь к файлу маски .accent.webp, не цвет
+  spire_rank_2: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_2.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_2.accent.webp') }, // light-accent-ok: путь к файлу маски .accent.webp, не цвет
+  spire_rank_3: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_3.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_3.accent.webp') }, // light-accent-ok: путь к файлу маски .accent.webp, не цвет
+  spire_rank_4: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_4.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_4.accent.webp') }, // light-accent-ok: путь к файлу маски .accent.webp, не цвет
+  spire_rank_5: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_5.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_5.accent.webp') }, // light-accent-ok: путь к файлу маски .accent.webp, не цвет
+  spire_rank_6: { dark: require('../../assets/images/spire_rank_small/dark/spire_rank_6.accent.webp'), light: require('../../assets/images/spire_rank_small/light/spire_rank_6.accent.webp') }, // light-accent-ok: путь к файлу маски .accent.webp, не цвет
 };
 
 /** Маска 128² для значка ранга Пика; не ранг Пика — null (рисуется маска из реестра). */

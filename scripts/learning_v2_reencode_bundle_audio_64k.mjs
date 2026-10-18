@@ -17,7 +17,12 @@
  * Звуковые одобрения (scripts/learning_v2_owner_approved_audio_evidence.v1.json) ключуются audioTargetId — хеш там нет.
  * Исходники в папке Codex не читаются и не трогаются. Журнал [V2-REENCODE].
  *
- * Запуск: node scripts/learning_v2_reencode_bundle_audio_64k.mjs [--root <папка>] [--dry]
+ * Запуск: node scripts/learning_v2_reencode_bundle_audio_64k.mjs [--root <папка>] [--dry] [--kbps 64|96]
+ *
+ * зачем --kbps (координатор 18.10): при 128k загрузка из Play ≈203 МБ — выше лимита, поэтому «на слух» нужен честный
+ * запасной вариант 96 кбит/с, если владелец услышит разницу с 64k. Тот же кодер и те же правила, меняется только
+ * битрейт; по умолчанию 64 — утренний прогон без параметра ведёт себя как раньше. Повторный прогон с МЕНЬШИМ битрейтом
+ * перекодирует уже ужатые файлы ещё раз (второе поколение), поэтому выбирать битрейт один раз, по исходникам 128k.
  */
 import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
@@ -33,7 +38,14 @@ const ROOT = path.resolve(rootArg >= 0 ? args[rootArg + 1] : path.join(path.dirn
 const FFMPEG = process.env.FFMPEG
   ?? "C:/Users/badlo/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe";
 const FFPROBE = FFMPEG.replace(/ffmpeg(\.exe)?$/u, "ffprobe$1");
-const TARGET_BITRATE = 64_000;
+const kbpsArg = args.indexOf("--kbps");
+const KBPS = kbpsArg >= 0 ? Number(args[kbpsArg + 1]) : 64;
+const ALLOWED_KBPS = [48, 64, 80, 96, 112];
+if (!ALLOWED_KBPS.includes(KBPS)) {
+  console.error(`${LOG} --kbps ${args[kbpsArg + 1]} не поддерживается (можно: ${ALLOWED_KBPS.join(", ")}) — ничего не меняю`);
+  process.exit(2);
+}
+const TARGET_BITRATE = KBPS * 1000;
 const SINGLE_VOICE = "content/learning-v2-course/audio/en/single-voice-v1.json";
 const MANIFEST = "assets/audio/learning-v2/factory-production-v1/manifest.json";
 const BOOTSTRAP_MODULE = "app/learning_v2_bootstrap_audio_assets_v1.generated.ts";
@@ -89,7 +101,7 @@ for (const [rel, oldHash] of sources) {
   let next = byOldHash.get(oldHash);
   if (!next) {
     const tmp = `${file}.reencode.mp3`;
-    const enc = spawnSync(FFMPEG, ["-v", "error", "-y", "-i", file, "-ac", "1", "-ar", "24000", "-c:a", "libmp3lame", "-b:a", "64k", "-map_metadata", "-1", "-id3v2_version", "0", tmp], { encoding: "utf8" });
+    const enc = spawnSync(FFMPEG, ["-v", "error", "-y", "-i", file, "-ac", "1", "-ar", "24000", "-c:a", "libmp3lame", "-b:a", `${KBPS}k`, "-map_metadata", "-1", "-id3v2_version", "0", tmp], { encoding: "utf8" });
     if (enc.status !== 0) throw new Error(`${LOG} ffmpeg failed ${rel}: ${enc.stderr}`);
     next = fs.readFileSync(tmp);
     fs.rmSync(tmp);

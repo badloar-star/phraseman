@@ -1,0 +1,2311 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-32:word:jellyfish",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jellyfish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:jellyfish:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jellyfish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:jellyfish:audio",
+            "transcript": "jellyfish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:jellyfish:r1",
+              "targetText": "jellyfish",
+              "meaningByLocale": {
+                "ru": "«медуза». It is a jellyfish. — «Это медуза».",
+                "uk": "«медуза». It is a jellyfish. — «Це медуза»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jellyfish",
+            "definitionByLocale": {
+              "ru": "«медуза». It is a jellyfish. — «Это медуза».",
+              "uk": "«медуза». It is a jellyfish. — «Це медуза»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i01:r1",
+            "text": "The jellyfish is floating."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i01:r2",
+            "text": "The jellyfish is not floating."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i01:r3",
+            "text": "The jellyfish is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i01:audio",
+            "transcript": "The jellyfish is floating."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:i01:r1",
+              "targetText": "The jellyfish is floating.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i01:r2",
+              "targetText": "The jellyfish is not floating.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i01:r3",
+              "targetText": "The jellyfish is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The jellyfish is floating.",
+                "uk": "У записі звучить The jellyfish is floating."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The jellyfish is floating.",
+                "uk": "У записі звучить The jellyfish is floating."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На снимке одна медуза. Назовите её: «Это медуза»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На снимке одна медуза. Назовите её: «Это медуза»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a jellyfish.",
+          "localizedMeaning": {
+            "ru": "На снимке одна медуза. Назовите её: «Это медуза»",
+            "uk": "На знімку одна медуза. Назвіть її: «Це медуза»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "jellyfish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для наблюдения за одной медузой",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для наблюдения за одной медузой",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для наблюдения за одной медузой",
+            "uk": "Виберіть форму для спостереження за однією медузою"
+          },
+          "gappedTargetPhrase": "The jellyfish ___ floating.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для наблюдения за одной медузой",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для наблюдения за одной медузой",
+              "feedbackByLocale": {
+                "ru": "Здесь одна медуза: is.",
+                "uk": "Тут одна медуза: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для наблюдения за одной медузой",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-32:i04:p1",
+              "target": "jellyfish",
+              "meaningByLocale": {
+                "ru": "медуза",
+                "uk": "медуза"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i04:p2",
+              "target": "float",
+              "meaningByLocale": {
+                "ru": "держаться на воде",
+                "uk": "триматися на воді"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i04:p3",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i04:p4",
+              "target": "small",
+              "meaningByLocale": {
+                "ru": "маленький",
+                "uk": "маленький"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jellyfish",
+            "float",
+            "water",
+            "small"
+          ],
+          "rightColumn": [
+            "медуза",
+            "держаться на воде",
+            "вода",
+            "маленький"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i05:audio",
+            "transcript": "The jellyfish is not moving."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The jellyfish is not moving.",
+          "orderedTokens": [
+            "The",
+            "jellyfish",
+            "is",
+            "not",
+            "moving"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:word:seahorse",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — seahorse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:seahorse:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — seahorse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:seahorse:audio",
+            "transcript": "seahorse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:seahorse:r1",
+              "targetText": "seahorse",
+              "meaningByLocale": {
+                "ru": "«морской конёк». Is the seahorse swimming? — «Морской конёк плывёт?»",
+                "uk": "«морський коник». Is the seahorse swimming? — «Морський коник пливе?»"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seahorse",
+            "definitionByLocale": {
+              "ru": "«морской конёк». Is the seahorse swimming? — «Морской конёк плывёт?»",
+              "uk": "«морський коник». Is the seahorse swimming? — «Морський коник пливе?»"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не видите морского конька. Спросите, плывёт ли он",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не видите морского конька. Спросите, плывёт ли он",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the seahorse swimming?",
+          "localizedMeaning": {
+            "ru": "Вы не видите морского конька. Спросите, плывёт ли он",
+            "uk": "Ви не бачите морського коника. Запитайте, чи він пливе"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "seahorse",
+            "swimming"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i07:r1",
+            "text": "The seahorse is not swimming."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i07:r2",
+            "text": "The seahorse is swimming."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i07:r3",
+            "text": "The seahorse is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i07:audio",
+            "transcript": "The seahorse is not swimming."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:i07:r1",
+              "targetText": "The seahorse is not swimming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i07:r2",
+              "targetText": "The seahorse is swimming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i07:r3",
+              "targetText": "The seahorse is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The seahorse is not swimming.",
+                "uk": "У записі звучить The seahorse is not swimming."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The seahorse is not swimming.",
+                "uk": "У записі звучить The seahorse is not swimming."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите начало вопроса об одном морском коньке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i08:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i08:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите начало вопроса об одном морском коньке",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало вопроса об одном морском коньке",
+            "uk": "Виберіть початок запитання про одного морського коника"
+          },
+          "gappedTargetPhrase": "___ the seahorse swimming?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i08:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i08:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i08:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Выберите начало вопроса об одном морском коньке",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите начало вопроса об одном морском коньке",
+              "feedbackByLocale": {
+                "ru": "Один морской конёк: is.",
+                "uk": "Один морський коник: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите начало вопроса об одном морском коньке",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:word:tentacle",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tentacle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:tentacle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tentacle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:tentacle:audio",
+            "transcript": "tentacle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:tentacle:r1",
+              "targetText": "tentacle",
+              "meaningByLocale": {
+                "ru": "«щупальце». The tentacle is moving. — «Щупальце движется». Это часть тела медузы.",
+                "uk": "«щупальце». The tentacle is moving. — «Щупальце рухається». Це частина тіла медузи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tentacle",
+            "definitionByLocale": {
+              "ru": "«щупальце». The tentacle is moving. — «Щупальце движется». Это часть тела медузы.",
+              "uk": "«щупальце». The tentacle is moving. — «Щупальце рухається». Це частина тіла медузи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Крупным планом видно, как движется одно щупальце. Сообщите об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Крупным планом видно, как движется одно щупальце. Сообщите об этом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The tentacle is moving.",
+          "localizedMeaning": {
+            "ru": "Крупным планом видно, как движется одно щупальце. Сообщите об этом",
+            "uk": "Крупним планом видно, як рухається одне щупальце. Повідомте про це"
+          },
+          "orderedTokens": [
+            "The",
+            "tentacle",
+            "is",
+            "moving"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для одного щупальца",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i10:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i10:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i10:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для одного щупальца",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного щупальца",
+            "uk": "Виберіть форму для одного щупальця"
+          },
+          "gappedTargetPhrase": "The tentacle ___ moving.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i10:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i10:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i10:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для одного щупальца",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i10:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного щупальца",
+              "feedbackByLocale": {
+                "ru": "Одно щупальце: is.",
+                "uk": "Одне щупальце: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i10:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного щупальца",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Это привычка, а не действие сейчас. Скажите: «Я часто плаваю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это привычка, а не действие сейчас. Скажите: «Я часто плаваю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often swim.",
+          "localizedMeaning": {
+            "ru": "Это привычка, а не действие сейчас. Скажите: «Я часто плаваю»",
+            "uk": "Це звичка, а не дія зараз. Скажіть: «Я часто плаваю»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "swim"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:word:coral",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — coral",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:coral:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — coral",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:coral:audio",
+            "transcript": "coral"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:coral:r1",
+              "targetText": "coral",
+              "meaningByLocale": {
+                "ru": "«коралл». Please don’t touch the coral. — «Пожалуйста, не трогай коралл».",
+                "uk": "«корал». Please don’t touch the coral. — «Будь ласка, не торкайся корала»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coral",
+            "definitionByLocale": {
+              "ru": "«коралл». Please don’t touch the coral. — «Пожалуйста, не трогай коралл».",
+              "uk": "«корал». Please don’t touch the coral. — «Будь ласка, не торкайся корала»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i12:r1",
+            "text": "Please don't touch the coral."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i12:r2",
+            "text": "Please touch the coral."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i12:r3",
+            "text": "Please don't move the coral."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i12:audio",
+            "transcript": "Please don't touch the coral."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:i12:r1",
+              "targetText": "Please don't touch the coral.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i12:r2",
+              "targetText": "Please touch the coral.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i12:r3",
+              "targetText": "Please don't move the coral.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't touch the coral.",
+                "uk": "У записі звучить Please don't touch the coral."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't touch the coral.",
+                "uk": "У записі звучить Please don't touch the coral."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг тянется к хрупкому музейному кораллу. Попросите не трогать его; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Друг тянется к хрупкому музейному кораллу. Попросите не трогать его; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i13:audio",
+            "transcript": "Please don't touch the coral."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't touch the coral.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите глагол для просьбы не трогать",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i14:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i14:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i14:r3",
+            "text": "touches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите глагол для просьбы не трогать",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите глагол для просьбы не трогать",
+            "uk": "Виберіть дієслово для прохання не торкатися"
+          },
+          "gappedTargetPhrase": "Please don't ___ the coral.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i14:r1",
+              "text": "touch"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i14:r2",
+              "text": "touching"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i14:r3",
+              "text": "touches"
+            }
+          ],
+          "testedDimension": "Выберите глагол для просьбы не трогать",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите глагол для просьбы не трогать",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна обычная форма touch.",
+                "uk": "Після don’t потрібна звичайна форма touch."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите глагол для просьбы не трогать",
+              "feedbackByLocale": {
+                "ru": "После don’t окончание -es не нужно.",
+                "uk": "Після don’t закінчення -es не потрібне."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг считает, что щупальце неподвижно, но вы видите движение. Уточните: «Щупальце движется»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Друг считает, что щупальце неподвижно, но вы видите движение. Уточните: «Щупальце движется»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i15:audio",
+            "transcript": "The tentacle is moving."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The tentacle is moving.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-32:i16:p1",
+              "target": "jellyfish",
+              "meaningByLocale": {
+                "ru": "медуза",
+                "uk": "медуза"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i16:p2",
+              "target": "seahorse",
+              "meaningByLocale": {
+                "ru": "морской конёк",
+                "uk": "морський коник"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i16:p3",
+              "target": "tentacle",
+              "meaningByLocale": {
+                "ru": "щупальце",
+                "uk": "щупальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i16:p4",
+              "target": "coral",
+              "meaningByLocale": {
+                "ru": "коралл",
+                "uk": "корал"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jellyfish",
+            "seahorse",
+            "tentacle",
+            "coral"
+          ],
+          "rightColumn": [
+            "медуза",
+            "морской конёк",
+            "щупальце",
+            "коралл"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Во время видеозвонка картинка у собеседника застыла. У вас трансляция работает, и морской конёк сейчас плывёт. Сообщите: «Морской конёк плывёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Во время видеозвонка картинка у собеседника застыла. У вас трансляция работает, и морской конёк сейчас плывёт. Сообщите: «Морской конёк плывёт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i17:audio",
+            "transcript": "The seahorse is swimming."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The seahorse is swimming.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-32:word:jellyfish",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jellyfish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:jellyfish:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jellyfish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:jellyfish:audio",
+            "transcript": "jellyfish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:jellyfish:r1",
+              "targetText": "jellyfish",
+              "meaningByLocale": {
+                "ru": "«медуза». It is a jellyfish. — «Это медуза».",
+                "uk": "«медуза». It is a jellyfish. — «Це медуза»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jellyfish",
+            "definitionByLocale": {
+              "ru": "«медуза». It is a jellyfish. — «Это медуза».",
+              "uk": "«медуза». It is a jellyfish. — «Це медуза»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i01:r1",
+            "text": "The jellyfish is floating."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i01:r2",
+            "text": "The jellyfish is not floating."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i01:r3",
+            "text": "The jellyfish is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i01:audio",
+            "transcript": "The jellyfish is floating."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:i01:r1",
+              "targetText": "The jellyfish is floating.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i01:r2",
+              "targetText": "The jellyfish is not floating.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i01:r3",
+              "targetText": "The jellyfish is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The jellyfish is floating.",
+                "uk": "У записі звучить The jellyfish is floating."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The jellyfish is floating.",
+                "uk": "У записі звучить The jellyfish is floating."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На знімку одна медуза. Назвіть її: «Це медуза»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На знімку одна медуза. Назвіть її: «Це медуза»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a jellyfish.",
+          "localizedMeaning": {
+            "ru": "На снимке одна медуза. Назовите её: «Это медуза»",
+            "uk": "На знімку одна медуза. Назвіть її: «Це медуза»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "jellyfish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для спостереження за однією медузою",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для спостереження за однією медузою",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для наблюдения за одной медузой",
+            "uk": "Виберіть форму для спостереження за однією медузою"
+          },
+          "gappedTargetPhrase": "The jellyfish ___ floating.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для спостереження за однією медузою",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для спостереження за однією медузою",
+              "feedbackByLocale": {
+                "ru": "Здесь одна медуза: is.",
+                "uk": "Тут одна медуза: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для спостереження за однією медузою",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-32:i04:p1",
+              "target": "jellyfish",
+              "meaningByLocale": {
+                "ru": "медуза",
+                "uk": "медуза"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i04:p2",
+              "target": "float",
+              "meaningByLocale": {
+                "ru": "держаться на воде",
+                "uk": "триматися на воді"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i04:p3",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i04:p4",
+              "target": "small",
+              "meaningByLocale": {
+                "ru": "маленький",
+                "uk": "маленький"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jellyfish",
+            "float",
+            "water",
+            "small"
+          ],
+          "rightColumn": [
+            "медуза",
+            "триматися на воді",
+            "вода",
+            "маленький"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i05:audio",
+            "transcript": "The jellyfish is not moving."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The jellyfish is not moving.",
+          "orderedTokens": [
+            "The",
+            "jellyfish",
+            "is",
+            "not",
+            "moving"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:word:seahorse",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — seahorse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:seahorse:audio"
+        ],
+        "accessibilityLabel": "Картка слова — seahorse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:seahorse:audio",
+            "transcript": "seahorse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:seahorse:r1",
+              "targetText": "seahorse",
+              "meaningByLocale": {
+                "ru": "«морской конёк». Is the seahorse swimming? — «Морской конёк плывёт?»",
+                "uk": "«морський коник». Is the seahorse swimming? — «Морський коник пливе?»"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seahorse",
+            "definitionByLocale": {
+              "ru": "«морской конёк». Is the seahorse swimming? — «Морской конёк плывёт?»",
+              "uk": "«морський коник». Is the seahorse swimming? — «Морський коник пливе?»"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не бачите морського коника. Запитайте, чи він пливе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не бачите морського коника. Запитайте, чи він пливе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the seahorse swimming?",
+          "localizedMeaning": {
+            "ru": "Вы не видите морского конька. Спросите, плывёт ли он",
+            "uk": "Ви не бачите морського коника. Запитайте, чи він пливе"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "seahorse",
+            "swimming"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i07:r1",
+            "text": "The seahorse is not swimming."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i07:r2",
+            "text": "The seahorse is swimming."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i07:r3",
+            "text": "The seahorse is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i07:audio",
+            "transcript": "The seahorse is not swimming."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:i07:r1",
+              "targetText": "The seahorse is not swimming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i07:r2",
+              "targetText": "The seahorse is swimming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i07:r3",
+              "targetText": "The seahorse is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The seahorse is not swimming.",
+                "uk": "У записі звучить The seahorse is not swimming."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The seahorse is not swimming.",
+                "uk": "У записі звучить The seahorse is not swimming."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть початок запитання про одного морського коника",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i08:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i08:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть початок запитання про одного морського коника",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало вопроса об одном морском коньке",
+            "uk": "Виберіть початок запитання про одного морського коника"
+          },
+          "gappedTargetPhrase": "___ the seahorse swimming?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i08:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i08:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i08:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Виберіть початок запитання про одного морського коника",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть початок запитання про одного морського коника",
+              "feedbackByLocale": {
+                "ru": "Один морской конёк: is.",
+                "uk": "Один морський коник: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть початок запитання про одного морського коника",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:word:tentacle",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tentacle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:tentacle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tentacle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:tentacle:audio",
+            "transcript": "tentacle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:tentacle:r1",
+              "targetText": "tentacle",
+              "meaningByLocale": {
+                "ru": "«щупальце». The tentacle is moving. — «Щупальце движется». Это часть тела медузы.",
+                "uk": "«щупальце». The tentacle is moving. — «Щупальце рухається». Це частина тіла медузи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tentacle",
+            "definitionByLocale": {
+              "ru": "«щупальце». The tentacle is moving. — «Щупальце движется». Это часть тела медузы.",
+              "uk": "«щупальце». The tentacle is moving. — «Щупальце рухається». Це частина тіла медузи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Крупним планом видно, як рухається одне щупальце. Повідомте про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Крупним планом видно, як рухається одне щупальце. Повідомте про це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The tentacle is moving.",
+          "localizedMeaning": {
+            "ru": "Крупным планом видно, как движется одно щупальце. Сообщите об этом",
+            "uk": "Крупним планом видно, як рухається одне щупальце. Повідомте про це"
+          },
+          "orderedTokens": [
+            "The",
+            "tentacle",
+            "is",
+            "moving"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для одного щупальця",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i10:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i10:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i10:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для одного щупальця",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного щупальца",
+            "uk": "Виберіть форму для одного щупальця"
+          },
+          "gappedTargetPhrase": "The tentacle ___ moving.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i10:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i10:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i10:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для одного щупальця",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i10:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для одного щупальця",
+              "feedbackByLocale": {
+                "ru": "Одно щупальце: is.",
+                "uk": "Одне щупальце: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i10:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для одного щупальця",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Це звичка, а не дія зараз. Скажіть: «Я часто плаваю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це звичка, а не дія зараз. Скажіть: «Я часто плаваю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often swim.",
+          "localizedMeaning": {
+            "ru": "Это привычка, а не действие сейчас. Скажите: «Я часто плаваю»",
+            "uk": "Це звичка, а не дія зараз. Скажіть: «Я часто плаваю»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "swim"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:word:coral",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — coral",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:word:coral:audio"
+        ],
+        "accessibilityLabel": "Картка слова — coral",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:word:coral:audio",
+            "transcript": "coral"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:word:coral:r1",
+              "targetText": "coral",
+              "meaningByLocale": {
+                "ru": "«коралл». Please don’t touch the coral. — «Пожалуйста, не трогай коралл».",
+                "uk": "«корал». Please don’t touch the coral. — «Будь ласка, не торкайся корала»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coral",
+            "definitionByLocale": {
+              "ru": "«коралл». Please don’t touch the coral. — «Пожалуйста, не трогай коралл».",
+              "uk": "«корал». Please don’t touch the coral. — «Будь ласка, не торкайся корала»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i12:r1",
+            "text": "Please don't touch the coral."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i12:r2",
+            "text": "Please touch the coral."
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i12:r3",
+            "text": "Please don't move the coral."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i12:audio",
+            "transcript": "Please don't touch the coral."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-32:i12:r1",
+              "targetText": "Please don't touch the coral.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i12:r2",
+              "targetText": "Please touch the coral.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i12:r3",
+              "targetText": "Please don't move the coral.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't touch the coral.",
+                "uk": "У записі звучить Please don't touch the coral."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't touch the coral.",
+                "uk": "У записі звучить Please don't touch the coral."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг тягнеться до крихкого музейного корала. Попросіть не торкатися його; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Друг тягнеться до крихкого музейного корала. Попросіть не торкатися його; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i13:audio",
+            "transcript": "Please don't touch the coral."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't touch the coral.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть дієслово для прохання не торкатися",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-32:i14:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i14:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-32:i14:r3",
+            "text": "touches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть дієслово для прохання не торкатися",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите глагол для просьбы не трогать",
+            "uk": "Виберіть дієслово для прохання не торкатися"
+          },
+          "gappedTargetPhrase": "Please don't ___ the coral.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-32:i14:r1",
+              "text": "touch"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i14:r2",
+              "text": "touching"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i14:r3",
+              "text": "touches"
+            }
+          ],
+          "testedDimension": "Виберіть дієслово для прохання не торкатися",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть дієслово для прохання не торкатися",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна обычная форма touch.",
+                "uk": "Після don’t потрібна звичайна форма touch."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть дієслово для прохання не торкатися",
+              "feedbackByLocale": {
+                "ru": "После don’t окончание -es не нужно.",
+                "uk": "Після don’t закінчення -es не потрібне."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг вважає, що щупальце нерухоме, але ви бачите рух. Уточніть: «Щупальце рухається»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Друг вважає, що щупальце нерухоме, але ви бачите рух. Уточніть: «Щупальце рухається»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i15:audio",
+            "transcript": "The tentacle is moving."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The tentacle is moving.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-32:i16:p1",
+              "target": "jellyfish",
+              "meaningByLocale": {
+                "ru": "медуза",
+                "uk": "медуза"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i16:p2",
+              "target": "seahorse",
+              "meaningByLocale": {
+                "ru": "морской конёк",
+                "uk": "морський коник"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i16:p3",
+              "target": "tentacle",
+              "meaningByLocale": {
+                "ru": "щупальце",
+                "uk": "щупальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-32:i16:p4",
+              "target": "coral",
+              "meaningByLocale": {
+                "ru": "коралл",
+                "uk": "корал"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jellyfish",
+            "seahorse",
+            "tentacle",
+            "coral"
+          ],
+          "rightColumn": [
+            "медуза",
+            "морський коник",
+            "щупальце",
+            "корал"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Під час відеодзвінка зображення у співрозмовника завмерло. У вас трансляція працює, і морський коник зараз пливе. Повідомте: «Морський коник пливе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Під час відеодзвінка зображення у співрозмовника завмерло. У вас трансляція працює, і морський коник зараз пливе. Повідомте: «Морський коник пливе»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-32:i17:audio",
+            "transcript": "The seahorse is swimming."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The seahorse is swimming.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-32:word:jellyfish",
+      "correctText": "jellyfish",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i01",
+      "correctText": "The jellyfish is floating.",
+      "correctResponseId": "en:lesson-09:session-32:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i02",
+      "correctText": "It is a jellyfish.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i05",
+      "correctText": "The jellyfish is not moving.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:word:seahorse",
+      "correctText": "seahorse",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i06",
+      "correctText": "Is the seahorse swimming?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i07",
+      "correctText": "The seahorse is not swimming.",
+      "correctResponseId": "en:lesson-09:session-32:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i08",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-09:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:word:tentacle",
+      "correctText": "tentacle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i09",
+      "correctText": "The tentacle is moving.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i10",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-32:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i11",
+      "correctText": "I often swim.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:word:coral",
+      "correctText": "coral",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i12",
+      "correctText": "Please don't touch the coral.",
+      "correctResponseId": "en:lesson-09:session-32:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i13",
+      "correctText": "Please don't touch the coral.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i14",
+      "correctText": "touch",
+      "correctResponseId": "en:lesson-09:session-32:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i15",
+      "correctText": "The tentacle is moving.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:i17",
+      "correctText": "The seahorse is swimming.",
+      "correctResponseId": null
+    }
+  ]
+}

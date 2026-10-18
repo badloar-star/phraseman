@@ -1,0 +1,2251 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-33",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-33:word:submit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — submit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:submit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — submit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:submit:audio",
+            "transcript": "submit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:submit:r1",
+              "targetText": "submit",
+              "meaningByLocale": {
+                "ru": "«подавать, отправлять на рассмотрение». I am submitting my work. — «Я отправляю свою работу».",
+                "uk": "«подавати, надсилати на розгляд». I am submitting my work. — «Я надсилаю свою роботу»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "submit",
+            "definitionByLocale": {
+              "ru": "«подавать, отправлять на рассмотрение». I am submitting my work. — «Я отправляю свою работу».",
+              "uk": "«подавати, надсилати на розгляд». I am submitting my work. — «Я надсилаю свою роботу»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i01:r1",
+            "text": "Please submit your work."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i01:r2",
+            "text": "Please don't submit your work."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i01:r3",
+            "text": "Please show your work."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i01:audio",
+            "transcript": "Please submit your work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:i01:r1",
+              "targetText": "Please submit your work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i01:r2",
+              "targetText": "Please don't submit your work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i01:r3",
+              "targetText": "Please show your work.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please submit your work.",
+                "uk": "У записі звучить Please submit your work."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please submit your work.",
+                "uk": "У записі звучить Please submit your work."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильное написание формы submit",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i02:r1",
+            "text": "submitting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i02:r2",
+            "text": "submiting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i02:r3",
+            "text": "submit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильное написание формы submit",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы submit",
+            "uk": "Виберіть правильне написання форми submit"
+          },
+          "gappedTargetPhrase": "I am ___ my work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-33:i02:r1",
+              "text": "submitting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i02:r2",
+              "text": "submiting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i02:r3",
+              "text": "submit"
+            }
+          ],
+          "testedDimension": "Выберите правильное написание формы submit",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы submit",
+              "feedbackByLocale": {
+                "ru": "В submitting удваивается t.",
+                "uk": "У submitting подвоюється t."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы submit",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма с -ing.",
+                "uk": "Після am для дії зараз потрібна форма з -ing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Отправка вашей работы сейчас идёт. Сообщите об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Отправка вашей работы сейчас идёт. Сообщите об этом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am submitting my work.",
+          "localizedMeaning": {
+            "ru": "Отправка вашей работы сейчас идёт. Сообщите об этом",
+            "uk": "Надсилання вашої роботи зараз триває. Повідомте про це"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "submitting",
+            "my",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините исходные формы с формами на -ing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините исходные формы с формами на -ing",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-33:i04:p1",
+              "target": "submit",
+              "meaningByLocale": {
+                "ru": "submitting",
+                "uk": "submitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i04:p2",
+              "target": "make",
+              "meaningByLocale": {
+                "ru": "making",
+                "uk": "making"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i04:p3",
+              "target": "sit",
+              "meaningByLocale": {
+                "ru": "sitting",
+                "uk": "sitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i04:p4",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "working",
+                "uk": "working"
+              }
+            }
+          ],
+          "leftColumn": [
+            "submit",
+            "make",
+            "sit",
+            "work"
+          ],
+          "rightColumn": [
+            "submitting",
+            "making",
+            "sitting",
+            "working"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i05:audio",
+            "transcript": "I am sitting."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am sitting.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "sitting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:word:entry",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — entry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:entry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — entry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:entry:audio",
+            "transcript": "entry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:entry:r1",
+              "targetText": "entry",
+              "meaningByLocale": {
+                "ru": "«конкурсная работа». I am submitting my entry. — «Я подаю свою конкурсную работу». Здесь не вход в здание, а работа участника конкурса.",
+                "uk": "«конкурсна робота». I am submitting my entry. — «Я подаю свою конкурсну роботу». Тут не вхід до будівлі, а робота учасника конкурсу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entry",
+            "definitionByLocale": {
+              "ru": "«конкурсная работа». I am submitting my entry. — «Я подаю свою конкурсную работу». Здесь не вход в здание, а работа участника конкурса.",
+              "uk": "«конкурсна робота». I am submitting my entry. — «Я подаю свою конкурсну роботу». Тут не вхід до будівлі, а робота учасника конкурсу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите, что сейчас подаёте свою конкурсную работу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите, что сейчас подаёте свою конкурсную работу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am submitting my entry.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что сейчас подаёте свою конкурсную работу",
+            "uk": "Повідомте, що зараз подаєте свою конкурсну роботу"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "submitting",
+            "my",
+            "entry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i07:r1",
+            "text": "I am not submitting my entry."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i07:r2",
+            "text": "I am submitting my entry."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i07:r3",
+            "text": "My entry is ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i07:audio",
+            "transcript": "I am not submitting my entry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:i07:r1",
+              "targetText": "I am not submitting my entry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i07:r2",
+              "targetText": "I am submitting my entry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i07:r3",
+              "targetText": "My entry is ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not submitting my entry.",
+                "uk": "У записі звучить I am not submitting my entry."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not submitting my entry.",
+                "uk": "У записі звучить I am not submitting my entry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму sit для позы прямо сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i08:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i08:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i08:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму sit для позы прямо сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму sit для позы прямо сейчас",
+            "uk": "Виберіть форму sit для пози просто зараз"
+          },
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-33:i08:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i08:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i08:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Выберите форму sit для позы прямо сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму sit для позы прямо сейчас",
+              "feedbackByLocale": {
+                "ru": "В sitting две t.",
+                "uk": "У sitting дві t."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму sit для позы прямо сейчас",
+              "feedbackByLocale": {
+                "ru": "После am нужна форма sitting.",
+                "uk": "Після am потрібна форма sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:word:attachment",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — attachment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:attachment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — attachment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:attachment:audio",
+            "transcript": "attachment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:attachment:r1",
+              "targetText": "attachment",
+              "meaningByLocale": {
+                "ru": "«вложение, прикреплённый файл». The attachment is ready. — «Вложение готово». Файл, который прикрепляют к сообщению.",
+                "uk": "«вкладення, прикріплений файл». The attachment is ready. — «Вкладення готове». Файл, який прикріплюють до повідомлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "attachment",
+            "definitionByLocale": {
+              "ru": "«вложение, прикреплённый файл». The attachment is ready. — «Вложение готово». Файл, который прикрепляют к сообщению.",
+              "uk": "«вкладення, прикріплений файл». The attachment is ready. — «Вкладення готове». Файл, який прикріплюють до повідомлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Файл для прикрепления готов. Сообщите: «Вложение готово»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Файл для прикрепления готов. Сообщите: «Вложение готово»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The attachment is ready.",
+          "localizedMeaning": {
+            "ru": "Файл для прикрепления готов. Сообщите: «Вложение готово»",
+            "uk": "Файл для прикріплення готовий. Повідомте: «Вкладення готове»"
+          },
+          "orderedTokens": [
+            "The",
+            "attachment",
+            "is",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i10:r1",
+            "text": "The attachment is not ready."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i10:r2",
+            "text": "The attachment is ready."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i10:r3",
+            "text": "The attachment is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i10:audio",
+            "transcript": "The attachment is not ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:i10:r1",
+              "targetText": "The attachment is not ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i10:r2",
+              "targetText": "The attachment is ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i10:r3",
+              "targetText": "The attachment is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attachment is not ready.",
+                "uk": "У записі звучить The attachment is not ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attachment is not ready.",
+                "uk": "У записі звучить The attachment is not ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильно написанную форму make",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i11:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i11:r2",
+            "text": "makeing"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i11:r3",
+            "text": "make"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильно написанную форму make",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильно написанную форму make",
+            "uk": "Виберіть правильно написану форму make"
+          },
+          "gappedTargetPhrase": "I am ___ my entry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-33:i11:r1",
+              "text": "making"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i11:r2",
+              "text": "makeing"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i11:r3",
+              "text": "make"
+            }
+          ],
+          "testedDimension": "Выберите правильно написанную форму make",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i11:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильно написанную форму make",
+              "feedbackByLocale": {
+                "ru": "В making немая e исчезает.",
+                "uk": "У making німа e зникає."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i11:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильно написанную форму make",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма making.",
+                "uk": "Після am для дії зараз потрібна форма making."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:word:portfolio",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — portfolio",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:portfolio:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — portfolio",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:portfolio:audio",
+            "transcript": "portfolio"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:portfolio:r1",
+              "targetText": "portfolio",
+              "meaningByLocale": {
+                "ru": "«портфолио, подборка работ». I am making my portfolio. — «Я составляю своё портфолио».",
+                "uk": "«портфоліо, добірка робіт». I am making my portfolio. — «Я складаю своє портфоліо»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "portfolio",
+            "definitionByLocale": {
+              "ru": "«портфолио, подборка работ». I am making my portfolio. — «Я составляю своё портфолио».",
+              "uk": "«портфоліо, добірка робіт». I am making my portfolio. — «Я складаю своє портфоліо»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы составляете свою подборку рисунков. Сообщите об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы составляете свою подборку рисунков. Сообщите об этом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am making my portfolio.",
+          "localizedMeaning": {
+            "ru": "Вы составляете свою подборку рисунков. Сообщите об этом",
+            "uk": "Ви складаєте свою добірку малюнків. Повідомте про це"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "making",
+            "my",
+            "portfolio"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Художник на видеосвязи не видит стула. Уточните вашу позу: «Я сижу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Художник на видеосвязи не видит стула. Уточните вашу позу: «Я сижу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i13:audio",
+            "transcript": "I am sitting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am sitting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i14:audio",
+            "transcript": "Are you submitting your entry?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you submitting your entry?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "submitting",
+            "your",
+            "entry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг собирается отправить чужое портфолио без спроса. Попросите не отправлять портфолио; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Друг собирается отправить чужое портфолио без спроса. Попросите не отправлять портфолио; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i15:audio",
+            "transcript": "Please don't submit the portfolio."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't submit the portfolio.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-33:i16:p1",
+              "target": "submit",
+              "meaningByLocale": {
+                "ru": "подавать на рассмотрение",
+                "uk": "подавати на розгляд"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i16:p2",
+              "target": "entry",
+              "meaningByLocale": {
+                "ru": "конкурсная работа",
+                "uk": "конкурсна робота"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i16:p3",
+              "target": "attachment",
+              "meaningByLocale": {
+                "ru": "прикреплённый файл",
+                "uk": "прикріплений файл"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i16:p4",
+              "target": "portfolio",
+              "meaningByLocale": {
+                "ru": "подборка работ",
+                "uk": "добірка робіт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "submit",
+            "entry",
+            "attachment",
+            "portfolio"
+          ],
+          "rightColumn": [
+            "подавать на рассмотрение",
+            "конкурсная работа",
+            "прикреплённый файл",
+            "подборка работ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На онлайн-встрече организатор конкурса проверяет, кто уже закончил. Вы ещё отправляете свою конкурсную работу. Сообщите: «Я подаю свою конкурсную работу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "На онлайн-встрече организатор конкурса проверяет, кто уже закончил. Вы ещё отправляете свою конкурсную работу. Сообщите: «Я подаю свою конкурсную работу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i17:audio",
+            "transcript": "I am submitting my entry."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am submitting my entry.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-33:word:submit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — submit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:submit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — submit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:submit:audio",
+            "transcript": "submit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:submit:r1",
+              "targetText": "submit",
+              "meaningByLocale": {
+                "ru": "«подавать, отправлять на рассмотрение». I am submitting my work. — «Я отправляю свою работу».",
+                "uk": "«подавати, надсилати на розгляд». I am submitting my work. — «Я надсилаю свою роботу»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "submit",
+            "definitionByLocale": {
+              "ru": "«подавать, отправлять на рассмотрение». I am submitting my work. — «Я отправляю свою работу».",
+              "uk": "«подавати, надсилати на розгляд». I am submitting my work. — «Я надсилаю свою роботу»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i01:r1",
+            "text": "Please submit your work."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i01:r2",
+            "text": "Please don't submit your work."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i01:r3",
+            "text": "Please show your work."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i01:audio",
+            "transcript": "Please submit your work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:i01:r1",
+              "targetText": "Please submit your work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i01:r2",
+              "targetText": "Please don't submit your work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i01:r3",
+              "targetText": "Please show your work.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please submit your work.",
+                "uk": "У записі звучить Please submit your work."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please submit your work.",
+                "uk": "У записі звучить Please submit your work."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильне написання форми submit",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i02:r1",
+            "text": "submitting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i02:r2",
+            "text": "submiting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i02:r3",
+            "text": "submit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильне написання форми submit",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы submit",
+            "uk": "Виберіть правильне написання форми submit"
+          },
+          "gappedTargetPhrase": "I am ___ my work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-33:i02:r1",
+              "text": "submitting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i02:r2",
+              "text": "submiting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i02:r3",
+              "text": "submit"
+            }
+          ],
+          "testedDimension": "Виберіть правильне написання форми submit",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми submit",
+              "feedbackByLocale": {
+                "ru": "В submitting удваивается t.",
+                "uk": "У submitting подвоюється t."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми submit",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма с -ing.",
+                "uk": "Після am для дії зараз потрібна форма з -ing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Надсилання вашої роботи зараз триває. Повідомте про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Надсилання вашої роботи зараз триває. Повідомте про це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am submitting my work.",
+          "localizedMeaning": {
+            "ru": "Отправка вашей работы сейчас идёт. Сообщите об этом",
+            "uk": "Надсилання вашої роботи зараз триває. Повідомте про це"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "submitting",
+            "my",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте початкові форми з формами на -ing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте початкові форми з формами на -ing",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-33:i04:p1",
+              "target": "submit",
+              "meaningByLocale": {
+                "ru": "submitting",
+                "uk": "submitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i04:p2",
+              "target": "make",
+              "meaningByLocale": {
+                "ru": "making",
+                "uk": "making"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i04:p3",
+              "target": "sit",
+              "meaningByLocale": {
+                "ru": "sitting",
+                "uk": "sitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i04:p4",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "working",
+                "uk": "working"
+              }
+            }
+          ],
+          "leftColumn": [
+            "submit",
+            "make",
+            "sit",
+            "work"
+          ],
+          "rightColumn": [
+            "submitting",
+            "making",
+            "sitting",
+            "working"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i05:audio",
+            "transcript": "I am sitting."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am sitting.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "sitting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:word:entry",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — entry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:entry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — entry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:entry:audio",
+            "transcript": "entry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:entry:r1",
+              "targetText": "entry",
+              "meaningByLocale": {
+                "ru": "«конкурсная работа». I am submitting my entry. — «Я подаю свою конкурсную работу». Здесь не вход в здание, а работа участника конкурса.",
+                "uk": "«конкурсна робота». I am submitting my entry. — «Я подаю свою конкурсну роботу». Тут не вхід до будівлі, а робота учасника конкурсу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entry",
+            "definitionByLocale": {
+              "ru": "«конкурсная работа». I am submitting my entry. — «Я подаю свою конкурсную работу». Здесь не вход в здание, а работа участника конкурса.",
+              "uk": "«конкурсна робота». I am submitting my entry. — «Я подаю свою конкурсну роботу». Тут не вхід до будівлі, а робота учасника конкурсу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте, що зараз подаєте свою конкурсну роботу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте, що зараз подаєте свою конкурсну роботу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am submitting my entry.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что сейчас подаёте свою конкурсную работу",
+            "uk": "Повідомте, що зараз подаєте свою конкурсну роботу"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "submitting",
+            "my",
+            "entry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i07:r1",
+            "text": "I am not submitting my entry."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i07:r2",
+            "text": "I am submitting my entry."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i07:r3",
+            "text": "My entry is ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i07:audio",
+            "transcript": "I am not submitting my entry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:i07:r1",
+              "targetText": "I am not submitting my entry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i07:r2",
+              "targetText": "I am submitting my entry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i07:r3",
+              "targetText": "My entry is ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not submitting my entry.",
+                "uk": "У записі звучить I am not submitting my entry."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not submitting my entry.",
+                "uk": "У записі звучить I am not submitting my entry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму sit для пози просто зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i08:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i08:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i08:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму sit для пози просто зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму sit для позы прямо сейчас",
+            "uk": "Виберіть форму sit для пози просто зараз"
+          },
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-33:i08:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i08:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i08:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Виберіть форму sit для пози просто зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму sit для пози просто зараз",
+              "feedbackByLocale": {
+                "ru": "В sitting две t.",
+                "uk": "У sitting дві t."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму sit для пози просто зараз",
+              "feedbackByLocale": {
+                "ru": "После am нужна форма sitting.",
+                "uk": "Після am потрібна форма sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:word:attachment",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — attachment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:attachment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — attachment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:attachment:audio",
+            "transcript": "attachment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:attachment:r1",
+              "targetText": "attachment",
+              "meaningByLocale": {
+                "ru": "«вложение, прикреплённый файл». The attachment is ready. — «Вложение готово». Файл, который прикрепляют к сообщению.",
+                "uk": "«вкладення, прикріплений файл». The attachment is ready. — «Вкладення готове». Файл, який прикріплюють до повідомлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "attachment",
+            "definitionByLocale": {
+              "ru": "«вложение, прикреплённый файл». The attachment is ready. — «Вложение готово». Файл, который прикрепляют к сообщению.",
+              "uk": "«вкладення, прикріплений файл». The attachment is ready. — «Вкладення готове». Файл, який прикріплюють до повідомлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Файл для прикріплення готовий. Повідомте: «Вкладення готове»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Файл для прикріплення готовий. Повідомте: «Вкладення готове»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The attachment is ready.",
+          "localizedMeaning": {
+            "ru": "Файл для прикрепления готов. Сообщите: «Вложение готово»",
+            "uk": "Файл для прикріплення готовий. Повідомте: «Вкладення готове»"
+          },
+          "orderedTokens": [
+            "The",
+            "attachment",
+            "is",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i10:r1",
+            "text": "The attachment is not ready."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i10:r2",
+            "text": "The attachment is ready."
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i10:r3",
+            "text": "The attachment is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i10:audio",
+            "transcript": "The attachment is not ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:i10:r1",
+              "targetText": "The attachment is not ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i10:r2",
+              "targetText": "The attachment is ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i10:r3",
+              "targetText": "The attachment is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attachment is not ready.",
+                "uk": "У записі звучить The attachment is not ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attachment is not ready.",
+                "uk": "У записі звучить The attachment is not ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильно написану форму make",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-33:i11:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i11:r2",
+            "text": "makeing"
+          },
+          {
+            "responseId": "en:lesson-09:session-33:i11:r3",
+            "text": "make"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильно написану форму make",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильно написанную форму make",
+            "uk": "Виберіть правильно написану форму make"
+          },
+          "gappedTargetPhrase": "I am ___ my entry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-33:i11:r1",
+              "text": "making"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i11:r2",
+              "text": "makeing"
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i11:r3",
+              "text": "make"
+            }
+          ],
+          "testedDimension": "Виберіть правильно написану форму make",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-33:i11:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильно написану форму make",
+              "feedbackByLocale": {
+                "ru": "В making немая e исчезает.",
+                "uk": "У making німа e зникає."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-33:i11:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильно написану форму make",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма making.",
+                "uk": "Після am для дії зараз потрібна форма making."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:word:portfolio",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — portfolio",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:word:portfolio:audio"
+        ],
+        "accessibilityLabel": "Картка слова — portfolio",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:word:portfolio:audio",
+            "transcript": "portfolio"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-33:word:portfolio:r1",
+              "targetText": "portfolio",
+              "meaningByLocale": {
+                "ru": "«портфолио, подборка работ». I am making my portfolio. — «Я составляю своё портфолио».",
+                "uk": "«портфоліо, добірка робіт». I am making my portfolio. — «Я складаю своє портфоліо»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "portfolio",
+            "definitionByLocale": {
+              "ru": "«портфолио, подборка работ». I am making my portfolio. — «Я составляю своё портфолио».",
+              "uk": "«портфоліо, добірка робіт». I am making my portfolio. — «Я складаю своє портфоліо»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви складаєте свою добірку малюнків. Повідомте про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви складаєте свою добірку малюнків. Повідомте про це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am making my portfolio.",
+          "localizedMeaning": {
+            "ru": "Вы составляете свою подборку рисунков. Сообщите об этом",
+            "uk": "Ви складаєте свою добірку малюнків. Повідомте про це"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "making",
+            "my",
+            "portfolio"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Художник на відеозв’язку не бачить стільця. Уточніть вашу позу: «Я сиджу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Художник на відеозв’язку не бачить стільця. Уточніть вашу позу: «Я сиджу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i13:audio",
+            "transcript": "I am sitting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am sitting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i14:audio",
+            "transcript": "Are you submitting your entry?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you submitting your entry?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "submitting",
+            "your",
+            "entry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг збирається надіслати чуже портфоліо без дозволу. Попросіть не надсилати портфоліо; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Друг збирається надіслати чуже портфоліо без дозволу. Попросіть не надсилати портфоліо; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i15:audio",
+            "transcript": "Please don't submit the portfolio."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't submit the portfolio.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-33:i16:p1",
+              "target": "submit",
+              "meaningByLocale": {
+                "ru": "подавать на рассмотрение",
+                "uk": "подавати на розгляд"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i16:p2",
+              "target": "entry",
+              "meaningByLocale": {
+                "ru": "конкурсная работа",
+                "uk": "конкурсна робота"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i16:p3",
+              "target": "attachment",
+              "meaningByLocale": {
+                "ru": "прикреплённый файл",
+                "uk": "прикріплений файл"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-33:i16:p4",
+              "target": "portfolio",
+              "meaningByLocale": {
+                "ru": "подборка работ",
+                "uk": "добірка робіт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "submit",
+            "entry",
+            "attachment",
+            "portfolio"
+          ],
+          "rightColumn": [
+            "подавати на розгляд",
+            "конкурсна робота",
+            "прикріплений файл",
+            "добірка робіт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На онлайн-зустрічі організатор конкурсу перевіряє, хто вже закінчив. Ви ще надсилаєте свою конкурсну роботу. Повідомте: «Я подаю свою конкурсну роботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "На онлайн-зустрічі організатор конкурсу перевіряє, хто вже закінчив. Ви ще надсилаєте свою конкурсну роботу. Повідомте: «Я подаю свою конкурсну роботу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-33:i17:audio",
+            "transcript": "I am submitting my entry."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am submitting my entry.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-33:word:submit",
+      "correctText": "submit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i01",
+      "correctText": "Please submit your work.",
+      "correctResponseId": "en:lesson-09:session-33:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i02",
+      "correctText": "submitting",
+      "correctResponseId": "en:lesson-09:session-33:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i03",
+      "correctText": "I am submitting my work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i05",
+      "correctText": "I am sitting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:word:entry",
+      "correctText": "entry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i06",
+      "correctText": "I am submitting my entry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i07",
+      "correctText": "I am not submitting my entry.",
+      "correctResponseId": "en:lesson-09:session-33:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i08",
+      "correctText": "sitting",
+      "correctResponseId": "en:lesson-09:session-33:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:word:attachment",
+      "correctText": "attachment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i09",
+      "correctText": "The attachment is ready.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i10",
+      "correctText": "The attachment is not ready.",
+      "correctResponseId": "en:lesson-09:session-33:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i11",
+      "correctText": "making",
+      "correctResponseId": "en:lesson-09:session-33:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:word:portfolio",
+      "correctText": "portfolio",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i12",
+      "correctText": "I am making my portfolio.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i13",
+      "correctText": "I am sitting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i14",
+      "correctText": "Are you submitting your entry?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i15",
+      "correctText": "Please don't submit the portfolio.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:i17",
+      "correctText": "I am submitting my entry.",
+      "correctResponseId": null
+    }
+  ]
+}

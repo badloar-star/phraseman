@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-33:word:submit",
+    "correctText": "submit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i01",
+    "correctText": "Please submit your work.",
+    "correctResponseId": "en:lesson-09:session-33:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i02",
+    "correctText": "submitting",
+    "correctResponseId": "en:lesson-09:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i03",
+    "correctText": "I am submitting my work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i04",
+    "correctText": "en:lesson-09:session-33:i04:p1=submit\nen:lesson-09:session-33:i04:p2=make\nen:lesson-09:session-33:i04:p3=sit\nen:lesson-09:session-33:i04:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i05",
+    "correctText": "I am sitting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:word:entry",
+    "correctText": "entry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i06",
+    "correctText": "I am submitting my entry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i07",
+    "correctText": "I am not submitting my entry.",
+    "correctResponseId": "en:lesson-09:session-33:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i08",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-09:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:word:attachment",
+    "correctText": "attachment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i09",
+    "correctText": "The attachment is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i10",
+    "correctText": "The attachment is not ready.",
+    "correctResponseId": "en:lesson-09:session-33:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i11",
+    "correctText": "making",
+    "correctResponseId": "en:lesson-09:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:word:portfolio",
+    "correctText": "portfolio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i12",
+    "correctText": "I am making my portfolio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i13",
+    "correctText": "I am sitting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i14",
+    "correctText": "Are you submitting your entry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i15",
+    "correctText": "Please don't submit the portfolio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i16",
+    "correctText": "en:lesson-09:session-33:i16:p1=submit\nen:lesson-09:session-33:i16:p2=entry\nen:lesson-09:session-33:i16:p3=attachment\nen:lesson-09:session-33:i16:p4=portfolio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-33:i17",
+    "correctText": "I am submitting my entry.",
+    "correctResponseId": null
+  }
+]

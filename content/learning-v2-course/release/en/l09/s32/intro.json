@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "is floating; Is ... swimming?; is not moving; Please don’t touch ...",
+    "uk": "is floating; Is ... swimming?; is not moving; Please don’t touch ..."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто на снимке?",
+        "uk": "Хто на знімку?"
+      },
+      "bodyByLocale": {
+        "ru": "Бабушка рассматривает ваш снимок из океанариума: прозрачное животное похоже на зонтик. Jellyfish — «медуза». Назовите его: It is a jellyfish — «Это медуза». Для одного животного перед jellyfish здесь нужно a. Не спутайте живую медузу с зонтом: ручки у неё нет.",
+        "uk": "Бабуся розглядає ваш знімок з океанаріуму: прозора тварина схожа на парасольку. Jellyfish — «медуза». Назвіть її: It is a jellyfish — «Це медуза». Для однієї тварини перед jellyfish тут потрібне a. Не сплутайте живу медузу з парасолькою: ручки в неї немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-32:intro1:r1",
+              "text": "It is a jellyfish."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro1:r2",
+              "text": "It is jellyfish."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro1:r3",
+              "text": "It are a jellyfish."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-32:intro1:r1",
+              "text": "It is a jellyfish."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro1:r2",
+              "text": "It is jellyfish."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro1:r3",
+              "text": "It are a jellyfish."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Он сейчас плывёт?",
+        "uk": "Він зараз пливе?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы завязываете шнурок и не видите аквариум. Друг наблюдает морского конька. Seahorse — «морской конёк». Спросите, плывёт ли он сейчас: Is the seahorse swimming? — «Морской конёк плывёт?» Is ставим перед the seahorse. Это вопрос о движении в эту минуту, а не о том, умеют ли морские коньки плавать.",
+        "uk": "Ви зав’язуєте шнурок і не бачите акваріум. Друг спостерігає за морським коником. Seahorse — «морський коник». Запитайте, чи пливе він зараз: Is the seahorse swimming? — «Морський коник пливе?» Is ставимо перед the seahorse. Це запитання про рух цієї миті, а не про те, чи вміють морські коники плавати."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-32:intro2:r1",
+              "text": "Is the seahorse swimming?"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro2:r2",
+              "text": "Are the seahorse swimming?"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro2:r3",
+              "text": "Is the seahorse swim?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-32:intro2:r1",
+              "text": "Is the seahorse swimming?"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro2:r2",
+              "text": "Are the seahorse swimming?"
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro2:r3",
+              "text": "Is the seahorse swim?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Этот образец трогать нельзя",
+        "uk": "Цього зразка торкатися не можна"
+      },
+      "bodyByLocale": {
+        "ru": "В музее некоторые макеты разрешено трогать, но возле настоящего хрупкого коралла стоит запрещающий знак. Друг тянется к нему. Coral — «коралл». Please don’t touch the coral — «Пожалуйста, не трогай коралл». После don’t нужна обычная форма touch. Здесь вы просите не делать действие; не описываете, что друг уже делает.",
+        "uk": "У музеї деяких макетів дозволено торкатися, але біля справжнього крихкого корала стоїть заборонний знак. Друг тягнеться до нього. Coral — «корал». Please don’t touch the coral — «Будь ласка, не торкайся корала». Після don’t потрібна звичайна форма touch. Тут ви просите не робити дію; не описуєте, що друг уже робить."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-32:intro3:r1",
+              "text": "Please don't touch the coral."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro3:r2",
+              "text": "Please don't touching the coral."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro3:r3",
+              "text": "Please not touch the coral."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-32:intro3:r1",
+              "text": "Please don't touch the coral."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro3:r2",
+              "text": "Please don't touching the coral."
+            },
+            {
+              "responseId": "en:lesson-09:session-32:intro3:r3",
+              "text": "Please not touch the coral."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1871d3415f0b38bc5a30f66d39829324e2aebe3dca1e01712e61047cc85b2268"
+}

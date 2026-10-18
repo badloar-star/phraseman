@@ -269,3 +269,17 @@ Governance-ID: TG-D109CFD18671
 
 ## Журнал переноса — пометка 18.10 03:19 (координатор)
 - 701f790c5 = переводы L05 (карточки curtain/crayon/thermometer/nervous: l01/s08, l03/s21, l05/s04, l05/s06), заголовок ошибочный (повторяет 6fb644457 «L06 S17–S32»). Причина: общий commit_msg.txt в commit_batch.sh, исправлено (свой файл на запуск).
+Governance-ID: TG-E32E51351BE2
+Governance-ID: TG-6C1417ACD655
+Governance-ID: TG-DF096458B1A2
+Governance-ID: TG-6F3A498C64D4
+Governance-ID: TG-A294DC627E2D
+Governance-ID: TG-BE4944E998C2
+Governance-ID: TG-0F59950FE02D
+Governance-ID: TG-35CD3F3F3C93
+Governance-ID: TG-64E372895ED0
+Governance-ID: TG-6BD07B545BF2
+Governance-ID: TG-07002104956E
+Governance-ID: TG-A97C6033FD96
+Governance-ID: TG-DD78D225D0F5
+Governance-ID: TG-BB39DC4BE2FD

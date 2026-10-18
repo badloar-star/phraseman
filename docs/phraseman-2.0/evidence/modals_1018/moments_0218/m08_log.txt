@@ -1,0 +1,30 @@
+10-18 02:14:21.954 I/ReactNativeJS(15582): [MOMENTS-V3-FLAG] dev-переключатель: moments_v3=true (dev_moments_v3_override)
+10-18 02:14:22.711 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета → шапка скрыта
+10-18 02:14:23.244 I/ReactNativeJS(15582): [MOMENT-m08] серия 0 → 3: удар «spark» reducedMotion=false
+10-18 02:14:23.250 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: 0 → 3 без удара (spark) — монета не показана
+10-18 02:14:24.250 I/ReactNativeJS(15582): [MOMENT-m08] серия 3 → 5: удар «lightning» reducedMotion=false
+10-18 02:14:24.253 I/ReactNativeJS(15582): [MOMENT-m08] слой: удар «lightning» (3 → 5), монета=peek ранг=0
+10-18 02:14:24.254 I/ReactNativeJS(15582): [MOMENT-QUEUE] m08 занят 1800 мс (удар «lightning») — тосты урока ждут
+10-18 02:14:24.310 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета → шапка peek #1
+10-18 02:14:24.346 I/ReactNativeJS(15582): [MEM-MOMENTS] mount coin (28dp) live={"coin":2,"full:streak-milestone-screen":1}
+10-18 02:14:25.643 I/ReactNativeJS(15582): [MOMENT-m08] серия 5 → 10: удар «storm» reducedMotion=false
+10-18 02:14:25.646 I/ReactNativeJS(15582): [MOMENT-m08] слой: удар «storm» (5 → 10), монета=cheer ранг=0
+10-18 02:14:25.646 I/ReactNativeJS(15582): [MOMENT-QUEUE] m08 занят 1800 мс (удар «storm») — тосты урока ждут
+10-18 02:14:25.648 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: прежний таймер скрытия отменён — новый удар «storm» перезапускает показ
+10-18 02:14:25.678 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета → шапка cheer+bang #2
+10-18 02:14:27.453 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета скрыта по таймеру 1800 мс (удар «storm»)
+10-18 02:14:27.492 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета → шапка скрыта
+10-18 02:14:27.534 I/ReactNativeJS(15582): [MEM-MOMENTS] unmount coin жил=3189мс live={"coin":1,"full:streak-milestone-screen":1}
+10-18 02:14:28.346 I/ReactNativeJS(15582): [MOMENT-m08] серия 10 → 0: удар «break» reducedMotion=false
+10-18 02:14:28.349 I/ReactNativeJS(15582): [COMBO-MOMENT] кольцо: показ «серия сброшена» (была 10) на 1600 мс
+10-18 02:14:28.350 I/ReactNativeJS(15582): [MOMENT-m08] слой: удар «break» (10 → 0), монета=shiver ранг=0
+10-18 02:14:28.351 I/ReactNativeJS(15582): [MOMENT-QUEUE] m08 занят 1800 мс (удар «break») — тосты урока ждут
+10-18 02:14:28.354 I/ReactNativeJS(15582): [MOMENT-m08] звук обрыва пропущен: sound_v2 выключен
+10-18 02:14:28.488 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета → шапка shiver+sweat #1
+10-18 02:14:28.565 I/ReactNativeJS(15582): [MEM-MOMENTS] mount coin (28dp) live={"coin":2,"full:streak-milestone-screen":1}
+10-18 02:14:29.994 I/ReactNativeJS(15582): [COMBO-MOMENT] кольцо: «серия сброшена» снята по таймеру
+10-18 02:14:30.077 I/ReactNativeJS(15582): [MEM-MOMENTS] unmount coin жил=1513мс live={"coin":1,"full:streak-milestone-screen":1}
+10-18 02:14:30.082 I/ReactNativeJS(15582): [MEM-MOMENTS] mount coin (28dp) live={"coin":2,"full:streak-milestone-screen":1}
+10-18 02:14:30.271 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета скрыта по таймеру 1800 мс (удар «break»)
+10-18 02:14:30.335 I/ReactNativeJS(15582): [COMBO-MOMENT] слой: монета → шапка скрыта
+10-18 02:14:30.402 I/ReactNativeJS(15582): [MEM-MOMENTS] unmount coin жил=319мс live={"coin":1,"full:streak-milestone-screen":1}

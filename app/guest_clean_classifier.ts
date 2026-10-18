@@ -128,6 +128,20 @@ function isUnearnedAchievementList(value: string): boolean {
     && (item as { unlockedAt?: unknown }).unlockedAt === null);
 }
 
+/** Счётчики поведения (app/user_stats.ts) без уроков, ответов и покупок — только посещения/нажатия. */
+function isVisitsOnlyUserStats(value: string): boolean {
+  const parsed = parseJson(value, 'user_stats_v1') as {
+    lessonsStarted?: unknown; lessonsAbandoned?: unknown; answersTotal?: unknown; answersCorrect?: unknown;
+    shardPackPurchases?: unknown; cardPackPurchases?: unknown;
+  } | undefined;
+  if (!parsed || typeof parsed !== 'object') return false;
+  const zero = (n: unknown): boolean => n === undefined || n === 0;
+  const empty = (m: unknown): boolean => m === undefined
+    || (m !== null && typeof m === 'object' && !Array.isArray(m) && Object.keys(m).length === 0);
+  return zero(parsed.lessonsStarted) && zero(parsed.lessonsAbandoned) && zero(parsed.answersTotal) && zero(parsed.answersCorrect)
+    && empty(parsed.shardPackPurchases) && empty(parsed.cardPackPurchases);
+}
+
 /** Очередь операций монет телефона без единой операции. */
 function isEmptyShardOutbox(value: string): boolean {
   const parsed = parseJson(value, 'client_shard_phone_state_outbox_v1') as { operationIds?: unknown; acknowledgedOperationIds?: unknown } | undefined;
@@ -213,6 +227,8 @@ export function classifyGuestCleanKey(key: string, raw: string | null): GuestCle
   // а «открыт первый урок» без прохождения — метка навигации, как unlocked_lessons=[1]. Иное значение — прогресс.
   if (key === 'achievements_state') return isUnearnedAchievementList(value) ? 'default' : 'progress';
   if (key === 'last_opened_lesson') return value === '1' ? 'default' : 'progress';
+  // зачем (эмулятор 18.10 11:10, сценарий №9): счётчики поведения гостя только с посещениями разделов — аналитика, не учёба.
+  if (key === 'user_stats_v1') return isVisitsOnlyUserStats(value) ? 'default' : 'progress';
   if (key.startsWith('client_shard_phone_state_outbox_v1:')) return isEmptyShardOutbox(value) ? 'default' : 'progress';
   if (key.startsWith('level_spin_star_projection_v1:')) return isEmptySpinProjection(value) ? 'default' : 'progress';
   if (key.startsWith(LEARNING_V2_INDEX_MARKER_KEY_PREFIX) && value.startsWith(LEARNING_V2_INDEX_MARKER_VALUE_PREFIX)) return 'service';

@@ -107,6 +107,19 @@ describe('guest clean handoff matrix', () => {
     await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf({ ...clean, last_opened_lesson: '4' }))).resolves.toBe(false);
   });
 
+  // зачем (эмулятор 18.10 11:10): счётчики поведения только с посещениями разделов — не учёба.
+  it('user_stats_v1 with visits only is clean; a started lesson, an answer or a purchase is not', async () => {
+    const stats = (over: Record<string, unknown>) => JSON.stringify({
+      lessonsStarted: 0, lessonsAbandoned: 0, answersTotal: 0, answersCorrect: 0, energyHits: 0,
+      featuresOpened: { flashcards: 3 }, shardsShopOpens: 2, shardPackClicks: { starter: 1 }, shardPackPurchases: {},
+      cardPackClicks: {}, cardPackPurchases: {}, ...over,
+    });
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf({ ...FRESH_GUEST, user_stats_v1: stats({}) }))).resolves.toBe(true);
+    for (const over of [{ lessonsStarted: 1 }, { answersTotal: 2 }, { shardPackPurchases: { starter: 1 } }, { cardPackPurchases: { idioms: 1 } }]) {
+      await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf({ ...FRESH_GUEST, user_stats_v1: stats(over) }))).resolves.toBe(false);
+    }
+  });
+
   it('retry cursor prefix in the classifier equals the cursor module export', () => {
     const { LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX } = require('../app/guest_clean_classifier');
     const { LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX } = require('../app/learning_v2_completion_retry_cursor');

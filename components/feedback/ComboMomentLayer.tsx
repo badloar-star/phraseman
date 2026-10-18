@@ -14,15 +14,11 @@ import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
 import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, markComboMomentBusy, publishComboCoin, type ComboBeat, type ComboCoinShow } from './combo_moment_gate';
-import { MOMENT_ART } from '../../constants/momentArtPalette';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 // эталон `zap`: путь в кадре 390 × 844, растягивается на экран
 const ZAP_D = 'M60 0 L170 240 L120 250 L250 520 L200 530 L330 844';
 const ZAP_LEN = 1200;
-// theme-exempt: молния — свет, а не цвет темы (эталон svg.zap: штрих #FFF3C4, свечение #FFD166)
-const ZAP_STROKE = MOMENT_ART.zapStroke;
-const ZAP_GLOW = MOMENT_ART.zapGlow;
 const FLASH = '#FFFFFF'; // theme-exempt: вспышка эталона `.flash` — белая
 
 function playBreakSound(): void {
@@ -131,8 +127,10 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
       <Reanimated.View style={[StyleSheet.absoluteFill, { backgroundColor: FLASH }, flashStyle]} />
       <Reanimated.View style={[StyleSheet.absoluteFill, zapStyle]}>
         <Svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 390 844">
-          <Path d={ZAP_D} stroke={ZAP_GLOW} strokeOpacity={0.45} strokeWidth={14} fill="none" strokeLinejoin="round" strokeLinecap="round" />
-          <AnimatedPath d={ZAP_D} stroke={ZAP_STROKE} strokeWidth={4} fill="none" strokeLinejoin="round" strokeLinecap="round" strokeDasharray={ZAP_LEN} animatedProps={zapProps} />
+          {/* зачем (Макеты 8a2a2bccf: «в эталоне мятная, в приложении золотая»): эталон 2.0 перекрашивает молнию в акцент темы —
+              engagement-moments-app.css:193 `svg.zap path { stroke: var(--acc); filter: drop-shadow(0 0 10px var(--acc)) }`; свечение — тот же цвет шире и прозрачнее */}
+          <Path d={ZAP_D} stroke={colors.accentGraphic} strokeOpacity={0.45} strokeWidth={14} fill="none" strokeLinejoin="round" strokeLinecap="round" />
+          <AnimatedPath d={ZAP_D} stroke={colors.accentGraphic} strokeWidth={4} fill="none" strokeLinejoin="round" strokeLinecap="round" strokeDasharray={ZAP_LEN} animatedProps={zapProps} />
         </Svg>
       </Reanimated.View>
     </View>

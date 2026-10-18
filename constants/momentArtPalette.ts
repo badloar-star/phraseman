@@ -4,9 +4,7 @@
  * это арт, одинаковый во всех темах (как картинка), поэтому не токены темы, а отдельный набор, вынесенный из компонентов.
  */
 export const MOMENT_ART = Object.freeze({
-  /** ComboMomentLayer: контур и свечение молнии комбо. */
-  zapStroke: '#FFF3C4',
-  zapGlow: '#FFD166',
+  // молния комбо (m08) больше не арт: эталон 2.0 красит её акцентом темы (ComboMomentLayer → useStreakColors().accentGraphic)
   /** MomentCoin: корона над монетой и блик камня. */
   crownFill: '#F5C451',
   crownStroke: '#B9842A',

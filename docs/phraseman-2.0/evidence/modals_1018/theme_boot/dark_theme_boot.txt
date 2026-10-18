@@ -1,0 +1,3 @@
+[THEME-BOOT] frame {"frame":1,"msSinceBoot":3241,"systemScheme":"dark","followSystem":false,"savedTheme":"graphite","savedAppearance":"dark","chosenTheme":"graphite","chosenAppearance":"dark","choiceReady":false,"hydratedInProcess":false,"covered":true}
+[THEME-BOOT] hydrate {"msSinceBoot":3488,"storedTheme":null,"storedAppearance":null,"storedIntensity":null,"onboardingDone":"1","followMarker":"1","bootScheme":"dark","decision":"new_user/follow_system_marker"}
+[THEME-BOOT] frame {"frame":2,"msSinceBoot":4215,"systemScheme":"dark","followSystem":true,"savedTheme":"marine","savedAppearance":"dark","chosenTheme":"marine","chosenAppearance":"dark","choiceReady":true,"hydratedInProcess":true,"covered":false}

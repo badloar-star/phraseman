@@ -1,0 +1,17 @@
+light f1 +с
+light f2 +с
+light f3 +с
+light f4 +с
+light f5 +с
+light f6 +с
+light f7 +с
+light f8 +с
+dark f1 +с
+dark f2 +с
+dark f3 +с
+dark f4 +с
+dark f5 +с
+dark f6 +с
+dark f7 +с
+dark f8 +с
+THEMEBOOT-DONE

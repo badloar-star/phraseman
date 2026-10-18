@@ -9,6 +9,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react-native';
 
 jest.mock('react-native', () => ({
   View: 'View',
+  ScrollView: 'ScrollView', // зачем (проверка выпуска 18.10): m03 и шторки моментов прокручиваются на тесном экране
   Text: 'Text',
   Pressable: 'Pressable',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {} },

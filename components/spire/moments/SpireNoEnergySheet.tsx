@@ -9,7 +9,7 @@
 // Ничего не пишет и не покупает: «Plus» и «закрыть» — колбэки.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../../constants/i18n';
 import { hapticTap } from '../../../hooks/use-haptics';
@@ -100,7 +100,8 @@ function SpireNoEnergySheet({ lang, visible, onPlus, onClose, testID = 'no-energ
         </View>
       )}
     >
-      <View>
+      {/* зачем (координатор 18.10, проверка выпуска, шрифт 1,3): шторка ограничена 90 % высоты и обрезает лишнее — на тесном экране тело прокручивается, а не теряет нижнюю кнопку */}
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false} style={{ marginHorizontal: -18 }} contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 8 }}>{/* поля шторки (18) внутри прокрутки — тени плашки и кнопки не срезаются краем */}
         <Text style={[s.title, { color: p.text }]} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{noEnergySheetText(lang, 'title')}</Text>
         <Text style={[s.sub, { color: p.textSecondary }]} testID={`${testID}-sub`}>{noEnergySheetText(lang, 'sub', { t: clock })}</Text>
         <View style={[s.benefit, { backgroundColor: p.card }, sh.plate]}>
@@ -121,7 +122,7 @@ function SpireNoEnergySheet({ lang, visible, onPlus, onClose, testID = 'no-energ
         <View style={s.wait}>
           <V2Button label={noEnergySheetText(lang, 'wait')} variant="secondary" onPress={() => fire(onClose, 'wait')} testID={`${testID}-wait`} />
         </View>
-      </View>
+      </ScrollView>
     </KitSheetModal>
   );
 }

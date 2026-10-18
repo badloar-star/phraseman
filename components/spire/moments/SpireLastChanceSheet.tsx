@@ -7,7 +7,7 @@
 // сервера/кэшу); нет границы топ-5 (старый итог) — фраза про разрыв опускается. Ничего не пишет и не покупает: «Plus» и «закрыть» — колбэки.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useReducedMotion } from 'react-native-reanimated';
 import type { Lang } from '../../../constants/i18n';
@@ -81,7 +81,8 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
         </View>
       )}
     >
-      <View>
+      {/* зачем (координатор 18.10, проверка выпуска, шрифт 1,3): шторка ограничена 90 % высоты и обрезает лишнее — на тесном экране тело прокручивается, а не теряет нижнюю кнопку */}
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false} style={{ marginHorizontal: -18 }} contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 8 }}>{/* поля шторки (18) внутри прокрутки — тени плашки и кнопки не срезаются краем */}
         <Text style={[s.p, { color: p.textSecondary }]} testID={`${testID}-body`}>
           {body ?? (
             <>
@@ -98,7 +99,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
           <Text style={[s.plusText, { color: p.text }]}>{positionMomentText(lang, 'plusLink')}</Text>
           <Ionicons name="chevron-forward" size={16} color={p.text} />
         </V2Pressable>
-      </View>
+      </ScrollView>
     </KitSheetModal>
   );
 }

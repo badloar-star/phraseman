@@ -7,8 +7,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { dialogueScenarioIcon } from './dialogue_scenario_icons';
 import React, { useRef, useState } from 'react';
-import { Text, View } from 'react-native';
-import { Image } from 'expo-image';
+import { Image as RNImage, Text, View } from 'react-native';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { logMemCoin } from '../coins/mem_coin_probe';
@@ -21,6 +20,8 @@ import { useHubHeaderCollapseActions } from './hub_header_collapse';
 
 /** Ступени тона поверх карточки категории: строка +4,5 %, плитка +9 % цвета текста темы (макет dialogs.html A4: #161618 → #1D1D1F → #28282A); светлая тема темнеет, а не светлеет. */
 const ROW_TONE_ALPHA = 0.045;
+/** Неразрывный пробел между «…ранге N» и монетой: при переносе монета уходит на новую строку вместе с последним словом. */
+const NO_BREAK_SPACE = '\u00a0';
 const TILE_TONE_ALPHA = 0.09;
 
 export type DialogueV2CatalogueRowStatus = 'available' | 'done' | 'locked';
@@ -218,20 +219,21 @@ export function DialogueV2CatalogueSection({
                           {item.title}
                         </Text>
                         {locked ? (
-                          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>
-                            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18 }} maxFontSizeMultiplier={1.3}>
-                              {labels.lockedAtRank(item.rankRequired)}
-                            </Text>
-                            {/* зачем (R129): монета 768² в 16 dp на каждой закрытой строке — expo-image декодирует под размер вида; recyclingKey по рангу */}
-                            <Image
+                          // зачем (Макеты e051906a7, dialogs-006; координатор 18.10): монета ранга — сразу после строки ранга (labels.lockedAtRank) на любой длине
+                          // строки и при переносе (es «Se desbloquea en el rango N» на 1,3 уходила к правому краю, когда текст в ряду растягивался на всю ширину).
+                          // Это возможно только картинкой ВНУТРИ Text: inline в Text умеет только RN Image; выигрыш expo-image для 16 dp копеечный (R129).
+                          // Неразрывный пробел держит монету вместе с последним словом.
+                          <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }} maxFontSizeMultiplier={1.3}>
+                            {labels.lockedAtRank(item.rankRequired)}
+                            {NO_BREAK_SPACE}
+                            <RNImage
+                              testID={`dialogue-v2-catalogue-row-coin-${item.id}`}
                               source={coinRankRowForDisplay(item.rankRequired).source}
                               style={{ width: 16, height: 16 }}
-                              contentFit="cover"
-                              recyclingKey={`coin-${item.rankRequired}`}
                               accessible={false}
                               onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}
                             />
-                          </View>
+                          </Text>
                         ) : null}
                       </View>
 

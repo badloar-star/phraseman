@@ -3,8 +3,6 @@ import path from 'path';
 import type { DialogueV2CatalogueLearnerItem } from '../components/dialogs/DialogueV2CatalogueSection';
 
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
-// зачем (R129): монета закрытой строки — expo-image (декод под размер вида)
-jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../components/feedback/PressableScale', () => ({ PressableScale: 'PressableScale' }));
 jest.mock('../components/dialogs/glass/DialogueGlassKit', () => ({ useDialogueGlass: () => ({}), dialogueGlassCardStyle: () => ({}) }));
 jest.mock('../app/smooth_layout', () => ({ animateNextLayoutTransition: () => undefined }));
@@ -85,5 +83,26 @@ describe('DialogueV2CatalogueSection', () => {
     // Строка ранга локализуется вызывающим (labels.lockedAtRank), не зашивается здесь.
     expect(source).not.toContain('Откроется на ранге');
     expect(source).toContain('labels.lockedAtRank(item.rankRequired)');
+  });
+
+  // 18.10 (Макеты e051906a7, dialogs-006): монета ранга — inline-картинка ВНУТРИ Text строки ранга, через неразрывный пробел:
+  // сразу после текста на любой длине и при переносе (на es при 1,3 отдельная монета в ряду уезжала к правому краю).
+  test('rank coin is an inline RN Image inside the rank Text, glued by a no-break space', () => {
+    const source = fs.readFileSync(
+      path.join(__dirname, '..', 'components', 'dialogs', 'DialogueV2CatalogueSection.tsx'),
+      'utf8',
+    ).replace(/\r\n/g, '\n');
+    expect(source).toContain("import { Image as RNImage, Text, View } from 'react-native';");
+    expect(source).not.toContain("from 'expo-image'");
+    expect(source).toContain("const NO_BREAK_SPACE = '\\u00a0';");
+    const textStart = source.indexOf('{labels.lockedAtRank(item.rankRequired)}\n');
+    const textEnd = source.indexOf('</Text>', textStart);
+    expect(textStart).toBeGreaterThan(-1);
+    const inline = source.slice(textStart, textEnd);
+    expect(inline).toContain('{NO_BREAK_SPACE}');
+    expect(inline).toContain('<RNImage');
+    expect(inline).toContain("onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}");
+    // монета больше не отдельный элемент ряда рядом с текстом
+    expect(source).not.toContain("<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>");
   });
 });

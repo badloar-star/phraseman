@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1 } from "../app/learning_v2_factory_single_voice_v1.generated";
 import {
   buildLearningV2FactoryBundledAudioChildV1,
   learningV2FactoryRemoteAudioFileForTranscriptVoiceV1,
+  learningV2FactoryWordAudioFileV1,
 } from "../app/learning_v2_factory_production_audio_v1";
 import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { materializeFactoryNativeLearningV2SessionV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
@@ -75,17 +77,21 @@ for (const session of factoryNativeLearningV2AvailabilityV1().sessions) {
     const audio: FactoryAudioInteraction | undefined = audioChild.interactions.find(
       (candidate) => candidate.interactionId === interaction.interactionId,
     );
+    const assigned = FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1[interaction.interactionId];
+    assert.ok(assigned, `${interaction.interactionId} must have an explicit voice assignment`);
     assert.ok(audio?.fullPhraseFiles);
     assert.equal(
       audio.fullPhraseFiles.length,
-      4,
-      `${interaction.interactionId} must have four published reference voices`,
+      1,
+      `${interaction.interactionId} must have its assigned published reference voice`,
     );
     const transcript = interaction.modePayload?.family === "scripted_repeat_compare"
       ? interaction.modePayload.referenceAudio?.transcript
       : null;
     assert.ok(transcript);
     for (const file of audio.fullPhraseFiles) {
+      assert.equal(file.voiceId, assigned.voice);
+      assert.equal(file.contentHash, assigned.clips[transcript]);
       assert.equal(
         file.contentHash,
         learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
@@ -97,15 +103,13 @@ for (const session of factoryNativeLearningV2AvailabilityV1().sessions) {
   }
   for (const encounters of Object.values(material.wordEncounterQueuesByInteractionId)) {
     for (const encounter of encounters) {
-      for (const voiceId of ["ash", "onyx", "nova", "coral"] as const) {
-        assert.ok(
-          learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
-            encounter.save.targetText,
-            voiceId,
-          ),
-          `${encounter.lexicalItemId} must have a published ${voiceId} word recording`,
-        );
-      }
+      // Owner-approved 17.10 contract: words use their available published voice.
+      const wordAudio = learningV2FactoryWordAudioFileV1(encounter.save.targetText);
+      assert.ok(wordAudio, `${encounter.lexicalItemId} must have a published word recording`);
+      assert.equal(
+        wordAudio.contentHash,
+        learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(encounter.save.targetText, wordAudio.voiceId)?.contentHash,
+      );
     }
   }
 }

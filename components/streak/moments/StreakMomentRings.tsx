@@ -5,13 +5,12 @@
 // зачем (координатор 14.10: «у каждого рубежа своя сцена, не перекраска»): 12 дуг на год (внешнее кольцо — первый год), каждая зажигается 260 мс со своей задержкой;
 // кольцо 500 заполняется до половины за 1,6 с; календарь — 35 клеток, 30 горят, появляются по 26 мс. Всё на UI-треде (animatedProps/entering); reduceMotion — сразу в конечном виде.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useMemo, useRef } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Animated, { Easing, ZoomIn, useAnimatedProps, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
+import Animated, { Easing, useAnimatedProps, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useStreakColors } from './use_streak_colors';
-import { STREAK_PROBE, traceCalendarPaint, type CalendarPaintRefs } from './streak_calendar_probe';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -90,66 +89,11 @@ export const HalfRing = memo(function HalfRing({ size, run, children }: HalfRing
   );
 });
 
-/** Календарь месяца: 35 клеток, горят первые `lit`; клетки появляются по 26 мс. */
-const CAL_CELLS = 35;
-const CELL_DELAY_MS = 26;
-const CELL_DUR_MS = 300;
-
-/** probeRefs — только отладка (STREAK_PROBE): столбец текста и родитель для [STREAK-MILESTONE] calendar:paint. */
-export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }: Readonly<{ lit?: number; probeRefs?: () => Pick<CalendarPaintRefs, 'column' | 'parent'> }>) {
-  const p = useSpirePalette();
-  const colors = useStreakColors();
-  const reduceMotion = useReducedMotion();
-  // зачем (Сверка d30c: смонтирован, но не нарисован) — пробы клеток живут только в отладке; в сторе ни onLayout на клетках, ни таймеров
-  const probe = STREAK_PROBE && !!probeRefs;
-  const rootRef = useRef<View>(null);
-  const firstRef = useRef<View>(null);
-  const thirtiethRef = useRef<View>(null);
-  const laidOutRef = useRef(0);
-  const tracedRef = useRef(false);
-  // зачем (Макеты 8a2a2bccf: клетки 42×0, scaleZero весь отрезок 2 с) — сперва журнал [D30-CAL]: раскладка клетки ДО преобразований (если h=0 при w=42 —
-  // не масштаб, а высота не задана), ширина ряда, плановый старт ZoomIn и его конец с замером на экране (итоговый масштаб). Только отладка.
-  const mountAtRef = useRef(Date.now());
-  const d30Log = (what: string, data: Record<string, unknown>) => console.log(`[D30-CAL] ${what} ${JSON.stringify({ sinceMountMs: Date.now() - mountAtRef.current, ...data })}`); // guard-ok: строка пробы (только отладка)
-  // плановый конец ZoomIn клетки (задержка + длительность) + 50 мс: замер на экране = итоговый масштаб (без колбэка воркета — тесты его не грузят)
-  const measureAfterEnter = (i: number) => {
-    const atMs = (reduceMotion ? 0 : i * CELL_DELAY_MS + CELL_DUR_MS) + 50;
-    setTimeout(() => {
-      const ref = i === 0 ? firstRef.current : thirtiethRef.current;
-      if (!ref) { d30Log('enter:end', { i, plannedEndMs: atMs, box: null, reason: 'no_ref_unmounted' }); return; }
-      ref.measureInWindow((x, y, w, h) => d30Log('enter:end', { i, plannedEndMs: atMs, box: { x: Math.round(x), y: Math.round(y), w: Math.round(w), h: Math.round(h) }, scaleZero: Math.round(w) === 0 || Math.round(h) === 0 }));
-    }, atMs);
-  };
-  const enteringFor = (i: number) => (reduceMotion ? undefined : ZoomIn.delay(i * CELL_DELAY_MS).duration(CELL_DUR_MS));
-  const onCellLayout = (i: number, w: number, h: number) => {
-    if (i === 0 || i === 29) measureAfterEnter(i);
-    if (i === 0 || i === 29) d30Log('cell:layout', { i, w: Math.round(w), h: Math.round(h), heightZero: Math.round(h) === 0, plannedEnterStartMs: reduceMotion ? null : i * CELL_DELAY_MS, durMs: CELL_DUR_MS, style: { width: '12.2%', aspectRatio: 1 } });
-    laidOutRef.current += 1;
-    if (tracedRef.current || laidOutRef.current < CAL_CELLS || !probeRefs) return;
-    tracedRef.current = true;
-    traceCalendarPaint(() => ({ root: rootRef.current, first: firstRef.current, thirtieth: thirtiethRef.current, ...probeRefs() }), {
-      laidOut: () => laidOutRef.current, total: CAL_CELLS, lit, cellOn: colors.accentGraphic, cellOff: p.control, reduceMotion, cellDelayMs: CELL_DELAY_MS, cellDurMs: CELL_DUR_MS,
-    });
-  };
-  return (
-    <View ref={rootRef} accessible={false} style={s.cal} onLayout={probe ? (e) => d30Log('row:layout', { w: Math.round(e.nativeEvent.layout.width), h: Math.round(e.nativeEvent.layout.height), reduceMotion }) : undefined}>
-      {Array.from({ length: CAL_CELLS }, (_, i) => (
-        <Animated.View
-          key={i} // guard-ok: 35 одинаковых клеток фиксированного календаря, порядок не меняется
-          ref={i === 0 ? firstRef : i === 29 ? thirtiethRef : undefined}
-          entering={enteringFor(i)}
-          onLayout={probe ? (e) => onCellLayout(i, e.nativeEvent.layout.width, e.nativeEvent.layout.height) : undefined}
-          style={[s.cell, { backgroundColor: i < lit ? colors.accentGraphic : p.control }]}
-        />
-      ))}
-    </View>
-  );
-});
+// зачем (Сверка 15fc5ef7f, [D30-CAL] h=0): календарь переписан в MonthCalendar.tsx — явный размер клетки и своё появление по эталону
+export { MonthCalendar } from './MonthCalendar';
 
 const s = StyleSheet.create({
   overflow: { overflow: 'visible' },
   center: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
   centerText: { fontSize: 40, lineHeight: 48, fontWeight: '800' },
-  cal: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, width: '100%' },
-  cell: { width: '12.2%', aspectRatio: 1, borderRadius: 8 },
 });

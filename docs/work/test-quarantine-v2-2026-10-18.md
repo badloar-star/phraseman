@@ -25,16 +25,10 @@
 | C:\appsprojects\phraseman\tests\learning_v2_factory_production_audio_contract.test.ts | А — переписать под один голос | тест ждёт 4 голоса на фразу; с single-voice-v1 голос один. Проба 18.10: все 441 занятие открываются с published_mp3, пропусков 0. Файл сейчас правит другая сессия | assert.match(received, expected) Expected value match to: /if \(!audioChild\) \{\s*console\.warn\(`\[V2-BUNDLED\] null step=audio_child[\s\S |  |
 | C:\appsprojects\phraseman\tests\learning_v2_factory_native_projection_v1.test.ts | А — переписать проверку | имена сняты (Мира→начальница); в новой S01 нет повтора вслух independent_check (оба guided_practice). Файл сейчас правит другая сессия | assert.strictEqual(received, expected) Expected value to strictly be equal to: "Вставьте слово — Мира звонит и спрашивает, добрались ли вы д |  |
 | C:\appsprojects\phraseman\tests\learning_v2_activity_post_terminal_card_catalog_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_post_terminal_card_meanings_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_activity_released_session_submission_spool_v2.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_activity_released_session_submission_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_course_session_audio_readback_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_mode_native_payload_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_course_session_audio_release_extension_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_mode_native_payload_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_course_session_completed_spool_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_course_session_save_card_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
 | C:\appsprojects\phraseman\tests\learning_v2_intro_semantic_runs_contract.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
 | C:\appsprojects\phraseman\tests\learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
 | C:\appsprojects\phraseman\tests\learning_v2_neutral_qa_session_e2e_harness_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
 | C:\appsprojects\phraseman\tests\learning_v2_authored_sessions_reach_the_player.test.ts | В — после релиза | испанский Learning V2 скрыт (D129) | Error: expect(received).toBe(expected) // Object.is equality Expected: 14 Received: 13 |  |
-| C:\appsprojects\phraseman\tests\learning_v2_course_lesson_audio_release_index_v1.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | Error: learning_v2_mode_native_payload_invalid |  |
 | C:\appsprojects\phraseman\tests\learning_v2_e1_content_compiler.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false |  |
 | C:\appsprojects\phraseman\tests\learning_v2_english_l4_curriculum_contract.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | AssertionError [ERR_ASSERTION]: l4_exact_lexical_assignment_by_session + actual - expected ... Skipped lines |  |
 | C:\appsprojects\phraseman\tests\learning_v2_episode_01_session_01_source.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | Error: expect(received).toBe(expected) // Object.is equality Expected: "746b30c49c9735cd57cde89cb4e488c40e6661b1be9ccba1ac7f202b09957f09" Re |  |
@@ -75,3 +69,19 @@
 | C:\appsprojects\phraseman\tests\learning_v2_p0_p1_smoke.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | Error: expect(received).toHaveLength(expected) Expected length: 12 Received length: 56 |  |
 | C:\appsprojects\phraseman\tests\learning_v2_session_compiler.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | Error: expect(received).toHaveLength(expected) Expected length: 12 Received length: 56 |  |
 | C:\appsprojects\phraseman\tests\learning_v2_session_contract.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | Error: expect(received).toMatchObject(expected) - Expected  - 4 + Received  + 2 |  |
+
+
+## Возвращены в обычный прогон 18.10 (Ревизор 3.81, координатор 04:45)
+
+Шесть тестов кода выпуска: фикстура приведена к текущим контрактам, код выпуска не менялся.
+Список исключений в package.json ведёт Дизайн (координатор 05:00) — он и уберёт их из testPathIgnorePatterns:
+- learning_v2_course_session_completed_spool_v1.test.ts
+- learning_v2_course_session_save_card_v1.test.ts
+- learning_v2_activity_released_session_submission_spool_v2.test.ts
+- learning_v2_course_session_audio_readback_v1.test.ts
+- learning_v2_course_session_audio_release_extension_v1.test.ts
+- learning_v2_course_lesson_audio_release_index_v1.test.ts
+- course_session_completed_spool, course_session_save_card: локали объяснения из LEARNING_V2_INTERFACE_LOCALES (9 с 23.08, добавлен en).
+- course_session_audio_readback, audio_release_extension, lesson_audio_release_index, completed_spool: явный modePayload: null у ученических заданий.
+- activity_released_session_submission_spool: у отправки v2 метка local_provisional_only.
+- course_session_save_card: считаем только запись custom_flashcards_v2 (служебные ключи пишутся рядом).

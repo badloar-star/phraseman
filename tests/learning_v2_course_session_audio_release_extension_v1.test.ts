@@ -48,6 +48,8 @@ function fixture() {
       audioTargetIds: index === 0 ? [h("target")] : [],
       accessibilityLabel: `Neutral ${index + 1}`,
       scriptedAlternate: null,
+      // зачем (18.10, Ревизор 3.81): ученический ребёнок требует явный modePayload (null = без режима); без ключа валидатор режима падает
+      modePayload: null,
     })),
   });
   const voices = ["ash", "onyx", "nova", "coral"] as const;

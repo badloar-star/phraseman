@@ -1,3 +1,4 @@
+import { LEARNING_V2_INTERFACE_LOCALES } from "../modules/learning-v2/content/generator_course_contract";
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -9,7 +10,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 jest.mock("@react-native-async-storage/async-storage");
 
-const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+// зачем (18.10, Ревизор 3.81): с 9a9824828 (23.08) локалей объяснения 9 (добавлен en) — список берём из кода, а не зашиваем.
+const locales = LEARNING_V2_INTERFACE_LOCALES;
 const meaningByLocale = Object.freeze(
   Object.fromEntries(locales.map((locale) => [locale, `meaning-${locale}`])),
 ) as any;
@@ -41,7 +43,9 @@ describe("Learning V2 direct local card save", () => {
         interfaceLocale: "pl",
       }),
     ).resolves.toBe("duplicate");
-    const writes = jest.mocked(AsyncStorage.setItem).mock.calls;
+    // зачем (18.10, Ревизор 3.81): рядом теперь пишутся служебные ключи (phraseman_stable_uid_cache, app_health_*) —
+    // проверяем именно запись карточек: ровно одна, повтор не пишет.
+    const writes = jest.mocked(AsyncStorage.setItem).mock.calls.filter(([key]) => key === "custom_flashcards_v2");
     expect(writes).toHaveLength(1);
     const cards = JSON.parse(String(writes[0]![1]));
     expect(cards).toHaveLength(1);

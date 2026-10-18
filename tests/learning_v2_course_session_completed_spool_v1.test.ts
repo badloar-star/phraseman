@@ -1,3 +1,4 @@
+import { LEARNING_V2_INTERFACE_LOCALES } from "../modules/learning-v2/content/generator_course_contract";
 import {
   createLearningV2CourseSessionDeviceRunV1,
   materializeLearningV2CourseSessionCompletedSummaryV1,
@@ -11,7 +12,8 @@ import {
 import { materializeLearningV2CourseSessionEvaluatorCapsuleChildV1 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 import { createLearningV2CourseSessionCompletedSpoolV1 } from "../app/learning_v2_course_session_completed_spool_v1";
 
-const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+// зачем (18.10, Ревизор 3.81): с 9a9824828 (23.08) локалей объяснения 9 (добавлен en) — список берём из кода, а не зашиваем.
+const locales = LEARNING_V2_INTERFACE_LOCALES;
 const localized = (value: string) =>
   Object.freeze(
     Object.fromEntries(locales.map((locale) => [locale, value])),
@@ -62,6 +64,8 @@ function completion() {
       audioTargetIds: [],
       accessibilityLabel: `Prompt ${index}`,
       scriptedAlternate: null,
+      // зачем (18.10, Ревизор 3.81): ученический ребёнок требует явный modePayload (null = без режима); без ключа валидатор режима падает
+      modePayload: null,
     })),
   });
   const evaluatorCapsuleChild =

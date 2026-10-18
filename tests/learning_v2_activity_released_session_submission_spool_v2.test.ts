@@ -97,7 +97,9 @@ function submission(run: number) {
     rawAudioPayload: "forbidden",
     transcriptClaimAuthority: "untrusted_client_text_claim_only",
     answerSequenceAuthority: "untrusted_client_sequence_only",
-    localFeedbackAuthority: "local_interaction_verdict_only",
+    // зачем (18.10, Ревизор 3.81): у отправки v2 своя метка local_provisional_only (activity_released_session_submission_v2.ts:280,403);
+    // local_interaction_verdict_only — метка завершения v1, она остаётся выше в completionBody.
+    localFeedbackAuthority: "local_provisional_only",
     performanceAuthority: "none_server_evaluation_required",
     walletAuthority: "none",
     masteryAuthority: "none",

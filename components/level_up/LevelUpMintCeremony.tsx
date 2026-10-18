@@ -367,7 +367,9 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
             </Animated.View>
           </View>
           <Animated.View style={buttonStyle} pointerEvents={ready ? 'auto' : 'none'}>
-            <PressableScale variant="primary" onPress={finish} disabled={!ready} withHaptic={false} style={[styles.button, { backgroundColor: glass.accent }]}>
+            {/* зачем (Макеты 18.10, кадры level_up_mint_hybrid_*_b): PressableScale кладёт подпись во внутренний слой на всю
+                ширину — alignItems у внешнего стиля её не центрировал, «Продолжить» прижималась к левому краю. Центруем внутри. */}
+            <PressableScale variant="primary" onPress={finish} disabled={!ready} withHaptic={false} style={[styles.button, { backgroundColor: glass.accent }]} contentStyle={styles.buttonContent}>
               <Text style={[styles.buttonText, { color: glass.accentInk }]}>{copy.cta}</Text>
             </PressableScale>
           </Animated.View>
@@ -414,7 +416,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonText: { color: '#0b0b0f', fontSize: 16, fontWeight: '700' }, // theme-exempt: иллюстрация церемонии повышения уровня
+  buttonContent: { alignItems: 'center', justifyContent: 'center' },
+  buttonText: { color: '#0b0b0f', fontSize: 16, fontWeight: '700', textAlign: 'center' }, // theme-exempt: иллюстрация церемонии повышения уровня
 });
 
 export { MINT_BG };

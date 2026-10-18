@@ -61,3 +61,19 @@
 |---|---|---|
 | learning_v2_mode_router_family_coverage.test.ts | основной: StyleSheet.create в LearningV2Glass; RNTL: нет подмены Ionicons | V2 |
 | learning_v2_session_skip_interaction.test.ts | основной: gesture-handler ESM; RNTL: genericDirectEventTypes | V2 |
+
+## 4. V2 — после релиза, сводка V2 03:55
+
+Полная пофайловая таблица V2 — `docs/work/test-quarantine-v2-2026-10-18.md` (af59cead2); сторож раннера читает её и сверяет: каждый тест оттуда исключён из основного раннера. Класс Б (дефект выпущенных занятий) = 0: проба V2 по всем 441 занятиям — все открываются, доставка published_mp3, пропусков озвучки 0. Решение о судьбе — координатор/владелец после релиза.
+
+Группы (слова V2):
+- (а) 31 файл, проверяющий старый исходник `modules/learning-v2/content/source`: episode_01_*_source, session_map, to_be_only, 33_40_intro_data. Не менялся с 01.10, в выпуск не идёт.
+- (б) lesson1_chapter_gate, lesson1_real_session_mock — старый authored_sessions_v1.
+- (в) authored_sessions_reach_the_player, es_bundle_reachability — испанский V2 скрыт (D129).
+- (г) generator_course_manifest, generator_session_shard, session_compiler, session_contract, p0_p1_smoke, e1_content_compiler — модель «12 сессий».
+- (д) english_l4_curriculum_contract.
+- (е) около 10 фикстур эпизода 1 (course_session_*, neutral_qa_*, activity_*: client_child_invalid, mode_native_payload_invalid).
+- (ж) lesson_map_screen_contract, listen_choose_option_label_v1, lexical_density_policy_v2; устаревшие проверки intro_theme_contract, intro_reader_fixture_contract, content_quality_gate_wiring.
+- voice_physical_device_runner_v1 — контур «Голос», после релиза, сперва логи (мок вызван 0 раз вместо 1).
+
+НЕ в карантине (остаются в обычном прогоне): `learning_v2_session_intro_feedback_behavior` — зелёный после гейта журнала [INTRO-BLUR] (18.10); `new_word_encounter_projection_v1`, `all_ready_tasks_runtime_audit` — перепин V2 сделан; `factory_production_audio_contract`, `factory_native_projection_v1` — перепины лежат в рабочей копии V2 (файлы не трогаю). Если до коммита V2 они красные — это красные V2, а не карантин.

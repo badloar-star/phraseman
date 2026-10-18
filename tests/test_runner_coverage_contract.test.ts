@@ -63,7 +63,16 @@ describe('раннеры тестов', () => {
     const doc = fs.readFileSync(path.join(root, rel), 'utf8');
     const listed = Array.from(new Set(Array.from(doc.matchAll(/\b([a-z0-9_]+\.test\.tsx?)\b/g)).map((m) => `tests/${m[1]}`)));
     const ignored = new Set((pkg[J].testPathIgnorePatterns as string[]).map((e) => e.replace('<rootDir>/', '')));
-    expect(listed.filter((f) => fs.existsSync(path.join(root, f)) && !ignored.has(f))).toEqual([]);
+    // починен и возвращён в обычный прогон: журнал [INTRO-BLUR] за DIAG_ENABLED (18.10) — в списке V2 остался как «среда», но больше не красный
+    // + четыре теста, которые чинит сам V2 (перепин сделан / файл в рабочей копии V2): в карантин не прячем, остаются в обычном прогоне
+    const restored = new Set([
+      'tests/learning_v2_session_intro_feedback_behavior.test.tsx',
+      'tests/learning_v2_new_word_encounter_projection_v1.test.ts',
+      'tests/learning_v2_all_ready_tasks_runtime_audit.test.ts',
+      'tests/learning_v2_factory_production_audio_contract.test.ts',
+      'tests/learning_v2_factory_native_projection_v1.test.ts',
+    ]);
+    expect(listed.filter((f) => fs.existsSync(path.join(root, f)) && !ignored.has(f) && !restored.has(f))).toEqual([]);
   });
 
   test('.test.ts подхватывает основной раннер шаблоном tests/**/*.test.ts', () => {

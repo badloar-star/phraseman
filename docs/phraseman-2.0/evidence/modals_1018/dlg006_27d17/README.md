@@ -1,0 +1,3 @@
+# dialogs-006 на 27d17576e — НЕ СНЯТО (СВЕРКА, 18.10 05:34–05:38)
+Красный экран приложения (l_ru_open.png): «Render Error — Property 'DIAG_ENABLED' doesn't exist» в app/(tabs)/_layout.tsx (ReleasedTabLayout), строка 178 `if (!DIAG_ENABLED) return;`. Файл в чужой незакоммиченной правке (git status ' M app/(tabs)/_layout.tsx', последний коммит 0e53851a4 — Дизайн, диагностика [BACK-BTN]; вероятно, правка R137 не объявила константу). До этого в 05:34 сборщик не отдавал бандл (JS=0), после минутной паузы поднялся.
+Шрифт эмулятора возвращён 1,0. Нужно: Дизайн объявляет/импортирует DIAG_ENABLED в _layout.tsx; затем пересъёмка (ru, шрифт 1,3, свёрнутый и раскрытый, светлая+тёмная; искать [DIALOGUE-V2] catalogue:counter_below_all).

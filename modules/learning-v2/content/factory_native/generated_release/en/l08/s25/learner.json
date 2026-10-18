@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-25:i01",
+      "interactionId": "en:lesson-08:session-25:word:attach",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — attach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:word:attach:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — attach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:word:attach:audio",
+          "transcript": "attach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:word:attach:r1",
+            "targetText": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить. Attach it. — «Прикрепи его». Здесь файл добавляют к письму. Для короткого указания начинаем с действия, без you или to.",
+              "uk": "прикріпити. Attach it. — «Прикріпи його». Тут файл додають до листа. Для короткої вказівки починаємо з дії, без you або to."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "attach",
+          "definitionByLocale": {
+            "ru": "прикрепить. Attach it. — «Прикрепи его». Здесь файл добавляют к письму. Для короткого указания начинаем с действия, без you или to.",
+            "uk": "прикріпити. Attach it. — «Прикріпи його». Тут файл додають до листа. Для короткої вказівки починаємо з дії, без you або to."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -36,7 +79,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +155,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание прикрепить файл",
+      "prompt": "Выберите форму для короткого указания прикрепить файл",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-25:i03:r1",
@@ -133,12 +176,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание прикрепить файл",
+      "accessibilityLabel": "Выберите форму для короткого указания прикрепить файл",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание прикрепить файл",
-          "uk": "Дайте коротку вказівку прикріпити файл"
+          "ru": "Выберите форму для короткого указания прикрепить файл",
+          "uk": "Виберіть форму для короткої вказівки прикріпити файл"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -155,24 +198,24 @@
             "text": "To attach"
           }
         ],
-        "testedDimension": "Дайте короткое указание прикрепить файл",
+        "testedDimension": "Выберите форму для короткого указания прикрепить файл",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-25:i03:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание прикрепить файл",
+            "testedDimension": "Выберите форму для короткого указания прикрепить файл",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Attach`, без `es`.",
-              "uk": "Для вказівки потрібне `Attach`, без `es`."
+              "ru": "Для указания нужно Attach, без es.",
+              "uk": "Для вказівки потрібне Attach, без es."
             }
           },
           {
             "responseId": "en:lesson-08:session-25:i03:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание прикрепить файл",
+            "testedDimension": "Выберите форму для короткого указания прикрепить файл",
             "feedbackByLocale": {
-              "ru": "Начните с `Attach`, без `to`.",
-              "uk": "Почніть із `Attach`, без `to`."
+              "ru": "Начните с Attach, без to.",
+              "uk": "Почніть з Attach, без to."
             }
           }
         ]
@@ -181,7 +224,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -203,40 +246,40 @@
           },
           {
             "pairId": "en:lesson-08:session-25:i04:p2",
-            "target": "sink",
+            "target": "file",
             "meaningByLocale": {
-              "ru": "раковина",
-              "uk": "раковина"
+              "ru": "файл",
+              "uk": "файл"
             }
           },
           {
             "pairId": "en:lesson-08:session-25:i04:p3",
-            "target": "meet",
+            "target": "email",
             "meaningByLocale": {
-              "ru": "встречаться",
-              "uk": "зустрічатися"
+              "ru": "электронное письмо",
+              "uk": "електронний лист"
             }
           },
           {
             "pairId": "en:lesson-08:session-25:i04:p4",
-            "target": "walk",
+            "target": "check",
             "meaningByLocale": {
-              "ru": "ходить пешком",
-              "uk": "ходити пішки"
+              "ru": "проверить",
+              "uk": "перевірити"
             }
           }
         ],
         "leftColumn": [
           "attach",
-          "sink",
-          "meet",
-          "walk"
+          "file",
+          "email",
+          "check"
         ],
         "rightColumn": [
           "прикрепить",
-          "раковина",
-          "встречаться",
-          "ходить пешком"
+          "файл",
+          "электронное письмо",
+          "проверить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +330,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-25:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-25:word:recipient",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — recipient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:word:recipient:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — recipient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:word:recipient:audio",
+          "transcript": "recipient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:word:recipient:r1",
+            "targetText": "recipient",
+            "meaningByLocale": {
+              "ru": "получатель. Check the recipient. — «Проверь получателя». Человек, которому отправляют письмо или сообщение.",
+              "uk": "одержувач. Check the recipient. — «Перевір одержувача». Людина, якій надсилають лист або повідомлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recipient",
+          "definitionByLocale": {
+            "ru": "получатель. Check the recipient. — «Проверь получателя». Человек, которому отправляют письмо или сообщение.",
+            "uk": "одержувач. Check the recipient. — «Перевір одержувача». Людина, якій надсилають лист або повідомлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте короткое указание «Открой окно»",
+      "prompt": "Дайте короткое указание «Проверь получателя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание «Открой окно»",
+      "accessibilityLabel": "Дайте короткое указание «Проверь получателя»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Open the window.",
+        "targetPhrase": "Check the recipient.",
         "localizedMeaning": {
-          "ru": "Дайте короткое указание «Открой окно»",
-          "uk": "Дайте коротку вказівку «Відчини вікно»"
+          "ru": "Дайте короткое указание «Проверь получателя»",
+          "uk": "Дайте коротку вказівку «Перевір одержувача»"
         },
         "orderedTokens": [
-          "Open",
+          "Check",
           "the",
-          "window"
+          "recipient"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +405,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-25:word:document",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — document",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:word:document:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — document",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:word:document:audio",
+          "transcript": "document"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:word:document:r1",
+            "targetText": "document",
+            "meaningByLocale": {
+              "ru": "документ. Open the document. — «Открой документ». Здесь электронный текстовый файл с инструкциями.",
+              "uk": "документ. Open the document. — «Відкрий документ». Тут електронний текстовий файл з інструкціями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "document",
+          "definitionByLocale": {
+            "ru": "документ. Open the document. — «Открой документ». Здесь электронный текстовый файл с инструкциями.",
+            "uk": "документ. Open the document. — «Відкрий документ». Тут електронний текстовий файл з інструкціями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-25:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На прогулке подскажите другу «Поверни налево»",
+      "prompt": "Коллега нашёл файл с инструкциями. Скажите «Открой документ»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-25:i07:audio"
       ],
-      "accessibilityLabel": "На прогулке подскажите другу «Поверни налево»",
+      "accessibilityLabel": "Коллега нашёл файл с инструкциями. Скажите «Открой документ»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-25:i07:audio",
-          "transcript": "Turn left."
+          "transcript": "Open the document."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Turn left.",
+        "targetPhrase": "Open the document.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,11 +482,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание открыть окно",
+      "prompt": "Выберите форму для короткого указания открыть документ",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-25:i08:r1",
@@ -374,14 +503,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание открыть окно",
+      "accessibilityLabel": "Выберите форму для короткого указания открыть документ",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание открыть окно",
-          "uk": "Дайте коротку вказівку відчинити вікно"
+          "ru": "Выберите форму для короткого указания открыть документ",
+          "uk": "Виберіть форму для короткої вказівки відкрити документ"
         },
-        "gappedTargetPhrase": "___ the window.",
+        "gappedTargetPhrase": "___ the document.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-25:i08:r1",
@@ -396,24 +525,24 @@
             "text": "To open"
           }
         ],
-        "testedDimension": "Дайте короткое указание открыть окно",
+        "testedDimension": "Выберите форму для короткого указания открыть документ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-25:i08:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для короткого указания открыть документ",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Open`, без `s`.",
-              "uk": "Для вказівки потрібне `Open`, без `s`."
+              "ru": "Для указания нужно Open, без s.",
+              "uk": "Для вказівки потрібне Open, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-25:i08:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для короткого указания открыть документ",
             "feedbackByLocale": {
-              "ru": "Начните с `Open`, без `to`.",
-              "uk": "Почніть із `Open`, без `to`."
+              "ru": "Начните с Open, без to.",
+              "uk": "Почніть з Open, без to."
             }
           }
         ]
@@ -422,7 +551,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +627,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,14 +641,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-25:i10:p1",
-            "target": "lend",
-            "meaningByLocale": {
-              "ru": "одолжить",
-              "uk": "позичити"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-25:i10:p2",
             "target": "attach",
             "meaningByLocale": {
               "ru": "прикрепить",
@@ -527,33 +648,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-25:i10:p3",
-            "target": "sink",
+            "pairId": "en:lesson-08:session-25:i10:p2",
+            "target": "recipient",
             "meaningByLocale": {
-              "ru": "раковина",
-              "uk": "раковина"
+              "ru": "получатель",
+              "uk": "одержувач"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i10:p3",
+            "target": "document",
+            "meaningByLocale": {
+              "ru": "документ",
+              "uk": "документ"
             }
           },
           {
             "pairId": "en:lesson-08:session-25:i10:p4",
-            "target": "meet",
+            "target": "check",
             "meaningByLocale": {
-              "ru": "встречаться",
-              "uk": "зустрічатися"
+              "ru": "проверить",
+              "uk": "перевірити"
             }
           }
         ],
         "leftColumn": [
-          "lend",
           "attach",
-          "sink",
-          "meet"
+          "recipient",
+          "document",
+          "check"
         ],
         "rightColumn": [
-          "одолжить",
           "прикрепить",
-          "раковина",
-          "встречаться"
+          "получатель",
+          "документ",
+          "проверить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +700,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -586,13 +715,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-25:i11:audio",
-          "transcript": "Turn left."
+          "transcript": "Check the recipient."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Turn left.",
+        "hiddenTargetPhrase": "Check the recipient.",
         "orderedTokens": [
-          "Turn",
-          "left"
+          "Check",
+          "the",
+          "recipient"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -604,30 +734,70 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-25:word:filename",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — filename",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:word:filename:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — filename",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:word:filename:audio",
+          "transcript": "filename"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:word:filename:r1",
+            "targetText": "filename",
+            "meaningByLocale": {
+              "ru": "имя файла. Check the filename. — «Проверь имя файла». Название файла на компьютере, например report.pdf; filename пишется слитно.",
+              "uk": "ім’я файлу. Check the filename. — «Перевір ім’я файлу». Назва файлу на комп’ютері, наприклад report.pdf; filename пишеться разом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "filename",
+          "definitionByLocale": {
+            "ru": "имя файла. Check the filename. — «Проверь имя файла». Название файла на компьютере, например report.pdf; filename пишется слитно.",
+            "uk": "ім’я файлу. Check the filename. — «Перевір ім’я файлу». Назва файлу на комп’ютері, наприклад report.pdf; filename пишеться разом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-25:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросите «Можешь одолжить мне ручку?»",
+      "prompt": "Рядом лежат старая и новая версии файла. Скажите «Проверь имя файла»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите «Можешь одолжить мне ручку?»",
+      "accessibilityLabel": "Рядом лежат старая и новая версии файла. Скажите «Проверь имя файла»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you lend me a pen?",
+        "targetPhrase": "Check the filename.",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь одолжить мне ручку?»",
-          "uk": "Попросіть «Можеш позичити мені ручку?»"
+          "ru": "Рядом лежат старая и новая версии файла. Скажите «Проверь имя файла»",
+          "uk": "Поруч є стара й нова версії файлу. Скажіть «Перевір ім’я файлу»"
         },
         "orderedTokens": [
-          "Can",
-          "you",
-          "lend",
-          "me",
-          "a",
-          "pen"
+          "Check",
+          "the",
+          "filename"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -640,25 +810,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, как вы передвигаетесь по городу. Скажите «Я часто хожу пешком»",
+      "prompt": "Документ уже открыт. Теперь его нужно отправить вложением. Скажите «Прикрепи документ»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-25:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, как вы передвигаетесь по городу. Скажите «Я часто хожу пешком»",
+      "accessibilityLabel": "Документ уже открыт. Теперь его нужно отправить вложением. Скажите «Прикрепи документ»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-25:i13:audio",
-          "transcript": "I often walk."
+          "transcript": "Attach the document."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often walk.",
+        "targetPhrase": "Attach the document.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -673,67 +843,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте указание повернуть налево",
+      "prompt": "Выберите форму для короткого указания проверить имя файла",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-25:i14:r1",
-          "text": "Turn"
+          "text": "Check"
         },
         {
           "responseId": "en:lesson-08:session-25:i14:r2",
-          "text": "Turns"
+          "text": "Checks"
         },
         {
           "responseId": "en:lesson-08:session-25:i14:r3",
-          "text": "To turn"
+          "text": "To check"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте указание повернуть налево",
+      "accessibilityLabel": "Выберите форму для короткого указания проверить имя файла",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте указание повернуть налево",
-          "uk": "Дайте вказівку повернути ліворуч"
+          "ru": "Выберите форму для короткого указания проверить имя файла",
+          "uk": "Виберіть форму для короткої вказівки перевірити ім’я файлу"
         },
-        "gappedTargetPhrase": "___ left.",
+        "gappedTargetPhrase": "___ the filename.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-25:i14:r1",
-            "text": "Turn"
+            "text": "Check"
           },
           {
             "responseId": "en:lesson-08:session-25:i14:r2",
-            "text": "Turns"
+            "text": "Checks"
           },
           {
             "responseId": "en:lesson-08:session-25:i14:r3",
-            "text": "To turn"
+            "text": "To check"
           }
         ],
-        "testedDimension": "Дайте указание повернуть налево",
+        "testedDimension": "Выберите форму для короткого указания проверить имя файла",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-25:i14:r2",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для короткого указания проверить имя файла",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Turn`, без `s`.",
-              "uk": "Для вказівки потрібне `Turn`, без `s`."
+              "ru": "Для указания нужно Check, без s.",
+              "uk": "Для вказівки потрібне Check, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-25:i14:r3",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для короткого указания проверить имя файла",
             "feedbackByLocale": {
-              "ru": "Начните с `Turn`, без `to`.",
-              "uk": "Почніть із `Turn`, без `to`."
+              "ru": "Начните с Check, без to.",
+              "uk": "Почніть з Check, без to."
             }
           }
         ]
@@ -742,7 +912,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -750,15 +920,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-25:i15:r1",
-          "text": "Open the window."
+          "text": "Check the filename."
         },
         {
           "responseId": "en:lesson-08:session-25:i15:r2",
-          "text": "Open the door."
+          "text": "Check the recipient."
         },
         {
           "responseId": "en:lesson-08:session-25:i15:r3",
-          "text": "Open the box."
+          "text": "Check the document."
         }
       ],
       "mediaIds": [],
@@ -770,23 +940,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-25:i15:audio",
-          "transcript": "Open the window."
+          "transcript": "Check the filename."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-25:i15:r1",
-            "targetText": "Open the window.",
+            "targetText": "Check the filename.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-25:i15:r2",
-            "targetText": "Open the door.",
+            "targetText": "Check the recipient.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-25:i15:r3",
-            "targetText": "Open the box.",
+            "targetText": "Check the document.",
             "meaningByLocale": null
           }
         ],
@@ -797,8 +967,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `door`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `door`."
+              "ru": "В записи filename — «имя файла», а не recipient — «получатель».",
+              "uk": "У записі filename — «ім’я файлу», а не recipient — «одержувач»."
             }
           },
           {
@@ -806,8 +976,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `box`."
+              "ru": "В записи filename, а не document — «документ».",
+              "uk": "У записі filename, а не document — «документ»."
             }
           }
         ],
@@ -818,7 +988,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -840,40 +1010,40 @@
           },
           {
             "pairId": "en:lesson-08:session-25:i16:p2",
-            "target": "walk",
+            "target": "recipient",
             "meaningByLocale": {
-              "ru": "ходить пешком",
-              "uk": "ходити пішки"
+              "ru": "получатель",
+              "uk": "одержувач"
             }
           },
           {
             "pairId": "en:lesson-08:session-25:i16:p3",
-            "target": "lend",
+            "target": "document",
             "meaningByLocale": {
-              "ru": "одолжить",
-              "uk": "позичити"
+              "ru": "документ",
+              "uk": "документ"
             }
           },
           {
             "pairId": "en:lesson-08:session-25:i16:p4",
-            "target": "sink",
+            "target": "filename",
             "meaningByLocale": {
-              "ru": "раковина",
-              "uk": "раковина"
+              "ru": "имя файла",
+              "uk": "ім’я файлу"
             }
           }
         ],
         "leftColumn": [
           "attach",
-          "walk",
-          "lend",
-          "sink"
+          "recipient",
+          "document",
+          "filename"
         ],
         "rightColumn": [
           "прикрепить",
-          "ходить пешком",
-          "одолжить",
-          "раковина"
+          "получатель",
+          "документ",
+          "имя файла"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -891,7 +1061,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-25:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -931,11 +1101,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e8e46ef855a2d6a725b1f76dcaca3ffca9e2550956c8c444365748e0c4767975"
+  "learnerFingerprint": "d591ed030f07faa3f366f3019d04a9f83a30153e6a96488582a9411224fd7c11"
 }

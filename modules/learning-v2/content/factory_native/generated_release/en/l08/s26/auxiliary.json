@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-26:intro2:r2": {
-          "ru": "Для указания нужно `Turn`, без `s`.",
-          "uk": "Для вказівки потрібне `Turn`, без `s`."
+          "ru": "Для указания нужно Plug, без s.",
+          "uk": "Для вказівки потрібне Plug, без s."
         },
         "en:lesson-08:session-26:intro2:r3": {
-          "ru": "Начните с `Turn`, без `to`.",
-          "uk": "Почніть із `Turn`, без `to`."
+          "ru": "Начните с Plug, без to.",
+          "uk": "Почніть з Plug, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-26:intro3:r2": {
-          "ru": "После `can` нужно `pass`, без `es`.",
-          "uk": "Після `can` потрібне `pass`, без `es`."
+          "ru": "Для указания нужно Turn, без s.",
+          "uk": "Для вказівки потрібне Turn, без s."
         },
         "en:lesson-08:session-26:intro3:r3": {
-          "ru": "После `can` нужно `pass`, без `to`.",
-          "uk": "Після `can` потрібне `pass`, без `to`."
+          "ru": "Начните с Turn, без to.",
+          "uk": "Почніть з Turn, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "875ac114d22b83839596b15ccb91de2df384da16568701968abc7271ed53d5e6"
+  "auxiliaryFingerprint": "f8e27d031df4798259955b931592fe132933b0b3334a34cf604f1c1ae75f1c6e"
 }

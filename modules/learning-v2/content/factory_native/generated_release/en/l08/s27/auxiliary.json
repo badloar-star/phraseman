@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-27:intro2:r2": {
-          "ru": "Для указания нужно `Open`, без `s`.",
-          "uk": "Для вказівки потрібне `Open`, без `s`."
+          "ru": "Для указания нужно Charge, без s.",
+          "uk": "Для вказівки потрібне Charge, без s."
         },
         "en:lesson-08:session-27:intro2:r3": {
-          "ru": "Начните с `Open`, без `to`.",
-          "uk": "Почніть із `Open`, без `to`."
+          "ru": "Начните с Charge, без to.",
+          "uk": "Почніть із Charge, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-27:intro3:r2": {
-          "ru": "После `can` нужно `explain`, без `s`.",
-          "uk": "Після `can` потрібне `explain`, без `s`."
+          "ru": "Для указания нужно Check, без s.",
+          "uk": "Для вказівки потрібне Check, без s."
         },
         "en:lesson-08:session-27:intro3:r3": {
-          "ru": "После `can` нужно `explain`, без `to`.",
-          "uk": "Після `can` потрібне `explain`, без `to`."
+          "ru": "Начните с Check, без to.",
+          "uk": "Почніть із Check, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6cfbe0947884dcf5703d4dce336372986c40b0d2331ab6a160093089838037d0"
+  "auxiliaryFingerprint": "904ad6656a9e8025f990488d4b5e7cd70d5eae0a382b3ef825802e6be9079d17"
 }

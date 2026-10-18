@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-08:session-28:word:cuff",
+    "correctText": "cuff",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-28:i01",
-    "correctText": "Fold it.",
+    "correctText": "Fold the cuff.",
     "correctResponseId": null
   },
   {
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-28:i04",
-    "correctText": "en:lesson-08:session-28:i04:p1=fold\nen:lesson-08:session-28:i04:p2=alley\nen:lesson-08:session-28:i04:p3=eat\nen:lesson-08:session-28:i04:p4=stretch",
+    "correctText": "en:lesson-08:session-28:i04:p1=cuff\nen:lesson-08:session-28:i04:p2=fold\nen:lesson-08:session-28:i04:p3=shirt\nen:lesson-08:session-28:i04:p4=towel",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-28:word:crease",
+    "correctText": "crease",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-28:i06",
-    "correctText": "Open the window.",
+    "correctText": "Fold along the crease.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:word:hem",
+    "correctText": "hem",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-28:i07",
-    "correctText": "Turn left.",
+    "correctText": "Check the hem.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-28:i08",
-    "correctText": "Open",
+    "correctText": "Check",
     "correctResponseId": "en:lesson-08:session-28:i08:r1"
   },
   {
@@ -46,37 +61,42 @@
   },
   {
     "interactionId": "en:lesson-08:session-28:i10",
-    "correctText": "en:lesson-08:session-28:i10:p1=hold\nen:lesson-08:session-28:i10:p2=fold\nen:lesson-08:session-28:i10:p3=alley\nen:lesson-08:session-28:i10:p4=eat",
+    "correctText": "en:lesson-08:session-28:i10:p1=cuff\nen:lesson-08:session-28:i10:p2=crease\nen:lesson-08:session-28:i10:p3=hem\nen:lesson-08:session-28:i10:p4=fold",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-28:i11",
-    "correctText": "Turn left.",
+    "correctText": "Fold along the crease.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:word:pleat",
+    "correctText": "pleat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-28:i12",
-    "correctText": "Can you hold this?",
+    "correctText": "Hold the pleat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-28:i13",
-    "correctText": "I often stretch.",
+    "correctText": "I can check the hem.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-28:i14",
-    "correctText": "Turn",
+    "correctText": "Hold",
     "correctResponseId": "en:lesson-08:session-28:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-28:i15",
-    "correctText": "Open the window.",
+    "correctText": "Check the hem.",
     "correctResponseId": "en:lesson-08:session-28:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-28:i16",
-    "correctText": "en:lesson-08:session-28:i16:p1=fold\nen:lesson-08:session-28:i16:p2=stretch\nen:lesson-08:session-28:i16:p3=hold\nen:lesson-08:session-28:i16:p4=alley",
+    "correctText": "en:lesson-08:session-28:i16:p1=cuff\nen:lesson-08:session-28:i16:p2=crease\nen:lesson-08:session-28:i16:p3=hem\nen:lesson-08:session-28:i16:p4=pleat",
     "correctResponseId": null
   },
   {

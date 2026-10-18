@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Полотенце в сумку",
-        "uk": "Рушник у сумку"
+        "ru": "Манжета перед покраской",
+        "uk": "Манжета перед фарбуванням"
       },
       "bodyByLocale": {
-        "ru": "Друг пытается убрать расправленное полотенце в небольшую сумку. `Fold` — «сложить», например полотенце или лист бумаги. `Fold it` — «Сложи его». Здесь `it` — полотенце. Начните сразу с `Fold`, без `to`. Полотенце уже собралось занять всю сумку — придётся немного уменьшить его планы.",
-        "uk": "Друг намагається прибрати розправлений рушник у невелику сумку. `Fold` — «скласти», наприклад рушник або аркуш паперу. `Fold it` — «Склади його». Тут `it` — рушник. Почніть одразу з `Fold`, без `to`. Рушник уже зібрався зайняти всю сумку — доведеться трохи зменшити його плани."
+        "ru": "Друг собирается красить небольшую полку, но край рукава мешает. Cuff — «манжета», часть рукава у запястья. `Fold the cuff` — «Отогни манжету». Fold уже знакомо: сложить или согнуть материал. Здесь вы просите отогнуть манжету, чтобы она не касалась краски.",
+        "uk": "Друг збирається фарбувати невелику полицю, але край рукава заважає. Cuff — «манжета», частина рукава біля зап’ястка. `Fold the cuff` — «Відігни манжету». Fold уже знайоме: скласти або зігнути матеріал. Тут ви просите відігнути манжету, щоб вона не торкалася фарби."
       },
       "question": {
         "interactionId": "en:lesson-08:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу сложить полотенце.",
-          "uk": "Скажіть другові скласти рушник."
+          "ru": "Скажите другу отогнуть манжету.",
+          "uk": "Скажіть другові відігнути манжету."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-28:intro1:r1",
-              "text": "Fold it."
+              "text": "Fold the cuff."
             },
             {
               "responseId": "en:lesson-08:session-28:intro1:r2",
-              "text": "To fold it."
+              "text": "Folds the cuff."
             },
             {
               "responseId": "en:lesson-08:session-28:intro1:r3",
-              "text": "Folds it."
+              "text": "To fold the cuff."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-28:intro1:r1",
-              "text": "Fold it."
+              "text": "Fold the cuff."
             },
             {
               "responseId": "en:lesson-08:session-28:intro1:r2",
-              "text": "To fold it."
+              "text": "Folds the cuff."
             },
             {
               "responseId": "en:lesson-08:session-28:intro1:r3",
-              "text": "Folds it."
+              "text": "To fold the cuff."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу сложить полотенце.",
-          "uk": "Скажіть другові скласти рушник."
+          "ru": "Скажите другу отогнуть манжету.",
+          "uk": "Скажіть другові відігнути манжету."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Переулок слева",
-        "uk": "Провулок ліворуч"
+        "ru": "Открытка с готовым сгибом",
+        "uk": "Листівка з готовим згином"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте с другом по знакомой улице. Нужный переулок находится слева. `Turn left` — «Поверни налево». Начните с `Turn`, затем направление `left`.",
-        "uk": "Ви йдете з другом знайомою вулицею. Потрібний провулок розташований ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім напрямок `left`."
+        "ru": "Вы делаете открытку. На заготовке уже есть линия сгиба, и другу нужно сложить бумагу точно по ней. Crease — «сгиб, линия сгиба». `Fold along the crease` — «Сложи по линии сгиба». Along здесь указывает направление по готовой линии.",
+        "uk": "Ви робите листівку. На заготовці вже є лінія згину, і другові потрібно скласти папір точно по ній. Crease — «згин, лінія згину». `Fold along the crease` — «Склади по лінії згину». Along тут указує напрямок по готовій лінії."
       },
       "question": {
         "interactionId": "en:lesson-08:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Скажите другу сложить бумагу по линии сгиба.",
+          "uk": "Скажіть другові скласти папір по лінії згину."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-28:intro2:r1",
-              "text": "Turn left."
+              "text": "Fold along the crease."
             },
             {
               "responseId": "en:lesson-08:session-28:intro2:r2",
-              "text": "Turns left."
+              "text": "Folds along the crease."
             },
             {
               "responseId": "en:lesson-08:session-28:intro2:r3",
-              "text": "To turn left."
+              "text": "To fold along the crease."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-28:intro2:r1",
-              "text": "Turn left."
+              "text": "Fold along the crease."
             },
             {
               "responseId": "en:lesson-08:session-28:intro2:r2",
-              "text": "Turns left."
+              "text": "Folds along the crease."
             },
             {
               "responseId": "en:lesson-08:session-28:intro2:r3",
-              "text": "To turn left."
+              "text": "To fold along the crease."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Скажите другу сложить бумагу по линии сгиба.",
+          "uk": "Скажіть другові скласти папір по лінії згину."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Освободить руки",
-        "uk": "Звільнити руки"
+        "ru": "Длина платья после подшивки",
+        "uk": "Довжина сукні після підшивання"
       },
       "bodyByLocale": {
-        "ru": "Вы держите пакет и хотите застегнуть куртку. Друг рядом. Покажите ему пакет: `Can you hold this?` — «Можешь это подержать?» Для этой просьбы начните с `Can you`, затем `hold this`.",
-        "uk": "Ви тримаєте пакет і хочете застебнути куртку. Друг поруч. Покажіть йому пакет: `Can you hold this?` — «Можеш це потримати?» Для цього прохання почніть із `Can you`, потім `hold this`."
+        "ru": "Подруга подшила платье и примеряет его. Вы просите посмотреть, ровный ли нижний край. Hem — «подгибка», край ткани, подвёрнутый и закреплённый швом. `Check the hem` — «Проверь подгибку». Речь о нижнем крае платья, а не о складках на ткани.",
+        "uk": "Подруга підшила сукню й приміряє її. Ви просите подивитися, чи рівний нижній край. Hem — «підгин», край тканини, загорнутий і закріплений швом. `Check the hem` — «Перевір підгин». Ідеться про нижній край сукні, а не про складки на тканині."
       },
       "question": {
         "interactionId": "en:lesson-08:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга подержать пакет.",
-          "uk": "Попросіть друга потримати пакет."
+          "ru": "Скажите подруге проверить подгибку.",
+          "uk": "Скажіть подрузі перевірити підгин."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-28:intro3:r1",
-              "text": "Can you hold this?"
+              "text": "Check the hem."
             },
             {
               "responseId": "en:lesson-08:session-28:intro3:r2",
-              "text": "Can you holds this?"
+              "text": "Checks the hem."
             },
             {
               "responseId": "en:lesson-08:session-28:intro3:r3",
-              "text": "Can you to hold this?"
+              "text": "To check the hem."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-28:intro3:r1",
-              "text": "Can you hold this?"
+              "text": "Check the hem."
             },
             {
               "responseId": "en:lesson-08:session-28:intro3:r2",
-              "text": "Can you holds this?"
+              "text": "Checks the hem."
             },
             {
               "responseId": "en:lesson-08:session-28:intro3:r3",
-              "text": "Can you to hold this?"
+              "text": "To check the hem."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга подержать пакет.",
-          "uk": "Попросіть друга потримати пакет."
+          "ru": "Скажите подруге проверить подгибку.",
+          "uk": "Скажіть подрузі перевірити підгин."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6f8a09192c6e85d4a4dbec319c4e64a0d4932bd804b82516d930be8fbaac6af7"
+  "introFingerprint": "92ee8b8c41b10f3ab175aa74ae8a81dad5bc69fe466c9a18252c7feb38c90abd"
 }

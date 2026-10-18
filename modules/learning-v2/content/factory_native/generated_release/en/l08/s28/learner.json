@@ -4,26 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-28:i01",
+      "interactionId": "en:lesson-08:session-28:word:cuff",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cuff",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-28:word:cuff:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cuff",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-28:word:cuff:audio",
+          "transcript": "cuff"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-28:word:cuff:r1",
+            "targetText": "cuff",
+            "meaningByLocale": {
+              "ru": "манжета. Fold the cuff. — «Отогни манжету». Часть рукава у запястья; fold здесь — отогнуть или сложить ткань.",
+              "uk": "манжета. Fold the cuff. — «Відігни манжету». Частина рукава біля зап’ястка; fold тут — відігнути або скласти тканину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cuff",
+          "definitionByLocale": {
+            "ru": "манжета. Fold the cuff. — «Отогни манжету». Часть рукава у запястья; fold здесь — отогнуть или сложить ткань.",
+            "uk": "манжета. Fold the cuff. — «Відігни манжету». Частина рукава біля зап’ястка; fold тут — відігнути або скласти тканину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-28:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте указание «Сложи его»",
+      "prompt": "Дайте указание «Отогни манжету»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте указание «Сложи его»",
+      "accessibilityLabel": "Дайте указание «Отогни манжету»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Fold it.",
+        "targetPhrase": "Fold the cuff.",
         "localizedMeaning": {
-          "ru": "Дайте указание «Сложи его»",
-          "uk": "Дайте вказівку «Склади його»"
+          "ru": "Дайте указание «Отогни манжету»",
+          "uk": "Дайте вказівку «Відігни манжету»"
         },
         "orderedTokens": [
           "Fold",
-          "it"
+          "the",
+          "cuff"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -36,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание сложить полотенце",
+      "prompt": "Выберите форму для указания сложить полотенце",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-28:i03:r1",
@@ -133,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание сложить полотенце",
+      "accessibilityLabel": "Выберите форму для указания сложить полотенце",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание сложить полотенце",
-          "uk": "Дайте коротку вказівку скласти рушник"
+          "ru": "Выберите форму для указания сложить полотенце",
+          "uk": "Виберіть форму для вказівки скласти рушник"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -155,24 +199,24 @@
             "text": "To fold"
           }
         ],
-        "testedDimension": "Дайте короткое указание сложить полотенце",
+        "testedDimension": "Выберите форму для указания сложить полотенце",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-28:i03:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание сложить полотенце",
+            "testedDimension": "Выберите форму для указания сложить полотенце",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Fold`, без `s`.",
-              "uk": "Для вказівки потрібне `Fold`, без `s`."
+              "ru": "Для указания нужно Fold, без s.",
+              "uk": "Для вказівки потрібне Fold, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-28:i03:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание сложить полотенце",
+            "testedDimension": "Выберите форму для указания сложить полотенце",
             "feedbackByLocale": {
-              "ru": "Начните с `Fold`, без `to`.",
-              "uk": "Почніть із `Fold`, без `to`."
+              "ru": "Начните с Fold, без to.",
+              "uk": "Почніть з Fold, без to."
             }
           }
         ]
@@ -181,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -195,6 +239,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-28:i04:p1",
+            "target": "cuff",
+            "meaningByLocale": {
+              "ru": "манжета",
+              "uk": "манжета"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-28:i04:p2",
             "target": "fold",
             "meaningByLocale": {
               "ru": "сложить",
@@ -202,41 +254,33 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-28:i04:p2",
-            "target": "alley",
-            "meaningByLocale": {
-              "ru": "переулок",
-              "uk": "провулок"
-            }
-          },
-          {
             "pairId": "en:lesson-08:session-28:i04:p3",
-            "target": "eat",
+            "target": "shirt",
             "meaningByLocale": {
-              "ru": "есть",
-              "uk": "їсти"
+              "ru": "рубашка",
+              "uk": "сорочка"
             }
           },
           {
             "pairId": "en:lesson-08:session-28:i04:p4",
-            "target": "stretch",
+            "target": "towel",
             "meaningByLocale": {
-              "ru": "делать растяжку",
-              "uk": "робити розтяжку"
+              "ru": "полотенце",
+              "uk": "рушник"
             }
           }
         ],
         "leftColumn": [
+          "cuff",
           "fold",
-          "alley",
-          "eat",
-          "stretch"
+          "shirt",
+          "towel"
         ],
         "rightColumn": [
+          "манжета",
           "сложить",
-          "переулок",
-          "есть",
-          "делать растяжку"
+          "рубашка",
+          "полотенце"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +331,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-28:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-28:word:crease",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crease",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-28:word:crease:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crease",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-28:word:crease:audio",
+          "transcript": "crease"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-28:word:crease:r1",
+            "targetText": "crease",
+            "meaningByLocale": {
+              "ru": "линия сгиба. Fold along the crease. — «Сложи по линии сгиба». Линия, оставшаяся на согнутой бумаге; along the crease — по этой линии.",
+              "uk": "лінія згину. Fold along the crease. — «Склади по лінії згину». Лінія, що залишилася на зігнутому папері; along the crease — по цій лінії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crease",
+          "definitionByLocale": {
+            "ru": "линия сгиба. Fold along the crease. — «Сложи по линии сгиба». Линия, оставшаяся на согнутой бумаге; along the crease — по этой линии.",
+            "uk": "лінія згину. Fold along the crease. — «Склади по лінії згину». Лінія, що залишилася на зігнутому папері; along the crease — по цій лінії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте короткое указание «Открой окно»",
+      "prompt": "Дайте указание «Сложи по линии сгиба»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание «Открой окно»",
+      "accessibilityLabel": "Дайте указание «Сложи по линии сгиба»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Open the window.",
+        "targetPhrase": "Fold along the crease.",
         "localizedMeaning": {
-          "ru": "Дайте короткое указание «Открой окно»",
-          "uk": "Дайте коротку вказівку «Відчини вікно»"
+          "ru": "Дайте указание «Сложи по линии сгиба»",
+          "uk": "Дайте вказівку «Склади по лінії згину»"
         },
         "orderedTokens": [
-          "Open",
+          "Fold",
+          "along",
           "the",
-          "window"
+          "crease"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-28:word:hem",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hem",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-28:word:hem:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hem",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-28:word:hem:audio",
+          "transcript": "hem"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-28:word:hem:r1",
+            "targetText": "hem",
+            "meaningByLocale": {
+              "ru": "подгибка края ткани. Check the hem. — «Проверь подгибку». Подвёрнутый и подшитый край платья или другой одежды.",
+              "uk": "підгин краю тканини. Check the hem. — «Перевір підгин». Загорнутий і підшитий край сукні або іншого одягу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hem",
+          "definitionByLocale": {
+            "ru": "подгибка края ткани. Check the hem. — «Проверь подгибку». Подвёрнутый и подшитый край платья или другой одежды.",
+            "uk": "підгин краю тканини. Check the hem. — «Перевір підгин». Загорнутий і підшитий край сукні або іншого одягу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-28:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На прогулке подскажите другу «Поверни налево»",
+      "prompt": "Подруга примеряет подшитое платье. Скажите «Проверь подгибку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-28:i07:audio"
       ],
-      "accessibilityLabel": "На прогулке подскажите другу «Поверни налево»",
+      "accessibilityLabel": "Подруга примеряет подшитое платье. Скажите «Проверь подгибку»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-28:i07:audio",
-          "transcript": "Turn left."
+          "transcript": "Check the hem."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Turn left.",
+        "targetPhrase": "Check the hem.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание открыть окно",
+      "prompt": "Выберите форму для указания проверить подгибку",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-28:i08:r1",
-          "text": "Open"
+          "text": "Check"
         },
         {
           "responseId": "en:lesson-08:session-28:i08:r2",
-          "text": "Opens"
+          "text": "Checks"
         },
         {
           "responseId": "en:lesson-08:session-28:i08:r3",
-          "text": "To open"
+          "text": "To check"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание открыть окно",
+      "accessibilityLabel": "Выберите форму для указания проверить подгибку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание открыть окно",
-          "uk": "Дайте коротку вказівку відчинити вікно"
+          "ru": "Выберите форму для указания проверить подгибку",
+          "uk": "Виберіть форму для вказівки перевірити підгин"
         },
-        "gappedTargetPhrase": "___ the window.",
+        "gappedTargetPhrase": "___ the hem.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-28:i08:r1",
-            "text": "Open"
+            "text": "Check"
           },
           {
             "responseId": "en:lesson-08:session-28:i08:r2",
-            "text": "Opens"
+            "text": "Checks"
           },
           {
             "responseId": "en:lesson-08:session-28:i08:r3",
-            "text": "To open"
+            "text": "To check"
           }
         ],
-        "testedDimension": "Дайте короткое указание открыть окно",
+        "testedDimension": "Выберите форму для указания проверить подгибку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-28:i08:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для указания проверить подгибку",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Open`, без `s`.",
-              "uk": "Для вказівки потрібне `Open`, без `s`."
+              "ru": "Для указания нужно Check, без s.",
+              "uk": "Для вказівки потрібне Check, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-28:i08:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для указания проверить подгибку",
             "feedbackByLocale": {
-              "ru": "Начните с `Open`, без `to`.",
-              "uk": "Почніть із `Open`, без `to`."
+              "ru": "Начните с Check, без to.",
+              "uk": "Почніть з Check, без to."
             }
           }
         ]
@@ -422,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,48 +643,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-28:i10:p1",
-            "target": "hold",
+            "target": "cuff",
             "meaningByLocale": {
-              "ru": "держать",
-              "uk": "тримати"
+              "ru": "манжета",
+              "uk": "манжета"
             }
           },
           {
             "pairId": "en:lesson-08:session-28:i10:p2",
+            "target": "crease",
+            "meaningByLocale": {
+              "ru": "линия сгиба",
+              "uk": "лінія згину"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-28:i10:p3",
+            "target": "hem",
+            "meaningByLocale": {
+              "ru": "подгибка края ткани",
+              "uk": "підгин краю тканини"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-28:i10:p4",
             "target": "fold",
             "meaningByLocale": {
               "ru": "сложить",
               "uk": "скласти"
             }
-          },
-          {
-            "pairId": "en:lesson-08:session-28:i10:p3",
-            "target": "alley",
-            "meaningByLocale": {
-              "ru": "переулок",
-              "uk": "провулок"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-28:i10:p4",
-            "target": "eat",
-            "meaningByLocale": {
-              "ru": "есть",
-              "uk": "їсти"
-            }
           }
         ],
         "leftColumn": [
-          "hold",
-          "fold",
-          "alley",
-          "eat"
+          "cuff",
+          "crease",
+          "hem",
+          "fold"
         ],
         "rightColumn": [
-          "держать",
-          "сложить",
-          "переулок",
-          "есть"
+          "манжета",
+          "линия сгиба",
+          "подгибка края ткани",
+          "сложить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -586,13 +717,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-28:i11:audio",
-          "transcript": "Turn left."
+          "transcript": "Fold along the crease."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Turn left.",
+        "hiddenTargetPhrase": "Fold along the crease.",
         "orderedTokens": [
-          "Turn",
-          "left"
+          "Fold",
+          "along",
+          "the",
+          "crease"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -604,28 +737,70 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-28:word:pleat",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pleat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-28:word:pleat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pleat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-28:word:pleat:audio",
+          "transcript": "pleat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-28:word:pleat:r1",
+            "targetText": "pleat",
+            "meaningByLocale": {
+              "ru": "заложенная складка ткани. Hold the pleat. — «Подержи складку». Аккуратная складка, специально сделанная на одежде, например на юбке.",
+              "uk": "закладена складка тканини. Hold the pleat. — «Потримай складку». Акуратна складка, спеціально зроблена на одязі, наприклад на спідниці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pleat",
+          "definitionByLocale": {
+            "ru": "заложенная складка ткани. Hold the pleat. — «Подержи складку». Аккуратная складка, специально сделанная на одежде, например на юбке.",
+            "uk": "закладена складка тканини. Hold the pleat. — «Потримай складку». Акуратна складка, спеціально зроблена на одязі, наприклад на спідниці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-28:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросите «Можешь это подержать?»",
+      "prompt": "Вы закрепляете складку юбки булавкой. Скажите помощнику «Подержи складку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите «Можешь это подержать?»",
+      "accessibilityLabel": "Вы закрепляете складку юбки булавкой. Скажите помощнику «Подержи складку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you hold this?",
+        "targetPhrase": "Hold the pleat.",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь это подержать?»",
-          "uk": "Попросіть «Можеш це потримати?»"
+          "ru": "Вы закрепляете складку юбки булавкой. Скажите помощнику «Подержи складку»",
+          "uk": "Ви закріплюєте складку спідниці шпилькою. Скажіть помічникові «Потримай складку»"
         },
         "orderedTokens": [
-          "Can",
-          "you",
-          "hold",
-          "this"
+          "Hold",
+          "the",
+          "pleat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -638,25 +813,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о ваших тренировках. Используйте stretch: «Я часто делаю растяжку»",
+      "prompt": "Помощник держит складку. Скажите «Я могу проверить подгибку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-28:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о ваших тренировках. Используйте stretch: «Я часто делаю растяжку»",
+      "accessibilityLabel": "Помощник держит складку. Скажите «Я могу проверить подгибку»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-28:i13:audio",
-          "transcript": "I often stretch."
+          "transcript": "I can check the hem."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often stretch.",
+        "targetPhrase": "I can check the hem.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -671,67 +846,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте указание повернуть налево",
+      "prompt": "Выберите форму для указания подержать складку юбки",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-28:i14:r1",
-          "text": "Turn"
+          "text": "Hold"
         },
         {
           "responseId": "en:lesson-08:session-28:i14:r2",
-          "text": "Turns"
+          "text": "Holds"
         },
         {
           "responseId": "en:lesson-08:session-28:i14:r3",
-          "text": "To turn"
+          "text": "To hold"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте указание повернуть налево",
+      "accessibilityLabel": "Выберите форму для указания подержать складку юбки",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте указание повернуть налево",
-          "uk": "Дайте вказівку повернути ліворуч"
+          "ru": "Выберите форму для указания подержать складку юбки",
+          "uk": "Виберіть форму для вказівки потримати складку спідниці"
         },
-        "gappedTargetPhrase": "___ left.",
+        "gappedTargetPhrase": "___ the pleat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-28:i14:r1",
-            "text": "Turn"
+            "text": "Hold"
           },
           {
             "responseId": "en:lesson-08:session-28:i14:r2",
-            "text": "Turns"
+            "text": "Holds"
           },
           {
             "responseId": "en:lesson-08:session-28:i14:r3",
-            "text": "To turn"
+            "text": "To hold"
           }
         ],
-        "testedDimension": "Дайте указание повернуть налево",
+        "testedDimension": "Выберите форму для указания подержать складку юбки",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-28:i14:r2",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для указания подержать складку юбки",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Turn`, без `s`.",
-              "uk": "Для вказівки потрібне `Turn`, без `s`."
+              "ru": "Для указания нужно Hold, без s.",
+              "uk": "Для вказівки потрібне Hold, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-28:i14:r3",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для указания подержать складку юбки",
             "feedbackByLocale": {
-              "ru": "Начните с `Turn`, без `to`.",
-              "uk": "Почніть із `Turn`, без `to`."
+              "ru": "Начните с Hold, без to.",
+              "uk": "Почніть з Hold, без to."
             }
           }
         ]
@@ -740,7 +915,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -748,15 +923,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-28:i15:r1",
-          "text": "Open the window."
+          "text": "Check the hem."
         },
         {
           "responseId": "en:lesson-08:session-28:i15:r2",
-          "text": "Open the door."
+          "text": "Check the cuff."
         },
         {
           "responseId": "en:lesson-08:session-28:i15:r3",
-          "text": "Open the box."
+          "text": "Check the pleat."
         }
       ],
       "mediaIds": [],
@@ -768,23 +943,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-28:i15:audio",
-          "transcript": "Open the window."
+          "transcript": "Check the hem."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-28:i15:r1",
-            "targetText": "Open the window.",
+            "targetText": "Check the hem.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-28:i15:r2",
-            "targetText": "Open the door.",
+            "targetText": "Check the cuff.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-28:i15:r3",
-            "targetText": "Open the box.",
+            "targetText": "Check the pleat.",
             "meaningByLocale": null
           }
         ],
@@ -795,8 +970,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `door`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `door`."
+              "ru": "В записи hem — «подгибка», а не cuff — «манжета».",
+              "uk": "У записі hem — «підгин», а не cuff — «манжета»."
             }
           },
           {
@@ -804,8 +979,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `box`."
+              "ru": "В записи hem, а не pleat — «складка ткани».",
+              "uk": "У записі hem, а не pleat — «складка тканини»."
             }
           }
         ],
@@ -816,7 +991,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -830,48 +1005,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-28:i16:p1",
-            "target": "fold",
+            "target": "cuff",
             "meaningByLocale": {
-              "ru": "сложить",
-              "uk": "скласти"
+              "ru": "манжета",
+              "uk": "манжета"
             }
           },
           {
             "pairId": "en:lesson-08:session-28:i16:p2",
-            "target": "stretch",
+            "target": "crease",
             "meaningByLocale": {
-              "ru": "делать растяжку",
-              "uk": "робити розтяжку"
+              "ru": "линия сгиба",
+              "uk": "лінія згину"
             }
           },
           {
             "pairId": "en:lesson-08:session-28:i16:p3",
-            "target": "hold",
+            "target": "hem",
             "meaningByLocale": {
-              "ru": "держать",
-              "uk": "тримати"
+              "ru": "подгибка края ткани",
+              "uk": "підгин краю тканини"
             }
           },
           {
             "pairId": "en:lesson-08:session-28:i16:p4",
-            "target": "alley",
+            "target": "pleat",
             "meaningByLocale": {
-              "ru": "переулок",
-              "uk": "провулок"
+              "ru": "заложенная складка ткани",
+              "uk": "закладена складка тканини"
             }
           }
         ],
         "leftColumn": [
-          "fold",
-          "stretch",
-          "hold",
-          "alley"
+          "cuff",
+          "crease",
+          "hem",
+          "pleat"
         ],
         "rightColumn": [
-          "сложить",
-          "делать растяжку",
-          "держать",
-          "переулок"
+          "манжета",
+          "линия сгиба",
+          "подгибка края ткани",
+          "заложенная складка ткани"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -889,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-28:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -929,11 +1104,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "57e728d3a875ffc93e671a5f9f8111ef76871d9d2e33375c665e61b6225d0c5e"
+  "learnerFingerprint": "566049ac7fa080622e57c5ae44ce3f2876a8f6ada22694c4471db12c949d9814"
 }

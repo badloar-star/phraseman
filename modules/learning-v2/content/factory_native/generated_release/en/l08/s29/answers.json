@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-29:word:measure",
+    "correctText": "measure",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-29:i01",
     "correctText": "Measure it.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-29:i04",
-    "correctText": "en:lesson-08:session-29:i04:p1=measure\nen:lesson-08:session-29:i04:p2=bus stop\nen:lesson-08:session-29:i04:p3=play\nen:lesson-08:session-29:i04:p4=call",
+    "correctText": "en:lesson-08:session-29:i04:p1=measure\nen:lesson-08:session-29:i04:p2=table\nen:lesson-08:session-29:i04:p3=ruler\nen:lesson-08:session-29:i04:p4=room",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-29:word:width",
+    "correctText": "width",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-29:i06",
-    "correctText": "Open the window.",
+    "correctText": "Measure the width.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-29:word:height",
+    "correctText": "height",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-29:i07",
-    "correctText": "Turn left.",
+    "correctText": "Measure the height.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-29:i08",
-    "correctText": "Open",
+    "correctText": "Measure",
     "correctResponseId": "en:lesson-08:session-29:i08:r1"
   },
   {
@@ -46,37 +61,42 @@
   },
   {
     "interactionId": "en:lesson-08:session-29:i10",
-    "correctText": "en:lesson-08:session-29:i10:p1=fetch\nen:lesson-08:session-29:i10:p2=measure\nen:lesson-08:session-29:i10:p3=bus stop\nen:lesson-08:session-29:i10:p4=play",
+    "correctText": "en:lesson-08:session-29:i10:p1=measure\nen:lesson-08:session-29:i10:p2=width\nen:lesson-08:session-29:i10:p3=height\nen:lesson-08:session-29:i10:p4=ruler",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-29:i11",
-    "correctText": "Turn left.",
+    "correctText": "Measure the height.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-29:word:depth",
+    "correctText": "depth",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-29:i12",
-    "correctText": "Can you fetch it?",
+    "correctText": "Measure the depth.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-29:i13",
-    "correctText": "I often call.",
+    "correctText": "I can measure the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-29:i14",
-    "correctText": "Turn",
+    "correctText": "measure",
     "correctResponseId": "en:lesson-08:session-29:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-29:i15",
-    "correctText": "Open the window.",
+    "correctText": "Measure the depth.",
     "correctResponseId": "en:lesson-08:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-29:i16",
-    "correctText": "en:lesson-08:session-29:i16:p1=measure\nen:lesson-08:session-29:i16:p2=call\nen:lesson-08:session-29:i16:p3=fetch\nen:lesson-08:session-29:i16:p4=bus stop",
+    "correctText": "en:lesson-08:session-29:i16:p1=measure\nen:lesson-08:session-29:i16:p2=width\nen:lesson-08:session-29:i16:p3=height\nen:lesson-08:session-29:i16:p4=depth",
     "correctResponseId": null
   },
   {

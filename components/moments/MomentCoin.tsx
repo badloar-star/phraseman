@@ -13,7 +13,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { useMemMomentsTrack } from './mem_moments_probe';
-import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -178,13 +178,21 @@ function MomentCoin(props: MomentCoinProps) {
   const glowStyle = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, input, ch.glow) }));
 
   const loopsOn = !reduceMotion && runtimeActive;
+  // зачем (владелец 18.10, iPhone: «белый квадрат вокруг монеты — убери»): на iOS style.filter (dropShadow/saturate/brightness)
+  // растеризует слой монеты прямоугольником → белый квадрат на «Ступень прервана» и «Сегодня». На iOS фильтра у монеты нет:
+  // тень даёт отдельный слой CoinShadow, сон — полупрозрачность картинки. Android — как было.
+  const faceFilter = Platform.OS === 'ios' ? null : mood === 'sleep' ? s.sleepFilter : s.faceFilter;
+  const iosSleepDim = Platform.OS === 'ios' && mood === 'sleep';
+  useEffect(() => {
+    console.log('[COIN-IOS-FILTER]', JSON.stringify({ os: Platform.OS, mood, rank, size, filter: faceFilter ? (mood === 'sleep' ? 'sleep' : 'face') : 'none', iosSleepDim })); // guard-ok: трассировка
+  }, [faceFilter, iosSleepDim, mood, rank, size]);
   const body = (
     <View style={[s.cc, { width: size }]} testID={testID ? `${testID}-body` : undefined}>
       {say ? <SayBubble text={say} tone={props.sayTone ?? 'default'} big={props.sayBig === true} pos={props.sayPos ?? 'center'} size={size} reduceMotion={reduceMotion} bg={palette.card} ink={palette.text} plate={plateShadow} /> : null}
       {crown ? <Crown reduceMotion={reduceMotion} /> : null}
-      <Animated.View style={[{ width: size, height: size }, mood === 'sleep' ? s.sleepFilter : s.faceFilter, faceStyle]} testID={testID ? `${testID}-face-${mood}` : undefined}>
+      <Animated.View style={[{ width: size, height: size }, faceFilter, faceStyle]} testID={testID ? `${testID}-face-${mood}` : undefined}>
         {mood === 'rankUp' && !reduceMotion ? <Animated.View style={[s.glow, { width: size, height: size, borderRadius: size / 2 }, glowStyle]} /> : null}
-        <SpireRankCoin rank={rank} size={size} />
+        {iosSleepDim ? <View style={s.iosSleepDim}><SpireRankCoin rank={rank} size={size} /></View> : <SpireRankCoin rank={rank} size={size} />}
         {glints && !reduceMotion ? (
           <>
             <Glint style={{ left: '18%', top: '16%' }} delayMs={0} on={loopsOn} />
@@ -316,7 +324,7 @@ function CoinShadow({ size, on }: Readonly<{ size: number; on: boolean }>) {
     return () => cancelAnimation(p);
   }, [on, p]);
   const st = useAnimatedStyle(() => ({ opacity: 0.45 - 0.15 * p.value, transform: [{ scaleX: 1 - 0.2 * p.value }] }));
-  return <Animated.View pointerEvents="none" style={[s.shadow, { width: size * 0.6 }, st]} />;
+  return <Animated.View pointerEvents="none" style={[s.shadow, Platform.OS === 'ios' ? null : s.shadowBlur, { width: size * 0.6 }, st]} />;
 }
 
 // ─── эмоции: emo() образца v3.js — значки всплывают со сдвигом 140 мс, живут 1600 + i·140 мс ─
@@ -398,7 +406,11 @@ const s = StyleSheet.create({
   crownAnchor: { position: 'absolute', top: -22, left: 0, right: 0, alignItems: 'center', zIndex: 2 },
   glint: { position: 'absolute', width: 10, height: 10, borderRadius: 5, backgroundColor: '#FFFFFF', boxShadow: '0 0 10px #FFFFFF' }, // theme-exempt: блик металла
   zz: { position: 'absolute', right: -8, top: -4, fontSize: 20, lineHeight: 25, fontWeight: '800' },
-  shadow: { height: 10, borderRadius: 999, marginTop: 6, backgroundColor: 'rgba(0,0,0,0.45)', filter: [{ blur: 4 }] }, // theme-exempt: тень под монетой
+  shadow: { height: 10, borderRadius: 999, marginTop: 6, backgroundColor: 'rgba(0,0,0,0.45)' }, // theme-exempt: тень под монетой
+  // зачем: blur — только Android; на iOS filter у слоя даёт прямоугольник (см. [COIN-IOS-FILTER]).
+  shadowBlur: { filter: [{ blur: 4 }] },
+  // зачем: сон на iOS без filter — картинка монеты приглушена прозрачностью (≈ brightness .8 на тёмном фоне).
+  iosSleepDim: { opacity: 0.78 },
   emo: { position: 'absolute', fontSize: 20, lineHeight: 25 },
   emoBang: { fontSize: 26, lineHeight: 28, fontWeight: '900' },
   emoDots: { letterSpacing: 2 },

@@ -12,7 +12,7 @@ say() { echo "[MORNING-PART] $(date +%H:%M:%S) $*" | tee -a $L; }
 SET_PATHS=(app/learning_v2_bootstrap_audio_assets_v1.generated.ts app/learning_v2_factory_single_voice_v1.generated.ts
   app/learning_v2_factory_production_audio_entries_v1.generated.ts app/learning_v2_factory_lesson_audio_index_v1.generated.ts
   app/learning_v2_factory_silent_audio_v1.json content/learning-v2-course/audio/en/single-voice-v1.json
-  assets/audio/learning-v2-bootstrap-v1 assets/audio/learning-v2/factory-production-v1
+  assets/audio/learning-v2-bootstrap-v1 assets/audio/learning-v2/factory-production-v1 assets/audio/learning-v2/authoring-single-voice-v1
   modules/learning-v2/content/factory_native/generated_release)
 [ -f $V/HEAD_REV.txt ] || { say "variant_valid=false reason=нет варианта $V"; exit 4; }
 VREV=$(cat $V/HEAD_REV.txt); HREV=$(git rev-parse --short HEAD)
@@ -35,7 +35,7 @@ cmd //c mklink //J "C:\\Temp\\claude\\gate_head\\node_modules" "C:\\appsprojects
 say "шаг 0: ворота паритета на снимке HEAD зелёные"
 
 # перенос: сравнение каталогов варианта и рабочей копии
-for d in assets/audio/learning-v2-bootstrap-v1 assets/audio/learning-v2/factory-production-v1; do
+for d in assets/audio/learning-v2-bootstrap-v1 assets/audio/learning-v2/factory-production-v1 assets/audio/learning-v2/authoring-single-voice-v1; do
   diff -rq "$R/$d" "$V/$d" 2>/dev/null
 done > $S/variant_diff.txt
 grep -E "^Only in $V/" $S/variant_diff.txt | sed -E "s#^Only in $V/([^:]*): (.*)#\1/\2#" > $S/variant_add.txt
@@ -66,6 +66,6 @@ cp $S/variant_mod.txt $S/parts_src.txt
 printf '%s\n' content/learning-v2-course/audio/en/single-voice-v1.json assets/audio/learning-v2/factory-production-v1/manifest.json app/learning_v2_bootstrap_audio_assets_v1.generated.ts app/learning_v2_factory_single_voice_v1.generated.ts app/learning_v2_factory_production_audio_entries_v1.generated.ts app/learning_v2_factory_lesson_audio_index_v1.generated.ts > $S/parts_code.txt
 grep -v -x -F -f $S/parts_code.txt $S/parts_src.txt > $S/parts_src.tmp; mv $S/parts_src.tmp $S/parts_src.txt
 cp $S/variant_del.txt $S/parts_del.txt
-rm -f $S/part_*; for kind in new src; do split -l "$PART" -d -a 3 $S/parts_$kind.txt $S/part_${kind}_; done
+rm -f $S/part_*; split -l "$PART" -d -a 3 $S/parts_new.txt $S/part_new_   # исходники — в часть-переключение
 split -l "$PART" -d -a 3 $S/parts_del.txt $S/part_zdel_
 say "части по $PART: новых $(wc -l < $S/parts_new.txt), исходников $(wc -l < $S/parts_src.txt), код 6, удалений $(wc -l < $S/parts_del.txt); дальше: bash morning_commit_parts.sh $KBPS"

@@ -18,7 +18,7 @@ say() { echo "[ROLLBACK] $(date +%H:%M:%S) $*" | tee -a $L; }
 TEXT=(app/learning_v2_bootstrap_audio_assets_v1.generated.ts app/learning_v2_factory_single_voice_v1.generated.ts
   app/learning_v2_factory_production_audio_entries_v1.generated.ts app/learning_v2_factory_lesson_audio_index_v1.generated.ts
   content/learning-v2-course/audio/en/single-voice-v1.json)
-DIRS=(assets/audio/learning-v2-bootstrap-v1 assets/audio/learning-v2/factory-production-v1)
+DIRS=(assets/audio/learning-v2-bootstrap-v1 assets/audio/learning-v2/factory-production-v1 assets/audio/learning-v2/authoring-single-voice-v1)
 say "дерево $REPO, старт окна ${START:0:9}, HEAD $(git rev-parse --short HEAD)${DRY:+ — ПРОБНЫЙ ПРОГОН, ничего не меняю}"
 [ -n "$DRY" ] || cp $S/parts_new.txt $S/rb_window_new.txt 2>/dev/null   # список новых файлов окна — до того, как откат перепишет parts_new.txt
 WIN_NEW=$S/rb_window_new.txt; [ -n "$DRY" ] && WIN_NEW=$S/parts_new.txt
@@ -62,14 +62,14 @@ if [ "$ROLLBACK_COMMIT" = "plain" ]; then
 fi
 # списки обратных частей — сравнение (индекс + рабочее дерево) с HEAD: checkout <старт> кладёт возвращённое прямо в индекс,
 # поэтому «??» из status их не видит; плюс вернувшиеся неотслеживаемые файлы старта. Чужие неотслеживаемые сюда не попадают.
-BD=assets/audio/learning-v2-bootstrap-v1; FD=assets/audio/learning-v2/factory-production-v1
+BD=assets/audio/learning-v2-bootstrap-v1; FD=assets/audio/learning-v2/factory-production-v1; AD=assets/audio/learning-v2/authoring-single-voice-v1
 { git -c core.quotepath=false diff --name-only --diff-filter=A HEAD -- $BD; grep "^$BD/" $S/rb_restored_untracked.txt; } | sort -u > $S/parts_new.txt
-{ git -c core.quotepath=false diff --name-only --diff-filter=AM HEAD -- $FD | grep '\.mp3$'; grep "^$FD/.*\.mp3$" $S/rb_restored_untracked.txt; \
+{ git -c core.quotepath=false diff --name-only --diff-filter=AM HEAD -- $FD $AD | grep '\.mp3$'; grep -E "^($FD|$AD)/.*\.mp3$" $S/rb_restored_untracked.txt; \
   git -c core.quotepath=false diff --name-only --diff-filter=M HEAD -- $BD; } | sort -u > $S/parts_src.txt
 printf '%s\n' "${TEXT[@]}" $FD/manifest.json > $S/parts_code.txt
 { git -c core.quotepath=false diff --name-only --diff-filter=D HEAD -- $BD $FD; } | sort -u > $S/parts_del.txt
 if [ "$ROLLBACK_COMMIT" = "lists" ]; then say "списки: новых $(wc -l < $S/parts_new.txt), исходников $(wc -l < $S/parts_src.txt), удалений $(wc -l < $S/parts_del.txt) — только списки (репетиция)"; exit 0; fi
-rm -f $S/part_*; for kind in new src; do split -l 500 -d -a 3 $S/parts_$kind.txt $S/part_${kind}_; done
+rm -f $S/part_*; split -l 500 -d -a 3 $S/parts_new.txt $S/part_new_   # исходники — в часть-переключение
 split -l 500 -d -a 3 $S/parts_del.txt $S/part_zdel_
 say "обратные части: новых $(wc -l < $S/parts_new.txt), исходников $(wc -l < $S/parts_src.txt), удалений $(wc -l < $S/parts_del.txt) — коммит"
 bash $S0/morning_commit_parts.sh "откат-к-${START:0:9}"

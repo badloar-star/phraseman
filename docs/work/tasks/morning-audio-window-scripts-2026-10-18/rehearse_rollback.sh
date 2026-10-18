@@ -11,7 +11,7 @@ echo "C:/appsprojects/phraseman/.git/objects" > .git/objects/info/alternates
 git config core.sparseCheckout true
 MSYS_NO_PATHCONV=1 git sparse-checkout set --no-cone app/learning_v2_bootstrap_audio_assets_v1.generated.ts app/learning_v2_factory_single_voice_v1.generated.ts \
   app/learning_v2_factory_production_audio_entries_v1.generated.ts app/learning_v2_factory_lesson_audio_index_v1.generated.ts \
-  content/learning-v2-course/audio/en/single-voice-v1.json assets/audio/learning-v2-bootstrap-v1/ assets/audio/learning-v2/factory-production-v1/
+  content/learning-v2-course/audio/en/single-voice-v1.json assets/audio/learning-v2-bootstrap-v1/ assets/audio/learning-v2/factory-production-v1/ assets/audio/learning-v2/authoring-single-voice-v1/
 git -c core.autocrlf=false checkout -q --detach "$SRC_HEAD" || exit 1
 START=$(git rev-parse HEAD); echo "[REHEARSAL] клон на ${START:0:9}, файлов в наборе $(ls assets/audio/learning-v2-bootstrap-v1 | wc -l)"
 B=assets/audio/learning-v2-bootstrap-v1
@@ -21,10 +21,15 @@ printf 'fake-new' > $B/fffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 printf 'fake-reencoded-1' > $B/${F[0]}
 git rm -q $B/${F[2]}
 echo "// rehearsal" >> app/learning_v2_bootstrap_audio_assets_v1.generated.ts
-git add -A -- $B app && git -c user.name=rehearsal -c user.email=r@local commit --no-verify -q -m "rehearsal: часть окна" || exit 1
+A=assets/audio/learning-v2/authoring-single-voice-v1; mapfile -t AF < <(ls $A | head -2)
+printf 'fake-src-64k' > $A/${AF[0]}
+echo ' ' >> content/learning-v2-course/audio/en/single-voice-v1.json
+git add -A -- $B app $A content && git -c user.name=rehearsal -c user.email=r@local commit --no-verify -q -m "rehearsal: часть окна" || exit 1
 echo "[REHEARSAL] часть-коммит $(git rev-parse --short HEAD)"
 # незакоммиченный хвост окна: подмена файла 2 + новый файл окна (в списке окна) + чужая приманка (НЕ в списке)
 printf 'fake-reencoded-2' > $B/${F[1]}
+printf 'fake-src-64k-2' > $A/${AF[1]}
+printf 'bait-src' > $A/zz_foreign_bait_src_untracked.mp3
 printf 'fake-new-2' > $B/ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0002.mp3
 printf 'bait' > $B/zz_foreign_bait_untracked.mp3
 printf '%s\n' "$B/ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0001.mp3" "$B/ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0002.mp3" > $CS/parts_new.txt
@@ -43,6 +48,7 @@ fi
 ok=1
 git diff --quiet $START HEAD -- app content assets || { echo "[REHEARSAL] ✗ HEAD отличается от старта по путям набора:"; git diff --name-status $START HEAD -- app content assets | head -5; ok=0; }
 git diff --quiet -- app content assets || { echo "[REHEARSAL] ✗ рабочее дерево клона отличается от HEAD:"; git diff --stat -- app content assets | tail -3; git diff -- app content assets | head -12 | cat -A | cut -c1-120; ok=0; }
+[ -f $A/zz_foreign_bait_src_untracked.mp3 ] && echo "[REHEARSAL] ✓ приманка в исходниках цела" || { echo "[REHEARSAL] ✗ приманка в исходниках удалена"; ok=0; }
 [ -f $B/zz_foreign_bait_untracked.mp3 ] && echo "[REHEARSAL] ✓ приманка цела" || { echo "[REHEARSAL] ✗ приманка удалена"; ok=0; }
 others=$(git ls-files --others -- $B | grep -v zz_foreign_bait | wc -l); [ "$others" -eq 0 ] || { echo "[REHEARSAL] ✗ остались свои неотслеживаемые: $others"; ok=0; }
 [ -f $B/${F[2]} ] && echo "[REHEARSAL] ✓ удалённый в окне файл возвращён" || { echo "[REHEARSAL] ✗ удалённый файл не вернулся"; ok=0; }

@@ -29,7 +29,7 @@ step "4. сторож выпуска сессий" node scripts/guard_learning_v
 grep -oE 'contentHash: "[0-9a-f]{64}"' app/learning_v2_bootstrap_audio_assets_v1.generated.ts | grep -oE '[0-9a-f]{64}' | sort -u > $S/new_bundle_hashes.txt
 git -c core.quotepath=false status --porcelain --untracked-files=all -- assets/audio/learning-v2-bootstrap-v1 | awk '$1=="??"{print $2}' \
   | while read -r p; do h=$(basename "$p" .mp3); grep -qx "$h" $S/new_bundle_hashes.txt && echo "$p"; done > $S/parts_new.txt
-git -c core.quotepath=false status --porcelain -- assets/audio/learning-v2/factory-production-v1 content/learning-v2-course/audio | awk '$1=="M" && $2 ~ /\.mp3$/{print $2}' > $S/parts_src.txt
+git -c core.quotepath=false status --porcelain -- assets/audio/learning-v2/factory-production-v1 assets/audio/learning-v2/authoring-single-voice-v1 content/learning-v2-course/audio | awk '$1=="M" && $2 ~ /\.mp3$/{print $2}' > $S/parts_src.txt
 printf '%s\n' content/learning-v2-course/audio/en/single-voice-v1.json assets/audio/learning-v2/factory-production-v1/manifest.json app/learning_v2_bootstrap_audio_assets_v1.generated.ts app/learning_v2_factory_single_voice_v1.generated.ts app/learning_v2_factory_production_audio_entries_v1.generated.ts app/learning_v2_factory_lesson_audio_index_v1.generated.ts > $S/parts_code.txt
 git -c core.quotepath=false status --porcelain -- assets/audio/learning-v2-bootstrap-v1 | awk '$1=="D"{print $2}' > $S/parts_del.txt
 # условие 3: удаляем только старые хеши набора, и удалено = добавлено
@@ -37,6 +37,6 @@ bad=$(sed -E 's#.*/([0-9a-f]{64})\.mp3$#\1#' $S/parts_del.txt | sort | comm -23 
 [ "$bad" -eq 0 ] || { say "в удалении $bad путей не из старого набора — стоп"; exit 1; }
 [ "$(wc -l < $S/parts_del.txt)" -eq "$(wc -l < $S/parts_new.txt)" ] || { say "удалено $(wc -l < $S/parts_del.txt) ≠ добавлено $(wc -l < $S/parts_new.txt) — стоп"; exit 1; }
 rm -f $S/part_*.txt; i=0
-for kind in new src; do split -l "$PART" -d -a 3 $S/parts_$kind.txt $S/part_${kind}_; done
+split -l "$PART" -d -a 3 $S/parts_new.txt $S/part_new_   # исходники — в одну часть-переключение (morning_commit_parts.sh)
 split -l "$PART" -d -a 3 $S/parts_del.txt $S/part_zdel_
 say "части по $PART: новых $(wc -l < $S/parts_new.txt), исходников $(wc -l < $S/parts_src.txt), код 6 путей, удалений $(wc -l < $S/parts_del.txt); файлов частей $(ls $S/part_* | wc -l) + 1 код"

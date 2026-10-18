@@ -549,6 +549,32 @@ DefaultText.defaultProps = {
 const STARTUP_SPLASH_BG = STARTUP_SPLASH_DARK_BG;
 /** Смена фона заставки на фон прочитанной темы — плавно, как переход шторки kit (240 мс). */
 const SPLASH_THEME_FADE_MS = 240;
+// зачем (координатор 18.10, splash_night_6dab4 night no): нативную заставку снимаем только ПОСЛЕ того, как JS-заставка
+// отрисовала первый кадр в своём тоне (onLayout + один кадр) — иначе между ними виден фон окна. Потолок — чтобы сбой
+// разметки не держал нативную заставку вечно (тогда снимаем с пометкой reason=ceiling).
+const NATIVE_SPLASH_HIDE_WAIT_MAX_MS = 1500;
+let jsSplashPaintedAt = 0;
+let resolveJsSplashPainted: (() => void) | null = null;
+const jsSplashPainted = new Promise<void>((resolve) => { resolveJsSplashPainted = resolve; });
+function markJsSplashPainted(): void {
+  if (jsSplashPaintedAt !== 0) return;
+  jsSplashPaintedAt = Date.now();
+  resolveJsSplashPainted?.();
+}
+function hideNativeSplashAfterJsFrame(source: string): void {
+  const askedAt = Date.now();
+  let settled = false;
+  const go = (reason: 'painted' | 'ceiling') => {
+    if (settled) return;
+    settled = true;
+    bootMark('[THEME-BOOT] SplashScreen.hideAsync()', { source, reason, waitedMs: Date.now() - askedAt, jsSplashPaintedAt: jsSplashPaintedAt || null });
+    void SplashScreen.hideAsync().catch(noteSwallowedHandler(`_layout:${source}.hideAsync`));
+  };
+  if (jsSplashPaintedAt !== 0) { go('painted'); return; }
+  bootMark('[THEME-BOOT] hideAsync ждёт первый кадр JS-заставки', { source });
+  void jsSplashPainted.then(() => go('painted'));
+  setTimeout(() => go('ceiling'), NATIVE_SPLASH_HIDE_WAIT_MAX_MS);
+}
 /** Потолок ожидания рантайм-шрифтов: сломанный ассет не должен держать сплэш вечно.
  * зачем (владелец, 2026-08-25): срезано 2500→1000 — гейт живёт ТОЛЬКО в дев-сборках
  * (runtimeFontsExpected=false в проде, шрифты вшиты нативно), а при перегруженном
@@ -712,8 +738,7 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   useEffect(() => {
     if (!visible || !canHideNativeSplash) { bootMark('[THEME-BOOT] splash-hold: нативную заставку не снимаем', { visible, canHideNativeSplash }); return; }
     const id = requestAnimationFrame(() => {
-      bootMark('[THEME-BOOT] SplashScreen.hideAsync() — из заставки-удержания (rAF после монтажа)');
-      void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:useEffect.hideAsync'));
+      hideNativeSplashAfterJsFrame('useEffect');
     });
     return () => cancelAnimationFrame(id);
   }, [visible, canHideNativeSplash]);
@@ -773,7 +798,11 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   return (
     <Animated.View
       pointerEvents="none"
-      onLayout={() => bootMark('[THEME-BOOT] splash-hold: первый кадр', { bg: splashPalette.bg })}
+      onLayout={() => {
+        bootMark('[THEME-BOOT] splash-hold: первый кадр', { bg: splashPalette.bg });
+        // разметка готова — ещё один кадр, чтобы фон заставки точно ушёл на экран, и только потом можно снимать нативную
+        requestAnimationFrame(markJsSplashPainted);
+      }}
       style={[styles.startupSplashAnimatedRoot, { backgroundColor: splashFirstBgRef.current, opacity: startupHoldEarlyDismissOpacity }]}
     >
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: splashPalette.bg, opacity: splashThemeFade }]} />
@@ -2004,7 +2033,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (holding.length > 0) { bootMark('HOME-PAINT early hide: held', { holding, ...gate }); return; }
       splashEarlyHideDone = true;
       bootMark('HOME-PAINT early hide — сплеш скрыт по кадру Главной', gate);
-      void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:homePaintEarlyHide.hideAsync'));
+      hideNativeSplashAfterJsFrame('homePaintEarlyHide');
       Animated.timing(startupHoldEarlyDismissOpacity, {
         toValue: 0, duration: 120, easing: Easing.out(Easing.cubic), useNativeDriver: true,
       }).start();
@@ -2043,7 +2072,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     } else {
       splashGateHideDone = true;
       bootMark('SplashScreen.hideAsync() — сплеш скрыт');
-      void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:nativeSplashCanHide.hideAsync'));
+      hideNativeSplashAfterJsFrame('nativeSplashCanHide');
     }
     resolveNativeSplashHidden();
     markNativeSplashHidden();

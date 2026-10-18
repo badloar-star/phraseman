@@ -1,6 +1,7 @@
 # Task packet: холодный старт — заставка по теме, без чёрных кадров и вспышки
 
 Governance-ID: TG-4A6ADED59C2B
+Governance-ID: TG-1E4E725383E2 (night no: ~3 с чёрного между нативной и JS-заставкой — запрет автоскрытия нативной заставки первым импортом index.js, до графа импортов корня; журнал [BOOTSPLASH] preventAutoHide early)
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: координатор 09:45 (находка Макетов 22), evidence/modals_1018/theme_boot

@@ -1,0 +1,1163 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-04:word:wave",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:word:wave:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:word:wave:audio",
+          "transcript": "wave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:word:wave:r1",
+            "targetText": "wave",
+            "meaningByLocale": {
+              "ru": "махать рукой. I am waving. — «Я машу рукой». Wave → waving: перед -ing исчезает e.",
+              "uk": "махати рукою. I am waving. — «Я махаю рукою». Wave → waving: перед -ing зникає e."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wave",
+          "definitionByLocale": {
+            "ru": "махать рукой. I am waving. — «Я машу рукой». Wave → waving: перед -ing исчезает e.",
+            "uk": "махати рукою. I am waving. — «Я махаю рукою». Wave → waving: перед -ing зникає e."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-04:i01:r1",
+          "text": "wave"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i01:r2",
+          "text": "save"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i01:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i01:audio",
+          "transcript": "wave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:i01:r1",
+            "targetText": "wave",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i01:r2",
+            "targetText": "save",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i01:r3",
+            "targetText": "have",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-04:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит wave",
+              "uk": "У записі звучить wave"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит wave",
+              "uk": "У записі звучить wave"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг шукає вас біля кафе. Скажіть, що зараз махаєте рукою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг шукає вас біля кафе. Скажіть, що зараз махаєте рукою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am waving.",
+        "localizedMeaning": {
+          "ru": "Друг ищет вас у кафе. Скажите, что сейчас машете рукой",
+          "uk": "Друг шукає вас біля кафе. Скажіть, що зараз махаєте рукою"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "waving"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-04:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для I",
+          "uk": "Виберіть форму для I"
+        },
+        "gappedTargetPhrase": "I ___ waving.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-04:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-04:i04:p1",
+            "target": "wave",
+            "meaningByLocale": {
+              "ru": "махать рукой",
+              "uk": "махати рукою"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i04:p2",
+            "target": "wait",
+            "meaningByLocale": {
+              "ru": "ждать",
+              "uk": "чекати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i04:p3",
+            "target": "friend",
+            "meaningByLocale": {
+              "ru": "друг",
+              "uk": "друг"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i04:p4",
+            "target": "hand",
+            "meaningByLocale": {
+              "ru": "рука, кисть",
+              "uk": "рука, кисть"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wave",
+          "wait",
+          "friend",
+          "hand"
+        ],
+        "rightColumn": [
+          "махати рукою",
+          "чекати",
+          "друг",
+          "рука, кисть"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i05:audio",
+          "transcript": "I am waving."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am waving.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "waving"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:word:ferry",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ferry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:word:ferry:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ferry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:word:ferry:audio",
+          "transcript": "ferry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:word:ferry:r1",
+            "targetText": "ferry",
+            "meaningByLocale": {
+              "ru": "паром. He is waving from the ferry. — «Он машет рукой с парома».",
+              "uk": "пором. He is waving from the ferry. — «Він махає рукою з порома»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ferry",
+          "definitionByLocale": {
+            "ru": "паром. He is waving from the ferry. — «Он машет рукой с парома».",
+            "uk": "пором. He is waving from the ferry. — «Він махає рукою з порома»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брат махає вам із порома. Опишіть це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат махає вам із порома. Опишіть це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is waving from the ferry.",
+        "localizedMeaning": {
+          "ru": "Брат машет вам с парома. Опишите это",
+          "uk": "Брат махає вам із порома. Опишіть це"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "waving",
+          "from",
+          "the",
+          "ferry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:word:dock",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:word:dock:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:word:dock:audio",
+          "transcript": "dock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:word:dock:r1",
+            "targetText": "dock",
+            "meaningByLocale": {
+              "ru": "причал. They are waving from the dock. — «Они машут рукой с причала».",
+              "uk": "причал. They are waving from the dock. — «Вони махають рукою з причалу»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dock",
+          "definitionByLocale": {
+            "ru": "причал. They are waving from the dock. — «Они машут рукой с причала».",
+            "uk": "причал. They are waving from the dock. — «Вони махають рукою з причалу»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друзі махають із причалу. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Друзі махають із причалу. Скажіть про це",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i07:audio",
+          "transcript": "They are waving from the dock."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are waving from the dock.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії зараз",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-04:i08:r1",
+          "text": "waving"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i08:r2",
+          "text": "wave"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i08:r3",
+          "text": "waves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії зараз",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия сейчас",
+          "uk": "Виберіть форму дії зараз"
+        },
+        "gappedTargetPhrase": "He is ___ from the ferry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-04:i08:r1",
+            "text": "waving"
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i08:r2",
+            "text": "wave"
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i08:r3",
+            "text": "waves"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії зараз",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "После is для действия сейчас нужно waving.",
+              "uk": "Після is для дії зараз потрібне waving."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "Здесь is waving, а не is waves.",
+              "uk": "Тут is waving, а не is waves."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-04:i09:r1",
+          "text": "He is waving from the ferry."
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i09:r2",
+          "text": "She is waving from the ferry."
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i09:r3",
+          "text": "They are waving from the ferry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i09:audio",
+          "transcript": "He is waving from the ferry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:i09:r1",
+            "targetText": "He is waving from the ferry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i09:r2",
+            "targetText": "She is waving from the ferry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i09:r3",
+            "targetText": "They are waving from the ferry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is waving from the ferry.",
+              "uk": "У записі звучить He is waving from the ferry."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is waving from the ferry.",
+              "uk": "У записі звучить He is waving from the ferry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-04:i10:p1",
+            "target": "wave",
+            "meaningByLocale": {
+              "ru": "махать рукой",
+              "uk": "махати рукою"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i10:p2",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i10:p3",
+            "target": "dock",
+            "meaningByLocale": {
+              "ru": "причал",
+              "uk": "причал"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i10:p4",
+            "target": "boat",
+            "meaningByLocale": {
+              "ru": "лодка",
+              "uk": "човен"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wave",
+          "ferry",
+          "dock",
+          "boat"
+        ],
+        "rightColumn": [
+          "махати рукою",
+          "пором",
+          "причал",
+          "човен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i11:audio",
+          "transcript": "They are waving from the dock."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are waving from the dock.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "waving",
+          "from",
+          "the",
+          "dock"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:word:farewell",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — farewell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:word:farewell:audio"
+      ],
+      "accessibilityLabel": "Картка слова — farewell",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:word:farewell:audio",
+          "transcript": "farewell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:word:farewell:r1",
+            "targetText": "farewell",
+            "meaningByLocale": {
+              "ru": "прощание. A farewell party. — «Прощальная вечеринка». Farewell звучит торжественнее обычного goodbye.",
+              "uk": "прощання. A farewell party. — «Прощальна вечірка». Farewell звучить урочистіше за звичайне goodbye."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "farewell",
+          "definitionByLocale": {
+            "ru": "прощание. A farewell party. — «Прощальная вечеринка». Farewell звучит торжественнее обычного goodbye.",
+            "uk": "прощання. A farewell party. — «Прощальна вечірка». Farewell звучить урочистіше за звичайне goodbye."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-04:i12:r1",
+          "text": "farewell"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i12:r2",
+          "text": "ferry"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i12:r3",
+          "text": "friend"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i12:audio",
+          "transcript": "farewell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:i12:r1",
+            "targetText": "farewell",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i12:r2",
+            "targetText": "ferry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i12:r3",
+            "targetText": "friend",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит farewell",
+              "uk": "У записі звучить farewell"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит farewell",
+              "uk": "У записі звучить farewell"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега переїжджає до іншого міста. Назвіть вечірку на його честь: «Прощальна вечірка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Колега переїжджає до іншого міста. Назвіть вечірку на його честь: «Прощальна вечірка»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i13:audio",
+          "transcript": "A farewell party."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "A farewell party.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для they",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-04:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для they",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для they",
+          "uk": "Виберіть форму для they"
+        },
+        "gappedTargetPhrase": "They ___ waving from the dock.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-04:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Виберіть форму для they",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-04:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are.",
+              "uk": "Із they потрібне are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are.",
+              "uk": "Із they потрібне are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-04:i15:r1",
+          "text": "I am waving."
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i15:r2",
+          "text": "We are waving."
+        },
+        {
+          "responseId": "en:lesson-09:session-04:i15:r3",
+          "text": "They are waving."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i15:audio",
+          "transcript": "I am waving."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-04:i15:r1",
+            "targetText": "I am waving.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i15:r2",
+            "targetText": "We are waving.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i15:r3",
+            "targetText": "They are waving.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-04:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am waving.",
+              "uk": "У записі звучить I am waving."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-04:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am waving.",
+              "uk": "У записі звучить I am waving."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-04:i16:p1",
+            "target": "wave",
+            "meaningByLocale": {
+              "ru": "махать рукой",
+              "uk": "махати рукою"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i16:p2",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i16:p3",
+            "target": "dock",
+            "meaningByLocale": {
+              "ru": "причал",
+              "uk": "причал"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-04:i16:p4",
+            "target": "farewell",
+            "meaningByLocale": {
+              "ru": "прощание",
+              "uk": "прощання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wave",
+          "ferry",
+          "dock",
+          "farewell"
+        ],
+        "rightColumn": [
+          "махати рукою",
+          "пором",
+          "причал",
+          "прощання"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-04:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви побачили сусідку у вікні будинку навпроти й махаєте їй. Скажіть, що робите зараз: «Я махаю рукою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Ви побачили сусідку у вікні будинку навпроти й махаєте їй. Скажіть, що робите зараз: «Я махаю рукою»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-04:i17:audio",
+          "transcript": "I am waving."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am waving.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "01924d0013abbc19eb84c2f6ad46b10015fb50c48b6cf17d3554a36d21b70c35"
+}

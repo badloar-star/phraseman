@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-06:word:hole",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hole",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:word:hole:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hole",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:word:hole:audio",
+          "transcript": "hole"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:word:hole:r1",
+            "targetText": "hole",
+            "meaningByLocale": {
+              "ru": "яма, отверстие. I am digging a hole. — «Я копаю яму». Здесь речь об углублении в земле.",
+              "uk": "яма, отвір. I am digging a hole. — «Я копаю яму». Тут ідеться про заглиблення в землі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hole",
+          "definitionByLocale": {
+            "ru": "яма, отверстие. I am digging a hole. — «Я копаю яму». Здесь речь об углублении в земле.",
+            "uk": "яма, отвір. I am digging a hole. — «Я копаю яму». Тут ідеться про заглиблення в землі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що зараз копаєте яму для основи напувалки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що зараз копаєте яму для основи напувалки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am digging a hole.",
+        "localizedMeaning": {
+          "ru": "Скажите, что сейчас копаете яму для основания поилки",
+          "uk": "Скажіть, що зараз копаєте яму для основи напувалки"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "digging",
+          "a",
+          "hole"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-06:i02:r1",
+          "text": "hole"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i02:r2",
+          "text": "home"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i02:r3",
+          "text": "hose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i02:audio",
+          "transcript": "hole"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:i02:r1",
+            "targetText": "hole",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i02:r2",
+            "targetText": "home",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i02:r3",
+            "targetText": "hose",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит hole",
+              "uk": "У записі звучить hole"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит hole",
+              "uk": "У записі звучить hole"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-06:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для I",
+          "uk": "Виберіть форму для I"
+        },
+        "gappedTargetPhrase": "I ___ digging a hole.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-06:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-06:i04:p1",
+            "target": "hole",
+            "meaningByLocale": {
+              "ru": "яма",
+              "uk": "яма"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i04:p2",
+            "target": "dig",
+            "meaningByLocale": {
+              "ru": "копать",
+              "uk": "копати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i04:p3",
+            "target": "soil",
+            "meaningByLocale": {
+              "ru": "почва",
+              "uk": "ґрунт"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i04:p4",
+            "target": "garden",
+            "meaningByLocale": {
+              "ru": "сад",
+              "uk": "сад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hole",
+          "dig",
+          "soil",
+          "garden"
+        ],
+        "rightColumn": [
+          "яма",
+          "копати",
+          "ґрунт",
+          "сад"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i05:audio",
+          "transcript": "I am digging a hole."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am digging a hole.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "digging",
+          "a",
+          "hole"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:word:shovel",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shovel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:word:shovel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shovel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:word:shovel:audio",
+          "transcript": "shovel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:word:shovel:r1",
+            "targetText": "shovel",
+            "meaningByLocale": {
+              "ru": "лопата для перемещения снега или сыпучего материала. She is using a shovel. — «Она пользуется лопатой».",
+              "uk": "лопата для переміщення снігу або сипкого матеріалу. She is using a shovel. — «Вона користується лопатою»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shovel",
+          "definitionByLocale": {
+            "ru": "лопата для перемещения снега или сыпучего материала. She is using a shovel. — «Она пользуется лопатой».",
+            "uk": "лопата для переміщення снігу або сипкого матеріалу. She is using a shovel. — «Вона користується лопатою»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусідка зараз користується лопатою для снігу. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусідка зараз користується лопатою для снігу. Скажіть про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is using a shovel.",
+        "localizedMeaning": {
+          "ru": "Соседка сейчас пользуется лопатой для снега. Скажите об этом",
+          "uk": "Сусідка зараз користується лопатою для снігу. Скажіть про це"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "using",
+          "a",
+          "shovel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:word:trench",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trench",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:word:trench:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trench",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:word:trench:audio",
+          "transcript": "trench"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:word:trench:r1",
+            "targetText": "trench",
+            "meaningByLocale": {
+              "ru": "траншея. They are digging a trench. — «Они копают траншею».",
+              "uk": "траншея. They are digging a trench. — «Вони копають траншею»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trench",
+          "definitionByLocale": {
+            "ru": "траншея. They are digging a trench. — «Они копают траншею».",
+            "uk": "траншея. They are digging a trench. — «Вони копають траншею»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Робітники зараз копають траншею. Опишіть дію",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Робітники зараз копають траншею. Опишіть дію",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i07:audio",
+          "transcript": "They are digging a trench."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are digging a trench.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії зараз",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-06:i08:r1",
+          "text": "digging"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i08:r2",
+          "text": "dig"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i08:r3",
+          "text": "digs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії зараз",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия сейчас",
+          "uk": "Виберіть форму дії зараз"
+        },
+        "gappedTargetPhrase": "They are ___ a trench.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-06:i08:r1",
+            "text": "digging"
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i08:r2",
+            "text": "dig"
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i08:r3",
+            "text": "digs"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії зараз",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "После are для действия сейчас нужно digging.",
+              "uk": "Після are для дії зараз потрібне digging."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "Здесь are digging, а не are digs.",
+              "uk": "Тут are digging, а не are digs."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-06:i09:r1",
+          "text": "They are digging a trench."
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i09:r2",
+          "text": "He is digging a trench."
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i09:r3",
+          "text": "She is digging a trench."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i09:audio",
+          "transcript": "They are digging a trench."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:i09:r1",
+            "targetText": "They are digging a trench.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i09:r2",
+            "targetText": "He is digging a trench.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i09:r3",
+            "targetText": "She is digging a trench.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are digging a trench.",
+              "uk": "У записі звучить They are digging a trench."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are digging a trench.",
+              "uk": "У записі звучить They are digging a trench."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-06:i10:p1",
+            "target": "hole",
+            "meaningByLocale": {
+              "ru": "яма",
+              "uk": "яма"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i10:p2",
+            "target": "shovel",
+            "meaningByLocale": {
+              "ru": "лопата для снега",
+              "uk": "лопата для снігу"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i10:p3",
+            "target": "trench",
+            "meaningByLocale": {
+              "ru": "траншея",
+              "uk": "траншея"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i10:p4",
+            "target": "soil",
+            "meaningByLocale": {
+              "ru": "почва",
+              "uk": "ґрунт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hole",
+          "shovel",
+          "trench",
+          "soil"
+        ],
+        "rightColumn": [
+          "яма",
+          "лопата для снігу",
+          "траншея",
+          "ґрунт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i11:audio",
+          "transcript": "She is using a shovel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is using a shovel.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "using",
+          "a",
+          "shovel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:word:seedling",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seedling",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:word:seedling:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seedling",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:word:seedling:audio",
+          "transcript": "seedling"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:word:seedling:r1",
+            "targetText": "seedling",
+            "meaningByLocale": {
+              "ru": "сеянец, молодое растение из семени. This is a seedling. — «Это сеянец».",
+              "uk": "сіянець, молода рослина з насінини. This is a seedling. — «Це сіянець»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seedling",
+          "definitionByLocale": {
+            "ru": "сеянец, молодое растение из семени. This is a seedling. — «Это сеянец».",
+            "uk": "сіянець, молода рослина з насінини. This is a seedling. — «Це сіянець»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-06:i12:r1",
+          "text": "seedling"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i12:r2",
+          "text": "seed"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i12:r3",
+          "text": "ceiling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i12:audio",
+          "transcript": "seedling"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:i12:r1",
+            "targetText": "seedling",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i12:r2",
+            "targetText": "seed",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i12:r3",
+            "targetText": "ceiling",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит seedling",
+              "uk": "У записі звучить seedling"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит seedling",
+              "uk": "У записі звучить seedling"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У маленькому горщику виросла молода рослина з насінини. Назвіть її: «Це сіянець»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "У маленькому горщику виросла молода рослина з насінини. Назвіть її: «Це сіянець»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i13:audio",
+          "transcript": "This is a seedling."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a seedling.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для they",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-06:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для they",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для they",
+          "uk": "Виберіть форму для they"
+        },
+        "gappedTargetPhrase": "They ___ digging a trench.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-06:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Виберіть форму для they",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-06:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are.",
+              "uk": "Із they потрібне are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are.",
+              "uk": "Із they потрібне are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-06:i15:r1",
+          "text": "I am digging a hole."
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i15:r2",
+          "text": "We are digging a hole."
+        },
+        {
+          "responseId": "en:lesson-09:session-06:i15:r3",
+          "text": "They are digging a hole."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i15:audio",
+          "transcript": "I am digging a hole."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-06:i15:r1",
+            "targetText": "I am digging a hole.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i15:r2",
+            "targetText": "We are digging a hole.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i15:r3",
+            "targetText": "They are digging a hole.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-06:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am digging a hole.",
+              "uk": "У записі звучить I am digging a hole."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-06:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am digging a hole.",
+              "uk": "У записі звучить I am digging a hole."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-06:i16:p1",
+            "target": "hole",
+            "meaningByLocale": {
+              "ru": "яма",
+              "uk": "яма"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i16:p2",
+            "target": "shovel",
+            "meaningByLocale": {
+              "ru": "лопата для снега",
+              "uk": "лопата для снігу"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i16:p3",
+            "target": "trench",
+            "meaningByLocale": {
+              "ru": "траншея",
+              "uk": "траншея"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-06:i16:p4",
+            "target": "seedling",
+            "meaningByLocale": {
+              "ru": "сеянец",
+              "uk": "сіянець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hole",
+          "shovel",
+          "trench",
+          "seedling"
+        ],
+        "rightColumn": [
+          "яма",
+          "лопата для снігу",
+          "траншея",
+          "сіянець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви копаєте яму для нового куща. Повідомте, чим зайняті зараз: «Я копаю яму»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Ви копаєте яму для нового куща. Повідомте, чим зайняті зараз: «Я копаю яму»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-06:i17:audio",
+          "transcript": "I am digging a hole."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am digging a hole.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cbfc6c697c67c500d615d19bcb057bf314b7048123c0317d51aa0d1e47a066de"
+}

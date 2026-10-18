@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "knocking с am; действие посетителя с is waiting; место in the doorway",
+    "uk": "knocking з am; дія відвідувача з is waiting; місце in the doorway"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У дверей мастерской",
+        "uk": "Біля дверей майстерні"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли на занятие в художественную мастерскую. Дверь закрыта, звонка нет, поэтому вы стучите. Knock — «стучать». I am knocking at the door — «Я стучу в дверь». Knocking описывает действие сейчас, поэтому после I нужна am. В сочетании knock at the door предлог at помогает сказать «в дверь». Дверь не читает сообщения — сегодня работает стук.",
+        "uk": "Ви прийшли на заняття до художньої майстерні. Двері зачинені, дзвінка немає, тому ви стукаєте. Knock — «стукати». I am knocking at the door — «Я стукаю у двері». Knocking описує дію зараз, тому після I потрібна am. У сполученні knock at the door прийменник at допомагає сказати «у двері». Двері не читають повідомлень — сьогодні працює стукіт."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-05:intro1:r1",
+              "text": "I am knocking at the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro1:r2",
+              "text": "I knocking at the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro1:r3",
+              "text": "I am knock at the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-05:intro1:r1",
+              "text": "I am knocking at the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro1:r2",
+              "text": "I knocking at the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro1:r3",
+              "text": "I am knock at the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посетитель ждёт экскурсовода",
+        "uk": "Відвідувач чекає на екскурсовода"
+      },
+      "bodyByLocale": {
+        "ru": "Вы помогаете в маленьком музее. Один посетитель пришёл раньше начала экскурсии и сейчас ждёт. Visitor — «посетитель». A visitor is waiting — «Посетитель ждёт». Говорим об одном человеке, поэтому is waiting. A visitor вводит человека, которого вы ещё не называли.",
+        "uk": "Ви допомагаєте в маленькому музеї. Один відвідувач прийшов раніше початку екскурсії й зараз чекає. Visitor — «відвідувач». A visitor is waiting — «Відвідувач чекає». Говоримо про одну людину, тому is waiting. A visitor вводить людину, яку ви ще не називали."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-05:intro2:r1",
+              "text": "A visitor is waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro2:r2",
+              "text": "A visitor waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro2:r3",
+              "text": "A visitor is wait."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-05:intro2:r1",
+              "text": "A visitor is waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro2:r2",
+              "text": "A visitor waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro2:r3",
+              "text": "A visitor is wait."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Место для фотографии",
+        "uk": "Місце для фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "Вы фотографируете подругу в старом доме. Она выбрала дверной проём, где красиво падает свет. Doorway — «дверной проём». She is in the doorway — «Она в дверном проёме». Здесь is сообщает, где она находится. Глагол действия с -ing не нужен: вы называете место.",
+        "uk": "Ви фотографуєте подругу в старому будинку. Вона обрала дверний отвір, де гарно падає світло. Doorway — «дверний отвір». She is in the doorway — «Вона у дверному отворі». Тут is повідомляє, де вона перебуває. Дієслово дії з -ing не потрібне: ви називаєте місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-05:intro3:r1",
+              "text": "She is in the doorway."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro3:r2",
+              "text": "She in the doorway."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro3:r3",
+              "text": "She are in the doorway."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-05:intro3:r1",
+              "text": "She is in the doorway."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro3:r2",
+              "text": "She in the doorway."
+            },
+            {
+              "responseId": "en:lesson-09:session-05:intro3:r3",
+              "text": "She are in the doorway."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1585cbfc33ed5343e0fae7ba9e904ba53d7aead45f955684c0256ff3acfc9929"
+}

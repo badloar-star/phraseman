@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-06:intro1:r2": {
+          "ru": "Перед действием пропущена форма am, is или are.",
+          "uk": "Перед дією пропущена форма am, is або are."
+        },
+        "en:lesson-09:session-06:intro1:r3": {
+          "ru": "Для действия сейчас здесь нужна форма с -ing.",
+          "uk": "Для дії зараз тут потрібна форма з -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-06:intro2:r2": {
+          "ru": "Перед действием пропущена форма am, is или are.",
+          "uk": "Перед дією пропущена форма am, is або are."
+        },
+        "en:lesson-09:session-06:intro2:r3": {
+          "ru": "Для действия сейчас здесь нужна форма с -ing.",
+          "uk": "Для дії зараз тут потрібна форма з -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-06:intro3:r2": {
+          "ru": "Перед действием пропущена форма am, is или are.",
+          "uk": "Перед дією пропущена форма am, is або are."
+        },
+        "en:lesson-09:session-06:intro3:r3": {
+          "ru": "Для действия сейчас здесь нужна форма с -ing.",
+          "uk": "Для дії зараз тут потрібна форма з -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c79d14c36c1c86424eeb222615f4e7b2971fd0f3abdf72f19c6a21abfa2dff39"
+}

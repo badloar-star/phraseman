@@ -1,0 +1,1168 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-03:word:funnel",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — funnel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:word:funnel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — funnel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:word:funnel:audio",
+          "transcript": "funnel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:word:funnel:r1",
+            "targetText": "funnel",
+            "meaningByLocale": {
+              "ru": "воронка для переливания. I am using a funnel. — «Я пользуюсь воронкой».",
+              "uk": "лійка для переливання. I am using a funnel. — «Я користуюся лійкою для переливання»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "funnel",
+          "definitionByLocale": {
+            "ru": "воронка для переливания. I am using a funnel. — «Я пользуюсь воронкой».",
+            "uk": "лійка для переливання. I am using a funnel. — «Я користуюся лійкою для переливання»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що зараз користуєтеся лійкою для переливання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що зараз користуєтеся лійкою для переливання",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am using a funnel.",
+        "localizedMeaning": {
+          "ru": "Скажите, что сейчас пользуетесь воронкой",
+          "uk": "Скажіть, що зараз користуєтеся лійкою для переливання"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "using",
+          "a",
+          "funnel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-03:i02:r1",
+          "text": "funnel"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i02:r2",
+          "text": "bottle"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i02:r3",
+          "text": "cocoa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i02:audio",
+          "transcript": "funnel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:i02:r1",
+            "targetText": "funnel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i02:r2",
+            "targetText": "bottle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i02:r3",
+            "targetText": "cocoa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит funnel",
+              "uk": "У записі звучить funnel"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит funnel",
+              "uk": "У записі звучить funnel"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-03:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для I",
+          "uk": "Виберіть форму для I"
+        },
+        "gappedTargetPhrase": "I ___ using a funnel.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-03:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-03:i04:p1",
+            "target": "funnel",
+            "meaningByLocale": {
+              "ru": "воронка",
+              "uk": "лійка для переливання"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i04:p2",
+            "target": "pour",
+            "meaningByLocale": {
+              "ru": "наливать",
+              "uk": "наливати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i04:p3",
+            "target": "bottle",
+            "meaningByLocale": {
+              "ru": "бутылка",
+              "uk": "пляшка"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i04:p4",
+            "target": "water",
+            "meaningByLocale": {
+              "ru": "вода",
+              "uk": "вода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "funnel",
+          "pour",
+          "bottle",
+          "water"
+        ],
+        "rightColumn": [
+          "лійка для переливання",
+          "наливати",
+          "пляшка",
+          "вода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i05:audio",
+          "transcript": "I am using a funnel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am using a funnel.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "using",
+          "a",
+          "funnel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:word:beaker",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — beaker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:word:beaker:audio"
+      ],
+      "accessibilityLabel": "Картка слова — beaker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:word:beaker:audio",
+          "transcript": "beaker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:word:beaker:r1",
+            "targetText": "beaker",
+            "meaningByLocale": {
+              "ru": "лабораторный стакан. She is pouring water into a beaker. — «Она наливает воду в лабораторный стакан».",
+              "uk": "лабораторна склянка. She is pouring water into a beaker. — «Вона наливає воду в лабораторну склянку»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beaker",
+          "definitionByLocale": {
+            "ru": "лабораторный стакан. She is pouring water into a beaker. — «Она наливает воду в лабораторный стакан».",
+            "uk": "лабораторна склянка. She is pouring water into a beaker. — «Вона наливає воду в лабораторну склянку»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Опишіть, як подруга зараз наливає воду в лабораторну склянку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишіть, як подруга зараз наливає воду в лабораторну склянку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is pouring water into a beaker.",
+        "localizedMeaning": {
+          "ru": "Опишите, как подруга сейчас наливает воду в лабораторный стакан",
+          "uk": "Опишіть, як подруга зараз наливає воду в лабораторну склянку"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "pouring",
+          "water",
+          "into",
+          "a",
+          "beaker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:word:watering-can",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — watering can",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:word:watering-can:audio"
+      ],
+      "accessibilityLabel": "Картка слова — watering can",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:word:watering-can:audio",
+          "transcript": "watering can"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:word:watering-can:r1",
+            "targetText": "watering can",
+            "meaningByLocale": {
+              "ru": "лейка для полива. He is using a watering can. — «Он пользуется лейкой».",
+              "uk": "лійка для поливу. He is using a watering can. — «Він користується лійкою для поливу»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watering can",
+          "definitionByLocale": {
+            "ru": "лейка для полива. He is using a watering can. — «Он пользуется лейкой».",
+            "uk": "лійка для поливу. He is using a watering can. — «Він користується лійкою для поливу»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг зараз користується лійкою для поливу. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Друг зараз користується лійкою для поливу. Скажіть про це",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i07:audio",
+          "transcript": "He is using a watering can."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is using a watering can.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії зараз",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-03:i08:r1",
+          "text": "pouring"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i08:r2",
+          "text": "pour"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i08:r3",
+          "text": "pours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії зараз",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия сейчас",
+          "uk": "Виберіть форму дії зараз"
+        },
+        "gappedTargetPhrase": "She is ___ water into a beaker.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-03:i08:r1",
+            "text": "pouring"
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i08:r2",
+            "text": "pour"
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i08:r3",
+            "text": "pours"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії зараз",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "После is для действия сейчас нужно pouring.",
+              "uk": "Після is для дії зараз потрібне pouring."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "Здесь is pouring, а не is pours.",
+              "uk": "Тут is pouring, а не is pours."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-03:i09:r1",
+          "text": "She is pouring water into a beaker."
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i09:r2",
+          "text": "He is pouring water into a beaker."
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i09:r3",
+          "text": "They are pouring water into a beaker."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i09:audio",
+          "transcript": "She is pouring water into a beaker."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:i09:r1",
+            "targetText": "She is pouring water into a beaker.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i09:r2",
+            "targetText": "He is pouring water into a beaker.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i09:r3",
+            "targetText": "They are pouring water into a beaker.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is pouring water into a beaker.",
+              "uk": "У записі звучить She is pouring water into a beaker."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is pouring water into a beaker.",
+              "uk": "У записі звучить She is pouring water into a beaker."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-03:i10:p1",
+            "target": "funnel",
+            "meaningByLocale": {
+              "ru": "воронка",
+              "uk": "лійка для переливання"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i10:p2",
+            "target": "beaker",
+            "meaningByLocale": {
+              "ru": "лабораторный стакан",
+              "uk": "лабораторна склянка"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i10:p3",
+            "target": "watering can",
+            "meaningByLocale": {
+              "ru": "лейка для полива",
+              "uk": "лійка для поливу"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i10:p4",
+            "target": "bottle",
+            "meaningByLocale": {
+              "ru": "бутылка",
+              "uk": "пляшка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "funnel",
+          "beaker",
+          "watering can",
+          "bottle"
+        ],
+        "rightColumn": [
+          "лійка для переливання",
+          "лабораторна склянка",
+          "лійка для поливу",
+          "пляшка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i11:audio",
+          "transcript": "He is using a watering can."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is using a watering can.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "using",
+          "a",
+          "watering",
+          "can"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:word:spout",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:word:spout:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:word:spout:audio",
+          "transcript": "spout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:word:spout:r1",
+            "targetText": "spout",
+            "meaningByLocale": {
+              "ru": "носик, из которого льётся жидкость. This is the spout. — «Это носик». Например, носик чайника или лейки.",
+              "uk": "носик, з якого ллється рідина. This is the spout. — «Це носик». Наприклад, носик чайника або лійки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spout",
+          "definitionByLocale": {
+            "ru": "носик, из которого льётся жидкость. This is the spout. — «Это носик». Например, носик чайника или лейки.",
+            "uk": "носик, з якого ллється рідина. This is the spout. — «Це носик». Наприклад, носик чайника або лійки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-03:i12:r1",
+          "text": "spout"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i12:r2",
+          "text": "spoon"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i12:r3",
+          "text": "sport"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i12:audio",
+          "transcript": "spout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:i12:r1",
+            "targetText": "spout",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i12:r2",
+            "targetText": "spoon",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i12:r3",
+            "targetText": "sport",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит spout",
+              "uk": "У записі звучить spout"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит spout",
+              "uk": "У записі звучить spout"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви показуєте другові носик чайника. Назвіть цю частину: «Це носик»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i13:audio"
+      ],
+      "accessibilityLabel": "Ви показуєте другові носик чайника. Назвіть цю частину: «Це носик»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i13:audio",
+          "transcript": "This is the spout."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is the spout.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для he",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-03:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для he",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для he",
+          "uk": "Виберіть форму для he"
+        },
+        "gappedTargetPhrase": "He ___ using a watering can.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-03:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для he",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-03:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для he",
+            "feedbackByLocale": {
+              "ru": "С he нужно is.",
+              "uk": "Із he потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для he",
+            "feedbackByLocale": {
+              "ru": "С he нужно is.",
+              "uk": "Із he потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-03:i15:r1",
+          "text": "I am using a funnel."
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i15:r2",
+          "text": "She is using a funnel."
+        },
+        {
+          "responseId": "en:lesson-09:session-03:i15:r3",
+          "text": "They are using a funnel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i15:audio",
+          "transcript": "I am using a funnel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-03:i15:r1",
+            "targetText": "I am using a funnel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i15:r2",
+            "targetText": "She is using a funnel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i15:r3",
+            "targetText": "They are using a funnel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-03:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am using a funnel.",
+              "uk": "У записі звучить I am using a funnel."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-03:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am using a funnel.",
+              "uk": "У записі звучить I am using a funnel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-03:i16:p1",
+            "target": "funnel",
+            "meaningByLocale": {
+              "ru": "воронка",
+              "uk": "лійка для переливання"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i16:p2",
+            "target": "beaker",
+            "meaningByLocale": {
+              "ru": "лабораторный стакан",
+              "uk": "лабораторна склянка"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i16:p3",
+            "target": "watering can",
+            "meaningByLocale": {
+              "ru": "лейка для полива",
+              "uk": "лійка для поливу"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-03:i16:p4",
+            "target": "spout",
+            "meaningByLocale": {
+              "ru": "носик для жидкости",
+              "uk": "носик для рідини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "funnel",
+          "beaker",
+          "watering can",
+          "spout"
+        ],
+        "rightColumn": [
+          "лійка для переливання",
+          "лабораторна склянка",
+          "лійка для поливу",
+          "носик для рідини"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-03:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви поливаєте розсаду на підвіконні. Повідомте, чим зараз користуєтеся: «Я користуюся лійкою для поливу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Ви поливаєте розсаду на підвіконні. Повідомте, чим зараз користуєтеся: «Я користуюся лійкою для поливу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-03:i17:audio",
+          "transcript": "I am using a watering can."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am using a watering can.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8379bba75047583c1cd68370869aae4532def5cc195568ee4f8eb24057769445"
+}

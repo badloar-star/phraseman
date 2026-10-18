@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-06:word:hole",
+    "correctText": "hole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i01",
+    "correctText": "I am digging a hole.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i02",
+    "correctText": "hole",
+    "correctResponseId": "en:lesson-09:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i04",
+    "correctText": "en:lesson-09:session-06:i04:p1=hole\nen:lesson-09:session-06:i04:p2=dig\nen:lesson-09:session-06:i04:p3=soil\nen:lesson-09:session-06:i04:p4=garden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i05",
+    "correctText": "I am digging a hole.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:word:shovel",
+    "correctText": "shovel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i06",
+    "correctText": "She is using a shovel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:word:trench",
+    "correctText": "trench",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i07",
+    "correctText": "They are digging a trench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i08",
+    "correctText": "digging",
+    "correctResponseId": "en:lesson-09:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i09",
+    "correctText": "They are digging a trench.",
+    "correctResponseId": "en:lesson-09:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i10",
+    "correctText": "en:lesson-09:session-06:i10:p1=hole\nen:lesson-09:session-06:i10:p2=shovel\nen:lesson-09:session-06:i10:p3=trench\nen:lesson-09:session-06:i10:p4=soil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i11",
+    "correctText": "She is using a shovel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:word:seedling",
+    "correctText": "seedling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i12",
+    "correctText": "seedling",
+    "correctResponseId": "en:lesson-09:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i13",
+    "correctText": "This is a seedling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-06:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i15",
+    "correctText": "I am digging a hole.",
+    "correctResponseId": "en:lesson-09:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i16",
+    "correctText": "en:lesson-09:session-06:i16:p1=hole\nen:lesson-09:session-06:i16:p2=shovel\nen:lesson-09:session-06:i16:p3=trench\nen:lesson-09:session-06:i16:p4=seedling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-06:i17",
+    "correctText": "I am digging a hole.",
+    "correctResponseId": null
+  }
+]

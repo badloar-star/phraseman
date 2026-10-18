@@ -3157,4 +3157,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"am/is/are + stirring; stir уже знакомо, теперь описываем действие сейчас","uk":"am/is/are + stirring; stir уже знайоме, тепер описуємо дію зараз"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 3,
+    sourceFingerprint: "be805b9cc57e1bf66a6d7940b85635c4c8ab17b03c53546051fe9c37badeeaa0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"pouring и using с am/is/are; знакомое pour в действии сейчас","uk":"pouring і using з am/is/are; знайоме pour у дії зараз"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 4,
+    sourceFingerprint: "150bc3454a9017289b987576a20570f0abac144a81099db7976ef1033eed5f36",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wave → waving с am/is/are; сказать, откуда человек машет","uk":"wave → waving з am/is/are; сказати, звідки людина махає"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 5,
+    sourceFingerprint: "91f843fda9401ffd1024f097dc2eded53fe07631f413f109269013eea660f94e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"knocking с am; действие посетителя с is waiting; место in the doorway","uk":"knocking з am; дія відвідувача з is waiting; місце in the doorway"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 6,
+    sourceFingerprint: "6aae80baecdeedf4fdd811a6f64ebdeba297de7047232a90bb54797287185807",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"dig → digging с am/is/are; dig уже знакомо, сейчас закрепляем действие в процессе","uk":"dig → digging з am/is/are; dig уже знайоме, зараз закріплюємо дію в процесі"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

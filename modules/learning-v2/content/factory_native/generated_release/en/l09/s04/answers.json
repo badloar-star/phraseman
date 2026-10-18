@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-04:word:wave",
+    "correctText": "wave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i01",
+    "correctText": "wave",
+    "correctResponseId": "en:lesson-09:session-04:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i02",
+    "correctText": "I am waving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i04",
+    "correctText": "en:lesson-09:session-04:i04:p1=wave\nen:lesson-09:session-04:i04:p2=wait\nen:lesson-09:session-04:i04:p3=friend\nen:lesson-09:session-04:i04:p4=hand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i05",
+    "correctText": "I am waving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:word:ferry",
+    "correctText": "ferry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i06",
+    "correctText": "He is waving from the ferry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:word:dock",
+    "correctText": "dock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i07",
+    "correctText": "They are waving from the dock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i08",
+    "correctText": "waving",
+    "correctResponseId": "en:lesson-09:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i09",
+    "correctText": "He is waving from the ferry.",
+    "correctResponseId": "en:lesson-09:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i10",
+    "correctText": "en:lesson-09:session-04:i10:p1=wave\nen:lesson-09:session-04:i10:p2=ferry\nen:lesson-09:session-04:i10:p3=dock\nen:lesson-09:session-04:i10:p4=boat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i11",
+    "correctText": "They are waving from the dock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:word:farewell",
+    "correctText": "farewell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i12",
+    "correctText": "farewell",
+    "correctResponseId": "en:lesson-09:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i13",
+    "correctText": "A farewell party.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-04:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i15",
+    "correctText": "I am waving.",
+    "correctResponseId": "en:lesson-09:session-04:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i16",
+    "correctText": "en:lesson-09:session-04:i16:p1=wave\nen:lesson-09:session-04:i16:p2=ferry\nen:lesson-09:session-04:i16:p3=dock\nen:lesson-09:session-04:i16:p4=farewell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-04:i17",
+    "correctText": "I am waving.",
+    "correctResponseId": null
+  }
+]

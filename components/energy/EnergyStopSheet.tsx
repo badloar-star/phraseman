@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useFocusEffect, useRouter } from 'expo-router';
 
 import { DebugLogger } from '../../app/debug-logger';
+import { formatTimeUntilRecoveryLong } from '../../app/energy_system';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang } from '../../constants/i18n';
 import { LUM } from '../../constants/motionHybrid';
@@ -42,7 +43,7 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
   const g = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const { isUnlimited, recoveryIntervalMs } = useEnergy();
-  const { formattedTime } = useEnergyCountdown({ visible });
+  const { formattedTime, timeUntilNextMs } = useEnergyCountdown({ visible });
   const resumedRef = useRef(false);
   // зачем (R1_PAYWALL_UX): быстрый второй тап по «Продолжить с Plus» до перерисовки открывал бы окно Plus дважды (стек из двух пейволов); сбрасывается, когда экран занятия снова в фокусе.
   const plusOpeningRef = useRef(false);
@@ -75,7 +76,8 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
     ru: 'Энергия закончилась', uk: 'Енергія закінчилась', en: 'Out of energy', es: 'Se acabó la energía',
     'pt-BR': 'A energia acabou', vi: 'Hết năng lượng', id: 'Energi habis', tr: 'Enerji bitti', pl: 'Energia się skończyła',
   });
-  const time = formattedTime || triLang(lang, {
+  // зачем (Макеты c0cd6e2ae, energy-modes-004): образец — «через 9 мин 41 с» (единицы с пробелом); сжатое «9м 39с» остаётся в пилюле энергии
+  const time = (timeUntilNextMs > 0 ? formatTimeUntilRecoveryLong(timeUntilNextMs, lang) : formattedTime) || triLang(lang, {
     ru: 'несколько минут', uk: 'кілька хвилин', en: 'a few minutes', es: 'unos minutos',
     'pt-BR': 'alguns minutos', vi: 'vài phút', id: 'beberapa menit', tr: 'birkaç dakika', pl: 'kilka minut',
   });

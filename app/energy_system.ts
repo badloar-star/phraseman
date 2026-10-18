@@ -361,5 +361,36 @@ export function formatTimeUntilRecovery(ms: number, lang: string = 'ru'): string
   return `${seconds}${u.s}`;
 }
 
+// зачем (Макеты c0cd6e2ae, energy-modes-004; координатор 18.10): в образце окна остановки время «через 9 мин 41 с» — единицы с пробелом и словом «мин»;
+// сжатая запись «9м 41с» остаётся для пилюли энергии и окна «Нет энергии». Один форматтер на 9 языков, единицы — в таблице ниже.
+// ⚠ ЖДУТ УТВЕРЖДЕНИЯ ПЕРЕВОДЧИКА (до 07:45): en/es/pt-BR/pl/vi/id — сокращения предложены, в работу НЕ включены: пока не утверждены, эти языки получают сжатый формат (решение координатора 18.10).
+// ru (образец макета), uk/tr (уже принятые сжатые единицы) — включены. Утвердили язык — добавь его в RECOVERY_LONG_APPROVED и сними пометку.
+const RECOVERY_TIME_UNITS_LONG: Readonly<Record<string, Readonly<{ h: string; m: string; s: string }>>> = {
+  ru: { h: 'ч', m: 'мин', s: 'с' },
+  uk: { h: 'год', m: 'хв', s: 'с' },
+  en: { h: 'h', m: 'min', s: 's' },
+  es: { h: 'h', m: 'min', s: 's' },
+  'pt-BR': { h: 'h', m: 'min', s: 's' },
+  pl: { h: 'godz.', m: 'min', s: 's' },
+  vi: { h: 'giờ', m: 'phút', s: 'giây' },
+  id: { h: 'jam', m: 'mnt', s: 'dtk' },
+  tr: { h: 'sa', m: 'dk', s: 'sn' },
+};
+
+const RECOVERY_LONG_APPROVED: ReadonlySet<string> = new Set(['ru', 'uk', 'tr']);
+
+/** «9 мин 41 с» / «1 ч 30 мин 0 с» / «45 с» — как в образце окна остановки; ноль в старшем разряде не печатается. Язык без утверждённых сокращений — сжатый формат. */
+export function formatTimeUntilRecoveryLong(ms: number, lang: string = 'ru'): string {
+  if (!RECOVERY_LONG_APPROVED.has(lang)) return formatTimeUntilRecovery(ms, lang);
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const u = RECOVERY_TIME_UNITS_LONG[lang] ?? RECOVERY_TIME_UNITS_LONG.en!;
+  if (hours > 0) return `${hours} ${u.h} ${minutes} ${u.m} ${seconds} ${u.s}`;
+  if (minutes > 0) return `${minutes} ${u.m} ${seconds} ${u.s}`;
+  return `${seconds} ${u.s}`;
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

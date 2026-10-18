@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 55 — Дивлюся фільми онлайн
+# Англійська · Урок 7 · Заняття 55 — Тіло й здоров’я
 
-**Ситуація.** Ви розповідаєте про фільми онлайн, фотографії птахів і кафе на карті.
+**Ситуація.** Ви розповідаєте, як реагує тіло: що ви пітнієте в залі, тремтите в холодній воді, ковтаєте таблетку, і питаєте дорогу до кабінету лікаря.
 
-**Що ви опануєте:** розповідати про звички й запитувати про місце
-**Нові слова:** stream
+**Що ви опануєте:** розповідати про звички тіла та питати «Де …?»
+**Нові слова:** sweat, shiver, surgery, swallow
+**Повертаються:** gym, water, tablet, cold, hot, warm, clinic, pharmacy
 
 ---
 
 ## Інтро 1
 
-### Фільм на вечір
+### Після тренування
 
-Друг запитує, як ви зазвичай дивитеся фільми. `Stream` тут — «дивитися через інтернет, не завантажуючи спочатку весь файл». `I often stream films` — «Я часто дивлюся фільми онлайн». `Often` стоїть перед `stream`. Фільм уже можна дивитися — не треба чекати, поки весь він уміститься в телефон.
+Наприкінці тренування в спортзалі ваша футболка зовсім мокра, а чоло блищить. Тренер помічає це й питає, чи часто так буває на тренуваннях. sweat — «пітніти». Скажіть: I often sweat at the gym — «Я часто пітнію в спортзалі». Слово often стоїть перед sweat.
 
-**Розкажіть другові про свою звичку.**
+**Тренер питає про мокру футболку. Відповідьте: «Я часто пітнію в спортзалі».**
 
-- ✅ **I often stream films.**
-- ❌ I often streams films. — *Після `I` потрібне `stream`.*
-- ❌ I often streaming films. — *Тут потрібна форма `stream`.*
+- ✅ **I often sweat at the gym.**
+- ❌ I often sweats at the gym. — *Після I потрібно sweat, без s.*
+- ❌ I often sweating at the gym. — *Тут потрібна форма sweat.*
 
 ---
 
 ## Інтро 2
 
-### Знімки з прогулянки
+### Купання в озері
 
-Подруга дивиться ваші фотографії птахів. `I often photograph birds` — «Я часто фотографую птахів». `Often` стоїть перед `photograph`; `birds` говорить, кого ви фотографуєте. Птах полетів, зате фотографія залишилася.
+Друг кличе вас скупатися в озері. Вода холодна, і варто вам зайти по пояс, як усе тіло починає дрібно трусити. shiver — «тремтіти від холоду». Скажіть: I usually shiver in cold water — «Я зазвичай тремчу в холодній воді». Слово usually стоїть перед shiver.
 
-**Розкажіть подрузі, кого ви часто фотографуєте.**
+**Друг питає, як ви зазвичай реагуєте на холодну воду. Відповідьте: «Я зазвичай тремчу в холодній воді».**
 
-- ✅ **I often photograph birds.**
-- ❌ I often photographs birds. — *Після `I` потрібне `photograph`.*
-- ❌ I often photographing birds. — *Тут потрібна форма `photograph`.*
+- ✅ **I usually shiver in cold water.**
+- ❌ I usually shivers in cold water. — *Після I потрібно shiver, без s.*
+- ❌ I usually shivering in cold water. — *Після I usually потрібна форма shiver, без -ing.*
 
 ---
 
 ## Інтро 3
 
-### Кафе на карті
+### Прийом у лікаря
 
-Ви хочете випити кави й просите друга показати кафе на карті. `Where are the cafes?` — «Де кафе?» Йдеться про кілька кафе, тому після `where` потрібне `are`, потім `the cafes`.
+У Великій Британії у вас призначений прийом у лікаря, але у великому будинку ви не знайшли потрібну табличку. Адміністратор біля входу готовий підказати. У британській англійській surgery тут означає «кабінет лікаря, лікарська практика». У surgery є й інше значення — «хірургія». Спитайте: Where is the surgery? — «Де кабінет лікаря?» Після Where йде is, а потім the surgery.
 
-**Запитайте, де розташовані кафе.**
+**Адміністратор біля входу чекає на ваше запитання. Спитайте: «Де кабінет лікаря?»**
 
-- ✅ **Where are the cafes?**
-- ❌ Where is the cafes? — *Кафе кілька: потрібне `are`.*
-- ❌ Where the cafes are? — *У цьому запитанні `are` стоїть перед `the cafes`.*
+- ✅ **Where is the surgery?**
+- ❌ Where are the surgery? — *Кабінет один: потрібно is.*
+- ❌ Where the surgery is? — *У цьому запитанні is стоїть перед the surgery.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто дивлюся фільми онлайн»**
+**1 · Картка слова — sweat**
+<!-- interaction_id: en:lesson-07:session-55:word:sweat; family: word_card -->
+> **sweat** — пітніти. I often sweat at the gym. — «Я часто пітнію в спортзалі». Коли тілу жарко, на шкірі виступає волога.
+
+**2 · Тренер помічає мокру футболку. Скажіть: «Я часто пітнію в спортзалі»**
 <!-- interaction_id: en:lesson-07:session-55:i01; family: phrase_builder -->
-Плитки: `films` `stream` `often` `I` → **I often stream films.**
+Плитки: `gym` `usually` `the` `at` `sweat` `often` `I` → **I often sweat at the gym.**
+*(плитка `usually` зайва: тут потрібно `often` — `I often sweat at the gym.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-55:i02; family: listen_choose -->
-🔊 *stream* → **stream** · surf · browse
-- surf — *У записі перше слово — `stream`, а в цьому варіанті — `surf`.*
-- browse — *У записі перше слово — `stream`, а в цьому варіанті — `browse`.*
+🔊 *sweat* → **sweat** · sweep · sweet
+- sweep — *У записі перше слово — `sweat`, а в цьому варіанті — `sweep`.*
+- sweet — *У записі перше слово — `sweat`, а в цьому варіанті — `sweet`.*
 
-**3 · Скажіть «Я часто дивлюся фільми онлайн»**
+**4 · Тренер питає, чи часто ви пітнієте на тренуваннях. Скажіть: «Я часто пітнію в спортзалі». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-55:i03; family: context_gap_grammar -->
-I often ___ films. → **stream** · streams · streaming
-- streams — *Після `I` потрібне `stream`.*
-- streaming — *Тут потрібна форма `stream`.*
+I often ___ at the gym. → **sweat** · sweats · sweating
+- sweats — *Після `I` потрібно `sweat`, без закінчення.*
+- sweating — *Тут потрібна форма `sweat`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-55:i04; family: speed_match -->
-stream — дивитися онлайн · photograph — фотографувати · cafes — кафе · artist — художник
+sweat — пітніти · gym — спортзал · water — вода · cold — холодний
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — shiver**
+<!-- interaction_id: en:lesson-07:session-55:word:shiver; family: word_card -->
+> **shiver** — тремтіти від холоду. I usually shiver in cold water. — «Я зазвичай тремчу в холодній воді». Дрібно тремтіти, наприклад від холоду.
+
+**7 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-55:i05; family: listen_build_dictation -->
-🔊 *I often stream films.* Плитки: `films` `stream` `often` `I` → **I often stream films.**
+🔊 *I usually shiver in cold water.* Плитки: `water` `shivers` `cold` `in` `shiver` `usually` `I` → **I usually shiver in cold water.**
+*(плитка `shivers` зайва: тут потрібно `shiver` — `I usually shiver in cold water.`)*
 
-**6 · Скажіть «Я часто фотографую птахів»**
+**8 · Картка слова — surgery**
+<!-- interaction_id: en:lesson-07:session-55:word:surgery; family: word_card -->
+> **surgery** — кабінет лікаря, лікарська практика (британська англійська). Where is the surgery? — «Де кабінет лікаря?» Місце, де лікар приймає пацієнтів.
+
+**9 · Ви прийшли на прийом. Спитайте адміністратора: «Де кабінет лікаря?»**
 <!-- interaction_id: en:lesson-07:session-55:i06; family: phrase_builder -->
-Плитки: `birds` `photograph` `often` `I` → **I often photograph birds.**
+Плитки: `surgery` `are` `the` `is` `Where` → **Where is the surgery?**
+*(плитка `are` зайва: тут потрібно `is` — `Where is the surgery?`)*
 
-**7 · Запитайте друга про кілька кафе: «Де кафе?»**
+**10 · Ви показуєте адміністратору двері. Уточніть: «Це кабінет лікаря?»**
 <!-- interaction_id: en:lesson-07:session-55:i07; family: scripted_repeat_compare -->
-🎙 **Where are the cafes?**
+🎙 **Is this the surgery?**
 
-**8 · Скажіть «Я часто фотографую птахів»**
+**11 · Картка слова — swallow**
+<!-- interaction_id: en:lesson-07:session-55:word:swallow; family: word_card -->
+> **swallow** — ковтати. I usually swallow a tablet with water. — «Я зазвичай ковтаю таблетку з водою». Рухом горла переміщувати їжу, рідину чи таблетку з рота далі.
+
+**12 · Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-55:i08; family: context_gap_grammar -->
-I often ___ birds. → **photograph** · photographs · photographing
-- photographs — *Після `I` потрібне `photograph`.*
-- photographing — *Тут потрібна форма `photograph`.*
+I usually ___ a tablet with water. → **swallow** · swallows · swallowing
+- swallows — *Після `I` потрібно `swallow`, без закінчення.*
+- swallowing — *Тут потрібна форма `swallow`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-55:i09; family: listen_choose -->
-🔊 *I often stream films.* → **I often stream films.** · We often stream films. · They often stream films.
-- We often stream films. — *У записі перше слово — `I`, а в цьому варіанті — `We`.*
-- They often stream films. — *У записі перше слово — `I`, а в цьому варіанті — `They`.*
+🔊 *I usually shiver in cold water.* → **I usually shiver in cold water.** · I usually shiver in hot water. · I usually shiver in warm water.
+- I usually shiver in hot water. — *У записі останні слова — cold water, холодна вода, а в цьому варіанті — hot water, гаряча вода.*
+- I usually shiver in warm water. — *У записі останні слова — cold water, холодна вода, а в цьому варіанті — warm water, тепла вода.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-55:i10; family: speed_match -->
-mural — настінний розпис · stream — дивитися онлайн · photograph — фотографувати · cafes — кафе
+swallow — ковтати · sweat — пітніти · shiver — тремтіти від холоду · tablet — таблетка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-55:i11; family: listen_build_dictation -->
-🔊 *Where are the cafes?* Плитки: `cafes` `the` `are` `Where` → **Where are the cafes?**
+🔊 *She often sweats at the gym.* Плитки: `gym` `sweat` `the` `at` `sweats` `often` `She` → **She often sweats at the gym.**
+*(плитка `sweat` зайва: тут потрібно `sweats` — `She often sweats at the gym.`)*
 
-**12 · Ви шукаєте настінний розпис, про який розповів друг. Запитайте «Де настінний розпис?»**
+**16 · Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою»**
 <!-- interaction_id: en:lesson-07:session-55:i12; family: phrase_builder -->
-Плитки: `mural` `the` `is` `Where` → **Where is the mural?**
+Плитки: `water` `often` `with` `tablet` `a` `swallow` `usually` `I` → **I usually swallow a tablet with water.**
+*(плитка `often` зайва: тут потрібно `usually` — `I usually swallow a tablet with water.`)*
 
-**13 · Ви розглядаєте малюнки Тома. Запитайте його подругу «Том художник?»**
+**17 · Друг питає про вашого брата. Скажіть: «Він зазвичай тремтить у холодній воді»**
 <!-- interaction_id: en:lesson-07:session-55:i13; family: scripted_repeat_compare -->
-🎙 **Is Tom an artist?**
+🎙 **He usually shivers in cold water.**
 
-**14 · Скажіть «Я часто дивлюся фільми онлайн»**
+**18 · Друг питає про озеро. Скажіть: «Я зазвичай тремчу в холодній воді». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-55:i14; family: context_gap_grammar -->
-I ___ stream films. → **often** · does · am
-- does — *Для «часто» потрібне `often` перед `stream`.*
-- am — *Для «часто» потрібне `often`; `am` перед `stream` не ставимо.*
+I ___ shiver in cold water. → **usually** · does · am
+- does — *Для «зазвичай» потрібно `usually` перед `shiver`.*
+- am — *Для «зазвичай» потрібно `usually`; `am` перед `shiver` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-55:i15; family: listen_choose -->
-🔊 *Where are the cafes?* → **Where are the cafes?** · Where are the restaurants? · Where are the hotels?
-- Where are the restaurants? — *У записі останнє слово — `cafes`, а в цьому варіанті — `restaurants`.*
-- Where are the hotels? — *У записі останнє слово — `cafes`, а в цьому варіанті — `hotels`.*
+🔊 *Where is the surgery?* → **Where is the surgery?** · Where is the clinic? · Where is the pharmacy?
+- Where is the clinic? — *У записі останнє слово — `surgery`, а в цьому варіанті — `clinic`.*
+- Where is the pharmacy? — *У записі останнє слово — `surgery`, а в цьому варіанті — `pharmacy`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-55:i16; family: speed_match -->
-stream — дивитися онлайн · artist — художник · mural — настінний розпис · photograph — фотографувати
+surgery — кабінет лікаря · swallow — ковтати · shiver — тремтіти від холоду · clinic — клініка
 
-**17 · Друг запитує, як Том дивиться фільми. Скажіть «Том часто дивиться фільми онлайн»**
+**21 · Тренер питає про вашого брата. Скажіть: «Мій брат часто пітніє в спортзалі»**
 <!-- interaction_id: en:lesson-07:session-55:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often streams films.**
-
+🎙 **My brother often sweats at the gym.**

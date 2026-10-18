@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 55 — Смотрю фильмы онлайн
+# Английский · Урок 7 · Занятие 55 — Тело и здоровье
 
-**Ситуация.** Вы рассказываете о фильмах онлайн, фотографиях птиц и кафе на карте.
+**Ситуация.** Вы рассказываете о том, как реагирует тело: что вы потеете в зале, дрожите в холодной воде, глотаете таблетку, и спрашиваете дорогу к кабинету врача.
 
-**Что вы освоите:** рассказывать о привычках и спрашивать о месте
-**Новые слова:** stream
+**Что вы освоите:** рассказывать о привычках тела и спрашивать «Где …?»
+**Новые слова:** sweat, shiver, surgery, swallow
+**Возвращаются:** gym, water, tablet, cold, hot, warm, clinic, pharmacy
 
 ---
 
 ## Интро 1
 
-### Фильм на вечер
+### После тренировки
 
-Друг спрашивает, как вы обычно смотрите фильмы. `Stream` здесь — «смотреть через интернет, не скачивая сначала весь файл». `I often stream films` — «Я часто смотрю фильмы онлайн». `Often` стоит перед `stream`. Фильм уже можно смотреть — не надо ждать, пока весь он поместится в телефон.
+К концу тренировки в спортзале ваша футболка совсем мокрая, а лоб блестит. Тренер замечает это и спрашивает, часто ли так бывает на тренировках. sweat — «потеть». Скажите: I often sweat at the gym — «Я часто потею в спортзале». Слово often стоит перед sweat.
 
-**Расскажите другу о своей привычке.**
+**Тренер спрашивает про мокрую футболку. Ответьте: «Я часто потею в спортзале».**
 
-- ✅ **I often stream films.**
-- ❌ I often streams films. — *После `I` нужно `stream`.*
-- ❌ I often streaming films. — *Здесь нужна форма `stream`.*
+- ✅ **I often sweat at the gym.**
+- ❌ I often sweats at the gym. — *После I нужно sweat, без s.*
+- ❌ I often sweating at the gym. — *Здесь нужна форма sweat.*
 
 ---
 
 ## Интро 2
 
-### Снимки с прогулки
+### Купание в озере
 
-Подруга смотрит ваши фотографии птиц. `I often photograph birds` — «Я часто фотографирую птиц». `Often` стоит перед `photograph`; `birds` говорит, кого вы фотографируете. Птица улетела, зато фотография осталась.
+Друг зовёт вас искупаться в озере. Вода холодная, и стоит вам зайти по пояс, как всё тело начинает мелко трястись. shiver — «дрожать от холода». Скажите: I usually shiver in cold water — «Я обычно дрожу в холодной воде». Слово usually стоит перед shiver.
 
-**Расскажите подруге, кого вы часто фотографируете.**
+**Друг спрашивает, как вы обычно реагируете на холодную воду. Ответьте: «Я обычно дрожу в холодной воде».**
 
-- ✅ **I often photograph birds.**
-- ❌ I often photographs birds. — *После `I` нужно `photograph`.*
-- ❌ I often photographing birds. — *Здесь нужна форма `photograph`.*
+- ✅ **I usually shiver in cold water.**
+- ❌ I usually shivers in cold water. — *После I нужно shiver, без s.*
+- ❌ I usually shivering in cold water. — *После I usually нужна форма shiver, без -ing.*
 
 ---
 
 ## Интро 3
 
-### Кафе на карте
+### Приём у врача
 
-Вы хотите выпить кофе и просите друга показать кафе на карте. `Where are the cafes?` — «Где кафе?» Речь о нескольких кафе, поэтому после `where` нужно `are`, затем `the cafes`.
+В Великобритании у вас назначен приём у врача, но в большом доме вы не нашли нужную табличку. Администратор у входа готов подсказать. В британском английском surgery здесь означает «кабинет врача, врачебная практика». У surgery есть и другое значение — «хирургия». Спросите: Where is the surgery? — «Где кабинет врача?» После Where идёт is, а потом the surgery.
 
-**Спросите, где находятся кафе.**
+**Администратор у входа ждёт вашего вопроса. Спросите: «Где кабинет врача?»**
 
-- ✅ **Where are the cafes?**
-- ❌ Where is the cafes? — *Кафе несколько: нужно `are`.*
-- ❌ Where the cafes are? — *В этом вопросе `are` стоит перед `the cafes`.*
+- ✅ **Where is the surgery?**
+- ❌ Where are the surgery? — *Кабинет один: нужно is.*
+- ❌ Where the surgery is? — *В этом вопросе is стоит перед the surgery.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я часто смотрю фильмы онлайн»**
+**1 · Карточка слова — sweat**
+<!-- interaction_id: en:lesson-07:session-55:word:sweat; family: word_card -->
+> **sweat** — потеть. I often sweat at the gym. — «Я часто потею в спортзале». Когда телу жарко, на коже выступает влага.
+
+**2 · Тренер замечает мокрую футболку. Скажите: «Я часто потею в спортзале»**
 <!-- interaction_id: en:lesson-07:session-55:i01; family: phrase_builder -->
-Плитки: `films` `stream` `often` `I` → **I often stream films.**
+Плитки: `gym` `usually` `the` `at` `sweat` `often` `I` → **I often sweat at the gym.**
+*(плитка `usually` лишняя: здесь нужно `often` — `I often sweat at the gym.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-55:i02; family: listen_choose -->
-🔊 *stream* → **stream** · surf · browse
-- surf — *В записи первое слово — `stream`, а в этом варианте — `surf`.*
-- browse — *В записи первое слово — `stream`, а в этом варианте — `browse`.*
+🔊 *sweat* → **sweat** · sweep · sweet
+- sweep — *В записи первое слово — `sweat`, а в этом варианте — `sweep`.*
+- sweet — *В записи первое слово — `sweat`, а в этом варианте — `sweet`.*
 
-**3 · Скажите «Я часто смотрю фильмы онлайн»**
+**4 · Тренер спрашивает, часто ли вы потеете на тренировках. Скажите: «Я часто потею в спортзале». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-55:i03; family: context_gap_grammar -->
-I often ___ films. → **stream** · streams · streaming
-- streams — *После `I` нужно `stream`.*
-- streaming — *Здесь нужна форма `stream`.*
+I often ___ at the gym. → **sweat** · sweats · sweating
+- sweats — *После `I` нужно `sweat`, без окончания.*
+- sweating — *Здесь нужна форма `sweat`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-55:i04; family: speed_match -->
-stream — смотреть онлайн · photograph — фотографировать · cafes — кафе · artist — художник
+sweat — потеть · gym — спортзал · water — вода · cold — холодный
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — shiver**
+<!-- interaction_id: en:lesson-07:session-55:word:shiver; family: word_card -->
+> **shiver** — дрожать от холода. I usually shiver in cold water. — «Я обычно дрожу в холодной воде». Мелко трястись, когда замёрз.
+
+**7 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-55:i05; family: listen_build_dictation -->
-🔊 *I often stream films.* Плитки: `films` `stream` `often` `I` → **I often stream films.**
+🔊 *I usually shiver in cold water.* Плитки: `water` `shivers` `cold` `in` `shiver` `usually` `I` → **I usually shiver in cold water.**
+*(плитка `shivers` лишняя: здесь нужно `shiver` — `I usually shiver in cold water.`)*
 
-**6 · Скажите «Я часто фотографирую птиц»**
+**8 · Карточка слова — surgery**
+<!-- interaction_id: en:lesson-07:session-55:word:surgery; family: word_card -->
+> **surgery** — кабинет врача, врачебная практика (британский английский). Where is the surgery? — «Где кабинет врача?» Место, где врач принимает пациентов.
+
+**9 · Вы пришли на приём. Спросите администратора: «Где кабинет врача?»**
 <!-- interaction_id: en:lesson-07:session-55:i06; family: phrase_builder -->
-Плитки: `birds` `photograph` `often` `I` → **I often photograph birds.**
+Плитки: `surgery` `are` `the` `is` `Where` → **Where is the surgery?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the surgery?`)*
 
-**7 · Спросите друга о нескольких кафе: «Где кафе?»**
+**10 · Вы показываете администратору дверь. Уточните: «Это кабинет врача?»**
 <!-- interaction_id: en:lesson-07:session-55:i07; family: scripted_repeat_compare -->
-🎙 **Where are the cafes?**
+🎙 **Is this the surgery?**
 
-**8 · Скажите «Я часто фотографирую птиц»**
+**11 · Карточка слова — swallow**
+<!-- interaction_id: en:lesson-07:session-55:word:swallow; family: word_card -->
+> **swallow** — глотать. I usually swallow a tablet with water. — «Я обычно глотаю таблетку с водой». Движением горла перемещать пищу, жидкость или таблетку изо рта дальше.
+
+**12 · Подруга спрашивает, как вы обычно принимаете назначенную вам таблетку. Скажите: «Я обычно глотаю таблетку с водой». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-55:i08; family: context_gap_grammar -->
-I often ___ birds. → **photograph** · photographs · photographing
-- photographs — *После `I` нужно `photograph`.*
-- photographing — *Здесь нужна форма `photograph`.*
+I usually ___ a tablet with water. → **swallow** · swallows · swallowing
+- swallows — *После `I` нужно `swallow`, без окончания.*
+- swallowing — *Здесь нужна форма `swallow`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-55:i09; family: listen_choose -->
-🔊 *I often stream films.* → **I often stream films.** · We often stream films. · They often stream films.
-- We often stream films. — *В записи первое слово — `I`, а в этом варианте — `We`.*
-- They often stream films. — *В записи первое слово — `I`, а в этом варианте — `They`.*
+🔊 *I usually shiver in cold water.* → **I usually shiver in cold water.** · I usually shiver in hot water. · I usually shiver in warm water.
+- I usually shiver in hot water. — *В записи последние слова — cold water, холодная вода, а в этом варианте — hot water, горячая вода.*
+- I usually shiver in warm water. — *В записи последние слова — cold water, холодная вода, а в этом варианте — warm water, тёплая вода.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-55:i10; family: speed_match -->
-mural — настенная роспись · stream — смотреть онлайн · photograph — фотографировать · cafes — кафе
+swallow — глотать · sweat — потеть · shiver — дрожать от холода · tablet — таблетка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-55:i11; family: listen_build_dictation -->
-🔊 *Where are the cafes?* Плитки: `cafes` `the` `are` `Where` → **Where are the cafes?**
+🔊 *She often sweats at the gym.* Плитки: `gym` `sweat` `the` `at` `sweats` `often` `She` → **She often sweats at the gym.**
+*(плитка `sweat` лишняя: здесь нужно `sweats` — `She often sweats at the gym.`)*
 
-**12 · Вы ищете настенную роспись, о которой рассказал друг. Спросите «Где настенная роспись?»**
+**16 · Подруга спрашивает, как вы обычно принимаете назначенную вам таблетку. Скажите: «Я обычно глотаю таблетку с водой»**
 <!-- interaction_id: en:lesson-07:session-55:i12; family: phrase_builder -->
-Плитки: `mural` `the` `is` `Where` → **Where is the mural?**
+Плитки: `water` `often` `with` `tablet` `a` `swallow` `usually` `I` → **I usually swallow a tablet with water.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually swallow a tablet with water.`)*
 
-**13 · Вы рассматриваете рисунки Тома. Спросите его подругу «Том художник?»**
+**17 · Друг спрашивает про вашего брата. Скажите: «Он обычно дрожит в холодной воде»**
 <!-- interaction_id: en:lesson-07:session-55:i13; family: scripted_repeat_compare -->
-🎙 **Is Tom an artist?**
+🎙 **He usually shivers in cold water.**
 
-**14 · Скажите «Я часто смотрю фильмы онлайн»**
+**18 · Друг спрашивает про озеро. Скажите: «Я обычно дрожу в холодной воде». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-55:i14; family: context_gap_grammar -->
-I ___ stream films. → **often** · does · am
-- does — *Для «часто» нужно `often` перед `stream`.*
-- am — *Для «часто» нужно `often`; `am` перед `stream` не ставим.*
+I ___ shiver in cold water. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `shiver`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `shiver` не ставим.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-55:i15; family: listen_choose -->
-🔊 *Where are the cafes?* → **Where are the cafes?** · Where are the restaurants? · Where are the hotels?
-- Where are the restaurants? — *В записи последнее слово — `cafes`, а в этом варианте — `restaurants`.*
-- Where are the hotels? — *В записи последнее слово — `cafes`, а в этом варианте — `hotels`.*
+🔊 *Where is the surgery?* → **Where is the surgery?** · Where is the clinic? · Where is the pharmacy?
+- Where is the clinic? — *В записи последнее слово — `surgery`, а в этом варианте — `clinic`.*
+- Where is the pharmacy? — *В записи последнее слово — `surgery`, а в этом варианте — `pharmacy`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-55:i16; family: speed_match -->
-stream — смотреть онлайн · artist — художник · mural — настенная роспись · photograph — фотографировать
+surgery — кабинет врача · swallow — глотать · shiver — дрожать от холода · clinic — клиника
 
-**17 · Друг спрашивает, как Том смотрит фильмы. Скажите «Том часто смотрит фильмы онлайн»**
+**21 · Тренер спрашивает про вашего брата. Скажите: «Мой брат часто потеет в спортзале»**
 <!-- interaction_id: en:lesson-07:session-55:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often streams films.**
-
+🎙 **My brother often sweats at the gym.**

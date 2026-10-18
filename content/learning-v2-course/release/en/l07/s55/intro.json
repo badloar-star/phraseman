@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-55",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках и спрашивать о месте",
-    "uk": "розповідати про звички й запитувати про місце"
+    "ru": "рассказывать о привычках тела и спрашивать «Где …?»",
+    "uk": "розповідати про звички тіла та питати «Де …?»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Фильм на вечер",
-        "uk": "Фільм на вечір"
+        "ru": "После тренировки",
+        "uk": "Після тренування"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, как вы обычно смотрите фильмы. `Stream` здесь — «смотреть через интернет, не скачивая сначала весь файл». `I often stream films` — «Я часто смотрю фильмы онлайн». `Often` стоит перед `stream`. Фильм уже можно смотреть — не надо ждать, пока весь он поместится в телефон.",
-        "uk": "Друг запитує, як ви зазвичай дивитеся фільми. `Stream` тут — «дивитися через інтернет, не завантажуючи спочатку весь файл». `I often stream films` — «Я часто дивлюся фільми онлайн». `Often` стоїть перед `stream`. Фільм уже можна дивитися — не треба чекати, поки весь він уміститься в телефон."
+        "ru": "К концу тренировки в спортзале ваша футболка совсем мокрая, а лоб блестит. Тренер замечает это и спрашивает, часто ли так бывает на тренировках. sweat — «потеть». Скажите: I often sweat at the gym — «Я часто потею в спортзале». Слово often стоит перед sweat.",
+        "uk": "Наприкінці тренування в спортзалі ваша футболка зовсім мокра, а чоло блищить. Тренер помічає це й питає, чи часто так буває на тренуваннях. sweat — «пітніти». Скажіть: I often sweat at the gym — «Я часто пітнію в спортзалі». Слово often стоїть перед sweat."
       },
       "question": {
         "interactionId": "en:lesson-07:session-55:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Тренер спрашивает про мокрую футболку. Ответьте: «Я часто потею в спортзале».",
+          "uk": "Тренер питає про мокру футболку. Відповідьте: «Я часто пітнію в спортзалі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-55:intro1:r1",
-              "text": "I often stream films."
+              "text": "I often sweat at the gym."
             },
             {
               "responseId": "en:lesson-07:session-55:intro1:r2",
-              "text": "I often streams films."
+              "text": "I often sweats at the gym."
             },
             {
               "responseId": "en:lesson-07:session-55:intro1:r3",
-              "text": "I often streaming films."
+              "text": "I often sweating at the gym."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-55:intro1:r1",
-              "text": "I often stream films."
+              "text": "I often sweat at the gym."
             },
             {
               "responseId": "en:lesson-07:session-55:intro1:r2",
-              "text": "I often streams films."
+              "text": "I often sweats at the gym."
             },
             {
               "responseId": "en:lesson-07:session-55:intro1:r3",
-              "text": "I often streaming films."
+              "text": "I often sweating at the gym."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Тренер спрашивает про мокрую футболку. Ответьте: «Я часто потею в спортзале».",
+          "uk": "Тренер питає про мокру футболку. Відповідьте: «Я часто пітнію в спортзалі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Снимки с прогулки",
-        "uk": "Знімки з прогулянки"
+        "ru": "Купание в озере",
+        "uk": "Купання в озері"
       },
       "bodyByLocale": {
-        "ru": "Подруга смотрит ваши фотографии птиц. `I often photograph birds` — «Я часто фотографирую птиц». `Often` стоит перед `photograph`; `birds` говорит, кого вы фотографируете. Птица улетела, зато фотография осталась.",
-        "uk": "Подруга дивиться ваші фотографії птахів. `I often photograph birds` — «Я часто фотографую птахів». `Often` стоїть перед `photograph`; `birds` говорить, кого ви фотографуєте. Птах полетів, зате фотографія залишилася."
+        "ru": "Друг зовёт вас искупаться в озере. Вода холодная, и стоит вам зайти по пояс, как всё тело начинает мелко трястись. shiver — «дрожать от холода». Скажите: I usually shiver in cold water — «Я обычно дрожу в холодной воде». Слово usually стоит перед shiver.",
+        "uk": "Друг кличе вас скупатися в озері. Вода холодна, і варто вам зайти по пояс, як усе тіло починає дрібно трусити. shiver — «тремтіти від холоду». Скажіть: I usually shiver in cold water — «Я зазвичай тремчу в холодній воді». Слово usually стоїть перед shiver."
       },
       "question": {
         "interactionId": "en:lesson-07:session-55:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите подруге, кого вы часто фотографируете.",
-          "uk": "Розкажіть подрузі, кого ви часто фотографуєте."
+          "ru": "Друг спрашивает, как вы обычно реагируете на холодную воду. Ответьте: «Я обычно дрожу в холодной воде».",
+          "uk": "Друг питає, як ви зазвичай реагуєте на холодну воду. Відповідьте: «Я зазвичай тремчу в холодній воді»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-55:intro2:r1",
-              "text": "I often photograph birds."
+              "text": "I usually shiver in cold water."
             },
             {
               "responseId": "en:lesson-07:session-55:intro2:r2",
-              "text": "I often photographs birds."
+              "text": "I usually shivers in cold water."
             },
             {
               "responseId": "en:lesson-07:session-55:intro2:r3",
-              "text": "I often photographing birds."
+              "text": "I usually shivering in cold water."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-55:intro2:r1",
-              "text": "I often photograph birds."
+              "text": "I usually shiver in cold water."
             },
             {
               "responseId": "en:lesson-07:session-55:intro2:r2",
-              "text": "I often photographs birds."
+              "text": "I usually shivers in cold water."
             },
             {
               "responseId": "en:lesson-07:session-55:intro2:r3",
-              "text": "I often photographing birds."
+              "text": "I usually shivering in cold water."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите подруге, кого вы часто фотографируете.",
-          "uk": "Розкажіть подрузі, кого ви часто фотографуєте."
+          "ru": "Друг спрашивает, как вы обычно реагируете на холодную воду. Ответьте: «Я обычно дрожу в холодной воде».",
+          "uk": "Друг питає, як ви зазвичай реагуєте на холодну воду. Відповідьте: «Я зазвичай тремчу в холодній воді»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кафе на карте",
-        "uk": "Кафе на карті"
+        "ru": "Приём у врача",
+        "uk": "Прийом у лікаря"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите выпить кофе и просите друга показать кафе на карте. `Where are the cafes?` — «Где кафе?» Речь о нескольких кафе, поэтому после `where` нужно `are`, затем `the cafes`.",
-        "uk": "Ви хочете випити кави й просите друга показати кафе на карті. `Where are the cafes?` — «Де кафе?» Йдеться про кілька кафе, тому після `where` потрібне `are`, потім `the cafes`."
+        "ru": "В Великобритании у вас назначен приём у врача, но в большом доме вы не нашли нужную табличку. Администратор у входа готов подсказать. В британском английском surgery здесь означает «кабинет врача, врачебная практика». У surgery есть и другое значение — «хирургия». Спросите: Where is the surgery? — «Где кабинет врача?» После Where идёт is, а потом the surgery.",
+        "uk": "У Великій Британії у вас призначений прийом у лікаря, але у великому будинку ви не знайшли потрібну табличку. Адміністратор біля входу готовий підказати. У британській англійській surgery тут означає «кабінет лікаря, лікарська практика». У surgery є й інше значення — «хірургія». Спитайте: Where is the surgery? — «Де кабінет лікаря?» Після Where йде is, а потім the surgery."
       },
       "question": {
         "interactionId": "en:lesson-07:session-55:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где находятся кафе.",
-          "uk": "Запитайте, де розташовані кафе."
+          "ru": "Администратор у входа ждёт вашего вопроса. Спросите: «Где кабинет врача?»",
+          "uk": "Адміністратор біля входу чекає на ваше запитання. Спитайте: «Де кабінет лікаря?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-55:intro3:r1",
-              "text": "Where are the cafes?"
+              "text": "Where is the surgery?"
             },
             {
               "responseId": "en:lesson-07:session-55:intro3:r2",
-              "text": "Where is the cafes?"
+              "text": "Where are the surgery?"
             },
             {
               "responseId": "en:lesson-07:session-55:intro3:r3",
-              "text": "Where the cafes are?"
+              "text": "Where the surgery is?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-55:intro3:r1",
-              "text": "Where are the cafes?"
+              "text": "Where is the surgery?"
             },
             {
               "responseId": "en:lesson-07:session-55:intro3:r2",
-              "text": "Where is the cafes?"
+              "text": "Where are the surgery?"
             },
             {
               "responseId": "en:lesson-07:session-55:intro3:r3",
-              "text": "Where the cafes are?"
+              "text": "Where the surgery is?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где находятся кафе.",
-          "uk": "Запитайте, де розташовані кафе."
+          "ru": "Администратор у входа ждёт вашего вопроса. Спросите: «Где кабинет врача?»",
+          "uk": "Адміністратор біля входу чекає на ваше запитання. Спитайте: «Де кабінет лікаря?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "64ca8dcb38929046cdf74d0154a50811910aa1dadaa5b059273cfc7953a60697"
+  "introFingerprint": "c6518d52c08dc102a75a0468aa26992c0363cbfaf8cc0d8f323bcb1dc347c3fd"
 }

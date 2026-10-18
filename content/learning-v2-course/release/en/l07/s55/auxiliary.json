@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-55:intro1:r2": {
-          "ru": "После `I` нужно `stream`.",
-          "uk": "Після `I` потрібне `stream`."
+          "ru": "После I нужно sweat, без s.",
+          "uk": "Після I потрібно sweat, без s."
         },
         "en:lesson-07:session-55:intro1:r3": {
-          "ru": "Здесь нужна форма `stream`.",
-          "uk": "Тут потрібна форма `stream`."
+          "ru": "Здесь нужна форма sweat.",
+          "uk": "Тут потрібна форма sweat."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-55:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-55:intro2:r2": {
-          "ru": "После `I` нужно `photograph`.",
-          "uk": "Після `I` потрібне `photograph`."
+          "ru": "После I нужно shiver, без s.",
+          "uk": "Після I потрібно shiver, без s."
         },
         "en:lesson-07:session-55:intro2:r3": {
-          "ru": "Здесь нужна форма `photograph`.",
-          "uk": "Тут потрібна форма `photograph`."
+          "ru": "После I usually нужна форма shiver, без -ing.",
+          "uk": "Після I usually потрібна форма shiver, без -ing."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-55:intro3:r2": {
-          "ru": "Кафе несколько: нужно `are`.",
-          "uk": "Кафе кілька: потрібне `are`."
+          "ru": "Кабинет один: нужно is.",
+          "uk": "Кабінет один: потрібно is."
         },
         "en:lesson-07:session-55:intro3:r3": {
-          "ru": "В этом вопросе `are` стоит перед `the cafes`.",
-          "uk": "У цьому запитанні `are` стоїть перед `the cafes`."
+          "ru": "В этом вопросе is стоит перед the surgery.",
+          "uk": "У цьому запитанні is стоїть перед the surgery."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7868f990a3a81070f5e1ad920fb71c4018c546aef82d3f352b7d50aaeca9af0e"
+  "auxiliaryFingerprint": "7f9676c14d6a8c024396ebf55d5805c3f40c36562339855ae536b2d4f71eca53"
 }

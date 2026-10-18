@@ -4,31 +4,88 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-55:i01",
+      "interactionId": "en:lesson-07:session-55:word:sweat",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sweat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:word:sweat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sweat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:word:sweat:audio",
+          "transcript": "sweat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-55:word:sweat:r1",
+            "targetText": "sweat",
+            "meaningByLocale": {
+              "ru": "потеть. I often sweat at the gym. — «Я часто потею в спортзале». Когда телу жарко, на коже выступает влага.",
+              "uk": "пітніти. I often sweat at the gym. — «Я часто пітнію в спортзалі». Коли тілу жарко, на шкірі виступає волога."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweat",
+          "definitionByLocale": {
+            "ru": "потеть. I often sweat at the gym. — «Я часто потею в спортзале». Когда телу жарко, на коже выступает влага.",
+            "uk": "пітніти. I often sweat at the gym. — «Я часто пітнію в спортзалі». Коли тілу жарко, на шкірі виступає волога."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я часто дивлюся фільми онлайн»",
+      "prompt": "Тренер помічає мокру футболку. Скажіть: «Я часто пітнію в спортзалі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто дивлюся фільми онлайн»",
+      "accessibilityLabel": "Тренер помічає мокру футболку. Скажіть: «Я часто пітнію в спортзалі»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often stream films.",
+        "targetPhrase": "I often sweat at the gym.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто смотрю фильмы онлайн»",
-          "uk": "Скажіть «Я часто дивлюся фільми онлайн»"
+          "ru": "Тренер замечает мокрую футболку. Скажите: «Я часто потею в спортзале»",
+          "uk": "Тренер помічає мокру футболку. Скажіть: «Я часто пітнію в спортзалі»"
         },
         "orderedTokens": [
           "I",
           "often",
-          "stream",
-          "films"
+          "sweat",
+          "at",
+          "the",
+          "gym"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "usually"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Тренер помічає мокру футболку. Скажіть: «Я часто пітнію в спортзалі»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `often` — `I often sweat at the gym.`",
+              "uk": "тут потрібно `often` — `I often sweat at the gym.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,7 +95,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -46,15 +103,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-55:i02:r1",
-          "text": "stream"
+          "text": "sweat"
         },
         {
           "responseId": "en:lesson-07:session-55:i02:r2",
-          "text": "surf"
+          "text": "sweep"
         },
         {
           "responseId": "en:lesson-07:session-55:i02:r3",
-          "text": "browse"
+          "text": "sweet"
         }
       ],
       "mediaIds": [],
@@ -66,23 +123,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i02:audio",
-          "transcript": "stream"
+          "transcript": "sweat"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-55:i02:r1",
-            "targetText": "stream",
+            "targetText": "sweat",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-55:i02:r2",
-            "targetText": "surf",
+            "targetText": "sweep",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-55:i02:r3",
-            "targetText": "browse",
+            "targetText": "sweet",
             "meaningByLocale": null
           }
         ],
@@ -93,8 +150,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `stream`, а в этом варианте — `surf`.",
-              "uk": "У записі перше слово — `stream`, а в цьому варіанті — `surf`."
+              "ru": "В записи первое слово — `sweat`, а в этом варианте — `sweep`.",
+              "uk": "У записі перше слово — `sweat`, а в цьому варіанті — `sweep`."
             }
           },
           {
@@ -102,8 +159,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `stream`, а в этом варианте — `browse`.",
-              "uk": "У записі перше слово — `stream`, а в цьому варіанті — `browse`."
+              "ru": "В записи первое слово — `sweat`, а в этом варианте — `sweet`.",
+              "uk": "У записі перше слово — `sweat`, а в цьому варіанті — `sweet`."
             }
           }
         ],
@@ -114,67 +171,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто дивлюся фільми онлайн»",
+      "prompt": "Тренер питає, чи часто ви пітнієте на тренуваннях. Скажіть: «Я часто пітнію в спортзалі». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-55:i03:r1",
-          "text": "stream"
+          "text": "sweat"
         },
         {
           "responseId": "en:lesson-07:session-55:i03:r2",
-          "text": "streams"
+          "text": "sweats"
         },
         {
           "responseId": "en:lesson-07:session-55:i03:r3",
-          "text": "streaming"
+          "text": "sweating"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто дивлюся фільми онлайн»",
+      "accessibilityLabel": "Тренер питає, чи часто ви пітнієте на тренуваннях. Скажіть: «Я часто пітнію в спортзалі». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто смотрю фильмы онлайн»",
-          "uk": "Скажіть «Я часто дивлюся фільми онлайн»"
+          "ru": "Тренер спрашивает, часто ли вы потеете на тренировках. Скажите: «Я часто потею в спортзале». Выберите слово",
+          "uk": "Тренер питає, чи часто ви пітнієте на тренуваннях. Скажіть: «Я часто пітнію в спортзалі». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ films.",
+        "gappedTargetPhrase": "I often ___ at the gym.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-55:i03:r1",
-            "text": "stream"
+            "text": "sweat"
           },
           {
             "responseId": "en:lesson-07:session-55:i03:r2",
-            "text": "streams"
+            "text": "sweats"
           },
           {
             "responseId": "en:lesson-07:session-55:i03:r3",
-            "text": "streaming"
+            "text": "sweating"
           }
         ],
-        "testedDimension": "Скажіть «Я часто дивлюся фільми онлайн»",
+        "testedDimension": "Тренер питає, чи часто ви пітнієте на тренуваннях. Скажіть: «Я часто пітнію в спортзалі». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-55:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто дивлюся фільми онлайн»",
+            "testedDimension": "Тренер питає, чи часто ви пітнієте на тренуваннях. Скажіть: «Я часто пітнію в спортзалі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `stream`.",
-              "uk": "Після `I` потрібне `stream`."
+              "ru": "После `I` нужно `sweat`, без окончания.",
+              "uk": "Після `I` потрібно `sweat`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-55:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто дивлюся фільми онлайн»",
+            "testedDimension": "Тренер питає, чи часто ви пітнієте на тренуваннях. Скажіть: «Я часто пітнію в спортзалі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `stream`.",
-              "uk": "Тут потрібна форма `stream`."
+              "ru": "Здесь нужна форма `sweat`.",
+              "uk": "Тут потрібна форма `sweat`."
             }
           }
         ]
@@ -183,7 +240,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +254,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-55:i04:p1",
-            "target": "stream",
+            "target": "sweat",
             "meaningByLocale": {
-              "ru": "смотреть онлайн",
-              "uk": "дивитися онлайн"
+              "ru": "потеть",
+              "uk": "пітніти"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i04:p2",
-            "target": "photograph",
+            "target": "gym",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "спортзал",
+              "uk": "спортзал"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i04:p3",
-            "target": "cafes",
+            "target": "water",
             "meaningByLocale": {
-              "ru": "кафе",
-              "uk": "кафе"
+              "ru": "вода",
+              "uk": "вода"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i04:p4",
-            "target": "artist",
+            "target": "cold",
             "meaningByLocale": {
-              "ru": "художник",
-              "uk": "художник"
+              "ru": "холодный",
+              "uk": "холодний"
             }
           }
         ],
         "leftColumn": [
-          "stream",
-          "photograph",
-          "cafes",
-          "artist"
+          "sweat",
+          "gym",
+          "water",
+          "cold"
         ],
         "rightColumn": [
-          "дивитися онлайн",
-          "фотографувати",
-          "кафе",
-          "художник"
+          "пітніти",
+          "спортзал",
+          "вода",
+          "холодний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,8 +312,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-55:word:shiver",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shiver",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:word:shiver:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shiver",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:word:shiver:audio",
+          "transcript": "shiver"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-55:word:shiver:r1",
+            "targetText": "shiver",
+            "meaningByLocale": {
+              "ru": "дрожать от холода. I usually shiver in cold water. — «Я обычно дрожу в холодной воде». Мелко трястись, когда замёрз.",
+              "uk": "тремтіти від холоду. I usually shiver in cold water. — «Я зазвичай тремчу в холодній воді». Дрібно тремтіти, наприклад від холоду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shiver",
+          "definitionByLocale": {
+            "ru": "дрожать от холода. I usually shiver in cold water. — «Я обычно дрожу в холодной воде». Мелко трястись, когда замёрз.",
+            "uk": "тремтіти від холоду. I usually shiver in cold water. — «Я зазвичай тремчу в холодній воді». Дрібно тремтіти, наприклад від холоду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-55:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -271,18 +371,32 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i05:audio",
-          "transcript": "I often stream films."
+          "transcript": "I usually shiver in cold water."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often stream films.",
+        "hiddenTargetPhrase": "I usually shiver in cold water.",
         "orderedTokens": [
           "I",
-          "often",
-          "stream",
-          "films"
+          "usually",
+          "shiver",
+          "in",
+          "cold",
+          "water"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "shivers"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `shiver` — `I usually shiver in cold water.`",
+              "uk": "тут потрібно `shiver` — `I usually shiver in cold water.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,31 +405,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-55:word:surgery",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — surgery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:word:surgery:audio"
+      ],
+      "accessibilityLabel": "Картка слова — surgery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:word:surgery:audio",
+          "transcript": "surgery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-55:word:surgery:r1",
+            "targetText": "surgery",
+            "meaningByLocale": {
+              "ru": "кабинет врача, врачебная практика (британский английский). Where is the surgery? — «Где кабинет врача?» Место, где врач принимает пациентов.",
+              "uk": "кабінет лікаря, лікарська практика (британська англійська). Where is the surgery? — «Де кабінет лікаря?» Місце, де лікар приймає пацієнтів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "surgery",
+          "definitionByLocale": {
+            "ru": "кабинет врача, врачебная практика (британский английский). Where is the surgery? — «Где кабинет врача?» Место, где врач принимает пациентов.",
+            "uk": "кабінет лікаря, лікарська практика (британська англійська). Where is the surgery? — «Де кабінет лікаря?» Місце, де лікар приймає пацієнтів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-55:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я часто фотографую птахів»",
+      "prompt": "Ви прийшли на прийом. Спитайте адміністратора: «Де кабінет лікаря?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто фотографую птахів»",
+      "accessibilityLabel": "Ви прийшли на прийом. Спитайте адміністратора: «Де кабінет лікаря?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often photograph birds.",
+        "targetPhrase": "Where is the surgery?",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто фотографирую птиц»",
-          "uk": "Скажіть «Я часто фотографую птахів»"
+          "ru": "Вы пришли на приём. Спросите администратора: «Где кабинет врача?»",
+          "uk": "Ви прийшли на прийом. Спитайте адміністратора: «Де кабінет лікаря?»"
         },
         "orderedTokens": [
-          "I",
-          "often",
-          "photograph",
-          "birds"
+          "Where",
+          "is",
+          "the",
+          "surgery"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви прийшли на прийом. Спитайте адміністратора: «Де кабінет лікаря?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the surgery?`",
+              "uk": "тут потрібно `is` — `Where is the surgery?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -325,25 +494,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте друга про кілька кафе: «Де кафе?»",
+      "prompt": "Ви показуєте адміністратору двері. Уточніть: «Це кабінет лікаря?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-55:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте друга про кілька кафе: «Де кафе?»",
+      "accessibilityLabel": "Ви показуєте адміністратору двері. Уточніть: «Це кабінет лікаря?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i07:audio",
-          "transcript": "Where are the cafes?"
+          "transcript": "Is this the surgery?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are the cafes?",
+        "targetPhrase": "Is this the surgery?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,68 +526,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-55:word:swallow",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swallow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:word:swallow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swallow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:word:swallow:audio",
+          "transcript": "swallow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-55:word:swallow:r1",
+            "targetText": "swallow",
+            "meaningByLocale": {
+              "ru": "глотать. I usually swallow a tablet with water. — «Я обычно глотаю таблетку с водой». Движением горла перемещать пищу, жидкость или таблетку изо рта дальше.",
+              "uk": "ковтати. I usually swallow a tablet with water. — «Я зазвичай ковтаю таблетку з водою». Рухом горла переміщувати їжу, рідину чи таблетку з рота далі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swallow",
+          "definitionByLocale": {
+            "ru": "глотать. I usually swallow a tablet with water. — «Я обычно глотаю таблетку с водой». Движением горла перемещать пищу, жидкость или таблетку изо рта дальше.",
+            "uk": "ковтати. I usually swallow a tablet with water. — «Я зазвичай ковтаю таблетку з водою». Рухом горла переміщувати їжу, рідину чи таблетку з рота далі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-55:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто фотографую птахів»",
+      "prompt": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-55:i08:r1",
-          "text": "photograph"
+          "text": "swallow"
         },
         {
           "responseId": "en:lesson-07:session-55:i08:r2",
-          "text": "photographs"
+          "text": "swallows"
         },
         {
           "responseId": "en:lesson-07:session-55:i08:r3",
-          "text": "photographing"
+          "text": "swallowing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто фотографую птахів»",
+      "accessibilityLabel": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто фотографирую птиц»",
-          "uk": "Скажіть «Я часто фотографую птахів»"
+          "ru": "Подруга спрашивает, как вы обычно принимаете назначенную вам таблетку. Скажите: «Я обычно глотаю таблетку с водой». Выберите слово",
+          "uk": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ birds.",
+        "gappedTargetPhrase": "I usually ___ a tablet with water.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-55:i08:r1",
-            "text": "photograph"
+            "text": "swallow"
           },
           {
             "responseId": "en:lesson-07:session-55:i08:r2",
-            "text": "photographs"
+            "text": "swallows"
           },
           {
             "responseId": "en:lesson-07:session-55:i08:r3",
-            "text": "photographing"
+            "text": "swallowing"
           }
         ],
-        "testedDimension": "Скажіть «Я часто фотографую птахів»",
+        "testedDimension": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-55:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто фотографую птахів»",
+            "testedDimension": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `photograph`.",
-              "uk": "Після `I` потрібне `photograph`."
+              "ru": "После `I` нужно `swallow`, без окончания.",
+              "uk": "Після `I` потрібно `swallow`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-55:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто фотографую птахів»",
+            "testedDimension": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `photograph`.",
-              "uk": "Тут потрібна форма `photograph`."
+              "ru": "Здесь нужна форма `swallow`.",
+              "uk": "Тут потрібна форма `swallow`."
             }
           }
         ]
@@ -427,7 +639,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -435,15 +647,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-55:i09:r1",
-          "text": "I often stream films."
+          "text": "I usually shiver in cold water."
         },
         {
           "responseId": "en:lesson-07:session-55:i09:r2",
-          "text": "We often stream films."
+          "text": "I usually shiver in hot water."
         },
         {
           "responseId": "en:lesson-07:session-55:i09:r3",
-          "text": "They often stream films."
+          "text": "I usually shiver in warm water."
         }
       ],
       "mediaIds": [],
@@ -455,23 +667,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i09:audio",
-          "transcript": "I often stream films."
+          "transcript": "I usually shiver in cold water."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-55:i09:r1",
-            "targetText": "I often stream films.",
+            "targetText": "I usually shiver in cold water.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-55:i09:r2",
-            "targetText": "We often stream films.",
+            "targetText": "I usually shiver in hot water.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-55:i09:r3",
-            "targetText": "They often stream films.",
+            "targetText": "I usually shiver in warm water.",
             "meaningByLocale": null
           }
         ],
@@ -482,8 +694,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
-              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+              "ru": "В записи последние слова — cold water, холодная вода, а в этом варианте — hot water, горячая вода.",
+              "uk": "У записі останні слова — cold water, холодна вода, а в цьому варіанті — hot water, гаряча вода."
             }
           },
           {
@@ -491,8 +703,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `I`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `I`, а в цьому варіанті — `They`."
+              "ru": "В записи последние слова — cold water, холодная вода, а в этом варианте — warm water, тёплая вода.",
+              "uk": "У записі останні слова — cold water, холодна вода, а в цьому варіанті — warm water, тепла вода."
             }
           }
         ],
@@ -503,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -517,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-55:i10:p1",
-            "target": "mural",
+            "target": "swallow",
             "meaningByLocale": {
-              "ru": "настенная роспись",
-              "uk": "настінний розпис"
+              "ru": "глотать",
+              "uk": "ковтати"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i10:p2",
-            "target": "stream",
+            "target": "sweat",
             "meaningByLocale": {
-              "ru": "смотреть онлайн",
-              "uk": "дивитися онлайн"
+              "ru": "потеть",
+              "uk": "пітніти"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i10:p3",
-            "target": "photograph",
+            "target": "shiver",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "дрожать от холода",
+              "uk": "тремтіти від холоду"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i10:p4",
-            "target": "cafes",
+            "target": "tablet",
             "meaningByLocale": {
-              "ru": "кафе",
-              "uk": "кафе"
+              "ru": "таблетка",
+              "uk": "таблетка"
             }
           }
         ],
         "leftColumn": [
-          "mural",
-          "stream",
-          "photograph",
-          "cafes"
+          "swallow",
+          "sweat",
+          "shiver",
+          "tablet"
         ],
         "rightColumn": [
-          "настінний розпис",
-          "дивитися онлайн",
-          "фотографувати",
-          "кафе"
+          "ковтати",
+          "пітніти",
+          "тремтіти від холоду",
+          "таблетка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,8 +788,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -591,18 +803,32 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i11:audio",
-          "transcript": "Where are the cafes?"
+          "transcript": "She often sweats at the gym."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where are the cafes?",
+        "hiddenTargetPhrase": "She often sweats at the gym.",
         "orderedTokens": [
-          "Where",
-          "are",
+          "She",
+          "often",
+          "sweats",
+          "at",
           "the",
-          "cafes"
+          "gym"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "sweat"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `sweats` — `She often sweats at the gym.`",
+              "uk": "тут потрібно `sweats` — `She often sweats at the gym.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -612,30 +838,45 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви шукаєте настінний розпис, про який розповів друг. Запитайте «Де настінний розпис?»",
+      "prompt": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви шукаєте настінний розпис, про який розповів друг. Запитайте «Де настінний розпис?»",
+      "accessibilityLabel": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the mural?",
+        "targetPhrase": "I usually swallow a tablet with water.",
         "localizedMeaning": {
-          "ru": "Вы ищете настенную роспись, о которой рассказал друг. Спросите «Где настенная роспись?»",
-          "uk": "Ви шукаєте настінний розпис, про який розповів друг. Запитайте «Де настінний розпис?»"
+          "ru": "Подруга спрашивает, как вы обычно принимаете назначенную вам таблетку. Скажите: «Я обычно глотаю таблетку с водой»",
+          "uk": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою»"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "mural"
+          "I",
+          "usually",
+          "swallow",
+          "a",
+          "tablet",
+          "with",
+          "water"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга питає, як ви зазвичай приймаєте призначену вам таблетку. Скажіть: «Я зазвичай ковтаю таблетку з водою»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually swallow a tablet with water.`",
+              "uk": "тут потрібно `usually` — `I usually swallow a tablet with water.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -645,25 +886,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви розглядаєте малюнки Тома. Запитайте його подругу «Том художник?»",
+      "prompt": "Друг питає про вашого брата. Скажіть: «Він зазвичай тремтить у холодній воді»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-55:i13:audio"
       ],
-      "accessibilityLabel": "Ви розглядаєте малюнки Тома. Запитайте його подругу «Том художник?»",
+      "accessibilityLabel": "Друг питає про вашого брата. Скажіть: «Він зазвичай тремтить у холодній воді»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i13:audio",
-          "transcript": "Is Tom an artist?"
+          "transcript": "He usually shivers in cold water."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is Tom an artist?",
+        "targetPhrase": "He usually shivers in cold water.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -678,15 +919,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто дивлюся фільми онлайн»",
+      "prompt": "Друг питає про озеро. Скажіть: «Я зазвичай тремчу в холодній воді». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-55:i14:r1",
-          "text": "often"
+          "text": "usually"
         },
         {
           "responseId": "en:lesson-07:session-55:i14:r2",
@@ -699,18 +940,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто дивлюся фільми онлайн»",
+      "accessibilityLabel": "Друг питає про озеро. Скажіть: «Я зазвичай тремчу в холодній воді». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто смотрю фильмы онлайн»",
-          "uk": "Скажіть «Я часто дивлюся фільми онлайн»"
+          "ru": "Друг спрашивает про озеро. Скажите: «Я обычно дрожу в холодной воде». Выберите слово",
+          "uk": "Друг питає про озеро. Скажіть: «Я зазвичай тремчу в холодній воді». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ stream films.",
+        "gappedTargetPhrase": "I ___ shiver in cold water.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-55:i14:r1",
-            "text": "often"
+            "text": "usually"
           },
           {
             "responseId": "en:lesson-07:session-55:i14:r2",
@@ -721,24 +962,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я часто дивлюся фільми онлайн»",
+        "testedDimension": "Друг питає про озеро. Скажіть: «Я зазвичай тремчу в холодній воді». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-55:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто дивлюся фільми онлайн»",
+            "testedDimension": "Друг питає про озеро. Скажіть: «Я зазвичай тремчу в холодній воді». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `stream`.",
-              "uk": "Для «часто» потрібне `often` перед `stream`."
+              "ru": "Для «обычно» нужно `usually` перед `shiver`.",
+              "uk": "Для «зазвичай» потрібно `usually` перед `shiver`."
             }
           },
           {
             "responseId": "en:lesson-07:session-55:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто дивлюся фільми онлайн»",
+            "testedDimension": "Друг питає про озеро. Скажіть: «Я зазвичай тремчу в холодній воді». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `stream` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `stream` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `shiver` не ставим.",
+              "uk": "Для «зазвичай» потрібно `usually`; `am` перед `shiver` не ставимо."
             }
           }
         ]
@@ -747,7 +988,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -755,15 +996,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-55:i15:r1",
-          "text": "Where are the cafes?"
+          "text": "Where is the surgery?"
         },
         {
           "responseId": "en:lesson-07:session-55:i15:r2",
-          "text": "Where are the restaurants?"
+          "text": "Where is the clinic?"
         },
         {
           "responseId": "en:lesson-07:session-55:i15:r3",
-          "text": "Where are the hotels?"
+          "text": "Where is the pharmacy?"
         }
       ],
       "mediaIds": [],
@@ -775,23 +1016,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i15:audio",
-          "transcript": "Where are the cafes?"
+          "transcript": "Where is the surgery?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-55:i15:r1",
-            "targetText": "Where are the cafes?",
+            "targetText": "Where is the surgery?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-55:i15:r2",
-            "targetText": "Where are the restaurants?",
+            "targetText": "Where is the clinic?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-55:i15:r3",
-            "targetText": "Where are the hotels?",
+            "targetText": "Where is the pharmacy?",
             "meaningByLocale": null
           }
         ],
@@ -802,8 +1043,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cafes`, а в этом варианте — `restaurants`.",
-              "uk": "У записі останнє слово — `cafes`, а в цьому варіанті — `restaurants`."
+              "ru": "В записи последнее слово — `surgery`, а в этом варианте — `clinic`.",
+              "uk": "У записі останнє слово — `surgery`, а в цьому варіанті — `clinic`."
             }
           },
           {
@@ -811,8 +1052,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cafes`, а в этом варианте — `hotels`.",
-              "uk": "У записі останнє слово — `cafes`, а в цьому варіанті — `hotels`."
+              "ru": "В записи последнее слово — `surgery`, а в этом варианте — `pharmacy`.",
+              "uk": "У записі останнє слово — `surgery`, а в цьому варіанті — `pharmacy`."
             }
           }
         ],
@@ -823,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -837,48 +1078,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-55:i16:p1",
-            "target": "stream",
+            "target": "surgery",
             "meaningByLocale": {
-              "ru": "смотреть онлайн",
-              "uk": "дивитися онлайн"
+              "ru": "кабинет врача",
+              "uk": "кабінет лікаря"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i16:p2",
-            "target": "artist",
+            "target": "swallow",
             "meaningByLocale": {
-              "ru": "художник",
-              "uk": "художник"
+              "ru": "глотать",
+              "uk": "ковтати"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i16:p3",
-            "target": "mural",
+            "target": "shiver",
             "meaningByLocale": {
-              "ru": "настенная роспись",
-              "uk": "настінний розпис"
+              "ru": "дрожать от холода",
+              "uk": "тремтіти від холоду"
             }
           },
           {
             "pairId": "en:lesson-07:session-55:i16:p4",
-            "target": "photograph",
+            "target": "clinic",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "клиника",
+              "uk": "клініка"
             }
           }
         ],
         "leftColumn": [
-          "stream",
-          "artist",
-          "mural",
-          "photograph"
+          "surgery",
+          "swallow",
+          "shiver",
+          "clinic"
         ],
         "rightColumn": [
-          "дивитися онлайн",
-          "художник",
-          "настінний розпис",
-          "фотографувати"
+          "кабінет лікаря",
+          "ковтати",
+          "тремтіти від холоду",
+          "клініка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -896,25 +1137,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-55:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, як Том дивиться фільми. Скажіть «Том часто дивиться фільми онлайн»",
+      "prompt": "Тренер питає про вашого брата. Скажіть: «Мій брат часто пітніє в спортзалі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-55:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, як Том дивиться фільми. Скажіть «Том часто дивиться фільми онлайн»",
+      "accessibilityLabel": "Тренер питає про вашого брата. Скажіть: «Мій брат часто пітніє в спортзалі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-55:i17:audio",
-          "transcript": "Tom often streams films."
+          "transcript": "My brother often sweats at the gym."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often streams films.",
+        "targetPhrase": "My brother often sweats at the gym.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -936,11 +1177,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c43a857417068df78fb7a2f2d8481799f436859d8f968de10ca0dea8fceed4ce"
+  "learnerFingerprint": "3c405e9cd079dbec64d9b2024a846e8ee78055a858fe988a744f880761d8bba8"
 }

@@ -4,7 +4,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 // зачем (координатор 18.10, Ревизор у Ядра f53ea8375): IP и окно лимита — общим помощником Ядра, чтобы правила
 // «какой адрес доверенный», IPv6 /64 и отказ при сбое были в одном месте для всех дорогих функций.
-import { callerIpFromRawRequest, enforceCallerRateWindow } from './caller_rate_window';
+import { callerIpFromRawRequest, enforceCallerRateWindow, ipRateKey } from './caller_rate_window';
 import { createHash, randomInt } from 'node:crypto';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
@@ -424,7 +424,9 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const { name, nameLower } = normalizeName(request.data?.name);
   const oldNameLower = sanitizeString(request.data?.oldName, 32).toLowerCase();
   assertValidName(name);
-  const ip = callerIpFromRawRequest(request.rawRequest);
+  // зачем (Ядро c055fd6d9): IPv6 считаем по /64 — иначе один провайдерский блок даёт бесконечно новых «адресов».
+  const rawIp = callerIpFromRawRequest(request.rawRequest);
+  const ip = rawIp ? ipRateKey(rawIp) : '';
   let rateLimitedBy: 'uid' | 'ip' | null = null;
 
   // Atomic reservation. The ONLY source of truth is name_index/{nameLower}.

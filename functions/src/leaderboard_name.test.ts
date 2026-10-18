@@ -35,6 +35,10 @@ jest.mock('firebase-admin', () => ({
 // Import AFTER the mock is registered.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { nameCheckAvailability, nameGenerateAndReserve, nameReserve } = require('./leaderboard');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { resetCallerRateWindowStateForTest } = require('./caller_rate_window');
+// окно лимита Ядра держит предфильтр в памяти — каждый тест начинает с чистого
+beforeEach(() => resetCallerRateWindowStateForTest());
 
 function makeDbStub(initial: LbStore = {}) {
   const store: LbStore = {

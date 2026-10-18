@@ -28,15 +28,21 @@ assert.match(source, /row\.role === "chapter_checkpoint"/);
 assert.match(source, /row\.role === "final_exam"/);
 assert.match(
   source,
-  /const \[requestedLessonOrdinal, setSelectedLessonOrdinal\] = useState\(canonicalCurrentLessonOrdinal\)/,
+  /const \[requestedLessonOrdinal, setSelectedLessonOrdinal\] = useState\(\(\) => \{/,
   "the active chapter view must retain a locally requested lesson",
+);
+// зачем (поручение владельца через координатора 18.10, «всегда открывается урок 1»): первый кадр берёт запомненный последний открытый урок, нет его — урок первого незавершённого занятия
+assert.match(
+  source,
+  /pickInitialLessonOrdinal\(\{ remembered: preferredLessonOrdinal, canonical: canonicalCurrentLessonOrdinal, visibleOrdinals: null \}\)/,
+  "the first frame must pick the remembered lesson, falling back to the canonical current lesson",
 );
 // зачем (координатор 17.10): состояние переименовано в requestedLessonOrdinal (470c2ff84 «показываем столько занятий, сколько реально открывается»), а выбранный урок стал
 // производным значением — запрошенный, если он виден, иначе последний видимый. Сторож обновлён и проверяет также эту производную.
 assert.match(
   source,
-  /const selectedLessonOrdinal = visibleLessonOrdinals\.includes\(requestedLessonOrdinal\)\s*\?\s*requestedLessonOrdinal\s*:\s*\(visibleLessonOrdinals\[visibleLessonOrdinals\.length - 1\] \?\? requestedLessonOrdinal\)/,
-  "the selected lesson must fall back to the last visible lesson when the requested one is not visible",
+  /const selectedLessonOrdinal = visibleLessonOrdinals\.includes\(requestedLessonOrdinal\)\s*\?\s*requestedLessonOrdinal\s*:\s*\(visibleLessonOrdinals\.includes\(canonicalCurrentLessonOrdinal\)\s*\?\s*canonicalCurrentLessonOrdinal\s*:\s*\(visibleLessonOrdinals\[visibleLessonOrdinals\.length - 1\] \?\? requestedLessonOrdinal\)\)/,
+  "the selected lesson must fall back to the current lesson, then to the last visible lesson, when the requested one is not visible",
 );
 assert.match(
   source,

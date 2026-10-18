@@ -24,7 +24,7 @@ describe('метки «последнее место» Главной и сти�
   });
 
   it('английский ключ = объявленный префикс + вид; порядок v2, at, dialog, cards', () => {
-    expect(HOME_CONTINUE_MARK_KINDS).toEqual(['v2', 'at', 'dialog', 'cards']);
+    expect(HOME_CONTINUE_MARK_KINDS).toEqual(['v2', 'at', 'dialog', 'cards', 'map']);
     for (const kind of HOME_CONTINUE_MARK_KINDS) {
       expect(homeContinueMarkKey(kind, 'en')).toBe(`${HOME_CONTINUE_MARK_PREFIX}${kind}`);
     }

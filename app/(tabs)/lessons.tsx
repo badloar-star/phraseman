@@ -252,6 +252,7 @@ import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } f
 import { LEARNING_V2_HIDDEN, isLearningV2OpenForUiLangV1, logLearningV2Hidden } from "../learning_v2_visibility_switch";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import { recordHomeContinueV2 } from "../home_continue_mark";
+import { rememberLearningV2LastLesson, useLearningV2LastLesson } from "../learning_v2_last_lesson";
 import { noteBackArrived, noteBackDecision, noteBackTap } from "../back_tap_probe";
 import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
 import {
@@ -2936,6 +2937,8 @@ export default function LessonsTab({
     learningV2AccountGenerationRef.current = generation;
     setLearningV2AccountGeneration(generation);
   }, [focusTick]);
+  // зачем (поручение владельца через координатора 18.10): запомненный урок карты (память → диск); undefined — ещё не читали, карта рисуется по первому незавершённому занятию
+  const learningV2LastLesson = useLearningV2LastLesson(studyTarget);
   const learningV2ProjectionScopeKey = useMemo(
     () =>
       `${learningV2AccountGeneration}:${studyTarget}:${_overlayIdentityEpoch}`,
@@ -3441,6 +3444,8 @@ export default function LessonsTab({
   const handleLearningV2ExpandedLesson = useCallback(
     (lessonOrdinal: number | null) => {
       setExpandedLearningV2Lesson(lessonOrdinal);
+      // зачем (поручение владельца через координатора 18.10): открыл урок на карте — запоминаем локально сразу (память + диск в фоне, без сети)
+      if (lessonOrdinal !== null) rememberLearningV2LastLesson(studyTarget, lessonOrdinal, "map_open");
       if (
         lessonOrdinal !== null &&
         currentLearningV2SessionCoordinates?.lessonOrdinal === lessonOrdinal
@@ -3466,6 +3471,7 @@ export default function LessonsTab({
     [
       currentLearningV2SessionCoordinates,
       prewarmLearningV2SessionLaunch,
+      studyTarget,
     ],
   );
 
@@ -3608,6 +3614,8 @@ export default function LessonsTab({
   // метку «последнее V2» (урок, занятие, маршрут без одноразовых sessionRunId/skipIntro, время). Только локально; «пройдено / выпущено»
   // Главная считает сама при показе (координатор 15.10, поправка 1).
   const rememberHomeContinueV2 = useCallback((selected: Readonly<{ lessonOrdinal: number; sessionOrdinal: number; state: LearningV2AccordionSessionStateV1 }>, sessionId: string) => {
+    // зачем (поручение владельца через координатора 18.10): запуск занятия тоже «открытие урока» — карта вернётся на этот урок
+    rememberLearningV2LastLesson(studyTarget, selected.lessonOrdinal, "launch_session");
     {
       recordHomeContinueV2(studyTarget, {
         lessonOrdinal: selected.lessonOrdinal,
@@ -5479,6 +5487,7 @@ export default function LessonsTab({
               onLegacyLessons={requestLegacyLessons}
               preparedProgress={learningV2PreparedProgress}
               currentSessionId={learningV2Progress.currentSessionId}
+              preferredLessonOrdinal={learningV2LastLesson ?? null}
               completedSessionIds={learningV2Progress.completedSessionIds}
               stars={learningV2StarResults}
               active={lessonsRuntimeActive}

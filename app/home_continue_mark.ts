@@ -21,6 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { homeContinueMarkKey, homeContinueMarkKeys, type RuntimeStudyTarget } from './target_storage_keys';
+import { hydrateLearningV2LastLesson } from './learning_v2_last_lesson';
 import { triLang, type Lang } from '../constants/i18n';
 
 const LOG = '[HOME-CONTINUE]';
@@ -114,8 +115,10 @@ export async function loadHomeContinueMarks(target: RuntimeStudyTarget): Promise
   const known = memory.get(tk(target));
   if (known) return known;
   try {
-    // порядок homeContinueMarkKeys: v2, at, dialog, cards
+    // порядок homeContinueMarkKeys: v2, at, dialog, cards, map
     const pairs = await AsyncStorage.multiGet(homeContinueMarkKeys(target));
+    // зачем (последний открытый урок карты, 18.10): та же пачка несёт запомненный урок — к моменту входа на вкладку «Уроки» память уже тёплая, карта открывается без прыжка
+    hydrateLearningV2LastLesson(target, pairs[4]?.[1] ?? null);
     const at = Number(pairs[1]?.[1]);
     const marks: HomeContinueMarks = {
       v2: parseV2(pairs[0]?.[1] ?? null),

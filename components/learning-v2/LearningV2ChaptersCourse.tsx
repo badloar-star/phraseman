@@ -21,6 +21,7 @@ import {
 import { noteBackArrived, noteBackDecision, noteBackTap } from "../../app/back_tap_probe";
 import LearningV2AllLessonsList, { type AllLessonsRow } from "./LearningV2AllLessonsList";
 import BackGlyph from '../v2/BackGlyph';
+import { pickInitialLessonOrdinal } from "../../app/learning_v2_last_lesson";
 
 interface Props {
   titles: readonly string[];
@@ -28,6 +29,8 @@ interface Props {
   scopeKey: string;
   preparedProgress: LearningV2PreparedAccordionProgressV1;
   currentSessionId: string | null;
+  /** Запомненный последний открытый урок (app/learning_v2_last_lesson); нет — урок первого незавершённого занятия. */
+  preferredLessonOrdinal?: number | null;
   completedSessionIds: readonly string[];
   stars: Readonly<Record<string, 0 | 1 | 2 | 3>>;
   active: boolean;
@@ -147,10 +150,32 @@ export default function LearningV2ChaptersCourse(props: Props) {
   const [allLessonsOpen, setAllLessonsOpen] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
   const canonicalCurrentLessonOrdinal = currentLessonOrdinal(props.currentSessionId);
-  const [requestedLessonOrdinal, setSelectedLessonOrdinal] = useState(canonicalCurrentLessonOrdinal);
+  const preferredLessonOrdinal = props.preferredLessonOrdinal ?? null;
+  // зачем (поручение владельца через координатора 18.10: «всегда открывается урок 1»): первый кадр берёт запомненный урок, а не только урок первого незавершённого занятия
+  const [requestedLessonOrdinal, setSelectedLessonOrdinal] = useState(() => {
+    const choice = pickInitialLessonOrdinal({ remembered: preferredLessonOrdinal, canonical: canonicalCurrentLessonOrdinal, visibleOrdinals: null });
+    console.log("[V2-LAST-LESSON] map:init", JSON.stringify({ remembered: preferredLessonOrdinal, canonical: canonicalCurrentLessonOrdinal, picked: choice.ordinal, branch: choice.branch, source: preferredLessonOrdinal === null ? "none_yet_or_empty" : "memory" })); // guard-ok: выбор урока при монтировании
+    return choice.ordinal;
+  });
+  // человек сам выбрал урок на карте — позднее чтение диска и прогресс его выбор не переписывают, кроме продвижения текущего занятия
+  const userChoseLessonRef = useRef(false);
+  const canonicalSeenRef = useRef(canonicalCurrentLessonOrdinal);
   useEffect(() => {
+    if (canonicalSeenRef.current === canonicalCurrentLessonOrdinal) return;
+    console.log("[V2-LAST-LESSON] map:canonical_changed", JSON.stringify({ from: canonicalSeenRef.current, to: canonicalCurrentLessonOrdinal })); // guard-ok: ветка и значение
+    canonicalSeenRef.current = canonicalCurrentLessonOrdinal;
+    userChoseLessonRef.current = false;
     setSelectedLessonOrdinal(canonicalCurrentLessonOrdinal);
   }, [canonicalCurrentLessonOrdinal]);
+  useEffect(() => {
+    // запомненный урок пришёл с диска позже первого кадра (память была холодной) — применяем один раз, пока человек сам ничего не выбрал
+    if (preferredLessonOrdinal === null || userChoseLessonRef.current) return;
+    setSelectedLessonOrdinal((current) => {
+      if (current === preferredLessonOrdinal) return current;
+      console.log("[V2-LAST-LESSON] map:late_remembered", JSON.stringify({ from: current, to: preferredLessonOrdinal })); // guard-ok: ветка и значение
+      return preferredLessonOrdinal;
+    });
+  }, [preferredLessonOrdinal]);
   const { onSessionPress, isSessionMaterialAvailable } = props;
   // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): занятия, которые не открываются, НЕ
   // рисуются вовсе (раньше — серый узел со «стройкой» и тупик «Сессия недоступна»). Урок без единого видимого занятия
@@ -166,9 +191,12 @@ export default function LearningV2ChaptersCourse(props: Props) {
         .some((sessionOrdinal) => isSessionVisible(ordinal, sessionOrdinal))),
     [isSessionVisible, props.titles],
   );
+  // зачем (18.10): запомненный урок мог стать скрытым (занятия сняты) — тогда урок первого незавершённого занятия, а уже потом последний видимый
   const selectedLessonOrdinal = visibleLessonOrdinals.includes(requestedLessonOrdinal)
     ? requestedLessonOrdinal
-    : (visibleLessonOrdinals[visibleLessonOrdinals.length - 1] ?? requestedLessonOrdinal);
+    : (visibleLessonOrdinals.includes(canonicalCurrentLessonOrdinal)
+      ? canonicalCurrentLessonOrdinal
+      : (visibleLessonOrdinals[visibleLessonOrdinals.length - 1] ?? requestedLessonOrdinal));
   const rows = useMemo(
     () => buildLearningV2CourseAccordionMapFromPreparedProgressV1({
       projectionScopeKey: props.scopeKey,
@@ -232,6 +260,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
   }, [chapterRows.length, sessionRows.length, rows.length, allLessonsOpen, nativeReady, progressSource, props.active, props.scopeKey]);
 
   const toggleChapter = useCallback((chapterOrdinal: number) => {
+    userChoseLessonRef.current = true;
     const next = expandedChapter === chapterOrdinal ? null : chapterOrdinal;
     setExpandedChapter(next);
     props.onExpandedLesson(next === null ? null : selectedLessonOrdinal);
@@ -244,6 +273,8 @@ export default function LearningV2ChaptersCourse(props: Props) {
   }, [expandedChapter, props, selectedLessonOrdinal, sessionRows]);
 
   const openLesson = useCallback((ordinal: number) => {
+    userChoseLessonRef.current = true;
+    console.log("[V2-LAST-LESSON] map:open_lesson", JSON.stringify({ ordinal })); // guard-ok: тап по уроку
     setSelectedLessonOrdinal(ordinal);
     props.onExpandedLesson(ordinal);
     setExpandedChapter(null);

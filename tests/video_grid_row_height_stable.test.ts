@@ -34,4 +34,13 @@ describe('«Все видео»: высота строк не прыгает п�
     expect(screen).toContain("pathname: '/lingman_video_watch'");
     expect(screen).toContain('onWatch={() => openVideoRef.current(item)}');
   });
+
+  // зачем (координатор 18.10): первый кадр = геометрия готовой карточки: обложка + 6 + название 34 + строка меты 28 (с кругом закладки) — при подмене ничего не прыгает
+  it('скелетон сетки повторяет высоту карточки: название 34, строка меты 28 с кругом закладки', () => {
+    expect(screen).toContain('gridSkeletonTitle: { minHeight: 34');
+    expect(screen).toContain('gridSkeletonMeta: { minHeight: 28');
+    expect(screen).toContain('<SkeletonBlock width={28} height={28} borderRadius={14} />');
+    expect(card).toContain('minHeight: 34');
+    expect(card).toContain('minHeight: 28');
+  });
 });

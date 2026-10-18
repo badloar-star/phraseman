@@ -736,13 +736,20 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
 
   // зачем: первый кадр = итоговая геометрия сетки (две колонки, промежуток 12) — без прыжка, когда придут данные.
   const gridSkeletonHeight = Math.round(((windowWidth - V2.screenPad * 2 - 12) / 2) * 9 / 16);
-  const renderGridSkeleton = (coverHeight: number) => Array.from({ length: 3 }).map((_, row) => (
+  // зачем (координатор 18.10): геометрия скелетона = геометрия готовой карточки — обложка, 6, название на две строки (34), строка меты (видео: 28 с кругом закладки, плейлист: 16).
+  const renderGridSkeleton = (coverHeight: number, withBookmark = true) => Array.from({ length: 3 }).map((_, row) => (
     <View key={row} style={styles.gridSkeletonRow}>
       {[0, 1].map((col) => (
         <View key={col} style={styles.gridSkeletonCell}>
           <SkeletonBlock width="100%" height={coverHeight} borderRadius={14} />
-          <SkeletonBlock width="90%" height={16} borderRadius={8} />
-          <SkeletonBlock width="55%" height={13} borderRadius={7} />
+          <View style={styles.gridSkeletonTitle}>
+            <SkeletonBlock width="90%" height={13} borderRadius={7} />
+            <SkeletonBlock width="60%" height={13} borderRadius={7} />
+          </View>
+          <View style={[styles.gridSkeletonMeta, withBookmark ? null : styles.gridSkeletonMetaPlain]}>
+            <SkeletonBlock width="55%" height={11} borderRadius={6} />
+            {withBookmark ? <SkeletonBlock width={28} height={28} borderRadius={14} /> : null}
+          </View>
         </View>
       ))}
     </View>
@@ -854,7 +861,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         ) : tab === 'playlists' ? (
           catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={playlistsForGrid} numColumns={2} keyExtractor={(item) => item.id} renderItem={renderPlaylist} onScroll={reportTabScroll} scrollEventThrottle={32} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.gridList, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
             : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><View style={styles.gridSkeleton}>
-              {renderGridSkeleton(gridSkeletonHeight)}
+              {renderGridSkeleton(gridSkeletonHeight, false)}
             </View></ScrollView>
         ) : (
           <FlashList
@@ -932,7 +939,10 @@ const styles = StyleSheet.create({
   gridCellRight: { paddingLeft: 6, marginBottom: 20 },
   gridSkeleton: { marginTop: 16 },
   gridSkeletonRow: { flexDirection: 'row', gap: 12, marginBottom: 20 },
-  gridSkeletonCell: { flex: 1, gap: 8 },
+  gridSkeletonCell: { flex: 1, gap: 6 },
+  gridSkeletonTitle: { minHeight: 34, gap: 4 }, // название на две строки: 13 + 4 + 13 = 30 → 34 как у карточки
+  gridSkeletonMeta: { minHeight: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  gridSkeletonMetaPlain: { minHeight: 16 },
   packsRow: {
     minHeight: 64,
     borderRadius: 14,

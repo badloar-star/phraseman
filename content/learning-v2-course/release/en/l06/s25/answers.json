@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-25:word:walk",
+    "correctText": "walk",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-25:i01",
-    "correctText": "I walk to work.",
+    "correctText": "We walk to work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i02",
-    "correctText": "walk",
+    "correctText": "She walks to work.",
     "correctResponseId": "en:lesson-06:session-25:i02:r1"
   },
   {
@@ -16,22 +21,32 @@
   },
   {
     "interactionId": "en:lesson-06:session-25:i04",
-    "correctText": "en:lesson-06:session-25:i04:p1=walk\nen:lesson-06:session-25:i04:p2=absent\nen:lesson-06:session-25:i04:p3=sink\nen:lesson-06:session-25:i04:p4=lunchbox",
+    "correctText": "en:lesson-06:session-25:i04:p1=walk\nen:lesson-06:session-25:i04:p2=hill\nen:lesson-06:session-25:i04:p3=pedometer\nen:lesson-06:session-25:i04:p4=tunnel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:word:hill",
+    "correctText": "hill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i05",
-    "correctText": "Anna walks to work.",
+    "correctText": "The hill is near the office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:word:pedometer",
+    "correctText": "pedometer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i06",
-    "correctText": "He drives to work.",
+    "correctText": "Whose pedometer is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i07",
-    "correctText": "He is absent.",
+    "correctText": "She walks to work.",
     "correctResponseId": null
   },
   {
@@ -40,48 +55,53 @@
     "correctResponseId": "en:lesson-06:session-25:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-25:word:tunnel",
+    "correctText": "tunnel",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-25:i09",
-    "correctText": "My lunchbox is here.",
+    "correctText": "They walk to the tunnel.",
     "correctResponseId": "en:lesson-06:session-25:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-25:i10",
-    "correctText": "en:lesson-06:session-25:i10:p1=walk\nen:lesson-06:session-25:i10:p2=drive\nen:lesson-06:session-25:i10:p3=lunchbox\nen:lesson-06:session-25:i10:p4=absent",
+    "correctText": "en:lesson-06:session-25:i10:p1=pedometer\nen:lesson-06:session-25:i10:p2=tunnel\nen:lesson-06:session-25:i10:p3=hill\nen:lesson-06:session-25:i10:p4=walk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i11",
-    "correctText": "The lunchbox is near the sink.",
+    "correctText": "They walk to the office.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i12",
-    "correctText": "Whose lunchbox is this?",
+    "correctText": "She has a pedometer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i13",
-    "correctText": "They drive to work.",
+    "correctText": "The tunnel is near the bridge.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i14",
-    "correctText": "walk",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-25:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-25:i15",
-    "correctText": "The sink is clean.",
+    "correctText": "She has a pedometer.",
     "correctResponseId": "en:lesson-06:session-25:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-25:i16",
-    "correctText": "en:lesson-06:session-25:i16:p1=walk\nen:lesson-06:session-25:i16:p2=sink\nen:lesson-06:session-25:i16:p3=absent\nen:lesson-06:session-25:i16:p4=drive",
+    "correctText": "en:lesson-06:session-25:i16:p1=tunnel\nen:lesson-06:session-25:i16:p2=walk\nen:lesson-06:session-25:i16:p3=hill\nen:lesson-06:session-25:i16:p4=pedometer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-25:i17",
-    "correctText": "She walks to work.",
+    "correctText": "He walks to work.",
     "correctResponseId": null
   }
 ]

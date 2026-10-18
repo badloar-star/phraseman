@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-31:intro1:r2": {
-          "ru": "После `he` — `showers`, с `s`.",
-          "uk": "Після `he` — `showers`, з `s`."
+          "ru": "После I слово остаётся shower, без s.",
+          "uk": "Після I слово лишається shower, без s."
         },
         "en:lesson-06:session-31:intro1:r3": {
-          "ru": "Нужно `He showers`, без `is`.",
-          "uk": "Потрібно `He showers`, без `is`."
+          "ru": "Здесь действие: I shower, без am.",
+          "uk": "Тут дія: I shower, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-31:intro2:r2": {
-          "ru": "После `she` — `teaches`.",
-          "uk": "Після `she` — `teaches`."
+          "ru": "Зубная паста — одно целое: нужно is, а не are.",
+          "uk": "Зубна паста — одне ціле: потрібно is, а не are."
         },
         "en:lesson-06:session-31:intro2:r3": {
-          "ru": "Пишем `teaches`, с `es`.",
-          "uk": "Пишемо `teaches`, з `es`."
+          "ru": "Без is предложение не получается: нужно My toothpaste is.",
+          "uk": "Без is речення не виходить: потрібно My toothpaste is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-31:intro3:r2": {
-          "ru": "О владельце спрашиваем `Whose` — «чья».",
-          "uk": "Про власника запитуємо `Whose` — «чия»."
+          "ru": "После she нужно showers, с s.",
+          "uk": "Після she потрібно showers, з s."
         },
         "en:lesson-06:session-31:intro3:r3": {
-          "ru": "Одна гитара: `is this`.",
-          "uk": "Одна гітара: `is this`."
+          "ru": "Здесь действие: She showers, без is.",
+          "uk": "Тут дія: She showers, без is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ad2ec074babdab264300d4875b54ffa4f0ba42131733b6a01a40f28f080037e3"
+  "auxiliaryFingerprint": "c255192b2e582845b0dd2fa72fc08202f1fc54836f85c4d7fb491a1c4dcb29dc"
 }

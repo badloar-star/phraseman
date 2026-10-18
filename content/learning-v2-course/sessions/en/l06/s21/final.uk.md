@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 21 — Записи біля басейну
+# Англійська · Урок 6 · Заняття 21 — Кафе біля басейну
 
-**Ситуація.** Анна чекає на Тома в кафе при басейні й робить записи в зошиті. На столі стоїть сік, а в сумці лежить намисто зі зламаною застібкою.
+**Ситуація.** Ви з подругою сидите в кафе біля басейну: сестра пише в зошиті, брат стрибає у воду, а в подруги зламалася застібка на намисті. Про одну людину ми кажемо he або she і додаємо s.
 
-**Що ви опануєте:** розповісти, хто пише й плаває, та назвати зламану річ
-**Нові слова:** write
+**Що ви опануєте:** розповісти, що робить одна людина (She writes, He jumps), і сказати, що з річчю, через is
+**Нові слова:** write, jump, clasp, page
+**Повертаються:** swim, cook, pool, notebook, table, blank, full, torn, broken
 
 ---
 
 ## Інтро 1
 
-### Писати
+### Зошит біля басейну
 
-`write` — «писати». `I write in my notebook` — «Я пишу у своєму зошиті». Перша літера `w` у `write` не вимовляється. Вона як ручка, яку взяли на зустріч, але так і не відкрили: присутня, а в роботі не бере участі. `She writes at home` — «Вона пише вдома»: після `she` додаємо `s`.
+Ви з подругою сидите в кафе біля басейну. Ваша сестра схилилася над зошитом: ручка в руці, вона швидко записує свої думки. Подруга питає, що робить сестра. write — «писати». Про сестру: She writes in her notebook — «Вона пише у своєму зошиті».
 
-**Скажіть «Вона пише вдома».**
+**Подруга питає, що робить ваша сестра. Скажіть: «Вона пише у своєму зошиті».**
 
-- ✅ **She writes at home.**
-- ❌ She write at home. — *Після `she` — `writes`, з `s`.*
-- ❌ She is writes at home. — *Кажемо `She writes`, без `is`.*
+- ✅ **She writes in her notebook.**
+- ❌ She write in her notebook. — *Після she потрібно writes, з s.*
+- ❌ She is writes in her notebook. — *Тут дія: She writes, без is.*
 
 ---
 
 ## Інтро 2
 
-### Плавання й записи
+### На бортику
 
-`swim` — «плавати». `He swims here` — «Він плаває тут». `They swim here` — «Вони плавають тут»: після `they` закінчення `s` немає. `Anna writes here` — «Анна пише тут»: тут `Anna` відповідає `she`, тому `writes`.
+Ваш брат стоїть на бортику басейну, робить глибокий вдих і сильно відштовхується ногами. Рятувальник на вишці бачить його й питає, що він робить. jump — «стрибати». Про брата кажемо he і додаємо s: He jumps in the pool — «Він стрибає в басейн».
 
-**Скажіть «Він плаває тут».**
+**Рятувальник питає, що робить ваш брат. Скажіть: «Він стрибає в басейн».**
 
-- ✅ **He swims here.**
-- ❌ He swim here. — *Після `he` — `swims`, з `s`.*
-- ❌ He is swims here. — *Кажемо `He swims`, без `is`.*
+- ✅ **He jumps in the pool.**
+- ❌ He jump in the pool. — *Після he потрібно jumps, з s.*
+- ❌ He is jumps in the pool. — *Тут дія: He jumps, без is.*
 
 ---
 
 ## Інтро 3
 
-### Зламана застібка
+### Намисто подруги
 
-`necklace` — «намисто», `broken` — «зламаний». `My necklace is broken` — «Моє намисто зламане», наприклад не працює застібка. Тут стан, тому потрібно `is`. `juice` — «сік». `The juice is cold` — «Сік холодний». `no` — «ні»: заперечна відповідь, наприклад на пропозицію ще соку.
+Подруга хоче вдягти своє нове намисто, але воно весь час сповзає з шиї. Вона крутить його в руках і бачить: маленький замочок не закривається. clasp — «застібка». Коли кажемо, що з річчю, потрібен is: The clasp is broken — «Застібка зламана».
 
-**Скажіть «Моє намисто зламане».**
+**Подруга питає, що не так з намистом. Скажіть: «Застібка зламана».**
 
-- ✅ **My necklace is broken.**
-- ❌ My necklace are broken. — *Одне намисто: `is`.*
-- ❌ My necklace is new. — *`new` — нове; зламане — `broken`.*
+- ✅ **The clasp is broken.**
+- ❌ The clasp broken. — *Без is речення не виходить: потрібно clasp is.*
+- ❌ The clasp are broken. — *Застібка одна, тому is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я пишу у своєму зошиті»**
+**1 · Картка слова — write**
+<!-- interaction_id: en:lesson-06:session-21:word:write; family: word_card -->
+> **write** — писати. My sister writes at the table. — «Моя сестра пише за столом». Коли людина пише ручкою.
+
+**2 · Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»**
 <!-- interaction_id: en:lesson-06:session-21:i01; family: phrase_builder -->
-Плитки: `notebook` `my` `in` `write` `I` → **I write in my notebook.**
+Плитки: `writes` `at` `the` `table` `He` `write` → **He writes at the table.**
+*(плитка `write` зайва: тут потрібно `writes` — `He writes at the table.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — jump**
+<!-- interaction_id: en:lesson-06:session-21:word:jump; family: word_card -->
+> **jump** — стрибати. My brother jumps here. — «Мій брат стрибає тут». Коли людина відривається від землі чи від бортика.
+
+**4 · Послухайте рятувальника**
 <!-- interaction_id: en:lesson-06:session-21:i02; family: listen_choose -->
-🔊 *write* → **write** · draw · sing
-- draw — *У записі перше слово — `write`, а в цьому варіанті — `draw`.*
-- sing — *У записі перше слово — `write`, а в цьому варіанті — `sing`.*
+🔊 *He jumps in the pool.* → **He jumps in the pool.** · He swims in the pool. · They jump in the pool.
+- He swims in the pool. — *У записі дія — `jumps`, стрибає, а в цьому варіанті — `swims`, плаває.*
+- They jump in the pool. — *У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `jump`).*
 
-**3 · Скажіть «Вона пише вдома»**
+**5 · Картка слова — clasp**
+<!-- interaction_id: en:lesson-06:session-21:word:clasp; family: word_card -->
+> **clasp** — застібка. The clasp is on the necklace. — «Застібка на намисті». Про маленький замочок на прикрасі чи сумці.
+
+**6 · Подруга питає, що не так з намистом. Скажіть: «Застібка зламана». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-21:i03; family: context_gap_grammar -->
-She ___ at home. → **writes** · write · is writes
+The clasp ___ broken. → **is** · are · writes
+- are — *Застібка одна, тому потрібно `is`, а не `are`.*
+- writes — *`writes` означає «пише», а тут треба сказати, що із застібкою: `is broken`.*
+
+**7 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-06:session-21:i04; family: speed_match -->
+write — писати · jump — стрибати · clasp — застібка · page — сторінка
+
+**8 · Картка слова — page**
+<!-- interaction_id: en:lesson-06:session-21:word:page; family: word_card -->
+> **page** — сторінка. The page is in the notebook. — «Сторінка в зошиті». Про один аркуш у зошиті чи книзі.
+
+**9 · Послухайте подругу й складіть фразу**
+<!-- interaction_id: en:lesson-06:session-21:i05; family: listen_build_dictation -->
+🔊 *The page is blank.* Плитки: `is` `blank` `page` `The` `are` → **The page is blank.**
+*(плитка `are` зайва: тут потрібно `is` — `The page is blank.`)*
+
+**10 · Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»**
+<!-- interaction_id: en:lesson-06:session-21:i06; family: phrase_builder -->
+Плитки: `swims` `in` `the` `pool` `She` `swim` → **She swims in the pool.**
+*(плитка `swim` зайва: тут потрібно `swims` — `She swims in the pool.`)*
+
+**11 · Подруга питає, що не так з намистом. Скажіть: «Застібка зламана»**
+<!-- interaction_id: en:lesson-06:session-21:i07; family: scripted_repeat_compare -->
+🎙 **The clasp is broken.**
+
+**12 · Скажіть про сестру: «Вона пише тут». Виберіть слово**
+<!-- interaction_id: en:lesson-06:session-21:i08; family: context_gap_grammar -->
+She ___ here. → **writes** · write · is writes
 - write — *Після `she` — `writes`, з `s`.*
 - is writes — *Кажемо `She writes`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-06:session-21:i04; family: speed_match -->
-write — писати · broken — зламаний · juice — сік · necklace — намисто
-
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-06:session-21:i05; family: listen_build_dictation -->
-🔊 *Anna writes here.* Плитки: `here` `writes` `Anna` → **Anna writes here.**
-
-**6 · Скажіть «Він плаває тут»**
-<!-- interaction_id: en:lesson-06:session-21:i06; family: phrase_builder -->
-Плитки: `here` `swims` `He` → **He swims here.**
-
-**7 · Застібка намиста не працює. Скажіть «Моє намисто зламане»**
-<!-- interaction_id: en:lesson-06:session-21:i07; family: scripted_repeat_compare -->
-🎙 **My necklace is broken.**
-
-**8 · Скажіть «Вони пишуть тут»**
-<!-- interaction_id: en:lesson-06:session-21:i08; family: context_gap_grammar -->
-They ___ here. → **write** · writes · are write
-- writes — *Після `they` — `write`, без `s`.*
-- are write — *Кажемо `They write`, без `are`.*
-
-**9 · Послухайте відповідь Тома**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-21:i09; family: listen_choose -->
-🔊 *No.* → **No.** · Yes. · Hello.
-- Yes. — *У записі перше слово — `No`, а в цьому варіанті — `Yes`.*
-- Hello. — *У записі перше слово — `No`, а в цьому варіанті — `Hello`.*
+🔊 *She writes at home.* → **She writes at home.** · She cooks at home. · He writes at home.
+- She cooks at home. — *У записі дія — `writes`, пише, а в цьому варіанті — `cooks`, готує їжу.*
+- He writes at home. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-21:i10; family: speed_match -->
-write — писати · swim — плавати · no — ні · broken — зламаний
+page — сторінка · jump — стрибати · write — писати · swim — плавати
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-21:i11; family: listen_build_dictation -->
-🔊 *The juice is cold.* Плитки: `cold` `is` `juice` `The` `are` → **The juice is cold.**
-*(плитка `are` зайва: тут потрібно `is` — `The juice is cold.`)*
+🔊 *My sister writes at the table.* Плитки: `writes` `at` `the` `table` `sister` `My` `write` → **My sister writes at the table.**
+*(плитка `write` зайва: тут потрібно `writes` — `My sister writes at the table.`)*
 
-**12 · Запитайте «Чиє це намисто?»**
+**16 · Ви знайшли зошит на столі біля басейну. Спитайте подругу: «Чий це зошит?»**
 <!-- interaction_id: en:lesson-06:session-21:i12; family: phrase_builder -->
-Плитки: `this` `is` `necklace` `Whose` → **Whose necklace is this?**
+Плитки: `notebook` `this` `is` `Whose` `Who` → **Whose notebook is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose notebook is this?`)*
 
-**13 · Скажіть «Вони плавають тут»**
+**17 · Рятувальник питає, що робить ваш брат. Скажіть: «Він стрибає в басейн»**
 <!-- interaction_id: en:lesson-06:session-21:i13; family: scripted_repeat_compare -->
-🎙 **They swim here.**
+🎙 **He jumps in the pool.**
 
-**14 · Скажіть «Том плаває тут»**
+**18 · Скажіть про брата: «Він стрибає в басейн». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-21:i14; family: context_gap_grammar -->
-Tom ___ here. → **swims** · swim · is swims
-- swim — *Том — він: `Tom swims`, з `s`.*
-- is swims — *Кажемо `Tom swims`, без `is`.*
+He ___ in the pool. → **jumps** · jump · is jumps
+- jump — *Після `he` — `jumps`, з `s`.*
+- is jumps — *Кажемо `He jumps`, без `is`.*
 
-**15 · Послухайте, чиє намисто тут**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-21:i15; family: listen_choose -->
-🔊 *My necklace is here.* → **My necklace is here.** · Your necklace is here. · His necklace is here.
-- Your necklace is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His necklace is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *The page is blank.* → **The page is blank.** · The page is full. · The page is torn.
+- The page is full. — *У записі останнє слово — `blank`, порожня, а в цьому варіанті — `full`, повна.*
+- The page is torn. — *У записі останнє слово — `blank`, порожня, а в цьому варіанті — `torn`, порвана.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-21:i16; family: speed_match -->
-write — писати · juice — сік · necklace — намисто · swim — плавати
+clasp — застібка · page — сторінка · write — писати · jump — стрибати
 
-**17 · Розкажіть другові про Анну: «Вона пише вдома»**
+**21 · Подруга питає, що робить ваша сестра із зошитом. Скажіть: «Вона пише у своєму зошиті»**
 <!-- interaction_id: en:lesson-06:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She writes at home.**
-
+🎙 **She writes in her notebook.**

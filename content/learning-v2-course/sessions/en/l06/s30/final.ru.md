@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 30 — Наушники после уборки
+# Английский · Урок 6 · Занятие 30 — Субботняя уборка
 
-**Ситуация.** Анна и Том убирают комнату. На столе остались наушники, а у двери стоит указатель для гостей.
+**Ситуация.** В субботу вы убираетесь дома, а сосед и соседка заглядывают помочь. Слово действия после I, we и they остаётся прежним, а после she и he получает s. Про одну вещь говорим is, про две и больше are.
 
-**Что вы освоите:** рассказать, кто обычно убирает, и уточнить, где лежат вещи
-**Новые слова:** clean
+**Что вы освоите:** рассказать, кто что убирает, и сказать, где лежат вещи для уборки
+**Новые слова:** scrub, rubbish, spray, cloth
+**Возвращаются:** floor, table, bin, gloves, clean, brother
 
 ---
 
 ## Интро 1
 
-### Кто убирает
+### Пятна на полу
 
-`clean` — «убирать», наводить чистоту. `I clean my room` — «Я убираю свою комнату». `She cleans her room` — «Она убирает свою комнату»: после `she` добавляем `s`. Если просто убрать всё под кровать, комната выглядит чище, но это ещё не совсем `clean`.
+В субботу вы убираетесь дома, а пол на кухне в пятнах. Сосед заглядывает и спрашивает, чем вы заняты. Вы надеваете перчатки и берёте щётку. scrub — «тереть щёткой», чтобы отчистить пятна. Про себя говорим I scrub the floor — «Я тру пол». После I слово остаётся scrub, без s.
 
-**Скажите «Она убирает свою комнату».**
+**Сосед спрашивает, чем вы заняты. Скажите: «Я тру пол».**
 
-- ✅ **She cleans her room.**
-- ❌ She clean her room. — *После `she` нужно `cleans`.*
-- ❌ She is cleans her room. — *Говорим `She cleans`, без `is`.*
+- ✅ **I scrub the floor.**
+- ❌ I scrubs the floor. — *После I слово остаётся scrub, без s.*
+- ❌ I am scrub the floor. — *Здесь действие: I scrub, без am.*
 
 ---
 
 ## Интро 2
 
-### В другом месте
+### Пакет у двери
 
-`elsewhere` — «в другом месте». `My headphones are elsewhere` — «Мои наушники в другом месте». `headphones` — «наушники»: с этим словом используем `are`. Само `elsewhere` уже означает место, поэтому перед ним не нужны `in` или `at`.
+У двери стоит пакет с мусором, и сосед не знает, куда его деть. Пакет тяжёлый, и он просит подсказать. Вы показываете на мусорный бак во дворе. rubbish — «мусор»: это одно целое, поэтому нужно is. The rubbish is in the bin — «Мусор в мусорном баке».
 
-**Скажите «Мои наушники в другом месте».**
+**Сосед спрашивает, где мусор. Скажите: «Мусор в мусорном баке».**
 
-- ✅ **My headphones are elsewhere.**
-- ❌ My headphones is elsewhere. — *С `headphones` используем `are`.*
-- ❌ My headphones are in elsewhere. — *Говорим просто `elsewhere`, без `in`.*
+- ✅ **The rubbish is in the bin.**
+- ❌ The rubbish are in the bin. — *Мусор — одно целое: нужно is, а не are.*
+- ❌ The rubbish in the bin. — *Без is предложение не получается: нужно The rubbish is.*
 
 ---
 
 ## Интро 3
 
-### Указатель у двери
+### Соседка помогает
 
-`signpost` — «указатель», обычно на столбе. `This signpost is new` — «Этот указатель новый». `read` — «читать»: `He reads here` — «Он читает здесь». Это может быть его привычное место для чтения; фраза не обязательно описывает эту секунду. `Whose headphones are these?` — «Чьи это наушники?»
+Соседка пришла помочь с уборкой: в одной руке у неё флакон-спрей, в другой щётка. Она улыбается и сразу берётся за дело. Вы благодарите её. spray — «спрей», флакон с распылителем. Про неё после she к scrub добавляем s: She scrubs the table — «Она трёт стол».
 
-**Спросите «Чьи это наушники?»**
+**Сосед спрашивает, что делает соседка. Скажите: «Она трёт стол».**
 
-- ✅ **Whose headphones are these?**
-- ❌ Whose headphones is this? — *Наушники: `are these`, не `is this`.*
-- ❌ Who headphones are these? — *О владельце спрашиваем `Whose` — «чьи».*
+- ✅ **She scrubs the table.**
+- ❌ She scrub the table. — *После she нужно scrubs, с s.*
+- ❌ She is scrubs the table. — *Здесь действие: She scrubs, без is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычке: «Я убираю свою комнату»**
+**1 · Карточка слова — scrub**
+<!-- interaction_id: en:lesson-06:session-30:word:scrub; family: word_card -->
+> **scrub** — тереть щёткой, чистить. They scrub the floor. — «Они трут пол». О чистке щёткой, когда нужно отчистить пятна.
+
+**2 · Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»**
 <!-- interaction_id: en:lesson-06:session-30:i01; family: phrase_builder -->
-Плитки: `room` `my` `clean` `I` → **I clean my room.**
+Плитки: `floor` `the` `scrub` `We` `scrubs` → **We scrub the floor.**
+*(плитка `scrubs` лишняя: здесь нужно `scrub` — `We scrub the floor.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-30:i02; family: listen_choose -->
-🔊 *clean* → **clean** · call · read
-- call — *В записи первое слово — `clean`, а в этом варианте — `call`.*
-- read — *В записи первое слово — `clean`, а в этом варианте — `read`.*
+🔊 *She scrubs the table.* → **She scrubs the table.** · She scrubs the floor. · He scrubs the table.
+- She scrubs the floor. — *В записи последнее слово — `table`, стол, а в этом варианте — `floor`, пол.*
+- He scrubs the table. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите «Она убирает свою комнату»**
+**4 · Скажите о брате: «Мой брат трёт пол». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-30:i03; family: context_gap_grammar -->
-She ___ her room. → **cleans** · clean · is cleans
-- clean — *После `she` — `cleans`.*
-- is cleans — *Нужно `She cleans`, без `is`.*
+My brother ___ the floor. → **scrubs** · scrub · is scrubs
+- scrub — *Брат — это `he`, поэтому нужно `scrubs`, с `s`.*
+- is scrubs — *Говорим `My brother scrubs`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-30:i04; family: speed_match -->
-clean — убирать · elsewhere — в другом месте · signpost — указатель · headphones — наушники
+scrub — тереть щёткой · rubbish — мусор · spray — спрей · cloth — тряпка
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — rubbish**
+<!-- interaction_id: en:lesson-06:session-30:word:rubbish; family: word_card -->
+> **rubbish** — мусор. The rubbish is in the bin. — «Мусор в мусорном баке». О том, что выбрасывают.
+
+**7 · Послушайте соседа и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-30:i05; family: listen_build_dictation -->
-🔊 *Tom cleans his room.* Плитки: `room` `his` `cleans` `Tom` → **Tom cleans his room.**
+🔊 *The rubbish is in the bin.* Плитки: `bin` `in` `the` `The` `rubbish` `is` `are` → **The rubbish is in the bin.**
+*(плитка `are` лишняя: здесь нужно `is` — `The rubbish is in the bin.`)*
 
-**6 · Скажите «Он читает здесь»**
+**8 · Карточка слова — spray**
+<!-- interaction_id: en:lesson-06:session-30:word:spray; family: word_card -->
+> **spray** — спрей. The spray is on the table. — «Спрей на столе». О флаконе, из которого средство распыляют.
+
+**9 · Сосед показывает на флакон. Спросите: «Чей это спрей?»**
 <!-- interaction_id: en:lesson-06:session-30:i06; family: phrase_builder -->
-Плитки: `here` `reads` `He` → **He reads here.**
+Плитки: `spray` `is` `this` `Whose` `Who` → **Whose spray is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose spray is this?`)*
 
-**7 · Скажите «Мои наушники в другом месте»**
+**10 · Сосед спрашивает, что вы делаете с сестрой. Скажите: «Мы трём стол»**
 <!-- interaction_id: en:lesson-06:session-30:i07; family: scripted_repeat_compare -->
-🎙 **My headphones are elsewhere.**
+🎙 **We scrub the table.**
 
-**8 · Скажите «Мы убираем свою комнату»**
+**11 · Скажите о себе: «Я тру стол». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-30:i08; family: context_gap_grammar -->
-We ___ our room. → **clean** · cleans · are clean
-- cleans — *После `we` — `clean`, без `s`.*
-- are clean — *Действие: `We clean our room`, без `are`.*
+I ___ the table. → **scrub** · scrubs · am scrub
+- scrubs — *После `I` нужно `scrub`, без `s`.*
+- am scrub — *Говорим `I scrub`, без `am`.*
 
-**9 · Послушайте, какой этот указатель**
+**12 · Карточка слова — cloth**
+<!-- interaction_id: en:lesson-06:session-30:word:cloth; family: word_card -->
+> **cloth** — тряпка. The cloth is clean. — «Тряпка чистая». О куске ткани для уборки.
+
+**13 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-30:i09; family: listen_choose -->
-🔊 *This signpost is new.* → **This signpost is new.** · This signpost is old. · This signpost is small.
-- This signpost is old. — *В записи последнее слово — `new`, а в этом варианте — `old`.*
-- This signpost is small. — *В записи последнее слово — `new`, а в этом варианте — `small`.*
+🔊 *The cloth is on the table.* → **The cloth is on the table.** · The cloth is on the floor. · The spray is on the table.
+- The cloth is on the floor. — *В записи последнее слово — `table`, стол, а в этом варианте — `floor`, пол.*
+- The spray is on the table. — *В записи речь о `cloth`, тряпке, а в этом варианте — о `spray`, спрее.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-30:i10; family: speed_match -->
-clean — убирать · read — читать · headphones — наушники · elsewhere — в другом месте
+cloth — тряпка · spray — спрей · rubbish — мусор · scrub — тереть щёткой
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-30:i11; family: listen_build_dictation -->
-🔊 *These headphones are mine.* Плитки: `mine` `are` `headphones` `These` `is` → **These headphones are mine.**
-*(плитка `is` лишняя: здесь нужно `are` — `These headphones are mine.`)*
+🔊 *They scrub the floor.* Плитки: `scrub` `the` `floor` `They` `scrubs` → **They scrub the floor.**
+*(плитка `scrubs` лишняя: здесь нужно `scrub` — `They scrub the floor.`)*
 
-**12 · Спросите «Чьи это наушники?»**
+**16 · Сосед показывает на пол у двери. Скажите: «Перчатки на полу»**
 <!-- interaction_id: en:lesson-06:session-30:i12; family: phrase_builder -->
-Плитки: `these` `are` `headphones` `Whose` → **Whose headphones are these?**
+Плитки: `gloves` `are` `on` `the` `floor` `The` `is` → **The gloves are on the floor.**
+*(плитка `is` лишняя: здесь нужно `are` — `The gloves are on the floor.`)*
 
-**13 · Скажите «Они читают в другом месте»**
+**17 · Сосед спрашивает про тряпку. Скажите: «Тряпка чистая»**
 <!-- interaction_id: en:lesson-06:session-30:i13; family: scripted_repeat_compare -->
-🎙 **They read elsewhere.**
+🎙 **The cloth is clean.**
 
-**14 · Скажите «Анна читает здесь»**
+**18 · Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-30:i14; family: context_gap_grammar -->
-Anna ___ here. → **reads** · read · is reads
-- read — *Анна — она: `Anna reads`.*
-- is reads — *Говорим `Anna reads`, без `is`.*
+The cloth and the spray ___ on the table. → **are** · is · scrubs
+- is — *Здесь две вещи, поэтому нужно `are`, а не `is`.*
+- scrubs — *`scrubs` значит «трёт», а здесь нужно сказать, где вещи: `are on`.*
 
-**15 · Послушайте, чьи наушники здесь**
+**19 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-30:i15; family: listen_choose -->
-🔊 *Your headphones are here.* → **Your headphones are here.** · My headphones are here. · His headphones are here.
-- My headphones are here. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- His headphones are here. — *В записи первое слово — `Your`, а в этом варианте — `His`.*
+🔊 *I scrub the floor.* → **I scrub the floor.** · I scrub the table. · We scrub the floor.
+- I scrub the table. — *В записи последнее слово — `floor`, пол, а в этом варианте — `table`, стол.*
+- We scrub the floor. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-30:i16; family: speed_match -->
-clean — убирать · signpost — указатель · elsewhere — в другом месте · read — читать
+spray — спрей · scrub — тереть щёткой · cloth — тряпка · rubbish — мусор
 
-**17 · Расскажите о привычке Анны: «Она убирает свою комнату»**
+**21 · Сосед спрашивает о соседке. Скажите: «Она трёт пол»**
 <!-- interaction_id: en:lesson-06:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She cleans her room.**
-
+🎙 **She scrubs the floor.**

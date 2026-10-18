@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-22",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, кто читает и смеётся, и уточнить полноту списка",
-    "uk": "розповісти, хто читає й сміється, та уточнити повноту списку"
+    "ru": "рассказать, что делает один человек (She reads, He yawns), и описать книгу через is",
+    "uk": "розповісти, що робить одна людина (She reads, He yawns), і описати книжку через is"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Читать",
-        "uk": "Читати"
+        "ru": "Соседка с книгой",
+        "uk": "Сусідка з книжкою"
       },
       "bodyByLocale": {
-        "ru": "`read` — «читать». `I read at home` — «Я читаю дома». В этих фразах `read` произносится /riːd/. `She reads at home` — «Она читает дома»: после `she` добавляем `s`. Смотреть на обложку — ещё не `read`, даже если книга очень умная.",
-        "uk": "`read` — «читати». `I read at home` — «Я читаю вдома». У цих фразах `read` вимовляється /riːd/. `She reads at home` — «Вона читає вдома»: після `she` додаємо `s`. Дивитися на обкладинку — ще не `read`, навіть якщо книжка дуже розумна."
+        "ru": "На лестничной площадке подруга замечает, что дверь вашей соседки открыта. Соседка сидит в кресле с толстой книгой и не поднимает глаз. Подруга спрашивает, что она делает. read — «читать». Про соседку говорим she и добавляем s: She reads in the armchair — «Она читает в кресле».",
+        "uk": "На сходовому майданчику подруга помічає, що двері вашої сусідки відчинені. Сусідка сидить у кріслі з товстою книжкою й не піднімає очей. Подруга питає, що вона робить. read — «читати». Про сусідку кажемо she і додаємо s: She reads in the armchair — «Вона читає в кріслі»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-22:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она читает дома».",
-          "uk": "Скажіть «Вона читає вдома»."
+          "ru": "Подруга спрашивает, что делает соседка. Скажите: «Она читает в кресле».",
+          "uk": "Подруга питає, що робить сусідка. Скажіть: «Вона читає в кріслі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-22:intro1:r1",
-              "text": "She reads at home."
+              "text": "She reads in the armchair."
             },
             {
               "responseId": "en:lesson-06:session-22:intro1:r2",
-              "text": "She read at home."
+              "text": "She read in the armchair."
             },
             {
               "responseId": "en:lesson-06:session-22:intro1:r3",
-              "text": "She is reads at home."
+              "text": "She is reads in the armchair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-22:intro1:r1",
-              "text": "She reads at home."
+              "text": "She reads in the armchair."
             },
             {
               "responseId": "en:lesson-06:session-22:intro1:r2",
-              "text": "She read at home."
+              "text": "She read in the armchair."
             },
             {
               "responseId": "en:lesson-06:session-22:intro1:r3",
-              "text": "She is reads at home."
+              "text": "She is reads in the armchair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она читает дома».",
-          "uk": "Скажіть «Вона читає вдома»."
+          "ru": "Подруга спрашивает, что делает соседка. Скажите: «Она читает в кресле».",
+          "uk": "Подруга питає, що робить сусідка. Скажіть: «Вона читає в кріслі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Смешная книга",
-        "uk": "Кумедна книжка"
+        "ru": "Длинный урок",
+        "uk": "Довгий урок"
       },
       "bodyByLocale": {
-        "ru": "`laugh` — «смеяться». `He laughs a lot` — «Он много смеётся». `They laugh a lot` — «Они много смеются»: после `they` окончания `s` нет. `Anna reads here` — «Анна читает здесь»: здесь `Anna` соответствует `she`.",
-        "uk": "`laugh` — «сміятися». `He laughs a lot` — «Він багато сміється». `They laugh a lot` — «Вони багато сміються»: після `they` закінчення `s` немає. `Anna reads here` — «Анна читає тут»: тут `Anna` відповідає `she`."
+        "ru": "Вы пришли за братом в школу. Он сидит на уроке, подперев голову рукой, и широко открывает рот: урок тянется уже долго. Учительница в дверях спрашивает, что он делает. yawn — «зевать». Про брата говорим he и добавляем s: He yawns in class — «Он зевает на уроке».",
+        "uk": "Ви прийшли по брата до школи. Він сидить на уроці, підперши голову рукою, і широко розкриває рот: урок тягнеться вже довго. Вчителька в дверях питає, що він робить. yawn — «позіхати». Про брата кажемо he і додаємо s: He yawns in class — «Він позіхає на уроці»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-22:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Он много смеётся».",
-          "uk": "Скажіть «Він багато сміється»."
+          "ru": "Учительница спрашивает, что делает ваш брат. Скажите: «Он зевает на уроке».",
+          "uk": "Вчителька питає, що робить ваш брат. Скажіть: «Він позіхає на уроці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-22:intro2:r1",
-              "text": "He laughs a lot."
+              "text": "He yawns in class."
             },
             {
               "responseId": "en:lesson-06:session-22:intro2:r2",
-              "text": "He laugh a lot."
+              "text": "He yawn in class."
             },
             {
               "responseId": "en:lesson-06:session-22:intro2:r3",
-              "text": "He is laughs a lot."
+              "text": "He is yawns in class."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-22:intro2:r1",
-              "text": "He laughs a lot."
+              "text": "He yawns in class."
             },
             {
               "responseId": "en:lesson-06:session-22:intro2:r2",
-              "text": "He laugh a lot."
+              "text": "He yawn in class."
             },
             {
               "responseId": "en:lesson-06:session-22:intro2:r3",
-              "text": "He is laughs a lot."
+              "text": "He is yawns in class."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он много смеётся».",
-          "uk": "Скажіть «Він багато сміється»."
+          "ru": "Учительница спрашивает, что делает ваш брат. Скажите: «Он зевает на уроке».",
+          "uk": "Вчителька питає, що робить ваш брат. Скажіть: «Він позіхає на уроці»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Полный список",
-        "uk": "Повний список"
+        "ru": "Первая глава",
+        "uk": "Перший розділ"
       },
       "bodyByLocale": {
-        "ru": "`complete` — «полный», когда ничего необходимого не пропущено. `The list is complete` — «Список полный»: все нужные покупки записаны. `carrot` — «морковка», `boots` — «ботинки» или «сапоги», обувь, закрывающая щиколотку или выше. `The carrot is in the bag` — «Морковка в сумке». `These boots are mine` — «Эти ботинки мои».",
-        "uk": "`complete` — «повний», коли нічого необхідного не пропущено. `The list is complete` — «Список повний»: усі потрібні покупки записані. `carrot` — «морквина», `boots` — «черевики» або «чоботи», взуття, що закриває щиколотку чи вище. `The carrot is in the bag` — «Морквина в сумці». `These boots are mine` — «Ці черевики мої»."
+        "ru": "Вечером подруга, которая тоже взялась за эту книгу, спрашивает, как она вам. Вы дочитали только до середины: в первой части много страниц, и она всё не кончается. chapter — «глава». Когда говорим, какая она, нужен is: The chapter is long — «Глава длинная».",
+        "uk": "Ввечері подруга, яка теж узялася за цю книжку, питає, як вона вам. Ви дочитали лише до середини: у першій частині багато сторінок, і вона все не закінчується. chapter — «розділ». Коли кажемо, який він, потрібен is: The chapter is long — «Розділ довгий»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-22:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Список полный».",
-          "uk": "Скажіть «Список повний»."
+          "ru": "Подруга спрашивает про книгу. Скажите: «Глава длинная».",
+          "uk": "Подруга питає про книжку. Скажіть: «Розділ довгий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-22:intro3:r1",
-              "text": "The list is complete."
+              "text": "The chapter is long."
             },
             {
               "responseId": "en:lesson-06:session-22:intro3:r2",
-              "text": "The list are complete."
+              "text": "The chapter long."
             },
             {
               "responseId": "en:lesson-06:session-22:intro3:r3",
-              "text": "The list is empty."
+              "text": "The chapter are long."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-22:intro3:r1",
-              "text": "The list is complete."
+              "text": "The chapter is long."
             },
             {
               "responseId": "en:lesson-06:session-22:intro3:r2",
-              "text": "The list are complete."
+              "text": "The chapter long."
             },
             {
               "responseId": "en:lesson-06:session-22:intro3:r3",
-              "text": "The list is empty."
+              "text": "The chapter are long."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Список полный».",
-          "uk": "Скажіть «Список повний»."
+          "ru": "Подруга спрашивает про книгу. Скажите: «Глава длинная».",
+          "uk": "Подруга питає про книжку. Скажіть: «Розділ довгий»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe46688773947bb4768d6f10880d37fc1b1e7cd0eb6c7606b232a3e191dc6ffd"
+  "introFingerprint": "71db3a0cb0fc7b1efcf911e5256fa5df456f3e586817f4dd615338802e128d8b"
 }

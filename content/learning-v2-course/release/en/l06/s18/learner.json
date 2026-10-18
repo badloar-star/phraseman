@@ -4,31 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-18:i01",
+      "interactionId": "en:lesson-06:session-18:word:smile",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smile",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-18:word:smile:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — smile",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-18:word:smile:audio",
+          "transcript": "smile"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-18:word:smile:r1",
+            "targetText": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться. My sister smiles in the park. — «Моя сестра улыбается в парке». Когда человек улыбается.",
+              "uk": "усміхатися. My sister smiles in the park. — «Моя сестра усміхається в парку». Коли людина усміхається."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smile",
+          "definitionByLocale": {
+            "ru": "улыбаться. My sister smiles in the park. — «Моя сестра улыбается в парке». Когда человек улыбается.",
+            "uk": "усміхатися. My sister smiles in the park. — «Моя сестра усміхається в парку». Коли людина усміхається."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-18:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто улыбаюсь»",
+      "prompt": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто улыбаюсь»",
+      "accessibilityLabel": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I smile a lot.",
+        "targetPhrase": "He smiles at the baby.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто улыбаюсь»",
-          "uk": "Скажіть «Я часто усміхаюся»"
+          "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
+          "uk": "Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»"
         },
         "orderedTokens": [
-          "I",
-          "smile",
-          "a",
-          "lot"
+          "He",
+          "smiles",
+          "at",
+          "the",
+          "baby"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "smile"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-18:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `smiles` — `He smiles at the baby.`",
+              "uk": "тут потрібно `smiles` — `He smiles at the baby.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-18:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-18:word:cough",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — cough",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-18:word:cough:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cough",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-18:word:cough:audio",
+          "transcript": "cough"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-18:word:cough:r1",
+            "targetText": "cough",
+            "meaningByLocale": {
+              "ru": "кашлять. He coughs at home. — «Он кашляет дома». Когда человек кашляет.",
+              "uk": "кашляти. He coughs at home. — «Він кашляє вдома». Коли людина кашляє."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cough",
+          "definitionByLocale": {
+            "ru": "кашлять. He coughs at home. — «Он кашляет дома». Когда человек кашляет.",
+            "uk": "кашляти. He coughs at home. — «Він кашляє вдома». Коли людина кашляє."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-18:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сотрудницу регистратуры",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-18:i02:r1",
-          "text": "smile"
+          "text": "He coughs at home."
         },
         {
           "responseId": "en:lesson-06:session-18:i02:r2",
-          "text": "drive"
+          "text": "He smiles at home."
         },
         {
           "responseId": "en:lesson-06:session-18:i02:r3",
-          "text": "sing"
+          "text": "They cough at home."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте сотрудницу регистратуры",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i02:audio",
-          "transcript": "smile"
+          "transcript": "He coughs at home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-18:i02:r1",
-            "targetText": "smile",
+            "targetText": "He coughs at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-18:i02:r2",
-            "targetText": "drive",
+            "targetText": "He smiles at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-18:i02:r3",
-            "targetText": "sing",
+            "targetText": "They cough at home.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +190,19 @@
           {
             "responseId": "en:lesson-06:session-18:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте сотрудницу регистратуры",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `smile`, а в этом варианте — `drive`.",
-              "uk": "У записі перше слово — `smile`, а в цьому варіанті — `drive`."
+              "ru": "В записи действие — `coughs`, кашляет, а в этом варианте — `smiles`, улыбается.",
+              "uk": "У записі дія — `coughs`, кашляє, а в цьому варіанті — `smiles`, усміхається."
             }
           },
           {
             "responseId": "en:lesson-06:session-18:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте сотрудницу регистратуры",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `smile`, а в этом варианте — `sing`.",
-              "uk": "У записі перше слово — `smile`, а в цьому варіанті — `sing`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `cough`).",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `cough`)."
             }
           }
         ],
@@ -113,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-18:word:throat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — throat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-18:word:throat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — throat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-18:word:throat:audio",
+          "transcript": "throat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-18:word:throat:r1",
+            "targetText": "throat",
+            "meaningByLocale": {
+              "ru": "горло. My throat is sore. — «У меня болит горло». О части тела, которая находится в шее.",
+              "uk": "горло. My throat is sore. — «У мене болить горло». Про частину тіла, яка знаходиться в шиї."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "throat",
+          "definitionByLocale": {
+            "ru": "горло. My throat is sore. — «У меня болит горло». О части тела, которая находится в шее.",
+            "uk": "горло. My throat is sore. — «У мене болить горло». Про частину тіла, яка знаходиться в шиї."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-18:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она часто улыбается»",
+      "prompt": "Врач спрашивает, что болит у брата. Скажите: «У него болит горло». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-18:i03:r1",
-          "text": "smiles"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-18:i03:r2",
-          "text": "smile"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-18:i03:r3",
-          "text": "is smiles"
+          "text": "coughs"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она часто улыбается»",
+      "accessibilityLabel": "Врач спрашивает, что болит у брата. Скажите: «У него болит горло». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она часто улыбается»",
-          "uk": "Скажіть «Вона часто усміхається»"
+          "ru": "Врач спрашивает, что болит у брата. Скажите: «У него болит горло». Выберите слово",
+          "uk": "Лікар питає, що болить у брата. Скажіть: «У нього болить горло». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ a lot.",
+        "gappedTargetPhrase": "His throat ___ sore.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-18:i03:r1",
-            "text": "smiles"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-18:i03:r2",
-            "text": "smile"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-18:i03:r3",
-            "text": "is smiles"
+            "text": "coughs"
           }
         ],
-        "testedDimension": "Скажите «Она часто улыбается»",
+        "testedDimension": "Врач спрашивает, что болит у брата. Скажите: «У него болит горло». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-18:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она часто улыбается»",
+            "testedDimension": "Врач спрашивает, что болит у брата. Скажите: «У него болит горло». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `smiles`, с `s`.",
-              "uk": "Після `she` — `smiles`, з `s`."
+              "ru": "Горло одно, поэтому нужно `is`, а не `are`.",
+              "uk": "Горло одне, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-18:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она часто улыбается»",
+            "testedDimension": "Врач спрашивает, что болит у брата. Скажите: «У него болит горло». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `She smiles`, без `is`.",
-              "uk": "Кажемо `She smiles`, без `is`."
+              "ru": "`coughs` значит «кашляет», а здесь нужно сказать, какое горло: `is sore`.",
+              "uk": "`coughs` означає «кашляє», а тут треба сказати, яке горло: `is sore`."
             }
           }
         ]
@@ -183,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +347,40 @@
           },
           {
             "pairId": "en:lesson-06:session-18:i04:p2",
-            "target": "unwell",
+            "target": "cough",
             "meaningByLocale": {
-              "ru": "нездоровый",
-              "uk": "нездоровий"
+              "ru": "кашлять",
+              "uk": "кашляти"
             }
           },
           {
             "pairId": "en:lesson-06:session-18:i04:p3",
-            "target": "milk",
+            "target": "throat",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "горло",
+              "uk": "горло"
             }
           },
           {
             "pairId": "en:lesson-06:session-18:i04:p4",
-            "target": "gloves",
+            "target": "syrup",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "сироп",
+              "uk": "сироп"
             }
           }
         ],
         "leftColumn": [
           "smile",
-          "unwell",
-          "milk",
-          "gloves"
+          "cough",
+          "throat",
+          "syrup"
         ],
         "rightColumn": [
           "улыбаться",
-          "нездоровый",
-          "молоко",
-          "перчатки"
+          "кашлять",
+          "горло",
+          "сироп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +397,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-18:word:syrup",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — syrup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-18:word:syrup:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — syrup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-18:word:syrup:audio",
+          "transcript": "syrup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-18:word:syrup:r1",
+            "targetText": "syrup",
+            "meaningByLocale": {
+              "ru": "сироп. The syrup is in the kitchen. — «Сироп на кухне». О сладком лекарстве от кашля.",
+              "uk": "сироп. The syrup is in the kitchen. — «Сироп на кухні». Про солодкі ліки від кашлю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "syrup",
+          "definitionByLocale": {
+            "ru": "сироп. The syrup is in the kitchen. — «Сироп на кухне». О сладком лекарстве от кашля.",
+            "uk": "сироп. The syrup is in the kitchen. — «Сироп на кухні». Про солодкі ліки від кашлю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-18:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте врача и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте врача и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i05:audio",
-          "transcript": "Anna smiles a lot."
+          "transcript": "The syrup is sweet."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna smiles a lot.",
+        "hiddenTargetPhrase": "The syrup is sweet.",
         "orderedTokens": [
-          "Anna",
-          "smiles",
-          "a",
-          "lot"
+          "The",
+          "syrup",
+          "is",
+          "sweet"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-18:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте врача и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The syrup is sweet.`",
+              "uk": "тут потрібно `is` — `The syrup is sweet.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -292,29 +489,41 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Он практикует английский»",
+      "prompt": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он практикует английский»",
+      "accessibilityLabel": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He practices English.",
+        "targetPhrase": "She practices English.",
         "localizedMeaning": {
-          "ru": "Скажите «Он практикует английский»",
-          "uk": "Скажіть «Він практикує англійську»"
+          "ru": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
+          "uk": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»"
         },
         "orderedTokens": [
-          "He",
+          "She",
           "practices",
           "English"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "practice"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-18:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `practices` — `She practices English.`",
+              "uk": "тут потрібно `practices` — `She practices English.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите о Томе «Он плохо себя чувствует»",
+      "prompt": "Сестра спрашивает, что болит у брата. Скажите: «У него болит горло»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Скажите о Томе «Он плохо себя чувствует»",
+      "accessibilityLabel": "Сестра спрашивает, что болит у брата. Скажите: «У него болит горло»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i07:audio",
-          "transcript": "He is unwell."
+          "transcript": "His throat is sore."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is unwell.",
+        "targetPhrase": "His throat is sore.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +566,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Эти перчатки мои»",
+      "prompt": "Скажите о брате: «Он улыбается малышу». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-18:i08:r1",
-          "text": "are"
+          "text": "smiles"
         },
         {
           "responseId": "en:lesson-06:session-18:i08:r2",
-          "text": "is"
+          "text": "smile"
         },
         {
           "responseId": "en:lesson-06:session-18:i08:r3",
-          "text": "am"
+          "text": "is smiles"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Эти перчатки мои»",
+      "accessibilityLabel": "Скажите о брате: «Он улыбается малышу». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Эти перчатки мои»",
-          "uk": "Скажіть «Ці рукавички мої»"
+          "ru": "Скажите о брате: «Он улыбается малышу». Выберите слово",
+          "uk": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово"
         },
-        "gappedTargetPhrase": "These gloves ___ mine.",
+        "gappedTargetPhrase": "He ___ at the baby.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-18:i08:r1",
-            "text": "are"
+            "text": "smiles"
           },
           {
             "responseId": "en:lesson-06:session-18:i08:r2",
-            "text": "is"
+            "text": "smile"
           },
           {
             "responseId": "en:lesson-06:session-18:i08:r3",
-            "text": "am"
+            "text": "is smiles"
           }
         ],
-        "testedDimension": "Скажите «Эти перчатки мои»",
+        "testedDimension": "Скажите о брате: «Он улыбается малышу». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Эти перчатки мои»",
+            "testedDimension": "Скажите о брате: «Он улыбается малышу». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Перчаток несколько: `These gloves are`.",
-              "uk": "Рукавичок кілька: `These gloves are`."
+              "ru": "После `he` — `smiles`, с `s`.",
+              "uk": "Після `he` — `smiles`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Эти перчатки мои»",
+            "testedDimension": "Скажите о брате: «Он улыбается малышу». Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` ставим с `I`; здесь `These gloves are`.",
-              "uk": "`am` ставимо з `I`; тут `These gloves are`."
+              "ru": "Говорим `He smiles`, без `is`.",
+              "uk": "Кажемо `He smiles`, без `is`."
             }
           }
         ]
@@ -426,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кто часто улыбается",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-18:i09:r1",
-          "text": "They smile a lot."
+          "text": "She smiles at the baby."
         },
         {
           "responseId": "en:lesson-06:session-18:i09:r2",
-          "text": "We smile a lot."
+          "text": "She smiles at the doctor."
         },
         {
           "responseId": "en:lesson-06:session-18:i09:r3",
-          "text": "You smile a lot."
+          "text": "He smiles at the baby."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, кто часто улыбается",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i09:audio",
-          "transcript": "They smile a lot."
+          "transcript": "She smiles at the baby."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-18:i09:r1",
-            "targetText": "They smile a lot.",
+            "targetText": "She smiles at the baby.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-18:i09:r2",
-            "targetText": "We smile a lot.",
+            "targetText": "She smiles at the doctor.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-18:i09:r3",
-            "targetText": "You smile a lot.",
+            "targetText": "He smiles at the baby.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +688,19 @@
           {
             "responseId": "en:lesson-06:session-18:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кто часто улыбается",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
-              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              "ru": "В записи последнее слово — `baby`, малыш, а в этом варианте — `doctor`, врач.",
+              "uk": "У записі останнє слово — `baby`, малюк, а в цьому варіанті — `doctor`, лікар."
             }
           },
           {
             "responseId": "en:lesson-06:session-18:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кто часто улыбается",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
-              "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -502,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -524,40 +733,40 @@
           },
           {
             "pairId": "en:lesson-06:session-18:i10:p2",
-            "target": "practice",
+            "target": "cough",
             "meaningByLocale": {
-              "ru": "практиковаться",
-              "uk": "практикуватися"
+              "ru": "кашлять",
+              "uk": "кашляти"
             }
           },
           {
             "pairId": "en:lesson-06:session-18:i10:p3",
-            "target": "gloves",
+            "target": "syrup",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "сироп",
+              "uk": "сироп"
             }
           },
           {
             "pairId": "en:lesson-06:session-18:i10:p4",
             "target": "unwell",
             "meaningByLocale": {
-              "ru": "нездоровый",
-              "uk": "нездоровий"
+              "ru": "плохо себя чувствующий",
+              "uk": "такий, що погано почувається"
             }
           }
         ],
         "leftColumn": [
           "smile",
-          "practice",
-          "gloves",
+          "cough",
+          "syrup",
           "unwell"
         ],
         "rightColumn": [
           "улыбаться",
-          "практиковаться",
-          "перчатки",
-          "нездоровый"
+          "кашлять",
+          "сироп",
+          "плохо себя чувствующий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,44 +784,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте учительницу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте учительницу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i11:audio",
-          "transcript": "The milk is on the table."
+          "transcript": "He practices English at home."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The milk is on the table.",
+        "hiddenTargetPhrase": "He practices English at home.",
         "orderedTokens": [
-          "The",
-          "milk",
-          "is",
-          "on",
-          "the",
-          "table"
+          "He",
+          "practices",
+          "English",
+          "at",
+          "home"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "practice"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-18:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте учительницу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The milk is on the table.`",
-              "uk": "тут потрібно `is` — `The milk is on the table.`"
+              "ru": "здесь нужно `practices` — `He practices English at home.`",
+              "uk": "тут потрібно `practices` — `He practices English at home.`"
             }
           }
         ],
@@ -625,30 +833,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чьи это перчатки?»",
+      "prompt": "Вы нашли банку на кухне. Спросите: «Чей это сироп?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чьи это перчатки?»",
+      "accessibilityLabel": "Вы нашли банку на кухне. Спросите: «Чей это сироп?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose gloves are these?",
+        "targetPhrase": "Whose syrup is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чьи это перчатки?»",
-          "uk": "Запитайте «Чиї це рукавички?»"
+          "ru": "Вы нашли банку на кухне. Спросите: «Чей это сироп?»",
+          "uk": "Ви знайшли банку на кухні. Спитайте: «Чий це сироп?»"
         },
         "orderedTokens": [
           "Whose",
-          "gloves",
-          "are",
-          "these"
+          "syrup",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-18:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы нашли банку на кухне. Спросите: «Чей это сироп?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose syrup is this?`",
+              "uk": "тут потрібно `Whose` — `Whose syrup is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -658,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Мы практикуем английский»",
+      "prompt": "Сотрудница регистратуры спрашивает, что делает ваш брат. Скажите: «Он кашляет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Мы практикуем английский»",
+      "accessibilityLabel": "Сотрудница регистратуры спрашивает, что делает ваш брат. Скажите: «Он кашляет»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i13:audio",
-          "transcript": "We practice English."
+          "transcript": "He coughs."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We practice English.",
+        "targetPhrase": "He coughs.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -691,67 +911,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том практикуется здесь»",
+      "prompt": "Скажите о брате: «Он кашляет дома». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-18:i14:r1",
-          "text": "practices"
+          "text": "coughs"
         },
         {
           "responseId": "en:lesson-06:session-18:i14:r2",
-          "text": "practice"
+          "text": "cough"
         },
         {
           "responseId": "en:lesson-06:session-18:i14:r3",
-          "text": "is practices"
+          "text": "is coughs"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том практикуется здесь»",
+      "accessibilityLabel": "Скажите о брате: «Он кашляет дома». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том практикуется здесь»",
-          "uk": "Скажіть «Том практикується тут»"
+          "ru": "Скажите о брате: «Он кашляет дома». Выберите слово",
+          "uk": "Скажіть про брата: «Він кашляє вдома». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ here.",
+        "gappedTargetPhrase": "He ___ at home.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-18:i14:r1",
-            "text": "practices"
+            "text": "coughs"
           },
           {
             "responseId": "en:lesson-06:session-18:i14:r2",
-            "text": "practice"
+            "text": "cough"
           },
           {
             "responseId": "en:lesson-06:session-18:i14:r3",
-            "text": "is practices"
+            "text": "is coughs"
           }
         ],
-        "testedDimension": "Скажите «Том практикуется здесь»",
+        "testedDimension": "Скажите о брате: «Он кашляет дома». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-18:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том практикуется здесь»",
+            "testedDimension": "Скажите о брате: «Он кашляет дома». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom practices`, с окончанием.",
-              "uk": "Том — він: `Tom practices`, із закінченням."
+              "ru": "После `he` — `coughs`, с `s`.",
+              "uk": "Після `he` — `coughs`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-18:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том практикуется здесь»",
+            "testedDimension": "Скажите о брате: «Он кашляет дома». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `Tom practices`, без `is`.",
-              "uk": "Кажемо `Tom practices`, без `is`."
+              "ru": "Говорим `He coughs`, без `is`.",
+              "uk": "Кажемо `He coughs`, без `is`."
             }
           }
         ]
@@ -760,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что Анна говорит о молоке",
+      "prompt": "Послушайте врача",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-18:i15:r1",
-          "text": "The milk is cold."
+          "text": "He is unwell."
         },
         {
           "responseId": "en:lesson-06:session-18:i15:r2",
-          "text": "The milk is warm."
+          "text": "He is well."
         },
         {
           "responseId": "en:lesson-06:session-18:i15:r3",
-          "text": "The milk is hot."
+          "text": "She is unwell."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что Анна говорит о молоке",
+      "accessibilityLabel": "Послушайте врача",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i15:audio",
-          "transcript": "The milk is cold."
+          "transcript": "He is unwell."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-18:i15:r1",
-            "targetText": "The milk is cold.",
+            "targetText": "He is unwell.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-18:i15:r2",
-            "targetText": "The milk is warm.",
+            "targetText": "He is well.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-18:i15:r3",
-            "targetText": "The milk is hot.",
+            "targetText": "She is unwell.",
             "meaningByLocale": null
           }
         ],
@@ -813,19 +1033,19 @@
           {
             "responseId": "en:lesson-06:session-18:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о молоке",
+            "testedDimension": "Послушайте врача",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cold`, а в этом варианте — `warm`.",
-              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `warm`."
+              "ru": "В записи последнее слово — `unwell`, плохо себя чувствует, а в этом варианте — `well`, хорошо себя чувствует.",
+              "uk": "У записі останнє слово — `unwell`, погано почувається, а в цьому варіанті — `well`, добре почувається."
             }
           },
           {
             "responseId": "en:lesson-06:session-18:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о молоке",
+            "testedDimension": "Послушайте врача",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cold`, а в этом варианте — `hot`.",
-              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `hot`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -836,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -850,6 +1070,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-18:i16:p1",
+            "target": "cough",
+            "meaningByLocale": {
+              "ru": "кашлять",
+              "uk": "кашляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-18:i16:p2",
             "target": "smile",
             "meaningByLocale": {
               "ru": "улыбаться",
@@ -857,41 +1085,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-18:i16:p2",
-            "target": "unwell",
-            "meaningByLocale": {
-              "ru": "нездоровый",
-              "uk": "нездоровий"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-18:i16:p3",
-            "target": "milk",
+            "target": "throat",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "горло",
+              "uk": "горло"
             }
           },
           {
             "pairId": "en:lesson-06:session-18:i16:p4",
-            "target": "practice",
+            "target": "syrup",
             "meaningByLocale": {
-              "ru": "практиковаться",
-              "uk": "практикуватися"
+              "ru": "сироп",
+              "uk": "сироп"
             }
           }
         ],
         "leftColumn": [
+          "cough",
           "smile",
-          "unwell",
-          "milk",
-          "practice"
+          "throat",
+          "syrup"
         ],
         "rightColumn": [
+          "кашлять",
           "улыбаться",
-          "нездоровый",
-          "молоко",
-          "практиковаться"
+          "горло",
+          "сироп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -909,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Расскажите другу об Анне: «Она часто улыбается»",
+      "prompt": "Врач по телефону спрашивает, что делает ваш брат дома. Скажите: «Он кашляет дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-18:i17:audio"
       ],
-      "accessibilityLabel": "Расскажите другу об Анне: «Она часто улыбается»",
+      "accessibilityLabel": "Врач по телефону спрашивает, что делает ваш брат дома. Скажите: «Он кашляет дома»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-18:i17:audio",
-          "transcript": "She smiles a lot."
+          "transcript": "He coughs at home."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She smiles a lot.",
+        "targetPhrase": "He coughs at home.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -949,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a9f4a0044a0942802a01d438ea27f611681b1bd1e1954f9dd5fa0e4914712566"
+  "learnerFingerprint": "f71bf66c19a3820476d1d16b7dc98af90433af607fff025ab8272647440137ac"
 }

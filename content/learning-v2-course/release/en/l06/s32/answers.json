@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-32:word:sunrise",
+    "correctText": "sunrise",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-32:i01",
-    "correctText": "I jog here.",
+    "correctText": "We jog at sunrise.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i02",
-    "correctText": "She exercises here.",
+    "correctText": "He walks to the hill.",
     "correctResponseId": "en:lesson-06:session-32:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-32:i03",
-    "correctText": "showers",
+    "correctText": "calls",
     "correctResponseId": "en:lesson-06:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-32:i04",
-    "correctText": "en:lesson-06:session-32:i04:p1=jog\nen:lesson-06:session-32:i04:p2=exercise\nen:lesson-06:session-32:i04:p3=stretch\nen:lesson-06:session-32:i04:p4=fountain",
+    "correctText": "en:lesson-06:session-32:i04:p1=sunrise\nen:lesson-06:session-32:i04:p2=smoothie\nen:lesson-06:session-32:i04:p3=playlist\nen:lesson-06:session-32:i04:p4=porridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:word:smoothie",
+    "correctText": "smoothie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i05",
-    "correctText": "She calls her mother.",
+    "correctText": "My smoothie is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:word:playlist",
+    "correctText": "playlist",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i06",
-    "correctText": "We clean our room.",
+    "correctText": "She jogs with a playlist.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i07",
-    "correctText": "This fountain is beautiful.",
+    "correctText": "They exercise on the mat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i08",
-    "correctText": "stretches",
+    "correctText": "scrub",
     "correctResponseId": "en:lesson-06:session-32:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-32:word:porridge",
+    "correctText": "porridge",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-32:i09",
-    "correctText": "He walks here.",
+    "correctText": "The porridge is warm.",
     "correctResponseId": "en:lesson-06:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-32:i10",
-    "correctText": "en:lesson-06:session-32:i10:p1=call\nen:lesson-06:session-32:i10:p2=clean\nen:lesson-06:session-32:i10:p3=shower\nen:lesson-06:session-32:i10:p4=walk",
+    "correctText": "en:lesson-06:session-32:i10:p1=porridge\nen:lesson-06:session-32:i10:p2=playlist\nen:lesson-06:session-32:i10:p3=sunrise\nen:lesson-06:session-32:i10:p4=smoothie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i11",
-    "correctText": "They exercise here.",
+    "correctText": "He showers at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i12",
-    "correctText": "Whose guitar is this?",
+    "correctText": "My shoulder is sore.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i13",
-    "correctText": "I shower at home.",
+    "correctText": "She stretches near the hill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i14",
-    "correctText": "jog",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-32:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-32:i15",
-    "correctText": "This fountain is beautiful.",
+    "correctText": "I walk to work.",
     "correctResponseId": "en:lesson-06:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-32:i16",
-    "correctText": "en:lesson-06:session-32:i16:p1=stretch\nen:lesson-06:session-32:i16:p2=shower\nen:lesson-06:session-32:i16:p3=call\nen:lesson-06:session-32:i16:p4=clean",
+    "correctText": "en:lesson-06:session-32:i16:p1=playlist\nen:lesson-06:session-32:i16:p2=porridge\nen:lesson-06:session-32:i16:p3=smoothie\nen:lesson-06:session-32:i16:p4=sunrise",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-32:i17",
-    "correctText": "She jogs here.",
+    "correctText": "She jogs at sunrise.",
     "correctResponseId": null
   }
 ]

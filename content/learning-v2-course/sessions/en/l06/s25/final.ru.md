@@ -1,134 +1,154 @@
 # Английский · Урок 6 · Занятие 25 — Пешком на работу
 
-**Ситуация.** Анна и Том разговаривают в офисной кухне о дороге на работу. У раковины стоит ланчбокс Анны; их коллега сегодня отсутствует.
+**Ситуация.** Вы обедаете с коллегой и обсуждаете дорогу до офиса. Вы с соседкой ходите на работу пешком. Слово действия после I, we и they остаётся прежним, а после she и he получает s.
 
-**Что вы освоите:** рассказать о привычном способе добираться на работу
-**Новые слова:** walk
+**Что вы освоите:** рассказать, кто как добирается на работу, и сказать, где что находится по пути
+**Новые слова:** walk, hill, pedometer, tunnel
+**Возвращаются:** work, near, bridge, office, park, run, puppy
 
 ---
 
 ## Интро 1
 
-### Идти пешком
+### Как вы добираетесь
 
-`walk` — «ходить пешком», «гулять». `I walk to work` — «Я хожу на работу пешком». Знакомое `drive` означает ехать за рулём. Если машина осталась дома, зато ботинки дошли до офиса, сегодня пригодится `walk`.
+Коллега за обедом спрашивает, как вы добираетесь до офиса. Автомобиля у вас нет, а идти недалеко: полчаса — и вы на месте. walk — «ходить пешком». Про себя говорим I walk to work — «Я хожу на работу пешком». После I слово остаётся walk, без s.
 
-**Скажите «Я хожу на работу пешком».**
+**Коллега спрашивает, как вы добираетесь до офиса. Скажите: «Я хожу на работу пешком».**
 
 - ✅ **I walk to work.**
-- ❌ I am walk to work. — *Говорим `I walk`, без `am`.*
-- ❌ I walks to work. — *После `I` — `walk`, без `s`.*
+- ❌ I walks to work. — *После I слово остаётся walk, без s.*
+- ❌ I am walk to work. — *Здесь действие: I walk, без am.*
 
 ---
 
 ## Интро 2
 
-### Как обычно бывает
+### Соседка со шагомером
 
-`I walk to work` рассказывает о привычном способе добираться на работу. Эту фразу можно сказать, уже сидя в офисе: она не означает, что вы шагаете прямо во время разговора. `She walks to work` — «Она ходит на работу пешком». `He drives to work` — «Он ездит на работу за рулём». После `she` и `he` здесь добавляем `s`.
+Ваша соседка тоже каждое утро идёт на работу пешком, а в сумке у неё шагомер: pedometer — «шагомер», он считает шаги за день. Коллега спрашивает, как она обычно добирается до работы. Про неё говорим She walks: к walk добавляем s, как в She walks to work.
 
-**Вы уже сидите в офисе. Расскажите о привычке: «Она ходит на работу пешком».**
+**Коллега спрашивает, как соседка добирается до работы. Скажите: «Она ходит на работу пешком».**
 
 - ✅ **She walks to work.**
-- ❌ She walk to work. — *После `she` — `walks`, с `s`.*
-- ❌ She is walks to work. — *Говорим `She walks`, без `is`.*
+- ❌ She walk to work. — *После she нужно walks, с s.*
+- ❌ She is walks to work. — *Здесь действие: She walks, без is.*
 
 ---
 
 ## Интро 3
 
-### В офисной кухне
+### Холм на пути
 
-`absent` — «отсутствующий». `He is absent` — «Он отсутствует»: коллеги нет на месте, где его ожидали. Здесь состояние, поэтому нужно `is`. `sink` — «раковина», `lunchbox` — «ланчбокс», контейнер для еды с собой. `The lunchbox is near the sink` — «Ланчбокс возле раковины».
+Коллега хочет пойти на работу тем же путём и спрашивает, где именно на дороге холм. Вы показываете: он недалеко от офиса, подниматься на него несложно. hill — «холм». Про один предмет говорим is: The hill is near the office — «Холм возле офиса».
 
-**Скажите «Он отсутствует».**
+**Коллега спрашивает, где холм. Скажите: «Холм возле офиса».**
 
-- ✅ **He is absent.**
-- ❌ He absent. — *Здесь нужно `He is absent`.*
-- ❌ He are absent. — *С `he` — `is`, не `are`.*
+- ✅ **The hill is near the office.**
+- ❌ The hill near the office. — *Без is предложение не получается: нужно The hill is.*
+- ❌ The hill are near the office. — *Холм один, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычном маршруте: «Я хожу на работу пешком»**
+**1 · Карточка слова — walk**
+<!-- interaction_id: en:lesson-06:session-25:word:walk; family: word_card -->
+> **walk** — ходить пешком. We walk to the park. — «Мы ходим пешком в парк». О привычном пути пешком.
+
+**2 · Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»**
 <!-- interaction_id: en:lesson-06:session-25:i01; family: phrase_builder -->
-Плитки: `work` `to` `walk` `I` → **I walk to work.**
+Плитки: `work` `to` `walk` `We` `walks` → **We walk to work.**
+*(плитка `walks` лишняя: здесь нужно `walk` — `We walk to work.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-06:session-25:i02; family: listen_choose -->
-🔊 *walk* → **walk** · drive · read
-- drive — *В записи первое слово — `walk`, а в этом варианте — `drive`.*
-- read — *В записи первое слово — `walk`, а в этом варианте — `read`.*
+🔊 *She walks to work.* → **She walks to work.** · She runs to work. · He walks to work.
+- She runs to work. — *В записи действие — `walks`, ходит пешком, а в этом варианте — `runs`, бегает.*
+- He walks to work. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите «Она ходит на работу пешком»**
+**4 · Скажите о соседке: «Она ходит на работу пешком». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-25:i03; family: context_gap_grammar -->
 She ___ to work. → **walks** · walk · is walks
-- walk — *После `she` — `walks`, с `s`.*
+- walk — *После `she` нужно `walks`, с `s`.*
 - is walks — *Говорим `She walks`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-25:i04; family: speed_match -->
-walk — ходить пешком · absent — отсутствующий · sink — раковина · lunchbox — ланчбокс
+walk — ходить пешком · hill — холм · pedometer — шагомер · tunnel — туннель
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — hill**
+<!-- interaction_id: en:lesson-06:session-25:word:hill; family: word_card -->
+> **hill** — холм. The park is on a hill. — «Парк на холме». О невысокой горе на дороге или в городе.
+
+**7 · Послушайте коллегу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-25:i05; family: listen_build_dictation -->
-🔊 *Anna walks to work.* Плитки: `work` `to` `walks` `Anna` → **Anna walks to work.**
+🔊 *The hill is near the office.* Плитки: `office` `near` `the` `The` `hill` `is` `are` → **The hill is near the office.**
+*(плитка `are` лишняя: здесь нужно `is` — `The hill is near the office.`)*
 
-**6 · Скажите о привычке Тома: «Он ездит на работу за рулём»**
+**8 · Карточка слова — pedometer**
+<!-- interaction_id: en:lesson-06:session-25:word:pedometer; family: word_card -->
+> **pedometer** — шагомер. My pedometer is new. — «Мой шагомер новый». О приборе, который считает шаги.
+
+**9 · Коллега показывает на маленький прибор на столе. Спросите: «Чей это шагомер?»**
 <!-- interaction_id: en:lesson-06:session-25:i06; family: phrase_builder -->
-Плитки: `work` `to` `drives` `He` → **He drives to work.**
+Плитки: `pedometer` `is` `this` `Whose` `Who` → **Whose pedometer is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose pedometer is this?`)*
 
-**7 · Коллеги сегодня нет на работе. Скажите «Он отсутствует»**
+**10 · Коллега спрашивает, как добирается соседка. Скажите: «Она ходит на работу пешком»**
 <!-- interaction_id: en:lesson-06:session-25:i07; family: scripted_repeat_compare -->
-🎙 **He is absent.**
-
-**8 · Скажите «Они ходят на работу пешком»**
-<!-- interaction_id: en:lesson-06:session-25:i08; family: context_gap_grammar -->
-They ___ to work. → **walk** · walks · are walk
-- walks — *После `they` — `walk`, без `s`.*
-- are walk — *Говорим `They walk`, без `are`.*
-
-**9 · Послушайте, чей ланчбокс здесь**
-<!-- interaction_id: en:lesson-06:session-25:i09; family: listen_choose -->
-🔊 *My lunchbox is here.* → **My lunchbox is here.** · Your lunchbox is here. · His lunchbox is here.
-- Your lunchbox is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His lunchbox is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
-
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-06:session-25:i10; family: speed_match -->
-walk — ходить пешком · drive — водить машину · lunchbox — ланчбокс · absent — отсутствующий
-
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-06:session-25:i11; family: listen_build_dictation -->
-🔊 *The lunchbox is near the sink.* Плитки: `sink` `the` `near` `is` `lunchbox` `The` `are` → **The lunchbox is near the sink.**
-*(плитка `are` лишняя: здесь нужно `is` — `The lunchbox is near the sink.`)*
-
-**12 · Спросите «Чей это ланчбокс?»**
-<!-- interaction_id: en:lesson-06:session-25:i12; family: phrase_builder -->
-Плитки: `this` `is` `lunchbox` `Whose` → **Whose lunchbox is this?**
-
-**13 · Скажите «Они ездят на работу за рулём»**
-<!-- interaction_id: en:lesson-06:session-25:i13; family: scripted_repeat_compare -->
-🎙 **They drive to work.**
-
-**14 · Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке**
-<!-- interaction_id: en:lesson-06:session-25:i14; family: context_gap_grammar -->
-I ___ to work. → **walk** · am walking · walks
-- am walking — *Здесь речь о привычном маршруте: `I walk to work`. `I am walking` может описывать ходьбу сейчас или временную ситуацию. Здесь нужна постоянная привычка.*
-- walks — *После `I` — `walk`, без `s`.*
-
-**15 · Послушайте, что Анна говорит о раковине**
-<!-- interaction_id: en:lesson-06:session-25:i15; family: listen_choose -->
-🔊 *The sink is clean.* → **The sink is clean.** · The sink is dirty. · The sink is broken.
-- The sink is dirty. — *В записи последнее слово — `clean`, а в этом варианте — `dirty`.*
-- The sink is broken. — *В записи последнее слово — `clean`, а в этом варианте — `broken`.*
-
-**16 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-06:session-25:i16; family: speed_match -->
-walk — ходить пешком · sink — раковина · absent — отсутствующий · drive — водить машину
-
-**17 · Вы обедаете с коллегой. Расскажите о привычном маршруте Анны: «Она ходит на работу пешком»**
-<!-- interaction_id: en:lesson-06:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **She walks to work.**
 
+**11 · Скажите о себе: «Я хожу на работу пешком». Выберите слово**
+<!-- interaction_id: en:lesson-06:session-25:i08; family: context_gap_grammar -->
+I ___ to work. → **walk** · walks · am walk
+- walks — *После `I` нужно `walk`, без `s`.*
+- am walk — *Говорим `I walk`, без `am`.*
+
+**12 · Карточка слова — tunnel**
+<!-- interaction_id: en:lesson-06:session-25:word:tunnel; family: word_card -->
+> **tunnel** — туннель. The tunnel is long. — «Туннель длинный». О проходе под землёй или под дорогой.
+
+**13 · Послушайте соседку**
+<!-- interaction_id: en:lesson-06:session-25:i09; family: listen_choose -->
+🔊 *They walk to the tunnel.* → **They walk to the tunnel.** · They run to the tunnel. · They walk to the hill.
+- They run to the tunnel. — *В записи действие — `walk`, ходят пешком, а в этом варианте — `run`, бегают.*
+- They walk to the hill. — *В записи последнее слово — `tunnel`, туннель, а в этом варианте — `hill`, холм.*
+
+**14 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-06:session-25:i10; family: speed_match -->
+pedometer — шагомер · tunnel — туннель · hill — холм · walk — ходить пешком
+
+**15 · Послушайте коллегу и соберите фразу**
+<!-- interaction_id: en:lesson-06:session-25:i11; family: listen_build_dictation -->
+🔊 *They walk to the office.* Плитки: `walk` `to` `the` `office` `They` `walks` → **They walk to the office.**
+*(плитка `walks` лишняя: здесь нужно `walk` — `They walk to the office.`)*
+
+**16 · Вы показываете, что лежит у соседки в сумке. Скажите: «У неё есть шагомер»**
+<!-- interaction_id: en:lesson-06:session-25:i12; family: phrase_builder -->
+Плитки: `pedometer` `a` `has` `She` `have` → **She has a pedometer.**
+*(плитка `have` лишняя: здесь нужно `has` — `She has a pedometer.`)*
+
+**17 · Коллега спрашивает, где туннель. Скажите: «Туннель возле моста»**
+<!-- interaction_id: en:lesson-06:session-25:i13; family: scripted_repeat_compare -->
+🎙 **The tunnel is near the bridge.**
+
+**18 · Скажите о холме: «Холм возле моста». Выберите слово**
+<!-- interaction_id: en:lesson-06:session-25:i14; family: context_gap_grammar -->
+The hill ___ near the bridge. → **is** · are · am
+- are — *Холм один, поэтому нужно `is`, а не `are`.*
+- am — *`am` бывает только после `I`; про холм говорим `is`.*
+
+**19 · Послушайте коллегу**
+<!-- interaction_id: en:lesson-06:session-25:i15; family: listen_choose -->
+🔊 *She has a pedometer.* → **She has a pedometer.** · She has a puppy. · He has a pedometer.
+- She has a puppy. — *В записи последнее слово — `pedometer`, шагомер, а в этом варианте — `puppy`, щенок.*
+- He has a pedometer. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
+
+**20 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-06:session-25:i16; family: speed_match -->
+tunnel — туннель · walk — ходить пешком · hill — холм · pedometer — шагомер
+
+**21 · Вы обедаете с коллегой. Расскажите о брате: «Он ходит на работу пешком»**
+<!-- interaction_id: en:lesson-06:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **He walks to work.**

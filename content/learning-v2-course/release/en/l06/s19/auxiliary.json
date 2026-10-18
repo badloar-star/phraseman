@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-19:intro1:r2": {
-          "ru": "После `I` — `draw`, без `s`.",
-          "uk": "Після `I` — `draw`, без `s`."
+          "ru": "После he нужно draws, с s.",
+          "uk": "Після he потрібно draws, з s."
         },
         "en:lesson-06:session-19:intro1:r3": {
-          "ru": "Говорим `I draw`, без `am`.",
-          "uk": "Кажемо `I draw`, без `am`."
+          "ru": "Здесь действие: He draws, без is.",
+          "uk": "Тут дія: He draws, без is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-19:intro2:r2": {
-          "ru": "После `he` — `learns`, с `s`.",
-          "uk": "Після `he` — `learns`, з `s`."
+          "ru": "После she нужно listens, с s.",
+          "uk": "Після she потрібно listens, з s."
         },
         "en:lesson-06:session-19:intro2:r3": {
-          "ru": "Говорим `He learns`, без `is`.",
-          "uk": "Кажемо `He learns`, без `is`."
+          "ru": "Здесь действие: She listens, без is.",
+          "uk": "Тут дія: She listens, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-19:intro3:r2": {
-          "ru": "Здесь нужно `I am guilty`.",
-          "uk": "Тут потрібно `I am guilty`."
+          "ru": "Без is предложение не получается: нужно lesson is.",
+          "uk": "Без is речення не виходить: потрібно lesson is."
         },
         "en:lesson-06:session-19:intro3:r3": {
-          "ru": "С `I` — `am`, не `is`.",
-          "uk": "З `I` — `am`, не `is`."
+          "ru": "Урок один, поэтому is, а не are.",
+          "uk": "Урок один, тому is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c02f04c9b9682f50dee47b7ba3fd1004613143dd2bb7ebba217c83f6fc6d561e"
+  "auxiliaryFingerprint": "e72b91ede02b55c52b0558596ea0f25724d4121a6ff32dd8865b42c99da0c16b"
 }

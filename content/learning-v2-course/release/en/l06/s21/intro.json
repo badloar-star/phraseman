@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-21",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, кто пишет и плавает, и назвать сломанную вещь",
-    "uk": "розповісти, хто пише й плаває, та назвати зламану річ"
+    "ru": "рассказать, что делает один человек (She writes, He jumps), и сказать, что с вещью, через is",
+    "uk": "розповісти, що робить одна людина (She writes, He jumps), і сказати, що з річчю, через is"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Писать",
-        "uk": "Писати"
+        "ru": "Тетрадь у бассейна",
+        "uk": "Зошит біля басейну"
       },
       "bodyByLocale": {
-        "ru": "`write` — «писать». `I write in my notebook` — «Я пишу в своей тетради». Первая буква `w` в `write` не произносится. Она как ручка, которую взяли на встречу, но так и не открыли: присутствует, а в работе не участвует. `She writes at home` — «Она пишет дома»: после `she` добавляем `s`.",
-        "uk": "`write` — «писати». `I write in my notebook` — «Я пишу у своєму зошиті». Перша літера `w` у `write` не вимовляється. Вона як ручка, яку взяли на зустріч, але так і не відкрили: присутня, а в роботі не бере участі. `She writes at home` — «Вона пише вдома»: після `she` додаємо `s`."
+        "ru": "Вы с подругой сидите в кафе у бассейна. Ваша сестра склонилась над тетрадью: ручка в руке, она быстро записывает свои мысли. Подруга спрашивает, что делает сестра. write — «писать». Про сестру: She writes in her notebook — «Она пишет в своей тетради».",
+        "uk": "Ви з подругою сидите в кафе біля басейну. Ваша сестра схилилася над зошитом: ручка в руці, вона швидко записує свої думки. Подруга питає, що робить сестра. write — «писати». Про сестру: She writes in her notebook — «Вона пише у своєму зошиті»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она пишет дома».",
-          "uk": "Скажіть «Вона пише вдома»."
+          "ru": "Подруга спрашивает, что делает ваша сестра. Скажите: «Она пишет в своей тетради».",
+          "uk": "Подруга питає, що робить ваша сестра. Скажіть: «Вона пише у своєму зошиті»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-21:intro1:r1",
-              "text": "She writes at home."
+              "text": "She writes in her notebook."
             },
             {
               "responseId": "en:lesson-06:session-21:intro1:r2",
-              "text": "She write at home."
+              "text": "She write in her notebook."
             },
             {
               "responseId": "en:lesson-06:session-21:intro1:r3",
-              "text": "She is writes at home."
+              "text": "She is writes in her notebook."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-21:intro1:r1",
-              "text": "She writes at home."
+              "text": "She writes in her notebook."
             },
             {
               "responseId": "en:lesson-06:session-21:intro1:r2",
-              "text": "She write at home."
+              "text": "She write in her notebook."
             },
             {
               "responseId": "en:lesson-06:session-21:intro1:r3",
-              "text": "She is writes at home."
+              "text": "She is writes in her notebook."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она пишет дома».",
-          "uk": "Скажіть «Вона пише вдома»."
+          "ru": "Подруга спрашивает, что делает ваша сестра. Скажите: «Она пишет в своей тетради».",
+          "uk": "Подруга питає, що робить ваша сестра. Скажіть: «Вона пише у своєму зошиті»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Плавание и записи",
-        "uk": "Плавання й записи"
+        "ru": "На бортике",
+        "uk": "На бортику"
       },
       "bodyByLocale": {
-        "ru": "`swim` — «плавать». `He swims here` — «Он плавает здесь». `They swim here` — «Они плавают здесь»: после `they` окончания `s` нет. `Anna writes here` — «Анна пишет здесь»: здесь `Anna` соответствует `she`, поэтому `writes`.",
-        "uk": "`swim` — «плавати». `He swims here` — «Він плаває тут». `They swim here` — «Вони плавають тут»: після `they` закінчення `s` немає. `Anna writes here` — «Анна пише тут»: тут `Anna` відповідає `she`, тому `writes`."
+        "ru": "Ваш брат стоит на бортике бассейна, делает глубокий вдох и сильно отталкивается ногами. Спасатель на вышке видит его и спрашивает, что он делает. jump — «прыгать». Про брата говорим he и добавляем s: He jumps in the pool — «Он прыгает в бассейн».",
+        "uk": "Ваш брат стоїть на бортику басейну, робить глибокий вдих і сильно відштовхується ногами. Рятувальник на вишці бачить його й питає, що він робить. jump — «стрибати». Про брата кажемо he і додаємо s: He jumps in the pool — «Він стрибає в басейн»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Он плавает здесь».",
-          "uk": "Скажіть «Він плаває тут»."
+          "ru": "Спасатель спрашивает, что делает ваш брат. Скажите: «Он прыгает в бассейн».",
+          "uk": "Рятувальник питає, що робить ваш брат. Скажіть: «Він стрибає в басейн»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-21:intro2:r1",
-              "text": "He swims here."
+              "text": "He jumps in the pool."
             },
             {
               "responseId": "en:lesson-06:session-21:intro2:r2",
-              "text": "He swim here."
+              "text": "He jump in the pool."
             },
             {
               "responseId": "en:lesson-06:session-21:intro2:r3",
-              "text": "He is swims here."
+              "text": "He is jumps in the pool."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-21:intro2:r1",
-              "text": "He swims here."
+              "text": "He jumps in the pool."
             },
             {
               "responseId": "en:lesson-06:session-21:intro2:r2",
-              "text": "He swim here."
+              "text": "He jump in the pool."
             },
             {
               "responseId": "en:lesson-06:session-21:intro2:r3",
-              "text": "He is swims here."
+              "text": "He is jumps in the pool."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он плавает здесь».",
-          "uk": "Скажіть «Він плаває тут»."
+          "ru": "Спасатель спрашивает, что делает ваш брат. Скажите: «Он прыгает в бассейн».",
+          "uk": "Рятувальник питає, що робить ваш брат. Скажіть: «Він стрибає в басейн»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сломанная застёжка",
-        "uk": "Зламана застібка"
+        "ru": "Ожерелье подруги",
+        "uk": "Намисто подруги"
       },
       "bodyByLocale": {
-        "ru": "`necklace` — «ожерелье», `broken` — «сломанный». `My necklace is broken` — «Моё ожерелье сломано», например не работает застёжка. Здесь состояние, поэтому нужно `is`. `juice` — «сок». `The juice is cold` — «Сок холодный». `no` — «нет»: отрицательный ответ, например на предложение ещё сока.",
-        "uk": "`necklace` — «намисто», `broken` — «зламаний». `My necklace is broken` — «Моє намисто зламане», наприклад не працює застібка. Тут стан, тому потрібно `is`. `juice` — «сік». `The juice is cold` — «Сік холодний». `no` — «ні»: заперечна відповідь, наприклад на пропозицію ще соку."
+        "ru": "Подруга хочет надеть своё новое ожерелье, но оно всё время соскальзывает с шеи. Она вертит его в руках и видит: маленький замочек не закрывается. clasp — «застёжка». Когда говорим, что с вещью, нужен is: The clasp is broken — «Застёжка сломана».",
+        "uk": "Подруга хоче вдягти своє нове намисто, але воно весь час сповзає з шиї. Вона крутить його в руках і бачить: маленький замочок не закривається. clasp — «застібка». Коли кажемо, що з річчю, потрібен is: The clasp is broken — «Застібка зламана»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Моё ожерелье сломано».",
-          "uk": "Скажіть «Моє намисто зламане»."
+          "ru": "Подруга спрашивает, что не так с ожерельем. Скажите: «Застёжка сломана».",
+          "uk": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-21:intro3:r1",
-              "text": "My necklace is broken."
+              "text": "The clasp is broken."
             },
             {
               "responseId": "en:lesson-06:session-21:intro3:r2",
-              "text": "My necklace are broken."
+              "text": "The clasp broken."
             },
             {
               "responseId": "en:lesson-06:session-21:intro3:r3",
-              "text": "My necklace is new."
+              "text": "The clasp are broken."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-21:intro3:r1",
-              "text": "My necklace is broken."
+              "text": "The clasp is broken."
             },
             {
               "responseId": "en:lesson-06:session-21:intro3:r2",
-              "text": "My necklace are broken."
+              "text": "The clasp broken."
             },
             {
               "responseId": "en:lesson-06:session-21:intro3:r3",
-              "text": "My necklace is new."
+              "text": "The clasp are broken."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Моё ожерелье сломано».",
-          "uk": "Скажіть «Моє намисто зламане»."
+          "ru": "Подруга спрашивает, что не так с ожерельем. Скажите: «Застёжка сломана».",
+          "uk": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "579f031f211f66e24d6b2dea0d7667a17e9a4e4be316a1937a03b6e43a5dbdc3"
+  "introFingerprint": "83f0b2403e332da0a73ebe6114a59772899e179d645e52949cc1fd4b59385682"
 }

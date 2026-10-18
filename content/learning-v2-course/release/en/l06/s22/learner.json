@@ -4,31 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-22:i01",
+      "interactionId": "en:lesson-06:session-22:word:read",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — read",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-22:word:read:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — read",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-22:word:read:audio",
+          "transcript": "read"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-22:word:read:r1",
+            "targetText": "read",
+            "meaningByLocale": {
+              "ru": "читать. My brother reads in the armchair. — «Мой брат читает в кресле». Когда человек читает книгу или текст.",
+              "uk": "читати. My brother reads in the armchair. — «Мій брат читає в кріслі». Коли людина читає книжку чи текст."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "read",
+          "definitionByLocale": {
+            "ru": "читать. My brother reads in the armchair. — «Мой брат читает в кресле». Когда человек читает книгу или текст.",
+            "uk": "читати. My brother reads in the armchair. — «Мій брат читає в кріслі». Коли людина читає книжку чи текст."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-22:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я читаю дома»",
+      "prompt": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я читаю дома»",
+      "accessibilityLabel": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I read at home.",
+        "targetPhrase": "He reads in the armchair.",
         "localizedMeaning": {
-          "ru": "Скажите «Я читаю дома»",
-          "uk": "Скажіть «Я читаю вдома»"
+          "ru": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
+          "uk": "Подруга питає, що робить ваш брат у кріслі. Скажіть: «Він читає в кріслі»"
         },
         "orderedTokens": [
-          "I",
-          "read",
-          "at",
-          "home"
+          "He",
+          "reads",
+          "in",
+          "the",
+          "armchair"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "read"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-22:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `reads` — `He reads in the armchair.`",
+              "uk": "тут потрібно `reads` — `He reads in the armchair.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-22:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-22:word:yawn",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — yawn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-22:word:yawn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — yawn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-22:word:yawn:audio",
+          "transcript": "yawn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-22:word:yawn:r1",
+            "targetText": "yawn",
+            "meaningByLocale": {
+              "ru": "зевать. She yawns at home. — «Она зевает дома». Когда человеку хочется спать или скучно.",
+              "uk": "позіхати. She yawns at home. — «Вона позіхає вдома». Коли людині хочеться спати або нудно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yawn",
+          "definitionByLocale": {
+            "ru": "зевать. She yawns at home. — «Она зевает дома». Когда человеку хочется спать или скучно.",
+            "uk": "позіхати. She yawns at home. — «Вона позіхає вдома». Коли людині хочеться спати або нудно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-22:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте учительницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i02:r1",
-          "text": "read"
+          "text": "He yawns in class."
         },
         {
           "responseId": "en:lesson-06:session-22:i02:r2",
-          "text": "write"
+          "text": "He laughs in class."
         },
         {
           "responseId": "en:lesson-06:session-22:i02:r3",
-          "text": "sing"
+          "text": "They yawn in class."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте учительницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i02:audio",
-          "transcript": "read"
+          "transcript": "He yawns in class."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-22:i02:r1",
-            "targetText": "read",
+            "targetText": "He yawns in class.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-22:i02:r2",
-            "targetText": "write",
+            "targetText": "He laughs in class.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-22:i02:r3",
-            "targetText": "sing",
+            "targetText": "They yawn in class.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +190,19 @@
           {
             "responseId": "en:lesson-06:session-22:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `read`, а в этом варианте — `write`.",
-              "uk": "У записі перше слово — `read`, а в цьому варіанті — `write`."
+              "ru": "В записи действие — `yawns`, зевает, а в этом варианте — `laughs`, смеётся.",
+              "uk": "У записі дія — `yawns`, позіхає, а в цьому варіанті — `laughs`, сміється."
             }
           },
           {
             "responseId": "en:lesson-06:session-22:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `read`, а в этом варианте — `sing`.",
-              "uk": "У записі перше слово — `read`, а в цьому варіанті — `sing`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `yawn`).",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `yawn`)."
             }
           }
         ],
@@ -113,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-22:word:chapter",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chapter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-22:word:chapter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chapter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-22:word:chapter:audio",
+          "transcript": "chapter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-22:word:chapter:r1",
+            "targetText": "chapter",
+            "meaningByLocale": {
+              "ru": "глава. The chapter is easy. — «Глава лёгкая». О части книги.",
+              "uk": "розділ. The chapter is easy. — «Розділ легкий». Про частину книжки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chapter",
+          "definitionByLocale": {
+            "ru": "глава. The chapter is easy. — «Глава лёгкая». О части книги.",
+            "uk": "розділ. The chapter is easy. — «Розділ легкий». Про частину книжки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-22:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она читает дома»",
+      "prompt": "Подруга спрашивает про книгу. Скажите: «Глава длинная». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i03:r1",
-          "text": "reads"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-22:i03:r2",
-          "text": "read"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-22:i03:r3",
-          "text": "is reads"
+          "text": "reads"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она читает дома»",
+      "accessibilityLabel": "Подруга спрашивает про книгу. Скажите: «Глава длинная». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она читает дома»",
-          "uk": "Скажіть «Вона читає вдома»"
+          "ru": "Подруга спрашивает про книгу. Скажите: «Глава длинная». Выберите слово",
+          "uk": "Подруга питає про книжку. Скажіть: «Розділ довгий». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ at home.",
+        "gappedTargetPhrase": "The chapter ___ long.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-22:i03:r1",
-            "text": "reads"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-22:i03:r2",
-            "text": "read"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-22:i03:r3",
-            "text": "is reads"
+            "text": "reads"
           }
         ],
-        "testedDimension": "Скажите «Она читает дома»",
+        "testedDimension": "Подруга спрашивает про книгу. Скажите: «Глава длинная». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-22:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она читает дома»",
+            "testedDimension": "Подруга спрашивает про книгу. Скажите: «Глава длинная». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `reads`, с `s`.",
-              "uk": "Після `she` — `reads`, з `s`."
+              "ru": "Глава одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Розділ один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-22:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она читает дома»",
+            "testedDimension": "Подруга спрашивает про книгу. Скажите: «Глава длинная». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `She reads`, без `is`.",
-              "uk": "Кажемо `She reads`, без `is`."
+              "ru": "`reads` значит «читает», а здесь нужно сказать, какая глава: `is long`.",
+              "uk": "`reads` означає «читає», а тут треба сказати, який розділ: `is long`."
             }
           }
         ]
@@ -183,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +347,40 @@
           },
           {
             "pairId": "en:lesson-06:session-22:i04:p2",
-            "target": "complete",
+            "target": "yawn",
             "meaningByLocale": {
-              "ru": "полный, без пропусков",
-              "uk": "повний, без пропусків"
+              "ru": "зевать",
+              "uk": "позіхати"
             }
           },
           {
             "pairId": "en:lesson-06:session-22:i04:p3",
-            "target": "carrot",
+            "target": "chapter",
             "meaningByLocale": {
-              "ru": "морковка",
-              "uk": "морквина"
+              "ru": "глава",
+              "uk": "розділ"
             }
           },
           {
             "pairId": "en:lesson-06:session-22:i04:p4",
-            "target": "boots",
+            "target": "bookmark",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "закладка",
+              "uk": "закладка"
             }
           }
         ],
         "leftColumn": [
           "read",
-          "complete",
-          "carrot",
-          "boots"
+          "yawn",
+          "chapter",
+          "bookmark"
         ],
         "rightColumn": [
           "читать",
-          "полный, без пропусков",
-          "морковка",
-          "ботинки"
+          "зевать",
+          "глава",
+          "закладка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,33 +397,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-22:word:bookmark",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bookmark",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-22:word:bookmark:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bookmark",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-22:word:bookmark:audio",
+          "transcript": "bookmark"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-22:word:bookmark:r1",
+            "targetText": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка. The bookmark is in the book. — «Закладка в книге». О полоске, которую кладут между страниц.",
+              "uk": "закладка. The bookmark is in the book. — «Закладка в книжці». Про смужку, яку кладуть між сторінок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bookmark",
+          "definitionByLocale": {
+            "ru": "закладка. The bookmark is in the book. — «Закладка в книге». О полоске, которую кладут между страниц.",
+            "uk": "закладка. The bookmark is in the book. — «Закладка в книжці». Про смужку, яку кладуть між сторінок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-22:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i05:audio",
-          "transcript": "Anna reads here."
+          "transcript": "The bookmark is red."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna reads here.",
+        "hiddenTargetPhrase": "The bookmark is red.",
         "orderedTokens": [
-          "Anna",
-          "reads",
-          "here"
+          "The",
+          "bookmark",
+          "is",
+          "red"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-22:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bookmark is red.`",
+              "uk": "тут потрібно `is` — `The bookmark is red.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +489,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Он много смеётся»",
+      "prompt": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он много смеётся»",
+      "accessibilityLabel": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He laughs a lot.",
+        "targetPhrase": "He laughs at the joke.",
         "localizedMeaning": {
-          "ru": "Скажите «Он много смеётся»",
-          "uk": "Скажіть «Він багато сміється»"
+          "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
+          "uk": "Подруга питає, що робить ваш брат. Скажіть: «Він сміється з жарту»"
         },
         "orderedTokens": [
           "He",
           "laughs",
-          "a",
-          "lot"
+          "at",
+          "the",
+          "joke"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "laugh"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-22:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `laughs` — `He laughs at the joke.`",
+              "uk": "тут потрібно `laughs` — `He laughs at the joke.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +535,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Все нужные покупки записаны. Скажите «Список полный»",
+      "prompt": "Подруга спрашивает про книгу. Скажите: «Глава длинная»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i07:audio"
       ],
-      "accessibilityLabel": "Все нужные покупки записаны. Скажите «Список полный»",
+      "accessibilityLabel": "Подруга спрашивает про книгу. Скажите: «Глава длинная»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i07:audio",
-          "transcript": "The list is complete."
+          "transcript": "The chapter is long."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The list is complete.",
+        "targetPhrase": "The chapter is long.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +568,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Они читают здесь»",
+      "prompt": "Скажите о брате: «Он читает в кресле». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i08:r1",
-          "text": "read"
-        },
-        {
-          "responseId": "en:lesson-06:session-22:i08:r2",
           "text": "reads"
         },
         {
+          "responseId": "en:lesson-06:session-22:i08:r2",
+          "text": "read"
+        },
+        {
           "responseId": "en:lesson-06:session-22:i08:r3",
-          "text": "are read"
+          "text": "is reads"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они читают здесь»",
+      "accessibilityLabel": "Скажите о брате: «Он читает в кресле». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они читают здесь»",
-          "uk": "Скажіть «Вони читають тут»"
+          "ru": "Скажите о брате: «Он читает в кресле». Выберите слово",
+          "uk": "Скажіть про брата: «Він читає в кріслі». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "He ___ in the armchair.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-22:i08:r1",
-            "text": "read"
-          },
-          {
-            "responseId": "en:lesson-06:session-22:i08:r2",
             "text": "reads"
           },
           {
+            "responseId": "en:lesson-06:session-22:i08:r2",
+            "text": "read"
+          },
+          {
             "responseId": "en:lesson-06:session-22:i08:r3",
-            "text": "are read"
+            "text": "is reads"
           }
         ],
-        "testedDimension": "Скажите «Они читают здесь»",
+        "testedDimension": "Скажите о брате: «Он читает в кресле». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-22:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Они читают здесь»",
+            "testedDimension": "Скажите о брате: «Он читает в кресле». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `read`, без `s`.",
-              "uk": "Після `they` — `read`, без `s`."
+              "ru": "После `he` — `reads`, с `s`.",
+              "uk": "Після `he` — `reads`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-22:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Они читают здесь»",
+            "testedDimension": "Скажите о брате: «Он читает в кресле». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `They read`, без `are`.",
-              "uk": "Кажемо `They read`, без `are`."
+              "ru": "Говорим `He reads`, без `is`.",
+              "uk": "Кажемо `He reads`, без `is`."
             }
           }
         ]
@@ -426,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежат ботинки",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i09:r1",
-          "text": "These boots are mine."
+          "text": "She reads at home."
         },
         {
           "responseId": "en:lesson-06:session-22:i09:r2",
-          "text": "These boots are yours."
+          "text": "She writes at home."
         },
         {
           "responseId": "en:lesson-06:session-22:i09:r3",
-          "text": "These boots are hers."
+          "text": "He reads at home."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежат ботинки",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i09:audio",
-          "transcript": "These boots are mine."
+          "transcript": "She reads at home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-22:i09:r1",
-            "targetText": "These boots are mine.",
+            "targetText": "She reads at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-22:i09:r2",
-            "targetText": "These boots are yours.",
+            "targetText": "She writes at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-22:i09:r3",
-            "targetText": "These boots are hers.",
+            "targetText": "He reads at home.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +690,19 @@
           {
             "responseId": "en:lesson-06:session-22:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат ботинки",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи действие — `reads`, читает, а в этом варианте — `writes`, пишет.",
+              "uk": "У записі дія — `reads`, читає, а в цьому варіанті — `writes`, пише."
             }
           },
           {
             "responseId": "en:lesson-06:session-22:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат ботинки",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -502,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -516,14 +727,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-22:i10:p1",
-            "target": "read",
+            "target": "bookmark",
             "meaningByLocale": {
-              "ru": "читать",
-              "uk": "читати"
+              "ru": "закладка",
+              "uk": "закладка"
             }
           },
           {
             "pairId": "en:lesson-06:session-22:i10:p2",
+            "target": "chapter",
+            "meaningByLocale": {
+              "ru": "глава",
+              "uk": "розділ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-22:i10:p3",
             "target": "laugh",
             "meaningByLocale": {
               "ru": "смеяться",
@@ -531,33 +750,25 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-22:i10:p3",
-            "target": "boots",
-            "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-22:i10:p4",
-            "target": "complete",
+            "target": "read",
             "meaningByLocale": {
-              "ru": "полный, без пропусков",
-              "uk": "повний, без пропусків"
+              "ru": "читать",
+              "uk": "читати"
             }
           }
         ],
         "leftColumn": [
-          "read",
+          "bookmark",
+          "chapter",
           "laugh",
-          "boots",
-          "complete"
+          "read"
         ],
         "rightColumn": [
-          "читать",
+          "закладка",
+          "глава",
           "смеяться",
-          "ботинки",
-          "полный, без пропусков"
+          "читать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,44 +786,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i11:audio",
-          "transcript": "The carrot is in the bag."
+          "transcript": "My brother reads the book."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The carrot is in the bag.",
+        "hiddenTargetPhrase": "My brother reads the book.",
         "orderedTokens": [
-          "The",
-          "carrot",
-          "is",
-          "in",
+          "My",
+          "brother",
+          "reads",
           "the",
-          "bag"
+          "book"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "read"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-22:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The carrot is in the bag.`",
-              "uk": "тут потрібно `is` — `The carrot is in the bag.`"
+              "ru": "здесь нужно `reads` — `My brother reads the book.`",
+              "uk": "тут потрібно `reads` — `My brother reads the book.`"
             }
           }
         ],
@@ -625,30 +835,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чьи это ботинки?»",
+      "prompt": "Вы нашли книгу на стуле. Спросите подругу: «Чья это книга?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чьи это ботинки?»",
+      "accessibilityLabel": "Вы нашли книгу на стуле. Спросите подругу: «Чья это книга?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose boots are these?",
+        "targetPhrase": "Whose book is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чьи это ботинки?»",
-          "uk": "Запитайте «Чиї це черевики?»"
+          "ru": "Вы нашли книгу на стуле. Спросите подругу: «Чья это книга?»",
+          "uk": "Ви знайшли книжку на стільці. Спитайте подругу: «Чия це книжка?»"
         },
         "orderedTokens": [
           "Whose",
-          "boots",
-          "are",
-          "these"
+          "book",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-22:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы нашли книгу на стуле. Спросите подругу: «Чья это книга?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose book is this?`",
+              "uk": "тут потрібно `Whose` — `Whose book is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -658,25 +880,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Они много смеются»",
+      "prompt": "Учительница спрашивает, что делает ваш брат. Скажите: «Он зевает на уроке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Они много смеются»",
+      "accessibilityLabel": "Учительница спрашивает, что делает ваш брат. Скажите: «Он зевает на уроке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i13:audio",
-          "transcript": "They laugh a lot."
+          "transcript": "He yawns in class."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They laugh a lot.",
+        "targetPhrase": "He yawns in class.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -691,11 +913,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том много смеётся»",
+      "prompt": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i14:r1",
@@ -712,14 +934,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том много смеётся»",
+      "accessibilityLabel": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том много смеётся»",
-          "uk": "Скажіть «Том багато сміється»"
+          "ru": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
+          "uk": "Скажіть про сусідку: «Вона сміється з жарту». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ a lot.",
+        "gappedTargetPhrase": "She ___ at the joke.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-22:i14:r1",
@@ -734,24 +956,24 @@
             "text": "is laughs"
           }
         ],
-        "testedDimension": "Скажите «Том много смеётся»",
+        "testedDimension": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-22:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том много смеётся»",
+            "testedDimension": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom laughs`, с `s`.",
-              "uk": "Том — він: `Tom laughs`, з `s`."
+              "ru": "После `she` — `laughs`, с `s`.",
+              "uk": "Після `she` — `laughs`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-22:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том много смеётся»",
+            "testedDimension": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `Tom laughs`, без `is`.",
-              "uk": "Кажемо `Tom laughs`, без `is`."
+              "ru": "Говорим `She laughs`, без `is`.",
+              "uk": "Кажемо `She laughs`, без `is`."
             }
           }
         ]
@@ -760,51 +982,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что Анна говорит о морковке",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i15:r1",
-          "text": "The carrot is fresh."
+          "text": "The bookmark is red."
         },
         {
           "responseId": "en:lesson-06:session-22:i15:r2",
-          "text": "The carrot is cold."
+          "text": "The bookmark is blue."
         },
         {
           "responseId": "en:lesson-06:session-22:i15:r3",
-          "text": "The carrot is small."
+          "text": "The book is red."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что Анна говорит о морковке",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i15:audio",
-          "transcript": "The carrot is fresh."
+          "transcript": "The bookmark is red."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-22:i15:r1",
-            "targetText": "The carrot is fresh.",
+            "targetText": "The bookmark is red.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-22:i15:r2",
-            "targetText": "The carrot is cold.",
+            "targetText": "The bookmark is blue.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-22:i15:r3",
-            "targetText": "The carrot is small.",
+            "targetText": "The book is red.",
             "meaningByLocale": null
           }
         ],
@@ -813,19 +1035,19 @@
           {
             "responseId": "en:lesson-06:session-22:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о морковке",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `fresh`, а в этом варианте — `cold`.",
-              "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `cold`."
+              "ru": "В записи последнее слово — `red`, красная, а в этом варианте — `blue`, синяя.",
+              "uk": "У записі останнє слово — `red`, червона, а в цьому варіанті — `blue`, синя."
             }
           },
           {
             "responseId": "en:lesson-06:session-22:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о морковке",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `fresh`, а в этом варианте — `small`.",
-              "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `small`."
+              "ru": "В записи второе слово — `bookmark`, закладка, а в этом варианте — `book`, книга.",
+              "uk": "У записі друге слово — `bookmark`, закладка, а в цьому варіанті — `book`, книжка."
             }
           }
         ],
@@ -836,7 +1058,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -850,48 +1072,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-22:i16:p1",
+            "target": "chapter",
+            "meaningByLocale": {
+              "ru": "глава",
+              "uk": "розділ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-22:i16:p2",
+            "target": "yawn",
+            "meaningByLocale": {
+              "ru": "зевать",
+              "uk": "позіхати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-22:i16:p3",
+            "target": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка",
+              "uk": "закладка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-22:i16:p4",
             "target": "read",
             "meaningByLocale": {
               "ru": "читать",
               "uk": "читати"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-22:i16:p2",
-            "target": "carrot",
-            "meaningByLocale": {
-              "ru": "морковка",
-              "uk": "морквина"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-22:i16:p3",
-            "target": "complete",
-            "meaningByLocale": {
-              "ru": "полный, без пропусков",
-              "uk": "повний, без пропусків"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-22:i16:p4",
-            "target": "laugh",
-            "meaningByLocale": {
-              "ru": "смеяться",
-              "uk": "сміятися"
-            }
           }
         ],
         "leftColumn": [
-          "read",
-          "carrot",
-          "complete",
-          "laugh"
+          "chapter",
+          "yawn",
+          "bookmark",
+          "read"
         ],
         "rightColumn": [
-          "читать",
-          "морковка",
-          "полный, без пропусков",
-          "смеяться"
+          "глава",
+          "зевать",
+          "закладка",
+          "читать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -909,25 +1131,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-22:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Расскажите другу об Анне: «Она читает дома»",
+      "prompt": "Подруга спрашивает, что делает соседка в кресле. Скажите: «Она читает в кресле»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-22:i17:audio"
       ],
-      "accessibilityLabel": "Расскажите другу об Анне: «Она читает дома»",
+      "accessibilityLabel": "Подруга спрашивает, что делает соседка в кресле. Скажите: «Она читает в кресле»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-22:i17:audio",
-          "transcript": "She reads at home."
+          "transcript": "She reads in the armchair."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She reads at home.",
+        "targetPhrase": "She reads in the armchair.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -949,11 +1171,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "79d78852764909f52e331d70bbb0979e3f5906daa2ee2d020bc9b73df333d150"
+  "learnerFingerprint": "0e85d1be9888496deee4b0be55960b9c184941ef46721191863e20ccb6365b91"
 }

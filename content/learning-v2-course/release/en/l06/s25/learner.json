@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-25:i01",
+      "interactionId": "en:lesson-06:session-25:word:walk",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — walk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:word:walk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — walk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:word:walk:audio",
+          "transcript": "walk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-25:word:walk:r1",
+            "targetText": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком. We walk to the park. — «Мы ходим пешком в парк». О привычном пути пешком.",
+              "uk": "ходити пішки. We walk to the park. — «Ми ходимо пішки до парку». Про звичний шлях пішки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "walk",
+          "definitionByLocale": {
+            "ru": "ходить пешком. We walk to the park. — «Мы ходим пешком в парк». О привычном пути пешком.",
+            "uk": "ходити пішки. We walk to the park. — «Ми ходимо пішки до парку». Про звичний шлях пішки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Расскажите о привычном маршруте: «Я хожу на работу пешком»",
+      "prompt": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите о привычном маршруте: «Я хожу на работу пешком»",
+      "accessibilityLabel": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I walk to work.",
+        "targetPhrase": "We walk to work.",
         "localizedMeaning": {
-          "ru": "Расскажите о привычном маршруте: «Я хожу на работу пешком»",
-          "uk": "Розкажіть про звичний маршрут: «Я ходжу на роботу пішки»"
+          "ru": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
+          "uk": "Колега питає про вас із сусідкою. Скажіть: «Ми ходимо на роботу пішки»"
         },
         "orderedTokens": [
-          "I",
+          "We",
           "walk",
           "to",
           "work"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "walks"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `walk` — `We walk to work.`",
+              "uk": "тут потрібно `walk` — `We walk to work.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-25:i02:r1",
-          "text": "walk"
+          "text": "She walks to work."
         },
         {
           "responseId": "en:lesson-06:session-25:i02:r2",
-          "text": "drive"
+          "text": "She runs to work."
         },
         {
           "responseId": "en:lesson-06:session-25:i02:r3",
-          "text": "read"
+          "text": "He walks to work."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i02:audio",
-          "transcript": "walk"
+          "transcript": "She walks to work."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-25:i02:r1",
-            "targetText": "walk",
+            "targetText": "She walks to work.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-25:i02:r2",
-            "targetText": "drive",
+            "targetText": "She runs to work.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-25:i02:r3",
-            "targetText": "read",
+            "targetText": "He walks to work.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +146,19 @@
           {
             "responseId": "en:lesson-06:session-25:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `walk`, а в этом варианте — `drive`.",
-              "uk": "У записі перше слово — `walk`, а в цьому варіанті — `drive`."
+              "ru": "В записи действие — `walks`, ходит пешком, а в этом варианте — `runs`, бегает.",
+              "uk": "У записі дія — `walks`, ходить пішки, а в цьому варіанті — `runs`, бігає."
             }
           },
           {
             "responseId": "en:lesson-06:session-25:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `walk`, а в этом варианте — `read`.",
-              "uk": "У записі перше слово — `walk`, а в цьому варіанті — `read`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -114,11 +169,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она ходит на работу пешком»",
+      "prompt": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-25:i03:r1",
@@ -135,12 +190,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она ходит на работу пешком»",
+      "accessibilityLabel": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она ходит на работу пешком»",
-          "uk": "Скажіть «Вона ходить на роботу пішки»"
+          "ru": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
+          "uk": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово"
         },
         "gappedTargetPhrase": "She ___ to work.",
         "gapOptions": [
@@ -157,21 +212,21 @@
             "text": "is walks"
           }
         ],
-        "testedDimension": "Скажите «Она ходит на работу пешком»",
+        "testedDimension": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-25:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она ходит на работу пешком»",
+            "testedDimension": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `walks`, с `s`.",
-              "uk": "Після `she` — `walks`, з `s`."
+              "ru": "После `she` нужно `walks`, с `s`.",
+              "uk": "Після `she` потрібно `walks`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-25:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она ходит на работу пешком»",
+            "testedDimension": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `She walks`, без `is`.",
               "uk": "Кажемо `She walks`, без `is`."
@@ -183,7 +238,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +260,40 @@
           },
           {
             "pairId": "en:lesson-06:session-25:i04:p2",
-            "target": "absent",
+            "target": "hill",
             "meaningByLocale": {
-              "ru": "отсутствующий",
-              "uk": "відсутній"
+              "ru": "холм",
+              "uk": "пагорб"
             }
           },
           {
             "pairId": "en:lesson-06:session-25:i04:p3",
-            "target": "sink",
+            "target": "pedometer",
             "meaningByLocale": {
-              "ru": "раковина",
-              "uk": "раковина"
+              "ru": "шагомер",
+              "uk": "крокомір"
             }
           },
           {
             "pairId": "en:lesson-06:session-25:i04:p4",
-            "target": "lunchbox",
+            "target": "tunnel",
             "meaningByLocale": {
-              "ru": "ланчбокс",
-              "uk": "ланчбокс"
+              "ru": "туннель",
+              "uk": "тунель"
             }
           }
         ],
         "leftColumn": [
           "walk",
-          "absent",
-          "sink",
-          "lunchbox"
+          "hill",
+          "pedometer",
+          "tunnel"
         ],
         "rightColumn": [
           "ходить пешком",
-          "отсутствующий",
-          "раковина",
-          "ланчбокс"
+          "холм",
+          "шагомер",
+          "туннель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +310,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-25:word:hill",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:word:hill:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:word:hill:audio",
+          "transcript": "hill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-25:word:hill:r1",
+            "targetText": "hill",
+            "meaningByLocale": {
+              "ru": "холм. The park is on a hill. — «Парк на холме». О невысокой горе на дороге или в городе.",
+              "uk": "пагорб. The park is on a hill. — «Парк на пагорбі». Про невисоку гору на дорозі або в місті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hill",
+          "definitionByLocale": {
+            "ru": "холм. The park is on a hill. — «Парк на холме». О невысокой горе на дороге или в городе.",
+            "uk": "пагорб. The park is on a hill. — «Парк на пагорбі». Про невисоку гору на дорозі або в місті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-25:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i05:audio",
-          "transcript": "Anna walks to work."
+          "transcript": "The hill is near the office."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna walks to work.",
+        "hiddenTargetPhrase": "The hill is near the office.",
         "orderedTokens": [
-          "Anna",
-          "walks",
-          "to",
-          "work"
+          "The",
+          "hill",
+          "is",
+          "near",
+          "the",
+          "office"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте коллегу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The hill is near the office.`",
+              "uk": "тут потрібно `is` — `The hill is near the office.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,31 +403,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-25:word:pedometer",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pedometer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:word:pedometer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pedometer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:word:pedometer:audio",
+          "transcript": "pedometer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-25:word:pedometer:r1",
+            "targetText": "pedometer",
+            "meaningByLocale": {
+              "ru": "шагомер. My pedometer is new. — «Мой шагомер новый». О приборе, который считает шаги.",
+              "uk": "крокомір. My pedometer is new. — «Мій крокомір новий». Про прилад, який рахує кроки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pedometer",
+          "definitionByLocale": {
+            "ru": "шагомер. My pedometer is new. — «Мой шагомер новый». О приборе, который считает шаги.",
+            "uk": "крокомір. My pedometer is new. — «Мій крокомір новий». Про прилад, який рахує кроки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-25:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о привычке Тома: «Он ездит на работу за рулём»",
+      "prompt": "Коллега показывает на маленький прибор на столе. Спросите: «Чей это шагомер?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о привычке Тома: «Он ездит на работу за рулём»",
+      "accessibilityLabel": "Коллега показывает на маленький прибор на столе. Спросите: «Чей это шагомер?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He drives to work.",
+        "targetPhrase": "Whose pedometer is this?",
         "localizedMeaning": {
-          "ru": "Скажите о привычке Тома: «Он ездит на работу за рулём»",
-          "uk": "Скажіть про звичку Тома: «Він їздить на роботу за кермом»"
+          "ru": "Коллега показывает на маленький прибор на столе. Спросите: «Чей это шагомер?»",
+          "uk": "Колега показує на маленький прилад на столі. Спитайте: «Чий це крокомір?»"
         },
         "orderedTokens": [
-          "He",
-          "drives",
-          "to",
-          "work"
+          "Whose",
+          "pedometer",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Коллега показывает на маленький прибор на столе. Спросите: «Чей это шагомер?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose pedometer is this?`",
+              "uk": "тут потрібно `Whose` — `Whose pedometer is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -325,25 +492,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллеги сегодня нет на работе. Скажите «Он отсутствует»",
+      "prompt": "Коллега спрашивает, как добирается соседка. Скажите: «Она ходит на работу пешком»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i07:audio"
       ],
-      "accessibilityLabel": "Коллеги сегодня нет на работе. Скажите «Он отсутствует»",
+      "accessibilityLabel": "Коллега спрашивает, как добирается соседка. Скажите: «Она ходит на работу пешком»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i07:audio",
-          "transcript": "He is absent."
+          "transcript": "She walks to work."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is absent.",
+        "targetPhrase": "She walks to work.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,11 +525,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Они ходят на работу пешком»",
+      "prompt": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-25:i08:r1",
@@ -374,19 +541,19 @@
         },
         {
           "responseId": "en:lesson-06:session-25:i08:r3",
-          "text": "are walk"
+          "text": "am walk"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они ходят на работу пешком»",
+      "accessibilityLabel": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они ходят на работу пешком»",
-          "uk": "Скажіть «Вони ходять на роботу пішки»"
+          "ru": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
+          "uk": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ to work.",
+        "gappedTargetPhrase": "I ___ to work.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-25:i08:r1",
@@ -398,27 +565,27 @@
           },
           {
             "responseId": "en:lesson-06:session-25:i08:r3",
-            "text": "are walk"
+            "text": "am walk"
           }
         ],
-        "testedDimension": "Скажите «Они ходят на работу пешком»",
+        "testedDimension": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-25:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Они ходят на работу пешком»",
+            "testedDimension": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `walk`, без `s`.",
-              "uk": "Після `they` — `walk`, без `s`."
+              "ru": "После `I` нужно `walk`, без `s`.",
+              "uk": "Після `I` потрібно `walk`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-25:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Они ходят на работу пешком»",
+            "testedDimension": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `They walk`, без `are`.",
-              "uk": "Кажемо `They walk`, без `are`."
+              "ru": "Говорим `I walk`, без `am`.",
+              "uk": "Кажемо `I walk`, без `am`."
             }
           }
         ]
@@ -426,52 +593,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-25:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-25:word:tunnel",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей ланчбокс здесь",
+      "prompt": "Карточка слова — tunnel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:word:tunnel:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tunnel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:word:tunnel:audio",
+          "transcript": "tunnel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-25:word:tunnel:r1",
+            "targetText": "tunnel",
+            "meaningByLocale": {
+              "ru": "туннель. The tunnel is long. — «Туннель длинный». О проходе под землёй или под дорогой.",
+              "uk": "тунель. The tunnel is long. — «Тунель довгий». Про прохід під землею або під дорогою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tunnel",
+          "definitionByLocale": {
+            "ru": "туннель. The tunnel is long. — «Туннель длинный». О проходе под землёй или под дорогой.",
+            "uk": "тунель. The tunnel is long. — «Тунель довгий». Про прохід під землею або під дорогою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-25:i09:r1",
-          "text": "My lunchbox is here."
+          "text": "They walk to the tunnel."
         },
         {
           "responseId": "en:lesson-06:session-25:i09:r2",
-          "text": "Your lunchbox is here."
+          "text": "They run to the tunnel."
         },
         {
           "responseId": "en:lesson-06:session-25:i09:r3",
-          "text": "His lunchbox is here."
+          "text": "They walk to the hill."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей ланчбокс здесь",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i09:audio",
-          "transcript": "My lunchbox is here."
+          "transcript": "They walk to the tunnel."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-25:i09:r1",
-            "targetText": "My lunchbox is here.",
+            "targetText": "They walk to the tunnel.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-25:i09:r2",
-            "targetText": "Your lunchbox is here.",
+            "targetText": "They run to the tunnel.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-25:i09:r3",
-            "targetText": "His lunchbox is here.",
+            "targetText": "They walk to the hill.",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +690,19 @@
           {
             "responseId": "en:lesson-06:session-25:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей ланчбокс здесь",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи действие — `walk`, ходят пешком, а в этом варианте — `run`, бегают.",
+              "uk": "У записі дія — `walk`, ходять пішки, а в цьому варіанті — `run`, бігають."
             }
           },
           {
             "responseId": "en:lesson-06:session-25:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей ланчбокс здесь",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи последнее слово — `tunnel`, туннель, а в этом варианте — `hill`, холм.",
+              "uk": "У записі останнє слово — `tunnel`, тунель, а в цьому варіанті — `hill`, пагорб."
             }
           }
         ],
@@ -503,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -517,48 +727,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-25:i10:p1",
+            "target": "pedometer",
+            "meaningByLocale": {
+              "ru": "шагомер",
+              "uk": "крокомір"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i10:p2",
+            "target": "tunnel",
+            "meaningByLocale": {
+              "ru": "туннель",
+              "uk": "тунель"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i10:p3",
+            "target": "hill",
+            "meaningByLocale": {
+              "ru": "холм",
+              "uk": "пагорб"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i10:p4",
             "target": "walk",
             "meaningByLocale": {
               "ru": "ходить пешком",
               "uk": "ходити пішки"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-25:i10:p2",
-            "target": "drive",
-            "meaningByLocale": {
-              "ru": "водить машину",
-              "uk": "водити машину"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-25:i10:p3",
-            "target": "lunchbox",
-            "meaningByLocale": {
-              "ru": "ланчбокс",
-              "uk": "ланчбокс"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-25:i10:p4",
-            "target": "absent",
-            "meaningByLocale": {
-              "ru": "отсутствующий",
-              "uk": "відсутній"
-            }
           }
         ],
         "leftColumn": [
-          "walk",
-          "drive",
-          "lunchbox",
-          "absent"
+          "pedometer",
+          "tunnel",
+          "hill",
+          "walk"
         ],
         "rightColumn": [
-          "ходить пешком",
-          "водить машину",
-          "ланчбокс",
-          "отсутствующий"
+          "шагомер",
+          "туннель",
+          "холм",
+          "ходить пешком"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,44 +786,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i11:audio",
-          "transcript": "The lunchbox is near the sink."
+          "transcript": "They walk to the office."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The lunchbox is near the sink.",
+        "hiddenTargetPhrase": "They walk to the office.",
         "orderedTokens": [
-          "The",
-          "lunchbox",
-          "is",
-          "near",
+          "They",
+          "walk",
+          "to",
           "the",
-          "sink"
+          "office"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "walks"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-25:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте коллегу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The lunchbox is near the sink.`",
-              "uk": "тут потрібно `is` — `The lunchbox is near the sink.`"
+              "ru": "здесь нужно `walk` — `They walk to the office.`",
+              "uk": "тут потрібно `walk` — `They walk to the office.`"
             }
           }
         ],
@@ -626,30 +835,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это ланчбокс?»",
+      "prompt": "Вы показываете, что лежит у соседки в сумке. Скажите: «У неё есть шагомер»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это ланчбокс?»",
+      "accessibilityLabel": "Вы показываете, что лежит у соседки в сумке. Скажите: «У неё есть шагомер»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose lunchbox is this?",
+        "targetPhrase": "She has a pedometer.",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это ланчбокс?»",
-          "uk": "Запитайте «Чий це ланчбокс?»"
+          "ru": "Вы показываете, что лежит у соседки в сумке. Скажите: «У неё есть шагомер»",
+          "uk": "Ви показуєте, що лежить у сусідки в сумці. Скажіть: «У неї є крокомір»"
         },
         "orderedTokens": [
-          "Whose",
-          "lunchbox",
-          "is",
-          "this"
+          "She",
+          "has",
+          "a",
+          "pedometer"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете, что лежит у соседки в сумке. Скажите: «У неё есть шагомер»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `She has a pedometer.`",
+              "uk": "тут потрібно `has` — `She has a pedometer.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -659,25 +880,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Они ездят на работу за рулём»",
+      "prompt": "Коллега спрашивает, где туннель. Скажите: «Туннель возле моста»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Они ездят на работу за рулём»",
+      "accessibilityLabel": "Коллега спрашивает, где туннель. Скажите: «Туннель возле моста»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i13:audio",
-          "transcript": "They drive to work."
+          "transcript": "The tunnel is near the bridge."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They drive to work.",
+        "targetPhrase": "The tunnel is near the bridge.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -692,67 +913,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+      "prompt": "Скажите о холме: «Холм возле моста». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-25:i14:r1",
-          "text": "walk"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-25:i14:r2",
-          "text": "am walking"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-25:i14:r3",
-          "text": "walks"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+      "accessibilityLabel": "Скажите о холме: «Холм возле моста». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
-          "uk": "Ви сидите в офісі й розповідаєте про постійну звичку ходити на роботу пішки, а не про тимчасову зміну маршруту. Виберіть фразу про постійну звичку"
+          "ru": "Скажите о холме: «Холм возле моста». Выберите слово",
+          "uk": "Скажіть про пагорб: «Пагорб біля мосту». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ to work.",
+        "gappedTargetPhrase": "The hill ___ near the bridge.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-25:i14:r1",
-            "text": "walk"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-25:i14:r2",
-            "text": "am walking"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-25:i14:r3",
-            "text": "walks"
+            "text": "am"
           }
         ],
-        "testedDimension": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+        "testedDimension": "Скажите о холме: «Холм возле моста». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-25:i14:r2",
             "correct": false,
-            "testedDimension": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+            "testedDimension": "Скажите о холме: «Холм возле моста». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь речь о привычном маршруте: `I walk to work`. `I am walking` может описывать ходьбу сейчас или временную ситуацию. Здесь нужна постоянная привычка.",
-              "uk": "Тут ідеться про звичний маршрут: `I walk to work`. `I am walking` може описувати ходьбу зараз або тимчасову ситуацію. Тут потрібна постійна звичка."
+              "ru": "Холм один, поэтому нужно `is`, а не `are`.",
+              "uk": "Пагорб один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-25:i14:r3",
             "correct": false,
-            "testedDimension": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+            "testedDimension": "Скажите о холме: «Холм возле моста». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` — `walk`, без `s`.",
-              "uk": "Після `I` — `walk`, без `s`."
+              "ru": "`am` бывает только после `I`; про холм говорим `is`.",
+              "uk": "`am` буває лише після `I`; про пагорб кажемо `is`."
             }
           }
         ]
@@ -761,51 +982,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что Анна говорит о раковине",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-25:i15:r1",
-          "text": "The sink is clean."
+          "text": "She has a pedometer."
         },
         {
           "responseId": "en:lesson-06:session-25:i15:r2",
-          "text": "The sink is dirty."
+          "text": "She has a puppy."
         },
         {
           "responseId": "en:lesson-06:session-25:i15:r3",
-          "text": "The sink is broken."
+          "text": "He has a pedometer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что Анна говорит о раковине",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i15:audio",
-          "transcript": "The sink is clean."
+          "transcript": "She has a pedometer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-25:i15:r1",
-            "targetText": "The sink is clean.",
+            "targetText": "She has a pedometer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-25:i15:r2",
-            "targetText": "The sink is dirty.",
+            "targetText": "She has a puppy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-25:i15:r3",
-            "targetText": "The sink is broken.",
+            "targetText": "He has a pedometer.",
             "meaningByLocale": null
           }
         ],
@@ -814,19 +1035,19 @@
           {
             "responseId": "en:lesson-06:session-25:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о раковине",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clean`, а в этом варианте — `dirty`.",
-              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `dirty`."
+              "ru": "В записи последнее слово — `pedometer`, шагомер, а в этом варианте — `puppy`, щенок.",
+              "uk": "У записі останнє слово — `pedometer`, крокомір, а в цьому варіанті — `puppy`, цуценя."
             }
           },
           {
             "responseId": "en:lesson-06:session-25:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о раковине",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clean`, а в этом варианте — `broken`.",
-              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `broken`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -837,7 +1058,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -851,6 +1072,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-25:i16:p1",
+            "target": "tunnel",
+            "meaningByLocale": {
+              "ru": "туннель",
+              "uk": "тунель"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i16:p2",
             "target": "walk",
             "meaningByLocale": {
               "ru": "ходить пешком",
@@ -858,41 +1087,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-25:i16:p2",
-            "target": "sink",
-            "meaningByLocale": {
-              "ru": "раковина",
-              "uk": "раковина"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-25:i16:p3",
-            "target": "absent",
+            "target": "hill",
             "meaningByLocale": {
-              "ru": "отсутствующий",
-              "uk": "відсутній"
+              "ru": "холм",
+              "uk": "пагорб"
             }
           },
           {
             "pairId": "en:lesson-06:session-25:i16:p4",
-            "target": "drive",
+            "target": "pedometer",
             "meaningByLocale": {
-              "ru": "водить машину",
-              "uk": "водити машину"
+              "ru": "шагомер",
+              "uk": "крокомір"
             }
           }
         ],
         "leftColumn": [
+          "tunnel",
           "walk",
-          "sink",
-          "absent",
-          "drive"
+          "hill",
+          "pedometer"
         ],
         "rightColumn": [
+          "туннель",
           "ходить пешком",
-          "раковина",
-          "отсутствующий",
-          "водить машину"
+          "холм",
+          "шагомер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -910,25 +1131,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы обедаете с коллегой. Расскажите о привычном маршруте Анны: «Она ходит на работу пешком»",
+      "prompt": "Вы обедаете с коллегой. Расскажите о брате: «Он ходит на работу пешком»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-25:i17:audio"
       ],
-      "accessibilityLabel": "Вы обедаете с коллегой. Расскажите о привычном маршруте Анны: «Она ходит на работу пешком»",
+      "accessibilityLabel": "Вы обедаете с коллегой. Расскажите о брате: «Он ходит на работу пешком»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-25:i17:audio",
-          "transcript": "She walks to work."
+          "transcript": "He walks to work."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She walks to work.",
+        "targetPhrase": "He walks to work.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -950,11 +1171,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "84f22f1b40ad7cbb6c571cdf7fe4ac54956c907eb51ecb9c02651b12250b2555"
+  "learnerFingerprint": "63195ff85d36767c2746f20359dad9becc3b67a916d041e3a1b00d797aed30c4"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-20:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-20:intro1:r2": {
-          "ru": "После `she` — `cooks`, с `s`.",
-          "uk": "Після `she` — `cooks`, з `s`."
+          "ru": "После she нужно cooks, с s.",
+          "uk": "Після she потрібно cooks, з s."
         },
         "en:lesson-06:session-20:intro1:r3": {
-          "ru": "Говорим `She cooks`, без `is`.",
-          "uk": "Кажемо `She cooks`, без `is`."
+          "ru": "Здесь действие: She cooks, без is.",
+          "uk": "Тут дія: She cooks, без is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-20:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-20:intro2:r2": {
-          "ru": "После `he` — `paints`, с `s`.",
-          "uk": "Після `he` — `paints`, з `s`."
+          "ru": "После he нужно tastes, с s.",
+          "uk": "Після he потрібно tastes, з s."
         },
         "en:lesson-06:session-20:intro2:r3": {
-          "ru": "Говорим `He paints`, без `is`.",
-          "uk": "Кажемо `He paints`, без `is`."
+          "ru": "Здесь действие: He tastes, без is.",
+          "uk": "Тут дія: He tastes, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-20:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-20:intro3:r2": {
-          "ru": "Здесь нужно `He is innocent`.",
-          "uk": "Тут потрібно `He is innocent`."
+          "ru": "Без is предложение не получается: нужно recipe is.",
+          "uk": "Без is речення не виходить: потрібно recipe is."
         },
         "en:lesson-06:session-20:intro3:r3": {
-          "ru": "С `he` — `is`, не `are`.",
-          "uk": "З `he` — `is`, не `are`."
+          "ru": "Рецепт один, поэтому is, а не are.",
+          "uk": "Рецепт один, тому is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "471ac09e61dcd27744dfedd4f3d4cdcde4e8507d5cfff37406517074526ae6a5"
+  "auxiliaryFingerprint": "b3094fef68e2a58404d395123a5747cdcb0e0eafd4cf6625de738a55e9e8a53d"
 }

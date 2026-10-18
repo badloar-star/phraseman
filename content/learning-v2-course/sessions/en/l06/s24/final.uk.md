@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 24 — Розкажіть про Анну
+# Англійська · Урок 6 · Заняття 24 — Сніданок із колегою
 
-**Ситуація.** Том знайомить нового колегу з Анною за сніданком у навчальному центрі. На столі йогурт; розмова заходить про роботу й домашні заняття.
+**Ситуація.** До вас на сніданок прийшов новий колега. Брат наливає каву, сестра ріже хліб, а тост ще теплий. Нової граматики немає: ви самі вибираєте, коли потрібні s або es, а коли is.
 
-**Що ви опануєте:** скласти розповідь про звички й роботу іншої людини
-**Нові слова:** —
+**Що ви опануєте:** самому вибрати між s, es та is і розповісти про сніданок
+**Нові слова:** pour, toast, slice, knife
+**Повертаються:** teach, draw, write, catch, drive, coffee, milk, bread, tea, warm, cold, sharp, blunt, fork
 
 ---
 
 ## Інтро 1
 
-### Я і вона
+### Кава для всіх
 
-Повторимо `drive` — «водити машину», `smile` — «усміхатися». `I drive to work` — «Я їжджу на роботу за кермом». `She drives to work` — «Вона їздить на роботу за кермом»: після `she` додаємо `s`. `Anna smiles a lot` — «Анна часто усміхається»: тут ім’я відповідає `she`.
+Новий колега прийшов до вас на сніданок. Брат бере кавник і наливає всім каву. Колега питає, що робить брат. pour — «наливати». Про брата кажемо he і додаємо s, як і в усіх попередніх словах: He pours the coffee — «Він наливає каву».
 
-**Скажіть «Вона їздить на роботу за кермом».**
+**Колега питає, що робить ваш брат. Скажіть: «Він наливає каву».**
 
-- ✅ **She drives to work.**
-- ❌ She drive to work. — *Після `she` — `drives`, з `s`.*
-- ❌ She is drives to work. — *Кажемо `She drives`, без `is`.*
+- ✅ **He pours the coffee.**
+- ❌ He pour the coffee. — *Після he потрібно pours, з s.*
+- ❌ He is pours the coffee. — *Тут дія: He pours, без is.*
 
 ---
 
 ## Інтро 2
 
-### Читає, пише, малює
+### Гарячі тости
 
-`read` — «читати», `write` — «писати», `draw` — «малювати». `He reads at home` — «Він читає вдома». `She writes here` — «Вона пише тут». `They draw here` — «Вони малюють тут»: після `they` закінчення `s` немає. Книжку можна читати, а можна підкласти під хиткий стіл. Лише перше — `read`.
+Сестра ставить на стіл тарілку з тостами. Колега обережно бере один і перевіряє пальцями: він ще теплий, щойно з тостера. toast — «тост», підсмажений хліб. Коли кажемо, який він, дії немає, потрібен is: The toast is warm — «Тост теплий».
 
-**Скажіть «Вони малюють тут».**
+**Колега питає, чи холодний тост. Скажіть: «Тост теплий».**
 
-- ✅ **They draw here.**
-- ❌ They draws here. — *Після `they` — `draw`, без `s`.*
-- ❌ They are draw here. — *Кажемо `They draw`, без `are`.*
+- ✅ **The toast is warm.**
+- ❌ The toast warm. — *Без is речення не виходить: потрібно toast is.*
+- ❌ The toast are warm. — *Тост один, тому is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Робота й сніданок
+### Хліб на дошці
 
-`teach` — «викладати», `cook` — «готувати їжу». `She teaches English` — «Вона викладає англійську»: `teach → teaches`, додаємо `es`. `He cooks at home` — «Він готує вдома». `yoghurt` — «йогурт». `The yoghurt is in the fridge` — «Йогурт у холодильнику».
+У сестри в руках ніж і свіжий батон хліба. Вона рівно ріже його на тонкі шматки й кладе на тарілку. Колега питає, що робить сестра. slice — «нарізати скибочками». Про сестру кажемо she і додаємо s: She slices the bread — «Вона нарізає хліб».
 
-**Скажіть «Вона викладає англійську».**
+**Колега питає, що робить ваша сестра. Скажіть: «Вона нарізає хліб».**
 
-- ✅ **She teaches English.**
-- ❌ She teach English. — *Після `she` — `teaches`.*
-- ❌ She is teaches English. — *Кажемо `She teaches`, без `is`.*
+- ✅ **She slices the bread.**
+- ❌ She slice the bread. — *Після she потрібно slices, з s.*
+- ❌ She is slices the bread. — *Тут дія: She slices, без is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Вона їздить на роботу за кермом»**
+**1 · Картка слова — pour**
+<!-- interaction_id: en:lesson-06:session-24:word:pour; family: word_card -->
+> **pour** — наливати. He pours the tea. — «Він наливає чай». Коли рідину ллють із чайника, кавника чи глечика.
+
+**2 · Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»**
 <!-- interaction_id: en:lesson-06:session-24:i01; family: phrase_builder -->
-Плитки: `work` `to` `drives` `She` → **She drives to work.**
+Плитки: `pours` `the` `milk` `She` `pour` → **She pours the milk.**
+*(плитка `pour` зайва: тут потрібно `pours` — `She pours the milk.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — toast**
+<!-- interaction_id: en:lesson-06:session-24:word:toast; family: word_card -->
+> **toast** — тост (підсмажений хліб). The toast is on the plate. — «Тост на тарілці». Про скибку хліба, яку підсмажили.
+
+**4 · Послухайте колегу**
 <!-- interaction_id: en:lesson-06:session-24:i02; family: listen_choose -->
-🔊 *write* → **write** · read · draw
-- read — *У записі перше слово — `write`, а в цьому варіанті — `read`.*
-- draw — *У записі перше слово — `write`, а в цьому варіанті — `draw`.*
+🔊 *The toast is warm.* → **The toast is warm.** · The toast is cold. · The bread is warm.
+- The toast is cold. — *У записі останнє слово — `warm`, теплий, а в цьому варіанті — `cold`, холодний.*
+- The bread is warm. — *У записі друге слово — `toast`, тост, а в цьому варіанті — `bread`, хліб.*
 
-**3 · Скажіть «Анна часто усміхається»**
+**5 · Картка слова — slice**
+<!-- interaction_id: en:lesson-06:session-24:word:slice; family: word_card -->
+> **slice** — нарізати скибочками. He slices the cheese. — «Він нарізає сир». Коли їжу ріжуть на рівні шматки.
+
+**6 · Скажіть про сестру: «Вона нарізає хліб». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-24:i03; family: context_gap_grammar -->
-Anna ___ a lot. → **smiles** · smile · is smiles
-- smile — *Анна — вона: `Anna smiles`, з `s`.*
-- is smiles — *Кажемо `Anna smiles`, без `is`.*
+She ___ the bread. → **slices** · slice · is slices
+- slice — *Після `she` — `slices`, з `s`.*
+- is slices — *Кажемо `She slices`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-24:i04; family: speed_match -->
-drive — водити машину · smile — усміхатися · draw — малювати · cook — готувати їжу
+pour — наливати · toast — тост (підсмажений хліб) · slice — нарізати скибочками · knife — ніж
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — knife**
+<!-- interaction_id: en:lesson-06:session-24:word:knife; family: word_card -->
+> **knife** — ніж. The knife is on the table. — «Ніж на столі». Про предмет, яким ріжуть.
+
+**9 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-24:i05; family: listen_build_dictation -->
-🔊 *He reads at home.* Плитки: `home` `at` `reads` `He` → **He reads at home.**
+🔊 *The knife is sharp.* Плитки: `is` `sharp` `knife` `The` `are` → **The knife is sharp.**
+*(плитка `are` зайва: тут потрібно `is` — `The knife is sharp.`)*
 
-**6 · Скажіть «Вона пише тут»**
+**10 · Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»**
 <!-- interaction_id: en:lesson-06:session-24:i06; family: phrase_builder -->
-Плитки: `here` `writes` `She` → **She writes here.**
+Плитки: `teaches` `English` `He` `teach` → **He teaches English.**
+*(плитка `teach` зайва: тут потрібно `teaches` — `He teaches English.`)*
 
-**7 · Скажіть «Він готує вдома»**
+**11 · Колега питає, чи холодний тост. Скажіть: «Тост теплий»**
 <!-- interaction_id: en:lesson-06:session-24:i07; family: scripted_repeat_compare -->
-🎙 **He cooks at home.**
+🎙 **The toast is warm.**
 
-**8 · Скажіть «Вони малюють тут»**
+**12 · Скажіть про брата: «Він малює за столом». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-24:i08; family: context_gap_grammar -->
-They ___ here. → **draw** · draws · are draw
-- draws — *Після `they` — `draw`, без `s`.*
-- are draw — *Кажемо `They draw`, без `are`.*
+He ___ at the table. → **draws** · draw · is draws
+- draw — *Після `he` — `draws`, з `s`.*
+- is draws — *Кажемо `He draws`, без `is`.*
 
-**9 · Послухайте, що Том каже про йогурт**
+**13 · Послухайте колегу**
 <!-- interaction_id: en:lesson-06:session-24:i09; family: listen_choose -->
-🔊 *The yoghurt is cold.* → **The yoghurt is cold.** · The yoghurt is warm. · The yoghurt is fresh.
-- The yoghurt is warm. — *У записі останнє слово — `cold`, а в цьому варіанті — `warm`.*
-- The yoghurt is fresh. — *У записі останнє слово — `cold`, а в цьому варіанті — `fresh`.*
+🔊 *He writes at the table.* → **He writes at the table.** · He draws at the table. · She writes at the table.
+- He draws at the table. — *У записі дія — `writes`, пише, а в цьому варіанті — `draws`, малює.*
+- She writes at the table. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-24:i10; family: speed_match -->
-write — писати · read — читати · teach — викладати · yoghurt — йогурт
+knife — ніж · pour — наливати · drive — водити машину · teach — викладати
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-24:i11; family: listen_build_dictation -->
-🔊 *The yoghurt is in the fridge.* Плитки: `fridge` `the` `in` `is` `yoghurt` `The` `are` → **The yoghurt is in the fridge.**
-*(плитка `are` зайва: тут потрібно `is` — `The yoghurt is in the fridge.`)*
+🔊 *My sister catches the bus.* Плитки: `catches` `the` `bus` `sister` `My` `catch` → **My sister catches the bus.**
+*(плитка `catch` зайва: тут потрібно `catches` — `My sister catches the bus.`)*
 
-**12 · На столі лежить зошит. Запитайте «Чий це зошит?»**
+**16 · Ви шукаєте ніж. Спитайте брата: «Де ніж?»**
 <!-- interaction_id: en:lesson-06:session-24:i12; family: phrase_builder -->
-Плитки: `this` `is` `notebook` `Whose` → **Whose notebook is this?**
+Плитки: `knife` `is` `Where` `the` `What` → **Where is the knife?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the knife?`)*
 
-**13 · Скажіть «Я їжджу на роботу за кермом»**
+**17 · Колега питає, що робить ваш брат біля столу. Скажіть: «Він наливає каву»**
 <!-- interaction_id: en:lesson-06:session-24:i13; family: scripted_repeat_compare -->
-🎙 **I drive to work.**
+🎙 **He pours the coffee.**
 
-**14 · Скажіть «Вона викладає англійську»**
+**18 · Скажіть про сестру: «Вона викладає англійську». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-24:i14; family: context_gap_grammar -->
-She ___ English. → **teaches** · teach · is teaches
+She ___ English. → **teaches** · teach · teachs
 - teach — *Після `she` — `teaches`, з `es`.*
-- is teaches — *Кажемо `She teaches`, без `is`.*
+- teachs — *Після `ch` потрібно `es`: `teaches`.*
 
-**15 · Послухайте, хто готує вдома**
+**19 · Послухайте колегу**
 <!-- interaction_id: en:lesson-06:session-24:i15; family: listen_choose -->
-🔊 *They cook at home.* → **They cook at home.** · We cook at home. · You cook at home.
-- We cook at home. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
-- You cook at home. — *У записі перше слово — `They`, а в цьому варіанті — `You`.*
+🔊 *The knife is sharp.* → **The knife is sharp.** · The knife is blunt. · The fork is sharp.
+- The knife is blunt. — *У записі останнє слово — `sharp`, гострий, а в цьому варіанті — `blunt`, тупий.*
+- The fork is sharp. — *У записі друге слово — `knife`, ніж, а в цьому варіанті — `fork`, виделка.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-24:i16; family: speed_match -->
-smile — усміхатися · draw — малювати · write — писати · teach — викладати
+toast — тост (підсмажений хліб) · slice — нарізати скибочками · knife — ніж · pour — наливати
 
-**17 · Новий колега запитує, що викладає Анна. Скажіть «Вона викладає англійську»**
+**21 · Колега питає, що робить ваша сестра з хлібом. Скажіть: «Вона нарізає хліб»**
 <!-- interaction_id: en:lesson-06:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She teaches English.**
-
+🎙 **She slices the bread.**

@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-17:i01",
+      "interactionId": "en:lesson-06:session-17:word:drive",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — drive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:word:drive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — drive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:word:drive:audio",
+          "transcript": "drive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-17:word:drive:r1",
+            "targetText": "drive",
+            "meaningByLocale": {
+              "ru": "водить машину. My brother drives to work. — «Мой брат ездит на работу за рулём». Когда человек сам управляет машиной.",
+              "uk": "водити машину. My brother drives to work. — «Мій брат їздить на роботу за кермом». Коли людина сама керує машиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drive",
+          "definitionByLocale": {
+            "ru": "водить машину. My brother drives to work. — «Мой брат ездит на работу за рулём». Когда человек сам управляет машиной.",
+            "uk": "водити машину. My brother drives to work. — «Мій брат їздить на роботу за кермом». Коли людина сама керує машиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я їжджу на роботу за кермом»",
+      "prompt": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я їжджу на роботу за кермом»",
+      "accessibilityLabel": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I drive to work.",
+        "targetPhrase": "She drives to work.",
         "localizedMeaning": {
-          "ru": "Скажите «Я езжу на работу за рулём»",
-          "uk": "Скажіть «Я їжджу на роботу за кермом»"
+          "ru": "Подруга спрашивает, как ездит на работу ваша сестра. Скажите: «Она ездит на работу за рулём»",
+          "uk": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»"
         },
         "orderedTokens": [
-          "I",
-          "drive",
+          "She",
+          "drives",
           "to",
           "work"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "drive"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `drives` — `She drives to work.`",
+              "uk": "тут потрібно `drives` — `She drives to work.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-17:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-17:word:wait",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — wait",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:word:wait:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wait",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:word:wait:audio",
+          "transcript": "wait"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-17:word:wait:r1",
+            "targetText": "wait",
+            "meaningByLocale": {
+              "ru": "ждать. She waits at the bus stop. — «Она ждёт на остановке». О том, кто стоит и ждёт кого-то или что-то.",
+              "uk": "чекати. She waits at the bus stop. — «Вона чекає на зупинці». Про того, хто стоїть і чекає когось або щось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wait",
+          "definitionByLocale": {
+            "ru": "ждать. She waits at the bus stop. — «Она ждёт на остановке». О том, кто стоит и ждёт кого-то или что-то.",
+            "uk": "чекати. She waits at the bus stop. — «Вона чекає на зупинці». Про того, хто стоїть і чекає когось або щось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-17:i02:r1",
-          "text": "drive"
+          "text": "She waits here."
         },
         {
           "responseId": "en:lesson-06:session-17:i02:r2",
-          "text": "start"
+          "text": "She works here."
         },
         {
           "responseId": "en:lesson-06:session-17:i02:r3",
-          "text": "swim"
+          "text": "They wait here."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i02:audio",
-          "transcript": "drive"
+          "transcript": "She waits here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-17:i02:r1",
-            "targetText": "drive",
+            "targetText": "She waits here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-17:i02:r2",
-            "targetText": "start",
+            "targetText": "She works here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-17:i02:r3",
-            "targetText": "swim",
+            "targetText": "They wait here.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +189,19 @@
           {
             "responseId": "en:lesson-06:session-17:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `drive`, а в этом варианте — `start`.",
-              "uk": "У записі перше слово — `drive`, а в цьому варіанті — `start`."
+              "ru": "В записи действие — `waits`, ждёт, а в этом варианте — `works`, работает.",
+              "uk": "У записі дія — `waits`, чекає, а в цьому варіанті — `works`, працює."
             }
           },
           {
             "responseId": "en:lesson-06:session-17:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `drive`, а в этом варианте — `swim`.",
-              "uk": "У записі перше слово — `drive`, а в цьому варіанті — `swim`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `They`, они (и слово там без `s`: `wait`).",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `They`, вони (і слово там без `s`: `wait`)."
             }
           }
         ],
@@ -113,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-17:word:mechanic",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mechanic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:word:mechanic:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mechanic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:word:mechanic:audio",
+          "transcript": "mechanic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-17:word:mechanic:r1",
+            "targetText": "mechanic",
+            "meaningByLocale": {
+              "ru": "автомеханик. My uncle is a mechanic. — «Мой дядя автомеханик». О человеке, который чинит машины.",
+              "uk": "автомеханік. My uncle is a mechanic. — «Мій дядько автомеханік». Про людину, яка лагодить машини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mechanic",
+          "definitionByLocale": {
+            "ru": "автомеханик. My uncle is a mechanic. — «Мой дядя автомеханик». О человеке, который чинит машины.",
+            "uk": "автомеханік. My uncle is a mechanic. — «Мій дядько автомеханік». Про людину, яка лагодить машини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-17:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона їздить на роботу за кермом»",
+      "prompt": "Скажіть про дядька: «Він автомеханік». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-17:i03:r1",
-          "text": "drives"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-17:i03:r2",
-          "text": "drive"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-17:i03:r3",
-          "text": "is drives"
+          "text": "drives"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона їздить на роботу за кермом»",
+      "accessibilityLabel": "Скажіть про дядька: «Він автомеханік». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она ездит на работу за рулём»",
-          "uk": "Скажіть «Вона їздить на роботу за кермом»"
+          "ru": "Скажите про дядю: «Он автомеханик». Выберите слово",
+          "uk": "Скажіть про дядька: «Він автомеханік». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ to work.",
+        "gappedTargetPhrase": "He ___ a mechanic.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-17:i03:r1",
-            "text": "drives"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-17:i03:r2",
-            "text": "drive"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-17:i03:r3",
-            "text": "is drives"
+            "text": "drives"
           }
         ],
-        "testedDimension": "Скажіть «Вона їздить на роботу за кермом»",
+        "testedDimension": "Скажіть про дядька: «Він автомеханік». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-17:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона їздить на роботу за кермом»",
+            "testedDimension": "Скажіть про дядька: «Він автомеханік». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `drives`, с `s`.",
-              "uk": "Після `she` — `drives`, з `s`."
+              "ru": "После `he` нужно `is`, а не `are`.",
+              "uk": "Після `he` потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-17:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона їздить на роботу за кермом»",
+            "testedDimension": "Скажіть про дядька: «Він автомеханік». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `She drives`, без `is`.",
-              "uk": "Кажемо `She drives`, без `is`."
+              "ru": "`drives` значит «водит», а здесь нужно сказать, кто он: `is a mechanic`.",
+              "uk": "`drives` означає «водить», а тут треба сказати, ким він працює: `is a mechanic`."
             }
           }
         ]
@@ -183,15 +324,15 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями; well — про самопочуття",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями; well — про самопочуття",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -205,40 +346,40 @@
           },
           {
             "pairId": "en:lesson-06:session-17:i04:p2",
-            "target": "well",
+            "target": "wait",
             "meaningByLocale": {
-              "ru": "хорошо себя чувствующий",
-              "uk": "той, хто добре почувається"
+              "ru": "ждать",
+              "uk": "чекати"
             }
           },
           {
             "pairId": "en:lesson-06:session-17:i04:p3",
-            "target": "jacket",
+            "target": "mechanic",
             "meaningByLocale": {
-              "ru": "куртка",
-              "uk": "куртка"
+              "ru": "автомеханик",
+              "uk": "автомеханік"
             }
           },
           {
             "pairId": "en:lesson-06:session-17:i04:p4",
-            "target": "berry",
+            "target": "engine",
             "meaningByLocale": {
-              "ru": "ягода",
-              "uk": "ягода"
+              "ru": "двигатель",
+              "uk": "двигун"
             }
           }
         ],
         "leftColumn": [
           "drive",
-          "well",
-          "jacket",
-          "berry"
+          "wait",
+          "mechanic",
+          "engine"
         ],
         "rightColumn": [
           "водити машину",
-          "той, хто добре почувається",
-          "куртка",
-          "ягода"
+          "чекати",
+          "автомеханік",
+          "двигун"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +396,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-17:word:engine",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — engine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:word:engine:audio"
+      ],
+      "accessibilityLabel": "Картка слова — engine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:word:engine:audio",
+          "transcript": "engine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-17:word:engine:r1",
+            "targetText": "engine",
+            "meaningByLocale": {
+              "ru": "двигатель. The engine is loud. — «Двигатель шумный». О моторе машины.",
+              "uk": "двигун. The engine is loud. — «Двигун гучний». Про мотор машини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "engine",
+          "definitionByLocale": {
+            "ru": "двигатель. The engine is loud. — «Двигатель шумный». О моторе машины.",
+            "uk": "двигун. The engine is loud. — «Двигун гучний». Про мотор машини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-17:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте майстра й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте майстра й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i05:audio",
-          "transcript": "Anna drives to work."
+          "transcript": "The engine is loud."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna drives to work.",
+        "hiddenTargetPhrase": "The engine is loud.",
         "orderedTokens": [
-          "Anna",
-          "drives",
-          "to",
-          "work"
+          "The",
+          "engine",
+          "is",
+          "loud"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте майстра й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The engine is loud.`",
+              "uk": "тут потрібно `is` — `The engine is loud.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -292,30 +488,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Він починає о дев’ятій»",
+      "prompt": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він починає о дев’ятій»",
+      "accessibilityLabel": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He starts at nine.",
+        "targetPhrase": "She starts at four.",
         "localizedMeaning": {
-          "ru": "Скажите «Он начинает в девять»",
-          "uk": "Скажіть «Він починає о дев’ятій»"
+          "ru": "Подруга спрашивает, когда начинает работу ваша сестра. Скажите: «Она начинает в четыре»",
+          "uk": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»"
         },
         "orderedTokens": [
-          "He",
+          "She",
           "starts",
           "at",
-          "nine"
+          "four"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "start"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `starts` — `She starts at four.`",
+              "uk": "тут потрібно `starts` — `She starts at four.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -325,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Вона добре почувається»",
+      "prompt": "Сусідка питає, ким працює ваш дядько. Скажіть: «Він автомеханік»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Вона добре почувається»",
+      "accessibilityLabel": "Сусідка питає, ким працює ваш дядько. Скажіть: «Він автомеханік»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i07:audio",
-          "transcript": "She is well."
+          "transcript": "He is a mechanic."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is well.",
+        "targetPhrase": "He is a mechanic.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,11 +566,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Він працює тут»",
+      "prompt": "Скажіть про сестру: «Вона працює тут». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-17:i08:r1",
@@ -379,14 +587,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він працює тут»",
+      "accessibilityLabel": "Скажіть про сестру: «Вона працює тут». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он работает здесь»",
-          "uk": "Скажіть «Він працює тут»"
+          "ru": "Скажите о сестре: «Она работает здесь». Выберите слово",
+          "uk": "Скажіть про сестру: «Вона працює тут». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ here.",
+        "gappedTargetPhrase": "She ___ here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-17:i08:r1",
@@ -401,24 +609,24 @@
             "text": "is works"
           }
         ],
-        "testedDimension": "Скажіть «Він працює тут»",
+        "testedDimension": "Скажіть про сестру: «Вона працює тут». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-17:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Він працює тут»",
+            "testedDimension": "Скажіть про сестру: «Вона працює тут». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `he` — `works`, с `s`.",
-              "uk": "Після `he` — `works`, з `s`."
+              "ru": "После `she` — `works`, с `s`.",
+              "uk": "Після `she` — `works`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-17:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Він працює тут»",
+            "testedDimension": "Скажіть про сестру: «Вона працює тут». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `He works`, без `is`.",
-              "uk": "Кажемо `He works`, без `is`."
+              "ru": "Говорим `She works`, без `is`.",
+              "uk": "Кажемо `She works`, без `is`."
             }
           }
         ]
@@ -427,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, о котрій вона починає",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-17:i09:r1",
-          "text": "She starts at eight."
+          "text": "He drives here."
         },
         {
           "responseId": "en:lesson-06:session-17:i09:r2",
-          "text": "She starts at nine."
+          "text": "He waits here."
         },
         {
           "responseId": "en:lesson-06:session-17:i09:r3",
-          "text": "She starts at ten."
+          "text": "She drives here."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, о котрій вона починає",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i09:audio",
-          "transcript": "She starts at eight."
+          "transcript": "He drives here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-17:i09:r1",
-            "targetText": "She starts at eight.",
+            "targetText": "He drives here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-17:i09:r2",
-            "targetText": "She starts at nine.",
+            "targetText": "He waits here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-17:i09:r3",
-            "targetText": "She starts at ten.",
+            "targetText": "She drives here.",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +688,19 @@
           {
             "responseId": "en:lesson-06:session-17:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, о котрій вона починає",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `eight`, а в этом варианте — `nine`.",
-              "uk": "У записі останнє слово — `eight`, а в цьому варіанті — `nine`."
+              "ru": "В записи действие — `drives`, водит машину, а в этом варианте — `waits`, ждёт.",
+              "uk": "У записі дія — `drives`, водить машину, а в цьому варіанті — `waits`, чекає."
             }
           },
           {
             "responseId": "en:lesson-06:session-17:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, о котрій вона починає",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `eight`, а в этом варианте — `ten`.",
-              "uk": "У записі останнє слово — `eight`, а в цьому варіанті — `ten`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -503,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -517,6 +725,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-17:i10:p1",
+            "target": "mechanic",
+            "meaningByLocale": {
+              "ru": "автомеханик",
+              "uk": "автомеханік"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i10:p2",
+            "target": "engine",
+            "meaningByLocale": {
+              "ru": "двигатель",
+              "uk": "двигун"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i10:p3",
             "target": "drive",
             "meaningByLocale": {
               "ru": "водить машину",
@@ -524,41 +748,25 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-17:i10:p2",
+            "pairId": "en:lesson-06:session-17:i10:p4",
             "target": "start",
             "meaningByLocale": {
               "ru": "начинать",
               "uk": "починати"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-17:i10:p3",
-            "target": "berry",
-            "meaningByLocale": {
-              "ru": "ягода",
-              "uk": "ягода"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-17:i10:p4",
-            "target": "jacket",
-            "meaningByLocale": {
-              "ru": "куртка",
-              "uk": "куртка"
-            }
           }
         ],
         "leftColumn": [
+          "mechanic",
+          "engine",
           "drive",
-          "start",
-          "berry",
-          "jacket"
+          "start"
         ],
         "rightColumn": [
+          "автомеханік",
+          "двигун",
           "водити машину",
-          "починати",
-          "ягода",
-          "куртка"
+          "починати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,42 +784,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сусідку й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сусідку й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i11:audio",
-          "transcript": "The berry is red."
+          "transcript": "My brother drives to work."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The berry is red.",
+        "hiddenTargetPhrase": "My brother drives to work.",
         "orderedTokens": [
-          "The",
-          "berry",
-          "is",
-          "red"
+          "My",
+          "brother",
+          "drives",
+          "to",
+          "work"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "drive"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-17:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте сусідку й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The berry is red.`",
-              "uk": "тут потрібно `is` — `The berry is red.`"
+              "ru": "здесь нужно `drives` — `My brother drives to work.`",
+              "uk": "тут потрібно `drives` — `My brother drives to work.`"
             }
           }
         ],
@@ -624,30 +833,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вони їздять на роботу за кермом»",
+      "prompt": "У майстерні ви показуєте на мотор. Спитайте дядька: «Чий це двигун?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони їздять на роботу за кермом»",
+      "accessibilityLabel": "У майстерні ви показуєте на мотор. Спитайте дядька: «Чий це двигун?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They drive to work.",
+        "targetPhrase": "Whose engine is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Они ездят на работу за рулём»",
-          "uk": "Скажіть «Вони їздять на роботу за кермом»"
+          "ru": "В мастерской вы показываете на мотор. Спросите дядю: «Чей это двигатель?»",
+          "uk": "У майстерні ви показуєте на мотор. Спитайте дядька: «Чий це двигун?»"
         },
         "orderedTokens": [
-          "They",
-          "drive",
-          "to",
-          "work"
+          "Whose",
+          "engine",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "У майстерні ви показуєте на мотор. Спитайте дядька: «Чий це двигун?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose engine is this?`",
+              "uk": "тут потрібно `Whose` — `Whose engine is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -657,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я добре почуваюся»",
+      "prompt": "Сусідка питає, як ваш брат їздить на роботу. Скажіть: «Він їздить на роботу за кермом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я добре почуваюся»",
+      "accessibilityLabel": "Сусідка питає, як ваш брат їздить на роботу. Скажіть: «Він їздить на роботу за кермом»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i13:audio",
-          "transcript": "I am well."
+          "transcript": "He drives to work."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am well.",
+        "targetPhrase": "He drives to work.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -690,67 +911,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Анна працює тут»",
+      "prompt": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-17:i14:r1",
-          "text": "works"
+          "text": "waits"
         },
         {
           "responseId": "en:lesson-06:session-17:i14:r2",
-          "text": "work"
+          "text": "wait"
         },
         {
           "responseId": "en:lesson-06:session-17:i14:r3",
-          "text": "is works"
+          "text": "is waits"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Анна працює тут»",
+      "accessibilityLabel": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Анна работает здесь»",
-          "uk": "Скажіть «Анна працює тут»"
+          "ru": "Скажите о сестре на остановке: «Она ждёт на остановке». Выберите слово",
+          "uk": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово"
         },
-        "gappedTargetPhrase": "Anna ___ here.",
+        "gappedTargetPhrase": "She ___ at the bus stop.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-17:i14:r1",
-            "text": "works"
+            "text": "waits"
           },
           {
             "responseId": "en:lesson-06:session-17:i14:r2",
-            "text": "work"
+            "text": "wait"
           },
           {
             "responseId": "en:lesson-06:session-17:i14:r3",
-            "text": "is works"
+            "text": "is waits"
           }
         ],
-        "testedDimension": "Скажіть «Анна працює тут»",
+        "testedDimension": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-17:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Анна працює тут»",
+            "testedDimension": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Анна — она: `Anna works`, с `s`.",
-              "uk": "Анна — вона: `Anna works`, з `s`."
+              "ru": "После `she` — `waits`, с `s`.",
+              "uk": "Після `she` — `waits`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-17:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Анна працює тут»",
+            "testedDimension": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `Anna works`, без `is`.",
-              "uk": "Кажемо `Anna works`, без `is`."
+              "ru": "Говорим `She waits`, без `is`.",
+              "uk": "Кажемо `She waits`, без `is`."
             }
           }
         ]
@@ -759,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чия куртка тут",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-17:i15:r1",
-          "text": "My jacket is here."
+          "text": "My uncle is a mechanic."
         },
         {
           "responseId": "en:lesson-06:session-17:i15:r2",
-          "text": "Your jacket is here."
+          "text": "My uncle is a driver."
         },
         {
           "responseId": "en:lesson-06:session-17:i15:r3",
-          "text": "His jacket is here."
+          "text": "My brother is a mechanic."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чия куртка тут",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i15:audio",
-          "transcript": "My jacket is here."
+          "transcript": "My uncle is a mechanic."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-17:i15:r1",
-            "targetText": "My jacket is here.",
+            "targetText": "My uncle is a mechanic.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-17:i15:r2",
-            "targetText": "Your jacket is here.",
+            "targetText": "My uncle is a driver.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-17:i15:r3",
-            "targetText": "His jacket is here.",
+            "targetText": "My brother is a mechanic.",
             "meaningByLocale": null
           }
         ],
@@ -812,19 +1033,19 @@
           {
             "responseId": "en:lesson-06:session-17:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чия куртка тут",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `mechanic`, автомеханик, а в этом варианте — `driver`, водитель.",
+              "uk": "У записі останнє слово — `mechanic`, автомеханік, а в цьому варіанті — `driver`, водій."
             }
           },
           {
             "responseId": "en:lesson-06:session-17:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чия куртка тут",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи второе слово — `uncle`, дядя, а в этом варианте — `brother`, брат.",
+              "uk": "У записі друге слово — `uncle`, дядько, а в цьому варіанті — `brother`, брат."
             }
           }
         ],
@@ -835,20 +1056,28 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями; well — про самопочуття",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями; well — про самопочуття",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-17:i16:p1",
+            "target": "wait",
+            "meaningByLocale": {
+              "ru": "ждать",
+              "uk": "чекати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i16:p2",
             "target": "drive",
             "meaningByLocale": {
               "ru": "водить машину",
@@ -856,41 +1085,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-17:i16:p2",
-            "target": "well",
-            "meaningByLocale": {
-              "ru": "хорошо себя чувствующий",
-              "uk": "той, хто добре почувається"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-17:i16:p3",
-            "target": "start",
+            "target": "engine",
             "meaningByLocale": {
-              "ru": "начинать",
-              "uk": "починати"
+              "ru": "двигатель",
+              "uk": "двигун"
             }
           },
           {
             "pairId": "en:lesson-06:session-17:i16:p4",
-            "target": "berry",
+            "target": "mechanic",
             "meaningByLocale": {
-              "ru": "ягода",
-              "uk": "ягода"
+              "ru": "автомеханик",
+              "uk": "автомеханік"
             }
           }
         ],
         "leftColumn": [
+          "wait",
           "drive",
-          "well",
-          "start",
-          "berry"
+          "engine",
+          "mechanic"
         ],
         "rightColumn": [
+          "чекати",
           "водити машину",
-          "той, хто добре почувається",
-          "починати",
-          "ягода"
+          "двигун",
+          "автомеханік"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -908,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-17:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега запитує, як Анна дістається на роботу. Скажіть «Вона їздить на роботу за кермом»",
+      "prompt": "Продавець із кіоска питає, що робить ваша сестра на зупинці. Скажіть: «Вона чекає на зупинці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-17:i17:audio"
       ],
-      "accessibilityLabel": "Колега запитує, як Анна дістається на роботу. Скажіть «Вона їздить на роботу за кермом»",
+      "accessibilityLabel": "Продавець із кіоска питає, що робить ваша сестра на зупинці. Скажіть: «Вона чекає на зупинці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i17:audio",
-          "transcript": "She drives to work."
+          "transcript": "She waits at the bus stop."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She drives to work.",
+        "targetPhrase": "She waits at the bus stop.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -948,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "afeb4544d2214f0a2174adad616ff6378c3de74132b71be43ba1991b32c1ee88"
+  "learnerFingerprint": "7559b45999ad106d1fdedee0f4db83a7e5321b07df4130095fe10d5a6504c3f5"
 }

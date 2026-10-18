@@ -1,0 +1,2451 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-32:word:sunrise",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sunrise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:sunrise:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sunrise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:sunrise:audio",
+            "transcript": "sunrise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:sunrise:r1",
+              "targetText": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет. We walk at sunrise. — «Мы ходим пешком на рассвете». О времени, когда встаёт солнце.",
+                "uk": "світанок. We walk at sunrise. — «Ми ходимо пішки на світанку». Про час, коли сходить сонце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunrise",
+            "definitionByLocale": {
+              "ru": "рассвет. We walk at sunrise. — «Мы ходим пешком на рассвете». О времени, когда встаёт солнце.",
+              "uk": "світанок. We walk at sunrise. — «Ми ходимо пішки на світанку». Про час, коли сходить сонце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, когда вы бегаете. Скажите: «Мы бегаем трусцой на рассвете»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, когда вы бегаете. Скажите: «Мы бегаем трусцой на рассвете»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We jog at sunrise.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, когда вы бегаете. Скажите: «Мы бегаем трусцой на рассвете»",
+            "uk": "Подруга питає, коли ви бігаєте. Скажіть: «Ми бігаємо підтюпцем на світанку»"
+          },
+          "orderedTokens": [
+            "We",
+            "jog",
+            "at",
+            "sunrise"
+          ],
+          "authoredDistractorTokens": [
+            "jogs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, когда вы бегаете. Скажите: «Мы бегаем трусцой на рассвете»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `jog` — `We jog at sunrise.`",
+                "uk": "тут потрібно `jog` — `We jog at sunrise.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i02:r1",
+            "text": "He walks to the hill."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i02:r2",
+            "text": "He jogs to the hill."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i02:r3",
+            "text": "She walks to the hill."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i02:audio",
+            "transcript": "He walks to the hill."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:i02:r1",
+              "targetText": "He walks to the hill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i02:r2",
+              "targetText": "He jogs to the hill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i02:r3",
+              "targetText": "She walks to the hill.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `walks`, ходит пешком, а в этом варианте — `jogs`, бегает трусцой.",
+                "uk": "У записі дія — `walks`, ходить пішки, а в цьому варіанті — `jogs`, бігає підтюпцем."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i03:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i03:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i03:r3",
+            "text": "calls to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+            "uk": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My sister ___ her grandmother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-32:i03:r1",
+              "text": "calls"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i03:r2",
+              "text": "call"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i03:r3",
+              "text": "calls to"
+            }
+          ],
+          "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Сестра — это `she`, поэтому нужно `calls`, с `s`.",
+                "uk": "Сестра — це `she`, тому потрібно `calls`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `calls` сразу называем человека, без `to`.",
+                "uk": "Після `calls` одразу називаємо людину, без `to`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-32:i04:p1",
+              "target": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i04:p2",
+              "target": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи",
+                "uk": "смузі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i04:p3",
+              "target": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист",
+                "uk": "плейлист"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i04:p4",
+              "target": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша",
+                "uk": "вівсяна каша"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sunrise",
+            "smoothie",
+            "playlist",
+            "porridge"
+          ],
+          "rightColumn": [
+            "рассвет",
+            "смузи",
+            "плейлист",
+            "овсяная каша"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:word:smoothie",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — smoothie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:smoothie:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — smoothie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:smoothie:audio",
+            "transcript": "smoothie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:smoothie:r1",
+              "targetText": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи. My smoothie is warm. — «Мой смузи тёплый». О густом напитке из фруктов.",
+                "uk": "смузі. My smoothie is warm. — «Мій смузі теплий». Про густий напій із фруктів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smoothie",
+            "definitionByLocale": {
+              "ru": "смузи. My smoothie is warm. — «Мой смузи тёплый». О густом напитке из фруктов.",
+              "uk": "смузі. My smoothie is warm. — «Мій смузі теплий». Про густий напій із фруктів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i05:audio",
+            "transcript": "My smoothie is on the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My smoothie is on the table.",
+          "orderedTokens": [
+            "My",
+            "smoothie",
+            "is",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My smoothie is on the table.`",
+                "uk": "тут потрібно `is` — `My smoothie is on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:word:playlist",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — playlist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:playlist:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — playlist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:playlist:audio",
+            "transcript": "playlist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:playlist:r1",
+              "targetText": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист. My playlist is new. — «Мой плейлист новый». О подборке песен.",
+                "uk": "плейлист. My playlist is new. — «Мій плейлист новий». Про добірку пісень."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "playlist",
+            "definitionByLocale": {
+              "ru": "плейлист. My playlist is new. — «Мой плейлист новый». О подборке песен.",
+              "uk": "плейлист. My playlist is new. — «Мій плейлист новий». Про добірку пісень."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает о вашей сестре. Скажите: «Она бегает трусцой с плейлистом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о вашей сестре. Скажите: «Она бегает трусцой с плейлистом»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She jogs with a playlist.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о вашей сестре. Скажите: «Она бегает трусцой с плейлистом»",
+            "uk": "Подруга питає про вашу сестру. Скажіть: «Вона бігає підтюпцем із плейлистом»"
+          },
+          "orderedTokens": [
+            "She",
+            "jogs",
+            "with",
+            "a",
+            "playlist"
+          ],
+          "authoredDistractorTokens": [
+            "jog"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вашей сестре. Скажите: «Она бегает трусцой с плейлистом»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `jogs` — `She jogs with a playlist.`",
+                "uk": "тут потрібно `jogs` — `She jogs with a playlist.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о соседях. Скажите: «Они тренируются на коврике»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о соседях. Скажите: «Они тренируются на коврике»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i07:audio",
+            "transcript": "They exercise on the mat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They exercise on the mat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я тру стол». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i08:r1",
+            "text": "scrub"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i08:r2",
+            "text": "scrubs"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i08:r3",
+            "text": "am scrub"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я тру стол». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я тру стол». Выберите слово",
+            "uk": "Скажіть про себе: «Я тру стіл». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-32:i08:r1",
+              "text": "scrub"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i08:r2",
+              "text": "scrubs"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i08:r3",
+              "text": "am scrub"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я тру стол». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я тру стол». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `scrub`, без `s`.",
+                "uk": "Після `I` потрібно `scrub`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я тру стол». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I scrub`, без `am`.",
+                "uk": "Кажемо `I scrub`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:word:porridge",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — porridge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:porridge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — porridge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:porridge:audio",
+            "transcript": "porridge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:porridge:r1",
+              "targetText": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша. The porridge is in the bowl. — «Каша в миске». О тёплой каше из овсяных хлопьев.",
+                "uk": "вівсяна каша. The porridge is in the bowl. — «Каша в мисці». Про теплу кашу з вівсяних пластівців."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "porridge",
+            "definitionByLocale": {
+              "ru": "овсяная каша. The porridge is in the bowl. — «Каша в миске». О тёплой каше из овсяных хлопьев.",
+              "uk": "вівсяна каша. The porridge is in the bowl. — «Каша в мисці». Про теплу кашу з вівсяних пластівців."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i09:r1",
+            "text": "The porridge is warm."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i09:r2",
+            "text": "The porridge is cold."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i09:r3",
+            "text": "The smoothie is warm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i09:audio",
+            "transcript": "The porridge is warm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:i09:r1",
+              "targetText": "The porridge is warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i09:r2",
+              "targetText": "The porridge is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i09:r3",
+              "targetText": "The smoothie is warm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `warm`, тёплый, а в этом варианте — `cold`, холодный.",
+                "uk": "У записі останнє слово — `warm`, теплий, а в цьому варіанті — `cold`, холодний."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `porridge`, каше, а в этом варианте — о `smoothie`, смузи.",
+                "uk": "У записі йдеться про `porridge`, кашу, а в цьому варіанті — про `smoothie`, смузі."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-32:i10:p1",
+              "target": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша",
+                "uk": "вівсяна каша"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i10:p2",
+              "target": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист",
+                "uk": "плейлист"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i10:p3",
+              "target": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i10:p4",
+              "target": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи",
+                "uk": "смузі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "porridge",
+            "playlist",
+            "sunrise",
+            "smoothie"
+          ],
+          "rightColumn": [
+            "овсяная каша",
+            "плейлист",
+            "рассвет",
+            "смузи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i11:audio",
+            "transcript": "He showers at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He showers at home.",
+          "orderedTokens": [
+            "He",
+            "showers",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "shower"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `showers` — `He showers at home.`",
+                "uk": "тут потрібно `showers` — `He showers at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат жалуется на боль. Скажите: «Моё плечо болит»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат жалуется на боль. Скажите: «Моё плечо болит»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My shoulder is sore.",
+          "localizedMeaning": {
+            "ru": "Брат жалуется на боль. Скажите: «Моё плечо болит»",
+            "uk": "Брат скаржиться на біль. Скажіть: «Моє плече болить»"
+          },
+          "orderedTokens": [
+            "My",
+            "shoulder",
+            "is",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат жалуется на боль. Скажите: «Моё плечо болит»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My shoulder is sore.`",
+                "uk": "тут потрібно `is` — `My shoulder is sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о сестре. Скажите: «Она делает растяжку возле холма»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о сестре. Скажите: «Она делает растяжку возле холма»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i13:audio",
+            "transcript": "She stretches near the hill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stretches near the hill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о завтраке: «Каша в миске». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i14:r3",
+            "text": "walks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о завтраке: «Каша в миске». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о завтраке: «Каша в миске». Выберите слово",
+            "uk": "Скажіть про сніданок: «Каша в мисці». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The porridge ___ in the bowl.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-32:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i14:r3",
+              "text": "walks"
+            }
+          ],
+          "testedDimension": "Скажите о завтраке: «Каша в миске». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о завтраке: «Каша в миске». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Каша — одно целое, поэтому нужно `is`, а не `are`.",
+                "uk": "Каша — одне ціле, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о завтраке: «Каша в миске». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`walks` значит «ходит пешком», а здесь нужно сказать, где каша: `is in`.",
+                "uk": "`walks` означає «ходить пішки», а тут треба сказати, де каша: `is in`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i15:r1",
+            "text": "I walk to work."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i15:r2",
+            "text": "I jog to work."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i15:r3",
+            "text": "We walk to work."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i15:audio",
+            "transcript": "I walk to work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:i15:r1",
+              "targetText": "I walk to work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i15:r2",
+              "targetText": "I jog to work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i15:r3",
+              "targetText": "We walk to work.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `walk`, ходить пешком, а в этом варианте — `jog`, бегать трусцой.",
+                "uk": "У записі дія — `walk`, ходити пішки, а в цьому варіанті — `jog`, бігати підтюпцем."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-32:i16:p1",
+              "target": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист",
+                "uk": "плейлист"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i16:p2",
+              "target": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша",
+                "uk": "вівсяна каша"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i16:p3",
+              "target": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи",
+                "uk": "смузі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i16:p4",
+              "target": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playlist",
+            "porridge",
+            "smoothie",
+            "sunrise"
+          ],
+          "rightColumn": [
+            "плейлист",
+            "овсяная каша",
+            "смузи",
+            "рассвет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, когда бегает ваша сестра. Скажите: «Она бегает трусцой на рассвете»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, когда бегает ваша сестра. Скажите: «Она бегает трусцой на рассвете»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i17:audio",
+            "transcript": "She jogs at sunrise."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She jogs at sunrise.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-32:word:sunrise",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sunrise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:sunrise:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sunrise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:sunrise:audio",
+            "transcript": "sunrise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:sunrise:r1",
+              "targetText": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет. We walk at sunrise. — «Мы ходим пешком на рассвете». О времени, когда встаёт солнце.",
+                "uk": "світанок. We walk at sunrise. — «Ми ходимо пішки на світанку». Про час, коли сходить сонце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunrise",
+            "definitionByLocale": {
+              "ru": "рассвет. We walk at sunrise. — «Мы ходим пешком на рассвете». О времени, когда встаёт солнце.",
+              "uk": "світанок. We walk at sunrise. — «Ми ходимо пішки на світанку». Про час, коли сходить сонце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, коли ви бігаєте. Скажіть: «Ми бігаємо підтюпцем на світанку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, коли ви бігаєте. Скажіть: «Ми бігаємо підтюпцем на світанку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We jog at sunrise.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, когда вы бегаете. Скажите: «Мы бегаем трусцой на рассвете»",
+            "uk": "Подруга питає, коли ви бігаєте. Скажіть: «Ми бігаємо підтюпцем на світанку»"
+          },
+          "orderedTokens": [
+            "We",
+            "jog",
+            "at",
+            "sunrise"
+          ],
+          "authoredDistractorTokens": [
+            "jogs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, коли ви бігаєте. Скажіть: «Ми бігаємо підтюпцем на світанку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `jog` — `We jog at sunrise.`",
+                "uk": "тут потрібно `jog` — `We jog at sunrise.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i02:r1",
+            "text": "He walks to the hill."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i02:r2",
+            "text": "He jogs to the hill."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i02:r3",
+            "text": "She walks to the hill."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i02:audio",
+            "transcript": "He walks to the hill."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:i02:r1",
+              "targetText": "He walks to the hill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i02:r2",
+              "targetText": "He jogs to the hill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i02:r3",
+              "targetText": "She walks to the hill.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `walks`, ходит пешком, а в этом варианте — `jogs`, бегает трусцой.",
+                "uk": "У записі дія — `walks`, ходить пішки, а в цьому варіанті — `jogs`, бігає підтюпцем."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i03:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i03:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i03:r3",
+            "text": "calls to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+            "uk": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My sister ___ her grandmother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-32:i03:r1",
+              "text": "calls"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i03:r2",
+              "text": "call"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i03:r3",
+              "text": "calls to"
+            }
+          ],
+          "testedDimension": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Сестра — это `she`, поэтому нужно `calls`, с `s`.",
+                "uk": "Сестра — це `she`, тому потрібно `calls`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `calls` сразу называем человека, без `to`.",
+                "uk": "Після `calls` одразу називаємо людину, без `to`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-32:i04:p1",
+              "target": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i04:p2",
+              "target": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи",
+                "uk": "смузі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i04:p3",
+              "target": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист",
+                "uk": "плейлист"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i04:p4",
+              "target": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша",
+                "uk": "вівсяна каша"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sunrise",
+            "smoothie",
+            "playlist",
+            "porridge"
+          ],
+          "rightColumn": [
+            "світанок",
+            "смузі",
+            "плейлист",
+            "вівсяна каша"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:word:smoothie",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — smoothie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:smoothie:audio"
+        ],
+        "accessibilityLabel": "Картка слова — smoothie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:smoothie:audio",
+            "transcript": "smoothie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:smoothie:r1",
+              "targetText": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи. My smoothie is warm. — «Мой смузи тёплый». О густом напитке из фруктов.",
+                "uk": "смузі. My smoothie is warm. — «Мій смузі теплий». Про густий напій із фруктів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smoothie",
+            "definitionByLocale": {
+              "ru": "смузи. My smoothie is warm. — «Мой смузи тёплый». О густом напитке из фруктов.",
+              "uk": "смузі. My smoothie is warm. — «Мій смузі теплий». Про густий напій із фруктів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i05:audio",
+            "transcript": "My smoothie is on the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My smoothie is on the table.",
+          "orderedTokens": [
+            "My",
+            "smoothie",
+            "is",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My smoothie is on the table.`",
+                "uk": "тут потрібно `is` — `My smoothie is on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:word:playlist",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — playlist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:playlist:audio"
+        ],
+        "accessibilityLabel": "Картка слова — playlist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:playlist:audio",
+            "transcript": "playlist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:playlist:r1",
+              "targetText": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист. My playlist is new. — «Мой плейлист новый». О подборке песен.",
+                "uk": "плейлист. My playlist is new. — «Мій плейлист новий». Про добірку пісень."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "playlist",
+            "definitionByLocale": {
+              "ru": "плейлист. My playlist is new. — «Мой плейлист новый». О подборке песен.",
+              "uk": "плейлист. My playlist is new. — «Мій плейлист новий». Про добірку пісень."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає про вашу сестру. Скажіть: «Вона бігає підтюпцем із плейлистом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про вашу сестру. Скажіть: «Вона бігає підтюпцем із плейлистом»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She jogs with a playlist.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о вашей сестре. Скажите: «Она бегает трусцой с плейлистом»",
+            "uk": "Подруга питає про вашу сестру. Скажіть: «Вона бігає підтюпцем із плейлистом»"
+          },
+          "orderedTokens": [
+            "She",
+            "jogs",
+            "with",
+            "a",
+            "playlist"
+          ],
+          "authoredDistractorTokens": [
+            "jog"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає про вашу сестру. Скажіть: «Вона бігає підтюпцем із плейлистом»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `jogs` — `She jogs with a playlist.`",
+                "uk": "тут потрібно `jogs` — `She jogs with a playlist.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про сусідів. Скажіть: «Вони тренуються на килимку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про сусідів. Скажіть: «Вони тренуються на килимку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i07:audio",
+            "transcript": "They exercise on the mat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They exercise on the mat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i08:r1",
+            "text": "scrub"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i08:r2",
+            "text": "scrubs"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i08:r3",
+            "text": "am scrub"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я тру стол». Выберите слово",
+            "uk": "Скажіть про себе: «Я тру стіл». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-32:i08:r1",
+              "text": "scrub"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i08:r2",
+              "text": "scrubs"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i08:r3",
+              "text": "am scrub"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `scrub`, без `s`.",
+                "uk": "Після `I` потрібно `scrub`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I scrub`, без `am`.",
+                "uk": "Кажемо `I scrub`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:word:porridge",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — porridge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:word:porridge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — porridge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:word:porridge:audio",
+            "transcript": "porridge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:word:porridge:r1",
+              "targetText": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша. The porridge is in the bowl. — «Каша в миске». О тёплой каше из овсяных хлопьев.",
+                "uk": "вівсяна каша. The porridge is in the bowl. — «Каша в мисці». Про теплу кашу з вівсяних пластівців."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "porridge",
+            "definitionByLocale": {
+              "ru": "овсяная каша. The porridge is in the bowl. — «Каша в миске». О тёплой каше из овсяных хлопьев.",
+              "uk": "вівсяна каша. The porridge is in the bowl. — «Каша в мисці». Про теплу кашу з вівсяних пластівців."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i09:r1",
+            "text": "The porridge is warm."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i09:r2",
+            "text": "The porridge is cold."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i09:r3",
+            "text": "The smoothie is warm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i09:audio",
+            "transcript": "The porridge is warm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:i09:r1",
+              "targetText": "The porridge is warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i09:r2",
+              "targetText": "The porridge is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i09:r3",
+              "targetText": "The smoothie is warm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `warm`, тёплый, а в этом варианте — `cold`, холодный.",
+                "uk": "У записі останнє слово — `warm`, теплий, а в цьому варіанті — `cold`, холодний."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `porridge`, каше, а в этом варианте — о `smoothie`, смузи.",
+                "uk": "У записі йдеться про `porridge`, кашу, а в цьому варіанті — про `smoothie`, смузі."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-32:i10:p1",
+              "target": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша",
+                "uk": "вівсяна каша"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i10:p2",
+              "target": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист",
+                "uk": "плейлист"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i10:p3",
+              "target": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i10:p4",
+              "target": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи",
+                "uk": "смузі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "porridge",
+            "playlist",
+            "sunrise",
+            "smoothie"
+          ],
+          "rightColumn": [
+            "вівсяна каша",
+            "плейлист",
+            "світанок",
+            "смузі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i11:audio",
+            "transcript": "He showers at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He showers at home.",
+          "orderedTokens": [
+            "He",
+            "showers",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "shower"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `showers` — `He showers at home.`",
+                "uk": "тут потрібно `showers` — `He showers at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат скаржиться на біль. Скажіть: «Моє плече болить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат скаржиться на біль. Скажіть: «Моє плече болить»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My shoulder is sore.",
+          "localizedMeaning": {
+            "ru": "Брат жалуется на боль. Скажите: «Моё плечо болит»",
+            "uk": "Брат скаржиться на біль. Скажіть: «Моє плече болить»"
+          },
+          "orderedTokens": [
+            "My",
+            "shoulder",
+            "is",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат скаржиться на біль. Скажіть: «Моє плече болить»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My shoulder is sore.`",
+                "uk": "тут потрібно `is` — `My shoulder is sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про сестру. Скажіть: «Вона робить розтяжку біля пагорба»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про сестру. Скажіть: «Вона робить розтяжку біля пагорба»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i13:audio",
+            "transcript": "She stretches near the hill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stretches near the hill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про сніданок: «Каша в мисці». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i14:r3",
+            "text": "walks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про сніданок: «Каша в мисці». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о завтраке: «Каша в миске». Выберите слово",
+            "uk": "Скажіть про сніданок: «Каша в мисці». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The porridge ___ in the bowl.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-32:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i14:r3",
+              "text": "walks"
+            }
+          ],
+          "testedDimension": "Скажіть про сніданок: «Каша в мисці». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про сніданок: «Каша в мисці». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Каша — одно целое, поэтому нужно `is`, а не `are`.",
+                "uk": "Каша — одне ціле, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про сніданок: «Каша в мисці». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`walks` значит «ходит пешком», а здесь нужно сказать, где каша: `is in`.",
+                "uk": "`walks` означає «ходить пішки», а тут треба сказати, де каша: `is in`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i15:r1",
+            "text": "I walk to work."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i15:r2",
+            "text": "I jog to work."
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i15:r3",
+            "text": "We walk to work."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i15:audio",
+            "transcript": "I walk to work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-32:i15:r1",
+              "targetText": "I walk to work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i15:r2",
+              "targetText": "I jog to work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i15:r3",
+              "targetText": "We walk to work.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `walk`, ходить пешком, а в этом варианте — `jog`, бегать трусцой.",
+                "uk": "У записі дія — `walk`, ходити пішки, а в цьому варіанті — `jog`, бігати підтюпцем."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-32:i16:p1",
+              "target": "playlist",
+              "meaningByLocale": {
+                "ru": "плейлист",
+                "uk": "плейлист"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i16:p2",
+              "target": "porridge",
+              "meaningByLocale": {
+                "ru": "овсяная каша",
+                "uk": "вівсяна каша"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i16:p3",
+              "target": "smoothie",
+              "meaningByLocale": {
+                "ru": "смузи",
+                "uk": "смузі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-32:i16:p4",
+              "target": "sunrise",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playlist",
+            "porridge",
+            "smoothie",
+            "sunrise"
+          ],
+          "rightColumn": [
+            "плейлист",
+            "вівсяна каша",
+            "смузі",
+            "світанок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, коли бігає ваша сестра. Скажіть: «Вона бігає підтюпцем на світанку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, коли бігає ваша сестра. Скажіть: «Вона бігає підтюпцем на світанку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-32:i17:audio",
+            "transcript": "She jogs at sunrise."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She jogs at sunrise.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-32:word:sunrise",
+      "correctText": "sunrise",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i01",
+      "correctText": "We jog at sunrise.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i02",
+      "correctText": "He walks to the hill.",
+      "correctResponseId": "en:lesson-06:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i03",
+      "correctText": "calls",
+      "correctResponseId": "en:lesson-06:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:word:smoothie",
+      "correctText": "smoothie",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i05",
+      "correctText": "My smoothie is on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:word:playlist",
+      "correctText": "playlist",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i06",
+      "correctText": "She jogs with a playlist.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i07",
+      "correctText": "They exercise on the mat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i08",
+      "correctText": "scrub",
+      "correctResponseId": "en:lesson-06:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:word:porridge",
+      "correctText": "porridge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i09",
+      "correctText": "The porridge is warm.",
+      "correctResponseId": "en:lesson-06:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i11",
+      "correctText": "He showers at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i12",
+      "correctText": "My shoulder is sore.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i13",
+      "correctText": "She stretches near the hill.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-32:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i15",
+      "correctText": "I walk to work.",
+      "correctResponseId": "en:lesson-06:session-32:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i17",
+      "correctText": "She jogs at sunrise.",
+      "correctResponseId": null
+    }
+  ]
+}

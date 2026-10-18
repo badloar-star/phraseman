@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-28:word:stretch",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stretch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:stretch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stretch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:stretch:audio",
+            "transcript": "stretch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:stretch:r1",
+              "targetText": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку. They stretch at home. — «Они делают растяжку дома». О привычке вытягивать и разминать тело.",
+                "uk": "робити розтяжку. They stretch at home. — «Вони роблять розтяжку вдома». Про звичку витягувати й розминати тіло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stretch",
+            "definitionByLocale": {
+              "ru": "делать растяжку. They stretch at home. — «Они делают растяжку дома». О привычке вытягивать и разминать тело.",
+              "uk": "робити розтяжку. They stretch at home. — «Вони роблять розтяжку вдома». Про звичку витягувати й розминати тіло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We stretch at home.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+            "uk": "Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»"
+          },
+          "orderedTokens": [
+            "We",
+            "stretch",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "stretches"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `stretch` — `We stretch at home.`",
+                "uk": "тут потрібно `stretch` — `We stretch at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i02:r1",
+            "text": "He stretches at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i02:r2",
+            "text": "He stretches at work."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i02:r3",
+            "text": "She stretches at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i02:audio",
+            "transcript": "He stretches at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:i02:r1",
+              "targetText": "He stretches at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i02:r2",
+              "targetText": "He stretches at work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i02:r3",
+              "targetText": "She stretches at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `home`, дома, а в этом варианте — `work`, на работе.",
+                "uk": "У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i03:r1",
+            "text": "stretches"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i03:r2",
+            "text": "stretch"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i03:r3",
+            "text": "is stretches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+            "uk": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-28:i03:r1",
+              "text": "stretches"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i03:r2",
+              "text": "stretch"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i03:r3",
+              "text": "is stretches"
+            }
+          ],
+          "testedDimension": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Брат — это `he`, поэтому нужно `stretches`, с `es`.",
+                "uk": "Брат — це `he`, тому потрібно `stretches`, з `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `My brother stretches`, без `is`.",
+                "uk": "Кажемо `My brother stretches`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-28:i04:p1",
+              "target": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку",
+                "uk": "робити розтяжку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i04:p2",
+              "target": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца",
+                "uk": "м’яз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i04:p3",
+              "target": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо",
+                "uk": "плече"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i04:p4",
+              "target": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка",
+                "uk": "щиколотка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stretch",
+            "muscle",
+            "shoulder",
+            "ankle"
+          ],
+          "rightColumn": [
+            "делать растяжку",
+            "мышца",
+            "плечо",
+            "щиколотка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:word:muscle",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — muscle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:muscle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — muscle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:muscle:audio",
+            "transcript": "muscle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:muscle:r1",
+              "targetText": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца. His muscle is sore. — «Его мышца болит». О части тела, которая двигает руки и ноги.",
+                "uk": "м’яз. His muscle is sore. — «Його м’яз болить». Про частину тіла, яка рухає руки й ноги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "muscle",
+            "definitionByLocale": {
+              "ru": "мышца. His muscle is sore. — «Его мышца болит». О части тела, которая двигает руки и ноги.",
+              "uk": "м’яз. His muscle is sore. — «Його м’яз болить». Про частину тіла, яка рухає руки й ноги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте врача и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте врача и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i05:audio",
+            "transcript": "His muscle is sore."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "His muscle is sore.",
+          "orderedTokens": [
+            "His",
+            "muscle",
+            "is",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте врача и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `His muscle is sore.`",
+                "uk": "тут потрібно `is` — `His muscle is sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:word:shoulder",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shoulder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:shoulder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shoulder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:shoulder:audio",
+            "transcript": "shoulder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:shoulder:r1",
+              "targetText": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо. My shoulder is sore. — «Моё плечо болит». О части тела между шеей и рукой.",
+                "uk": "плече. My shoulder is sore. — «Моє плече болить». Про частину тіла між шиєю й рукою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoulder",
+            "definitionByLocale": {
+              "ru": "плечо. My shoulder is sore. — «Моё плечо болит». О части тела между шеей и рукой.",
+              "uk": "плече. My shoulder is sore. — «Моє плече болить». Про частину тіла між шиєю й рукою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Врач спрашивает, что болит. Скажите: «Моё плечо болит»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Врач спрашивает, что болит. Скажите: «Моё плечо болит»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My shoulder is sore.",
+          "localizedMeaning": {
+            "ru": "Врач спрашивает, что болит. Скажите: «Моё плечо болит»",
+            "uk": "Лікар питає, що болить. Скажіть: «Моє плече болить»"
+          },
+          "orderedTokens": [
+            "My",
+            "shoulder",
+            "is",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Врач спрашивает, что болит. Скажите: «Моё плечо болит»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My shoulder is sore.`",
+                "uk": "тут потрібно `is` — `My shoulder is sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о брате. Скажите: «Он делает растяжку дома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о брате. Скажите: «Он делает растяжку дома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i07:audio",
+            "transcript": "He stretches at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He stretches at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i08:r1",
+            "text": "stretch"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i08:r2",
+            "text": "stretches"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i08:r3",
+            "text": "am stretch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+            "uk": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-28:i08:r1",
+              "text": "stretch"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i08:r2",
+              "text": "stretches"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i08:r3",
+              "text": "am stretch"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `stretch`, без окончания.",
+                "uk": "Після `I` потрібно `stretch`, без закінчення."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I stretch`, без `am`.",
+                "uk": "Кажемо `I stretch`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:word:ankle",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ankle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:ankle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ankle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:ankle:audio",
+            "transcript": "ankle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:ankle:r1",
+              "targetText": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка. The sock is on my ankle. — «Носок на моей щиколотке». О месте, где нога соединяется со ступнёй.",
+                "uk": "щиколотка. The sock is on my ankle. — «Шкарпетка на моїй щиколотці». Про місце, де нога з’єднується зі ступнею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ankle",
+            "definitionByLocale": {
+              "ru": "щиколотка. The sock is on my ankle. — «Носок на моей щиколотке». О месте, где нога соединяется со ступнёй.",
+              "uk": "щиколотка. The sock is on my ankle. — «Шкарпетка на моїй щиколотці». Про місце, де нога з’єднується зі ступнею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте врача",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i09:r1",
+            "text": "My ankle is sore."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i09:r2",
+            "text": "My shoulder is sore."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i09:r3",
+            "text": "My muscle is sore."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте врача",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i09:audio",
+            "transcript": "My ankle is sore."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:i09:r1",
+              "targetText": "My ankle is sore.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i09:r2",
+              "targetText": "My shoulder is sore.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i09:r3",
+              "targetText": "My muscle is sore.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте врача",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `ankle`, щиколотке, а в этом варианте — о `shoulder`, плече.",
+                "uk": "У записі йдеться про `ankle`, щиколотку, а в цьому варіанті — про `shoulder`, плече."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте врача",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `ankle`, щиколотке, а в этом варианте — о `muscle`, мышце.",
+                "uk": "У записі йдеться про `ankle`, щиколотку, а в цьому варіанті — про `muscle`, м’яз."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-28:i10:p1",
+              "target": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка",
+                "uk": "щиколотка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i10:p2",
+              "target": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца",
+                "uk": "м’яз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i10:p3",
+              "target": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку",
+                "uk": "робити розтяжку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i10:p4",
+              "target": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо",
+                "uk": "плече"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ankle",
+            "muscle",
+            "stretch",
+            "shoulder"
+          ],
+          "rightColumn": [
+            "щиколотка",
+            "мышца",
+            "делать растяжку",
+            "плечо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i11:audio",
+            "transcript": "He stretches his shoulder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He stretches his shoulder.",
+          "orderedTokens": [
+            "He",
+            "stretches",
+            "his",
+            "shoulder"
+          ],
+          "authoredDistractorTokens": [
+            "stretch"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `stretches` — `He stretches his shoulder.`",
+                "uk": "тут потрібно `stretches` — `He stretches his shoulder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Врач показывает на ногу. Скажите: «Носок на моей щиколотке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Врач показывает на ногу. Скажите: «Носок на моей щиколотке»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sock is on my ankle.",
+          "localizedMeaning": {
+            "ru": "Врач показывает на ногу. Скажите: «Носок на моей щиколотке»",
+            "uk": "Лікар показує на ногу. Скажіть: «Шкарпетка на моїй щиколотці»"
+          },
+          "orderedTokens": [
+            "The",
+            "sock",
+            "is",
+            "on",
+            "my",
+            "ankle"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Врач показывает на ногу. Скажите: «Носок на моей щиколотке»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sock is on my ankle.`",
+                "uk": "тут потрібно `is` — `The sock is on my ankle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Врач спрашивает, что с вами. Скажите: «Моя мышца болит»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i13:audio"
+        ],
+        "accessibilityLabel": "Врач спрашивает, что с вами. Скажите: «Моя мышца болит»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i13:audio",
+            "transcript": "My muscle is sore."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My muscle is sore.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите врачу: «Моя щиколотка болит». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i14:r3",
+            "text": "stretches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите врачу: «Моя щиколотка болит». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите врачу: «Моя щиколотка болит». Выберите слово",
+            "uk": "Скажіть лікареві: «Моя щиколотка болить». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My ankle ___ sore.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-28:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i14:r3",
+              "text": "stretches"
+            }
+          ],
+          "testedDimension": "Скажите врачу: «Моя щиколотка болит». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите врачу: «Моя щиколотка болит». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Щиколотка одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Щиколотка одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите врачу: «Моя щиколотка болит». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`stretches` значит «растягивает», а здесь нужно сказать, что болит: `is sore`.",
+                "uk": "`stretches` означає «розтягує», а тут треба сказати, що болить: `is sore`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i15:r1",
+            "text": "They stretch at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i15:r2",
+            "text": "They stretch at work."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i15:r3",
+            "text": "We stretch at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i15:audio",
+            "transcript": "They stretch at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:i15:r1",
+              "targetText": "They stretch at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i15:r2",
+              "targetText": "They stretch at work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i15:r3",
+              "targetText": "We stretch at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `home`, дома, а в этом варианте — `work`, на работе.",
+                "uk": "У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-28:i16:p1",
+              "target": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо",
+                "uk": "плече"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i16:p2",
+              "target": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку",
+                "uk": "робити розтяжку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i16:p3",
+              "target": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка",
+                "uk": "щиколотка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i16:p4",
+              "target": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца",
+                "uk": "м’яз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shoulder",
+            "stretch",
+            "ankle",
+            "muscle"
+          ],
+          "rightColumn": [
+            "плечо",
+            "делать растяжку",
+            "щиколотка",
+            "мышца"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о вашей сестре. Скажите: «Она растягивает плечо»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о вашей сестре. Скажите: «Она растягивает плечо»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i17:audio",
+            "transcript": "She stretches her shoulder."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stretches her shoulder.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-28:word:stretch",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stretch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:stretch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stretch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:stretch:audio",
+            "transcript": "stretch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:stretch:r1",
+              "targetText": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку. They stretch at home. — «Они делают растяжку дома». О привычке вытягивать и разминать тело.",
+                "uk": "робити розтяжку. They stretch at home. — «Вони роблять розтяжку вдома». Про звичку витягувати й розминати тіло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stretch",
+            "definitionByLocale": {
+              "ru": "делать растяжку. They stretch at home. — «Они делают растяжку дома». О привычке вытягивать и разминать тело.",
+              "uk": "робити розтяжку. They stretch at home. — «Вони роблять розтяжку вдома». Про звичку витягувати й розминати тіло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We stretch at home.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+            "uk": "Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»"
+          },
+          "orderedTokens": [
+            "We",
+            "stretch",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "stretches"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `stretch` — `We stretch at home.`",
+                "uk": "тут потрібно `stretch` — `We stretch at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i02:r1",
+            "text": "He stretches at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i02:r2",
+            "text": "He stretches at work."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i02:r3",
+            "text": "She stretches at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i02:audio",
+            "transcript": "He stretches at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:i02:r1",
+              "targetText": "He stretches at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i02:r2",
+              "targetText": "He stretches at work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i02:r3",
+              "targetText": "She stretches at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `home`, дома, а в этом варианте — `work`, на работе.",
+                "uk": "У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i03:r1",
+            "text": "stretches"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i03:r2",
+            "text": "stretch"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i03:r3",
+            "text": "is stretches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+            "uk": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-28:i03:r1",
+              "text": "stretches"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i03:r2",
+              "text": "stretch"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i03:r3",
+              "text": "is stretches"
+            }
+          ],
+          "testedDimension": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Брат — это `he`, поэтому нужно `stretches`, с `es`.",
+                "uk": "Брат — це `he`, тому потрібно `stretches`, з `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `My brother stretches`, без `is`.",
+                "uk": "Кажемо `My brother stretches`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-28:i04:p1",
+              "target": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку",
+                "uk": "робити розтяжку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i04:p2",
+              "target": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца",
+                "uk": "м’яз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i04:p3",
+              "target": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо",
+                "uk": "плече"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i04:p4",
+              "target": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка",
+                "uk": "щиколотка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stretch",
+            "muscle",
+            "shoulder",
+            "ankle"
+          ],
+          "rightColumn": [
+            "робити розтяжку",
+            "м’яз",
+            "плече",
+            "щиколотка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:word:muscle",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — muscle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:muscle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — muscle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:muscle:audio",
+            "transcript": "muscle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:muscle:r1",
+              "targetText": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца. His muscle is sore. — «Его мышца болит». О части тела, которая двигает руки и ноги.",
+                "uk": "м’яз. His muscle is sore. — «Його м’яз болить». Про частину тіла, яка рухає руки й ноги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "muscle",
+            "definitionByLocale": {
+              "ru": "мышца. His muscle is sore. — «Его мышца болит». О части тела, которая двигает руки и ноги.",
+              "uk": "м’яз. His muscle is sore. — «Його м’яз болить». Про частину тіла, яка рухає руки й ноги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте лікаря й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте лікаря й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i05:audio",
+            "transcript": "His muscle is sore."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "His muscle is sore.",
+          "orderedTokens": [
+            "His",
+            "muscle",
+            "is",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте лікаря й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `His muscle is sore.`",
+                "uk": "тут потрібно `is` — `His muscle is sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:word:shoulder",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shoulder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:shoulder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shoulder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:shoulder:audio",
+            "transcript": "shoulder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:shoulder:r1",
+              "targetText": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо. My shoulder is sore. — «Моё плечо болит». О части тела между шеей и рукой.",
+                "uk": "плече. My shoulder is sore. — «Моє плече болить». Про частину тіла між шиєю й рукою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoulder",
+            "definitionByLocale": {
+              "ru": "плечо. My shoulder is sore. — «Моё плечо болит». О части тела между шеей и рукой.",
+              "uk": "плече. My shoulder is sore. — «Моє плече болить». Про частину тіла між шиєю й рукою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лікар питає, що болить. Скажіть: «Моє плече болить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лікар питає, що болить. Скажіть: «Моє плече болить»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My shoulder is sore.",
+          "localizedMeaning": {
+            "ru": "Врач спрашивает, что болит. Скажите: «Моё плечо болит»",
+            "uk": "Лікар питає, що болить. Скажіть: «Моє плече болить»"
+          },
+          "orderedTokens": [
+            "My",
+            "shoulder",
+            "is",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Лікар питає, що болить. Скажіть: «Моє плече болить»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My shoulder is sore.`",
+                "uk": "тут потрібно `is` — `My shoulder is sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про брата. Скажіть: «Він робить розтяжку вдома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про брата. Скажіть: «Він робить розтяжку вдома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i07:audio",
+            "transcript": "He stretches at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He stretches at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i08:r1",
+            "text": "stretch"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i08:r2",
+            "text": "stretches"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i08:r3",
+            "text": "am stretch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+            "uk": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-28:i08:r1",
+              "text": "stretch"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i08:r2",
+              "text": "stretches"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i08:r3",
+              "text": "am stretch"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `stretch`, без окончания.",
+                "uk": "Після `I` потрібно `stretch`, без закінчення."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I stretch`, без `am`.",
+                "uk": "Кажемо `I stretch`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:word:ankle",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ankle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:word:ankle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ankle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:word:ankle:audio",
+            "transcript": "ankle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:word:ankle:r1",
+              "targetText": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка. The sock is on my ankle. — «Носок на моей щиколотке». О месте, где нога соединяется со ступнёй.",
+                "uk": "щиколотка. The sock is on my ankle. — «Шкарпетка на моїй щиколотці». Про місце, де нога з’єднується зі ступнею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ankle",
+            "definitionByLocale": {
+              "ru": "щиколотка. The sock is on my ankle. — «Носок на моей щиколотке». О месте, где нога соединяется со ступнёй.",
+              "uk": "щиколотка. The sock is on my ankle. — «Шкарпетка на моїй щиколотці». Про місце, де нога з’єднується зі ступнею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте лікаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i09:r1",
+            "text": "My ankle is sore."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i09:r2",
+            "text": "My shoulder is sore."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i09:r3",
+            "text": "My muscle is sore."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте лікаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i09:audio",
+            "transcript": "My ankle is sore."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:i09:r1",
+              "targetText": "My ankle is sore.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i09:r2",
+              "targetText": "My shoulder is sore.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i09:r3",
+              "targetText": "My muscle is sore.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте лікаря",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `ankle`, щиколотке, а в этом варианте — о `shoulder`, плече.",
+                "uk": "У записі йдеться про `ankle`, щиколотку, а в цьому варіанті — про `shoulder`, плече."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте лікаря",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `ankle`, щиколотке, а в этом варианте — о `muscle`, мышце.",
+                "uk": "У записі йдеться про `ankle`, щиколотку, а в цьому варіанті — про `muscle`, м’яз."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-28:i10:p1",
+              "target": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка",
+                "uk": "щиколотка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i10:p2",
+              "target": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца",
+                "uk": "м’яз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i10:p3",
+              "target": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку",
+                "uk": "робити розтяжку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i10:p4",
+              "target": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо",
+                "uk": "плече"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ankle",
+            "muscle",
+            "stretch",
+            "shoulder"
+          ],
+          "rightColumn": [
+            "щиколотка",
+            "м’яз",
+            "робити розтяжку",
+            "плече"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i11:audio",
+            "transcript": "He stretches his shoulder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He stretches his shoulder.",
+          "orderedTokens": [
+            "He",
+            "stretches",
+            "his",
+            "shoulder"
+          ],
+          "authoredDistractorTokens": [
+            "stretch"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `stretches` — `He stretches his shoulder.`",
+                "uk": "тут потрібно `stretches` — `He stretches his shoulder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лікар показує на ногу. Скажіть: «Шкарпетка на моїй щиколотці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лікар показує на ногу. Скажіть: «Шкарпетка на моїй щиколотці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sock is on my ankle.",
+          "localizedMeaning": {
+            "ru": "Врач показывает на ногу. Скажите: «Носок на моей щиколотке»",
+            "uk": "Лікар показує на ногу. Скажіть: «Шкарпетка на моїй щиколотці»"
+          },
+          "orderedTokens": [
+            "The",
+            "sock",
+            "is",
+            "on",
+            "my",
+            "ankle"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Лікар показує на ногу. Скажіть: «Шкарпетка на моїй щиколотці»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sock is on my ankle.`",
+                "uk": "тут потрібно `is` — `The sock is on my ankle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Лікар питає, що з вами. Скажіть: «Мій м’яз болить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i13:audio"
+        ],
+        "accessibilityLabel": "Лікар питає, що з вами. Скажіть: «Мій м’яз болить»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i13:audio",
+            "transcript": "My muscle is sore."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My muscle is sore.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть лікареві: «Моя щиколотка болить». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i14:r3",
+            "text": "stretches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть лікареві: «Моя щиколотка болить». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите врачу: «Моя щиколотка болит». Выберите слово",
+            "uk": "Скажіть лікареві: «Моя щиколотка болить». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My ankle ___ sore.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-28:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i14:r3",
+              "text": "stretches"
+            }
+          ],
+          "testedDimension": "Скажіть лікареві: «Моя щиколотка болить». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть лікареві: «Моя щиколотка болить». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Щиколотка одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Щиколотка одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть лікареві: «Моя щиколотка болить». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`stretches` значит «растягивает», а здесь нужно сказать, что болит: `is sore`.",
+                "uk": "`stretches` означає «розтягує», а тут треба сказати, що болить: `is sore`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-28:i15:r1",
+            "text": "They stretch at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i15:r2",
+            "text": "They stretch at work."
+          },
+          {
+            "responseId": "en:lesson-06:session-28:i15:r3",
+            "text": "We stretch at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i15:audio",
+            "transcript": "They stretch at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-28:i15:r1",
+              "targetText": "They stretch at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i15:r2",
+              "targetText": "They stretch at work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i15:r3",
+              "targetText": "We stretch at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-28:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `home`, дома, а в этом варианте — `work`, на работе.",
+                "uk": "У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-28:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-28:i16:p1",
+              "target": "shoulder",
+              "meaningByLocale": {
+                "ru": "плечо",
+                "uk": "плече"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i16:p2",
+              "target": "stretch",
+              "meaningByLocale": {
+                "ru": "делать растяжку",
+                "uk": "робити розтяжку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i16:p3",
+              "target": "ankle",
+              "meaningByLocale": {
+                "ru": "щиколотка",
+                "uk": "щиколотка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-28:i16:p4",
+              "target": "muscle",
+              "meaningByLocale": {
+                "ru": "мышца",
+                "uk": "м’яз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shoulder",
+            "stretch",
+            "ankle",
+            "muscle"
+          ],
+          "rightColumn": [
+            "плече",
+            "робити розтяжку",
+            "щиколотка",
+            "м’яз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-28:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про вашу сестру. Скажіть: «Вона розтягує плече»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про вашу сестру. Скажіть: «Вона розтягує плече»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-28:i17:audio",
+            "transcript": "She stretches her shoulder."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stretches her shoulder.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-28:word:stretch",
+      "correctText": "stretch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i01",
+      "correctText": "We stretch at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i02",
+      "correctText": "He stretches at home.",
+      "correctResponseId": "en:lesson-06:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i03",
+      "correctText": "stretches",
+      "correctResponseId": "en:lesson-06:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:word:muscle",
+      "correctText": "muscle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i05",
+      "correctText": "His muscle is sore.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:word:shoulder",
+      "correctText": "shoulder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i06",
+      "correctText": "My shoulder is sore.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i07",
+      "correctText": "He stretches at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i08",
+      "correctText": "stretch",
+      "correctResponseId": "en:lesson-06:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:word:ankle",
+      "correctText": "ankle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i09",
+      "correctText": "My ankle is sore.",
+      "correctResponseId": "en:lesson-06:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i11",
+      "correctText": "He stretches his shoulder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i12",
+      "correctText": "The sock is on my ankle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i13",
+      "correctText": "My muscle is sore.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-28:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i15",
+      "correctText": "They stretch at home.",
+      "correctResponseId": "en:lesson-06:session-28:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:i17",
+      "correctText": "She stretches her shoulder.",
+      "correctResponseId": null
+    }
+  ]
+}

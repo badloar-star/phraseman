@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-26:word:jog",
+    "correctText": "jog",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-26:i01",
-    "correctText": "I jog in the park.",
+    "correctText": "They jog in the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:word:track",
+    "correctText": "track",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i02",
-    "correctText": "jog",
+    "correctText": "He jogs on the track.",
     "correctResponseId": "en:lesson-06:session-26:i02:r1"
   },
   {
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-06:session-26:i04",
-    "correctText": "en:lesson-06:session-26:i04:p1=jog\nen:lesson-06:session-26:i04:p2=careless\nen:lesson-06:session-26:i04:p3=worktop\nen:lesson-06:session-26:i04:p4=badge",
+    "correctText": "en:lesson-06:session-26:i04:p1=jog\nen:lesson-06:session-26:i04:p2=track\nen:lesson-06:session-26:i04:p3=lap\nen:lesson-06:session-26:i04:p4=marathon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i05",
-    "correctText": "Anna jogs here.",
+    "correctText": "The track is near the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:word:lap",
+    "correctText": "lap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i06",
-    "correctText": "He smiles a lot.",
+    "correctText": "The lap is long.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i07",
-    "correctText": "He is careless.",
+    "correctText": "We jog on the track.",
     "correctResponseId": null
   },
   {
@@ -40,43 +55,48 @@
     "correctResponseId": "en:lesson-06:session-26:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-26:word:marathon",
+    "correctText": "marathon",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-26:i09",
-    "correctText": "My badge is here.",
+    "correctText": "The marathon is in the park.",
     "correctResponseId": "en:lesson-06:session-26:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-26:i10",
-    "correctText": "en:lesson-06:session-26:i10:p1=jog\nen:lesson-06:session-26:i10:p2=smile\nen:lesson-06:session-26:i10:p3=badge\nen:lesson-06:session-26:i10:p4=careless",
+    "correctText": "en:lesson-06:session-26:i10:p1=lap\nen:lesson-06:session-26:i10:p2=marathon\nen:lesson-06:session-26:i10:p3=jog\nen:lesson-06:session-26:i10:p4=track",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i11",
-    "correctText": "The badge is on the worktop.",
+    "correctText": "She jogs on the track.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i12",
-    "correctText": "Whose badge is this?",
+    "correctText": "Whose stopwatch is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i13",
-    "correctText": "They smile a lot.",
+    "correctText": "The marathon is long.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-26:i14",
-    "correctText": "smiles",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-26:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-26:i15",
-    "correctText": "The worktop is clean.",
+    "correctText": "I jog on the track.",
     "correctResponseId": "en:lesson-06:session-26:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-26:i16",
-    "correctText": "en:lesson-06:session-26:i16:p1=jog\nen:lesson-06:session-26:i16:p2=worktop\nen:lesson-06:session-26:i16:p3=careless\nen:lesson-06:session-26:i16:p4=smile",
+    "correctText": "en:lesson-06:session-26:i16:p1=marathon\nen:lesson-06:session-26:i16:p2=lap\nen:lesson-06:session-26:i16:p3=track\nen:lesson-06:session-26:i16:p4=jog",
     "correctResponseId": null
   },
   {

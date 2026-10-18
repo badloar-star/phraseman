@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-31",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-31:word:shower",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shower",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:shower:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shower",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:shower:audio",
+            "transcript": "shower"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:shower:r1",
+              "targetText": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ. We shower in the bathroom. — «Мы принимаем душ в ванной». О том, что человек моется под душем.",
+                "uk": "приймати душ. We shower in the bathroom. — «Ми приймаємо душ у ванній». Про те, що людина миється під душем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shower",
+            "definitionByLocale": {
+              "ru": "принимать душ. We shower in the bathroom. — «Мы принимаем душ в ванной». О том, что человек моется под душем.",
+              "uk": "приймати душ. We shower in the bathroom. — «Ми приймаємо душ у ванній». Про те, що людина миється під душем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We shower at home.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+            "uk": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»"
+          },
+          "orderedTokens": [
+            "We",
+            "shower",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "showers"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `shower` — `We shower at home.`",
+                "uk": "тут потрібно `shower` — `We shower at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i02:r1",
+            "text": "She showers in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i02:r2",
+            "text": "She showers at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i02:r3",
+            "text": "He showers in the bathroom."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i02:audio",
+            "transcript": "She showers in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:i02:r1",
+              "targetText": "She showers in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i02:r2",
+              "targetText": "She showers at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i02:r3",
+              "targetText": "He showers in the bathroom.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bathroom`, ванная, а в этом варианте — `home`, дом.",
+                "uk": "У записі останнє слово — `bathroom`, ванна кімната, а в цьому варіанті — `home`, дім."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i03:r1",
+            "text": "showers"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i03:r2",
+            "text": "shower"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i03:r3",
+            "text": "is showers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+            "uk": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ in the bathroom.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-31:i03:r1",
+              "text": "showers"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i03:r2",
+              "text": "shower"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i03:r3",
+              "text": "is showers"
+            }
+          ],
+          "testedDimension": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `showers`, с `s`.",
+                "uk": "Після `he` потрібно `showers`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He showers`, без `is`.",
+                "uk": "Кажемо `He showers`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-31:i04:p1",
+              "target": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ",
+                "uk": "приймати душ"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i04:p2",
+              "target": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста",
+                "uk": "зубна паста"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i04:p3",
+              "target": "steam",
+              "meaningByLocale": {
+                "ru": "пар",
+                "uk": "пара"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i04:p4",
+              "target": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать",
+                "uk": "споліскувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shower",
+            "toothpaste",
+            "steam",
+            "rinse"
+          ],
+          "rightColumn": [
+            "принимать душ",
+            "зубная паста",
+            "пар",
+            "ополаскивать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:word:toothpaste",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — toothpaste",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:toothpaste:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — toothpaste",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:toothpaste:audio",
+            "transcript": "toothpaste"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:toothpaste:r1",
+              "targetText": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста. Whose toothpaste is this? — «Чья это зубная паста?» О пасте, которой чистят зубы.",
+                "uk": "зубна паста. Whose toothpaste is this? — «Чия це зубна паста?» Про пасту, якою чистять зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toothpaste",
+            "definitionByLocale": {
+              "ru": "зубная паста. Whose toothpaste is this? — «Чья это зубная паста?» О пасте, которой чистят зубы.",
+              "uk": "зубна паста. Whose toothpaste is this? — «Чия це зубна паста?» Про пасту, якою чистять зуби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i05:audio",
+            "transcript": "My toothpaste is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My toothpaste is on the shelf.",
+          "orderedTokens": [
+            "My",
+            "toothpaste",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My toothpaste is on the shelf.`",
+                "uk": "тут потрібно `is` — `My toothpaste is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:word:steam",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — steam",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:steam:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — steam",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:steam:audio",
+            "transcript": "steam"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:steam:r1",
+              "targetText": "steam",
+              "meaningByLocale": {
+                "ru": "пар. The steam is warm. — «Пар тёплый». О тёплом влажном воздухе над водой.",
+                "uk": "пара. The steam is warm. — «Пара тепла». Про тепле вологе повітря над водою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steam",
+            "definitionByLocale": {
+              "ru": "пар. The steam is warm. — «Пар тёплый». О тёплом влажном воздухе над водой.",
+              "uk": "пара. The steam is warm. — «Пара тепла». Про тепле вологе повітря над водою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра вышла из душа. Скажите: «Пар тёплый»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра вышла из душа. Скажите: «Пар тёплый»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The steam is warm.",
+          "localizedMeaning": {
+            "ru": "Сестра вышла из душа. Скажите: «Пар тёплый»",
+            "uk": "Сестра вийшла з душу. Скажіть: «Пара тепла»"
+          },
+          "orderedTokens": [
+            "The",
+            "steam",
+            "is",
+            "warm"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра вышла из душа. Скажите: «Пар тёплый»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The steam is warm.`",
+                "uk": "тут потрібно `is` — `The steam is warm.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат спрашивает, где вы с гостем принимаете душ. Скажите: «Мы принимаем душ в ванной»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i07:audio"
+        ],
+        "accessibilityLabel": "Брат спрашивает, где вы с гостем принимаете душ. Скажите: «Мы принимаем душ в ванной»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i07:audio",
+            "transcript": "We shower in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We shower in the bathroom.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:word:rinse",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rinse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:rinse:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rinse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:rinse:audio",
+            "transcript": "rinse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:rinse:r1",
+              "targetText": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать. He rinses the plate. — «Он ополаскивает тарелку». О том, что смывают водой, не используя щётку.",
+                "uk": "споліскувати. He rinses the plate. — «Він ополіскує тарілку». Про те, що змивають водою, не використовуючи щітку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rinse",
+            "definitionByLocale": {
+              "ru": "ополаскивать. He rinses the plate. — «Он ополаскивает тарелку». О том, что смывают водой, не используя щётку.",
+              "uk": "споліскувати. He rinses the plate. — «Він ополіскує тарілку». Про те, що змивають водою, не використовуючи щітку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i08:r1",
+            "text": "rinse"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i08:r2",
+            "text": "rinses"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i08:r3",
+            "text": "am rinse"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+            "uk": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the cup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-31:i08:r1",
+              "text": "rinse"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i08:r2",
+              "text": "rinses"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i08:r3",
+              "text": "am rinse"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `rinse`, без `s`.",
+                "uk": "Після `I` потрібно `rinse`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I rinse`, без `am`.",
+                "uk": "Кажемо `I rinse`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i09:r1",
+            "text": "The toothpaste is in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i09:r2",
+            "text": "The toothpaste is in the hall."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i09:r3",
+            "text": "The steam is in the bathroom."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i09:audio",
+            "transcript": "The toothpaste is in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:i09:r1",
+              "targetText": "The toothpaste is in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i09:r2",
+              "targetText": "The toothpaste is in the hall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i09:r3",
+              "targetText": "The steam is in the bathroom.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bathroom`, ванная, а в этом варианте — `hall`, коридор.",
+                "uk": "У записі останнє слово — `bathroom`, ванна кімната, а в цьому варіанті — `hall`, коридор."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `toothpaste`, зубной пасте, а в этом варианте — о `steam`, паре.",
+                "uk": "У записі йдеться про `toothpaste`, зубну пасту, а в цьому варіанті — про `steam`, пару."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-31:i10:p1",
+              "target": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать",
+                "uk": "споліскувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i10:p2",
+              "target": "steam",
+              "meaningByLocale": {
+                "ru": "пар",
+                "uk": "пара"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i10:p3",
+              "target": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ",
+                "uk": "приймати душ"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i10:p4",
+              "target": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста",
+                "uk": "зубна паста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rinse",
+            "steam",
+            "shower",
+            "toothpaste"
+          ],
+          "rightColumn": [
+            "ополаскивать",
+            "пар",
+            "принимать душ",
+            "зубная паста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i11:audio",
+            "transcript": "He rinses the cup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He rinses the cup.",
+          "orderedTokens": [
+            "He",
+            "rinses",
+            "the",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "rinse"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `rinses` — `He rinses the cup.`",
+                "uk": "тут потрібно `rinses` — `He rinses the cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость показывает на тюбик на полке. Спросите: «Чья это зубная паста?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость показывает на тюбик на полке. Спросите: «Чья это зубная паста?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose toothpaste is this?",
+          "localizedMeaning": {
+            "ru": "Гость показывает на тюбик на полке. Спросите: «Чья это зубная паста?»",
+            "uk": "Гість показує на тюбик на полиці. Спитайте: «Чия це зубна паста?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "toothpaste",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость показывает на тюбик на полке. Спросите: «Чья это зубная паста?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose toothpaste is this?`",
+                "uk": "тут потрібно `Whose` — `Whose toothpaste is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра вышла из душа. Скажите про зеркало: «Зеркало мокрое»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра вышла из душа. Скажите про зеркало: «Зеркало мокрое»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i13:audio",
+            "transcript": "The mirror is wet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The mirror is wet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о ванной: «Пар тёплый». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i14:r3",
+            "text": "showers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о ванной: «Пар тёплый». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о ванной: «Пар тёплый». Выберите слово",
+            "uk": "Скажіть про ванну: «Пара тепла». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The steam ___ warm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-31:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i14:r3",
+              "text": "showers"
+            }
+          ],
+          "testedDimension": "Скажите о ванной: «Пар тёплый». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о ванной: «Пар тёплый». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Пар один, поэтому нужно `is`, а не `are`.",
+                "uk": "Пара одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о ванной: «Пар тёплый». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`showers` значит «принимает душ», а здесь нужно сказать, какой пар: `is warm`.",
+                "uk": "`showers` означає «приймає душ», а тут треба сказати, яка пара: `is warm`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i15:r1",
+            "text": "I rinse the cup."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i15:r2",
+            "text": "I rinse the plate."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i15:r3",
+            "text": "We rinse the cup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i15:audio",
+            "transcript": "I rinse the cup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:i15:r1",
+              "targetText": "I rinse the cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i15:r2",
+              "targetText": "I rinse the plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i15:r3",
+              "targetText": "We rinse the cup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cup`, чашка, а в этом варианте — `plate`, тарелка.",
+                "uk": "У записі останнє слово — `cup`, чашка, а в цьому варіанті — `plate`, тарілка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-31:i16:p1",
+              "target": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста",
+                "uk": "зубна паста"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i16:p2",
+              "target": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать",
+                "uk": "споліскувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i16:p3",
+              "target": "steam",
+              "meaningByLocale": {
+                "ru": "пар",
+                "uk": "пара"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i16:p4",
+              "target": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ",
+                "uk": "приймати душ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "toothpaste",
+            "rinse",
+            "steam",
+            "shower"
+          ],
+          "rightColumn": [
+            "зубная паста",
+            "ополаскивать",
+            "пар",
+            "принимать душ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает о вашей сестре. Скажите: «Она принимает душ дома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает о вашей сестре. Скажите: «Она принимает душ дома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i17:audio",
+            "transcript": "She showers at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She showers at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-31:word:shower",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shower",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:shower:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shower",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:shower:audio",
+            "transcript": "shower"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:shower:r1",
+              "targetText": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ. We shower in the bathroom. — «Мы принимаем душ в ванной». О том, что человек моется под душем.",
+                "uk": "приймати душ. We shower in the bathroom. — «Ми приймаємо душ у ванній». Про те, що людина миється під душем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shower",
+            "definitionByLocale": {
+              "ru": "принимать душ. We shower in the bathroom. — «Мы принимаем душ в ванной». О том, что человек моется под душем.",
+              "uk": "приймати душ. We shower in the bathroom. — «Ми приймаємо душ у ванній». Про те, що людина миється під душем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We shower at home.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+            "uk": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»"
+          },
+          "orderedTokens": [
+            "We",
+            "shower",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "showers"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `shower` — `We shower at home.`",
+                "uk": "тут потрібно `shower` — `We shower at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i02:r1",
+            "text": "She showers in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i02:r2",
+            "text": "She showers at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i02:r3",
+            "text": "He showers in the bathroom."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i02:audio",
+            "transcript": "She showers in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:i02:r1",
+              "targetText": "She showers in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i02:r2",
+              "targetText": "She showers at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i02:r3",
+              "targetText": "He showers in the bathroom.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bathroom`, ванная, а в этом варианте — `home`, дом.",
+                "uk": "У записі останнє слово — `bathroom`, ванна кімната, а в цьому варіанті — `home`, дім."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i03:r1",
+            "text": "showers"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i03:r2",
+            "text": "shower"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i03:r3",
+            "text": "is showers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+            "uk": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ in the bathroom.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-31:i03:r1",
+              "text": "showers"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i03:r2",
+              "text": "shower"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i03:r3",
+              "text": "is showers"
+            }
+          ],
+          "testedDimension": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `showers`, с `s`.",
+                "uk": "Після `he` потрібно `showers`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He showers`, без `is`.",
+                "uk": "Кажемо `He showers`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-31:i04:p1",
+              "target": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ",
+                "uk": "приймати душ"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i04:p2",
+              "target": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста",
+                "uk": "зубна паста"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i04:p3",
+              "target": "steam",
+              "meaningByLocale": {
+                "ru": "пар",
+                "uk": "пара"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i04:p4",
+              "target": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать",
+                "uk": "споліскувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shower",
+            "toothpaste",
+            "steam",
+            "rinse"
+          ],
+          "rightColumn": [
+            "приймати душ",
+            "зубна паста",
+            "пара",
+            "споліскувати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:word:toothpaste",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — toothpaste",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:toothpaste:audio"
+        ],
+        "accessibilityLabel": "Картка слова — toothpaste",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:toothpaste:audio",
+            "transcript": "toothpaste"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:toothpaste:r1",
+              "targetText": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста. Whose toothpaste is this? — «Чья это зубная паста?» О пасте, которой чистят зубы.",
+                "uk": "зубна паста. Whose toothpaste is this? — «Чия це зубна паста?» Про пасту, якою чистять зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toothpaste",
+            "definitionByLocale": {
+              "ru": "зубная паста. Whose toothpaste is this? — «Чья это зубная паста?» О пасте, которой чистят зубы.",
+              "uk": "зубна паста. Whose toothpaste is this? — «Чия це зубна паста?» Про пасту, якою чистять зуби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i05:audio",
+            "transcript": "My toothpaste is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My toothpaste is on the shelf.",
+          "orderedTokens": [
+            "My",
+            "toothpaste",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My toothpaste is on the shelf.`",
+                "uk": "тут потрібно `is` — `My toothpaste is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:word:steam",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — steam",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:steam:audio"
+        ],
+        "accessibilityLabel": "Картка слова — steam",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:steam:audio",
+            "transcript": "steam"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:steam:r1",
+              "targetText": "steam",
+              "meaningByLocale": {
+                "ru": "пар. The steam is warm. — «Пар тёплый». О тёплом влажном воздухе над водой.",
+                "uk": "пара. The steam is warm. — «Пара тепла». Про тепле вологе повітря над водою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steam",
+            "definitionByLocale": {
+              "ru": "пар. The steam is warm. — «Пар тёплый». О тёплом влажном воздухе над водой.",
+              "uk": "пара. The steam is warm. — «Пара тепла». Про тепле вологе повітря над водою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра вийшла з душу. Скажіть: «Пара тепла»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра вийшла з душу. Скажіть: «Пара тепла»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The steam is warm.",
+          "localizedMeaning": {
+            "ru": "Сестра вышла из душа. Скажите: «Пар тёплый»",
+            "uk": "Сестра вийшла з душу. Скажіть: «Пара тепла»"
+          },
+          "orderedTokens": [
+            "The",
+            "steam",
+            "is",
+            "warm"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра вийшла з душу. Скажіть: «Пара тепла»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The steam is warm.`",
+                "uk": "тут потрібно `is` — `The steam is warm.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат питає, де ви з гостем приймаєте душ. Скажіть: «Ми приймаємо душ у ванній»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i07:audio"
+        ],
+        "accessibilityLabel": "Брат питає, де ви з гостем приймаєте душ. Скажіть: «Ми приймаємо душ у ванній»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i07:audio",
+            "transcript": "We shower in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We shower in the bathroom.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:word:rinse",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rinse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:word:rinse:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rinse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:word:rinse:audio",
+            "transcript": "rinse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:word:rinse:r1",
+              "targetText": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать. He rinses the plate. — «Он ополаскивает тарелку». О том, что смывают водой, не используя щётку.",
+                "uk": "споліскувати. He rinses the plate. — «Він ополіскує тарілку». Про те, що змивають водою, не використовуючи щітку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rinse",
+            "definitionByLocale": {
+              "ru": "ополаскивать. He rinses the plate. — «Он ополаскивает тарелку». О том, что смывают водой, не используя щётку.",
+              "uk": "споліскувати. He rinses the plate. — «Він ополіскує тарілку». Про те, що змивають водою, не використовуючи щітку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i08:r1",
+            "text": "rinse"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i08:r2",
+            "text": "rinses"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i08:r3",
+            "text": "am rinse"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+            "uk": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the cup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-31:i08:r1",
+              "text": "rinse"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i08:r2",
+              "text": "rinses"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i08:r3",
+              "text": "am rinse"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `rinse`, без `s`.",
+                "uk": "Після `I` потрібно `rinse`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I rinse`, без `am`.",
+                "uk": "Кажемо `I rinse`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i09:r1",
+            "text": "The toothpaste is in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i09:r2",
+            "text": "The toothpaste is in the hall."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i09:r3",
+            "text": "The steam is in the bathroom."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i09:audio",
+            "transcript": "The toothpaste is in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:i09:r1",
+              "targetText": "The toothpaste is in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i09:r2",
+              "targetText": "The toothpaste is in the hall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i09:r3",
+              "targetText": "The steam is in the bathroom.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bathroom`, ванная, а в этом варианте — `hall`, коридор.",
+                "uk": "У записі останнє слово — `bathroom`, ванна кімната, а в цьому варіанті — `hall`, коридор."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `toothpaste`, зубной пасте, а в этом варианте — о `steam`, паре.",
+                "uk": "У записі йдеться про `toothpaste`, зубну пасту, а в цьому варіанті — про `steam`, пару."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-31:i10:p1",
+              "target": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать",
+                "uk": "споліскувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i10:p2",
+              "target": "steam",
+              "meaningByLocale": {
+                "ru": "пар",
+                "uk": "пара"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i10:p3",
+              "target": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ",
+                "uk": "приймати душ"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i10:p4",
+              "target": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста",
+                "uk": "зубна паста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rinse",
+            "steam",
+            "shower",
+            "toothpaste"
+          ],
+          "rightColumn": [
+            "споліскувати",
+            "пара",
+            "приймати душ",
+            "зубна паста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i11:audio",
+            "transcript": "He rinses the cup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He rinses the cup.",
+          "orderedTokens": [
+            "He",
+            "rinses",
+            "the",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "rinse"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `rinses` — `He rinses the cup.`",
+                "uk": "тут потрібно `rinses` — `He rinses the cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість показує на тюбик на полиці. Спитайте: «Чия це зубна паста?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість показує на тюбик на полиці. Спитайте: «Чия це зубна паста?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose toothpaste is this?",
+          "localizedMeaning": {
+            "ru": "Гость показывает на тюбик на полке. Спросите: «Чья это зубная паста?»",
+            "uk": "Гість показує на тюбик на полиці. Спитайте: «Чия це зубна паста?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "toothpaste",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість показує на тюбик на полиці. Спитайте: «Чия це зубна паста?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose toothpaste is this?`",
+                "uk": "тут потрібно `Whose` — `Whose toothpaste is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра вийшла з душу. Скажіть про дзеркало: «Дзеркало мокре»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра вийшла з душу. Скажіть про дзеркало: «Дзеркало мокре»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i13:audio",
+            "transcript": "The mirror is wet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The mirror is wet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про ванну: «Пара тепла». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i14:r3",
+            "text": "showers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про ванну: «Пара тепла». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о ванной: «Пар тёплый». Выберите слово",
+            "uk": "Скажіть про ванну: «Пара тепла». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The steam ___ warm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-31:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i14:r3",
+              "text": "showers"
+            }
+          ],
+          "testedDimension": "Скажіть про ванну: «Пара тепла». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про ванну: «Пара тепла». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Пар один, поэтому нужно `is`, а не `are`.",
+                "uk": "Пара одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про ванну: «Пара тепла». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`showers` значит «принимает душ», а здесь нужно сказать, какой пар: `is warm`.",
+                "uk": "`showers` означає «приймає душ», а тут треба сказати, яка пара: `is warm`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i15:r1",
+            "text": "I rinse the cup."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i15:r2",
+            "text": "I rinse the plate."
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i15:r3",
+            "text": "We rinse the cup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i15:audio",
+            "transcript": "I rinse the cup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-31:i15:r1",
+              "targetText": "I rinse the cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i15:r2",
+              "targetText": "I rinse the plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i15:r3",
+              "targetText": "We rinse the cup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-31:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cup`, чашка, а в этом варианте — `plate`, тарелка.",
+                "uk": "У записі останнє слово — `cup`, чашка, а в цьому варіанті — `plate`, тарілка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-31:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-31:i16:p1",
+              "target": "toothpaste",
+              "meaningByLocale": {
+                "ru": "зубная паста",
+                "uk": "зубна паста"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i16:p2",
+              "target": "rinse",
+              "meaningByLocale": {
+                "ru": "ополаскивать",
+                "uk": "споліскувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i16:p3",
+              "target": "steam",
+              "meaningByLocale": {
+                "ru": "пар",
+                "uk": "пара"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-31:i16:p4",
+              "target": "shower",
+              "meaningByLocale": {
+                "ru": "принимать душ",
+                "uk": "приймати душ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "toothpaste",
+            "rinse",
+            "steam",
+            "shower"
+          ],
+          "rightColumn": [
+            "зубна паста",
+            "споліскувати",
+            "пара",
+            "приймати душ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-31:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає про вашу сестру. Скажіть: «Вона приймає душ удома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Гість питає про вашу сестру. Скажіть: «Вона приймає душ удома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-31:i17:audio",
+            "transcript": "She showers at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She showers at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-31:word:shower",
+      "correctText": "shower",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i01",
+      "correctText": "We shower at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i02",
+      "correctText": "She showers in the bathroom.",
+      "correctResponseId": "en:lesson-06:session-31:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i03",
+      "correctText": "showers",
+      "correctResponseId": "en:lesson-06:session-31:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:word:toothpaste",
+      "correctText": "toothpaste",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i05",
+      "correctText": "My toothpaste is on the shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:word:steam",
+      "correctText": "steam",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i06",
+      "correctText": "The steam is warm.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i07",
+      "correctText": "We shower in the bathroom.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:word:rinse",
+      "correctText": "rinse",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i08",
+      "correctText": "rinse",
+      "correctResponseId": "en:lesson-06:session-31:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i09",
+      "correctText": "The toothpaste is in the bathroom.",
+      "correctResponseId": "en:lesson-06:session-31:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i11",
+      "correctText": "He rinses the cup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i12",
+      "correctText": "Whose toothpaste is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i13",
+      "correctText": "The mirror is wet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-31:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i15",
+      "correctText": "I rinse the cup.",
+      "correctResponseId": "en:lesson-06:session-31:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i17",
+      "correctText": "She showers at home.",
+      "correctResponseId": null
+    }
+  ]
+}

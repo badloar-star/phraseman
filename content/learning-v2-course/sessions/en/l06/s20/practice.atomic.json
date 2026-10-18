@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-20",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-20:word:cook",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:cook:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:cook:audio",
+            "transcript": "cook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:cook:r1",
+              "targetText": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду. My grandmother cooks at home. — «Моя бабушка готовит дома». Когда человек делает еду, обычно с огнём.",
+                "uk": "готувати їжу. My grandmother cooks at home. — «Моя бабуся готує вдома». Коли людина робить їжу, зазвичай на вогні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cook",
+            "definitionByLocale": {
+              "ru": "готовить еду. My grandmother cooks at home. — «Моя бабушка готовит дома». Когда человек делает еду, обычно с огнём.",
+              "uk": "готувати їжу. My grandmother cooks at home. — «Моя бабуся готує вдома». Коли людина робить їжу, зазвичай на вогні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She cooks soup.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+            "uk": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»"
+          },
+          "orderedTokens": [
+            "She",
+            "cooks",
+            "soup"
+          ],
+          "authoredDistractorTokens": [
+            "cook"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cooks` — `She cooks soup.`",
+                "uk": "тут потрібно `cooks` — `She cooks soup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:word:taste",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — taste",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:taste:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — taste",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:taste:audio",
+            "transcript": "taste"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:taste:r1",
+              "targetText": "taste",
+              "meaningByLocale": {
+                "ru": "пробовать на вкус. She tastes the soup. — «Она пробует суп». Когда человек проверяет вкус еды.",
+                "uk": "куштувати. She tastes the soup. — «Вона куштує суп». Коли людина перевіряє смак їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taste",
+            "definitionByLocale": {
+              "ru": "пробовать на вкус. She tastes the soup. — «Она пробует суп». Когда человек проверяет вкус еды.",
+              "uk": "куштувати. She tastes the soup. — «Вона куштує суп». Коли людина перевіряє смак їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i02:r1",
+            "text": "He tastes the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i02:r2",
+            "text": "He stirs the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i02:r3",
+            "text": "They taste the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i02:audio",
+            "transcript": "He tastes the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:i02:r1",
+              "targetText": "He tastes the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i02:r2",
+              "targetText": "He stirs the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i02:r3",
+              "targetText": "They taste the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `tastes`, пробует на вкус, а в этом варианте — `stirs`, мешает.",
+                "uk": "У записі дія — `tastes`, куштує, а в цьому варіанті — `stirs`, мішає."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `taste`).",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `taste`)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:word:recipe",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recipe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:recipe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recipe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:recipe:audio",
+            "transcript": "recipe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:recipe:r1",
+              "targetText": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт. The recipe is in the notebook. — «Рецепт в тетради». О записи, как готовить блюдо.",
+                "uk": "рецепт. The recipe is in the notebook. — «Рецепт у зошиті». Про запис, як готувати страву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recipe",
+            "definitionByLocale": {
+              "ru": "рецепт. The recipe is in the notebook. — «Рецепт в тетради». О записи, как готовить блюдо.",
+              "uk": "рецепт. The recipe is in the notebook. — «Рецепт у зошиті». Про запис, як готувати страву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гость просит рецепт. Скажите: «Рецепт простой». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i03:r3",
+            "text": "tastes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость просит рецепт. Скажите: «Рецепт простой». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гость просит рецепт. Скажите: «Рецепт простой». Выберите слово",
+            "uk": "Гість просить рецепт. Скажіть: «Рецепт простий». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The recipe ___ simple.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-20:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i03:r3",
+              "text": "tastes"
+            }
+          ],
+          "testedDimension": "Гость просит рецепт. Скажите: «Рецепт простой». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Гость просит рецепт. Скажите: «Рецепт простой». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Рецепт один, поэтому нужно `is`, а не `are`.",
+                "uk": "Рецепт один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Гость просит рецепт. Скажите: «Рецепт простой». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`tastes` значит «пробует», а здесь нужно сказать, какой рецепт: `is simple`.",
+                "uk": "`tastes` означає «куштує», а тут треба сказати, який рецепт: `is simple`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-20:i04:p1",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i04:p2",
+              "target": "taste",
+              "meaningByLocale": {
+                "ru": "пробовать на вкус",
+                "uk": "куштувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i04:p3",
+              "target": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i04:p4",
+              "target": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке",
+                "uk": "варити в окропі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cook",
+            "taste",
+            "recipe",
+            "boil"
+          ],
+          "rightColumn": [
+            "готовить еду",
+            "пробовать на вкус",
+            "рецепт",
+            "варить в кипятке"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:word:boil",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — boil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:boil:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — boil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:boil:audio",
+            "transcript": "boil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:boil:r1",
+              "targetText": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке. He boils the eggs. — «Он варит яйца». Когда еду кладут в кипящую воду.",
+                "uk": "варити в окропі. He boils the eggs. — «Він варить яйця». Коли їжу кладуть у киплячу воду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "boil",
+            "definitionByLocale": {
+              "ru": "варить в кипятке. He boils the eggs. — «Он варит яйца». Когда еду кладут в кипящую воду.",
+              "uk": "варити в окропі. He boils the eggs. — «Він варить яйця». Коли їжу кладуть у киплячу воду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте бабушку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i05:audio",
+            "transcript": "She boils the eggs."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She boils the eggs.",
+          "orderedTokens": [
+            "She",
+            "boils",
+            "the",
+            "eggs"
+          ],
+          "authoredDistractorTokens": [
+            "boil"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `boils` — `She boils the eggs.`",
+                "uk": "тут потрібно `boils` — `She boils the eggs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He paints at home.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+            "uk": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»"
+          },
+          "orderedTokens": [
+            "He",
+            "paints",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "paint"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paints` — `He paints at home.`",
+                "uk": "тут потрібно `paints` — `He paints at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, трудно ли готовить этот суп. Скажите: «Рецепт простой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i07:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, трудно ли готовить этот суп. Скажите: «Рецепт простой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i07:audio",
+            "transcript": "The recipe is simple."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The recipe is simple.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i08:r1",
+            "text": "tastes"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i08:r2",
+            "text": "taste"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i08:r3",
+            "text": "is tastes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+            "uk": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-20:i08:r1",
+              "text": "tastes"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i08:r2",
+              "text": "taste"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i08:r3",
+              "text": "is tastes"
+            }
+          ],
+          "testedDimension": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `she` — `tastes`, с `s`.",
+                "uk": "Після `she` — `tastes`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She tastes`, без `is`.",
+                "uk": "Кажемо `She tastes`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i09:r1",
+            "text": "She cooks at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i09:r2",
+            "text": "She paints at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i09:r3",
+            "text": "He cooks at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i09:audio",
+            "transcript": "She cooks at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:i09:r1",
+              "targetText": "She cooks at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i09:r2",
+              "targetText": "She paints at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i09:r3",
+              "targetText": "He cooks at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `cooks`, готовит еду, а в этом варианте — `paints`, рисует красками.",
+                "uk": "У записі дія — `cooks`, готує їжу, а в цьому варіанті — `paints`, малює фарбами."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-20:i10:p1",
+              "target": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i10:p2",
+              "target": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке",
+                "uk": "варити в окропі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i10:p3",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i10:p4",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recipe",
+            "boil",
+            "cook",
+            "paint"
+          ],
+          "rightColumn": [
+            "рецепт",
+            "варить в кипятке",
+            "готовить еду",
+            "рисовать красками"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i11:audio",
+            "transcript": "My grandmother cooks at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My grandmother cooks at home.",
+          "orderedTokens": [
+            "My",
+            "grandmother",
+            "cooks",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "cook"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cooks` — `My grandmother cooks at home.`",
+                "uk": "тут потрібно `cooks` — `My grandmother cooks at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ищете рецепт. Спросите бабушку: «Где рецепт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете рецепт. Спросите бабушку: «Где рецепт?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the recipe?",
+          "localizedMeaning": {
+            "ru": "Вы ищете рецепт. Спросите бабушку: «Где рецепт?»",
+            "uk": "Ви шукаєте рецепт. Спитайте бабусю: «Де рецепт?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "recipe"
+          ],
+          "authoredDistractorTokens": [
+            "What"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы ищете рецепт. Спросите бабушку: «Где рецепт?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the recipe?`",
+                "uk": "тут потрібно `Where` — `Where is the recipe?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, что делает дедушка у кастрюли. Скажите: «Он пробует суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i13:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, что делает дедушка у кастрюли. Скажите: «Он пробует суп»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i13:audio",
+            "transcript": "He tastes the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He tastes the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i14:r1",
+            "text": "boils"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i14:r2",
+            "text": "boil"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i14:r3",
+            "text": "is boils"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+            "uk": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ the eggs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-20:i14:r1",
+              "text": "boils"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i14:r2",
+              "text": "boil"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i14:r3",
+              "text": "is boils"
+            }
+          ],
+          "testedDimension": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `she` — `boils`, с `s`.",
+                "uk": "Після `she` — `boils`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She boils`, без `is`.",
+                "uk": "Кажемо `She boils`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i15:r1",
+            "text": "The soup is hot."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i15:r2",
+            "text": "The soup is cold."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i15:r3",
+            "text": "The tea is hot."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i15:audio",
+            "transcript": "The soup is hot."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:i15:r1",
+              "targetText": "The soup is hot.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i15:r2",
+              "targetText": "The soup is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i15:r3",
+              "targetText": "The tea is hot.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hot`, горячий, а в этом варианте — `cold`, холодный.",
+                "uk": "У записі останнє слово — `hot`, гарячий, а в цьому варіанті — `cold`, холодний."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `soup`, суп, а в этом варианте — `tea`, чай.",
+                "uk": "У записі друге слово — `soup`, суп, а в цьому варіанті — `tea`, чай."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-20:i16:p1",
+              "target": "taste",
+              "meaningByLocale": {
+                "ru": "пробовать на вкус",
+                "uk": "куштувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i16:p2",
+              "target": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i16:p3",
+              "target": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке",
+                "uk": "варити в окропі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i16:p4",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "taste",
+            "recipe",
+            "boil",
+            "cook"
+          ],
+          "rightColumn": [
+            "пробовать на вкус",
+            "рецепт",
+            "варить в кипятке",
+            "готовить еду"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, кто готовит в вашем доме. Скажите про бабушку: «Она готовит дома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, кто готовит в вашем доме. Скажите про бабушку: «Она готовит дома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i17:audio",
+            "transcript": "She cooks at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She cooks at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-20:word:cook",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:cook:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:cook:audio",
+            "transcript": "cook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:cook:r1",
+              "targetText": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду. My grandmother cooks at home. — «Моя бабушка готовит дома». Когда человек делает еду, обычно с огнём.",
+                "uk": "готувати їжу. My grandmother cooks at home. — «Моя бабуся готує вдома». Коли людина робить їжу, зазвичай на вогні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cook",
+            "definitionByLocale": {
+              "ru": "готовить еду. My grandmother cooks at home. — «Моя бабушка готовит дома». Когда человек делает еду, обычно с огнём.",
+              "uk": "готувати їжу. My grandmother cooks at home. — «Моя бабуся готує вдома». Коли людина робить їжу, зазвичай на вогні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She cooks soup.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+            "uk": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»"
+          },
+          "orderedTokens": [
+            "She",
+            "cooks",
+            "soup"
+          ],
+          "authoredDistractorTokens": [
+            "cook"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cooks` — `She cooks soup.`",
+                "uk": "тут потрібно `cooks` — `She cooks soup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:word:taste",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — taste",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:taste:audio"
+        ],
+        "accessibilityLabel": "Картка слова — taste",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:taste:audio",
+            "transcript": "taste"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:taste:r1",
+              "targetText": "taste",
+              "meaningByLocale": {
+                "ru": "пробовать на вкус. She tastes the soup. — «Она пробует суп». Когда человек проверяет вкус еды.",
+                "uk": "куштувати. She tastes the soup. — «Вона куштує суп». Коли людина перевіряє смак їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taste",
+            "definitionByLocale": {
+              "ru": "пробовать на вкус. She tastes the soup. — «Она пробует суп». Когда человек проверяет вкус еды.",
+              "uk": "куштувати. She tastes the soup. — «Вона куштує суп». Коли людина перевіряє смак їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i02:r1",
+            "text": "He tastes the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i02:r2",
+            "text": "He stirs the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i02:r3",
+            "text": "They taste the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i02:audio",
+            "transcript": "He tastes the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:i02:r1",
+              "targetText": "He tastes the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i02:r2",
+              "targetText": "He stirs the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i02:r3",
+              "targetText": "They taste the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `tastes`, пробует на вкус, а в этом варианте — `stirs`, мешает.",
+                "uk": "У записі дія — `tastes`, куштує, а в цьому варіанті — `stirs`, мішає."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `taste`).",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `taste`)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:word:recipe",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recipe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:recipe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recipe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:recipe:audio",
+            "transcript": "recipe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:recipe:r1",
+              "targetText": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт. The recipe is in the notebook. — «Рецепт в тетради». О записи, как готовить блюдо.",
+                "uk": "рецепт. The recipe is in the notebook. — «Рецепт у зошиті». Про запис, як готувати страву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recipe",
+            "definitionByLocale": {
+              "ru": "рецепт. The recipe is in the notebook. — «Рецепт в тетради». О записи, как готовить блюдо.",
+              "uk": "рецепт. The recipe is in the notebook. — «Рецепт у зошиті». Про запис, як готувати страву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гість просить рецепт. Скажіть: «Рецепт простий». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i03:r3",
+            "text": "tastes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість просить рецепт. Скажіть: «Рецепт простий». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гость просит рецепт. Скажите: «Рецепт простой». Выберите слово",
+            "uk": "Гість просить рецепт. Скажіть: «Рецепт простий». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The recipe ___ simple.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-20:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i03:r3",
+              "text": "tastes"
+            }
+          ],
+          "testedDimension": "Гість просить рецепт. Скажіть: «Рецепт простий». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Гість просить рецепт. Скажіть: «Рецепт простий». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Рецепт один, поэтому нужно `is`, а не `are`.",
+                "uk": "Рецепт один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Гість просить рецепт. Скажіть: «Рецепт простий». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`tastes` значит «пробует», а здесь нужно сказать, какой рецепт: `is simple`.",
+                "uk": "`tastes` означає «куштує», а тут треба сказати, який рецепт: `is simple`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-20:i04:p1",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i04:p2",
+              "target": "taste",
+              "meaningByLocale": {
+                "ru": "пробовать на вкус",
+                "uk": "куштувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i04:p3",
+              "target": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i04:p4",
+              "target": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке",
+                "uk": "варити в окропі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cook",
+            "taste",
+            "recipe",
+            "boil"
+          ],
+          "rightColumn": [
+            "готувати їжу",
+            "куштувати",
+            "рецепт",
+            "варити в окропі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:word:boil",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — boil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:word:boil:audio"
+        ],
+        "accessibilityLabel": "Картка слова — boil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:word:boil:audio",
+            "transcript": "boil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:word:boil:r1",
+              "targetText": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке. He boils the eggs. — «Он варит яйца». Когда еду кладут в кипящую воду.",
+                "uk": "варити в окропі. He boils the eggs. — «Він варить яйця». Коли їжу кладуть у киплячу воду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "boil",
+            "definitionByLocale": {
+              "ru": "варить в кипятке. He boils the eggs. — «Он варит яйца». Когда еду кладут в кипящую воду.",
+              "uk": "варити в окропі. He boils the eggs. — «Він варить яйця». Коли їжу кладуть у киплячу воду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте бабусю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i05:audio",
+            "transcript": "She boils the eggs."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She boils the eggs.",
+          "orderedTokens": [
+            "She",
+            "boils",
+            "the",
+            "eggs"
+          ],
+          "authoredDistractorTokens": [
+            "boil"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `boils` — `She boils the eggs.`",
+                "uk": "тут потрібно `boils` — `She boils the eggs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He paints at home.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+            "uk": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»"
+          },
+          "orderedTokens": [
+            "He",
+            "paints",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "paint"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paints` — `He paints at home.`",
+                "uk": "тут потрібно `paints` — `He paints at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, чи важко готувати цей суп. Скажіть: «Рецепт простий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i07:audio"
+        ],
+        "accessibilityLabel": "Гість питає, чи важко готувати цей суп. Скажіть: «Рецепт простий»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i07:audio",
+            "transcript": "The recipe is simple."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The recipe is simple.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i08:r1",
+            "text": "tastes"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i08:r2",
+            "text": "taste"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i08:r3",
+            "text": "is tastes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+            "uk": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-20:i08:r1",
+              "text": "tastes"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i08:r2",
+              "text": "taste"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i08:r3",
+              "text": "is tastes"
+            }
+          ],
+          "testedDimension": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `she` — `tastes`, с `s`.",
+                "uk": "Після `she` — `tastes`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She tastes`, без `is`.",
+                "uk": "Кажемо `She tastes`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i09:r1",
+            "text": "She cooks at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i09:r2",
+            "text": "She paints at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i09:r3",
+            "text": "He cooks at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i09:audio",
+            "transcript": "She cooks at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:i09:r1",
+              "targetText": "She cooks at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i09:r2",
+              "targetText": "She paints at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i09:r3",
+              "targetText": "He cooks at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `cooks`, готовит еду, а в этом варианте — `paints`, рисует красками.",
+                "uk": "У записі дія — `cooks`, готує їжу, а в цьому варіанті — `paints`, малює фарбами."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-20:i10:p1",
+              "target": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i10:p2",
+              "target": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке",
+                "uk": "варити в окропі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i10:p3",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i10:p4",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recipe",
+            "boil",
+            "cook",
+            "paint"
+          ],
+          "rightColumn": [
+            "рецепт",
+            "варити в окропі",
+            "готувати їжу",
+            "малювати фарбами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i11:audio",
+            "transcript": "My grandmother cooks at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My grandmother cooks at home.",
+          "orderedTokens": [
+            "My",
+            "grandmother",
+            "cooks",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "cook"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cooks` — `My grandmother cooks at home.`",
+                "uk": "тут потрібно `cooks` — `My grandmother cooks at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви шукаєте рецепт. Спитайте бабусю: «Де рецепт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте рецепт. Спитайте бабусю: «Де рецепт?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the recipe?",
+          "localizedMeaning": {
+            "ru": "Вы ищете рецепт. Спросите бабушку: «Где рецепт?»",
+            "uk": "Ви шукаєте рецепт. Спитайте бабусю: «Де рецепт?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "recipe"
+          ],
+          "authoredDistractorTokens": [
+            "What"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви шукаєте рецепт. Спитайте бабусю: «Де рецепт?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the recipe?`",
+                "uk": "тут потрібно `Where` — `Where is the recipe?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, що робить дідусь біля каструлі. Скажіть: «Він куштує суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i13:audio"
+        ],
+        "accessibilityLabel": "Гість питає, що робить дідусь біля каструлі. Скажіть: «Він куштує суп»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i13:audio",
+            "transcript": "He tastes the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He tastes the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i14:r1",
+            "text": "boils"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i14:r2",
+            "text": "boil"
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i14:r3",
+            "text": "is boils"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+            "uk": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ the eggs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-20:i14:r1",
+              "text": "boils"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i14:r2",
+              "text": "boil"
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i14:r3",
+              "text": "is boils"
+            }
+          ],
+          "testedDimension": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `she` — `boils`, с `s`.",
+                "uk": "Після `she` — `boils`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She boils`, без `is`.",
+                "uk": "Кажемо `She boils`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-20:i15:r1",
+            "text": "The soup is hot."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i15:r2",
+            "text": "The soup is cold."
+          },
+          {
+            "responseId": "en:lesson-06:session-20:i15:r3",
+            "text": "The tea is hot."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i15:audio",
+            "transcript": "The soup is hot."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-20:i15:r1",
+              "targetText": "The soup is hot.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i15:r2",
+              "targetText": "The soup is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i15:r3",
+              "targetText": "The tea is hot.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-20:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hot`, горячий, а в этом варианте — `cold`, холодный.",
+                "uk": "У записі останнє слово — `hot`, гарячий, а в цьому варіанті — `cold`, холодний."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-20:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `soup`, суп, а в этом варианте — `tea`, чай.",
+                "uk": "У записі друге слово — `soup`, суп, а в цьому варіанті — `tea`, чай."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-20:i16:p1",
+              "target": "taste",
+              "meaningByLocale": {
+                "ru": "пробовать на вкус",
+                "uk": "куштувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i16:p2",
+              "target": "recipe",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i16:p3",
+              "target": "boil",
+              "meaningByLocale": {
+                "ru": "варить в кипятке",
+                "uk": "варити в окропі"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-20:i16:p4",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "taste",
+            "recipe",
+            "boil",
+            "cook"
+          ],
+          "rightColumn": [
+            "куштувати",
+            "рецепт",
+            "варити в окропі",
+            "готувати їжу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, хто готує у вашому домі. Скажіть про бабусю: «Вона готує вдома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Гість питає, хто готує у вашому домі. Скажіть про бабусю: «Вона готує вдома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-20:i17:audio",
+            "transcript": "She cooks at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She cooks at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-20:word:cook",
+      "correctText": "cook",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i01",
+      "correctText": "She cooks soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:word:taste",
+      "correctText": "taste",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i02",
+      "correctText": "He tastes the soup.",
+      "correctResponseId": "en:lesson-06:session-20:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:word:recipe",
+      "correctText": "recipe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-20:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:word:boil",
+      "correctText": "boil",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i05",
+      "correctText": "She boils the eggs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i06",
+      "correctText": "He paints at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i07",
+      "correctText": "The recipe is simple.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i08",
+      "correctText": "tastes",
+      "correctResponseId": "en:lesson-06:session-20:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i09",
+      "correctText": "She cooks at home.",
+      "correctResponseId": "en:lesson-06:session-20:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i11",
+      "correctText": "My grandmother cooks at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i12",
+      "correctText": "Where is the recipe?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i13",
+      "correctText": "He tastes the soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i14",
+      "correctText": "boils",
+      "correctResponseId": "en:lesson-06:session-20:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i15",
+      "correctText": "The soup is hot.",
+      "correctResponseId": "en:lesson-06:session-20:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:i17",
+      "correctText": "She cooks at home.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-24",
   "learningOutcomeByLocale": {
-    "ru": "собрать рассказ о привычках и работе другого человека",
-    "uk": "скласти розповідь про звички й роботу іншої людини"
+    "ru": "самому выбрать между s, es и is и рассказать о завтраке",
+    "uk": "самому вибрати між s, es та is і розповісти про сніданок"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Я и она",
-        "uk": "Я і вона"
+        "ru": "Кофе для всех",
+        "uk": "Кава для всіх"
       },
       "bodyByLocale": {
-        "ru": "Повторим `drive` — «водить машину», `smile` — «улыбаться». `I drive to work` — «Я езжу на работу за рулём». `She drives to work` — «Она ездит на работу за рулём»: после `she` добавляем `s`. `Anna smiles a lot` — «Анна часто улыбается»: здесь имя соответствует `she`.",
-        "uk": "Повторимо `drive` — «водити машину», `smile` — «усміхатися». `I drive to work` — «Я їжджу на роботу за кермом». `She drives to work` — «Вона їздить на роботу за кермом»: після `she` додаємо `s`. `Anna smiles a lot` — «Анна часто усміхається»: тут ім’я відповідає `she`."
+        "ru": "Новый коллега пришёл к вам на завтрак. Брат берёт кофейник и наливает всем кофе. Коллега спрашивает, что делает брат. pour — «наливать». Про брата говорим he и добавляем s, как и во всех прежних словах: He pours the coffee — «Он наливает кофе».",
+        "uk": "Новий колега прийшов до вас на сніданок. Брат бере кавник і наливає всім каву. Колега питає, що робить брат. pour — «наливати». Про брата кажемо he і додаємо s, як і в усіх попередніх словах: He pours the coffee — «Він наливає каву»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она ездит на работу за рулём».",
-          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+          "ru": "Коллега спрашивает, что делает ваш брат. Скажите: «Он наливает кофе».",
+          "uk": "Колега питає, що робить ваш брат. Скажіть: «Він наливає каву»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-24:intro1:r1",
-              "text": "She drives to work."
+              "text": "He pours the coffee."
             },
             {
               "responseId": "en:lesson-06:session-24:intro1:r2",
-              "text": "She drive to work."
+              "text": "He pour the coffee."
             },
             {
               "responseId": "en:lesson-06:session-24:intro1:r3",
-              "text": "She is drives to work."
+              "text": "He is pours the coffee."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-24:intro1:r1",
-              "text": "She drives to work."
+              "text": "He pours the coffee."
             },
             {
               "responseId": "en:lesson-06:session-24:intro1:r2",
-              "text": "She drive to work."
+              "text": "He pour the coffee."
             },
             {
               "responseId": "en:lesson-06:session-24:intro1:r3",
-              "text": "She is drives to work."
+              "text": "He is pours the coffee."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она ездит на работу за рулём».",
-          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+          "ru": "Коллега спрашивает, что делает ваш брат. Скажите: «Он наливает кофе».",
+          "uk": "Колега питає, що робить ваш брат. Скажіть: «Він наливає каву»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Читает, пишет, рисует",
-        "uk": "Читає, пише, малює"
+        "ru": "Горячие тосты",
+        "uk": "Гарячі тости"
       },
       "bodyByLocale": {
-        "ru": "`read` — «читать», `write` — «писать», `draw` — «рисовать». `He reads at home` — «Он читает дома». `She writes here` — «Она пишет здесь». `They draw here` — «Они рисуют здесь»: после `they` окончания `s` нет. Книгу можно читать, а можно подложить под шаткий стол. Только первое — `read`.",
-        "uk": "`read` — «читати», `write` — «писати», `draw` — «малювати». `He reads at home` — «Він читає вдома». `She writes here` — «Вона пише тут». `They draw here` — «Вони малюють тут»: після `they` закінчення `s` немає. Книжку можна читати, а можна підкласти під хиткий стіл. Лише перше — `read`."
+        "ru": "Сестра ставит на стол тарелку с тостами. Коллега осторожно берёт один и проверяет пальцами: он ещё тёплый, только из тостера. toast — «тост», поджаренный хлеб. Когда говорим, какой он, действия нет, нужен is: The toast is warm — «Тост тёплый».",
+        "uk": "Сестра ставить на стіл тарілку з тостами. Колега обережно бере один і перевіряє пальцями: він ще теплий, щойно з тостера. toast — «тост», підсмажений хліб. Коли кажемо, який він, дії немає, потрібен is: The toast is warm — «Тост теплий»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Они рисуют здесь».",
-          "uk": "Скажіть «Вони малюють тут»."
+          "ru": "Коллега спрашивает, холодный ли тост. Скажите: «Тост тёплый».",
+          "uk": "Колега питає, чи холодний тост. Скажіть: «Тост теплий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-24:intro2:r1",
-              "text": "They draw here."
+              "text": "The toast is warm."
             },
             {
               "responseId": "en:lesson-06:session-24:intro2:r2",
-              "text": "They draws here."
+              "text": "The toast warm."
             },
             {
               "responseId": "en:lesson-06:session-24:intro2:r3",
-              "text": "They are draw here."
+              "text": "The toast are warm."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-24:intro2:r1",
-              "text": "They draw here."
+              "text": "The toast is warm."
             },
             {
               "responseId": "en:lesson-06:session-24:intro2:r2",
-              "text": "They draws here."
+              "text": "The toast warm."
             },
             {
               "responseId": "en:lesson-06:session-24:intro2:r3",
-              "text": "They are draw here."
+              "text": "The toast are warm."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Они рисуют здесь».",
-          "uk": "Скажіть «Вони малюють тут»."
+          "ru": "Коллега спрашивает, холодный ли тост. Скажите: «Тост тёплый».",
+          "uk": "Колега питає, чи холодний тост. Скажіть: «Тост теплий»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Работа и завтрак",
-        "uk": "Робота й сніданок"
+        "ru": "Хлеб на доске",
+        "uk": "Хліб на дошці"
       },
       "bodyByLocale": {
-        "ru": "`teach` — «преподавать», `cook` — «готовить еду». `She teaches English` — «Она преподаёт английский»: `teach → teaches`, добавляем `es`. `He cooks at home` — «Он готовит дома». `yoghurt` — «йогурт». `The yoghurt is in the fridge` — «Йогурт в холодильнике».",
-        "uk": "`teach` — «викладати», `cook` — «готувати їжу». `She teaches English` — «Вона викладає англійську»: `teach → teaches`, додаємо `es`. `He cooks at home` — «Він готує вдома». `yoghurt` — «йогурт». `The yoghurt is in the fridge` — «Йогурт у холодильнику»."
+        "ru": "У сестры в руках нож и свежий батон хлеба. Она ровно режет его на тонкие куски и кладёт на тарелку. Коллега спрашивает, что делает сестра. slice — «нарезать ломтиками». Про сестру говорим she и добавляем s: She slices the bread — «Она нарезает хлеб».",
+        "uk": "У сестри в руках ніж і свіжий батон хліба. Вона рівно ріже його на тонкі шматки й кладе на тарілку. Колега питає, що робить сестра. slice — «нарізати скибочками». Про сестру кажемо she і додаємо s: She slices the bread — «Вона нарізає хліб»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Она преподаёт английский».",
-          "uk": "Скажіть «Вона викладає англійську»."
+          "ru": "Коллега спрашивает, что делает ваша сестра. Скажите: «Она нарезает хлеб».",
+          "uk": "Колега питає, що робить ваша сестра. Скажіть: «Вона нарізає хліб»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-24:intro3:r1",
-              "text": "She teaches English."
+              "text": "She slices the bread."
             },
             {
               "responseId": "en:lesson-06:session-24:intro3:r2",
-              "text": "She teach English."
+              "text": "She slice the bread."
             },
             {
               "responseId": "en:lesson-06:session-24:intro3:r3",
-              "text": "She is teaches English."
+              "text": "She is slices the bread."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-24:intro3:r1",
-              "text": "She teaches English."
+              "text": "She slices the bread."
             },
             {
               "responseId": "en:lesson-06:session-24:intro3:r2",
-              "text": "She teach English."
+              "text": "She slice the bread."
             },
             {
               "responseId": "en:lesson-06:session-24:intro3:r3",
-              "text": "She is teaches English."
+              "text": "She is slices the bread."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она преподаёт английский».",
-          "uk": "Скажіть «Вона викладає англійську»."
+          "ru": "Коллега спрашивает, что делает ваша сестра. Скажите: «Она нарезает хлеб».",
+          "uk": "Колега питає, що робить ваша сестра. Скажіть: «Вона нарізає хліб»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bf4b1a2865ed5d09480a425b89a7feb03bb5a6b239b697b5a0896ce5a09a76dc"
+  "introFingerprint": "be19f855beda64cce1d0bd6d9f5ca35e60eb4d53765e94bfc6cad1300c7098a9"
 }

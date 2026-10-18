@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-30",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-30:word:scrub",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scrub",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:scrub:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scrub",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:scrub:audio",
+            "transcript": "scrub"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:scrub:r1",
+              "targetText": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой, чистить. They scrub the floor. — «Они трут пол». О чистке щёткой, когда нужно отчистить пятна.",
+                "uk": "терти щіткою, чистити. They scrub the floor. — «Вони труть підлогу». Про чищення щіткою, коли треба відчистити плями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scrub",
+            "definitionByLocale": {
+              "ru": "тереть щёткой, чистить. They scrub the floor. — «Они трут пол». О чистке щёткой, когда нужно отчистить пятна.",
+              "uk": "терти щіткою, чистити. They scrub the floor. — «Вони труть підлогу». Про чищення щіткою, коли треба відчистити плями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We scrub the floor.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»",
+            "uk": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»"
+          },
+          "orderedTokens": [
+            "We",
+            "scrub",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "scrubs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `scrub` — `We scrub the floor.`",
+                "uk": "тут потрібно `scrub` — `We scrub the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i02:r1",
+            "text": "She scrubs the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i02:r2",
+            "text": "She scrubs the floor."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i02:r3",
+            "text": "He scrubs the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i02:audio",
+            "transcript": "She scrubs the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:i02:r1",
+              "targetText": "She scrubs the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i02:r2",
+              "targetText": "She scrubs the floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i02:r3",
+              "targetText": "He scrubs the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `floor`, пол.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `floor`, підлога."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i03:r1",
+            "text": "scrubs"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i03:r2",
+            "text": "scrub"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i03:r3",
+            "text": "is scrubs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
+            "uk": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ the floor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-30:i03:r1",
+              "text": "scrubs"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i03:r2",
+              "text": "scrub"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i03:r3",
+              "text": "is scrubs"
+            }
+          ],
+          "testedDimension": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Брат — это `he`, поэтому нужно `scrubs`, с `s`.",
+                "uk": "Брат — це `he`, тому потрібно `scrubs`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `My brother scrubs`, без `is`.",
+                "uk": "Кажемо `My brother scrubs`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-30:i04:p1",
+              "target": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой",
+                "uk": "терти щіткою"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i04:p2",
+              "target": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор",
+                "uk": "сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i04:p3",
+              "target": "spray",
+              "meaningByLocale": {
+                "ru": "спрей",
+                "uk": "спрей"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i04:p4",
+              "target": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка",
+                "uk": "ганчірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "scrub",
+            "rubbish",
+            "spray",
+            "cloth"
+          ],
+          "rightColumn": [
+            "тереть щёткой",
+            "мусор",
+            "спрей",
+            "тряпка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:word:rubbish",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rubbish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:rubbish:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rubbish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:rubbish:audio",
+            "transcript": "rubbish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:rubbish:r1",
+              "targetText": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор. The rubbish is in the bin. — «Мусор в мусорном баке». О том, что выбрасывают.",
+                "uk": "сміття. The rubbish is in the bin. — «Сміття в смітнику». Про те, що викидають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubbish",
+            "definitionByLocale": {
+              "ru": "мусор. The rubbish is in the bin. — «Мусор в мусорном баке». О том, что выбрасывают.",
+              "uk": "сміття. The rubbish is in the bin. — «Сміття в смітнику». Про те, що викидають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i05:audio",
+            "transcript": "The rubbish is in the bin."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The rubbish is in the bin.",
+          "orderedTokens": [
+            "The",
+            "rubbish",
+            "is",
+            "in",
+            "the",
+            "bin"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The rubbish is in the bin.`",
+                "uk": "тут потрібно `is` — `The rubbish is in the bin.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:word:spray",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spray",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:spray:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spray",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:spray:audio",
+            "transcript": "spray"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:spray:r1",
+              "targetText": "spray",
+              "meaningByLocale": {
+                "ru": "спрей. The spray is on the table. — «Спрей на столе». О флаконе, из которого средство распыляют.",
+                "uk": "спрей. The spray is on the table. — «Спрей на столі». Про флакон, з якого засіб розпилюють."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spray",
+            "definitionByLocale": {
+              "ru": "спрей. The spray is on the table. — «Спрей на столе». О флаконе, из которого средство распыляют.",
+              "uk": "спрей. The spray is on the table. — «Спрей на столі». Про флакон, з якого засіб розпилюють."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед показывает на флакон. Спросите: «Чей это спрей?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед показывает на флакон. Спросите: «Чей это спрей?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose spray is this?",
+          "localizedMeaning": {
+            "ru": "Сосед показывает на флакон. Спросите: «Чей это спрей?»",
+            "uk": "Сусід показує на флакон. Спитайте: «Чий це спрей?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "spray",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед показывает на флакон. Спросите: «Чей это спрей?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose spray is this?`",
+                "uk": "тут потрібно `Whose` — `Whose spray is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, что вы делаете с сестрой. Скажите: «Мы трём стол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, что вы делаете с сестрой. Скажите: «Мы трём стол»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i07:audio",
+            "transcript": "We scrub the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We scrub the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я тру стол». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i08:r1",
+            "text": "scrub"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i08:r2",
+            "text": "scrubs"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i08:r3",
+            "text": "am scrub"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я тру стол». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я тру стол». Выберите слово",
+            "uk": "Скажіть про себе: «Я тру стіл». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-30:i08:r1",
+              "text": "scrub"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i08:r2",
+              "text": "scrubs"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i08:r3",
+              "text": "am scrub"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я тру стол». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я тру стол». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `scrub`, без `s`.",
+                "uk": "Після `I` потрібно `scrub`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я тру стол». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I scrub`, без `am`.",
+                "uk": "Кажемо `I scrub`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:word:cloth",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:cloth:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:cloth:audio",
+            "transcript": "cloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:cloth:r1",
+              "targetText": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка. The cloth is clean. — «Тряпка чистая». О куске ткани для уборки.",
+                "uk": "ганчірка. The cloth is clean. — «Ганчірка чиста». Про шматок тканини для прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cloth",
+            "definitionByLocale": {
+              "ru": "тряпка. The cloth is clean. — «Тряпка чистая». О куске ткани для уборки.",
+              "uk": "ганчірка. The cloth is clean. — «Ганчірка чиста». Про шматок тканини для прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i09:r1",
+            "text": "The cloth is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i09:r2",
+            "text": "The cloth is on the floor."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i09:r3",
+            "text": "The spray is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i09:audio",
+            "transcript": "The cloth is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:i09:r1",
+              "targetText": "The cloth is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i09:r2",
+              "targetText": "The cloth is on the floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i09:r3",
+              "targetText": "The spray is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `floor`, пол.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `floor`, підлога."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `cloth`, тряпке, а в этом варианте — о `spray`, спрее.",
+                "uk": "У записі йдеться про `cloth`, ганчірку, а в цьому варіанті — про `spray`, спрей."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-30:i10:p1",
+              "target": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка",
+                "uk": "ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i10:p2",
+              "target": "spray",
+              "meaningByLocale": {
+                "ru": "спрей",
+                "uk": "спрей"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i10:p3",
+              "target": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор",
+                "uk": "сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i10:p4",
+              "target": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой",
+                "uk": "терти щіткою"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cloth",
+            "spray",
+            "rubbish",
+            "scrub"
+          ],
+          "rightColumn": [
+            "тряпка",
+            "спрей",
+            "мусор",
+            "тереть щёткой"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i11:audio",
+            "transcript": "They scrub the floor."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They scrub the floor.",
+          "orderedTokens": [
+            "They",
+            "scrub",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "scrubs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `scrub` — `They scrub the floor.`",
+                "uk": "тут потрібно `scrub` — `They scrub the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед показывает на пол у двери. Скажите: «Перчатки на полу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед показывает на пол у двери. Скажите: «Перчатки на полу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The gloves are on the floor.",
+          "localizedMeaning": {
+            "ru": "Сосед показывает на пол у двери. Скажите: «Перчатки на полу»",
+            "uk": "Сусід показує на підлогу біля дверей. Скажіть: «Рукавички на підлозі»"
+          },
+          "orderedTokens": [
+            "The",
+            "gloves",
+            "are",
+            "on",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед показывает на пол у двери. Скажите: «Перчатки на полу»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The gloves are on the floor.`",
+                "uk": "тут потрібно `are` — `The gloves are on the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает про тряпку. Скажите: «Тряпка чистая»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает про тряпку. Скажите: «Тряпка чистая»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i13:audio",
+            "transcript": "The cloth is clean."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cloth is clean.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i14:r3",
+            "text": "scrubs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово",
+            "uk": "Скажіть про дві речі: «Ганчірка і спрей на столі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The cloth and the spray ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-30:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i14:r3",
+              "text": "scrubs"
+            }
+          ],
+          "testedDimension": "Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь две вещи, поэтому нужно `are`, а не `is`.",
+                "uk": "Тут дві речі, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`scrubs` значит «трёт», а здесь нужно сказать, где вещи: `are on`.",
+                "uk": "`scrubs` означає «тре», а тут треба сказати, де речі: `are on`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i15:r1",
+            "text": "I scrub the floor."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i15:r2",
+            "text": "I scrub the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i15:r3",
+            "text": "We scrub the floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i15:audio",
+            "transcript": "I scrub the floor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:i15:r1",
+              "targetText": "I scrub the floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i15:r2",
+              "targetText": "I scrub the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i15:r3",
+              "targetText": "We scrub the floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `floor`, пол, а в этом варианте — `table`, стол.",
+                "uk": "У записі останнє слово — `floor`, підлога, а в цьому варіанті — `table`, стіл."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-30:i16:p1",
+              "target": "spray",
+              "meaningByLocale": {
+                "ru": "спрей",
+                "uk": "спрей"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i16:p2",
+              "target": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой",
+                "uk": "терти щіткою"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i16:p3",
+              "target": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка",
+                "uk": "ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i16:p4",
+              "target": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор",
+                "uk": "сміття"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spray",
+            "scrub",
+            "cloth",
+            "rubbish"
+          ],
+          "rightColumn": [
+            "спрей",
+            "тереть щёткой",
+            "тряпка",
+            "мусор"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает о соседке. Скажите: «Она трёт пол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает о соседке. Скажите: «Она трёт пол»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i17:audio",
+            "transcript": "She scrubs the floor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She scrubs the floor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-30:word:scrub",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scrub",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:scrub:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scrub",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:scrub:audio",
+            "transcript": "scrub"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:scrub:r1",
+              "targetText": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой, чистить. They scrub the floor. — «Они трут пол». О чистке щёткой, когда нужно отчистить пятна.",
+                "uk": "терти щіткою, чистити. They scrub the floor. — «Вони труть підлогу». Про чищення щіткою, коли треба відчистити плями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scrub",
+            "definitionByLocale": {
+              "ru": "тереть щёткой, чистить. They scrub the floor. — «Они трут пол». О чистке щёткой, когда нужно отчистить пятна.",
+              "uk": "терти щіткою, чистити. They scrub the floor. — «Вони труть підлогу». Про чищення щіткою, коли треба відчистити плями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We scrub the floor.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»",
+            "uk": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»"
+          },
+          "orderedTokens": [
+            "We",
+            "scrub",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "scrubs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `scrub` — `We scrub the floor.`",
+                "uk": "тут потрібно `scrub` — `We scrub the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i02:r1",
+            "text": "She scrubs the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i02:r2",
+            "text": "She scrubs the floor."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i02:r3",
+            "text": "He scrubs the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i02:audio",
+            "transcript": "She scrubs the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:i02:r1",
+              "targetText": "She scrubs the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i02:r2",
+              "targetText": "She scrubs the floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i02:r3",
+              "targetText": "He scrubs the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `floor`, пол.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `floor`, підлога."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i03:r1",
+            "text": "scrubs"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i03:r2",
+            "text": "scrub"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i03:r3",
+            "text": "is scrubs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
+            "uk": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ the floor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-30:i03:r1",
+              "text": "scrubs"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i03:r2",
+              "text": "scrub"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i03:r3",
+              "text": "is scrubs"
+            }
+          ],
+          "testedDimension": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Брат — это `he`, поэтому нужно `scrubs`, с `s`.",
+                "uk": "Брат — це `he`, тому потрібно `scrubs`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `My brother scrubs`, без `is`.",
+                "uk": "Кажемо `My brother scrubs`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-30:i04:p1",
+              "target": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой",
+                "uk": "терти щіткою"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i04:p2",
+              "target": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор",
+                "uk": "сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i04:p3",
+              "target": "spray",
+              "meaningByLocale": {
+                "ru": "спрей",
+                "uk": "спрей"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i04:p4",
+              "target": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка",
+                "uk": "ганчірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "scrub",
+            "rubbish",
+            "spray",
+            "cloth"
+          ],
+          "rightColumn": [
+            "терти щіткою",
+            "сміття",
+            "спрей",
+            "ганчірка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:word:rubbish",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rubbish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:rubbish:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rubbish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:rubbish:audio",
+            "transcript": "rubbish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:rubbish:r1",
+              "targetText": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор. The rubbish is in the bin. — «Мусор в мусорном баке». О том, что выбрасывают.",
+                "uk": "сміття. The rubbish is in the bin. — «Сміття в смітнику». Про те, що викидають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubbish",
+            "definitionByLocale": {
+              "ru": "мусор. The rubbish is in the bin. — «Мусор в мусорном баке». О том, что выбрасывают.",
+              "uk": "сміття. The rubbish is in the bin. — «Сміття в смітнику». Про те, що викидають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i05:audio",
+            "transcript": "The rubbish is in the bin."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The rubbish is in the bin.",
+          "orderedTokens": [
+            "The",
+            "rubbish",
+            "is",
+            "in",
+            "the",
+            "bin"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The rubbish is in the bin.`",
+                "uk": "тут потрібно `is` — `The rubbish is in the bin.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:word:spray",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spray",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:spray:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spray",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:spray:audio",
+            "transcript": "spray"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:spray:r1",
+              "targetText": "spray",
+              "meaningByLocale": {
+                "ru": "спрей. The spray is on the table. — «Спрей на столе». О флаконе, из которого средство распыляют.",
+                "uk": "спрей. The spray is on the table. — «Спрей на столі». Про флакон, з якого засіб розпилюють."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spray",
+            "definitionByLocale": {
+              "ru": "спрей. The spray is on the table. — «Спрей на столе». О флаконе, из которого средство распыляют.",
+              "uk": "спрей. The spray is on the table. — «Спрей на столі». Про флакон, з якого засіб розпилюють."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід показує на флакон. Спитайте: «Чий це спрей?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід показує на флакон. Спитайте: «Чий це спрей?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose spray is this?",
+          "localizedMeaning": {
+            "ru": "Сосед показывает на флакон. Спросите: «Чей это спрей?»",
+            "uk": "Сусід показує на флакон. Спитайте: «Чий це спрей?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "spray",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід показує на флакон. Спитайте: «Чий це спрей?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose spray is this?`",
+                "uk": "тут потрібно `Whose` — `Whose spray is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, що ви робите із сестрою. Скажіть: «Ми трем стіл»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, що ви робите із сестрою. Скажіть: «Ми трем стіл»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i07:audio",
+            "transcript": "We scrub the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We scrub the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i08:r1",
+            "text": "scrub"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i08:r2",
+            "text": "scrubs"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i08:r3",
+            "text": "am scrub"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я тру стол». Выберите слово",
+            "uk": "Скажіть про себе: «Я тру стіл». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-30:i08:r1",
+              "text": "scrub"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i08:r2",
+              "text": "scrubs"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i08:r3",
+              "text": "am scrub"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `scrub`, без `s`.",
+                "uk": "Після `I` потрібно `scrub`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I scrub`, без `am`.",
+                "uk": "Кажемо `I scrub`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:word:cloth",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:word:cloth:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:word:cloth:audio",
+            "transcript": "cloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:word:cloth:r1",
+              "targetText": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка. The cloth is clean. — «Тряпка чистая». О куске ткани для уборки.",
+                "uk": "ганчірка. The cloth is clean. — «Ганчірка чиста». Про шматок тканини для прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cloth",
+            "definitionByLocale": {
+              "ru": "тряпка. The cloth is clean. — «Тряпка чистая». О куске ткани для уборки.",
+              "uk": "ганчірка. The cloth is clean. — «Ганчірка чиста». Про шматок тканини для прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i09:r1",
+            "text": "The cloth is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i09:r2",
+            "text": "The cloth is on the floor."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i09:r3",
+            "text": "The spray is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i09:audio",
+            "transcript": "The cloth is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:i09:r1",
+              "targetText": "The cloth is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i09:r2",
+              "targetText": "The cloth is on the floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i09:r3",
+              "targetText": "The spray is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `floor`, пол.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `floor`, підлога."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `cloth`, тряпке, а в этом варианте — о `spray`, спрее.",
+                "uk": "У записі йдеться про `cloth`, ганчірку, а в цьому варіанті — про `spray`, спрей."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-30:i10:p1",
+              "target": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка",
+                "uk": "ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i10:p2",
+              "target": "spray",
+              "meaningByLocale": {
+                "ru": "спрей",
+                "uk": "спрей"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i10:p3",
+              "target": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор",
+                "uk": "сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i10:p4",
+              "target": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой",
+                "uk": "терти щіткою"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cloth",
+            "spray",
+            "rubbish",
+            "scrub"
+          ],
+          "rightColumn": [
+            "ганчірка",
+            "спрей",
+            "сміття",
+            "терти щіткою"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i11:audio",
+            "transcript": "They scrub the floor."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They scrub the floor.",
+          "orderedTokens": [
+            "They",
+            "scrub",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "scrubs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `scrub` — `They scrub the floor.`",
+                "uk": "тут потрібно `scrub` — `They scrub the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід показує на підлогу біля дверей. Скажіть: «Рукавички на підлозі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід показує на підлогу біля дверей. Скажіть: «Рукавички на підлозі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The gloves are on the floor.",
+          "localizedMeaning": {
+            "ru": "Сосед показывает на пол у двери. Скажите: «Перчатки на полу»",
+            "uk": "Сусід показує на підлогу біля дверей. Скажіть: «Рукавички на підлозі»"
+          },
+          "orderedTokens": [
+            "The",
+            "gloves",
+            "are",
+            "on",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід показує на підлогу біля дверей. Скажіть: «Рукавички на підлозі»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The gloves are on the floor.`",
+                "uk": "тут потрібно `are` — `The gloves are on the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає про ганчірку. Скажіть: «Ганчірка чиста»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Сусід питає про ганчірку. Скажіть: «Ганчірка чиста»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i13:audio",
+            "transcript": "The cloth is clean."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cloth is clean.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про дві речі: «Ганчірка і спрей на столі». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i14:r3",
+            "text": "scrubs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про дві речі: «Ганчірка і спрей на столі». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о двух вещах: «Тряпка и спрей на столе». Выберите слово",
+            "uk": "Скажіть про дві речі: «Ганчірка і спрей на столі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The cloth and the spray ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-30:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i14:r3",
+              "text": "scrubs"
+            }
+          ],
+          "testedDimension": "Скажіть про дві речі: «Ганчірка і спрей на столі». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про дві речі: «Ганчірка і спрей на столі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь две вещи, поэтому нужно `are`, а не `is`.",
+                "uk": "Тут дві речі, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про дві речі: «Ганчірка і спрей на столі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`scrubs` значит «трёт», а здесь нужно сказать, где вещи: `are on`.",
+                "uk": "`scrubs` означає «тре», а тут треба сказати, де речі: `are on`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i15:r1",
+            "text": "I scrub the floor."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i15:r2",
+            "text": "I scrub the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i15:r3",
+            "text": "We scrub the floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i15:audio",
+            "transcript": "I scrub the floor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-30:i15:r1",
+              "targetText": "I scrub the floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i15:r2",
+              "targetText": "I scrub the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i15:r3",
+              "targetText": "We scrub the floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `floor`, пол, а в этом варианте — `table`, стол.",
+                "uk": "У записі останнє слово — `floor`, підлога, а в цьому варіанті — `table`, стіл."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-30:i16:p1",
+              "target": "spray",
+              "meaningByLocale": {
+                "ru": "спрей",
+                "uk": "спрей"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i16:p2",
+              "target": "scrub",
+              "meaningByLocale": {
+                "ru": "тереть щёткой",
+                "uk": "терти щіткою"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i16:p3",
+              "target": "cloth",
+              "meaningByLocale": {
+                "ru": "тряпка",
+                "uk": "ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-30:i16:p4",
+              "target": "rubbish",
+              "meaningByLocale": {
+                "ru": "мусор",
+                "uk": "сміття"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spray",
+            "scrub",
+            "cloth",
+            "rubbish"
+          ],
+          "rightColumn": [
+            "спрей",
+            "терти щіткою",
+            "ганчірка",
+            "сміття"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає про сусідку. Скажіть: «Вона тре підлогу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Сусід питає про сусідку. Скажіть: «Вона тре підлогу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-30:i17:audio",
+            "transcript": "She scrubs the floor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She scrubs the floor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-30:word:scrub",
+      "correctText": "scrub",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i01",
+      "correctText": "We scrub the floor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i02",
+      "correctText": "She scrubs the table.",
+      "correctResponseId": "en:lesson-06:session-30:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i03",
+      "correctText": "scrubs",
+      "correctResponseId": "en:lesson-06:session-30:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:word:rubbish",
+      "correctText": "rubbish",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i05",
+      "correctText": "The rubbish is in the bin.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:word:spray",
+      "correctText": "spray",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i06",
+      "correctText": "Whose spray is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i07",
+      "correctText": "We scrub the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i08",
+      "correctText": "scrub",
+      "correctResponseId": "en:lesson-06:session-30:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:word:cloth",
+      "correctText": "cloth",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i09",
+      "correctText": "The cloth is on the table.",
+      "correctResponseId": "en:lesson-06:session-30:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i11",
+      "correctText": "They scrub the floor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i12",
+      "correctText": "The gloves are on the floor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i13",
+      "correctText": "The cloth is clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-06:session-30:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i15",
+      "correctText": "I scrub the floor.",
+      "correctResponseId": "en:lesson-06:session-30:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i17",
+      "correctText": "She scrubs the floor.",
+      "correctResponseId": null
+    }
+  ]
+}

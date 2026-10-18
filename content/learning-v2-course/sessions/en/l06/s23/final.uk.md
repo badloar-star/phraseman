@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 23 — Хто викладає англійську
+# Англійська · Урок 6 · Заняття 23 — Сестра в навчальному центрі
 
-**Ситуація.** Анна зустрічає Тома в навчальному центрі. Вона викладає англійську, а Том співає в сусідній кімнаті на репетиціях. Перед заняттям вони перекушують сиром і прибирають камеру зі столу.
+**Ситуація.** Ваша сестра працює в навчальному центрі, а брат готується до іспиту. Про одну людину ми кажемо he або she і додаємо s, а до слів на ch — es: teaches, catches.
 
-**Що ви опануєте:** розповісти про викладання й використати teaches
-**Нові слова:** teach
+**Що ви опануєте:** розповісти, що робить одна людина (She teaches, She catches), і пам’ятати закінчення es після ch
+**Нові слова:** teach, catch, exam, answer
+**Повертаються:** learn, bus, train, centre, teacher, difficult, easy, boring
 
 ---
 
 ## Інтро 1
 
-### Вчитися й навчати інших
+### Сестра біля дошки
 
-`teach` — «викладати», «навчати інших». `I teach English` — «Я викладаю англійську». Знайоме `learn` — вчитися самому, здобувати знання. Можна вчитися й викладати, але купити підручник ще не означає `teach`: учні самі з пакета не з’являться.
+Ваша сестра працює в навчальному центрі. Вона стоїть біля дошки й пояснює англійську групі дорослих. Охоронець на вході питає, що вона там робить. teach — «викладати». Після ch додаємо es, а не s: She teaches English — «Вона викладає англійську».
 
-**Скажіть «Я викладаю англійську».**
+**Охоронець питає, що робить ваша сестра в центрі. Скажіть: «Вона викладає англійську».**
 
-- ✅ **I teach English.**
-- ❌ I teaches English. — *Після `I` — `teach`, без закінчення.*
-- ❌ I am teach English. — *Кажемо `I teach`, без `am`.*
+- ✅ **She teaches English.**
+- ❌ She teach English. — *Після she потрібно teaches, з es.*
+- ❌ She teachs English. — *Після ch потрібно es: teaches.*
 
 ---
 
 ## Інтро 2
 
-### Вона викладає
+### Біг за автобусом
 
-`She teaches English` — «Вона викладає англійську». Тут після `she` додаємо `es`: `teach → teaches`, бо слово закінчується на `ch`. У `teaches` з’являється додатковий склад. `Anna teaches here` — «Анна викладає тут». `He sings here` — «Він співає тут»: у `sing` звичайне `s`.
+Сестра запізнюється: вона біжить тротуаром до зупинки, а автобус уже зачиняє двері. Сусідка, яка стоїть поруч із вами, питає, що робить сестра. catch — «встигнути на автобус». Теж ch, тому es: She catches the bus — «Вона встигає на автобус».
 
-**Скажіть «Вона викладає англійську».**
+**Сусідка питає, що робить ваша сестра. Скажіть: «Вона встигає на автобус».**
 
-- ✅ **She teaches English.**
-- ❌ She teach English. — *Після `she` потрібно `teaches`.*
-- ❌ She is teaches English. — *Кажемо `She teaches`, без `is`.*
+- ✅ **She catches the bus.**
+- ❌ She catch the bus. — *Після she потрібно catches, з es.*
+- ❌ She catchs the bus. — *Після ch потрібно es: catches.*
 
 ---
 
 ## Інтро 3
 
-### Квиток ще діє
+### Перед іспитом
 
-`valid` — «дійсний», чинний. `The ticket is valid` — «Квиток дійсний»: ним ще можна скористатися за його умовами. `camera` — «камера», `cheese` — «сир». `Whose camera is this?` — «Чия це камера?» `The cheese is in the fridge` — «Сир у холодильнику».
+Ваш брат готується до іспиту: ввечері гортає зошити, зранку ходить по кімнаті й повторює слова. Подруга питає, як у нього справи з іспитом. Він важкий. exam — «іспит». Коли кажемо, який він, потрібен is: The exam is difficult — «Іспит важкий».
 
-**Скажіть «Квиток дійсний».**
+**Подруга питає про іспит брата. Скажіть: «Іспит важкий».**
 
-- ✅ **The ticket is valid.**
-- ❌ The ticket are valid. — *Один квиток: `is`.*
-- ❌ The ticket is expensive. — *`expensive` — дорогий; дійсний — `valid`.*
+- ✅ **The exam is difficult.**
+- ❌ The exam difficult. — *Без is речення не виходить: потрібно exam is.*
+- ❌ The exam are difficult. — *Іспит один, тому is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я викладаю англійську»**
+**1 · Картка слова — teach**
+<!-- interaction_id: en:lesson-06:session-23:word:teach; family: word_card -->
+> **teach** — викладати. He teaches in the centre. — «Він викладає в центрі». Коли людина навчає інших.
+
+**2 · Охоронець питає, що робить ваш брат у центрі. Скажіть: «Він викладає англійську»**
 <!-- interaction_id: en:lesson-06:session-23:i01; family: phrase_builder -->
-Плитки: `English` `teach` `I` → **I teach English.**
+Плитки: `teaches` `English` `He` `teach` → **He teaches English.**
+*(плитка `teach` зайва: тут потрібно `teaches` — `He teaches English.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — catch**
+<!-- interaction_id: en:lesson-06:session-23:word:catch; family: word_card -->
+> **catch** — встигнути на. He catches the train. — «Він встигає на потяг». Коли людина встигає сісти в транспорт.
+
+**4 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-23:i02; family: listen_choose -->
-🔊 *teach* → **teach** · read · sing
-- read — *У записі перше слово — `teach`, а в цьому варіанті — `read`.*
-- sing — *У записі перше слово — `teach`, а в цьому варіанті — `sing`.*
+🔊 *She catches the bus.* → **She catches the bus.** · She catches the train. · They catch the bus.
+- She catches the train. — *У записі останнє слово — `bus`, автобус, а в цьому варіанті — `train`, потяг.*
+- They catch the bus. — *У записі перше слово — `She`, вона, а в цьому варіанті — `They`, вони (і слово там без `es`: `catch`).*
 
-**3 · Скажіть «Вона викладає англійську»**
+**5 · Картка слова — exam**
+<!-- interaction_id: en:lesson-06:session-23:word:exam; family: word_card -->
+> **exam** — іспит. The exam is in the centre. — «Іспит у центрі». Про перевірку знань.
+
+**6 · Подруга питає про іспит. Скажіть: «Іспит важкий». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-23:i03; family: context_gap_grammar -->
-She ___ English. → **teaches** · teach · is teaches
-- teach — *Після `she` — `teaches`, з `es`.*
-- is teaches — *Кажемо `She teaches`, без `is`.*
+The exam ___ difficult. → **is** · are · teaches
+- are — *Іспит один, тому потрібно `is`, а не `are`.*
+- teaches — *`teaches` означає «викладає», а тут треба сказати, який іспит: `is difficult`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-23:i04; family: speed_match -->
-teach — викладати · valid — дійсний · cheese — сир · camera — камера
+teach — викладати · catch — встигати на, ловити · exam — іспит · answer — відповідати
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — answer**
+<!-- interaction_id: en:lesson-06:session-23:word:answer; family: word_card -->
+> **answer** — відповідати. She answers the teacher. — «Вона відповідає вчителеві». Коли людина відповідає на запитання.
+
+**9 · Послухайте охоронця й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-23:i05; family: listen_build_dictation -->
-🔊 *Anna teaches here.* Плитки: `here` `teaches` `Anna` → **Anna teaches here.**
+🔊 *He answers the teacher.* Плитки: `answers` `the` `teacher` `He` `answer` → **He answers the teacher.**
+*(плитка `answer` зайва: тут потрібно `answers` — `He answers the teacher.`)*
 
-**6 · Скажіть «Він співає тут»**
+**10 · Подруга питає, що робить ваш брат удома. Скажіть: «Він вивчає англійську»**
 <!-- interaction_id: en:lesson-06:session-23:i06; family: phrase_builder -->
-Плитки: `here` `sings` `He` → **He sings here.**
+Плитки: `learns` `English` `He` `learn` → **He learns English.**
+*(плитка `learn` зайва: тут потрібно `learns` — `He learns English.`)*
 
-**7 · Квитком ще можна скористатися. Скажіть «Квиток дійсний»**
+**11 · Подруга питає про іспит брата. Скажіть: «Іспит важкий»**
 <!-- interaction_id: en:lesson-06:session-23:i07; family: scripted_repeat_compare -->
-🎙 **The ticket is valid.**
+🎙 **The exam is difficult.**
 
-**8 · Скажіть «Вони викладають тут»**
+**12 · Скажіть про сестру: «Вона встигає на автобус». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-23:i08; family: context_gap_grammar -->
-They ___ here. → **teach** · teaches · are teach
-- teaches — *Після `they` — `teach`, без закінчення.*
-- are teach — *Кажемо `They teach`, без `are`.*
+She ___ the bus. → **catches** · catch · catchs
+- catch — *Після `she` — `catches`, з `es`.*
+- catchs — *Після `ch` потрібно `es`: `catches`.*
 
-**9 · Послухайте, чия камера тут**
+**13 · Послухайте охоронця**
 <!-- interaction_id: en:lesson-06:session-23:i09; family: listen_choose -->
-🔊 *My camera is here.* → **My camera is here.** · Your camera is here. · His camera is here.
-- Your camera is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His camera is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *She teaches English.* → **She teaches English.** · She learns English. · He teaches English.
+- She learns English. — *У записі дія — `teaches`, викладає, а в цьому варіанті — `learns`, вивчає.*
+- He teaches English. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-23:i10; family: speed_match -->
-teach — викладати · sing — співати · camera — камера · valid — дійсний
+exam — іспит · answer — відповідати · teach — викладати · learn — вчити, вивчати
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте охоронця й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-23:i11; family: listen_build_dictation -->
-🔊 *The cheese is in the fridge.* Плитки: `fridge` `the` `in` `is` `cheese` `The` `are` → **The cheese is in the fridge.**
-*(плитка `are` зайва: тут потрібно `is` — `The cheese is in the fridge.`)*
+🔊 *My sister teaches English.* Плитки: `teaches` `English` `sister` `My` `teach` → **My sister teaches English.**
+*(плитка `teach` зайва: тут потрібно `teaches` — `My sister teaches English.`)*
 
-**12 · Запитайте «Чия це камера?»**
+**16 · Ви шукаєте навчальний центр. Спитайте охоронця: «Де центр?»**
 <!-- interaction_id: en:lesson-06:session-23:i12; family: phrase_builder -->
-Плитки: `this` `is` `camera` `Whose` → **Whose camera is this?**
+Плитки: `centre` `is` `Where` `the` `What` → **Where is the centre?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the centre?`)*
 
-**13 · Скажіть «Вони співають тут»**
+**17 · Сусідка питає, що робить ваша сестра біля зупинки. Скажіть: «Вона встигає на автобус»**
 <!-- interaction_id: en:lesson-06:session-23:i13; family: scripted_repeat_compare -->
-🎙 **They sing here.**
+🎙 **She catches the bus.**
 
-**14 · Скажіть «Том співає вдома»**
+**18 · Скажіть про брата: «Він відповідає вчителеві». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-23:i14; family: context_gap_grammar -->
-Tom ___ at home. → **sings** · sing · is sings
-- sing — *Том — він: `Tom sings`, з `s`.*
-- is sings — *Кажемо `Tom sings`, без `is`.*
+He ___ the teacher. → **answers** · answer · is answers
+- answer — *Після `he` — `answers`, з `s`.*
+- is answers — *Кажемо `He answers`, без `is`.*
 
-**15 · Послухайте, що Анна каже про сир**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-23:i15; family: listen_choose -->
-🔊 *The cheese is fresh.* → **The cheese is fresh.** · The cheese is cold. · The cheese is expensive.
-- The cheese is cold. — *У записі останнє слово — `fresh`, а в цьому варіанті — `cold`.*
-- The cheese is expensive. — *У записі останнє слово — `fresh`, а в цьому варіанті — `expensive`.*
+🔊 *The exam is difficult.* → **The exam is difficult.** · The exam is easy. · The exam is boring.
+- The exam is easy. — *У записі останнє слово — `difficult`, важкий, а в цьому варіанті — `easy`, легкий.*
+- The exam is boring. — *У записі останнє слово — `difficult`, важкий, а в цьому варіанті — `boring`, нудний.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-23:i16; family: speed_match -->
-teach — викладати · cheese — сир · valid — дійсний · sing — співати
+catch — встигати на, ловити · teach — викладати · answer — відповідати · exam — іспит
 
-**17 · Новий учень запитує про Анну. Скажіть «Вона викладає англійську»**
+**21 · Охоронець питає, що робить ваша сестра в центрі. Скажіть: «Вона викладає англійську»**
 <!-- interaction_id: en:lesson-06:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **She teaches English.**
-

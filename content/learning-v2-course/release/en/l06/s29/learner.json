@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-29:i01",
+      "interactionId": "en:lesson-06:session-29:word:call",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — call",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-29:word:call:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — call",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-29:word:call:audio",
+          "transcript": "call"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-29:word:call:r1",
+            "targetText": "call",
+            "meaningByLocale": {
+              "ru": "звонить. We call our brother. — «Мы звоним нашему брату». О телефонном звонке: после call сразу человек.",
+              "uk": "телефонувати. We call our brother. — «Ми телефонуємо нашому братові». Про телефонний дзвінок: після call одразу людина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "call",
+          "definitionByLocale": {
+            "ru": "звонить. We call our brother. — «Мы звоним нашему брату». О телефонном звонке: после call сразу человек.",
+            "uk": "телефонувати. We call our brother. — «Ми телефонуємо нашому братові». Про телефонний дзвінок: після call одразу людина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-29:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Расскажите о привычке: «Я звоню маме»",
+      "prompt": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите о привычке: «Я звоню маме»",
+      "accessibilityLabel": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I call my mother.",
+        "targetPhrase": "We call our brother.",
         "localizedMeaning": {
-          "ru": "Расскажите о привычке: «Я звоню маме»",
-          "uk": "Розкажіть про звичку: «Я телефоную мамі»"
+          "ru": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
+          "uk": "Подруга питає, кому ви із сестрою телефонуєте. Скажіть: «Ми телефонуємо нашому братові»"
         },
         "orderedTokens": [
-          "I",
+          "We",
           "call",
-          "my",
-          "mother"
+          "our",
+          "brother"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "calls"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-29:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `call` — `We call our brother.`",
+              "uk": "тут потрібно `call` — `We call our brother.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i02:r1",
-          "text": "call"
+          "text": "She calls her brother."
         },
         {
           "responseId": "en:lesson-06:session-29:i02:r2",
-          "text": "read"
+          "text": "She calls her sister."
         },
         {
           "responseId": "en:lesson-06:session-29:i02:r3",
-          "text": "cook"
+          "text": "He calls his brother."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i02:audio",
-          "transcript": "call"
+          "transcript": "She calls her brother."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-29:i02:r1",
-            "targetText": "call",
+            "targetText": "She calls her brother.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-29:i02:r2",
-            "targetText": "read",
+            "targetText": "She calls her sister.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-29:i02:r3",
-            "targetText": "cook",
+            "targetText": "He calls his brother.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +146,19 @@
           {
             "responseId": "en:lesson-06:session-29:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `call`, а в этом варианте — `read`.",
-              "uk": "У записі перше слово — `call`, а в цьому варіанті — `read`."
+              "ru": "В записи последнее слово — `brother`, брат, а в этом варианте — `sister`, сестра.",
+              "uk": "У записі останнє слово — `brother`, брат, а в цьому варіанті — `sister`, сестра."
             }
           },
           {
             "responseId": "en:lesson-06:session-29:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `call`, а в этом варианте — `cook`.",
-              "uk": "У записі перше слово — `call`, а в цьому варіанті — `cook`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -114,11 +169,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она звонит своей маме»",
+      "prompt": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i03:r1",
@@ -130,19 +185,19 @@
         },
         {
           "responseId": "en:lesson-06:session-29:i03:r3",
-          "text": "is calls"
+          "text": "calls to"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она звонит своей маме»",
+      "accessibilityLabel": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она звонит своей маме»",
-          "uk": "Скажіть «Вона телефонує своїй мамі»"
+          "ru": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+          "uk": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ her mother.",
+        "gappedTargetPhrase": "My sister ___ her grandmother.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-29:i03:r1",
@@ -154,27 +209,27 @@
           },
           {
             "responseId": "en:lesson-06:session-29:i03:r3",
-            "text": "is calls"
+            "text": "calls to"
           }
         ],
-        "testedDimension": "Скажите «Она звонит своей маме»",
+        "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-29:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она звонит своей маме»",
+            "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `calls`, с `s`.",
-              "uk": "Після `she` — `calls`, з `s`."
+              "ru": "Сестра — это `she`, поэтому нужно `calls`, с `s`.",
+              "uk": "Сестра — це `she`, тому потрібно `calls`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-29:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она звонит своей маме»",
+            "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `She calls`, без `is`.",
-              "uk": "Кажемо `She calls`, без `is`."
+              "ru": "После `calls` сразу называем человека, без `to`.",
+              "uk": "Після `calls` одразу називаємо людину, без `to`."
             }
           }
         ]
@@ -183,7 +238,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -199,46 +254,46 @@
             "pairId": "en:lesson-06:session-29:i04:p1",
             "target": "call",
             "meaningByLocale": {
-              "ru": "звонить по телефону",
+              "ru": "звонить",
               "uk": "телефонувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i04:p2",
-            "target": "away",
+            "target": "number",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "номер",
+              "uk": "номер"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i04:p3",
-            "target": "bus stop",
+            "target": "message",
             "meaningByLocale": {
-              "ru": "автобусная остановка",
-              "uk": "автобусна зупинка"
+              "ru": "сообщение",
+              "uk": "повідомлення"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i04:p4",
-            "target": "skateboard",
+            "target": "signal",
             "meaningByLocale": {
-              "ru": "скейтборд",
-              "uk": "скейтборд"
+              "ru": "сигнал, связь",
+              "uk": "сигнал, зв’язок"
             }
           }
         ],
         "leftColumn": [
           "call",
-          "away",
-          "bus stop",
-          "skateboard"
+          "number",
+          "message",
+          "signal"
         ],
         "rightColumn": [
-          "звонить по телефону",
-          "не здесь, в отъезде",
-          "автобусная остановка",
-          "скейтборд"
+          "звонить",
+          "номер",
+          "сообщение",
+          "сигнал, связь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +310,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-29:word:number",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — number",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-29:word:number:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — number",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-29:word:number:audio",
+          "transcript": "number"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-29:word:number:r1",
+            "targetText": "number",
+            "meaningByLocale": {
+              "ru": "номер. This is my number. — «Это мой номер». О номере телефона или другом номере.",
+              "uk": "номер. This is my number. — «Це мій номер». Про номер телефону або інший номер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "number",
+          "definitionByLocale": {
+            "ru": "номер. This is my number. — «Это мой номер». О номере телефона или другом номере.",
+            "uk": "номер. This is my number. — «Це мій номер». Про номер телефону або інший номер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-29:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i05:audio",
-          "transcript": "Anna calls her mother."
+          "transcript": "This is my number."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna calls her mother.",
+        "hiddenTargetPhrase": "This is my number.",
         "orderedTokens": [
-          "Anna",
-          "calls",
-          "her",
-          "mother"
+          "This",
+          "is",
+          "my",
+          "number"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-29:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is my number.`",
+              "uk": "тут потрібно `is` — `This is my number.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,31 +401,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-29:word:message",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — message",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-29:word:message:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — message",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-29:word:message:audio",
+          "transcript": "message"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-29:word:message:r1",
+            "targetText": "message",
+            "meaningByLocale": {
+              "ru": "сообщение. The message is new. — «Сообщение новое». О коротком тексте, который отправляют человеку.",
+              "uk": "повідомлення. The message is new. — «Повідомлення нове». Про короткий текст, який надсилають людині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "message",
+          "definitionByLocale": {
+            "ru": "сообщение. The message is new. — «Сообщение новое». О коротком тексте, который отправляют человеку.",
+            "uk": "повідомлення. The message is new. — «Повідомлення нове». Про короткий текст, який надсилають людині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-29:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Он пишет дома»",
+      "prompt": "Подруга показывает на экран телефона. Скажите: «Сообщение новое»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он пишет дома»",
+      "accessibilityLabel": "Подруга показывает на экран телефона. Скажите: «Сообщение новое»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He writes at home.",
+        "targetPhrase": "The message is new.",
         "localizedMeaning": {
-          "ru": "Скажите «Он пишет дома»",
-          "uk": "Скажіть «Він пише вдома»"
+          "ru": "Подруга показывает на экран телефона. Скажите: «Сообщение новое»",
+          "uk": "Подруга показує на екран телефону. Скажіть: «Повідомлення нове»"
         },
         "orderedTokens": [
-          "He",
-          "writes",
-          "at",
-          "home"
+          "The",
+          "message",
+          "is",
+          "new"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-29:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга показывает на экран телефона. Скажите: «Сообщение новое»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The message is new.`",
+              "uk": "тут потрібно `is` — `The message is new.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -325,25 +490,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Моя мама в отъезде»",
+      "prompt": "Подруга спрашивает, кому вы звоните по вечерам. Скажите: «Я звоню сестре»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Моя мама в отъезде»",
+      "accessibilityLabel": "Подруга спрашивает, кому вы звоните по вечерам. Скажите: «Я звоню сестре»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i07:audio",
-          "transcript": "My mother is away."
+          "transcript": "I call my sister."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "My mother is away.",
+        "targetPhrase": "I call my sister.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,11 +523,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите фразу «Я звоню маме»",
+      "prompt": "Скажите о себе: «Я звоню брату». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i08:r1",
@@ -370,23 +535,23 @@
         },
         {
           "responseId": "en:lesson-06:session-29:i08:r2",
-          "text": "call to"
+          "text": "calls"
         },
         {
           "responseId": "en:lesson-06:session-29:i08:r3",
-          "text": "calls"
+          "text": "call to"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите фразу «Я звоню маме»",
+      "accessibilityLabel": "Скажите о себе: «Я звоню брату». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите фразу «Я звоню маме»",
-          "uk": "Виберіть фразу «Я телефоную мамі»"
+          "ru": "Скажите о себе: «Я звоню брату». Выберите слово",
+          "uk": "Скажіть про себе: «Я телефоную братові». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ my mother.",
+        "gappedTargetPhrase": "I ___ my brother.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-29:i08:r1",
@@ -394,31 +559,31 @@
           },
           {
             "responseId": "en:lesson-06:session-29:i08:r2",
-            "text": "call to"
+            "text": "calls"
           },
           {
             "responseId": "en:lesson-06:session-29:i08:r3",
-            "text": "calls"
+            "text": "call to"
           }
         ],
-        "testedDimension": "Выберите фразу «Я звоню маме»",
+        "testedDimension": "Скажите о себе: «Я звоню брату». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-29:i08:r2",
             "correct": false,
-            "testedDimension": "Выберите фразу «Я звоню маме»",
+            "testedDimension": "Скажите о себе: «Я звоню брату». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Звонить кому-то: `call my mother`, без `to`.",
-              "uk": "Телефонувати комусь: `call my mother`, без `to`."
+              "ru": "После `I` нужно `call`, без `s`.",
+              "uk": "Після `I` потрібно `call`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-29:i08:r3",
             "correct": false,
-            "testedDimension": "Выберите фразу «Я звоню маме»",
+            "testedDimension": "Скажите о себе: «Я звоню брату». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` — `call`, без `s`.",
-              "uk": "Після `I` — `call`, без `s`."
+              "ru": "После `call` сразу называем человека, без `to`.",
+              "uk": "Після `call` одразу називаємо людину, без `to`."
             }
           }
         ]
@@ -426,52 +591,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-29:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-29:word:signal",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей скейтборд здесь",
+      "prompt": "Карточка слова — signal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-29:word:signal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — signal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-29:word:signal:audio",
+          "transcript": "signal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-29:word:signal:r1",
+            "targetText": "signal",
+            "meaningByLocale": {
+              "ru": "сигнал, связь. The signal is weak. — «Сигнал слабый». О связи телефона или радио.",
+              "uk": "сигнал, зв’язок. The signal is weak. — «Сигнал слабкий». Про зв’язок телефону або радіо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "signal",
+          "definitionByLocale": {
+            "ru": "сигнал, связь. The signal is weak. — «Сигнал слабый». О связи телефона или радио.",
+            "uk": "сигнал, зв’язок. The signal is weak. — «Сигнал слабкий». Про зв’язок телефону або радіо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-29:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i09:r1",
-          "text": "My skateboard is here."
+          "text": "The signal is weak."
         },
         {
           "responseId": "en:lesson-06:session-29:i09:r2",
-          "text": "Your skateboard is here."
+          "text": "The signal is strong."
         },
         {
           "responseId": "en:lesson-06:session-29:i09:r3",
-          "text": "His skateboard is here."
+          "text": "The message is weak."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей скейтборд здесь",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i09:audio",
-          "transcript": "My skateboard is here."
+          "transcript": "The signal is weak."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-29:i09:r1",
-            "targetText": "My skateboard is here.",
+            "targetText": "The signal is weak.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-29:i09:r2",
-            "targetText": "Your skateboard is here.",
+            "targetText": "The signal is strong.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-29:i09:r3",
-            "targetText": "His skateboard is here.",
+            "targetText": "The message is weak.",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +688,19 @@
           {
             "responseId": "en:lesson-06:session-29:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей скейтборд здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `weak`, слабый, а в этом варианте — `strong`, сильный.",
+              "uk": "У записі останнє слово — `weak`, слабкий, а в цьому варіанті — `strong`, сильний."
             }
           },
           {
             "responseId": "en:lesson-06:session-29:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей скейтборд здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи речь о `signal`, сигнале, а в этом варианте — о `message`, сообщении.",
+              "uk": "У записі йдеться про `signal`, сигнал, а в цьому варіанті — про `message`, повідомлення."
             }
           }
         ],
@@ -503,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -517,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-29:i10:p1",
-            "target": "call",
+            "target": "signal",
             "meaningByLocale": {
-              "ru": "звонить по телефону",
-              "uk": "телефонувати"
+              "ru": "сигнал, связь",
+              "uk": "сигнал, зв’язок"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i10:p2",
-            "target": "write",
+            "target": "message",
             "meaningByLocale": {
-              "ru": "писать",
-              "uk": "писати"
+              "ru": "сообщение",
+              "uk": "повідомлення"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i10:p3",
-            "target": "skateboard",
+            "target": "call",
             "meaningByLocale": {
-              "ru": "скейтборд",
-              "uk": "скейтборд"
+              "ru": "звонить",
+              "uk": "телефонувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i10:p4",
-            "target": "away",
+            "target": "number",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "номер",
+              "uk": "номер"
             }
           }
         ],
         "leftColumn": [
+          "signal",
+          "message",
           "call",
-          "write",
-          "skateboard",
-          "away"
+          "number"
         ],
         "rightColumn": [
-          "звонить по телефону",
-          "писать",
-          "скейтборд",
-          "не здесь, в отъезде"
+          "сигнал, связь",
+          "сообщение",
+          "звонить",
+          "номер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,44 +784,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i11:audio",
-          "transcript": "We are at the bus stop."
+          "transcript": "They call their grandmother."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are at the bus stop.",
+        "hiddenTargetPhrase": "They call their grandmother.",
         "orderedTokens": [
-          "We",
-          "are",
-          "at",
-          "the",
-          "bus",
-          "stop"
+          "They",
+          "call",
+          "their",
+          "grandmother"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "calls"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-29:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `We are at the bus stop.`",
-              "uk": "тут потрібно `are` — `We are at the bus stop.`"
+              "ru": "здесь нужно `call` — `They call their grandmother.`",
+              "uk": "тут потрібно `call` — `They call their grandmother.`"
             }
           }
         ],
@@ -626,30 +832,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это скейтборд?»",
+      "prompt": "Подруга показывает на сообщение. Спросите: «Чьё это сообщение?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это скейтборд?»",
+      "accessibilityLabel": "Подруга показывает на сообщение. Спросите: «Чьё это сообщение?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose skateboard is this?",
+        "targetPhrase": "Whose message is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это скейтборд?»",
-          "uk": "Запитайте «Чий це скейтборд?»"
+          "ru": "Подруга показывает на сообщение. Спросите: «Чьё это сообщение?»",
+          "uk": "Подруга показує на повідомлення. Спитайте: «Чиє це повідомлення?»"
         },
         "orderedTokens": [
           "Whose",
-          "skateboard",
+          "message",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-29:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга показывает на сообщение. Спросите: «Чьё это сообщение?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose message is this?`",
+              "uk": "тут потрібно `Whose` — `Whose message is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -659,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Они пишут здесь»",
+      "prompt": "Подруга спрашивает, почему вас плохо слышно. Скажите: «Сигнал слабый»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Они пишут здесь»",
+      "accessibilityLabel": "Подруга спрашивает, почему вас плохо слышно. Скажите: «Сигнал слабый»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i13:audio",
-          "transcript": "They write here."
+          "transcript": "The signal is weak."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They write here.",
+        "targetPhrase": "The signal is weak.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -692,67 +910,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том пишет дома»",
+      "prompt": "Скажите о новом номере: «Номер новый». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i14:r1",
-          "text": "writes"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-29:i14:r2",
-          "text": "write"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-29:i14:r3",
-          "text": "is writes"
+          "text": "calls"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том пишет дома»",
+      "accessibilityLabel": "Скажите о новом номере: «Номер новый». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том пишет дома»",
-          "uk": "Скажіть «Том пише вдома»"
+          "ru": "Скажите о новом номере: «Номер новый». Выберите слово",
+          "uk": "Скажіть про новий номер: «Номер новий». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ at home.",
+        "gappedTargetPhrase": "The number ___ new.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-29:i14:r1",
-            "text": "writes"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-29:i14:r2",
-            "text": "write"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-29:i14:r3",
-            "text": "is writes"
+            "text": "calls"
           }
         ],
-        "testedDimension": "Скажите «Том пишет дома»",
+        "testedDimension": "Скажите о новом номере: «Номер новый». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-29:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том пишет дома»",
+            "testedDimension": "Скажите о новом номере: «Номер новый». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom writes`, с `s`.",
-              "uk": "Том — він: `Tom writes`, з `s`."
+              "ru": "Номер один, поэтому нужно `is`, а не `are`.",
+              "uk": "Номер один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-29:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том пишет дома»",
+            "testedDimension": "Скажите о новом номере: «Номер новый». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `Tom writes`, без `is`.",
-              "uk": "Кажемо `Tom writes`, без `is`."
+              "ru": "`calls` значит «звонит», а здесь нужно сказать, какой номер: `is new`.",
+              "uk": "`calls` означає «телефонує», а тут треба сказати, який номер: `is new`."
             }
           }
         ]
@@ -761,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где автобусная остановка",
+      "prompt": "Послушайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i15:r1",
-          "text": "The bus stop is here."
+          "text": "I call my sister."
         },
         {
           "responseId": "en:lesson-06:session-29:i15:r2",
-          "text": "The bus stop is there."
+          "text": "I call my uncle."
         },
         {
           "responseId": "en:lesson-06:session-29:i15:r3",
-          "text": "The bus stop is nearby."
+          "text": "We call our sister."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где автобусная остановка",
+      "accessibilityLabel": "Послушайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i15:audio",
-          "transcript": "The bus stop is here."
+          "transcript": "I call my sister."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-29:i15:r1",
-            "targetText": "The bus stop is here.",
+            "targetText": "I call my sister.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-29:i15:r2",
-            "targetText": "The bus stop is there.",
+            "targetText": "I call my uncle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-29:i15:r3",
-            "targetText": "The bus stop is nearby.",
+            "targetText": "We call our sister.",
             "meaningByLocale": null
           }
         ],
@@ -814,19 +1032,19 @@
           {
             "responseId": "en:lesson-06:session-29:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где автобусная остановка",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `sister`, сестра, а в этом варианте — `uncle`, дядя.",
+              "uk": "У записі останнє слово — `sister`, сестра, а в цьому варіанті — `uncle`, дядько."
             }
           },
           {
             "responseId": "en:lesson-06:session-29:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где автобусная остановка",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -837,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -851,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-29:i16:p1",
-            "target": "call",
+            "target": "message",
             "meaningByLocale": {
-              "ru": "звонить по телефону",
-              "uk": "телефонувати"
+              "ru": "сообщение",
+              "uk": "повідомлення"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i16:p2",
-            "target": "bus stop",
+            "target": "signal",
             "meaningByLocale": {
-              "ru": "автобусная остановка",
-              "uk": "автобусна зупинка"
+              "ru": "сигнал, связь",
+              "uk": "сигнал, зв’язок"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i16:p3",
-            "target": "away",
+            "target": "number",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "номер",
+              "uk": "номер"
             }
           },
           {
             "pairId": "en:lesson-06:session-29:i16:p4",
-            "target": "write",
+            "target": "call",
             "meaningByLocale": {
-              "ru": "писать",
-              "uk": "писати"
+              "ru": "звонить",
+              "uk": "телефонувати"
             }
           }
         ],
         "leftColumn": [
-          "call",
-          "bus stop",
-          "away",
-          "write"
+          "message",
+          "signal",
+          "number",
+          "call"
         ],
         "rightColumn": [
-          "звонить по телефону",
-          "автобусная остановка",
-          "не здесь, в отъезде",
-          "писать"
+          "сообщение",
+          "сигнал, связь",
+          "номер",
+          "звонить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -910,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-29:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Расскажите другу, как Анна поддерживает связь с мамой: «Она звонит своей маме»",
+      "prompt": "Подруга спрашивает о вашей сестре. Скажите: «Она звонит своей бабушке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-29:i17:audio"
       ],
-      "accessibilityLabel": "Расскажите другу, как Анна поддерживает связь с мамой: «Она звонит своей маме»",
+      "accessibilityLabel": "Подруга спрашивает о вашей сестре. Скажите: «Она звонит своей бабушке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-29:i17:audio",
-          "transcript": "She calls her mother."
+          "transcript": "She calls her grandmother."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She calls her mother.",
+        "targetPhrase": "She calls her grandmother.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -950,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4d153926c9cda6f2c8e7189cbf6c348cd230ed4b139cfab1fec5917073285a39"
+  "learnerFingerprint": "4b32df522dbbc45dbf1740c05cef6aa3336119931507386d156280d948304559"
 }

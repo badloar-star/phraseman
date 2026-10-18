@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 18 — Усмішка за сніданком
+# Англійська · Урок 6 · Заняття 18 — Брат застудився
 
-**Ситуація.** Анна снідає з Томом перед заняттям з англійської. Сьогодні Том погано почувається. Анна ставить молоко на стіл і помічає його рукавички на стільці.
+**Ситуація.** Ваш брат застудився: він кашляє й тримається за горло, але все одно усміхається і займається англійською. Про одну людину ми кажемо he або she і до слова дії додаємо s.
 
-**Що ви опануєте:** розповісти про усмішку, звичне заняття й самопочуття
-**Нові слова:** smile
+**Що ви опануєте:** розповісти, що робить одна людина (He smiles, He coughs), і назвати її стан через is
+**Нові слова:** smile, cough, throat, syrup
+**Повертаються:** practice, unwell, well, doctor, baby, home, kitchen, sweet
 
 ---
 
 ## Інтро 1
 
-### Усміхатися
+### Зустріч у парку
 
-`smile` — «усміхатися». `I smile a lot` — «Я часто усміхаюся». `She smiles a lot` — «Вона часто усміхається». Усміхатися можна мовчки; `laugh` — сміятися, зазвичай зі звуком. Для `smile` не потрібен сміх на всю кімнату: сусіди навіть не дізнаються, що жарт удався.
+Ви гуляєте в парку з подругою. Назустріч іде ваша сестра з малюком, і малюк їй усміхається. Подруга питає, що робить сестра. smile — «усміхатися». До слова дії про одну людину додаємо s: She smiles at the baby — «Вона усміхається малюкові».
 
-**Скажіть «Вона часто усміхається».**
+**Подруга питає, що робить ваша сестра. Скажіть: «Вона усміхається малюкові».**
 
-- ✅ **She smiles a lot.**
-- ❌ She smile a lot. — *Після `she` — `smiles`, з `s`.*
-- ❌ She is smiles a lot. — *Кажемо `She smiles`, без `is`.*
+- ✅ **She smiles at the baby.**
+- ❌ She smile at the baby. — *Після she потрібно smiles, з s.*
+- ❌ She is smiles at the baby. — *Тут дія: She smiles, без is.*
 
 ---
 
 ## Інтро 2
 
-### Вона практикується
+### У приймальні лікаря
 
-`practice` — «практикуватися». `We practice English` — «Ми практикуємо англійську». `He practices English` — «Він практикує англійську». У прийнятому тут американському написанні до `practice` додаємо `s`: `practices`. `Anna smiles` — «Анна усміхається»: тут `Anna` відповідає `she`.
+Ви з братом сидите в приймальні в лікаря й чекаєте на чергу. Брат застудився: він прикриває рот рукою й тихо кашляє. Працівниця реєстратури питає, що він робить. cough — «кашляти». Як і в smiles, до слова додаємо s: He coughs — «Він кашляє».
 
-**Скажіть «Він практикує англійську».**
+**Працівниця реєстратури питає, що робить ваш брат. Скажіть: «Він кашляє».**
 
-- ✅ **He practices English.**
-- ❌ He practice English. — *Після `he` — `practices`, із закінченням.*
-- ❌ He is practices English. — *Кажемо `He practices`, без `is`.*
+- ✅ **He coughs.**
+- ❌ He cough. — *Після he потрібно coughs, з s.*
+- ❌ He is coughs. — *Тут дія: He coughs, без is.*
 
 ---
 
 ## Інтро 3
 
-### Як Том почувається
+### Чай з медом
 
-`unwell` — «той, хто погано почувається», нездоровий. `He is unwell` — «Він погано почувається». Тут стан, тому потрібно `is`. Усмішка не доводить, що людина здорова. `milk` — «молоко», `gloves` — «рукавички». `The milk is on the table` — «Молоко на столі». `These gloves are mine` — «Ці рукавички мої».
+Вдома ви заварюєте братові гарячий чай з медом. Він тримається за шию й кривиться: ковтати боляче навіть воду. Сестра питає, що в нього болить. throat — «горло». Коли кажемо, яке воно, потрібен is: His throat is sore — «У нього болить горло».
 
-**Скажіть «Він погано почувається».**
+**Сестра питає, що болить у брата. Скажіть: «У нього болить горло».**
 
-- ✅ **He is unwell.**
-- ❌ He unwell. — *Тут стан: `He is unwell`.*
-- ❌ He are unwell. — *З `he` — `is`, не `are`.*
+- ✅ **His throat is sore.**
+- ❌ His throat sore. — *Без is речення не виходить: потрібно throat is.*
+- ❌ His throat are sore. — *Горло одне, тому is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто усміхаюся»**
+**1 · Картка слова — smile**
+<!-- interaction_id: en:lesson-06:session-18:word:smile; family: word_card -->
+> **smile** — усміхатися. My sister smiles in the park. — «Моя сестра усміхається в парку». Коли людина усміхається.
+
+**2 · Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»**
 <!-- interaction_id: en:lesson-06:session-18:i01; family: phrase_builder -->
-Плитки: `lot` `a` `smile` `I` → **I smile a lot.**
+Плитки: `smiles` `at` `the` `baby` `He` `smile` → **He smiles at the baby.**
+*(плитка `smile` зайва: тут потрібно `smiles` — `He smiles at the baby.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — cough**
+<!-- interaction_id: en:lesson-06:session-18:word:cough; family: word_card -->
+> **cough** — кашляти. He coughs at home. — «Він кашляє вдома». Коли людина кашляє.
+
+**4 · Послухайте працівницю реєстратури**
 <!-- interaction_id: en:lesson-06:session-18:i02; family: listen_choose -->
-🔊 *smile* → **smile** · drive · sing
-- drive — *У записі перше слово — `smile`, а в цьому варіанті — `drive`.*
-- sing — *У записі перше слово — `smile`, а в цьому варіанті — `sing`.*
+🔊 *He coughs at home.* → **He coughs at home.** · He smiles at home. · They cough at home.
+- He smiles at home. — *У записі дія — `coughs`, кашляє, а в цьому варіанті — `smiles`, усміхається.*
+- They cough at home. — *У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `cough`).*
 
-**3 · Скажіть «Вона часто усміхається»**
+**5 · Картка слова — throat**
+<!-- interaction_id: en:lesson-06:session-18:word:throat; family: word_card -->
+> **throat** — горло. My throat is sore. — «У мене болить горло». Про частину тіла, яка знаходиться в шиї.
+
+**6 · Лікар питає, що болить у брата. Скажіть: «У нього болить горло». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-18:i03; family: context_gap_grammar -->
-She ___ a lot. → **smiles** · smile · is smiles
-- smile — *Після `she` — `smiles`, з `s`.*
-- is smiles — *Кажемо `She smiles`, без `is`.*
+His throat ___ sore. → **is** · are · coughs
+- are — *Горло одне, тому потрібно `is`, а не `are`.*
+- coughs — *`coughs` означає «кашляє», а тут треба сказати, яке горло: `is sore`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-18:i04; family: speed_match -->
-smile — усміхатися · unwell — нездоровий · milk — молоко · gloves — рукавички
+smile — усміхатися · cough — кашляти · throat — горло · syrup — сироп
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — syrup**
+<!-- interaction_id: en:lesson-06:session-18:word:syrup; family: word_card -->
+> **syrup** — сироп. The syrup is in the kitchen. — «Сироп на кухні». Про солодкі ліки від кашлю.
+
+**9 · Послухайте лікаря й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-18:i05; family: listen_build_dictation -->
-🔊 *Anna smiles a lot.* Плитки: `lot` `a` `smiles` `Anna` → **Anna smiles a lot.**
+🔊 *The syrup is sweet.* Плитки: `is` `sweet` `syrup` `The` `are` → **The syrup is sweet.**
+*(плитка `are` зайва: тут потрібно `is` — `The syrup is sweet.`)*
 
-**6 · Скажіть «Він практикує англійську»**
+**10 · Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»**
 <!-- interaction_id: en:lesson-06:session-18:i06; family: phrase_builder -->
-Плитки: `English` `practices` `He` → **He practices English.**
+Плитки: `practices` `English` `She` `practice` → **She practices English.**
+*(плитка `practice` зайва: тут потрібно `practices` — `She practices English.`)*
 
-**7 · Скажіть про Тома «Він погано почувається»**
+**11 · Сестра питає, що болить у брата. Скажіть: «У нього болить горло»**
 <!-- interaction_id: en:lesson-06:session-18:i07; family: scripted_repeat_compare -->
-🎙 **He is unwell.**
+🎙 **His throat is sore.**
 
-**8 · Скажіть «Ці рукавички мої»**
+**12 · Скажіть про брата: «Він усміхається малюкові». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-18:i08; family: context_gap_grammar -->
-These gloves ___ mine. → **are** · is · am
-- is — *Рукавичок кілька: `These gloves are`.*
-- am — *`am` ставимо з `I`; тут `These gloves are`.*
+He ___ at the baby. → **smiles** · smile · is smiles
+- smile — *Після `he` — `smiles`, з `s`.*
+- is smiles — *Кажемо `He smiles`, без `is`.*
 
-**9 · Послухайте, хто часто усміхається**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-18:i09; family: listen_choose -->
-🔊 *They smile a lot.* → **They smile a lot.** · We smile a lot. · You smile a lot.
-- We smile a lot. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
-- You smile a lot. — *У записі перше слово — `They`, а в цьому варіанті — `You`.*
+🔊 *She smiles at the baby.* → **She smiles at the baby.** · She smiles at the doctor. · He smiles at the baby.
+- She smiles at the doctor. — *У записі останнє слово — `baby`, малюк, а в цьому варіанті — `doctor`, лікар.*
+- He smiles at the baby. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-18:i10; family: speed_match -->
-smile — усміхатися · practice — практикуватися · gloves — рукавички · unwell — нездоровий
+smile — усміхатися · cough — кашляти · syrup — сироп · unwell — такий, що погано почувається
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте вчительку й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-18:i11; family: listen_build_dictation -->
-🔊 *The milk is on the table.* Плитки: `table` `the` `on` `is` `milk` `The` `are` → **The milk is on the table.**
-*(плитка `are` зайва: тут потрібно `is` — `The milk is on the table.`)*
+🔊 *He practices English at home.* Плитки: `practices` `English` `at` `home` `He` `practice` → **He practices English at home.**
+*(плитка `practice` зайва: тут потрібно `practices` — `He practices English at home.`)*
 
-**12 · Запитайте «Чиї це рукавички?»**
+**16 · Ви знайшли банку на кухні. Спитайте: «Чий це сироп?»**
 <!-- interaction_id: en:lesson-06:session-18:i12; family: phrase_builder -->
-Плитки: `these` `are` `gloves` `Whose` → **Whose gloves are these?**
+Плитки: `syrup` `this` `is` `Whose` `Who` → **Whose syrup is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose syrup is this?`)*
 
-**13 · Скажіть «Ми практикуємо англійську»**
+**17 · Працівниця реєстратури питає, що робить ваш брат. Скажіть: «Він кашляє»**
 <!-- interaction_id: en:lesson-06:session-18:i13; family: scripted_repeat_compare -->
-🎙 **We practice English.**
+🎙 **He coughs.**
 
-**14 · Скажіть «Том практикується тут»**
+**18 · Скажіть про брата: «Він кашляє вдома». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-18:i14; family: context_gap_grammar -->
-Tom ___ here. → **practices** · practice · is practices
-- practice — *Том — він: `Tom practices`, із закінченням.*
-- is practices — *Кажемо `Tom practices`, без `is`.*
+He ___ at home. → **coughs** · cough · is coughs
+- cough — *Після `he` — `coughs`, з `s`.*
+- is coughs — *Кажемо `He coughs`, без `is`.*
 
-**15 · Послухайте, що Анна каже про молоко**
+**19 · Послухайте лікаря**
 <!-- interaction_id: en:lesson-06:session-18:i15; family: listen_choose -->
-🔊 *The milk is cold.* → **The milk is cold.** · The milk is warm. · The milk is hot.
-- The milk is warm. — *У записі останнє слово — `cold`, а в цьому варіанті — `warm`.*
-- The milk is hot. — *У записі останнє слово — `cold`, а в цьому варіанті — `hot`.*
+🔊 *He is unwell.* → **He is unwell.** · He is well. · She is unwell.
+- He is well. — *У записі останнє слово — `unwell`, погано почувається, а в цьому варіанті — `well`, добре почувається.*
+- She is unwell. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-18:i16; family: speed_match -->
-smile — усміхатися · unwell — нездоровий · milk — молоко · practice — практикуватися
+cough — кашляти · smile — усміхатися · throat — горло · syrup — сироп
 
-**17 · Розкажіть другові про Анну: «Вона часто усміхається»**
+**21 · Лікар телефоном питає, що робить ваш брат удома. Скажіть: «Він кашляє вдома»**
 <!-- interaction_id: en:lesson-06:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She smiles a lot.**
-
+🎙 **He coughs at home.**

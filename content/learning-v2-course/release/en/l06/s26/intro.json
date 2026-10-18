@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-26",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о привычке бегать трусцой и описать неосторожность",
-    "uk": "розповісти про звичку бігати підтюпцем і описати необережність"
+    "ru": "рассказать, кто как бегает, и назвать, где проходит пробежка",
+    "uk": "розповісти, хто як бігає, і назвати, де проходить пробіжка"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Бегать трусцой",
-        "uk": "Бігати підтюпцем"
+        "ru": "Зовут в парк",
+        "uk": "Кличуть до парку"
       },
       "bodyByLocale": {
-        "ru": "`jog` — «бегать трусцой», в спокойном темпе. `I jog in the park` — «Я бегаю трусцой в парке». Это рассказ о привычке: его можно произнести за завтраком, не бегая вокруг стола. `She jogs in the park` — «Она бегает трусцой в парке»: после `she` добавляем `s`.",
-        "uk": "`jog` — «бігати підтюпцем», у спокійному темпі. `I jog in the park` — «Я бігаю підтюпцем у парку». Це розповідь про звичку: її можна вимовити за сніданком, не бігаючи навколо столу. `She jogs in the park` — «Вона бігає підтюпцем у парку»: після `she` додаємо `s`."
+        "ru": "Подруга зовёт вас в парк по утрам, пока там мало людей. Она не гонится за рекордами: бегает не быстро, в своём темпе. Вы соглашаетесь. jog — «бегать трусцой». Про вас обеих говорим We jog in the park — «Мы бегаем трусцой в парке». После we слово остаётся jog, без s.",
+        "uk": "Подруга кличе вас до парку вранці, поки там мало людей. Вона не женеться за рекордами: бігає не швидко, у своєму темпі. Ви погоджуєтеся. jog — «бігати підтюпцем». Про вас обох кажемо We jog in the park — «Ми бігаємо підтюпцем у парку». Після we слово лишається jog, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она бегает трусцой в парке».",
-          "uk": "Скажіть «Вона бігає підтюпцем у парку»."
+          "ru": "Подруга спрашивает, чем вы займётесь в парке. Скажите за себя и подругу: «Мы бегаем трусцой в парке».",
+          "uk": "Подруга питає, чим ви займетеся в парку. Скажіть за себе й подругу: «Ми бігаємо підтюпцем у парку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-26:intro1:r1",
-              "text": "She jogs in the park."
+              "text": "We jog in the park."
             },
             {
               "responseId": "en:lesson-06:session-26:intro1:r2",
-              "text": "She jog in the park."
+              "text": "We jogs in the park."
             },
             {
               "responseId": "en:lesson-06:session-26:intro1:r3",
-              "text": "She is jogs in the park."
+              "text": "We are jog in the park."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-26:intro1:r1",
-              "text": "She jogs in the park."
+              "text": "We jog in the park."
             },
             {
               "responseId": "en:lesson-06:session-26:intro1:r2",
-              "text": "She jog in the park."
+              "text": "We jogs in the park."
             },
             {
               "responseId": "en:lesson-06:session-26:intro1:r3",
-              "text": "She is jogs in the park."
+              "text": "We are jog in the park."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она бегает трусцой в парке».",
-          "uk": "Скажіть «Вона бігає підтюпцем у парку»."
+          "ru": "Подруга спрашивает, чем вы займётесь в парке. Скажите за себя и подругу: «Мы бегаем трусцой в парке».",
+          "uk": "Подруга питає, чим ви займетеся в парку. Скажіть за себе й подругу: «Ми бігаємо підтюпцем у парку»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Улыбка после пробежки",
-        "uk": "Усмішка після пробіжки"
+        "ru": "Брат на стадионе",
+        "uk": "Брат на стадіоні"
       },
       "bodyByLocale": {
-        "ru": "`smile` — «улыбаться». `He smiles a lot` — «Он часто улыбается». `They smile a lot` — «Они часто улыбаются»: после `they` окончания `s` нет. `Anna jogs here` — «Анна бегает трусцой здесь»: здесь `Anna` соответствует `she`.",
-        "uk": "`smile` — «усміхатися». `He smiles a lot` — «Він часто усміхається». `They smile a lot` — «Вони часто усміхаються»: після `they` закінчення `s` немає. `Anna jogs here` — «Анна бігає підтюпцем тут»: тут `Anna` відповідає `she`."
+        "ru": "Ваш брат каждый вечер тренируется на стадионе, а строгий тренер стоит у ворот и аккуратно записывает время в тетрадь. На стадионе есть ровная дорожка для бега: track — «беговая дорожка». Про брата говорим He jogs: к jog добавляем s, как в He jogs on the track.",
+        "uk": "Ваш брат щовечора тренується на стадіоні, а суворий тренер стоїть біля воріт і акуратно записує час у зошит. На стадіоні є рівна доріжка для бігу: track — «бігова доріжка». Про брата кажемо He jogs: до jog додаємо s, як у He jogs on the track."
       },
       "question": {
         "interactionId": "en:lesson-06:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Он часто улыбается».",
-          "uk": "Скажіть «Він часто усміхається»."
+          "ru": "Тренер спрашивает, где бегает ваш брат. Скажите: «Он бегает трусцой на дорожке».",
+          "uk": "Тренер питає, де бігає ваш брат. Скажіть: «Він бігає підтюпцем на доріжці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-26:intro2:r1",
-              "text": "He smiles a lot."
+              "text": "He jogs on the track."
             },
             {
               "responseId": "en:lesson-06:session-26:intro2:r2",
-              "text": "He smile a lot."
+              "text": "He jog on the track."
             },
             {
               "responseId": "en:lesson-06:session-26:intro2:r3",
-              "text": "He is smiles a lot."
+              "text": "He is jogs on the track."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-26:intro2:r1",
-              "text": "He smiles a lot."
+              "text": "He jogs on the track."
             },
             {
               "responseId": "en:lesson-06:session-26:intro2:r2",
-              "text": "He smile a lot."
+              "text": "He jog on the track."
             },
             {
               "responseId": "en:lesson-06:session-26:intro2:r3",
-              "text": "He is smiles a lot."
+              "text": "He is jogs on the track."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он часто улыбается».",
-          "uk": "Скажіть «Він часто усміхається»."
+          "ru": "Тренер спрашивает, где бегает ваш брат. Скажите: «Он бегает трусцой на дорожке».",
+          "uk": "Тренер питає, де бігає ваш брат. Скажіть: «Він бігає підтюпцем на доріжці»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Значок на краю",
-        "uk": "Значок на краю"
+        "ru": "Один круг",
+        "uk": "Одне коло"
       },
       "bodyByLocale": {
-        "ru": "`worktop` — «кухонная столешница», `badge` — «значок», в этой сцене рабочий значок сотрудника. `The badge is on the worktop` — «Значок на столешнице». `careless` — «неосторожный», невнимательный к последствиям. `He is careless` — «Он неосторожен»: например, постоянно оставляет важные вещи там, где их легко задеть. Здесь качество, поэтому нужно `is`.",
-        "uk": "`worktop` — «кухонна стільниця», `badge` — «значок», у цій сцені робочий значок працівника. `The badge is on the worktop` — «Значок на стільниці». `careless` — «необережний», неуважний до наслідків. `He is careless` — «Він необережний»: наприклад, постійно залишає важливі речі там, де їх легко зачепити. Тут риса, тому потрібно `is`."
+        "ru": "Сестра пробежала по стадиону один круг и предлагает вам пробежать ещё один. Вы только что вернулись с дорожки и просите её подождать, пока вы отдышитесь. lap — «круг» на беговой дорожке, один полный обход. Про круг говорим is: The lap is long — «Круг длинный».",
+        "uk": "Сестра пробігла стадіоном одне коло й пропонує вам пробігти ще одне. Ви щойно повернулися з доріжки й просите її зачекати, поки ви віддихаєтесь. lap — «коло» на біговій доріжці, один повний обхід. Про коло кажемо is: The lap is long — «Коло довге»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Он неосторожен».",
-          "uk": "Скажіть «Він необережний»."
+          "ru": "Сестра предлагает бежать дальше. Скажите: «Круг длинный».",
+          "uk": "Сестра пропонує бігти далі. Скажіть: «Коло довге»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-26:intro3:r1",
-              "text": "He is careless."
+              "text": "The lap is long."
             },
             {
               "responseId": "en:lesson-06:session-26:intro3:r2",
-              "text": "He careless."
+              "text": "The lap long."
             },
             {
               "responseId": "en:lesson-06:session-26:intro3:r3",
-              "text": "He are careless."
+              "text": "The lap are long."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-26:intro3:r1",
-              "text": "He is careless."
+              "text": "The lap is long."
             },
             {
               "responseId": "en:lesson-06:session-26:intro3:r2",
-              "text": "He careless."
+              "text": "The lap long."
             },
             {
               "responseId": "en:lesson-06:session-26:intro3:r3",
-              "text": "He are careless."
+              "text": "The lap are long."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он неосторожен».",
-          "uk": "Скажіть «Він необережний»."
+          "ru": "Сестра предлагает бежать дальше. Скажите: «Круг длинный».",
+          "uk": "Сестра пропонує бігти далі. Скажіть: «Коло довге»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "445416f3c730bcd8e492f33a40955f65f080bc2bc37ba9a9957b88be993d1c40"
+  "introFingerprint": "69e610500a5451177e0172ace0240a988b01dd0b82af30f77d400934bab6ef5e"
 }

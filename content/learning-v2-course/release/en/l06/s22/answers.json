@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-06:session-22:word:read",
+    "correctText": "read",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-22:i01",
-    "correctText": "I read at home.",
+    "correctText": "He reads in the armchair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:word:yawn",
+    "correctText": "yawn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i02",
-    "correctText": "read",
+    "correctText": "He yawns in class.",
     "correctResponseId": "en:lesson-06:session-22:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-22:word:chapter",
+    "correctText": "chapter",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-22:i03",
-    "correctText": "reads",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-22:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-22:i04",
-    "correctText": "en:lesson-06:session-22:i04:p1=read\nen:lesson-06:session-22:i04:p2=complete\nen:lesson-06:session-22:i04:p3=carrot\nen:lesson-06:session-22:i04:p4=boots",
+    "correctText": "en:lesson-06:session-22:i04:p1=read\nen:lesson-06:session-22:i04:p2=yawn\nen:lesson-06:session-22:i04:p3=chapter\nen:lesson-06:session-22:i04:p4=bookmark",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:word:bookmark",
+    "correctText": "bookmark",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i05",
-    "correctText": "Anna reads here.",
+    "correctText": "The bookmark is red.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i06",
-    "correctText": "He laughs a lot.",
+    "correctText": "He laughs at the joke.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i07",
-    "correctText": "The list is complete.",
+    "correctText": "The chapter is long.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i08",
-    "correctText": "read",
+    "correctText": "reads",
     "correctResponseId": "en:lesson-06:session-22:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-22:i09",
-    "correctText": "These boots are mine.",
+    "correctText": "She reads at home.",
     "correctResponseId": "en:lesson-06:session-22:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-22:i10",
-    "correctText": "en:lesson-06:session-22:i10:p1=read\nen:lesson-06:session-22:i10:p2=laugh\nen:lesson-06:session-22:i10:p3=boots\nen:lesson-06:session-22:i10:p4=complete",
+    "correctText": "en:lesson-06:session-22:i10:p1=bookmark\nen:lesson-06:session-22:i10:p2=chapter\nen:lesson-06:session-22:i10:p3=laugh\nen:lesson-06:session-22:i10:p4=read",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i11",
-    "correctText": "The carrot is in the bag.",
+    "correctText": "My brother reads the book.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i12",
-    "correctText": "Whose boots are these?",
+    "correctText": "Whose book is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i13",
-    "correctText": "They laugh a lot.",
+    "correctText": "He yawns in class.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-22:i15",
-    "correctText": "The carrot is fresh.",
+    "correctText": "The bookmark is red.",
     "correctResponseId": "en:lesson-06:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-22:i16",
-    "correctText": "en:lesson-06:session-22:i16:p1=read\nen:lesson-06:session-22:i16:p2=carrot\nen:lesson-06:session-22:i16:p3=complete\nen:lesson-06:session-22:i16:p4=laugh",
+    "correctText": "en:lesson-06:session-22:i16:p1=chapter\nen:lesson-06:session-22:i16:p2=yawn\nen:lesson-06:session-22:i16:p3=bookmark\nen:lesson-06:session-22:i16:p4=read",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-22:i17",
-    "correctText": "She reads at home.",
+    "correctText": "She reads in the armchair.",
     "correctResponseId": null
   }
 ]

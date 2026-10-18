@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 27 — Тренировка в поездке
+# Английский · Урок 6 · Занятие 27 — Зарядка дома
 
-**Ситуация.** Анна и Том завтракают под навесом у отеля. Анна рассказывает о своих тренировках, а Том рисует в тетради. Перед выходом они проверяют, на месте ли паспорта.
+**Ситуация.** Подруга зовёт вас делать упражнения дома, потом вы смотрите, как занимается соседка, и записываетесь в спортзал. Слово действия после I, we и they остаётся прежним, а после she и he получает s.
 
-**Что вы освоите:** рассказать о привычке тренироваться и занятиях другого человека
-**Новые слова:** exercise
+**Что вы освоите:** рассказать, кто и где тренируется, и сказать, что вы новичок
+**Новые слова:** exercise, yoga, rope, beginner
+**Возвращаются:** mat, hobby, member, easy, chair, work, home
 
 ---
 
 ## Интро 1
 
-### Тренироваться
+### Упражнения дома
 
-`exercise` — «тренироваться», выполнять физические упражнения. `I exercise at home` — «Я тренируюсь дома». Здесь речь о привычке: можно сказать это, сидя за завтраком. Для `exercise` не нужен дорогой зал. Но просто носить спортивную сумку на работу — ещё не полноценная тренировка.
+Подруга замечает, что вы целый день сидите за столом, и зовёт вас делать упражнения дома по вечерам. Вы соглашаетесь. exercise — «тренироваться, делать упражнения». Про себя говорим I exercise at home — «Я тренируюсь дома». После I слово остаётся exercise, без s.
 
-**Скажите «Я тренируюсь дома».**
+**Подруга спрашивает, где вы будете тренироваться. Скажите: «Я тренируюсь дома».**
 
 - ✅ **I exercise at home.**
-- ❌ I exercises at home. — *После `I` — `exercise`, без `s`.*
-- ❌ I am exercise at home. — *Говорим `I exercise`, без `am`.*
+- ❌ I exercises at home. — *После I слово остаётся exercise, без s.*
+- ❌ I am exercise at home. — *Здесь действие: I exercise, без am.*
 
 ---
 
 ## Интро 2
 
-### Она тренируется, он рисует
+### Соседка на балконе
 
-`She exercises at home` — «Она тренируется дома». К `exercise` добавляем `s`: `exercises`. `draw` — «рисовать». `He draws here` — «Он рисует здесь». `They draw here` — «Они рисуют здесь»: после `they` окончания `s` нет.
+Соседка каждое утро занимается на балконе, на свежем воздухе: yoga — «йога», плавные упражнения для тела и дыхания. Она раскладывает коврик и никуда не торопится. Подруга спрашивает, как она занимается. Про соседку говорим She exercises: к exercise добавляем s.
 
-**Скажите «Она тренируется дома».**
+**Подруга спрашивает, как занимается соседка. Скажите: «Она тренируется на коврике».**
 
-- ✅ **She exercises at home.**
-- ❌ She exercise at home. — *После `she` — `exercises`.*
-- ❌ She is exercises at home. — *Говорим `She exercises`, без `is`.*
+- ✅ **She exercises on the mat.**
+- ❌ She exercise on the mat. — *После she нужно exercises, с s.*
+- ❌ She is exercises on the mat. — *Здесь действие: She exercises, без is.*
 
 ---
 
 ## Интро 3
 
-### Под навесом
+### Первый раз в зале
 
-`awning` — «навес», например тканевый над террасой. `We are under the awning` — «Мы под навесом». `passport` — «паспорт»: `Whose passport is this?` — «Чей это паспорт?» `generous` — «щедрый», охотно делящийся с другими. `He is generous` — «Он щедрый»: качество, поэтому нужно `is`.
+В спортивном зале к вам подходит тренер и спрашивает, давно ли вы занимаетесь. Вы пришли сюда в первый раз и ничего здесь не знаете и немного волнуетесь. beginner — «новичок», человек, который только начинает заниматься. Про себя после I нужно am: I am a beginner.
 
-**Скажите «Он щедрый».**
+**Тренер спрашивает, давно ли вы занимаетесь. Скажите: «Я новичок».**
 
-- ✅ **He is generous.**
-- ❌ He generous. — *Здесь нужно `He is generous`.*
-- ❌ He are generous. — *С `he` — `is`, не `are`.*
+- ✅ **I am a beginner.**
+- ❌ I a beginner. — *Без am предложение не получается: нужно I am.*
+- ❌ I are a beginner. — *После I нужно am, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычке: «Я тренируюсь дома»**
+**1 · Карточка слова — exercise**
+<!-- interaction_id: en:lesson-06:session-27:word:exercise; family: word_card -->
+> **exercise** — тренироваться, делать упражнения. We exercise on the mat. — «Мы тренируемся на коврике». О привычных занятиях для тела.
+
+**2 · Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»**
 <!-- interaction_id: en:lesson-06:session-27:i01; family: phrase_builder -->
-Плитки: `home` `at` `exercise` `I` → **I exercise at home.**
+Плитки: `home` `at` `exercise` `We` `exercises` → **We exercise at home.**
+*(плитка `exercises` лишняя: здесь нужно `exercise` — `We exercise at home.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-27:i02; family: listen_choose -->
-🔊 *exercise* → **exercise** · read · teach
-- read — *В записи первое слово — `exercise`, а в этом варианте — `read`.*
-- teach — *В записи первое слово — `exercise`, а в этом варианте — `teach`.*
+🔊 *She exercises at home.* → **She exercises at home.** · She exercises at work. · He exercises at home.
+- She exercises at work. — *В записи последнее слово — `home`, дома, а в этом варианте — `work`, на работе.*
+- He exercises at home. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите «Она тренируется дома»**
+**4 · Скажите о брате: «Он тренируется на коврике». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-27:i03; family: context_gap_grammar -->
-She ___ at home. → **exercises** · exercise · is exercises
-- exercise — *После `she` — `exercises`.*
-- is exercises — *Говорим `She exercises`, без `is`.*
+He ___ on the mat. → **exercises** · exercise · is exercises
+- exercise — *После `he` нужно `exercises`, с `s`.*
+- is exercises — *Говорим `He exercises`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-27:i04; family: speed_match -->
-exercise — тренироваться · generous — щедрый · awning — навес · passport — паспорт
+exercise — тренироваться · yoga — йога · rope — скакалка, верёвка · beginner — новичок
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — beginner**
+<!-- interaction_id: en:lesson-06:session-27:word:beginner; family: word_card -->
+> **beginner** — новичок. He is a beginner. — «Он новичок». О человеке, который только начинает.
+
+**7 · Послушайте тренера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-27:i05; family: listen_build_dictation -->
-🔊 *Anna exercises here.* Плитки: `here` `exercises` `Anna` → **Anna exercises here.**
+🔊 *You are a beginner.* Плитки: `beginner` `a` `You` `are` `is` → **You are a beginner.**
+*(плитка `is` лишняя: здесь нужно `are` — `You are a beginner.`)*
 
-**6 · Скажите «Он рисует здесь»**
+**8 · Карточка слова — rope**
+<!-- interaction_id: en:lesson-06:session-27:word:rope; family: word_card -->
+> **rope** — скакалка, верёвка. The rope is on the chair. — «Скакалка на стуле». О верёвке, а в зале — о скакалке.
+
+**9 · Тренер показывает на скакалку на полу. Спросите: «Чья это скакалка?»**
 <!-- interaction_id: en:lesson-06:session-27:i06; family: phrase_builder -->
-Плитки: `here` `draws` `He` → **He draws here.**
+Плитки: `rope` `is` `this` `Whose` `Who` → **Whose rope is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose rope is this?`)*
 
-**7 · Том охотно делится с друзьями. Скажите «Он щедрый»**
+**10 · Тренер спрашивает, где вы с подругой занимаетесь. Скажите: «Мы тренируемся на коврике»**
 <!-- interaction_id: en:lesson-06:session-27:i07; family: scripted_repeat_compare -->
-🎙 **He is generous.**
+🎙 **We exercise on the mat.**
 
-**8 · Скажите «Они тренируются здесь»**
+**11 · Карточка слова — yoga**
+<!-- interaction_id: en:lesson-06:session-27:word:yoga; family: word_card -->
+> **yoga** — йога. Yoga is my hobby. — «Йога — моё увлечение». О плавных упражнениях для тела и дыхания.
+
+**12 · Скажите о своём занятии: «Йога — это просто». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-27:i08; family: context_gap_grammar -->
-They ___ here. → **exercise** · exercises · are exercise
-- exercises — *После `they` — `exercise`, без `s`.*
-- are exercise — *Говорим `They exercise`, без `are`.*
+Yoga ___ easy. → **is** · are · exercises
+- are — *Йога одна, поэтому нужно `is`, а не `are`.*
+- exercises — *`exercises` значит «тренируется», а здесь нужно сказать, какая йога: `is easy`.*
 
-**9 · Послушайте, чей паспорт здесь**
+**13 · Послушайте тренера**
 <!-- interaction_id: en:lesson-06:session-27:i09; family: listen_choose -->
-🔊 *My passport is here.* → **My passport is here.** · Your passport is here. · His passport is here.
-- Your passport is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His passport is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *She is a beginner.* → **She is a beginner.** · She is a member. · He is a beginner.
+- She is a member. — *В записи последнее слово — `beginner`, новичок, а в этом варианте — `member`, участник.*
+- He is a beginner. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-27:i10; family: speed_match -->
-exercise — тренироваться · draw — рисовать · passport — паспорт · generous — щедрый
+rope — скакалка, верёвка · beginner — новичок · yoga — йога · exercise — тренироваться
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-27:i11; family: listen_build_dictation -->
-🔊 *We are under the awning.* Плитки: `awning` `the` `under` `are` `We` `is` → **We are under the awning.**
-*(плитка `is` лишняя: здесь нужно `are` — `We are under the awning.`)*
+🔊 *They exercise on the mat.* Плитки: `exercise` `on` `the` `mat` `They` `exercises` → **They exercise on the mat.**
+*(плитка `exercises` лишняя: здесь нужно `exercise` — `They exercise on the mat.`)*
 
-**12 · Спросите «Чей это паспорт?»**
+**16 · Подруга спрашивает, что для вас йога. Скажите: «Йога — моё увлечение»**
 <!-- interaction_id: en:lesson-06:session-27:i12; family: phrase_builder -->
-Плитки: `this` `is` `passport` `Whose` → **Whose passport is this?**
+Плитки: `hobby` `my` `is` `Yoga` `are` → **Yoga is my hobby.**
+*(плитка `are` лишняя: здесь нужно `is` — `Yoga is my hobby.`)*
 
-**13 · Скажите «Они рисуют здесь»**
+**17 · Тренер спрашивает, давно ли вы занимаетесь. Скажите: «Я новичок»**
 <!-- interaction_id: en:lesson-06:session-27:i13; family: scripted_repeat_compare -->
-🎙 **They draw here.**
+🎙 **I am a beginner.**
 
-**14 · Скажите «Том рисует дома»**
+**18 · Скажите о себе: «Я тренируюсь дома». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-27:i14; family: context_gap_grammar -->
-Tom ___ at home. → **draws** · draw · is draws
-- draw — *Том — он: `Tom draws`, с `s`.*
-- is draws — *Говорим `Tom draws`, без `is`.*
+I ___ at home. → **exercise** · exercises · am exercise
+- exercises — *После `I` нужно `exercise`, без `s`.*
+- am exercise — *Говорим `I exercise`, без `am`.*
 
-**15 · Послушайте, какого цвета навес**
+**19 · Послушайте тренера**
 <!-- interaction_id: en:lesson-06:session-27:i15; family: listen_choose -->
-🔊 *The awning is blue.* → **The awning is blue.** · The awning is green. · The awning is white.
-- The awning is green. — *В записи последнее слово — `blue`, а в этом варианте — `green`.*
-- The awning is white. — *В записи последнее слово — `blue`, а в этом варианте — `white`.*
+🔊 *The rope is on the mat.* → **The rope is on the mat.** · The rope is on the chair. · The rope is under the mat.
+- The rope is on the chair. — *В записи последнее слово — `mat`, коврик, а в этом варианте — `chair`, стул.*
+- The rope is under the mat. — *В записи слово — `on`, на, а в этом варианте — `under`, под.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-27:i16; family: speed_match -->
-exercise — тренироваться · awning — навес · generous — щедрый · draw — рисовать
+beginner — новичок · exercise — тренироваться · rope — скакалка, верёвка · yoga — йога
 
-**17 · За завтраком расскажите другу о привычке Анны: «Она тренируется дома»**
+**21 · Подруга спрашивает о соседке. Скажите: «Она тренируется дома»**
 <!-- interaction_id: en:lesson-06:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **She exercises at home.**
-

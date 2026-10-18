@@ -1,134 +1,154 @@
 # Английский · Урок 6 · Занятие 17 — Кто за рулём
 
-**Ситуация.** Анна и Том собираются ехать на работу. Анна обычно водит машину; после завтрака Том берёт куртку, и они выходят.
+**Ситуация.** Вы рассказываете соседке о семье: брат ездит на работу на машине, сестра ждёт автобус, а дядя работает в мастерской. Про одного человека мы говорим he или she и к слову действия добавляем s.
 
-**Что вы освоите:** рассказать о привычном действии другого человека
-**Новые слова:** drive
+**Что вы освоите:** рассказать, что делает один человек: He drives, She waits — и назвать его работу через is
+**Новые слова:** drive, wait, mechanic, engine
+**Возвращаются:** start, work, bus stop, brother, sister, uncle, loud, driver
 
 ---
 
 ## Интро 1
 
-### Водить машину
+### Брат едет на работу
 
-`drive` — «водить машину». `I drive to work` — «Я езжу на работу за рулём». Это не просто ехать пассажиром: `drive` говорит, что вы управляете машиной. Можно всю дорогу советовать водителю, куда повернуть, но от этого пассажир водителем не становится.
+Соседка спрашивает, как ваш брат добирается до работы. Каждое утро он садится в свою машину и сам ведёт её по знакомой дороге. drive — «водить машину». Про одного человека (he, she) к слову действия добавляем s: He drives to work — «Он ездит на работу за рулём».
 
-**Скажите «Я езжу на работу за рулём».**
+**Соседка спрашивает, как ваш брат ездит на работу. Скажите: «Он ездит на работу за рулём».**
 
-- ✅ **I drive to work.**
-- ❌ I am drive to work. — *Перед `drive` здесь не нужно `am`.*
-- ❌ I drives to work. — *После `I` — `drive`, без `s`.*
+- ✅ **He drives to work.**
+- ❌ He drive to work. — *После he нужно drives, с s.*
+- ❌ He is drives to work. — *Здесь действие: He drives, без is.*
 
 ---
 
 ## Интро 2
 
-### Она водит, он работает
+### Сестра на остановке
 
-После `he`, `she`, `it` у обычных действий в таких фразах появляется окончание. В наших примерах добавляем `s`: `drive → drives`, `work → works`, `start → starts`. `She drives to work` — «Она ездит на работу за рулём». `He starts at nine` — «Он начинает в девять». Имя тоже подходит: `Anna drives to work`. Перед этими действиями не нужно `is`.
+Ваша сестра каждый день стоит под навесом на остановке и ждёт автобус. Продавец из киоска напротив давно её заметил и спрашивает, что она там делает. wait — «ждать». Про сестру говорим she и тоже добавляем s: She waits at the bus stop — «Она ждёт на остановке».
 
-**Скажите «Она ездит на работу за рулём».**
+**Продавец спрашивает, что делает ваша сестра на остановке. Скажите: «Она ждёт на остановке».**
 
-- ✅ **She drives to work.**
-- ❌ She drive to work. — *После `she` здесь нужно `drives`, с `s`.*
-- ❌ She is drives to work. — *Говорим `She drives`, без `is`.*
+- ✅ **She waits at the bus stop.**
+- ❌ She wait at the bus stop. — *После she нужно waits, с s.*
+- ❌ She is waits at the bus stop. — *Здесь действие: She waits, без is.*
 
 ---
 
 ## Интро 3
 
-### Как себя чувствует Анна
+### Шум в моторе
 
-Коллега спрашивает, как себя чувствует Анна. `She is well` — «Она хорошо себя чувствует». Здесь `well` описывает самочувствие, а не действие: поэтому после `she` нужно `is`. Если спрашивают о вас, ответьте `I am well` — «Я хорошо себя чувствую»: с `I` используем `am`.
+Машина соседки громко шумит, и она ищет, кто поможет. Ваш дядя работает в мастерской недалеко от дома и знает машины лучше всех. mechanic — «автомеханик». Когда называем, кто человек по работе, нужен is: He is a mechanic — «Он автомеханик».
 
-**Коллега спрашивает о самочувствии Анны. Скажите «Она хорошо себя чувствует».**
+**Соседка спрашивает, кто ваш дядя. Скажите: «Он автомеханик».**
 
-- ✅ **She is well.**
-- ❌ She well. — *Здесь состояние: `She is well`.*
-- ❌ She are well. — *С `she` — `is`, не `are`.*
+- ✅ **He is a mechanic.**
+- ❌ He a mechanic. — *Без is предложение не получается: нужно He is.*
+- ❌ He are a mechanic. — *После he нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я езжу на работу за рулём»**
+**1 · Карточка слова — drive**
+<!-- interaction_id: en:lesson-06:session-17:word:drive; family: word_card -->
+> **drive** — водить машину. My brother drives to work. — «Мой брат ездит на работу за рулём». Когда человек сам управляет машиной.
+
+**2 · Подруга спрашивает, как ездит на работу ваша сестра. Скажите: «Она ездит на работу за рулём»**
 <!-- interaction_id: en:lesson-06:session-17:i01; family: phrase_builder -->
-Плитки: `work` `to` `drive` `I` → **I drive to work.**
+Плитки: `work` `to` `drives` `She` `drive` → **She drives to work.**
+*(плитка `drive` лишняя: здесь нужно `drives` — `She drives to work.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — wait**
+<!-- interaction_id: en:lesson-06:session-17:word:wait; family: word_card -->
+> **wait** — ждать. She waits at the bus stop. — «Она ждёт на остановке». О том, кто стоит и ждёт кого-то или что-то.
+
+**4 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-17:i02; family: listen_choose -->
-🔊 *drive* → **drive** · start · swim
-- start — *В записи первое слово — `drive`, а в этом варианте — `start`.*
-- swim — *В записи первое слово — `drive`, а в этом варианте — `swim`.*
+🔊 *She waits here.* → **She waits here.** · She works here. · They wait here.
+- She works here. — *В записи действие — `waits`, ждёт, а в этом варианте — `works`, работает.*
+- They wait here. — *В записи первое слово — `She`, она, а в этом варианте — `They`, они (и слово там без `s`: `wait`).*
 
-**3 · Скажите «Она ездит на работу за рулём»**
+**5 · Карточка слова — mechanic**
+<!-- interaction_id: en:lesson-06:session-17:word:mechanic; family: word_card -->
+> **mechanic** — автомеханик. My uncle is a mechanic. — «Мой дядя автомеханик». О человеке, который чинит машины.
+
+**6 · Скажите про дядю: «Он автомеханик». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-17:i03; family: context_gap_grammar -->
-She ___ to work. → **drives** · drive · is drives
-- drive — *После `she` — `drives`, с `s`.*
-- is drives — *Говорим `She drives`, без `is`.*
+He ___ a mechanic. → **is** · are · drives
+- are — *После `he` нужно `is`, а не `are`.*
+- drives — *`drives` значит «водит», а здесь нужно сказать, кто он: `is a mechanic`.*
 
-**4 · Соедините слова со значениями; well — о самочувствии**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-17:i04; family: speed_match -->
-drive — водить машину · well — хорошо себя чувствующий · jacket — куртка · berry — ягода
+drive — водить машину · wait — ждать · mechanic — автомеханик · engine — двигатель
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — engine**
+<!-- interaction_id: en:lesson-06:session-17:word:engine; family: word_card -->
+> **engine** — двигатель. The engine is loud. — «Двигатель шумный». О моторе машины.
+
+**9 · Послушайте мастера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-17:i05; family: listen_build_dictation -->
-🔊 *Anna drives to work.* Плитки: `work` `to` `drives` `Anna` → **Anna drives to work.**
+🔊 *The engine is loud.* Плитки: `is` `loud` `engine` `The` `are` → **The engine is loud.**
+*(плитка `are` лишняя: здесь нужно `is` — `The engine is loud.`)*
 
-**6 · Скажите «Он начинает в девять»**
+**10 · Подруга спрашивает, когда начинает работу ваша сестра. Скажите: «Она начинает в четыре»**
 <!-- interaction_id: en:lesson-06:session-17:i06; family: phrase_builder -->
-Плитки: `nine` `at` `starts` `He` → **He starts at nine.**
+Плитки: `four` `at` `starts` `She` `start` → **She starts at four.**
+*(плитка `start` лишняя: здесь нужно `starts` — `She starts at four.`)*
 
-**7 · Скажите «Она хорошо себя чувствует»**
+**11 · Соседка спрашивает, кто ваш дядя. Скажите: «Он автомеханик»**
 <!-- interaction_id: en:lesson-06:session-17:i07; family: scripted_repeat_compare -->
-🎙 **She is well.**
+🎙 **He is a mechanic.**
 
-**8 · Скажите «Он работает здесь»**
+**12 · Скажите о сестре: «Она работает здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-17:i08; family: context_gap_grammar -->
-He ___ here. → **works** · work · is works
-- work — *После `he` — `works`, с `s`.*
-- is works — *Говорим `He works`, без `is`.*
+She ___ here. → **works** · work · is works
+- work — *После `she` — `works`, с `s`.*
+- is works — *Говорим `She works`, без `is`.*
 
-**9 · Послушайте, во сколько она начинает**
+**13 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-17:i09; family: listen_choose -->
-🔊 *She starts at eight.* → **She starts at eight.** · She starts at nine. · She starts at ten.
-- She starts at nine. — *В записи последнее слово — `eight`, а в этом варианте — `nine`.*
-- She starts at ten. — *В записи последнее слово — `eight`, а в этом варианте — `ten`.*
+🔊 *He drives here.* → **He drives here.** · He waits here. · She drives here.
+- He waits here. — *В записи действие — `drives`, водит машину, а в этом варианте — `waits`, ждёт.*
+- She drives here. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-17:i10; family: speed_match -->
-drive — водить машину · start — начинать · berry — ягода · jacket — куртка
+mechanic — автомеханик · engine — двигатель · drive — водить машину · start — начинать
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-17:i11; family: listen_build_dictation -->
-🔊 *The berry is red.* Плитки: `red` `is` `berry` `The` `are` → **The berry is red.**
-*(плитка `are` лишняя: здесь нужно `is` — `The berry is red.`)*
+🔊 *My brother drives to work.* Плитки: `drives` `to` `work` `brother` `My` `drive` → **My brother drives to work.**
+*(плитка `drive` лишняя: здесь нужно `drives` — `My brother drives to work.`)*
 
-**12 · Скажите «Они ездят на работу за рулём»**
+**16 · В мастерской вы показываете на мотор. Спросите дядю: «Чей это двигатель?»**
 <!-- interaction_id: en:lesson-06:session-17:i12; family: phrase_builder -->
-Плитки: `work` `to` `drive` `They` → **They drive to work.**
+Плитки: `engine` `this` `is` `Whose` `Who` → **Whose engine is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose engine is this?`)*
 
-**13 · Скажите «Я хорошо себя чувствую»**
+**17 · Соседка спрашивает, как ваш брат ездит на работу. Скажите: «Он ездит на работу за рулём»**
 <!-- interaction_id: en:lesson-06:session-17:i13; family: scripted_repeat_compare -->
-🎙 **I am well.**
+🎙 **He drives to work.**
 
-**14 · Скажите «Анна работает здесь»**
+**18 · Скажите о сестре на остановке: «Она ждёт на остановке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-17:i14; family: context_gap_grammar -->
-Anna ___ here. → **works** · work · is works
-- work — *Анна — она: `Anna works`, с `s`.*
-- is works — *Говорим `Anna works`, без `is`.*
+She ___ at the bus stop. → **waits** · wait · is waits
+- wait — *После `she` — `waits`, с `s`.*
+- is waits — *Говорим `She waits`, без `is`.*
 
-**15 · Послушайте, чья куртка здесь**
+**19 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-17:i15; family: listen_choose -->
-🔊 *My jacket is here.* → **My jacket is here.** · Your jacket is here. · His jacket is here.
-- Your jacket is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His jacket is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *My uncle is a mechanic.* → **My uncle is a mechanic.** · My uncle is a driver. · My brother is a mechanic.
+- My uncle is a driver. — *В записи последнее слово — `mechanic`, автомеханик, а в этом варианте — `driver`, водитель.*
+- My brother is a mechanic. — *В записи второе слово — `uncle`, дядя, а в этом варианте — `brother`, брат.*
 
-**16 · Соедините слова со значениями; well — о самочувствии**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-17:i16; family: speed_match -->
-drive — водить машину · well — хорошо себя чувствующий · start — начинать · berry — ягода
+wait — ждать · drive — водить машину · engine — двигатель · mechanic — автомеханик
 
-**17 · Коллега спрашивает, как Анна добирается на работу. Скажите «Она ездит на работу за рулём»**
+**21 · Продавец из киоска спрашивает, что делает ваша сестра на остановке. Скажите: «Она ждёт на остановке»**
 <!-- interaction_id: en:lesson-06:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She drives to work.**
-
+🎙 **She waits at the bus stop.**

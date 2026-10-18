@@ -1,133 +1,154 @@
-# Англійська · Урок 6 · Заняття 32 — Біля фонтана після пробіжки
+# Англійська · Урок 6 · Заняття 32 — Ранок після пробіжки
 
-**Ситуація.** Анна й Том зустрічаються біля фонтана й розповідають, як зазвичай минає їхній ранок: пробіжка, вправи, душ і дзвінок додому.
+**Ситуація.** Ви зустрічаєтеся з подругою, братом і сестрою після пробіжки на світанку й згадуєте, що кожен робить уранці. Нової граматики немає: ви самі вибираєте слово без s або з s, телефонуєте без to, а про речі кажете is або are.
 
-**Що ви опануєте:** повторити розповідь про звички з усіма словами глави
-**Нові слова:** —
+**Що ви опануєте:** самому вибрати між «без s» і «з s» та розповісти про звички ранку
+**Нові слова:** sunrise, smoothie, playlist, porridge
+**Повертаються:** walk, jog, exercise, stretch, call, scrub, shower, hill, mat, bowl, cold, home
 
 ---
 
 ## Інтро 1
 
-### У кожного свій ранок
+### Пробіжка на світанку
 
-Повторимо знайомі дії: `jog` — «бігати підтюпцем», `exercise` — «тренуватися», `stretch` — «робити розтяжку». `I jog here` — «Я бігаю підтюпцем тут». `She jogs here` — «Вона бігає підтюпцем тут»: після `she` додаємо `s`. Фраза розповідає про звичку; Анна цілком може зараз сидіти й відпочивати.
+Подруга кличе вас до парку на світанку, поки вулиці порожні й повітря свіже. sunrise — «світанок», час, коли сходить сонце. Бігати підтюпцем ви любите й берете з собою подругу: We jog at sunrise — «Ми бігаємо підтюпцем на світанку». Після we слово лишається jog.
 
-**Скажіть «Вона бігає підтюпцем тут».**
+**Подруга кличе вас на пробіжку. Скажіть за себе й подругу: «Ми бігаємо підтюпцем на світанку».**
 
-- ✅ **She jogs here.**
-- ❌ She jog here. — *Після `she` — `jogs`.*
-- ❌ She is jogs here. — *Потрібно `She jogs`, без `is`.*
+- ✅ **We jog at sunrise.**
+- ❌ We jogs at sunrise. — *Після we слово лишається jog, без s.*
+- ❌ We are jog at sunrise. — *Тут дія: We jog, без are.*
 
 ---
 
 ## Інтро 2
 
-### Після пробіжки
+### Чий це стакан
 
-`shower` — «приймати душ», `clean` — «прибирати», `call` — «телефонувати». `He showers at home` — «Він приймає душ удома». `We clean our room` — «Ми прибираємо свою кімнату»: після `we` немає `s`. `She calls her mother` — «Вона телефонує своїй мамі», без `to` перед `her mother`.
+Після пробіжки ви сідаєте за столик, трохи втомившись. На ньому стоїть склянка з густим напоєм із фруктів, але подруга не пам’ятає, чия вона. Напій ще холодний. smoothie — «смузі». Щоб спитати про власника, кажемо Whose: Whose smoothie is this? — «Чий це смузі?»
 
-**Скажіть «Ми прибираємо свою кімнату».**
+**Ви показуєте подрузі на склянку. Спитайте: «Чий це смузі?»**
 
-- ✅ **We clean our room.**
-- ❌ We cleans our room. — *Після `we` — `clean`, без `s`.*
-- ❌ We are clean our room. — *Потрібно `We clean our room`, без `are`.*
+- ✅ **Whose smoothie is this?**
+- ❌ Who smoothie is this? — *Про власника питаємо Whose — «чий».*
+- ❌ Whose smoothie are this? — *Смузі один: потрібно is this.*
 
 ---
 
 ## Інтро 3
 
-### Зустрінемося біля фонтана
+### Музика для бігу
 
-`fountain` — «фонтан», `walk` — «ходити пішки». `This fountain is beautiful` — «Цей фонтан гарний». `He walks here` — «Він ходить тут пішки». `She stretches here` — «Вона робить тут розтяжку»: у `stretch` після `she` додається `es`. Можна робити розтяжку біля фонтана, але душ краще прийняти вдома.
+Сестра завжди бігає під музику в телефоні й не розлучається з нею: вмикає її ще біля дверей. Подруга дивується, як вона так бігає. playlist — «плейлист», добірка пісень у потрібному порядку. Про сестру після she до jog додаємо s: She jogs with a playlist.
 
-**Скажіть «Вона робить тут розтяжку».**
+**Подруга питає, як бігає ваша сестра. Скажіть: «Вона бігає підтюпцем із плейлистом».**
 
-- ✅ **She stretches here.**
-- ❌ She stretch here. — *Після `she` — `stretches`.*
-- ❌ She stretchs here. — *Пишемо `stretches`, з `es`.*
+- ✅ **She jogs with a playlist.**
+- ❌ She jog with a playlist. — *Після she потрібно jogs, з s.*
+- ❌ She is jogs with a playlist. — *Тут дія: She jogs, без is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про звичку: «Я бігаю підтюпцем тут»**
+**1 · Картка слова — sunrise**
+<!-- interaction_id: en:lesson-06:session-32:word:sunrise; family: word_card -->
+> **sunrise** — світанок. We walk at sunrise. — «Ми ходимо пішки на світанку». Про час, коли сходить сонце.
+
+**2 · Подруга питає, коли ви бігаєте. Скажіть: «Ми бігаємо підтюпцем на світанку»**
 <!-- interaction_id: en:lesson-06:session-32:i01; family: phrase_builder -->
-Плитки: `here` `jog` `I` → **I jog here.**
+Плитки: `sunrise` `at` `jog` `We` `jogs` → **We jog at sunrise.**
+*(плитка `jogs` зайва: тут потрібно `jog` — `We jog at sunrise.`)*
 
-**2 · Послухайте, хто тут тренується**
+**3 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-32:i02; family: listen_choose -->
-🔊 *She exercises here.* → **She exercises here.** · He exercises here. · Anna exercises here.
-- He exercises here. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
-- Anna exercises here. — *У записі перше слово — `She`, а в цьому варіанті — `Anna`.*
+🔊 *He walks to the hill.* → **He walks to the hill.** · He jogs to the hill. · She walks to the hill.
+- He jogs to the hill. — *У записі дія — `walks`, ходить пішки, а в цьому варіанті — `jogs`, бігає підтюпцем.*
+- She walks to the hill. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**3 · Скажіть «Том приймає душ удома»**
+**4 · Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-32:i03; family: context_gap_grammar -->
-Tom ___ at home. → **showers** · shower · is showers
-- shower — *Том — він: `Tom showers`.*
-- is showers — *Потрібно `Tom showers`, без `is`.*
+My sister ___ her grandmother. → **calls** · call · calls to
+- call — *Сестра — це `she`, тому потрібно `calls`, з `s`.*
+- calls to — *Після `calls` одразу називаємо людину, без `to`.*
 
-**4 · З’єднайте знайомі слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-32:i04; family: speed_match -->
-jog — бігати підтюпцем · exercise — тренуватися · stretch — робити розтяжку · fountain — фонтан
+sunrise — світанок · smoothie — смузі · playlist — плейлист · porridge — вівсяна каша
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — smoothie**
+<!-- interaction_id: en:lesson-06:session-32:word:smoothie; family: word_card -->
+> **smoothie** — смузі. My smoothie is warm. — «Мій смузі теплий». Про густий напій із фруктів.
+
+**7 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-32:i05; family: listen_build_dictation -->
-🔊 *She calls her mother.* Плитки: `mother` `her` `calls` `She` → **She calls her mother.**
+🔊 *My smoothie is on the table.* Плитки: `table` `on` `the` `My` `smoothie` `is` `are` → **My smoothie is on the table.**
+*(плитка `are` зайва: тут потрібно `is` — `My smoothie is on the table.`)*
 
-**6 · Скажіть «Ми прибираємо свою кімнату»**
+**8 · Картка слова — playlist**
+<!-- interaction_id: en:lesson-06:session-32:word:playlist; family: word_card -->
+> **playlist** — плейлист. My playlist is new. — «Мій плейлист новий». Про добірку пісень.
+
+**9 · Подруга питає про вашу сестру. Скажіть: «Вона бігає підтюпцем із плейлистом»**
 <!-- interaction_id: en:lesson-06:session-32:i06; family: phrase_builder -->
-Плитки: `room` `our` `clean` `We` → **We clean our room.**
+Плитки: `playlist` `a` `with` `jogs` `She` `jog` → **She jogs with a playlist.**
+*(плитка `jog` зайва: тут потрібно `jogs` — `She jogs with a playlist.`)*
 
-**7 · Скажіть «Цей фонтан гарний»**
+**10 · Подруга питає про сусідів. Скажіть: «Вони тренуються на килимку»**
 <!-- interaction_id: en:lesson-06:session-32:i07; family: scripted_repeat_compare -->
-🎙 **This fountain is beautiful.**
+🎙 **They exercise on the mat.**
 
-**8 · Скажіть «Вона робить тут розтяжку»**
+**11 · Скажіть про себе: «Я тру стіл». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-32:i08; family: context_gap_grammar -->
-She ___ here. → **stretches** · stretch · stretchs
-- stretch — *Після `she` — `stretches`.*
-- stretchs — *Потрібно `stretches`, з `es`.*
+I ___ the table. → **scrub** · scrubs · am scrub
+- scrubs — *Після `I` потрібно `scrub`, без `s`.*
+- am scrub — *Кажемо `I scrub`, без `am`.*
 
-**9 · Послухайте, де він ходить пішки**
+**12 · Картка слова — porridge**
+<!-- interaction_id: en:lesson-06:session-32:word:porridge; family: word_card -->
+> **porridge** — вівсяна каша. The porridge is in the bowl. — «Каша в мисці». Про теплу кашу з вівсяних пластівців.
+
+**13 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-32:i09; family: listen_choose -->
-🔊 *He walks here.* → **He walks here.** · He walks there. · He walks home.
-- He walks there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- He walks home. — *У записі останнє слово — `here`, а в цьому варіанті — `home`.*
+🔊 *The porridge is warm.* → **The porridge is warm.** · The porridge is cold. · The smoothie is warm.
+- The porridge is cold. — *У записі останнє слово — `warm`, теплий, а в цьому варіанті — `cold`, холодний.*
+- The smoothie is warm. — *У записі йдеться про `porridge`, кашу, а в цьому варіанті — про `smoothie`, смузі.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-32:i10; family: speed_match -->
-call — телефонувати · clean — прибирати · shower — приймати душ · walk — ходити пішки
+porridge — вівсяна каша · playlist — плейлист · sunrise — світанок · smoothie — смузі
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-32:i11; family: listen_build_dictation -->
-🔊 *They exercise here.* Плитки: `here` `exercise` `They` → **They exercise here.**
+🔊 *He showers at home.* Плитки: `showers` `at` `home` `He` `shower` → **He showers at home.**
+*(плитка `shower` зайва: тут потрібно `showers` — `He showers at home.`)*
 
-**12 · Біля фонтана залишилася гітара. Запитайте «Чия це гітара?»**
+**16 · Брат скаржиться на біль. Скажіть: «Моє плече болить»**
 <!-- interaction_id: en:lesson-06:session-32:i12; family: phrase_builder -->
-Плитки: `this` `is` `guitar` `Whose` → **Whose guitar is this?**
+Плитки: `shoulder` `sore` `is` `My` `are` → **My shoulder is sore.**
+*(плитка `are` зайва: тут потрібно `is` — `My shoulder is sore.`)*
 
-**13 · Скажіть «Я приймаю душ удома»**
+**17 · Подруга питає про сестру. Скажіть: «Вона робить розтяжку біля пагорба»**
 <!-- interaction_id: en:lesson-06:session-32:i13; family: scripted_repeat_compare -->
-🎙 **I shower at home.**
+🎙 **She stretches near the hill.**
 
-**14 · Скажіть «Вони бігають підтюпцем тут»**
+**18 · Скажіть про сніданок: «Каша в мисці». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-32:i14; family: context_gap_grammar -->
-They ___ here. → **jog** · jogs · are jog
-- jogs — *Після `they` — `jog`, без `s`.*
-- are jog — *Потрібно `They jog`, без `are`.*
+The porridge ___ in the bowl. → **is** · are · walks
+- are — *Каша — одне ціле, тому потрібно `is`, а не `are`.*
+- walks — *`walks` означає «ходить пішки», а тут треба сказати, де каша: `is in`.*
 
-**15 · Послухайте, який цей фонтан**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-32:i15; family: listen_choose -->
-🔊 *This fountain is beautiful.* → **This fountain is beautiful.** · This fountain is small. · This fountain is old.
-- This fountain is small. — *У записі останнє слово — `beautiful`, а в цьому варіанті — `small`.*
-- This fountain is old. — *У записі останнє слово — `beautiful`, а в цьому варіанті — `old`.*
+🔊 *I walk to work.* → **I walk to work.** · I jog to work. · We walk to work.
+- I jog to work. — *У записі дія — `walk`, ходити пішки, а в цьому варіанті — `jog`, бігати підтюпцем.*
+- We walk to work. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-32:i16; family: speed_match -->
-stretch — робити розтяжку · shower — приймати душ · call — телефонувати · clean — прибирати
+playlist — плейлист · porridge — вівсяна каша · smoothie — смузі · sunrise — світанок
 
-**17 · Розкажіть другові про звичку Анни: «Вона бігає підтюпцем тут»**
+**21 · Подруга питає, коли бігає ваша сестра. Скажіть: «Вона бігає підтюпцем на світанку»**
 <!-- interaction_id: en:lesson-06:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She jogs here.**
-
+🎙 **She jogs at sunrise.**

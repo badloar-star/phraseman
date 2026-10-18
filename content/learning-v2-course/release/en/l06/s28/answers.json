@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-28:word:stretch",
+    "correctText": "stretch",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-28:i01",
-    "correctText": "I stretch at home.",
+    "correctText": "We stretch at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i02",
-    "correctText": "stretch",
+    "correctText": "He stretches at home.",
     "correctResponseId": "en:lesson-06:session-28:i02:r1"
   },
   {
@@ -16,22 +21,32 @@
   },
   {
     "interactionId": "en:lesson-06:session-28:i04",
-    "correctText": "en:lesson-06:session-28:i04:p1=stretch\nen:lesson-06:session-28:i04:p2=flexible\nen:lesson-06:session-28:i04:p3=alley\nen:lesson-06:session-28:i04:p4=keycard",
+    "correctText": "en:lesson-06:session-28:i04:p1=stretch\nen:lesson-06:session-28:i04:p2=muscle\nen:lesson-06:session-28:i04:p3=shoulder\nen:lesson-06:session-28:i04:p4=ankle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:word:muscle",
+    "correctText": "muscle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i05",
-    "correctText": "Anna stretches here.",
+    "correctText": "His muscle is sore.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:word:shoulder",
+    "correctText": "shoulder",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i06",
-    "correctText": "He cooks at home.",
+    "correctText": "My shoulder is sore.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i07",
-    "correctText": "She is flexible.",
+    "correctText": "He stretches at home.",
     "correctResponseId": null
   },
   {
@@ -40,48 +55,53 @@
     "correctResponseId": "en:lesson-06:session-28:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-28:word:ankle",
+    "correctText": "ankle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-28:i09",
-    "correctText": "My keycard is here.",
+    "correctText": "My ankle is sore.",
     "correctResponseId": "en:lesson-06:session-28:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-28:i10",
-    "correctText": "en:lesson-06:session-28:i10:p1=stretch\nen:lesson-06:session-28:i10:p2=cook\nen:lesson-06:session-28:i10:p3=keycard\nen:lesson-06:session-28:i10:p4=flexible",
+    "correctText": "en:lesson-06:session-28:i10:p1=ankle\nen:lesson-06:session-28:i10:p2=muscle\nen:lesson-06:session-28:i10:p3=stretch\nen:lesson-06:session-28:i10:p4=shoulder",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i11",
-    "correctText": "The alley is quiet.",
+    "correctText": "He stretches his shoulder.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i12",
-    "correctText": "Whose keycard is this?",
+    "correctText": "The sock is on my ankle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i13",
-    "correctText": "They cook at home.",
+    "correctText": "My muscle is sore.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i14",
-    "correctText": "cooks",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-28:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-28:i15",
-    "correctText": "The alley is narrow.",
+    "correctText": "They stretch at home.",
     "correctResponseId": "en:lesson-06:session-28:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-28:i16",
-    "correctText": "en:lesson-06:session-28:i16:p1=stretch\nen:lesson-06:session-28:i16:p2=alley\nen:lesson-06:session-28:i16:p3=flexible\nen:lesson-06:session-28:i16:p4=cook",
+    "correctText": "en:lesson-06:session-28:i16:p1=shoulder\nen:lesson-06:session-28:i16:p2=stretch\nen:lesson-06:session-28:i16:p3=ankle\nen:lesson-06:session-28:i16:p4=muscle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-28:i17",
-    "correctText": "She stretches at home.",
+    "correctText": "She stretches her shoulder.",
     "correctResponseId": null
   }
 ]

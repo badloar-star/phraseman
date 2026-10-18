@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 28 — Розтяжка у дворі
+# Англійська · Урок 6 · Заняття 28 — Розтяжка ввечері
 
-**Ситуація.** Анна й Том живуть у невеликому готелі з виходом у провулок. За сніданком Анна розповідає, де робить розтяжку; Том перевіряє ключ-картку перед виходом.
+**Ситуація.** Ввечері ви робите розтяжку вдома й розповідаєте, що в кого болить. Після I, we і they слово лишається незмінним, а після she і he до stretch додаємо es: stretches.
 
-**Що ви опануєте:** розповісти про звичку робити розтяжку й описати гнучкість
-**Нові слова:** stretch
+**Що ви опануєте:** розповісти, хто робить розтяжку, і сказати, що болить
+**Нові слова:** stretch, muscle, shoulder, ankle
+**Повертаються:** sore, sock, home, work, brother
 
 ---
 
 ## Інтро 1
 
-### Потягнути м’язи
+### Затекла спина
 
-`stretch` — «розтягуватися», робити розтяжку. Це може бути частиною розминки, але не означає будь-яку розминку. `I stretch at home` — «Я роблю розтяжку вдома». Потягнутися до останнього печива — ще не ціле тренування, хоча рука старалася.
+Подруга скаржиться, що надвечір у неї затекла спина від довгого сидіння за столом. Ви показуєте, що робите вдома ввечері. stretch — «робити розтяжку», витягувати тіло. Про себе кажемо I stretch at home — «Я роблю розтяжку вдома». Після I слово лишається stretch, без s.
 
-**Скажіть «Я роблю розтяжку вдома».**
+**Подруга питає, що ви робите, коли втомилася спина. Скажіть: «Я роблю розтяжку вдома».**
 
 - ✅ **I stretch at home.**
-- ❌ I stretches at home. — *Після `I` — `stretch`, без закінчення.*
-- ❌ I am stretch at home. — *Кажемо `I stretch`, без `am`.*
+- ❌ I stretches at home. — *Після I слово лишається stretch, без закінчення.*
+- ❌ I am stretch at home. — *Тут дія: I stretch, без am.*
 
 ---
 
 ## Інтро 2
 
-### Вона робить розтяжку
+### У лікаря
 
-`She stretches at home` — «Вона робить розтяжку вдома». Після `she` до `stretch` додаємо `es`: `stretches`, як у знайомому `teach → teaches`. Це звичка: фразу можна сказати за сніданком. `flexible` — «гнучкий». `She is flexible` — «Вона гнучка»: тут риса, тому потрібно `is`.
+Після вечірньої пробіжки у вас заболіла нога, і ви йдете до лікаря. Він уважно оглядає її й питає, що саме болить. muscle — «м’яз». Про один предмет кажемо is: My muscle is sore — «Мій м’яз болить», слово sore означає «болить після навантаження».
 
-**Скажіть «Вона робить розтяжку вдома».**
+**Лікар питає, що у вас болить. Скажіть: «Мій м’яз болить».**
 
-- ✅ **She stretches at home.**
-- ❌ She stretch at home. — *Після `she` — `stretches`, з `es`.*
-- ❌ She is stretches at home. — *Кажемо `She stretches`, без `is`.*
+- ✅ **My muscle is sore.**
+- ❌ My muscle sore. — *Без is речення не виходить: потрібно My muscle is.*
+- ❌ My muscle are sore. — *М’яз один, тому потрібно is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Ключ-картка й провулок
+### Сестра за комп’ютером
 
-`keycard` — «ключ-картка», картка для відчинення дверей. `alley` — «провулок», зазвичай вузький прохід між будинками. `The alley is quiet` — «У провулку тихо». `Whose keycard is this?` — «Чия це ключ-картка?» `cook` — «готувати їжу»: `He cooks at home` — «Він готує вдома».
+Сестра цілий день сидить за комп’ютером, і надвечір у неї затекло плече. shoulder — «плече». Щовечора вона розтягує його вдома, поки готується вечеря. Про неї після she до stretch додаємо es: She stretches her shoulder — «Вона розтягує плече».
 
-**Скажіть «Він готує вдома».**
+**Подруга питає, що робить ваша сестра ввечері. Скажіть: «Вона розтягує плече».**
 
-- ✅ **He cooks at home.**
-- ❌ He cook at home. — *Після `he` — `cooks`, з `s`.*
-- ❌ He is cooks at home. — *Кажемо `He cooks`, без `is`.*
+- ✅ **She stretches her shoulder.**
+- ❌ She stretch her shoulder. — *Після she потрібно stretches, з es.*
+- ❌ She stretchs her shoulder. — *Пишемо stretches, з es.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про звичку: «Я роблю розтяжку вдома»**
+**1 · Картка слова — stretch**
+<!-- interaction_id: en:lesson-06:session-28:word:stretch; family: word_card -->
+> **stretch** — робити розтяжку. They stretch at home. — «Вони роблять розтяжку вдома». Про звичку витягувати й розминати тіло.
+
+**2 · Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»**
 <!-- interaction_id: en:lesson-06:session-28:i01; family: phrase_builder -->
-Плитки: `home` `at` `stretch` `I` → **I stretch at home.**
+Плитки: `home` `at` `stretch` `We` `stretches` → **We stretch at home.**
+*(плитка `stretches` зайва: тут потрібно `stretch` — `We stretch at home.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-28:i02; family: listen_choose -->
-🔊 *stretch* → **stretch** · read · cook
-- read — *У записі перше слово — `stretch`, а в цьому варіанті — `read`.*
-- cook — *У записі перше слово — `stretch`, а в цьому варіанті — `cook`.*
+🔊 *He stretches at home.* → **He stretches at home.** · He stretches at work. · She stretches at home.
+- He stretches at work. — *У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі.*
+- She stretches at home. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**3 · Скажіть «Вона робить розтяжку вдома»**
+**4 · Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-28:i03; family: context_gap_grammar -->
-She ___ at home. → **stretches** · stretch · is stretches
-- stretch — *Після `she` — `stretches`.*
-- is stretches — *Кажемо `She stretches`, без `is`.*
+My brother ___ at home. → **stretches** · stretch · is stretches
+- stretch — *Брат — це `he`, тому потрібно `stretches`, з `es`.*
+- is stretches — *Кажемо `My brother stretches`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-28:i04; family: speed_match -->
-stretch — робити розтяжку · flexible — гнучкий · alley — провулок · keycard — ключ-картка
+stretch — робити розтяжку · muscle — м’яз · shoulder — плече · ankle — щиколотка
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — muscle**
+<!-- interaction_id: en:lesson-06:session-28:word:muscle; family: word_card -->
+> **muscle** — м’яз. His muscle is sore. — «Його м’яз болить». Про частину тіла, яка рухає руки й ноги.
+
+**7 · Послухайте лікаря й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-28:i05; family: listen_build_dictation -->
-🔊 *Anna stretches here.* Плитки: `here` `stretches` `Anna` → **Anna stretches here.**
+🔊 *His muscle is sore.* Плитки: `muscle` `sore` `is` `His` `are` → **His muscle is sore.**
+*(плитка `are` зайва: тут потрібно `is` — `His muscle is sore.`)*
 
-**6 · Скажіть «Він готує вдома»**
+**8 · Картка слова — shoulder**
+<!-- interaction_id: en:lesson-06:session-28:word:shoulder; family: word_card -->
+> **shoulder** — плече. My shoulder is sore. — «Моє плече болить». Про частину тіла між шиєю й рукою.
+
+**9 · Лікар питає, що болить. Скажіть: «Моє плече болить»**
 <!-- interaction_id: en:lesson-06:session-28:i06; family: phrase_builder -->
-Плитки: `home` `at` `cooks` `He` → **He cooks at home.**
+Плитки: `shoulder` `sore` `is` `My` `are` → **My shoulder is sore.**
+*(плитка `are` зайва: тут потрібно `is` — `My shoulder is sore.`)*
 
-**7 · Анна легко виконує вправи на гнучкість. Скажіть «Вона гнучка»**
+**10 · Подруга питає про брата. Скажіть: «Він робить розтяжку вдома»**
 <!-- interaction_id: en:lesson-06:session-28:i07; family: scripted_repeat_compare -->
-🎙 **She is flexible.**
+🎙 **He stretches at home.**
 
-**8 · Скажіть «Вони роблять розтяжку тут»**
+**11 · Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-28:i08; family: context_gap_grammar -->
-They ___ here. → **stretch** · stretches · are stretch
-- stretches — *Після `they` — `stretch`, без закінчення.*
-- are stretch — *Кажемо `They stretch`, без `are`.*
+I ___ at home. → **stretch** · stretches · am stretch
+- stretches — *Після `I` потрібно `stretch`, без закінчення.*
+- am stretch — *Кажемо `I stretch`, без `am`.*
 
-**9 · Послухайте, чия ключ-картка тут**
+**12 · Картка слова — ankle**
+<!-- interaction_id: en:lesson-06:session-28:word:ankle; family: word_card -->
+> **ankle** — щиколотка. The sock is on my ankle. — «Шкарпетка на моїй щиколотці». Про місце, де нога з’єднується зі ступнею.
+
+**13 · Послухайте лікаря**
 <!-- interaction_id: en:lesson-06:session-28:i09; family: listen_choose -->
-🔊 *My keycard is here.* → **My keycard is here.** · Your keycard is here. · His keycard is here.
-- Your keycard is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His keycard is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *My ankle is sore.* → **My ankle is sore.** · My shoulder is sore. · My muscle is sore.
+- My shoulder is sore. — *У записі йдеться про `ankle`, щиколотку, а в цьому варіанті — про `shoulder`, плече.*
+- My muscle is sore. — *У записі йдеться про `ankle`, щиколотку, а в цьому варіанті — про `muscle`, м’яз.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-28:i10; family: speed_match -->
-stretch — робити розтяжку · cook — готувати їжу · keycard — ключ-картка · flexible — гнучкий
+ankle — щиколотка · muscle — м’яз · stretch — робити розтяжку · shoulder — плече
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-28:i11; family: listen_build_dictation -->
-🔊 *The alley is quiet.* Плитки: `quiet` `is` `alley` `The` `are` → **The alley is quiet.**
-*(плитка `are` зайва: тут потрібно `is` — `The alley is quiet.`)*
+🔊 *He stretches his shoulder.* Плитки: `stretches` `his` `shoulder` `He` `stretch` → **He stretches his shoulder.**
+*(плитка `stretch` зайва: тут потрібно `stretches` — `He stretches his shoulder.`)*
 
-**12 · Запитайте «Чия це ключ-картка?»**
+**16 · Лікар показує на ногу. Скажіть: «Шкарпетка на моїй щиколотці»**
 <!-- interaction_id: en:lesson-06:session-28:i12; family: phrase_builder -->
-Плитки: `this` `is` `keycard` `Whose` → **Whose keycard is this?**
+Плитки: `ankle` `sock` `on` `my` `The` `is` `are` → **The sock is on my ankle.**
+*(плитка `are` зайва: тут потрібно `is` — `The sock is on my ankle.`)*
 
-**13 · Скажіть «Вони готують удома»**
+**17 · Лікар питає, що з вами. Скажіть: «Мій м’яз болить»**
 <!-- interaction_id: en:lesson-06:session-28:i13; family: scripted_repeat_compare -->
-🎙 **They cook at home.**
+🎙 **My muscle is sore.**
 
-**14 · Скажіть «Том готує тут»**
+**18 · Скажіть лікареві: «Моя щиколотка болить». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-28:i14; family: context_gap_grammar -->
-Tom ___ here. → **cooks** · cook · is cooks
-- cook — *Том — він: `Tom cooks`, з `s`.*
-- is cooks — *Кажемо `Tom cooks`, без `is`.*
+My ankle ___ sore. → **is** · are · stretches
+- are — *Щиколотка одна, тому потрібно `is`, а не `are`.*
+- stretches — *`stretches` означає «розтягує», а тут треба сказати, що болить: `is sore`.*
 
-**15 · Послухайте, що Том каже про провулок**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-28:i15; family: listen_choose -->
-🔊 *The alley is narrow.* → **The alley is narrow.** · The alley is wide. · The alley is dark.
-- The alley is wide. — *У записі останнє слово — `narrow`, а в цьому варіанті — `wide`.*
-- The alley is dark. — *У записі останнє слово — `narrow`, а в цьому варіанті — `dark`.*
+🔊 *They stretch at home.* → **They stretch at home.** · They stretch at work. · We stretch at home.
+- They stretch at work. — *У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі.*
+- We stretch at home. — *У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-28:i16; family: speed_match -->
-stretch — робити розтяжку · alley — провулок · flexible — гнучкий · cook — готувати їжу
+shoulder — плече · stretch — робити розтяжку · ankle — щиколотка · muscle — м’яз
 
-**17 · За сніданком розкажіть другові про звичку Анни: «Вона робить розтяжку вдома»**
+**21 · Подруга питає про вашу сестру. Скажіть: «Вона розтягує плече»**
 <!-- interaction_id: en:lesson-06:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She stretches at home.**
-
+🎙 **She stretches her shoulder.**

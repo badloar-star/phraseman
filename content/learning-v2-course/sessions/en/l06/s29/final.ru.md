@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 29 — Звонок с остановки
+# Английский · Урок 6 · Занятие 29 — Звонок родным
 
-**Ситуация.** Анна и Том ждут автобус. Рядом с Томом стоит скейтборд. Анна рассказывает, как поддерживает связь с мамой, когда та в отъезде.
+**Ситуация.** Вечером вы звоните родным и разбираетесь, чей это номер и откуда пришло сообщение. После call сразу называем человека, без to. После she и he добавляем s.
 
-**Что вы освоите:** рассказать о привычке звонить близким и о человеке в отъезде
-**Новые слова:** call
+**Что вы освоите:** рассказать, кому вы звоните, и спросить, чей номер или сообщение
+**Новые слова:** call, number, message, signal
+**Возвращаются:** brother, sister, grandmother, uncle, weak, strong, new
 
 ---
 
 ## Интро 1
 
-### Звонить кому-то
+### Позвонить брату
 
-`call` — «звонить» по телефону. `I call my mother` — «Я звоню маме». После `call` сразу называем человека: `my mother`, без `to`. Телефон соединяет вас с мамой, а лишнее `to` ему не помогает. `She calls her mother` — «Она звонит своей маме»: после `she` добавляем `s`.
+Ваш брат живёт в другом городе, а вечером вы хотите узнать, как у него дела. Вы берёте телефон и набираете его номер: брат ждёт звонка и всегда рад вас слышать. call — «звонить». После call сразу называем человека: I call my brother — «Я звоню брату», без to.
 
-**Скажите «Я звоню маме».**
+**Подруга спрашивает, что вы делаете вечером. Скажите: «Я звоню брату».**
 
-- ✅ **I call my mother.**
-- ❌ I call to my mother. — *Для телефонного звонка: `call my mother`, без `to`.*
-- ❌ I calls my mother. — *После `I` — `call`, без `s`.*
+- ✅ **I call my brother.**
+- ❌ I call to my brother. — *Для звонка: call my brother, без to.*
+- ❌ I calls my brother. — *После I слово остаётся call, без s.*
 
 ---
 
 ## Интро 2
 
-### Мама в отъезде
+### Чей номер
 
-`away` — «не здесь», в отъезде или вне привычного места. `My mother is away` — «Моя мама в отъезде». Это не обязательно «далеко»: важно, что её сейчас нет здесь. `She calls her mother` описывает привычку Анны поддерживать связь; фраза не утверждает, что звонок идёт прямо сейчас. `write` — «писать»: `He writes at home` — «Он пишет дома».
+Подруга не может дозвониться до вашей сестры. Вы находите на столе бумажку с цифрами, но не знаете, чья она и откуда взялась. number — «номер», например, телефона. Чтобы спросить о владельце, говорим Whose: Whose number is this? — «Чей это номер?»
 
-**Скажите «Моя мама в отъезде».**
+**Вы показываете подруге бумажку на столе. Спросите: «Чей это номер?»**
 
-- ✅ **My mother is away.**
-- ❌ My mother are away. — *О маме: `is`, не `are`.*
-- ❌ My mother away. — *Нужно `My mother is away`.*
+- ✅ **Whose number is this?**
+- ❌ Who number is this? — *О владельце спрашиваем Whose — «чей».*
+- ❌ Whose number are this? — *Номер один: нужно is this.*
 
 ---
 
 ## Интро 3
 
-### На остановке
+### Сестра и бабушка
 
-`bus stop` — «автобусная остановка», `skateboard` — «скейтборд». `We are at the bus stop` — «Мы на автобусной остановке». `Whose skateboard is this?` — «Чей это скейтборд?» `They write here` — «Они пишут здесь»: после `they` используем `write` без `s`.
+Сестра живёт далеко от бабушки. Днём ей некогда, поэтому утром она отправляет бабушке сообщение, а вечером звонит, чтобы узнать, как здоровье. message — «сообщение». Про сестру после she к call добавляем s: She calls her grandmother — «Она звонит своей бабушке», без to.
 
-**Скажите «Мы на автобусной остановке».**
+**Подруга спрашивает, что сестра делает вечером. Скажите: «Она звонит своей бабушке».**
 
-- ✅ **We are at the bus stop.**
-- ❌ We is at the bus stop. — *С `we` — `are`.*
-- ❌ We at the bus stop. — *Нужно `We are at the bus stop`.*
+- ✅ **She calls her grandmother.**
+- ❌ She call her grandmother. — *После she нужно calls, с s.*
+- ❌ She calls to her grandmother. — *Для звонка: calls her grandmother, без to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычке: «Я звоню маме»**
+**1 · Карточка слова — call**
+<!-- interaction_id: en:lesson-06:session-29:word:call; family: word_card -->
+> **call** — звонить. We call our brother. — «Мы звоним нашему брату». О телефонном звонке: после call сразу человек.
+
+**2 · Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»**
 <!-- interaction_id: en:lesson-06:session-29:i01; family: phrase_builder -->
-Плитки: `mother` `my` `call` `I` → **I call my mother.**
+Плитки: `our` `brother` `call` `We` `calls` → **We call our brother.**
+*(плитка `calls` лишняя: здесь нужно `call` — `We call our brother.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-29:i02; family: listen_choose -->
-🔊 *call* → **call** · read · cook
-- read — *В записи первое слово — `call`, а в этом варианте — `read`.*
-- cook — *В записи первое слово — `call`, а в этом варианте — `cook`.*
+🔊 *She calls her brother.* → **She calls her brother.** · She calls her sister. · He calls his brother.
+- She calls her sister. — *В записи последнее слово — `brother`, брат, а в этом варианте — `sister`, сестра.*
+- He calls his brother. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите «Она звонит своей маме»**
+**4 · Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-29:i03; family: context_gap_grammar -->
-She ___ her mother. → **calls** · call · is calls
-- call — *После `she` — `calls`, с `s`.*
-- is calls — *Говорим `She calls`, без `is`.*
+My sister ___ her grandmother. → **calls** · call · calls to
+- call — *Сестра — это `she`, поэтому нужно `calls`, с `s`.*
+- calls to — *После `calls` сразу называем человека, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-29:i04; family: speed_match -->
-call — звонить по телефону · away — не здесь, в отъезде · bus stop — автобусная остановка · skateboard — скейтборд
+call — звонить · number — номер · message — сообщение · signal — сигнал, связь
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — number**
+<!-- interaction_id: en:lesson-06:session-29:word:number; family: word_card -->
+> **number** — номер. This is my number. — «Это мой номер». О номере телефона или другом номере.
+
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-29:i05; family: listen_build_dictation -->
-🔊 *Anna calls her mother.* Плитки: `mother` `her` `calls` `Anna` → **Anna calls her mother.**
+🔊 *This is my number.* Плитки: `number` `my` `This` `is` `are` → **This is my number.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is my number.`)*
 
-**6 · Скажите «Он пишет дома»**
+**8 · Карточка слова — message**
+<!-- interaction_id: en:lesson-06:session-29:word:message; family: word_card -->
+> **message** — сообщение. The message is new. — «Сообщение новое». О коротком тексте, который отправляют человеку.
+
+**9 · Подруга показывает на экран телефона. Скажите: «Сообщение новое»**
 <!-- interaction_id: en:lesson-06:session-29:i06; family: phrase_builder -->
-Плитки: `home` `at` `writes` `He` → **He writes at home.**
+Плитки: `message` `new` `is` `The` `are` → **The message is new.**
+*(плитка `are` лишняя: здесь нужно `is` — `The message is new.`)*
 
-**7 · Скажите «Моя мама в отъезде»**
+**10 · Подруга спрашивает, кому вы звоните по вечерам. Скажите: «Я звоню сестре»**
 <!-- interaction_id: en:lesson-06:session-29:i07; family: scripted_repeat_compare -->
-🎙 **My mother is away.**
+🎙 **I call my sister.**
 
-**8 · Выберите фразу «Я звоню маме»**
+**11 · Скажите о себе: «Я звоню брату». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-29:i08; family: context_gap_grammar -->
-I ___ my mother. → **call** · call to · calls
-- call to — *Звонить кому-то: `call my mother`, без `to`.*
-- calls — *После `I` — `call`, без `s`.*
+I ___ my brother. → **call** · calls · call to
+- calls — *После `I` нужно `call`, без `s`.*
+- call to — *После `call` сразу называем человека, без `to`.*
 
-**9 · Послушайте, чей скейтборд здесь**
+**12 · Карточка слова — signal**
+<!-- interaction_id: en:lesson-06:session-29:word:signal; family: word_card -->
+> **signal** — сигнал, связь. The signal is weak. — «Сигнал слабый». О связи телефона или радио.
+
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-29:i09; family: listen_choose -->
-🔊 *My skateboard is here.* → **My skateboard is here.** · Your skateboard is here. · His skateboard is here.
-- Your skateboard is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His skateboard is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The signal is weak.* → **The signal is weak.** · The signal is strong. · The message is weak.
+- The signal is strong. — *В записи последнее слово — `weak`, слабый, а в этом варианте — `strong`, сильный.*
+- The message is weak. — *В записи речь о `signal`, сигнале, а в этом варианте — о `message`, сообщении.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-29:i10; family: speed_match -->
-call — звонить по телефону · write — писать · skateboard — скейтборд · away — не здесь, в отъезде
+signal — сигнал, связь · message — сообщение · call — звонить · number — номер
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-29:i11; family: listen_build_dictation -->
-🔊 *We are at the bus stop.* Плитки: `stop` `bus` `the` `at` `are` `We` `is` → **We are at the bus stop.**
-*(плитка `is` лишняя: здесь нужно `are` — `We are at the bus stop.`)*
+🔊 *They call their grandmother.* Плитки: `call` `their` `grandmother` `They` `calls` → **They call their grandmother.**
+*(плитка `calls` лишняя: здесь нужно `call` — `They call their grandmother.`)*
 
-**12 · Спросите «Чей это скейтборд?»**
+**16 · Подруга показывает на сообщение. Спросите: «Чьё это сообщение?»**
 <!-- interaction_id: en:lesson-06:session-29:i12; family: phrase_builder -->
-Плитки: `this` `is` `skateboard` `Whose` → **Whose skateboard is this?**
+Плитки: `message` `is` `this` `Whose` `Who` → **Whose message is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose message is this?`)*
 
-**13 · Скажите «Они пишут здесь»**
+**17 · Подруга спрашивает, почему вас плохо слышно. Скажите: «Сигнал слабый»**
 <!-- interaction_id: en:lesson-06:session-29:i13; family: scripted_repeat_compare -->
-🎙 **They write here.**
+🎙 **The signal is weak.**
 
-**14 · Скажите «Том пишет дома»**
+**18 · Скажите о новом номере: «Номер новый». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-29:i14; family: context_gap_grammar -->
-Tom ___ at home. → **writes** · write · is writes
-- write — *Том — он: `Tom writes`, с `s`.*
-- is writes — *Говорим `Tom writes`, без `is`.*
+The number ___ new. → **is** · are · calls
+- are — *Номер один, поэтому нужно `is`, а не `are`.*
+- calls — *`calls` значит «звонит», а здесь нужно сказать, какой номер: `is new`.*
 
-**15 · Послушайте, где автобусная остановка**
+**19 · Послушайте сестру**
 <!-- interaction_id: en:lesson-06:session-29:i15; family: listen_choose -->
-🔊 *The bus stop is here.* → **The bus stop is here.** · The bus stop is there. · The bus stop is nearby.
-- The bus stop is there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The bus stop is nearby. — *В записи последнее слово — `here`, а в этом варианте — `nearby`.*
+🔊 *I call my sister.* → **I call my sister.** · I call my uncle. · We call our sister.
+- I call my uncle. — *В записи последнее слово — `sister`, сестра, а в этом варианте — `uncle`, дядя.*
+- We call our sister. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-29:i16; family: speed_match -->
-call — звонить по телефону · bus stop — автобусная остановка · away — не здесь, в отъезде · write — писать
+message — сообщение · signal — сигнал, связь · number — номер · call — звонить
 
-**17 · Расскажите другу, как Анна поддерживает связь с мамой: «Она звонит своей маме»**
+**21 · Подруга спрашивает о вашей сестре. Скажите: «Она звонит своей бабушке»**
 <!-- interaction_id: en:lesson-06:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She calls her mother.**
-
+🎙 **She calls her grandmother.**

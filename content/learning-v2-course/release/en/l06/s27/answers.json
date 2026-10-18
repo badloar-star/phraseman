@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-27:word:exercise",
+    "correctText": "exercise",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-27:i01",
-    "correctText": "I exercise at home.",
+    "correctText": "We exercise at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i02",
-    "correctText": "exercise",
+    "correctText": "She exercises at home.",
     "correctResponseId": "en:lesson-06:session-27:i02:r1"
   },
   {
@@ -16,67 +21,82 @@
   },
   {
     "interactionId": "en:lesson-06:session-27:i04",
-    "correctText": "en:lesson-06:session-27:i04:p1=exercise\nen:lesson-06:session-27:i04:p2=generous\nen:lesson-06:session-27:i04:p3=awning\nen:lesson-06:session-27:i04:p4=passport",
+    "correctText": "en:lesson-06:session-27:i04:p1=exercise\nen:lesson-06:session-27:i04:p2=yoga\nen:lesson-06:session-27:i04:p3=rope\nen:lesson-06:session-27:i04:p4=beginner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:word:beginner",
+    "correctText": "beginner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i05",
-    "correctText": "Anna exercises here.",
+    "correctText": "You are a beginner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:word:rope",
+    "correctText": "rope",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i06",
-    "correctText": "He draws here.",
+    "correctText": "Whose rope is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i07",
-    "correctText": "He is generous.",
+    "correctText": "We exercise on the mat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:word:yoga",
+    "correctText": "yoga",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i08",
-    "correctText": "exercise",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-27:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-27:i09",
-    "correctText": "My passport is here.",
+    "correctText": "She is a beginner.",
     "correctResponseId": "en:lesson-06:session-27:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-27:i10",
-    "correctText": "en:lesson-06:session-27:i10:p1=exercise\nen:lesson-06:session-27:i10:p2=draw\nen:lesson-06:session-27:i10:p3=passport\nen:lesson-06:session-27:i10:p4=generous",
+    "correctText": "en:lesson-06:session-27:i10:p1=rope\nen:lesson-06:session-27:i10:p2=beginner\nen:lesson-06:session-27:i10:p3=yoga\nen:lesson-06:session-27:i10:p4=exercise",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i11",
-    "correctText": "We are under the awning.",
+    "correctText": "They exercise on the mat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i12",
-    "correctText": "Whose passport is this?",
+    "correctText": "Yoga is my hobby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i13",
-    "correctText": "They draw here.",
+    "correctText": "I am a beginner.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-27:i14",
-    "correctText": "draws",
+    "correctText": "exercise",
     "correctResponseId": "en:lesson-06:session-27:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-27:i15",
-    "correctText": "The awning is blue.",
+    "correctText": "The rope is on the mat.",
     "correctResponseId": "en:lesson-06:session-27:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-27:i16",
-    "correctText": "en:lesson-06:session-27:i16:p1=exercise\nen:lesson-06:session-27:i16:p2=awning\nen:lesson-06:session-27:i16:p3=generous\nen:lesson-06:session-27:i16:p4=draw",
+    "correctText": "en:lesson-06:session-27:i16:p1=beginner\nen:lesson-06:session-27:i16:p2=exercise\nen:lesson-06:session-27:i16:p3=rope\nen:lesson-06:session-27:i16:p4=yoga",
     "correctResponseId": null
   },
   {

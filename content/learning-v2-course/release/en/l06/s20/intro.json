@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-20",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, кто готовит еду и рисует красками",
-    "uk": "розповісти, хто готує їжу й малює фарбами"
+    "ru": "рассказать, что делает один человек (She cooks, He tastes), и описать блюдо через is",
+    "uk": "розповісти, що робить одна людина (She cooks, He tastes), і описати страву через is"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Готовить еду",
-        "uk": "Готувати їжу"
+        "ru": "Обед для гостя",
+        "uk": "Обід для гостя"
       },
       "bodyByLocale": {
-        "ru": "`cook` — «готовить еду», обычно с нагреванием. `I cook at home` — «Я готовлю дома». `She cooks at home` — «Она готовит дома». После `she` добавляем `s`: `cooks`. Просто открыть пакет печенья — ещё не `cook`, даже если выложить печенье на красивую тарелку.",
-        "uk": "`cook` — «готувати їжу», зазвичай із нагріванням. `I cook at home` — «Я готую вдома». `She cooks at home` — «Вона готує вдома». Після `she` додаємо `s`: `cooks`. Просто відкрити пакет печива — ще не `cook`, навіть якщо викласти печиво на гарну тарілку."
+        "ru": "Гость пришёл к вам на обед в воскресенье и спрашивает, кто в доме готовит. Это бабушка: она любит возиться на кухне и всегда накрывает стол на всех. cook — «готовить еду». Про бабушку говорим she и добавляем s: She cooks at home — «Она готовит дома».",
+        "uk": "Гість прийшов до вас на обід у неділю й питає, хто вдома готує. Це бабуся: вона любить поратися на кухні й завжди накриває стіл на всіх. cook — «готувати їжу». Про бабусю кажемо she і додаємо s: She cooks at home — «Вона готує вдома»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-20:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она готовит дома».",
-          "uk": "Скажіть «Вона готує вдома»."
+          "ru": "Гость спрашивает, кто готовит в вашем доме. Скажите про бабушку: «Она готовит дома».",
+          "uk": "Гість питає, хто готує у вашому домі. Скажіть про бабусю: «Вона готує вдома»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она готовит дома».",
-          "uk": "Скажіть «Вона готує вдома»."
+          "ru": "Гость спрашивает, кто готовит в вашем доме. Скажите про бабушку: «Она готовит дома».",
+          "uk": "Гість питає, хто готує у вашому домі. Скажіть про бабусю: «Вона готує вдома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Картины и обед",
-        "uk": "Картини й обід"
+        "ru": "У кастрюли",
+        "uk": "Біля каструлі"
       },
       "bodyByLocale": {
-        "ru": "`paint` — «рисовать красками». `He paints at home` — «Он рисует красками дома». `They paint here` — «Они рисуют красками здесь»: после `they` окончания `s` нет. `mushroom` — «гриб». `The mushroom is in the soup` — «Гриб в супе». `yes` — «да», ответ согласия или подтверждения.",
-        "uk": "`paint` — «малювати фарбами». `He paints at home` — «Він малює фарбами вдома». `They paint here` — «Вони малюють фарбами тут»: після `they` закінчення `s` немає. `mushroom` — «гриб». `The mushroom is in the soup` — «Гриб у супі». `yes` — «так», відповідь згоди або підтвердження."
+        "ru": "Бабушка варит суп в большой кастрюле. Дедушка подходит, берёт ложку и пробует, достаточно ли соли. Гость сидит рядом и спрашивает, что он делает. taste — «пробовать на вкус». Про дедушку говорим he и добавляем s: He tastes the soup — «Он пробует суп».",
+        "uk": "Бабуся варить суп у великій каструлі. Дідусь підходить, бере ложку й куштує, чи досить солі. Гість сидить поруч і питає, що він робить. taste — «куштувати». Про дідуся кажемо he і додаємо s: He tastes the soup — «Він куштує суп»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-20:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Он рисует красками дома».",
-          "uk": "Скажіть «Він малює фарбами вдома»."
+          "ru": "Гость спрашивает, что делает дедушка у кастрюли. Скажите: «Он пробует суп».",
+          "uk": "Гість питає, що робить дідусь біля каструлі. Скажіть: «Він куштує суп»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-20:intro2:r1",
-              "text": "He paints at home."
+              "text": "He tastes the soup."
             },
             {
               "responseId": "en:lesson-06:session-20:intro2:r2",
-              "text": "He paint at home."
+              "text": "He taste the soup."
             },
             {
               "responseId": "en:lesson-06:session-20:intro2:r3",
-              "text": "He is paints at home."
+              "text": "He is tastes the soup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-20:intro2:r1",
-              "text": "He paints at home."
+              "text": "He tastes the soup."
             },
             {
               "responseId": "en:lesson-06:session-20:intro2:r2",
-              "text": "He paint at home."
+              "text": "He taste the soup."
             },
             {
               "responseId": "en:lesson-06:session-20:intro2:r3",
-              "text": "He is paints at home."
+              "text": "He is tastes the soup."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он рисует красками дома».",
-          "uk": "Скажіть «Він малює фарбами вдома»."
+          "ru": "Гость спрашивает, что делает дедушка у кастрюли. Скажите: «Он пробует суп».",
+          "uk": "Гість питає, що робить дідусь біля каструлі. Скажіть: «Він куштує суп»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Том не виноват",
-        "uk": "Том не винний"
+        "ru": "Просьба о рецепте",
+        "uk": "Прохання про рецепт"
       },
       "bodyByLocale": {
-        "ru": "`scarf` — «шарф». `innocent` — «невиновный»: человек не совершил того, в чём его обвиняют. `He is innocent` — «Он невиновен»: Том не испортил шарф. Здесь состояние, поэтому нужно `is`. `Whose scarf is this?` — «Чей это шарф?»",
-        "uk": "`scarf` — «шарф». `innocent` — «невинний»: людина не зробила того, у чому її звинувачують. `He is innocent` — «Він невинний»: Том не зіпсував шарф. Тут стан, тому потрібно `is`. `Whose scarf is this?` — «Чий це шарф?»"
+        "ru": "Гостю очень понравился суп, и он просит рассказать, как его варить дома. Бабушка достаёт старую тетрадь с рецептами, где всё записано просто и понятно. recipe — «рецепт». Когда говорим, какой он, нужен is: The recipe is simple — «Рецепт простой».",
+        "uk": "Гостеві дуже сподобався суп, і він просить розповісти, як його варити вдома. Бабуся дістає старий зошит із рецептами, де все записано просто й зрозуміло. recipe — «рецепт». Коли кажемо, який він, потрібен is: The recipe is simple — «Рецепт простий»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-20:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Он невиновен».",
-          "uk": "Скажіть «Він невинний»."
+          "ru": "Гость спрашивает, трудно ли готовить этот суп. Скажите: «Рецепт простой».",
+          "uk": "Гість питає, чи важко готувати цей суп. Скажіть: «Рецепт простий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-20:intro3:r1",
-              "text": "He is innocent."
+              "text": "The recipe is simple."
             },
             {
               "responseId": "en:lesson-06:session-20:intro3:r2",
-              "text": "He innocent."
+              "text": "The recipe simple."
             },
             {
               "responseId": "en:lesson-06:session-20:intro3:r3",
-              "text": "He are innocent."
+              "text": "The recipe are simple."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-20:intro3:r1",
-              "text": "He is innocent."
+              "text": "The recipe is simple."
             },
             {
               "responseId": "en:lesson-06:session-20:intro3:r2",
-              "text": "He innocent."
+              "text": "The recipe simple."
             },
             {
               "responseId": "en:lesson-06:session-20:intro3:r3",
-              "text": "He are innocent."
+              "text": "The recipe are simple."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он невиновен».",
-          "uk": "Скажіть «Він невинний»."
+          "ru": "Гость спрашивает, трудно ли готовить этот суп. Скажите: «Рецепт простой».",
+          "uk": "Гість питає, чи важко готувати цей суп. Скажіть: «Рецепт простий»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4459e1d5ce107416c65a4e82571804bcb088c077060e5e1d11bedba6c59ec2a4"
+  "introFingerprint": "732c370377e0ec081028b869c3b1e6b3e49946b166fc3629cbb9bd170082d61d"
 }

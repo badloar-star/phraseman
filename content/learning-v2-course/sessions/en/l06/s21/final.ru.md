@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 21 — Записи у бассейна
+# Английский · Урок 6 · Занятие 21 — Кафе у бассейна
 
-**Ситуация.** Анна ждёт Тома в кафе при бассейне и делает записи в тетради. На столе стоит сок, а в сумке лежит ожерелье со сломанной застёжкой.
+**Ситуация.** Вы с подругой сидите в кафе у бассейна: сестра пишет в тетради, брат прыгает в воду, а у подруги сломалась застёжка на ожерелье. Про одного человека мы говорим he или she и добавляем s.
 
-**Что вы освоите:** рассказать, кто пишет и плавает, и назвать сломанную вещь
-**Новые слова:** write
+**Что вы освоите:** рассказать, что делает один человек (She writes, He jumps), и сказать, что с вещью, через is
+**Новые слова:** write, jump, clasp, page
+**Возвращаются:** swim, cook, pool, notebook, table, blank, full, torn, broken
 
 ---
 
 ## Интро 1
 
-### Писать
+### Тетрадь у бассейна
 
-`write` — «писать». `I write in my notebook` — «Я пишу в своей тетради». Первая буква `w` в `write` не произносится. Она как ручка, которую взяли на встречу, но так и не открыли: присутствует, а в работе не участвует. `She writes at home` — «Она пишет дома»: после `she` добавляем `s`.
+Вы с подругой сидите в кафе у бассейна. Ваша сестра склонилась над тетрадью: ручка в руке, она быстро записывает свои мысли. Подруга спрашивает, что делает сестра. write — «писать». Про сестру: She writes in her notebook — «Она пишет в своей тетради».
 
-**Скажите «Она пишет дома».**
+**Подруга спрашивает, что делает ваша сестра. Скажите: «Она пишет в своей тетради».**
 
-- ✅ **She writes at home.**
-- ❌ She write at home. — *После `she` — `writes`, с `s`.*
-- ❌ She is writes at home. — *Говорим `She writes`, без `is`.*
+- ✅ **She writes in her notebook.**
+- ❌ She write in her notebook. — *После she нужно writes, с s.*
+- ❌ She is writes in her notebook. — *Здесь действие: She writes, без is.*
 
 ---
 
 ## Интро 2
 
-### Плавание и записи
+### На бортике
 
-`swim` — «плавать». `He swims here` — «Он плавает здесь». `They swim here` — «Они плавают здесь»: после `they` окончания `s` нет. `Anna writes here` — «Анна пишет здесь»: здесь `Anna` соответствует `she`, поэтому `writes`.
+Ваш брат стоит на бортике бассейна, делает глубокий вдох и сильно отталкивается ногами. Спасатель на вышке видит его и спрашивает, что он делает. jump — «прыгать». Про брата говорим he и добавляем s: He jumps in the pool — «Он прыгает в бассейн».
 
-**Скажите «Он плавает здесь».**
+**Спасатель спрашивает, что делает ваш брат. Скажите: «Он прыгает в бассейн».**
 
-- ✅ **He swims here.**
-- ❌ He swim here. — *После `he` — `swims`, с `s`.*
-- ❌ He is swims here. — *Говорим `He swims`, без `is`.*
+- ✅ **He jumps in the pool.**
+- ❌ He jump in the pool. — *После he нужно jumps, с s.*
+- ❌ He is jumps in the pool. — *Здесь действие: He jumps, без is.*
 
 ---
 
 ## Интро 3
 
-### Сломанная застёжка
+### Ожерелье подруги
 
-`necklace` — «ожерелье», `broken` — «сломанный». `My necklace is broken` — «Моё ожерелье сломано», например не работает застёжка. Здесь состояние, поэтому нужно `is`. `juice` — «сок». `The juice is cold` — «Сок холодный». `no` — «нет»: отрицательный ответ, например на предложение ещё сока.
+Подруга хочет надеть своё новое ожерелье, но оно всё время соскальзывает с шеи. Она вертит его в руках и видит: маленький замочек не закрывается. clasp — «застёжка». Когда говорим, что с вещью, нужен is: The clasp is broken — «Застёжка сломана».
 
-**Скажите «Моё ожерелье сломано».**
+**Подруга спрашивает, что не так с ожерельем. Скажите: «Застёжка сломана».**
 
-- ✅ **My necklace is broken.**
-- ❌ My necklace are broken. — *Одно ожерелье: `is`.*
-- ❌ My necklace is new. — *`new` — новое; сломано — `broken`.*
+- ✅ **The clasp is broken.**
+- ❌ The clasp broken. — *Без is предложение не получается: нужно clasp is.*
+- ❌ The clasp are broken. — *Застёжка одна, поэтому is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я пишу в своей тетради»**
+**1 · Карточка слова — write**
+<!-- interaction_id: en:lesson-06:session-21:word:write; family: word_card -->
+> **write** — писать. My sister writes at the table. — «Моя сестра пишет за столом». Когда человек пишет ручкой.
+
+**2 · Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»**
 <!-- interaction_id: en:lesson-06:session-21:i01; family: phrase_builder -->
-Плитки: `notebook` `my` `in` `write` `I` → **I write in my notebook.**
+Плитки: `writes` `at` `the` `table` `He` `write` → **He writes at the table.**
+*(плитка `write` лишняя: здесь нужно `writes` — `He writes at the table.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — jump**
+<!-- interaction_id: en:lesson-06:session-21:word:jump; family: word_card -->
+> **jump** — прыгать. My brother jumps here. — «Мой брат прыгает здесь». Когда человек отрывается от земли или от бортика.
+
+**4 · Послушайте спасателя**
 <!-- interaction_id: en:lesson-06:session-21:i02; family: listen_choose -->
-🔊 *write* → **write** · draw · sing
-- draw — *В записи первое слово — `write`, а в этом варианте — `draw`.*
-- sing — *В записи первое слово — `write`, а в этом варианте — `sing`.*
+🔊 *He jumps in the pool.* → **He jumps in the pool.** · He swims in the pool. · They jump in the pool.
+- He swims in the pool. — *В записи действие — `jumps`, прыгает, а в этом варианте — `swims`, плавает.*
+- They jump in the pool. — *В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `jump`).*
 
-**3 · Скажите «Она пишет дома»**
+**5 · Карточка слова — clasp**
+<!-- interaction_id: en:lesson-06:session-21:word:clasp; family: word_card -->
+> **clasp** — застёжка. The clasp is on the necklace. — «Застёжка на ожерелье». О маленьком замочке на украшении или сумке.
+
+**6 · Подруга спрашивает, что не так с ожерельем. Скажите: «Застёжка сломана». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-21:i03; family: context_gap_grammar -->
-She ___ at home. → **writes** · write · is writes
+The clasp ___ broken. → **is** · are · writes
+- are — *Застёжка одна, поэтому нужно `is`, а не `are`.*
+- writes — *`writes` значит «пишет», а здесь нужно сказать, что с застёжкой: `is broken`.*
+
+**7 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-06:session-21:i04; family: speed_match -->
+write — писать · jump — прыгать · clasp — застёжка · page — страница
+
+**8 · Карточка слова — page**
+<!-- interaction_id: en:lesson-06:session-21:word:page; family: word_card -->
+> **page** — страница. The page is in the notebook. — «Страница в тетради». Об одном листе в тетради или книге.
+
+**9 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-06:session-21:i05; family: listen_build_dictation -->
+🔊 *The page is blank.* Плитки: `is` `blank` `page` `The` `are` → **The page is blank.**
+*(плитка `are` лишняя: здесь нужно `is` — `The page is blank.`)*
+
+**10 · Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»**
+<!-- interaction_id: en:lesson-06:session-21:i06; family: phrase_builder -->
+Плитки: `swims` `in` `the` `pool` `She` `swim` → **She swims in the pool.**
+*(плитка `swim` лишняя: здесь нужно `swims` — `She swims in the pool.`)*
+
+**11 · Подруга спрашивает, что не так с ожерельем. Скажите: «Застёжка сломана»**
+<!-- interaction_id: en:lesson-06:session-21:i07; family: scripted_repeat_compare -->
+🎙 **The clasp is broken.**
+
+**12 · Скажите о сестре: «Она пишет здесь». Выберите слово**
+<!-- interaction_id: en:lesson-06:session-21:i08; family: context_gap_grammar -->
+She ___ here. → **writes** · write · is writes
 - write — *После `she` — `writes`, с `s`.*
 - is writes — *Говорим `She writes`, без `is`.*
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-06:session-21:i04; family: speed_match -->
-write — писать · broken — сломанный · juice — сок · necklace — ожерелье
-
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-06:session-21:i05; family: listen_build_dictation -->
-🔊 *Anna writes here.* Плитки: `here` `writes` `Anna` → **Anna writes here.**
-
-**6 · Скажите «Он плавает здесь»**
-<!-- interaction_id: en:lesson-06:session-21:i06; family: phrase_builder -->
-Плитки: `here` `swims` `He` → **He swims here.**
-
-**7 · Застёжка ожерелья не работает. Скажите «Моё ожерелье сломано»**
-<!-- interaction_id: en:lesson-06:session-21:i07; family: scripted_repeat_compare -->
-🎙 **My necklace is broken.**
-
-**8 · Скажите «Они пишут здесь»**
-<!-- interaction_id: en:lesson-06:session-21:i08; family: context_gap_grammar -->
-They ___ here. → **write** · writes · are write
-- writes — *После `they` — `write`, без `s`.*
-- are write — *Говорим `They write`, без `are`.*
-
-**9 · Послушайте ответ Тома**
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-21:i09; family: listen_choose -->
-🔊 *No.* → **No.** · Yes. · Hello.
-- Yes. — *В записи первое слово — `No`, а в этом варианте — `Yes`.*
-- Hello. — *В записи первое слово — `No`, а в этом варианте — `Hello`.*
+🔊 *She writes at home.* → **She writes at home.** · She cooks at home. · He writes at home.
+- She cooks at home. — *В записи действие — `writes`, пишет, а в этом варианте — `cooks`, готовит еду.*
+- He writes at home. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-21:i10; family: speed_match -->
-write — писать · swim — плавать · no — нет · broken — сломанный
+page — страница · jump — прыгать · write — писать · swim — плавать
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-21:i11; family: listen_build_dictation -->
-🔊 *The juice is cold.* Плитки: `cold` `is` `juice` `The` `are` → **The juice is cold.**
-*(плитка `are` лишняя: здесь нужно `is` — `The juice is cold.`)*
+🔊 *My sister writes at the table.* Плитки: `writes` `at` `the` `table` `sister` `My` `write` → **My sister writes at the table.**
+*(плитка `write` лишняя: здесь нужно `writes` — `My sister writes at the table.`)*
 
-**12 · Спросите «Чьё это ожерелье?»**
+**16 · Вы нашли тетрадь на столе у бассейна. Спросите подругу: «Чья это тетрадь?»**
 <!-- interaction_id: en:lesson-06:session-21:i12; family: phrase_builder -->
-Плитки: `this` `is` `necklace` `Whose` → **Whose necklace is this?**
+Плитки: `notebook` `this` `is` `Whose` `Who` → **Whose notebook is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose notebook is this?`)*
 
-**13 · Скажите «Они плавают здесь»**
+**17 · Спасатель спрашивает, что делает ваш брат. Скажите: «Он прыгает в бассейн»**
 <!-- interaction_id: en:lesson-06:session-21:i13; family: scripted_repeat_compare -->
-🎙 **They swim here.**
+🎙 **He jumps in the pool.**
 
-**14 · Скажите «Том плавает здесь»**
+**18 · Скажите о брате: «Он прыгает в бассейн». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-21:i14; family: context_gap_grammar -->
-Tom ___ here. → **swims** · swim · is swims
-- swim — *Том — он: `Tom swims`, с `s`.*
-- is swims — *Говорим `Tom swims`, без `is`.*
+He ___ in the pool. → **jumps** · jump · is jumps
+- jump — *После `he` — `jumps`, с `s`.*
+- is jumps — *Говорим `He jumps`, без `is`.*
 
-**15 · Послушайте, чьё ожерелье здесь**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-21:i15; family: listen_choose -->
-🔊 *My necklace is here.* → **My necklace is here.** · Your necklace is here. · His necklace is here.
-- Your necklace is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His necklace is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The page is blank.* → **The page is blank.** · The page is full. · The page is torn.
+- The page is full. — *В записи последнее слово — `blank`, пустая, а в этом варианте — `full`, полная.*
+- The page is torn. — *В записи последнее слово — `blank`, пустая, а в этом варианте — `torn`, порванная.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-21:i16; family: speed_match -->
-write — писать · juice — сок · necklace — ожерелье · swim — плавать
+clasp — застёжка · page — страница · write — писать · jump — прыгать
 
-**17 · Расскажите другу об Анне: «Она пишет дома»**
+**21 · Подруга спрашивает, что делает ваша сестра с тетрадью. Скажите: «Она пишет в своей тетради»**
 <!-- interaction_id: en:lesson-06:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She writes at home.**
-
+🎙 **She writes in her notebook.**

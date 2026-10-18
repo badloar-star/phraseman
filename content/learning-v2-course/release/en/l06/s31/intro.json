@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-31",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о привычке принимать душ и повторить формы showers и teaches",
-    "uk": "розповісти про звичку приймати душ і повторити форми showers та teaches"
+    "ru": "рассказать, кто принимает душ и что где лежит в ванной",
+    "uk": "розповісти, хто приймає душ і що де лежить у ванній"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Утро начинается с душа",
-        "uk": "Ранок починається з душу"
+        "ru": "После тренировки",
+        "uk": "Після тренування"
       },
       "bodyByLocale": {
-        "ru": "`shower` — «принимать душ». `I shower at home` — «Я принимаю душ дома». В этой фразе `shower` уже называет действие: добавлять `am` не нужно. `He showers at home` — «Он принимает душ дома»: после `he` добавляем `s`.",
-        "uk": "`shower` — «приймати душ». `I shower at home` — «Я приймаю душ удома». У цій фразі `shower` уже називає дію: додавати `am` не потрібно. `He showers at home` — «Він приймає душ удома»: після `he` додаємо `s`."
+        "ru": "После тренировки в спортзале администратор показывает раздевалку с душем и предлагает им воспользоваться. Но вы привыкли дома. shower — «принимать душ». Про себя говорим I shower at home — «Я принимаю душ дома». После I слово остаётся shower, без s.",
+        "uk": "Після тренування в спортзалі адміністратор показує роздягальню з душем і пропонує ним скористатися. Але ви звикли вдома. shower — «приймати душ». Про себе кажемо I shower at home — «Я приймаю душ удома». Після I слово лишається shower, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-31:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Он принимает душ дома».",
-          "uk": "Скажіть «Він приймає душ удома»."
+          "ru": "Администратор предлагает принять душ в зале. Скажите: «Я принимаю душ дома».",
+          "uk": "Адміністратор пропонує прийняти душ у залі. Скажіть: «Я приймаю душ удома»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-31:intro1:r1",
-              "text": "He showers at home."
+              "text": "I shower at home."
             },
             {
               "responseId": "en:lesson-06:session-31:intro1:r2",
-              "text": "He shower at home."
+              "text": "I showers at home."
             },
             {
               "responseId": "en:lesson-06:session-31:intro1:r3",
-              "text": "He is showers at home."
+              "text": "I am shower at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-31:intro1:r1",
-              "text": "He showers at home."
+              "text": "I shower at home."
             },
             {
               "responseId": "en:lesson-06:session-31:intro1:r2",
-              "text": "He shower at home."
+              "text": "I showers at home."
             },
             {
               "responseId": "en:lesson-06:session-31:intro1:r3",
-              "text": "He is showers at home."
+              "text": "I am shower at home."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он принимает душ дома».",
-          "uk": "Скажіть «Він приймає душ удома»."
+          "ru": "Администратор предлагает принять душ в зале. Скажите: «Я принимаю душ дома».",
+          "uk": "Адміністратор пропонує прийняти душ у залі. Скажіть: «Я приймаю душ удома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто здесь преподаёт",
-        "uk": "Хто тут викладає"
+        "ru": "Гость просит пасту",
+        "uk": "Гість просить пасту"
       },
       "bodyByLocale": {
-        "ru": "`teach` — «преподавать». `I teach here` — «Я преподаю здесь». `She teaches here` — «Она преподаёт здесь»: после `she` у `teach` появляется `es`, а не только `s`. Такие фразы рассказывают об обычных делах. Учитель не обязан вести урок прямо сейчас — ему тоже можно выйти на обед.",
-        "uk": "`teach` — «викладати». `I teach here` — «Я викладаю тут». `She teaches here` — «Вона викладає тут»: після `she` у `teach` з’являється `es`, а не лише `s`. Такі фрази розповідають про звичні справи. Учитель не зобов’язаний вести урок просто зараз — йому теж можна вийти на обід."
+        "ru": "К вам пришёл гость с ночёвкой и просит зубную пасту: свою он забыл. Вы вчера купили новый тюбик и поставили его на полку в ванной. toothpaste — «зубная паста», это одно целое, поэтому нужно is. My toothpaste is on the shelf — «Моя зубная паста на полке».",
+        "uk": "До вас прийшов гість із ночівлею й просить зубну пасту: свою він забув. Ви вчора купили новий тюбик і поставили його на полицю у ванній. toothpaste — «зубна паста», це одне ціле, тому потрібно is. My toothpaste is on the shelf — «Моя зубна паста на полиці»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-31:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Она преподаёт здесь».",
-          "uk": "Скажіть «Вона викладає тут»."
+          "ru": "Гость спрашивает, где зубная паста. Скажите: «Моя зубная паста на полке».",
+          "uk": "Гість питає, де зубна паста. Скажіть: «Моя зубна паста на полиці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-31:intro2:r1",
-              "text": "She teaches here."
+              "text": "My toothpaste is on the shelf."
             },
             {
               "responseId": "en:lesson-06:session-31:intro2:r2",
-              "text": "She teach here."
+              "text": "My toothpaste are on the shelf."
             },
             {
               "responseId": "en:lesson-06:session-31:intro2:r3",
-              "text": "She teachs here."
+              "text": "My toothpaste on the shelf."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-31:intro2:r1",
-              "text": "She teaches here."
+              "text": "My toothpaste is on the shelf."
             },
             {
               "responseId": "en:lesson-06:session-31:intro2:r2",
-              "text": "She teach here."
+              "text": "My toothpaste are on the shelf."
             },
             {
               "responseId": "en:lesson-06:session-31:intro2:r3",
-              "text": "She teachs here."
+              "text": "My toothpaste on the shelf."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она преподаёт здесь».",
-          "uk": "Скажіть «Вона викладає тут»."
+          "ru": "Гость спрашивает, где зубная паста. Скажите: «Моя зубная паста на полке».",
+          "uk": "Гість питає, де зубна паста. Скажіть: «Моя зубна паста на полиці»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Необычная находка",
-        "uk": "Незвичайна знахідка"
+        "ru": "Сестра в ванной",
+        "uk": "Сестра у ванній"
       },
       "bodyByLocale": {
-        "ru": "`unusual` — «необычный», `guitar` — «гитара», `car park` — «автостоянка». `This guitar is unusual` — «Эта гитара необычная». `Whose guitar is this?` — «Чья это гитара?» `We are in the car park` — «Мы на автостоянке».",
-        "uk": "`unusual` — «незвичайний», `guitar` — «гітара», `car park` — «автостоянка». `This guitar is unusual` — «Ця гітара незвичайна». `Whose guitar is this?` — «Чия це гітара?» `We are in the car park` — «Ми на автостоянці»."
+        "ru": "Сестра принимает душ дольше всех: когда она выходит из душа, зеркало в ванной запотело, а воздух тёплый и влажный. Брат уже ждёт своей очереди и спрашивает, где она. steam — «пар». Про сестру после she к shower добавляем s: She showers in the bathroom.",
+        "uk": "Сестра приймає душ найдовше: коли вона виходить із душу, дзеркало у ванній запотіло, а повітря тепле й вологе. Брат уже чекає своєї черги й питає, де вона. steam — «пара». Про сестру після she до shower додаємо s: She showers in the bathroom."
       },
       "question": {
         "interactionId": "en:lesson-06:session-31:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чья это гитара?»",
-          "uk": "Запитайте «Чия це гітара?»"
+          "ru": "Брат спрашивает, где сестра. Скажите: «Она принимает душ в ванной».",
+          "uk": "Брат питає, де сестра. Скажіть: «Вона приймає душ у ванній»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-31:intro3:r1",
-              "text": "Whose guitar is this?"
+              "text": "She showers in the bathroom."
             },
             {
               "responseId": "en:lesson-06:session-31:intro3:r2",
-              "text": "Who guitar is this?"
+              "text": "She shower in the bathroom."
             },
             {
               "responseId": "en:lesson-06:session-31:intro3:r3",
-              "text": "Whose guitar are these?"
+              "text": "She is showers in the bathroom."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-31:intro3:r1",
-              "text": "Whose guitar is this?"
+              "text": "She showers in the bathroom."
             },
             {
               "responseId": "en:lesson-06:session-31:intro3:r2",
-              "text": "Who guitar is this?"
+              "text": "She shower in the bathroom."
             },
             {
               "responseId": "en:lesson-06:session-31:intro3:r3",
-              "text": "Whose guitar are these?"
+              "text": "She is showers in the bathroom."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чья это гитара?»",
-          "uk": "Запитайте «Чия це гітара?»"
+          "ru": "Брат спрашивает, где сестра. Скажите: «Она принимает душ в ванной».",
+          "uk": "Брат питає, де сестра. Скажіть: «Вона приймає душ у ванній»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4c66290f0930226ca72e21939c81802b48080489089c44ecf79936dae825a48a"
+  "introFingerprint": "9eca73a03e425632f0eb4f8bf7c2aacf2ff61e1c749294289b6898cf2eb3929f"
 }

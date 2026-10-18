@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 31 — Гітара на автостоянці
+# Англійська · Урок 6 · Заняття 31 — Ранок у ванній
 
-**Ситуація.** Біля музичної школи Анна помічає незвичайну гітару. Поки Том шукає її власника, вони обговорюють свої ранкові звички.
+**Ситуація.** Вранці вдома черга до ванної: ви, гість, брат і сестра по черзі приймаєте душ і чистите зуби. Слово дії після I, we і they лишається незмінним, а після she і he отримує s.
 
-**Що ви опануєте:** розповісти про звичку приймати душ і повторити форми showers та teaches
-**Нові слова:** shower
+**Що ви опануєте:** розповісти, хто приймає душ і що де лежить у ванній
+**Нові слова:** shower, toothpaste, steam, rinse
+**Повертаються:** home, bathroom, shelf, mirror, wet, warm, cup, plate, hall
 
 ---
 
 ## Інтро 1
 
-### Ранок починається з душу
+### Після тренування
 
-`shower` — «приймати душ». `I shower at home` — «Я приймаю душ удома». У цій фразі `shower` уже називає дію: додавати `am` не потрібно. `He showers at home` — «Він приймає душ удома»: після `he` додаємо `s`.
+Після тренування в спортзалі адміністратор показує роздягальню з душем і пропонує ним скористатися. Але ви звикли вдома. shower — «приймати душ». Про себе кажемо I shower at home — «Я приймаю душ удома». Після I слово лишається shower, без s.
 
-**Скажіть «Він приймає душ удома».**
+**Адміністратор пропонує прийняти душ у залі. Скажіть: «Я приймаю душ удома».**
 
-- ✅ **He showers at home.**
-- ❌ He shower at home. — *Після `he` — `showers`, з `s`.*
-- ❌ He is showers at home. — *Потрібно `He showers`, без `is`.*
+- ✅ **I shower at home.**
+- ❌ I showers at home. — *Після I слово лишається shower, без s.*
+- ❌ I am shower at home. — *Тут дія: I shower, без am.*
 
 ---
 
 ## Інтро 2
 
-### Хто тут викладає
+### Гість просить пасту
 
-`teach` — «викладати». `I teach here` — «Я викладаю тут». `She teaches here` — «Вона викладає тут»: після `she` у `teach` з’являється `es`, а не лише `s`. Такі фрази розповідають про звичні справи. Учитель не зобов’язаний вести урок просто зараз — йому теж можна вийти на обід.
+До вас прийшов гість із ночівлею й просить зубну пасту: свою він забув. Ви вчора купили новий тюбик і поставили його на полицю у ванній. toothpaste — «зубна паста», це одне ціле, тому потрібно is. My toothpaste is on the shelf — «Моя зубна паста на полиці».
 
-**Скажіть «Вона викладає тут».**
+**Гість питає, де зубна паста. Скажіть: «Моя зубна паста на полиці».**
 
-- ✅ **She teaches here.**
-- ❌ She teach here. — *Після `she` — `teaches`.*
-- ❌ She teachs here. — *Пишемо `teaches`, з `es`.*
+- ✅ **My toothpaste is on the shelf.**
+- ❌ My toothpaste are on the shelf. — *Зубна паста — одне ціле: потрібно is, а не are.*
+- ❌ My toothpaste on the shelf. — *Без is речення не виходить: потрібно My toothpaste is.*
 
 ---
 
 ## Інтро 3
 
-### Незвичайна знахідка
+### Сестра у ванній
 
-`unusual` — «незвичайний», `guitar` — «гітара», `car park` — «автостоянка». `This guitar is unusual` — «Ця гітара незвичайна». `Whose guitar is this?` — «Чия це гітара?» `We are in the car park` — «Ми на автостоянці».
+Сестра приймає душ найдовше: коли вона виходить із душу, дзеркало у ванній запотіло, а повітря тепле й вологе. Брат уже чекає своєї черги й питає, де вона. steam — «пара». Про сестру після she до shower додаємо s: She showers in the bathroom.
 
-**Запитайте «Чия це гітара?»**
+**Брат питає, де сестра. Скажіть: «Вона приймає душ у ванній».**
 
-- ✅ **Whose guitar is this?**
-- ❌ Who guitar is this? — *Про власника запитуємо `Whose` — «чия».*
-- ❌ Whose guitar are these? — *Одна гітара: `is this`.*
+- ✅ **She showers in the bathroom.**
+- ❌ She shower in the bathroom. — *Після she потрібно showers, з s.*
+- ❌ She is showers in the bathroom. — *Тут дія: She showers, без is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про звичку: «Я приймаю душ удома»**
+**1 · Картка слова — shower**
+<!-- interaction_id: en:lesson-06:session-31:word:shower; family: word_card -->
+> **shower** — приймати душ. We shower in the bathroom. — «Ми приймаємо душ у ванній». Про те, що людина миється під душем.
+
+**2 · Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»**
 <!-- interaction_id: en:lesson-06:session-31:i01; family: phrase_builder -->
-Плитки: `home` `at` `shower` `I` → **I shower at home.**
+Плитки: `home` `at` `shower` `We` `showers` → **We shower at home.**
+*(плитка `showers` зайва: тут потрібно `shower` — `We shower at home.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-31:i02; family: listen_choose -->
-🔊 *shower* → **shower** · teach · clean
-- teach — *У записі перше слово — `shower`, а в цьому варіанті — `teach`.*
-- clean — *У записі перше слово — `shower`, а в цьому варіанті — `clean`.*
+🔊 *She showers in the bathroom.* → **She showers in the bathroom.** · She showers at home. · He showers in the bathroom.
+- She showers at home. — *У записі останнє слово — `bathroom`, ванна кімната, а в цьому варіанті — `home`, дім.*
+- He showers in the bathroom. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть «Він приймає душ удома»**
+**4 · Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-31:i03; family: context_gap_grammar -->
-He ___ at home. → **showers** · shower · is showers
-- shower — *Після `he` — `showers`.*
+He ___ in the bathroom. → **showers** · shower · is showers
+- shower — *Після `he` потрібно `showers`, з `s`.*
 - is showers — *Кажемо `He showers`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-31:i04; family: speed_match -->
-shower — приймати душ · unusual — незвичайний · car park — автостоянка · guitar — гітара
+shower — приймати душ · toothpaste — зубна паста · steam — пара · rinse — споліскувати
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — toothpaste**
+<!-- interaction_id: en:lesson-06:session-31:word:toothpaste; family: word_card -->
+> **toothpaste** — зубна паста. Whose toothpaste is this? — «Чия це зубна паста?» Про пасту, якою чистять зуби.
+
+**7 · Послухайте гостя й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-31:i05; family: listen_build_dictation -->
-🔊 *Tom showers at home.* Плитки: `home` `at` `showers` `Tom` → **Tom showers at home.**
+🔊 *My toothpaste is on the shelf.* Плитки: `shelf` `on` `the` `My` `toothpaste` `is` `are` → **My toothpaste is on the shelf.**
+*(плитка `are` зайва: тут потрібно `is` — `My toothpaste is on the shelf.`)*
 
-**6 · Скажіть «Вона викладає тут»**
+**8 · Картка слова — steam**
+<!-- interaction_id: en:lesson-06:session-31:word:steam; family: word_card -->
+> **steam** — пара. The steam is warm. — «Пара тепла». Про тепле вологе повітря над водою.
+
+**9 · Сестра вийшла з душу. Скажіть: «Пара тепла»**
 <!-- interaction_id: en:lesson-06:session-31:i06; family: phrase_builder -->
-Плитки: `here` `teaches` `She` → **She teaches here.**
+Плитки: `steam` `warm` `is` `The` `are` → **The steam is warm.**
+*(плитка `are` зайва: тут потрібно `is` — `The steam is warm.`)*
 
-**7 · Скажіть «Ця гітара незвичайна»**
+**10 · Брат питає, де ви з гостем приймаєте душ. Скажіть: «Ми приймаємо душ у ванній»**
 <!-- interaction_id: en:lesson-06:session-31:i07; family: scripted_repeat_compare -->
-🎙 **This guitar is unusual.**
+🎙 **We shower in the bathroom.**
 
-**8 · Скажіть «Вони приймають душ удома»**
+**11 · Картка слова — rinse**
+<!-- interaction_id: en:lesson-06:session-31:word:rinse; family: word_card -->
+> **rinse** — споліскувати. He rinses the plate. — «Він ополіскує тарілку». Про те, що змивають водою, не використовуючи щітку.
+
+**12 · Скажіть про себе: «Я ополіскую чашку». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-31:i08; family: context_gap_grammar -->
-They ___ at home. → **shower** · showers · are shower
-- showers — *Після `they` — `shower`, без `s`.*
-- are shower — *Потрібно `They shower`, без `are`.*
+I ___ the cup. → **rinse** · rinses · am rinse
+- rinses — *Після `I` потрібно `rinse`, без `s`.*
+- am rinse — *Кажемо `I rinse`, без `am`.*
 
-**9 · Послухайте, кому належить гітара**
+**13 · Послухайте гостя**
 <!-- interaction_id: en:lesson-06:session-31:i09; family: listen_choose -->
-🔊 *This guitar is mine.* → **This guitar is mine.** · This guitar is yours. · This guitar is hers.
-- This guitar is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This guitar is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The toothpaste is in the bathroom.* → **The toothpaste is in the bathroom.** · The toothpaste is in the hall. · The steam is in the bathroom.
+- The toothpaste is in the hall. — *У записі останнє слово — `bathroom`, ванна кімната, а в цьому варіанті — `hall`, коридор.*
+- The steam is in the bathroom. — *У записі йдеться про `toothpaste`, зубну пасту, а в цьому варіанті — про `steam`, пару.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-31:i10; family: speed_match -->
-shower — приймати душ · teach — викладати · guitar — гітара · unusual — незвичайний
+rinse — споліскувати · steam — пара · shower — приймати душ · toothpaste — зубна паста
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-31:i11; family: listen_build_dictation -->
-🔊 *We are in the car park.* Плитки: `park` `car` `the` `in` `are` `We` `is` → **We are in the car park.**
-*(плитка `is` зайва: тут потрібно `are` — `We are in the car park.`)*
+🔊 *He rinses the cup.* Плитки: `rinses` `the` `cup` `He` `rinse` → **He rinses the cup.**
+*(плитка `rinse` зайва: тут потрібно `rinses` — `He rinses the cup.`)*
 
-**12 · Запитайте «Чия це гітара?»**
+**16 · Гість показує на тюбик на полиці. Спитайте: «Чия це зубна паста?»**
 <!-- interaction_id: en:lesson-06:session-31:i12; family: phrase_builder -->
-Плитки: `this` `is` `guitar` `Whose` → **Whose guitar is this?**
+Плитки: `toothpaste` `is` `this` `Whose` `Who` → **Whose toothpaste is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose toothpaste is this?`)*
 
-**13 · Скажіть «Я викладаю тут»**
+**17 · Сестра вийшла з душу. Скажіть про дзеркало: «Дзеркало мокре»**
 <!-- interaction_id: en:lesson-06:session-31:i13; family: scripted_repeat_compare -->
-🎙 **I teach here.**
+🎙 **The mirror is wet.**
 
-**14 · Скажіть «Анна викладає тут»**
+**18 · Скажіть про ванну: «Пара тепла». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-31:i14; family: context_gap_grammar -->
-Anna ___ here. → **teaches** · teach · teachs
-- teach — *Анна — вона: `Anna teaches`.*
-- teachs — *Пишемо `teaches`, з `es`.*
+The steam ___ warm. → **is** · are · showers
+- are — *Пара одна, тому потрібно `is`, а не `are`.*
+- showers — *`showers` означає «приймає душ», а тут треба сказати, яка пара: `is warm`.*
 
-**15 · Послухайте, де автостоянка**
+**19 · Послухайте сестру**
 <!-- interaction_id: en:lesson-06:session-31:i15; family: listen_choose -->
-🔊 *The car park is here.* → **The car park is here.** · The car park is there. · The car park is nearby.
-- The car park is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- The car park is nearby. — *У записі останнє слово — `here`, а в цьому варіанті — `nearby`.*
+🔊 *I rinse the cup.* → **I rinse the cup.** · I rinse the plate. · We rinse the cup.
+- I rinse the plate. — *У записі останнє слово — `cup`, чашка, а в цьому варіанті — `plate`, тарілка.*
+- We rinse the cup. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-31:i16; family: speed_match -->
-shower — приймати душ · car park — автостоянка · unusual — незвичайний · teach — викладати
+toothpaste — зубна паста · rinse — споліскувати · steam — пара · shower — приймати душ
 
-**17 · Розкажіть про ранкову звичку Тома: «Він приймає душ удома»**
+**21 · Гість питає про вашу сестру. Скажіть: «Вона приймає душ удома»**
 <!-- interaction_id: en:lesson-06:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He showers at home.**
-
+🎙 **She showers at home.**

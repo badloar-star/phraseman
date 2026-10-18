@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-19:word:draw",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — draw",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:draw:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — draw",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:draw:audio",
+            "transcript": "draw"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:draw:r1",
+              "targetText": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать. My son draws at home. — «Мой сын рисует дома». Когда человек рисует карандашом или ручкой.",
+                "uk": "малювати. My son draws at home. — «Мій син малює вдома». Коли людина малює олівцем або ручкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "draw",
+            "definitionByLocale": {
+              "ru": "рисовать. My son draws at home. — «Мой сын рисует дома». Когда человек рисует карандашом или ручкой.",
+              "uk": "малювати. My son draws at home. — «Мій син малює вдома». Коли людина малює олівцем або ручкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что делает ваша дочь за столом. Скажите: «Она рисует за столом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что делает ваша дочь за столом. Скажите: «Она рисует за столом»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She draws at the table.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что делает ваша дочь за столом. Скажите: «Она рисует за столом»",
+            "uk": "Подруга питає, що робить ваша донька за столом. Скажіть: «Вона малює за столом»"
+          },
+          "orderedTokens": [
+            "She",
+            "draws",
+            "at",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "draw"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, что делает ваша дочь за столом. Скажите: «Она рисует за столом»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `draws` — `She draws at the table.`",
+                "uk": "тут потрібно `draws` — `She draws at the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:word:listen",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — listen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:listen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — listen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:listen:audio",
+            "transcript": "listen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:listen:r1",
+              "targetText": "listen",
+              "meaningByLocale": {
+                "ru": "слушать. He listens to the teacher. — «Он слушает учителя». Когда человек слушает внимательно.",
+                "uk": "слухати. He listens to the teacher. — «Він слухає вчителя». Коли людина слухає уважно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "listen",
+            "definitionByLocale": {
+              "ru": "слушать. He listens to the teacher. — «Он слушает учителя». Когда человек слушает внимательно.",
+              "uk": "слухати. He listens to the teacher. — «Він слухає вчителя». Коли людина слухає уважно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i02:r1",
+            "text": "He listens to the teacher."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i02:r2",
+            "text": "He listens to the doctor."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i02:r3",
+            "text": "They listen to the teacher."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i02:audio",
+            "transcript": "He listens to the teacher."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:i02:r1",
+              "targetText": "He listens to the teacher.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i02:r2",
+              "targetText": "He listens to the doctor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i02:r3",
+              "targetText": "They listen to the teacher.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `teacher`, учитель, а в этом варианте — `doctor`, врач.",
+                "uk": "У записі останнє слово — `teacher`, учитель, а в цьому варіанті — `doctor`, лікар."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `listen`).",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `listen`)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:word:lesson",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lesson",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:lesson:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lesson",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:lesson:audio",
+            "transcript": "lesson"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:lesson:r1",
+              "targetText": "lesson",
+              "meaningByLocale": {
+                "ru": "урок. The lesson is long. — «Урок долгий». О занятии с учителем.",
+                "uk": "урок. The lesson is long. — «Урок довгий». Про заняття з учителем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lesson",
+            "definitionByLocale": {
+              "ru": "урок. The lesson is long. — «Урок долгий». О занятии с учителем.",
+              "uk": "урок. The lesson is long. — «Урок довгий». Про заняття з учителем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает про урок. Скажите: «Урок трудный». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i03:r3",
+            "text": "draws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает про урок. Скажите: «Урок трудный». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает про урок. Скажите: «Урок трудный». Выберите слово",
+            "uk": "Подруга питає про урок. Скажіть: «Урок важкий». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The lesson ___ difficult.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-19:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i03:r3",
+              "text": "draws"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает про урок. Скажите: «Урок трудный». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про урок. Скажите: «Урок трудный». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Урок один, поэтому нужно `is`, а не `are`.",
+                "uk": "Урок один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про урок. Скажите: «Урок трудный». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`draws` значит «рисует», а здесь нужно сказать, какой урок: `is difficult`.",
+                "uk": "`draws` означає «малює», а тут треба сказати, який урок: `is difficult`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-19:i04:p1",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать карандашом",
+                "uk": "малювати олівцем"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i04:p2",
+              "target": "listen",
+              "meaningByLocale": {
+                "ru": "слушать",
+                "uk": "слухати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i04:p3",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i04:p4",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "draw",
+            "listen",
+            "lesson",
+            "ask"
+          ],
+          "rightColumn": [
+            "рисовать карандашом",
+            "слушать",
+            "урок",
+            "спрашивать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:word:ask",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ask",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:ask:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ask",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:ask:audio",
+            "transcript": "ask"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:ask:r1",
+              "targetText": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать. She asks the teacher. — «Она спрашивает учителя». Когда человек задаёт вопрос.",
+                "uk": "питати. She asks the teacher. — «Вона питає вчителя». Коли людина ставить запитання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ask",
+            "definitionByLocale": {
+              "ru": "спрашивать. She asks the teacher. — «Она спрашивает учителя». Когда человек задаёт вопрос.",
+              "uk": "питати. She asks the teacher. — «Вона питає вчителя». Коли людина ставить запитання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i05:audio",
+            "transcript": "He asks the teacher."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He asks the teacher.",
+          "orderedTokens": [
+            "He",
+            "asks",
+            "the",
+            "teacher"
+          ],
+          "authoredDistractorTokens": [
+            "ask"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `asks` — `He asks the teacher.`",
+                "uk": "тут потрібно `asks` — `He asks the teacher.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учительница спрашивает, что делает ваша дочь в школе. Скажите: «Она изучает английский»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница спрашивает, что делает ваша дочь в школе. Скажите: «Она изучает английский»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She learns English.",
+          "localizedMeaning": {
+            "ru": "Учительница спрашивает, что делает ваша дочь в школе. Скажите: «Она изучает английский»",
+            "uk": "Вчителька питає, що робить ваша донька в школі. Скажіть: «Вона вивчає англійську»"
+          },
+          "orderedTokens": [
+            "She",
+            "learns",
+            "English"
+          ],
+          "authoredDistractorTokens": [
+            "learn"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Учительница спрашивает, что делает ваша дочь в школе. Скажите: «Она изучает английский»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `learns` — `She learns English.`",
+                "uk": "тут потрібно `learns` — `She learns English.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, как прошёл урок. Скажите: «Урок трудный»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, как прошёл урок. Скажите: «Урок трудный»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i07:audio",
+            "transcript": "The lesson is difficult."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lesson is difficult.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о сыне: «Он рисует за столом». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i08:r1",
+            "text": "draws"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i08:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i08:r3",
+            "text": "is draws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о сыне: «Он рисует за столом». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о сыне: «Он рисует за столом». Выберите слово",
+            "uk": "Скажіть про сина: «Він малює за столом». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ at the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-19:i08:r1",
+              "text": "draws"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i08:r2",
+              "text": "draw"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i08:r3",
+              "text": "is draws"
+            }
+          ],
+          "testedDimension": "Скажите о сыне: «Он рисует за столом». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о сыне: «Он рисует за столом». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `he` — `draws`, с `s`.",
+                "uk": "Після `he` — `draws`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о сыне: «Он рисует за столом». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He draws`, без `is`.",
+                "uk": "Кажемо `He draws`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i09:r1",
+            "text": "She draws at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i09:r2",
+            "text": "She listens at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i09:r3",
+            "text": "He draws at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i09:audio",
+            "transcript": "She draws at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:i09:r1",
+              "targetText": "She draws at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i09:r2",
+              "targetText": "She listens at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i09:r3",
+              "targetText": "He draws at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `draws`, рисует, а в этом варианте — `listens`, слушает.",
+                "uk": "У записі дія — `draws`, малює, а в цьому варіанті — `listens`, слухає."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-19:i10:p1",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i10:p2",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i10:p3",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать карандашом",
+                "uk": "малювати олівцем"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i10:p4",
+              "target": "learn",
+              "meaningByLocale": {
+                "ru": "учить, изучать",
+                "uk": "вчити, вивчати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lesson",
+            "ask",
+            "draw",
+            "learn"
+          ],
+          "rightColumn": [
+            "урок",
+            "спрашивать",
+            "рисовать карандашом",
+            "учить, изучать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i11:audio",
+            "transcript": "My son draws at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My son draws at home.",
+          "orderedTokens": [
+            "My",
+            "son",
+            "draws",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "draw"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `draws` — `My son draws at home.`",
+                "uk": "тут потрібно `draws` — `My son draws at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы видите карандаш на столе. Спросите подругу: «Чей это карандаш?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы видите карандаш на столе. Спросите подругу: «Чей это карандаш?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose pencil is this?",
+          "localizedMeaning": {
+            "ru": "Вы видите карандаш на столе. Спросите подругу: «Чей это карандаш?»",
+            "uk": "Ви бачите олівець на столі. Спитайте подругу: «Чий це олівець?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "pencil",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы видите карандаш на столе. Спросите подругу: «Чей это карандаш?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose pencil is this?`",
+                "uk": "тут потрібно `Whose` — `Whose pencil is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шёпотом спрашивает, что делает ваша дочь на уроке. Скажите: «Она слушает учительницу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга шёпотом спрашивает, что делает ваша дочь на уроке. Скажите: «Она слушает учительницу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i13:audio",
+            "transcript": "She listens to the teacher."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She listens to the teacher.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о дочери: «Она спрашивает учительницу». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i14:r1",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i14:r2",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i14:r3",
+            "text": "is asks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о дочери: «Она спрашивает учительницу». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о дочери: «Она спрашивает учительницу». Выберите слово",
+            "uk": "Скажіть про доньку: «Вона питає вчительку». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ the teacher.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-19:i14:r1",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i14:r2",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i14:r3",
+              "text": "is asks"
+            }
+          ],
+          "testedDimension": "Скажите о дочери: «Она спрашивает учительницу». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о дочери: «Она спрашивает учительницу». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `she` — `asks`, с `s`.",
+                "uk": "Після `she` — `asks`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о дочери: «Она спрашивает учительницу». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She asks`, без `is`.",
+                "uk": "Кажемо `She asks`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i15:r1",
+            "text": "The lesson is difficult."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i15:r2",
+            "text": "The lesson is easy."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i15:r3",
+            "text": "The lesson is long."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i15:audio",
+            "transcript": "The lesson is difficult."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:i15:r1",
+              "targetText": "The lesson is difficult.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i15:r2",
+              "targetText": "The lesson is easy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i15:r3",
+              "targetText": "The lesson is long.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `difficult`, трудный, а в этом варианте — `easy`, лёгкий.",
+                "uk": "У записі останнє слово — `difficult`, важкий, а в цьому варіанті — `easy`, легкий."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `difficult`, трудный, а в этом варианте — `long`, долгий.",
+                "uk": "У записі останнє слово — `difficult`, важкий, а в цьому варіанті — `long`, довгий."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-19:i16:p1",
+              "target": "listen",
+              "meaningByLocale": {
+                "ru": "слушать",
+                "uk": "слухати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i16:p2",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i16:p3",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i16:p4",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать карандашом",
+                "uk": "малювати олівцем"
+              }
+            }
+          ],
+          "leftColumn": [
+            "listen",
+            "lesson",
+            "ask",
+            "draw"
+          ],
+          "rightColumn": [
+            "слушать",
+            "урок",
+            "спрашивать",
+            "рисовать карандашом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, что делает ваш сын за столом. Скажите: «Он рисует за столом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, что делает ваш сын за столом. Скажите: «Он рисует за столом»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i17:audio",
+            "transcript": "He draws at the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He draws at the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-19:word:draw",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — draw",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:draw:audio"
+        ],
+        "accessibilityLabel": "Картка слова — draw",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:draw:audio",
+            "transcript": "draw"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:draw:r1",
+              "targetText": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать. My son draws at home. — «Мой сын рисует дома». Когда человек рисует карандашом или ручкой.",
+                "uk": "малювати. My son draws at home. — «Мій син малює вдома». Коли людина малює олівцем або ручкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "draw",
+            "definitionByLocale": {
+              "ru": "рисовать. My son draws at home. — «Мой сын рисует дома». Когда человек рисует карандашом или ручкой.",
+              "uk": "малювати. My son draws at home. — «Мій син малює вдома». Коли людина малює олівцем або ручкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що робить ваша донька за столом. Скажіть: «Вона малює за столом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що робить ваша донька за столом. Скажіть: «Вона малює за столом»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She draws at the table.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что делает ваша дочь за столом. Скажите: «Она рисует за столом»",
+            "uk": "Подруга питає, що робить ваша донька за столом. Скажіть: «Вона малює за столом»"
+          },
+          "orderedTokens": [
+            "She",
+            "draws",
+            "at",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "draw"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, що робить ваша донька за столом. Скажіть: «Вона малює за столом»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `draws` — `She draws at the table.`",
+                "uk": "тут потрібно `draws` — `She draws at the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:word:listen",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — listen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:listen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — listen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:listen:audio",
+            "transcript": "listen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:listen:r1",
+              "targetText": "listen",
+              "meaningByLocale": {
+                "ru": "слушать. He listens to the teacher. — «Он слушает учителя». Когда человек слушает внимательно.",
+                "uk": "слухати. He listens to the teacher. — «Він слухає вчителя». Коли людина слухає уважно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "listen",
+            "definitionByLocale": {
+              "ru": "слушать. He listens to the teacher. — «Он слушает учителя». Когда человек слушает внимательно.",
+              "uk": "слухати. He listens to the teacher. — «Він слухає вчителя». Коли людина слухає уважно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i02:r1",
+            "text": "He listens to the teacher."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i02:r2",
+            "text": "He listens to the doctor."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i02:r3",
+            "text": "They listen to the teacher."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i02:audio",
+            "transcript": "He listens to the teacher."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:i02:r1",
+              "targetText": "He listens to the teacher.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i02:r2",
+              "targetText": "He listens to the doctor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i02:r3",
+              "targetText": "They listen to the teacher.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `teacher`, учитель, а в этом варианте — `doctor`, врач.",
+                "uk": "У записі останнє слово — `teacher`, учитель, а в цьому варіанті — `doctor`, лікар."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `listen`).",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `listen`)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:word:lesson",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lesson",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:lesson:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lesson",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:lesson:audio",
+            "transcript": "lesson"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:lesson:r1",
+              "targetText": "lesson",
+              "meaningByLocale": {
+                "ru": "урок. The lesson is long. — «Урок долгий». О занятии с учителем.",
+                "uk": "урок. The lesson is long. — «Урок довгий». Про заняття з учителем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lesson",
+            "definitionByLocale": {
+              "ru": "урок. The lesson is long. — «Урок долгий». О занятии с учителем.",
+              "uk": "урок. The lesson is long. — «Урок довгий». Про заняття з учителем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про урок. Скажіть: «Урок важкий». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i03:r3",
+            "text": "draws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про урок. Скажіть: «Урок важкий». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает про урок. Скажите: «Урок трудный». Выберите слово",
+            "uk": "Подруга питає про урок. Скажіть: «Урок важкий». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The lesson ___ difficult.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-19:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i03:r3",
+              "text": "draws"
+            }
+          ],
+          "testedDimension": "Подруга питає про урок. Скажіть: «Урок важкий». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про урок. Скажіть: «Урок важкий». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Урок один, поэтому нужно `is`, а не `are`.",
+                "uk": "Урок один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про урок. Скажіть: «Урок важкий». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`draws` значит «рисует», а здесь нужно сказать, какой урок: `is difficult`.",
+                "uk": "`draws` означає «малює», а тут треба сказати, який урок: `is difficult`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-19:i04:p1",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать карандашом",
+                "uk": "малювати олівцем"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i04:p2",
+              "target": "listen",
+              "meaningByLocale": {
+                "ru": "слушать",
+                "uk": "слухати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i04:p3",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i04:p4",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "draw",
+            "listen",
+            "lesson",
+            "ask"
+          ],
+          "rightColumn": [
+            "малювати олівцем",
+            "слухати",
+            "урок",
+            "питати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:word:ask",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ask",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:word:ask:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ask",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:word:ask:audio",
+            "transcript": "ask"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:word:ask:r1",
+              "targetText": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать. She asks the teacher. — «Она спрашивает учителя». Когда человек задаёт вопрос.",
+                "uk": "питати. She asks the teacher. — «Вона питає вчителя». Коли людина ставить запитання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ask",
+            "definitionByLocale": {
+              "ru": "спрашивать. She asks the teacher. — «Она спрашивает учителя». Когда человек задаёт вопрос.",
+              "uk": "питати. She asks the teacher. — «Вона питає вчителя». Коли людина ставить запитання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i05:audio",
+            "transcript": "He asks the teacher."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He asks the teacher.",
+          "orderedTokens": [
+            "He",
+            "asks",
+            "the",
+            "teacher"
+          ],
+          "authoredDistractorTokens": [
+            "ask"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `asks` — `He asks the teacher.`",
+                "uk": "тут потрібно `asks` — `He asks the teacher.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вчителька питає, що робить ваша донька в школі. Скажіть: «Вона вивчає англійську»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька питає, що робить ваша донька в школі. Скажіть: «Вона вивчає англійську»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She learns English.",
+          "localizedMeaning": {
+            "ru": "Учительница спрашивает, что делает ваша дочь в школе. Скажите: «Она изучает английский»",
+            "uk": "Вчителька питає, що робить ваша донька в школі. Скажіть: «Вона вивчає англійську»"
+          },
+          "orderedTokens": [
+            "She",
+            "learns",
+            "English"
+          ],
+          "authoredDistractorTokens": [
+            "learn"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вчителька питає, що робить ваша донька в школі. Скажіть: «Вона вивчає англійську»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `learns` — `She learns English.`",
+                "uk": "тут потрібно `learns` — `She learns English.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, як минув урок. Скажіть: «Урок важкий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, як минув урок. Скажіть: «Урок важкий»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i07:audio",
+            "transcript": "The lesson is difficult."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lesson is difficult.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про сина: «Він малює за столом». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i08:r1",
+            "text": "draws"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i08:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i08:r3",
+            "text": "is draws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про сина: «Він малює за столом». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о сыне: «Он рисует за столом». Выберите слово",
+            "uk": "Скажіть про сина: «Він малює за столом». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ at the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-19:i08:r1",
+              "text": "draws"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i08:r2",
+              "text": "draw"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i08:r3",
+              "text": "is draws"
+            }
+          ],
+          "testedDimension": "Скажіть про сина: «Він малює за столом». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про сина: «Він малює за столом». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `he` — `draws`, с `s`.",
+                "uk": "Після `he` — `draws`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про сина: «Він малює за столом». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He draws`, без `is`.",
+                "uk": "Кажемо `He draws`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i09:r1",
+            "text": "She draws at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i09:r2",
+            "text": "She listens at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i09:r3",
+            "text": "He draws at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i09:audio",
+            "transcript": "She draws at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:i09:r1",
+              "targetText": "She draws at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i09:r2",
+              "targetText": "She listens at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i09:r3",
+              "targetText": "He draws at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `draws`, рисует, а в этом варианте — `listens`, слушает.",
+                "uk": "У записі дія — `draws`, малює, а в цьому варіанті — `listens`, слухає."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-19:i10:p1",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i10:p2",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i10:p3",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать карандашом",
+                "uk": "малювати олівцем"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i10:p4",
+              "target": "learn",
+              "meaningByLocale": {
+                "ru": "учить, изучать",
+                "uk": "вчити, вивчати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lesson",
+            "ask",
+            "draw",
+            "learn"
+          ],
+          "rightColumn": [
+            "урок",
+            "питати",
+            "малювати олівцем",
+            "вчити, вивчати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i11:audio",
+            "transcript": "My son draws at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My son draws at home.",
+          "orderedTokens": [
+            "My",
+            "son",
+            "draws",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [
+            "draw"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `draws` — `My son draws at home.`",
+                "uk": "тут потрібно `draws` — `My son draws at home.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви бачите олівець на столі. Спитайте подругу: «Чий це олівець?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви бачите олівець на столі. Спитайте подругу: «Чий це олівець?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose pencil is this?",
+          "localizedMeaning": {
+            "ru": "Вы видите карандаш на столе. Спросите подругу: «Чей это карандаш?»",
+            "uk": "Ви бачите олівець на столі. Спитайте подругу: «Чий це олівець?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "pencil",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви бачите олівець на столі. Спитайте подругу: «Чий це олівець?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose pencil is this?`",
+                "uk": "тут потрібно `Whose` — `Whose pencil is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга пошепки питає, що робить ваша донька на уроці. Скажіть: «Вона слухає вчительку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга пошепки питає, що робить ваша донька на уроці. Скажіть: «Вона слухає вчительку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i13:audio",
+            "transcript": "She listens to the teacher."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She listens to the teacher.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про доньку: «Вона питає вчительку». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i14:r1",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i14:r2",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i14:r3",
+            "text": "is asks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про доньку: «Вона питає вчительку». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о дочери: «Она спрашивает учительницу». Выберите слово",
+            "uk": "Скажіть про доньку: «Вона питає вчительку». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ the teacher.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-19:i14:r1",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i14:r2",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i14:r3",
+              "text": "is asks"
+            }
+          ],
+          "testedDimension": "Скажіть про доньку: «Вона питає вчительку». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про доньку: «Вона питає вчительку». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `she` — `asks`, с `s`.",
+                "uk": "Після `she` — `asks`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про доньку: «Вона питає вчительку». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She asks`, без `is`.",
+                "uk": "Кажемо `She asks`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-19:i15:r1",
+            "text": "The lesson is difficult."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i15:r2",
+            "text": "The lesson is easy."
+          },
+          {
+            "responseId": "en:lesson-06:session-19:i15:r3",
+            "text": "The lesson is long."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i15:audio",
+            "transcript": "The lesson is difficult."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-19:i15:r1",
+              "targetText": "The lesson is difficult.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i15:r2",
+              "targetText": "The lesson is easy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i15:r3",
+              "targetText": "The lesson is long.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `difficult`, трудный, а в этом варианте — `easy`, лёгкий.",
+                "uk": "У записі останнє слово — `difficult`, важкий, а в цьому варіанті — `easy`, легкий."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `difficult`, трудный, а в этом варианте — `long`, долгий.",
+                "uk": "У записі останнє слово — `difficult`, важкий, а в цьому варіанті — `long`, довгий."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-19:i16:p1",
+              "target": "listen",
+              "meaningByLocale": {
+                "ru": "слушать",
+                "uk": "слухати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i16:p2",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i16:p3",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-19:i16:p4",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать карандашом",
+                "uk": "малювати олівцем"
+              }
+            }
+          ],
+          "leftColumn": [
+            "listen",
+            "lesson",
+            "ask",
+            "draw"
+          ],
+          "rightColumn": [
+            "слухати",
+            "урок",
+            "питати",
+            "малювати олівцем"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, що робить ваш син за столом. Скажіть: «Він малює за столом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, що робить ваш син за столом. Скажіть: «Він малює за столом»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-19:i17:audio",
+            "transcript": "He draws at the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He draws at the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-19:word:draw",
+      "correctText": "draw",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i01",
+      "correctText": "She draws at the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:word:listen",
+      "correctText": "listen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i02",
+      "correctText": "He listens to the teacher.",
+      "correctResponseId": "en:lesson-06:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:word:lesson",
+      "correctText": "lesson",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:word:ask",
+      "correctText": "ask",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i05",
+      "correctText": "He asks the teacher.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i06",
+      "correctText": "She learns English.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i07",
+      "correctText": "The lesson is difficult.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i08",
+      "correctText": "draws",
+      "correctResponseId": "en:lesson-06:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i09",
+      "correctText": "She draws at home.",
+      "correctResponseId": "en:lesson-06:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i11",
+      "correctText": "My son draws at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i12",
+      "correctText": "Whose pencil is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i13",
+      "correctText": "She listens to the teacher.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i14",
+      "correctText": "asks",
+      "correctResponseId": "en:lesson-06:session-19:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i15",
+      "correctText": "The lesson is difficult.",
+      "correctResponseId": "en:lesson-06:session-19:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:i17",
+      "correctText": "He draws at the table.",
+      "correctResponseId": null
+    }
+  ]
+}

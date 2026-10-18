@@ -1,133 +1,154 @@
-# Английский · Урок 6 · Занятие 32 — У фонтана после пробежки
+# Английский · Урок 6 · Занятие 32 — Утро после пробежки
 
-**Ситуация.** Анна и Том встречаются у фонтана и рассказывают, как обычно проходит их утро: пробежка, упражнения, душ и звонок домой.
+**Ситуация.** Вы встречаетесь с подругой, братом и сестрой после пробежки на рассвете и вспоминаете, что каждый делает по утрам. Новой грамматики нет: вы сами выбираете слово без s или с s, звоните без to, а про вещи говорите is или are.
 
-**Что вы освоите:** повторить рассказ о привычках со всеми словами главы
-**Новые слова:** —
+**Что вы освоите:** самому выбрать между «без s» и «с s» и рассказать о привычках утра
+**Новые слова:** sunrise, smoothie, playlist, porridge
+**Возвращаются:** walk, jog, exercise, stretch, call, scrub, shower, hill, mat, bowl, cold, home
 
 ---
 
 ## Интро 1
 
-### У каждого своё утро
+### Пробежка на рассвете
 
-Повторим знакомые действия: `jog` — «бегать трусцой», `exercise` — «тренироваться», `stretch` — «делать растяжку». `I jog here` — «Я бегаю трусцой здесь». `She jogs here` — «Она бегает трусцой здесь»: после `she` добавляем `s`. Фраза рассказывает о привычке; Анна вполне может сейчас сидеть и отдыхать.
+Подруга зовёт вас в парк на рассвете, пока улицы пусты и воздух свежий. sunrise — «рассвет», время, когда встаёт солнце. Бегать трусцой вы любите и берёте с собой подругу: We jog at sunrise — «Мы бегаем трусцой на рассвете». После we слово остаётся jog.
 
-**Скажите «Она бегает трусцой здесь».**
+**Подруга зовёт вас на пробежку. Скажите за себя и подругу: «Мы бегаем трусцой на рассвете».**
 
-- ✅ **She jogs here.**
-- ❌ She jog here. — *После `she` — `jogs`.*
-- ❌ She is jogs here. — *Нужно `She jogs`, без `is`.*
+- ✅ **We jog at sunrise.**
+- ❌ We jogs at sunrise. — *После we слово остаётся jog, без s.*
+- ❌ We are jog at sunrise. — *Здесь действие: We jog, без are.*
 
 ---
 
 ## Интро 2
 
-### После пробежки
+### Чей это стакан
 
-`shower` — «принимать душ», `clean` — «убирать», `call` — «звонить по телефону». `He showers at home` — «Он принимает душ дома». `We clean our room` — «Мы убираем свою комнату»: после `we` нет `s`. `She calls her mother` — «Она звонит своей маме», без `to` перед `her mother`.
+После пробежки вы садитесь за столик, немного устав. На нём стоит стакан с густым напитком из фруктов, но подруга не помнит, чей он. Напиток ещё холодный. smoothie — «смузи». Чтобы спросить о владельце, говорим Whose: Whose smoothie is this? — «Чей это смузи?»
 
-**Скажите «Мы убираем свою комнату».**
+**Вы показываете подруге на стакан. Спросите: «Чей это смузи?»**
 
-- ✅ **We clean our room.**
-- ❌ We cleans our room. — *После `we` — `clean`, без `s`.*
-- ❌ We are clean our room. — *Нужно `We clean our room`, без `are`.*
+- ✅ **Whose smoothie is this?**
+- ❌ Who smoothie is this? — *О владельце спрашиваем Whose — «чей».*
+- ❌ Whose smoothie are this? — *Смузи один: нужно is this.*
 
 ---
 
 ## Интро 3
 
-### Встретимся у фонтана
+### Музыка для бега
 
-`fountain` — «фонтан», `walk` — «ходить пешком». `This fountain is beautiful` — «Этот фонтан красивый». `He walks here` — «Он ходит здесь пешком». `She stretches here` — «Она делает здесь растяжку»: у `stretch` после `she` добавляется `es`. Можно растягиваться у фонтана, но душ лучше принять дома.
+Сестра всегда бегает под музыку на телефоне и не расстаётся с ней: включает её ещё у двери. Подруга удивляется, как она так бегает. playlist — «плейлист», подборка песен в нужном порядке. Про сестру после she к jog добавляем s: She jogs with a playlist.
 
-**Скажите «Она делает здесь растяжку».**
+**Подруга спрашивает, как бегает ваша сестра. Скажите: «Она бегает трусцой с плейлистом».**
 
-- ✅ **She stretches here.**
-- ❌ She stretch here. — *После `she` — `stretches`.*
-- ❌ She stretchs here. — *Пишем `stretches`, с `es`.*
+- ✅ **She jogs with a playlist.**
+- ❌ She jog with a playlist. — *После she нужно jogs, с s.*
+- ❌ She is jogs with a playlist. — *Здесь действие: She jogs, без is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычке: «Я бегаю трусцой здесь»**
+**1 · Карточка слова — sunrise**
+<!-- interaction_id: en:lesson-06:session-32:word:sunrise; family: word_card -->
+> **sunrise** — рассвет. We walk at sunrise. — «Мы ходим пешком на рассвете». О времени, когда встаёт солнце.
+
+**2 · Подруга спрашивает, когда вы бегаете. Скажите: «Мы бегаем трусцой на рассвете»**
 <!-- interaction_id: en:lesson-06:session-32:i01; family: phrase_builder -->
-Плитки: `here` `jog` `I` → **I jog here.**
+Плитки: `sunrise` `at` `jog` `We` `jogs` → **We jog at sunrise.**
+*(плитка `jogs` лишняя: здесь нужно `jog` — `We jog at sunrise.`)*
 
-**2 · Послушайте, кто здесь тренируется**
+**3 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-32:i02; family: listen_choose -->
-🔊 *She exercises here.* → **She exercises here.** · He exercises here. · Anna exercises here.
-- He exercises here. — *В записи первое слово — `She`, а в этом варианте — `He`.*
-- Anna exercises here. — *В записи первое слово — `She`, а в этом варианте — `Anna`.*
+🔊 *He walks to the hill.* → **He walks to the hill.** · He jogs to the hill. · She walks to the hill.
+- He jogs to the hill. — *В записи действие — `walks`, ходит пешком, а в этом варианте — `jogs`, бегает трусцой.*
+- She walks to the hill. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**3 · Скажите «Том принимает душ дома»**
+**4 · Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-32:i03; family: context_gap_grammar -->
-Tom ___ at home. → **showers** · shower · is showers
-- shower — *Том — он: `Tom showers`.*
-- is showers — *Нужно `Tom showers`, без `is`.*
+My sister ___ her grandmother. → **calls** · call · calls to
+- call — *Сестра — это `she`, поэтому нужно `calls`, с `s`.*
+- calls to — *После `calls` сразу называем человека, без `to`.*
 
-**4 · Соедините знакомые слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-32:i04; family: speed_match -->
-jog — бегать трусцой · exercise — тренироваться · stretch — делать растяжку · fountain — фонтан
+sunrise — рассвет · smoothie — смузи · playlist — плейлист · porridge — овсяная каша
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — smoothie**
+<!-- interaction_id: en:lesson-06:session-32:word:smoothie; family: word_card -->
+> **smoothie** — смузи. My smoothie is warm. — «Мой смузи тёплый». О густом напитке из фруктов.
+
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-32:i05; family: listen_build_dictation -->
-🔊 *She calls her mother.* Плитки: `mother` `her` `calls` `She` → **She calls her mother.**
+🔊 *My smoothie is on the table.* Плитки: `table` `on` `the` `My` `smoothie` `is` `are` → **My smoothie is on the table.**
+*(плитка `are` лишняя: здесь нужно `is` — `My smoothie is on the table.`)*
 
-**6 · Скажите «Мы убираем свою комнату»**
+**8 · Карточка слова — playlist**
+<!-- interaction_id: en:lesson-06:session-32:word:playlist; family: word_card -->
+> **playlist** — плейлист. My playlist is new. — «Мой плейлист новый». О подборке песен.
+
+**9 · Подруга спрашивает о вашей сестре. Скажите: «Она бегает трусцой с плейлистом»**
 <!-- interaction_id: en:lesson-06:session-32:i06; family: phrase_builder -->
-Плитки: `room` `our` `clean` `We` → **We clean our room.**
+Плитки: `playlist` `a` `with` `jogs` `She` `jog` → **She jogs with a playlist.**
+*(плитка `jog` лишняя: здесь нужно `jogs` — `She jogs with a playlist.`)*
 
-**7 · Скажите «Этот фонтан красивый»**
+**10 · Подруга спрашивает о соседях. Скажите: «Они тренируются на коврике»**
 <!-- interaction_id: en:lesson-06:session-32:i07; family: scripted_repeat_compare -->
-🎙 **This fountain is beautiful.**
+🎙 **They exercise on the mat.**
 
-**8 · Скажите «Она делает здесь растяжку»**
+**11 · Скажите о себе: «Я тру стол». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-32:i08; family: context_gap_grammar -->
-She ___ here. → **stretches** · stretch · stretchs
-- stretch — *После `she` — `stretches`.*
-- stretchs — *Нужно `stretches`, с `es`.*
+I ___ the table. → **scrub** · scrubs · am scrub
+- scrubs — *После `I` нужно `scrub`, без `s`.*
+- am scrub — *Говорим `I scrub`, без `am`.*
 
-**9 · Послушайте, где он ходит пешком**
+**12 · Карточка слова — porridge**
+<!-- interaction_id: en:lesson-06:session-32:word:porridge; family: word_card -->
+> **porridge** — овсяная каша. The porridge is in the bowl. — «Каша в миске». О тёплой каше из овсяных хлопьев.
+
+**13 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-32:i09; family: listen_choose -->
-🔊 *He walks here.* → **He walks here.** · He walks there. · He walks home.
-- He walks there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- He walks home. — *В записи последнее слово — `here`, а в этом варианте — `home`.*
+🔊 *The porridge is warm.* → **The porridge is warm.** · The porridge is cold. · The smoothie is warm.
+- The porridge is cold. — *В записи последнее слово — `warm`, тёплый, а в этом варианте — `cold`, холодный.*
+- The smoothie is warm. — *В записи речь о `porridge`, каше, а в этом варианте — о `smoothie`, смузи.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-32:i10; family: speed_match -->
-call — звонить по телефону · clean — убирать · shower — принимать душ · walk — ходить пешком
+porridge — овсяная каша · playlist — плейлист · sunrise — рассвет · smoothie — смузи
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-32:i11; family: listen_build_dictation -->
-🔊 *They exercise here.* Плитки: `here` `exercise` `They` → **They exercise here.**
+🔊 *He showers at home.* Плитки: `showers` `at` `home` `He` `shower` → **He showers at home.**
+*(плитка `shower` лишняя: здесь нужно `showers` — `He showers at home.`)*
 
-**12 · У фонтана осталась гитара. Спросите «Чья это гитара?»**
+**16 · Брат жалуется на боль. Скажите: «Моё плечо болит»**
 <!-- interaction_id: en:lesson-06:session-32:i12; family: phrase_builder -->
-Плитки: `this` `is` `guitar` `Whose` → **Whose guitar is this?**
+Плитки: `shoulder` `sore` `is` `My` `are` → **My shoulder is sore.**
+*(плитка `are` лишняя: здесь нужно `is` — `My shoulder is sore.`)*
 
-**13 · Скажите «Я принимаю душ дома»**
+**17 · Подруга спрашивает о сестре. Скажите: «Она делает растяжку возле холма»**
 <!-- interaction_id: en:lesson-06:session-32:i13; family: scripted_repeat_compare -->
-🎙 **I shower at home.**
+🎙 **She stretches near the hill.**
 
-**14 · Скажите «Они бегают трусцой здесь»**
+**18 · Скажите о завтраке: «Каша в миске». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-32:i14; family: context_gap_grammar -->
-They ___ here. → **jog** · jogs · are jog
-- jogs — *После `they` — `jog`, без `s`.*
-- are jog — *Нужно `They jog`, без `are`.*
+The porridge ___ in the bowl. → **is** · are · walks
+- are — *Каша — одно целое, поэтому нужно `is`, а не `are`.*
+- walks — *`walks` значит «ходит пешком», а здесь нужно сказать, где каша: `is in`.*
 
-**15 · Послушайте, какой этот фонтан**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-32:i15; family: listen_choose -->
-🔊 *This fountain is beautiful.* → **This fountain is beautiful.** · This fountain is small. · This fountain is old.
-- This fountain is small. — *В записи последнее слово — `beautiful`, а в этом варианте — `small`.*
-- This fountain is old. — *В записи последнее слово — `beautiful`, а в этом варианте — `old`.*
+🔊 *I walk to work.* → **I walk to work.** · I jog to work. · We walk to work.
+- I jog to work. — *В записи действие — `walk`, ходить пешком, а в этом варианте — `jog`, бегать трусцой.*
+- We walk to work. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-32:i16; family: speed_match -->
-stretch — делать растяжку · shower — принимать душ · call — звонить по телефону · clean — убирать
+playlist — плейлист · porridge — овсяная каша · smoothie — смузи · sunrise — рассвет
 
-**17 · Расскажите другу о привычке Анны: «Она бегает трусцой здесь»**
+**21 · Подруга спрашивает, когда бегает ваша сестра. Скажите: «Она бегает трусцой на рассвете»**
 <!-- interaction_id: en:lesson-06:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She jogs here.**
-
+🎙 **She jogs at sunrise.**

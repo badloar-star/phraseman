@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-32:intro1:r2": {
-          "ru": "После `she` — `jogs`.",
-          "uk": "Після `she` — `jogs`."
+          "ru": "После we слово остаётся jog, без s.",
+          "uk": "Після we слово лишається jog, без s."
         },
         "en:lesson-06:session-32:intro1:r3": {
-          "ru": "Нужно `She jogs`, без `is`.",
-          "uk": "Потрібно `She jogs`, без `is`."
+          "ru": "Здесь действие: We jog, без are.",
+          "uk": "Тут дія: We jog, без are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-32:intro2:r2": {
-          "ru": "После `we` — `clean`, без `s`.",
-          "uk": "Після `we` — `clean`, без `s`."
+          "ru": "О владельце спрашиваем Whose — «чей».",
+          "uk": "Про власника питаємо Whose — «чий»."
         },
         "en:lesson-06:session-32:intro2:r3": {
-          "ru": "Нужно `We clean our room`, без `are`.",
-          "uk": "Потрібно `We clean our room`, без `are`."
+          "ru": "Смузи один: нужно is this.",
+          "uk": "Смузі один: потрібно is this."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-32:intro3:r2": {
-          "ru": "После `she` — `stretches`.",
-          "uk": "Після `she` — `stretches`."
+          "ru": "После she нужно jogs, с s.",
+          "uk": "Після she потрібно jogs, з s."
         },
         "en:lesson-06:session-32:intro3:r3": {
-          "ru": "Пишем `stretches`, с `es`.",
-          "uk": "Пишемо `stretches`, з `es`."
+          "ru": "Здесь действие: She jogs, без is.",
+          "uk": "Тут дія: She jogs, без is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dd1b9ebec57baac0a7d9a5e5c84060cdd6ec5ef66958a8484304b9737f816570"
+  "auxiliaryFingerprint": "e504a47a0e741d8dad493598d724e46872fcd8bcb9af96be813d441b796738a5"
 }

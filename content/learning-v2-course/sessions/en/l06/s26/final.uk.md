@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 26 — Пробіжка перед роботою
+# Англійська · Урок 6 · Заняття 26 — Пробіжка в парку
 
-**Ситуація.** Анна й Том снідають після пробіжки. Том розповідає про свій звичний маршрут; Анна помічає його робочий значок на кухонній стільниці.
+**Ситуація.** Подруга кличе вас бігати в парку, а потім ви йдете дивитися, як тренуються брат і сестра. Слово дії після I, we і they лишається незмінним, а після she і he отримує s.
 
-**Що ви опануєте:** розповісти про звичку бігати підтюпцем і описати необережність
-**Нові слова:** jog
+**Що ви опануєте:** розповісти, хто як бігає, і назвати, де проходить пробіжка
+**Нові слова:** jog, track, lap, marathon
+**Повертаються:** walk, park, near, hall, sister, stopwatch
 
 ---
 
 ## Інтро 1
 
-### Бігати підтюпцем
+### Кличуть до парку
 
-`jog` — «бігати підтюпцем», у спокійному темпі. `I jog in the park` — «Я бігаю підтюпцем у парку». Це розповідь про звичку: її можна вимовити за сніданком, не бігаючи навколо столу. `She jogs in the park` — «Вона бігає підтюпцем у парку»: після `she` додаємо `s`.
+Подруга кличе вас до парку вранці, поки там мало людей. Вона не женеться за рекордами: бігає не швидко, у своєму темпі. Ви погоджуєтеся. jog — «бігати підтюпцем». Про вас обох кажемо We jog in the park — «Ми бігаємо підтюпцем у парку». Після we слово лишається jog, без s.
 
-**Скажіть «Вона бігає підтюпцем у парку».**
+**Подруга питає, чим ви займетеся в парку. Скажіть за себе й подругу: «Ми бігаємо підтюпцем у парку».**
 
-- ✅ **She jogs in the park.**
-- ❌ She jog in the park. — *Після `she` — `jogs`, з `s`.*
-- ❌ She is jogs in the park. — *Кажемо `She jogs`, без `is`.*
+- ✅ **We jog in the park.**
+- ❌ We jogs in the park. — *Після we слово лишається jog, без s.*
+- ❌ We are jog in the park. — *Тут дія: We jog, без are.*
 
 ---
 
 ## Інтро 2
 
-### Усмішка після пробіжки
+### Брат на стадіоні
 
-`smile` — «усміхатися». `He smiles a lot` — «Він часто усміхається». `They smile a lot` — «Вони часто усміхаються»: після `they` закінчення `s` немає. `Anna jogs here` — «Анна бігає підтюпцем тут»: тут `Anna` відповідає `she`.
+Ваш брат щовечора тренується на стадіоні, а суворий тренер стоїть біля воріт і акуратно записує час у зошит. На стадіоні є рівна доріжка для бігу: track — «бігова доріжка». Про брата кажемо He jogs: до jog додаємо s, як у He jogs on the track.
 
-**Скажіть «Він часто усміхається».**
+**Тренер питає, де бігає ваш брат. Скажіть: «Він бігає підтюпцем на доріжці».**
 
-- ✅ **He smiles a lot.**
-- ❌ He smile a lot. — *Після `he` — `smiles`, з `s`.*
-- ❌ He is smiles a lot. — *Кажемо `He smiles`, без `is`.*
+- ✅ **He jogs on the track.**
+- ❌ He jog on the track. — *Після he потрібно jogs, з s.*
+- ❌ He is jogs on the track. — *Тут дія: He jogs, без is.*
 
 ---
 
 ## Інтро 3
 
-### Значок на краю
+### Одне коло
 
-`worktop` — «кухонна стільниця», `badge` — «значок», у цій сцені робочий значок працівника. `The badge is on the worktop` — «Значок на стільниці». `careless` — «необережний», неуважний до наслідків. `He is careless` — «Він необережний»: наприклад, постійно залишає важливі речі там, де їх легко зачепити. Тут риса, тому потрібно `is`.
+Сестра пробігла стадіоном одне коло й пропонує вам пробігти ще одне. Ви щойно повернулися з доріжки й просите її зачекати, поки ви віддихаєтесь. lap — «коло» на біговій доріжці, один повний обхід. Про коло кажемо is: The lap is long — «Коло довге».
 
-**Скажіть «Він необережний».**
+**Сестра пропонує бігти далі. Скажіть: «Коло довге».**
 
-- ✅ **He is careless.**
-- ❌ He careless. — *Тут потрібно `He is careless`.*
-- ❌ He are careless. — *З `he` — `is`, не `are`.*
+- ✅ **The lap is long.**
+- ❌ The lap long. — *Без is речення не виходить: потрібно The lap is.*
+- ❌ The lap are long. — *Коло одне, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про звичку: «Я бігаю підтюпцем у парку»**
+**1 · Картка слова — jog**
+<!-- interaction_id: en:lesson-06:session-26:word:jog; family: word_card -->
+> **jog** — бігати підтюпцем. They jog in the park. — «Вони бігають підтюпцем у парку». Про спокійний біг у своєму темпі.
+
+**2 · Подруга питає про сусідів. Скажіть: «Вони бігають підтюпцем у парку»**
 <!-- interaction_id: en:lesson-06:session-26:i01; family: phrase_builder -->
-Плитки: `park` `the` `in` `jog` `I` → **I jog in the park.**
+Плитки: `park` `in` `the` `jog` `They` `jogs` → **They jog in the park.**
+*(плитка `jogs` зайва: тут потрібно `jog` — `They jog in the park.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — track**
+<!-- interaction_id: en:lesson-06:session-26:word:track; family: word_card -->
+> **track** — бігова доріжка. The track is near the hall. — «Бігова доріжка біля залу». Про рівну доріжку, де бігають.
+
+**4 · Послухайте тренера**
 <!-- interaction_id: en:lesson-06:session-26:i02; family: listen_choose -->
-🔊 *jog* → **jog** · walk · read
-- walk — *У записі перше слово — `jog`, а в цьому варіанті — `walk`.*
-- read — *У записі перше слово — `jog`, а в цьому варіанті — `read`.*
+🔊 *He jogs on the track.* → **He jogs on the track.** · He walks on the track. · She jogs on the track.
+- He walks on the track. — *У записі дія — `jogs`, бігає підтюпцем, а в цьому варіанті — `walks`, ходить пішки.*
+- She jogs on the track. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**3 · Скажіть «Вона бігає підтюпцем у парку»**
+**5 · Скажіть про сестру: «Моя сестра бігає підтюпцем на доріжці». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-26:i03; family: context_gap_grammar -->
-She ___ in the park. → **jogs** · jog · is jogs
-- jog — *Після `she` — `jogs`, з `s`.*
-- is jogs — *Кажемо `She jogs`, без `is`.*
+My sister ___ on the track. → **jogs** · jog · is jogs
+- jog — *Сестра — це `she`, тому потрібно `jogs`, з `s`.*
+- is jogs — *Кажемо `My sister jogs`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-26:i04; family: speed_match -->
-jog — бігати підтюпцем · careless — необережний · worktop — кухонна стільниця · badge — значок
+jog — бігати підтюпцем · track — бігова доріжка · lap — коло (на доріжці) · marathon — марафон
 
-**5 · Послухайте й складіть фразу**
+**7 · Послухайте тренера й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-26:i05; family: listen_build_dictation -->
-🔊 *Anna jogs here.* Плитки: `here` `jogs` `Anna` → **Anna jogs here.**
+🔊 *The track is near the park.* Плитки: `park` `near` `the` `The` `track` `is` `are` → **The track is near the park.**
+*(плитка `are` зайва: тут потрібно `is` — `The track is near the park.`)*
 
-**6 · Скажіть «Він часто усміхається»**
+**8 · Картка слова — lap**
+<!-- interaction_id: en:lesson-06:session-26:word:lap; family: word_card -->
+> **lap** — коло (на доріжці). My lap is short. — «Моє коло коротке». Про повне коло доріжкою стадіону.
+
+**9 · Сестра говорить про доріжку. Скажіть: «Коло довге»**
 <!-- interaction_id: en:lesson-06:session-26:i06; family: phrase_builder -->
-Плитки: `lot` `a` `smiles` `He` → **He smiles a lot.**
+Плитки: `lap` `is` `long` `The` `are` → **The lap is long.**
+*(плитка `are` зайва: тут потрібно `is` — `The lap is long.`)*
 
-**7 · Том постійно залишає важливі речі на краю столу. Скажіть «Він необережний»**
+**10 · Тренер питає, де ви з подругою бігаєте. Скажіть: «Ми бігаємо підтюпцем на доріжці»**
 <!-- interaction_id: en:lesson-06:session-26:i07; family: scripted_repeat_compare -->
-🎙 **He is careless.**
+🎙 **We jog on the track.**
 
-**8 · Скажіть «Вони бігають підтюпцем тут»**
+**11 · Скажіть про себе: «Я бігаю підтюпцем у парку». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-26:i08; family: context_gap_grammar -->
-They ___ here. → **jog** · jogs · are jog
-- jogs — *Після `they` — `jog`, без `s`.*
-- are jog — *Кажемо `They jog`, без `are`.*
+I ___ in the park. → **jog** · jogs · am jog
+- jogs — *Після `I` потрібно `jog`, без `s`.*
+- am jog — *Кажемо `I jog`, без `am`.*
 
-**9 · Послухайте, чий значок тут**
+**12 · Картка слова — marathon**
+<!-- interaction_id: en:lesson-06:session-26:word:marathon; family: word_card -->
+> **marathon** — марафон. The marathon is in the park. — «Марафон проходить у парку». Про довгий забіг, який організовують для багатьох людей.
+
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-26:i09; family: listen_choose -->
-🔊 *My badge is here.* → **My badge is here.** · Your badge is here. · His badge is here.
-- Your badge is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His badge is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *The marathon is in the park.* → **The marathon is in the park.** · The marathon is in the hall. · The track is in the park.
+- The marathon is in the hall. — *У записі останнє слово — `park`, парк, а в цьому варіанті — `hall`, зал.*
+- The track is in the park. — *У записі йдеться про `marathon`, марафон, а в цьому варіанті — про `track`, доріжку.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-26:i10; family: speed_match -->
-jog — бігати підтюпцем · smile — усміхатися · badge — значок · careless — необережний
+lap — коло (на доріжці) · marathon — марафон · jog — бігати підтюпцем · track — бігова доріжка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте тренера й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-26:i11; family: listen_build_dictation -->
-🔊 *The badge is on the worktop.* Плитки: `worktop` `the` `on` `is` `badge` `The` `are` → **The badge is on the worktop.**
-*(плитка `are` зайва: тут потрібно `is` — `The badge is on the worktop.`)*
+🔊 *She jogs on the track.* Плитки: `jogs` `on` `the` `track` `She` `jog` → **She jogs on the track.**
+*(плитка `jog` зайва: тут потрібно `jogs` — `She jogs on the track.`)*
 
-**12 · Запитайте «Чий це значок?»**
+**16 · Тренер показує на секундомір на лавці. Спитайте: «Чий це секундомір?»**
 <!-- interaction_id: en:lesson-06:session-26:i12; family: phrase_builder -->
-Плитки: `this` `is` `badge` `Whose` → **Whose badge is this?**
+Плитки: `stopwatch` `is` `this` `Whose` `Who` → **Whose stopwatch is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose stopwatch is this?`)*
 
-**13 · Скажіть «Вони часто усміхаються»**
+**17 · Подруга питає про забіг. Скажіть: «Марафон довгий»**
 <!-- interaction_id: en:lesson-06:session-26:i13; family: scripted_repeat_compare -->
-🎙 **They smile a lot.**
+🎙 **The marathon is long.**
 
-**14 · Скажіть «Том часто усміхається»**
+**18 · Скажіть про забіг: «Марафон біля парку». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-26:i14; family: context_gap_grammar -->
-Tom ___ a lot. → **smiles** · smile · is smiles
-- smile — *Том — він: `Tom smiles`, з `s`.*
-- is smiles — *Кажемо `Tom smiles`, без `is`.*
+The marathon ___ near the park. → **is** · are · jogs
+- are — *Марафон один, тому потрібно `is`, а не `are`.*
+- jogs — *`jogs` означає «бігає», а тут треба сказати, де марафон: `is near`.*
 
-**15 · Послухайте, що Анна каже про стільницю**
+**19 · Послухайте сестру**
 <!-- interaction_id: en:lesson-06:session-26:i15; family: listen_choose -->
-🔊 *The worktop is clean.* → **The worktop is clean.** · The worktop is dirty. · The worktop is wet.
-- The worktop is dirty. — *У записі останнє слово — `clean`, а в цьому варіанті — `dirty`.*
-- The worktop is wet. — *У записі останнє слово — `clean`, а в цьому варіанті — `wet`.*
+🔊 *I jog on the track.* → **I jog on the track.** · I walk on the track. · We jog on the track.
+- I walk on the track. — *У записі дія — `jog`, бігати підтюпцем, а в цьому варіанті — `walk`, ходити пішки.*
+- We jog on the track. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-26:i16; family: speed_match -->
-jog — бігати підтюпцем · worktop — кухонна стільниця · careless — необережний · smile — усміхатися
+marathon — марафон · lap — коло (на доріжці) · track — бігова доріжка · jog — бігати підтюпцем
 
-**17 · За сніданком розкажіть другові про звичку Анни: «Вона бігає підтюпцем у парку»**
+**21 · Тренер питає про вашу сестру. Скажіть: «Вона бігає підтюпцем у парку»**
 <!-- interaction_id: en:lesson-06:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **She jogs in the park.**
-

@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 26 — Пробежка перед работой
+# Английский · Урок 6 · Занятие 26 — Пробежка в парке
 
-**Ситуация.** Анна и Том завтракают после пробежки. Том рассказывает о своём обычном маршруте; Анна замечает его рабочий значок на кухонной столешнице.
+**Ситуация.** Подруга зовёт вас бегать в парке, а потом вы идёте смотреть, как тренируются брат и сестра. Слово действия после I, we и they остаётся прежним, а после she и he получает s.
 
-**Что вы освоите:** рассказать о привычке бегать трусцой и описать неосторожность
-**Новые слова:** jog
+**Что вы освоите:** рассказать, кто как бегает, и назвать, где проходит пробежка
+**Новые слова:** jog, track, lap, marathon
+**Возвращаются:** walk, park, near, hall, sister, stopwatch
 
 ---
 
 ## Интро 1
 
-### Бегать трусцой
+### Зовут в парк
 
-`jog` — «бегать трусцой», в спокойном темпе. `I jog in the park` — «Я бегаю трусцой в парке». Это рассказ о привычке: его можно произнести за завтраком, не бегая вокруг стола. `She jogs in the park` — «Она бегает трусцой в парке»: после `she` добавляем `s`.
+Подруга зовёт вас в парк по утрам, пока там мало людей. Она не гонится за рекордами: бегает не быстро, в своём темпе. Вы соглашаетесь. jog — «бегать трусцой». Про вас обеих говорим We jog in the park — «Мы бегаем трусцой в парке». После we слово остаётся jog, без s.
 
-**Скажите «Она бегает трусцой в парке».**
+**Подруга спрашивает, чем вы займётесь в парке. Скажите за себя и подругу: «Мы бегаем трусцой в парке».**
 
-- ✅ **She jogs in the park.**
-- ❌ She jog in the park. — *После `she` — `jogs`, с `s`.*
-- ❌ She is jogs in the park. — *Говорим `She jogs`, без `is`.*
+- ✅ **We jog in the park.**
+- ❌ We jogs in the park. — *После we слово остаётся jog, без s.*
+- ❌ We are jog in the park. — *Здесь действие: We jog, без are.*
 
 ---
 
 ## Интро 2
 
-### Улыбка после пробежки
+### Брат на стадионе
 
-`smile` — «улыбаться». `He smiles a lot` — «Он часто улыбается». `They smile a lot` — «Они часто улыбаются»: после `they` окончания `s` нет. `Anna jogs here` — «Анна бегает трусцой здесь»: здесь `Anna` соответствует `she`.
+Ваш брат каждый вечер тренируется на стадионе, а строгий тренер стоит у ворот и аккуратно записывает время в тетрадь. На стадионе есть ровная дорожка для бега: track — «беговая дорожка». Про брата говорим He jogs: к jog добавляем s, как в He jogs on the track.
 
-**Скажите «Он часто улыбается».**
+**Тренер спрашивает, где бегает ваш брат. Скажите: «Он бегает трусцой на дорожке».**
 
-- ✅ **He smiles a lot.**
-- ❌ He smile a lot. — *После `he` — `smiles`, с `s`.*
-- ❌ He is smiles a lot. — *Говорим `He smiles`, без `is`.*
+- ✅ **He jogs on the track.**
+- ❌ He jog on the track. — *После he нужно jogs, с s.*
+- ❌ He is jogs on the track. — *Здесь действие: He jogs, без is.*
 
 ---
 
 ## Интро 3
 
-### Значок на краю
+### Один круг
 
-`worktop` — «кухонная столешница», `badge` — «значок», в этой сцене рабочий значок сотрудника. `The badge is on the worktop` — «Значок на столешнице». `careless` — «неосторожный», невнимательный к последствиям. `He is careless` — «Он неосторожен»: например, постоянно оставляет важные вещи там, где их легко задеть. Здесь качество, поэтому нужно `is`.
+Сестра пробежала по стадиону один круг и предлагает вам пробежать ещё один. Вы только что вернулись с дорожки и просите её подождать, пока вы отдышитесь. lap — «круг» на беговой дорожке, один полный обход. Про круг говорим is: The lap is long — «Круг длинный».
 
-**Скажите «Он неосторожен».**
+**Сестра предлагает бежать дальше. Скажите: «Круг длинный».**
 
-- ✅ **He is careless.**
-- ❌ He careless. — *Здесь нужно `He is careless`.*
-- ❌ He are careless. — *С `he` — `is`, не `are`.*
+- ✅ **The lap is long.**
+- ❌ The lap long. — *Без is предложение не получается: нужно The lap is.*
+- ❌ The lap are long. — *Круг один, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычке: «Я бегаю трусцой в парке»**
+**1 · Карточка слова — jog**
+<!-- interaction_id: en:lesson-06:session-26:word:jog; family: word_card -->
+> **jog** — бегать трусцой. They jog in the park. — «Они бегают трусцой в парке». О спокойном беге в своём темпе.
+
+**2 · Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»**
 <!-- interaction_id: en:lesson-06:session-26:i01; family: phrase_builder -->
-Плитки: `park` `the` `in` `jog` `I` → **I jog in the park.**
+Плитки: `park` `in` `the` `jog` `They` `jogs` → **They jog in the park.**
+*(плитка `jogs` лишняя: здесь нужно `jog` — `They jog in the park.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — track**
+<!-- interaction_id: en:lesson-06:session-26:word:track; family: word_card -->
+> **track** — беговая дорожка. The track is near the hall. — «Беговая дорожка возле зала». О ровной дорожке, где бегают.
+
+**4 · Послушайте тренера**
 <!-- interaction_id: en:lesson-06:session-26:i02; family: listen_choose -->
-🔊 *jog* → **jog** · walk · read
-- walk — *В записи первое слово — `jog`, а в этом варианте — `walk`.*
-- read — *В записи первое слово — `jog`, а в этом варианте — `read`.*
+🔊 *He jogs on the track.* → **He jogs on the track.** · He walks on the track. · She jogs on the track.
+- He walks on the track. — *В записи действие — `jogs`, бегает трусцой, а в этом варианте — `walks`, ходит пешком.*
+- She jogs on the track. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**3 · Скажите «Она бегает трусцой в парке»**
+**5 · Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-26:i03; family: context_gap_grammar -->
-She ___ in the park. → **jogs** · jog · is jogs
-- jog — *После `she` — `jogs`, с `s`.*
-- is jogs — *Говорим `She jogs`, без `is`.*
+My sister ___ on the track. → **jogs** · jog · is jogs
+- jog — *Сестра — это `she`, поэтому нужно `jogs`, с `s`.*
+- is jogs — *Говорим `My sister jogs`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-26:i04; family: speed_match -->
-jog — бегать трусцой · careless — неосторожный · worktop — кухонная столешница · badge — значок
+jog — бегать трусцой · track — беговая дорожка · lap — круг (на дорожке) · marathon — марафон
 
-**5 · Послушайте и соберите фразу**
+**7 · Послушайте тренера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-26:i05; family: listen_build_dictation -->
-🔊 *Anna jogs here.* Плитки: `here` `jogs` `Anna` → **Anna jogs here.**
+🔊 *The track is near the park.* Плитки: `park` `near` `the` `The` `track` `is` `are` → **The track is near the park.**
+*(плитка `are` лишняя: здесь нужно `is` — `The track is near the park.`)*
 
-**6 · Скажите «Он часто улыбается»**
+**8 · Карточка слова — lap**
+<!-- interaction_id: en:lesson-06:session-26:word:lap; family: word_card -->
+> **lap** — круг (на дорожке). My lap is short. — «Мой круг короткий». О полном круге по дорожке стадиона.
+
+**9 · Сестра говорит о дорожке. Скажите: «Круг длинный»**
 <!-- interaction_id: en:lesson-06:session-26:i06; family: phrase_builder -->
-Плитки: `lot` `a` `smiles` `He` → **He smiles a lot.**
+Плитки: `lap` `is` `long` `The` `are` → **The lap is long.**
+*(плитка `are` лишняя: здесь нужно `is` — `The lap is long.`)*
 
-**7 · Том постоянно оставляет важные вещи на краю стола. Скажите «Он неосторожен»**
+**10 · Тренер спрашивает, где вы с подругой бегаете. Скажите: «Мы бегаем трусцой на дорожке»**
 <!-- interaction_id: en:lesson-06:session-26:i07; family: scripted_repeat_compare -->
-🎙 **He is careless.**
+🎙 **We jog on the track.**
 
-**8 · Скажите «Они бегают трусцой здесь»**
+**11 · Скажите о себе: «Я бегаю трусцой в парке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-26:i08; family: context_gap_grammar -->
-They ___ here. → **jog** · jogs · are jog
-- jogs — *После `they` — `jog`, без `s`.*
-- are jog — *Говорим `They jog`, без `are`.*
+I ___ in the park. → **jog** · jogs · am jog
+- jogs — *После `I` нужно `jog`, без `s`.*
+- am jog — *Говорим `I jog`, без `am`.*
 
-**9 · Послушайте, чей значок здесь**
+**12 · Карточка слова — marathon**
+<!-- interaction_id: en:lesson-06:session-26:word:marathon; family: word_card -->
+> **marathon** — марафон. The marathon is in the park. — «Марафон проходит в парке». О длинном забеге, который организуют для многих людей.
+
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-26:i09; family: listen_choose -->
-🔊 *My badge is here.* → **My badge is here.** · Your badge is here. · His badge is here.
-- Your badge is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His badge is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The marathon is in the park.* → **The marathon is in the park.** · The marathon is in the hall. · The track is in the park.
+- The marathon is in the hall. — *В записи последнее слово — `park`, парк, а в этом варианте — `hall`, зал.*
+- The track is in the park. — *В записи речь о `marathon`, марафоне, а в этом варианте — о `track`, дорожке.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-26:i10; family: speed_match -->
-jog — бегать трусцой · smile — улыбаться · badge — значок · careless — неосторожный
+lap — круг (на дорожке) · marathon — марафон · jog — бегать трусцой · track — беговая дорожка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте тренера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-26:i11; family: listen_build_dictation -->
-🔊 *The badge is on the worktop.* Плитки: `worktop` `the` `on` `is` `badge` `The` `are` → **The badge is on the worktop.**
-*(плитка `are` лишняя: здесь нужно `is` — `The badge is on the worktop.`)*
+🔊 *She jogs on the track.* Плитки: `jogs` `on` `the` `track` `She` `jog` → **She jogs on the track.**
+*(плитка `jog` лишняя: здесь нужно `jogs` — `She jogs on the track.`)*
 
-**12 · Спросите «Чей это значок?»**
+**16 · Тренер показывает на секундомер на скамейке. Спросите: «Чей это секундомер?»**
 <!-- interaction_id: en:lesson-06:session-26:i12; family: phrase_builder -->
-Плитки: `this` `is` `badge` `Whose` → **Whose badge is this?**
+Плитки: `stopwatch` `is` `this` `Whose` `Who` → **Whose stopwatch is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose stopwatch is this?`)*
 
-**13 · Скажите «Они часто улыбаются»**
+**17 · Подруга спрашивает о забеге. Скажите: «Марафон длинный»**
 <!-- interaction_id: en:lesson-06:session-26:i13; family: scripted_repeat_compare -->
-🎙 **They smile a lot.**
+🎙 **The marathon is long.**
 
-**14 · Скажите «Том часто улыбается»**
+**18 · Скажите о забеге: «Марафон возле парка». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-26:i14; family: context_gap_grammar -->
-Tom ___ a lot. → **smiles** · smile · is smiles
-- smile — *Том — он: `Tom smiles`, с `s`.*
-- is smiles — *Говорим `Tom smiles`, без `is`.*
+The marathon ___ near the park. → **is** · are · jogs
+- are — *Марафон один, поэтому нужно `is`, а не `are`.*
+- jogs — *`jogs` значит «бегает», а здесь нужно сказать, где марафон: `is near`.*
 
-**15 · Послушайте, что Анна говорит о столешнице**
+**19 · Послушайте сестру**
 <!-- interaction_id: en:lesson-06:session-26:i15; family: listen_choose -->
-🔊 *The worktop is clean.* → **The worktop is clean.** · The worktop is dirty. · The worktop is wet.
-- The worktop is dirty. — *В записи последнее слово — `clean`, а в этом варианте — `dirty`.*
-- The worktop is wet. — *В записи последнее слово — `clean`, а в этом варианте — `wet`.*
+🔊 *I jog on the track.* → **I jog on the track.** · I walk on the track. · We jog on the track.
+- I walk on the track. — *В записи действие — `jog`, бегать трусцой, а в этом варианте — `walk`, ходить пешком.*
+- We jog on the track. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-26:i16; family: speed_match -->
-jog — бегать трусцой · worktop — кухонная столешница · careless — неосторожный · smile — улыбаться
+marathon — марафон · lap — круг (на дорожке) · track — беговая дорожка · jog — бегать трусцой
 
-**17 · За завтраком расскажите другу о привычке Анны: «Она бегает трусцой в парке»**
+**21 · Тренер спрашивает о вашей сестре. Скажите: «Она бегает трусцой в парке»**
 <!-- interaction_id: en:lesson-06:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **She jogs in the park.**
-

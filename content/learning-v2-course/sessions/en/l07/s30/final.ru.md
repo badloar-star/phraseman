@@ -1,133 +1,153 @@
-# Английский · Урок 7 · Занятие 30 — Куда ты путешествуешь?
+# Английский · Урок 7 · Занятие 30 — Дела по району
 
-**Ситуация.** Вы обсуждаете привычные направления поездок, время уборки и начало рабочего дня коллеги.
+**Ситуация.** Вы разбираетесь с делами по району: узнаёте у соседки, где оплачивают счёт, у продавца — где забирают посылки, а у подруги — где регистрируются пациенты.
 
-**Что вы освоите:** спрашивать о направлениях поездок с where и о времени действий с when
-**Новые слова:** travel
+**Что вы освоите:** узнавать, где и когда оплачивают счета, выдают посылки и регистрируют посетителей
+**Новые слова:** payment, collect, register, vote
+**Возвращаются:** pay, bill, rent, parcel, letter, clinic, wait
 
 ---
 
 ## Интро 1
 
-### Направления поездок
+### Счёт за воду
 
-Друг часто путешествует. `travel` — «путешествовать». `Where do you travel?` — «Куда ты путешествуешь?» Здесь `where` спрашивает о направлениях его обычных поездок; затем идут `do you travel`. Глобус большой, поэтому ответ «куда-нибудь» мало помогает.
+Вы впервые оплачиваете воду после переезда и спрашиваете соседку, где она обычно это делает. Pay — знакомое «платить». Payment — «платёж, оплата». Спросите: Where do you pay the bill? — «Где вы оплачиваете счёт?» С you здесь нужно do, затем pay, без s. Счёт за воду уже есть, а экскурсия по всем кассам района в ваши планы не входила.
 
-**Узнайте обычные направления поездок друга.**
+**Соседка держит такой же счёт. Спросите её: «Где вы оплачиваете счёт?»**
 
-- ✅ **Where do you travel?**
-- ❌ Where does you travel? — *С `you` нужно `do`.*
-- ❌ Where you travel? — *После `where` здесь нужно `do`.*
+- ✅ **Where do you pay the bill?**
+- ❌ Where does you pay the bill? — *С you нужно do.*
+- ❌ Where do you pays the bill? — *После do you нужно pay, без s.*
 
 ---
 
 ## Интро 2
 
-### Время уборки
+### Уведомление о посылке
 
-Вы обсуждаете с соседом по квартире привычный график уборки. `When do you clean?` — «Когда ты убираешь?» Из разговора понятно, что речь о квартире. `When` спрашивает о времени, затем идут `do you clean`.
+Магазин на углу выдаёт посылки, но вы видите только обычную кассу. Collect — «забирать». Узнайте у продавца, где здесь принято получать посылки: Where do customers collect parcels? — «Где клиенты забирают посылки?» С customers в этом вопросе нужно do, затем collect, без s.
 
-**Узнайте, когда сосед обычно убирает квартиру.**
+**Вы зашли в магазин на углу. Спросите продавца: «Где клиенты забирают посылки?»**
 
-- ✅ **When do you clean?**
-- ❌ When does you clean? — *С `you` нужно `do`.*
-- ❌ When do you cleans? — *После `do you` нужно `clean`, без `s`.*
+- ✅ **Where do customers collect parcels?**
+- ❌ Where does customers collect parcels? — *Клиентов много: нужно do.*
+- ❌ Where do customers collects parcels? — *После do нужно collect, без s.*
 
 ---
 
 ## Интро 3
 
-### Начало рабочего дня
+### Холл поликлиники
 
-Вы уточняете рабочее расписание коллеги. `When does she start?` — «Когда она начинает?» В этом разговоре имеется в виду работа. С `she` ставим `does`, затем `start`, без `s`.
+Вы впервые пришли в поликлинику: запись к врачу уже есть, но перед кабинетом нужно зарегистрировать своё прибытие. Register — «регистрироваться». Подруга бывала здесь раньше. Спросите её: Where do patients register? — «Где пациенты регистрируются?» С patients здесь нужно do, затем register, без s. Вы ищете место регистрации, а не записываетесь на другой приём.
 
-**Спросите о начале её рабочего дня.**
+**В холле поликлиники много людей. Спросите подругу: «Где пациенты регистрируются?»**
 
-- ✅ **When does she start?**
-- ❌ When do she start? — *С `she` нужно `does`.*
-- ❌ When does she starts? — *После `does` нужно `start`.*
+- ✅ **Where do patients register?**
+- ❌ Where does patients register? — *Пациентов много: нужно do.*
+- ❌ Where do patients registers? — *После do нужно register, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (22 задания)
 
-**1 · Узнайте обычные направления поездок: «Куда ты путешествуешь?»**
+**1 · Карточка слова — payment**
+<!-- interaction_id: en:lesson-07:session-30:word:payment; family: word_card -->
+> **payment** — платёж. Your payment is late. — «Ваш платёж просрочен». Pay — платить, payment — сам платёж.
+
+**2 · Срок оплаты прошёл. Сообщите клиенту: «Ваш платёж просрочен»**
+<!-- interaction_id: en:lesson-07:session-30:practice:payment; family: phrase_builder -->
+Плитки: `late` `payment` `Your` `is` → **Your payment is late.**
+
+**3 · Соседка держит такой же счёт. Спросите её: «Где вы оплачиваете счёт?»**
 <!-- interaction_id: en:lesson-07:session-30:i01; family: phrase_builder -->
-Плитки: `travel` `you` `do` `Where` → **Where do you travel?**
+Плитки: `bill` `the` `pay` `you` `do` `Where` → **Where do you pay the bill?**
 
-**2 · Послушайте и выберите слово**
+**4 · Послушайте соседку**
 <!-- interaction_id: en:lesson-07:session-30:i02; family: listen_choose -->
-🔊 *travel* → **travel** · clean · headphones
-- clean — *В записи первое слово — `travel`, а в этом варианте — `clean`.*
-- headphones — *В записи первое слово — `travel`, а в этом варианте — `headphones`.*
+🔊 *Where do you pay the bill?* → **Where do you pay the bill?** · Where do you pay the rent? · When do you pay the bill?
+- Where do you pay the rent? — *В записи последнее слово — `bill`, счёт, а в этом варианте — `rent`, аренда.*
+- When do you pay the bill? — *В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.*
 
-**3 · Спросите об обычных направлениях поездок**
+**5 · Спросите соседку о счёте. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-30:i03; family: context_gap_grammar -->
-Where ___ you travel? → **do** · does · are
+Where ___ you pay the bill? → **do** · does · are
 - does — *С `you` нужно `do`.*
-- are — *Вопрос о привычном действии `travel` строим с `do`.*
+- are — *С действием `pay` нужно `do`, а не `are`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-30:i04; family: speed_match -->
-travel — путешествовать · clean — убирать · headphones — наушники · windows — окна
+payment — платёж · pay — платить · bill — счёт · late — поздний
 
-**5 · Послушайте и соберите вопрос**
+**7 · Карточка слова — collect**
+<!-- interaction_id: en:lesson-07:session-30:word:collect; family: word_card -->
+> **collect** — забирать. Where do customers collect parcels? — «Где клиенты забирают посылки?» Приходить и брать то, что вас уже ждёт.
+
+**8 · Послушайте продавца и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-30:i05; family: listen_build_dictation -->
-🔊 *Where do you travel?* Плитки: `travel` `you` `do` `Where` → **Where do you travel?**
+🔊 *Where do customers collect parcels?* Плитки: `parcels` `collect` `customers` `do` `Where` → **Where do customers collect parcels?**
 
-**6 · Узнайте обычное время уборки: «Когда ты убираешь?»**
+**9 · Карточка слова — register**
+<!-- interaction_id: en:lesson-07:session-30:word:register; family: word_card -->
+> **register** — регистрироваться. Where do patients register? — «Где пациенты регистрируются?» Внести свои данные в список; здесь — сообщить о прибытии на приём.
+
+**10 · В холле поликлиники много людей. Спросите подругу: «Где пациенты регистрируются?»**
 <!-- interaction_id: en:lesson-07:session-30:i06; family: phrase_builder -->
-Плитки: `clean` `you` `do` `When` → **When do you clean?**
+Плитки: `register` `patients` `do` `Where` → **Where do patients register?**
 
-**7 · Спросите о начале рабочего дня коллеги «Когда она начинает?»**
+**11 · Карточка слова — vote**
+<!-- interaction_id: en:lesson-07:session-30:word:vote; family: word_card -->
+> **vote** — голосовать. Where do you vote? — «Где вы голосуете?» Выражать свой выбор при голосовании, например на выборах.
+
+**12 · Соседка говорит о выборах. Спросите её: «Где вы голосуете?»**
 <!-- interaction_id: en:lesson-07:session-30:i07; family: scripted_repeat_compare -->
-🎙 **When does she start?**
+🎙 **Where do you vote?**
 
-**8 · Спросите о начале её работы**
+**13 · Спросите соседку о выборах. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-30:i08; family: context_gap_grammar -->
-When ___ she start? → **does** · do · is
-- do — *С `she` нужно `does`.*
-- is — *Вопрос о действии `start` с `she` строим с `does`.*
+Where ___ you vote? → **do** · does · are
+- does — *С `you` нужно `do`.*
+- are — *С действием `vote` нужно `do`, а не `are`.*
 
-**9 · Послушайте и выберите вопрос**
+**14 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-30:i09; family: listen_choose -->
-🔊 *Where do you travel?* → **Where do you travel?** · When do you travel? · Where do you work?
-- When do you travel? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you work? — *В записи последнее слово — `travel`, а в этом варианте — `work`.*
+🔊 *Where do patients register?* → **Where do patients register?** · Where do patients wait? · Where do children register?
+- Where do patients wait? — *В записи последнее слово — `register`, регистрироваться, а в этом варианте — `wait`, ждать.*
+- Where do children register? — *В записи третье слово — `patients`, пациенты, а в этом варианте — `children`, дети.*
 
-**10 · Соедините слова со значениями**
+**15 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-30:i10; family: speed_match -->
-argue — спорить · travel — путешествовать · windows — окна · clean — убирать
+pay — платить · bill — счёт · parcel — посылка · clinic — поликлиника
 
-**11 · Послушайте и соберите вопрос**
+**16 · Послушайте соседку и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-30:i11; family: listen_build_dictation -->
-🔊 *When do you clean?* Плитки: `clean` `you` `do` `When` → **When do you clean?**
+🔊 *When does she vote?* Плитки: `vote` `she` `does` `When` → **When does she vote?**
 
-**12 · Перед прогулкой спросите друга «У тебя есть наушники?»**
+**17 · Продавец стоит у стойки выдачи. Спросите его: «Когда клиенты забирают посылки?»**
 <!-- interaction_id: en:lesson-07:session-30:i12; family: phrase_builder -->
-Плитки: `headphones` `have` `you` `Do` → **Do you have headphones?**
+Плитки: `parcels` `collect` `customers` `do` `When` → **When do customers collect parcels?**
 
-**13 · Обсуждая поведение при разногласиях, скажите «Я не спорю»**
+**18 · Сестра подруги регулярно приходит в эту поликлинику. Узнайте, на каком этапе визита она проходит регистрацию: «Когда она регистрируется?»**
 <!-- interaction_id: en:lesson-07:session-30:i13; family: scripted_repeat_compare -->
-🎙 **I don’t argue.**
+🎙 **When does she register?**
 
-**14 · Узнайте, куда Том обычно путешествует**
+**19 · Спросите продавца о клиентах. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-30:i14; family: context_gap_grammar -->
-Where does Tom ___? → **travel** · travels · is travel
-- travels — *После `does` нужно `travel`.*
-- is travel — *Здесь нужно `travel`, без `is`.*
+Where do customers ___ parcels? → **collect** · collects · is collect
+- collects — *После `do` нужно `collect`, без `s`.*
+- is collect — *Здесь нужно `collect`, без `is`.*
 
-**15 · Послушайте, где окна**
+**20 · Послушайте продавца**
 <!-- interaction_id: en:lesson-07:session-30:i15; family: listen_choose -->
-🔊 *The windows are here.* → **The windows are here.** · The windows are there. · The windows are upstairs.
-- The windows are there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The windows are upstairs. — *В записи последнее слово — `here`, а в этом варианте — `upstairs`.*
+🔊 *When do customers collect parcels?* → **When do customers collect parcels?** · When do customers collect letters? · Where do customers collect parcels?
+- When do customers collect letters? — *В записи последнее слово — `parcels`, посылки, а в этом варианте — `letters`, письма.*
+- Where do customers collect parcels? — *В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.*
 
-**16 · Соедините слова со значениями**
+**21 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-30:i16; family: speed_match -->
-travel — путешествовать · headphones — наушники · argue — спорить · windows — окна
+vote — голосовать · register — регистрироваться · collect — забирать · payment — платёж
 
-**17 · Вы обсуждаете привычное время поездок Тома. Спросите «Когда Том путешествует?»**
+**22 · Вы снова у стойки. Спросите продавца: «Где клиенты забирают посылки?»**
 <!-- interaction_id: en:lesson-07:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **When does Tom travel?**
-
+🎙 **Where do customers collect parcels?**

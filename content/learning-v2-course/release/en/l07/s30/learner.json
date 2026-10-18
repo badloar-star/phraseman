@@ -4,28 +4,106 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-30:i01",
+      "interactionId": "en:lesson-07:session-30:word:payment",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — payment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:word:payment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — payment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:word:payment:audio",
+          "transcript": "payment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-30:word:payment:r1",
+            "targetText": "payment",
+            "meaningByLocale": {
+              "ru": "платёж. Your payment is late. — «Ваш платёж просрочен». Pay — платить, payment — сам платёж.",
+              "uk": "платіж. Your payment is late. — «Ваш платіж прострочений». Pay — платити, payment — сам платіж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "payment",
+          "definitionByLocale": {
+            "ru": "платёж. Your payment is late. — «Ваш платёж просрочен». Pay — платить, payment — сам платёж.",
+            "uk": "платіж. Your payment is late. — «Ваш платіж прострочений». Pay — платити, payment — сам платіж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:practice:payment",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Узнайте обычные направления поездок: «Куда ты путешествуешь?»",
+      "prompt": "Срок оплаты прошёл. Сообщите клиенту: «Ваш платёж просрочен»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Узнайте обычные направления поездок: «Куда ты путешествуешь?»",
+      "accessibilityLabel": "Срок оплаты прошёл. Сообщите клиенту: «Ваш платёж просрочен»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where do you travel?",
+        "targetPhrase": "Your payment is late.",
         "localizedMeaning": {
-          "ru": "Узнайте обычные направления поездок: «Куда ты путешествуешь?»",
-          "uk": "Дізнайтеся звичні напрямки поїздок: «Куди ти подорожуєш?»"
+          "ru": "Срок оплаты прошёл. Сообщите клиенту: «Ваш платёж просрочен»",
+          "uk": "Строк оплати минув. Повідомте клієнту: «Ваш платіж прострочений»"
+        },
+        "orderedTokens": [
+          "Your",
+          "payment",
+          "is",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i01",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соседка держит такой же счёт. Спросите её: «Где вы оплачиваете счёт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соседка держит такой же счёт. Спросите её: «Где вы оплачиваете счёт?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do you pay the bill?",
+        "localizedMeaning": {
+          "ru": "Соседка держит такой же счёт. Спросите её: «Где вы оплачиваете счёт?»",
+          "uk": "Сусідка тримає такий самий рахунок. Спитайте її: «Де ви сплачуєте рахунок?»"
         },
         "orderedTokens": [
           "Where",
           "do",
           "you",
-          "travel"
+          "pay",
+          "the",
+          "bill"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -38,51 +116,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-30:i02:r1",
-          "text": "travel"
+          "text": "Where do you pay the bill?"
         },
         {
           "responseId": "en:lesson-07:session-30:i02:r2",
-          "text": "clean"
+          "text": "Where do you pay the rent?"
         },
         {
           "responseId": "en:lesson-07:session-30:i02:r3",
-          "text": "headphones"
+          "text": "When do you pay the bill?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i02:audio",
-          "transcript": "travel"
+          "transcript": "Where do you pay the bill?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-30:i02:r1",
-            "targetText": "travel",
+            "targetText": "Where do you pay the bill?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-30:i02:r2",
-            "targetText": "clean",
+            "targetText": "Where do you pay the rent?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-30:i02:r3",
-            "targetText": "headphones",
+            "targetText": "When do you pay the bill?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +169,19 @@
           {
             "responseId": "en:lesson-07:session-30:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `travel`, а в этом варианте — `clean`.",
-              "uk": "У записі перше слово — `travel`, а в цьому варіанті — `clean`."
+              "ru": "В записи последнее слово — `bill`, счёт, а в этом варианте — `rent`, аренда.",
+              "uk": "У записі останнє слово — `bill`, рахунок, а в цьому варіанті — `rent`, оренда."
             }
           },
           {
             "responseId": "en:lesson-07:session-30:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `travel`, а в этом варианте — `headphones`.",
-              "uk": "У записі перше слово — `travel`, а в цьому варіанті — `headphones`."
+              "ru": "В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.",
+              "uk": "У записі перше слово — `Where`, де, а в цьому варіанті — `When`, коли."
             }
           }
         ],
@@ -114,11 +192,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите об обычных направлениях поездок",
+      "prompt": "Спросите соседку о счёте. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-30:i03:r1",
@@ -135,14 +213,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите об обычных направлениях поездок",
+      "accessibilityLabel": "Спросите соседку о счёте. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите об обычных направлениях поездок",
-          "uk": "Запитайте про звичні напрямки поїздок"
+          "ru": "Спросите соседку о счёте. Выберите слово",
+          "uk": "Спитайте сусідку про рахунок. Виберіть слово"
         },
-        "gappedTargetPhrase": "Where ___ you travel?",
+        "gappedTargetPhrase": "Where ___ you pay the bill?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-30:i03:r1",
@@ -157,24 +235,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Спросите об обычных направлениях поездок",
+        "testedDimension": "Спросите соседку о счёте. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-30:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите об обычных направлениях поездок",
+            "testedDimension": "Спросите соседку о счёте. Выберите слово",
             "feedbackByLocale": {
               "ru": "С `you` нужно `do`.",
-              "uk": "З `you` потрібне `do`."
+              "uk": "З `you` потрібно `do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-30:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите об обычных направлениях поездок",
+            "testedDimension": "Спросите соседку о счёте. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о привычном действии `travel` строим с `do`.",
-              "uk": "Запитання про звичну дію `travel` будуємо з `do`."
+              "ru": "С действием `pay` нужно `do`, а не `are`.",
+              "uk": "З дією `pay` потрібне `do`, а не `are`."
             }
           }
         ]
@@ -183,7 +261,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +275,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-30:i04:p1",
-            "target": "travel",
+            "target": "payment",
             "meaningByLocale": {
-              "ru": "путешествовать",
-              "uk": "подорожувати"
+              "ru": "платёж",
+              "uk": "платіж"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i04:p2",
-            "target": "clean",
+            "target": "pay",
             "meaningByLocale": {
-              "ru": "убирать",
-              "uk": "прибирати"
+              "ru": "платить",
+              "uk": "платити"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i04:p3",
-            "target": "headphones",
+            "target": "bill",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "счёт",
+              "uk": "рахунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i04:p4",
-            "target": "windows",
+            "target": "late",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "поздний",
+              "uk": "пізній"
             }
           }
         ],
         "leftColumn": [
-          "travel",
-          "clean",
-          "headphones",
-          "windows"
+          "payment",
+          "pay",
+          "bill",
+          "late"
         ],
         "rightColumn": [
-          "путешествовать",
-          "убирать",
-          "наушники",
-          "окна"
+          "платёж",
+          "платить",
+          "счёт",
+          "поздний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,64 +333,151 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-30:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-07:session-30:word:collect",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — collect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:word:collect:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — collect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:word:collect:audio",
+          "transcript": "collect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-30:word:collect:r1",
+            "targetText": "collect",
+            "meaningByLocale": {
+              "ru": "забирать. Where do customers collect parcels? — «Где клиенты забирают посылки?» Приходить и брать то, что вас уже ждёт.",
+              "uk": "забирати. Where do customers collect parcels? — «Де клієнти забирають посилки?» Приходити й брати те, що вже на вас чекає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "collect",
+          "definitionByLocale": {
+            "ru": "забирать. Where do customers collect parcels? — «Где клиенты забирают посылки?» Приходить и брать то, что вас уже ждёт.",
+            "uk": "забирати. Where do customers collect parcels? — «Де клієнти забирають посилки?» Приходити й брати те, що вже на вас чекає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте продавца и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте продавца и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i05:audio",
-          "transcript": "Where do you travel?"
+          "transcript": "Where do customers collect parcels?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where do you travel?",
+        "hiddenTargetPhrase": "Where do customers collect parcels?",
         "orderedTokens": [
           "Where",
           "do",
-          "you",
-          "travel"
+          "customers",
+          "collect",
+          "parcels"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:word:register",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — register",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:word:register:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — register",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:word:register:audio",
+          "transcript": "register"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-30:word:register:r1",
+            "targetText": "register",
+            "meaningByLocale": {
+              "ru": "регистрироваться. Where do patients register? — «Где пациенты регистрируются?» Внести свои данные в список; здесь — сообщить о прибытии на приём.",
+              "uk": "реєструватися. Where do patients register? — «Де пацієнти реєструються?» Внести свої дані до списку; тут — повідомити про прибуття на прийом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "register",
+          "definitionByLocale": {
+            "ru": "регистрироваться. Where do patients register? — «Где пациенты регистрируются?» Внести свои данные в список; здесь — сообщить о прибытии на приём.",
+            "uk": "реєструватися. Where do patients register? — «Де пацієнти реєструються?» Внести свої дані до списку; тут — повідомити про прибуття на прийом."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-30:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Узнайте обычное время уборки: «Когда ты убираешь?»",
+      "prompt": "В холле поликлиники много людей. Спросите подругу: «Где пациенты регистрируются?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Узнайте обычное время уборки: «Когда ты убираешь?»",
+      "accessibilityLabel": "В холле поликлиники много людей. Спросите подругу: «Где пациенты регистрируются?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "When do you clean?",
+        "targetPhrase": "Where do patients register?",
         "localizedMeaning": {
-          "ru": "Узнайте обычное время уборки: «Когда ты убираешь?»",
-          "uk": "Дізнайтеся звичний час прибирання: «Коли ти прибираєш?»"
+          "ru": "В холле поликлиники много людей. Спросите подругу: «Где пациенты регистрируются?»",
+          "uk": "У холі поліклініки багато людей. Спитайте подругу: «Де пацієнти реєструються?»"
         },
         "orderedTokens": [
-          "When",
+          "Where",
           "do",
-          "you",
-          "clean"
+          "patients",
+          "register"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -324,26 +489,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-30:word:vote",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vote",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:word:vote:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vote",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:word:vote:audio",
+          "transcript": "vote"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-30:word:vote:r1",
+            "targetText": "vote",
+            "meaningByLocale": {
+              "ru": "голосовать. Where do you vote? — «Где вы голосуете?» Выражать свой выбор при голосовании, например на выборах.",
+              "uk": "голосувати. Where do you vote? — «Де ви голосуєте?» Висловлювати свій вибір під час голосування, наприклад на виборах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vote",
+          "definitionByLocale": {
+            "ru": "голосовать. Where do you vote? — «Где вы голосуете?» Выражать свой выбор при голосовании, например на выборах.",
+            "uk": "голосувати. Where do you vote? — «Де ви голосуєте?» Висловлювати свій вибір під час голосування, наприклад на виборах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-30:i07",
-      "ordinal": 10,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "prompt": "Соседка говорит о выборах. Спросите её: «Где вы голосуете?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i07:audio"
       ],
-      "accessibilityLabel": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "accessibilityLabel": "Соседка говорит о выборах. Спросите её: «Где вы голосуете?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i07:audio",
-          "transcript": "When does she start?"
+          "transcript": "Where do you vote?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "When does she start?",
+        "targetPhrase": "Where do you vote?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,67 +566,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i08",
-      "ordinal": 11,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о начале её работы",
+      "prompt": "Спросите соседку о выборах. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-30:i08:r1",
-          "text": "does"
-        },
-        {
-          "responseId": "en:lesson-07:session-30:i08:r2",
           "text": "do"
         },
         {
+          "responseId": "en:lesson-07:session-30:i08:r2",
+          "text": "does"
+        },
+        {
           "responseId": "en:lesson-07:session-30:i08:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о начале её работы",
+      "accessibilityLabel": "Спросите соседку о выборах. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о начале её работы",
-          "uk": "Запитайте про початок її роботи"
+          "ru": "Спросите соседку о выборах. Выберите слово",
+          "uk": "Спитайте сусідку про вибори. Виберіть слово"
         },
-        "gappedTargetPhrase": "When ___ she start?",
+        "gappedTargetPhrase": "Where ___ you vote?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-30:i08:r1",
-            "text": "does"
-          },
-          {
-            "responseId": "en:lesson-07:session-30:i08:r2",
             "text": "do"
           },
           {
+            "responseId": "en:lesson-07:session-30:i08:r2",
+            "text": "does"
+          },
+          {
             "responseId": "en:lesson-07:session-30:i08:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "Спросите о начале её работы",
+        "testedDimension": "Спросите соседку о выборах. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о начале её работы",
+            "testedDimension": "Спросите соседку о выборах. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `she` нужно `does`.",
-              "uk": "З `she` потрібне `does`."
+              "ru": "С `you` нужно `do`.",
+              "uk": "З `you` потрібно `do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о начале её работы",
+            "testedDimension": "Спросите соседку о выборах. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о действии `start` с `she` строим с `does`.",
-              "uk": "Запитання про дію `start` з `she` будуємо з `does`."
+              "ru": "С действием `vote` нужно `do`, а не `are`.",
+              "uk": "З дією `vote` потрібне `do`, а не `are`."
             }
           }
         ]
@@ -427,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i09",
-      "ordinal": 12,
+      "ordinal": 17,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите вопрос",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-30:i09:r1",
-          "text": "Where do you travel?"
+          "text": "Where do patients register?"
         },
         {
           "responseId": "en:lesson-07:session-30:i09:r2",
-          "text": "When do you travel?"
+          "text": "Where do patients wait?"
         },
         {
           "responseId": "en:lesson-07:session-30:i09:r3",
-          "text": "Where do you work?"
+          "text": "Where do children register?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i09:audio",
-          "transcript": "Where do you travel?"
+          "transcript": "Where do patients register?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-30:i09:r1",
-            "targetText": "Where do you travel?",
+            "targetText": "Where do patients register?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-30:i09:r2",
-            "targetText": "When do you travel?",
+            "targetText": "Where do patients wait?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-30:i09:r3",
-            "targetText": "Where do you work?",
+            "targetText": "Where do children register?",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +688,19 @@
           {
             "responseId": "en:lesson-07:session-30:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
-              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+              "ru": "В записи последнее слово — `register`, регистрироваться, а в этом варианте — `wait`, ждать.",
+              "uk": "У записі останнє слово — `register`, реєструватися, а в цьому варіанті — `wait`, чекати."
             }
           },
           {
             "responseId": "en:lesson-07:session-30:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `travel`, а в этом варианте — `work`.",
-              "uk": "У записі останнє слово — `travel`, а в цьому варіанті — `work`."
+              "ru": "В записи третье слово — `patients`, пациенты, а в этом варианте — `children`, дети.",
+              "uk": "У записі третє слово — `patients`, пацієнти, а в цьому варіанті — `children`, діти."
             }
           }
         ],
@@ -503,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -517,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-30:i10:p1",
-            "target": "argue",
+            "target": "pay",
             "meaningByLocale": {
-              "ru": "спорить",
-              "uk": "сперечатися"
+              "ru": "платить",
+              "uk": "платити"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i10:p2",
-            "target": "travel",
+            "target": "bill",
             "meaningByLocale": {
-              "ru": "путешествовать",
-              "uk": "подорожувати"
+              "ru": "счёт",
+              "uk": "рахунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i10:p3",
-            "target": "windows",
+            "target": "parcel",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "посылка",
+              "uk": "посилка"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i10:p4",
-            "target": "clean",
+            "target": "clinic",
             "meaningByLocale": {
-              "ru": "убирать",
-              "uk": "прибирати"
+              "ru": "поликлиника",
+              "uk": "поліклініка"
             }
           }
         ],
         "leftColumn": [
-          "argue",
-          "travel",
-          "windows",
-          "clean"
+          "pay",
+          "bill",
+          "parcel",
+          "clinic"
         ],
         "rightColumn": [
-          "спорить",
-          "путешествовать",
-          "окна",
-          "убирать"
+          "платить",
+          "счёт",
+          "посылка",
+          "поликлиника"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,30 +784,30 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте соседку и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте соседку и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i11:audio",
-          "transcript": "When do you clean?"
+          "transcript": "When does she vote?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "When do you clean?",
+        "hiddenTargetPhrase": "When does she vote?",
         "orderedTokens": [
           "When",
-          "do",
-          "you",
-          "clean"
+          "does",
+          "she",
+          "vote"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -612,27 +820,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i12",
-      "ordinal": 15,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед прогулкой спросите друга «У тебя есть наушники?»",
+      "prompt": "Продавец стоит у стойки выдачи. Спросите его: «Когда клиенты забирают посылки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед прогулкой спросите друга «У тебя есть наушники?»",
+      "accessibilityLabel": "Продавец стоит у стойки выдачи. Спросите его: «Когда клиенты забирают посылки?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have headphones?",
+        "targetPhrase": "When do customers collect parcels?",
         "localizedMeaning": {
-          "ru": "Перед прогулкой спросите друга «У тебя есть наушники?»",
-          "uk": "Перед прогулянкою запитайте друга «У тебе є навушники?»"
+          "ru": "Продавец стоит у стойки выдачи. Спросите его: «Когда клиенты забирают посылки?»",
+          "uk": "Продавець стоїть біля стійки видачі. Спитайте його: «Коли клієнти забирають посилки?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "headphones"
+          "When",
+          "do",
+          "customers",
+          "collect",
+          "parcels"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -645,25 +854,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i13",
-      "ordinal": 16,
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Обсуждая поведение при разногласиях, скажите «Я не спорю»",
+      "prompt": "Сестра подруги регулярно приходит в эту поликлинику. Узнайте, на каком этапе визита она проходит регистрацию: «Когда она регистрируется?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i13:audio"
       ],
-      "accessibilityLabel": "Обсуждая поведение при разногласиях, скажите «Я не спорю»",
+      "accessibilityLabel": "Сестра подруги регулярно приходит в эту поликлинику. Узнайте, на каком этапе визита она проходит регистрацию: «Когда она регистрируется?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i13:audio",
-          "transcript": "I don’t argue."
+          "transcript": "When does she register?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I don’t argue.",
+        "targetPhrase": "When does she register?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -678,67 +887,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 22,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Узнайте, куда Том обычно путешествует",
+      "prompt": "Спросите продавца о клиентах. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-30:i14:r1",
-          "text": "travel"
+          "text": "collect"
         },
         {
           "responseId": "en:lesson-07:session-30:i14:r2",
-          "text": "travels"
+          "text": "collects"
         },
         {
           "responseId": "en:lesson-07:session-30:i14:r3",
-          "text": "is travel"
+          "text": "is collect"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Узнайте, куда Том обычно путешествует",
+      "accessibilityLabel": "Спросите продавца о клиентах. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Узнайте, куда Том обычно путешествует",
-          "uk": "Дізнайтеся, куди Том зазвичай подорожує"
+          "ru": "Спросите продавца о клиентах. Выберите слово",
+          "uk": "Спитайте продавця про клієнтів. Виберіть слово"
         },
-        "gappedTargetPhrase": "Where does Tom ___?",
+        "gappedTargetPhrase": "Where do customers ___ parcels?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-30:i14:r1",
-            "text": "travel"
+            "text": "collect"
           },
           {
             "responseId": "en:lesson-07:session-30:i14:r2",
-            "text": "travels"
+            "text": "collects"
           },
           {
             "responseId": "en:lesson-07:session-30:i14:r3",
-            "text": "is travel"
+            "text": "is collect"
           }
         ],
-        "testedDimension": "Узнайте, куда Том обычно путешествует",
+        "testedDimension": "Спросите продавца о клиентах. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Узнайте, куда Том обычно путешествует",
+            "testedDimension": "Спросите продавца о клиентах. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `travel`.",
-              "uk": "Після `does` потрібне `travel`."
+              "ru": "После `do` нужно `collect`, без `s`.",
+              "uk": "Після `do` потрібно `collect`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Узнайте, куда Том обычно путешествует",
+            "testedDimension": "Спросите продавца о клиентах. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `travel`, без `is`.",
-              "uk": "Тут потрібне `travel`, без `is`."
+              "ru": "Здесь нужно `collect`, без `is`.",
+              "uk": "Тут потрібно `collect`, без `is`."
             }
           }
         ]
@@ -747,51 +956,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i15",
-      "ordinal": 18,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где окна",
+      "prompt": "Послушайте продавца",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-30:i15:r1",
-          "text": "The windows are here."
+          "text": "When do customers collect parcels?"
         },
         {
           "responseId": "en:lesson-07:session-30:i15:r2",
-          "text": "The windows are there."
+          "text": "When do customers collect letters?"
         },
         {
           "responseId": "en:lesson-07:session-30:i15:r3",
-          "text": "The windows are upstairs."
+          "text": "Where do customers collect parcels?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где окна",
+      "accessibilityLabel": "Послушайте продавца",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i15:audio",
-          "transcript": "The windows are here."
+          "transcript": "When do customers collect parcels?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-30:i15:r1",
-            "targetText": "The windows are here.",
+            "targetText": "When do customers collect parcels?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-30:i15:r2",
-            "targetText": "The windows are there.",
+            "targetText": "When do customers collect letters?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-30:i15:r3",
-            "targetText": "The windows are upstairs.",
+            "targetText": "Where do customers collect parcels?",
             "meaningByLocale": null
           }
         ],
@@ -800,19 +1009,19 @@
           {
             "responseId": "en:lesson-07:session-30:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где окна",
+            "testedDimension": "Послушайте продавца",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `parcels`, посылки, а в этом варианте — `letters`, письма.",
+              "uk": "У записі останнє слово — `parcels`, посилки, а в цьому варіанті — `letters`, листи."
             }
           },
           {
             "responseId": "en:lesson-07:session-30:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где окна",
+            "testedDimension": "Послушайте продавца",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.",
+              "uk": "У записі перше слово — `When`, коли, а в цьому варіанті — `Where`, де."
             }
           }
         ],
@@ -823,7 +1032,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i16",
-      "ordinal": 19,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -837,48 +1046,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-30:i16:p1",
-            "target": "travel",
+            "target": "vote",
             "meaningByLocale": {
-              "ru": "путешествовать",
-              "uk": "подорожувати"
+              "ru": "голосовать",
+              "uk": "голосувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i16:p2",
-            "target": "headphones",
+            "target": "register",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "регистрироваться",
+              "uk": "реєструватися"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i16:p3",
-            "target": "argue",
+            "target": "collect",
             "meaningByLocale": {
-              "ru": "спорить",
-              "uk": "сперечатися"
+              "ru": "забирать",
+              "uk": "забирати"
             }
           },
           {
             "pairId": "en:lesson-07:session-30:i16:p4",
-            "target": "windows",
+            "target": "payment",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "платёж",
+              "uk": "платіж"
             }
           }
         ],
         "leftColumn": [
-          "travel",
-          "headphones",
-          "argue",
-          "windows"
+          "vote",
+          "register",
+          "collect",
+          "payment"
         ],
         "rightColumn": [
-          "путешествовать",
-          "наушники",
-          "спорить",
-          "окна"
+          "голосовать",
+          "регистрироваться",
+          "забирать",
+          "платёж"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -896,25 +1105,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-30:i17",
-      "ordinal": 20,
+      "ordinal": 25,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы обсуждаете привычное время поездок Тома. Спросите «Когда Том путешествует?»",
+      "prompt": "Вы снова у стойки. Спросите продавца: «Где клиенты забирают посылки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Вы обсуждаете привычное время поездок Тома. Спросите «Когда Том путешествует?»",
+      "accessibilityLabel": "Вы снова у стойки. Спросите продавца: «Где клиенты забирают посылки?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-30:i17:audio",
-          "transcript": "When does Tom travel?"
+          "transcript": "Where do customers collect parcels?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "When does Tom travel?",
+        "targetPhrase": "Where do customers collect parcels?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -936,11 +1145,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 22,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1fbf271ff81ca3442c48fd66371e16b6b5d8a335083c2d3cbf26d0ef81bd073e"
+  "learnerFingerprint": "90b3781dceb0102b3eb56b6d70108ba4fbe3354275e1cdd7616a432041350e28"
 }

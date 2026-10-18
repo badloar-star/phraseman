@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-54:word:solve",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — solve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:solve:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — solve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:solve:audio",
+            "transcript": "solve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:solve:r1",
+              "targetText": "solve",
+              "meaningByLocale": {
+                "ru": "решать, находить разгадку. I can solve it. — «Я могу это разгадать». Solve a problem — решить проблему; solve a puzzle — разгадать головоломку.",
+                "uk": "розв’язувати, знаходити розгадку. I can solve it. — «Я можу це розгадати». Solve a problem — розв’язати проблему; solve a puzzle — розгадати головоломку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "solve",
+            "definitionByLocale": {
+              "ru": "решать, находить разгадку. I can solve it. — «Я могу это разгадать». Solve a problem — решить проблему; solve a puzzle — разгадать головоломку.",
+              "uk": "розв’язувати, знаходити розгадку. I can solve it. — «Я можу це розгадати». Solve a problem — розв’язати проблему; solve a puzzle — розгадати головоломку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите разгадать задание на открытке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите разгадать задание на открытке",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can solve it.",
+          "localizedMeaning": {
+            "ru": "Предложите разгадать задание на открытке",
+            "uk": "Запропонуйте розгадати завдання на листівці"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "solve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i02:r1",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i02:r2",
+            "text": "design"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i02:r3",
+            "text": "manage"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i02:audio",
+            "transcript": "solve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:i02:r1",
+              "targetText": "solve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i02:r2",
+              "targetText": "design",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i02:r3",
+              "targetText": "manage",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит solve",
+                "uk": "У записі звучить solve"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит solve",
+                "uk": "У записі звучить solve"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i03:r1",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i03:r2",
+            "text": "to solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i03:r3",
+            "text": "solves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-54:i03:r1",
+              "text": "solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i03:r2",
+              "text": "to solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i03:r3",
+              "text": "solves"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно to.",
+                "uk": "Після can або can’t не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно окончание s.",
+                "uk": "Після can або can’t не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-54:i04:p1",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i04:p2",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "головоломка",
+                "uk": "головоломка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i04:p3",
+              "target": "design",
+              "meaningByLocale": {
+                "ru": "разрабатывать оформление",
+                "uk": "розробляти оформлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i04:p4",
+              "target": "manage",
+              "meaningByLocale": {
+                "ru": "справляться",
+                "uk": "справлятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "solve",
+            "puzzle",
+            "design",
+            "manage"
+          ],
+          "rightColumn": [
+            "решать",
+            "головоломка",
+            "разрабатывать оформление",
+            "справляться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i05:audio",
+            "transcript": "Can you solve it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you solve it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "solve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:word:clue",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:clue:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:clue:audio",
+            "transcript": "clue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:clue:r1",
+              "targetText": "clue",
+              "meaningByLocale": {
+                "ru": "подсказка, зацепка. I can see a clue. — «Я вижу подсказку».",
+                "uk": "підказка, зачіпка. I can see a clue. — «Я бачу підказку»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clue",
+            "definitionByLocale": {
+              "ru": "подсказка, зацепка. I can see a clue. — «Я вижу подсказку».",
+              "uk": "підказка, зачіпка. I can see a clue. — «Я бачу підказку»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите «Я вижу подсказку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите «Я вижу подсказку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see a clue.",
+          "localizedMeaning": {
+            "ru": "Сообщите «Я вижу подсказку»",
+            "uk": "Повідомте «Я бачу підказку»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "a",
+            "clue"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:word:riddle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — riddle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:riddle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — riddle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:riddle:audio",
+            "transcript": "riddle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:riddle:r1",
+              "targetText": "riddle",
+              "meaningByLocale": {
+                "ru": "загадка. I can’t solve the riddle. — «Я не могу разгадать загадку».",
+                "uk": "загадка. I can’t solve the riddle. — «Я не можу розгадати загадку»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "riddle",
+            "definitionByLocale": {
+              "ru": "загадка. I can’t solve the riddle. — «Я не могу разгадать загадку».",
+              "uk": "загадка. I can’t solve the riddle. — «Я не можу розгадати загадку»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите «Я не могу разгадать загадку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i07:audio"
+        ],
+        "accessibilityLabel": "Скажите «Я не могу разгадать загадку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i07:audio",
+            "transcript": "I can't solve the riddle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can't solve the riddle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i08:r1",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i08:r2",
+            "text": "to solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i08:r3",
+            "text": "solves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can't ___ the riddle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-54:i08:r1",
+              "text": "solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i08:r2",
+              "text": "to solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i08:r3",
+              "text": "solves"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно to.",
+                "uk": "Після can або can’t не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно окончание s.",
+                "uk": "Після can або can’t не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i09:r1",
+            "text": "I can see a clue."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i09:r2",
+            "text": "I can see the clue."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i09:r3",
+            "text": "We can see a clue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i09:audio",
+            "transcript": "I can see a clue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:i09:r1",
+              "targetText": "I can see a clue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i09:r2",
+              "targetText": "I can see the clue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i09:r3",
+              "targetText": "We can see a clue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a clue.",
+                "uk": "У записі звучить I can see a clue."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a clue.",
+                "uk": "У записі звучить I can see a clue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-54:i10:p1",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i10:p2",
+              "target": "clue",
+              "meaningByLocale": {
+                "ru": "подсказка",
+                "uk": "підказка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i10:p3",
+              "target": "riddle",
+              "meaningByLocale": {
+                "ru": "загадка",
+                "uk": "загадка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i10:p4",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "головоломка",
+                "uk": "головоломка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "solve",
+            "clue",
+            "riddle",
+            "puzzle"
+          ],
+          "rightColumn": [
+            "решать",
+            "подсказка",
+            "загадка",
+            "головоломка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i11:audio",
+            "transcript": "I can't solve the riddle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can't solve the riddle.",
+          "orderedTokens": [
+            "I",
+            "can't",
+            "solve",
+            "the",
+            "riddle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:word:solution",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — solution",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:solution:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — solution",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:solution:audio",
+            "transcript": "solution"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:solution:r1",
+              "targetText": "solution",
+              "meaningByLocale": {
+                "ru": "решение проблемы или задачи. We can find a solution. — «Мы можем найти решение». Solve — действие, solution — само решение.",
+                "uk": "розв’язання проблеми або задачі. We can find a solution. — «Ми можемо знайти розв’язання». Solve — дія, solution — саме розв’язання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "solution",
+            "definitionByLocale": {
+              "ru": "решение проблемы или задачи. We can find a solution. — «Мы можем найти решение». Solve — действие, solution — само решение.",
+              "uk": "розв’язання проблеми або задачі. We can find a solution. — «Ми можемо знайти розв’язання». Solve — дія, solution — саме розв’язання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Модель моста качается, и команда хочет её укрепить. Скажите «Мы можем найти решение»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Модель моста качается, и команда хочет её укрепить. Скажите «Мы можем найти решение»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can find a solution.",
+          "localizedMeaning": {
+            "ru": "Модель моста качается, и команда хочет её укрепить. Скажите «Мы можем найти решение»",
+            "uk": "Модель мосту хитається, і команда хоче її зміцнити. Скажіть «Ми можемо знайти розв’язання»"
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "find",
+            "a",
+            "solution"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите «Ты можешь разгадать загадку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Попросите «Ты можешь разгадать загадку?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i13:audio",
+            "transcript": "Can you solve the riddle?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you solve the riddle?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i14:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i14:r2",
+            "text": "to find"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i14:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "We can ___ a solution.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-54:i14:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i14:r2",
+              "text": "to find"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i14:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно to.",
+                "uk": "Після can або can’t не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно окончание s.",
+                "uk": "Після can або can’t не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i15:r1",
+            "text": "I can't solve the riddle."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i15:r2",
+            "text": "I can solve the riddle."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i15:r3",
+            "text": "We can't solve the riddle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i15:audio",
+            "transcript": "I can't solve the riddle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:i15:r1",
+              "targetText": "I can't solve the riddle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i15:r2",
+              "targetText": "I can solve the riddle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i15:r3",
+              "targetText": "We can't solve the riddle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can't solve the riddle.",
+                "uk": "У записі звучить I can't solve the riddle."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can't solve the riddle.",
+                "uk": "У записі звучить I can't solve the riddle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-54:i16:p1",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i16:p2",
+              "target": "clue",
+              "meaningByLocale": {
+                "ru": "подсказка",
+                "uk": "підказка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i16:p3",
+              "target": "riddle",
+              "meaningByLocale": {
+                "ru": "загадка",
+                "uk": "загадка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i16:p4",
+              "target": "solution",
+              "meaningByLocale": {
+                "ru": "решение задачи",
+                "uk": "розв’язання задачі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "solve",
+            "clue",
+            "riddle",
+            "solution"
+          ],
+          "rightColumn": [
+            "решать",
+            "подсказка",
+            "загадка",
+            "решение задачи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В журнале напечатана головоломка из спичек. Попросите друга решить её: «Ты можешь это решить?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "В журнале напечатана головоломка из спичек. Попросите друга решить её: «Ты можешь это решить?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i17:audio",
+            "transcript": "Can you solve it?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you solve it?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-54:word:solve",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — solve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:solve:audio"
+        ],
+        "accessibilityLabel": "Картка слова — solve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:solve:audio",
+            "transcript": "solve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:solve:r1",
+              "targetText": "solve",
+              "meaningByLocale": {
+                "ru": "решать, находить разгадку. I can solve it. — «Я могу это разгадать». Solve a problem — решить проблему; solve a puzzle — разгадать головоломку.",
+                "uk": "розв’язувати, знаходити розгадку. I can solve it. — «Я можу це розгадати». Solve a problem — розв’язати проблему; solve a puzzle — розгадати головоломку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "solve",
+            "definitionByLocale": {
+              "ru": "решать, находить разгадку. I can solve it. — «Я могу это разгадать». Solve a problem — решить проблему; solve a puzzle — разгадать головоломку.",
+              "uk": "розв’язувати, знаходити розгадку. I can solve it. — «Я можу це розгадати». Solve a problem — розв’язати проблему; solve a puzzle — розгадати головоломку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте розгадати завдання на листівці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте розгадати завдання на листівці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can solve it.",
+          "localizedMeaning": {
+            "ru": "Предложите разгадать задание на открытке",
+            "uk": "Запропонуйте розгадати завдання на листівці"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "solve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i02:r1",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i02:r2",
+            "text": "design"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i02:r3",
+            "text": "manage"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i02:audio",
+            "transcript": "solve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:i02:r1",
+              "targetText": "solve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i02:r2",
+              "targetText": "design",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i02:r3",
+              "targetText": "manage",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит solve",
+                "uk": "У записі звучить solve"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит solve",
+                "uk": "У записі звучить solve"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i03:r1",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i03:r2",
+            "text": "to solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i03:r3",
+            "text": "solves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-54:i03:r1",
+              "text": "solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i03:r2",
+              "text": "to solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i03:r3",
+              "text": "solves"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно to.",
+                "uk": "Після can або can’t не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно окончание s.",
+                "uk": "Після can або can’t не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-54:i04:p1",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i04:p2",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "головоломка",
+                "uk": "головоломка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i04:p3",
+              "target": "design",
+              "meaningByLocale": {
+                "ru": "разрабатывать оформление",
+                "uk": "розробляти оформлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i04:p4",
+              "target": "manage",
+              "meaningByLocale": {
+                "ru": "справляться",
+                "uk": "справлятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "solve",
+            "puzzle",
+            "design",
+            "manage"
+          ],
+          "rightColumn": [
+            "розв’язувати",
+            "головоломка",
+            "розробляти оформлення",
+            "справлятися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i05:audio",
+            "transcript": "Can you solve it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you solve it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "solve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:word:clue",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:clue:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:clue:audio",
+            "transcript": "clue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:clue:r1",
+              "targetText": "clue",
+              "meaningByLocale": {
+                "ru": "подсказка, зацепка. I can see a clue. — «Я вижу подсказку».",
+                "uk": "підказка, зачіпка. I can see a clue. — «Я бачу підказку»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clue",
+            "definitionByLocale": {
+              "ru": "подсказка, зацепка. I can see a clue. — «Я вижу подсказку».",
+              "uk": "підказка, зачіпка. I can see a clue. — «Я бачу підказку»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте «Я бачу підказку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте «Я бачу підказку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see a clue.",
+          "localizedMeaning": {
+            "ru": "Сообщите «Я вижу подсказку»",
+            "uk": "Повідомте «Я бачу підказку»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "a",
+            "clue"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:word:riddle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — riddle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:riddle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — riddle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:riddle:audio",
+            "transcript": "riddle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:riddle:r1",
+              "targetText": "riddle",
+              "meaningByLocale": {
+                "ru": "загадка. I can’t solve the riddle. — «Я не могу разгадать загадку».",
+                "uk": "загадка. I can’t solve the riddle. — «Я не можу розгадати загадку»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "riddle",
+            "definitionByLocale": {
+              "ru": "загадка. I can’t solve the riddle. — «Я не могу разгадать загадку».",
+              "uk": "загадка. I can’t solve the riddle. — «Я не можу розгадати загадку»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть «Я не можу розгадати загадку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i07:audio"
+        ],
+        "accessibilityLabel": "Скажіть «Я не можу розгадати загадку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i07:audio",
+            "transcript": "I can't solve the riddle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can't solve the riddle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i08:r1",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i08:r2",
+            "text": "to solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i08:r3",
+            "text": "solves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can't ___ the riddle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-54:i08:r1",
+              "text": "solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i08:r2",
+              "text": "to solve"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i08:r3",
+              "text": "solves"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно to.",
+                "uk": "Після can або can’t не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно окончание s.",
+                "uk": "Після can або can’t не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i09:r1",
+            "text": "I can see a clue."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i09:r2",
+            "text": "I can see the clue."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i09:r3",
+            "text": "We can see a clue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i09:audio",
+            "transcript": "I can see a clue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:i09:r1",
+              "targetText": "I can see a clue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i09:r2",
+              "targetText": "I can see the clue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i09:r3",
+              "targetText": "We can see a clue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a clue.",
+                "uk": "У записі звучить I can see a clue."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a clue.",
+                "uk": "У записі звучить I can see a clue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-54:i10:p1",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i10:p2",
+              "target": "clue",
+              "meaningByLocale": {
+                "ru": "подсказка",
+                "uk": "підказка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i10:p3",
+              "target": "riddle",
+              "meaningByLocale": {
+                "ru": "загадка",
+                "uk": "загадка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i10:p4",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "головоломка",
+                "uk": "головоломка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "solve",
+            "clue",
+            "riddle",
+            "puzzle"
+          ],
+          "rightColumn": [
+            "розв’язувати",
+            "підказка",
+            "загадка",
+            "головоломка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i11:audio",
+            "transcript": "I can't solve the riddle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can't solve the riddle.",
+          "orderedTokens": [
+            "I",
+            "can't",
+            "solve",
+            "the",
+            "riddle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:word:solution",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — solution",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:word:solution:audio"
+        ],
+        "accessibilityLabel": "Картка слова — solution",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:word:solution:audio",
+            "transcript": "solution"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:word:solution:r1",
+              "targetText": "solution",
+              "meaningByLocale": {
+                "ru": "решение проблемы или задачи. We can find a solution. — «Мы можем найти решение». Solve — действие, solution — само решение.",
+                "uk": "розв’язання проблеми або задачі. We can find a solution. — «Ми можемо знайти розв’язання». Solve — дія, solution — саме розв’язання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "solution",
+            "definitionByLocale": {
+              "ru": "решение проблемы или задачи. We can find a solution. — «Мы можем найти решение». Solve — действие, solution — само решение.",
+              "uk": "розв’язання проблеми або задачі. We can find a solution. — «Ми можемо знайти розв’язання». Solve — дія, solution — саме розв’язання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Модель мосту хитається, і команда хоче її зміцнити. Скажіть «Ми можемо знайти розв’язання»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Модель мосту хитається, і команда хоче її зміцнити. Скажіть «Ми можемо знайти розв’язання»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can find a solution.",
+          "localizedMeaning": {
+            "ru": "Модель моста качается, и команда хочет её укрепить. Скажите «Мы можем найти решение»",
+            "uk": "Модель мосту хитається, і команда хоче її зміцнити. Скажіть «Ми можемо знайти розв’язання»"
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "find",
+            "a",
+            "solution"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть «Ти можеш розгадати загадку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Попросіть «Ти можеш розгадати загадку?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i13:audio",
+            "transcript": "Can you solve the riddle?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you solve the riddle?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i14:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i14:r2",
+            "text": "to find"
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i14:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "We can ___ a solution.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-54:i14:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i14:r2",
+              "text": "to find"
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i14:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно to.",
+                "uk": "Після can або can’t не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can или can’t не нужно окончание s.",
+                "uk": "Після can або can’t не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-54:i15:r1",
+            "text": "I can't solve the riddle."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i15:r2",
+            "text": "I can solve the riddle."
+          },
+          {
+            "responseId": "en:lesson-08:session-54:i15:r3",
+            "text": "We can't solve the riddle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i15:audio",
+            "transcript": "I can't solve the riddle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-54:i15:r1",
+              "targetText": "I can't solve the riddle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i15:r2",
+              "targetText": "I can solve the riddle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i15:r3",
+              "targetText": "We can't solve the riddle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-54:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can't solve the riddle.",
+                "uk": "У записі звучить I can't solve the riddle."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-54:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can't solve the riddle.",
+                "uk": "У записі звучить I can't solve the riddle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-54:i16:p1",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i16:p2",
+              "target": "clue",
+              "meaningByLocale": {
+                "ru": "подсказка",
+                "uk": "підказка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i16:p3",
+              "target": "riddle",
+              "meaningByLocale": {
+                "ru": "загадка",
+                "uk": "загадка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-54:i16:p4",
+              "target": "solution",
+              "meaningByLocale": {
+                "ru": "решение задачи",
+                "uk": "розв’язання задачі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "solve",
+            "clue",
+            "riddle",
+            "solution"
+          ],
+          "rightColumn": [
+            "розв’язувати",
+            "підказка",
+            "загадка",
+            "розв’язання задачі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У журналі надрукована головоломка із сірників. Попросіть друга розв’язати її: «Ти можеш це розв’язати?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "У журналі надрукована головоломка із сірників. Попросіть друга розв’язати її: «Ти можеш це розв’язати?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-54:i17:audio",
+            "transcript": "Can you solve it?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you solve it?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-54:word:solve",
+      "correctText": "solve",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i01",
+      "correctText": "I can solve it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i02",
+      "correctText": "solve",
+      "correctResponseId": "en:lesson-08:session-54:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i03",
+      "correctText": "solve",
+      "correctResponseId": "en:lesson-08:session-54:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i05",
+      "correctText": "Can you solve it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:word:clue",
+      "correctText": "clue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i06",
+      "correctText": "I can see a clue.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:word:riddle",
+      "correctText": "riddle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i07",
+      "correctText": "I can't solve the riddle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i08",
+      "correctText": "solve",
+      "correctResponseId": "en:lesson-08:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i09",
+      "correctText": "I can see a clue.",
+      "correctResponseId": "en:lesson-08:session-54:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i11",
+      "correctText": "I can't solve the riddle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:word:solution",
+      "correctText": "solution",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i12",
+      "correctText": "We can find a solution.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i13",
+      "correctText": "Can you solve the riddle?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i14",
+      "correctText": "find",
+      "correctResponseId": "en:lesson-08:session-54:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i15",
+      "correctText": "I can't solve the riddle.",
+      "correctResponseId": "en:lesson-08:session-54:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:i17",
+      "correctText": "Can you solve it?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -32,7 +32,9 @@ test('карта: недоступные занятия, пустые главы
   const map = read('components/learning-v2/LearningV2ChaptersCourse.tsx');
   assert.match(map, /row\.kind === "session" && isSessionVisible\(row\.lessonOrdinal, row\.sessionOrdinal\)/);
   assert.match(map, /if \(chapterSessions\.length === 0\) return null;/);
-  assert.match(map, /if \(!visibleLessonOrdinals\.includes\(ordinal\)\) return null;/);
+  // перепин 18.10: «Все уроки» вынесен в LearningV2AllLessonsList; невыпущенные уроки по-прежнему не рисуются — строки строятся только из visibleLessonOrdinals
+  assert.match(map, /return visibleLessonOrdinals\.map\(\(ordinal\) => \(\{/);
+  assert.doesNotMatch(map, /props\.titles\.map\(\(title, index\) =>[\s\S]{0,200}renderLessonCard/);
 });
 
 test('ворота «Озвучка встроенных занятий V2» проверяют выпущенное множество', () => {

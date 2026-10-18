@@ -19,6 +19,7 @@ import {
   type LearningV2PreparedAccordionProgressV1,
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
 import { noteBackArrived, noteBackDecision, noteBackTap } from "../../app/back_tap_probe";
+import LearningV2AllLessonsList, { type AllLessonsRow } from "./LearningV2AllLessonsList";
 import BackGlyph from '../v2/BackGlyph';
 
 interface Props {
@@ -249,29 +250,46 @@ export default function LearningV2ChaptersCourse(props: Props) {
     setAllLessonsOpen(false);
   }, [props]);
 
+  // зачем (вердикт Макетов learning-v2-007, решение координатора 18.10): «Все уроки» рисуется по эталону 1.6 (строки lrow, чипы уровней), данные строк те же, что давал прежний цикл:
+  // видимые уроки, число пройденных занятий, текущий урок; доступность по-прежнему «открыт» (замки уроков решаются на карте). Один проход по занятиям вместо фильтра на каждый урок.
+  const allLessonRows = useMemo<readonly AllLessonsRow[]>(() => {
+    const completedByLesson = new Map<number, number>();
+    for (const row of rows) {
+      if (row.kind === "session" && completed.has(row.id)) completedByLesson.set(row.lessonOrdinal, (completedByLesson.get(row.lessonOrdinal) ?? 0) + 1);
+    }
+    return visibleLessonOrdinals.map((ordinal) => ({
+      ordinal,
+      title: props.titles[ordinal - 1] ?? "",
+      completedCount: completedByLesson.get(ordinal) ?? 0,
+      isCurrent: ordinal === selectedLessonOrdinal,
+      isAvailable: true,
+      isInProgress: false,
+    }));
+  }, [completed, props.titles, rows, selectedLessonOrdinal, visibleLessonOrdinals]);
+
   // зачем ([BACK-BTN] 18.10, Сверка: на «Все уроки» метки не было): возврат на карту — тап → решение → кадры → «прибыли»; без тапа ничего не пишет
   useEffect(() => { if (!allLessonsOpen) noteBackArrived('v2_map', 'all_lessons_closed'); }, [allLessonsOpen]);
 
   if (allLessonsOpen) {
+    // зачем (эталон 1.6): в шапке только «назад» и «Все уроки» (34/40), без значков монет и энергии; плашка «Классический курс» живёт в ряду чипов списка
     return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
-      <View style={styles.header}>
+      <View style={styles.allLessonsHeader}>
         <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => { noteBackTap('v2_all_lessons', 'header_back_button'); noteBackDecision('all_lessons → map'); setAllLessonsOpen(false); }} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}>
           <BackGlyph size={24} color={g.text} />
         </PressableHybrid>
-        <Text style={[styles.headerTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text>
-        {props.headerAccessory}
+        <Text style={[styles.allLessonsTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text>
       </View>
-      <ScrollView testID="learning-v2-all-lessons-list" contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
-        {props.titles.map((title, index) => {
-          const ordinal = index + 1;
-          if (!visibleLessonOrdinals.includes(ordinal)) return null;
-          const lessonSessions = rows.filter((row): row is SessionRow => row.kind === "session" && row.lessonOrdinal === ordinal);
-          const completedSessionCount = lessonSessions.filter((row) => completed.has(row.id)).length;
-          const cardProps = { title, ordinal, completedSessionCount, isCurrent: ordinal === selectedLessonOrdinal, isAvailable: true, isInProgress: false, onPress: () => openLesson(ordinal) };
-          return <View key={ordinal} style={styles.lessonCard}>{props.renderLessonCard ? props.renderLessonCard(cardProps) : <PressableHybrid variant="card" accessibilityLabel={title} onPress={cardProps.onPress} style={[styles.fallbackLesson, { backgroundColor: g.opaqueCard }]} contentStyle={styles.fallbackLessonContent}><View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: g.secondary }]}>{ordinal} · {completedSessionCount}/56</Text><Text style={[styles.lessonTitle, { color: g.text }]}>{title}</Text></View><Ionicons name="chevron-forward" size={20} color={g.secondary} /></PressableHybrid>}</View>;
-        })}
-        <PressableHybrid variant="chip" accessibilityLabel={props.legacyLessonsLabel} onPress={props.onLegacyLessons} style={[styles.legacyButton, { backgroundColor: g.buttonFill }]} contentStyle={styles.legacyButtonContent}><Text style={{ color: g.text }}>{props.legacyLessonsLabel}</Text></PressableHybrid>
-      </ScrollView>
+      <LearningV2AllLessonsList
+        lang={props.lang}
+        rows={allLessonRows}
+        sessionsPerLesson={LEARNING_V2_LESSON_SESSION_COUNT_V1}
+        selectedOrdinal={selectedLessonOrdinal}
+        legacyLabel={props.legacyLessonsLabel}
+        onLegacy={props.onLegacyLessons}
+        onOpenLesson={openLesson}
+        onLockedLesson={props.onLockedLessonPress}
+        bottomPadding={props.bottomPadding}
+      />
     </View>;
   }
 
@@ -377,7 +395,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 }, header: { minHeight: 44, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 } /* зачем (round-2 C-A): строка «назад + HUD» 44, поля страницы 12 */, headerSpacer: { flex: 1 }, lessonTitleBlock: { paddingHorizontal: 12, marginTop: 8, paddingBottom: 14, gap: 2 }, lessonTitleWide: { fontSize: 22, lineHeight: 27, fontWeight: "700", letterSpacing: -0.2 }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "700" }, lessonKicker: { fontSize: 13, lineHeight: 17, fontWeight: "700", flexShrink: 0 }, lessonTopic: { fontSize: 13, lineHeight: 17, fontWeight: "500", marginTop: 2 }, iconButton: { width: 48, height: 48, borderRadius: 24 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 12 },
+  root: { flex: 1 }, header: { minHeight: 44, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 } /* зачем (round-2 C-A): строка «назад + HUD» 44, поля страницы 12 */, headerSpacer: { flex: 1 }, lessonTitleBlock: { paddingHorizontal: 12, marginTop: 8, paddingBottom: 14, gap: 2 }, lessonTitleWide: { fontSize: 22, lineHeight: 27, fontWeight: "700", letterSpacing: -0.2 }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "700" }, allLessonsHeader: { minHeight: 48, marginTop: 6, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 14 }, allLessonsTitle: { flex: 1, minWidth: 0, fontSize: 34, lineHeight: 40, fontWeight: "700", letterSpacing: -0.5 }, lessonKicker: { fontSize: 13, lineHeight: 17, fontWeight: "700", flexShrink: 0 }, lessonTopic: { fontSize: 13, lineHeight: 17, fontWeight: "500", marginTop: 2 }, iconButton: { width: 48, height: 48, borderRadius: 24 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 12 },
   chapter: { overflow: "hidden", paddingBottom: 6 },
   chapterPress: { borderRadius: 22 },
   chapterPressContent: { minHeight: 84, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 14 },

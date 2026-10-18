@@ -48,11 +48,15 @@ assert.match(
   /setSelectedLessonOrdinal\(ordinal\);[\s\S]*?props\.onExpandedLesson\(ordinal\);[\s\S]*?setAllLessonsOpen\(false\);/,
   "selecting any lesson must make it the active chapter view and notify the parent",
 );
+// перепин 18.10 (вердикт Макетов learning-v2-007, решение координатора): «Все уроки» вынесен в LearningV2AllLessonsList (эталон 1.6). Смысл прежний — все выпущенные уроки видны и открываются
+// (isAvailable: true, isInProgress: false), нажатие по-прежнему ведёт в openLesson; закрытая строка (если появится) уходит в onLockedLessonPress.
 assert.match(
   source,
-  /const cardProps = \{ title, ordinal, completedSessionCount, isCurrent: ordinal === selectedLessonOrdinal, isAvailable: true, isInProgress: false, onPress: \(\) => openLesson\(ordinal\) \}/,
+  /return visibleLessonOrdinals\.map\(\(ordinal\) => \(\{[\s\S]*?isCurrent: ordinal === selectedLessonOrdinal,\s*isAvailable: true,\s*isInProgress: false,/,
   "all canonical lessons, including future locked lessons, must remain inspectable",
 );
+assert.match(source, /onOpenLesson=\{openLesson\}/);
+assert.match(source, /onLockedLesson=\{props\.onLockedLessonPress\}/);
 assert.doesNotMatch(
   source,
   /if \(!available\)[\s\S]*?onLockedLessonPress/,

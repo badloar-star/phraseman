@@ -54,7 +54,7 @@ describe('EnergyStopSheet', () => {
   test('показывает заголовок, таймер до следующей энергии и две кнопки; шторка не закрывается жестом', async () => {
     await render(<EnergyStopSheet visible onExit={jest.fn()} onResume={jest.fn()} />);
     expect(screen.getByTestId('energy-stop-title').props.children).toBe('Энергия закончилась');
-    expect(String(screen.getByTestId('energy-stop-body').props.children)).toContain('9 мин 0 с'); // зачем (Макеты c0cd6e2ae, energy-modes-004): окно остановки — длинный формат образца «через 9 мин 41 с», сжатое «9м 0с» остаётся в пилюле энергии
+    expect(String(screen.getByTestId('energy-stop-body').props.children)).toContain('9 мин 0 с'); // зачем (Макеты c0cd6e2ae, energy-modes-004): окно остановки — длинный формат образца «через 9 мин 41 с», сжатое «9м 0с» остаётся в пилюле энергии
     expect(screen.getByTestId('shell').props.dismissible).toBe(false);
     expect(screen.getByTestId('energy-stop-plus')).toBeTruthy();
     expect(screen.getByTestId('energy-stop-exit')).toBeTruthy();

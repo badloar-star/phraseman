@@ -363,8 +363,7 @@ export function formatTimeUntilRecovery(ms: number, lang: string = 'ru'): string
 
 // зачем (Макеты c0cd6e2ae, energy-modes-004; координатор 18.10): в образце окна остановки время «через 9 мин 41 с» — единицы с пробелом и словом «мин»;
 // сжатая запись «9м 41с» остаётся для пилюли энергии и окна «Нет энергии». Один форматтер на 9 языков, единицы — в таблице ниже.
-// ⚠ ЖДУТ УТВЕРЖДЕНИЯ ПЕРЕВОДЧИКА (до 07:45): en/es/pt-BR/pl/vi/id — сокращения предложены, в работу НЕ включены: пока не утверждены, эти языки получают сжатый формат (решение координатора 18.10).
-// ru (образец макета), uk/tr (уже принятые сжатые единицы) — включены. Утвердили язык — добавь его в RECOVERY_LONG_APPROVED и сними пометку.
+// Единицы утверждены Переводчиком для всех 9 языков без правок (18.10, отчёт к c8ffad624); ru — образец макета.
 const RECOVERY_TIME_UNITS_LONG: Readonly<Record<string, Readonly<{ h: string; m: string; s: string }>>> = {
   ru: { h: 'ч', m: 'мин', s: 'с' },
   uk: { h: 'год', m: 'хв', s: 'с' },
@@ -377,7 +376,7 @@ const RECOVERY_TIME_UNITS_LONG: Readonly<Record<string, Readonly<{ h: string; m:
   tr: { h: 'sa', m: 'dk', s: 'sn' },
 };
 
-const RECOVERY_LONG_APPROVED: ReadonlySet<string> = new Set(['ru', 'uk', 'tr']);
+const RECOVERY_LONG_APPROVED: ReadonlySet<string> = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'pl', 'vi', 'id', 'tr']);
 
 /** «9 мин 41 с» / «1 ч 30 мин 0 с» / «45 с» — как в образце окна остановки; ноль в старшем разряде не печатается. Язык без утверждённых сокращений — сжатый формат. */
 export function formatTimeUntilRecoveryLong(ms: number, lang: string = 'ru'): string {
@@ -387,9 +386,11 @@ export function formatTimeUntilRecoveryLong(ms: number, lang: string = 'ru'): st
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
   const u = RECOVERY_TIME_UNITS_LONG[lang] ?? RECOVERY_TIME_UNITS_LONG.en!;
-  if (hours > 0) return `${hours} ${u.h} ${minutes} ${u.m} ${seconds} ${u.s}`;
-  if (minutes > 0) return `${minutes} ${u.m} ${seconds} ${u.s}`;
-  return `${seconds} ${u.s}`;
+  // зачем (координатор 18.10, шрифт 1,3): между числом и единицей — неразрывный пробел (U+00A0), чтобы при переносе строки «9» не отрывалось от «мин»; между группами — обычный
+  const NB = '\u00A0';
+  if (hours > 0) return `${hours}${NB}${u.h} ${minutes}${NB}${u.m} ${seconds}${NB}${u.s}`;
+  if (minutes > 0) return `${minutes}${NB}${u.m} ${seconds}${NB}${u.s}`;
+  return `${seconds}${NB}${u.s}`;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

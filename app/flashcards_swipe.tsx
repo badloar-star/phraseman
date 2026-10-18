@@ -1108,7 +1108,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
-  const { width, height } = useWindowDimensions();
+  const { width, height, fontScale } = useWindowDimensions();
   const { lang } = useLang();
   const { theme: t, statusBarLight, f, ds, liquidGlassThemeId } = useTheme();
   const swipeGlass = liquidGlassTokens(liquidGlassThemeId);
@@ -4004,7 +4004,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     // Место под фразу: карточка минус шапка, плашка перевода, поля и подпись (оценка от тех же стилей, без замера — первый кадр без прыжка).
     const phraseBaseSize = isCompactFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1);
     const phraseMaxH = cardHeight - (isCompactFlashcardsTask ? 158 : 225) - (transcription ? 26 : 0);
-    const phraseSize = fitPhraseFontSize({ text: s(currentPrompt.card.en), baseSize: phraseBaseSize, widthPx: cardWidth - 40, maxHeightPx: phraseMaxH });
+    // зачем (Макеты 18.10, риск C9): при системном шрифте 1,3 текст рисуется крупнее расчёта — масштаб тот же, что в списке карточек (FlashcardListItem)
+    const phraseFontScale = Math.min(Math.max(fontScale, 1), 1.35);
+    const phraseSize = fitPhraseFontSize({ text: s(currentPrompt.card.en), baseSize: phraseBaseSize, widthPx: cardWidth - 40, maxHeightPx: phraseMaxH, fontScale: phraseFontScale });
     const phraseLineHeight = phraseSize === phraseBaseSize ? undefined : Math.round(phraseSize * 1.3);
     const reportDataText = [
       `EN: ${currentPrompt.card.en}`,

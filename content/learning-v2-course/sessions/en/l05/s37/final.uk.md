@@ -1,136 +1,154 @@
-# Англійська · Урок 5 · Заняття 37 — Чиї це сережки?
+# Англійська · Урок 5 · Заняття 37 — Розвантажуємо машину
 
-**Ситуація.** Після зустрічі друзі розбирають забуті речі. Анна знайшла сережки, а Том чекає біля машини поруч із поштоматом.
+**Ситуація.** Родина повернулася з поїздки й розвантажує машину. У багажнику й на сидіннях лежать речі різних людей. Ви з’ясовуєте, що чиє: про одну річ і про парні речі, словами hers, his, mine або з 's.
 
-**Що ви опануєте:** запитати про власника однієї чи кількох речей
-**Нові слова:** earrings
+**Що ви опануєте:** самому вибрати форму за кількістю речей і назвати господаря: is this чи are these, hers, his, mine, 's
+**Нові слова:** earrings, skateboard, tripod, compass
+**Повертаються:** aunt, uncle, cousin, sister, brother, bag, car
 
 ---
 
 ## Інтро 1
 
-### Прикраси для вух
+### Сережки на сидінні
 
-`earrings` — «сережки», множина. `Whose earrings are these?` — «Чиї це сережки?» `The earrings are mine` — «Сережки мої». `These are Anna’s earrings` — «Це сережки Анни». Сережки знайшли разом: навіть загубитися вирішили парою.
+Ви розвантажуєте машину після поїздки. Подруга знайшла на задньому сидінні сережки й питає вас, чиї вони. Ви бачили їх у своєї сестри. earrings — «сережки», вони завжди парою, тому слово в множині. Відповідьте: The earrings are hers — «Сережки її».
 
-**Запитайте про власника сережок.**
+**Подруга питає, чиї сережки на сидінні. Вони вашої сестри. Скажіть: «Сережки її».**
 
-- ✅ **Whose earrings are these?**
-- ❌ Whose earrings is this? — *`earrings` — множина: `are these`.*
-- ❌ Where are the earrings? — *Це запитання про місце; про власника запитуємо з `Whose`.*
+- ✅ **The earrings are hers.**
+- ❌ The earrings is hers. — *earrings — множина, тому потрібно are.*
+- ❌ The earrings are his. — *his — його, а сережки належать сестрі: потрібно hers.*
 
 ---
 
 ## Інтро 2
 
-### Самотність і компанія
+### Скейтборд у багажнику
 
-`lonely` — «самотній, відчуває самотність». `I am lonely` — «Мені самотньо». Це почуття: людина може бути серед людей і все одно відчувати самотність. Знайоме `alone` означає «сам, без інших» і саме по собі не говорить про сум. `car` — «машина»: `Whose car is this?` — «Чия це машина?»
+У багажнику під сумками лежить скейтборд. Двоюрідний брат стоїть поруч і чекає, поки ви розберете речі. skateboard — «скейтборд», дошка на колесах. Спитайте брата, чий він: Whose skateboard is this? — «Чий це скейтборд?» Скейтборд один, тому is this.
 
-**Вам бракує компанії. Скажіть «Мені самотньо» без скорочення.**
+**У багажнику лежить скейтборд. Спитайте двоюрідного брата, чий він.**
 
-- ✅ **I am lonely.**
-- ❌ I is lonely. — *З `I` потрібна форма `am`.*
-- ❌ I am alone. — *Це «Я сам»; почуття самотності — `lonely`.*
+- ✅ **Whose skateboard is this?**
+- ❌ Whose skateboard are these? — *Скейтборд один, тому потрібно is this.*
+- ❌ Where is the skateboard? — *Це «Де скейтборд?». Про господаря питаємо з whose.*
 
 ---
 
 ## Інтро 3
 
-### Зустріч біля машини
+### Штатив у чохлі
 
-`parcel locker` — «поштомат, шафа з комірками для посилок», `skateboard` — «скейтборд». `Tom is next to the parcel locker` — «Том поруч із поштоматом». `Whose skateboard is this?` — «Чий це скейтборд?» `The skateboard is his` — «Скейтборд його». Одна річ — `is this`, кілька сережок — `are these`.
+Ви дістали з багажника довгий сірий чохол зі штативом. Подруга каже вам, що в її брата є такий самий. tripod — «штатив», підставка для фотоапарата. Спитайте подругу, чи не її брата він: Is this tripod your brother's? — «Це штатив твого брата?»
 
-**Запитайте про власника скейтборда.**
+**Ви дістали штатив. Спитайте подругу, чи не її брата він.**
 
-- ✅ **Whose skateboard is this?**
-- ❌ Whose skateboard are these? — *Один скейтборд: `is this`.*
-- ❌ Where is the skateboard? — *Це запитання про місце; про власника запитуємо з `Whose`.*
+- ✅ **Is this tripod your brother's?**
+- ❌ Is this tripod your brother? — *Так вийшло б, що штатив — це сам брат. Господаря називаємо через 's: your brother's.*
+- ❌ Are this tripod your brother's? — *Штатив один, тому питання починаємо з Is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Вам бракує компанії. Скажіть «Мені самотньо» без скорочення**
+**1 · Картка слова — earrings**
+<!-- interaction_id: en:lesson-05:session-37:word:earrings; family: word_card -->
+> **earrings** — сережки. My aunt's earrings are small. — «Сережки моєї тітки маленькі». Прикраси для вух, завжди парою.
+
+**2 · Подруга питає, чиї сережки. Вони вашої тітки. Скажіть: «Сережки моєї тітки»**
 <!-- interaction_id: en:lesson-05:session-37:i01; family: phrase_builder -->
-Плитки: `lonely` `am` `I` `is` → **I am lonely.**
-*(плитка `is` зайва: тут потрібно `am` — `I am lonely.`)*
+Плитки: `earrings` `are` `aunt's` `The` `my` `aunt` → **The earrings are my aunt's.**
+*(плитка `aunt` зайва: тут потрібно `aunt's` — `The earrings are my aunt's.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — skateboard**
+<!-- interaction_id: en:lesson-05:session-37:word:skateboard; family: word_card -->
+> **skateboard** — скейтборд. My cousin's skateboard is black. — «Скейтборд мого двоюрідного брата чорний». Дошка на колесах, на якій катаються.
+
+**4 · Послухайте двоюрідного брата**
 <!-- interaction_id: en:lesson-05:session-37:i02; family: listen_choose -->
-🔊 *earrings* → **earrings** · sunglasses · headphones
-- sunglasses — *У записі перше слово — `earrings`, а в цьому варіанті — `sunglasses`.*
-- headphones — *У записі перше слово — `earrings`, а в цьому варіанті — `headphones`.*
+🔊 *The skateboard is his.* → **The skateboard is his.** · The skateboard is hers. · The skateboard is mine.
+- The skateboard is hers. — *У записі останнє слово — `his`, його, а в цьому варіанті — `hers`, її.*
+- The skateboard is mine. — *У записі останнє слово — `his`, його, а в цьому варіанті — `mine`, мій.*
 
-**3 · Назвіть сережки**
+**5 · Картка слова — tripod**
+<!-- interaction_id: en:lesson-05:session-37:word:tripod; family: word_card -->
+> **tripod** — штатив. The tripod is in the car. — «Штатив у машині». Підставка на трьох ніжках для фотоапарата.
+
+**6 · Ви питаєте подругу, чи не її брата штатив. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-37:i03; family: context_gap_grammar -->
-___ → **earrings** · bracelet · ring
-- bracelet — *`bracelet` — браслет; сережки — `earrings`.*
-- ring — *`ring` — каблучка; сережки — `earrings`.*
+Is this tripod your ___? → **brother's** · brother · brothers
+- brother — *Так вийшло б, що штатив — це сам брат. Господаря називаємо через `'s`: `brother's`.*
+- brothers — *`brothers` — це «брати», кілька людей; потрібно `brother's`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-37:i04; family: speed_match -->
-earrings — сережки · car — машина · parcel locker — поштомат · skateboard — скейтборд
+earrings — сережки · skateboard — скейтборд · tripod — штатив · compass — компас
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — compass**
+<!-- interaction_id: en:lesson-05:session-37:word:compass; family: word_card -->
+> **compass** — компас. The compass is in my bag. — «Компас у моїй сумці». Прилад, у якого стрілка показує на північ.
+
+**9 · Послухайте друга й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-37:i05; family: listen_build_dictation -->
-🔊 *Whose earrings are these?* Плитки: `these` `are` `earrings` `Whose` → **Whose earrings are these?**
+🔊 *The compass is in the car.* Плитки: `compass` `in` `the` `car` `is` `The` `are` → **The compass is in the car.**
+*(плитка `are` зайва: тут потрібно `is` — `The compass is in the car.`)*
 
-**6 · Біля входу стоїть машина. Запитайте «Чия це машина?»**
+**10 · Скейтборд стоїть далеко біля стіни. Спитайте подругу: «Чий це скейтборд?»**
 <!-- interaction_id: en:lesson-05:session-37:i06; family: phrase_builder -->
-Плитки: `this` `is` `car` `Whose` → **Whose car is this?**
+Плитки: `skateboard` `that` `is` `Whose` `Where` → **Whose skateboard is that?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose skateboard is that?`)*
 
-**7 · Сережки належать вам. Скажіть «Сережки мої»**
+**11 · Подруга питає про сережки. Вони ваші. Скажіть: «Сережки мої»**
 <!-- interaction_id: en:lesson-05:session-37:i07; family: scripted_repeat_compare -->
 🎙 **The earrings are mine.**
 
-**8 · Запитайте про власника одного скейтборда. Виберіть форму**
+**12 · Двоюрідний брат показує скейтборд свого брата. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-37:i08; family: context_gap_grammar -->
-Whose skateboard ___ this? → **is** · are · am
-- are — *Один скейтборд: `is this`.*
-- am — *`am` використовується з `I`; тут `is this`.*
+This skateboard ___ my brother's. → **is** · are · has
+- are — *Скейтборд один, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «має», а тут ми називаємо господаря: потрібно `is`.*
 
-**9 · Послухайте, яку річ називає друг**
+**13 · Послухайте друга**
 <!-- interaction_id: en:lesson-05:session-37:i09; family: listen_choose -->
-🔊 *These are Anna's earrings.* → **These are Anna's earrings.** · These are Anna's sunglasses. · These are Anna's gloves.
-- These are Anna's sunglasses. — *У записі останнє слово — `earrings`, а в цьому варіанті — `sunglasses`.*
-- These are Anna's gloves. — *У записі останнє слово — `earrings`, а в цьому варіанті — `gloves`.*
+🔊 *Is this tripod your brother's?* → **Is this tripod your brother's?** · Is this tripod your sister's? · Is this compass your brother's?
+- Is this tripod your sister's? — *У записі господар — `brother's`, брат, а в цьому варіанті — `sister's`, сестра.*
+- Is this compass your brother's? — *У записі річ — `tripod`, а в цьому варіанті — `compass`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-37:i10; family: speed_match -->
-earrings — сережки · lonely — відчуває самотність · parcel locker — поштомат · skateboard — скейтборд
+skateboard — скейтборд · tripod — штатив · compass — компас · car — машина
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-37:i11; family: listen_build_dictation -->
-🔊 *Tom is next to the parcel locker.* Плитки: `locker` `parcel` `the` `to` `next` `is` `Tom` `are` → **Tom is next to the parcel locker.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom is next to the parcel locker.`)*
+🔊 *My uncle's compass is in the bag.* Плитки: `compass` `uncle's` `is` `in` `the` `bag` `My` `uncle` → **My uncle's compass is in the bag.**
+*(плитка `uncle` зайва: тут потрібно `uncle's` — `My uncle's compass is in the bag.`)*
 
-**12 · Скейтборд належить другові-чоловікові. Скажіть «Скейтборд його»**
+**16 · Ви показуєте скейтборд і питаєте подругу, чи не її сестри він. Спитайте: «Це скейтборд твоєї сестри?»**
 <!-- interaction_id: en:lesson-05:session-37:i12; family: phrase_builder -->
-Плитки: `his` `is` `skateboard` `The` `are` → **The skateboard is his.**
-*(плитка `are` зайва: тут потрібно `is` — `The skateboard is his.`)*
+Плитки: `skateboard` `this` `sister's` `your` `Is` `Are` → **Is this skateboard your sister's?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is this skateboard your sister's?`)*
 
-**13 · Сережки подруги у вас. Скажіть їй «Твої сережки в мене»**
+**17 · Друг питає, чий це компас. Він ваш. Скажіть: «Це мій компас»**
 <!-- interaction_id: en:lesson-05:session-37:i13; family: scripted_repeat_compare -->
-🎙 **I have your earrings.**
+🎙 **This is my compass.**
 
-**14 · Запитайте про власника сережок**
+**18 · Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-37:i14; family: context_gap_grammar -->
-___ earrings are these? → **Whose** · Where · Who
-- Where — *`Where` — де; чиї — `Whose`.*
-- Who — *`Who` — хто; чиї — `Whose`.*
+These earrings are my ___. → **aunt's** · aunt · aunts
+- aunt — *Так вийшло б, що сережки — це сама тітка. Господиню називаємо через `'s`: `aunt's`.*
+- aunts — *`aunts` — це «тітки», кілька людей; потрібно `aunt's`.*
 
-**15 · Послухайте, чия машина тут**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-37:i15; family: listen_choose -->
-🔊 *Your car is here.* → **Your car is here.** · My car is here. · Her car is here.
-- My car is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- Her car is here. — *У записі перше слово — `Your`, а в цьому варіанті — `Her`.*
+🔊 *Whose earrings are these?* → **Whose earrings are these?** · Whose earrings are those? · Whose skateboard is this?
+- Whose earrings are those? — *У записі останнє слово — `these`, а в цьому варіанті — `those`.*
+- Whose skateboard is this? — *У записі річ — `earrings`, сережки, а в цьому варіанті — `skateboard`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-37:i16; family: speed_match -->
-earrings — сережки · lonely — відчуває самотність · car — машина · skateboard — скейтборд
+earrings — сережки · skateboard — скейтборд · tripod — штатив · compass — компас
 
-**17 · Ви знайшли сережки й хочете повернути їх власникові. Запитайте «Чиї це сережки?»**
+**21 · Ви знайшли в машині сережки й хочете повернути їх господині. Спитайте подругу: «Чиї це сережки?»**
 <!-- interaction_id: en:lesson-05:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Whose earrings are these?**
-

@@ -1,0 +1,2461 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-33",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-33:word:badge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — badge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:badge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — badge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:badge:audio",
+            "transcript": "badge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:badge:r1",
+              "targetText": "badge",
+              "meaningByLocale": {
+                "ru": "бейдж. My colleague's badge is blue. — «Бейдж моего коллеги синий». О карточке с именем, которую носят на работе.",
+                "uk": "бейдж. My colleague's badge is blue. — «Бейдж мого колеги синій». Про картку з іменем, яку носять на роботі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "badge",
+            "definitionByLocale": {
+              "ru": "бейдж. My colleague's badge is blue. — «Бейдж моего коллеги синий». О карточке с именем, которую носят на работе.",
+              "uk": "бейдж. My colleague's badge is blue. — «Бейдж мого колеги синій». Про картку з іменем, яку носять на роботі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, чей бейдж на столе. Он клиента. Скажите: «Это бейдж клиента»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает, чей бейдж на столе. Он клиента. Скажите: «Это бейдж клиента»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is the client's badge.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, чей бейдж на столе. Он клиента. Скажите: «Это бейдж клиента»",
+            "uk": "Колега питає, чий бейдж на столі. Він клієнта. Скажіть: «Це бейдж клієнта»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "the",
+            "client's",
+            "badge"
+          ],
+          "authoredDistractorTokens": [
+            "client"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает, чей бейдж на столе. Он клиента. Скажите: «Это бейдж клиента»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `client's` — `This is the client's badge.`",
+                "uk": "тут потрібно `client's` — `This is the client's badge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:word:tablet",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tablet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:tablet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tablet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:tablet:audio",
+            "transcript": "tablet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:tablet:r1",
+              "targetText": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет. The client's tablet is on the table. — «Планшет клиента на столе». О плоском экране, на котором читают и пишут.",
+                "uk": "планшет. The client's tablet is on the table. — «Планшет клієнта на столі». Про плаский екран, на якому читають і пишуть."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tablet",
+            "definitionByLocale": {
+              "ru": "планшет. The client's tablet is on the table. — «Планшет клиента на столе». О плоском экране, на котором читают и пишут.",
+              "uk": "планшет. The client's tablet is on the table. — «Планшет клієнта на столі». Про плаский екран, на якому читають і пишуть."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте менеджера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i02:r1",
+            "text": "Whose tablet is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i02:r2",
+            "text": "Whose tablet is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i02:r3",
+            "text": "Whose badge is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте менеджера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i02:audio",
+            "transcript": "Whose tablet is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:i02:r1",
+              "targetText": "Whose tablet is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i02:r2",
+              "targetText": "Whose tablet is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i02:r3",
+              "targetText": "Whose badge is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tablet`, а в этом варианте — `badge`.",
+                "uk": "У записі річ — `tablet`, а в цьому варіанті — `badge`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:word:briefcase",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — briefcase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:briefcase:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — briefcase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:briefcase:audio",
+            "transcript": "briefcase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:briefcase:r1",
+              "targetText": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель. My manager's briefcase is big. — «Портфель моего менеджера большой». О сумке для бумаг и документов.",
+                "uk": "портфель. My manager's briefcase is big. — «Портфель мого менеджера великий». Про сумку для паперів і документів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "briefcase",
+            "definitionByLocale": {
+              "ru": "портфель. My manager's briefcase is big. — «Портфель моего менеджера большой». О сумке для бумаг и документов.",
+              "uk": "портфель. My manager's briefcase is big. — «Портфель мого менеджера великий». Про сумку для паперів і документів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Менеджер спрашивает о портфеле у двери. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Менеджер спрашивает о портфеле у двери. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Менеджер спрашивает о портфеле у двери. Выберите слово",
+            "uk": "Менеджер питає про портфель біля дверей. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose briefcase ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-33:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Менеджер спрашивает о портфеле у двери. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Менеджер спрашивает о портфеле у двери. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Портфель один, поэтому нужно `is`, а не `are`.",
+                "uk": "Портфель один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Менеджер спрашивает о портфеле у двери. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только с `I`; здесь нужно `is this`.",
+                "uk": "`am` буває лише з `I`; тут потрібно `is this`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-33:i04:p1",
+              "target": "badge",
+              "meaningByLocale": {
+                "ru": "бейдж",
+                "uk": "бейдж"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i04:p2",
+              "target": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет",
+                "uk": "планшет"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i04:p3",
+              "target": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель",
+                "uk": "портфель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i04:p4",
+              "target": "tie",
+              "meaningByLocale": {
+                "ru": "галстук",
+                "uk": "краватка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "badge",
+            "tablet",
+            "briefcase",
+            "tie"
+          ],
+          "rightColumn": [
+            "бейдж",
+            "планшет",
+            "портфель",
+            "галстук"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:word:tie",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:tie:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:tie:audio",
+            "transcript": "tie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:tie:r1",
+              "targetText": "tie",
+              "meaningByLocale": {
+                "ru": "галстук. The tie is red. — «Галстук красный». О полоске ткани, которую повязывают на шею к рубашке.",
+                "uk": "краватка. The tie is red. — «Краватка червона». Про смужку тканини, яку пов’язують на шию до сорочки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tie",
+            "definitionByLocale": {
+              "ru": "галстук. The tie is red. — «Галстук красный». О полоске ткани, которую повязывают на шею к рубашке.",
+              "uk": "краватка. The tie is red. — «Краватка червона». Про смужку тканини, яку пов’язують на шию до сорочки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте менеджера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте менеджера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i05:audio",
+            "transcript": "This is my manager's tie."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is my manager's tie.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "manager's",
+            "tie"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте менеджера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my manager's tie.`",
+                "uk": "тут потрібно `is` — `This is my manager's tie.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете коллеге планшет и спрашиваете, чей он. Спросите: «Чей это планшет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете коллеге планшет и спрашиваете, чей он. Спросите: «Чей это планшет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose tablet is this?",
+          "localizedMeaning": {
+            "ru": "Вы показываете коллеге планшет и спрашиваете, чей он. Спросите: «Чей это планшет?»",
+            "uk": "Ви показуєте колезі планшет і питаєте, чий він. Спитайте: «Чий це планшет?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "tablet",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете коллеге планшет и спрашиваете, чей он. Спросите: «Чей это планшет?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose tablet is this?`",
+                "uk": "тут потрібно `Whose` — `Whose tablet is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер спрашивает, чей бейдж. Он ваш. Скажите: «Бейдж мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Менеджер спрашивает, чей бейдж. Он ваш. Скажите: «Бейдж мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i07:audio",
+            "transcript": "The badge is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The badge is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i08:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i08:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i08:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово",
+            "uk": "Клієнт питає про планшет на стільці. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The tablet is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-33:i08:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i08:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i08:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`yours` значит «твой», а о себе говорим `mine`.",
+                "uk": "`yours` означає «твій», а про себе кажемо `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i09:r1",
+            "text": "Whose briefcase is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i09:r2",
+            "text": "Whose briefcase is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i09:r3",
+            "text": "Whose tie is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i09:audio",
+            "transcript": "Whose briefcase is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:i09:r1",
+              "targetText": "Whose briefcase is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i09:r2",
+              "targetText": "Whose briefcase is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i09:r3",
+              "targetText": "Whose tie is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `briefcase`, а в этом варианте — `tie`.",
+                "uk": "У записі річ — `briefcase`, а в цьому варіанті — `tie`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-33:i10:p1",
+              "target": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет",
+                "uk": "планшет"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i10:p2",
+              "target": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель",
+                "uk": "портфель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i10:p3",
+              "target": "tie",
+              "meaningByLocale": {
+                "ru": "галстук",
+                "uk": "краватка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i10:p4",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tablet",
+            "briefcase",
+            "tie",
+            "desk"
+          ],
+          "rightColumn": [
+            "планшет",
+            "портфель",
+            "галстук",
+            "письменный стол"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте менеджера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте менеджера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i11:audio",
+            "transcript": "The briefcase is next to the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The briefcase is next to the desk.",
+          "orderedTokens": [
+            "The",
+            "briefcase",
+            "is",
+            "next",
+            "to",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте менеджера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The briefcase is next to the desk.`",
+                "uk": "тут потрібно `is` — `The briefcase is next to the desk.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли галстук менеджера на стуле. Скажите коллеге: «Галстук моего менеджера на стуле»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли галстук менеджера на стуле. Скажите коллеге: «Галстук моего менеджера на стуле»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My manager's tie is on the chair.",
+          "localizedMeaning": {
+            "ru": "Вы нашли галстук менеджера на стуле. Скажите коллеге: «Галстук моего менеджера на стуле»",
+            "uk": "Ви знайшли краватку менеджера на стільці. Скажіть колезі: «Краватка мого менеджера на стільці»"
+          },
+          "orderedTokens": [
+            "My",
+            "manager's",
+            "tie",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "manager"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли галстук менеджера на стуле. Скажите коллеге: «Галстук моего менеджера на стуле»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `manager's` — `My manager's tie is on the chair.`",
+                "uk": "тут потрібно `manager's` — `My manager's tie is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер спрашивает, чей это бейдж. Он ваш. Скажите: «Он мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Менеджер спрашивает, чей это бейдж. Он ваш. Скажите: «Он мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i13:audio",
+            "transcript": "It is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега спрашивает о галстуке. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега спрашивает о галстуке. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Колега спрашивает о галстуке. Выберите слово",
+            "uk": "Колега питає про краватку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ tie is this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-33:i14:r1",
+              "text": "Whose"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i14:r2",
+              "text": "Where"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i14:r3",
+              "text": "Who"
+            }
+          ],
+          "testedDimension": "Колега спрашивает о галстуке. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "Колега спрашивает о галстуке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`Where` значит «где», а о хозяине спрашиваем с `Whose`.",
+                "uk": "`Where` означає «де», а про господаря питаємо з `Whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "Колега спрашивает о галстуке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`Who` значит «кто», а «чей» — `Whose`.",
+                "uk": "`Who` означає «хто», а «чий» — `Whose`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте клиента",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i15:r1",
+            "text": "The tie is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i15:r2",
+            "text": "The tie is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i15:r3",
+            "text": "The tablet is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте клиента",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i15:audio",
+            "transcript": "The tie is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:i15:r1",
+              "targetText": "The tie is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i15:r2",
+              "targetText": "The tie is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i15:r3",
+              "targetText": "The tablet is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте клиента",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мой, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `mine`, мій, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте клиента",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tie`, а в этом варианте — `tablet`.",
+                "uk": "У записі річ — `tie`, а в цьому варіанті — `tablet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-33:i16:p1",
+              "target": "badge",
+              "meaningByLocale": {
+                "ru": "бейдж",
+                "uk": "бейдж"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i16:p2",
+              "target": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет",
+                "uk": "планшет"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i16:p3",
+              "target": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель",
+                "uk": "портфель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i16:p4",
+              "target": "tie",
+              "meaningByLocale": {
+                "ru": "галстук",
+                "uk": "краватка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "badge",
+            "tablet",
+            "briefcase",
+            "tie"
+          ],
+          "rightColumn": [
+            "бейдж",
+            "планшет",
+            "портфель",
+            "галстук"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли у стола портфель и хотите вернуть его владельцу. Спросите колегу: «Чей это портфель?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли у стола портфель и хотите вернуть его владельцу. Спросите колегу: «Чей это портфель?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i17:audio",
+            "transcript": "Whose briefcase is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose briefcase is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-33:word:badge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — badge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:badge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — badge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:badge:audio",
+            "transcript": "badge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:badge:r1",
+              "targetText": "badge",
+              "meaningByLocale": {
+                "ru": "бейдж. My colleague's badge is blue. — «Бейдж моего коллеги синий». О карточке с именем, которую носят на работе.",
+                "uk": "бейдж. My colleague's badge is blue. — «Бейдж мого колеги синій». Про картку з іменем, яку носять на роботі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "badge",
+            "definitionByLocale": {
+              "ru": "бейдж. My colleague's badge is blue. — «Бейдж моего коллеги синий». О карточке с именем, которую носят на работе.",
+              "uk": "бейдж. My colleague's badge is blue. — «Бейдж мого колеги синій». Про картку з іменем, яку носять на роботі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега питає, чий бейдж на столі. Він клієнта. Скажіть: «Це бейдж клієнта»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега питає, чий бейдж на столі. Він клієнта. Скажіть: «Це бейдж клієнта»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is the client's badge.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, чей бейдж на столе. Он клиента. Скажите: «Это бейдж клиента»",
+            "uk": "Колега питає, чий бейдж на столі. Він клієнта. Скажіть: «Це бейдж клієнта»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "the",
+            "client's",
+            "badge"
+          ],
+          "authoredDistractorTokens": [
+            "client"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Колега питає, чий бейдж на столі. Він клієнта. Скажіть: «Це бейдж клієнта»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `client's` — `This is the client's badge.`",
+                "uk": "тут потрібно `client's` — `This is the client's badge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:word:tablet",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tablet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:tablet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tablet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:tablet:audio",
+            "transcript": "tablet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:tablet:r1",
+              "targetText": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет. The client's tablet is on the table. — «Планшет клиента на столе». О плоском экране, на котором читают и пишут.",
+                "uk": "планшет. The client's tablet is on the table. — «Планшет клієнта на столі». Про плаский екран, на якому читають і пишуть."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tablet",
+            "definitionByLocale": {
+              "ru": "планшет. The client's tablet is on the table. — «Планшет клиента на столе». О плоском экране, на котором читают и пишут.",
+              "uk": "планшет. The client's tablet is on the table. — «Планшет клієнта на столі». Про плаский екран, на якому читають і пишуть."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте менеджера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i02:r1",
+            "text": "Whose tablet is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i02:r2",
+            "text": "Whose tablet is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i02:r3",
+            "text": "Whose badge is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте менеджера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i02:audio",
+            "transcript": "Whose tablet is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:i02:r1",
+              "targetText": "Whose tablet is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i02:r2",
+              "targetText": "Whose tablet is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i02:r3",
+              "targetText": "Whose badge is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tablet`, а в этом варианте — `badge`.",
+                "uk": "У записі річ — `tablet`, а в цьому варіанті — `badge`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:word:briefcase",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — briefcase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:briefcase:audio"
+        ],
+        "accessibilityLabel": "Картка слова — briefcase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:briefcase:audio",
+            "transcript": "briefcase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:briefcase:r1",
+              "targetText": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель. My manager's briefcase is big. — «Портфель моего менеджера большой». О сумке для бумаг и документов.",
+                "uk": "портфель. My manager's briefcase is big. — «Портфель мого менеджера великий». Про сумку для паперів і документів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "briefcase",
+            "definitionByLocale": {
+              "ru": "портфель. My manager's briefcase is big. — «Портфель моего менеджера большой». О сумке для бумаг и документов.",
+              "uk": "портфель. My manager's briefcase is big. — «Портфель мого менеджера великий». Про сумку для паперів і документів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Менеджер питає про портфель біля дверей. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Менеджер питає про портфель біля дверей. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Менеджер спрашивает о портфеле у двери. Выберите слово",
+            "uk": "Менеджер питає про портфель біля дверей. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose briefcase ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-33:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Менеджер питає про портфель біля дверей. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Менеджер питає про портфель біля дверей. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Портфель один, поэтому нужно `is`, а не `are`.",
+                "uk": "Портфель один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Менеджер питає про портфель біля дверей. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только с `I`; здесь нужно `is this`.",
+                "uk": "`am` буває лише з `I`; тут потрібно `is this`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-33:i04:p1",
+              "target": "badge",
+              "meaningByLocale": {
+                "ru": "бейдж",
+                "uk": "бейдж"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i04:p2",
+              "target": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет",
+                "uk": "планшет"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i04:p3",
+              "target": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель",
+                "uk": "портфель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i04:p4",
+              "target": "tie",
+              "meaningByLocale": {
+                "ru": "галстук",
+                "uk": "краватка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "badge",
+            "tablet",
+            "briefcase",
+            "tie"
+          ],
+          "rightColumn": [
+            "бейдж",
+            "планшет",
+            "портфель",
+            "краватка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:word:tie",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:word:tie:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:word:tie:audio",
+            "transcript": "tie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:word:tie:r1",
+              "targetText": "tie",
+              "meaningByLocale": {
+                "ru": "галстук. The tie is red. — «Галстук красный». О полоске ткани, которую повязывают на шею к рубашке.",
+                "uk": "краватка. The tie is red. — «Краватка червона». Про смужку тканини, яку пов’язують на шию до сорочки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tie",
+            "definitionByLocale": {
+              "ru": "галстук. The tie is red. — «Галстук красный». О полоске ткани, которую повязывают на шею к рубашке.",
+              "uk": "краватка. The tie is red. — «Краватка червона». Про смужку тканини, яку пов’язують на шию до сорочки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте менеджера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте менеджера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i05:audio",
+            "transcript": "This is my manager's tie."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is my manager's tie.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "manager's",
+            "tie"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте менеджера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my manager's tie.`",
+                "uk": "тут потрібно `is` — `This is my manager's tie.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте колезі планшет і питаєте, чий він. Спитайте: «Чий це планшет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте колезі планшет і питаєте, чий він. Спитайте: «Чий це планшет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose tablet is this?",
+          "localizedMeaning": {
+            "ru": "Вы показываете коллеге планшет и спрашиваете, чей он. Спросите: «Чей это планшет?»",
+            "uk": "Ви показуєте колезі планшет і питаєте, чий він. Спитайте: «Чий це планшет?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "tablet",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте колезі планшет і питаєте, чий він. Спитайте: «Чий це планшет?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose tablet is this?`",
+                "uk": "тут потрібно `Whose` — `Whose tablet is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер питає, чий бейдж. Він ваш. Скажіть: «Бейдж мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Менеджер питає, чий бейдж. Він ваш. Скажіть: «Бейдж мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i07:audio",
+            "transcript": "The badge is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The badge is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Клієнт питає про планшет на стільці. Він ваш. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i08:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i08:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i08:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клієнт питає про планшет на стільці. Він ваш. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово",
+            "uk": "Клієнт питає про планшет на стільці. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The tablet is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-33:i08:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i08:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i08:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Клієнт питає про планшет на стільці. Він ваш. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Клієнт питає про планшет на стільці. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Клієнт питає про планшет на стільці. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`yours` значит «твой», а о себе говорим `mine`.",
+                "uk": "`yours` означає «твій», а про себе кажемо `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i09:r1",
+            "text": "Whose briefcase is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i09:r2",
+            "text": "Whose briefcase is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i09:r3",
+            "text": "Whose tie is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i09:audio",
+            "transcript": "Whose briefcase is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:i09:r1",
+              "targetText": "Whose briefcase is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i09:r2",
+              "targetText": "Whose briefcase is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i09:r3",
+              "targetText": "Whose tie is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `briefcase`, а в этом варианте — `tie`.",
+                "uk": "У записі річ — `briefcase`, а в цьому варіанті — `tie`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-33:i10:p1",
+              "target": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет",
+                "uk": "планшет"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i10:p2",
+              "target": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель",
+                "uk": "портфель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i10:p3",
+              "target": "tie",
+              "meaningByLocale": {
+                "ru": "галстук",
+                "uk": "краватка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i10:p4",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tablet",
+            "briefcase",
+            "tie",
+            "desk"
+          ],
+          "rightColumn": [
+            "планшет",
+            "портфель",
+            "краватка",
+            "письмовий стіл"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте менеджера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте менеджера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i11:audio",
+            "transcript": "The briefcase is next to the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The briefcase is next to the desk.",
+          "orderedTokens": [
+            "The",
+            "briefcase",
+            "is",
+            "next",
+            "to",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте менеджера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The briefcase is next to the desk.`",
+                "uk": "тут потрібно `is` — `The briefcase is next to the desk.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли краватку менеджера на стільці. Скажіть колезі: «Краватка мого менеджера на стільці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли краватку менеджера на стільці. Скажіть колезі: «Краватка мого менеджера на стільці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My manager's tie is on the chair.",
+          "localizedMeaning": {
+            "ru": "Вы нашли галстук менеджера на стуле. Скажите коллеге: «Галстук моего менеджера на стуле»",
+            "uk": "Ви знайшли краватку менеджера на стільці. Скажіть колезі: «Краватка мого менеджера на стільці»"
+          },
+          "orderedTokens": [
+            "My",
+            "manager's",
+            "tie",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "manager"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли краватку менеджера на стільці. Скажіть колезі: «Краватка мого менеджера на стільці»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `manager's` — `My manager's tie is on the chair.`",
+                "uk": "тут потрібно `manager's` — `My manager's tie is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер питає, чий це бейдж. Він ваш. Скажіть: «Він мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Менеджер питає, чий це бейдж. Він ваш. Скажіть: «Він мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i13:audio",
+            "transcript": "It is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега питає про краватку. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега питає про краватку. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Колега спрашивает о галстуке. Выберите слово",
+            "uk": "Колега питає про краватку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ tie is this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-33:i14:r1",
+              "text": "Whose"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i14:r2",
+              "text": "Where"
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i14:r3",
+              "text": "Who"
+            }
+          ],
+          "testedDimension": "Колега питає про краватку. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "Колега питає про краватку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`Where` значит «где», а о хозяине спрашиваем с `Whose`.",
+                "uk": "`Where` означає «де», а про господаря питаємо з `Whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "Колега питає про краватку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`Who` значит «кто», а «чей» — `Whose`.",
+                "uk": "`Who` означає «хто», а «чий» — `Whose`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте клієнта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-33:i15:r1",
+            "text": "The tie is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i15:r2",
+            "text": "The tie is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-33:i15:r3",
+            "text": "The tablet is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте клієнта",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i15:audio",
+            "transcript": "The tie is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-33:i15:r1",
+              "targetText": "The tie is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i15:r2",
+              "targetText": "The tie is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i15:r3",
+              "targetText": "The tablet is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте клієнта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мой, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `mine`, мій, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте клієнта",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tie`, а в этом варианте — `tablet`.",
+                "uk": "У записі річ — `tie`, а в цьому варіанті — `tablet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-33:i16:p1",
+              "target": "badge",
+              "meaningByLocale": {
+                "ru": "бейдж",
+                "uk": "бейдж"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i16:p2",
+              "target": "tablet",
+              "meaningByLocale": {
+                "ru": "планшет",
+                "uk": "планшет"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i16:p3",
+              "target": "briefcase",
+              "meaningByLocale": {
+                "ru": "портфель",
+                "uk": "портфель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-33:i16:p4",
+              "target": "tie",
+              "meaningByLocale": {
+                "ru": "галстук",
+                "uk": "краватка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "badge",
+            "tablet",
+            "briefcase",
+            "tie"
+          ],
+          "rightColumn": [
+            "бейдж",
+            "планшет",
+            "портфель",
+            "краватка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли біля столу портфель і хочете повернути його власникові. Спитайте колегу: «Чий це портфель?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли біля столу портфель і хочете повернути його власникові. Спитайте колегу: «Чий це портфель?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-33:i17:audio",
+            "transcript": "Whose briefcase is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose briefcase is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-33:word:badge",
+      "correctText": "badge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i01",
+      "correctText": "This is the client's badge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:word:tablet",
+      "correctText": "tablet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i02",
+      "correctText": "Whose tablet is this?",
+      "correctResponseId": "en:lesson-05:session-33:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:word:briefcase",
+      "correctText": "briefcase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-33:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:word:tie",
+      "correctText": "tie",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i05",
+      "correctText": "This is my manager's tie.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i06",
+      "correctText": "Whose tablet is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i07",
+      "correctText": "The badge is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i08",
+      "correctText": "mine",
+      "correctResponseId": "en:lesson-05:session-33:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i09",
+      "correctText": "Whose briefcase is this?",
+      "correctResponseId": "en:lesson-05:session-33:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i11",
+      "correctText": "The briefcase is next to the desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i12",
+      "correctText": "My manager's tie is on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i13",
+      "correctText": "It is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i14",
+      "correctText": "Whose",
+      "correctResponseId": "en:lesson-05:session-33:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i15",
+      "correctText": "The tie is mine.",
+      "correctResponseId": "en:lesson-05:session-33:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:i17",
+      "correctText": "Whose briefcase is this?",
+      "correctResponseId": null
+    }
+  ]
+}

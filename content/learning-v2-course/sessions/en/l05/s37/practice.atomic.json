@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-37:word:earrings",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — earrings",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:earrings:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — earrings",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:earrings:audio",
+            "transcript": "earrings"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:earrings:r1",
+              "targetText": "earrings",
+              "meaningByLocale": {
+                "ru": "серьги. My aunt's earrings are small. — «Серьги моей тёти маленькие». Украшения для ушей, всегда парой.",
+                "uk": "сережки. My aunt's earrings are small. — «Сережки моєї тітки маленькі». Прикраси для вух, завжди парою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earrings",
+            "definitionByLocale": {
+              "ru": "серьги. My aunt's earrings are small. — «Серьги моей тёти маленькие». Украшения для ушей, всегда парой.",
+              "uk": "сережки. My aunt's earrings are small. — «Сережки моєї тітки маленькі». Прикраси для вух, завжди парою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, чьи серьги. Они вашей тёти. Скажите: «Серьги моей тёти»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, чьи серьги. Они вашей тёти. Скажите: «Серьги моей тёти»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The earrings are my aunt's.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, чьи серьги. Они вашей тёти. Скажите: «Серьги моей тёти»",
+            "uk": "Подруга питає, чиї сережки. Вони вашої тітки. Скажіть: «Сережки моєї тітки»"
+          },
+          "orderedTokens": [
+            "The",
+            "earrings",
+            "are",
+            "my",
+            "aunt's"
+          ],
+          "authoredDistractorTokens": [
+            "aunt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, чьи серьги. Они вашей тёти. Скажите: «Серьги моей тёти»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aunt's` — `The earrings are my aunt's.`",
+                "uk": "тут потрібно `aunt's` — `The earrings are my aunt's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:word:skateboard",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — skateboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:skateboard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — skateboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:skateboard:audio",
+            "transcript": "skateboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:skateboard:r1",
+              "targetText": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд. My cousin's skateboard is black. — «Скейтборд моего двоюродного брата чёрный». Доска на колёсиках, на которой катаются.",
+                "uk": "скейтборд. My cousin's skateboard is black. — «Скейтборд мого двоюрідного брата чорний». Дошка на колесах, на якій катаються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skateboard",
+            "definitionByLocale": {
+              "ru": "скейтборд. My cousin's skateboard is black. — «Скейтборд моего двоюродного брата чёрный». Доска на колёсиках, на которой катаются.",
+              "uk": "скейтборд. My cousin's skateboard is black. — «Скейтборд мого двоюрідного брата чорний». Дошка на колесах, на якій катаються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте двоюродного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i02:r1",
+            "text": "The skateboard is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i02:r2",
+            "text": "The skateboard is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i02:r3",
+            "text": "The skateboard is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте двоюродного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i02:audio",
+            "transcript": "The skateboard is his."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:i02:r1",
+              "targetText": "The skateboard is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i02:r2",
+              "targetText": "The skateboard is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i02:r3",
+              "targetText": "The skateboard is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `his`, его, а в этом варианте — `hers`, её.",
+                "uk": "У записі останнє слово — `his`, його, а в цьому варіанті — `hers`, її."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `his`, его, а в этом варианте — `mine`, мой.",
+                "uk": "У записі останнє слово — `his`, його, а в цьому варіанті — `mine`, мій."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:word:tripod",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tripod",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:tripod:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tripod",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:tripod:audio",
+            "transcript": "tripod"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:tripod:r1",
+              "targetText": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив. The tripod is in the car. — «Штатив в машине». Подставка на трёх ножках для фотоаппарата.",
+                "uk": "штатив. The tripod is in the car. — «Штатив у машині». Підставка на трьох ніжках для фотоапарата."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tripod",
+            "definitionByLocale": {
+              "ru": "штатив. The tripod is in the car. — «Штатив в машине». Подставка на трёх ножках для фотоаппарата.",
+              "uk": "штатив. The tripod is in the car. — «Штатив у машині». Підставка на трьох ніжках для фотоапарата."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете подругу, не её ли брата штатив. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i03:r1",
+            "text": "brother's"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i03:r2",
+            "text": "brother"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i03:r3",
+            "text": "brothers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете подругу, не её ли брата штатив. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете подругу, не её ли брата штатив. Выберите слово",
+            "uk": "Ви питаєте подругу, чи не її брата штатив. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Is this tripod your ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-37:i03:r1",
+              "text": "brother's"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i03:r2",
+              "text": "brother"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i03:r3",
+              "text": "brothers"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете подругу, не её ли брата штатив. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете подругу, не её ли брата штатив. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что штатив — это сам брат. Хозяина называем через `'s`: `brother's`.",
+                "uk": "Так вийшло б, що штатив — це сам брат. Господаря називаємо через `'s`: `brother's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете подругу, не её ли брата штатив. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`brothers` — это «братья», несколько человек; нужно `brother's`.",
+                "uk": "`brothers` — це «брати», кілька людей; потрібно `brother's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-37:i04:p1",
+              "target": "earrings",
+              "meaningByLocale": {
+                "ru": "серьги",
+                "uk": "сережки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i04:p2",
+              "target": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд",
+                "uk": "скейтборд"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i04:p3",
+              "target": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив",
+                "uk": "штатив"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i04:p4",
+              "target": "compass",
+              "meaningByLocale": {
+                "ru": "компас",
+                "uk": "компас"
+              }
+            }
+          ],
+          "leftColumn": [
+            "earrings",
+            "skateboard",
+            "tripod",
+            "compass"
+          ],
+          "rightColumn": [
+            "серьги",
+            "скейтборд",
+            "штатив",
+            "компас"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:word:compass",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — compass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:compass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — compass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:compass:audio",
+            "transcript": "compass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:compass:r1",
+              "targetText": "compass",
+              "meaningByLocale": {
+                "ru": "компас. The compass is in my bag. — «Компас в моей сумке». Прибор, у которого стрелка показывает на север.",
+                "uk": "компас. The compass is in my bag. — «Компас у моїй сумці». Прилад, у якого стрілка показує на північ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compass",
+            "definitionByLocale": {
+              "ru": "компас. The compass is in my bag. — «Компас в моей сумке». Прибор, у которого стрелка показывает на север.",
+              "uk": "компас. The compass is in my bag. — «Компас у моїй сумці». Прилад, у якого стрілка показує на північ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i05:audio",
+            "transcript": "The compass is in the car."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The compass is in the car.",
+          "orderedTokens": [
+            "The",
+            "compass",
+            "is",
+            "in",
+            "the",
+            "car"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The compass is in the car.`",
+                "uk": "тут потрібно `is` — `The compass is in the car.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скейтборд стоит далеко у стены. Спросите подругу: «Чей это скейтборд?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скейтборд стоит далеко у стены. Спросите подругу: «Чей это скейтборд?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose skateboard is that?",
+          "localizedMeaning": {
+            "ru": "Скейтборд стоит далеко у стены. Спросите подругу: «Чей это скейтборд?»",
+            "uk": "Скейтборд стоїть далеко біля стіни. Спитайте подругу: «Чий це скейтборд?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "skateboard",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Скейтборд стоит далеко у стены. Спросите подругу: «Чей это скейтборд?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose skateboard is that?`",
+                "uk": "тут потрібно `Whose` — `Whose skateboard is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о серьгах. Они ваши. Скажите: «Серьги мои»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о серьгах. Они ваши. Скажите: «Серьги мои»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i07:audio",
+            "transcript": "The earrings are mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The earrings are mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюродный брат показывает скейтборд своего брата. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат показывает скейтборд своего брата. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат показывает скейтборд своего брата. Выберите слово",
+            "uk": "Двоюрідний брат показує скейтборд свого брата. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This skateboard ___ my brother's.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-37:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Двоюродный брат показывает скейтборд своего брата. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоюродный брат показывает скейтборд своего брата. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Скейтборд один, поэтому нужно `is`, а не `are`.",
+                "uk": "Скейтборд один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоюродный брат показывает скейтборд своего брата. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь мы называем хозяина: нужно `is`.",
+                "uk": "`has` означає «має», а тут ми називаємо господаря: потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i09:r1",
+            "text": "Is this tripod your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i09:r2",
+            "text": "Is this tripod your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i09:r3",
+            "text": "Is this compass your brother's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i09:audio",
+            "transcript": "Is this tripod your brother's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:i09:r1",
+              "targetText": "Is this tripod your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i09:r2",
+              "targetText": "Is this tripod your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i09:r3",
+              "targetText": "Is this compass your brother's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `brother's`, брат, а в этом варианте — `sister's`, сестра.",
+                "uk": "У записі господар — `brother's`, брат, а в цьому варіанті — `sister's`, сестра."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tripod`, а в этом варианте — `compass`.",
+                "uk": "У записі річ — `tripod`, а в цьому варіанті — `compass`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-37:i10:p1",
+              "target": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд",
+                "uk": "скейтборд"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i10:p2",
+              "target": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив",
+                "uk": "штатив"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i10:p3",
+              "target": "compass",
+              "meaningByLocale": {
+                "ru": "компас",
+                "uk": "компас"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i10:p4",
+              "target": "car",
+              "meaningByLocale": {
+                "ru": "машина",
+                "uk": "машина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "skateboard",
+            "tripod",
+            "compass",
+            "car"
+          ],
+          "rightColumn": [
+            "скейтборд",
+            "штатив",
+            "компас",
+            "машина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i11:audio",
+            "transcript": "My uncle's compass is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My uncle's compass is in the bag.",
+          "orderedTokens": [
+            "My",
+            "uncle's",
+            "compass",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "uncle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `uncle's` — `My uncle's compass is in the bag.`",
+                "uk": "тут потрібно `uncle's` — `My uncle's compass is in the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете скейтборд и спрашиваете подругу, не её ли сестры он. Спросите: «Это скейтборд твоей сестры?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете скейтборд и спрашиваете подругу, не её ли сестры он. Спросите: «Это скейтборд твоей сестры?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this skateboard your sister's?",
+          "localizedMeaning": {
+            "ru": "Вы показываете скейтборд и спрашиваете подругу, не её ли сестры он. Спросите: «Это скейтборд твоей сестры?»",
+            "uk": "Ви показуєте скейтборд і питаєте подругу, чи не її сестри він. Спитайте: «Це скейтборд твоєї сестри?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "skateboard",
+            "your",
+            "sister's"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете скейтборд и спрашиваете подругу, не её ли сестры он. Спросите: «Это скейтборд твоей сестры?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this skateboard your sister's?`",
+                "uk": "тут потрібно `Is` — `Is this skateboard your sister's?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, чей это компас. Он ваш. Скажите: «Это мой компас»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, чей это компас. Он ваш. Скажите: «Это мой компас»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i13:audio",
+            "transcript": "This is my compass."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my compass.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает вам пару серёг. Они вашей тёти. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i14:r1",
+            "text": "aunt's"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i14:r2",
+            "text": "aunt"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i14:r3",
+            "text": "aunts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает вам пару серёг. Они вашей тёти. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает вам пару серёг. Они вашей тёти. Выберите слово",
+            "uk": "Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово"
+          },
+          "gappedTargetPhrase": "These earrings are my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-37:i14:r1",
+              "text": "aunt's"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i14:r2",
+              "text": "aunt"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i14:r3",
+              "text": "aunts"
+            }
+          ],
+          "testedDimension": "Подруга показывает вам пару серёг. Они вашей тёти. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает вам пару серёг. Они вашей тёти. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что серьги — это сама тётя. Хозяйку называем через `'s`: `aunt's`.",
+                "uk": "Так вийшло б, що сережки — це сама тітка. Господиню називаємо через `'s`: `aunt's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает вам пару серёг. Они вашей тёти. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`aunts` — это «тёти», несколько человек; нужно `aunt's`.",
+                "uk": "`aunts` — це «тітки», кілька людей; потрібно `aunt's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i15:r1",
+            "text": "Whose earrings are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i15:r2",
+            "text": "Whose earrings are those?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i15:r3",
+            "text": "Whose skateboard is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i15:audio",
+            "transcript": "Whose earrings are these?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:i15:r1",
+              "targetText": "Whose earrings are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i15:r2",
+              "targetText": "Whose earrings are those?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i15:r3",
+              "targetText": "Whose skateboard is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `these`, а в этом варианте — `those`.",
+                "uk": "У записі останнє слово — `these`, а в цьому варіанті — `those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `earrings`, серьги, а в этом варианте — `skateboard`.",
+                "uk": "У записі річ — `earrings`, сережки, а в цьому варіанті — `skateboard`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-37:i16:p1",
+              "target": "earrings",
+              "meaningByLocale": {
+                "ru": "серьги",
+                "uk": "сережки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i16:p2",
+              "target": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд",
+                "uk": "скейтборд"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i16:p3",
+              "target": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив",
+                "uk": "штатив"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i16:p4",
+              "target": "compass",
+              "meaningByLocale": {
+                "ru": "компас",
+                "uk": "компас"
+              }
+            }
+          ],
+          "leftColumn": [
+            "earrings",
+            "skateboard",
+            "tripod",
+            "compass"
+          ],
+          "rightColumn": [
+            "серьги",
+            "скейтборд",
+            "штатив",
+            "компас"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли в машине серьги и хотите вернуть их хозяйке. Спросите подругу: «Чьи это серьги?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли в машине серьги и хотите вернуть их хозяйке. Спросите подругу: «Чьи это серьги?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i17:audio",
+            "transcript": "Whose earrings are these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose earrings are these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-37:word:earrings",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — earrings",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:earrings:audio"
+        ],
+        "accessibilityLabel": "Картка слова — earrings",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:earrings:audio",
+            "transcript": "earrings"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:earrings:r1",
+              "targetText": "earrings",
+              "meaningByLocale": {
+                "ru": "серьги. My aunt's earrings are small. — «Серьги моей тёти маленькие». Украшения для ушей, всегда парой.",
+                "uk": "сережки. My aunt's earrings are small. — «Сережки моєї тітки маленькі». Прикраси для вух, завжди парою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earrings",
+            "definitionByLocale": {
+              "ru": "серьги. My aunt's earrings are small. — «Серьги моей тёти маленькие». Украшения для ушей, всегда парой.",
+              "uk": "сережки. My aunt's earrings are small. — «Сережки моєї тітки маленькі». Прикраси для вух, завжди парою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, чиї сережки. Вони вашої тітки. Скажіть: «Сережки моєї тітки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, чиї сережки. Вони вашої тітки. Скажіть: «Сережки моєї тітки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The earrings are my aunt's.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, чьи серьги. Они вашей тёти. Скажите: «Серьги моей тёти»",
+            "uk": "Подруга питає, чиї сережки. Вони вашої тітки. Скажіть: «Сережки моєї тітки»"
+          },
+          "orderedTokens": [
+            "The",
+            "earrings",
+            "are",
+            "my",
+            "aunt's"
+          ],
+          "authoredDistractorTokens": [
+            "aunt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, чиї сережки. Вони вашої тітки. Скажіть: «Сережки моєї тітки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aunt's` — `The earrings are my aunt's.`",
+                "uk": "тут потрібно `aunt's` — `The earrings are my aunt's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:word:skateboard",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — skateboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:skateboard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — skateboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:skateboard:audio",
+            "transcript": "skateboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:skateboard:r1",
+              "targetText": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд. My cousin's skateboard is black. — «Скейтборд моего двоюродного брата чёрный». Доска на колёсиках, на которой катаются.",
+                "uk": "скейтборд. My cousin's skateboard is black. — «Скейтборд мого двоюрідного брата чорний». Дошка на колесах, на якій катаються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skateboard",
+            "definitionByLocale": {
+              "ru": "скейтборд. My cousin's skateboard is black. — «Скейтборд моего двоюродного брата чёрный». Доска на колёсиках, на которой катаются.",
+              "uk": "скейтборд. My cousin's skateboard is black. — «Скейтборд мого двоюрідного брата чорний». Дошка на колесах, на якій катаються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте двоюрідного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i02:r1",
+            "text": "The skateboard is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i02:r2",
+            "text": "The skateboard is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i02:r3",
+            "text": "The skateboard is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте двоюрідного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i02:audio",
+            "transcript": "The skateboard is his."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:i02:r1",
+              "targetText": "The skateboard is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i02:r2",
+              "targetText": "The skateboard is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i02:r3",
+              "targetText": "The skateboard is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `his`, его, а в этом варианте — `hers`, её.",
+                "uk": "У записі останнє слово — `his`, його, а в цьому варіанті — `hers`, її."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `his`, его, а в этом варианте — `mine`, мой.",
+                "uk": "У записі останнє слово — `his`, його, а в цьому варіанті — `mine`, мій."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:word:tripod",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tripod",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:tripod:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tripod",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:tripod:audio",
+            "transcript": "tripod"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:tripod:r1",
+              "targetText": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив. The tripod is in the car. — «Штатив в машине». Подставка на трёх ножках для фотоаппарата.",
+                "uk": "штатив. The tripod is in the car. — «Штатив у машині». Підставка на трьох ніжках для фотоапарата."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tripod",
+            "definitionByLocale": {
+              "ru": "штатив. The tripod is in the car. — «Штатив в машине». Подставка на трёх ножках для фотоаппарата.",
+              "uk": "штатив. The tripod is in the car. — «Штатив у машині». Підставка на трьох ніжках для фотоапарата."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви питаєте подругу, чи не її брата штатив. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i03:r1",
+            "text": "brother's"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i03:r2",
+            "text": "brother"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i03:r3",
+            "text": "brothers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте подругу, чи не її брата штатив. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете подругу, не её ли брата штатив. Выберите слово",
+            "uk": "Ви питаєте подругу, чи не її брата штатив. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Is this tripod your ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-37:i03:r1",
+              "text": "brother's"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i03:r2",
+              "text": "brother"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i03:r3",
+              "text": "brothers"
+            }
+          ],
+          "testedDimension": "Ви питаєте подругу, чи не її брата штатив. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви питаєте подругу, чи не її брата штатив. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что штатив — это сам брат. Хозяина называем через `'s`: `brother's`.",
+                "uk": "Так вийшло б, що штатив — це сам брат. Господаря називаємо через `'s`: `brother's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви питаєте подругу, чи не її брата штатив. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`brothers` — это «братья», несколько человек; нужно `brother's`.",
+                "uk": "`brothers` — це «брати», кілька людей; потрібно `brother's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-37:i04:p1",
+              "target": "earrings",
+              "meaningByLocale": {
+                "ru": "серьги",
+                "uk": "сережки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i04:p2",
+              "target": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд",
+                "uk": "скейтборд"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i04:p3",
+              "target": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив",
+                "uk": "штатив"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i04:p4",
+              "target": "compass",
+              "meaningByLocale": {
+                "ru": "компас",
+                "uk": "компас"
+              }
+            }
+          ],
+          "leftColumn": [
+            "earrings",
+            "skateboard",
+            "tripod",
+            "compass"
+          ],
+          "rightColumn": [
+            "сережки",
+            "скейтборд",
+            "штатив",
+            "компас"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:word:compass",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — compass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:word:compass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — compass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:word:compass:audio",
+            "transcript": "compass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:word:compass:r1",
+              "targetText": "compass",
+              "meaningByLocale": {
+                "ru": "компас. The compass is in my bag. — «Компас в моей сумке». Прибор, у которого стрелка показывает на север.",
+                "uk": "компас. The compass is in my bag. — «Компас у моїй сумці». Прилад, у якого стрілка показує на північ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compass",
+            "definitionByLocale": {
+              "ru": "компас. The compass is in my bag. — «Компас в моей сумке». Прибор, у которого стрелка показывает на север.",
+              "uk": "компас. The compass is in my bag. — «Компас у моїй сумці». Прилад, у якого стрілка показує на північ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i05:audio",
+            "transcript": "The compass is in the car."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The compass is in the car.",
+          "orderedTokens": [
+            "The",
+            "compass",
+            "is",
+            "in",
+            "the",
+            "car"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The compass is in the car.`",
+                "uk": "тут потрібно `is` — `The compass is in the car.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скейтборд стоїть далеко біля стіни. Спитайте подругу: «Чий це скейтборд?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скейтборд стоїть далеко біля стіни. Спитайте подругу: «Чий це скейтборд?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose skateboard is that?",
+          "localizedMeaning": {
+            "ru": "Скейтборд стоит далеко у стены. Спросите подругу: «Чей это скейтборд?»",
+            "uk": "Скейтборд стоїть далеко біля стіни. Спитайте подругу: «Чий це скейтборд?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "skateboard",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Скейтборд стоїть далеко біля стіни. Спитайте подругу: «Чий це скейтборд?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose skateboard is that?`",
+                "uk": "тут потрібно `Whose` — `Whose skateboard is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про сережки. Вони ваші. Скажіть: «Сережки мої»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про сережки. Вони ваші. Скажіть: «Сережки мої»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i07:audio",
+            "transcript": "The earrings are mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The earrings are mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюрідний брат показує скейтборд свого брата. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат показує скейтборд свого брата. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат показывает скейтборд своего брата. Выберите слово",
+            "uk": "Двоюрідний брат показує скейтборд свого брата. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This skateboard ___ my brother's.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-37:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Двоюрідний брат показує скейтборд свого брата. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат показує скейтборд свого брата. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Скейтборд один, поэтому нужно `is`, а не `are`.",
+                "uk": "Скейтборд один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат показує скейтборд свого брата. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь мы называем хозяина: нужно `is`.",
+                "uk": "`has` означає «має», а тут ми називаємо господаря: потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i09:r1",
+            "text": "Is this tripod your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i09:r2",
+            "text": "Is this tripod your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i09:r3",
+            "text": "Is this compass your brother's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i09:audio",
+            "transcript": "Is this tripod your brother's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:i09:r1",
+              "targetText": "Is this tripod your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i09:r2",
+              "targetText": "Is this tripod your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i09:r3",
+              "targetText": "Is this compass your brother's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `brother's`, брат, а в этом варианте — `sister's`, сестра.",
+                "uk": "У записі господар — `brother's`, брат, а в цьому варіанті — `sister's`, сестра."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tripod`, а в этом варианте — `compass`.",
+                "uk": "У записі річ — `tripod`, а в цьому варіанті — `compass`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-37:i10:p1",
+              "target": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд",
+                "uk": "скейтборд"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i10:p2",
+              "target": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив",
+                "uk": "штатив"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i10:p3",
+              "target": "compass",
+              "meaningByLocale": {
+                "ru": "компас",
+                "uk": "компас"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i10:p4",
+              "target": "car",
+              "meaningByLocale": {
+                "ru": "машина",
+                "uk": "машина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "skateboard",
+            "tripod",
+            "compass",
+            "car"
+          ],
+          "rightColumn": [
+            "скейтборд",
+            "штатив",
+            "компас",
+            "машина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i11:audio",
+            "transcript": "My uncle's compass is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My uncle's compass is in the bag.",
+          "orderedTokens": [
+            "My",
+            "uncle's",
+            "compass",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "uncle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `uncle's` — `My uncle's compass is in the bag.`",
+                "uk": "тут потрібно `uncle's` — `My uncle's compass is in the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте скейтборд і питаєте подругу, чи не її сестри він. Спитайте: «Це скейтборд твоєї сестри?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте скейтборд і питаєте подругу, чи не її сестри він. Спитайте: «Це скейтборд твоєї сестри?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this skateboard your sister's?",
+          "localizedMeaning": {
+            "ru": "Вы показываете скейтборд и спрашиваете подругу, не её ли сестры он. Спросите: «Это скейтборд твоей сестры?»",
+            "uk": "Ви показуєте скейтборд і питаєте подругу, чи не її сестри він. Спитайте: «Це скейтборд твоєї сестри?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "skateboard",
+            "your",
+            "sister's"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте скейтборд і питаєте подругу, чи не її сестри він. Спитайте: «Це скейтборд твоєї сестри?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this skateboard your sister's?`",
+                "uk": "тут потрібно `Is` — `Is this skateboard your sister's?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, чий це компас. Він ваш. Скажіть: «Це мій компас»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Друг питає, чий це компас. Він ваш. Скажіть: «Це мій компас»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i13:audio",
+            "transcript": "This is my compass."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my compass.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i14:r1",
+            "text": "aunt's"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i14:r2",
+            "text": "aunt"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i14:r3",
+            "text": "aunts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает вам пару серёг. Они вашей тёти. Выберите слово",
+            "uk": "Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово"
+          },
+          "gappedTargetPhrase": "These earrings are my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-37:i14:r1",
+              "text": "aunt's"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i14:r2",
+              "text": "aunt"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i14:r3",
+              "text": "aunts"
+            }
+          ],
+          "testedDimension": "Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что серьги — это сама тётя. Хозяйку называем через `'s`: `aunt's`.",
+                "uk": "Так вийшло б, що сережки — це сама тітка. Господиню називаємо через `'s`: `aunt's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує вам пару сережок. Вони вашої тітки. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`aunts` — это «тёти», несколько человек; нужно `aunt's`.",
+                "uk": "`aunts` — це «тітки», кілька людей; потрібно `aunt's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-37:i15:r1",
+            "text": "Whose earrings are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i15:r2",
+            "text": "Whose earrings are those?"
+          },
+          {
+            "responseId": "en:lesson-05:session-37:i15:r3",
+            "text": "Whose skateboard is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i15:audio",
+            "transcript": "Whose earrings are these?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-37:i15:r1",
+              "targetText": "Whose earrings are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i15:r2",
+              "targetText": "Whose earrings are those?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i15:r3",
+              "targetText": "Whose skateboard is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `these`, а в этом варианте — `those`.",
+                "uk": "У записі останнє слово — `these`, а в цьому варіанті — `those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `earrings`, серьги, а в этом варианте — `skateboard`.",
+                "uk": "У записі річ — `earrings`, сережки, а в цьому варіанті — `skateboard`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-37:i16:p1",
+              "target": "earrings",
+              "meaningByLocale": {
+                "ru": "серьги",
+                "uk": "сережки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i16:p2",
+              "target": "skateboard",
+              "meaningByLocale": {
+                "ru": "скейтборд",
+                "uk": "скейтборд"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i16:p3",
+              "target": "tripod",
+              "meaningByLocale": {
+                "ru": "штатив",
+                "uk": "штатив"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-37:i16:p4",
+              "target": "compass",
+              "meaningByLocale": {
+                "ru": "компас",
+                "uk": "компас"
+              }
+            }
+          ],
+          "leftColumn": [
+            "earrings",
+            "skateboard",
+            "tripod",
+            "compass"
+          ],
+          "rightColumn": [
+            "сережки",
+            "скейтборд",
+            "штатив",
+            "компас"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли в машині сережки й хочете повернути їх господині. Спитайте подругу: «Чиї це сережки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли в машині сережки й хочете повернути їх господині. Спитайте подругу: «Чиї це сережки?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-37:i17:audio",
+            "transcript": "Whose earrings are these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose earrings are these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-37:word:earrings",
+      "correctText": "earrings",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i01",
+      "correctText": "The earrings are my aunt's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:word:skateboard",
+      "correctText": "skateboard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i02",
+      "correctText": "The skateboard is his.",
+      "correctResponseId": "en:lesson-05:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:word:tripod",
+      "correctText": "tripod",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i03",
+      "correctText": "brother's",
+      "correctResponseId": "en:lesson-05:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:word:compass",
+      "correctText": "compass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i05",
+      "correctText": "The compass is in the car.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i06",
+      "correctText": "Whose skateboard is that?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i07",
+      "correctText": "The earrings are mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i09",
+      "correctText": "Is this tripod your brother's?",
+      "correctResponseId": "en:lesson-05:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i11",
+      "correctText": "My uncle's compass is in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i12",
+      "correctText": "Is this skateboard your sister's?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i13",
+      "correctText": "This is my compass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i14",
+      "correctText": "aunt's",
+      "correctResponseId": "en:lesson-05:session-37:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i15",
+      "correctText": "Whose earrings are these?",
+      "correctResponseId": "en:lesson-05:session-37:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:i17",
+      "correctText": "Whose earrings are these?",
+      "correctResponseId": null
+    }
+  ]
+}

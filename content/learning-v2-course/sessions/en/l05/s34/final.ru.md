@@ -1,136 +1,154 @@
-# Английский · Урок 5 · Занятие 34 — Чьё это кольцо?
+# Английский · Урок 5 · Занятие 34 — Находки после праздника
 
-**Ситуация.** В холле после встречи нашли кольцо, кошелёк и значок. Анна боится, что потеряла свою вещь, а Том помогает разобраться.
+**Ситуация.** После праздника в кафе на столах и стульях остались мелкие украшения. Вы с подругой и сестрой разбираете, чьё что: называете хозяйку одним словом, через 's или отвечаете, что вещь не ваша.
 
-**Что вы освоите:** спросить о владельце найденной вещи и назвать его
-**Новые слова:** ring
+**Что вы освоите:** назвать владельца найденной вещи: hers, his, имя с 's, и коротко ответить No, it isn't mine
+**Новые слова:** brooch, pendant, wristband, headband
+**Возвращаются:** sister, brother, friend, grandmother, table
 
 ---
 
 ## Интро 1
 
-### Кольцо на пальце
+### Брошь на подоконнике
 
-`ring` — «кольцо», украшение на палец. `Whose ring is this?` — «Чьё это кольцо?» Сначала `Whose`, затем вещь, затем `is this?`. `The ring is mine` — «Кольцо моё». Кольцо маленькое, а вопрос о владельце большой — целых четыре слова.
+Подруга нашла на подоконнике маленькую серебристую брошь и спрашивает вас, чья она. Вы видели такую у своей сестры. brooch — «брошь», украшение, которое прикалывают к одежде. Ответьте одним словом вместо названия вещи: The brooch is hers — «Брошь её».
 
-**Спросите о владельце кольца.**
+**Подруга спрашивает, чья брошь. Она вашей сестры. Скажите: «Брошь её».**
 
-- ✅ **Whose ring is this?**
-- ❌ Where is the ring? — *Это «Где кольцо?»; о владельце спрашиваем с `Whose`.*
-- ❌ Whose ring are this? — *Одно кольцо: `is this`.*
+- ✅ **The brooch is hers.**
+- ❌ The brooch is his. — *his — его, а брошь принадлежит сестре: нужно hers.*
+- ❌ The brooch is her. — *Без названия вещи нужно hers, а не her.*
 
 ---
 
 ## Интро 2
 
-### Испуг и кошелёк
+### Кулон под стулом
 
-`afraid` — «испуган, боится»: `I am afraid` — «Мне страшно / я боюсь». Здесь речь о чувстве страха, а не о вежливом сообщении плохой новости. `wallet` — «кошелёк». `Whose wallet is this?` — «Чей это кошелёк?» `This is Anna’s wallet` — «Это кошелёк Анны». `Anna’s` перед названием вещи показывает владельца.
+Вы разбираете вещи после праздника и находите под стулом кулон на тонкой цепочке. Рядом сидит сестра. pendant — «кулон», украшение на цепочке. Спросите сестру, чей он: Whose pendant is this? — «Чей это кулон?» Вопрос о хозяине начинается с whose.
 
-**Вам страшно. Назовите чувство без сокращения.**
+**Под стулом лежит кулон. Спросите сестру, чей он.**
 
-- ✅ **I am afraid.**
-- ❌ I is afraid. — *С `I` нужна форма `am`.*
-- ❌ I am bored. — *`bored` — скучно; страшно — `afraid`.*
+- ✅ **Whose pendant is this?**
+- ❌ Where is the pendant? — *Это «Где кулон?». О хозяине спрашиваем с whose.*
+- ❌ Whose pendant are this? — *Кулон один, поэтому нужно is this.*
 
 ---
 
 ## Интро 3
 
-### У лестницы
+### Напульсник на скамейке
 
-`handrail` — «поручень», `badge` — «значок». `Tom is next to the handrail` — «Том рядом с поручнем». `Whose badge is this?` — «Чей это значок?» `The badge is hers` — «Значок её». `This is Tom’s ring` — «Это кольцо Тома». `Whose` — вопрос, а имя с `’s` или `his / hers` помогает ответить.
+Подруга показывает синий напульсник и спрашивает: Is this wristband yours? — «Это твой напульсник?» wristband — «напульсник», мягкая лента на запястье. Он не ваш. Ответьте коротко: No, it isn't mine — «Нет, он не мой». Слово mine стоит без вещи.
 
-**Кольцо принадлежит Тому. Назовите владельца.**
+**Подруга спрашивает, ваш ли этот напульсник. Он не ваш. Скажите коротко: «Нет, он не мой».**
 
-- ✅ **This is Tom's ring.**
-- ❌ This is Tom ring. — *К имени владельца добавляем `’s`: `Tom’s ring`.*
-- ❌ This is Anna's ring. — *Это кольцо Анны; здесь владелец Том.*
+- ✅ **No, it isn't mine.**
+- ❌ No, it isn't my. — *Без названия вещи нужно mine, а не my.*
+- ❌ Yes, it isn't mine. — *Ответ «нет» начинаем с No, а не с Yes.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вам страшно. Скажите «Я боюсь» без сокращения**
+**1 · Карточка слова — brooch**
+<!-- interaction_id: en:lesson-05:session-34:word:brooch; family: word_card -->
+> **brooch** — брошь. My grandmother's brooch is old. — «Брошь моей бабушки старая». О небольшом украшении, которое прикалывают к одежде.
+
+**2 · Подруга спрашивает, чья брошь. Она вашей сестры. Скажите: «Брошь моей сестры»**
 <!-- interaction_id: en:lesson-05:session-34:i01; family: phrase_builder -->
-Плитки: `afraid` `am` `I` `is` → **I am afraid.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am afraid.`)*
+Плитки: `brooch` `sister's` `is` `The` `my` `sister` → **The brooch is my sister's.**
+*(плитка `sister` лишняя: здесь нужно `sister's` — `The brooch is my sister's.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — pendant**
+<!-- interaction_id: en:lesson-05:session-34:word:pendant; family: word_card -->
+> **pendant** — кулон. Her pendant is small. — «Её кулон маленький». Об украшении на цепочке, которое носят на шее.
+
+**4 · Послушайте сестру**
 <!-- interaction_id: en:lesson-05:session-34:i02; family: listen_choose -->
-🔊 *ring* → **ring** · watch · badge
-- watch — *В записи первое слово — `ring`, а в этом варианте — `watch`.*
-- badge — *В записи первое слово — `ring`, а в этом варианте — `badge`.*
+🔊 *Whose pendant is this?* → **Whose pendant is this?** · Whose pendant is that? · Whose brooch is this?
+- Whose pendant is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose brooch is this? — *В записи вещь — `pendant`, а в этом варианте — `brooch`.*
 
-**3 · Назовите кольцо — украшение на палец**
+**5 · Карточка слова — wristband**
+<!-- interaction_id: en:lesson-05:session-34:word:wristband; family: word_card -->
+> **wristband** — напульсник. The wristband is blue. — «Напульсник синий». О мягкой ленте на запястье, обычно для спорта.
+
+**6 · Подруга спрашивает, ваш ли этот напульсник. Он не ваш. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-34:i03; family: context_gap_grammar -->
-___ → **ring** · wallet · watch
-- wallet — *`wallet` — кошелёк; кольцо — `ring`.*
-- watch — *`watch` — наручные часы; кольцо — `ring`.*
+No, the wristband ___ mine. → **isn't** · is · are
+- is — *Ответ «нет», поэтому нужно `isn't`, а не `is`.*
+- are — *Напульсник один, поэтому `is`, а не `are`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-34:i04; family: speed_match -->
-ring — кольцо · wallet — кошелёк · handrail — поручень · badge — значок
+brooch — брошь · pendant — кулон · wristband — напульсник · headband — повязка на голову
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — headband**
+<!-- interaction_id: en:lesson-05:session-34:word:headband; family: word_card -->
+> **headband** — повязка на голову. My sister's headband is green. — «Повязка на голову моей сестры зелёная». О ленте, которая держит волосы.
+
+**9 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-34:i05; family: listen_build_dictation -->
-🔊 *Whose ring is this?* Плитки: `this` `is` `ring` `Whose` → **Whose ring is this?**
+🔊 *The headband is under the table.* Плитки: `headband` `under` `the` `table` `is` `The` `are` → **The headband is under the table.**
+*(плитка `are` лишняя: здесь нужно `is` — `The headband is under the table.`)*
 
-**6 · Вы нашли кошелёк. Спросите «Чей это кошелёк?»**
+**10 · Брошь лежит далеко на подоконнике. Спросите подругу: «Чья это брошь?»**
 <!-- interaction_id: en:lesson-05:session-34:i06; family: phrase_builder -->
-Плитки: `this` `is` `wallet` `Whose` → **Whose wallet is this?**
+Плитки: `brooch` `that` `is` `Whose` `Where` → **Whose brooch is that?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose brooch is that?`)*
 
-**7 · Кольцо принадлежит вам. Скажите «Кольцо моё»**
+**11 · Подруга спрашивает, чей это кулон. Он вашей сестры. Скажите: «Он её»**
 <!-- interaction_id: en:lesson-05:session-34:i07; family: scripted_repeat_compare -->
-🎙 **The ring is mine.**
+🎙 **It is hers.**
 
-**8 · Спросите о владельце значка**
+**12 · Напульсник принадлежит вашему другу. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-34:i08; family: context_gap_grammar -->
-___ badge is this? → **Whose** · Where · Who
-- Where — *`Where` — где; чей — `Whose`.*
-- Who — *`Who` — кто; чей — `Whose`.*
+This is my ___ wristband. → **friend's** · friend · friends
+- friend — *Так получилось бы, что напульсник — это сам друг. Хозяина называем через `'s`: `friend's`.*
+- friends — *`friends` — это «друзья», несколько человек; нужно `friend's`.*
 
-**9 · Послушайте, какую вещь называет друг**
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-34:i09; family: listen_choose -->
-🔊 *This is Anna's wallet.* → **This is Anna's wallet.** · This is Anna's ring. · This is Anna's badge.
-- This is Anna's ring. — *В записи последнее слово — `wallet`, а в этом варианте — `ring`.*
-- This is Anna's badge. — *В записи последнее слово — `wallet`, а в этом варианте — `badge`.*
+🔊 *Whose headband is this?* → **Whose headband is this?** · Whose headband is that? · Whose wristband is this?
+- Whose headband is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose wristband is this? — *В записи вещь — `headband`, а в этом варианте — `wristband`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-34:i10; family: speed_match -->
-ring — кольцо · afraid — испуган · handrail — поручень · badge — значок
+pendant — кулон · wristband — напульсник · headband — повязка на голову · table — стол
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте сестру и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-34:i11; family: listen_build_dictation -->
-🔊 *Tom is next to the handrail.* Плитки: `handrail` `the` `to` `next` `is` `Tom` `are` → **Tom is next to the handrail.**
-*(плитка `are` лишняя: здесь нужно `is` — `Tom is next to the handrail.`)*
+🔊 *My sister's brooch is on the table.* Плитки: `brooch` `sister's` `is` `on` `the` `table` `My` `sister` → **My sister's brooch is on the table.**
+*(плитка `sister` лишняя: здесь нужно `sister's` — `My sister's brooch is on the table.`)*
 
-**12 · Кольцо принадлежит Тому. Скажите «Это кольцо Тома»**
+**16 · Вы нашли на скамейке напульсник своего брата. Скажите подруге: «Это напульсник моего брата»**
 <!-- interaction_id: en:lesson-05:session-34:i12; family: phrase_builder -->
-Плитки: `ring` `Tom's` `is` `This` `are` → **This is Tom's ring.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is Tom's ring.`)*
+Плитки: `wristband` `brother's` `is` `This` `my` `brother` → **This is my brother's wristband.**
+*(плитка `brother` лишняя: здесь нужно `brother's` — `This is my brother's wristband.`)*
 
-**13 · Кошелёк друга у вас. Скажите ему «Твой кошелёк у меня»**
+**17 · Подруга спрашивает, чья это повязка на голову. Она ваша. Скажите: «Повязка моя»**
 <!-- interaction_id: en:lesson-05:session-34:i13; family: scripted_repeat_compare -->
-🎙 **I have your wallet.**
+🎙 **The headband is mine.**
 
-**14 · Значок принадлежит подруге. Скажите «Значок её»**
+**18 · Подруга спрашивает о броши. Она принадлежит вашей бабушке. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-34:i14; family: context_gap_grammar -->
-The badge is ___. → **hers** · her · his
-- her — *Без названия вещи нужна форма `hers`.*
-- his — *`his` — его; её — `hers`.*
+The brooch is ___. → **hers** · his · her
+- his — *`his` значит «его», а хозяйка — бабушка: нужно `hers`.*
+- her — *Без названия вещи нужно `hers`, а не `her`.*
 
-**15 · Послушайте, чьё кольцо здесь**
+**19 · Послушайте сестру**
 <!-- interaction_id: en:lesson-05:session-34:i15; family: listen_choose -->
-🔊 *Your ring is here.* → **Your ring is here.** · My ring is here. · His ring is here.
-- My ring is here. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- His ring is here. — *В записи первое слово — `Your`, а в этом варианте — `His`.*
+🔊 *The brooch is hers.* → **The brooch is hers.** · The brooch is his. · The pendant is hers.
+- The brooch is his. — *В записи последнее слово — `hers`, её, а в этом варианте — `his`, его.*
+- The pendant is hers. — *В записи вещь — `brooch`, а в этом варианте — `pendant`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-34:i16; family: speed_match -->
-ring — кольцо · afraid — испуган · wallet — кошелёк · badge — значок
+brooch — брошь · pendant — кулон · wristband — напульсник · headband — повязка на голову
 
-**17 · Вы нашли кольцо и хотите вернуть его владельцу. Спросите «Чьё это кольцо?»**
+**21 · Вы нашли на скамейке напульсник и хотите вернуть его хозяину. Спросите подругу: «Чей это напульсник?»**
 <!-- interaction_id: en:lesson-05:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose ring is this?**
-
+🎙 **Whose wristband is this?**

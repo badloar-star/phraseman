@@ -1,0 +1,2457 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-40:word:trophy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — trophy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:trophy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — trophy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:trophy:audio",
+            "transcript": "trophy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:trophy:r1",
+              "targetText": "trophy",
+              "meaningByLocale": {
+                "ru": "кубок. My cousin's trophy is on the shelf. — «Кубок моего двоюродного брата на полке». Награда в виде большой чаши за победу.",
+                "uk": "кубок. My cousin's trophy is on the shelf. — «Кубок мого двоюрідного брата на полиці». Нагорода у вигляді великої чаші за перемогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trophy",
+            "definitionByLocale": {
+              "ru": "кубок. My cousin's trophy is on the shelf. — «Кубок моего двоюродного брата на полке». Награда в виде большой чаши за победу.",
+              "uk": "кубок. My cousin's trophy is on the shelf. — «Кубок мого двоюрідного брата на полиці». Нагорода у вигляді великої чаші за перемогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер спрашивает, чей кубок. Он вашего двоюродного брата. Скажите: «Кубок моего двоюродного брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер спрашивает, чей кубок. Он вашего двоюродного брата. Скажите: «Кубок моего двоюродного брата»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The trophy is my cousin's.",
+          "localizedMeaning": {
+            "ru": "Тренер спрашивает, чей кубок. Он вашего двоюродного брата. Скажите: «Кубок моего двоюродного брата»",
+            "uk": "Тренер питає, чий кубок. Він вашого двоюрідного брата. Скажіть: «Кубок мого двоюрідного брата»"
+          },
+          "orderedTokens": [
+            "The",
+            "trophy",
+            "is",
+            "my",
+            "cousin's"
+          ],
+          "authoredDistractorTokens": [
+            "cousin"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер спрашивает, чей кубок. Он вашего двоюродного брата. Скажите: «Кубок моего двоюродного брата»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cousin's` — `The trophy is my cousin's.`",
+                "uk": "тут потрібно `cousin's` — `The trophy is my cousin's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:word:medal",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — medal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:medal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — medal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:medal:audio",
+            "transcript": "medal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:medal:r1",
+              "targetText": "medal",
+              "meaningByLocale": {
+                "ru": "медаль. The medal is small. — «Медаль маленькая». Круглая награда на ленте.",
+                "uk": "медаль. The medal is small. — «Медаль маленька». Кругла нагорода на стрічці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "medal",
+            "definitionByLocale": {
+              "ru": "медаль. The medal is small. — «Медаль маленькая». Круглая награда на ленте.",
+              "uk": "медаль. The medal is small. — «Медаль маленька». Кругла нагорода на стрічці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте учительницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i02:r1",
+            "text": "Whose medal is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i02:r2",
+            "text": "Whose medal is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i02:r3",
+            "text": "Whose trophy is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i02:audio",
+            "transcript": "Whose medal is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:i02:r1",
+              "targetText": "Whose medal is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i02:r2",
+              "targetText": "Whose medal is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i02:r3",
+              "targetText": "Whose trophy is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `medal`, медаль, а в этом варианте — `trophy`, кубок.",
+                "uk": "У записі річ — `medal`, медаль, а в цьому варіанті — `trophy`, кубок."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:word:mask",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mask",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:mask:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mask",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:mask:audio",
+            "transcript": "mask"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:mask:r1",
+              "targetText": "mask",
+              "meaningByLocale": {
+                "ru": "маска. The mask is red. — «Маска красная». То, что надевают на лицо для праздника.",
+                "uk": "маска. The mask is red. — «Маска червона». Те, що надягають на обличчя для свята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mask",
+            "definitionByLocale": {
+              "ru": "маска. The mask is red. — «Маска красная». То, что надевают на лицо для праздника.",
+              "uk": "маска. The mask is red. — «Маска червона». Те, що надягають на обличчя для свята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учительница держит маску близнецов. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i03:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i03:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i03:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница держит маску близнецов. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница держит маску близнецов. Выберите слово",
+            "uk": "Вчителька тримає маску близнюків. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The mask is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-40:i03:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i03:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i03:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Учительница держит маску близнецов. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Учительница держит маску близнецов. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Учительница держит маску близнецов. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-40:i04:p1",
+              "target": "trophy",
+              "meaningByLocale": {
+                "ru": "кубок",
+                "uk": "кубок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i04:p2",
+              "target": "medal",
+              "meaningByLocale": {
+                "ru": "медаль",
+                "uk": "медаль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i04:p3",
+              "target": "mask",
+              "meaningByLocale": {
+                "ru": "маска",
+                "uk": "маска"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i04:p4",
+              "target": "wig",
+              "meaningByLocale": {
+                "ru": "парик",
+                "uk": "перука"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trophy",
+            "medal",
+            "mask",
+            "wig"
+          ],
+          "rightColumn": [
+            "кубок",
+            "медаль",
+            "маска",
+            "парик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:word:wig",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wig",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:wig:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wig",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:wig:audio",
+            "transcript": "wig"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:wig:r1",
+              "targetText": "wig",
+              "meaningByLocale": {
+                "ru": "парик. My aunt's wig is long. — «Парик моей тёти длинный». Искусственные волосы, которые надевают на голову.",
+                "uk": "перука. My aunt's wig is long. — «Перука моєї тітки довга». Штучне волосся, яке надягають на голову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wig",
+            "definitionByLocale": {
+              "ru": "парик. My aunt's wig is long. — «Парик моей тёти длинный». Искусственные волосы, которые надевают на голову.",
+              "uk": "перука. My aunt's wig is long. — «Перука моєї тітки довга». Штучне волосся, яке надягають на голову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тренера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i05:audio",
+            "transcript": "The wig is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The wig is on the chair.",
+          "orderedTokens": [
+            "The",
+            "wig",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тренера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The wig is on the chair.`",
+                "uk": "тут потрібно `is` — `The wig is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Медаль лежит далеко на столе. Спросите учительницу: «Чья там медаль?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Медаль лежит далеко на столе. Спросите учительницу: «Чья там медаль?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose medal is that?",
+          "localizedMeaning": {
+            "ru": "Медаль лежит далеко на столе. Спросите учительницу: «Чья там медаль?»",
+            "uk": "Медаль лежить далеко на столі. Спитайте вчительку: «Чия там медаль?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "medal",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Медаль лежит далеко на столе. Спросите учительницу: «Чья там медаль?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose medal is that?`",
+                "uk": "тут потрібно `Whose` — `Whose medal is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница спрашивает о парике. Он вашей сестры. Скажите: «Парик моей сестры»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Учительница спрашивает о парике. Он вашей сестры. Скажите: «Парик моей сестры»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i07:audio",
+            "transcript": "The wig is my sister's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The wig is my sister's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учительница показывает две маски на столе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница показывает две маски на столе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница показывает две маски на столе. Выберите слово",
+            "uk": "Вчителька показує дві маски на столі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The masks ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-40:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Учительница показывает две маски на столе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Учительница показывает две маски на столе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Масок две, поэтому нужно `are`, а не `is`.",
+                "uk": "Масок дві, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Учительница показывает две маски на столе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь мы говорим, где лежат маски: нужно `are`.",
+                "uk": "`has` означає «має», а тут ми кажемо, де лежать маски: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i09:r1",
+            "text": "The wig is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i09:r2",
+            "text": "The wig is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i09:r3",
+            "text": "The mask is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i09:audio",
+            "transcript": "The wig is hers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:i09:r1",
+              "targetText": "The wig is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i09:r2",
+              "targetText": "The wig is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i09:r3",
+              "targetText": "The mask is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hers`, её, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `hers`, її, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `wig`, парик, а в этом варианте — `mask`, маска.",
+                "uk": "У записі річ — `wig`, перука, а в цьому варіанті — `mask`, маска."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-40:i10:p1",
+              "target": "medal",
+              "meaningByLocale": {
+                "ru": "медаль",
+                "uk": "медаль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i10:p2",
+              "target": "mask",
+              "meaningByLocale": {
+                "ru": "маска",
+                "uk": "маска"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i10:p3",
+              "target": "wig",
+              "meaningByLocale": {
+                "ru": "парик",
+                "uk": "перука"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "medal",
+            "mask",
+            "wig",
+            "shelf"
+          ],
+          "rightColumn": [
+            "медаль",
+            "маска",
+            "парик",
+            "полка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тётю и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте тётю и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i11:audio",
+            "transcript": "My aunt's wig is under the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My aunt's wig is under the chair.",
+          "orderedTokens": [
+            "My",
+            "aunt's",
+            "wig",
+            "is",
+            "under",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "aunt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тётю и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aunt's` — `My aunt's wig is under the chair.`",
+                "uk": "тут потрібно `aunt's` — `My aunt's wig is under the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер показывает две маски на полке. Спросите: «Чьи это маски?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер показывает две маски на полке. Спросите: «Чьи это маски?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose masks are these?",
+          "localizedMeaning": {
+            "ru": "Тренер показывает две маски на полке. Спросите: «Чьи это маски?»",
+            "uk": "Тренер показує дві маски на полиці. Спитайте: «Чиї це маски?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "masks",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер показывает две маски на полке. Спросите: «Чьи это маски?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose masks are these?`",
+                "uk": "тут потрібно `Whose` — `Whose masks are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер спрашивает, чей это кубок. Он ваш. Скажите: «Кубок мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i13:audio"
+        ],
+        "accessibilityLabel": "Тренер спрашивает, чей это кубок. Он ваш. Скажите: «Кубок мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i13:audio",
+            "transcript": "The trophy is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The trophy is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i14:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово",
+            "uk": "Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Yes, it ___ mine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-40:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i14:r2",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После Yes ответ утвердительный: нужно `is`.",
+                "uk": "Після Yes відповідь ствердна: потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it is`.",
+                "uk": "`has` означає «має», а на питання «це ваше?» відповідаємо `it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте двоюродного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i15:r1",
+            "text": "Is this wig your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i15:r2",
+            "text": "Is this wig your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i15:r3",
+            "text": "Is this mask your sister's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте двоюродного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i15:audio",
+            "transcript": "Is this wig your sister's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:i15:r1",
+              "targetText": "Is this wig your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i15:r2",
+              "targetText": "Is this wig your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i15:r3",
+              "targetText": "Is this mask your sister's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `wig`, парик, а в этом варианте — `mask`, маска.",
+                "uk": "У записі річ — `wig`, перука, а в цьому варіанті — `mask`, маска."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-40:i16:p1",
+              "target": "trophy",
+              "meaningByLocale": {
+                "ru": "кубок",
+                "uk": "кубок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i16:p2",
+              "target": "medal",
+              "meaningByLocale": {
+                "ru": "медаль",
+                "uk": "медаль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i16:p3",
+              "target": "mask",
+              "meaningByLocale": {
+                "ru": "маска",
+                "uk": "маска"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i16:p4",
+              "target": "wig",
+              "meaningByLocale": {
+                "ru": "парик",
+                "uk": "перука"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trophy",
+            "medal",
+            "mask",
+            "wig"
+          ],
+          "rightColumn": [
+            "кубок",
+            "медаль",
+            "маска",
+            "парик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли медаль и хотите вернуть её владельцу. Спросите тренера: «Чья это медаль?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли медаль и хотите вернуть её владельцу. Спросите тренера: «Чья это медаль?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i17:audio",
+            "transcript": "Whose medal is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose medal is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-40:word:trophy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — trophy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:trophy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — trophy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:trophy:audio",
+            "transcript": "trophy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:trophy:r1",
+              "targetText": "trophy",
+              "meaningByLocale": {
+                "ru": "кубок. My cousin's trophy is on the shelf. — «Кубок моего двоюродного брата на полке». Награда в виде большой чаши за победу.",
+                "uk": "кубок. My cousin's trophy is on the shelf. — «Кубок мого двоюрідного брата на полиці». Нагорода у вигляді великої чаші за перемогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trophy",
+            "definitionByLocale": {
+              "ru": "кубок. My cousin's trophy is on the shelf. — «Кубок моего двоюродного брата на полке». Награда в виде большой чаши за победу.",
+              "uk": "кубок. My cousin's trophy is on the shelf. — «Кубок мого двоюрідного брата на полиці». Нагорода у вигляді великої чаші за перемогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер питає, чий кубок. Він вашого двоюрідного брата. Скажіть: «Кубок мого двоюрідного брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер питає, чий кубок. Він вашого двоюрідного брата. Скажіть: «Кубок мого двоюрідного брата»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The trophy is my cousin's.",
+          "localizedMeaning": {
+            "ru": "Тренер спрашивает, чей кубок. Он вашего двоюродного брата. Скажите: «Кубок моего двоюродного брата»",
+            "uk": "Тренер питає, чий кубок. Він вашого двоюрідного брата. Скажіть: «Кубок мого двоюрідного брата»"
+          },
+          "orderedTokens": [
+            "The",
+            "trophy",
+            "is",
+            "my",
+            "cousin's"
+          ],
+          "authoredDistractorTokens": [
+            "cousin"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер питає, чий кубок. Він вашого двоюрідного брата. Скажіть: «Кубок мого двоюрідного брата»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cousin's` — `The trophy is my cousin's.`",
+                "uk": "тут потрібно `cousin's` — `The trophy is my cousin's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:word:medal",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — medal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:medal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — medal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:medal:audio",
+            "transcript": "medal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:medal:r1",
+              "targetText": "medal",
+              "meaningByLocale": {
+                "ru": "медаль. The medal is small. — «Медаль маленькая». Круглая награда на ленте.",
+                "uk": "медаль. The medal is small. — «Медаль маленька». Кругла нагорода на стрічці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "medal",
+            "definitionByLocale": {
+              "ru": "медаль. The medal is small. — «Медаль маленькая». Круглая награда на ленте.",
+              "uk": "медаль. The medal is small. — «Медаль маленька». Кругла нагорода на стрічці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте вчительку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i02:r1",
+            "text": "Whose medal is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i02:r2",
+            "text": "Whose medal is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i02:r3",
+            "text": "Whose trophy is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i02:audio",
+            "transcript": "Whose medal is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:i02:r1",
+              "targetText": "Whose medal is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i02:r2",
+              "targetText": "Whose medal is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i02:r3",
+              "targetText": "Whose trophy is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `medal`, медаль, а в этом варианте — `trophy`, кубок.",
+                "uk": "У записі річ — `medal`, медаль, а в цьому варіанті — `trophy`, кубок."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:word:mask",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mask",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:mask:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mask",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:mask:audio",
+            "transcript": "mask"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:mask:r1",
+              "targetText": "mask",
+              "meaningByLocale": {
+                "ru": "маска. The mask is red. — «Маска красная». То, что надевают на лицо для праздника.",
+                "uk": "маска. The mask is red. — «Маска червона». Те, що надягають на обличчя для свята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mask",
+            "definitionByLocale": {
+              "ru": "маска. The mask is red. — «Маска красная». То, что надевают на лицо для праздника.",
+              "uk": "маска. The mask is red. — «Маска червона». Те, що надягають на обличчя для свята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчителька тримає маску близнюків. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i03:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i03:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i03:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька тримає маску близнюків. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница держит маску близнецов. Выберите слово",
+            "uk": "Вчителька тримає маску близнюків. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The mask is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-40:i03:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i03:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i03:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Вчителька тримає маску близнюків. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчителька тримає маску близнюків. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчителька тримає маску близнюків. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-40:i04:p1",
+              "target": "trophy",
+              "meaningByLocale": {
+                "ru": "кубок",
+                "uk": "кубок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i04:p2",
+              "target": "medal",
+              "meaningByLocale": {
+                "ru": "медаль",
+                "uk": "медаль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i04:p3",
+              "target": "mask",
+              "meaningByLocale": {
+                "ru": "маска",
+                "uk": "маска"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i04:p4",
+              "target": "wig",
+              "meaningByLocale": {
+                "ru": "парик",
+                "uk": "перука"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trophy",
+            "medal",
+            "mask",
+            "wig"
+          ],
+          "rightColumn": [
+            "кубок",
+            "медаль",
+            "маска",
+            "перука"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:word:wig",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wig",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:word:wig:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wig",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:word:wig:audio",
+            "transcript": "wig"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:word:wig:r1",
+              "targetText": "wig",
+              "meaningByLocale": {
+                "ru": "парик. My aunt's wig is long. — «Парик моей тёти длинный». Искусственные волосы, которые надевают на голову.",
+                "uk": "перука. My aunt's wig is long. — «Перука моєї тітки довга». Штучне волосся, яке надягають на голову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wig",
+            "definitionByLocale": {
+              "ru": "парик. My aunt's wig is long. — «Парик моей тёти длинный». Искусственные волосы, которые надевают на голову.",
+              "uk": "перука. My aunt's wig is long. — «Перука моєї тітки довга». Штучне волосся, яке надягають на голову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тренера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i05:audio",
+            "transcript": "The wig is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The wig is on the chair.",
+          "orderedTokens": [
+            "The",
+            "wig",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тренера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The wig is on the chair.`",
+                "uk": "тут потрібно `is` — `The wig is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Медаль лежить далеко на столі. Спитайте вчительку: «Чия там медаль?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Медаль лежить далеко на столі. Спитайте вчительку: «Чия там медаль?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose medal is that?",
+          "localizedMeaning": {
+            "ru": "Медаль лежит далеко на столе. Спросите учительницу: «Чья там медаль?»",
+            "uk": "Медаль лежить далеко на столі. Спитайте вчительку: «Чия там медаль?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "medal",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Медаль лежить далеко на столі. Спитайте вчительку: «Чия там медаль?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose medal is that?`",
+                "uk": "тут потрібно `Whose` — `Whose medal is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька питає про перуку. Вона вашої сестри. Скажіть: «Перука моєї сестри»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Вчителька питає про перуку. Вона вашої сестри. Скажіть: «Перука моєї сестри»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i07:audio",
+            "transcript": "The wig is my sister's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The wig is my sister's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчителька показує дві маски на столі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька показує дві маски на столі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница показывает две маски на столе. Выберите слово",
+            "uk": "Вчителька показує дві маски на столі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The masks ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-40:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Вчителька показує дві маски на столі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Вчителька показує дві маски на столі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Масок две, поэтому нужно `are`, а не `is`.",
+                "uk": "Масок дві, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Вчителька показує дві маски на столі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь мы говорим, где лежат маски: нужно `are`.",
+                "uk": "`has` означає «має», а тут ми кажемо, де лежать маски: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i09:r1",
+            "text": "The wig is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i09:r2",
+            "text": "The wig is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i09:r3",
+            "text": "The mask is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i09:audio",
+            "transcript": "The wig is hers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:i09:r1",
+              "targetText": "The wig is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i09:r2",
+              "targetText": "The wig is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i09:r3",
+              "targetText": "The mask is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hers`, её, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `hers`, її, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `wig`, парик, а в этом варианте — `mask`, маска.",
+                "uk": "У записі річ — `wig`, перука, а в цьому варіанті — `mask`, маска."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-40:i10:p1",
+              "target": "medal",
+              "meaningByLocale": {
+                "ru": "медаль",
+                "uk": "медаль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i10:p2",
+              "target": "mask",
+              "meaningByLocale": {
+                "ru": "маска",
+                "uk": "маска"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i10:p3",
+              "target": "wig",
+              "meaningByLocale": {
+                "ru": "парик",
+                "uk": "перука"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "medal",
+            "mask",
+            "wig",
+            "shelf"
+          ],
+          "rightColumn": [
+            "медаль",
+            "маска",
+            "перука",
+            "полиця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тітку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте тітку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i11:audio",
+            "transcript": "My aunt's wig is under the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My aunt's wig is under the chair.",
+          "orderedTokens": [
+            "My",
+            "aunt's",
+            "wig",
+            "is",
+            "under",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "aunt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тітку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aunt's` — `My aunt's wig is under the chair.`",
+                "uk": "тут потрібно `aunt's` — `My aunt's wig is under the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер показує дві маски на полиці. Спитайте: «Чиї це маски?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер показує дві маски на полиці. Спитайте: «Чиї це маски?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose masks are these?",
+          "localizedMeaning": {
+            "ru": "Тренер показывает две маски на полке. Спросите: «Чьи это маски?»",
+            "uk": "Тренер показує дві маски на полиці. Спитайте: «Чиї це маски?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "masks",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер показує дві маски на полиці. Спитайте: «Чиї це маски?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose masks are these?`",
+                "uk": "тут потрібно `Whose` — `Whose masks are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер питає, чий це кубок. Він ваш. Скажіть: «Кубок мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i13:audio"
+        ],
+        "accessibilityLabel": "Тренер питає, чий це кубок. Він ваш. Скажіть: «Кубок мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i13:audio",
+            "transcript": "The trophy is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The trophy is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i14:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово",
+            "uk": "Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Yes, it ___ mine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-40:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i14:r2",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После Yes ответ утвердительный: нужно `is`.",
+                "uk": "Після Yes відповідь ствердна: потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it is`.",
+                "uk": "`has` означає «має», а на питання «це ваше?» відповідаємо `it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте двоюрідного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-40:i15:r1",
+            "text": "Is this wig your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i15:r2",
+            "text": "Is this wig your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-40:i15:r3",
+            "text": "Is this mask your sister's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте двоюрідного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i15:audio",
+            "transcript": "Is this wig your sister's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-40:i15:r1",
+              "targetText": "Is this wig your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i15:r2",
+              "targetText": "Is this wig your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i15:r3",
+              "targetText": "Is this mask your sister's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `wig`, парик, а в этом варианте — `mask`, маска.",
+                "uk": "У записі річ — `wig`, перука, а в цьому варіанті — `mask`, маска."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-40:i16:p1",
+              "target": "trophy",
+              "meaningByLocale": {
+                "ru": "кубок",
+                "uk": "кубок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i16:p2",
+              "target": "medal",
+              "meaningByLocale": {
+                "ru": "медаль",
+                "uk": "медаль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i16:p3",
+              "target": "mask",
+              "meaningByLocale": {
+                "ru": "маска",
+                "uk": "маска"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-40:i16:p4",
+              "target": "wig",
+              "meaningByLocale": {
+                "ru": "парик",
+                "uk": "перука"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trophy",
+            "medal",
+            "mask",
+            "wig"
+          ],
+          "rightColumn": [
+            "кубок",
+            "медаль",
+            "маска",
+            "перука"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли медаль і хочете повернути її власникові. Спитайте тренера: «Чия це медаль?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли медаль і хочете повернути її власникові. Спитайте тренера: «Чия це медаль?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-40:i17:audio",
+            "transcript": "Whose medal is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose medal is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-40:word:trophy",
+      "correctText": "trophy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i01",
+      "correctText": "The trophy is my cousin's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:word:medal",
+      "correctText": "medal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i02",
+      "correctText": "Whose medal is this?",
+      "correctResponseId": "en:lesson-05:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:word:mask",
+      "correctText": "mask",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i03",
+      "correctText": "theirs",
+      "correctResponseId": "en:lesson-05:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:word:wig",
+      "correctText": "wig",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i05",
+      "correctText": "The wig is on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i06",
+      "correctText": "Whose medal is that?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i07",
+      "correctText": "The wig is my sister's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i09",
+      "correctText": "The wig is hers.",
+      "correctResponseId": "en:lesson-05:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i11",
+      "correctText": "My aunt's wig is under the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i12",
+      "correctText": "Whose masks are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i13",
+      "correctText": "The trophy is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-40:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i15",
+      "correctText": "Is this wig your sister's?",
+      "correctResponseId": "en:lesson-05:session-40:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-40:i17",
+      "correctText": "Whose medal is this?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-40",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно спросить о владельце и описать знакомые вещи",
-    "uk": "самостійно запитати про власника й описати знайомі речі"
+    "ru": "самому спросить о хозяине вещи и ответить: whose, is или are, mine, his, hers, theirs, 's",
+    "uk": "самому спитати про господаря речі та відповісти: whose, is чи are, mine, his, hers, theirs, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна вещь или несколько",
-        "uk": "Одна річ чи кілька"
+        "ru": "Кубок на полке",
+        "uk": "Кубок на полиці"
       },
       "bodyByLocale": {
-        "ru": "Повторим: `watch` — «наручные часы», `ring` — «кольцо», `bracelet` — «браслет». `Whose watch is this?` — «Чьи это наручные часы?» В английском одни наручные часы — одна вещь: `is this`. `Whose ring is this?` — «Чьё это кольцо?» `The bracelet is mine` — «Браслет мой».",
-        "uk": "Повторимо: `watch` — «наручний годинник», `ring` — «каблучка», `bracelet` — «браслет». `Whose watch is this?` — «Чий це наручний годинник?» Один годинник — одна річ: `is this`. `Whose ring is this?` — «Чия це каблучка?» `The bracelet is mine` — «Браслет мій»."
+        "ru": "После школьного праздника тренер снимает с полки большой кубок и протягивает его вам. trophy — «кубок», награда за победу. Он не знает, кому его отдать. Спросите тренера, чей он: Whose trophy is this? — «Чей это кубок?» Кубок один, поэтому is this.",
+        "uk": "Після шкільного свята тренер знімає з полиці великий кубок і простягає його вам. trophy — «кубок», нагорода за перемогу. Він не знає, кому його віддати. Спитайте тренера, чий він: Whose trophy is this? — «Чий це кубок?» Кубок один, тому is this."
       },
       "question": {
         "interactionId": "en:lesson-05:session-40:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце одних наручных часов.",
-          "uk": "Запитайте про власника одного наручного годинника."
+          "ru": "Тренер протягивает вам кубок. Спросите, чей он.",
+          "uk": "Тренер простягає вам кубок. Спитайте, чий він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-40:intro1:r1",
-              "text": "Whose watch is this?"
+              "text": "Whose trophy is this?"
             },
             {
               "responseId": "en:lesson-05:session-40:intro1:r2",
-              "text": "Whose watch are these?"
+              "text": "Where is the trophy?"
             },
             {
               "responseId": "en:lesson-05:session-40:intro1:r3",
-              "text": "Where is the watch?"
+              "text": "Whose trophy are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-40:intro1:r1",
-              "text": "Whose watch is this?"
+              "text": "Whose trophy is this?"
             },
             {
               "responseId": "en:lesson-05:session-40:intro1:r2",
-              "text": "Whose watch are these?"
+              "text": "Where is the trophy?"
             },
             {
               "responseId": "en:lesson-05:session-40:intro1:r3",
-              "text": "Where is the watch?"
+              "text": "Whose trophy are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце одних наручных часов.",
-          "uk": "Запитайте про власника одного наручного годинника."
+          "ru": "Тренер протягивает вам кубок. Спросите, чей он.",
+          "uk": "Тренер простягає вам кубок. Спитайте, чий він."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Очки и серьги",
-        "uk": "Окуляри й сережки"
+        "ru": "Медаль бегуна",
+        "uk": "Медаль бігуна"
       },
       "bodyByLocale": {
-        "ru": "`sunglasses` — «солнцезащитные очки», `earrings` — «серьги». `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» `The earrings are hers` — «Серьги её». Эти слова требуют `are`. `This is Tom’s ring` — «Это кольцо Тома»: имя владельца получает `’s`.",
-        "uk": "`sunglasses` — «сонцезахисні окуляри», `earrings` — «сережки». `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» `The earrings are hers` — «Сережки її». Ці слова потребують `are`. `This is Tom’s ring` — «Це каблучка Тома»: до імені власника додаємо `’s`."
+        "ru": "Двоюродный брат победил в беге на школьном стадионе, а медаль осталась у входа в зал. Тренер спрашивает вас, чья она. Вы видели, как её получал именно брат. medal — «медаль». Ответьте одним словом вместо названия вещи: The medal is his — «Медаль его».",
+        "uk": "Двоюрідний брат переміг у бігу на шкільному стадіоні, а медаль залишилася біля входу до зали. Тренер питає вас, чия вона. Ви бачили, як її отримував саме брат. medal — «медаль». Відповідьте одним словом замість назви речі: The medal is his — «Медаль його»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-40:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Серьги её».",
-          "uk": "Скажіть «Сережки її»."
+          "ru": "Тренер спрашивает, чья медаль у входа. Она вашего двоюродного брата. Скажите: «Медаль его».",
+          "uk": "Тренер питає, чия медаль біля входу. Вона вашого двоюрідного брата. Скажіть: «Медаль його»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-40:intro2:r1",
-              "text": "The earrings are hers."
+              "text": "The medal is his."
             },
             {
               "responseId": "en:lesson-05:session-40:intro2:r2",
-              "text": "The earrings is hers."
+              "text": "The medal is hers."
             },
             {
               "responseId": "en:lesson-05:session-40:intro2:r3",
-              "text": "The earrings are her."
+              "text": "The medal is he."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-40:intro2:r1",
-              "text": "The earrings are hers."
+              "text": "The medal is his."
             },
             {
               "responseId": "en:lesson-05:session-40:intro2:r2",
-              "text": "The earrings is hers."
+              "text": "The medal is hers."
             },
             {
               "responseId": "en:lesson-05:session-40:intro2:r3",
-              "text": "The earrings are her."
+              "text": "The medal is he."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Серьги её».",
-          "uk": "Скажіть «Сережки її»."
+          "ru": "Тренер спрашивает, чья медаль у входа. Она вашего двоюродного брата. Скажите: «Медаль его».",
+          "uk": "Тренер питає, чия медаль біля входу. Вона вашого двоюрідного брата. Скажіть: «Медаль його»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вещи остаются на местах",
-        "uk": "Речі залишаються на місцях"
+        "ru": "Маска близнецов",
+        "uk": "Маска близнюків"
       },
       "bodyByLocale": {
-        "ru": "`laptop` — «ноутбук», `violin` — «скрипка», `thermostat` — «термостат». `I have your laptop` — «Твой ноутбук у меня». `The violin is near the door` — «Скрипка возле двери». `The thermostat is on the wall` — «Термостат на стене». Термостат можно не искать среди забытых вещей: он остался на стене.",
-        "uk": "`laptop` — «ноутбук», `violin` — «скрипка», `thermostat` — «термостат». `I have your laptop` — «Твій ноутбук у мене». `The violin is near the door` — «Скрипка біля дверей». `The thermostat is on the wall` — «Термостат на стіні». Термостат можна не шукати серед забутих речей: він залишився на стіні."
+        "ru": "Учительница находит на подоконнике яркую красную маску и спрашивает, чья она. Вы знаете: маска принадлежит близнецам, они делили её на двоих и по очереди надевали на праздник. mask — «маска», её надевают на лицо. Ответьте одним словом: The mask is theirs — «Маска их».",
+        "uk": "Вчителька знаходить на підвіконні яскраву червону маску й питає, чия вона. Ви знаєте: маска належить близнюкам, вони ділили її на двох і по черзі надягали на свято. mask — «маска», її надягають на обличчя. Відповідьте одним словом: The mask is theirs — «Маска їхня»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-40:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Твой ноутбук у меня».",
-          "uk": "Скажіть «Твій ноутбук у мене»."
+          "ru": "Учительница спрашивает, чья маска на подоконнике. Она принадлежит близнецам. Скажите: «Маска их».",
+          "uk": "Вчителька питає, чия маска на підвіконні. Вона належить близнюкам. Скажіть: «Маска їхня»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-40:intro3:r1",
-              "text": "I have your laptop."
+              "text": "The mask is theirs."
             },
             {
               "responseId": "en:lesson-05:session-40:intro3:r2",
-              "text": "I has your laptop."
+              "text": "The mask is their."
             },
             {
               "responseId": "en:lesson-05:session-40:intro3:r3",
-              "text": "I have my laptop."
+              "text": "The mask is ours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-40:intro3:r1",
-              "text": "I have your laptop."
+              "text": "The mask is theirs."
             },
             {
               "responseId": "en:lesson-05:session-40:intro3:r2",
-              "text": "I has your laptop."
+              "text": "The mask is their."
             },
             {
               "responseId": "en:lesson-05:session-40:intro3:r3",
-              "text": "I have my laptop."
+              "text": "The mask is ours."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Твой ноутбук у меня».",
-          "uk": "Скажіть «Твій ноутбук у мене»."
+          "ru": "Учительница спрашивает, чья маска на подоконнике. Она принадлежит близнецам. Скажите: «Маска их».",
+          "uk": "Вчителька питає, чия маска на підвіконні. Вона належить близнюкам. Скажіть: «Маска їхня»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3d1a2d2d072474af200310826ac38789a749ea816f85a37c780da531b47e1ffe"
+  "introFingerprint": "35f264f3ca0ca08b02027c45d1f326f8fba59b64898a9b306bf4c4535df10651"
 }

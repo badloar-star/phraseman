@@ -4,39 +4,83 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-39:i01",
+      "interactionId": "en:lesson-05:session-39:word:violin",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — violin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:word:violin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — violin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:word:violin:audio",
+          "transcript": "violin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-39:word:violin:r1",
+            "targetText": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка. My daughter's violin is small. — «Скрипка моей дочери маленькая». Струнный инструмент, на котором играют смычком.",
+              "uk": "скрипка. My daughter's violin is small. — «Скрипка моєї доньки маленька». Струнний інструмент, на якому грають смичком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "violin",
+          "definitionByLocale": {
+            "ru": "скрипка. My daughter's violin is small. — «Скрипка моей дочери маленькая». Струнный инструмент, на котором играют смычком.",
+            "uk": "скрипка. My daughter's violin is small. — «Скрипка моєї доньки маленька». Струнний інструмент, на якому грають смичком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поддержите друга: «Ты смелый», без сокращения",
+      "prompt": "Вы нашли в гостиной скрипку. Спросите гостя: «Чья это скрипка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поддержите друга: «Ты смелый», без сокращения",
+      "accessibilityLabel": "Вы нашли в гостиной скрипку. Спросите гостя: «Чья это скрипка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You are brave.",
+        "targetPhrase": "Whose violin is this?",
         "localizedMeaning": {
-          "ru": "Поддержите друга: «Ты смелый», без сокращения",
-          "uk": "Підтримайте друга: «Ти сміливий», без скорочення"
+          "ru": "Вы нашли в гостиной скрипку. Спросите гостя: «Чья это скрипка?»",
+          "uk": "Ви знайшли у вітальні скрипку. Спитайте гостя: «Чия це скрипка?»"
         },
         "orderedTokens": [
-          "You",
-          "are",
-          "brave"
+          "Whose",
+          "violin",
+          "is",
+          "this"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Where"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-39:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Поддержите друга: «Ты смелый», без сокращения",
+            "testedDimension": "Вы нашли в гостиной скрипку. Спросите гостя: «Чья это скрипка?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `You are brave.`",
-              "uk": "тут потрібно `are` — `You are brave.`"
+              "ru": "здесь нужно `Whose` — `Whose violin is this?`",
+              "uk": "тут потрібно `Whose` — `Whose violin is this?`"
             }
           }
         ],
@@ -48,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-39:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-39:word:harmonica",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — harmonica",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:word:harmonica:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — harmonica",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:word:harmonica:audio",
+          "transcript": "harmonica"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-39:word:harmonica:r1",
+            "targetText": "harmonica",
+            "meaningByLocale": {
+              "ru": "губная гармоника. The harmonica is on the table. — «Губная гармоника на столе». Маленький инструмент, на котором играют ртом.",
+              "uk": "губна гармоніка. The harmonica is on the table. — «Губна гармоніка на столі». Маленький інструмент, на якому грають ротом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "harmonica",
+          "definitionByLocale": {
+            "ru": "губная гармоника. The harmonica is on the table. — «Губная гармоника на столе». Маленький инструмент, на котором играют ртом.",
+            "uk": "губна гармоніка. The harmonica is on the table. — «Губна гармоніка на столі». Маленький інструмент, на якому грають ротом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте дядю",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-39:i02:r1",
-          "text": "violin"
+          "text": "The harmonica is on the shelf."
         },
         {
           "responseId": "en:lesson-05:session-39:i02:r2",
-          "text": "guitar"
+          "text": "The harmonica is on the table."
         },
         {
           "responseId": "en:lesson-05:session-39:i02:r3",
-          "text": "camera"
+          "text": "The violin is on the shelf."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте дядю",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i02:audio",
-          "transcript": "violin"
+          "transcript": "The harmonica is on the shelf."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-39:i02:r1",
-            "targetText": "violin",
+            "targetText": "The harmonica is on the shelf.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-39:i02:r2",
-            "targetText": "guitar",
+            "targetText": "The harmonica is on the table.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-39:i02:r3",
-            "targetText": "camera",
+            "targetText": "The violin is on the shelf.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +189,19 @@
           {
             "responseId": "en:lesson-05:session-39:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте дядю",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `violin`, а в этом варианте — `guitar`.",
-              "uk": "У записі перше слово — `violin`, а в цьому варіанті — `guitar`."
+              "ru": "В записи последнее слово — `shelf`, полка, а в этом варианте — `table`, стол.",
+              "uk": "У записі останнє слово — `shelf`, полиця, а в цьому варіанті — `table`, стіл."
             }
           },
           {
             "responseId": "en:lesson-05:session-39:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте дядю",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `violin`, а в этом варианте — `camera`.",
-              "uk": "У записі перше слово — `violin`, а в цьому варіанті — `camera`."
+              "ru": "В записи вещь — `harmonica`, а в этом варианте — `violin`.",
+              "uk": "У записі річ — `harmonica`, а в цьому варіанті — `violin`."
             }
           }
         ],
@@ -124,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-39:word:tambourine",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tambourine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:word:tambourine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tambourine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:word:tambourine:audio",
+          "transcript": "tambourine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-39:word:tambourine:r1",
+            "targetText": "tambourine",
+            "meaningByLocale": {
+              "ru": "бубен. My uncle's tambourine is red. — «Бубен моего дяди красный». Круглый инструмент с бубенчиками, в него стучат рукой.",
+              "uk": "бубон. My uncle's tambourine is red. — «Бубон мого дядька червоний». Круглий інструмент із дзвіночками, у нього стукають рукою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tambourine",
+          "definitionByLocale": {
+            "ru": "бубен. My uncle's tambourine is red. — «Бубен моего дяди красный». Круглый инструмент с бубенчиками, в него стучат рукой.",
+            "uk": "бубон. My uncle's tambourine is red. — «Бубон мого дядька червоний». Круглий інструмент із дзвіночками, у нього стукають рукою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-39:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите скрипку",
+      "prompt": "Бубен лежит между стулом и диваном. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-39:i03:r1",
-          "text": "violin"
+          "text": "between"
         },
         {
           "responseId": "en:lesson-05:session-39:i03:r2",
-          "text": "guitar"
+          "text": "under"
         },
         {
           "responseId": "en:lesson-05:session-39:i03:r3",
-          "text": "boiler"
+          "text": "on"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите скрипку",
+      "accessibilityLabel": "Бубен лежит между стулом и диваном. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите скрипку",
-          "uk": "Назвіть скрипку"
+          "ru": "Бубен лежит между стулом и диваном. Выберите слово",
+          "uk": "Бубон лежить між стільцем і диваном. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The tambourine is ___ the chair and the sofa.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-39:i03:r1",
-            "text": "violin"
+            "text": "between"
           },
           {
             "responseId": "en:lesson-05:session-39:i03:r2",
-            "text": "guitar"
+            "text": "under"
           },
           {
             "responseId": "en:lesson-05:session-39:i03:r3",
-            "text": "boiler"
+            "text": "on"
           }
         ],
-        "testedDimension": "Назовите скрипку",
+        "testedDimension": "Бубен лежит между стулом и диваном. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-39:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите скрипку",
+            "testedDimension": "Бубен лежит между стулом и диваном. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`guitar` — гитара; скрипка — `violin`.",
-              "uk": "`guitar` — гітара; скрипка — `violin`."
+              "ru": "`under` значит «под», а место между двумя вещами — `between`.",
+              "uk": "`under` означає «під», а місце між двома речами — `between`."
             }
           },
           {
             "responseId": "en:lesson-05:session-39:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите скрипку",
+            "testedDimension": "Бубен лежит между стулом и диваном. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`boiler` — отопительный котёл; скрипка — `violin`.",
-              "uk": "`boiler` — опалювальний котел; скрипка — `violin`."
+              "ru": "`on` значит «на», а место между двумя вещами — `between`.",
+              "uk": "`on` означає «на», а місце між двома речами — `between`."
             }
           }
         ]
@@ -194,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -216,40 +346,40 @@
           },
           {
             "pairId": "en:lesson-05:session-39:i04:p2",
-            "target": "guitar",
+            "target": "harmonica",
             "meaningByLocale": {
-              "ru": "гитара",
-              "uk": "гітара"
+              "ru": "губная гармоника",
+              "uk": "губна гармоніка"
             }
           },
           {
             "pairId": "en:lesson-05:session-39:i04:p3",
-            "target": "bottles",
+            "target": "tambourine",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "бубен",
+              "uk": "бубон"
             }
           },
           {
             "pairId": "en:lesson-05:session-39:i04:p4",
-            "target": "boiler",
+            "target": "accordion",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "аккордеон",
+              "uk": "акордеон"
             }
           }
         ],
         "leftColumn": [
           "violin",
-          "guitar",
-          "bottles",
-          "boiler"
+          "harmonica",
+          "tambourine",
+          "accordion"
         ],
         "rightColumn": [
           "скрипка",
-          "гитара",
-          "бутылки",
-          "отопительный котёл"
+          "губная гармоника",
+          "бубен",
+          "аккордеон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,34 +396,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-39:word:accordion",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — accordion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:word:accordion:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — accordion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:word:accordion:audio",
+          "transcript": "accordion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-39:word:accordion:r1",
+            "targetText": "accordion",
+            "meaningByLocale": {
+              "ru": "аккордеон. The accordion is big. — «Аккордеон большой». Инструмент с мехами и клавишами, который растягивают руками.",
+              "uk": "акордеон. The accordion is big. — «Акордеон великий». Інструмент із міхом і клавішами, який розтягують руками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "accordion",
+          "definitionByLocale": {
+            "ru": "аккордеон. The accordion is big. — «Аккордеон большой». Инструмент с мехами и клавишами, который растягивают руками.",
+            "uk": "акордеон. The accordion is big. — «Акордеон великий». Інструмент із міхом і клавішами, який розтягують руками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-39:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте гостя и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте гостя и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i05:audio",
-          "transcript": "Whose violin is this?"
+          "transcript": "The accordion is in the hall."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose violin is this?",
+        "hiddenTargetPhrase": "The accordion is in the hall.",
         "orderedTokens": [
-          "Whose",
-          "violin",
+          "The",
+          "accordion",
           "is",
-          "this"
+          "in",
+          "the",
+          "hall"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте гостя и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The accordion is in the hall.`",
+              "uk": "тут потрібно `is` — `The accordion is in the hall.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -303,30 +490,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы нашли гитару. Спросите «Чья это гитара?»",
+      "prompt": "Вы показываете гостю губную гармонику и спрашиваете, чья она. Спросите: «Чья это губная гармоника?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы нашли гитару. Спросите «Чья это гитара?»",
+      "accessibilityLabel": "Вы показываете гостю губную гармонику и спрашиваете, чья она. Спросите: «Чья это губная гармоника?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose guitar is this?",
+        "targetPhrase": "Whose harmonica is this?",
         "localizedMeaning": {
-          "ru": "Вы нашли гитару. Спросите «Чья это гитара?»",
-          "uk": "Ви знайшли гітару. Запитайте «Чия це гітара?»"
+          "ru": "Вы показываете гостю губную гармонику и спрашиваете, чья она. Спросите: «Чья это губная гармоника?»",
+          "uk": "Ви показуєте гостеві губну гармоніку й питаєте, чия вона. Спитайте: «Чия це губна гармоніка?»"
         },
         "orderedTokens": [
           "Whose",
-          "guitar",
+          "harmonica",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете гостю губную гармонику и спрашиваете, чья она. Спросите: «Чья это губная гармоника?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose harmonica is this?`",
+              "uk": "тут потрібно `Whose` — `Whose harmonica is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -336,25 +535,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скрипка принадлежит подруге. Скажите «Скрипка её»",
+      "prompt": "Гость спрашивает, чей бубен. Он ваш. Скажите: «Бубен мой»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i07:audio"
       ],
-      "accessibilityLabel": "Скрипка принадлежит подруге. Скажите «Скрипка её»",
+      "accessibilityLabel": "Гость спрашивает, чей бубен. Он ваш. Скажите: «Бубен мой»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i07:audio",
-          "transcript": "The violin is hers."
+          "transcript": "The tambourine is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The violin is hers.",
+        "targetPhrase": "The tambourine is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -369,67 +568,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце бутылок. Выберите форму",
+      "prompt": "Скрипка принадлежит вашей дочери. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-39:i08:r1",
-          "text": "are"
+          "text": "daughter's"
         },
         {
           "responseId": "en:lesson-05:session-39:i08:r2",
-          "text": "is"
+          "text": "daughter"
         },
         {
           "responseId": "en:lesson-05:session-39:i08:r3",
-          "text": "am"
+          "text": "daughters"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце бутылок. Выберите форму",
+      "accessibilityLabel": "Скрипка принадлежит вашей дочери. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце бутылок. Выберите форму",
-          "uk": "Запитайте про власника пляшок. Виберіть форму"
+          "ru": "Скрипка принадлежит вашей дочери. Выберите слово",
+          "uk": "Скрипка належить вашій доньці. Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose bottles ___ these?",
+        "gappedTargetPhrase": "The violin is my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-39:i08:r1",
-            "text": "are"
+            "text": "daughter's"
           },
           {
             "responseId": "en:lesson-05:session-39:i08:r2",
-            "text": "is"
+            "text": "daughter"
           },
           {
             "responseId": "en:lesson-05:session-39:i08:r3",
-            "text": "am"
+            "text": "daughters"
           }
         ],
-        "testedDimension": "Спросите о владельце бутылок. Выберите форму",
+        "testedDimension": "Скрипка принадлежит вашей дочери. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-39:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце бутылок. Выберите форму",
+            "testedDimension": "Скрипка принадлежит вашей дочери. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Несколько бутылок: `are these`.",
-              "uk": "Кілька пляшок: `are these`."
+              "ru": "Так получилось бы, что скрипка — это сама дочь. Хозяйку называем через `'s`: `daughter's`.",
+              "uk": "Так вийшло б, що скрипка — це сама донька. Господиню називаємо через `'s`: `daughter's`."
             }
           },
           {
             "responseId": "en:lesson-05:session-39:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце бутылок. Выберите форму",
+            "testedDimension": "Скрипка принадлежит вашей дочери. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `are these`.",
-              "uk": "`am` використовується з `I`; тут `are these`."
+              "ru": "`daughters` — это «дочери», несколько человек; нужно `daughter's`.",
+              "uk": "`daughters` — це «доньки», кілька людей; потрібно `daughter's`."
             }
           }
         ]
@@ -438,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какую вещь называет друг",
+      "prompt": "Послушайте гостя",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-39:i09:r1",
-          "text": "This is Tom's violin."
+          "text": "Whose accordion is this?"
         },
         {
           "responseId": "en:lesson-05:session-39:i09:r2",
-          "text": "This is Tom's guitar."
+          "text": "Whose accordion is that?"
         },
         {
           "responseId": "en:lesson-05:session-39:i09:r3",
-          "text": "This is Tom's camera."
+          "text": "Whose violin is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, какую вещь называет друг",
+      "accessibilityLabel": "Послушайте гостя",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i09:audio",
-          "transcript": "This is Tom's violin."
+          "transcript": "Whose accordion is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-39:i09:r1",
-            "targetText": "This is Tom's violin.",
+            "targetText": "Whose accordion is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-39:i09:r2",
-            "targetText": "This is Tom's guitar.",
+            "targetText": "Whose accordion is that?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-39:i09:r3",
-            "targetText": "This is Tom's camera.",
+            "targetText": "Whose violin is this?",
             "meaningByLocale": null
           }
         ],
@@ -491,19 +690,19 @@
           {
             "responseId": "en:lesson-05:session-39:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет друг",
+            "testedDimension": "Послушайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `violin`, а в этом варианте — `guitar`.",
-              "uk": "У записі останнє слово — `violin`, а в цьому варіанті — `guitar`."
+              "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
             }
           },
           {
             "responseId": "en:lesson-05:session-39:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет друг",
+            "testedDimension": "Послушайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `violin`, а в этом варианте — `camera`.",
-              "uk": "У записі останнє слово — `violin`, а в цьому варіанті — `camera`."
+              "ru": "В записи вещь — `accordion`, аккордеон, а в этом варианте — `violin`, скрипка.",
+              "uk": "У записі річ — `accordion`, акордеон, а в цьому варіанті — `violin`, скрипка."
             }
           }
         ],
@@ -514,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -528,48 +727,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-39:i10:p1",
-            "target": "violin",
+            "target": "harmonica",
             "meaningByLocale": {
-              "ru": "скрипка",
-              "uk": "скрипка"
+              "ru": "губная гармоника",
+              "uk": "губна гармоніка"
             }
           },
           {
             "pairId": "en:lesson-05:session-39:i10:p2",
-            "target": "brave",
+            "target": "tambourine",
             "meaningByLocale": {
-              "ru": "смелый",
-              "uk": "сміливий"
+              "ru": "бубен",
+              "uk": "бубон"
             }
           },
           {
             "pairId": "en:lesson-05:session-39:i10:p3",
-            "target": "boiler",
+            "target": "accordion",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "аккордеон",
+              "uk": "акордеон"
             }
           },
           {
             "pairId": "en:lesson-05:session-39:i10:p4",
-            "target": "bottles",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "полка",
+              "uk": "полиця"
             }
           }
         ],
         "leftColumn": [
-          "violin",
-          "brave",
-          "boiler",
-          "bottles"
+          "harmonica",
+          "tambourine",
+          "accordion",
+          "shelf"
         ],
         "rightColumn": [
-          "скрипка",
-          "смелый",
-          "отопительный котёл",
-          "бутылки"
+          "губная гармоника",
+          "бубен",
+          "аккордеон",
+          "полка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -587,44 +786,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте дочь и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте дочь и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i11:audio",
-          "transcript": "The boiler is in the kitchen."
+          "transcript": "My daughter's violin is on the sofa."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The boiler is in the kitchen.",
+        "hiddenTargetPhrase": "My daughter's violin is on the sofa.",
         "orderedTokens": [
-          "The",
-          "boiler",
+          "My",
+          "daughter's",
+          "violin",
           "is",
-          "in",
+          "on",
           "the",
-          "kitchen"
+          "sofa"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "daughter"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-39:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте дочь и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The boiler is in the kitchen.`",
-              "uk": "тут потрібно `is` — `The boiler is in the kitchen.`"
+              "ru": "здесь нужно `daughter's` — `My daughter's violin is on the sofa.`",
+              "uk": "тут потрібно `daughter's` — `My daughter's violin is on the sofa.`"
             }
           }
         ],
@@ -637,39 +837,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Бутылки принадлежат вашей группе. Скажите «Бутылки наши»",
+      "prompt": "Бабушка ищет бубен. Он рядом с диваном. Скажите ей: «Бубен рядом с диваном»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Бутылки принадлежат вашей группе. Скажите «Бутылки наши»",
+      "accessibilityLabel": "Бабушка ищет бубен. Он рядом с диваном. Скажите ей: «Бубен рядом с диваном»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bottles are ours.",
+        "targetPhrase": "The tambourine is next to the sofa.",
         "localizedMeaning": {
-          "ru": "Бутылки принадлежат вашей группе. Скажите «Бутылки наши»",
-          "uk": "Пляшки належать вашій групі. Скажіть «Пляшки наші»"
+          "ru": "Бабушка ищет бубен. Он рядом с диваном. Скажите ей: «Бубен рядом с диваном»",
+          "uk": "Бабуся шукає бубон. Він поруч із диваном. Скажіть їй: «Бубон поруч із диваном»"
         },
         "orderedTokens": [
           "The",
-          "bottles",
-          "are",
-          "ours"
+          "tambourine",
+          "is",
+          "next",
+          "to",
+          "the",
+          "sofa"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-39:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Бутылки принадлежат вашей группе. Скажите «Бутылки наши»",
+            "testedDimension": "Бабушка ищет бубен. Он рядом с диваном. Скажите ей: «Бубен рядом с диваном»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The bottles are ours.`",
-              "uk": "тут потрібно `are` — `The bottles are ours.`"
+              "ru": "здесь нужно `is` — `The tambourine is next to the sofa.`",
+              "uk": "тут потрібно `is` — `The tambourine is next to the sofa.`"
             }
           }
         ],
@@ -682,25 +885,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Гитара друга у вас. Скажите ему «Твоя гитара у меня»",
+      "prompt": "Гость спрашивает, чья губная гармоника. Она его. Скажите: «Она его»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i13:audio"
       ],
-      "accessibilityLabel": "Гитара друга у вас. Скажите ему «Твоя гитара у меня»",
+      "accessibilityLabel": "Гость спрашивает, чья губная гармоника. Она его. Скажите: «Она его»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i13:audio",
-          "transcript": "I have your guitar."
+          "transcript": "It is his."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your guitar.",
+        "targetPhrase": "It is his.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -715,67 +918,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце скрипки",
+      "prompt": "Дядя спрашивает, где его губная гармоника. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-39:i14:r1",
-          "text": "Whose"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-39:i14:r2",
-          "text": "Where"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-39:i14:r3",
-          "text": "Who"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце скрипки",
+      "accessibilityLabel": "Дядя спрашивает, где его губная гармоника. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце скрипки",
-          "uk": "Запитайте про власника скрипки"
+          "ru": "Дядя спрашивает, где его губная гармоника. Выберите слово",
+          "uk": "Дядько питає, де його губна гармоніка. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ violin is this?",
+        "gappedTargetPhrase": "Where ___ the harmonica?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-39:i14:r1",
-            "text": "Whose"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-39:i14:r2",
-            "text": "Where"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-39:i14:r3",
-            "text": "Who"
+            "text": "am"
           }
         ],
-        "testedDimension": "Спросите о владельце скрипки",
+        "testedDimension": "Дядя спрашивает, где его губная гармоника. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-39:i14:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце скрипки",
+            "testedDimension": "Дядя спрашивает, где его губная гармоника. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чья — `Whose`.",
-              "uk": "`Where` — де; чия — `Whose`."
+              "ru": "Гармоника одна, поэтому нужно `Where is`, а не `Where are`.",
+              "uk": "Гармоніка одна, тому потрібно `Where is`, а не `Where are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-39:i14:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце скрипки",
+            "testedDimension": "Дядя спрашивает, где его губная гармоника. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чья — `Whose`.",
-              "uk": "`Who` — хто; чия — `Whose`."
+              "ru": "`am` бывает только с `I`; здесь нужно `Where is`.",
+              "uk": "`am` буває лише з `I`; тут потрібно `Where is`."
             }
           }
         ]
@@ -784,51 +987,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чья скрипка здесь",
+      "prompt": "Послушайте дядю",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-39:i15:r1",
-          "text": "My violin is here."
+          "text": "The tambourine is next to the sofa."
         },
         {
           "responseId": "en:lesson-05:session-39:i15:r2",
-          "text": "Your violin is here."
+          "text": "The tambourine is next to the chair."
         },
         {
           "responseId": "en:lesson-05:session-39:i15:r3",
-          "text": "His violin is here."
+          "text": "The accordion is next to the sofa."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чья скрипка здесь",
+      "accessibilityLabel": "Послушайте дядю",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i15:audio",
-          "transcript": "My violin is here."
+          "transcript": "The tambourine is next to the sofa."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-39:i15:r1",
-            "targetText": "My violin is here.",
+            "targetText": "The tambourine is next to the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-39:i15:r2",
-            "targetText": "Your violin is here.",
+            "targetText": "The tambourine is next to the chair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-39:i15:r3",
-            "targetText": "His violin is here.",
+            "targetText": "The accordion is next to the sofa.",
             "meaningByLocale": null
           }
         ],
@@ -837,19 +1040,19 @@
           {
             "responseId": "en:lesson-05:session-39:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чья скрипка здесь",
+            "testedDimension": "Послушайте дядю",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `sofa`, диван, а в этом варианте — `chair`, стул.",
+              "uk": "У записі останнє слово — `sofa`, диван, а в цьому варіанті — `chair`, стілець."
             }
           },
           {
             "responseId": "en:lesson-05:session-39:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чья скрипка здесь",
+            "testedDimension": "Послушайте дядю",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `tambourine`, бубен, а в этом варианте — `accordion`, аккордеон.",
+              "uk": "У записі річ — `tambourine`, бубон, а в цьому варіанті — `accordion`, акордеон."
             }
           }
         ],
@@ -860,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -882,40 +1085,40 @@
           },
           {
             "pairId": "en:lesson-05:session-39:i16:p2",
-            "target": "brave",
+            "target": "harmonica",
             "meaningByLocale": {
-              "ru": "смелый",
-              "uk": "сміливий"
+              "ru": "губная гармоника",
+              "uk": "губна гармоніка"
             }
           },
           {
             "pairId": "en:lesson-05:session-39:i16:p3",
-            "target": "guitar",
+            "target": "tambourine",
             "meaningByLocale": {
-              "ru": "гитара",
-              "uk": "гітара"
+              "ru": "бубен",
+              "uk": "бубон"
             }
           },
           {
             "pairId": "en:lesson-05:session-39:i16:p4",
-            "target": "bottles",
+            "target": "accordion",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "аккордеон",
+              "uk": "акордеон"
             }
           }
         ],
         "leftColumn": [
           "violin",
-          "brave",
-          "guitar",
-          "bottles"
+          "harmonica",
+          "tambourine",
+          "accordion"
         ],
         "rightColumn": [
           "скрипка",
-          "смелый",
-          "гитара",
-          "бутылки"
+          "губная гармоника",
+          "бубен",
+          "аккордеон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -933,25 +1136,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-39:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После концерта остались бутылки. Спросите друзей «Чьи это бутылки?»",
+      "prompt": "Вы нашли в гостиной скрипку и хотите вернуть её владельцу. Спросите гостя: «Чья это скрипка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-39:i17:audio"
       ],
-      "accessibilityLabel": "После концерта остались бутылки. Спросите друзей «Чьи это бутылки?»",
+      "accessibilityLabel": "Вы нашли в гостиной скрипку и хотите вернуть её владельцу. Спросите гостя: «Чья это скрипка?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-39:i17:audio",
-          "transcript": "Whose bottles are these?"
+          "transcript": "Whose violin is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose bottles are these?",
+        "targetPhrase": "Whose violin is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -973,11 +1176,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "87669af3af15804db9194e33eef8da6ffe9d497af5a1f76f5a7b4e7be6477fd2"
+  "learnerFingerprint": "4cf1bed16bdb6592d1176d51ba4dd2b51da88d0297b304c142d06338af7925bb"
 }

@@ -1,0 +1,2463 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-36:word:binoculars",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — binoculars",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:binoculars:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — binoculars",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:binoculars:audio",
+            "transcript": "binoculars"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:binoculars:r1",
+              "targetText": "binoculars",
+              "meaningByLocale": {
+                "ru": "бинокль. My aunt's binoculars are on the table. — «Бинокль моей тёти на столе». Слово всегда во множественном числе, как scissors.",
+                "uk": "бінокль. My aunt's binoculars are on the table. — «Бінокль моєї тітки на столі». Слово завжди в множині, як scissors."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "binoculars",
+            "definitionByLocale": {
+              "ru": "бинокль. My aunt's binoculars are on the table. — «Бинокль моей тёти на столе». Слово всегда во множественном числе, как scissors.",
+              "uk": "бінокль. My aunt's binoculars are on the table. — «Бінокль моєї тітки на столі». Слово завжди в множині, як scissors."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоюродный брат спрашивает, чей бинокль. Он вашей тёти. Скажите: «Это бинокль моей тёти»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат спрашивает, чей бинокль. Он вашей тёти. Скажите: «Это бинокль моей тёти»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These are my aunt's binoculars.",
+          "localizedMeaning": {
+            "ru": "Двоюродный брат спрашивает, чей бинокль. Он вашей тёти. Скажите: «Это бинокль моей тёти»",
+            "uk": "Двоюрідний брат питає, чий бінокль. Він вашої тітки. Скажіть: «Це бінокль моєї тітки»"
+          },
+          "orderedTokens": [
+            "These",
+            "are",
+            "my",
+            "aunt's",
+            "binoculars"
+          ],
+          "authoredDistractorTokens": [
+            "aunt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает, чей бинокль. Он вашей тёти. Скажите: «Это бинокль моей тёти»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aunt's` — `These are my aunt's binoculars.`",
+                "uk": "тут потрібно `aunt's` — `These are my aunt's binoculars.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:word:earbuds",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — earbuds",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:earbuds:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — earbuds",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:earbuds:audio",
+            "transcript": "earbuds"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:earbuds:r1",
+              "targetText": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники. My cousin's earbuds are white. — «Беспроводные наушники моего двоюродного брата белые». Маленькие наушники, которые вставляют в уши.",
+                "uk": "бездротові навушники. My cousin's earbuds are white. — «Бездротові навушники мого двоюрідного брата білі». Маленькі навушники, які вставляють у вуха."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earbuds",
+            "definitionByLocale": {
+              "ru": "беспроводные наушники. My cousin's earbuds are white. — «Беспроводные наушники моего двоюродного брата белые». Маленькие наушники, которые вставляют в уши.",
+              "uk": "бездротові навушники. My cousin's earbuds are white. — «Бездротові навушники мого двоюрідного брата білі». Маленькі навушники, які вставляють у вуха."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i02:r1",
+            "text": "Whose earbuds are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i02:r2",
+            "text": "Whose earbuds are those?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i02:r3",
+            "text": "Whose binoculars are these?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i02:audio",
+            "transcript": "Whose earbuds are these?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:i02:r1",
+              "targetText": "Whose earbuds are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i02:r2",
+              "targetText": "Whose earbuds are those?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i02:r3",
+              "targetText": "Whose binoculars are these?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `these`, а в этом варианте — `those`.",
+                "uk": "У записі останнє слово — `these`, а в цьому варіанті — `those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `earbuds`, а в этом варианте — `binoculars`.",
+                "uk": "У записі річ — `earbuds`, а в цьому варіанті — `binoculars`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:word:cufflinks",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cufflinks",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:cufflinks:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cufflinks",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:cufflinks:audio",
+            "transcript": "cufflinks"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:cufflinks:r1",
+              "targetText": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки. My uncle's cufflinks are small. — «Запонки моего дяди маленькие». Украшения, которыми застёгивают манжеты рубашки.",
+                "uk": "запонки. My uncle's cufflinks are small. — «Запонки мого дядька маленькі». Прикраси, якими застібають манжети сорочки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cufflinks",
+            "definitionByLocale": {
+              "ru": "запонки. My uncle's cufflinks are small. — «Запонки моего дяди маленькие». Украшения, которыми застёгивают манжеты рубашки.",
+              "uk": "запонки. My uncle's cufflinks are small. — «Запонки мого дядька маленькі». Прикраси, якими застібають манжети сорочки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дядя ищет запонки. Они в коробке. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дядя ищет запонки. Они в коробке. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дядя ищет запонки. Они в коробке. Выберите слово",
+            "uk": "Дядько шукає запонки. Вони в коробці. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The cufflinks ___ in the box.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-36:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дядя ищет запонки. Они в коробке. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Дядя ищет запонки. Они в коробке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Запонок несколько, поэтому нужно `are`, а не `is`.",
+                "uk": "Запонок кілька, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Дядя ищет запонки. Они в коробке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только с `I`; здесь нужно `are`.",
+                "uk": "`am` буває лише з `I`; тут потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-36:i04:p1",
+              "target": "binoculars",
+              "meaningByLocale": {
+                "ru": "бинокль",
+                "uk": "бінокль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i04:p2",
+              "target": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники",
+                "uk": "бездротові навушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i04:p3",
+              "target": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки",
+                "uk": "запонки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i04:p4",
+              "target": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания",
+                "uk": "трубка для плавання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "binoculars",
+            "earbuds",
+            "cufflinks",
+            "snorkel"
+          ],
+          "rightColumn": [
+            "бинокль",
+            "беспроводные наушники",
+            "запонки",
+            "трубка для плавания"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:word:snorkel",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snorkel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:snorkel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snorkel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:snorkel:audio",
+            "transcript": "snorkel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:snorkel:r1",
+              "targetText": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания. The snorkel is next to the bag. — «Трубка для плавания рядом с сумкой». Её берут в рот, чтобы дышать под водой.",
+                "uk": "трубка для плавання. The snorkel is next to the bag. — «Трубка для плавання поруч із сумкою». Її беруть до рота, щоб дихати під водою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snorkel",
+            "definitionByLocale": {
+              "ru": "трубка для плавания. The snorkel is next to the bag. — «Трубка для плавания рядом с сумкой». Её берут в рот, чтобы дышать под водой.",
+              "uk": "трубка для плавання. The snorkel is next to the bag. — «Трубка для плавання поруч із сумкою». Її беруть до рота, щоб дихати під водою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте двоюродного брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте двоюродного брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i05:audio",
+            "transcript": "The snorkel is next to the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The snorkel is next to the bag.",
+          "orderedTokens": [
+            "The",
+            "snorkel",
+            "is",
+            "next",
+            "to",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The snorkel is next to the bag.`",
+                "uk": "тут потрібно `is` — `The snorkel is next to the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете дяде запонки и спрашиваете, чьи они. Спросите: «Чьи это запонки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете дяде запонки и спрашиваете, чьи они. Спросите: «Чьи это запонки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose cufflinks are these?",
+          "localizedMeaning": {
+            "ru": "Вы показываете дяде запонки и спрашиваете, чьи они. Спросите: «Чьи это запонки?»",
+            "uk": "Ви показуєте дядькові запонки й питаєте, чиї вони. Спитайте: «Чиї це запонки?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "cufflinks",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете дяде запонки и спрашиваете, чьи они. Спросите: «Чьи это запонки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose cufflinks are these?`",
+                "uk": "тут потрібно `Whose` — `Whose cufflinks are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, чьи это наушники. Они ваши. Скажите: «Они мои»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, чьи это наушники. Они ваши. Скажите: «Они мои»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i07:audio",
+            "transcript": "They are mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дядя смотрит на свои запонки. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i08:r2",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i08:r3",
+            "text": "he"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дядя смотрит на свои запонки. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дядя смотрит на свои запонки. Выберите слово",
+            "uk": "Дядько дивиться на свої запонки. Виберіть слово"
+          },
+          "gappedTargetPhrase": "These cufflinks are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-36:i08:r1",
+              "text": "his"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i08:r2",
+              "text": "hers"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i08:r3",
+              "text": "he"
+            }
+          ],
+          "testedDimension": "Дядя смотрит на свои запонки. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Дядя смотрит на свои запонки. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`hers` значит «её», а запонки принадлежат дяде: нужно `his`.",
+                "uk": "`hers` означає «її», а запонки належать дядькові: потрібно `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Дядя смотрит на свои запонки. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`he` значит «он», а «его» без вещи — `his`.",
+                "uk": "`he` означає «він», а «його» без речі — `his`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте двоюродного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i09:r1",
+            "text": "Whose snorkel is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i09:r2",
+            "text": "Whose snorkel is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i09:r3",
+            "text": "Whose cufflinks are these?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте двоюродного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i09:audio",
+            "transcript": "Whose snorkel is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:i09:r1",
+              "targetText": "Whose snorkel is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i09:r2",
+              "targetText": "Whose snorkel is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i09:r3",
+              "targetText": "Whose cufflinks are these?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `snorkel`, а в этом варианте — `cufflinks`.",
+                "uk": "У записі річ — `snorkel`, а в цьому варіанті — `cufflinks`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-36:i10:p1",
+              "target": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания",
+                "uk": "трубка для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i10:p2",
+              "target": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники",
+                "uk": "бездротові навушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i10:p3",
+              "target": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки",
+                "uk": "запонки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i10:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "snorkel",
+            "earbuds",
+            "cufflinks",
+            "bag"
+          ],
+          "rightColumn": [
+            "трубка для плавания",
+            "беспроводные наушники",
+            "запонки",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сестру и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i11:audio",
+            "transcript": "My cousin's earbuds are on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's earbuds are on the sofa.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "earbuds",
+            "are",
+            "on",
+            "the",
+            "sofa"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сестру и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `My cousin's earbuds are on the sofa.`",
+                "uk": "тут потрібно `are` — `My cousin's earbuds are on the sofa.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тётя ищет бинокль. Он на столе. Скажите ей: «Бинокль на столе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тётя ищет бинокль. Он на столе. Скажите ей: «Бинокль на столе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The binoculars are on the table.",
+          "localizedMeaning": {
+            "ru": "Тётя ищет бинокль. Он на столе. Скажите ей: «Бинокль на столе»",
+            "uk": "Тітка шукає бінокль. Він на столі. Скажіть їй: «Бінокль на столі»"
+          },
+          "orderedTokens": [
+            "The",
+            "binoculars",
+            "are",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Тётя ищет бинокль. Он на столе. Скажите ей: «Бинокль на столе»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The binoculars are on the table.`",
+                "uk": "тут потрібно `are` — `The binoculars are on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дядя спрашивает о трубке для плавания. Она вашей сестры. Скажите: «Трубка её»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Дядя спрашивает о трубке для плавания. Она вашей сестры. Скажите: «Трубка её»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i13:audio",
+            "transcript": "The snorkel is hers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The snorkel is hers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете сестру о наушниках. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i14:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i14:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i14:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете сестру о наушниках. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете сестру о наушниках. Выберите слово",
+            "uk": "Ви питаєте сестру про навушники. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Are these earbuds ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-36:i14:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i14:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i14:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете сестру о наушниках. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете сестру о наушниках. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `yours`, а не `your`.",
+                "uk": "Без назви речі потрібно `yours`, а не `your`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете сестру о наушниках. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а «твой» без вещи — `yours`.",
+                "uk": "`you` означає «ти», а «твій» без речі — `yours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте тётю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i15:r1",
+            "text": "They are mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i15:r2",
+            "text": "They are his."
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i15:r3",
+            "text": "It is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте тётю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i15:audio",
+            "transcript": "They are mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:i15:r1",
+              "targetText": "They are mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i15:r2",
+              "targetText": "They are his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i15:r3",
+              "targetText": "It is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте тётю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мои, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `mine`, мої, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте тётю",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `It`, оно.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `It`, воно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-36:i16:p1",
+              "target": "binoculars",
+              "meaningByLocale": {
+                "ru": "бинокль",
+                "uk": "бінокль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i16:p2",
+              "target": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники",
+                "uk": "бездротові навушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i16:p3",
+              "target": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки",
+                "uk": "запонки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i16:p4",
+              "target": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания",
+                "uk": "трубка для плавання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "binoculars",
+            "earbuds",
+            "cufflinks",
+            "snorkel"
+          ],
+          "rightColumn": [
+            "бинокль",
+            "беспроводные наушники",
+            "запонки",
+            "трубка для плавания"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли бинокль и хотите вернуть его владельцу. Спросите дядю: «Чей это бинокль?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли бинокль и хотите вернуть его владельцу. Спросите дядю: «Чей это бинокль?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i17:audio",
+            "transcript": "Whose binoculars are these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose binoculars are these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-36:word:binoculars",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — binoculars",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:binoculars:audio"
+        ],
+        "accessibilityLabel": "Картка слова — binoculars",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:binoculars:audio",
+            "transcript": "binoculars"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:binoculars:r1",
+              "targetText": "binoculars",
+              "meaningByLocale": {
+                "ru": "бинокль. My aunt's binoculars are on the table. — «Бинокль моей тёти на столе». Слово всегда во множественном числе, как scissors.",
+                "uk": "бінокль. My aunt's binoculars are on the table. — «Бінокль моєї тітки на столі». Слово завжди в множині, як scissors."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "binoculars",
+            "definitionByLocale": {
+              "ru": "бинокль. My aunt's binoculars are on the table. — «Бинокль моей тёти на столе». Слово всегда во множественном числе, как scissors.",
+              "uk": "бінокль. My aunt's binoculars are on the table. — «Бінокль моєї тітки на столі». Слово завжди в множині, як scissors."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоюрідний брат питає, чий бінокль. Він вашої тітки. Скажіть: «Це бінокль моєї тітки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат питає, чий бінокль. Він вашої тітки. Скажіть: «Це бінокль моєї тітки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These are my aunt's binoculars.",
+          "localizedMeaning": {
+            "ru": "Двоюродный брат спрашивает, чей бинокль. Он вашей тёти. Скажите: «Это бинокль моей тёти»",
+            "uk": "Двоюрідний брат питає, чий бінокль. Він вашої тітки. Скажіть: «Це бінокль моєї тітки»"
+          },
+          "orderedTokens": [
+            "These",
+            "are",
+            "my",
+            "aunt's",
+            "binoculars"
+          ],
+          "authoredDistractorTokens": [
+            "aunt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає, чий бінокль. Він вашої тітки. Скажіть: «Це бінокль моєї тітки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aunt's` — `These are my aunt's binoculars.`",
+                "uk": "тут потрібно `aunt's` — `These are my aunt's binoculars.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:word:earbuds",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — earbuds",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:earbuds:audio"
+        ],
+        "accessibilityLabel": "Картка слова — earbuds",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:earbuds:audio",
+            "transcript": "earbuds"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:earbuds:r1",
+              "targetText": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники. My cousin's earbuds are white. — «Беспроводные наушники моего двоюродного брата белые». Маленькие наушники, которые вставляют в уши.",
+                "uk": "бездротові навушники. My cousin's earbuds are white. — «Бездротові навушники мого двоюрідного брата білі». Маленькі навушники, які вставляють у вуха."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earbuds",
+            "definitionByLocale": {
+              "ru": "беспроводные наушники. My cousin's earbuds are white. — «Беспроводные наушники моего двоюродного брата белые». Маленькие наушники, которые вставляют в уши.",
+              "uk": "бездротові навушники. My cousin's earbuds are white. — «Бездротові навушники мого двоюрідного брата білі». Маленькі навушники, які вставляють у вуха."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i02:r1",
+            "text": "Whose earbuds are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i02:r2",
+            "text": "Whose earbuds are those?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i02:r3",
+            "text": "Whose binoculars are these?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i02:audio",
+            "transcript": "Whose earbuds are these?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:i02:r1",
+              "targetText": "Whose earbuds are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i02:r2",
+              "targetText": "Whose earbuds are those?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i02:r3",
+              "targetText": "Whose binoculars are these?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `these`, а в этом варианте — `those`.",
+                "uk": "У записі останнє слово — `these`, а в цьому варіанті — `those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `earbuds`, а в этом варианте — `binoculars`.",
+                "uk": "У записі річ — `earbuds`, а в цьому варіанті — `binoculars`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:word:cufflinks",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cufflinks",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:cufflinks:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cufflinks",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:cufflinks:audio",
+            "transcript": "cufflinks"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:cufflinks:r1",
+              "targetText": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки. My uncle's cufflinks are small. — «Запонки моего дяди маленькие». Украшения, которыми застёгивают манжеты рубашки.",
+                "uk": "запонки. My uncle's cufflinks are small. — «Запонки мого дядька маленькі». Прикраси, якими застібають манжети сорочки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cufflinks",
+            "definitionByLocale": {
+              "ru": "запонки. My uncle's cufflinks are small. — «Запонки моего дяди маленькие». Украшения, которыми застёгивают манжеты рубашки.",
+              "uk": "запонки. My uncle's cufflinks are small. — «Запонки мого дядька маленькі». Прикраси, якими застібають манжети сорочки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дядько шукає запонки. Вони в коробці. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дядько шукає запонки. Вони в коробці. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дядя ищет запонки. Они в коробке. Выберите слово",
+            "uk": "Дядько шукає запонки. Вони в коробці. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The cufflinks ___ in the box.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-36:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дядько шукає запонки. Вони в коробці. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Дядько шукає запонки. Вони в коробці. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Запонок несколько, поэтому нужно `are`, а не `is`.",
+                "uk": "Запонок кілька, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Дядько шукає запонки. Вони в коробці. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только с `I`; здесь нужно `are`.",
+                "uk": "`am` буває лише з `I`; тут потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-36:i04:p1",
+              "target": "binoculars",
+              "meaningByLocale": {
+                "ru": "бинокль",
+                "uk": "бінокль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i04:p2",
+              "target": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники",
+                "uk": "бездротові навушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i04:p3",
+              "target": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки",
+                "uk": "запонки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i04:p4",
+              "target": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания",
+                "uk": "трубка для плавання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "binoculars",
+            "earbuds",
+            "cufflinks",
+            "snorkel"
+          ],
+          "rightColumn": [
+            "бінокль",
+            "бездротові навушники",
+            "запонки",
+            "трубка для плавання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:word:snorkel",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snorkel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:word:snorkel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snorkel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:word:snorkel:audio",
+            "transcript": "snorkel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:word:snorkel:r1",
+              "targetText": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания. The snorkel is next to the bag. — «Трубка для плавания рядом с сумкой». Её берут в рот, чтобы дышать под водой.",
+                "uk": "трубка для плавання. The snorkel is next to the bag. — «Трубка для плавання поруч із сумкою». Її беруть до рота, щоб дихати під водою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snorkel",
+            "definitionByLocale": {
+              "ru": "трубка для плавания. The snorkel is next to the bag. — «Трубка для плавания рядом с сумкой». Её берут в рот, чтобы дышать под водой.",
+              "uk": "трубка для плавання. The snorkel is next to the bag. — «Трубка для плавання поруч із сумкою». Її беруть до рота, щоб дихати під водою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте двоюрідного брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте двоюрідного брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i05:audio",
+            "transcript": "The snorkel is next to the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The snorkel is next to the bag.",
+          "orderedTokens": [
+            "The",
+            "snorkel",
+            "is",
+            "next",
+            "to",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The snorkel is next to the bag.`",
+                "uk": "тут потрібно `is` — `The snorkel is next to the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте дядькові запонки й питаєте, чиї вони. Спитайте: «Чиї це запонки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте дядькові запонки й питаєте, чиї вони. Спитайте: «Чиї це запонки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose cufflinks are these?",
+          "localizedMeaning": {
+            "ru": "Вы показываете дяде запонки и спрашиваете, чьи они. Спросите: «Чьи это запонки?»",
+            "uk": "Ви показуєте дядькові запонки й питаєте, чиї вони. Спитайте: «Чиї це запонки?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "cufflinks",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте дядькові запонки й питаєте, чиї вони. Спитайте: «Чиї це запонки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose cufflinks are these?`",
+                "uk": "тут потрібно `Whose` — `Whose cufflinks are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра питає, чиї це навушники. Вони ваші. Скажіть: «Вони мої»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Сестра питає, чиї це навушники. Вони ваші. Скажіть: «Вони мої»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i07:audio",
+            "transcript": "They are mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дядько дивиться на свої запонки. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i08:r2",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i08:r3",
+            "text": "he"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дядько дивиться на свої запонки. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дядя смотрит на свои запонки. Выберите слово",
+            "uk": "Дядько дивиться на свої запонки. Виберіть слово"
+          },
+          "gappedTargetPhrase": "These cufflinks are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-36:i08:r1",
+              "text": "his"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i08:r2",
+              "text": "hers"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i08:r3",
+              "text": "he"
+            }
+          ],
+          "testedDimension": "Дядько дивиться на свої запонки. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Дядько дивиться на свої запонки. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`hers` значит «её», а запонки принадлежат дяде: нужно `his`.",
+                "uk": "`hers` означає «її», а запонки належать дядькові: потрібно `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Дядько дивиться на свої запонки. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`he` значит «он», а «его» без вещи — `his`.",
+                "uk": "`he` означає «він», а «його» без речі — `his`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте двоюрідного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i09:r1",
+            "text": "Whose snorkel is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i09:r2",
+            "text": "Whose snorkel is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i09:r3",
+            "text": "Whose cufflinks are these?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте двоюрідного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i09:audio",
+            "transcript": "Whose snorkel is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:i09:r1",
+              "targetText": "Whose snorkel is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i09:r2",
+              "targetText": "Whose snorkel is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i09:r3",
+              "targetText": "Whose cufflinks are these?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `snorkel`, а в этом варианте — `cufflinks`.",
+                "uk": "У записі річ — `snorkel`, а в цьому варіанті — `cufflinks`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-36:i10:p1",
+              "target": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания",
+                "uk": "трубка для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i10:p2",
+              "target": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники",
+                "uk": "бездротові навушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i10:p3",
+              "target": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки",
+                "uk": "запонки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i10:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "snorkel",
+            "earbuds",
+            "cufflinks",
+            "bag"
+          ],
+          "rightColumn": [
+            "трубка для плавання",
+            "бездротові навушники",
+            "запонки",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сестру й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i11:audio",
+            "transcript": "My cousin's earbuds are on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's earbuds are on the sofa.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "earbuds",
+            "are",
+            "on",
+            "the",
+            "sofa"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сестру й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `My cousin's earbuds are on the sofa.`",
+                "uk": "тут потрібно `are` — `My cousin's earbuds are on the sofa.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тітка шукає бінокль. Він на столі. Скажіть їй: «Бінокль на столі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тітка шукає бінокль. Він на столі. Скажіть їй: «Бінокль на столі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The binoculars are on the table.",
+          "localizedMeaning": {
+            "ru": "Тётя ищет бинокль. Он на столе. Скажите ей: «Бинокль на столе»",
+            "uk": "Тітка шукає бінокль. Він на столі. Скажіть їй: «Бінокль на столі»"
+          },
+          "orderedTokens": [
+            "The",
+            "binoculars",
+            "are",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Тітка шукає бінокль. Він на столі. Скажіть їй: «Бінокль на столі»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The binoculars are on the table.`",
+                "uk": "тут потрібно `are` — `The binoculars are on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дядько питає про трубку для плавання. Вона вашої сестри. Скажіть: «Трубка її»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Дядько питає про трубку для плавання. Вона вашої сестри. Скажіть: «Трубка її»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i13:audio",
+            "transcript": "The snorkel is hers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The snorkel is hers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви питаєте сестру про навушники. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i14:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i14:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i14:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте сестру про навушники. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете сестру о наушниках. Выберите слово",
+            "uk": "Ви питаєте сестру про навушники. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Are these earbuds ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-36:i14:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i14:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i14:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Ви питаєте сестру про навушники. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви питаєте сестру про навушники. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `yours`, а не `your`.",
+                "uk": "Без назви речі потрібно `yours`, а не `your`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви питаєте сестру про навушники. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а «твой» без вещи — `yours`.",
+                "uk": "`you` означає «ти», а «твій» без речі — `yours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тітку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i15:r1",
+            "text": "They are mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i15:r2",
+            "text": "They are his."
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i15:r3",
+            "text": "It is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте тітку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i15:audio",
+            "transcript": "They are mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-36:i15:r1",
+              "targetText": "They are mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i15:r2",
+              "targetText": "They are his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i15:r3",
+              "targetText": "It is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тітку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мои, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `mine`, мої, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тітку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `It`, оно.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `It`, воно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-36:i16:p1",
+              "target": "binoculars",
+              "meaningByLocale": {
+                "ru": "бинокль",
+                "uk": "бінокль"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i16:p2",
+              "target": "earbuds",
+              "meaningByLocale": {
+                "ru": "беспроводные наушники",
+                "uk": "бездротові навушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i16:p3",
+              "target": "cufflinks",
+              "meaningByLocale": {
+                "ru": "запонки",
+                "uk": "запонки"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-36:i16:p4",
+              "target": "snorkel",
+              "meaningByLocale": {
+                "ru": "трубка для плавания",
+                "uk": "трубка для плавання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "binoculars",
+            "earbuds",
+            "cufflinks",
+            "snorkel"
+          ],
+          "rightColumn": [
+            "бінокль",
+            "бездротові навушники",
+            "запонки",
+            "трубка для плавання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли бінокль і хочете повернути його власникові. Спитайте дядька: «Чий це бінокль?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли бінокль і хочете повернути його власникові. Спитайте дядька: «Чий це бінокль?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-36:i17:audio",
+            "transcript": "Whose binoculars are these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose binoculars are these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-36:word:binoculars",
+      "correctText": "binoculars",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i01",
+      "correctText": "These are my aunt's binoculars.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:word:earbuds",
+      "correctText": "earbuds",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i02",
+      "correctText": "Whose earbuds are these?",
+      "correctResponseId": "en:lesson-05:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:word:cufflinks",
+      "correctText": "cufflinks",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:word:snorkel",
+      "correctText": "snorkel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i05",
+      "correctText": "The snorkel is next to the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i06",
+      "correctText": "Whose cufflinks are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i07",
+      "correctText": "They are mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i08",
+      "correctText": "his",
+      "correctResponseId": "en:lesson-05:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i09",
+      "correctText": "Whose snorkel is this?",
+      "correctResponseId": "en:lesson-05:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i11",
+      "correctText": "My cousin's earbuds are on the sofa.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i12",
+      "correctText": "The binoculars are on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i13",
+      "correctText": "The snorkel is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i14",
+      "correctText": "yours",
+      "correctResponseId": "en:lesson-05:session-36:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i15",
+      "correctText": "They are mine.",
+      "correctResponseId": "en:lesson-05:session-36:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i17",
+      "correctText": "Whose binoculars are these?",
+      "correctResponseId": null
+    }
+  ]
+}

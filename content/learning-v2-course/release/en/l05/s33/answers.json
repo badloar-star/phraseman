@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-33:word:badge",
+    "correctText": "badge",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-33:i01",
-    "correctText": "The phone is okay.",
+    "correctText": "This is the client's badge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-33:word:tablet",
+    "correctText": "tablet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i02",
-    "correctText": "watch",
+    "correctText": "Whose tablet is this?",
     "correctResponseId": "en:lesson-05:session-33:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-33:word:briefcase",
+    "correctText": "briefcase",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-33:i03",
-    "correctText": "watch",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-33:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-33:i04",
-    "correctText": "en:lesson-05:session-33:i04:p1=watch\nen:lesson-05:session-33:i04:p2=phone\nen:lesson-05:session-33:i04:p3=doorbell\nen:lesson-05:session-33:i04:p4=lunchbox",
+    "correctText": "en:lesson-05:session-33:i04:p1=badge\nen:lesson-05:session-33:i04:p2=tablet\nen:lesson-05:session-33:i04:p3=briefcase\nen:lesson-05:session-33:i04:p4=tie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-33:word:tie",
+    "correctText": "tie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i05",
-    "correctText": "Whose watch is this?",
+    "correctText": "This is my manager's tie.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i06",
-    "correctText": "Whose phone is this?",
+    "correctText": "Whose tablet is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i07",
-    "correctText": "The watch is mine.",
+    "correctText": "The badge is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i08",
-    "correctText": "Whose",
+    "correctText": "mine",
     "correctResponseId": "en:lesson-05:session-33:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-33:i09",
-    "correctText": "This is Anna's watch.",
+    "correctText": "Whose briefcase is this?",
     "correctResponseId": "en:lesson-05:session-33:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-33:i10",
-    "correctText": "en:lesson-05:session-33:i10:p1=watch\nen:lesson-05:session-33:i10:p2=okay\nen:lesson-05:session-33:i10:p3=doorbell\nen:lesson-05:session-33:i10:p4=lunchbox",
+    "correctText": "en:lesson-05:session-33:i10:p1=tablet\nen:lesson-05:session-33:i10:p2=briefcase\nen:lesson-05:session-33:i10:p3=tie\nen:lesson-05:session-33:i10:p4=desk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i11",
-    "correctText": "The doorbell is next to the door.",
+    "correctText": "The briefcase is next to the desk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i12",
-    "correctText": "Tom's lunchbox is here.",
+    "correctText": "My manager's tie is on the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i13",
-    "correctText": "Whose gloves are these?",
+    "correctText": "It is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i14",
-    "correctText": "is",
+    "correctText": "Whose",
     "correctResponseId": "en:lesson-05:session-33:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-33:i15",
-    "correctText": "Your watch is on the table.",
+    "correctText": "The tie is mine.",
     "correctResponseId": "en:lesson-05:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-33:i16",
-    "correctText": "en:lesson-05:session-33:i16:p1=watch\nen:lesson-05:session-33:i16:p2=okay\nen:lesson-05:session-33:i16:p3=phone\nen:lesson-05:session-33:i16:p4=lunchbox",
+    "correctText": "en:lesson-05:session-33:i16:p1=badge\nen:lesson-05:session-33:i16:p2=tablet\nen:lesson-05:session-33:i16:p3=briefcase\nen:lesson-05:session-33:i16:p4=tie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-33:i17",
-    "correctText": "Whose watch is this?",
+    "correctText": "Whose briefcase is this?",
     "correctResponseId": null
   }
 ]

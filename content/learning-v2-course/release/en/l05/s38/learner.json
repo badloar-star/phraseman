@@ -4,39 +4,84 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-38:i01",
+      "interactionId": "en:lesson-05:session-38:word:monitor",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — monitor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:word:monitor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — monitor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:word:monitor:audio",
+          "transcript": "monitor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-38:word:monitor:r1",
+            "targetText": "monitor",
+            "meaningByLocale": {
+              "ru": "монитор. The monitor is on the desk. — «Монитор на столе». Большой экран, который подключают к компьютеру.",
+              "uk": "монітор. The monitor is on the desk. — «Монітор на столі». Великий екран, який підключають до комп’ютера."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "monitor",
+          "definitionByLocale": {
+            "ru": "монитор. The monitor is on the desk. — «Монитор на столе». Большой экран, который подключают к компьютеру.",
+            "uk": "монітор. The monitor is on the desk. — «Монітор на столі». Великий екран, який підключають до комп’ютера."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У вас мало физических сил. Скажите «Я слаб» без сокращения",
+      "prompt": "Друг спрашивает, чей монитор у стены. Он вашей сестры. Скажите: «Монитор моей сестры»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У вас мало физических сил. Скажите «Я слаб» без сокращения",
+      "accessibilityLabel": "Друг спрашивает, чей монитор у стены. Он вашей сестры. Скажите: «Монитор моей сестры»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am weak.",
+        "targetPhrase": "The monitor is my sister's.",
         "localizedMeaning": {
-          "ru": "У вас мало физических сил. Скажите «Я слаб» без сокращения",
-          "uk": "У вас мало фізичних сил. Скажіть «Я слабкий» без скорочення"
+          "ru": "Друг спрашивает, чей монитор у стены. Он вашей сестры. Скажите: «Монитор моей сестры»",
+          "uk": "Друг питає, чий монітор біля стіни. Він вашої сестри. Скажіть: «Монітор моєї сестри»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "weak"
+          "The",
+          "monitor",
+          "is",
+          "my",
+          "sister's"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "sister"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-38:i01:tile:d1",
             "correct": false,
-            "testedDimension": "У вас мало физических сил. Скажите «Я слаб» без сокращения",
+            "testedDimension": "Друг спрашивает, чей монитор у стены. Он вашей сестры. Скажите: «Монитор моей сестры»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am weak.`",
-              "uk": "тут потрібно `am` — `I am weak.`"
+              "ru": "здесь нужно `sister's` — `The monitor is my sister's.`",
+              "uk": "тут потрібно `sister's` — `The monitor is my sister's.`"
             }
           }
         ],
@@ -48,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-38:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-38:word:mouse",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — mouse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:word:mouse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mouse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:word:mouse:audio",
+          "transcript": "mouse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-38:word:mouse:r1",
+            "targetText": "mouse",
+            "meaningByLocale": {
+              "ru": "компьютерная мышь. My brother's mouse is white. — «Компьютерная мышь моего брата белая». Маленькое устройство, которым двигают курсор.",
+              "uk": "комп’ютерна миша. My brother's mouse is white. — «Комп’ютерна миша мого брата біла». Маленький пристрій, яким рухають курсор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mouse",
+          "definitionByLocale": {
+            "ru": "компьютерная мышь. My brother's mouse is white. — «Компьютерная мышь моего брата белая». Маленькое устройство, которым двигают курсор.",
+            "uk": "комп’ютерна миша. My brother's mouse is white. — «Комп’ютерна миша мого брата біла». Маленький пристрій, яким рухають курсор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-38:i02:r1",
-          "text": "laptop"
+          "text": "The mouse is yours."
         },
         {
           "responseId": "en:lesson-05:session-38:i02:r2",
-          "text": "tablet"
+          "text": "The mouse is mine."
         },
         {
           "responseId": "en:lesson-05:session-38:i02:r3",
-          "text": "camera"
+          "text": "The monitor is yours."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i02:audio",
-          "transcript": "laptop"
+          "transcript": "The mouse is yours."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-38:i02:r1",
-            "targetText": "laptop",
+            "targetText": "The mouse is yours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-38:i02:r2",
-            "targetText": "tablet",
+            "targetText": "The mouse is mine.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-38:i02:r3",
-            "targetText": "camera",
+            "targetText": "The monitor is yours.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +190,19 @@
           {
             "responseId": "en:lesson-05:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `laptop`, а в этом варианте — `tablet`.",
-              "uk": "У записі перше слово — `laptop`, а в цьому варіанті — `tablet`."
+              "ru": "В записи последнее слово — `yours`, твоя, а в этом варианте — `mine`, моя.",
+              "uk": "У записі останнє слово — `yours`, твоя, а в цьому варіанті — `mine`, моя."
             }
           },
           {
             "responseId": "en:lesson-05:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `laptop`, а в этом варианте — `camera`.",
-              "uk": "У записі перше слово — `laptop`, а в цьому варіанті — `camera`."
+              "ru": "В записи вещь — `mouse`, мышь, а в этом варианте — `monitor`.",
+              "uk": "У записі річ — `mouse`, миша, а в цьому варіанті — `monitor`."
             }
           }
         ],
@@ -124,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-38:word:joystick",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — joystick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:word:joystick:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — joystick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:word:joystick:audio",
+          "transcript": "joystick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-38:word:joystick:r1",
+            "targetText": "joystick",
+            "meaningByLocale": {
+              "ru": "джойстик. My son's joystick is red. — «Джойстик моего сына красный». Пульт с рычажком для видеоигр.",
+              "uk": "джойстик. My son's joystick is red. — «Джойстик мого сина червоний». Пульт із важелем для відеоігор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "joystick",
+          "definitionByLocale": {
+            "ru": "джойстик. My son's joystick is red. — «Джойстик моего сына красный». Пульт с рычажком для видеоигр.",
+            "uk": "джойстик. My son's joystick is red. — «Джойстик мого сина червоний». Пульт із важелем для відеоігор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-38:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите ноутбук",
+      "prompt": "Подруга показывает джойстик на другом конце комнаты. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-38:i03:r1",
-          "text": "laptop"
+          "text": "that"
         },
         {
           "responseId": "en:lesson-05:session-38:i03:r2",
-          "text": "tablet"
+          "text": "those"
         },
         {
           "responseId": "en:lesson-05:session-38:i03:r3",
-          "text": "ticket"
+          "text": "these"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите ноутбук",
+      "accessibilityLabel": "Подруга показывает джойстик на другом конце комнаты. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите ноутбук",
-          "uk": "Назвіть ноутбук"
+          "ru": "Подруга показывает джойстик на другом конце комнаты. Выберите слово",
+          "uk": "Подруга показує джойстик в іншому кінці кімнати. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "Whose joystick is ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-38:i03:r1",
-            "text": "laptop"
+            "text": "that"
           },
           {
             "responseId": "en:lesson-05:session-38:i03:r2",
-            "text": "tablet"
+            "text": "those"
           },
           {
             "responseId": "en:lesson-05:session-38:i03:r3",
-            "text": "ticket"
+            "text": "these"
           }
         ],
-        "testedDimension": "Назовите ноутбук",
+        "testedDimension": "Подруга показывает джойстик на другом конце комнаты. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-38:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите ноутбук",
+            "testedDimension": "Подруга показывает джойстик на другом конце комнаты. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`tablet` — планшет; ноутбук — `laptop`.",
-              "uk": "`tablet` — планшет; ноутбук — `laptop`."
+              "ru": "Джойстик один, поэтому нужно `that`, а не `those`.",
+              "uk": "Джойстик один, тому потрібно `that`, а не `those`."
             }
           },
           {
             "responseId": "en:lesson-05:session-38:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите ноутбук",
+            "testedDimension": "Подруга показывает джойстик на другом конце комнаты. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`ticket` — билет; ноутбук — `laptop`.",
-              "uk": "`ticket` — квиток; ноутбук — `laptop`."
+              "ru": "Джойстик один и лежит далеко: нужно `that`, а не `these`.",
+              "uk": "Джойстик один і лежить далеко: потрібно `that`, а не `these`."
             }
           }
         ]
@@ -194,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-38:i04:p1",
-            "target": "laptop",
+            "target": "monitor",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "монитор",
+              "uk": "монітор"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i04:p2",
-            "target": "ticket",
+            "target": "mouse",
             "meaningByLocale": {
-              "ru": "билет",
-              "uk": "квиток"
+              "ru": "компьютерная мышь",
+              "uk": "комп’ютерна миша"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i04:p3",
-            "target": "bike shed",
+            "target": "joystick",
             "meaningByLocale": {
-              "ru": "велосипедный сарай",
-              "uk": "велосипедний сарай"
+              "ru": "джойстик",
+              "uk": "джойстик"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i04:p4",
-            "target": "headphones",
+            "target": "drone",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "дрон",
+              "uk": "дрон"
             }
           }
         ],
         "leftColumn": [
-          "laptop",
-          "ticket",
-          "bike shed",
-          "headphones"
+          "monitor",
+          "mouse",
+          "joystick",
+          "drone"
         ],
         "rightColumn": [
-          "ноутбук",
-          "билет",
-          "велосипедный сарай",
-          "наушники"
+          "монитор",
+          "компьютерная мышь",
+          "джойстик",
+          "дрон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,34 +397,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-38:word:drone",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:word:drone:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:word:drone:audio",
+          "transcript": "drone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-38:word:drone:r1",
+            "targetText": "drone",
+            "meaningByLocale": {
+              "ru": "дрон. The drone is on the table. — «Дрон на столе». Небольшой летающий аппарат с пультом.",
+              "uk": "дрон. The drone is on the table. — «Дрон на столі». Невеликий літальний апарат із пультом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drone",
+          "definitionByLocale": {
+            "ru": "дрон. The drone is on the table. — «Дрон на столе». Небольшой летающий аппарат с пультом.",
+            "uk": "дрон. The drone is on the table. — «Дрон на столі». Невеликий літальний апарат із пультом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-38:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте друга и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте друга и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i05:audio",
-          "transcript": "Whose laptop is this?"
+          "transcript": "The drone is on the table."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose laptop is this?",
+        "hiddenTargetPhrase": "The drone is on the table.",
         "orderedTokens": [
-          "Whose",
-          "laptop",
+          "The",
+          "drone",
           "is",
-          "this"
+          "on",
+          "the",
+          "table"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте друга и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The drone is on the table.`",
+              "uk": "тут потрібно `is` — `The drone is on the table.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -303,30 +491,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы нашли билет. Спросите «Чей это билет?»",
+      "prompt": "Мышь лежит далеко на столе. Спросите друга: «Чья там мышь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы нашли билет. Спросите «Чей это билет?»",
+      "accessibilityLabel": "Мышь лежит далеко на столе. Спросите друга: «Чья там мышь?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose ticket is this?",
+        "targetPhrase": "Whose mouse is that?",
         "localizedMeaning": {
-          "ru": "Вы нашли билет. Спросите «Чей это билет?»",
-          "uk": "Ви знайшли квиток. Запитайте «Чий це квиток?»"
+          "ru": "Мышь лежит далеко на столе. Спросите друга: «Чья там мышь?»",
+          "uk": "Миша лежить далеко на столі. Спитайте друга: «Чия там миша?»"
         },
         "orderedTokens": [
           "Whose",
-          "ticket",
+          "mouse",
           "is",
-          "this"
+          "that"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Мышь лежит далеко на столе. Спросите друга: «Чья там мышь?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose mouse is that?`",
+              "uk": "тут потрібно `Whose` — `Whose mouse is that?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -336,25 +536,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ноутбук принадлежит вам. Скажите «Ноутбук мой»",
+      "prompt": "Брат ищет джойстик. Вы нашли его. Скажите: «Вот твой джойстик»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i07:audio"
       ],
-      "accessibilityLabel": "Ноутбук принадлежит вам. Скажите «Ноутбук мой»",
+      "accessibilityLabel": "Брат ищет джойстик. Вы нашли его. Скажите: «Вот твой джойстик»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i07:audio",
-          "transcript": "The laptop is mine."
+          "transcript": "Here is your joystick."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The laptop is mine.",
+        "targetPhrase": "Here is your joystick.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -369,67 +569,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце наушников. Выберите форму",
+      "prompt": "Друг спрашивает о дроне. Он ваш с братом. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-38:i08:r1",
-          "text": "are"
+          "text": "ours"
         },
         {
           "responseId": "en:lesson-05:session-38:i08:r2",
-          "text": "is"
+          "text": "our"
         },
         {
           "responseId": "en:lesson-05:session-38:i08:r3",
-          "text": "am"
+          "text": "we"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце наушников. Выберите форму",
+      "accessibilityLabel": "Друг спрашивает о дроне. Он ваш с братом. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце наушников. Выберите форму",
-          "uk": "Запитайте про власника навушників. Виберіть форму"
+          "ru": "Друг спрашивает о дроне. Он ваш с братом. Выберите слово",
+          "uk": "Друг питає про дрон. Він ваш із братом. Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose headphones ___ these?",
+        "gappedTargetPhrase": "The drone is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-38:i08:r1",
-            "text": "are"
+            "text": "ours"
           },
           {
             "responseId": "en:lesson-05:session-38:i08:r2",
-            "text": "is"
+            "text": "our"
           },
           {
             "responseId": "en:lesson-05:session-38:i08:r3",
-            "text": "am"
+            "text": "we"
           }
         ],
-        "testedDimension": "Спросите о владельце наушников. Выберите форму",
+        "testedDimension": "Друг спрашивает о дроне. Он ваш с братом. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце наушников. Выберите форму",
+            "testedDimension": "Друг спрашивает о дроне. Он ваш с братом. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`headphones` — множественное число: `are these`.",
-              "uk": "`headphones` — множина: `are these`."
+              "ru": "Без названия вещи нужно `ours`, а не `our`.",
+              "uk": "Без назви речі потрібно `ours`, а не `our`."
             }
           },
           {
             "responseId": "en:lesson-05:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце наушников. Выберите форму",
+            "testedDimension": "Друг спрашивает о дроне. Он ваш с братом. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `are these`.",
-              "uk": "`am` використовується з `I`; тут `are these`."
+              "ru": "`we` значит «мы», а «наш» без вещи — `ours`.",
+              "uk": "`we` означає «ми», а «наш» без речі — `ours`."
             }
           }
         ]
@@ -438,51 +638,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какую вещь называет друг",
+      "prompt": "Послушайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-38:i09:r1",
-          "text": "This is Anna's laptop."
+          "text": "Whose drone is that?"
         },
         {
           "responseId": "en:lesson-05:session-38:i09:r2",
-          "text": "This is Anna's ticket."
+          "text": "Whose drone is this?"
         },
         {
           "responseId": "en:lesson-05:session-38:i09:r3",
-          "text": "This is Anna's tablet."
+          "text": "Whose monitor is that?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, какую вещь называет друг",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i09:audio",
-          "transcript": "This is Anna's laptop."
+          "transcript": "Whose drone is that?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-38:i09:r1",
-            "targetText": "This is Anna's laptop.",
+            "targetText": "Whose drone is that?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-38:i09:r2",
-            "targetText": "This is Anna's ticket.",
+            "targetText": "Whose drone is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-38:i09:r3",
-            "targetText": "This is Anna's tablet.",
+            "targetText": "Whose monitor is that?",
             "meaningByLocale": null
           }
         ],
@@ -491,19 +691,19 @@
           {
             "responseId": "en:lesson-05:session-38:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет друг",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `ticket`.",
-              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `ticket`."
+              "ru": "В записи последнее слово — `that`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `that`, а в цьому варіанті — `this`."
             }
           },
           {
             "responseId": "en:lesson-05:session-38:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет друг",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `tablet`.",
-              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `tablet`."
+              "ru": "В записи вещь — `drone`, дрон, а в этом варианте — `monitor`.",
+              "uk": "У записі річ — `drone`, дрон, а в цьому варіанті — `monitor`."
             }
           }
         ],
@@ -514,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -528,48 +728,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-38:i10:p1",
-            "target": "laptop",
+            "target": "mouse",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "компьютерная мышь",
+              "uk": "комп’ютерна миша"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i10:p2",
-            "target": "weak",
+            "target": "joystick",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "джойстик",
+              "uk": "джойстик"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i10:p3",
-            "target": "bike shed",
+            "target": "drone",
             "meaningByLocale": {
-              "ru": "велосипедный сарай",
-              "uk": "велосипедний сарай"
+              "ru": "дрон",
+              "uk": "дрон"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i10:p4",
-            "target": "headphones",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "стол",
+              "uk": "стіл"
             }
           }
         ],
         "leftColumn": [
-          "laptop",
-          "weak",
-          "bike shed",
-          "headphones"
+          "mouse",
+          "joystick",
+          "drone",
+          "table"
         ],
         "rightColumn": [
-          "ноутбук",
-          "слабый",
-          "велосипедный сарай",
-          "наушники"
+          "компьютерная мышь",
+          "джойстик",
+          "дрон",
+          "стол"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -587,45 +787,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i11:audio",
-          "transcript": "Tom is next to the bike shed."
+          "transcript": "My son's joystick is under the sofa."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Tom is next to the bike shed.",
+        "hiddenTargetPhrase": "My son's joystick is under the sofa.",
         "orderedTokens": [
-          "Tom",
+          "My",
+          "son's",
+          "joystick",
           "is",
-          "next",
-          "to",
+          "under",
           "the",
-          "bike",
-          "shed"
+          "sofa"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "son"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-38:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Tom is next to the bike shed.`",
-              "uk": "тут потрібно `is` — `Tom is next to the bike shed.`"
+              "ru": "здесь нужно `son's` — `My son's joystick is under the sofa.`",
+              "uk": "тут потрібно `son's` — `My son's joystick is under the sofa.`"
             }
           }
         ],
@@ -638,39 +838,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Наушники принадлежат подруге. Скажите «Наушники её»",
+      "prompt": "Вы показываете подруге монитор и спрашиваете, не её ли он. Спросите: «Это твой монитор?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Наушники принадлежат подруге. Скажите «Наушники её»",
+      "accessibilityLabel": "Вы показываете подруге монитор и спрашиваете, не её ли он. Спросите: «Это твой монитор?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The headphones are hers.",
+        "targetPhrase": "Is this monitor yours?",
         "localizedMeaning": {
-          "ru": "Наушники принадлежат подруге. Скажите «Наушники её»",
-          "uk": "Навушники належать подрузі. Скажіть «Навушники її»"
+          "ru": "Вы показываете подруге монитор и спрашиваете, не её ли он. Спросите: «Это твой монитор?»",
+          "uk": "Ви показуєте подрузі монітор і питаєте, чи не її він. Спитайте: «Це твій монітор?»"
         },
         "orderedTokens": [
-          "The",
-          "headphones",
-          "are",
-          "hers"
+          "Is",
+          "this",
+          "monitor",
+          "yours"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-38:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Наушники принадлежат подруге. Скажите «Наушники её»",
+            "testedDimension": "Вы показываете подруге монитор и спрашиваете, не её ли он. Спросите: «Это твой монитор?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The headphones are hers.`",
-              "uk": "тут потрібно `are` — `The headphones are hers.`"
+              "ru": "здесь нужно `Is` — `Is this monitor yours?`",
+              "uk": "тут потрібно `Is` — `Is this monitor yours?`"
             }
           }
         ],
@@ -683,25 +883,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Билет друга у вас. Скажите ему «Твой билет у меня»",
+      "prompt": "Друг спрашивает, чья это мышь. Она не ваша. Скажите: «Мышь не моя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i13:audio"
       ],
-      "accessibilityLabel": "Билет друга у вас. Скажите ему «Твой билет у меня»",
+      "accessibilityLabel": "Друг спрашивает, чья это мышь. Она не ваша. Скажите: «Мышь не моя»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i13:audio",
-          "transcript": "I have your ticket."
+          "transcript": "The mouse isn't mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your ticket.",
+        "targetPhrase": "The mouse isn't mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -716,67 +916,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце ноутбука",
+      "prompt": "Вы возвращаете другу дрон. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-38:i14:r1",
-          "text": "Whose"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-38:i14:r2",
-          "text": "Where"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-38:i14:r3",
-          "text": "Who"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце ноутбука",
+      "accessibilityLabel": "Вы возвращаете другу дрон. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце ноутбука",
-          "uk": "Запитайте про власника ноутбука"
+          "ru": "Вы возвращаете другу дрон. Выберите слово",
+          "uk": "Ви повертаєте другові дрон. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ laptop is this?",
+        "gappedTargetPhrase": "Here ___ your drone.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-38:i14:r1",
-            "text": "Whose"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-38:i14:r2",
-            "text": "Where"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-38:i14:r3",
-            "text": "Who"
+            "text": "am"
           }
         ],
-        "testedDimension": "Спросите о владельце ноутбука",
+        "testedDimension": "Вы возвращаете другу дрон. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-38:i14:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце ноутбука",
+            "testedDimension": "Вы возвращаете другу дрон. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чий — `Whose`."
+              "ru": "Дрон один, поэтому нужно `Here is`, а не `Here are`.",
+              "uk": "Дрон один, тому потрібно `Here is`, а не `Here are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-38:i14:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце ноутбука",
+            "testedDimension": "Вы возвращаете другу дрон. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чий — `Whose`."
+              "ru": "`am` бывает только с `I`; здесь нужно `Here is`.",
+              "uk": "`am` буває лише з `I`; тут потрібно `Here is`."
             }
           }
         ]
@@ -785,51 +985,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей ноутбук здесь",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-38:i15:r1",
-          "text": "Your laptop is here."
+          "text": "Here is your joystick."
         },
         {
           "responseId": "en:lesson-05:session-38:i15:r2",
-          "text": "My laptop is here."
+          "text": "Here is my joystick."
         },
         {
           "responseId": "en:lesson-05:session-38:i15:r3",
-          "text": "His laptop is here."
+          "text": "Here is your mouse."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей ноутбук здесь",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i15:audio",
-          "transcript": "Your laptop is here."
+          "transcript": "Here is your joystick."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-38:i15:r1",
-            "targetText": "Your laptop is here.",
+            "targetText": "Here is your joystick.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-38:i15:r2",
-            "targetText": "My laptop is here.",
+            "targetText": "Here is my joystick.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-38:i15:r3",
-            "targetText": "His laptop is here.",
+            "targetText": "Here is your mouse.",
             "meaningByLocale": null
           }
         ],
@@ -838,19 +1038,19 @@
           {
             "responseId": "en:lesson-05:session-38:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей ноутбук здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи слово перед вещью — `your`, а в этом варианте — `my`.",
+              "uk": "У записі слово перед річчю — `your`, а в цьому варіанті — `my`."
             }
           },
           {
             "responseId": "en:lesson-05:session-38:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей ноутбук здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `joystick`, джойстик, а в этом варианте — `mouse`, мышь.",
+              "uk": "У записі річ — `joystick`, джойстик, а в цьому варіанті — `mouse`, миша."
             }
           }
         ],
@@ -861,7 +1061,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -875,48 +1075,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-38:i16:p1",
-            "target": "laptop",
+            "target": "monitor",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "монитор",
+              "uk": "монітор"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i16:p2",
-            "target": "weak",
+            "target": "mouse",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "компьютерная мышь",
+              "uk": "комп’ютерна миша"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i16:p3",
-            "target": "ticket",
+            "target": "joystick",
             "meaningByLocale": {
-              "ru": "билет",
-              "uk": "квиток"
+              "ru": "джойстик",
+              "uk": "джойстик"
             }
           },
           {
             "pairId": "en:lesson-05:session-38:i16:p4",
-            "target": "headphones",
+            "target": "drone",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "дрон",
+              "uk": "дрон"
             }
           }
         ],
         "leftColumn": [
-          "laptop",
-          "weak",
-          "ticket",
-          "headphones"
+          "monitor",
+          "mouse",
+          "joystick",
+          "drone"
         ],
         "rightColumn": [
-          "ноутбук",
-          "слабый",
-          "билет",
-          "наушники"
+          "монитор",
+          "компьютерная мышь",
+          "джойстик",
+          "дрон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -934,25 +1134,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-38:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы нашли наушники и хотите вернуть их владельцу. Спросите «Чьи это наушники?»",
+      "prompt": "Вы нашли в комнате дрон и хотите вернуть его владельцу. Спросите друга: «Чей это дрон?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-38:i17:audio"
       ],
-      "accessibilityLabel": "Вы нашли наушники и хотите вернуть их владельцу. Спросите «Чьи это наушники?»",
+      "accessibilityLabel": "Вы нашли в комнате дрон и хотите вернуть его владельцу. Спросите друга: «Чей это дрон?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-38:i17:audio",
-          "transcript": "Whose headphones are these?"
+          "transcript": "Whose drone is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose headphones are these?",
+        "targetPhrase": "Whose drone is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -974,11 +1174,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e3d1f14393d872e6e9e14370a4261bf57e5658d9e235b295a9c799760fe7183a"
+  "learnerFingerprint": "f2f1ddbb419e84b394d6ae7180f72069dd01e52c30b14c0c2d32d50737e82c6f"
 }

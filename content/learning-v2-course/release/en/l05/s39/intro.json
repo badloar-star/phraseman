@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-39",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце инструмента и описать вещи в комнате",
-    "uk": "запитати про власника інструмента й описати речі в кімнаті"
+    "ru": "спросить о владельце инструмента и сказать, где он лежит: whose, 's, on, next to, between",
+    "uk": "спитати про власника інструмента й сказати, де він лежить: whose, 's, on, next to, between"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Инструмент ищет хозяина",
-        "uk": "Інструмент шукає господаря"
+        "ru": "Скрипка в углу",
+        "uk": "Скрипка в кутку"
       },
       "bodyByLocale": {
-        "ru": "`violin` — «скрипка». `Whose violin is this?` — «Чья это скрипка?» `The violin is hers` — «Скрипка её». `This is Tom’s violin` — «Это скрипка Тома». Скрипка уже на месте; осталось найти музыканта.",
-        "uk": "`violin` — «скрипка». `Whose violin is this?` — «Чия це скрипка?» `The violin is hers` — «Скрипка її». `This is Tom’s violin` — «Це скрипка Тома». Скрипка вже на місці; залишилося знайти музиканта."
+        "ru": "Перед домашним концертом в гостиной ставят стулья. Гость заметил в углу скрипку и спрашивает вас, чья она. Скрипка вашей дочери, она учится играть. violin — «скрипка». Назовите хозяйку через 's: The violin is my daughter's — «Скрипка моей дочери».",
+        "uk": "Перед домашнім концертом у вітальні ставлять стільці. Гість помітив у кутку скрипку й питає вас, чия вона. Скрипка вашої доньки, вона вчиться грати. violin — «скрипка». Назвіть господиню через 's: The violin is my daughter's — «Скрипка моєї доньки»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-39:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, кому принадлежит скрипка.",
-          "uk": "Запитайте, кому належить скрипка."
+          "ru": "Гость спрашивает, чья скрипка в углу. Она вашей дочери. Скажите: «Скрипка моей дочери».",
+          "uk": "Гість питає, чия скрипка в кутку. Вона вашої доньки. Скажіть: «Скрипка моєї доньки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-39:intro1:r1",
-              "text": "Whose violin is this?"
+              "text": "The violin is my daughter's."
             },
             {
               "responseId": "en:lesson-05:session-39:intro1:r2",
-              "text": "Where is the violin?"
+              "text": "The violin is my daughter."
             },
             {
               "responseId": "en:lesson-05:session-39:intro1:r3",
-              "text": "Whose violin are these?"
+              "text": "The violin is my uncle's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-39:intro1:r1",
-              "text": "Whose violin is this?"
+              "text": "The violin is my daughter's."
             },
             {
               "responseId": "en:lesson-05:session-39:intro1:r2",
-              "text": "Where is the violin?"
+              "text": "The violin is my daughter."
             },
             {
               "responseId": "en:lesson-05:session-39:intro1:r3",
-              "text": "Whose violin are these?"
+              "text": "The violin is my uncle's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, кому принадлежит скрипка.",
-          "uk": "Запитайте, кому належить скрипка."
+          "ru": "Гость спрашивает, чья скрипка в углу. Она вашей дочери. Скажите: «Скрипка моей дочери».",
+          "uk": "Гість питає, чия скрипка в кутку. Вона вашої доньки. Скажіть: «Скрипка моєї доньки»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Гитара и вода",
-        "uk": "Гітара й вода"
+        "ru": "Гармоника на полке",
+        "uk": "Гармоніка на полиці"
       },
       "bodyByLocale": {
-        "ru": "`guitar` — «гитара», `bottles` — «бутылки». `Whose guitar is this?` — «Чья это гитара?» `Whose bottles are these?` — «Чьи это бутылки?» Для одной гитары — `is this`, для нескольких бутылок — `are these`.",
-        "uk": "`guitar` — «гітара», `bottles` — «пляшки». `Whose guitar is this?` — «Чия це гітара?» `Whose bottles are these?` — «Чиї це пляшки?» Для однієї гітари — `is this`, для кількох пляшок — `are these`."
+        "ru": "Дядя собирается играть на губной гармонике и не может её найти. Вы видели её на полке над столом. harmonica — «губная гармоника», маленький инструмент, на котором играют ртом. Скажите, где она: The harmonica is on the shelf — «Губная гармоника на полке».",
+        "uk": "Дядько збирається грати на губній гармоніці й не може її знайти. Ви бачили її на полиці над столом. harmonica — «губна гармоніка», маленький інструмент, на якому грають ротом. Скажіть, де вона: The harmonica is on the shelf — «Губна гармоніка на полиці»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-39:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце бутылок.",
-          "uk": "Запитайте про власника пляшок."
+          "ru": "Дядя ищет губную гармонику. Она на полке. Скажите ему: «Губная гармоника на полке».",
+          "uk": "Дядько шукає губну гармоніку. Вона на полиці. Скажіть йому: «Губна гармоніка на полиці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-39:intro2:r1",
-              "text": "Whose bottles are these?"
+              "text": "The harmonica is on the shelf."
             },
             {
               "responseId": "en:lesson-05:session-39:intro2:r2",
-              "text": "Whose bottles is this?"
+              "text": "The harmonica is in the shelf."
             },
             {
               "responseId": "en:lesson-05:session-39:intro2:r3",
-              "text": "Where are the bottles?"
+              "text": "The harmonica are on the shelf."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-39:intro2:r1",
-              "text": "Whose bottles are these?"
+              "text": "The harmonica is on the shelf."
             },
             {
               "responseId": "en:lesson-05:session-39:intro2:r2",
-              "text": "Whose bottles is this?"
+              "text": "The harmonica is in the shelf."
             },
             {
               "responseId": "en:lesson-05:session-39:intro2:r3",
-              "text": "Where are the bottles?"
+              "text": "The harmonica are on the shelf."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце бутылок.",
-          "uk": "Запитайте про власника пляшок."
+          "ru": "Дядя ищет губную гармонику. Она на полке. Скажите ему: «Губная гармоника на полке».",
+          "uk": "Дядько шукає губну гармоніку. Вона на полиці. Скажіть йому: «Губна гармоніка на полиці»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Смелость перед концертом",
-        "uk": "Сміливість перед концертом"
+        "ru": "Бубен между стулом и диваном",
+        "uk": "Бубон між стільцем і диваном"
       },
       "bodyByLocale": {
-        "ru": "`brave` — «смелый»: `You are brave` — «Ты смелый / смелая». `boiler` — «отопительный котёл», устройство для нагрева воды в системе отопления. `The boiler is in the kitchen` — «Отопительный котёл на кухне». `I have your guitar` — «Твоя гитара у меня».",
-        "uk": "`brave` — «сміливий»: `You are brave` — «Ти сміливий / смілива». `boiler` — «опалювальний котел», пристрій для нагрівання води в системі опалення. `The boiler is in the kitchen` — «Опалювальний котел на кухні». `I have your guitar` — «Твоя гітара в мене»."
+        "ru": "Бабушка ищет бубен перед самым началом концерта. Вы видите, что он лежит между стулом и диваном. tambourine — «бубен», круглый инструмент, в который стучат рукой. Скажите, где он: The tambourine is between the chair and the sofa — «Бубен между стулом и диваном».",
+        "uk": "Бабуся шукає бубон перед самим початком концерту. Ви бачите, що він лежить між стільцем і диваном. tambourine — «бубон», круглий інструмент, у який стукають рукою. Скажіть, де він: The tambourine is between the chair and the sofa — «Бубон між стільцем і диваном»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-39:intro3:q",
         "promptByLocale": {
-          "ru": "Поддержите друга: «Ты смелый», без сокращения.",
-          "uk": "Підтримайте друга: «Ти сміливий», без скорочення."
+          "ru": "Бабушка ищет бубен. Он между стулом и диваном. Скажите ей, где он.",
+          "uk": "Бабуся шукає бубон. Він між стільцем і диваном. Скажіть їй, де він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-39:intro3:r1",
-              "text": "You are brave."
+              "text": "The tambourine is between the chair and the sofa."
             },
             {
               "responseId": "en:lesson-05:session-39:intro3:r2",
-              "text": "You is brave."
+              "text": "The tambourine is next to the chair and the sofa."
             },
             {
               "responseId": "en:lesson-05:session-39:intro3:r3",
-              "text": "You are sleepy."
+              "text": "The tambourine is between the chair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-39:intro3:r1",
-              "text": "You are brave."
+              "text": "The tambourine is between the chair and the sofa."
             },
             {
               "responseId": "en:lesson-05:session-39:intro3:r2",
-              "text": "You is brave."
+              "text": "The tambourine is next to the chair and the sofa."
             },
             {
               "responseId": "en:lesson-05:session-39:intro3:r3",
-              "text": "You are sleepy."
+              "text": "The tambourine is between the chair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Поддержите друга: «Ты смелый», без сокращения.",
-          "uk": "Підтримайте друга: «Ти сміливий», без скорочення."
+          "ru": "Бабушка ищет бубен. Он между стулом и диваном. Скажите ей, где он.",
+          "uk": "Бабуся шукає бубон. Він між стільцем і диваном. Скажіть їй, де він."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f67f44539c5552fa7da62b338b9aa59d14a9cb5be88ba390ca1ff0004ab76ba3"
+  "introFingerprint": "996045309a413e69ebf78235bd002e42efed7d75f992d8856dfdf022ef668e7b"
 }

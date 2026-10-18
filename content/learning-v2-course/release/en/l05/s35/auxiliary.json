@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-35:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "goggles — множественное число, поэтому нужно are.",
+          "uk": "goggles — множина, тому потрібно are."
         },
         "en:lesson-05:session-35:intro1:r3": {
-          "ru": "Один браслет: `is this`.",
-          "uk": "Один браслет: `is this`."
+          "ru": "Без названия вещи нужно mine, а не my.",
+          "uk": "Без назви речі потрібно mine, а не my."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-35:intro2:r2": {
-          "ru": "Несколько фотографий: `are these`.",
-          "uk": "Кілька фотографій: `are these`."
+          "ru": "Без названия вещи нужно yours, а не your.",
+          "uk": "Без назви речі потрібно yours, а не your."
         },
         "en:lesson-05:session-35:intro2:r3": {
-          "ru": "Это «Где фотографии?»; о владельце спрашиваем с `Whose`.",
-          "uk": "Це «Де фотографії?»; про власника запитуємо з `Whose`."
+          "ru": "Щётка одна, поэтому вопрос начинаем с Is.",
+          "uk": "Щітка одна, тому питання починаємо з Is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-35:intro3:r2": {
-          "ru": "Один человек: `Anna is`.",
-          "uk": "Одна людина: `Anna is`."
+          "ru": "Перед вещью нужно your, а yours стоит без вещи.",
+          "uk": "Перед річчю потрібно your, а yours стоїть без речі."
         },
         "en:lesson-05:session-35:intro3:r3": {
-          "ru": "`okay` — в порядке; больна — `ill`.",
-          "uk": "`okay` — у порядку; хвора — `ill`."
+          "ru": "Платок один, поэтому нужно Here is.",
+          "uk": "Хустинка одна, тому потрібно Here is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5ac6545c5b68fda2b1df625f19674fed3b46a03f5758db37b378626124c95092"
+  "auxiliaryFingerprint": "cf58faf75ce0697c13fa84ea2c11873aaeeb10894bce933073357fab13cfa266"
 }

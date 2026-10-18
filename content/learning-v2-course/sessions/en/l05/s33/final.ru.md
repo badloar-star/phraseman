@@ -1,136 +1,154 @@
-# Английский · Урок 5 · Занятие 33 — Чьи это часы?
+# Английский · Урок 5 · Занятие 33 — Забытое после встречи
 
-**Ситуация.** После встречи на столе остались часы, телефон и ланчбокс. В дверной звонок звонит друг: возможно, он вернулся за своей вещью.
+**Ситуация.** После встречи в офисе на столах и стульях остались чужие вещи. Нужно спросить, чья вещь, и коротко ответить, если она ваша или вашего менеджера.
 
-**Что вы освоите:** спросить, кому принадлежит предмет, с whose
-**Новые слова:** watch
+**Что вы освоите:** спросить, чья вещь, с whose и ответить: mine или имя хозяина с 's
+**Новые слова:** badge, tablet, briefcase, tie
+**Возвращаются:** manager, client, colleague, desk, chair, table
 
 ---
 
 ## Интро 1
 
-### Часы на руке
+### Бейдж на столе
 
-`watch` — «наручные часы». По-русски «часы» — множественное число, но один предмет на запястье по-английски — `a watch`. `The watch is mine` — «Часы мои»: здесь нужна форма `is`. `This is Anna’s watch` — «Это часы Анны». Часы знают время, но имя владельца всё равно придётся выяснять.
+Вы убираете переговорную сразу после встречи. На столе лежит бейдж, а рядом стоит коллега. badge — «бейдж», карточка с именем сотрудника. Спросите коллегу, чей он: Whose badge is this? — «Чей это бейдж?» Сначала whose, потом вещь, потом is this.
 
-**Скажите «Часы мои» об одних наручных часах.**
+**На столе лежит бейдж. Спросите коллегу, чей он.**
 
-- ✅ **The watch is mine.**
-- ❌ The watch are mine. — *Один предмет `watch`: нужна форма `is`.*
-- ❌ The watch is my. — *Без названия вещи нужна форма `mine`.*
+- ✅ **Whose badge is this?**
+- ❌ Where is the badge? — *Это «Где бейдж?». О хозяине спрашиваем с whose.*
+- ❌ Whose badge are this? — *Бейдж один, поэтому нужно is this.*
 
 ---
 
 ## Интро 2
 
-### Вопрос о владельце
+### Планшет на стуле
 
-`whose` — «чей / чья / чьё / чьи». `Whose watch is this?` — «Чьи это часы?» Порядок: `Whose` + вещь + `is this?`. `Whose phone is this?` — «Чей это телефон?» Для нескольких предметов: `Whose gloves are these?` — «Чьи это перчатки?» `whose` спрашивает о владельце, `where` — о месте.
+Клиент ушёл, а на стуле остался планшет. Менеджер спрашивает вас, чей он. Планшет ваш: вы забыли его утром, когда доставали бумаги. tablet — «планшет», плоский экран для чтения и записей. Ответьте одним словом вместо названия вещи: The tablet is mine — «Планшет мой».
 
-**Спросите, кому принадлежат эти наручные часы.**
+**Менеджер спрашивает, чей планшет на стуле. Он ваш. Скажите: «Планшет мой».**
 
-- ✅ **Whose watch is this?**
-- ❌ Where is this watch? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose watch are this? — *Один предмет `watch`: `is this`.*
+- ✅ **The tablet is mine.**
+- ❌ The tablet is my. — *Без названия вещи нужно mine, а не my.*
+- ❌ The tablet am mine. — *Планшет один, поэтому нужно is. Форма am только с I.*
 
 ---
 
 ## Интро 3
 
-### Оставшиеся вещи
+### Портфель у двери
 
-`phone` — «телефон», `doorbell` — «дверной звонок», `lunchbox` — «ланчбокс», `okay` — «в порядке». `Whose lunchbox is this?` — «Чей это ланчбокс?» `The phone is okay` — «Телефон в порядке». `The doorbell is next to the door` — «Дверной звонок рядом с дверью». Звонок — часть дома, а у забытых вещей ищем владельцев.
+Охранник у входа держит портфель и спрашивает, чей он. Вы знаете: портфель вашего менеджера, его принесли утром. briefcase — «портфель», в нём носят бумаги на работу. Назовите хозяина через 's: This is my manager's briefcase — «Это портфель моего менеджера».
 
-**Спросите о владельце ланчбокса.**
+**Охранник держит портфель. Он вашего менеджера. Скажите ему: «Это портфель моего менеджера».**
 
-- ✅ **Whose lunchbox is this?**
-- ❌ Where is the lunchbox? — *Это «Где ланчбокс?»; вопрос о владельце начинается с `Whose`.*
-- ❌ Whose lunchbox are this? — *Один ланчбокс: `is this`.*
+- ✅ **This is my manager's briefcase.**
+- ❌ This is my manager briefcase. — *После слова manager нужно 's: my manager's briefcase.*
+- ❌ This is my client's briefcase. — *client — клиент, а портфель принадлежит менеджеру: нужно manager's.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Телефон работает нормально. Скажите «Телефон в порядке»**
+**1 · Карточка слова — badge**
+<!-- interaction_id: en:lesson-05:session-33:word:badge; family: word_card -->
+> **badge** — бейдж. My colleague's badge is blue. — «Бейдж моего коллеги синий». О карточке с именем, которую носят на работе.
+
+**2 · Коллега спрашивает, чей бейдж на столе. Он клиента. Скажите: «Это бейдж клиента»**
 <!-- interaction_id: en:lesson-05:session-33:i01; family: phrase_builder -->
-Плитки: `okay` `is` `phone` `The` `are` → **The phone is okay.**
-*(плитка `are` лишняя: здесь нужно `is` — `The phone is okay.`)*
+Плитки: `badge` `client's` `is` `This` `the` `client` → **This is the client's badge.**
+*(плитка `client` лишняя: здесь нужно `client's` — `This is the client's badge.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — tablet**
+<!-- interaction_id: en:lesson-05:session-33:word:tablet; family: word_card -->
+> **tablet** — планшет. The client's tablet is on the table. — «Планшет клиента на столе». О плоском экране, на котором читают и пишут.
+
+**4 · Послушайте менеджера**
 <!-- interaction_id: en:lesson-05:session-33:i02; family: listen_choose -->
-🔊 *watch* → **watch** · phone · badge
-- phone — *В записи первое слово — `watch`, а в этом варианте — `phone`.*
-- badge — *В записи первое слово — `watch`, а в этом варианте — `badge`.*
+🔊 *Whose tablet is this?* → **Whose tablet is this?** · Whose tablet is that? · Whose badge is this?
+- Whose tablet is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose badge is this? — *В записи вещь — `tablet`, а в этом варианте — `badge`.*
 
-**3 · Назовите наручные часы**
+**5 · Карточка слова — briefcase**
+<!-- interaction_id: en:lesson-05:session-33:word:briefcase; family: word_card -->
+> **briefcase** — портфель. My manager's briefcase is big. — «Портфель моего менеджера большой». О сумке для бумаг и документов.
+
+**6 · Менеджер спрашивает о портфеле у двери. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-33:i03; family: context_gap_grammar -->
-___ → **watch** · phone · keycard
-- phone — *`phone` — телефон; наручные часы — `watch`.*
-- keycard — *`keycard` — ключ-карта; наручные часы — `watch`.*
+Whose briefcase ___ this? → **is** · are · am
+- are — *Портфель один, поэтому нужно `is`, а не `are`.*
+- am — *`am` бывает только с `I`; здесь нужно `is this`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-33:i04; family: speed_match -->
-watch — наручные часы · phone — телефон · doorbell — дверной звонок · lunchbox — ланчбокс
+badge — бейдж · tablet — планшет · briefcase — портфель · tie — галстук
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — tie**
+<!-- interaction_id: en:lesson-05:session-33:word:tie; family: word_card -->
+> **tie** — галстук. The tie is red. — «Галстук красный». О полоске ткани, которую повязывают на шею к рубашке.
+
+**9 · Послушайте менеджера и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-33:i05; family: listen_build_dictation -->
-🔊 *Whose watch is this?* Плитки: `this` `is` `watch` `Whose` → **Whose watch is this?**
+🔊 *This is my manager's tie.* Плитки: `tie` `manager's` `is` `This` `my` `are` → **This is my manager's tie.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is my manager's tie.`)*
 
-**6 · Телефон забыли на столе. Спросите «Чей это телефон?»**
+**10 · Вы показываете коллеге планшет и спрашиваете, чей он. Спросите: «Чей это планшет?»**
 <!-- interaction_id: en:lesson-05:session-33:i06; family: phrase_builder -->
-Плитки: `this` `is` `phone` `Whose` → **Whose phone is this?**
+Плитки: `tablet` `this` `is` `Whose` `Where` → **Whose tablet is this?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose tablet is this?`)*
 
-**7 · Друг спрашивает, кому принадлежат часы. Они ваши. Скажите «Часы мои»**
+**11 · Менеджер спрашивает, чей бейдж. Он ваш. Скажите: «Бейдж мой»**
 <!-- interaction_id: en:lesson-05:session-33:i07; family: scripted_repeat_compare -->
-🎙 **The watch is mine.**
+🎙 **The badge is mine.**
 
-**8 · Спросите о владельце: «Чей это ланчбокс?»**
+**12 · Клиент спрашивает о планшете на стуле. Он ваш. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-33:i08; family: context_gap_grammar -->
-___ lunchbox is this? → **Whose** · Where · Who
-- Where — *`Where` — где; чей — `Whose`.*
-- Who — *`Who` — кто; чей — `Whose`.*
+The tablet is ___. → **mine** · my · yours
+- my — *Без названия вещи нужно `mine`, а не `my`.*
+- yours — *`yours` значит «твой», а о себе говорим `mine`.*
 
-**9 · Послушайте, какую вещь называет друг**
+**13 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-05:session-33:i09; family: listen_choose -->
-🔊 *This is Anna's watch.* → **This is Anna's watch.** · This is Anna's phone. · This is Anna's lunchbox.
-- This is Anna's phone. — *В записи последнее слово — `watch`, а в этом варианте — `phone`.*
-- This is Anna's lunchbox. — *В записи последнее слово — `watch`, а в этом варианте — `lunchbox`.*
+🔊 *Whose briefcase is this?* → **Whose briefcase is this?** · Whose briefcase is that? · Whose tie is this?
+- Whose briefcase is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose tie is this? — *В записи вещь — `briefcase`, а в этом варианте — `tie`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-33:i10; family: speed_match -->
-watch — наручные часы · okay — в порядке · doorbell — дверной звонок · lunchbox — ланчбокс
+tablet — планшет · briefcase — портфель · tie — галстук · desk — письменный стол
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте менеджера и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-33:i11; family: listen_build_dictation -->
-🔊 *The doorbell is next to the door.* Плитки: `door` `the` `to` `next` `is` `doorbell` `The` `are` → **The doorbell is next to the door.**
-*(плитка `are` лишняя: здесь нужно `is` — `The doorbell is next to the door.`)*
+🔊 *The briefcase is next to the desk.* Плитки: `briefcase` `next` `to` `the` `desk` `is` `The` `are` → **The briefcase is next to the desk.**
+*(плитка `are` лишняя: здесь нужно `is` — `The briefcase is next to the desk.`)*
 
-**12 · Вы нашли ланчбокс Тома. Скажите «Ланчбокс Тома здесь»**
+**16 · Вы нашли галстук менеджера на стуле. Скажите коллеге: «Галстук моего менеджера на стуле»**
 <!-- interaction_id: en:lesson-05:session-33:i12; family: phrase_builder -->
-Плитки: `here` `is` `lunchbox` `Tom's` `are` → **Tom's lunchbox is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `Tom's lunchbox is here.`)*
+Плитки: `tie` `manager's` `is` `on` `the` `chair` `My` `manager` → **My manager's tie is on the chair.**
+*(плитка `manager` лишняя: здесь нужно `manager's` — `My manager's tie is on the chair.`)*
 
-**13 · На стуле лежат перчатки. Спросите «Чьи это перчатки?»**
+**17 · Менеджер спрашивает, чей это бейдж. Он ваш. Скажите: «Он мой»**
 <!-- interaction_id: en:lesson-05:session-33:i13; family: scripted_repeat_compare -->
-🎙 **Whose gloves are these?**
+🎙 **It is mine.**
 
-**14 · Вы показываете одни наручные часы. Выберите форму**
+**18 · Колега спрашивает о галстуке. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-33:i14; family: context_gap_grammar -->
-Whose watch ___ this? → **is** · are · am
-- are — *`watch` — один предмет: `is this`.*
-- am — *`am` используется с `I`; здесь `is this`.*
+___ tie is this? → **Whose** · Where · Who
+- Where — *`Where` значит «где», а о хозяине спрашиваем с `Whose`.*
+- Who — *`Who` значит «кто», а «чей» — `Whose`.*
 
-**15 · Послушайте, где часы**
+**19 · Послушайте клиента**
 <!-- interaction_id: en:lesson-05:session-33:i15; family: listen_choose -->
-🔊 *Your watch is on the table.* → **Your watch is on the table.** · My watch is on the table. · Your watch is on the desk.
-- My watch is on the table. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- Your watch is on the desk. — *В записи последнее слово — `table`, а в этом варианте — `desk`.*
+🔊 *The tie is mine.* → **The tie is mine.** · The tie is his. · The tablet is mine.
+- The tie is his. — *В записи последнее слово — `mine`, мой, а в этом варианте — `his`, его.*
+- The tablet is mine. — *В записи вещь — `tie`, а в этом варианте — `tablet`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-33:i16; family: speed_match -->
-watch — наручные часы · okay — в порядке · phone — телефон · lunchbox — ланчбокс
+badge — бейдж · tablet — планшет · briefcase — портфель · tie — галстук
 
-**17 · Вы нашли наручные часы и хотите вернуть их владельцу. Спросите «Чьи это часы?»**
+**21 · Вы нашли у стола портфель и хотите вернуть его владельцу. Спросите колегу: «Чей это портфель?»**
 <!-- interaction_id: en:lesson-05:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose watch is this?**
-
+🎙 **Whose briefcase is this?**

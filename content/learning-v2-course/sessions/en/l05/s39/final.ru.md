@@ -1,136 +1,154 @@
-# Английский · Урок 5 · Занятие 39 — Чья это скрипка?
+# Английский · Урок 5 · Занятие 39 — Домашний концерт
 
-**Ситуация.** Перед домашним концертом друзья находят инструменты и расставляют бутылки с водой.
+**Ситуация.** Перед домашним концертом в гостиной лежат инструменты разных людей. Нужно спросить, чей инструмент, и сказать, где он лежит.
 
-**Что вы освоите:** спросить о владельце инструмента и описать вещи в комнате
-**Новые слова:** violin
+**Что вы освоите:** спросить о владельце инструмента и сказать, где он лежит: whose, 's, on, next to, between
+**Новые слова:** violin, harmonica, tambourine, accordion
+**Возвращаются:** daughter, uncle, shelf, sofa, chair, hall, table
 
 ---
 
 ## Интро 1
 
-### Инструмент ищет хозяина
+### Скрипка в углу
 
-`violin` — «скрипка». `Whose violin is this?` — «Чья это скрипка?» `The violin is hers` — «Скрипка её». `This is Tom’s violin` — «Это скрипка Тома». Скрипка уже на месте; осталось найти музыканта.
+Перед домашним концертом в гостиной ставят стулья. Гость заметил в углу скрипку и спрашивает вас, чья она. Скрипка вашей дочери, она учится играть. violin — «скрипка». Назовите хозяйку через 's: The violin is my daughter's — «Скрипка моей дочери».
 
-**Спросите, кому принадлежит скрипка.**
+**Гость спрашивает, чья скрипка в углу. Она вашей дочери. Скажите: «Скрипка моей дочери».**
 
-- ✅ **Whose violin is this?**
-- ❌ Where is the violin? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose violin are these? — *Одна скрипка: `is this`.*
+- ✅ **The violin is my daughter's.**
+- ❌ The violin is my daughter. — *Так получилось бы, что скрипка — это сама дочь. Хозяйку называем через 's: my daughter's.*
+- ❌ The violin is my uncle's. — *uncle — дядя, а скрипка принадлежит дочери: нужно daughter's.*
 
 ---
 
 ## Интро 2
 
-### Гитара и вода
+### Гармоника на полке
 
-`guitar` — «гитара», `bottles` — «бутылки». `Whose guitar is this?` — «Чья это гитара?» `Whose bottles are these?` — «Чьи это бутылки?» Для одной гитары — `is this`, для нескольких бутылок — `are these`.
+Дядя собирается играть на губной гармонике и не может её найти. Вы видели её на полке над столом. harmonica — «губная гармоника», маленький инструмент, на котором играют ртом. Скажите, где она: The harmonica is on the shelf — «Губная гармоника на полке».
 
-**Спросите о владельце бутылок.**
+**Дядя ищет губную гармонику. Она на полке. Скажите ему: «Губная гармоника на полке».**
 
-- ✅ **Whose bottles are these?**
-- ❌ Whose bottles is this? — *`bottles` — множественное число: `are these`.*
-- ❌ Where are the bottles? — *Это «Где бутылки?», а нужен вопрос о владельце.*
+- ✅ **The harmonica is on the shelf.**
+- ❌ The harmonica is in the shelf. — *Вещь лежит сверху, поэтому нужно on the shelf.*
+- ❌ The harmonica are on the shelf. — *Гармоника одна, поэтому нужно is.*
 
 ---
 
 ## Интро 3
 
-### Смелость перед концертом
+### Бубен между стулом и диваном
 
-`brave` — «смелый»: `You are brave` — «Ты смелый / смелая». `boiler` — «отопительный котёл», устройство для нагрева воды в системе отопления. `The boiler is in the kitchen` — «Отопительный котёл на кухне». `I have your guitar` — «Твоя гитара у меня».
+Бабушка ищет бубен перед самым началом концерта. Вы видите, что он лежит между стулом и диваном. tambourine — «бубен», круглый инструмент, в который стучат рукой. Скажите, где он: The tambourine is between the chair and the sofa — «Бубен между стулом и диваном».
 
-**Поддержите друга: «Ты смелый», без сокращения.**
+**Бабушка ищет бубен. Он между стулом и диваном. Скажите ей, где он.**
 
-- ✅ **You are brave.**
-- ❌ You is brave. — *С `you` нужна форма `are`.*
-- ❌ You are sleepy. — *`sleepy` — сонный; смелый — `brave`.*
+- ✅ **The tambourine is between the chair and the sofa.**
+- ❌ The tambourine is next to the chair and the sofa. — *Для места между двумя вещами нужно between, а не next to.*
+- ❌ The tambourine is between the chair. — *После between нужны две вещи: the chair and the sofa.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Поддержите друга: «Ты смелый», без сокращения**
+**1 · Карточка слова — violin**
+<!-- interaction_id: en:lesson-05:session-39:word:violin; family: word_card -->
+> **violin** — скрипка. My daughter's violin is small. — «Скрипка моей дочери маленькая». Струнный инструмент, на котором играют смычком.
+
+**2 · Вы нашли в гостиной скрипку. Спросите гостя: «Чья это скрипка?»**
 <!-- interaction_id: en:lesson-05:session-39:i01; family: phrase_builder -->
-Плитки: `brave` `are` `You` `is` → **You are brave.**
-*(плитка `is` лишняя: здесь нужно `are` — `You are brave.`)*
+Плитки: `violin` `this` `is` `Whose` `Where` → **Whose violin is this?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose violin is this?`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — harmonica**
+<!-- interaction_id: en:lesson-05:session-39:word:harmonica; family: word_card -->
+> **harmonica** — губная гармоника. The harmonica is on the table. — «Губная гармоника на столе». Маленький инструмент, на котором играют ртом.
+
+**4 · Послушайте дядю**
 <!-- interaction_id: en:lesson-05:session-39:i02; family: listen_choose -->
-🔊 *violin* → **violin** · guitar · camera
-- guitar — *В записи первое слово — `violin`, а в этом варианте — `guitar`.*
-- camera — *В записи первое слово — `violin`, а в этом варианте — `camera`.*
+🔊 *The harmonica is on the shelf.* → **The harmonica is on the shelf.** · The harmonica is on the table. · The violin is on the shelf.
+- The harmonica is on the table. — *В записи последнее слово — `shelf`, полка, а в этом варианте — `table`, стол.*
+- The violin is on the shelf. — *В записи вещь — `harmonica`, а в этом варианте — `violin`.*
 
-**3 · Назовите скрипку**
+**5 · Карточка слова — tambourine**
+<!-- interaction_id: en:lesson-05:session-39:word:tambourine; family: word_card -->
+> **tambourine** — бубен. My uncle's tambourine is red. — «Бубен моего дяди красный». Круглый инструмент с бубенчиками, в него стучат рукой.
+
+**6 · Бубен лежит между стулом и диваном. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-39:i03; family: context_gap_grammar -->
-___ → **violin** · guitar · boiler
-- guitar — *`guitar` — гитара; скрипка — `violin`.*
-- boiler — *`boiler` — отопительный котёл; скрипка — `violin`.*
+The tambourine is ___ the chair and the sofa. → **between** · under · on
+- under — *`under` значит «под», а место между двумя вещами — `between`.*
+- on — *`on` значит «на», а место между двумя вещами — `between`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-39:i04; family: speed_match -->
-violin — скрипка · guitar — гитара · bottles — бутылки · boiler — отопительный котёл
+violin — скрипка · harmonica — губная гармоника · tambourine — бубен · accordion — аккордеон
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — accordion**
+<!-- interaction_id: en:lesson-05:session-39:word:accordion; family: word_card -->
+> **accordion** — аккордеон. The accordion is big. — «Аккордеон большой». Инструмент с мехами и клавишами, который растягивают руками.
+
+**9 · Послушайте гостя и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-39:i05; family: listen_build_dictation -->
-🔊 *Whose violin is this?* Плитки: `this` `is` `violin` `Whose` → **Whose violin is this?**
+🔊 *The accordion is in the hall.* Плитки: `accordion` `in` `the` `hall` `is` `The` `are` → **The accordion is in the hall.**
+*(плитка `are` лишняя: здесь нужно `is` — `The accordion is in the hall.`)*
 
-**6 · Вы нашли гитару. Спросите «Чья это гитара?»**
+**10 · Вы показываете гостю губную гармонику и спрашиваете, чья она. Спросите: «Чья это губная гармоника?»**
 <!-- interaction_id: en:lesson-05:session-39:i06; family: phrase_builder -->
-Плитки: `this` `is` `guitar` `Whose` → **Whose guitar is this?**
+Плитки: `harmonica` `this` `is` `Whose` `Where` → **Whose harmonica is this?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose harmonica is this?`)*
 
-**7 · Скрипка принадлежит подруге. Скажите «Скрипка её»**
+**11 · Гость спрашивает, чей бубен. Он ваш. Скажите: «Бубен мой»**
 <!-- interaction_id: en:lesson-05:session-39:i07; family: scripted_repeat_compare -->
-🎙 **The violin is hers.**
+🎙 **The tambourine is mine.**
 
-**8 · Спросите о владельце бутылок. Выберите форму**
+**12 · Скрипка принадлежит вашей дочери. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-39:i08; family: context_gap_grammar -->
-Whose bottles ___ these? → **are** · is · am
-- is — *Несколько бутылок: `are these`.*
-- am — *`am` используется с `I`; здесь `are these`.*
+The violin is my ___. → **daughter's** · daughter · daughters
+- daughter — *Так получилось бы, что скрипка — это сама дочь. Хозяйку называем через `'s`: `daughter's`.*
+- daughters — *`daughters` — это «дочери», несколько человек; нужно `daughter's`.*
 
-**9 · Послушайте, какую вещь называет друг**
+**13 · Послушайте гостя**
 <!-- interaction_id: en:lesson-05:session-39:i09; family: listen_choose -->
-🔊 *This is Tom's violin.* → **This is Tom's violin.** · This is Tom's guitar. · This is Tom's camera.
-- This is Tom's guitar. — *В записи последнее слово — `violin`, а в этом варианте — `guitar`.*
-- This is Tom's camera. — *В записи последнее слово — `violin`, а в этом варианте — `camera`.*
+🔊 *Whose accordion is this?* → **Whose accordion is this?** · Whose accordion is that? · Whose violin is this?
+- Whose accordion is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose violin is this? — *В записи вещь — `accordion`, аккордеон, а в этом варианте — `violin`, скрипка.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-39:i10; family: speed_match -->
-violin — скрипка · brave — смелый · boiler — отопительный котёл · bottles — бутылки
+harmonica — губная гармоника · tambourine — бубен · accordion — аккордеон · shelf — полка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте дочь и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-39:i11; family: listen_build_dictation -->
-🔊 *The boiler is in the kitchen.* Плитки: `kitchen` `the` `in` `is` `boiler` `The` `are` → **The boiler is in the kitchen.**
-*(плитка `are` лишняя: здесь нужно `is` — `The boiler is in the kitchen.`)*
+🔊 *My daughter's violin is on the sofa.* Плитки: `violin` `daughter's` `is` `on` `the` `sofa` `My` `daughter` → **My daughter's violin is on the sofa.**
+*(плитка `daughter` лишняя: здесь нужно `daughter's` — `My daughter's violin is on the sofa.`)*
 
-**12 · Бутылки принадлежат вашей группе. Скажите «Бутылки наши»**
+**16 · Бабушка ищет бубен. Он рядом с диваном. Скажите ей: «Бубен рядом с диваном»**
 <!-- interaction_id: en:lesson-05:session-39:i12; family: phrase_builder -->
-Плитки: `ours` `are` `bottles` `The` `is` → **The bottles are ours.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bottles are ours.`)*
+Плитки: `tambourine` `next` `to` `the` `sofa` `is` `The` `are` → **The tambourine is next to the sofa.**
+*(плитка `are` лишняя: здесь нужно `is` — `The tambourine is next to the sofa.`)*
 
-**13 · Гитара друга у вас. Скажите ему «Твоя гитара у меня»**
+**17 · Гость спрашивает, чья губная гармоника. Она его. Скажите: «Она его»**
 <!-- interaction_id: en:lesson-05:session-39:i13; family: scripted_repeat_compare -->
-🎙 **I have your guitar.**
+🎙 **It is his.**
 
-**14 · Спросите о владельце скрипки**
+**18 · Дядя спрашивает, где его губная гармоника. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-39:i14; family: context_gap_grammar -->
-___ violin is this? → **Whose** · Where · Who
-- Where — *`Where` — где; чья — `Whose`.*
-- Who — *`Who` — кто; чья — `Whose`.*
+Where ___ the harmonica? → **is** · are · am
+- are — *Гармоника одна, поэтому нужно `Where is`, а не `Where are`.*
+- am — *`am` бывает только с `I`; здесь нужно `Where is`.*
 
-**15 · Послушайте, чья скрипка здесь**
+**19 · Послушайте дядю**
 <!-- interaction_id: en:lesson-05:session-39:i15; family: listen_choose -->
-🔊 *My violin is here.* → **My violin is here.** · Your violin is here. · His violin is here.
-- Your violin is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His violin is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The tambourine is next to the sofa.* → **The tambourine is next to the sofa.** · The tambourine is next to the chair. · The accordion is next to the sofa.
+- The tambourine is next to the chair. — *В записи последнее слово — `sofa`, диван, а в этом варианте — `chair`, стул.*
+- The accordion is next to the sofa. — *В записи вещь — `tambourine`, бубен, а в этом варианте — `accordion`, аккордеон.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-39:i16; family: speed_match -->
-violin — скрипка · brave — смелый · guitar — гитара · bottles — бутылки
+violin — скрипка · harmonica — губная гармоника · tambourine — бубен · accordion — аккордеон
 
-**17 · После концерта остались бутылки. Спросите друзей «Чьи это бутылки?»**
+**21 · Вы нашли в гостиной скрипку и хотите вернуть её владельцу. Спросите гостя: «Чья это скрипка?»**
 <!-- interaction_id: en:lesson-05:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose bottles are these?**
-
+🎙 **Whose violin is this?**

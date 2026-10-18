@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-36",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце предметов во множественном числе",
-    "uk": "запитати про власника предметів у множині"
+    "ru": "спросить о владельце нескольких вещей: whose + вещь + are these, и ответить: they are, these are",
+    "uk": "спитати про власника кількох речей: whose + річ + are these, і відповісти: they are, these are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Очки от солнца",
-        "uk": "Окуляри від сонця"
+        "ru": "Бинокль на подоконнике",
+        "uk": "Бінокль на підвіконні"
       },
       "bodyByLocale": {
-        "ru": "`sunglasses` — «солнцезащитные очки». В английском это множественное число, даже когда речь об одних очках. `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» `The sunglasses are mine` — «Солнцезащитные очки мои». Очки уже готовы к солнцу, а их владелец — ещё к подушке.",
-        "uk": "`sunglasses` — «сонцезахисні окуляри». В англійській це множина, навіть коли йдеться про одні окуляри. `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» `The sunglasses are mine` — «Сонцезахисні окуляри мої». Окуляри вже готові до сонця, а їхній власник — ще до подушки."
+        "ru": "На подоконнике домика лежит бинокль, а рядом стоит дядя. binoculars — «бинокль»; в английском это слово во множественном числе, как scissors. Спросите дядю, чей он: Whose binoculars are these? — «Чей это бинокль?» Вопрос начинается с whose и заканчивается are these.",
+        "uk": "На підвіконні будиночка лежить бінокль, а поруч стоїть дядько. binoculars — «бінокль»; в англійській це слово в множині, як scissors. Спитайте дядька, чий він: Whose binoculars are these? — «Чий це бінокль?» Питання починається з whose і закінчується are these."
       },
       "question": {
         "interactionId": "en:lesson-05:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце солнцезащитных очков.",
-          "uk": "Запитайте про власника сонцезахисних окулярів."
+          "ru": "На подоконнике лежит бинокль. Спросите дядю, чей он.",
+          "uk": "На підвіконні лежить бінокль. Спитайте дядька, чий він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-36:intro1:r1",
-              "text": "Whose sunglasses are these?"
+              "text": "Whose binoculars are these?"
             },
             {
               "responseId": "en:lesson-05:session-36:intro1:r2",
-              "text": "Whose sunglasses is this?"
+              "text": "Whose binoculars is this?"
             },
             {
               "responseId": "en:lesson-05:session-36:intro1:r3",
-              "text": "Where are the sunglasses?"
+              "text": "Where are the binoculars?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-36:intro1:r1",
-              "text": "Whose sunglasses are these?"
+              "text": "Whose binoculars are these?"
             },
             {
               "responseId": "en:lesson-05:session-36:intro1:r2",
-              "text": "Whose sunglasses is this?"
+              "text": "Whose binoculars is this?"
             },
             {
               "responseId": "en:lesson-05:session-36:intro1:r3",
-              "text": "Where are the sunglasses?"
+              "text": "Where are the binoculars?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце солнцезащитных очков.",
-          "uk": "Запитайте про власника сонцезахисних окулярів."
+          "ru": "На подоконнике лежит бинокль. Спросите дядю, чей он.",
+          "uk": "На підвіконні лежить бінокль. Спитайте дядька, чий він."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сонное утро",
-        "uk": "Сонний ранок"
+        "ru": "Наушники на диване",
+        "uk": "Навушники на дивані"
       },
       "bodyByLocale": {
-        "ru": "`sleepy` — «сонный, хочется спать». `I am sleepy` — «Мне хочется спать». `children` — «дети»: это множественное число. `The children are sleepy` — «Дети сонные». Сонный человек ещё может не спать: `sleepy` описывает желание спать, а знакомое `asleep` — уже спит.",
-        "uk": "`sleepy` — «сонний, хочеться спати». `I am sleepy` — «Мені хочеться спати». `children` — «діти»: це множина. `The children are sleepy` — «Діти сонні». Сонна людина ще може не спати: `sleepy` описує бажання спати, а знайоме `asleep` — уже спить."
+        "ru": "На диване между подушками лежат маленькие белые беспроводные наушники. Сестра спрашивает вас, чьи они. Они ваши: вы слушали музыку вечером на крыльце, пока все остальные уже спали. earbuds — «беспроводные наушники», тоже во множественном числе. Ответьте: They are mine — «Они мои».",
+        "uk": "На дивані між подушками лежать маленькі білі бездротові навушники. Сестра питає вас, чиї вони. Вони ваші: ви слухали музику ввечері на ґанку, поки решта вже спала. earbuds — «бездротові навушники», теж у множині. Відповідьте: They are mine — «Вони мої»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-36:intro2:q",
         "promptByLocale": {
-          "ru": "Вам хочется спать. Назовите состояние без сокращения.",
-          "uk": "Вам хочеться спати. Назвіть стан без скорочення."
+          "ru": "Сестра спрашивает, чьи наушники на диване. Они ваши. Скажите: «Они мои».",
+          "uk": "Сестра питає, чиї навушники на дивані. Вони ваші. Скажіть: «Вони мої»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-36:intro2:r1",
-              "text": "I am sleepy."
+              "text": "They are mine."
             },
             {
               "responseId": "en:lesson-05:session-36:intro2:r2",
-              "text": "I is sleepy."
+              "text": "It is mine."
             },
             {
               "responseId": "en:lesson-05:session-36:intro2:r3",
-              "text": "I am asleep."
+              "text": "They are my."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-36:intro2:r1",
-              "text": "I am sleepy."
+              "text": "They are mine."
             },
             {
               "responseId": "en:lesson-05:session-36:intro2:r2",
-              "text": "I is sleepy."
+              "text": "It is mine."
             },
             {
               "responseId": "en:lesson-05:session-36:intro2:r3",
-              "text": "I am asleep."
+              "text": "They are my."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам хочется спать. Назовите состояние без сокращения.",
-          "uk": "Вам хочеться спати. Назвіть стан без скорочення."
+          "ru": "Сестра спрашивает, чьи наушники на диване. Они ваши. Скажите: «Они мои».",
+          "uk": "Сестра питає, чиї навушники на дивані. Вони ваші. Скажіть: «Вони мої»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Карта и датчик",
-        "uk": "Картка й датчик"
+        "ru": "Запонки в коробке",
+        "uk": "Запонки в коробці"
       },
       "bodyByLocale": {
-        "ru": "`keycard` — «ключ-карта», `smoke alarm` — «датчик дыма». `Whose keycard is this?` — «Чья это ключ-карта?» Одна карта — `is this`, очки — `are these`. `The smoke alarm is on the ceiling` — «Датчик дыма на потолке». `This is Anna’s keycard` — «Это ключ-карта Анны».",
-        "uk": "`keycard` — «ключ-картка», `smoke alarm` — «датчик диму». `Whose keycard is this?` — «Чия це ключ-картка?» Одна картка — `is this`, окуляри — `are these`. `The smoke alarm is on the ceiling` — «Датчик диму на стелі». `This is Anna’s keycard` — «Це ключ-картка Анни»."
+        "ru": "Дядя собирается на семейный праздник и ищет запонки для рубашки. Вы нашли их в коробке и показываете двоюродному брату. cufflinks — «запонки», они всегда парой, поэтому слово во множественном числе. Назовите хозяина: These are my uncle's cufflinks — «Это запонки моего дяди».",
+        "uk": "Дядько збирається на сімейне свято й шукає запонки для сорочки. Ви знайшли їх у коробці й показуєте двоюрідному братові. cufflinks — «запонки», вони завжди парою, тому слово в множині. Назвіть господаря: These are my uncle's cufflinks — «Це запонки мого дядька»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-36:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце ключ-карты.",
-          "uk": "Запитайте про власника ключ-картки."
+          "ru": "Вы нашли в коробке запонки дяди. Скажите двоюродному брату: «Это запонки моего дяди».",
+          "uk": "Ви знайшли в коробці запонки дядька. Скажіть двоюрідному братові: «Це запонки мого дядька»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-36:intro3:r1",
-              "text": "Whose keycard is this?"
+              "text": "These are my uncle's cufflinks."
             },
             {
               "responseId": "en:lesson-05:session-36:intro3:r2",
-              "text": "Whose keycard are these?"
+              "text": "These is my uncle's cufflinks."
             },
             {
               "responseId": "en:lesson-05:session-36:intro3:r3",
-              "text": "Where is the keycard?"
+              "text": "These are my uncle cufflinks."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-36:intro3:r1",
-              "text": "Whose keycard is this?"
+              "text": "These are my uncle's cufflinks."
             },
             {
               "responseId": "en:lesson-05:session-36:intro3:r2",
-              "text": "Whose keycard are these?"
+              "text": "These is my uncle's cufflinks."
             },
             {
               "responseId": "en:lesson-05:session-36:intro3:r3",
-              "text": "Where is the keycard?"
+              "text": "These are my uncle cufflinks."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце ключ-карты.",
-          "uk": "Запитайте про власника ключ-картки."
+          "ru": "Вы нашли в коробке запонки дяди. Скажите двоюродному брату: «Это запонки моего дяди».",
+          "uk": "Ви знайшли в коробці запонки дядька. Скажіть двоюрідному братові: «Це запонки мого дядька»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1bf48de58f13266d97b36222b9deb37c0e95880807ff9a6389269ab6bc0d1530"
+  "introFingerprint": "337ba2e6170439af7d2641d1f7f82ca94bf3039511307427e8ec11f3096ec67f"
 }

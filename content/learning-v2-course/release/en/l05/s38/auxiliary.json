@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-38:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Монитор один, поэтому нужно is that.",
+          "uk": "Монітор один, тому потрібно is that."
         },
         "en:lesson-05:session-38:intro1:r3": {
-          "ru": "Один ноутбук: `is this`.",
-          "uk": "Один ноутбук: `is this`."
+          "ru": "Это «Где тот монитор?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де той монітор?». Про господаря питаємо з whose."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-38:intro2:r2": {
-          "ru": "`headphones` — множественное число: `are these`.",
-          "uk": "`headphones` — множина: `are these`."
+          "ru": "Без названия вещи нужно yours, а не your.",
+          "uk": "Без назви речі потрібно yours, а не your."
         },
         "en:lesson-05:session-38:intro2:r3": {
-          "ru": "Это «Где наушники?»; о владельце спрашиваем с `Whose`.",
-          "uk": "Це «Де навушники?»; про власника запитуємо з `Whose`."
+          "ru": "Мышь одна, поэтому нужно is.",
+          "uk": "Миша одна, тому потрібно is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-38:intro3:r2": {
-          "ru": "С `I` нужна форма `am`.",
-          "uk": "З `I` потрібна форма `am`."
+          "ru": "Так получилось бы, что джойстик — это сам сын. Хозяина называем через 's: my son's.",
+          "uk": "Так вийшло б, що джойстик — це сам син. Господаря називаємо через 's: my son's."
         },
         "en:lesson-05:session-38:intro3:r3": {
-          "ru": "`sleepy` — сонный; слабый — `weak`.",
-          "uk": "`sleepy` — сонний; слабкий — `weak`."
+          "ru": "sister — сестра, а джойстик принадлежит сыну: нужно son's.",
+          "uk": "sister — сестра, а джойстик належить синові: потрібно son's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8392486de9daa94232e28ae6aeb7fb4787fa39bce0e1fc0b48a3aeab3e8a5a15"
+  "auxiliaryFingerprint": "c61000a1e424983b6c31cb62e04fdb885e66981818782a2d84aee704b62871fa"
 }

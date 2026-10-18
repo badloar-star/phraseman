@@ -1,136 +1,154 @@
-# Англійська · Урок 5 · Заняття 35 — Чий це браслет?
+# Англійська · Урок 5 · Заняття 35 — У роздягальні басейну
 
-**Ситуація.** У готелі після зустрічі залишилися браслет і фотографії. Том чекає біля входу поруч із пандусом, а хвора Анна залишилася в кімнаті.
+**Ситуація.** Після занять у басейні в роздягальні лишилися окуляри для плавання, щітка, хустинка й шампунь. Ви з’ясовуєте, чиї це речі: про одну річ питаємо is this, про кілька — are these.
 
-**Що ви опануєте:** запитати про власника однієї чи кількох речей
-**Нові слова:** bracelet
+**Що ви опануєте:** спитати про власника однієї речі та кількох речей: is this чи are these, і відповісти mine, yours, hers
+**Нові слова:** hairbrush, goggles, handkerchief, shampoo
+**Повертаються:** sister, brother, bag, bench
 
 ---
 
 ## Інтро 1
 
-### Прикраса на зап’ясті
+### Окуляри для плавання
 
-`bracelet` — «браслет», прикраса на зап’ясті. `Whose bracelet is this?` — «Чий це браслет?» `The bracelet is mine` — «Браслет мій». `This is Anna’s bracelet` — «Це браслет Анни». Браслет зайняв ціле крісло: маленька річ влаштувалася з розмахом.
+Після ранкових занять у басейні інструктор тримає в руці мокрі окуляри для плавання й питає, чиї вони. Вони ваші. goggles — «окуляри для плавання»; в англійській це слово завжди в множині, як scissors. Скажіть: The goggles are mine — «Окуляри мої».
 
-**Запитайте про власника браслета.**
+**Інструктор питає, чиї окуляри для плавання. Вони ваші. Скажіть: «Окуляри мої».**
 
-- ✅ **Whose bracelet is this?**
-- ❌ Where is the bracelet? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose bracelet are this? — *Один браслет: `is this`.*
+- ✅ **The goggles are mine.**
+- ❌ The goggles is mine. — *goggles — множина, тому потрібно are.*
+- ❌ The goggles are my. — *Без назви речі потрібно mine, а не my.*
 
 ---
 
 ## Інтро 2
 
-### Одна річ чи кілька
+### Щітка на лавці
 
-`photos` — «фотографії», `passport` — «паспорт». `Whose passport is this?` — «Чий це паспорт?» Одна річ — `is this`. `Whose photos are these?` — «Чиї це фотографії?» Кілька речей — `are these`. Питальне слово `whose` не змінюється. `The photos are hers` — «Фотографії її»: власниця одна, але фотографій кілька.
+У роздягальні на лавці лежить щітка для волосся. Поруч збирає сумку подруга, і ви хочете повернути річ господині. hairbrush — «щітка для волосся». Спитайте, чи не її вона: Is this hairbrush yours? — «Це твоя щітка для волосся?» Слово yours стоїть без речі.
 
-**Запитайте про власника фотографій.**
+**На лавці лежить щітка для волосся. Спитайте подругу, чи не її вона.**
 
-- ✅ **Whose photos are these?**
-- ❌ Whose photos is this? — *Кілька фотографій: `are these`.*
-- ❌ Where are the photos? — *Це «Де фотографії?»; про власника запитуємо з `Whose`.*
+- ✅ **Is this hairbrush yours?**
+- ❌ Is this hairbrush your? — *Без назви речі потрібно yours, а не your.*
+- ❌ Are this hairbrush yours? — *Щітка одна, тому питання починаємо з Is.*
 
 ---
 
 ## Інтро 3
 
-### Біля входу
+### Хустинка для бабусі
 
-`ill` — «хворий»: `Anna is ill` — «Анна хвора». Тут повідомляємо стан, з Анною потрібна форма `is`. `ramp` — «пандус», похилий прохід замість сходинок. `Tom is next to the ramp` — «Том поруч із пандусом». `I have your passport` — «Твій паспорт у мене».
+Бабуся вийшла з душу й упустила біля шафок білу носову хустинку, а ви її підняли й наздогнали бабусю. handkerchief — «носова хустинка». Віддайте хустинку бабусі й скажіть: Here is your handkerchief — «Ось твоя хустинка». Слово your стоїть перед річчю й не змінюється.
 
-**Анна захворіла. Повідомте «Анна хвора».**
+**Бабуся впустила носову хустинку, ви її підняли. Віддайте й скажіть: «Ось твоя хустинка».**
 
-- ✅ **Anna is ill.**
-- ❌ Anna are ill. — *Одна людина: `Anna is`.*
-- ❌ Anna is okay. — *`okay` — у порядку; хвора — `ill`.*
+- ✅ **Here is your handkerchief.**
+- ❌ Here is yours handkerchief. — *Перед річчю потрібно your, а yours стоїть без речі.*
+- ❌ Here are your handkerchief. — *Хустинка одна, тому потрібно Here is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна захворіла. Скажіть «Анна хвора»**
+**1 · Картка слова — hairbrush**
+<!-- interaction_id: en:lesson-05:session-35:word:hairbrush; family: word_card -->
+> **hairbrush** — щітка для волосся. My sister's hairbrush is on the bench. — «Щітка для волосся моєї сестри на лавці». Про щітку, якою розчісують волосся.
+
+**2 · Ви знайшли в роздягальні щітку для волосся. Спитайте подругу: «Це твоя щітка для волосся?»**
 <!-- interaction_id: en:lesson-05:session-35:i01; family: phrase_builder -->
-Плитки: `ill` `is` `Anna` `are` → **Anna is ill.**
-*(плитка `are` зайва: тут потрібно `is` — `Anna is ill.`)*
+Плитки: `hairbrush` `this` `yours` `Is` `Are` → **Is this hairbrush yours?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is this hairbrush yours?`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — goggles**
+<!-- interaction_id: en:lesson-05:session-35:word:goggles; family: word_card -->
+> **goggles** — окуляри для плавання. My brother's goggles are blue. — «Окуляри для плавання мого брата сині». Слово завжди в множині, як scissors.
+
+**4 · Послухайте інструктора**
 <!-- interaction_id: en:lesson-05:session-35:i02; family: listen_choose -->
-🔊 *bracelet* → **bracelet** · ring · watch
-- ring — *У записі перше слово — `bracelet`, а в цьому варіанті — `ring`.*
-- watch — *У записі перше слово — `bracelet`, а в цьому варіанті — `watch`.*
+🔊 *The goggles are mine.* → **The goggles are mine.** · The goggles are his. · The goggles are hers.
+- The goggles are his. — *У записі останнє слово — `mine`, мої, а в цьому варіанті — `his`, його.*
+- The goggles are hers. — *У записі останнє слово — `mine`, мої, а в цьому варіанті — `hers`, її.*
 
-**3 · Назвіть браслет**
+**5 · Картка слова — handkerchief**
+<!-- interaction_id: en:lesson-05:session-35:word:handkerchief; family: word_card -->
+> **handkerchief** — носова хустинка. Her handkerchief is white. — «Її носова хустинка біла». Про невеликий шматок тканини, яким витирають обличчя й руки.
+
+**6 · Бабуся впустила хустинку, а ви її знайшли. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-35:i03; family: context_gap_grammar -->
-___ → **bracelet** · ring · passport
-- ring — *`ring` — каблучка; браслет — `bracelet`.*
-- passport — *`passport` — паспорт; браслет — `bracelet`.*
+Here is ___ handkerchief. → **your** · yours · you
+- yours — *`yours` стоїть без речі, а перед `handkerchief` потрібно `your`.*
+- you — *`you` означає «ти», а перед річчю потрібно `your`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-35:i04; family: speed_match -->
-bracelet — браслет · photos — фотографії · ramp — пандус · passport — паспорт
+hairbrush — щітка для волосся · goggles — окуляри для плавання · handkerchief — носовичок · shampoo — шампунь
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — shampoo**
+<!-- interaction_id: en:lesson-05:session-35:word:shampoo; family: word_card -->
+> **shampoo** — шампунь. The shampoo is in my bag. — «Шампунь у моїй сумці». Про рідкий засіб, яким миють волосся.
+
+**9 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-35:i05; family: listen_build_dictation -->
-🔊 *Whose bracelet is this?* Плитки: `this` `is` `bracelet` `Whose` → **Whose bracelet is this?**
+🔊 *The shampoo is in my bag.* Плитки: `shampoo` `in` `my` `bag` `is` `The` `are` → **The shampoo is in my bag.**
+*(плитка `are` зайва: тут потрібно `is` — `The shampoo is in my bag.`)*
 
-**6 · Ви знайшли паспорт. Запитайте «Чий це паспорт?»**
+**10 · Подруга збирає сумку. Скажіть їй: «Це щітка для волосся твоєї сестри»**
 <!-- interaction_id: en:lesson-05:session-35:i06; family: phrase_builder -->
-Плитки: `this` `is` `passport` `Whose` → **Whose passport is this?**
+Плитки: `hairbrush` `sister's` `is` `This` `your` `sister` → **This is your sister's hairbrush.**
+*(плитка `sister` зайва: тут потрібно `sister's` — `This is your sister's hairbrush.`)*
 
-**7 · Браслет належить вам. Скажіть «Браслет мій»**
+**11 · Подруга шукає щітку для волосся. Ви знайшли її. Скажіть: «Ось твоя щітка для волосся»**
 <!-- interaction_id: en:lesson-05:session-35:i07; family: scripted_repeat_compare -->
-🎙 **The bracelet is mine.**
+🎙 **Here is your hairbrush.**
 
-**8 · Запитайте про власника кількох фотографій. Виберіть форму**
+**12 · Інструктор показує окуляри для плавання. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-35:i08; family: context_gap_grammar -->
-Whose photos ___ these? → **are** · is · am
-- is — *`photos` — множина: `are these`.*
-- am — *`am` використовується з `I`; тут `are these`.*
+Whose goggles ___ these? → **are** · is · am
+- is — *Окуляри — кілька речей, тому потрібно `are these`.*
+- am — *`am` буває лише з `I`; тут потрібно `are these`.*
 
-**9 · Послухайте, яку річ називає друг**
+**13 · Послухайте інструктора**
 <!-- interaction_id: en:lesson-05:session-35:i09; family: listen_choose -->
-🔊 *This is Anna's bracelet.* → **This is Anna's bracelet.** · This is Anna's passport. · This is Anna's ring.
-- This is Anna's passport. — *У записі останнє слово — `bracelet`, а в цьому варіанті — `passport`.*
-- This is Anna's ring. — *У записі останнє слово — `bracelet`, а в цьому варіанті — `ring`.*
+🔊 *Whose goggles are these?* → **Whose goggles are these?** · Whose goggles are those? · Whose shampoo is this?
+- Whose goggles are those? — *У записі останнє слово — `these`, а в цьому варіанті — `those`.*
+- Whose shampoo is this? — *У записі річ — `goggles`, окуляри, а в цьому варіанті — `shampoo`, шампунь.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-35:i10; family: speed_match -->
-bracelet — браслет · ill — хворий · ramp — пандус · passport — паспорт
+handkerchief — носовичок · goggles — окуляри для плавання · shampoo — шампунь · bag — сумка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте бабусю й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-35:i11; family: listen_build_dictation -->
-🔊 *Tom is next to the ramp.* Плитки: `ramp` `the` `to` `next` `is` `Tom` `are` → **Tom is next to the ramp.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom is next to the ramp.`)*
+🔊 *Her handkerchief is on the bench.* Плитки: `handkerchief` `on` `the` `bench` `is` `Her` `are` → **Her handkerchief is on the bench.**
+*(плитка `are` зайва: тут потрібно `is` — `Her handkerchief is on the bench.`)*
 
-**12 · Фотографії належать подрузі. Скажіть «Фотографії її»**
+**16 · Інструктор питає про окуляри для плавання. Вони вашого брата. Скажіть: «Окуляри для плавання мого брата»**
 <!-- interaction_id: en:lesson-05:session-35:i12; family: phrase_builder -->
-Плитки: `hers` `are` `photos` `The` `is` → **The photos are hers.**
-*(плитка `is` зайва: тут потрібно `are` — `The photos are hers.`)*
+Плитки: `goggles` `are` `brother's` `The` `my` `brother` → **The goggles are my brother's.**
+*(плитка `brother` зайва: тут потрібно `brother's` — `The goggles are my brother's.`)*
 
-**13 · Паспорт друга у вас. Скажіть йому «Твій паспорт у мене»**
+**17 · Інструктор питає, чиї це окуляри для плавання. Вони вашої сестри. Скажіть: «Вони її»**
 <!-- interaction_id: en:lesson-05:session-35:i13; family: scripted_repeat_compare -->
-🎙 **I have your passport.**
+🎙 **They are hers.**
 
-**14 · Запитайте про власника браслета**
+**18 · Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-35:i14; family: context_gap_grammar -->
-___ bracelet is this? → **Whose** · Where · Who
-- Where — *`Where` — де; чий — `Whose`.*
-- Who — *`Who` — хто; чий — `Whose`.*
+Is this shampoo ___? → **yours** · your · you
+- your — *Без назви речі потрібно `yours`, а не `your`.*
+- you — *`you` означає «ти», а «твій» без речі — `yours`.*
 
-**15 · Послухайте, чий браслет тут**
+**19 · Послухайте бабусю**
 <!-- interaction_id: en:lesson-05:session-35:i15; family: listen_choose -->
-🔊 *Your bracelet is here.* → **Your bracelet is here.** · My bracelet is here. · His bracelet is here.
-- My bracelet is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His bracelet is here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *Here is your handkerchief.* → **Here is your handkerchief.** · Here is my handkerchief. · Here is your hairbrush.
+- Here is my handkerchief. — *У записі слово перед річчю — `your`, а в цьому варіанті — `my`.*
+- Here is your hairbrush. — *У записі річ — `handkerchief`, хустинка, а в цьому варіанті — `hairbrush`, щітка.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-35:i16; family: speed_match -->
-bracelet — браслет · ill — хворий · photos — фотографії · passport — паспорт
+hairbrush — щітка для волосся · goggles — окуляри для плавання · handkerchief — носовичок · shampoo — шампунь
 
-**17 · Ви знайшли кілька фотографій і хочете повернути їх власникові. Запитайте «Чиї це фотографії?»**
+**21 · Ви знайшли в роздягальні окуляри для плавання й хочете повернути їх власникові. Спитайте інструктора: «Чиї це окуляри для плавання?»**
 <!-- interaction_id: en:lesson-05:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose photos are these?**
-
+🎙 **Whose goggles are these?**

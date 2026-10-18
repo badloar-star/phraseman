@@ -1,0 +1,2457 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-35:word:hairbrush",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hairbrush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:hairbrush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hairbrush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:hairbrush:audio",
+            "transcript": "hairbrush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:hairbrush:r1",
+              "targetText": "hairbrush",
+              "meaningByLocale": {
+                "ru": "щётка для волос. My sister's hairbrush is on the bench. — «Щётка для волос моей сестры на скамейке». О щётке, которой расчёсывают волосы.",
+                "uk": "щітка для волосся. My sister's hairbrush is on the bench. — «Щітка для волосся моєї сестри на лавці». Про щітку, якою розчісують волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hairbrush",
+            "definitionByLocale": {
+              "ru": "щётка для волос. My sister's hairbrush is on the bench. — «Щётка для волос моей сестры на скамейке». О щётке, которой расчёсывают волосы.",
+              "uk": "щітка для волосся. My sister's hairbrush is on the bench. — «Щітка для волосся моєї сестри на лавці». Про щітку, якою розчісують волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли в раздевалке щётку для волос. Спросите подругу: «Это твоя щётка для волос?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли в раздевалке щётку для волос. Спросите подругу: «Это твоя щётка для волос?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this hairbrush yours?",
+          "localizedMeaning": {
+            "ru": "Вы нашли в раздевалке щётку для волос. Спросите подругу: «Это твоя щётка для волос?»",
+            "uk": "Ви знайшли в роздягальні щітку для волосся. Спитайте подругу: «Це твоя щітка для волосся?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "hairbrush",
+            "yours"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли в раздевалке щётку для волос. Спросите подругу: «Это твоя щётка для волос?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this hairbrush yours?`",
+                "uk": "тут потрібно `Is` — `Is this hairbrush yours?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:word:goggles",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — goggles",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:goggles:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — goggles",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:goggles:audio",
+            "transcript": "goggles"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:goggles:r1",
+              "targetText": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания. My brother's goggles are blue. — «Очки для плавания моего брата синие». Слово всегда во множественном числе, как scissors.",
+                "uk": "окуляри для плавання. My brother's goggles are blue. — «Окуляри для плавання мого брата сині». Слово завжди в множині, як scissors."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "goggles",
+            "definitionByLocale": {
+              "ru": "очки для плавания. My brother's goggles are blue. — «Очки для плавания моего брата синие». Слово всегда во множественном числе, как scissors.",
+              "uk": "окуляри для плавання. My brother's goggles are blue. — «Окуляри для плавання мого брата сині». Слово завжди в множині, як scissors."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте инструктора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i02:r1",
+            "text": "The goggles are mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i02:r2",
+            "text": "The goggles are his."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i02:r3",
+            "text": "The goggles are hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте инструктора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i02:audio",
+            "transcript": "The goggles are mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:i02:r1",
+              "targetText": "The goggles are mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i02:r2",
+              "targetText": "The goggles are his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i02:r3",
+              "targetText": "The goggles are hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте инструктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мои, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `mine`, мої, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте инструктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мои, а в этом варианте — `hers`, её.",
+                "uk": "У записі останнє слово — `mine`, мої, а в цьому варіанті — `hers`, її."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:word:handkerchief",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — handkerchief",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:handkerchief:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — handkerchief",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:handkerchief:audio",
+            "transcript": "handkerchief"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:handkerchief:r1",
+              "targetText": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок. Her handkerchief is white. — «Её носовой платок белый». О небольшом куске ткани, которым вытирают лицо и руки.",
+                "uk": "носова хустинка. Her handkerchief is white. — «Її носова хустинка біла». Про невеликий шматок тканини, яким витирають обличчя й руки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handkerchief",
+            "definitionByLocale": {
+              "ru": "носовой платок. Her handkerchief is white. — «Её носовой платок белый». О небольшом куске ткани, которым вытирают лицо и руки.",
+              "uk": "носова хустинка. Her handkerchief is white. — «Її носова хустинка біла». Про невеликий шматок тканини, яким витирають обличчя й руки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабушка уронила платок, а вы его нашли. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i03:r1",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i03:r2",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i03:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабушка уронила платок, а вы его нашли. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка уронила платок, а вы его нашли. Выберите слово",
+            "uk": "Бабуся впустила хустинку, а ви її знайшли. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Here is ___ handkerchief.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-35:i03:r1",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i03:r2",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i03:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Бабушка уронила платок, а вы его нашли. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Бабушка уронила платок, а вы его нашли. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`yours` стоит без вещи, а перед `handkerchief` нужно `your`.",
+                "uk": "`yours` стоїть без речі, а перед `handkerchief` потрібно `your`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Бабушка уронила платок, а вы его нашли. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а перед вещью нужно `your`.",
+                "uk": "`you` означає «ти», а перед річчю потрібно `your`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-35:i04:p1",
+              "target": "hairbrush",
+              "meaningByLocale": {
+                "ru": "щётка для волос",
+                "uk": "щітка для волосся"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i04:p2",
+              "target": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i04:p3",
+              "target": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок",
+                "uk": "носовичок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i04:p4",
+              "target": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь",
+                "uk": "шампунь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hairbrush",
+            "goggles",
+            "handkerchief",
+            "shampoo"
+          ],
+          "rightColumn": [
+            "щётка для волос",
+            "очки для плавания",
+            "носовой платок",
+            "шампунь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:word:shampoo",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shampoo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:shampoo:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shampoo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:shampoo:audio",
+            "transcript": "shampoo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:shampoo:r1",
+              "targetText": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь. The shampoo is in my bag. — «Шампунь в моей сумке». О жидком средстве, которым моют волосы.",
+                "uk": "шампунь. The shampoo is in my bag. — «Шампунь у моїй сумці». Про рідкий засіб, яким миють волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shampoo",
+            "definitionByLocale": {
+              "ru": "шампунь. The shampoo is in my bag. — «Шампунь в моей сумке». О жидком средстве, которым моют волосы.",
+              "uk": "шампунь. The shampoo is in my bag. — «Шампунь у моїй сумці». Про рідкий засіб, яким миють волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i05:audio",
+            "transcript": "The shampoo is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The shampoo is in my bag.",
+          "orderedTokens": [
+            "The",
+            "shampoo",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The shampoo is in my bag.`",
+                "uk": "тут потрібно `is` — `The shampoo is in my bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга собирает сумку. Скажите ей: «Это щётка для волос твоей сестры»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга собирает сумку. Скажите ей: «Это щётка для волос твоей сестры»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is your sister's hairbrush.",
+          "localizedMeaning": {
+            "ru": "Подруга собирает сумку. Скажите ей: «Это щётка для волос твоей сестры»",
+            "uk": "Подруга збирає сумку. Скажіть їй: «Це щітка для волосся твоєї сестри»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "your",
+            "sister's",
+            "hairbrush"
+          ],
+          "authoredDistractorTokens": [
+            "sister"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга собирает сумку. Скажите ей: «Это щётка для волос твоей сестры»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sister's` — `This is your sister's hairbrush.`",
+                "uk": "тут потрібно `sister's` — `This is your sister's hairbrush.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга ищет щётку для волос. Вы нашли её. Скажите: «Вот твоя щётка для волос»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга ищет щётку для волос. Вы нашли её. Скажите: «Вот твоя щётка для волос»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i07:audio",
+            "transcript": "Here is your hairbrush."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Here is your hairbrush.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Инструктор показывает очки для плавания. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Инструктор показывает очки для плавания. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Инструктор показывает очки для плавания. Выберите слово",
+            "uk": "Інструктор показує окуляри для плавання. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose goggles ___ these?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-35:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Инструктор показывает очки для плавания. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Инструктор показывает очки для плавания. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Очки — несколько вещей, поэтому нужно `are these`.",
+                "uk": "Окуляри — кілька речей, тому потрібно `are these`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Инструктор показывает очки для плавания. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только с `I`; здесь нужно `are these`.",
+                "uk": "`am` буває лише з `I`; тут потрібно `are these`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте инструктора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i09:r1",
+            "text": "Whose goggles are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i09:r2",
+            "text": "Whose goggles are those?"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i09:r3",
+            "text": "Whose shampoo is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте инструктора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i09:audio",
+            "transcript": "Whose goggles are these?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:i09:r1",
+              "targetText": "Whose goggles are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i09:r2",
+              "targetText": "Whose goggles are those?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i09:r3",
+              "targetText": "Whose shampoo is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте инструктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `these`, а в этом варианте — `those`.",
+                "uk": "У записі останнє слово — `these`, а в цьому варіанті — `those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте инструктора",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `goggles`, очки, а в этом варианте — `shampoo`, шампунь.",
+                "uk": "У записі річ — `goggles`, окуляри, а в цьому варіанті — `shampoo`, шампунь."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-35:i10:p1",
+              "target": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок",
+                "uk": "носовичок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i10:p2",
+              "target": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i10:p3",
+              "target": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь",
+                "uk": "шампунь"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i10:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "handkerchief",
+            "goggles",
+            "shampoo",
+            "bag"
+          ],
+          "rightColumn": [
+            "носовой платок",
+            "очки для плавания",
+            "шампунь",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте бабушку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i11:audio",
+            "transcript": "Her handkerchief is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Her handkerchief is on the bench.",
+          "orderedTokens": [
+            "Her",
+            "handkerchief",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Her handkerchief is on the bench.`",
+                "uk": "тут потрібно `is` — `Her handkerchief is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Инструктор спрашивает об очках для плавания. Они вашего брата. Скажите: «Очки для плавания моего брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Инструктор спрашивает об очках для плавания. Они вашего брата. Скажите: «Очки для плавания моего брата»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The goggles are my brother's.",
+          "localizedMeaning": {
+            "ru": "Инструктор спрашивает об очках для плавания. Они вашего брата. Скажите: «Очки для плавания моего брата»",
+            "uk": "Інструктор питає про окуляри для плавання. Вони вашого брата. Скажіть: «Окуляри для плавання мого брата»"
+          },
+          "orderedTokens": [
+            "The",
+            "goggles",
+            "are",
+            "my",
+            "brother's"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Инструктор спрашивает об очках для плавания. Они вашего брата. Скажите: «Очки для плавания моего брата»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `The goggles are my brother's.`",
+                "uk": "тут потрібно `brother's` — `The goggles are my brother's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Инструктор спрашивает, чьи это очки для плавания. Они вашей сестры. Скажите: «Они её»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Инструктор спрашивает, чьи это очки для плавания. Они вашей сестры. Скажите: «Они её»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i13:audio",
+            "transcript": "They are hers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are hers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы показываете подруге шампунь и спрашиваете, не её ли он. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i14:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i14:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i14:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете подруге шампунь и спрашиваете, не её ли он. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете подруге шампунь и спрашиваете, не её ли он. Выберите слово",
+            "uk": "Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Is this shampoo ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-35:i14:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i14:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i14:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Вы показываете подруге шампунь и спрашиваете, не её ли он. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы показываете подруге шампунь и спрашиваете, не её ли он. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `yours`, а не `your`.",
+                "uk": "Без назви речі потрібно `yours`, а не `your`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы показываете подруге шампунь и спрашиваете, не её ли он. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а «твой» без вещи — `yours`.",
+                "uk": "`you` означає «ти», а «твій» без речі — `yours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте бабушку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i15:r1",
+            "text": "Here is your handkerchief."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i15:r2",
+            "text": "Here is my handkerchief."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i15:r3",
+            "text": "Here is your hairbrush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i15:audio",
+            "transcript": "Here is your handkerchief."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:i15:r1",
+              "targetText": "Here is your handkerchief.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i15:r2",
+              "targetText": "Here is my handkerchief.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i15:r3",
+              "targetText": "Here is your hairbrush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи слово перед вещью — `your`, а в этом варианте — `my`.",
+                "uk": "У записі слово перед річчю — `your`, а в цьому варіанті — `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `handkerchief`, платок, а в этом варианте — `hairbrush`, щётка.",
+                "uk": "У записі річ — `handkerchief`, хустинка, а в цьому варіанті — `hairbrush`, щітка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-35:i16:p1",
+              "target": "hairbrush",
+              "meaningByLocale": {
+                "ru": "щётка для волос",
+                "uk": "щітка для волосся"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i16:p2",
+              "target": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i16:p3",
+              "target": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок",
+                "uk": "носовичок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i16:p4",
+              "target": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь",
+                "uk": "шампунь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hairbrush",
+            "goggles",
+            "handkerchief",
+            "shampoo"
+          ],
+          "rightColumn": [
+            "щётка для волос",
+            "очки для плавания",
+            "носовой платок",
+            "шампунь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли в раздевалке очки для плавания и хотите вернуть их владельцу. Спросите инструктора: «Чьи это очки для плавания?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли в раздевалке очки для плавания и хотите вернуть их владельцу. Спросите инструктора: «Чьи это очки для плавания?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i17:audio",
+            "transcript": "Whose goggles are these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose goggles are these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-35:word:hairbrush",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hairbrush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:hairbrush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hairbrush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:hairbrush:audio",
+            "transcript": "hairbrush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:hairbrush:r1",
+              "targetText": "hairbrush",
+              "meaningByLocale": {
+                "ru": "щётка для волос. My sister's hairbrush is on the bench. — «Щётка для волос моей сестры на скамейке». О щётке, которой расчёсывают волосы.",
+                "uk": "щітка для волосся. My sister's hairbrush is on the bench. — «Щітка для волосся моєї сестри на лавці». Про щітку, якою розчісують волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hairbrush",
+            "definitionByLocale": {
+              "ru": "щётка для волос. My sister's hairbrush is on the bench. — «Щётка для волос моей сестры на скамейке». О щётке, которой расчёсывают волосы.",
+              "uk": "щітка для волосся. My sister's hairbrush is on the bench. — «Щітка для волосся моєї сестри на лавці». Про щітку, якою розчісують волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли в роздягальні щітку для волосся. Спитайте подругу: «Це твоя щітка для волосся?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли в роздягальні щітку для волосся. Спитайте подругу: «Це твоя щітка для волосся?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this hairbrush yours?",
+          "localizedMeaning": {
+            "ru": "Вы нашли в раздевалке щётку для волос. Спросите подругу: «Это твоя щётка для волос?»",
+            "uk": "Ви знайшли в роздягальні щітку для волосся. Спитайте подругу: «Це твоя щітка для волосся?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "hairbrush",
+            "yours"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли в роздягальні щітку для волосся. Спитайте подругу: «Це твоя щітка для волосся?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this hairbrush yours?`",
+                "uk": "тут потрібно `Is` — `Is this hairbrush yours?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:word:goggles",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — goggles",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:goggles:audio"
+        ],
+        "accessibilityLabel": "Картка слова — goggles",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:goggles:audio",
+            "transcript": "goggles"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:goggles:r1",
+              "targetText": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания. My brother's goggles are blue. — «Очки для плавания моего брата синие». Слово всегда во множественном числе, как scissors.",
+                "uk": "окуляри для плавання. My brother's goggles are blue. — «Окуляри для плавання мого брата сині». Слово завжди в множині, як scissors."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "goggles",
+            "definitionByLocale": {
+              "ru": "очки для плавания. My brother's goggles are blue. — «Очки для плавания моего брата синие». Слово всегда во множественном числе, как scissors.",
+              "uk": "окуляри для плавання. My brother's goggles are blue. — «Окуляри для плавання мого брата сині». Слово завжди в множині, як scissors."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте інструктора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i02:r1",
+            "text": "The goggles are mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i02:r2",
+            "text": "The goggles are his."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i02:r3",
+            "text": "The goggles are hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте інструктора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i02:audio",
+            "transcript": "The goggles are mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:i02:r1",
+              "targetText": "The goggles are mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i02:r2",
+              "targetText": "The goggles are his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i02:r3",
+              "targetText": "The goggles are hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте інструктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мои, а в этом варианте — `his`, его.",
+                "uk": "У записі останнє слово — `mine`, мої, а в цьому варіанті — `his`, його."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте інструктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, мои, а в этом варианте — `hers`, её.",
+                "uk": "У записі останнє слово — `mine`, мої, а в цьому варіанті — `hers`, її."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:word:handkerchief",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — handkerchief",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:handkerchief:audio"
+        ],
+        "accessibilityLabel": "Картка слова — handkerchief",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:handkerchief:audio",
+            "transcript": "handkerchief"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:handkerchief:r1",
+              "targetText": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок. Her handkerchief is white. — «Её носовой платок белый». О небольшом куске ткани, которым вытирают лицо и руки.",
+                "uk": "носова хустинка. Her handkerchief is white. — «Її носова хустинка біла». Про невеликий шматок тканини, яким витирають обличчя й руки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handkerchief",
+            "definitionByLocale": {
+              "ru": "носовой платок. Her handkerchief is white. — «Её носовой платок белый». О небольшом куске ткани, которым вытирают лицо и руки.",
+              "uk": "носова хустинка. Her handkerchief is white. — «Її носова хустинка біла». Про невеликий шматок тканини, яким витирають обличчя й руки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабуся впустила хустинку, а ви її знайшли. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i03:r1",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i03:r2",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i03:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабуся впустила хустинку, а ви її знайшли. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка уронила платок, а вы его нашли. Выберите слово",
+            "uk": "Бабуся впустила хустинку, а ви її знайшли. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Here is ___ handkerchief.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-35:i03:r1",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i03:r2",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i03:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Бабуся впустила хустинку, а ви її знайшли. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Бабуся впустила хустинку, а ви її знайшли. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`yours` стоит без вещи, а перед `handkerchief` нужно `your`.",
+                "uk": "`yours` стоїть без речі, а перед `handkerchief` потрібно `your`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Бабуся впустила хустинку, а ви її знайшли. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а перед вещью нужно `your`.",
+                "uk": "`you` означає «ти», а перед річчю потрібно `your`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-35:i04:p1",
+              "target": "hairbrush",
+              "meaningByLocale": {
+                "ru": "щётка для волос",
+                "uk": "щітка для волосся"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i04:p2",
+              "target": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i04:p3",
+              "target": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок",
+                "uk": "носовичок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i04:p4",
+              "target": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь",
+                "uk": "шампунь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hairbrush",
+            "goggles",
+            "handkerchief",
+            "shampoo"
+          ],
+          "rightColumn": [
+            "щітка для волосся",
+            "окуляри для плавання",
+            "носовичок",
+            "шампунь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:word:shampoo",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shampoo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:word:shampoo:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shampoo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:word:shampoo:audio",
+            "transcript": "shampoo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:word:shampoo:r1",
+              "targetText": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь. The shampoo is in my bag. — «Шампунь в моей сумке». О жидком средстве, которым моют волосы.",
+                "uk": "шампунь. The shampoo is in my bag. — «Шампунь у моїй сумці». Про рідкий засіб, яким миють волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shampoo",
+            "definitionByLocale": {
+              "ru": "шампунь. The shampoo is in my bag. — «Шампунь в моей сумке». О жидком средстве, которым моют волосы.",
+              "uk": "шампунь. The shampoo is in my bag. — «Шампунь у моїй сумці». Про рідкий засіб, яким миють волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i05:audio",
+            "transcript": "The shampoo is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The shampoo is in my bag.",
+          "orderedTokens": [
+            "The",
+            "shampoo",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The shampoo is in my bag.`",
+                "uk": "тут потрібно `is` — `The shampoo is in my bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга збирає сумку. Скажіть їй: «Це щітка для волосся твоєї сестри»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга збирає сумку. Скажіть їй: «Це щітка для волосся твоєї сестри»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is your sister's hairbrush.",
+          "localizedMeaning": {
+            "ru": "Подруга собирает сумку. Скажите ей: «Это щётка для волос твоей сестры»",
+            "uk": "Подруга збирає сумку. Скажіть їй: «Це щітка для волосся твоєї сестри»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "your",
+            "sister's",
+            "hairbrush"
+          ],
+          "authoredDistractorTokens": [
+            "sister"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга збирає сумку. Скажіть їй: «Це щітка для волосся твоєї сестри»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sister's` — `This is your sister's hairbrush.`",
+                "uk": "тут потрібно `sister's` — `This is your sister's hairbrush.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шукає щітку для волосся. Ви знайшли її. Скажіть: «Ось твоя щітка для волосся»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга шукає щітку для волосся. Ви знайшли її. Скажіть: «Ось твоя щітка для волосся»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i07:audio",
+            "transcript": "Here is your hairbrush."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Here is your hairbrush.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Інструктор показує окуляри для плавання. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Інструктор показує окуляри для плавання. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Инструктор показывает очки для плавания. Выберите слово",
+            "uk": "Інструктор показує окуляри для плавання. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose goggles ___ these?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-35:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Інструктор показує окуляри для плавання. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Інструктор показує окуляри для плавання. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Очки — несколько вещей, поэтому нужно `are these`.",
+                "uk": "Окуляри — кілька речей, тому потрібно `are these`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Інструктор показує окуляри для плавання. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только с `I`; здесь нужно `are these`.",
+                "uk": "`am` буває лише з `I`; тут потрібно `are these`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте інструктора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i09:r1",
+            "text": "Whose goggles are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i09:r2",
+            "text": "Whose goggles are those?"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i09:r3",
+            "text": "Whose shampoo is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте інструктора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i09:audio",
+            "transcript": "Whose goggles are these?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:i09:r1",
+              "targetText": "Whose goggles are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i09:r2",
+              "targetText": "Whose goggles are those?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i09:r3",
+              "targetText": "Whose shampoo is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте інструктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `these`, а в этом варианте — `those`.",
+                "uk": "У записі останнє слово — `these`, а в цьому варіанті — `those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте інструктора",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `goggles`, очки, а в этом варианте — `shampoo`, шампунь.",
+                "uk": "У записі річ — `goggles`, окуляри, а в цьому варіанті — `shampoo`, шампунь."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-35:i10:p1",
+              "target": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок",
+                "uk": "носовичок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i10:p2",
+              "target": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i10:p3",
+              "target": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь",
+                "uk": "шампунь"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i10:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "handkerchief",
+            "goggles",
+            "shampoo",
+            "bag"
+          ],
+          "rightColumn": [
+            "носовичок",
+            "окуляри для плавання",
+            "шампунь",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте бабусю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i11:audio",
+            "transcript": "Her handkerchief is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Her handkerchief is on the bench.",
+          "orderedTokens": [
+            "Her",
+            "handkerchief",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Her handkerchief is on the bench.`",
+                "uk": "тут потрібно `is` — `Her handkerchief is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Інструктор питає про окуляри для плавання. Вони вашого брата. Скажіть: «Окуляри для плавання мого брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Інструктор питає про окуляри для плавання. Вони вашого брата. Скажіть: «Окуляри для плавання мого брата»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The goggles are my brother's.",
+          "localizedMeaning": {
+            "ru": "Инструктор спрашивает об очках для плавания. Они вашего брата. Скажите: «Очки для плавания моего брата»",
+            "uk": "Інструктор питає про окуляри для плавання. Вони вашого брата. Скажіть: «Окуляри для плавання мого брата»"
+          },
+          "orderedTokens": [
+            "The",
+            "goggles",
+            "are",
+            "my",
+            "brother's"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Інструктор питає про окуляри для плавання. Вони вашого брата. Скажіть: «Окуляри для плавання мого брата»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `The goggles are my brother's.`",
+                "uk": "тут потрібно `brother's` — `The goggles are my brother's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Інструктор питає, чиї це окуляри для плавання. Вони вашої сестри. Скажіть: «Вони її»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Інструктор питає, чиї це окуляри для плавання. Вони вашої сестри. Скажіть: «Вони її»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i13:audio",
+            "transcript": "They are hers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are hers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i14:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i14:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i14:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете подруге шампунь и спрашиваете, не её ли он. Выберите слово",
+            "uk": "Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Is this shampoo ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-35:i14:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i14:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i14:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `yours`, а не `your`.",
+                "uk": "Без назви речі потрібно `yours`, а не `your`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви показуєте подрузі шампунь і питаєте, чи не її він. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а «твой» без вещи — `yours`.",
+                "uk": "`you` означає «ти», а «твій» без речі — `yours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте бабусю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i15:r1",
+            "text": "Here is your handkerchief."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i15:r2",
+            "text": "Here is my handkerchief."
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i15:r3",
+            "text": "Here is your hairbrush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i15:audio",
+            "transcript": "Here is your handkerchief."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-35:i15:r1",
+              "targetText": "Here is your handkerchief.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i15:r2",
+              "targetText": "Here is my handkerchief.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i15:r3",
+              "targetText": "Here is your hairbrush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи слово перед вещью — `your`, а в этом варианте — `my`.",
+                "uk": "У записі слово перед річчю — `your`, а в цьому варіанті — `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `handkerchief`, платок, а в этом варианте — `hairbrush`, щётка.",
+                "uk": "У записі річ — `handkerchief`, хустинка, а в цьому варіанті — `hairbrush`, щітка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-35:i16:p1",
+              "target": "hairbrush",
+              "meaningByLocale": {
+                "ru": "щётка для волос",
+                "uk": "щітка для волосся"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i16:p2",
+              "target": "goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i16:p3",
+              "target": "handkerchief",
+              "meaningByLocale": {
+                "ru": "носовой платок",
+                "uk": "носовичок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-35:i16:p4",
+              "target": "shampoo",
+              "meaningByLocale": {
+                "ru": "шампунь",
+                "uk": "шампунь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hairbrush",
+            "goggles",
+            "handkerchief",
+            "shampoo"
+          ],
+          "rightColumn": [
+            "щітка для волосся",
+            "окуляри для плавання",
+            "носовичок",
+            "шампунь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли в роздягальні окуляри для плавання й хочете повернути їх власникові. Спитайте інструктора: «Чиї це окуляри для плавання?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли в роздягальні окуляри для плавання й хочете повернути їх власникові. Спитайте інструктора: «Чиї це окуляри для плавання?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-35:i17:audio",
+            "transcript": "Whose goggles are these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose goggles are these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-35:word:hairbrush",
+      "correctText": "hairbrush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i01",
+      "correctText": "Is this hairbrush yours?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:word:goggles",
+      "correctText": "goggles",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i02",
+      "correctText": "The goggles are mine.",
+      "correctResponseId": "en:lesson-05:session-35:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:word:handkerchief",
+      "correctText": "handkerchief",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i03",
+      "correctText": "your",
+      "correctResponseId": "en:lesson-05:session-35:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:word:shampoo",
+      "correctText": "shampoo",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i05",
+      "correctText": "The shampoo is in my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i06",
+      "correctText": "This is your sister's hairbrush.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i07",
+      "correctText": "Here is your hairbrush.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-35:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i09",
+      "correctText": "Whose goggles are these?",
+      "correctResponseId": "en:lesson-05:session-35:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i11",
+      "correctText": "Her handkerchief is on the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i12",
+      "correctText": "The goggles are my brother's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i13",
+      "correctText": "They are hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i14",
+      "correctText": "yours",
+      "correctResponseId": "en:lesson-05:session-35:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i15",
+      "correctText": "Here is your handkerchief.",
+      "correctResponseId": "en:lesson-05:session-35:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i17",
+      "correctText": "Whose goggles are these?",
+      "correctResponseId": null
+    }
+  ]
+}

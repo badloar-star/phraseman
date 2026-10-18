@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-39:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Так получилось бы, что скрипка — это сама дочь. Хозяйку называем через 's: my daughter's.",
+          "uk": "Так вийшло б, що скрипка — це сама донька. Господиню називаємо через 's: my daughter's."
         },
         "en:lesson-05:session-39:intro1:r3": {
-          "ru": "Одна скрипка: `is this`.",
-          "uk": "Одна скрипка: `is this`."
+          "ru": "uncle — дядя, а скрипка принадлежит дочери: нужно daughter's.",
+          "uk": "uncle — дядько, а скрипка належить доньці: потрібно daughter's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-39:intro2:r2": {
-          "ru": "`bottles` — множественное число: `are these`.",
-          "uk": "`bottles` — множина: `are these`."
+          "ru": "Вещь лежит сверху, поэтому нужно on the shelf.",
+          "uk": "Річ лежить зверху, тому потрібно on the shelf."
         },
         "en:lesson-05:session-39:intro2:r3": {
-          "ru": "Это «Где бутылки?», а нужен вопрос о владельце.",
-          "uk": "Це «Де пляшки?», а потрібне запитання про власника."
+          "ru": "Гармоника одна, поэтому нужно is.",
+          "uk": "Гармоніка одна, тому потрібно is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-39:intro3:r2": {
-          "ru": "С `you` нужна форма `are`.",
-          "uk": "З `you` потрібна форма `are`."
+          "ru": "Для места между двумя вещами нужно between, а не next to.",
+          "uk": "Для місця між двома речами потрібно between, а не next to."
         },
         "en:lesson-05:session-39:intro3:r3": {
-          "ru": "`sleepy` — сонный; смелый — `brave`.",
-          "uk": "`sleepy` — сонний; сміливий — `brave`."
+          "ru": "После between нужны две вещи: the chair and the sofa.",
+          "uk": "Після between потрібні дві речі: the chair and the sofa."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8a0ba7668e44ae9f542bb6ee18925643897f8d1c641a6697be3c6197a34955e0"
+  "auxiliaryFingerprint": "a11704aa37bd70f7854042d7ea54551fc8eb7a29f0163ae3335e623d91c8f018"
 }

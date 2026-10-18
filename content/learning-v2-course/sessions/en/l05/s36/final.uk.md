@@ -1,136 +1,154 @@
-# Англійська · Урок 5 · Заняття 36 — Чиї це окуляри?
+# Англійська · Урок 5 · Заняття 36 — Збори біля озера
 
-**Ситуація.** Уранці сім’я збирається вийти з готелю. Діти ще сонні, на столі лежать сонцезахисні окуляри й ключ-картка.
+**Ситуація.** Зранку родина збирається поїхати з будиночка біля озера. На підвіконні й дивані лишилися парні речі: бінокль, навушники, запонки. Ви з’ясовуєте, чиї вони: про кілька речей питаємо are these.
 
-**Що ви опануєте:** запитати про власника предметів у множині
-**Нові слова:** sunglasses
+**Що ви опануєте:** спитати про власника кількох речей: whose + річ + are these, і відповісти: they are, these are
+**Нові слова:** binoculars, earbuds, cufflinks, snorkel
+**Повертаються:** uncle, aunt, cousin, table, sofa, bag, box
 
 ---
 
 ## Інтро 1
 
-### Окуляри від сонця
+### Бінокль на підвіконні
 
-`sunglasses` — «сонцезахисні окуляри». В англійській це множина, навіть коли йдеться про одні окуляри. `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» `The sunglasses are mine` — «Сонцезахисні окуляри мої». Окуляри вже готові до сонця, а їхній власник — ще до подушки.
+На підвіконні будиночка лежить бінокль, а поруч стоїть дядько. binoculars — «бінокль»; в англійській це слово в множині, як scissors. Спитайте дядька, чий він: Whose binoculars are these? — «Чий це бінокль?» Питання починається з whose і закінчується are these.
 
-**Запитайте про власника сонцезахисних окулярів.**
+**На підвіконні лежить бінокль. Спитайте дядька, чий він.**
 
-- ✅ **Whose sunglasses are these?**
-- ❌ Whose sunglasses is this? — *`sunglasses` — множина: `are these`.*
-- ❌ Where are the sunglasses? — *Це «Де окуляри?»; про власника запитуємо з `Whose`.*
+- ✅ **Whose binoculars are these?**
+- ❌ Whose binoculars is this? — *binoculars — множина, тому потрібно are these.*
+- ❌ Where are the binoculars? — *Це «Де бінокль?». Про господаря питаємо з whose.*
 
 ---
 
 ## Інтро 2
 
-### Сонний ранок
+### Навушники на дивані
 
-`sleepy` — «сонний, хочеться спати». `I am sleepy` — «Мені хочеться спати». `children` — «діти»: це множина. `The children are sleepy` — «Діти сонні». Сонна людина ще може не спати: `sleepy` описує бажання спати, а знайоме `asleep` — уже спить.
+На дивані між подушками лежать маленькі білі бездротові навушники. Сестра питає вас, чиї вони. Вони ваші: ви слухали музику ввечері на ґанку, поки решта вже спала. earbuds — «бездротові навушники», теж у множині. Відповідьте: They are mine — «Вони мої».
 
-**Вам хочеться спати. Назвіть стан без скорочення.**
+**Сестра питає, чиї навушники на дивані. Вони ваші. Скажіть: «Вони мої».**
 
-- ✅ **I am sleepy.**
-- ❌ I is sleepy. — *З `I` потрібна форма `am`.*
-- ❌ I am asleep. — *`asleep` — уже сплю; хочеться спати — `sleepy`.*
+- ✅ **They are mine.**
+- ❌ It is mine. — *Навушників кілька, тому потрібно They are, а не It is.*
+- ❌ They are my. — *Без назви речі потрібно mine, а не my.*
 
 ---
 
 ## Інтро 3
 
-### Картка й датчик
+### Запонки в коробці
 
-`keycard` — «ключ-картка», `smoke alarm` — «датчик диму». `Whose keycard is this?` — «Чия це ключ-картка?» Одна картка — `is this`, окуляри — `are these`. `The smoke alarm is on the ceiling` — «Датчик диму на стелі». `This is Anna’s keycard` — «Це ключ-картка Анни».
+Дядько збирається на сімейне свято й шукає запонки для сорочки. Ви знайшли їх у коробці й показуєте двоюрідному братові. cufflinks — «запонки», вони завжди парою, тому слово в множині. Назвіть господаря: These are my uncle's cufflinks — «Це запонки мого дядька».
 
-**Запитайте про власника ключ-картки.**
+**Ви знайшли в коробці запонки дядька. Скажіть двоюрідному братові: «Це запонки мого дядька».**
 
-- ✅ **Whose keycard is this?**
-- ❌ Whose keycard are these? — *Одна ключ-картка: `is this`.*
-- ❌ Where is the keycard? — *Це запитання про місце; про власника запитуємо з `Whose`.*
+- ✅ **These are my uncle's cufflinks.**
+- ❌ These is my uncle's cufflinks. — *Запонок кілька, тому потрібно These are.*
+- ❌ These are my uncle cufflinks. — *Після слова uncle потрібно 's: my uncle's cufflinks.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Вам хочеться спати. Скажіть про це без скорочення**
+**1 · Картка слова — binoculars**
+<!-- interaction_id: en:lesson-05:session-36:word:binoculars; family: word_card -->
+> **binoculars** — бінокль. My aunt's binoculars are on the table. — «Бінокль моєї тітки на столі». Слово завжди в множині, як scissors.
+
+**2 · Двоюрідний брат питає, чий бінокль. Він вашої тітки. Скажіть: «Це бінокль моєї тітки»**
 <!-- interaction_id: en:lesson-05:session-36:i01; family: phrase_builder -->
-Плитки: `sleepy` `am` `I` `is` → **I am sleepy.**
-*(плитка `is` зайва: тут потрібно `am` — `I am sleepy.`)*
+Плитки: `binoculars` `are` `aunt's` `These` `my` `aunt` → **These are my aunt's binoculars.**
+*(плитка `aunt` зайва: тут потрібно `aunt's` — `These are my aunt's binoculars.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — earbuds**
+<!-- interaction_id: en:lesson-05:session-36:word:earbuds; family: word_card -->
+> **earbuds** — бездротові навушники. My cousin's earbuds are white. — «Бездротові навушники мого двоюрідного брата білі». Маленькі навушники, які вставляють у вуха.
+
+**4 · Послухайте сестру**
 <!-- interaction_id: en:lesson-05:session-36:i02; family: listen_choose -->
-🔊 *sunglasses* → **sunglasses** · gloves · headphones
-- gloves — *У записі перше слово — `sunglasses`, а в цьому варіанті — `gloves`.*
-- headphones — *У записі перше слово — `sunglasses`, а в цьому варіанті — `headphones`.*
+🔊 *Whose earbuds are these?* → **Whose earbuds are these?** · Whose earbuds are those? · Whose binoculars are these?
+- Whose earbuds are those? — *У записі останнє слово — `these`, а в цьому варіанті — `those`.*
+- Whose binoculars are these? — *У записі річ — `earbuds`, а в цьому варіанті — `binoculars`.*
 
-**3 · Назвіть сонцезахисні окуляри**
+**5 · Картка слова — cufflinks**
+<!-- interaction_id: en:lesson-05:session-36:word:cufflinks; family: word_card -->
+> **cufflinks** — запонки. My uncle's cufflinks are small. — «Запонки мого дядька маленькі». Прикраси, якими застібають манжети сорочки.
+
+**6 · Дядько шукає запонки. Вони в коробці. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-36:i03; family: context_gap_grammar -->
-___ → **sunglasses** · headphones · watch
-- headphones — *`headphones` — навушники; сонцезахисні окуляри — `sunglasses`.*
-- watch — *`watch` — наручний годинник; сонцезахисні окуляри — `sunglasses`.*
+The cufflinks ___ in the box. → **are** · is · am
+- is — *Запонок кілька, тому потрібно `are`, а не `is`.*
+- am — *`am` буває лише з `I`; тут потрібно `are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-36:i04; family: speed_match -->
-sunglasses — сонцезахисні окуляри · children — діти · smoke alarm — датчик диму · keycard — ключ-картка
+binoculars — бінокль · earbuds — бездротові навушники · cufflinks — запонки · snorkel — трубка для плавання
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — snorkel**
+<!-- interaction_id: en:lesson-05:session-36:word:snorkel; family: word_card -->
+> **snorkel** — трубка для плавання. The snorkel is next to the bag. — «Трубка для плавання поруч із сумкою». Її беруть до рота, щоб дихати під водою.
+
+**9 · Послухайте двоюрідного брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-36:i05; family: listen_build_dictation -->
-🔊 *Whose sunglasses are these?* Плитки: `these` `are` `sunglasses` `Whose` → **Whose sunglasses are these?**
+🔊 *The snorkel is next to the bag.* Плитки: `snorkel` `next` `to` `the` `bag` `is` `The` `are` → **The snorkel is next to the bag.**
+*(плитка `are` зайва: тут потрібно `is` — `The snorkel is next to the bag.`)*
 
-**6 · Ви знайшли ключ-картку. Запитайте «Чия це ключ-картка?»**
+**10 · Ви показуєте дядькові запонки й питаєте, чиї вони. Спитайте: «Чиї це запонки?»**
 <!-- interaction_id: en:lesson-05:session-36:i06; family: phrase_builder -->
-Плитки: `this` `is` `keycard` `Whose` → **Whose keycard is this?**
+Плитки: `cufflinks` `these` `are` `Whose` `Where` → **Whose cufflinks are these?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose cufflinks are these?`)*
 
-**7 · Сонцезахисні окуляри належать вам. Скажіть «Сонцезахисні окуляри мої»**
+**11 · Сестра питає, чиї це навушники. Вони ваші. Скажіть: «Вони мої»**
 <!-- interaction_id: en:lesson-05:session-36:i07; family: scripted_repeat_compare -->
-🎙 **The sunglasses are mine.**
+🎙 **They are mine.**
 
-**8 · Діти сонні. Виберіть форму для кількох дітей**
+**12 · Дядько дивиться на свої запонки. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-36:i08; family: context_gap_grammar -->
-The children ___ sleepy. → **are** · is · am
-- is — *`children` — множина: `are`.*
-- am — *`am` використовується з `I`; з `children` потрібне `are`.*
+These cufflinks are ___. → **his** · hers · he
+- hers — *`hers` означає «її», а запонки належать дядькові: потрібно `his`.*
+- he — *`he` означає «він», а «його» без речі — `his`.*
 
-**9 · Послухайте, яку річ називає друг**
+**13 · Послухайте двоюрідного брата**
 <!-- interaction_id: en:lesson-05:session-36:i09; family: listen_choose -->
-🔊 *These are Anna's sunglasses.* → **These are Anna's sunglasses.** · These are Anna's gloves. · These are Anna's headphones.
-- These are Anna's gloves. — *У записі останнє слово — `sunglasses`, а в цьому варіанті — `gloves`.*
-- These are Anna's headphones. — *У записі останнє слово — `sunglasses`, а в цьому варіанті — `headphones`.*
+🔊 *Whose snorkel is this?* → **Whose snorkel is this?** · Whose snorkel is that? · Whose cufflinks are these?
+- Whose snorkel is that? — *У записі останнє слово — `this`, а в цьому варіанті — `that`.*
+- Whose cufflinks are these? — *У записі річ — `snorkel`, а в цьому варіанті — `cufflinks`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-36:i10; family: speed_match -->
-sunglasses — сонцезахисні окуляри · sleepy — сонний · smoke alarm — датчик диму · keycard — ключ-картка
+snorkel — трубка для плавання · earbuds — бездротові навушники · cufflinks — запонки · bag — сумка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-36:i11; family: listen_build_dictation -->
-🔊 *The smoke alarm is on the ceiling.* Плитки: `ceiling` `the` `on` `is` `alarm` `smoke` `The` `are` → **The smoke alarm is on the ceiling.**
-*(плитка `are` зайва: тут потрібно `is` — `The smoke alarm is on the ceiling.`)*
+🔊 *My cousin's earbuds are on the sofa.* Плитки: `earbuds` `on` `the` `sofa` `are` `cousin's` `My` `is` → **My cousin's earbuds are on the sofa.**
+*(плитка `is` зайва: тут потрібно `are` — `My cousin's earbuds are on the sofa.`)*
 
-**12 · Ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»**
+**16 · Тітка шукає бінокль. Він на столі. Скажіть їй: «Бінокль на столі»**
 <!-- interaction_id: en:lesson-05:session-36:i12; family: phrase_builder -->
-Плитки: `keycard` `Anna's` `is` `This` `are` → **This is Anna's keycard.**
-*(плитка `are` зайва: тут потрібно `is` — `This is Anna's keycard.`)*
+Плитки: `binoculars` `on` `the` `table` `are` `The` `is` → **The binoculars are on the table.**
+*(плитка `is` зайва: тут потрібно `are` — `The binoculars are on the table.`)*
 
-**13 · Окуляри друга у вас. Скажіть йому «Твої сонцезахисні окуляри в мене»**
+**17 · Дядько питає про трубку для плавання. Вона вашої сестри. Скажіть: «Трубка її»**
 <!-- interaction_id: en:lesson-05:session-36:i13; family: scripted_repeat_compare -->
-🎙 **I have your sunglasses.**
+🎙 **The snorkel is hers.**
 
-**14 · Запитайте про власника сонцезахисних окулярів**
+**18 · Ви питаєте сестру про навушники. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-36:i14; family: context_gap_grammar -->
-___ sunglasses are these? → **Whose** · Where · Who
-- Where — *`Where` — де; чиї — `Whose`.*
-- Who — *`Who` — хто; чиї — `Whose`.*
+Are these earbuds ___? → **yours** · your · you
+- your — *Без назви речі потрібно `yours`, а не `your`.*
+- you — *`you` означає «ти», а «твій» без речі — `yours`.*
 
-**15 · Послухайте, чиї окуляри тут**
+**19 · Послухайте тітку**
 <!-- interaction_id: en:lesson-05:session-36:i15; family: listen_choose -->
-🔊 *Your sunglasses are here.* → **Your sunglasses are here.** · My sunglasses are here. · His sunglasses are here.
-- My sunglasses are here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His sunglasses are here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *They are mine.* → **They are mine.** · They are his. · It is mine.
+- They are his. — *У записі останнє слово — `mine`, мої, а в цьому варіанті — `his`, його.*
+- It is mine. — *У записі перше слово — `They`, вони, а в цьому варіанті — `It`, воно.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-36:i16; family: speed_match -->
-sunglasses — сонцезахисні окуляри · sleepy — сонний · children — діти · keycard — ключ-картка
+binoculars — бінокль · earbuds — бездротові навушники · cufflinks — запонки · snorkel — трубка для плавання
 
-**17 · Ви знайшли сонцезахисні окуляри й хочете повернути їх власникові. Запитайте «Чиї це сонцезахисні окуляри?»**
+**21 · Ви знайшли бінокль і хочете повернути його власникові. Спитайте дядька: «Чий це бінокль?»**
 <!-- interaction_id: en:lesson-05:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose sunglasses are these?**
-
+🎙 **Whose binoculars are these?**

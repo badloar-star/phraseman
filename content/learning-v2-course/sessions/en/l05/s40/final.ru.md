@@ -1,135 +1,154 @@
-# Английский · Урок 5 · Занятие 40 — Возвращаем вещи владельцам
+# Английский · Урок 5 · Занятие 40 — Праздник победителей
 
-**Ситуация.** После домашнего концерта друзья собирают вещи. На столе лежат украшения и техника, у двери стоит скрипка.
+**Ситуация.** После школьного праздника в зале остались кубок, медали, маски и парик. Вы сами выбираете, как спросить о хозяине и как ответить: whose, is или are, mine, his, hers, theirs или имя с 's.
 
-**Что вы освоите:** самостоятельно спросить о владельце и описать знакомые вещи
-**Новые слова:** —
+**Что вы освоите:** самому спросить о хозяине вещи и ответить: whose, is или are, mine, his, hers, theirs, 's
+**Новые слова:** trophy, medal, mask, wig
+**Возвращаются:** cousin, sister, aunt, brother, shelf, chair, table
 
 ---
 
 ## Интро 1
 
-### Одна вещь или несколько
+### Кубок на полке
 
-Повторим: `watch` — «наручные часы», `ring` — «кольцо», `bracelet` — «браслет». `Whose watch is this?` — «Чьи это наручные часы?» В английском одни наручные часы — одна вещь: `is this`. `Whose ring is this?` — «Чьё это кольцо?» `The bracelet is mine` — «Браслет мой».
+После школьного праздника тренер снимает с полки большой кубок и протягивает его вам. trophy — «кубок», награда за победу. Он не знает, кому его отдать. Спросите тренера, чей он: Whose trophy is this? — «Чей это кубок?» Кубок один, поэтому is this.
 
-**Спросите о владельце одних наручных часов.**
+**Тренер протягивает вам кубок. Спросите, чей он.**
 
-- ✅ **Whose watch is this?**
-- ❌ Whose watch are these? — *Одни наручные часы — `a watch`, единственное число: `is this`.*
-- ❌ Where is the watch? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
+- ✅ **Whose trophy is this?**
+- ❌ Where is the trophy? — *Это «Где кубок?». О хозяине спрашиваем с whose.*
+- ❌ Whose trophy are this? — *Кубок один, поэтому нужно is this.*
 
 ---
 
 ## Интро 2
 
-### Очки и серьги
+### Медаль бегуна
 
-`sunglasses` — «солнцезащитные очки», `earrings` — «серьги». `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» `The earrings are hers` — «Серьги её». Эти слова требуют `are`. `This is Tom’s ring` — «Это кольцо Тома»: имя владельца получает `’s`.
+Двоюродный брат победил в беге на школьном стадионе, а медаль осталась у входа в зал. Тренер спрашивает вас, чья она. Вы видели, как её получал именно брат. medal — «медаль». Ответьте одним словом вместо названия вещи: The medal is his — «Медаль его».
 
-**Скажите «Серьги её».**
+**Тренер спрашивает, чья медаль у входа. Она вашего двоюродного брата. Скажите: «Медаль его».**
 
-- ✅ **The earrings are hers.**
-- ❌ The earrings is hers. — *`earrings` — множественное число, нужна форма `are`.*
-- ❌ The earrings are her. — *Без следующего существительного нужна самостоятельная форма `hers`.*
+- ✅ **The medal is his.**
+- ❌ The medal is hers. — *hers — её, а медаль получил брат: нужно his.*
+- ❌ The medal is he. — *Без названия вещи нужно his, а не he.*
 
 ---
 
 ## Интро 3
 
-### Вещи остаются на местах
+### Маска близнецов
 
-`laptop` — «ноутбук», `violin` — «скрипка», `thermostat` — «термостат». `I have your laptop` — «Твой ноутбук у меня». `The violin is near the door` — «Скрипка возле двери». `The thermostat is on the wall` — «Термостат на стене». Термостат можно не искать среди забытых вещей: он остался на стене.
+Учительница находит на подоконнике яркую красную маску и спрашивает, чья она. Вы знаете: маска принадлежит близнецам, они делили её на двоих и по очереди надевали на праздник. mask — «маска», её надевают на лицо. Ответьте одним словом: The mask is theirs — «Маска их».
 
-**Скажите «Твой ноутбук у меня».**
+**Учительница спрашивает, чья маска на подоконнике. Она принадлежит близнецам. Скажите: «Маска их».**
 
-- ✅ **I have your laptop.**
-- ❌ I has your laptop. — *С `I` используется `have`.*
-- ❌ I have my laptop. — *`my` — мой; здесь нужен твой: `your`.*
+- ✅ **The mask is theirs.**
+- ❌ The mask is their. — *Без названия вещи нужно theirs, а не their.*
+- ❌ The mask is ours. — *ours — наша, а маска принадлежит близнецам: нужно theirs.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите, кому принадлежат одни наручные часы**
+**1 · Карточка слова — trophy**
+<!-- interaction_id: en:lesson-05:session-40:word:trophy; family: word_card -->
+> **trophy** — кубок. My cousin's trophy is on the shelf. — «Кубок моего двоюродного брата на полке». Награда в виде большой чаши за победу.
+
+**2 · Тренер спрашивает, чей кубок. Он вашего двоюродного брата. Скажите: «Кубок моего двоюродного брата»**
 <!-- interaction_id: en:lesson-05:session-40:i01; family: phrase_builder -->
-Плитки: `this` `is` `watch` `Whose` → **Whose watch is this?**
+Плитки: `trophy` `cousin's` `is` `The` `my` `cousin` → **The trophy is my cousin's.**
+*(плитка `cousin` лишняя: здесь нужно `cousin's` — `The trophy is my cousin's.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — medal**
+<!-- interaction_id: en:lesson-05:session-40:word:medal; family: word_card -->
+> **medal** — медаль. The medal is small. — «Медаль маленькая». Круглая награда на ленте.
+
+**4 · Послушайте учительницу**
 <!-- interaction_id: en:lesson-05:session-40:i02; family: listen_choose -->
-🔊 *bracelet* → **bracelet** · ring · watch
-- ring — *В записи первое слово — `bracelet`, а в этом варианте — `ring`.*
-- watch — *В записи первое слово — `bracelet`, а в этом варианте — `watch`.*
+🔊 *Whose medal is this?* → **Whose medal is this?** · Whose medal is that? · Whose trophy is this?
+- Whose medal is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose trophy is this? — *В записи вещь — `medal`, медаль, а в этом варианте — `trophy`, кубок.*
 
-**3 · Спросите о владельце одного кольца**
+**5 · Карточка слова — mask**
+<!-- interaction_id: en:lesson-05:session-40:word:mask; family: word_card -->
+> **mask** — маска. The mask is red. — «Маска красная». То, что надевают на лицо для праздника.
+
+**6 · Учительница держит маску близнецов. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-40:i03; family: context_gap_grammar -->
-Whose ring ___ this? → **is** · are · am
-- are — *Одно кольцо: `is this`.*
-- am — *`am` используется с `I`; здесь `is this`.*
+The mask is ___. → **theirs** · their · they
+- their — *Без названия вещи нужно `theirs`, а не `their`.*
+- they — *`they` значит «они», а «их» без вещи — `theirs`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-40:i04; family: speed_match -->
-watch — наручные часы · ring — кольцо · bracelet — браслет · sunglasses — солнцезащитные очки
+trophy — кубок · medal — медаль · mask — маска · wig — парик
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — wig**
+<!-- interaction_id: en:lesson-05:session-40:word:wig; family: word_card -->
+> **wig** — парик. My aunt's wig is long. — «Парик моей тёти длинный». Искусственные волосы, которые надевают на голову.
+
+**9 · Послушайте тренера и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-40:i05; family: listen_build_dictation -->
-🔊 *The violin is near the door.* Плитки: `door` `the` `near` `is` `violin` `The` `are` → **The violin is near the door.**
-*(плитка `are` лишняя: здесь нужно `is` — `The violin is near the door.`)*
+🔊 *The wig is on the chair.* Плитки: `wig` `on` `the` `chair` `is` `The` `are` → **The wig is on the chair.**
+*(плитка `are` лишняя: здесь нужно `is` — `The wig is on the chair.`)*
 
-**6 · Скажите «Термостат на стене»**
+**10 · Медаль лежит далеко на столе. Спросите учительницу: «Чья там медаль?»**
 <!-- interaction_id: en:lesson-05:session-40:i06; family: phrase_builder -->
-Плитки: `wall` `the` `on` `is` `thermostat` `The` `are` → **The thermostat is on the wall.**
-*(плитка `are` лишняя: здесь нужно `is` — `The thermostat is on the wall.`)*
+Плитки: `medal` `that` `is` `Whose` `Where` → **Whose medal is that?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose medal is that?`)*
 
-**7 · Браслет принадлежит вам. Скажите «Браслет мой»**
+**11 · Учительница спрашивает о парике. Он вашей сестры. Скажите: «Парик моей сестры»**
 <!-- interaction_id: en:lesson-05:session-40:i07; family: scripted_repeat_compare -->
-🎙 **The bracelet is mine.**
+🎙 **The wig is my sister's.**
 
-**8 · Серьги принадлежат подруге. Скажите «Серьги её»**
+**12 · Учительница показывает две маски на столе. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-40:i08; family: context_gap_grammar -->
-The earrings are ___. → **hers** · her · she
-- her — *После `her` нужно название вещи; здесь самостоятельное `hers`.*
-- she — *`she` — она; самостоятельное «её» — `hers`.*
+The masks ___ on the table. → **are** · is · has
+- is — *Масок две, поэтому нужно `are`, а не `is`.*
+- has — *`has` значит «имеет», а здесь мы говорим, где лежат маски: нужно `are`.*
 
-**9 · Послушайте, какую вещь называет друг**
+**13 · Послушайте тренера**
 <!-- interaction_id: en:lesson-05:session-40:i09; family: listen_choose -->
-🔊 *This is Tom's ring.* → **This is Tom's ring.** · This is Tom's watch. · This is Tom's bracelet.
-- This is Tom's watch. — *В записи последнее слово — `ring`, а в этом варианте — `watch`.*
-- This is Tom's bracelet. — *В записи последнее слово — `ring`, а в этом варианте — `bracelet`.*
+🔊 *The wig is hers.* → **The wig is hers.** · The wig is his. · The mask is hers.
+- The wig is his. — *В записи последнее слово — `hers`, её, а в этом варианте — `his`, его.*
+- The mask is hers. — *В записи вещь — `wig`, парик, а в этом варианте — `mask`, маска.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-40:i10; family: speed_match -->
-earrings — серьги · laptop — ноутбук · violin — скрипка · thermostat — термостат
+medal — медаль · mask — маска · wig — парик · shelf — полка
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте тётю и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-40:i11; family: listen_build_dictation -->
-🔊 *Whose laptop is this?* Плитки: `this` `is` `laptop` `Whose` → **Whose laptop is this?**
+🔊 *My aunt's wig is under the chair.* Плитки: `wig` `aunt's` `is` `under` `the` `chair` `My` `aunt` → **My aunt's wig is under the chair.**
+*(плитка `aunt` лишняя: здесь нужно `aunt's` — `My aunt's wig is under the chair.`)*
 
-**12 · Спросите «Чьи это солнцезащитные очки?»**
+**16 · Тренер показывает две маски на полке. Спросите: «Чьи это маски?»**
 <!-- interaction_id: en:lesson-05:session-40:i12; family: phrase_builder -->
-Плитки: `these` `are` `sunglasses` `Whose` → **Whose sunglasses are these?**
+Плитки: `masks` `these` `are` `Whose` `Where` → **Whose masks are these?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose masks are these?`)*
 
-**13 · Ноутбук друга у вас. Скажите ему «Твой ноутбук у меня»**
+**17 · Тренер спрашивает, чей это кубок. Он ваш. Скажите: «Кубок мой»**
 <!-- interaction_id: en:lesson-05:session-40:i13; family: scripted_repeat_compare -->
-🎙 **I have your laptop.**
+🎙 **The trophy is mine.**
 
-**14 · Спросите о владельце скрипки**
+**18 · Двоюродный брат спрашивает: «Is this medal yours?» Да, это ваша медаль. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-40:i14; family: context_gap_grammar -->
-___ violin is this? → **Whose** · Where · Who
-- Where — *`Where` — где; о владельце спрашиваем с `Whose`.*
-- Who — *`Who` — кто; чья — `Whose`.*
+Yes, it ___ mine. → **is** · isn't · has
+- isn't — *После Yes ответ утвердительный: нужно `is`.*
+- has — *`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it is`.*
 
-**15 · Послушайте, чьи наручные часы здесь**
+**19 · Послушайте двоюродного брата**
 <!-- interaction_id: en:lesson-05:session-40:i15; family: listen_choose -->
-🔊 *My watch is here.* → **My watch is here.** · Your watch is here. · His watch is here.
-- Your watch is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His watch is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *Is this wig your sister's?* → **Is this wig your sister's?** · Is this wig your brother's? · Is this mask your sister's?
+- Is this wig your brother's? — *В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.*
+- Is this mask your sister's? — *В записи вещь — `wig`, парик, а в этом варианте — `mask`, маска.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-40:i16; family: speed_match -->
-thermostat — термостат · sunglasses — солнцезащитные очки · earrings — серьги · violin — скрипка
+trophy — кубок · medal — медаль · mask — маска · wig — парик
 
-**17 · Все собираются уходить, а скрипка осталась у двери. Спросите «Чья это скрипка?»**
+**21 · Вы нашли медаль и хотите вернуть её владельцу. Спросите тренера: «Чья это медаль?»**
 <!-- interaction_id: en:lesson-05:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose violin is this?**
-
+🎙 **Whose medal is this?**

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-34",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце найденной вещи и назвать его",
-    "uk": "запитати про власника знайденої речі й назвати його"
+    "ru": "назвать владельца найденной вещи: hers, his, имя с 's, и коротко ответить No, it isn't mine",
+    "uk": "назвати власника знайденої речі: hers, his, ім’я з 's, і коротко відповісти No, it isn't mine"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кольцо на пальце",
-        "uk": "Каблучка на пальці"
+        "ru": "Брошь на подоконнике",
+        "uk": "Брошка на підвіконні"
       },
       "bodyByLocale": {
-        "ru": "`ring` — «кольцо», украшение на палец. `Whose ring is this?` — «Чьё это кольцо?» Сначала `Whose`, затем вещь, затем `is this?`. `The ring is mine` — «Кольцо моё». Кольцо маленькое, а вопрос о владельце большой — целых четыре слова.",
-        "uk": "`ring` — «каблучка», прикраса на палець. `Whose ring is this?` — «Чия це каблучка?» Спочатку `Whose`, потім річ, потім `is this?`. `The ring is mine` — «Каблучка моя». Каблучка маленька, а запитання про власника велике — аж чотири слова."
+        "ru": "Подруга нашла на подоконнике маленькую серебристую брошь и спрашивает вас, чья она. Вы видели такую у своей сестры. brooch — «брошь», украшение, которое прикалывают к одежде. Ответьте одним словом вместо названия вещи: The brooch is hers — «Брошь её».",
+        "uk": "Подруга знайшла на підвіконні маленьку сріблясту брошку й питає вас, чия вона. Ви бачили таку в своєї сестри. brooch — «брошка», прикраса, яку прикріплюють до одягу. Відповідьте одним словом замість назви речі: The brooch is hers — «Брошка її»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце кольца.",
-          "uk": "Запитайте про власника каблучки."
+          "ru": "Подруга спрашивает, чья брошь. Она вашей сестры. Скажите: «Брошь её».",
+          "uk": "Подруга питає, чия брошка. Вона вашої сестри. Скажіть: «Брошка її»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-34:intro1:r1",
-              "text": "Whose ring is this?"
+              "text": "The brooch is hers."
             },
             {
               "responseId": "en:lesson-05:session-34:intro1:r2",
-              "text": "Where is the ring?"
+              "text": "The brooch is his."
             },
             {
               "responseId": "en:lesson-05:session-34:intro1:r3",
-              "text": "Whose ring are this?"
+              "text": "The brooch is her."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-34:intro1:r1",
-              "text": "Whose ring is this?"
+              "text": "The brooch is hers."
             },
             {
               "responseId": "en:lesson-05:session-34:intro1:r2",
-              "text": "Where is the ring?"
+              "text": "The brooch is his."
             },
             {
               "responseId": "en:lesson-05:session-34:intro1:r3",
-              "text": "Whose ring are this?"
+              "text": "The brooch is her."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце кольца.",
-          "uk": "Запитайте про власника каблучки."
+          "ru": "Подруга спрашивает, чья брошь. Она вашей сестры. Скажите: «Брошь её».",
+          "uk": "Подруга питає, чия брошка. Вона вашої сестри. Скажіть: «Брошка її»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Испуг и кошелёк",
-        "uk": "Переляк і гаманець"
+        "ru": "Кулон под стулом",
+        "uk": "Кулон під стільцем"
       },
       "bodyByLocale": {
-        "ru": "`afraid` — «испуган, боится»: `I am afraid` — «Мне страшно / я боюсь». Здесь речь о чувстве страха, а не о вежливом сообщении плохой новости. `wallet` — «кошелёк». `Whose wallet is this?` — «Чей это кошелёк?» `This is Anna’s wallet` — «Это кошелёк Анны». `Anna’s` перед названием вещи показывает владельца.",
-        "uk": "`afraid` — «наляканий, боїться»: `I am afraid` — «Мені страшно / я боюся». Тут ідеться про почуття страху, а не про ввічливе повідомлення поганої новини. `wallet` — «гаманець». `Whose wallet is this?` — «Чий це гаманець?» `This is Anna’s wallet` — «Це гаманець Анни». `Anna’s` перед назвою речі показує власницю."
+        "ru": "Вы разбираете вещи после праздника и находите под стулом кулон на тонкой цепочке. Рядом сидит сестра. pendant — «кулон», украшение на цепочке. Спросите сестру, чей он: Whose pendant is this? — «Чей это кулон?» Вопрос о хозяине начинается с whose.",
+        "uk": "Ви розбираєте речі після свята й знаходите під стільцем кулон на тонкому ланцюжку. Поруч сидить сестра. pendant — «кулон», прикраса на ланцюжку. Спитайте сестру, чий він: Whose pendant is this? — «Чий це кулон?» Питання про господаря починається з whose."
       },
       "question": {
         "interactionId": "en:lesson-05:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "Вам страшно. Назовите чувство без сокращения.",
-          "uk": "Вам страшно. Назвіть почуття без скорочення."
+          "ru": "Под стулом лежит кулон. Спросите сестру, чей он.",
+          "uk": "Під стільцем лежить кулон. Спитайте сестру, чий він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-34:intro2:r1",
-              "text": "I am afraid."
+              "text": "Whose pendant is this?"
             },
             {
               "responseId": "en:lesson-05:session-34:intro2:r2",
-              "text": "I is afraid."
+              "text": "Where is the pendant?"
             },
             {
               "responseId": "en:lesson-05:session-34:intro2:r3",
-              "text": "I am bored."
+              "text": "Whose pendant are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-34:intro2:r1",
-              "text": "I am afraid."
+              "text": "Whose pendant is this?"
             },
             {
               "responseId": "en:lesson-05:session-34:intro2:r2",
-              "text": "I is afraid."
+              "text": "Where is the pendant?"
             },
             {
               "responseId": "en:lesson-05:session-34:intro2:r3",
-              "text": "I am bored."
+              "text": "Whose pendant are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам страшно. Назовите чувство без сокращения.",
-          "uk": "Вам страшно. Назвіть почуття без скорочення."
+          "ru": "Под стулом лежит кулон. Спросите сестру, чей он.",
+          "uk": "Під стільцем лежить кулон. Спитайте сестру, чий він."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "У лестницы",
-        "uk": "Біля сходів"
+        "ru": "Напульсник на скамейке",
+        "uk": "Напульсник на лавці"
       },
       "bodyByLocale": {
-        "ru": "`handrail` — «поручень», `badge` — «значок». `Tom is next to the handrail` — «Том рядом с поручнем». `Whose badge is this?` — «Чей это значок?» `The badge is hers` — «Значок её». `This is Tom’s ring` — «Это кольцо Тома». `Whose` — вопрос, а имя с `’s` или `his / hers` помогает ответить.",
-        "uk": "`handrail` — «поручень», `badge` — «значок». `Tom is next to the handrail` — «Том поруч із поручнем». `Whose badge is this?` — «Чий це значок?» `The badge is hers` — «Значок її». `This is Tom’s ring` — «Це каблучка Тома». `Whose` — запитання, а ім’я з `’s` чи `his / hers` допомагає відповісти."
+        "ru": "Подруга показывает синий напульсник и спрашивает: Is this wristband yours? — «Это твой напульсник?» wristband — «напульсник», мягкая лента на запястье. Он не ваш. Ответьте коротко: No, it isn't mine — «Нет, он не мой». Слово mine стоит без вещи.",
+        "uk": "Подруга показує синій напульсник і питає: Is this wristband yours? — «Це твій напульсник?» wristband — «напульсник», м’яка стрічка на зап’ясті. Він не ваш. Відповідьте коротко: No, it isn't mine — «Ні, він не мій». Слово mine стоїть без речі."
       },
       "question": {
         "interactionId": "en:lesson-05:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "Кольцо принадлежит Тому. Назовите владельца.",
-          "uk": "Каблучка належить Тому. Назвіть власника."
+          "ru": "Подруга спрашивает, ваш ли этот напульсник. Он не ваш. Скажите коротко: «Нет, он не мой».",
+          "uk": "Подруга питає, чи ваш цей напульсник. Він не ваш. Скажіть коротко: «Ні, він не мій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-34:intro3:r1",
-              "text": "This is Tom's ring."
+              "text": "No, it isn't mine."
             },
             {
               "responseId": "en:lesson-05:session-34:intro3:r2",
-              "text": "This is Tom ring."
+              "text": "No, it isn't my."
             },
             {
               "responseId": "en:lesson-05:session-34:intro3:r3",
-              "text": "This is Anna's ring."
+              "text": "Yes, it isn't mine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-34:intro3:r1",
-              "text": "This is Tom's ring."
+              "text": "No, it isn't mine."
             },
             {
               "responseId": "en:lesson-05:session-34:intro3:r2",
-              "text": "This is Tom ring."
+              "text": "No, it isn't my."
             },
             {
               "responseId": "en:lesson-05:session-34:intro3:r3",
-              "text": "This is Anna's ring."
+              "text": "Yes, it isn't mine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кольцо принадлежит Тому. Назовите владельца.",
-          "uk": "Каблучка належить Тому. Назвіть власника."
+          "ru": "Подруга спрашивает, ваш ли этот напульсник. Он не ваш. Скажите коротко: «Нет, он не мой».",
+          "uk": "Подруга питає, чи ваш цей напульсник. Він не ваш. Скажіть коротко: «Ні, він не мій»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "79690ef95c99d5e9d725928dae668963ade00d73fac131d95b9fd31dcbfb9c05"
+  "introFingerprint": "c97fd64afacd157006580a1280412a35d904d505959a1cbc2621f859fa2dd738"
 }

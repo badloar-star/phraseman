@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-37",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце одной или нескольких вещей",
-    "uk": "запитати про власника однієї чи кількох речей"
+    "ru": "самому выбрать форму по числу вещей и назвать хозяина: is this или are these, hers, his, mine, 's",
+    "uk": "самому вибрати форму за кількістю речей і назвати господаря: is this чи are these, hers, his, mine, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Украшения для ушей",
-        "uk": "Прикраси для вух"
+        "ru": "Серьги на сиденье",
+        "uk": "Сережки на сидінні"
       },
       "bodyByLocale": {
-        "ru": "`earrings` — «серьги», множественное число. `Whose earrings are these?` — «Чьи это серьги?» `The earrings are mine` — «Серьги мои». `These are Anna’s earrings` — «Это серьги Анны». Серьги нашли вместе: даже потеряться решили парой.",
-        "uk": "`earrings` — «сережки», множина. `Whose earrings are these?` — «Чиї це сережки?» `The earrings are mine` — «Сережки мої». `These are Anna’s earrings` — «Це сережки Анни». Сережки знайшли разом: навіть загубитися вирішили парою."
+        "ru": "Вы разгружаете машину после поездки. Подруга нашла на заднем сиденье серьги и спрашивает вас, чьи они. Вы видели их у своей сестры. earrings — «серьги», они всегда парой, поэтому слово во множественном числе. Ответьте: The earrings are hers — «Серьги её».",
+        "uk": "Ви розвантажуєте машину після поїздки. Подруга знайшла на задньому сидінні сережки й питає вас, чиї вони. Ви бачили їх у своєї сестри. earrings — «сережки», вони завжди парою, тому слово в множині. Відповідьте: The earrings are hers — «Сережки її»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-37:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце серёг.",
-          "uk": "Запитайте про власника сережок."
+          "ru": "Подруга спрашивает, чьи серьги на сиденье. Они вашей сестры. Скажите: «Серьги её».",
+          "uk": "Подруга питає, чиї сережки на сидінні. Вони вашої сестри. Скажіть: «Сережки її»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-37:intro1:r1",
-              "text": "Whose earrings are these?"
+              "text": "The earrings are hers."
             },
             {
               "responseId": "en:lesson-05:session-37:intro1:r2",
-              "text": "Whose earrings is this?"
+              "text": "The earrings is hers."
             },
             {
               "responseId": "en:lesson-05:session-37:intro1:r3",
-              "text": "Where are the earrings?"
+              "text": "The earrings are his."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-37:intro1:r1",
-              "text": "Whose earrings are these?"
+              "text": "The earrings are hers."
             },
             {
               "responseId": "en:lesson-05:session-37:intro1:r2",
-              "text": "Whose earrings is this?"
+              "text": "The earrings is hers."
             },
             {
               "responseId": "en:lesson-05:session-37:intro1:r3",
-              "text": "Where are the earrings?"
+              "text": "The earrings are his."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце серёг.",
-          "uk": "Запитайте про власника сережок."
+          "ru": "Подруга спрашивает, чьи серьги на сиденье. Они вашей сестры. Скажите: «Серьги её».",
+          "uk": "Подруга питає, чиї сережки на сидінні. Вони вашої сестри. Скажіть: «Сережки її»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одиночество и компания",
-        "uk": "Самотність і компанія"
+        "ru": "Скейтборд в багажнике",
+        "uk": "Скейтборд у багажнику"
       },
       "bodyByLocale": {
-        "ru": "`lonely` — «одинокий, чувствующий одиночество». `I am lonely` — «Мне одиноко». Это чувство: человек может быть среди людей и всё равно чувствовать одиночество. Знакомое `alone` означает «один, без других» и само по себе не говорит о грусти. `car` — «машина»: `Whose car is this?` — «Чья это машина?»",
-        "uk": "`lonely` — «самотній, відчуває самотність». `I am lonely` — «Мені самотньо». Це почуття: людина може бути серед людей і все одно відчувати самотність. Знайоме `alone` означає «сам, без інших» і саме по собі не говорить про сум. `car` — «машина»: `Whose car is this?` — «Чия це машина?»"
+        "ru": "В багажнике под сумками лежит скейтборд. Двоюродный брат стоит рядом и ждёт, пока вы разберёте вещи. skateboard — «скейтборд», доска на колёсиках. Спросите брата, чей он: Whose skateboard is this? — «Чей это скейтборд?» Скейтборд один, поэтому is this.",
+        "uk": "У багажнику під сумками лежить скейтборд. Двоюрідний брат стоїть поруч і чекає, поки ви розберете речі. skateboard — «скейтборд», дошка на колесах. Спитайте брата, чий він: Whose skateboard is this? — «Чий це скейтборд?» Скейтборд один, тому is this."
       },
       "question": {
         "interactionId": "en:lesson-05:session-37:intro2:q",
         "promptByLocale": {
-          "ru": "Вам не хватает компании. Скажите «Мне одиноко» без сокращения.",
-          "uk": "Вам бракує компанії. Скажіть «Мені самотньо» без скорочення."
+          "ru": "В багажнике лежит скейтборд. Спросите двоюродного брата, чей он.",
+          "uk": "У багажнику лежить скейтборд. Спитайте двоюрідного брата, чий він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-37:intro2:r1",
-              "text": "I am lonely."
+              "text": "Whose skateboard is this?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro2:r2",
-              "text": "I is lonely."
+              "text": "Whose skateboard are these?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro2:r3",
-              "text": "I am alone."
+              "text": "Where is the skateboard?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-37:intro2:r1",
-              "text": "I am lonely."
+              "text": "Whose skateboard is this?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro2:r2",
-              "text": "I is lonely."
+              "text": "Whose skateboard are these?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro2:r3",
-              "text": "I am alone."
+              "text": "Where is the skateboard?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам не хватает компании. Скажите «Мне одиноко» без сокращения.",
-          "uk": "Вам бракує компанії. Скажіть «Мені самотньо» без скорочення."
+          "ru": "В багажнике лежит скейтборд. Спросите двоюродного брата, чей он.",
+          "uk": "У багажнику лежить скейтборд. Спитайте двоюрідного брата, чий він."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Встреча у машины",
-        "uk": "Зустріч біля машини"
+        "ru": "Штатив в чехле",
+        "uk": "Штатив у чохлі"
       },
       "bodyByLocale": {
-        "ru": "`parcel locker` — «шкаф с ячейками для посылок», `skateboard` — «скейтборд». `Tom is next to the parcel locker` — «Том рядом со шкафом для посылок». `Whose skateboard is this?` — «Чей это скейтборд?» `The skateboard is his` — «Скейтборд его». Одна вещь — `is this`, несколько серёг — `are these`.",
-        "uk": "`parcel locker` — «поштомат, шафа з комірками для посилок», `skateboard` — «скейтборд». `Tom is next to the parcel locker` — «Том поруч із поштоматом». `Whose skateboard is this?` — «Чий це скейтборд?» `The skateboard is his` — «Скейтборд його». Одна річ — `is this`, кілька сережок — `are these`."
+        "ru": "Вы достали из багажника длинный серый чехол со штативом. Подруга говорит вам, что у её брата есть такой же. tripod — «штатив», подставка для фотоаппарата. Спросите подругу, не её ли брата он: Is this tripod your brother's? — «Это штатив твоего брата?»",
+        "uk": "Ви дістали з багажника довгий сірий чохол зі штативом. Подруга каже вам, що в її брата є такий самий. tripod — «штатив», підставка для фотоапарата. Спитайте подругу, чи не її брата він: Is this tripod your brother's? — «Це штатив твого брата?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-37:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце скейтборда.",
-          "uk": "Запитайте про власника скейтборда."
+          "ru": "Вы достали штатив. Спросите подругу, не её ли брата он.",
+          "uk": "Ви дістали штатив. Спитайте подругу, чи не її брата він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-37:intro3:r1",
-              "text": "Whose skateboard is this?"
+              "text": "Is this tripod your brother's?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro3:r2",
-              "text": "Whose skateboard are these?"
+              "text": "Is this tripod your brother?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro3:r3",
-              "text": "Where is the skateboard?"
+              "text": "Are this tripod your brother's?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-37:intro3:r1",
-              "text": "Whose skateboard is this?"
+              "text": "Is this tripod your brother's?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro3:r2",
-              "text": "Whose skateboard are these?"
+              "text": "Is this tripod your brother?"
             },
             {
               "responseId": "en:lesson-05:session-37:intro3:r3",
-              "text": "Where is the skateboard?"
+              "text": "Are this tripod your brother's?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце скейтборда.",
-          "uk": "Запитайте про власника скейтборда."
+          "ru": "Вы достали штатив. Спросите подругу, не её ли брата он.",
+          "uk": "Ви дістали штатив. Спитайте подругу, чи не її брата він."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bd6dfd861f65ac74d24f0de8aa27b005bde1eae757fd3ff5ef85240dd4630f2a"
+  "introFingerprint": "d37ef59697b7214ba8cc774f66962e284c00c92df73b7fb799901ff18104ec03"
 }

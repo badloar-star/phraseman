@@ -1,136 +1,154 @@
-# Англійська · Урок 5 · Заняття 38 — Чий це ноутбук?
+# Англійська · Урок 5 · Заняття 38 — Ігровий вечір
 
-**Ситуація.** Перед поїздкою друзі перевіряють речі в холі. На столі залишилися ноутбук, квиток і навушники. Том чекає біля велосипедного сараю.
+**Ситуація.** Друзі зібралися гратися й принесли техніку з різних домівок. До вечора все лежить упереміш. Треба зрозуміти, чия річ, і віддати її господареві.
 
-**Що ви опануєте:** запитати про власника техніки й повернути знайдену річ
-**Нові слова:** laptop
+**Що ви опануєте:** спитати про власника техніки й повернути знайдену річ: whose, that, yours, Here is your
+**Нові слова:** monitor, mouse, joystick, drone
+**Повертаються:** sister, brother, son, table, sofa, desk
 
 ---
 
 ## Інтро 1
 
-### Комп’ютер із собою
+### Монітор біля стіни
 
-`laptop` — «ноутбук», переносний комп’ютер із клавіатурою та екраном. `Whose laptop is this?` — «Чий це ноутбук?» `The laptop is mine` — «Ноутбук мій». `This is Anna’s laptop` — «Це ноутбук Анни». Ноутбук уже закритий і готовий відпочивати, а господарі ще збираються.
+Ви прийшли до друга допомогти з технікою перед ігровим вечором. Біля стіни стоїть великий чорний монітор, а сам друг зараз на кухні. monitor — «монітор», екран комп’ютера. Монітор далеко від вас, тому спитайте з that: Whose monitor is that? — «Чий там монітор?»
 
-**Запитайте про власника ноутбука.**
+**Біля стіни стоїть великий монітор. Спитайте друга, чий він.**
 
-- ✅ **Whose laptop is this?**
-- ❌ Where is the laptop? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose laptop are these? — *Один ноутбук: `is this`.*
+- ✅ **Whose monitor is that?**
+- ❌ Whose monitor are that? — *Монітор один, тому потрібно is that.*
+- ❌ Where is that monitor? — *Це «Де той монітор?». Про господаря питаємо з whose.*
 
 ---
 
 ## Інтро 2
 
-### Квиток і навушники
+### Миша в руці
 
-`ticket` — «квиток», `headphones` — «навушники». `Whose ticket is this?` — «Чий це квиток?» `Whose headphones are these?` — «Чиї це навушники?» Один квиток — `is this`, навушники — `are these`. `The headphones are hers` — «Навушники її»: кількість речей визначає форму `are`, навіть якщо власниця одна.
+Брат тримає в руці чорну комп’ютерну мишу й не впевнений, чи його вона. Ви точно знаєте, що миша його: ви разом купували її в магазині електроніки. mouse — «комп’ютерна миша». Відповідьте одним словом замість назви речі: The mouse is yours — «Миша твоя».
 
-**Запитайте про власника навушників.**
+**Брат не впевнений, чи його ця миша. Вона його. Скажіть йому: «Миша твоя».**
 
-- ✅ **Whose headphones are these?**
-- ❌ Whose headphones is this? — *`headphones` — множина: `are these`.*
-- ❌ Where are the headphones? — *Це «Де навушники?»; про власника запитуємо з `Whose`.*
+- ✅ **The mouse is yours.**
+- ❌ The mouse is your. — *Без назви речі потрібно yours, а не your.*
+- ❌ The mouse are yours. — *Миша одна, тому потрібно is.*
 
 ---
 
 ## Інтро 3
 
-### Біля місця для велосипедів
+### Джойстик на дивані
 
-`weak` — «слабкий»: `I am weak` — «Я слабкий / слабка», наприклад коли мало фізичних сил. `bike shed` — «велосипедний сарай», крита споруда для зберігання велосипедів. `Tom is next to the bike shed` — «Том поруч із велосипедним сараєм». `I have your ticket` — «Твій квиток у мене».
+Подруга знайшла між подушок на дивані джойстик і питає, чий він. Ви знаєте: він вашого сина, той забув його після довгої гри. joystick — «джойстик», пульт для гри з важелем. Назвіть господаря через 's: The joystick is my son's — «Джойстик мого сина».
 
-**Скажіть «Я слабкий», описуючи брак фізичних сил, без скорочення.**
+**Подруга знайшла на дивані джойстик. Він вашого сина. Скажіть їй: «Джойстик мого сина».**
 
-- ✅ **I am weak.**
-- ❌ I is weak. — *З `I` потрібна форма `am`.*
-- ❌ I am sleepy. — *`sleepy` — сонний; слабкий — `weak`.*
+- ✅ **The joystick is my son's.**
+- ❌ The joystick is my son. — *Так вийшло б, що джойстик — це сам син. Господаря називаємо через 's: my son's.*
+- ❌ The joystick is my sister's. — *sister — сестра, а джойстик належить синові: потрібно son's.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · У вас мало фізичних сил. Скажіть «Я слабкий» без скорочення**
+**1 · Картка слова — monitor**
+<!-- interaction_id: en:lesson-05:session-38:word:monitor; family: word_card -->
+> **monitor** — монітор. The monitor is on the desk. — «Монітор на столі». Великий екран, який підключають до комп’ютера.
+
+**2 · Друг питає, чий монітор біля стіни. Він вашої сестри. Скажіть: «Монітор моєї сестри»**
 <!-- interaction_id: en:lesson-05:session-38:i01; family: phrase_builder -->
-Плитки: `weak` `am` `I` `is` → **I am weak.**
-*(плитка `is` зайва: тут потрібно `am` — `I am weak.`)*
+Плитки: `monitor` `sister's` `is` `The` `my` `sister` → **The monitor is my sister's.**
+*(плитка `sister` зайва: тут потрібно `sister's` — `The monitor is my sister's.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — mouse**
+<!-- interaction_id: en:lesson-05:session-38:word:mouse; family: word_card -->
+> **mouse** — комп’ютерна миша. My brother's mouse is white. — «Комп’ютерна миша мого брата біла». Маленький пристрій, яким рухають курсор.
+
+**4 · Послухайте друга**
 <!-- interaction_id: en:lesson-05:session-38:i02; family: listen_choose -->
-🔊 *laptop* → **laptop** · tablet · camera
-- tablet — *У записі перше слово — `laptop`, а в цьому варіанті — `tablet`.*
-- camera — *У записі перше слово — `laptop`, а в цьому варіанті — `camera`.*
+🔊 *The mouse is yours.* → **The mouse is yours.** · The mouse is mine. · The monitor is yours.
+- The mouse is mine. — *У записі останнє слово — `yours`, твоя, а в цьому варіанті — `mine`, моя.*
+- The monitor is yours. — *У записі річ — `mouse`, миша, а в цьому варіанті — `monitor`.*
 
-**3 · Назвіть ноутбук**
+**5 · Картка слова — joystick**
+<!-- interaction_id: en:lesson-05:session-38:word:joystick; family: word_card -->
+> **joystick** — джойстик. My son's joystick is red. — «Джойстик мого сина червоний». Пульт із важелем для відеоігор.
+
+**6 · Подруга показує джойстик в іншому кінці кімнати. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-38:i03; family: context_gap_grammar -->
-___ → **laptop** · tablet · ticket
-- tablet — *`tablet` — планшет; ноутбук — `laptop`.*
-- ticket — *`ticket` — квиток; ноутбук — `laptop`.*
+Whose joystick is ___? → **that** · those · these
+- those — *Джойстик один, тому потрібно `that`, а не `those`.*
+- these — *Джойстик один і лежить далеко: потрібно `that`, а не `these`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-38:i04; family: speed_match -->
-laptop — ноутбук · ticket — квиток · bike shed — велосипедний сарай · headphones — навушники
+monitor — монітор · mouse — комп’ютерна миша · joystick — джойстик · drone — дрон
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — drone**
+<!-- interaction_id: en:lesson-05:session-38:word:drone; family: word_card -->
+> **drone** — дрон. The drone is on the table. — «Дрон на столі». Невеликий літальний апарат із пультом.
+
+**9 · Послухайте друга й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-38:i05; family: listen_build_dictation -->
-🔊 *Whose laptop is this?* Плитки: `this` `is` `laptop` `Whose` → **Whose laptop is this?**
+🔊 *The drone is on the table.* Плитки: `drone` `on` `the` `table` `is` `The` `are` → **The drone is on the table.**
+*(плитка `are` зайва: тут потрібно `is` — `The drone is on the table.`)*
 
-**6 · Ви знайшли квиток. Запитайте «Чий це квиток?»**
+**10 · Миша лежить далеко на столі. Спитайте друга: «Чия там миша?»**
 <!-- interaction_id: en:lesson-05:session-38:i06; family: phrase_builder -->
-Плитки: `this` `is` `ticket` `Whose` → **Whose ticket is this?**
+Плитки: `mouse` `that` `is` `Whose` `Where` → **Whose mouse is that?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose mouse is that?`)*
 
-**7 · Ноутбук належить вам. Скажіть «Ноутбук мій»**
+**11 · Брат шукає джойстик. Ви знайшли його. Скажіть: «Ось твій джойстик»**
 <!-- interaction_id: en:lesson-05:session-38:i07; family: scripted_repeat_compare -->
-🎙 **The laptop is mine.**
+🎙 **Here is your joystick.**
 
-**8 · Запитайте про власника навушників. Виберіть форму**
+**12 · Друг питає про дрон. Він ваш із братом. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-38:i08; family: context_gap_grammar -->
-Whose headphones ___ these? → **are** · is · am
-- is — *`headphones` — множина: `are these`.*
-- am — *`am` використовується з `I`; тут `are these`.*
+The drone is ___. → **ours** · our · we
+- our — *Без назви речі потрібно `ours`, а не `our`.*
+- we — *`we` означає «ми», а «наш» без речі — `ours`.*
 
-**9 · Послухайте, яку річ називає друг**
+**13 · Послухайте друга**
 <!-- interaction_id: en:lesson-05:session-38:i09; family: listen_choose -->
-🔊 *This is Anna's laptop.* → **This is Anna's laptop.** · This is Anna's ticket. · This is Anna's tablet.
-- This is Anna's ticket. — *У записі останнє слово — `laptop`, а в цьому варіанті — `ticket`.*
-- This is Anna's tablet. — *У записі останнє слово — `laptop`, а в цьому варіанті — `tablet`.*
+🔊 *Whose drone is that?* → **Whose drone is that?** · Whose drone is this? · Whose monitor is that?
+- Whose drone is this? — *У записі останнє слово — `that`, а в цьому варіанті — `this`.*
+- Whose monitor is that? — *У записі річ — `drone`, дрон, а в цьому варіанті — `monitor`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-38:i10; family: speed_match -->
-laptop — ноутбук · weak — слабкий · bike shed — велосипедний сарай · headphones — навушники
+mouse — комп’ютерна миша · joystick — джойстик · drone — дрон · table — стіл
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-38:i11; family: listen_build_dictation -->
-🔊 *Tom is next to the bike shed.* Плитки: `shed` `bike` `the` `to` `next` `is` `Tom` `are` → **Tom is next to the bike shed.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom is next to the bike shed.`)*
+🔊 *My son's joystick is under the sofa.* Плитки: `joystick` `son's` `is` `under` `the` `sofa` `My` `son` → **My son's joystick is under the sofa.**
+*(плитка `son` зайва: тут потрібно `son's` — `My son's joystick is under the sofa.`)*
 
-**12 · Навушники належать подрузі. Скажіть «Навушники її»**
+**16 · Ви показуєте подрузі монітор і питаєте, чи не її він. Спитайте: «Це твій монітор?»**
 <!-- interaction_id: en:lesson-05:session-38:i12; family: phrase_builder -->
-Плитки: `hers` `are` `headphones` `The` `is` → **The headphones are hers.**
-*(плитка `is` зайва: тут потрібно `are` — `The headphones are hers.`)*
+Плитки: `monitor` `this` `yours` `Is` `Are` → **Is this monitor yours?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is this monitor yours?`)*
 
-**13 · Квиток друга у вас. Скажіть йому «Твій квиток у мене»**
+**17 · Друг питає, чия це миша. Вона не ваша. Скажіть: «Миша не моя»**
 <!-- interaction_id: en:lesson-05:session-38:i13; family: scripted_repeat_compare -->
-🎙 **I have your ticket.**
+🎙 **The mouse isn't mine.**
 
-**14 · Запитайте про власника ноутбука**
+**18 · Ви повертаєте другові дрон. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-38:i14; family: context_gap_grammar -->
-___ laptop is this? → **Whose** · Where · Who
-- Where — *`Where` — де; чий — `Whose`.*
-- Who — *`Who` — хто; чий — `Whose`.*
+Here ___ your drone. → **is** · are · am
+- are — *Дрон один, тому потрібно `Here is`, а не `Here are`.*
+- am — *`am` буває лише з `I`; тут потрібно `Here is`.*
 
-**15 · Послухайте, чий ноутбук тут**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-38:i15; family: listen_choose -->
-🔊 *Your laptop is here.* → **Your laptop is here.** · My laptop is here. · His laptop is here.
-- My laptop is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His laptop is here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *Here is your joystick.* → **Here is your joystick.** · Here is my joystick. · Here is your mouse.
+- Here is my joystick. — *У записі слово перед річчю — `your`, а в цьому варіанті — `my`.*
+- Here is your mouse. — *У записі річ — `joystick`, джойстик, а в цьому варіанті — `mouse`, миша.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-38:i16; family: speed_match -->
-laptop — ноутбук · weak — слабкий · ticket — квиток · headphones — навушники
+monitor — монітор · mouse — комп’ютерна миша · joystick — джойстик · drone — дрон
 
-**17 · Ви знайшли навушники й хочете повернути їх власникові. Запитайте «Чиї це навушники?»**
+**21 · Ви знайшли в кімнаті дрон і хочете повернути його власникові. Спитайте друга: «Чий це дрон?»**
 <!-- interaction_id: en:lesson-05:session-38:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose headphones are these?**
-
+🎙 **Whose drone is this?**

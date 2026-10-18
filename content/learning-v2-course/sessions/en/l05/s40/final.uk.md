@@ -1,135 +1,154 @@
-# Англійська · Урок 5 · Заняття 40 — Повертаємо речі власникам
+# Англійська · Урок 5 · Заняття 40 — Свято переможців
 
-**Ситуація.** Після домашнього концерту друзі збирають речі. На столі лежать прикраси й техніка, біля дверей стоїть скрипка.
+**Ситуація.** Після шкільного свята в залі лишилися кубок, медалі, маски й перука. Ви самі вибираєте, як спитати про господаря та як відповісти: whose, is чи are, mine, his, hers, theirs або ім’я з 's.
 
-**Що ви опануєте:** самостійно запитати про власника й описати знайомі речі
-**Нові слова:** —
+**Що ви опануєте:** самому спитати про господаря речі та відповісти: whose, is чи are, mine, his, hers, theirs, 's
+**Нові слова:** trophy, medal, mask, wig
+**Повертаються:** cousin, sister, aunt, brother, shelf, chair, table
 
 ---
 
 ## Інтро 1
 
-### Одна річ чи кілька
+### Кубок на полиці
 
-Повторимо: `watch` — «наручний годинник», `ring` — «каблучка», `bracelet` — «браслет». `Whose watch is this?` — «Чий це наручний годинник?» Один годинник — одна річ: `is this`. `Whose ring is this?` — «Чия це каблучка?» `The bracelet is mine` — «Браслет мій».
+Після шкільного свята тренер знімає з полиці великий кубок і простягає його вам. trophy — «кубок», нагорода за перемогу. Він не знає, кому його віддати. Спитайте тренера, чий він: Whose trophy is this? — «Чий це кубок?» Кубок один, тому is this.
 
-**Запитайте про власника одного наручного годинника.**
+**Тренер простягає вам кубок. Спитайте, чий він.**
 
-- ✅ **Whose watch is this?**
-- ❌ Whose watch are these? — *Один наручний годинник — `a watch`, однина: `is this`.*
-- ❌ Where is the watch? — *Це запитання про місце; про власника запитуємо з `Whose`.*
+- ✅ **Whose trophy is this?**
+- ❌ Where is the trophy? — *Це «Де кубок?». Про господаря питаємо з whose.*
+- ❌ Whose trophy are this? — *Кубок один, тому потрібно is this.*
 
 ---
 
 ## Інтро 2
 
-### Окуляри й сережки
+### Медаль бігуна
 
-`sunglasses` — «сонцезахисні окуляри», `earrings` — «сережки». `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» `The earrings are hers` — «Сережки її». Ці слова потребують `are`. `This is Tom’s ring` — «Це каблучка Тома»: до імені власника додаємо `’s`.
+Двоюрідний брат переміг у бігу на шкільному стадіоні, а медаль залишилася біля входу до зали. Тренер питає вас, чия вона. Ви бачили, як її отримував саме брат. medal — «медаль». Відповідьте одним словом замість назви речі: The medal is his — «Медаль його».
 
-**Скажіть «Сережки її».**
+**Тренер питає, чия медаль біля входу. Вона вашого двоюрідного брата. Скажіть: «Медаль його».**
 
-- ✅ **The earrings are hers.**
-- ❌ The earrings is hers. — *`earrings` — множина, потрібна форма `are`.*
-- ❌ The earrings are her. — *Без наступного іменника потрібна самостійна форма `hers`.*
+- ✅ **The medal is his.**
+- ❌ The medal is hers. — *hers — її, а медаль отримав брат: потрібно his.*
+- ❌ The medal is he. — *Без назви речі потрібно his, а не he.*
 
 ---
 
 ## Інтро 3
 
-### Речі залишаються на місцях
+### Маска близнюків
 
-`laptop` — «ноутбук», `violin` — «скрипка», `thermostat` — «термостат». `I have your laptop` — «Твій ноутбук у мене». `The violin is near the door` — «Скрипка біля дверей». `The thermostat is on the wall` — «Термостат на стіні». Термостат можна не шукати серед забутих речей: він залишився на стіні.
+Вчителька знаходить на підвіконні яскраву червону маску й питає, чия вона. Ви знаєте: маска належить близнюкам, вони ділили її на двох і по черзі надягали на свято. mask — «маска», її надягають на обличчя. Відповідьте одним словом: The mask is theirs — «Маска їхня».
 
-**Скажіть «Твій ноутбук у мене».**
+**Вчителька питає, чия маска на підвіконні. Вона належить близнюкам. Скажіть: «Маска їхня».**
 
-- ✅ **I have your laptop.**
-- ❌ I has your laptop. — *З `I` використовується `have`.*
-- ❌ I have my laptop. — *`my` — мій; тут потрібне твій: `your`.*
+- ✅ **The mask is theirs.**
+- ❌ The mask is their. — *Без назви речі потрібно theirs, а не their.*
+- ❌ The mask is ours. — *ours — наша, а маска належить близнюкам: потрібно theirs.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте, кому належить один наручний годинник**
+**1 · Картка слова — trophy**
+<!-- interaction_id: en:lesson-05:session-40:word:trophy; family: word_card -->
+> **trophy** — кубок. My cousin's trophy is on the shelf. — «Кубок мого двоюрідного брата на полиці». Нагорода у вигляді великої чаші за перемогу.
+
+**2 · Тренер питає, чий кубок. Він вашого двоюрідного брата. Скажіть: «Кубок мого двоюрідного брата»**
 <!-- interaction_id: en:lesson-05:session-40:i01; family: phrase_builder -->
-Плитки: `this` `is` `watch` `Whose` → **Whose watch is this?**
+Плитки: `trophy` `cousin's` `is` `The` `my` `cousin` → **The trophy is my cousin's.**
+*(плитка `cousin` зайва: тут потрібно `cousin's` — `The trophy is my cousin's.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — medal**
+<!-- interaction_id: en:lesson-05:session-40:word:medal; family: word_card -->
+> **medal** — медаль. The medal is small. — «Медаль маленька». Кругла нагорода на стрічці.
+
+**4 · Послухайте вчительку**
 <!-- interaction_id: en:lesson-05:session-40:i02; family: listen_choose -->
-🔊 *bracelet* → **bracelet** · ring · watch
-- ring — *У записі перше слово — `bracelet`, а в цьому варіанті — `ring`.*
-- watch — *У записі перше слово — `bracelet`, а в цьому варіанті — `watch`.*
+🔊 *Whose medal is this?* → **Whose medal is this?** · Whose medal is that? · Whose trophy is this?
+- Whose medal is that? — *У записі останнє слово — `this`, а в цьому варіанті — `that`.*
+- Whose trophy is this? — *У записі річ — `medal`, медаль, а в цьому варіанті — `trophy`, кубок.*
 
-**3 · Запитайте про власника однієї каблучки**
+**5 · Картка слова — mask**
+<!-- interaction_id: en:lesson-05:session-40:word:mask; family: word_card -->
+> **mask** — маска. The mask is red. — «Маска червона». Те, що надягають на обличчя для свята.
+
+**6 · Вчителька тримає маску близнюків. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-40:i03; family: context_gap_grammar -->
-Whose ring ___ this? → **is** · are · am
-- are — *Одна каблучка: `is this`.*
-- am — *`am` використовується з `I`; тут `is this`.*
+The mask is ___. → **theirs** · their · they
+- their — *Без назви речі потрібно `theirs`, а не `their`.*
+- they — *`they` означає «вони», а «їхній» без речі — `theirs`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-40:i04; family: speed_match -->
-watch — наручний годинник · ring — каблучка · bracelet — браслет · sunglasses — сонцезахисні окуляри
+trophy — кубок · medal — медаль · mask — маска · wig — перука
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — wig**
+<!-- interaction_id: en:lesson-05:session-40:word:wig; family: word_card -->
+> **wig** — перука. My aunt's wig is long. — «Перука моєї тітки довга». Штучне волосся, яке надягають на голову.
+
+**9 · Послухайте тренера й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-40:i05; family: listen_build_dictation -->
-🔊 *The violin is near the door.* Плитки: `door` `the` `near` `is` `violin` `The` `are` → **The violin is near the door.**
-*(плитка `are` зайва: тут потрібно `is` — `The violin is near the door.`)*
+🔊 *The wig is on the chair.* Плитки: `wig` `on` `the` `chair` `is` `The` `are` → **The wig is on the chair.**
+*(плитка `are` зайва: тут потрібно `is` — `The wig is on the chair.`)*
 
-**6 · Скажіть «Термостат на стіні»**
+**10 · Медаль лежить далеко на столі. Спитайте вчительку: «Чия там медаль?»**
 <!-- interaction_id: en:lesson-05:session-40:i06; family: phrase_builder -->
-Плитки: `wall` `the` `on` `is` `thermostat` `The` `are` → **The thermostat is on the wall.**
-*(плитка `are` зайва: тут потрібно `is` — `The thermostat is on the wall.`)*
+Плитки: `medal` `that` `is` `Whose` `Where` → **Whose medal is that?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose medal is that?`)*
 
-**7 · Браслет належить вам. Скажіть «Браслет мій»**
+**11 · Вчителька питає про перуку. Вона вашої сестри. Скажіть: «Перука моєї сестри»**
 <!-- interaction_id: en:lesson-05:session-40:i07; family: scripted_repeat_compare -->
-🎙 **The bracelet is mine.**
+🎙 **The wig is my sister's.**
 
-**8 · Сережки належать подрузі. Скажіть «Сережки її»**
+**12 · Вчителька показує дві маски на столі. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-40:i08; family: context_gap_grammar -->
-The earrings are ___. → **hers** · her · she
-- her — *Після `her` потрібна назва речі; тут самостійне `hers`.*
-- she — *`she` — вона; самостійне «її» — `hers`.*
+The masks ___ on the table. → **are** · is · has
+- is — *Масок дві, тому потрібно `are`, а не `is`.*
+- has — *`has` означає «має», а тут ми кажемо, де лежать маски: потрібно `are`.*
 
-**9 · Послухайте, яку річ називає друг**
+**13 · Послухайте тренера**
 <!-- interaction_id: en:lesson-05:session-40:i09; family: listen_choose -->
-🔊 *This is Tom's ring.* → **This is Tom's ring.** · This is Tom's watch. · This is Tom's bracelet.
-- This is Tom's watch. — *У записі останнє слово — `ring`, а в цьому варіанті — `watch`.*
-- This is Tom's bracelet. — *У записі останнє слово — `ring`, а в цьому варіанті — `bracelet`.*
+🔊 *The wig is hers.* → **The wig is hers.** · The wig is his. · The mask is hers.
+- The wig is his. — *У записі останнє слово — `hers`, її, а в цьому варіанті — `his`, його.*
+- The mask is hers. — *У записі річ — `wig`, перука, а в цьому варіанті — `mask`, маска.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-40:i10; family: speed_match -->
-earrings — сережки · laptop — ноутбук · violin — скрипка · thermostat — термостат
+medal — медаль · mask — маска · wig — перука · shelf — полиця
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте тітку й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-40:i11; family: listen_build_dictation -->
-🔊 *Whose laptop is this?* Плитки: `this` `is` `laptop` `Whose` → **Whose laptop is this?**
+🔊 *My aunt's wig is under the chair.* Плитки: `wig` `aunt's` `is` `under` `the` `chair` `My` `aunt` → **My aunt's wig is under the chair.**
+*(плитка `aunt` зайва: тут потрібно `aunt's` — `My aunt's wig is under the chair.`)*
 
-**12 · Запитайте «Чиї це сонцезахисні окуляри?»**
+**16 · Тренер показує дві маски на полиці. Спитайте: «Чиї це маски?»**
 <!-- interaction_id: en:lesson-05:session-40:i12; family: phrase_builder -->
-Плитки: `these` `are` `sunglasses` `Whose` → **Whose sunglasses are these?**
+Плитки: `masks` `these` `are` `Whose` `Where` → **Whose masks are these?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose masks are these?`)*
 
-**13 · Ноутбук друга у вас. Скажіть йому «Твій ноутбук у мене»**
+**17 · Тренер питає, чий це кубок. Він ваш. Скажіть: «Кубок мій»**
 <!-- interaction_id: en:lesson-05:session-40:i13; family: scripted_repeat_compare -->
-🎙 **I have your laptop.**
+🎙 **The trophy is mine.**
 
-**14 · Запитайте про власника скрипки**
+**18 · Двоюрідний брат питає: «Is this medal yours?» Так, це ваша медаль. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-40:i14; family: context_gap_grammar -->
-___ violin is this? → **Whose** · Where · Who
-- Where — *`Where` — де; про власника запитуємо з `Whose`.*
-- Who — *`Who` — хто; чия — `Whose`.*
+Yes, it ___ mine. → **is** · isn't · has
+- isn't — *Після Yes відповідь ствердна: потрібно `is`.*
+- has — *`has` означає «має», а на питання «це ваше?» відповідаємо `it is`.*
 
-**15 · Послухайте, чий наручний годинник тут**
+**19 · Послухайте двоюрідного брата**
 <!-- interaction_id: en:lesson-05:session-40:i15; family: listen_choose -->
-🔊 *My watch is here.* → **My watch is here.** · Your watch is here. · His watch is here.
-- Your watch is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His watch is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *Is this wig your sister's?* → **Is this wig your sister's?** · Is this wig your brother's? · Is this mask your sister's?
+- Is this wig your brother's? — *У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат.*
+- Is this mask your sister's? — *У записі річ — `wig`, перука, а в цьому варіанті — `mask`, маска.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-40:i16; family: speed_match -->
-thermostat — термостат · sunglasses — сонцезахисні окуляри · earrings — сережки · violin — скрипка
+trophy — кубок · medal — медаль · mask — маска · wig — перука
 
-**17 · Усі збираються йти, а скрипка залишилася біля дверей. Запитайте «Чия це скрипка?»**
+**21 · Ви знайшли медаль і хочете повернути її власникові. Спитайте тренера: «Чия це медаль?»**
 <!-- interaction_id: en:lesson-05:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose violin is this?**
-
+🎙 **Whose medal is this?**

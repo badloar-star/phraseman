@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-33:i01",
+      "interactionId": "en:lesson-08:session-33:word:rush",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:word:rush:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:word:rush:audio",
+          "transcript": "rush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-33:word:rush:r1",
+            "targetText": "rush",
+            "meaningByLocale": {
+              "ru": "торопиться. Don’t rush. — «Не торопись». Делать что-то поспешно.",
+              "uk": "поспішати. Don’t rush. — «Не поспішай». Робити щось квапливо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rush",
+          "definitionByLocale": {
+            "ru": "торопиться. Don’t rush. — «Не торопись». Делать что-то поспешно.",
+            "uk": "поспішати. Don’t rush. — «Не поспішай». Робити щось квапливо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -36,7 +79,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +155,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите другу не торопиться",
+      "prompt": "Выберите форму для просьбы не торопиться",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-33:i03:r1",
@@ -133,12 +176,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите другу не торопиться",
+      "accessibilityLabel": "Выберите форму для просьбы не торопиться",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите другу не торопиться",
-          "uk": "Скажіть другові не поспішати"
+          "ru": "Выберите форму для просьбы не торопиться",
+          "uk": "Виберіть форму для прохання не поспішати"
         },
         "gappedTargetPhrase": "Don’t ___.",
         "gapOptions": [
@@ -155,12 +198,12 @@
             "text": "rushes"
           }
         ],
-        "testedDimension": "Скажите другу не торопиться",
+        "testedDimension": "Выберите форму для просьбы не торопиться",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-33:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите другу не торопиться",
+            "testedDimension": "Выберите форму для просьбы не торопиться",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `rush`, без `to`.",
               "uk": "Після `don’t` потрібне `rush`, без `to`."
@@ -169,7 +212,7 @@
           {
             "responseId": "en:lesson-08:session-33:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите другу не торопиться",
+            "testedDimension": "Выберите форму для просьбы не торопиться",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `rush`, без `es`.",
               "uk": "Після `don’t` потрібне `rush`, без `es`."
@@ -181,7 +224,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -254,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +330,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-33:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-33:word:lean",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lean",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:word:lean:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lean",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:word:lean:audio",
+          "transcript": "lean"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-33:word:lean:r1",
+            "targetText": "lean",
+            "meaningByLocale": {
+              "ru": "опираться, наклоняться. Don’t lean on it. — «Не опирайся на это». Lean on — опираться на что-то.",
+              "uk": "спиратися, нахилятися. Don’t lean on it. — «Не спирайся на це». Lean on — спиратися на щось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lean",
+          "definitionByLocale": {
+            "ru": "опираться, наклоняться. Don’t lean on it. — «Не опирайся на это». Lean on — опираться на что-то.",
+            "uk": "спиратися, нахилятися. Don’t lean on it. — «Не спирайся на це». Lean on — спиратися на щось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажите на свежую краску: «Не трогай это»",
+      "prompt": "Скажите «Не опирайся на это»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажите на свежую краску: «Не трогай это»",
+      "accessibilityLabel": "Скажите «Не опирайся на это»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t touch this.",
+        "targetPhrase": "Don’t lean on it.",
         "localizedMeaning": {
-          "ru": "Покажите на свежую краску: «Не трогай это»",
-          "uk": "Покажіть на свіжу фарбу: «Не чіпай це»"
+          "ru": "Скажите «Не опирайся на это»",
+          "uk": "Скажіть «Не спирайся на це»"
         },
         "orderedTokens": [
           "Don’t",
-          "touch",
-          "this"
+          "lean",
+          "on",
+          "it"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +406,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-33:word:distract",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — distract",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:word:distract:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — distract",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:word:distract:audio",
+          "transcript": "distract"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-33:word:distract:r1",
+            "targetText": "distract",
+            "meaningByLocale": {
+              "ru": "отвлекать. Please don’t distract me. — «Пожалуйста, не отвлекай меня». Мешать человеку сосредоточиться.",
+              "uk": "відволікати. Please don’t distract me. — «Будь ласка, не відволікай мене». Заважати людині зосередитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "distract",
+          "definitionByLocale": {
+            "ru": "отвлекать. Please don’t distract me. — «Пожалуйста, не отвлекай меня». Мешать человеку сосредоточиться.",
+            "uk": "відволікати. Please don’t distract me. — «Будь ласка, не відволікай мене». Заважати людині зосередитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-33:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы задерживаетесь. Скажите «Пожалуйста, не жди»",
+      "prompt": "Вы считаете монеты. Скажите «Пожалуйста, не отвлекай меня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-33:i07:audio"
       ],
-      "accessibilityLabel": "Вы задерживаетесь. Скажите «Пожалуйста, не жди»",
+      "accessibilityLabel": "Вы считаете монеты. Скажите «Пожалуйста, не отвлекай меня»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-33:i07:audio",
-          "transcript": "Please don’t wait."
+          "transcript": "Please don’t distract me."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Please don’t wait.",
+        "targetPhrase": "Please don’t distract me.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,67 +483,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Предупредите «Не трогай это»",
+      "prompt": "Выберите форму для просьбы не опираться",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-33:i08:r1",
-          "text": "touch"
+          "text": "lean"
         },
         {
           "responseId": "en:lesson-08:session-33:i08:r2",
-          "text": "touches"
+          "text": "leans"
         },
         {
           "responseId": "en:lesson-08:session-33:i08:r3",
-          "text": "to touch"
+          "text": "to lean"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Предупредите «Не трогай это»",
+      "accessibilityLabel": "Выберите форму для просьбы не опираться",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Предупредите «Не трогай это»",
-          "uk": "Попередьте «Не чіпай це»"
+          "ru": "Выберите форму для просьбы не опираться",
+          "uk": "Виберіть форму для прохання не спиратися"
         },
-        "gappedTargetPhrase": "Don’t ___ this.",
+        "gappedTargetPhrase": "Don’t ___ on it.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-33:i08:r1",
-            "text": "touch"
+            "text": "lean"
           },
           {
             "responseId": "en:lesson-08:session-33:i08:r2",
-            "text": "touches"
+            "text": "leans"
           },
           {
             "responseId": "en:lesson-08:session-33:i08:r3",
-            "text": "to touch"
+            "text": "to lean"
           }
         ],
-        "testedDimension": "Предупредите «Не трогай это»",
+        "testedDimension": "Выберите форму для просьбы не опираться",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-33:i08:r2",
             "correct": false,
-            "testedDimension": "Предупредите «Не трогай это»",
+            "testedDimension": "Выберите форму для просьбы не опираться",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `es`.",
-              "uk": "Після `don’t` потрібне `touch`, без `es`."
+              "ru": "После don’t нужно lean, без s.",
+              "uk": "Після don’t потрібне lean, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-33:i08:r3",
             "correct": false,
-            "testedDimension": "Предупредите «Не трогай это»",
+            "testedDimension": "Выберите форму для просьбы не опираться",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `to`.",
-              "uk": "Після `don’t` потрібне `touch`, без `to`."
+              "ru": "После don’t не нужно to.",
+              "uk": "Після don’t не потрібне to."
             }
           }
         ]
@@ -422,7 +552,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +628,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,14 +642,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-33:i10:p1",
-            "target": "recycle",
-            "meaningByLocale": {
-              "ru": "сдавать на переработку",
-              "uk": "здавати на переробку"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-33:i10:p2",
             "target": "rush",
             "meaningByLocale": {
               "ru": "торопиться",
@@ -527,33 +649,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-33:i10:p3",
-            "target": "doorbell",
+            "pairId": "en:lesson-08:session-33:i10:p2",
+            "target": "lean",
             "meaningByLocale": {
-              "ru": "дверной звонок",
-              "uk": "дверний дзвінок"
+              "ru": "опираться",
+              "uk": "спиратися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i10:p3",
+            "target": "distract",
+            "meaningByLocale": {
+              "ru": "отвлекать",
+              "uk": "відволікати"
             }
           },
           {
             "pairId": "en:lesson-08:session-33:i10:p4",
-            "target": "study",
+            "target": "wait",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "навчатися"
+              "ru": "ждать",
+              "uk": "чекати"
             }
           }
         ],
         "leftColumn": [
-          "recycle",
           "rush",
-          "doorbell",
-          "study"
+          "lean",
+          "distract",
+          "wait"
         ],
         "rightColumn": [
-          "сдавать на переработку",
           "торопиться",
-          "дверной звонок",
-          "учиться"
+          "опираться",
+          "отвлекать",
+          "ждать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +701,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -586,14 +716,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-33:i11:audio",
-          "transcript": "Please don’t wait."
+          "transcript": "Please don’t distract me."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Please don’t wait.",
+        "hiddenTargetPhrase": "Please don’t distract me.",
         "orderedTokens": [
           "Please",
           "don’t",
-          "wait"
+          "distract",
+          "me"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -605,26 +736,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-33:word:smear",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:word:smear:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — smear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:word:smear:audio",
+          "transcript": "smear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-33:word:smear:r1",
+            "targetText": "smear",
+            "meaningByLocale": {
+              "ru": "размазывать. Don’t smear the ink. — «Не размажь чернила». Здесь речь о свежей надписи, которую можно случайно размазать рукой.",
+              "uk": "розмазувати. Don’t smear the ink. — «Не розмаж чорнило». Тут ідеться про свіжий напис, який можна випадково розмазати рукою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smear",
+          "definitionByLocale": {
+            "ru": "размазывать. Don’t smear the ink. — «Не размажь чернила». Здесь речь о свежей надписи, которую можно случайно размазать рукой.",
+            "uk": "розмазувати. Don’t smear the ink. — «Не розмаж чорнило». Тут ідеться про свіжий напис, який можна випадково розмазати рукою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-33:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Файл готов. Дайте короткое указание «Прикрепи его»",
+      "prompt": "Друг проводит рукой по свежей надписи. Скажите «Не размажь чернила»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Файл готов. Дайте короткое указание «Прикрепи его»",
+      "accessibilityLabel": "Друг проводит рукой по свежей надписи. Скажите «Не размажь чернила»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Attach it.",
+        "targetPhrase": "Don’t smear the ink.",
         "localizedMeaning": {
-          "ru": "Файл готов. Дайте короткое указание «Прикрепи его»",
-          "uk": "Файл готовий. Дайте коротку вказівку «Прикріпи його»"
+          "ru": "Друг проводит рукой по свежей надписи. Скажите «Не размажь чернила»",
+          "uk": "Друг проводить рукою по свіжому напису. Скажіть «Не розмаж чорнило»"
         },
         "orderedTokens": [
-          "Attach",
-          "it"
+          "Don’t",
+          "smear",
+          "the",
+          "ink"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -637,25 +813,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о ваших занятиях. Используйте study: «Я часто учусь»",
+      "prompt": "Вас отвлекают во время подсчёта монет. Повторите просьбу «Пожалуйста, не отвлекай меня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-33:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о ваших занятиях. Используйте study: «Я часто учусь»",
+      "accessibilityLabel": "Вас отвлекают во время подсчёта монет. Повторите просьбу «Пожалуйста, не отвлекай меня»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-33:i13:audio",
-          "transcript": "I often study."
+          "transcript": "Please don’t distract me."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often study.",
+        "targetPhrase": "Please don’t distract me.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -670,11 +846,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите другу «Пожалуйста, не жди»",
+      "prompt": "Выберите форму для просьбы не отвлекать вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-33:i14:r1",
@@ -691,14 +867,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите другу «Пожалуйста, не жди»",
+      "accessibilityLabel": "Выберите форму для просьбы не отвлекать вас",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите другу «Пожалуйста, не жди»",
-          "uk": "Скажіть другові «Будь ласка, не чекай»"
+          "ru": "Выберите форму для просьбы не отвлекать вас",
+          "uk": "Виберіть форму для прохання не відволікати вас"
         },
-        "gappedTargetPhrase": "Please ___ wait.",
+        "gappedTargetPhrase": "Please ___ distract me.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-33:i14:r1",
@@ -713,24 +889,24 @@
             "text": "not"
           }
         ],
-        "testedDimension": "Скажите другу «Пожалуйста, не жди»",
+        "testedDimension": "Выберите форму для просьбы не отвлекать вас",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-33:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите другу «Пожалуйста, не жди»",
+            "testedDimension": "Выберите форму для просьбы не отвлекать вас",
             "feedbackByLocale": {
-              "ru": "В обращении нужно `don’t wait`.",
-              "uk": "У звертанні потрібне `don’t wait`."
+              "ru": "В просьбе нужно don’t.",
+              "uk": "У проханні потрібне don’t."
             }
           },
           {
             "responseId": "en:lesson-08:session-33:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите другу «Пожалуйста, не жди»",
+            "testedDimension": "Выберите форму для просьбы не отвлекать вас",
             "feedbackByLocale": {
-              "ru": "Начните запрет с `don’t`: `Please don’t wait`.",
-              "uk": "Почніть заборону з `don’t`: `Please don’t wait`."
+              "ru": "Перед действием здесь нужно don’t.",
+              "uk": "Перед дією тут потрібне don’t."
             }
           }
         ]
@@ -739,7 +915,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -747,15 +923,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-33:i15:r1",
-          "text": "Don’t touch this."
+          "text": "Don’t lean on it."
         },
         {
           "responseId": "en:lesson-08:session-33:i15:r2",
-          "text": "Don’t touch that."
+          "text": "Don’t lean on this."
         },
         {
           "responseId": "en:lesson-08:session-33:i15:r3",
-          "text": "Don’t touch it."
+          "text": "Don’t lean on that."
         }
       ],
       "mediaIds": [],
@@ -767,23 +943,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-33:i15:audio",
-          "transcript": "Don’t touch this."
+          "transcript": "Don’t lean on it."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-33:i15:r1",
-            "targetText": "Don’t touch this.",
+            "targetText": "Don’t lean on it.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-33:i15:r2",
-            "targetText": "Don’t touch that.",
+            "targetText": "Don’t lean on this.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-33:i15:r3",
-            "targetText": "Don’t touch it.",
+            "targetText": "Don’t lean on that.",
             "meaningByLocale": null
           }
         ],
@@ -794,8 +970,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
-              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              "ru": "В записи it, а не this.",
+              "uk": "У записі it, а не this."
             }
           },
           {
@@ -803,8 +979,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `this`, а в этом варианте — `it`.",
-              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `it`."
+              "ru": "В записи it, а не that.",
+              "uk": "У записі it, а не that."
             }
           }
         ],
@@ -815,7 +991,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -837,40 +1013,40 @@
           },
           {
             "pairId": "en:lesson-08:session-33:i16:p2",
-            "target": "recycle",
+            "target": "lean",
             "meaningByLocale": {
-              "ru": "сдавать на переработку",
-              "uk": "здавати на переробку"
+              "ru": "опираться",
+              "uk": "спиратися"
             }
           },
           {
             "pairId": "en:lesson-08:session-33:i16:p3",
-            "target": "attach",
+            "target": "distract",
             "meaningByLocale": {
-              "ru": "прикрепить",
-              "uk": "прикріпити"
+              "ru": "отвлекать",
+              "uk": "відволікати"
             }
           },
           {
             "pairId": "en:lesson-08:session-33:i16:p4",
-            "target": "doorbell",
+            "target": "smear",
             "meaningByLocale": {
-              "ru": "дверной звонок",
-              "uk": "дверний дзвінок"
+              "ru": "размазывать",
+              "uk": "розмазувати"
             }
           }
         ],
         "leftColumn": [
           "rush",
-          "recycle",
-          "attach",
-          "doorbell"
+          "lean",
+          "distract",
+          "smear"
         ],
         "rightColumn": [
           "торопиться",
-          "сдавать на переработку",
-          "прикрепить",
-          "дверной звонок"
+          "опираться",
+          "отвлекать",
+          "размазывать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -888,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-33:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -928,11 +1104,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3947b1c56dbdfdde4e469f635ee5ef801d1244b313f0538c59aa5ef90d5e6b9c"
+  "learnerFingerprint": "5300ee4590a1a2d9171031691800ccce98f2538d8840a7a9cd088dc80a2bd1d4"
 }

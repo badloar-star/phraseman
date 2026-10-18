@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-33:word:rush",
+    "correctText": "rush",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-33:i01",
     "correctText": "Don’t rush.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-33:word:lean",
+    "correctText": "lean",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-33:i06",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t lean on it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:word:distract",
+    "correctText": "distract",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-33:i07",
-    "correctText": "Please don’t wait.",
+    "correctText": "Please don’t distract me.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-33:i08",
-    "correctText": "touch",
+    "correctText": "lean",
     "correctResponseId": "en:lesson-08:session-33:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-33:i10",
-    "correctText": "en:lesson-08:session-33:i10:p1=recycle\nen:lesson-08:session-33:i10:p2=rush\nen:lesson-08:session-33:i10:p3=doorbell\nen:lesson-08:session-33:i10:p4=study",
+    "correctText": "en:lesson-08:session-33:i10:p1=rush\nen:lesson-08:session-33:i10:p2=lean\nen:lesson-08:session-33:i10:p3=distract\nen:lesson-08:session-33:i10:p4=wait",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-33:i11",
-    "correctText": "Please don’t wait.",
+    "correctText": "Please don’t distract me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:word:smear",
+    "correctText": "smear",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-33:i12",
-    "correctText": "Attach it.",
+    "correctText": "Don’t smear the ink.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-33:i13",
-    "correctText": "I often study.",
+    "correctText": "Please don’t distract me.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-33:i15",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t lean on it.",
     "correctResponseId": "en:lesson-08:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-33:i16",
-    "correctText": "en:lesson-08:session-33:i16:p1=rush\nen:lesson-08:session-33:i16:p2=recycle\nen:lesson-08:session-33:i16:p3=attach\nen:lesson-08:session-33:i16:p4=doorbell",
+    "correctText": "en:lesson-08:session-33:i16:p1=rush\nen:lesson-08:session-33:i16:p2=lean\nen:lesson-08:session-33:i16:p3=distract\nen:lesson-08:session-33:i16:p4=smear",
     "correctResponseId": null
   },
   {

@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 33 — Не торопись
 
-**Ситуация.** Вы успокаиваете спешащего друга, предупреждаете о свежей краске и просите не ждать вас.
+**Ситуация.** Не спешить с глиняной чашкой, не опираться на мокрые перила и не отвлекать человека, считающего деньги.
 
 **Что вы освоите:** сказать «не делай» через Don’t и смягчить просьбу словом please
-**Новые слова:** rush
+**Новые слова:** rush, lean, distract, smear
 
 ---
 
 ## Интро 1
 
-### Времени достаточно
+### Ручка для глиняной чашки
 
-Друг торопится собирать вещи, хотя до выхода ещё есть время. `Rush` — «торопиться». `Don’t rush` — «Не торопись». Чтобы сказать человеку не делать что-то, начните с `Don’t`, затем назовите действие: `rush`, без `to` и `s`. Обуваться быстрее не всегда полезно: можно уйти в разных ботинках.
+На занятии керамикой друг торопится прикрепить ручку к сырой чашке. Времени ещё достаточно. Rush — «торопиться». `Don’t rush` — «Не торопись». Чтобы попросить не делать что-то, начните с Don’t и добавьте действие без to и s.
 
 **Скажите другу не торопиться.**
 
 - ✅ **Don’t rush.**
-- ❌ Doesn’t rush. — *Обращаясь к человеку, скажите `Don’t rush`.*
-- ❌ Don’t to rush. — *После `don’t` нужно `rush`, без `to`.*
+- ❌ Don’t rushes. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to rush. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 2
 
-### Свежая краска
+### Мокрые перила после дождя
 
-Друг тянется к только что покрашенной скамейке. Покажите на неё: `Don’t touch this` — «Не трогай это». После `Don’t` нужно `touch this`.
+На балконе после дождя мокрые перила. Друг в светлой рубашке собирается на них опереться. Lean — «опираться, наклоняться». `Don’t lean on it` — «Не опирайся на это». On указывает на опору; it здесь заменяет railing — перила.
 
-**Предупредите друга: «Не трогай это».**
+**Предупредите друга: «Не опирайся на это».**
 
-- ✅ **Don’t touch this.**
-- ❌ Don’t touches this. — *После `don’t` нужно `touch`, без `es`.*
-- ❌ Not touch this. — *Для такого указания начните с `Don’t`.*
+- ✅ **Don’t lean on it.**
+- ❌ Don’t leans on it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to lean on it. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 3
 
-### Вы задерживаетесь
+### Считаем выручку
 
-Друг готов идти, а вам нужно закончить работу. Вы хотите, чтобы он шёл без вас. `Please don’t wait` — «Пожалуйста, не жди». `Please` добавляет вежливое «пожалуйста», а `don’t wait` означает «не жди».
+Вы считаете монеты после школьной ярмарки. Друг рассказывает историю, и вы сбиваетесь. Distract — «отвлекать». `Please don’t distract me` — «Пожалуйста, не отвлекай меня». Please смягчает просьбу, me означает «меня».
 
-**Вежливо попросите друга не ждать.**
+**Вежливо попросите не отвлекать вас.**
 
-- ✅ **Please don’t wait.**
-- ❌ Please doesn’t wait. — *В обращении нужно `don’t wait`, не `doesn’t wait`.*
-- ❌ Please don’t to wait. — *После `don’t` нужно `wait`, без `to`.*
+- ✅ **Please don’t distract me.**
+- ❌ Please don’t distracts me. — *После don’t нужна форма без s/es.*
+- ❌ Please don’t to distract me. — *После don’t не нужно to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите другу «Не торопись»**
+**1 · Карточка слова — rush**
+<!-- interaction_id: en:lesson-08:session-33:word:rush; family: word_card -->
+> **rush** — торопиться. Don’t rush. — «Не торопись». Делать что-то поспешно.
+
+**2 · Скажите другу «Не торопись»**
 <!-- interaction_id: en:lesson-08:session-33:i01; family: phrase_builder -->
 Плитки: `rush` `Don’t` → **Don’t rush.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-33:i02; family: listen_choose -->
 🔊 *rush* → **rush** · study · attach
 - study — *В записи первое слово — `rush`, а в этом варианте — `study`.*
 - attach — *В записи первое слово — `rush`, а в этом варианте — `attach`.*
 
-**3 · Скажите другу не торопиться**
+**4 · Выберите форму для просьбы не торопиться**
 <!-- interaction_id: en:lesson-08:session-33:i03; family: context_gap_grammar -->
 Don’t ___. → **rush** · to rush · rushes
 - to rush — *После `don’t` нужно `rush`, без `to`.*
 - rushes — *После `don’t` нужно `rush`, без `es`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-33:i04; family: speed_match -->
 rush — торопиться · doorbell — дверной звонок · study — учиться · attach — прикрепить
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-33:i05; family: listen_build_dictation -->
 🔊 *Don’t rush.* Плитки: `rush` `Don’t` → **Don’t rush.**
 
-**6 · Покажите на свежую краску: «Не трогай это»**
+**7 · Карточка слова — lean**
+<!-- interaction_id: en:lesson-08:session-33:word:lean; family: word_card -->
+> **lean** — опираться, наклоняться. Don’t lean on it. — «Не опирайся на это». Lean on — опираться на что-то.
+
+**8 · Скажите «Не опирайся на это»**
 <!-- interaction_id: en:lesson-08:session-33:i06; family: phrase_builder -->
-Плитки: `this` `touch` `Don’t` → **Don’t touch this.**
+Плитки: `it` `on` `lean` `Don’t` → **Don’t lean on it.**
 
-**7 · Вы задерживаетесь. Скажите «Пожалуйста, не жди»**
+**9 · Карточка слова — distract**
+<!-- interaction_id: en:lesson-08:session-33:word:distract; family: word_card -->
+> **distract** — отвлекать. Please don’t distract me. — «Пожалуйста, не отвлекай меня». Мешать человеку сосредоточиться.
+
+**10 · Вы считаете монеты. Скажите «Пожалуйста, не отвлекай меня»**
 <!-- interaction_id: en:lesson-08:session-33:i07; family: scripted_repeat_compare -->
-🎙 **Please don’t wait.**
+🎙 **Please don’t distract me.**
 
-**8 · Предупредите «Не трогай это»**
+**11 · Выберите форму для просьбы не опираться**
 <!-- interaction_id: en:lesson-08:session-33:i08; family: context_gap_grammar -->
-Don’t ___ this. → **touch** · touches · to touch
-- touches — *После `don’t` нужно `touch`, без `es`.*
-- to touch — *После `don’t` нужно `touch`, без `to`.*
+Don’t ___ on it. → **lean** · leans · to lean
+- leans — *После don’t нужно lean, без s.*
+- to lean — *После don’t не нужно to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-33:i09; family: listen_choose -->
 🔊 *Don’t rush.* → **Don’t rush.** · Don’t wait. · Don’t shout.
 - Don’t wait. — *В записи последнее слово — `rush`, а в этом варианте — `wait`.*
 - Don’t shout. — *В записи последнее слово — `rush`, а в этом варианте — `shout`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-33:i10; family: speed_match -->
-recycle — сдавать на переработку · rush — торопиться · doorbell — дверной звонок · study — учиться
+rush — торопиться · lean — опираться · distract — отвлекать · wait — ждать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-33:i11; family: listen_build_dictation -->
-🔊 *Please don’t wait.* Плитки: `wait` `don’t` `Please` → **Please don’t wait.**
+🔊 *Please don’t distract me.* Плитки: `me` `distract` `don’t` `Please` → **Please don’t distract me.**
 
-**12 · Файл готов. Дайте короткое указание «Прикрепи его»**
+**15 · Карточка слова — smear**
+<!-- interaction_id: en:lesson-08:session-33:word:smear; family: word_card -->
+> **smear** — размазывать. Don’t smear the ink. — «Не размажь чернила». Здесь речь о свежей надписи, которую можно случайно размазать рукой.
+
+**16 · Друг проводит рукой по свежей надписи. Скажите «Не размажь чернила»**
 <!-- interaction_id: en:lesson-08:session-33:i12; family: phrase_builder -->
-Плитки: `it` `Attach` → **Attach it.**
+Плитки: `ink` `the` `smear` `Don’t` → **Don’t smear the ink.**
 
-**13 · Друг спрашивает о ваших занятиях. Используйте study: «Я часто учусь»**
+**17 · Вас отвлекают во время подсчёта монет. Повторите просьбу «Пожалуйста, не отвлекай меня»**
 <!-- interaction_id: en:lesson-08:session-33:i13; family: scripted_repeat_compare -->
-🎙 **I often study.**
+🎙 **Please don’t distract me.**
 
-**14 · Скажите другу «Пожалуйста, не жди»**
+**18 · Выберите форму для просьбы не отвлекать вас**
 <!-- interaction_id: en:lesson-08:session-33:i14; family: context_gap_grammar -->
-Please ___ wait. → **don’t** · doesn’t · not
-- doesn’t — *В обращении нужно `don’t wait`.*
-- not — *Начните запрет с `don’t`: `Please don’t wait`.*
+Please ___ distract me. → **don’t** · doesn’t · not
+- doesn’t — *В просьбе нужно don’t.*
+- not — *Перед действием здесь нужно don’t.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-33:i15; family: listen_choose -->
-🔊 *Don’t touch this.* → **Don’t touch this.** · Don’t touch that. · Don’t touch it.
-- Don’t touch that. — *В записи последнее слово — `this`, а в этом варианте — `that`.*
-- Don’t touch it. — *В записи последнее слово — `this`, а в этом варианте — `it`.*
+🔊 *Don’t lean on it.* → **Don’t lean on it.** · Don’t lean on this. · Don’t lean on that.
+- Don’t lean on this. — *В записи it, а не this.*
+- Don’t lean on that. — *В записи it, а не that.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-33:i16; family: speed_match -->
-rush — торопиться · recycle — сдавать на переработку · attach — прикрепить · doorbell — дверной звонок
+rush — торопиться · lean — опираться · distract — отвлекать · smear — размазывать
 
-**17 · Друг поспешно заполняет анкету и пропускает строки. Времени достаточно. Скажите ему «Не торопись»**
+**21 · Друг поспешно заполняет анкету и пропускает строки. Времени достаточно. Скажите ему «Не торопись»**
 <!-- interaction_id: en:lesson-08:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Don’t rush.**
 

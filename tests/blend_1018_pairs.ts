@@ -5,6 +5,7 @@
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { lowChargeInk } from '../constants/energy_low_ink';
 import { streakStageColors } from '../components/streak/moments/streak_stage_colors';
+import { streakSublineInk } from '../components/streak/moments/streak_subline_ink';
 import { feedbackInkSoftForLight } from '../constants/learningV2ModeFeedbackPalette';
 
 type Tok = Record<string, string>;
@@ -167,7 +168,7 @@ export const PAIRS: readonly Pair[] = [
   // ── моменты серии (StreakMilestoneScreen): ореол шире и тусклее (095137518), золото d1000 = warn, звёзды d365 (f83d12491)
   { element: 'Момент серии', what: 'надпись-оверлайн (accentTextSafe) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.accentTextSafe!, t) },
   { element: 'Момент серии', what: 'заголовок (text) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.text!, t) },
-  { element: 'Момент серии', what: 'подзаголовок (secondary) к фону и ореолу', min: TEXT, floor: 4.3, after: (t) => haloWorst(t.secondary!, t) },
+  { element: 'Момент серии', what: 'подзаголовок (streakSublineInk: secondary или text) к фону и ореолу', min: TEXT, after: (t) => haloWorst(streakSublineInk(t as never), t) },
   { element: 'Момент серии', what: 'цифра огня (белая) к тёмной плашке над худшим цветом огня стадий 1–5', min: TEXT, after: (t) => Math.min(...STAGES.flatMap((st) => { const c = stageColorsOf(t, st); return [c.outer, c.core].map((col) => ratio([255, 255, 255], plateOver(col))); })) },
   { element: 'Момент серии', what: 'огонь: внешний цвет стадий 1–5 к фону (худшая стадия)', min: GRAPHIC, floor: 1.0, after: (t) => Math.min(...STAGES.map((st) => ratio(solid(stageColorsOf(t, st).outer), solid(t.bg!)))) },
   { element: 'Момент серии', what: 'золото d1000 (warn) к фону', min: GRAPHIC, after: (t) => ratio(solid(t.warn!), solid(t.bg!)) },

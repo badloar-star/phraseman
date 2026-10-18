@@ -45,7 +45,8 @@ test('RegistrationPromptModal: retry only for not_uploaded; blocked has no retry
   const branch = source.slice(start, source.indexOf('return;', start));
   expect(branch).toContain('if (refusalCopy.offersAccountSwitch) {');
   expect(branch).toContain('setRetryProvider(null);');
-  expect(branch).toContain('showInlineError(refusalCopy.title, refusalCopy.body);');
+  // зачем (решение координатора 18.10): отказ — мягкая карточка со своим текстом (showFailureCopy), не красная строка
+  expect(branch).toContain('showFailureCopy(refusalCopy.title, refusalCopy.body);');
   // зачем (правила владельца 18.10, приёмка Сайта): перехода в «Настройки → Сменить аккаунт» из окна входа больше нет — ни кнопки, ни состояния «предложить смену»
   expect(branch).not.toContain('setSwitchAccountOffered');
   expect(branch).not.toContain('setSwitchAccountActionText');

@@ -95,6 +95,17 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     expect(source).not.toContain('testID="auth-switch-account"');
     expect(source).toContain('<GuestSwitchWarningSheet');
     expect(source).toContain("setSignInFailureKind('other')");
+    // зачем (Макеты A4.8, 18.10): отмена выбора аккаунта и отказы со своей причиной — мягкая карточка, а не красный текст с кнопкой «Повторить»
+    // отмена окна выбора аккаунта — ТИХО (решение координатора 18.10): журнал [AUTH-CANCEL], карточки нет
+    expect(source).toContain('[AUTH-CANCEL] provider=');
+    expect(source).not.toContain("setSignInFailureKind('cancelled')");
+    expect(source).toContain('testID="sign-in-no-method"');
+    expect(source).toContain('showFailureCopy(refusalCopy.title, refusalCopy.body);');
+    expect(source).toContain('title={signInFailureCopy?.title}');
+    const handleStart = source.indexOf('const handleSignIn = useCallback');
+    const handleEnd = source.indexOf('const resetInFlightRef');
+    const handler = source.slice(handleStart, handleEnd);
+    expect(handler.match(/showInlineError\(/g)?.length ?? 0).toBeLessThanOrEqual(2); // остались только запасные ветки с видом сбоя (карточка прячет красный текст)
     const copySource = fs.readFileSync(path.join(__dirname, '..', 'app', 'account_switch_copy.ts'), 'utf8');
     expect(copySource).toContain('Твой прогресс на месте');
     expect(onboardingSource).toContain("code === 'account_switch_required'");

@@ -311,8 +311,9 @@ describe('окно входа (RegistrationPromptModal): Google из настр�
       await mockGoogleOnPress!();
     });
     expect(mockSignInWithProvider).toHaveBeenCalledTimes(2);
-    // новая попытка снимает карточку сбоя
+    // новая попытка снимает карточку сбоя; отмена окна выбора аккаунта — тихо (решение координатора 18.10): ни карточки, ни текста
     expect(screen.queryByTestId('sign-in-failure')).toBeNull();
+    expect(screen.getByTestId('provider-google').props.disabled).toBe(false);
   });
 
   test('исключение входа → catch пишет причину кодом (без текста), кнопка снова доступна', async () => {

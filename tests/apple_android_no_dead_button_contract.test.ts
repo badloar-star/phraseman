@@ -35,9 +35,9 @@ describe('Apple на Android — без тупиковой кнопки', () => 
 
   it('на экране нет имени переменной сборки и инструкций Apple Developer — только в журнале', () => {
     const branch = modal.slice(modal.indexOf('if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {'), modal.indexOf('const baseMsg = triLang(lang, {'));
-    const visible = branch.slice(branch.indexOf('showInlineError('));
+    const visible = branch.slice(branch.indexOf('showFailureCopy('));
     expect(visible).not.toMatch(/EXPO_PUBLIC|Services ID|Apple Developer|\.env|EAS/);
     expect(visible).toContain('Вход через Apple на этом телефоне сейчас недоступен. Войди через Google.');
-    expect(branch.slice(0, branch.indexOf('showInlineError('))).toContain('[AUTH-MODAL] apple_android_missing_service_id');
+    expect(branch.slice(0, branch.indexOf('showFailureCopy('))).toContain('[AUTH-MODAL] apple_android_missing_service_id');
   });
 });

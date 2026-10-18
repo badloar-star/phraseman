@@ -48,10 +48,14 @@ export type SignInStatusLineProps = Readonly<{
   active: boolean;
   /** Читалка объявляет смену строки (по умолчанию да). Окно входа с собственным объявлением ставит false, чтобы не читать дважды. */
   announce?: boolean;
+  /** Строка стоит в слоте другой строки (окно входа: на месте «Данные на устройстве сохранятся») — без верхнего отступа. */
+  flush?: boolean;
+  /** Окно входа узнаёт фазу, чтобы скрыть строку, на место которой встаёт «Входим…» (Макеты A3.2). */
+  onPhaseChange?: (phase: 'quiet' | 'calm' | 'long') => void;
   testID?: string;
 }>;
 
-function SignInStatusLineBase({ active, announce = true, testID }: SignInStatusLineProps) {
+function SignInStatusLineBase({ active, announce = true, flush = false, onPhaseChange, testID }: SignInStatusLineProps) {
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -68,10 +72,13 @@ function SignInStatusLineBase({ active, announce = true, testID }: SignInStatusL
     return () => { clearTimeout(calm); clearTimeout(long); };
   }, [active]);
 
+  // зачем (Макеты A3.2): фаза уходит наружу после коммита, а не во время рендера
+  useEffect(() => { onPhaseChange?.(active ? phase : 'quiet'); }, [active, phase, onPhaseChange]);
+
   if (!active || phase === 'quiet') return null;
   const text = phase === 'long' ? signInLongText(lang) : signInCalmText(lang);
   return (
-    <View testID={testID ?? 'sign-in-status'} accessibilityRole="text" accessibilityLiveRegion={announce ? 'polite' : 'none'} accessibilityLabel={text} style={s.statusRow}>
+    <View testID={testID ?? 'sign-in-status'} accessibilityRole="text" accessibilityLiveRegion={announce ? 'polite' : 'none'} accessibilityLabel={text} style={flush ? s.statusRowFlush : s.statusRow}>
       <Text maxFontSizeMultiplier={1.3} style={[s.statusText, { color: g.secondary }]}>{text}</Text>
       {phase === 'calm' ? (
         <View style={s.dots} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
@@ -87,12 +94,16 @@ export const SignInStatusLine = memo(SignInStatusLineBase);
 
 export type SignInFailureCardProps = Readonly<{
   kind: SignInFailureKind;
+  /** Свой заголовок и причина (отказ с особой причиной: «Нужен прежний аккаунт», «Аккаунт восстановлен»…). Без них — тексты по виду сбоя. */
+  title?: string;
+  /** Пустая строка — причины нет, карточка из одного заголовка. */
+  body?: string;
   /** «Попробовать ещё раз» — повторяет тот же способ входа. Без обработчика, как и при «много попыток», кнопки нет. */
   onRetry?: () => void;
   testID?: string;
 }>;
 
-function SignInFailureCardBase({ kind, onRetry, testID }: SignInFailureCardProps) {
+function SignInFailureCardBase({ kind, title, body, onRetry, testID }: SignInFailureCardProps) {
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -100,8 +111,8 @@ function SignInFailureCardBase({ kind, onRetry, testID }: SignInFailureCardProps
   const canRetry = kind !== 'too_many' && !!onRetry;
 
   useEffect(() => {
-    console.log(LOG, 'failure shown', JSON.stringify({ kind, canRetry })); // guard-ok: показ сбоя; код ошибки на экран не попадает
-  }, [kind, canRetry]);
+    console.log(LOG, 'failure shown', JSON.stringify({ kind, canRetry, ownCopy: title !== undefined })); // guard-ok: показ сбоя; код ошибки на экран не попадает
+  }, [kind, canRetry, title]);
 
   const retry = useCallback(() => {
     if (retried.current) {
@@ -117,11 +128,12 @@ function SignInFailureCardBase({ kind, onRetry, testID }: SignInFailureCardProps
   return (
     <View testID={testID ?? 'sign-in-failure'} accessibilityRole="alert" style={[s.card, { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }]}>
       <View style={s.cardRow}>
-        <Ionicons name="cloud-offline-outline" size={20} color={g.text} style={s.cardIcon} accessibilityElementsHidden importantForAccessibility="no" />
+        {/* зачем: облако «нет связи» — только для сбоя сети; у отказов со своим текстом (прежний аккаунт, нет способа входа) значок нейтральный */}
+        <Ionicons name={title === undefined ? 'cloud-offline-outline' : 'information-circle-outline'} size={20} color={g.text} style={s.cardIcon} accessibilityElementsHidden importantForAccessibility="no" />
         <View style={s.cardCopy}>
-          <Text maxFontSizeMultiplier={1.3} style={[s.cardTitle, { color: g.text }]}>{signInFailureTitle(lang)}</Text>
+          <Text maxFontSizeMultiplier={1.3} style={[s.cardTitle, { color: g.text }]}>{title ?? signInFailureTitle(lang)}</Text>
           {/* зачем: secondary на buttonFill не проходит 4,5:1 во всех 138 сочетаниях тем (сторож blend_auth_1018) — причина основным цветом, различие с заголовком весом */}
-          <Text maxFontSizeMultiplier={1.3} style={[s.cardBody, { color: g.text }]}>{signInFailureBody(kind, lang)}</Text>
+          {body === '' ? null : <Text maxFontSizeMultiplier={1.3} style={[s.cardBody, { color: g.text }]}>{body ?? signInFailureBody(kind, lang)}</Text>}
         </View>
       </View>
       {canRetry ? (
@@ -144,6 +156,7 @@ export const SignInFailureCard = memo(SignInFailureCardBase);
 // макет: `.slow` 15/21 → 16/21 (D145), поля сверху 14, зазор 8; точки 5; `.oops` радиус 18, поля 14/14/14/16; `.retry` 40, радиус 20, поля слева 32 (под текст)
 const s = StyleSheet.create({
   statusRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 14 },
+  statusRowFlush: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   statusText: { fontSize: 16, lineHeight: 21, fontWeight: '600', textAlign: 'center', flexShrink: 1 },
   dots: { flexDirection: 'row', gap: 4 },
   dot: { width: 5, height: 5, borderRadius: 3 },

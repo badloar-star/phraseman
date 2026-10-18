@@ -268,6 +268,10 @@ function RegistrationPromptModal({
   const [inlineError, setInlineError] = useState<string | null>(null);
   // зачем (макет auth-states.html, блок 4): сбой входа — мягкая карточка с причиной по виду ошибки, а не красный текст; null — прежние сообщения (смена аккаунта, отказы)
   const [signInFailureKind, setSignInFailureKind] = useState<SignInFailureKind | null>(null);
+  // зачем (Макеты A4.8, 18.10): отказы со своей причиной («Нужен прежний аккаунт», «Аккаунт восстановлен»…) — та же мягкая карточка, но со своим заголовком и текстом; null — тексты по виду сбоя
+  const [signInFailureCopy, setSignInFailureCopy] = useState<{ title: string; body: string } | null>(null);
+  // зачем (Макеты A3.2): фаза строки «Входим…» — пока она показана, она стоит НА МЕСТЕ строки «Данные на устройстве сохранятся»
+  const [signInStatusPhase, setSignInStatusPhase] = useState<'quiet' | 'calm' | 'long'>('quiet');
   // Провайдер последней неуспешной попытки — для кнопки «Повторить» под ошибкой.
   const [retryProvider, setRetryProvider] = useState<AuthProviderId | null>(null);
   // Recovery hint: каким аккаунтом входить (маска email с сервера).
@@ -402,6 +406,8 @@ function RegistrationPromptModal({
     }
     setInlineError(null);
     setSignInFailureKind(null);
+    setSignInFailureCopy(null);
+    setSignInStatusPhase('quiet');
     setRetryProvider(null);
     setRecoveryPanelVisible(false);
     setRecoveryOfferedAfterMismatch(false);
@@ -519,6 +525,12 @@ function RegistrationPromptModal({
     setInlineError(`${titleEnded}\n${message}`);
   }, []);
 
+  // зачем (Макеты A4.8, «красного в окне входа быть не должно»): отказ со своей причиной показывается мягкой карточкой; кнопка повтора — только если retryProvider задан
+  const showFailureCopy = useCallback((title: string, message: string) => {
+    setSignInFailureKind('other');
+    setSignInFailureCopy({ title: title.trim(), body: message });
+  }, []);
+
   // Заголовок по утверждённому редизайну: «Всё в безопасности» (для всех контекстов).
   // Контекстные акценты остаются в подзаголовке (finalSubtitle), проп title по-прежнему перекрывает.
   const defaultTitle = triLang(lang, {
@@ -542,7 +554,7 @@ function RegistrationPromptModal({
         ? 'Войди в тот же аккаунт Google или Apple — вернём прогресс из облака.'
         : context === 'onboarding'
         ? 'Можно пропустить, но без аккаунта прогресс легко потерять.'
-        : 'Быстрый вход. Прогресс синхронизируется между устройствами.',
+        : 'Быстрый вход. Прогресс будет на всех твоих устройствах.',
     en:
       context === 'lesson1'
         ? 'One tap with Google — and your progress is safe.'
@@ -550,7 +562,7 @@ function RegistrationPromptModal({
         ? 'Sign in with the same Google or Apple account — we’ll restore your progress from the cloud.'
         : context === 'onboarding'
         ? 'You can skip this, but without an account your progress is easy to lose.'
-        : 'Quick sign-in. Progress syncs across devices.',
+        : 'Quick sign-in. Your progress will be on all your devices.',
     uk:
       context === 'lesson1'
         ? 'Один тап через Google — і прогрес у безпеці.'
@@ -558,7 +570,7 @@ function RegistrationPromptModal({
         ? 'Увійди в той самий акаунт Google або Apple — повернемо прогрес із хмари.'
         : context === 'onboarding'
         ? 'Можна пропустити, але без акаунта прогрес легко втратити.'
-        : 'Швидкий вхід. Прогрес синхронізується між пристроями.',
+        : 'Швидкий вхід. Прогрес буде на всіх твоїх пристроях.',
     es:
       context === 'lesson1'
         ? 'Un toque en Google y tu progreso queda a salvo.'
@@ -566,7 +578,7 @@ function RegistrationPromptModal({
         ? 'Entra con la misma cuenta de Google o Apple y recuperaremos tu progreso.'
         : context === 'onboarding'
         ? 'Puedes omitirlo, pero sin cuenta tu progreso puede perderse.'
-        : 'Acceso rápido. El progreso se sincroniza entre dispositivos.',
+        : 'Acceso rápido. Tu progreso estará en todos tus dispositivos.',
     'pt-BR':
       context === 'lesson1'
         ? 'Um toque no Google e seu progresso fica seguro.'
@@ -574,7 +586,7 @@ function RegistrationPromptModal({
         ? 'Entre com a mesma conta Google ou Apple — restauraremos seu progresso.'
         : context === 'onboarding'
         ? 'Você pode pular, mas sem conta seu progresso pode se perder.'
-        : 'Entrada rápida. O progresso sincroniza entre dispositivos.',
+        : 'Entrada rápida. Seu progresso vai estar em todos os seus aparelhos.',
     vi:
       context === 'lesson1'
         ? 'Một chạm qua Google — tiến trình của bạn an toàn.'
@@ -582,7 +594,7 @@ function RegistrationPromptModal({
         ? 'Đăng nhập đúng tài khoản Google hoặc Apple cũ để khôi phục tiến độ.'
         : context === 'onboarding'
         ? 'Có thể bỏ qua, nhưng không tài khoản tiến trình dễ bị mất.'
-        : 'Đăng nhập nhanh. Tiến trình đồng bộ giữa các thiết bị.',
+        : 'Đăng nhập nhanh. Tiến độ sẽ có trên mọi thiết bị của bạn.',
     id:
       context === 'lesson1'
         ? 'Sekali ketuk lewat Google — progresmu aman.'
@@ -590,7 +602,7 @@ function RegistrationPromptModal({
         ? 'Masuk ke akun Google atau Apple yang sama — progresmu akan dipulihkan.'
         : context === 'onboarding'
         ? 'Boleh dilewati, tapi tanpa akun progres mudah hilang.'
-        : 'Masuk cepat. Progres tersinkron antarperangkat.',
+        : 'Masuk cepat. Progresmu ada di semua perangkatmu.',
     tr:
       context === 'lesson1'
         ? 'Google ile tek dokunuş — ilerlemen güvende.'
@@ -598,7 +610,7 @@ function RegistrationPromptModal({
         ? 'Aynı Google veya Apple hesabıyla giriş yap — ilerlemeni geri yükleyelim.'
         : context === 'onboarding'
         ? 'Atlayabilirsin, ama hesap olmadan ilerleme kolayca kaybolur.'
-        : 'Hızlı giriş. İlerleme cihazlar arasında eşitlenir.',
+        : 'Hızlı giriş. İlerlemen tüm cihazlarında olacak.',
     pl:
       context === 'lesson1'
         ? 'Jedno kliknięcie przez Google — postępy są bezpieczne.'
@@ -606,7 +618,7 @@ function RegistrationPromptModal({
         ? 'Zaloguj się na to samo konto Google lub Apple — przywrócimy postęp z chmury.'
         : context === 'onboarding'
         ? 'Możesz pominąć, ale bez konta postępy łatwo stracić.'
-        : 'Szybkie logowanie. Postępy synchronizują się między urządzeniami.',
+        : 'Szybkie logowanie. Postęp będzie na wszystkich twoich urządzeniach.',
   });
 
   // зачем (TG-AA6EC9A6D998): окно после переустановки не обещает «вернём прогресс», пока
@@ -1155,6 +1167,7 @@ function RegistrationPromptModal({
       setLoadingProvider(provider);
       setRetryProvider(null);
       setSignInFailureKind(null); // новая попытка снимает карточку сбоя
+      setSignInFailureCopy(null);
       setSignInSlow(false);
       clearSlowTimer();
       slowTimerRef.current = setTimeout(() => {
@@ -1185,25 +1198,14 @@ function RegistrationPromptModal({
         reportSignInOutcome(provider, result);
 
         if (result.result === 'cancelled') {
-          // Отмена picker'а — retryable: даём «Повторить» под сообщением.
-          setRetryProvider(provider);
-          // В TestFlight/проде раньше молчали — выглядело как «кнопка сломана».
+          // зачем (решение координатора 18.10, Макеты A4.8): человек сам закрыл окно выбора аккаунта Google/Apple — это не сбой. ТИХО: ни карточки, ни текста, ни «Повторить»;
+          // кнопки входа снова активны (finally снимает loadingProvider), повторить можно обычным тапом. Причина — только в журнал.
+          setRetryProvider(null);
           // зачем (координатор 18.10 06:12, «без системных текстов»): подсказки разработчика — только в журнал, на экране словарная фраза в любой сборке.
           console.warn(`[AUTH-MODAL] sign_in cancelled provider=${provider} — закрыли окно выбора, нет аккаунта Google на устройстве или неверный webClientId/SHA-1`); // guard-ok: ранний выход пишет причину
-          showInlineError(
-            triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', en: 'Sign-in not finished', es: 'Acceso sin terminar', 'pt-BR': 'Entrada não concluída', vi: 'Chưa đăng nhập xong', id: 'Masuk belum selesai', tr: 'Giriş tamamlanmadı', pl: 'Logowanie nieukończone' }),
-            triLang(lang, {
-              ru: 'Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или попробуй другой способ.',
-              uk: 'Вікно входу закрилось без вибору акаунта. Натисни кнопку ще раз або спробуй інший спосіб.',
-              en: 'The sign-in window closed without picking an account. Tap the button again or try another method.',
-              es: 'Se cerró el acceso sin elegir cuenta. Toca de nuevo o prueba otro método.',
-              'pt-BR': 'A janela de login foi fechada sem escolher uma conta. Toque de novo ou tente outro método.',
-              vi: 'Cửa sổ đăng nhập đã đóng mà chưa chọn tài khoản. Hãy nhấn lại hoặc thử cách khác.',
-              id: 'Jendela masuk tertutup tanpa memilih akun. Ketuk lagi atau coba cara lain.',
-              tr: 'Giriş penceresi hesap seçilmeden kapandı. Tekrar dokun veya başka bir yöntem dene.',
-              pl: 'Okno logowania zamknęło się bez wyboru konta. Naciśnij ponownie albo spróbuj innej metody.',
-            }),
-          );
+          console.log(`[AUTH-CANCEL] provider=${provider} shown=nothing buttons=active in=${Date.now() - signInStartedAt}ms`); // guard-ok: итог для человека — тишина
+          setSignInFailureKind(null);
+          setSignInFailureCopy(null);
           return;
         }
         if (result.result === 'error') {
@@ -1227,7 +1229,7 @@ function RegistrationPromptModal({
             if (refusalCopy.offersAccountSwitch) {
               setRetryProvider(null); // повтор не поможет; кнопки «Сменить аккаунт» с переходом в Настройки больше нет (правило владельца 18.10)
             }
-            showInlineError(refusalCopy.title, refusalCopy.body);
+            showFailureCopy(refusalCopy.title, refusalCopy.body);
             return;
           }
           if (result.error === 'recovery_provider_mismatch') {
@@ -1235,7 +1237,7 @@ function RegistrationPromptModal({
             setRetryProvider(null);
             animateNextLayoutTransition();
             setRecoveryOfferedAfterMismatch(true);
-            showInlineError(
+            showFailureCopy(
               triLang(lang, { ru: 'Нужен прежний аккаунт', uk: 'Потрібен попередній акаунт', en: 'You need your previous account', es: 'Necesitas la cuenta anterior', 'pt-BR': 'Use a conta anterior', vi: 'Cần tài khoản trước đây', id: 'Gunakan akun sebelumnya', tr: 'Önceki hesap gerekli', pl: 'Potrzebne jest poprzednie konto' }),
               triLang(lang, {
                 // зачем (координатор 18.10, проход по текстам входа): «локальные данные» — слово разработчика; «пользовался» — мужской род (D188)
@@ -1265,7 +1267,7 @@ function RegistrationPromptModal({
             }
             if (restore === 'restored') {
               setRetryProvider(provider);
-              showInlineError(
+              showFailureCopy(
                 triLang(lang, { ru: 'Аккаунт восстановлен', uk: 'Акаунт відновлено', en: 'Account restored', es: 'Cuenta restaurada', 'pt-BR': 'Conta restaurada', vi: 'Đã khôi phục tài khoản', id: 'Akun dipulihkan', tr: 'Hesap geri yüklendi', pl: 'Konto przywrócone' }),
                 triLang(lang, {
                   ru: 'Войди ещё раз — весь прогресс на месте.',
@@ -1289,7 +1291,7 @@ function RegistrationPromptModal({
             if (restore === 'restore_failed') {
               const failedCopy = accountRestoreFailedCopy(lang);
               setRetryProvider(provider);
-              showInlineError(failedCopy.title, failedCopy.body);
+              showFailureCopy(failedCopy.title, failedCopy.body);
               return;
             }
           }
@@ -1307,7 +1309,7 @@ function RegistrationPromptModal({
             // человеку — простая фраза и путь через Google. Обычно сюда не попасть: без Services ID кнопки Apple на Android нет.
             console.warn('[AUTH-MODAL] apple_android_missing_service_id — нужен EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID в EAS/.env и return URL в Apple Developer (phraseman://apple-auth)'); // guard-ok: ранний выход пишет причину
             setRetryProvider(null);
-            showInlineError(
+            showFailureCopy(
               triLang(lang, { ru: 'Не получилось', uk: 'Не вийшло', en: 'It did not work', es: 'No salió', 'pt-BR': 'Não deu certo', vi: 'Chưa được', id: 'Belum berhasil', tr: 'Olmadı', pl: 'Nie udało się' }),
               triLang(lang, {
                 ru: 'Вход через Apple на этом телефоне сейчас недоступен. Войди через Google.',
@@ -1395,6 +1397,7 @@ function RegistrationPromptModal({
       loadingProvider,
       onClose,
       onSignedIn,
+      showFailureCopy,
       showInlineError,
       signInSlowLabel,
     ],
@@ -1635,6 +1638,8 @@ function RegistrationPromptModal({
           {signInFailureKind !== null && loadingProvider === null && !recoverySessionActive ? (
             <SignInFailureCard
               kind={signInFailureKind}
+              title={signInFailureCopy?.title}
+              body={signInFailureCopy?.body}
               onRetry={retryProvider !== null ? () => { void handleSignIn(retryProvider); } : undefined}
             />
           ) : null}
@@ -1686,12 +1691,13 @@ function RegistrationPromptModal({
             />
           )}
 
-          {/* зачем (макет, блок 3): через 3 с — спокойная строка «Входим…», через 8 с — «Вход занимает больше времени…»; объявляет читалке невидимый узел выше */}
-          <SignInStatusLine active={loadingProvider !== null} announce={false} />
-
           {!googleAvail && appleAvail === false && (
-            <Text style={[styles.errorNote, { color: glass.bad, fontSize: f.caption }]}>
-              {triLang(lang, {
+            // зачем (решение координатора 18.10, «красного в окне входа быть не должно»): это не сбой попытки, а состояние телефона — та же мягкая карточка, без кнопки повтора
+            <SignInFailureCard
+              testID="sign-in-no-method"
+              kind="other"
+              body=""
+              title={triLang(lang, {
                 // зачем (координатор 18.10, «никаких системных текстов»): «провайдер» → понятный «способ входа», как в en
                 ru: 'На этом телефоне нет доступного способа входа.',
                 uk: 'На цьому телефоні немає доступного способу входу.',
@@ -1703,7 +1709,7 @@ function RegistrationPromptModal({
                 tr: 'Bu cihazda kullanılabilir giriş yöntemi yok.',
                 pl: 'Na tym urządzeniu nie ma dostępnej metody logowania.',
               })}
-            </Text>
+            />
           )}
 
           {!!inlineError && signInFailureKind === null && (
@@ -2183,11 +2189,18 @@ function RegistrationPromptModal({
 
           {/* Строка доверия со щитом */}
           <Animated.View style={[styles.shieldRow, rise4]}>
-            {/* зачем (`.ov-trust`): у строки доверия замок, как в макете. */}
-            <Ionicons name="lock-closed" size={15} color={glass.mutedText} />
-            <Text style={[styles.shieldText, { color: glass.mutedText, fontSize: f.caption, lineHeight: captionLineHeight }]}>
-              {labelShield}
-            </Text>
+            {/* зачем (макет auth-states, блок 3; Макеты A3.2): через 3 с «Входим…», через 8 с «Вход занимает больше времени…» — НА МЕСТЕ строки доверия, ниже кнопок ничего не прыгает; объявляет читалке невидимый узел busyA11y */}
+            <SignInStatusLine active={loadingProvider !== null} announce={false} flush onPhaseChange={setSignInStatusPhase} />
+            {loadingProvider !== null && signInStatusPhase !== 'quiet' ? null : (
+              // зачем (Макеты A2.3, `.trust.dim`): во время входа строка доверия приглушается вместе с крестиком, «Позже» и ссылками (38 %)
+              <View style={[styles.shieldInner, loadingProvider !== null ? { opacity: 0.38 } : null]}>
+                {/* зачем (`.ov-trust`): у строки доверия замок, как в макете. */}
+                <Ionicons name="lock-closed" size={15} color={glass.mutedText} />
+                <Text style={[styles.shieldText, { color: glass.mutedText, fontSize: f.caption, lineHeight: captionLineHeight }]}>
+                  {labelShield}
+                </Text>
+              </View>
+            )}
           </Animated.View>
 
           <Animated.View style={[styles.footerCol, rise5]}>
@@ -2350,6 +2363,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 7,
     marginTop: 2,
+    // зачем (решение координатора 18.10, Макеты A3.2): «Входим…» (16/21) встаёт на место строки доверия — высота резервируется заранее, ниже кнопок ничего не прыгает
+    minHeight: 21,
+  },
+  shieldInner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 7,
   },
   shieldText: {
     textAlign: 'center',

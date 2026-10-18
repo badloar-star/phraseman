@@ -133,7 +133,7 @@ describe('промпт восстановления удалённого акк�
     const modal = read('components/RegistrationPromptModal.tsx');
     const branch = modal.indexOf("if (restore === 'restore_failed') {");
     expect(branch).toBeGreaterThan(modal.indexOf('promptAccountRestoreAfterSignInRefusal(lang)'));
-    expect(modal.slice(branch, branch + 260)).toContain('showInlineError(failedCopy.title, failedCopy.body)');
+    expect(modal.slice(branch, branch + 260)).toContain('showFailureCopy(failedCopy.title, failedCopy.body)');
     expect(modal.slice(branch, branch + 260)).toContain('setRetryProvider(provider)');
 
     const onboarding = read('components/CleanOnboarding.tsx');

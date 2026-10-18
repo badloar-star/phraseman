@@ -120,6 +120,25 @@ describe('SignInStatusLine', () => {
     expect(view.queryByTestId('sign-in-status')).toBeNull();
   });
 
+  it('сообщает фазу наружу: тихо → спокойно → долго → тихо (окно входа прячет строку доверия на место «Входим…»)', async () => {
+    const onPhaseChange = jest.fn();
+    const view = await render(<SignInStatusLine active onPhaseChange={onPhaseChange} />);
+    expect(onPhaseChange).toHaveBeenLastCalledWith('quiet');
+    await act(async () => { jest.advanceTimersByTime(SIGN_IN_CALM_AFTER_MS); });
+    expect(onPhaseChange).toHaveBeenLastCalledWith('calm');
+    await act(async () => { jest.advanceTimersByTime(SIGN_IN_LONG_AFTER_MS - SIGN_IN_CALM_AFTER_MS); });
+    expect(onPhaseChange).toHaveBeenLastCalledWith('long');
+    await view.rerender(<SignInStatusLine active={false} onPhaseChange={onPhaseChange} />);
+    expect(onPhaseChange).toHaveBeenLastCalledWith('quiet');
+  });
+
+  it('flush: строка без верхнего отступа (стоит в слоте строки доверия)', async () => {
+    const view = await render(<SignInStatusLine active flush />);
+    await act(async () => { jest.advanceTimersByTime(SIGN_IN_CALM_AFTER_MS); });
+    const flat = JSON.stringify(view.getByTestId('sign-in-status').props.style);
+    expect(flat).not.toContain('"marginTop"');
+  });
+
   it('«Меньше движения» не прячет строку', async () => {
     mockReduceMotion = true;
     const view = await render(<SignInStatusLine active />);
@@ -157,6 +176,20 @@ describe('SignInFailureCard', () => {
     expect(cancelled.getByTestId('sign-in-retry')).toBeTruthy();
     const other = await render(<SignInFailureCard kind="other" onRetry={jest.fn()} />);
     expect(other.getByText('Вход не завершился. Попробуй ещё раз или выбери другой способ.')).toBeTruthy();
+  });
+
+  it('свой заголовок и текст (отказ со своей причиной) вместо текстов по виду сбоя; без обработчика кнопки повтора нет', async () => {
+    const own = await render(<SignInFailureCard kind="other" title="Нужен прежний аккаунт" body="Выбранный аккаунт не связан с этим прогрессом." />);
+    expect(own.getByText('Нужен прежний аккаунт')).toBeTruthy();
+    expect(own.getByText('Выбранный аккаунт не связан с этим прогрессом.')).toBeTruthy();
+    expect(own.queryByText('Не получилось войти')).toBeNull();
+    expect(own.queryByTestId('sign-in-retry')).toBeNull();
+    const withRetry = await render(<SignInFailureCard kind="other" title="Аккаунт восстановлен" body="Войди ещё раз — весь прогресс на месте." onRetry={jest.fn()} />);
+    expect(withRetry.getByTestId('sign-in-retry')).toBeTruthy();
+    // пустая причина — карточка из одного заголовка (состояние телефона «нет способа входа»)
+    const titleOnly = await render(<SignInFailureCard kind="other" title="На этом телефоне нет доступного способа входа." body="" />);
+    expect(titleOnly.getByText('На этом телефоне нет доступного способа входа.')).toBeTruthy();
+    expect(titleOnly.queryByTestId('sign-in-retry')).toBeNull();
   });
 
   it('без красного и без рамки: карточка на buttonFill, красные токены и обводки в коде не упоминаются', () => {

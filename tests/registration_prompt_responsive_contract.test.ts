@@ -42,7 +42,11 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     // + макет auth-states.html (координатор 18.10): кольцо на месте значка рисует кнопка (busy), остальные приглушены (dimmed), видимая строка «Входим…» с 3 с — отдельный SignInStatusLine без своего объявления
     expect(src).toContain('busy={loadingProvider === ');
     expect(src).toContain('dimmed={');
-    expect(src).toContain('<SignInStatusLine active={loadingProvider !== null} announce={false} />');
+    // зачем (Макеты A3.2, 18.10): «Входим…» стоит НА МЕСТЕ строки «Данные на устройстве сохранятся» (та же ячейка shieldRow), а не над ней; строка доверия приглушается (A2.3) и на время статуса уступает место
+    expect(src).toContain('<SignInStatusLine active={loadingProvider !== null} announce={false} flush onPhaseChange={setSignInStatusPhase} />');
+    expect(src).toContain("loadingProvider !== null && signInStatusPhase !== 'quiet' ? null : (");
+    expect(src).toContain('loadingProvider !== null ? { opacity: 0.38 } : null');
+    expect(src.indexOf('<SignInStatusLine')).toBeGreaterThan(src.indexOf('<Animated.View style={[styles.shieldRow, rise4]}>'));
     // порог 8 с размораживает «Позже» и не меняется (строка с 3 с — собственные таймеры компонента)
     expect(src).toContain('const SIGN_IN_SLOW_THRESHOLD_MS = 8_000;');
     expect(src.split('signInSlow ? signInSlowLabel : signInBusyLabel').length - 1).toBe(1);

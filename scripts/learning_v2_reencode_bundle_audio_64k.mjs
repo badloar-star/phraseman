@@ -107,6 +107,7 @@ console.log(`${LOG} предпроверка: все ${sources.size} исход�
 const remap = new Map(); // старый хеш → { hash, size }
 const byOldHash = new Map(); // старый хеш → перекодированные байты (одинаковые байты кодируем один раз)
 let skipped = 0;
+const skippedByKbps = new Map(); // битрейт исходника → сколько файлов оставлено как есть
 let missing = 0;
 let bytesBefore = 0;
 let bytesAfter = 0;
@@ -115,7 +116,16 @@ for (const [rel, oldHash] of sources) {
   if (!fs.existsSync(file)) { missing += 1; console.warn(`${LOG} нет исходника ${rel}`); continue; }
   const before = fs.readFileSync(file);
   if (sha256(before) !== oldHash) throw new Error(`${LOG} исходник ${rel} не совпадает с таблицей (${oldHash.slice(0, 8)}) — стоп, ничего не меняю дальше`);
-  if (bitrateOf(file) <= TARGET_BITRATE * 1.1) { skipped += 1; continue; }
+  // зачем (координатор 18.10): исходник уже сжат (например shrink_audio V2 до 64k) — не пережимаем второй раз и не «поднимаем»
+  // 64k до 96k: файл остаётся как есть, хеш в таблицах не меняется. Каждый пропуск — строка с битрейтом и итоговый счётчик.
+  const srcBitrate = bitrateOf(file);
+  if (srcBitrate <= TARGET_BITRATE * 1.1) {
+    skipped += 1;
+    const bucket = `${Math.round(srcBitrate / 1000)}k`;
+    skippedByKbps.set(bucket, (skippedByKbps.get(bucket) ?? 0) + 1);
+    console.log(`[REENCODE] skip reason=src_kbps=${Math.round(srcBitrate / 1000)} target_kbps=${KBPS} file=${rel}`);
+    continue;
+  }
   let next = byOldHash.get(oldHash);
   if (!next) {
     const tmp = `${file}.reencode.mp3`;
@@ -133,7 +143,8 @@ for (const [rel, oldHash] of sources) {
     fs.renameSync(`${file}.reencode.tmp`, file);
   }
 }
-console.log(`${LOG} перекодировано ${remap.size} (уникальных байт), пропущено ≤64 кбит/с ${skipped}, нет исходника ${missing}; ` +
+console.log(`[REENCODE] skip total=${skipped} by_src_kbps=${JSON.stringify(Object.fromEntries(skippedByKbps))} target_kbps=${KBPS}`);
+console.log(`${LOG} перекодировано ${remap.size} (уникальных байт), пропущено ≤${KBPS} кбит/с ${skipped}, нет исходника ${missing}; ` +
   `${(bytesBefore / 1048576).toFixed(1)} МБ → ${(bytesAfter / 1048576).toFixed(1)} МБ`);
 if (missing > 0) throw new Error(`${LOG} нет ${missing} исходников — таблицы не трогаю`);
 if (DRY) { console.log(`${LOG} пробный прогон: файлы и таблицы не изменены`); process.exit(0); }

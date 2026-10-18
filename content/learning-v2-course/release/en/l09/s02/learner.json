@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-02:word:cocoa",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cocoa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:word:cocoa:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cocoa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:word:cocoa:audio",
+          "transcript": "cocoa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:word:cocoa:r1",
+            "targetText": "cocoa",
+            "meaningByLocale": {
+              "ru": "какао. I am stirring the cocoa. — «Я размешиваю какао».",
+              "uk": "какао. I am stirring the cocoa. — «Я розмішую какао»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cocoa",
+          "definitionByLocale": {
+            "ru": "какао. I am stirring the cocoa. — «Я размешиваю какао».",
+            "uk": "какао. I am stirring the cocoa. — «Я розмішую какао»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что сейчас размешиваете какао",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что сейчас размешиваете какао",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am stirring the cocoa.",
+        "localizedMeaning": {
+          "ru": "Скажите, что сейчас размешиваете какао",
+          "uk": "Скажіть, що зараз розмішуєте какао"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "stirring",
+          "the",
+          "cocoa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-02:i02:r1",
+          "text": "cocoa"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i02:r2",
+          "text": "coffee"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i02:r3",
+          "text": "water"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i02:audio",
+          "transcript": "cocoa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:i02:r1",
+            "targetText": "cocoa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i02:r2",
+            "targetText": "coffee",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i02:r3",
+            "targetText": "water",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит cocoa",
+              "uk": "У записі звучить cocoa"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит cocoa",
+              "uk": "У записі звучить cocoa"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-02:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для I",
+          "uk": "Виберіть форму для I"
+        },
+        "gappedTargetPhrase": "I ___ stirring the cocoa.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-02:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите форму для I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-02:i04:p1",
+            "target": "cocoa",
+            "meaningByLocale": {
+              "ru": "какао",
+              "uk": "какао"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i04:p2",
+            "target": "stir",
+            "meaningByLocale": {
+              "ru": "помешивать",
+              "uk": "помішувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i04:p3",
+            "target": "cup",
+            "meaningByLocale": {
+              "ru": "чашка",
+              "uk": "чашка"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i04:p4",
+            "target": "spoon",
+            "meaningByLocale": {
+              "ru": "ложка",
+              "uk": "ложка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cocoa",
+          "stir",
+          "cup",
+          "spoon"
+        ],
+        "rightColumn": [
+          "какао",
+          "помешивать",
+          "чашка",
+          "ложка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i05:audio",
+          "transcript": "I am stirring the cocoa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am stirring the cocoa.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "stirring",
+          "the",
+          "cocoa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:word:custard",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — custard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:word:custard:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — custard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:word:custard:audio",
+          "transcript": "custard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:word:custard:r1",
+            "targetText": "custard",
+            "meaningByLocale": {
+              "ru": "заварной крем. She is stirring the custard. — «Она помешивает заварной крем».",
+              "uk": "заварний крем. She is stirring the custard. — «Вона помішує заварний крем»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "custard",
+          "definitionByLocale": {
+            "ru": "заварной крем. She is stirring the custard. — «Она помешивает заварной крем».",
+            "uk": "заварний крем. She is stirring the custard. — «Вона помішує заварний крем»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Опишите действие подруги с заварным кремом сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите действие подруги с заварным кремом сейчас",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is stirring the custard.",
+        "localizedMeaning": {
+          "ru": "Опишите действие подруги с заварным кремом сейчас",
+          "uk": "Опишіть дію подруги із заварним кремом зараз"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "stirring",
+          "the",
+          "custard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:word:batter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — batter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:word:batter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — batter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:word:batter:audio",
+          "transcript": "batter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:word:batter:r1",
+            "targetText": "batter",
+            "meaningByLocale": {
+              "ru": "жидкое тесто. They are stirring the batter. — «Они перемешивают жидкое тесто».",
+              "uk": "рідке тісто. They are stirring the batter. — «Вони перемішують рідке тісто»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "batter",
+          "definitionByLocale": {
+            "ru": "жидкое тесто. They are stirring the batter. — «Они перемешивают жидкое тесто».",
+            "uk": "рідке тісто. They are stirring the batter. — «Вони перемішують рідке тісто»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друзья сейчас перемешивают жидкое тесто. Скажите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i07:audio"
+      ],
+      "accessibilityLabel": "Друзья сейчас перемешивают жидкое тесто. Скажите об этом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i07:audio",
+          "transcript": "They are stirring the batter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are stirring the batter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-02:i08:r1",
+          "text": "stirring"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i08:r2",
+          "text": "stir"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i08:r3",
+          "text": "stirs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия сейчас",
+          "uk": "Виберіть форму дії зараз"
+        },
+        "gappedTargetPhrase": "She is ___ the custard.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-02:i08:r1",
+            "text": "stirring"
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i08:r2",
+            "text": "stir"
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i08:r3",
+            "text": "stirs"
+          }
+        ],
+        "testedDimension": "Выберите форму действия сейчас",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия сейчас",
+            "feedbackByLocale": {
+              "ru": "После is для действия сейчас нужна форма stirring.",
+              "uk": "Після is для дії зараз потрібна форма stirring."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия сейчас",
+            "feedbackByLocale": {
+              "ru": "Здесь is stirring, а не is stirs.",
+              "uk": "Тут is stirring, а не is stirs."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-02:i09:r1",
+          "text": "She is stirring the custard."
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i09:r2",
+          "text": "He is stirring the custard."
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i09:r3",
+          "text": "They are stirring the custard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i09:audio",
+          "transcript": "She is stirring the custard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:i09:r1",
+            "targetText": "She is stirring the custard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i09:r2",
+            "targetText": "He is stirring the custard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i09:r3",
+            "targetText": "They are stirring the custard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is stirring the custard.",
+              "uk": "У записі звучить She is stirring the custard."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is stirring the custard.",
+              "uk": "У записі звучить She is stirring the custard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-02:i10:p1",
+            "target": "cocoa",
+            "meaningByLocale": {
+              "ru": "какао",
+              "uk": "какао"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i10:p2",
+            "target": "custard",
+            "meaningByLocale": {
+              "ru": "заварной крем",
+              "uk": "заварний крем"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i10:p3",
+            "target": "batter",
+            "meaningByLocale": {
+              "ru": "жидкое тесто",
+              "uk": "рідке тісто"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i10:p4",
+            "target": "spoon",
+            "meaningByLocale": {
+              "ru": "ложка",
+              "uk": "ложка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cocoa",
+          "custard",
+          "batter",
+          "spoon"
+        ],
+        "rightColumn": [
+          "какао",
+          "заварной крем",
+          "жидкое тесто",
+          "ложка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i11:audio",
+          "transcript": "They are stirring the batter."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are stirring the batter.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "stirring",
+          "the",
+          "batter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:word:lump",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lump",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:word:lump:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lump",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:word:lump:audio",
+          "transcript": "lump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:word:lump:r1",
+            "targetText": "lump",
+            "meaningByLocale": {
+              "ru": "комок, комочек. This is a lump. — «Это комочек». Например, комок муки в жидком тесте.",
+              "uk": "грудка, грудочка. This is a lump. — «Це грудочка». Наприклад, грудка борошна в рідкому тісті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lump",
+          "definitionByLocale": {
+            "ru": "комок, комочек. This is a lump. — «Это комочек». Например, комок муки в жидком тесте.",
+            "uk": "грудка, грудочка. This is a lump. — «Це грудочка». Наприклад, грудка борошна в рідкому тісті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-02:i12:r1",
+          "text": "lump"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i12:r2",
+          "text": "lamp"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i12:r3",
+          "text": "jump"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i12:audio",
+          "transcript": "lump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:i12:r1",
+            "targetText": "lump",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i12:r2",
+            "targetText": "lamp",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i12:r3",
+            "targetText": "jump",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит lump",
+              "uk": "У записі звучить lump"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит lump",
+              "uk": "У записі звучить lump"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы показываете на комочек муки в миске. Назовите его: «Это комочек»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i13:audio"
+      ],
+      "accessibilityLabel": "Вы показываете на комочек муки в миске. Назовите его: «Это комочек»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i13:audio",
+          "transcript": "This is a lump."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a lump.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для they",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-02:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для they",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для they",
+          "uk": "Виберіть форму для they"
+        },
+        "gappedTargetPhrase": "They ___ stirring the batter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-02:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Выберите форму для they",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-02:i14:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are.",
+              "uk": "Із they потрібне are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i14:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are.",
+              "uk": "Із they потрібне are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-02:i15:r1",
+          "text": "I am stirring the cocoa."
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i15:r2",
+          "text": "I am drinking the cocoa."
+        },
+        {
+          "responseId": "en:lesson-09:session-02:i15:r3",
+          "text": "She is stirring the cocoa."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i15:audio",
+          "transcript": "I am stirring the cocoa."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-02:i15:r1",
+            "targetText": "I am stirring the cocoa.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i15:r2",
+            "targetText": "I am drinking the cocoa.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i15:r3",
+            "targetText": "She is stirring the cocoa.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-02:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am stirring the cocoa.",
+              "uk": "У записі звучить I am stirring the cocoa."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-02:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am stirring the cocoa.",
+              "uk": "У записі звучить I am stirring the cocoa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-02:i16:p1",
+            "target": "cocoa",
+            "meaningByLocale": {
+              "ru": "какао",
+              "uk": "какао"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i16:p2",
+            "target": "custard",
+            "meaningByLocale": {
+              "ru": "заварной крем",
+              "uk": "заварний крем"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i16:p3",
+            "target": "batter",
+            "meaningByLocale": {
+              "ru": "жидкое тесто",
+              "uk": "рідке тісто"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-02:i16:p4",
+            "target": "lump",
+            "meaningByLocale": {
+              "ru": "комочек",
+              "uk": "грудочка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cocoa",
+          "custard",
+          "batter",
+          "lump"
+        ],
+        "rightColumn": [
+          "какао",
+          "заварной крем",
+          "жидкое тесто",
+          "комочек"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-02:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы готовите блинчики и прямо сейчас мешаете жидкое тесто. Сообщите, чем заняты: «Я перемешиваю жидкое тесто»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Вы готовите блинчики и прямо сейчас мешаете жидкое тесто. Сообщите, чем заняты: «Я перемешиваю жидкое тесто»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-02:i17:audio",
+          "transcript": "I am stirring the batter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am stirring the batter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "87766a91d4951c7d56f67bee33c29f7cbc07a2380bd0534b4fee8a6c24230f02"
+}

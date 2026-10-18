@@ -5,8 +5,6 @@
  * FlatList + FlashcardListItem, swipe-удаление, delete-hint онбординг,
  * escort-скролл к деталям, free-limit секция и действия тренировки.
  */
-import { useStudyTarget } from '../../components/StudyTargetContext';
-import { markDeleteHintSeen, resetDeleteHintSeen } from './delete_hint_seen';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -32,7 +30,6 @@ import { LUM } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import ReanimatedSwipeable, { SwipeDirection } from 'react-native-gesture-handler/ReanimatedSwipeable';
 
-import { IS_EXPO_GO } from '../config';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWithCount, pluralWord } from '../../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): число и существительное согласуются через общий помощник
 import type { Theme } from '../../constants/theme';
@@ -89,8 +86,6 @@ type Props = {
   focusedIndexSV: SharedValue<number>;
   /** Поиск активен и ничего не нашёл → инлайн-плейсхолдер вместо пустого списка. */
   searchActive: boolean;
-  showDeleteHint: boolean;
-  onSetShowDeleteHint: (v: boolean) => void;
   allowAddCustomCard: boolean;
   onCreateCard: () => void;
   onSpeak: (text: string, opts?: SpeakOpts) => void;
@@ -156,8 +151,6 @@ export default function CollectionListView({
   packEnterAnimation,
   focusedIndexSV,
   searchActive,
-  showDeleteHint,
-  onSetShowDeleteHint,
   allowAddCustomCard,
   onCreateCard,
   onSpeak,
@@ -184,7 +177,6 @@ export default function CollectionListView({
   videoMomentLabel,
 }: Props) {
   // зачем (аудит #10): ключ подсказки — по цели обучения, как читает useCollectionData
-  const { studyTarget: hintStudyTarget } = useStudyTarget();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
@@ -195,10 +187,6 @@ export default function CollectionListView({
   // Long-press delete overlay
   const [longPressedId, setLongPressedId] = useState<string | null>(null);
   // Delete hint onboarding
-  const deleteHintAnim = useRef(new Animated.Value(0)).current;
-  const deleteHintPulse = useRef(new Animated.Value(1)).current;
-  const deleteHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const deleteHintPulseLoop = useRef<Animated.CompositeAnimation | null>(null);
   // Anim registries (per-card, lazy)
   const cardFlipAnims = useRef<Record<string, Animated.Value>>({});
   const overlayAnims = useRef<Record<string, Animated.Value>>({});
@@ -320,39 +308,6 @@ export default function CollectionListView({
     (list as any).scrollToOffset({ offset: target, animated: true });
   }, []);
 
-  // ── Delete hint onboarding ────────────────────────────────────────────────
-  const dismissDeleteHint = useCallback(() => {
-    if (deleteHintTimer.current) clearTimeout(deleteHintTimer.current);
-    if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
-    Animated.timing(deleteHintAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
-      onSetShowDeleteHint(false);
-      markDeleteHintSeen(hintStudyTarget, 'CollectionListView:dismissDeleteHint');
-    });
-  }, [deleteHintAnim, hintStudyTarget, onSetShowDeleteHint]);
-
-  useEffect(() => {
-    if (!showDeleteHint) return;
-    // Fade in
-    Animated.timing(deleteHintAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start(() => {
-      // Start pulse loop after fade-in
-      deleteHintPulseLoop.current = Animated.loop(
-        Animated.sequence([
-          Animated.timing(deleteHintPulse, { toValue: 1.025, duration: 700, useNativeDriver: true }),
-          Animated.timing(deleteHintPulse, { toValue: 1, duration: 700, useNativeDriver: true }),
-        ]),
-        // зачем (PM-032): разовая реакция, а не вечная пульсация.
-        { iterations: 3 },
-      );
-      deleteHintPulseLoop.current.start();
-    });
-    // Auto-dismiss after 5s
-    deleteHintTimer.current = setTimeout(() => dismissDeleteHint(), 5000);
-    return () => {
-      if (deleteHintTimer.current) clearTimeout(deleteHintTimer.current);
-      if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
-    };
-  }, [showDeleteHint, deleteHintAnim, deleteHintPulse, dismissDeleteHint]);
-
   // ── Overlay animation ─────────────────────────────────────────────────────
   const prevLongPressedId = useRef<string | null>(null);
   useEffect(() => {
@@ -416,13 +371,13 @@ export default function CollectionListView({
   const openDelete = useCallback((cardId: string) => setLongPressedId(cardId), []);
   const closeDelete = useCallback(() => setLongPressedId(null), []);
 
-  /** E7: swipe-to-delete — красная зона под свайп влево (native; web — кнопка в деталях). */
+  /** E7: swipe-to-delete — красная зона под свайп вправо (native; web — кнопка в деталях). */
   const renderSwipeDeleteAction = useCallback(
     () => (
       <View
         style={{
           width: 96,
-          marginLeft: 12,
+          marginRight: 12,
           borderRadius: 20,
           backgroundColor: LV2_BAD, // зачем (замечание владельца 10.10): красный удаления — семантический токен, не литерал
           alignItems: 'center',
@@ -522,14 +477,14 @@ export default function CollectionListView({
         videoMomentLabel={videoMomentLabel}
       />
     );
-    /** Swipe-влево = удалить (custom + saved, native). Web/фолбэк — long-press и кнопка в деталях. */
+    /** Swipe-вправо = удалить (custom + saved, native). Web/фолбэк — long-press и кнопка в деталях. */
     const rowEl =
       Platform.OS !== 'web' && deletable ? (
         <ReanimatedSwipeable
           friction={1.6}
-          rightThreshold={56}
-          overshootRight={false}
-          renderRightActions={renderSwipeDeleteAction}
+          leftThreshold={56}
+          overshootLeft={false}
+          renderLeftActions={renderSwipeDeleteAction}
           onSwipeableOpen={(direction) => {
             if (direction !== SwipeDirection.RIGHT) return;
             // Строку не закрываем: оптимистичное удаление сразу убирает её из data
@@ -630,60 +585,6 @@ export default function CollectionListView({
               })}
             </Text>
           </TouchableOpacity>
-        )}
-
-        {/* DEV: reset and show hint button */}
-        {!selectionMode && IS_EXPO_GO && !showDeleteHint && (
-          <TouchableOpacity
-            onPress={() => {
-              resetDeleteHintSeen(hintStudyTarget);
-              deleteHintAnim.setValue(0);
-              onSetShowDeleteHint(true);
-            }}
-            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1 /* shadow-ok: DEV-кнопка, в магазинной сборке её нет */, borderColor: '#FF6B00' /* theme-exempt: DEV-кнопка, в магазинной сборке её нет */ }}
-          >
-            <Text style={{ fontSize: 13, color: '#FF6B00' /* theme-exempt: DEV-кнопка */, fontWeight: '700' }}>
-              {triLang(lang, {
-                ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', en: 'DEV: show hint', es: 'DEV: mostrar ayuda',
-                'pt-BR': 'DEV: mostrar dica', vi: 'DEV: hiện gợi ý', id: 'DEV: tampilkan petunjuk', tr: 'DEV: ipucunu göster', pl: 'DEV: pokaż podpowiedź',
-              })}
-            </Text>
-          </TouchableOpacity>
-        )}
-
-        {/* Delete hint — one-time onboarding tip */}
-        {!selectionMode && showDeleteHint && (
-          <Animated.View style={{
-            opacity: deleteHintAnim,
-            transform: [
-              { translateY: deleteHintAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) },
-              { scale: deleteHintPulse },
-            ],
-            position: 'absolute', bottom: 14, left: 16, right: 16, zIndex: 20,
-            flexDirection: 'row', alignItems: 'center', gap: 10,
-            backgroundColor: g.sheet,
-            borderRadius: 14, boxShadow: plateBoxShadow(g),
-            paddingHorizontal: 14, paddingVertical: 10,
-          }}>
-            <SavedListGlass g={g} radius={14} />
-            <Ionicons name="trash-outline" size={18} color={g.secondary} />
-            <Text style={{ flex: 1, color: g.text, fontSize: f.sub, lineHeight: 18 }}>
-              {triLang(lang, {
-                ru: 'Зажми карточку, чтобы удалить её',
-                uk: 'Затисни картку, щоб видалити її',
-                en: 'Hold a card to delete it',
-                es: 'Mantén pulsada la tarjeta para eliminarla',
-                'pt-BR': 'Segure o cartão para excluí-lo',
-                vi: 'Giữ thẻ để xóa',
-                id: 'Tahan kartu untuk menghapusnya',
-                tr: 'Silmek için kartı basılı tut',
-                pl: 'Przytrzymaj kartę, aby ją usunąć',
-              })}
-            </Text>
-            <TouchableOpacity onPress={dismissDeleteHint} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="close" size={18} color={g.secondary} />
-            </TouchableOpacity>
-          </Animated.View>
         )}
 
         {/* Card list: virtualized list with snapping */}

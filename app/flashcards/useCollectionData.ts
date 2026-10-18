@@ -1,4 +1,4 @@
-import { flashcardsDeleteHintSeenKey, type RuntimeStudyTarget } from '../target_storage_keys';
+import { type RuntimeStudyTarget } from '../target_storage_keys';
 import { registerHubCacheProbe } from '../hub_lifecycle_probe';
 import { isDevCardsFail, isDevCardsHeld } from '../dev_cards_state';
 import { useLang } from '../../components/LangContext';
@@ -23,7 +23,6 @@ import { accountScopeKey } from '../account_scope_key';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Flashcard,
   loadFlashcards,
@@ -256,7 +255,6 @@ export function stageOwnedPackCardsForNavigation(
 export type CollectionLoadedInfo = {
   userSid: string | null;
   savedCount: number;
-  hintSeen: boolean;
   progress: FlashcardsProgress | null;
   ownedIds: string[];
   communityOwnedIds: string[];
@@ -501,18 +499,16 @@ export function useCollectionData(opts: {
       setAccessStableId(userSid);
       // Only show loading on first ever open (no cache yet)
       if (!_savedCardsCache && !_customCardsCache) setLoading(true);
-      const [saved, customParsed, progressParsed, hintSeen, ownedIdsEarly, builtMarketCache, communityOwnedEarly] =
+      const [saved, customParsed, progressParsed, ownedIdsEarly, builtMarketCache, communityOwnedEarly] =
         await Promise.all([
           loadAllSavedFlashcards(),
           readCustomCards(studyTarget),
           readFlashcardsProgress(studyTarget),
-          AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
           loadAccessiblePackIds(studyTarget),
           loadBuiltMarketplaceCardsCache(studyTarget, lang).catch(noteSwallowedAs<null>('useCollectionData:promise_8', null)),
           loadCommunityOwnedPackIds(studyTarget).catch((swallowedError: unknown): string[] => { noteSwallowed('useCollectionData:promise_9', swallowedError); return []; }),
         ]);
       if (!isCurrentAccountGeneration(accountToken)) return;
-      console.log(`[CARDS-HINT] loadAll: ключ=${flashcardsDeleteHintSeenKey(studyTarget)} значение=${JSON.stringify(hintSeen)} target=${String(studyTarget)}`); // guard-ok: значение из хранилища
       const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
       // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
       const mappedSavedQuick = saved.map((card) => savedToCard(card, studyTarget));
@@ -718,7 +714,6 @@ export function useCollectionData(opts: {
       onLoadedRef.current({
         userSid,
         savedCount: migrated.length,
-        hintSeen: !!hintSeen,
         progress: progressParsed,
         ownedIds,
         communityOwnedIds,
@@ -844,17 +839,11 @@ export function applyPostLoadNavigation(
     setActiveCat: (cat: CategoryId) => void;
     /** router.setParams({ cat: 'custom' }) контейнера */
     setCustomCatParam: () => void;
-    setShowDeleteHint: (v: boolean) => void;
     /** Просмотр набора до добавления: вкладку набора открываем и без владения. */
     previewMode?: boolean;
   },
 ): void {
   const { ownedIds, activePackId, progress } = info;
-  // зачем (координатор 12.10, cards-033: hint=show «не применилась»; сперва логи): решение показать разовую подсказку — со значениями, которые его определили
-  console.log(`[CARDS-HINT] решение: hintSeen=${String(info.hintSeen)} savedCount=${info.savedCount} → ${!info.hintSeen && info.savedCount > 0 ? 'показываем' : 'не показываем'}`); // guard-ok: ветвление логируется
-  if (!info.hintSeen && info.savedCount > 0) {
-    ctx.setShowDeleteHint(true);
-  }
   const rc = ctx.routeCat;
   /**
    * `?pack=` — это экран НАБОРА, и он главнее всего остального.

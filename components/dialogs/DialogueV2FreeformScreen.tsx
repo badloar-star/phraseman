@@ -33,7 +33,6 @@ export type DialogueV2FreeformMessage = Readonly<{
 
 export type DialogueV2FreeformScreenProps = Readonly<{
   title: string;
-  memoryNote: string;
   messages: readonly DialogueV2FreeformMessage[];
   draft: string;
   sending: boolean;
@@ -69,7 +68,6 @@ export type DialogueV2FreeformScreenProps = Readonly<{
 /** A dedicated V2 freeform surface, deliberately separate from scenario sessions. */
 export function DialogueV2FreeformScreen({
   title,
-  memoryNote,
   messages,
   draft,
   sending,
@@ -105,7 +103,6 @@ export function DialogueV2FreeformScreen({
           <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
           <View style={styles.headerText}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
-            <Text maxFontSizeMultiplier={1.3} style={[styles.subtitle, { color: glass.secondary }]}>{memoryNote}</Text>
           </View>
         </View>
 
@@ -233,7 +230,6 @@ const styles = StyleSheet.create({
   header: { paddingHorizontal: 14, paddingTop: 2, paddingBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   headerText: { flex: 1, minWidth: 0 },
   title: { fontSize: 22, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
-  subtitle: { fontSize: 16, lineHeight: 21, marginTop: 2 },
   scroll: { paddingHorizontal: 14, paddingBottom: 24 },
   tip: { marginTop: 18, padding: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 14 },
   tipTile: { width: 46, height: 46, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },

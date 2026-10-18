@@ -175,7 +175,7 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
             ) : (
               <View style={[styles.mini, pad]}>{back ? trEl : wordEl}</View>
             )}
-            {dotsEl}
+            {!back ? dotsEl : null}
           </Animated.View>
           {selected !== undefined ? (
             <View pointerEvents="none" style={[styles.check, selected ? { backgroundColor: g.accent } : { backgroundColor: g.dividerTone }]}>

@@ -17,5 +17,9 @@ describe('DialogueV2FreeformScreen', () => {
     expect(source).not.toContain('scenarioId');
     expect(source).not.toContain('rank');
     expect(source).not.toContain('task');
+    expect(source).not.toContain('memoryNote');
+    const route = fs.readFileSync(path.join(__dirname, '..', 'app', 'dialogue_v2_freeform.tsx'), 'utf8');
+    expect(route).not.toContain('Помнит контекст этого языка');
+    expect(route).not.toContain('memoryNote=');
   });
 });

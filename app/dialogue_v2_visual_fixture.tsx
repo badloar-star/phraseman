@@ -113,7 +113,6 @@ export default function DialogueV2VisualFixtureRoute() {
           <FixtureFrame height={410}>
             <DialogueV2FreeformScreen
               title="Свободный разговор"
-              memoryNote="Статический пример интерфейса"
               messages={fixtureFreeformMessages}
               draft=""
               sending={false}

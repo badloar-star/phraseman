@@ -619,7 +619,6 @@ export default function FlashcardsScreen() {
   const focusedIndexSV = useSharedValue(0);
   const indexRef = useRef(0);
   const pendingRestoreRef = useRef<{ cat: CategoryId; idx: number } | null>(null);
-  const [showDeleteHint, setShowDeleteHint] = useState(false);
   const { registerFlashcardViewed, trackCardFlip, resetSession } = useFlashcardViewTracking();
 
   // ── Data (E11: вынесено в useCollectionData) ───────────────────────────────
@@ -633,7 +632,6 @@ export default function FlashcardsScreen() {
       pendingRestoreRef,
       setActiveCat,
       setCustomCatParam: () => router.setParams({ cat: 'custom' } as any),
-      setShowDeleteHint,
       previewMode: previewRequestedRef.current,
     });
   }, [isDevMarketEnabled, router]);
@@ -841,12 +839,6 @@ export default function FlashcardsScreen() {
     cards, customCards, savedCards, updateCustomCards, updateSavedCards,
     currentIndexRef: indexRef, onIndexClamped, studyTarget,
   });
-  // зачем (Макеты cards-032, 12.10): подсказка «Зажми карточку…» скрыта при ЛЮБОЙ открытой шторке/окне экрана («⋯», подтверждения, фильтр, комментарии, жалоба), а не только при шторке долгого нажатия и плашке «Удалено»
-  const hintCoveredByOverlay = savedActionsOpen || batchDeleteConfirmOpen || deletePackOpen || filterOpen || commentsSheetOpen || packReportOpen;
-  // зачем (координатор 12.10, cards-033; сперва логи): итог — что именно решило, видна ли подсказка на экране
-  useEffect(() => {
-    console.log(`[CARDS-HINT] экран: showDeleteHint=${String(showDeleteHint)} undoEntry=${String(!!undoEntry)} packUndo=${String(!!packUndo)} covered=${String(hintCoveredByOverlay)} → видна=${String(showDeleteHint && !undoEntry && !packUndo && !hintCoveredByOverlay)}`); // guard-ok: итог ветвления
-  }, [showDeleteHint, undoEntry, packUndo, hintCoveredByOverlay]);
 
   const confirmDeleteSelected = useCallback(() => {
     if (selectedCardIds.length === 0) return;
@@ -1778,8 +1770,6 @@ export default function FlashcardsScreen() {
             selectionRemaining={remainingCardsToMinimum(selectedCardIds)}
             onCreatePack={openCreatePackFromSelection}
             onDeleteSelected={confirmDeleteSelected}
-            showDeleteHint={showDeleteHint && !undoEntry && !packUndo && !hintCoveredByOverlay} // зачем (координатор 12.10, cards-006): внизу одна плашка за раз — пока видна «Удалено · Вернуть», подсказка «Зажми карточку…» прячется (состояние подсказки не теряется, вернётся после плашки)
-            onSetShowDeleteHint={setShowDeleteHint}
             // зачем (Макеты cards-section-012, 12.10): на экране набора кнопка «Тренировать» уже есть в шапке (packInfoBlock), плавающая её дублировала и закрывала нижние ряды сетки; в образце cards-v2 №14 поверх сетки ничего нет
             onTrain={listCards.length > 0 && !packSurface && !undoEntry && !packUndo ? onTrainGallery : null} // зачем (R1_DIFF_ONE_FIX, cards-v2-010): под плашкой «Удалено · Вернуть» выглядывал край «Тренировать» — внизу одна плашка за раз
             allowAddCustomCard={false}
@@ -1807,8 +1797,6 @@ export default function FlashcardsScreen() {
             packEnterAnimation={!!packPremiumVisual}
             focusedIndexSV={focusedIndexSV}
             searchActive={searchActive}
-            showDeleteHint={showDeleteHint && !undoEntry && !packUndo && !hintCoveredByOverlay} // зачем (координатор 12.10, cards-006): внизу одна плашка за раз — пока видна «Удалено · Вернуть», подсказка «Зажми карточку…» прячется (состояние подсказки не теряется, вернётся после плашки)
-            onSetShowDeleteHint={setShowDeleteHint}
             allowAddCustomCard={allowAddCustomCard && !previewMode}
             onCreateCard={openCreateEditor}
             onSpeak={onSpeakCb}

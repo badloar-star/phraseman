@@ -10,10 +10,15 @@ describe('аудит Карточек', () => {
     expect(src).toContain('if (requestedDeckIds.length > 0) return new Set();');
     expect(src).toContain('[SWIPE-DECKS]');
   });
-  it('#10 ключ подсказки удаления зависит от языка обучения, пишется общим помощником', () => {
-    expect(read('app/flashcards/delete_hint_seen.ts')).toContain('flashcardsDeleteHintSeenKey(studyTarget)');
-    expect(read('app/flashcards/CollectionGalleryView.tsx')).toContain('markDeleteHintSeen(');
-    expect(read('app/flashcards/CollectionListView.tsx')).toContain('markDeleteHintSeen(');
+  it('#10 подсказка удаления удалена из обоих видов карточек', () => {
+    expect(read('app/flashcards/CollectionGalleryView.tsx')).not.toContain('showDeleteHint');
+    expect(read('app/flashcards/CollectionListView.tsx')).not.toContain('showDeleteHint');
+  });
+  it('#10 удаление карточки открывается свайпом вправо с красной зоной', () => {
+    const src = read('app/flashcards/CollectionListView.tsx');
+    expect(src).toContain('renderLeftActions={renderSwipeDeleteAction}');
+    expect(src).toContain('direction !== SwipeDirection.RIGHT');
+    expect(src).toContain('backgroundColor: LV2_BAD');
   });
   it('#11 лимит Free считается по языку набора', () => {
     expect(read('app/flashcards_collection.tsx')).toContain('savedCardsForPackLanguage.length >= FREE_SAVED_CARD_LIMIT');

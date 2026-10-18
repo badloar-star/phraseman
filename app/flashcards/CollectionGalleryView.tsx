@@ -6,8 +6,6 @@
  * (изменить, удалить; удаление с «Вернуть» делает контейнер), «Тренировать» — плавающая кнопка внизу. Поиск открывается в полосе масштаба,
  * результаты идут в две колонки без строки «Найдено». Выбор нескольких карточек, строка лимита Free и подсказка про удаление остались.
  */
-import { useStudyTarget } from '../../components/StudyTargetContext';
-import { markDeleteHintSeen } from './delete_hint_seen';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
@@ -58,8 +56,6 @@ type Props = Readonly<{
   selectionRemaining?: number;
   onCreatePack: () => void;
   onDeleteSelected: () => void;
-  showDeleteHint: boolean;
-  onSetShowDeleteHint: (value: boolean) => void;
   /** «Тренировать» — плавающая кнопка; null — кнопки нет (режим выбора, пустой список). */
   onTrain: (() => void) | null;
   allowAddCustomCard: boolean;
@@ -112,10 +108,8 @@ const TAG = '[CARDS-ZOOM]';
 export default function CollectionGalleryView({
   cards, lang, header, strengthForCard, hiddenByLimitCount, limitCta, onOpenPremiumLimit, onOpenCard, onSpeak, onCardsViewed,
   isEditableCustomCard, onEditCard, onDeleteCardById, selectionMode, selectedIds, onToggleSelection, selectedCount, canCreatePack,
-  selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
+  selectionRemaining, onCreatePack, onDeleteSelected, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
 }: Props) {
-  // зачем (аудит #10): ключ подсказки — по цели обучения, как читает useCollectionData
-  const { studyTarget: hintStudyTarget } = useStudyTarget();
   const g = useLv2Glass();
   // зачем (EN-проход Сверки 12.10, cards-007/010 «Тренировать» по-русски при uiLang=en): подписи экрана — это ЯЗЫК ИНТЕРФЕЙСА, а `lang` приходит КОНТЕНТНЫЙ (flashcardContentLang: у en/pt-BR/vi… он ru/uk/es) —
   // поэтому все подписи (кнопки, подсказка, лимит) шли на языке перевода карточек, а не интерфейса. Контентный `lang` остаётся только для перевода на плитке.
@@ -246,13 +240,6 @@ export default function CollectionGalleryView({
       setRootWindowY(Math.max(0, y));
     });
   }, [pressedCard, screenH]);
-  React.useEffect(() => {
-    if (showDeleteHint && pressedCard !== null) console.log(`[CARDS-HINT] gallery: подсказка скрыта — открыта шторка действий card=${pressedCard.id}`); // guard-ok: ветвление называет причину
-  }, [pressedCard, showDeleteHint]);
-  const dismissHint = useCallback(() => {
-    onSetShowDeleteHint(false);
-    markDeleteHintSeen(hintStudyTarget, 'CollectionGalleryView:dismissHint');
-  }, [hintStudyTarget, onSetShowDeleteHint]);
   const onZoomStep = useCallback((next: number) => setStep(next, undefined, 'ползунок'), [setStep]);
 
   return (
@@ -318,17 +305,6 @@ export default function CollectionGalleryView({
         </ScrollView>
       </GestureDetector>
 
-      {/* зачем (координатор 12.10, cards-034/006): внизу одна плашка за раз — пока открыта шторка действий («Удалить»), подсказка «Зажми карточку…» не висит поверх неё и не закрывает ручку шторки */}
-      {!selectionMode && showDeleteHint && pressedCard === null ? (
-        <View style={[styles.hint, { backgroundColor: g.opaqueControl }]}>
-          <Ionicons name="trash-outline" size={18} color={g.secondary} />
-          <Text style={[styles.hintText, { color: g.text }]}>{copy.hint}</Text>
-          <Pressable accessibilityRole="button" accessibilityLabel={copy.close} hitSlop={12} onPress={dismissHint}>
-            <Ionicons name="close" size={18} color={g.secondary} />
-          </Pressable>
-        </View>
-      ) : null}
-
       {selectionMode ? (
         <PanelDock>
           {/* зачем (Макеты e68b81502, cards-007: подсказка «Выбери ещё 10 карточек…» лежала на нижнем ряду без подложки, текст наезжал на карточки): плашка по тону
@@ -392,8 +368,6 @@ const styles = StyleSheet.create({
   limitCta: { marginTop: 8, borderRadius: 18, paddingHorizontal: 22, paddingVertical: 10 },
   limitCtaText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   report: { alignItems: 'center', paddingVertical: 24 },
-  hint: { position: 'absolute', left: 16, right: 16, bottom: 96, zIndex: 20, flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12 },
-  hintText: { flex: 1, fontSize: 13, lineHeight: 18 },
   selHintPlate: { alignSelf: 'center', maxWidth: '100%', marginBottom: 10, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 8 },
   selHint: { fontSize: 13, lineHeight: 18, textAlign: 'center' },
   selRow: { flexDirection: 'row', gap: 10 },

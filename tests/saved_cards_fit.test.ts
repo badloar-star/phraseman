@@ -314,6 +314,7 @@ describe('тап галереи переворачивает карточку, �
       const tile = () => nodes.find((n) => n.type === 'Pressable' && n.props.testID === 'fc-gallery-tile-a')!;
       const press = (node: Node, event = {}) => (node.props.onPress as (event: unknown) => void)(event);
       expect(tile().props.accessibilityLabel).toBe('Gate');
+      expect(nodes.filter((n) => n.props.testID === 'fc-gallery-dots-a')).toHaveLength(1);
       press(tile()); nodes = expand(CardsGallery(props));
       expect(tile().props.accessibilityLabel).toBe('Выход');
       nodes = expand(CardsGallery({ ...props, step: 2 }));

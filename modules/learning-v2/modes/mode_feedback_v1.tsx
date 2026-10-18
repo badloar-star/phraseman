@@ -160,11 +160,14 @@ export function LearningV2ModeFeedbackLaneV1({
   feedback,
   interfaceLocale,
   ink: inkColor,
+  shadow,
 }: Readonly<{
   feedback: LearningV2ModeLearnerFeedbackV1 | null;
   interfaceLocale: LearningV2InterfaceLocale;
   /** Цвет текста панели из токена темы (g.text), см. LearningV2TextAnalysisV1. */
   ink?: string;
+  /** Тень панели (nestedBoxShadow темы): без обводки отличие 12 %-тинта от страницы всего 1,09:1 — панель отделяется тенью ([BLEND-AUDIT] 18.10). */
+  shadow?: ReadonlyArray<Record<string, unknown>>;
 }>) {
   if (!feedback) return null;
   const ink = inkColor ? { color: inkColor } : null;
@@ -173,7 +176,7 @@ export function LearningV2ModeFeedbackLaneV1({
       testID="learning-v2-mode-feedback-lane"
       accessibilityLabel={feedback.text}
       accessibilityLiveRegion="polite"
-      style={[styles.lane, feedback.tone === "correct" ? styles.correct : styles.wrong]}
+      style={[styles.lane, feedback.tone === "correct" ? styles.correct : styles.wrong, shadow ? ({ boxShadow: shadow } as never) : null]}
     >
       <Text style={[styles.text, ink]}>{feedback.text}</Text>
       {feedback.analysis ? (

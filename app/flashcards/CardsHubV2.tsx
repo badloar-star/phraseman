@@ -83,8 +83,9 @@ function themePair(g: GlassTokens): readonly [string, string] {
 // (PlateFill + plateBoxShadow), карточки стопки — арт с градиентом и внешней тенью, значки — вложенные (nestedBoxShadow).
 /** Градиент плитки-значка: цвет темы 60 % / 32 % в базах темы. */
 const iconGlass = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const;
-/** Заливка карточки стопки: 145°, доля цвета темы 50 %/38 % в тёмном — как «.mc.solid» макета. */
-const stackFill = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.5), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)] as const;
+/** Заливка карточки стопки: 145°, доля цвета темы 45 %/38 % в тёмном — как «.mc.solid» макета. */
+// зачем ([BLEND-AUDIT] 18.10, решение Макетов): первый слой 0,5 → 0,45 — транскрипция 16 italic давала 4,10–4,49 вместо 4,5 в 26 из 230 сочетаний; при 0,45 — 0 из 230, худшее 4,87
+const stackFill = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.45), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)] as const;
 const DIAG_START = { x: 0.21, y: 0.09 } as const;
 const DIAG_END = { x: 0.79, y: 0.91 } as const;
 

@@ -95,6 +95,24 @@ export const PAIRS: readonly Pair[] = [
   // ── обратная связь режимов: основной текст (был жёсткий #17332A, стал g.text) и приглушённый (был #355148, стал g.secondary)
   { element: 'Обратная связь режимов', what: 'основной текст к тинту', min: TEXT, before: (t) => fbWorst('#17332A', t), after: (t) => fbWorst(t.text!, t) },
   { element: 'Обратная связь режимов', what: 'приглушённый текст к тинту (теперь тоже g.text)', min: TEXT, before: (t) => fbWorst('#355148', t), after: (t) => fbWorst(t.text!, t) },
+  // ── панель обратной связи V2 без обводки (8c4b052de): отличие панели от страницы держит только тинт 12 % — считаем честно, пол 1,03 (цель 1,5 недостижима тинтом 12 %: решение Макетов — тень или плотнее тинт)
+  { element: 'Обратная связь режимов', what: 'панель (тинт 12 %) к странице — тон', min: TONE, floor: 1.02, after: (t) => Math.min(...FB_TINTS.map((tint) => ratio(over(tint, solid(t.bg!)), solid(t.bg!)))) },
+  { element: 'Обратная связь режимов', what: '«верно» к «неверно» — различие панелей', min: 1.05, floor: 1.0, after: (t) => ratio(over(FB_TINTS[0], solid(t.bg!)), over(FB_TINTS[1], solid(t.bg!))) },
+  // ── хаб Карточек: главная кнопка «Тренироваться» (ctaFill) и её соседка — плитка
+  { element: 'Хаб Карточек: кнопка', what: 'ctaFill к странице', min: GRAPHIC, after: (t) => ratio(solid(t.ctaFill!), solid(t.bg!)) },
+  { element: 'Хаб Карточек: кнопка', what: 'подпись ctaFillInk к кнопке', min: TEXT, after: (t) => ratio(solid(t.ctaFillInk!), solid(t.ctaFill!)) },
+  { element: 'Хаб Карточек: кнопка', what: 'кнопка к плашке плитки (соседка)', min: GRAPHIC, after: (t) => ratio(solid(t.ctaFill!), solid(t.plateFillFrom!)) },
+  // ── LegacyBonusHero и окно бонуса (лист opaqueSheet): подписи героя, кнопка
+  { element: 'LegacyBonus', what: 'подпись «Всего» (secondary) к листу', min: TEXT, after: (t) => ratio(solid(t.secondary!), solid(t.opaqueSheet!)) },
+  { element: 'LegacyBonus', what: 'число (text) к листу', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.opaqueSheet!)) },
+  { element: 'LegacyBonus', what: 'кнопка ctaFill к листу', min: GRAPHIC, after: (t) => ratio(solid(t.ctaFill!), solid(t.opaqueSheet!)) },
+  { element: 'LegacyBonus', what: 'подпись кнопки к кнопке', min: TEXT, after: (t) => ratio(solid(t.ctaFillInk!), solid(t.ctaFill!)) },
+  { element: 'LegacyBonus', what: 'плашка строк (opaqueCard) к листу — тон', min: 1.0, after: (t) => ratio(solid(t.opaqueCard!), solid(t.opaqueSheet!)) },
+  // ── «Из видео» (flashcards_video_packs / VideoPackRow): кнопка-миниатюра buttonFill, название, число фраз на странице
+  { element: 'Из видео', what: 'миниатюра-кнопка (buttonFill) к странице — тон', min: TONE, after: (t) => ratio(solid(t.buttonFill!), solid(t.bg!)) },
+  { element: 'Из видео', what: 'название к странице', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.bg!)) },
+  { element: 'Из видео', what: 'число фраз (secondary) к странице', min: TEXT, after: (t) => ratio(solid(t.secondary!), solid(t.bg!)) },
+  { element: 'Из видео', what: 'число фраз в карточке набора (accentText) к странице', min: TEXT, after: (t) => ratio(solid(t.accentText!), solid(t.bg!)) },
   // ── хаб Карточек: стопка (слово, транскрипция) и значки плиток — по настоящим слоям stackFill / iconGlass (сверено с CardsHubV2.tsx 18.10)
   { element: 'Хаб Карточек: стопка', what: 'слово (36/700, крупный текст ≥3) к худшему слою stackFill', min: GRAPHIC, after: (t) => worstOver(faceInkOf(t), stackLayers(t)) },
   // транскрипция 16 italic — обычный текст, цель 4,5; фактически 4,10–4,49 в 26 из 230 сочетаний (светлые темы при низком ползунке, graphite|тёмная|0–0,5): слой stackFill светлеет от цвета темы 50 % по макету; пол 4,0, решение — Макеты/координатор (доля 0,5→0,4 или транскрипция крупнее)

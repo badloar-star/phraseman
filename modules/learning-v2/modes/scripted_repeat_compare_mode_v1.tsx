@@ -40,6 +40,7 @@ import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learn
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ScriptedRepeatAnswerBearingContentRevealedV1 } from "../contracts/mode_native_payload_v1";
 import { LearningV2ModeFeedbackLaneV1 } from "./mode_feedback_v1";
+import { nestedShadowStyle } from "../../../constants/liquidGlassShadowStyle";
 import { learningV2ModeRepeatCompareCopyV1 } from "./mode_copy_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
@@ -259,7 +260,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
       {answerBearingContentRevealed && explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
       {answerBearingContentRevealed ? (
-        <LearningV2ModeFeedbackLaneV1 feedback={learnerFeedback} interfaceLocale={interfaceLocale} ink={g.text} />
+        <LearningV2ModeFeedbackLaneV1 feedback={learnerFeedback} interfaceLocale={interfaceLocale} ink={g.text} shadow={nestedShadowStyle(g) as never} />
       ) : null}
       {resolved && (
         // зачем (learning-v2.html, `.verdict.ok`): «Отлично сказано!» — значок-галочка и текст

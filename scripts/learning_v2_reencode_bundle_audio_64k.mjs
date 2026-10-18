@@ -86,6 +86,24 @@ for (const assignment of Object.values(singleVoice.data.assignments ?? {}))
 for (const entry of manifest.data.entries ?? []) if (bundleHashes.has(entry.contentHash)) sources.set(entry.assetPath, entry.contentHash);
 console.log(`${LOG} в сборке ${bundleHashes.size} файлов, исходников ${sources.size}`);
 
+// зачем (ночная подготовка 18.10): сверка «байты исходника = хеш таблицы» шла внутри цикла, где файлы уже переписываются, —
+// на 4-м несовпадении (таблица закоммичена, файл исходника нет) рабочая копия осталась бы наполовину перекодированной.
+// Теперь ВСЕ исходники сверяются до первой записи; любое несовпадение или пропажа — стоп, ни один файл не тронут.
+const drift = [];
+const absent = [];
+for (const [rel, oldHash] of sources) {
+  const file = path.join(ROOT, rel);
+  if (!fs.existsSync(file)) { absent.push(rel); continue; }
+  const actual = sha256(fs.readFileSync(file));
+  if (actual !== oldHash) drift.push(`${rel} (таблица ${oldHash.slice(0, 8)}, файл ${actual.slice(0, 8)})`);
+}
+if (drift.length > 0 || absent.length > 0) {
+  console.error(`${LOG} предпроверка: не совпадает с таблицей ${drift.length}, нет исходника ${absent.length} — стоп, ни один файл не изменён`);
+  for (const line of [...drift, ...absent.map((rel) => `${rel} (нет файла)`)].slice(0, 20)) console.error(`${LOG}   ${line}`);
+  process.exit(1);
+}
+console.log(`${LOG} предпроверка: все ${sources.size} исходников совпадают с таблицами`);
+
 const remap = new Map(); // старый хеш → { hash, size }
 const byOldHash = new Map(); // старый хеш → перекодированные байты (одинаковые байты кодируем один раз)
 let skipped = 0;

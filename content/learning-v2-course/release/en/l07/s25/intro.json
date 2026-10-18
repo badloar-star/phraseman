@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-25",
   "learningOutcomeByLocale": {
-    "ru": "задавать вопросы о месте с where и о времени с when перед do или does",
-    "uk": "ставити запитання про місце з where і про час з when перед do або does"
+    "ru": "задавать вопросы о месте с Where и о времени с When перед do или does",
+    "uk": "ставити запитання про місце з Where і про час з When перед do або does"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-07:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место встречи",
-        "uk": "Місце зустрічі"
+        "ru": "Компания друга",
+        "uk": "Компанія друга"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказывает о регулярных встречах своей компании. `meet` — «встречаться». `Where do you meet?` — «Где вы встречаетесь?» Чтобы узнать место, ставим `where` перед `do you meet`. Здесь `you` относится к другу и его компании. Координаты стола полезнее ответа «где-то вместе».",
-        "uk": "Друг розповідає про регулярні зустрічі своєї компанії. `meet` — «зустрічатися». `Where do you meet?` — «Де ви зустрічаєтеся?» Щоб дізнатися місце, ставимо `where` перед `do you meet`. Тут `you` стосується друга та його компанії. Координати столу корисніші за відповідь «десь разом»."
+        "ru": "Друг зовёт вас на обычную субботнюю встречу своей компании. Все знают место, кроме вас. meet — «встречаться». «Как всегда» — отличный адрес для тех, кто уже там был. Спросите друга: Where do you meet? — «Где вы встречаетесь?» Where — «где»; ставим его перед do you. Здесь you — друг и его компания.",
+        "uk": "Друг кличе вас на звичну суботню зустріч своєї компанії. Усі знають місце, крім вас. meet — «зустрічатися». «Як завжди» — чудова адреса для тих, хто вже там був. Спитайте друга: Where do you meet? — «Де ви зустрічаєтеся?» Where — «де»; ставимо його перед do you. Тут you — друг і його компанія."
       },
       "question": {
         "interactionId": "en:lesson-07:session-25:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите друга о привычном месте встреч его компании.",
-          "uk": "Запитайте друга про звичне місце зустрічей його компанії."
+          "ru": "Друг рассказывает о своей компании. Спросите его: «Где вы встречаетесь?»",
+          "uk": "Друг розповідає про свою компанію. Спитайте його: «Де ви зустрічаєтеся?»"
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга о привычном месте встреч его компании.",
-          "uk": "Запитайте друга про звичне місце зустрічей його компанії."
+          "ru": "Друг рассказывает о своей компании. Спросите его: «Где вы встречаетесь?»",
+          "uk": "Друг розповідає про свою компанію. Спитайте його: «Де ви зустрічаєтеся?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где ты работаешь?",
-        "uk": "Де ти працюєш?"
+        "ru": "Объявление в подъезде",
+        "uk": "Оголошення в під’їзді"
       },
       "bodyByLocale": {
-        "ru": "Вы знакомитесь с соседом и хотите узнать, где он работает. `Where do you work?` — «Где ты работаешь?» `Where` спрашивает о месте, затем идут `do`, `you` и действие `work`.",
-        "uk": "Ви знайомитеся із сусідом і хочете дізнатися, де він працює. `Where do you work?` — «Де ти працюєш?» `Where` запитує про місце, потім ідуть `do`, `you` і дія `work`."
+        "ru": "Соседка повесила в подъезде объявление о пикнике во дворе, но время на листке стёрлось. picnic — «пикник». Вы хотите знать, во сколько он начнётся. Спросите соседку: When does the picnic start? — «Когда начинается пикник?» When — «когда»; ставим его перед does. The picnic можно заменить на it, поэтому используем does, а start оставляем без s.",
+        "uk": "Сусідка повісила в під’їзді оголошення про пікнік у дворі, але час на аркуші стерся. picnic — «пікнік». Ви хочете знати, о котрій він почнеться. Спитайте сусідку: When does the picnic start? — «Коли починається пікнік?» When — «коли»; ставимо його перед does. The picnic можна замінити на it, тому використовуємо does, а start залишаємо без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите соседа: «Где ты работаешь?»",
-          "uk": "Запитайте сусіда: «Де ти працюєш?»"
+          "ru": "Вы встретили соседку у объявления. Спросите её: «Когда начинается пикник?»",
+          "uk": "Ви зустріли сусідку біля оголошення. Спитайте її: «Коли починається пікнік?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-25:intro2:r1",
-              "text": "Where do you work?"
+              "text": "When does the picnic start?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro2:r2",
-              "text": "Where does you work?"
+              "text": "When do the picnic start?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro2:r3",
-              "text": "Where do you works?"
+              "text": "When does the picnic starts?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-25:intro2:r1",
-              "text": "Where do you work?"
+              "text": "When does the picnic start?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro2:r2",
-              "text": "Where does you work?"
+              "text": "When do the picnic start?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro2:r3",
-              "text": "Where do you works?"
+              "text": "When does the picnic starts?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите соседа: «Где ты работаешь?»",
-          "uk": "Запитайте сусіда: «Де ти працюєш?»"
+          "ru": "Вы встретили соседку у объявления. Спросите её: «Когда начинается пикник?»",
+          "uk": "Ви зустріли сусідку біля оголошення. Спитайте її: «Коли починається пікнік?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начало рабочего дня",
-        "uk": "Початок робочого дня"
+        "ru": "Билеты брата",
+        "uk": "Квитки брата"
       },
       "bodyByLocale": {
-        "ru": "Вы согласуете рабочее расписание и спрашиваете о коллеге. `When does she start?` — «Когда она начинает?» Здесь речь о начале её рабочего дня. `When` спрашивает о времени; после него ставим `does she start`. После `does` нужно `start`, без `s`.",
-        "uk": "Ви узгоджуєте робочий розклад і запитуєте про колегу. `When does she start?` — «Коли вона починає?» Тут ідеться про початок її робочого дня. `When` запитує про час; після нього ставимо `does she start`. Після `does` потрібне `start`, без `s`."
+        "ru": "Брат купил билеты на концерт и просит заранее решить, как вы поедете домой. concert — «концерт», finish — «заканчиваться». Вам нужно знать, когда он закончится, чтобы успеть на последний автобус. Спросите брата: When does the concert finish? — «Когда заканчивается концерт?» Концерт один, поэтому does.",
+        "uk": "Брат купив квитки на концерт і просить заздалегідь вирішити, як ви поїдете додому. concert — «концерт», finish — «закінчуватися». Вам потрібно знати, коли він закінчиться, щоб устигнути на останній автобус. Спитайте брата: When does the concert finish? — «Коли закінчується концерт?» Концерт один, тому does."
       },
       "question": {
         "interactionId": "en:lesson-07:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите о начале её рабочего дня: «Когда она начинает?»",
-          "uk": "Запитайте про початок її робочого дня: «Коли вона починає?»"
+          "ru": "Брат показывает билеты. Спросите его: «Когда заканчивается концерт?»",
+          "uk": "Брат показує квитки. Спитайте його: «Коли закінчується концерт?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-25:intro3:r1",
-              "text": "When does she start?"
+              "text": "When does the concert finish?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro3:r2",
-              "text": "When do she start?"
+              "text": "When do the concert finish?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro3:r3",
-              "text": "When does she starts?"
+              "text": "When does the concert finishes?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-25:intro3:r1",
-              "text": "When does she start?"
+              "text": "When does the concert finish?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro3:r2",
-              "text": "When do she start?"
+              "text": "When do the concert finish?"
             },
             {
               "responseId": "en:lesson-07:session-25:intro3:r3",
-              "text": "When does she starts?"
+              "text": "When does the concert finishes?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о начале её рабочего дня: «Когда она начинает?»",
-          "uk": "Запитайте про початок її робочого дня: «Коли вона починає?»"
+          "ru": "Брат показывает билеты. Спросите его: «Когда заканчивается концерт?»",
+          "uk": "Брат показує квитки. Спитайте його: «Коли закінчується концерт?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1acf889b7a55325dc786d2a1cf34f2b2af2d5f9450459ed8b201620eb6d6f9a0"
+  "introFingerprint": "f817c866e4a9bc500695a179670c7e0c748ce8cdf0ae48824eea266c50da0e7c"
 }

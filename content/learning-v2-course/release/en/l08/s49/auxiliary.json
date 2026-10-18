@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-49:intro1:r2": {
-          "ru": "После `can` нужно `research`, без `to`.",
-          "uk": "Після `can` потрібне `research`, без `to`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-49:intro1:r3": {
-          "ru": "После `can` нужно `research`, без `es`.",
-          "uk": "Після `can` потрібне `research`, без `es`."
+          "ru": "После can действие остаётся без окончания s/es.",
+          "uk": "Після can дія залишається без закінчення s/es."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-49:intro2:r2": {
-          "ru": "После `can` нужно `drive`, без `s`.",
-          "uk": "Після `can` потрібне `drive`, без `s`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-49:intro2:r3": {
-          "ru": "После `can` нужно `drive`, без `to`.",
-          "uk": "Після `can` потрібне `drive`, без `to`."
+          "ru": "После can действие остаётся без окончания s/es.",
+          "uk": "Після can дія залишається без закінчення s/es."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-49:intro3:r2": {
-          "ru": "После `can` нужно `whistle`, без `to`.",
-          "uk": "Після `can` потрібне `whistle`, без `to`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-49:intro3:r3": {
-          "ru": "После `can` нужно `whistle`, без `s`.",
-          "uk": "Після `can` потрібне `whistle`, без `s`."
+          "ru": "После can действие остаётся без окончания s/es.",
+          "uk": "Після can дія залишається без закінчення s/es."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3a95416c0da31c23466df92d76455fc6c114740efe17e9dacef7a04293a5ef3b"
+  "auxiliaryFingerprint": "4fedf03235eb7c6b380908c5ab1d4f807239e594fc629b4813fd9b4cdb93b1a4"
 }

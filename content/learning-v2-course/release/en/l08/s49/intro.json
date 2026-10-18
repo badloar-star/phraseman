@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Готовим доклад",
-        "uk": "Готуємо доповідь"
+        "ru": "Когда построили старый мост",
+        "uk": "Коли збудували старий міст"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом готовите доклад об истории района. Нужно найти сведения и разобраться в них. `Research` — «исследовать», изучать вопрос и собирать информацию. Скажите: `I can research` — «Я умею исследовать». После `can` нужно `research`, без `to`. Одной красивой обложки для доклада всё-таки мало.",
-        "uk": "Ви з другом готуєте доповідь про історію району. Потрібно знайти відомості й розібратися в них. `Research` — «досліджувати», вивчати питання та збирати інформацію. Скажіть: `I can research` — «Я вмію досліджувати». Після `can` потрібне `research`, без `to`. Однієї гарної обкладинки для доповіді все-таки замало."
+        "ru": "Группа готовит прогулку по городу, но никто не знает, когда построили старый мост. Research — «исследовать, изучать вопрос по сведениям из разных источников». `I can research it` — «Я могу изучить этот вопрос». It здесь означает вопрос об истории моста. После can нужно research, без to и es.",
+        "uk": "Група готує прогулянку містом, але ніхто не знає, коли збудували старий міст. Research — «досліджувати, вивчати питання за відомостями з різних джерел». `I can research it` — «Я можу дослідити це питання». It тут означає питання про історію мосту. Після can потрібне research, без to і es."
       },
       "question": {
         "interactionId": "en:lesson-08:session-49:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете исследовать.",
-          "uk": "Скажіть, що вмієте досліджувати."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-49:intro1:r1",
-              "text": "I can research."
+              "text": "I can research it."
             },
             {
               "responseId": "en:lesson-08:session-49:intro1:r2",
-              "text": "I can to research."
+              "text": "I can to research it."
             },
             {
               "responseId": "en:lesson-08:session-49:intro1:r3",
-              "text": "I can researches."
+              "text": "I can researches it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-49:intro1:r1",
-              "text": "I can research."
+              "text": "I can research it."
             },
             {
               "responseId": "en:lesson-08:session-49:intro1:r2",
-              "text": "I can to research."
+              "text": "I can to research it."
             },
             {
               "responseId": "en:lesson-08:session-49:intro1:r3",
-              "text": "I can researches."
+              "text": "I can researches it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете исследовать.",
-          "uk": "Скажіть, що вмієте досліджувати."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поездка в библиотеку",
-        "uk": "Поїздка до бібліотеки"
+        "ru": "Две даты одного фестиваля",
+        "uk": "Дві дати одного фестивалю"
       },
       "bodyByLocale": {
-        "ru": "Для доклада нужно забрать книги из библиотеки. Вас спрашивают, умеет ли ваша подруга водить. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
-        "uk": "Для доповіді потрібно забрати книжки з бібліотеки. Вас запитують, чи вміє ваша подруга водити. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+        "ru": "На старой афише фестиваля указана одна дата, а в сообщении друга — другая. Подруга может сверить дату с сообщением организаторов. Verify — «проверять достоверность, подтверждать». `She can verify the date` — «Она может проверить дату». После can нужно verify, даже с she.",
+        "uk": "На старій афіші фестивалю вказано одну дату, а в повідомленні друга — іншу. Подруга може звірити дату з повідомленням організаторів. Verify — «перевіряти достовірність, підтверджувати». `She can verify the date` — «Вона може перевірити дату». Після can потрібне verify, навіть із she."
       },
       "question": {
         "interactionId": "en:lesson-08:session-49:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-49:intro2:r1",
-              "text": "She can drive."
+              "text": "She can verify the date."
             },
             {
               "responseId": "en:lesson-08:session-49:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to verify the date."
             },
             {
               "responseId": "en:lesson-08:session-49:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can verifies the date."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-49:intro2:r1",
-              "text": "She can drive."
+              "text": "She can verify the date."
             },
             {
               "responseId": "en:lesson-08:session-49:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to verify the date."
             },
             {
               "responseId": "en:lesson-08:session-49:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can verifies the date."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сигнал для команды",
-        "uk": "Сигнал для команди"
+        "ru": "Цитата без ссылки",
+        "uk": "Цитата без посилання"
       },
       "bodyByLocale": {
-        "ru": "На дворовой игре нужно свистнуть, чтобы команда начала бежать. Друг спрашивает, кто умеет свистеть. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
-        "uk": "Під час гри у дворі потрібно свиснути, щоб команда почала бігти. Друг запитує, хто вміє свистіти. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+        "ru": "В презентацию добавили интересную цитату, но не указали, откуда она взята. Source — «источник информации». `I can find the source` — «Я могу найти источник». Вы предлагаете найти книгу или публикацию, где появилась цитата.",
+        "uk": "До презентації додали цікаву цитату, але не вказали, звідки її взято. Source — «джерело інформації». `I can find the source` — «Я можу знайти джерело». Ви пропонуєте знайти книжку або публікацію, де з’явилася цитата."
       },
       "question": {
         "interactionId": "en:lesson-08:session-49:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-49:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can find the source."
             },
             {
               "responseId": "en:lesson-08:session-49:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to find the source."
             },
             {
               "responseId": "en:lesson-08:session-49:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can finds the source."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-49:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can find the source."
             },
             {
               "responseId": "en:lesson-08:session-49:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to find the source."
             },
             {
               "responseId": "en:lesson-08:session-49:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can finds the source."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6b537b2bd28cb5c0c66406df8baa31e346a41d4adeaa64cda85e2c42b44400a4"
+  "introFingerprint": "658e8ec7bc18c67e0fd579617c4f733279891356691a0491458dba72deb04ffd"
 }

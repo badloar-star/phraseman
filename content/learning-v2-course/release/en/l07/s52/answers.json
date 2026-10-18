@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-07:session-52:word:haggle",
+    "correctText": "haggle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-52:i01",
-    "correctText": "I usually ski.",
+    "correctText": "I usually haggle at the market.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i02",
-    "correctText": "ski",
+    "correctText": "haggle",
     "correctResponseId": "en:lesson-07:session-52:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-52:i03",
-    "correctText": "ski",
+    "correctText": "haggle",
     "correctResponseId": "en:lesson-07:session-52:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-52:i04",
-    "correctText": "en:lesson-07:session-52:i04:p1=ski\nen:lesson-07:session-52:i04:p2=polish\nen:lesson-07:session-52:i04:p3=stations\nen:lesson-07:session-52:i04:p4=pool",
+    "correctText": "en:lesson-07:session-52:i04:p1=haggle\nen:lesson-07:session-52:i04:p2=market\nen:lesson-07:session-52:i04:p3=book\nen:lesson-07:session-52:i04:p4=friend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:word:swap",
+    "correctText": "swap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i05",
-    "correctText": "I usually ski.",
+    "correctText": "I often swap books with a friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:word:university",
+    "correctText": "university",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i06",
-    "correctText": "I usually polish the table.",
+    "correctText": "Where is the university?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i07",
-    "correctText": "Where is the pool?",
+    "correctText": "Is this the university?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:word:refuse",
+    "correctText": "refuse",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i08",
-    "correctText": "polish",
+    "correctText": "refuse",
     "correctResponseId": "en:lesson-07:session-52:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-52:i09",
-    "correctText": "I usually ski.",
+    "correctText": "I often swap books with a friend.",
     "correctResponseId": "en:lesson-07:session-52:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-52:i10",
-    "correctText": "en:lesson-07:session-52:i10:p1=wear\nen:lesson-07:session-52:i10:p2=ski\nen:lesson-07:session-52:i10:p3=polish\nen:lesson-07:session-52:i10:p4=stations",
+    "correctText": "en:lesson-07:session-52:i10:p1=swap\nen:lesson-07:session-52:i10:p2=haggle\nen:lesson-07:session-52:i10:p3=refuse\nen:lesson-07:session-52:i10:p4=market",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i11",
-    "correctText": "Where is the pool?",
+    "correctText": "She usually haggles at the market.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i12",
-    "correctText": "Where are the stations?",
+    "correctText": "I often swap books with a friend.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i13",
-    "correctText": "Do you wear a hat?",
+    "correctText": "He usually refuses plastic bags.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-52:i15",
-    "correctText": "Where is the pool?",
+    "correctText": "Where is the university?",
     "correctResponseId": "en:lesson-07:session-52:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-52:i16",
-    "correctText": "en:lesson-07:session-52:i16:p1=ski\nen:lesson-07:session-52:i16:p2=pool\nen:lesson-07:session-52:i16:p3=wear\nen:lesson-07:session-52:i16:p4=polish",
+    "correctText": "en:lesson-07:session-52:i16:p1=university\nen:lesson-07:session-52:i16:p2=swap\nen:lesson-07:session-52:i16:p3=refuse\nen:lesson-07:session-52:i16:p4=library",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-52:i17",
-    "correctText": "Tom usually skis.",
+    "correctText": "My sister often swaps books with a friend.",
     "correctResponseId": null
   }
 ]

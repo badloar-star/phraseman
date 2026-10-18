@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 52 — Катаюсь на лыжах
+# Английский · Урок 7 · Занятие 52 — Рынок, книги и университет
 
-**Ситуация.** Вы рассказываете о лыжах, уходе за столом и поиске бассейна.
+**Ситуация.** Вы рассказываете о покупках: как торгуетесь на рынке, с кем меняетесь книгами, как отказываетесь от пакета, и спрашиваете дорогу к университету.
 
-**Что вы освоите:** рассказывать о привычках и задавать знакомые вопросы
-**Новые слова:** ski
+**Что вы освоите:** рассказывать о привычках и спрашивать «Где …?»
+**Новые слова:** haggle, swap, university, refuse
+**Возвращаются:** market, book, friend, bag, library, museum, neighbour, cousin
 
 ---
 
 ## Интро 1
 
-### На снегу
+### Цена на рынке
 
-Друг спрашивает, чем вы обычно занимаетесь на зимнем отдыхе. `Ski` — «кататься на лыжах». `I usually ski` — «Я обычно катаюсь на лыжах». `Usually` стоит перед `ski`. Если лыжи всё время лежат в гараже, это пока отдых для лыж.
+На рынке вы приглядели куртку, но цена кажется завышенной. Вы не платите сразу, а просите продавца сбросить немного. haggle — «торговаться». Скажите: I usually haggle at the market — «Я обычно торгуюсь на рынке». Слово usually стоит перед haggle.
 
-**Расскажите о своём обычном занятии на зимнем отдыхе.**
+**Подруга спрашивает, платите ли вы на рынке сразу. Ответьте: «Я обычно торгуюсь на рынке».**
 
-- ✅ **I usually ski.**
-- ❌ I usually skis. — *После `I` нужно `ski`.*
-- ❌ I usually skiing. — *Здесь нужна форма `ski`.*
+- ✅ **I usually haggle at the market.**
+- ❌ I usually haggles at the market. — *После I нужно haggle, без s.*
+- ❌ I usually haggling at the market. — *После I usually нужна форма haggle, без -ing.*
 
 ---
 
 ## Интро 2
 
-### Уход за столом
+### Книги по кругу
 
-Подруга спрашивает, как вы обычно ухаживаете за деревянным столом. `I usually polish the table` — «Я обычно полирую стол». `Usually` стоит перед `polish`; `the table` — стол, о котором вы говорите.
+Вы с другом любите читать. Прочитав книгу, вы не ставите её на полку, а несёте ему, и он приносит вам свою. swap — «меняться, обмениваться». Скажите: I often swap books with a friend — «Я часто меняюсь книгами с другом». Слово often стоит перед swap.
 
-**Расскажите о своей привычке.**
+**Сосед видит у вас чужую книгу. Объясните: «Я часто меняюсь книгами с другом».**
 
-- ✅ **I usually polish the table.**
-- ❌ I usually polishes the table. — *После `I` нужно `polish`.*
-- ❌ I usually polishing the table. — *Здесь нужна форма `polish`.*
+- ✅ **I often swap books with a friend.**
+- ❌ I often swaps books with a friend. — *После I нужно swap, без s.*
+- ❌ I often swapping books with a friend. — *Здесь нужна форма swap.*
 
 ---
 
 ## Интро 3
 
-### Ищу бассейн
+### Открытая лекция
 
-Вы пришли в спортивный центр и спрашиваете сотрудника, где бассейн. `Where is the pool?` — «Где бассейн?» После `where` здесь идёт `is`, затем `the pool`.
+Вы приехали на открытую лекцию в незнакомый район. На остановке стоит прохожий с рюкзаком, и похоже, он учится рядом. university — «университет». Спросите: Where is the university? — «Где университет?» После Where идёт is, а потом the university.
 
-**Спросите сотрудника о бассейне.**
+**Прохожий с рюкзаком ждёт вашего вопроса. Спросите: «Где университет?»**
 
-- ✅ **Where is the pool?**
-- ❌ Where are the pool? — *Бассейн один: нужно `is`.*
-- ❌ Where the pool is? — *В этом вопросе `is` стоит перед `the pool`.*
+- ✅ **Where is the university?**
+- ❌ Where are the university? — *Университет один: нужно is.*
+- ❌ Where the university is? — *В этом вопросе is стоит перед the university.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я обычно катаюсь на лыжах»**
+**1 · Карточка слова — haggle**
+<!-- interaction_id: en:lesson-07:session-52:word:haggle; family: word_card -->
+> **haggle** — торговаться. I usually haggle at the market. — «Я обычно торгуюсь на рынке». Обсуждать цену с продавцом, стараясь договориться о более выгодной покупке.
+
+**2 · Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке»**
 <!-- interaction_id: en:lesson-07:session-52:i01; family: phrase_builder -->
-Плитки: `ski` `usually` `I` → **I usually ski.**
+Плитки: `market` `often` `the` `at` `haggle` `usually` `I` → **I usually haggle at the market.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually haggle at the market.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-52:i02; family: listen_choose -->
-🔊 *ski* → **ski** · sew · hike
-- sew — *В записи первое слово — `ski`, а в этом варианте — `sew`.*
-- hike — *В записи первое слово — `ski`, а в этом варианте — `hike`.*
+🔊 *haggle* → **haggle** · hang · handle
+- hang — *В записи первое слово — `haggle`, а в этом варианте — `hang`.*
+- handle — *В записи первое слово — `haggle`, а в этом варианте — `handle`.*
 
-**3 · Скажите «Я обычно катаюсь на лыжах»**
+**4 · Подруга спрашивает про покупки. Скажите: «Я обычно торгуюсь на рынке». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-52:i03; family: context_gap_grammar -->
-I usually ___. → **ski** · skis · skiing
-- skis — *После `I` нужно `ski`.*
-- skiing — *Здесь нужна форма `ski`.*
+I usually ___ at the market. → **haggle** · haggles · haggling
+- haggles — *После `I` нужно `haggle`, без окончания.*
+- haggling — *Здесь нужна форма `haggle`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-52:i04; family: speed_match -->
-ski — кататься на лыжах · polish — полировать · stations — станции · pool — бассейн
+haggle — торговаться · market — рынок · book — книга · friend — друг
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — swap**
+<!-- interaction_id: en:lesson-07:session-52:word:swap; family: word_card -->
+> **swap** — меняться, обмениваться. I often swap books with a friend. — «Я часто меняюсь книгами с другом». Отдать своё и взять взамен чужое.
+
+**7 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-52:i05; family: listen_build_dictation -->
-🔊 *I usually ski.* Плитки: `ski` `usually` `I` → **I usually ski.**
+🔊 *I often swap books with a friend.* Плитки: `friend` `swaps` `a` `with` `books` `swap` `often` `I` → **I often swap books with a friend.**
+*(плитка `swaps` лишняя: здесь нужно `swap` — `I often swap books with a friend.`)*
 
-**6 · Скажите «Я обычно полирую стол»**
+**8 · Карточка слова — university**
+<!-- interaction_id: en:lesson-07:session-52:word:university; family: word_card -->
+> **university** — университет. Where is the university? — «Где университет?» Высшее учебное заведение, где получают специальность и занимаются исследованиями.
+
+**9 · Вы приехали на лекцию. Спросите прохожего: «Где университет?»**
 <!-- interaction_id: en:lesson-07:session-52:i06; family: phrase_builder -->
-Плитки: `table` `the` `polish` `usually` `I` → **I usually polish the table.**
+Плитки: `university` `are` `the` `is` `Where` → **Where is the university?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the university?`)*
 
-**7 · Спросите сотрудника «Где бассейн?»**
+**10 · Вы дошли до здания с учебными аудиториями. Уточните у прохожего: «Это университет?»**
 <!-- interaction_id: en:lesson-07:session-52:i07; family: scripted_repeat_compare -->
-🎙 **Where is the pool?**
+🎙 **Is this the university?**
 
-**8 · Скажите «Я обычно полирую стол»**
+**11 · Карточка слова — refuse**
+<!-- interaction_id: en:lesson-07:session-52:word:refuse; family: word_card -->
+> **refuse** — отказываться, не брать. I usually refuse plastic bags. — «Я обычно отказываюсь от пластиковых пакетов». Сказать «нет» тому, что предлагают.
+
+**12 · Подруга замечает вашу многоразовую сумку и спрашивает о привычке на кассе. Скажите: «Я обычно отказываюсь от пластиковых пакетов». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-52:i08; family: context_gap_grammar -->
-I usually ___ the table. → **polish** · polishes · polishing
-- polishes — *После `I` нужно `polish`.*
-- polishing — *Здесь нужна форма `polish`.*
+I usually ___ plastic bags. → **refuse** · refuses · refusing
+- refuses — *После `I` нужно `refuse`, без окончания.*
+- refusing — *Здесь нужна форма `refuse`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-52:i09; family: listen_choose -->
-🔊 *I usually ski.* → **I usually ski.** · I usually hike. · I usually camp.
-- I usually hike. — *В записи последнее слово — `ski`, а в этом варианте — `hike`.*
-- I usually camp. — *В записи последнее слово — `ski`, а в этом варианте — `camp`.*
+🔊 *I often swap books with a friend.* → **I often swap books with a friend.** · I often swap books with a neighbour. · I often swap books with a cousin.
+- I often swap books with a neighbour. — *В записи последнее слово — `friend`, а в этом варианте — `neighbour`.*
+- I often swap books with a cousin. — *В записи последнее слово — `friend`, а в этом варианте — `cousin`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-52:i10; family: speed_match -->
-wear — носить одежду · ski — кататься на лыжах · polish — полировать · stations — станции
+swap — меняться · haggle — торговаться · refuse — отказываться, не брать · market — рынок
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-52:i11; family: listen_build_dictation -->
-🔊 *Where is the pool?* Плитки: `pool` `the` `is` `Where` → **Where is the pool?**
+🔊 *She usually haggles at the market.* Плитки: `market` `haggle` `the` `at` `haggles` `usually` `She` → **She usually haggles at the market.**
+*(плитка `haggle` лишняя: здесь нужно `haggles` — `She usually haggles at the market.`)*
 
-**12 · Вы изучаете карту железной дороги. Спросите друга «Где станции?»**
+**16 · Сосед видит у вас чужую книгу. Скажите: «Я часто меняюсь книгами с другом»**
 <!-- interaction_id: en:lesson-07:session-52:i12; family: phrase_builder -->
-Плитки: `stations` `the` `are` `Where` → **Where are the stations?**
+Плитки: `friend` `usually` `a` `with` `books` `swap` `often` `I` → **I often swap books with a friend.**
+*(плитка `usually` лишняя: здесь нужно `often` — `I often swap books with a friend.`)*
 
-**13 · Вы обсуждаете привычки в холодную погоду. Спросите друга «Ты носишь головной убор?»**
+**17 · Вы с подругой обсуждаете, кто в семье пользуется многоразовой сумкой. Она спрашивает про вашего брата. Скажите: «Он обычно отказывается от пластиковых пакетов»**
 <!-- interaction_id: en:lesson-07:session-52:i13; family: scripted_repeat_compare -->
-🎙 **Do you wear a hat?**
+🎙 **He usually refuses plastic bags.**
 
-**14 · Скажите «Я обычно катаюсь на лыжах»**
+**18 · Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-52:i14; family: context_gap_grammar -->
-I ___ ski. → **usually** · does · am
-- does — *Для «обычно» нужно `usually` перед `ski`.*
-- am — *Для «обычно» нужно `usually`; `am` перед `ski` не ставим.*
+I ___ haggle at the market. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `haggle`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `haggle` не ставим.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-52:i15; family: listen_choose -->
-🔊 *Where is the pool?* → **Where is the pool?** · Where is the stadium? · Where is the cinema?
-- Where is the stadium? — *В записи последнее слово — `pool`, а в этом варианте — `stadium`.*
-- Where is the cinema? — *В записи последнее слово — `pool`, а в этом варианте — `cinema`.*
+🔊 *Where is the university?* → **Where is the university?** · Where is the library? · Where is the museum?
+- Where is the library? — *В записи последнее слово — `university`, а в этом варианте — `library`.*
+- Where is the museum? — *В записи последнее слово — `university`, а в этом варианте — `museum`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-52:i16; family: speed_match -->
-ski — кататься на лыжах · pool — бассейн · wear — носить одежду · polish — полировать
+university — университет · swap — меняться · refuse — отказываться, не брать · library — библиотека
 
-**17 · Друг спрашивает о зимнем отдыхе Тома. Скажите «Том обычно катается на лыжах»**
+**21 · Знакомый спрашивает про вашу сестру. Скажите: «Моя сестра часто меняется книгами с подругой»**
 <!-- interaction_id: en:lesson-07:session-52:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually skis.**
-
+🎙 **My sister often swaps books with a friend.**

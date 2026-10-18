@@ -4,30 +4,88 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-52:i01",
+      "interactionId": "en:lesson-07:session-52:word:haggle",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — haggle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:word:haggle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — haggle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:word:haggle:audio",
+          "transcript": "haggle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-52:word:haggle:r1",
+            "targetText": "haggle",
+            "meaningByLocale": {
+              "ru": "торговаться. I usually haggle at the market. — «Я обычно торгуюсь на рынке». Обсуждать цену с продавцом, стараясь договориться о более выгодной покупке.",
+              "uk": "торгуватися. I usually haggle at the market. — «Я зазвичай торгуюся на ринку». Обговорювати ціну з продавцем, намагаючись домовитися про вигіднішу покупку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "haggle",
+          "definitionByLocale": {
+            "ru": "торговаться. I usually haggle at the market. — «Я обычно торгуюсь на рынке». Обсуждать цену с продавцом, стараясь договориться о более выгодной покупке.",
+            "uk": "торгуватися. I usually haggle at the market. — «Я зазвичай торгуюся на ринку». Обговорювати ціну з продавцем, намагаючись домовитися про вигіднішу покупку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я обычно катаюсь на лыжах»",
+      "prompt": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно катаюсь на лыжах»",
+      "accessibilityLabel": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually ski.",
+        "targetPhrase": "I usually haggle at the market.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно катаюсь на лыжах»",
-          "uk": "Скажіть «Я зазвичай катаюся на лижах»"
+          "ru": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке»",
+          "uk": "Подруга питає про ринок. Скажіть: «Я зазвичай торгуюся на ринку»"
         },
         "orderedTokens": [
           "I",
           "usually",
-          "ski"
+          "haggle",
+          "at",
+          "the",
+          "market"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually haggle at the market.`",
+              "uk": "тут потрібно `usually` — `I usually haggle at the market.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,7 +95,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +103,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-52:i02:r1",
-          "text": "ski"
+          "text": "haggle"
         },
         {
           "responseId": "en:lesson-07:session-52:i02:r2",
-          "text": "sew"
+          "text": "hang"
         },
         {
           "responseId": "en:lesson-07:session-52:i02:r3",
-          "text": "hike"
+          "text": "handle"
         }
       ],
       "mediaIds": [],
@@ -65,23 +123,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i02:audio",
-          "transcript": "ski"
+          "transcript": "haggle"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-52:i02:r1",
-            "targetText": "ski",
+            "targetText": "haggle",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-52:i02:r2",
-            "targetText": "sew",
+            "targetText": "hang",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-52:i02:r3",
-            "targetText": "hike",
+            "targetText": "handle",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +150,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `ski`, а в этом варианте — `sew`.",
-              "uk": "У записі перше слово — `ski`, а в цьому варіанті — `sew`."
+              "ru": "В записи первое слово — `haggle`, а в этом варианте — `hang`.",
+              "uk": "У записі перше слово — `haggle`, а в цьому варіанті — `hang`."
             }
           },
           {
@@ -101,8 +159,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `ski`, а в этом варианте — `hike`.",
-              "uk": "У записі перше слово — `ski`, а в цьому варіанті — `hike`."
+              "ru": "В записи первое слово — `haggle`, а в этом варианте — `handle`.",
+              "uk": "У записі перше слово — `haggle`, а в цьому варіанті — `handle`."
             }
           }
         ],
@@ -113,67 +171,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно катаюсь на лыжах»",
+      "prompt": "Подруга спрашивает про покупки. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-52:i03:r1",
-          "text": "ski"
+          "text": "haggle"
         },
         {
           "responseId": "en:lesson-07:session-52:i03:r2",
-          "text": "skis"
+          "text": "haggles"
         },
         {
           "responseId": "en:lesson-07:session-52:i03:r3",
-          "text": "skiing"
+          "text": "haggling"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно катаюсь на лыжах»",
+      "accessibilityLabel": "Подруга спрашивает про покупки. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно катаюсь на лыжах»",
-          "uk": "Скажіть «Я зазвичай катаюся на лижах»"
+          "ru": "Подруга спрашивает про покупки. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
+          "uk": "Подруга питає про покупки. Скажіть: «Я зазвичай торгуюся на ринку». Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___.",
+        "gappedTargetPhrase": "I usually ___ at the market.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-52:i03:r1",
-            "text": "ski"
+            "text": "haggle"
           },
           {
             "responseId": "en:lesson-07:session-52:i03:r2",
-            "text": "skis"
+            "text": "haggles"
           },
           {
             "responseId": "en:lesson-07:session-52:i03:r3",
-            "text": "skiing"
+            "text": "haggling"
           }
         ],
-        "testedDimension": "Скажите «Я обычно катаюсь на лыжах»",
+        "testedDimension": "Подруга спрашивает про покупки. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-52:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно катаюсь на лыжах»",
+            "testedDimension": "Подруга спрашивает про покупки. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `ski`.",
-              "uk": "Після `I` потрібне `ski`."
+              "ru": "После `I` нужно `haggle`, без окончания.",
+              "uk": "Після `I` потрібно `haggle`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-52:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно катаюсь на лыжах»",
+            "testedDimension": "Подруга спрашивает про покупки. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `ski`.",
-              "uk": "Тут потрібна форма `ski`."
+              "ru": "Здесь нужна форма `haggle`.",
+              "uk": "Тут потрібна форма `haggle`."
             }
           }
         ]
@@ -182,7 +240,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +254,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-52:i04:p1",
-            "target": "ski",
+            "target": "haggle",
             "meaningByLocale": {
-              "ru": "кататься на лыжах",
-              "uk": "кататися на лижах"
+              "ru": "торговаться",
+              "uk": "торгуватися"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i04:p2",
-            "target": "polish",
+            "target": "market",
             "meaningByLocale": {
-              "ru": "полировать",
-              "uk": "полірувати"
+              "ru": "рынок",
+              "uk": "ринок"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i04:p3",
-            "target": "stations",
+            "target": "book",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "книга",
+              "uk": "книжка"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i04:p4",
-            "target": "pool",
+            "target": "friend",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "друг",
+              "uk": "друг"
             }
           }
         ],
         "leftColumn": [
-          "ski",
-          "polish",
-          "stations",
-          "pool"
+          "haggle",
+          "market",
+          "book",
+          "friend"
         ],
         "rightColumn": [
-          "кататься на лыжах",
-          "полировать",
-          "станции",
-          "бассейн"
+          "торговаться",
+          "рынок",
+          "книга",
+          "друг"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,8 +312,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-52:word:swap",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — swap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:word:swap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — swap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:word:swap:audio",
+          "transcript": "swap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-52:word:swap:r1",
+            "targetText": "swap",
+            "meaningByLocale": {
+              "ru": "меняться, обмениваться. I often swap books with a friend. — «Я часто меняюсь книгами с другом». Отдать своё и взять взамен чужое.",
+              "uk": "мінятися, обмінюватися. I often swap books with a friend. — «Я часто міняюся книжками з другом». Віддати своє й узяти натомість чуже."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swap",
+          "definitionByLocale": {
+            "ru": "меняться, обмениваться. I often swap books with a friend. — «Я часто меняюсь книгами с другом». Отдать своё и взять взамен чужое.",
+            "uk": "мінятися, обмінюватися. I often swap books with a friend. — «Я часто міняюся книжками з другом». Віддати своє й узяти натомість чуже."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-52:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,17 +371,33 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i05:audio",
-          "transcript": "I usually ski."
+          "transcript": "I often swap books with a friend."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually ski.",
+        "hiddenTargetPhrase": "I often swap books with a friend.",
         "orderedTokens": [
           "I",
-          "usually",
-          "ski"
+          "often",
+          "swap",
+          "books",
+          "with",
+          "a",
+          "friend"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "swaps"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `swap` — `I often swap books with a friend.`",
+              "uk": "тут потрібно `swap` — `I often swap books with a friend.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,32 +406,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-52:word:university",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — university",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:word:university:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — university",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:word:university:audio",
+          "transcript": "university"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-52:word:university:r1",
+            "targetText": "university",
+            "meaningByLocale": {
+              "ru": "университет. Where is the university? — «Где университет?» Высшее учебное заведение, где получают специальность и занимаются исследованиями.",
+              "uk": "університет. Where is the university? — «Де університет?» Заклад вищої освіти, де здобувають спеціальність і займаються дослідженнями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "university",
+          "definitionByLocale": {
+            "ru": "университет. Where is the university? — «Где университет?» Высшее учебное заведение, где получают специальность и занимаются исследованиями.",
+            "uk": "університет. Where is the university? — «Де університет?» Заклад вищої освіти, де здобувають спеціальність і займаються дослідженнями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-52:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я обычно полирую стол»",
+      "prompt": "Вы приехали на лекцию. Спросите прохожего: «Где университет?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно полирую стол»",
+      "accessibilityLabel": "Вы приехали на лекцию. Спросите прохожего: «Где университет?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually polish the table.",
+        "targetPhrase": "Where is the university?",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно полирую стол»",
-          "uk": "Скажіть «Я зазвичай полірую стіл»"
+          "ru": "Вы приехали на лекцию. Спросите прохожего: «Где университет?»",
+          "uk": "Ви приїхали на лекцію. Спитайте перехожого: «Де університет?»"
         },
         "orderedTokens": [
-          "I",
-          "usually",
-          "polish",
+          "Where",
+          "is",
           "the",
-          "table"
+          "university"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы приехали на лекцию. Спросите прохожего: «Где университет?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the university?`",
+              "uk": "тут потрібно `is` — `Where is the university?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +495,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите сотрудника «Где бассейн?»",
+      "prompt": "Вы дошли до здания с учебными аудиториями. Уточните у прохожего: «Это университет?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-52:i07:audio"
       ],
-      "accessibilityLabel": "Спросите сотрудника «Где бассейн?»",
+      "accessibilityLabel": "Вы дошли до здания с учебными аудиториями. Уточните у прохожего: «Это университет?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i07:audio",
-          "transcript": "Where is the pool?"
+          "transcript": "Is this the university?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the pool?",
+        "targetPhrase": "Is this the university?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,68 +527,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-52:word:refuse",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — refuse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:word:refuse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — refuse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:word:refuse:audio",
+          "transcript": "refuse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-52:word:refuse:r1",
+            "targetText": "refuse",
+            "meaningByLocale": {
+              "ru": "отказываться, не брать. I usually refuse plastic bags. — «Я обычно отказываюсь от пластиковых пакетов». Сказать «нет» тому, что предлагают.",
+              "uk": "відмовлятися, не брати. I usually refuse plastic bags. — «Я зазвичай відмовляюся від пластикових пакетів». Сказати «ні» тому, що пропонують."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "refuse",
+          "definitionByLocale": {
+            "ru": "отказываться, не брать. I usually refuse plastic bags. — «Я обычно отказываюсь от пластиковых пакетов». Сказать «нет» тому, что предлагают.",
+            "uk": "відмовлятися, не брати. I usually refuse plastic bags. — «Я зазвичай відмовляюся від пластикових пакетів». Сказати «ні» тому, що пропонують."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-52:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно полирую стол»",
+      "prompt": "Подруга замечает вашу многоразовую сумку и спрашивает о привычке на кассе. Скажите: «Я обычно отказываюсь от пластиковых пакетов». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-52:i08:r1",
-          "text": "polish"
+          "text": "refuse"
         },
         {
           "responseId": "en:lesson-07:session-52:i08:r2",
-          "text": "polishes"
+          "text": "refuses"
         },
         {
           "responseId": "en:lesson-07:session-52:i08:r3",
-          "text": "polishing"
+          "text": "refusing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно полирую стол»",
+      "accessibilityLabel": "Подруга замечает вашу многоразовую сумку и спрашивает о привычке на кассе. Скажите: «Я обычно отказываюсь от пластиковых пакетов». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно полирую стол»",
-          "uk": "Скажіть «Я зазвичай полірую стіл»"
+          "ru": "Подруга замечает вашу многоразовую сумку и спрашивает о привычке на кассе. Скажите: «Я обычно отказываюсь от пластиковых пакетов». Выберите слово",
+          "uk": "Подруга помічає вашу багаторазову сумку й питає про звичку на касі. Скажіть: «Я зазвичай відмовляюся від пластикових пакетів». Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ the table.",
+        "gappedTargetPhrase": "I usually ___ plastic bags.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-52:i08:r1",
-            "text": "polish"
+            "text": "refuse"
           },
           {
             "responseId": "en:lesson-07:session-52:i08:r2",
-            "text": "polishes"
+            "text": "refuses"
           },
           {
             "responseId": "en:lesson-07:session-52:i08:r3",
-            "text": "polishing"
+            "text": "refusing"
           }
         ],
-        "testedDimension": "Скажите «Я обычно полирую стол»",
+        "testedDimension": "Подруга замечает вашу многоразовую сумку и спрашивает о привычке на кассе. Скажите: «Я обычно отказываюсь от пластиковых пакетов». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-52:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно полирую стол»",
+            "testedDimension": "Подруга замечает вашу многоразовую сумку и спрашивает о привычке на кассе. Скажите: «Я обычно отказываюсь от пластиковых пакетов». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `polish`.",
-              "uk": "Після `I` потрібне `polish`."
+              "ru": "После `I` нужно `refuse`, без окончания.",
+              "uk": "Після `I` потрібно `refuse`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-52:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно полирую стол»",
+            "testedDimension": "Подруга замечает вашу многоразовую сумку и спрашивает о привычке на кассе. Скажите: «Я обычно отказываюсь от пластиковых пакетов». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `polish`.",
-              "uk": "Тут потрібна форма `polish`."
+              "ru": "Здесь нужна форма `refuse`.",
+              "uk": "Тут потрібна форма `refuse`."
             }
           }
         ]
@@ -426,7 +640,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -434,15 +648,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-52:i09:r1",
-          "text": "I usually ski."
+          "text": "I often swap books with a friend."
         },
         {
           "responseId": "en:lesson-07:session-52:i09:r2",
-          "text": "I usually hike."
+          "text": "I often swap books with a neighbour."
         },
         {
           "responseId": "en:lesson-07:session-52:i09:r3",
-          "text": "I usually camp."
+          "text": "I often swap books with a cousin."
         }
       ],
       "mediaIds": [],
@@ -454,23 +668,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i09:audio",
-          "transcript": "I usually ski."
+          "transcript": "I often swap books with a friend."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-52:i09:r1",
-            "targetText": "I usually ski.",
+            "targetText": "I often swap books with a friend.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-52:i09:r2",
-            "targetText": "I usually hike.",
+            "targetText": "I often swap books with a neighbour.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-52:i09:r3",
-            "targetText": "I usually camp.",
+            "targetText": "I often swap books with a cousin.",
             "meaningByLocale": null
           }
         ],
@@ -481,8 +695,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ski`, а в этом варианте — `hike`.",
-              "uk": "У записі останнє слово — `ski`, а в цьому варіанті — `hike`."
+              "ru": "В записи последнее слово — `friend`, а в этом варианте — `neighbour`.",
+              "uk": "У записі останнє слово — `friend`, а в цьому варіанті — `neighbour`."
             }
           },
           {
@@ -490,8 +704,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ski`, а в этом варианте — `camp`.",
-              "uk": "У записі останнє слово — `ski`, а в цьому варіанті — `camp`."
+              "ru": "В записи последнее слово — `friend`, а в этом варианте — `cousin`.",
+              "uk": "У записі останнє слово — `friend`, а в цьому варіанті — `cousin`."
             }
           }
         ],
@@ -502,8 +716,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -516,48 +730,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-52:i10:p1",
-            "target": "wear",
+            "target": "swap",
             "meaningByLocale": {
-              "ru": "носить одежду",
-              "uk": "носити одяг"
+              "ru": "меняться",
+              "uk": "мінятися"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i10:p2",
-            "target": "ski",
+            "target": "haggle",
             "meaningByLocale": {
-              "ru": "кататься на лыжах",
-              "uk": "кататися на лижах"
+              "ru": "торговаться",
+              "uk": "торгуватися"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i10:p3",
-            "target": "polish",
+            "target": "refuse",
             "meaningByLocale": {
-              "ru": "полировать",
-              "uk": "полірувати"
+              "ru": "отказываться, не брать",
+              "uk": "відмовлятися, не брати"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i10:p4",
-            "target": "stations",
+            "target": "market",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "рынок",
+              "uk": "ринок"
             }
           }
         ],
         "leftColumn": [
-          "wear",
-          "ski",
-          "polish",
-          "stations"
+          "swap",
+          "haggle",
+          "refuse",
+          "market"
         ],
         "rightColumn": [
-          "носить одежду",
-          "кататься на лыжах",
-          "полировать",
-          "станции"
+          "меняться",
+          "торговаться",
+          "отказываться, не брать",
+          "рынок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,8 +789,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -590,18 +804,32 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i11:audio",
-          "transcript": "Where is the pool?"
+          "transcript": "She usually haggles at the market."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the pool?",
+        "hiddenTargetPhrase": "She usually haggles at the market.",
         "orderedTokens": [
-          "Where",
-          "is",
+          "She",
+          "usually",
+          "haggles",
+          "at",
           "the",
-          "pool"
+          "market"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "haggle"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `haggles` — `She usually haggles at the market.`",
+              "uk": "тут потрібно `haggles` — `She usually haggles at the market.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -611,30 +839,45 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы изучаете карту железной дороги. Спросите друга «Где станции?»",
+      "prompt": "Сосед видит у вас чужую книгу. Скажите: «Я часто меняюсь книгами с другом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы изучаете карту железной дороги. Спросите друга «Где станции?»",
+      "accessibilityLabel": "Сосед видит у вас чужую книгу. Скажите: «Я часто меняюсь книгами с другом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the stations?",
+        "targetPhrase": "I often swap books with a friend.",
         "localizedMeaning": {
-          "ru": "Вы изучаете карту железной дороги. Спросите друга «Где станции?»",
-          "uk": "Ви вивчаєте карту залізниці. Запитайте друга «Де станції?»"
+          "ru": "Сосед видит у вас чужую книгу. Скажите: «Я часто меняюсь книгами с другом»",
+          "uk": "Сусід бачить у вас чужу книжку. Скажіть: «Я часто міняюся книжками з другом»"
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "stations"
+          "I",
+          "often",
+          "swap",
+          "books",
+          "with",
+          "a",
+          "friend"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "usually"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед видит у вас чужую книгу. Скажите: «Я часто меняюсь книгами с другом»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `often` — `I often swap books with a friend.`",
+              "uk": "тут потрібно `often` — `I often swap books with a friend.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -644,25 +887,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы обсуждаете привычки в холодную погоду. Спросите друга «Ты носишь головной убор?»",
+      "prompt": "Вы с подругой обсуждаете, кто в семье пользуется многоразовой сумкой. Она спрашивает про вашего брата. Скажите: «Он обычно отказывается от пластиковых пакетов»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-52:i13:audio"
       ],
-      "accessibilityLabel": "Вы обсуждаете привычки в холодную погоду. Спросите друга «Ты носишь головной убор?»",
+      "accessibilityLabel": "Вы с подругой обсуждаете, кто в семье пользуется многоразовой сумкой. Она спрашивает про вашего брата. Скажите: «Он обычно отказывается от пластиковых пакетов»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i13:audio",
-          "transcript": "Do you wear a hat?"
+          "transcript": "He usually refuses plastic bags."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you wear a hat?",
+        "targetPhrase": "He usually refuses plastic bags.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -677,11 +920,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно катаюсь на лыжах»",
+      "prompt": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-52:i14:r1",
@@ -698,14 +941,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно катаюсь на лыжах»",
+      "accessibilityLabel": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно катаюсь на лыжах»",
-          "uk": "Скажіть «Я зазвичай катаюся на лижах»"
+          "ru": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
+          "uk": "Подруга питає про ринок. Скажіть: «Я зазвичай торгуюся на ринку». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ ski.",
+        "gappedTargetPhrase": "I ___ haggle at the market.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-52:i14:r1",
@@ -720,24 +963,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я обычно катаюсь на лыжах»",
+        "testedDimension": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-52:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно катаюсь на лыжах»",
+            "testedDimension": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `ski`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `ski`."
+              "ru": "Для «обычно» нужно `usually` перед `haggle`.",
+              "uk": "Для «зазвичай» потрібно `usually` перед `haggle`."
             }
           },
           {
             "responseId": "en:lesson-07:session-52:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно катаюсь на лыжах»",
+            "testedDimension": "Подруга спрашивает про рынок. Скажите: «Я обычно торгуюсь на рынке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `ski` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `ski` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `haggle` не ставим.",
+              "uk": "Для «зазвичай» потрібно `usually`; `am` перед `haggle` не ставимо."
             }
           }
         ]
@@ -746,7 +989,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -754,15 +997,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-52:i15:r1",
-          "text": "Where is the pool?"
+          "text": "Where is the university?"
         },
         {
           "responseId": "en:lesson-07:session-52:i15:r2",
-          "text": "Where is the stadium?"
+          "text": "Where is the library?"
         },
         {
           "responseId": "en:lesson-07:session-52:i15:r3",
-          "text": "Where is the cinema?"
+          "text": "Where is the museum?"
         }
       ],
       "mediaIds": [],
@@ -774,23 +1017,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i15:audio",
-          "transcript": "Where is the pool?"
+          "transcript": "Where is the university?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-52:i15:r1",
-            "targetText": "Where is the pool?",
+            "targetText": "Where is the university?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-52:i15:r2",
-            "targetText": "Where is the stadium?",
+            "targetText": "Where is the library?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-52:i15:r3",
-            "targetText": "Where is the cinema?",
+            "targetText": "Where is the museum?",
             "meaningByLocale": null
           }
         ],
@@ -801,8 +1044,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pool`, а в этом варианте — `stadium`.",
-              "uk": "У записі останнє слово — `pool`, а в цьому варіанті — `stadium`."
+              "ru": "В записи последнее слово — `university`, а в этом варианте — `library`.",
+              "uk": "У записі останнє слово — `university`, а в цьому варіанті — `library`."
             }
           },
           {
@@ -810,8 +1053,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pool`, а в этом варианте — `cinema`.",
-              "uk": "У записі останнє слово — `pool`, а в цьому варіанті — `cinema`."
+              "ru": "В записи последнее слово — `university`, а в этом варианте — `museum`.",
+              "uk": "У записі останнє слово — `university`, а в цьому варіанті — `museum`."
             }
           }
         ],
@@ -822,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,48 +1079,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-52:i16:p1",
-            "target": "ski",
+            "target": "university",
             "meaningByLocale": {
-              "ru": "кататься на лыжах",
-              "uk": "кататися на лижах"
+              "ru": "университет",
+              "uk": "університет"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i16:p2",
-            "target": "pool",
+            "target": "swap",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "меняться",
+              "uk": "мінятися"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i16:p3",
-            "target": "wear",
+            "target": "refuse",
             "meaningByLocale": {
-              "ru": "носить одежду",
-              "uk": "носити одяг"
+              "ru": "отказываться, не брать",
+              "uk": "відмовлятися, не брати"
             }
           },
           {
             "pairId": "en:lesson-07:session-52:i16:p4",
-            "target": "polish",
+            "target": "library",
             "meaningByLocale": {
-              "ru": "полировать",
-              "uk": "полірувати"
+              "ru": "библиотека",
+              "uk": "бібліотека"
             }
           }
         ],
         "leftColumn": [
-          "ski",
-          "pool",
-          "wear",
-          "polish"
+          "university",
+          "swap",
+          "refuse",
+          "library"
         ],
         "rightColumn": [
-          "кататься на лыжах",
-          "бассейн",
-          "носить одежду",
-          "полировать"
+          "университет",
+          "меняться",
+          "отказываться, не брать",
+          "библиотека"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -895,25 +1138,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-52:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о зимнем отдыхе Тома. Скажите «Том обычно катается на лыжах»",
+      "prompt": "Знакомый спрашивает про вашу сестру. Скажите: «Моя сестра часто меняется книгами с подругой»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-52:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о зимнем отдыхе Тома. Скажите «Том обычно катается на лыжах»",
+      "accessibilityLabel": "Знакомый спрашивает про вашу сестру. Скажите: «Моя сестра часто меняется книгами с подругой»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-52:i17:audio",
-          "transcript": "Tom usually skis."
+          "transcript": "My sister often swaps books with a friend."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually skis.",
+        "targetPhrase": "My sister often swaps books with a friend.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -935,11 +1178,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7dc7b2cad7dbd8640c447451c4df54cad6547d11bec38325d18ab284b190d76f"
+  "learnerFingerprint": "6e2d727e7765f527226e85c0a9496863d7d1cce8399ff0ca6854d83717fc18ac"
 }

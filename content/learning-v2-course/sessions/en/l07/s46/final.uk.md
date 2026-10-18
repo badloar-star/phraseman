@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 46 — Книжки за порядком
+# Англійська · Урок 7 · Заняття 46 — На кухні
 
-**Ситуація.** Ви впорядковуєте книжки, розповідаєте про прасування й шукаєте аеропорт.
+**Ситуація.** Ви розповідаєте про звички на кухні: трете сир, збиваєте яйця, приправляєте суп і їсте десерт, а потім питаєте, де що лежить.
 
-**Що ви опануєте:** розповідати про звички й запитувати про місце
-**Нові слова:** organize
+**Що ви опануєте:** говорити про звички, ставлячи usually або often перед дією
+**Нові слова:** grate, whisk, season, dessert
+**Повертаються:** cheese, carrot, egg, soup, salad, pasta, pie, slice, stir, eat, brother, sister
 
 ---
 
 ## Інтро 1
 
-### Порядок у книжках
+### Паста з братом
 
-Друг запитує, як ви підтримуєте порядок на книжковій полиці. `Organize` — «організовувати»; коли йдеться про речі — «упорядковувати, розкладати за порядком». `I usually organize my books` — «Я зазвичай розкладаю свої книжки за порядком». `Usually` стоїть перед `organize`. Тепер потрібну книжку можна знайти раніше, ніж передумаєш читати.
+Брат допомагає вам готувати пасту й питає, що ви робите із сиром перед тим, як подати її на стіл. grate — «терти на тертці». Брат пропонує покласти шматок цілим. Ви все-таки дістаєте тертку — стружку легше розподілити по пасті: I usually grate the cheese — «Я зазвичай тру сир на тертці». Слово usually стоїть перед grate.
 
-**Розкажіть, що ви зазвичай робите зі своїми книжками.**
+**Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці».**
 
-- ✅ **I usually organize my books.**
-- ❌ I usually organizes my books. — *Після `I` потрібне `organize`, без `s`.*
-- ❌ I usually organizing my books. — *Тут потрібна форма `organize`.*
+- ✅ **I usually grate the cheese.**
+- ❌ I usually grates the cheese. — *Після I потрібно grate, без s.*
+- ❌ I usually grating the cheese. — *Для звички після I usually потрібно grate.*
 
 ---
 
 ## Інтро 2
 
-### Прасую вранці
+### Омлет для подруги
 
-Друг запитує, коли ви зазвичай прасуєте. `I usually iron in the morning` — «Я зазвичай прасую вранці». `Usually` стоїть перед `iron`; `in the morning` — «вранці».
+Подруга помічає на кухні вінчик і питає, чи часто ви ним користуєтеся. Ви любите готувати омлети. whisk — «збивати», наприклад вінчиком або виделкою. Ви розповідаєте про цю звичку: I often whisk the eggs — «Я часто збиваю яйця». Слово often стоїть перед whisk.
 
-**Розкажіть про свою звичку.**
+**Подруга питає, чи часто ви користуєтеся вінчиком. Скажіть їй: «Я часто збиваю яйця».**
 
-- ✅ **I usually iron in the morning.**
-- ❌ I usually irons in the morning. — *Після `I` потрібне `iron`.*
-- ❌ I usually ironing in the morning. — *Тут потрібна форма `iron`.*
+- ✅ **I often whisk the eggs.**
+- ❌ I often whisks the eggs. — *Після I потрібно whisk, без s.*
+- ❌ I often whisking the eggs. — *Для звички після I often потрібно whisk.*
 
 ---
 
 ## Інтро 3
 
-### Шукаю аеропорт
+### Суп для сусіда
 
-Ви дивитеся на карту міста й просите знайому показати аеропорт. `Where is the airport?` — «Де аеропорт?» Після `where` тут іде `is`, потім `the airport`.
+Сусід зайшов на хвилину й спробував ваш суп. Він питає, чи залишаєте ви суп без приправ, чи зазвичай приправляєте його. season — «приправляти»: додавати сіль і спеції. Ви куштуєте суп і додаєте дрібку солі: I usually season the soup — «Я зазвичай приправляю суп».
 
-**Попросіть знайому показати, де аеропорт.**
+**Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп».**
 
-- ✅ **Where is the airport?**
-- ❌ Where are the airport? — *Аеропорт один: потрібне `is`.*
-- ❌ Where the airport is? — *У цьому запитанні `is` стоїть перед `the airport`.*
+- ✅ **I usually season the soup.**
+- ❌ I usually seasons the soup. — *Після I потрібно season, без s.*
+- ❌ I usually seasoning the soup. — *Для звички після I usually потрібно season.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я зазвичай розкладаю свої книжки за порядком»**
+**1 · Картка слова — grate**
+<!-- interaction_id: en:lesson-07:session-46:word:grate; family: word_card -->
+> **grate** — терти на тертці. I usually grate the cheese. — «Я зазвичай тру сир на тертці». Перетворювати сир або овоч на дрібну стружку.
+
+**2 · Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці».**
 <!-- interaction_id: en:lesson-07:session-46:i01; family: phrase_builder -->
-Плитки: `books` `my` `organize` `usually` `I` → **I usually organize my books.**
+Плитки: `cheese` `the` `grate` `usually` `I` → **I usually grate the cheese.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте брата**
 <!-- interaction_id: en:lesson-07:session-46:i02; family: listen_choose -->
-🔊 *organize* → **organize** · iron · pack
-- iron — *У записі перше слово — `organize`, а в цьому варіанті — `iron`.*
-- pack — *У записі перше слово — `organize`, а в цьому варіанті — `pack`.*
+🔊 *I usually grate the cheese.* → **I usually grate the cheese.** · I usually grate the carrot. · I usually slice the cheese.
+- I usually grate the carrot. — *У записі останнє слово — `cheese`, сир, а в цьому варіанті — `carrot`, морква.*
+- I usually slice the cheese. — *У записі третє слово — `grate`, терти на тертці, а в цьому варіанті — `slice`, нарізати.*
 
-**3 · Скажіть «Я зазвичай розкладаю свої книжки за порядком»**
+**4 · Брат питає про сир. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-46:i03; family: context_gap_grammar -->
-I usually ___ my books. → **organize** · organizes · organizing
-- organizes — *Після `I` потрібне `organize`.*
-- organizing — *Тут потрібна форма `organize`.*
+I usually ___ the cheese. → **grate** · grates · grating
+- grates — *Після `I` потрібно `grate`, без `s`.*
+- grating — *Тут потрібна форма `grate`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-46:i04; family: speed_match -->
-organize — упорядковувати · iron — прасувати · airport — аеропорт · ferry — пором
+grate — терти на тертці · cheese — сир · carrot — морква · slice — нарізати
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — whisk**
+<!-- interaction_id: en:lesson-07:session-46:word:whisk; family: word_card -->
+> **whisk** — збивати. I often whisk the eggs. — «Я часто збиваю яйця». Швидко збивати вінчиком або виделкою, наприклад яйця чи вершки.
+
+**7 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-46:i05; family: listen_build_dictation -->
-🔊 *I usually organize my books.* Плитки: `books` `my` `organize` `usually` `I` → **I usually organize my books.**
+🔊 *I often whisk the eggs.* Плитки: `eggs` `the` `whisk` `often` `I` → **I often whisk the eggs.**
 
-**6 · Скажіть «Я зазвичай прасую вранці»**
+**8 · Картка слова — season**
+<!-- interaction_id: en:lesson-07:session-46:word:season; family: word_card -->
+> **season** — приправляти. I usually season the soup. — «Я зазвичай приправляю суп». Додавати сіль і спеції, щоб смак був яскравішим.
+
+**9 · Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп».**
 <!-- interaction_id: en:lesson-07:session-46:i06; family: phrase_builder -->
-Плитки: `morning` `the` `in` `iron` `usually` `I` → **I usually iron in the morning.**
+Плитки: `soup` `the` `season` `usually` `I` → **I usually season the soup.**
 
-**7 · Запитайте в знайомої «Де аеропорт?»**
+**10 · Картка слова — dessert**
+<!-- interaction_id: en:lesson-07:session-46:word:dessert; family: word_card -->
+> **dessert** — десерт. We often eat dessert. — «Ми часто їмо десерт». Солодка страва після основної їжі.
+
+**11 · Гість питає, що ви їсте після вечері. Скажіть: «Ми часто їмо десерт».**
 <!-- interaction_id: en:lesson-07:session-46:i07; family: scripted_repeat_compare -->
-🎙 **Where is the airport?**
+🎙 **We often eat dessert.**
 
-**8 · Скажіть «Я зазвичай прасую вранці»**
+**12 · Подруга питає про вашу сестру. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-46:i08; family: context_gap_grammar -->
-I usually ___ in the morning. → **iron** · irons · ironing
-- irons — *Після `I` потрібне `iron`.*
-- ironing — *Тут потрібна форма `iron`.*
+My sister often ___ the eggs. → **whisks** · whisk · whisking
+- whisk — *Після `my sister` потрібно `whisks`.*
+- whisking — *Тут потрібна форма `whisks`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-07:session-46:i09; family: listen_choose -->
-🔊 *I usually organize my books.* → **I usually organize my books.** · I usually organize my photos. · I usually organize my clothes.
-- I usually organize my photos. — *У записі останнє слово — `books`, а в цьому варіанті — `photos`.*
-- I usually organize my clothes. — *У записі останнє слово — `books`, а в цьому варіанті — `clothes`.*
+🔊 *I usually season the soup.* → **I usually season the soup.** · I usually season the salad. · I usually stir the soup.
+- I usually season the salad. — *У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат.*
+- I usually stir the soup. — *У записі третє слово — `season`, приправляти, а в цьому варіанті — `stir`, помішувати.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-46:i10; family: speed_match -->
-iron — прасувати · organize — упорядковувати · mug — кухоль · airport — аеропорт
+whisk — збивати · season — приправляти · egg — яйце · soup — суп
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте гостя й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-46:i11; family: listen_build_dictation -->
-🔊 *Where is the airport?* Плитки: `airport` `the` `is` `Where` → **Where is the airport?**
+🔊 *We often eat dessert.* Плитки: `dessert` `eat` `often` `We` → **We often eat dessert.**
 
-**12 · Ви прийшли до пристані. Запитайте працівника «Де пором?»**
+**16 · Ви прийшли на кухню. Спитайте брата: «Де десерт?»**
 <!-- interaction_id: en:lesson-07:session-46:i12; family: phrase_builder -->
-Плитки: `ferry` `the` `is` `Where` → **Where is the ferry?**
+Плитки: `dessert` `the` `is` `Where` → **Where is the dessert?**
 
-**13 · Перш ніж налити чай, запитайте гостя «У тебе є кухоль?»**
+**17 · Ви готуєте пасту. Спитайте брата: «Де сир?»**
 <!-- interaction_id: en:lesson-07:session-46:i13; family: scripted_repeat_compare -->
-🎙 **Do you have a mug?**
+🎙 **Where is the cheese?**
 
-**14 · Скажіть «Я зазвичай розкладаю свої книжки за порядком»**
+**18 · Брат питає про сир. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-46:i14; family: context_gap_grammar -->
-I ___ organize my books. → **usually** · does · am
-- does — *Для «зазвичай» потрібне `usually` перед `organize`.*
-- am — *Для «зазвичай» потрібне `usually`; `am` перед `organize` не ставимо.*
+I ___ grate the cheese. → **usually** · does · am
+- does — *Для «зазвичай» потрібне `usually` перед `grate`.*
+- am — *Для «зазвичай» потрібне `usually`; `am` перед `grate` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте гостя**
 <!-- interaction_id: en:lesson-07:session-46:i15; family: listen_choose -->
-🔊 *Where is the airport?* → **Where is the airport?** · Where is the office? · Where is the ferry?
-- Where is the office? — *У записі останнє слово — `airport`, а в цьому варіанті — `office`.*
-- Where is the ferry? — *У записі останнє слово — `airport`, а в цьому варіанті — `ferry`.*
+🔊 *Where is the dessert?* → **Where is the dessert?** · Where is the pasta? · Where is the pie?
+- Where is the pasta? — *У записі останнє слово — `dessert`, десерт, а в цьому варіанті — `pasta`, макарони.*
+- Where is the pie? — *У записі останнє слово — `dessert`, десерт, а в цьому варіанті — `pie`, пиріг.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-46:i16; family: speed_match -->
-organize — упорядковувати · ferry — пором · iron — прасувати · mug — кухоль
+dessert — десерт · grate — терти на тертці · whisk — збивати · season — приправляти
 
-**17 · Друг запитує про порядок на полиці Тома. Скажіть «Том зазвичай розкладає свої книжки за порядком»**
+**21 · Подруга питає про вашого брата. Скажіть: «Мій брат часто збиває яйця».**
 <!-- interaction_id: en:lesson-07:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually organizes his books.**
-
+🎙 **My brother often whisks the eggs.**

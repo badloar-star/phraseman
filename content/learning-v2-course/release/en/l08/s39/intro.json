@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Очередь у входа",
-        "uk": "Черга біля входу"
+        "ru": "Первый ряд на фотографии",
+        "uk": "Перший ряд на фотографії"
       },
       "bodyByLocale": {
-        "ru": "Друг пытается протиснуться вперёд в очереди и толкает стоящих рядом людей. `Shove` — «грубо толкать». `Don’t shove` — «Не толкайся». После `don’t` нужно `shove`, без `to` и окончаний. Так вы просите прекратить толкаться. Очередь от толчков короче не станет.",
-        "uk": "Друг намагається протиснутися вперед у черзі й штовхає людей поруч. `Shove` — «грубо штовхати». `Don’t shove` — «Не штовхайся». Після `don’t` потрібне `shove`, без `to` і закінчень. Так ви просите припинити штовхатися. Черга від поштовхів коротшою не стане."
+        "ru": "Команда собирается для общей фотографии. Друг хочет попасть в первый ряд и грубо толкает соседей. Shove — «грубо толкать». `Don’t shove` — «Не толкайся». Вы просите прекратить толчки. После don’t нужно shove, без to и s.",
+        "uk": "Команда збирається для спільної фотографії. Друг хоче потрапити в перший ряд і грубо штовхає сусідів. Shove — «грубо штовхати». `Don’t shove` — «Не штовхайся». Ви просите припинити поштовхи. Після don’t потрібне shove, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-39:intro1:q",
         "promptByLocale": {
-          "ru": "Попросите друга: «Не толкайся».",
-          "uk": "Попросіть друга: «Не штовхайся»."
+          "ru": "Скажите другу не толкаться.",
+          "uk": "Скажіть другові не штовхатися."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга: «Не толкайся».",
-          "uk": "Попросіть друга: «Не штовхайся»."
+          "ru": "Скажите другу не толкаться.",
+          "uk": "Скажіть другові не штовхатися."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Форма горячая",
-        "uk": "Форма гаряча"
+        "ru": "Чемодан поперёк выхода",
+        "uk": "Валіза впоперек виходу"
       },
       "bodyByLocale": {
-        "ru": "Вы достали из духовки форму для выпечки. Друг хочет взять её голыми руками. Покажите на форму: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.",
-        "uk": "Ви дістали з духовки форму для випікання. Друг хоче взяти її голими руками. Покажіть на форму: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте."
+        "ru": "В комнате ожидания друг поставил чемодан поперёк двери. Другие люди не могут выйти. Block — «перекрывать, загораживать». `Don’t block the exit` — «Не загораживай выход». Вы просите оставить проход свободным.",
+        "uk": "У кімнаті очікування друг поставив валізу впоперек дверей. Інші люди не можуть вийти. Block — «перекривати, загороджувати». `Don’t block the exit` — «Не загороджуй вихід». Ви просите залишити прохід вільним."
       },
       "question": {
         "interactionId": "en:lesson-08:session-39:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите на форму и скажите «Не трогай это».",
-          "uk": "Покажіть на форму і скажіть «Не чіпай це»."
+          "ru": "Скажите другу не загораживать выход.",
+          "uk": "Скажіть другові не загороджувати вихід."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-39:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t block the exit."
             },
             {
               "responseId": "en:lesson-08:session-39:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t blocks the exit."
             },
             {
               "responseId": "en:lesson-08:session-39:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to block the exit."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-39:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t block the exit."
             },
             {
               "responseId": "en:lesson-08:session-39:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t blocks the exit."
             },
             {
               "responseId": "en:lesson-08:session-39:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to block the exit."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите на форму и скажите «Не трогай это».",
-          "uk": "Покажіть на форму і скажіть «Не чіпай це»."
+          "ru": "Скажите другу не загораживать выход.",
+          "uk": "Скажіть другові не загороджувати вихід."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Собираем полку",
-        "uk": "Складаємо полицю"
+        "ru": "Шумный стул в читальном зале",
+        "uk": "Гучний стілець у читальній залі"
       },
       "bodyByLocale": {
-        "ru": "Вы собираете полку. Друг торопится и пропускает шаги в инструкции. Попросите его не спешить: `Please don’t rush` — «Пожалуйста, не торопись». `Please` смягчает просьбу.",
-        "uk": "Ви складаєте полицю. Друг поспішає й пропускає кроки в інструкції. Попросіть його не поспішати: `Please don’t rush` — «Будь ласка, не поспішай». `Please` пом’якшує прохання."
+        "ru": "В читальном зале друг переставляет стул и тащит его ножками по полу. Это громко. Drag — «тащить, волочить». `Don’t drag the chair` — «Не тащи стул по полу». Вы просите не перемещать его таким способом.",
+        "uk": "У читальній залі друг переставляє стілець і тягне його ніжками по підлозі. Це гучно. Drag — «тягти, волочити». `Don’t drag the chair` — «Не тягни стілець по підлозі». Ви просите не пересувати його таким способом."
       },
       "question": {
         "interactionId": "en:lesson-08:session-39:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга вежливо не торопиться.",
-          "uk": "Ввічливо попросіть друга не поспішати."
+          "ru": "Скажите другу не тащить стул по полу.",
+          "uk": "Скажіть другові не тягти стілець по підлозі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-39:intro3:r1",
-              "text": "Please don’t rush."
+              "text": "Don’t drag the chair."
             },
             {
               "responseId": "en:lesson-08:session-39:intro3:r2",
-              "text": "Please doesn’t rush."
+              "text": "Don’t drags the chair."
             },
             {
               "responseId": "en:lesson-08:session-39:intro3:r3",
-              "text": "Please don’t to rush."
+              "text": "Don’t to drag the chair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-39:intro3:r1",
-              "text": "Please don’t rush."
+              "text": "Don’t drag the chair."
             },
             {
               "responseId": "en:lesson-08:session-39:intro3:r2",
-              "text": "Please doesn’t rush."
+              "text": "Don’t drags the chair."
             },
             {
               "responseId": "en:lesson-08:session-39:intro3:r3",
-              "text": "Please don’t to rush."
+              "text": "Don’t to drag the chair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга вежливо не торопиться.",
-          "uk": "Ввічливо попросіть друга не поспішати."
+          "ru": "Скажите другу не тащить стул по полу.",
+          "uk": "Скажіть другові не тягти стілець по підлозі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "69a4564afa846f6c03ad8fcae8fe95dc946f3283ae0887af751029ffe1c0f537"
+  "introFingerprint": "fd17613a496a16cc52219229a19a649e779e25491033a22e93af34fc74d1fdef"
 }

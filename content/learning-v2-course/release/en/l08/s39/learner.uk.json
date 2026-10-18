@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-39:i01",
+      "interactionId": "en:lesson-08:session-39:word:shove",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shove",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-39:word:shove:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shove",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-39:word:shove:audio",
+          "transcript": "shove"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-39:word:shove:r1",
+            "targetText": "shove",
+            "meaningByLocale": {
+              "ru": "грубо толкать. Don’t shove. — «Не толкайся». Резко отталкивать людей или предметы.",
+              "uk": "грубо штовхати. Don’t shove. — «Не штовхайся». Різко відштовхувати людей або предмети."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shove",
+          "definitionByLocale": {
+            "ru": "грубо толкать. Don’t shove. — «Не толкайся». Резко отталкивать людей или предметы.",
+            "uk": "грубо штовхати. Don’t shove. — «Не штовхайся». Різко відштовхувати людей або предмети."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-39:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -36,7 +79,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +155,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Не штовхайся»",
+      "prompt": "Виберіть форму для прохання «Не штовхайся»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-39:i03:r1",
@@ -133,12 +176,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Не штовхайся»",
+      "accessibilityLabel": "Виберіть форму для прохання «Не штовхайся»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Не толкайся»",
-          "uk": "Скажіть «Не штовхайся»"
+          "ru": "Выберите форму для просьбы «Не толкайся»",
+          "uk": "Виберіть форму для прохання «Не штовхайся»"
         },
         "gappedTargetPhrase": "Don’t ___.",
         "gapOptions": [
@@ -155,12 +198,12 @@
             "text": "to shove"
           }
         ],
-        "testedDimension": "Скажіть «Не штовхайся»",
+        "testedDimension": "Виберіть форму для прохання «Не штовхайся»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-39:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Не штовхайся»",
+            "testedDimension": "Виберіть форму для прохання «Не штовхайся»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `shove`, без `s`.",
               "uk": "Після `don’t` потрібне `shove`, без `s`."
@@ -169,7 +212,7 @@
           {
             "responseId": "en:lesson-08:session-39:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Не штовхайся»",
+            "testedDimension": "Виберіть форму для прохання «Не штовхайся»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `shove`, без `to`.",
               "uk": "Після `don’t` потрібне `shove`, без `to`."
@@ -181,7 +224,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -254,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +330,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-39:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-39:word:block",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — block",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-39:word:block:audio"
+      ],
+      "accessibilityLabel": "Картка слова — block",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-39:word:block:audio",
+          "transcript": "block"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-39:word:block:r1",
+            "targetText": "block",
+            "meaningByLocale": {
+              "ru": "загораживать, перекрывать. Don’t block the exit. — «Не загораживай выход». Мешать пройти или проехать.",
+              "uk": "загороджувати, перекривати. Don’t block the exit. — «Не загороджуй вихід». Заважати пройти або проїхати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "block",
+          "definitionByLocale": {
+            "ru": "загораживать, перекрывать. Don’t block the exit. — «Не загораживай выход». Мешать пройти или проехать.",
+            "uk": "загороджувати, перекривати. Don’t block the exit. — «Не загороджуй вихід». Заважати пройти або проїхати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажіть на форму: «Не чіпай це»",
+      "prompt": "Скажіть «Не загороджуй вихід»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть на форму: «Не чіпай це»",
+      "accessibilityLabel": "Скажіть «Не загороджуй вихід»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t touch this.",
+        "targetPhrase": "Don’t block the exit.",
         "localizedMeaning": {
-          "ru": "Покажите на форму: «Не трогай это»",
-          "uk": "Покажіть на форму: «Не чіпай це»"
+          "ru": "Скажите «Не загораживай выход»",
+          "uk": "Скажіть «Не загороджуй вихід»"
         },
         "orderedTokens": [
           "Don’t",
-          "touch",
-          "this"
+          "block",
+          "the",
+          "exit"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +406,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-39:word:drag",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — drag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-39:word:drag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — drag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-39:word:drag:audio",
+          "transcript": "drag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-39:word:drag:r1",
+            "targetText": "drag",
+            "meaningByLocale": {
+              "ru": "тащить, волочить. Don’t drag the chair. — «Не тащи стул по полу». Перемещать предмет, не поднимая его над поверхностью.",
+              "uk": "тягти, волочити. Don’t drag the chair. — «Не тягни стілець по підлозі». Пересувати предмет, не піднімаючи його над поверхнею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drag",
+          "definitionByLocale": {
+            "ru": "тащить, волочить. Don’t drag the chair. — «Не тащи стул по полу». Перемещать предмет, не поднимая его над поверхностью.",
+            "uk": "тягти, волочити. Don’t drag the chair. — «Не тягни стілець по підлозі». Пересувати предмет, не піднімаючи його над поверхнею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-39:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Під час складання полиці друг поспішає. Скажіть другові «Будь ласка, не поспішай»",
+      "prompt": "Друг із шумом тягне стілець по підлозі. Скажіть «Не тягни стілець по підлозі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-39:i07:audio"
       ],
-      "accessibilityLabel": "Під час складання полиці друг поспішає. Скажіть другові «Будь ласка, не поспішай»",
+      "accessibilityLabel": "Друг із шумом тягне стілець по підлозі. Скажіть «Не тягни стілець по підлозі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-39:i07:audio",
-          "transcript": "Please don’t rush."
+          "transcript": "Don’t drag the chair."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Please don’t rush.",
+        "targetPhrase": "Don’t drag the chair.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,11 +483,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросіть друга не поспішати",
+      "prompt": "Виберіть форму для прохання не поспішати",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-39:i08:r1",
@@ -374,12 +504,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть друга не поспішати",
+      "accessibilityLabel": "Виберіть форму для прохання не поспішати",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите друга не торопиться",
-          "uk": "Попросіть друга не поспішати"
+          "ru": "Выберите форму для просьбы не торопиться",
+          "uk": "Виберіть форму для прохання не поспішати"
         },
         "gappedTargetPhrase": "Please ___ rush.",
         "gapOptions": [
@@ -396,12 +526,12 @@
             "text": "not"
           }
         ],
-        "testedDimension": "Попросіть друга не поспішати",
+        "testedDimension": "Виберіть форму для прохання не поспішати",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-39:i08:r2",
             "correct": false,
-            "testedDimension": "Попросіть друга не поспішати",
+            "testedDimension": "Виберіть форму для прохання не поспішати",
             "feedbackByLocale": {
               "ru": "В обращении нужно `don’t rush`.",
               "uk": "У звертанні потрібне `don’t rush`."
@@ -410,7 +540,7 @@
           {
             "responseId": "en:lesson-08:session-39:i08:r3",
             "correct": false,
-            "testedDimension": "Попросіть друга не поспішати",
+            "testedDimension": "Виберіть форму для прохання не поспішати",
             "feedbackByLocale": {
               "ru": "В этой просьбе нужно `don’t`: `Please don’t rush`.",
               "uk": "У цьому проханні потрібне `don’t`: `Please don’t rush`."
@@ -422,7 +552,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +628,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,14 +642,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-39:i10:p1",
-            "target": "bake",
-            "meaningByLocale": {
-              "ru": "печь",
-              "uk": "випікати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-39:i10:p2",
             "target": "shove",
             "meaningByLocale": {
               "ru": "грубо толкать",
@@ -527,33 +649,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-39:i10:p3",
-            "target": "cycle",
+            "pairId": "en:lesson-08:session-39:i10:p2",
+            "target": "block",
             "meaningByLocale": {
-              "ru": "ездить на велосипеде",
-              "uk": "їздити на велосипеді"
+              "ru": "загораживать",
+              "uk": "загороджувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-39:i10:p3",
+            "target": "drag",
+            "meaningByLocale": {
+              "ru": "волочить",
+              "uk": "волочити"
             }
           },
           {
             "pairId": "en:lesson-08:session-39:i10:p4",
-            "target": "boiler",
+            "target": "rush",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "торопиться",
+              "uk": "поспішати"
             }
           }
         ],
         "leftColumn": [
-          "bake",
           "shove",
-          "cycle",
-          "boiler"
+          "block",
+          "drag",
+          "rush"
         ],
         "rightColumn": [
-          "випікати",
           "грубо штовхати",
-          "їздити на велосипеді",
-          "опалювальний котел"
+          "загороджувати",
+          "волочити",
+          "поспішати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +701,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -605,26 +735,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-39:word:trample",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trample",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-39:word:trample:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trample",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-39:word:trample:audio",
+          "transcript": "trample"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-39:word:trample:r1",
+            "targetText": "trample",
+            "meaningByLocale": {
+              "ru": "топтать, вытаптывать. Don’t trample the flowers. — «Не топчи цветы». Наступать так, что можно повредить растения или вещи.",
+              "uk": "топтати, витоптувати. Don’t trample the flowers. — «Не топчи квіти». Наступати так, що можна пошкодити рослини або речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trample",
+          "definitionByLocale": {
+            "ru": "топтать, вытаптывать. Don’t trample the flowers. — «Не топчи цветы». Наступать так, что можно повредить растения или вещи.",
+            "uk": "топтати, витоптувати. Don’t trample the flowers. — «Не топчи квіти». Наступати так, що можна пошкодити рослини або речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-39:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На столі вода. Дайте вказівку «Витри його»",
+      "prompt": "Друг іде через клумбу. Скажіть «Не топчи квіти»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На столі вода. Дайте вказівку «Витри його»",
+      "accessibilityLabel": "Друг іде через клумбу. Скажіть «Не топчи квіти»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Wipe it.",
+        "targetPhrase": "Don’t trample the flowers.",
         "localizedMeaning": {
-          "ru": "На столе вода. Дайте указание «Вытри его»",
-          "uk": "На столі вода. Дайте вказівку «Витри його»"
+          "ru": "Друг идёт через клумбу. Скажите «Не топчи цветы»",
+          "uk": "Друг іде через клумбу. Скажіть «Не топчи квіти»"
         },
         "orderedTokens": [
-          "Wipe",
-          "it"
+          "Don’t",
+          "trample",
+          "the",
+          "flowers"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -637,25 +812,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я часто випікаю» — використайте bake",
+      "prompt": "Друг поспішає розставити людей для фотографії й плутає місця. Скажіть «Будь ласка, не поспішай»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-39:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я часто випікаю» — використайте bake",
+      "accessibilityLabel": "Друг поспішає розставити людей для фотографії й плутає місця. Скажіть «Будь ласка, не поспішай»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-39:i13:audio",
-          "transcript": "I often bake."
+          "transcript": "Please don’t rush."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often bake.",
+        "targetPhrase": "Please don’t rush.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -670,67 +845,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попередьте «Не чіпай це»",
+      "prompt": "Виберіть форму для прохання не загороджувати вихід",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-39:i14:r1",
-          "text": "touch"
+          "text": "block"
         },
         {
           "responseId": "en:lesson-08:session-39:i14:r2",
-          "text": "touches"
+          "text": "blocks"
         },
         {
           "responseId": "en:lesson-08:session-39:i14:r3",
-          "text": "to touch"
+          "text": "to block"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попередьте «Не чіпай це»",
+      "accessibilityLabel": "Виберіть форму для прохання не загороджувати вихід",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Предупредите «Не трогай это»",
-          "uk": "Попередьте «Не чіпай це»"
+          "ru": "Выберите форму для просьбы не загораживать выход",
+          "uk": "Виберіть форму для прохання не загороджувати вихід"
         },
-        "gappedTargetPhrase": "Don’t ___ this.",
+        "gappedTargetPhrase": "Don’t ___ the exit.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-39:i14:r1",
-            "text": "touch"
+            "text": "block"
           },
           {
             "responseId": "en:lesson-08:session-39:i14:r2",
-            "text": "touches"
+            "text": "blocks"
           },
           {
             "responseId": "en:lesson-08:session-39:i14:r3",
-            "text": "to touch"
+            "text": "to block"
           }
         ],
-        "testedDimension": "Попередьте «Не чіпай це»",
+        "testedDimension": "Виберіть форму для прохання не загороджувати вихід",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-39:i14:r2",
             "correct": false,
-            "testedDimension": "Попередьте «Не чіпай це»",
+            "testedDimension": "Виберіть форму для прохання не загороджувати вихід",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `es`.",
-              "uk": "Після `don’t` потрібне `touch`, без `es`."
+              "ru": "После don’t нужно block, без s.",
+              "uk": "Після don’t потрібне block, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-39:i14:r3",
             "correct": false,
-            "testedDimension": "Попередьте «Не чіпай це»",
+            "testedDimension": "Виберіть форму для прохання не загороджувати вихід",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `to`.",
-              "uk": "Після `don’t` потрібне `touch`, без `to`."
+              "ru": "После don’t не нужно to.",
+              "uk": "Після don’t не потрібне to."
             }
           }
         ]
@@ -739,7 +914,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -815,7 +990,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -837,40 +1012,40 @@
           },
           {
             "pairId": "en:lesson-08:session-39:i16:p2",
-            "target": "bake",
+            "target": "block",
             "meaningByLocale": {
-              "ru": "печь",
-              "uk": "випікати"
+              "ru": "загораживать",
+              "uk": "загороджувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-39:i16:p3",
-            "target": "wipe",
+            "target": "drag",
             "meaningByLocale": {
-              "ru": "вытереть",
-              "uk": "витерти"
+              "ru": "волочить",
+              "uk": "волочити"
             }
           },
           {
             "pairId": "en:lesson-08:session-39:i16:p4",
-            "target": "boiler",
+            "target": "trample",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "топтать",
+              "uk": "топтати"
             }
           }
         ],
         "leftColumn": [
           "shove",
-          "bake",
-          "wipe",
-          "boiler"
+          "block",
+          "drag",
+          "trample"
         ],
         "rightColumn": [
           "грубо штовхати",
-          "випікати",
-          "витерти",
-          "опалювальний котел"
+          "загороджувати",
+          "волочити",
+          "топтати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -888,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-39:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -928,11 +1103,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "40bd71965552c90d8abbf1a395ea00c6becbbd5ea330178b549e3d4e63826f70"
+  "learnerFingerprint": "25fe50987390651f18fefbaae935ea4443d62bcba9f487c684a0821ab1b25250"
 }

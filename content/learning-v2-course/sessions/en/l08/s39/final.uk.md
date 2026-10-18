@@ -1,133 +1,149 @@
 # Англійська · Урок 8 · Заняття 39 — Не штовхайся
 
-**Ситуація.** Ви просите не штовхатися біля входу, не чіпати гарячу форму й не поспішати зі складанням.
+**Ситуація.** Не штовхатися перед груповою фотографією, звільнити вихід і переставити стілець без волочіння.
 
 **Що ви опануєте:** попросити людину не штовхатися й повторити інші прохання з don’t
-**Нові слова:** shove
+**Нові слова:** shove, block, drag, trample
 
 ---
 
 ## Інтро 1
 
-### Черга біля входу
+### Перший ряд на фотографії
 
-Друг намагається протиснутися вперед у черзі й штовхає людей поруч. `Shove` — «грубо штовхати». `Don’t shove` — «Не штовхайся». Після `don’t` потрібне `shove`, без `to` і закінчень. Так ви просите припинити штовхатися. Черга від поштовхів коротшою не стане.
+Команда збирається для спільної фотографії. Друг хоче потрапити в перший ряд і грубо штовхає сусідів. Shove — «грубо штовхати». `Don’t shove` — «Не штовхайся». Ви просите припинити поштовхи. Після don’t потрібне shove, без to і s.
 
-**Попросіть друга: «Не штовхайся».**
+**Скажіть другові не штовхатися.**
 
 - ✅ **Don’t shove.**
-- ❌ Don’t shoves. — *Після `don’t` потрібне `shove`, без `s`.*
-- ❌ Don’t to shove. — *Після `don’t` потрібне `shove`, без `to`.*
+- ❌ Don’t shoves. — *Після don’t потрібна форма без s/es.*
+- ❌ Don’t to shove. — *Після don’t не потрібне to.*
 
 ---
 
 ## Інтро 2
 
-### Форма гаряча
+### Валіза впоперек виходу
 
-Ви дістали з духовки форму для випікання. Друг хоче взяти її голими руками. Покажіть на форму: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте.
+У кімнаті очікування друг поставив валізу впоперек дверей. Інші люди не можуть вийти. Block — «перекривати, загороджувати». `Don’t block the exit` — «Не загороджуй вихід». Ви просите залишити прохід вільним.
 
-**Покажіть на форму і скажіть «Не чіпай це».**
+**Скажіть другові не загороджувати вихід.**
 
-- ✅ **Don’t touch this.**
-- ❌ Don’t touches this. — *Після `don’t` потрібне `touch`, без `es`.*
-- ❌ Not touch this. — *У такому проханні потрібне `Don’t touch this`.*
+- ✅ **Don’t block the exit.**
+- ❌ Don’t blocks the exit. — *Після don’t потрібна форма без s/es.*
+- ❌ Don’t to block the exit. — *Після don’t не потрібне to.*
 
 ---
 
 ## Інтро 3
 
-### Складаємо полицю
+### Гучний стілець у читальній залі
 
-Ви складаєте полицю. Друг поспішає й пропускає кроки в інструкції. Попросіть його не поспішати: `Please don’t rush` — «Будь ласка, не поспішай». `Please` пом’якшує прохання.
+У читальній залі друг переставляє стілець і тягне його ніжками по підлозі. Це гучно. Drag — «тягти, волочити». `Don’t drag the chair` — «Не тягни стілець по підлозі». Ви просите не пересувати його таким способом.
 
-**Ввічливо попросіть друга не поспішати.**
+**Скажіть другові не тягти стілець по підлозі.**
 
-- ✅ **Please don’t rush.**
-- ❌ Please doesn’t rush. — *У звертанні до людини потрібне `don’t rush`.*
-- ❌ Please don’t to rush. — *Після `don’t` потрібне `rush`, без `to`.*
+- ✅ **Don’t drag the chair.**
+- ❌ Don’t drags the chair. — *Після don’t потрібна форма без s/es.*
+- ❌ Don’t to drag the chair. — *Після don’t не потрібне to.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Попросіть друга: «Не штовхайся»**
+**1 · Картка слова — shove**
+<!-- interaction_id: en:lesson-08:session-39:word:shove; family: word_card -->
+> **shove** — грубо штовхати. Don’t shove. — «Не штовхайся». Різко відштовхувати людей або предмети.
+
+**2 · Попросіть друга: «Не штовхайся»**
 <!-- interaction_id: en:lesson-08:session-39:i01; family: phrase_builder -->
 Плитки: `shove` `Don’t` → **Don’t shove.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-39:i02; family: listen_choose -->
 🔊 *shove* → **shove** · cycle · wipe
 - cycle — *У записі перше слово — `shove`, а в цьому варіанті — `cycle`.*
 - wipe — *У записі перше слово — `shove`, а в цьому варіанті — `wipe`.*
 
-**3 · Скажіть «Не штовхайся»**
+**4 · Виберіть форму для прохання «Не штовхайся»**
 <!-- interaction_id: en:lesson-08:session-39:i03; family: context_gap_grammar -->
 Don’t ___. → **shove** · shoves · to shove
 - shoves — *Після `don’t` потрібне `shove`, без `s`.*
 - to shove — *Після `don’t` потрібне `shove`, без `to`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-39:i04; family: speed_match -->
 shove — грубо штовхати · boiler — опалювальний котел · cycle — їздити на велосипеді · wipe — витерти
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-39:i05; family: listen_build_dictation -->
 🔊 *Don’t shove.* Плитки: `shove` `Don’t` → **Don’t shove.**
 
-**6 · Покажіть на форму: «Не чіпай це»**
+**7 · Картка слова — block**
+<!-- interaction_id: en:lesson-08:session-39:word:block; family: word_card -->
+> **block** — загороджувати, перекривати. Don’t block the exit. — «Не загороджуй вихід». Заважати пройти або проїхати.
+
+**8 · Скажіть «Не загороджуй вихід»**
 <!-- interaction_id: en:lesson-08:session-39:i06; family: phrase_builder -->
-Плитки: `this` `touch` `Don’t` → **Don’t touch this.**
+Плитки: `exit` `the` `block` `Don’t` → **Don’t block the exit.**
 
-**7 · Під час складання полиці друг поспішає. Скажіть другові «Будь ласка, не поспішай»**
+**9 · Картка слова — drag**
+<!-- interaction_id: en:lesson-08:session-39:word:drag; family: word_card -->
+> **drag** — тягти, волочити. Don’t drag the chair. — «Не тягни стілець по підлозі». Пересувати предмет, не піднімаючи його над поверхнею.
+
+**10 · Друг із шумом тягне стілець по підлозі. Скажіть «Не тягни стілець по підлозі»**
 <!-- interaction_id: en:lesson-08:session-39:i07; family: scripted_repeat_compare -->
-🎙 **Please don’t rush.**
+🎙 **Don’t drag the chair.**
 
-**8 · Попросіть друга не поспішати**
+**11 · Виберіть форму для прохання не поспішати**
 <!-- interaction_id: en:lesson-08:session-39:i08; family: context_gap_grammar -->
 Please ___ rush. → **don’t** · doesn’t · not
 - doesn’t — *У звертанні потрібне `don’t rush`.*
 - not — *У цьому проханні потрібне `don’t`: `Please don’t rush`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-39:i09; family: listen_choose -->
 🔊 *Don’t shove.* → **Don’t shove.** · Don’t wait. · Don’t rush.
 - Don’t wait. — *У записі останнє слово — `shove`, а в цьому варіанті — `wait`.*
 - Don’t rush. — *У записі останнє слово — `shove`, а в цьому варіанті — `rush`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-39:i10; family: speed_match -->
-bake — випікати · shove — грубо штовхати · cycle — їздити на велосипеді · boiler — опалювальний котел
+shove — грубо штовхати · block — загороджувати · drag — волочити · rush — поспішати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-39:i11; family: listen_build_dictation -->
 🔊 *Please don’t rush.* Плитки: `rush` `don’t` `Please` → **Please don’t rush.**
 
-**12 · На столі вода. Дайте вказівку «Витри його»**
+**15 · Картка слова — trample**
+<!-- interaction_id: en:lesson-08:session-39:word:trample; family: word_card -->
+> **trample** — топтати, витоптувати. Don’t trample the flowers. — «Не топчи квіти». Наступати так, що можна пошкодити рослини або речі.
+
+**16 · Друг іде через клумбу. Скажіть «Не топчи квіти»**
 <!-- interaction_id: en:lesson-08:session-39:i12; family: phrase_builder -->
-Плитки: `it` `Wipe` → **Wipe it.**
+Плитки: `flowers` `the` `trample` `Don’t` → **Don’t trample the flowers.**
 
-**13 · Скажіть «Я часто випікаю» — використайте bake**
+**17 · Друг поспішає розставити людей для фотографії й плутає місця. Скажіть «Будь ласка, не поспішай»**
 <!-- interaction_id: en:lesson-08:session-39:i13; family: scripted_repeat_compare -->
-🎙 **I often bake.**
+🎙 **Please don’t rush.**
 
-**14 · Попередьте «Не чіпай це»**
+**18 · Виберіть форму для прохання не загороджувати вихід**
 <!-- interaction_id: en:lesson-08:session-39:i14; family: context_gap_grammar -->
-Don’t ___ this. → **touch** · touches · to touch
-- touches — *Після `don’t` потрібне `touch`, без `es`.*
-- to touch — *Після `don’t` потрібне `touch`, без `to`.*
+Don’t ___ the exit. → **block** · blocks · to block
+- blocks — *Після don’t потрібне block, без s.*
+- to block — *Після don’t не потрібне to.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-39:i15; family: listen_choose -->
 🔊 *Don’t rush.* → **Don’t rush.** · Don’t wait. · Don’t shout.
 - Don’t wait. — *У записі останнє слово — `rush`, а в цьому варіанті — `wait`.*
 - Don’t shout. — *У записі останнє слово — `rush`, а в цьому варіанті — `shout`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-39:i16; family: speed_match -->
-shove — грубо штовхати · bake — випікати · wipe — витерти · boiler — опалювальний котел
+shove — грубо штовхати · block — загороджувати · drag — волочити · trample — топтати
 
-**17 · Друг штовхає людей, намагаючись першим увійти в автобус. Попросіть друга: «Не штовхайся»**
+**21 · Друг штовхає людей, намагаючись першим увійти в автобус. Попросіть друга: «Не штовхайся»**
 <!-- interaction_id: en:lesson-08:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Don’t shove.**
 

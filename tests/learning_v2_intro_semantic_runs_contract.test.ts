@@ -1,10 +1,12 @@
+import { LEARNING_V2_INTERFACE_LOCALES } from "../modules/learning-v2/content/generator_course_contract";
 import {
   encodeLearningV2CourseSessionIntroChildV1,
   materializeLearningV2CourseSessionIntroChildV1,
   parseLearningV2CourseSessionIntroChildV1,
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 
-const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+// зачем (18.10, Ревизор 3.81): с 9a9824828 (23.08) локалей объяснения 9 (добавлен en) — список берём из кода, а не зашиваем.
+const locales = LEARNING_V2_INTERFACE_LOCALES;
 
 const localized = (prefix: string) =>
   Object.freeze(

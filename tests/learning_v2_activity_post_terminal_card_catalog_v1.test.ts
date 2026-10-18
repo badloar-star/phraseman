@@ -1,3 +1,4 @@
+import { LEARNING_V2_INTERFACE_LOCALES } from "../modules/learning-v2/content/generator_course_contract";
 import {
   canonicalJsonV1,
   hashCanonicalBody,
@@ -22,7 +23,8 @@ import {
   resolveLearningV2ActivityPostTerminalCardV1,
 } from "../modules/learning-v2/runtime/activity_post_terminal_card_capsule_v1";
 
-const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+// зачем (18.10, Ревизор 3.81): с 9a9824828 (23.08) локалей объяснения 9 (добавлен en) — список берём из кода, а не зашиваем.
+const locales = LEARNING_V2_INTERFACE_LOCALES;
 
 function fixture(scope = "primary") {
   const entries: LearningV2ActivityLearnerActionEntryV1[] = Array.from(

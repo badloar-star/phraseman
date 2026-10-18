@@ -181,14 +181,16 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
     if (hasLadder) at(T.topLine, () => { setPhase((v) => ({ ...v, topLine: true })); flash.value = withSequence(withTiming(1, { duration: 0 }), withDelay(FREEZE_MS, withTiming(0, { duration: 0 }))); playMomentSound(MOMENT_SOUND_EVENTS.promoFlip); void hapticMediumImpact(); });
     at(T.act2, () => { setPhase((v) => ({ ...v, act: 2, cheer: true })); playMomentSound(MOMENT_SOUND_EVENTS.promoCorrect); void hapticSuccess(); });
     at(T.act3, () => {
-      setPhase((v) => ({ ...v, act: 3, tower: true, skip: false }));
+      setPhase((v) => ({ ...v, act: 3, tower: true }));
       towerIn.value = withTiming(1, { duration: 900, easing: Easing.out(Easing.cubic) });
       void hapticTap();
     });
     at(T.marker, () => { setPhase((v) => ({ ...v, marker: true })); markerIn.value = withTiming(1, { duration: 520, easing: Easing.bezier(0.34, 1.56, 0.64, 1) }); playMomentSound(MOMENT_SOUND_EVENTS.promoMarker); void hapticMediumImpact(); });
     at(T.tag, () => { setPhase((v) => ({ ...v, tag: true })); tagIn.value = withTiming(1, { duration: 300 }); });
     at(T.final, () => {
-      setPhase((v) => ({ ...v, final: true }));
+      // зачем (координатор 18.10, проверка выпуска: «закрытие доступно сразу»): «Пропустить» уходило на акте 3, а «Играть» появлялось только здесь —
+      // ~2,6 с без единой кнопки (на iOS нет «назад»). Теперь «Пропустить» держится до финала, как в эталоне: кнопка сменяет кнопку.
+      setPhase((v) => ({ ...v, final: true, skip: false }));
       finalIn.value = withTiming(1, { duration: 500, easing: Easing.out(Easing.cubic) });
       rumble.play();
       setFire(true);

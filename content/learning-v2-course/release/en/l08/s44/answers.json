@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-44:word:operate",
+    "correctText": "operate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-44:i01",
     "correctText": "I can operate it.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-44:word:reset",
+    "correctText": "reset",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-44:i06",
-    "correctText": "She can drive.",
+    "correctText": "She can reset the timer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-44:word:dial",
+    "correctText": "dial",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-44:i07",
-    "correctText": "I can whistle.",
+    "correctText": "I can turn the dial.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-44:i08",
-    "correctText": "drive",
+    "correctText": "reset",
     "correctResponseId": "en:lesson-08:session-44:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-44:i10",
-    "correctText": "en:lesson-08:session-44:i10:p1=scratch\nen:lesson-08:session-44:i10:p2=operate\nen:lesson-08:session-44:i10:p3=hat\nen:lesson-08:session-44:i10:p4=freezer",
+    "correctText": "en:lesson-08:session-44:i10:p1=operate\nen:lesson-08:session-44:i10:p2=reset\nen:lesson-08:session-44:i10:p3=dial\nen:lesson-08:session-44:i10:p4=polish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-44:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can reset the timer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-44:word:lever",
+    "correctText": "lever",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-44:i12",
-    "correctText": "Don’t scratch it.",
+    "correctText": "I can move the lever.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-44:i14",
-    "correctText": "whistle",
+    "correctText": "turn",
     "correctResponseId": "en:lesson-08:session-44:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-44:i16",
-    "correctText": "en:lesson-08:session-44:i16:p1=operate\nen:lesson-08:session-44:i16:p2=polish\nen:lesson-08:session-44:i16:p3=scratch\nen:lesson-08:session-44:i16:p4=freezer",
+    "correctText": "en:lesson-08:session-44:i16:p1=operate\nen:lesson-08:session-44:i16:p2=reset\nen:lesson-08:session-44:i16:p3=dial\nen:lesson-08:session-44:i16:p4=lever",
     "correctResponseId": null
   },
   {

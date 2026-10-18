@@ -1,133 +1,149 @@
 # Англійська · Урок 8 · Заняття 44 — Я вмію з цим працювати
 
-**Ситуація.** Ви допомагаєте ввімкнути проєктор, говорите про вміння подруги водити й пропонуєте свиснути для запису.
+**Ситуація.** Запропонувати допомогу зі швейною машиною, скинути таймер і повернути тугу ручку радіо.
 
 **Що ви опануєте:** повторити can для вміння та залишити дію без to і закінчень
-**Нові слова:** operate
+**Нові слова:** operate, reset, dial, lever
 
 ---
 
 ## Інтро 1
 
-### Проєктор перед зустріччю
+### Швейна машина на майстер-класі
 
-Перед зустріччю друг не знає, як користуватися проєктором. Ви вже працювали з ним. `Operate` тут — «працювати з пристроєм». Скажіть: `I can operate it` — «Я вмію з цим працювати». Тут `it` означає проєктор. Після `can` потрібне `operate`, без `to`. Кнопок багато, але натискати всі одразу не доведеться.
+На майстер-класі потрібно обрати людину, яка знайома зі швейною машиною. Ви вже користувалися такою моделлю. Operate — «керувати пристроєм, працювати з ним». `I can operate it` — «Я вмію з цим працювати». It означає швейну машину. Після can потрібне operate, без to і s.
 
-**Скажіть, що вмієте працювати з цим пристроєм.**
+**Виберіть фразу для цієї ситуації.**
 
 - ✅ **I can operate it.**
-- ❌ I can to operate it. — *Після `can` потрібне `operate`, без `to`.*
-- ❌ I can operates it. — *Після `can` потрібне `operate`, без `s`.*
+- ❌ I can to operate it. — *Після can не потрібне to.*
+- ❌ I can operates it. — *Після can дія залишається без s.*
 
 ---
 
 ## Інтро 2
 
-### Поїздка за місто
+### Таймер перед новим раундом
 
-Ви плануєте поїздку за місто. Друг запитує, чи вміє ваша подруга водити машину. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`.
+Раунд настільної гри закінчився. Перед наступним раундом потрібно повернути таймер до початкового значення. Reset — «скинути, повернути до початкового стану». Подруга знає, як це зробити: `She can reset the timer` — «Вона може скинути таймер». Після can потрібне reset, навіть із she.
 
-**Скажіть, що вона вміє водити.**
+**Виберіть фразу для цієї ситуації.**
 
-- ✅ **She can drive.**
-- ❌ She can drives. — *Після `can` потрібне `drive`, без `s`.*
-- ❌ She can to drive. — *Після `can` потрібне `drive`, без `to`.*
+- ✅ **She can reset the timer.**
+- ❌ She can to reset the timer. — *Після can не потрібне to.*
+- ❌ She can resets the timer. — *Після can дія залишається без s.*
 
 ---
 
 ## Інтро 3
 
-### Звук для ролика
+### Туга ручка старого радіо
 
-Друг записує звуки для короткого ролика. Йому потрібен свист, і ви пропонуєте допомогти. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння.
+На старому радіо кругла ручка налаштування повертається туго. Друг просить допомогти. Dial тут — «кругла ручка налаштування». `I can turn the dial` — «Я можу повернути ручку налаштування». Знайоме turn означає повернути предмет, а не звернути на дорозі.
 
-**Скажіть, що вмієте свистіти.**
+**Виберіть фразу для цієї ситуації.**
 
-- ✅ **I can whistle.**
-- ❌ I can to whistle. — *Після `can` потрібне `whistle`, без `to`.*
-- ❌ I can whistles. — *Після `can` потрібне `whistle`, без `s`.*
+- ✅ **I can turn the dial.**
+- ❌ I can to turn the dial. — *Після can не потрібне to.*
+- ❌ I can turns the dial. — *Після can дія залишається без s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Складіть «Я вмію з цим працювати»**
+**1 · Картка слова — operate**
+<!-- interaction_id: en:lesson-08:session-44:word:operate; family: word_card -->
+> **operate** — керувати пристроєм, працювати з ним. I can operate it. — «Я вмію з цим працювати».
+
+**2 · Складіть «Я вмію з цим працювати»**
 <!-- interaction_id: en:lesson-08:session-44:i01; family: phrase_builder -->
 Плитки: `it` `operate` `can` `I` → **I can operate it.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-44:i02; family: listen_choose -->
 🔊 *operate* → **operate** · hat · polish
 - hat — *У записі перше слово — `operate`, а в цьому варіанті — `hat`.*
 - polish — *У записі перше слово — `operate`, а в цьому варіанті — `polish`.*
 
-**3 · Скажіть, що вмієте працювати з цим пристроєм**
+**4 · Виберіть форму для фрази «Я вмію з цим працювати»**
 <!-- interaction_id: en:lesson-08:session-44:i03; family: context_gap_grammar -->
 I can ___ it. → **operate** · to operate · operates
 - to operate — *Після `can` потрібне `operate`, без `to`.*
 - operates — *Після `can` потрібне `operate`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-44:i04; family: speed_match -->
 operate — працювати з пристроєм · freezer — морозильна камера · hat — головний убір · polish — полірувати
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-44:i05; family: listen_build_dictation -->
 🔊 *I can operate it.* Плитки: `it` `operate` `can` `I` → **I can operate it.**
 
-**6 · Скажіть про подругу «Вона вміє водити»**
+**7 · Картка слова — reset**
+<!-- interaction_id: en:lesson-08:session-44:word:reset; family: word_card -->
+> **reset** — скинути, повернути до початкового стану. She can reset the timer. — «Вона може скинути таймер».
+
+**8 · Скажіть «Вона може скинути таймер»**
 <!-- interaction_id: en:lesson-08:session-44:i06; family: phrase_builder -->
-Плитки: `drive` `can` `She` → **She can drive.**
+Плитки: `timer` `the` `reset` `can` `She` → **She can reset the timer.**
 
-**7 · Скажіть «Я вмію свистіти»**
+**9 · Картка слова — dial**
+<!-- interaction_id: en:lesson-08:session-44:word:dial; family: word_card -->
+> **dial** — кругла ручка налаштування. I can turn the dial. — «Я можу повернути ручку налаштування». Тут dial — предмет, який повертають.
+
+**10 · Скажіть «Я можу повернути ручку налаштування»**
 <!-- interaction_id: en:lesson-08:session-44:i07; family: scripted_repeat_compare -->
-🎙 **I can whistle.**
+🎙 **I can turn the dial.**
 
-**8 · Скажіть, що вона вміє водити**
+**11 · Виберіть форму для фрази «Вона може скинути таймер»**
 <!-- interaction_id: en:lesson-08:session-44:i08; family: context_gap_grammar -->
-She can ___. → **drive** · drives · to drive
-- drives — *Після `can` потрібне `drive`, навіть із `she`.*
-- to drive — *Після `can` потрібне `drive`, без `to`.*
+She can ___ the timer. → **reset** · resets · to reset
+- resets — *Після can потрібне reset, навіть із she.*
+- to reset — *Після can не потрібне to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-44:i09; family: listen_choose -->
 🔊 *I can operate it.* → **I can operate it.** · I can operate this. · I can operate that.
 - I can operate this. — *У записі останнє слово — `it`, а в цьому варіанті — `this`.*
 - I can operate that. — *У записі останнє слово — `it`, а в цьому варіанті — `that`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-44:i10; family: speed_match -->
-scratch — дряпати · operate — працювати з пристроєм · hat — головний убір · freezer — морозильна камера
+operate — керувати пристроєм · reset — повертати до початкового стану · dial — кругла ручка налаштування · polish — полірувати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-44:i11; family: listen_build_dictation -->
-🔊 *She can drive.* Плитки: `drive` `can` `She` → **She can drive.**
+🔊 *She can reset the timer.* Плитки: `timer` `the` `reset` `can` `She` → **She can reset the timer.**
 
-**12 · Друг рухає проєктор по столу. Покажіть на стіл і скажіть «Не подряпай це»**
+**15 · Картка слова — lever**
+<!-- interaction_id: en:lesson-08:session-44:word:lever; family: word_card -->
+> **lever** — важіль. I can move the lever. — «Я можу пересунути важіль». Ручка, рухом якої керують механізмом.
+
+**16 · У моделі підіймального крана є важіль. Скажіть «Я можу пересунути важіль»**
 <!-- interaction_id: en:lesson-08:session-44:i12; family: phrase_builder -->
-Плитки: `it` `scratch` `Don’t` → **Don’t scratch it.**
+Плитки: `lever` `the` `move` `can` `I` → **I can move the lever.**
 
-**13 · Ви вмієте полірувати стіл. Скажіть «Я можу його відполірувати»**
+**17 · Ви вмієте полірувати стіл. Скажіть «Я можу його відполірувати»**
 <!-- interaction_id: en:lesson-08:session-44:i13; family: scripted_repeat_compare -->
 🎙 **I can polish it.**
 
-**14 · Скажіть, що вмієте свистіти**
+**18 · Виберіть форму для фрази «Я можу повернути ручку налаштування»**
 <!-- interaction_id: en:lesson-08:session-44:i14; family: context_gap_grammar -->
-I can ___. → **whistle** · whistles · to whistle
-- whistles — *Після `can` потрібне `whistle`, без `s`.*
-- to whistle — *Після `can` потрібне `whistle`, без `to`.*
+I can ___ the dial. → **turn** · turns · to turn
+- turns — *Після can потрібне turn, без s.*
+- to turn — *Після can не потрібне to.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-44:i15; family: listen_choose -->
 🔊 *I can swim.* → **I can swim.** · I can drive. · I can whistle.
 - I can drive. — *У записі останнє слово — `swim`, а в цьому варіанті — `drive`.*
 - I can whistle. — *У записі останнє слово — `swim`, а в цьому варіанті — `whistle`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-44:i16; family: speed_match -->
-operate — працювати з пристроєм · polish — полірувати · scratch — дряпати · freezer — морозильна камера
+operate — керувати пристроєм · reset — повертати до початкового стану · dial — кругла ручка налаштування · lever — важіль
 
-**17 · Друг не знає, як користуватися новим принтером. Ви знайомі з такою моделлю. Скажіть «Я вмію з цим працювати»**
+**21 · Друг не знає, як користуватися новим принтером. Ви знайомі з такою моделлю. Скажіть «Я вмію з цим працювати»**
 <!-- interaction_id: en:lesson-08:session-44:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I can operate it.**
 

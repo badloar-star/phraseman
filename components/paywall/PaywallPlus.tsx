@@ -23,16 +23,16 @@ import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial
 import { DebugLogger } from '../../app/debug-logger';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../../app/config';
 import { openLegalLink } from '../../app/open_legal_link';
-import SkeletonBlock from '../SkeletonShimmer';
+import { PaywallPlanRows, PaywallPlanRowsSkeleton, PLAN_ROWS_BLOCK_HEIGHT } from './PaywallPlanRows';
 import { LinearGradient } from '../SafeLinearGradient';
 import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
 import V2Pressable from '../v2/V2Pressable';
-import { nestedBoxShadow, PlateFill, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
+import { PlateFill } from '../v2/ShadowSurface';
 import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
 import { PaywallPlusBenefits, PaywallPlusComparison } from './PaywallBenefitComparison';
 import {
   COPY, chargeLine, ctaBuyMonth, ctaBuyYear, ctaStartTrial, fineAfterTrial, fineThenMonth, heroTrialTitle,
-  pick, reminderDayTitle, trialFreeLabel, yearPerMonthApprox,
+  pick, reminderDayTitle,
 } from './PaywallPlusCopy';
 
 export type GlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -159,7 +159,7 @@ export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({
 // ── тарифы ──────────────────────────────────────────────────────────────────
 export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   lang, g, selected, onSelect, disabled, yearlyPrice, yearlyPerMonth, monthlyPrice, yearlyTrialDays, monthlyTrialDays,
-  yearlyPromo, monthlyPromo, yearlyPriceSource, monthlyPriceSource,
+  yearlyPromo, monthlyPromo, yearlyPriceSource, monthlyPriceSource, savingsPct = null,
 }: {
   lang: Lang; g: GlassTokens; selected: PaywallPlan; onSelect: (plan: PaywallPlan) => void; disabled: boolean;
   yearlyPrice: string; yearlyPerMonth: string; monthlyPrice: string;
@@ -167,21 +167,12 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   /** Скидка стора на первый период (владелец 2026-09-04: «написано = спишется»). */
   yearlyPromo: StorePromoPricing | null; monthlyPromo: StorePromoPricing | null;
   /** Откуда цена плитки (Ядро a0a910e9d): 'reference' — справочная, перед ней «≈». Не передан — как живая. */
-  yearlyPriceSource?: PaywallPriceSource; monthlyPriceSource?: PaywallPriceSource;
+  yearlyPriceSource?: PaywallPriceSource; monthlyPriceSource?: PaywallPriceSource; savingsPct?: number | null;
 }) {
-  const yearOn = selected === 'yearly';
-  const monthOn = selected === 'monthly';
   // Выбранный тариф: тон подложки + тонкая светлая кромка (исключение 2.0: 1px полупрозрачная).
   // зачем (решение владельца 05.10, OM-PROMO-PRESENT): над тарифами плашка «Скидка действует сейчас» —
   // процент, цена со скидкой и зачёркнутая обычная, ниже «далее {обычная}». Только вид данных стора: нет промо — нет плашки.
   const promo = (selected === 'monthly' ? monthlyPromo : yearlyPromo) ?? yearlyPromo ?? monthlyPromo;
-  // зачем (владелец 12.10, стиль «Тень»): выбранный тариф — приподнятая плашка (градиент raised, тень raised, сдвиг вверх), а не плашка с кольцом.
-  // Невыбранный — обычная плашка. Сдвиг — только transform на внешней обёртке, высота ряда не меняется.
-  const tileShadow = (on: boolean) => ({ boxShadow: on ? raisedBoxShadow(g) : nestedBoxShadow(g) });
-  const tileOuter = (on: boolean) => [S.planCell, on ? { transform: [{ translateY: RAISED_LIFT }], zIndex: 2 } : null];
-  // «≈» только у справочной цены: перед живой и кэш-ценой его нет.
-  const yearApprox = yearlyPriceSource === 'reference' ? '≈ ' : '';
-  const monthApprox = monthlyPriceSource === 'reference' ? '≈ ' : '';
   return (
     <View>
       {promo ? (
@@ -197,63 +188,11 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           <Text style={[S.promoThen, { color: g.secondary }]}>{`${pick(lang, COPY.promoThen)} ${promo.standardPriceString}`}</Text>
         </View>
       ) : null}
-      {/* зачем (макет paywall-context-redesign #c1, `.pl2`): «Год» и «Месяц» рядом двумя плашками, выбранная — тоном и кромкой. */}
-      <View style={S.planRow}>
-        <V2Pressable
-          testID="paywall-plan-yearly"
-          accessibilityRole="radio"
-          accessibilityState={{ selected: yearOn, checked: yearOn, disabled }}
-          disabled={disabled || !yearlyPrice}
-          onPress={() => onSelect('yearly')}
-          withHaptic={false}
-          scaleTo={0.98}
-          outerStyle={tileOuter(yearOn)}
-          // зачем (Макеты 13.10, paywalls-013): пока идёт оплата/восстановление — плашки приглушены до ответа магазина, как на макете.
-          style={[S.card, S.planCol, tileShadow(yearOn), disabled ? S.planDisabled : null]}
-        >
-          <PlateFill g={g} radius={22} raised={yearOn} />
-          <View style={S.planNameRow}>
-            <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.year)}</Text>
-            <View style={[S.badge, { backgroundColor: markFill(g) }]}>
-              <Text style={[S.badgeText, { color: markInk(g) }]}>{pick(lang, COPY.bestValue)}</Text>
-            </View>
-          </View>
-          {yearlyPromo ? <Text testID="paywall-year-standard" style={[S.priceStrike, { color: g.mutedText }]}>{yearlyPromo.standardPriceString}</Text> : null}
-          <Text testID="paywall-year-price" style={[S.priceBig, { color: g.text }]}>{yearlyPromo?.promoPriceString || `${yearApprox}${yearlyPrice}`}</Text>
-          <Text style={[S.priceSmall, { color: g.secondary }]}>{pick(lang, COPY.perYear)}</Text>
-          {/* Мелко: «≈ X в месяц». Главная цена года — крупно (магазины требуют именно так). */}
-          {yearlyPerMonth ? <Text style={[S.planSmall, { color: g.secondary }]}>{yearPerMonthApprox(lang, yearlyPerMonth)}</Text> : null}
-          {yearlyTrialDays ? (
-            <View testID="paywall-trial-plate" style={S.trialLine}>
-              <Ionicons name="gift-outline" size={16} color={g.accentText} />
-              <Text style={[S.trialLineText, { color: g.accentText }]}>{trialFreeLabel(lang, yearlyTrialDays)}</Text>
-            </View>
-          ) : null}
-        </V2Pressable>
-
-        <V2Pressable
-          testID="paywall-plan-monthly"
-          accessibilityRole="radio"
-          accessibilityState={{ selected: monthOn, checked: monthOn, disabled }}
-          disabled={disabled || !monthlyPrice}
-          onPress={() => onSelect('monthly')}
-          withHaptic={false}
-          scaleTo={0.98}
-          outerStyle={tileOuter(monthOn)}
-          style={[S.card, S.planCol, tileShadow(monthOn), disabled ? S.planDisabled : null]}
-        >
-          <PlateFill g={g} radius={22} raised={monthOn} />
-          <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.month)}</Text>
-          {monthlyPromo ? <Text style={[S.priceStrike, { color: g.mutedText }]}>{monthlyPromo.standardPriceString}</Text> : null}
-          <Text testID="paywall-month-price" style={[S.priceMonth, { color: g.text }]}>{monthlyPromo?.promoPriceString || `${monthApprox}${monthlyPrice}`}</Text>
-          <Text style={[S.priceSmall, { color: g.secondary }]}>{pick(lang, COPY.perMonth)}</Text>
-          {/* зачем (владелец 18.10): «Без пробного периода» путало — нет пробного у пакета, значит строки нет вовсе.
-              Условия списания остаются в раскрытии под кнопкой (требование магазинов). */}
-          {monthlyTrialDays ? (
-            <Text testID="paywall-month-trial" style={[S.planSmall, { color: g.secondary }]}>{trialFreeLabel(lang, monthlyTrialDays)}</Text>
-          ) : null}
-        </V2Pressable>
-      </View>
+      <PaywallPlanRows lang={lang} g={g} selected={selected} onSelect={onSelect} disabled={disabled}
+        yearlyPrice={yearlyPrice} yearlyPerMonth={yearlyPerMonth} monthlyPrice={monthlyPrice}
+        yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
+        yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo}
+        yearlyPriceSource={yearlyPriceSource} monthlyPriceSource={monthlyPriceSource} savingsPct={savingsPct} />
     </View>
   );
 });
@@ -262,16 +201,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
 // зачем (Сверка 11.10: «плитки пустые, нет скелета»): прежний мигающий прямоугольник тона opaqueControl при самом тусклом такте был почти
 // неотличим от шторки. Теперь общий shimmer-блок проекта (бегущий блик, Reanimated, уважает «уменьшить движение») с явными цветами по теме.
 export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({ g }: { g: GlassTokens }) {
-  const baseColor = paywallPlateBg(g);
-  const highlightColor = g.isLight ? g.opaqueSheet : `${g.text}24`;
-  return (
-    <View testID="paywall-plans-skeleton" accessibilityRole="progressbar">
-      <View style={S.planRow}>
-        <View style={S.planCell}><SkeletonBlock width="100%" height={PLAN_CARD_HEIGHT} borderRadius={22} baseColor={baseColor} highlightColor={highlightColor} /></View>
-        <View style={S.planCell}><SkeletonBlock width="100%" height={PLAN_CARD_HEIGHT} borderRadius={22} baseColor={baseColor} highlightColor={highlightColor} /></View>
-      </View>
-    </View>
-  );
+  return <PaywallPlanRowsSkeleton g={g} />;
 });
 
 // ── цен нет совсем: тихая строка на месте плиток ───────────────────────────
@@ -284,7 +214,7 @@ export const PaywallPlusPriceNote = memo(function PaywallPlusPriceNote({ lang, g
 }) {
   const storeMissing = reason === 'billing_unavailable';
   return (
-    <View testID="paywall-plans-note" style={[S.noteBox, S.planRowTop, { minHeight: PLAN_CARD_HEIGHT }]}>
+    <View testID="paywall-plans-note" style={[S.noteBox, S.planRowTop, { minHeight: PLAN_ROWS_BLOCK_HEIGHT }]}>
       <Text style={[S.unavailableSub, { color: g.mutedText }]}>{pick(lang, storeMissing ? COPY.storeUnavailable : COPY.priceWillConfirm)}</Text>
     </View>
   );

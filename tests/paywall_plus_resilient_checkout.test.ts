@@ -69,6 +69,7 @@ jest.mock('../app/paywall_pricing', () => ({
   computePerDayString: jest.fn(() => ''),
 }));
 jest.mock('../app/paywall_trial_info', () => ({
+  ...jest.requireActual('../app/paywall_trial_info'),
   getTrialInfo: (...a: unknown[]) => mockGetTrialInfo(...a),
   trialDaysOrDefault: jest.fn(() => 3),
 }));

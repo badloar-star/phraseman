@@ -56,9 +56,10 @@ describe('Paywall trial: the number on screen is the number the store charges by
   });
 
   it('the monthly tile never says «no free trial»: no trial in the package means no line at all', () => {
-    const tiles = read('components/paywall/PaywallPlus.tsx');
+    const tiles = read('components/paywall/PaywallPlanRows.tsx');
     expect(tiles).not.toMatch(/COPY\.noTrial/);
-    expect(tiles).toMatch(/\{monthlyTrialDays \? \(\s*<Text testID="paywall-month-trial"/);
+    expect(tiles).toContain('trialDays={monthlyTrialDays}');
+    expect(tiles).toMatch(/\{trialDays \? <Text[\s\S]*?trialFreeLabel\(lang, trialDays\)[\s\S]*?: null\}/);
   });
 
   it('[PAYWALL-TRIAL] names what the store gave for the package', () => {

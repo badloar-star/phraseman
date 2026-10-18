@@ -267,7 +267,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                   yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
                   yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
                   yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo}
-                  yearlyPriceSource={p.yearlyPriceSource} monthlyPriceSource={p.monthlyPriceSource} />
+                  yearlyPriceSource={p.yearlyPriceSource} monthlyPriceSource={p.monthlyPriceSource} savingsPct={p.savingsPct} />
               ) : null}
               {/* зачем (владелец 11.10, Ядро a0a910e9d): справочная цена — честная тихая строка под плитками; причину «магазина нет» оставляем тихо же. */}
               {plansShown === 'ready' && (p.pricesApproximate || p.storeUnavailableReason === 'billing_unavailable') ? (

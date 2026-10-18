@@ -1,0 +1,1160 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-19:word:workout",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — workout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:word:workout:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — workout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:word:workout:audio",
+          "transcript": "workout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:word:workout:r1",
+            "targetText": "workout",
+            "meaningByLocale": {
+              "ru": "тренировка, занятие физическими упражнениями. This is my workout. — «Это моя тренировка».",
+              "uk": "тренування, заняття фізичними вправами. This is my workout. — «Це моє тренування»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "workout",
+          "definitionByLocale": {
+            "ru": "тренировка, занятие физическими упражнениями. This is my workout. — «Это моя тренировка».",
+            "uk": "тренування, заняття фізичними вправами. This is my workout. — «Це моє тренування»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите свою программу упражнений: «Это моя тренировка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите свою программу упражнений: «Это моя тренировка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is my workout.",
+        "localizedMeaning": {
+          "ru": "Покажите свою программу упражнений: «Это моя тренировка»",
+          "uk": "Покажіть свою програму вправ: «Це моє тренування»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "workout"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-19:i02:r1",
+          "text": "workout"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i02:r2",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i02:r3",
+          "text": "walk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i02:audio",
+          "transcript": "workout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:i02:r1",
+            "targetText": "workout",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i02:r2",
+            "targetText": "work",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i02:r3",
+            "targetText": "walk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит workout",
+              "uk": "У записі звучить workout"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит workout",
+              "uk": "У записі звучить workout"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для действия сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-19:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для действия сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для действия сейчас",
+          "uk": "Виберіть форму для дії зараз"
+        },
+        "gappedTargetPhrase": "I ___ sweating.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-19:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите форму для действия сейчас",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма am.",
+              "uk": "Із I потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма am.",
+              "uk": "Із I потрібна форма am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-19:i04:p1",
+            "target": "workout",
+            "meaningByLocale": {
+              "ru": "тренировка",
+              "uk": "тренування"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i04:p2",
+            "target": "sweat",
+            "meaningByLocale": {
+              "ru": "потеть",
+              "uk": "пітніти"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i04:p3",
+            "target": "towel",
+            "meaningByLocale": {
+              "ru": "полотенце",
+              "uk": "рушник"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i04:p4",
+            "target": "gym",
+            "meaningByLocale": {
+              "ru": "спортзал",
+              "uk": "спортзал"
+            }
+          }
+        ],
+        "leftColumn": [
+          "workout",
+          "sweat",
+          "towel",
+          "gym"
+        ],
+        "rightColumn": [
+          "тренировка",
+          "потеть",
+          "полотенце",
+          "спортзал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i05:audio",
+          "transcript": "I am sweating."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am sweating.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "sweating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:word:ventilation",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ventilation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:word:ventilation:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ventilation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:word:ventilation:audio",
+          "transcript": "ventilation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:word:ventilation:r1",
+            "targetText": "ventilation",
+            "meaningByLocale": {
+              "ru": "вентиляция. Is the ventilation working? — «Вентиляция работает?»",
+              "uk": "вентиляція. Is the ventilation working? — «Вентиляція працює?»"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ventilation",
+          "definitionByLocale": {
+            "ru": "вентиляция. Is the ventilation working? — «Вентиляция работает?»",
+            "uk": "вентиляція. Is the ventilation working? — «Вентиляція працює?»"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, работает ли вентиляция сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, работает ли вентиляция сейчас",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is the ventilation working?",
+        "localizedMeaning": {
+          "ru": "Спросите, работает ли вентиляция сейчас",
+          "uk": "Запитайте, чи працює вентиляція зараз"
+        },
+        "orderedTokens": [
+          "Is",
+          "the",
+          "ventilation",
+          "working"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:word:sweatshirt",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sweatshirt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:word:sweatshirt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sweatshirt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:word:sweatshirt:audio",
+          "transcript": "sweatshirt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:word:sweatshirt:r1",
+            "targetText": "sweatshirt",
+            "meaningByLocale": {
+              "ru": "свитшот, кофта спортивного типа. I wear a sweatshirt. — «Я ношу свитшот».",
+              "uk": "світшот, кофта спортивного типу. I wear a sweatshirt. — «Я ношу світшот»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweatshirt",
+          "definitionByLocale": {
+            "ru": "свитшот, кофта спортивного типа. I wear a sweatshirt. — «Я ношу свитшот».",
+            "uk": "світшот, кофта спортивного типу. I wear a sweatshirt. — «Я ношу світшот»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите, что обычно надеваете: «Я ношу свитшот»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Расскажите, что обычно надеваете: «Я ношу свитшот»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i07:audio",
+          "transcript": "I wear a sweatshirt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wear a sweatshirt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите пропущенную форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-19:i08:r1",
+          "text": "sweating"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i08:r2",
+          "text": "sweat"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i08:r3",
+          "text": "sweats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите пропущенную форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите пропущенную форму",
+          "uk": "Виберіть пропущену форму"
+        },
+        "gappedTargetPhrase": "I am not ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-19:i08:r1",
+            "text": "sweating"
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i08:r2",
+            "text": "sweat"
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i08:r3",
+            "text": "sweats"
+          }
+        ],
+        "testedDimension": "Выберите пропущенную форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите пропущенную форму",
+            "feedbackByLocale": {
+              "ru": "После am not нужна форма sweating.",
+              "uk": "Після am not потрібна форма sweating."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите пропущенную форму",
+            "feedbackByLocale": {
+              "ru": "После am not здесь нужно sweating, не sweats.",
+              "uk": "Після am not тут потрібне sweating, не sweats."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-19:i09:r1",
+          "text": "I am not sweating."
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i09:r2",
+          "text": "I am sweating."
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i09:r3",
+          "text": "Are you sweating?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i09:audio",
+          "transcript": "I am not sweating."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:i09:r1",
+            "targetText": "I am not sweating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i09:r2",
+            "targetText": "I am sweating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i09:r3",
+            "targetText": "Are you sweating?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not sweating.",
+              "uk": "У записі звучить I am not sweating."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not sweating.",
+              "uk": "У записі звучить I am not sweating."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-19:i10:p1",
+            "target": "workout",
+            "meaningByLocale": {
+              "ru": "тренировка",
+              "uk": "тренування"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i10:p2",
+            "target": "ventilation",
+            "meaningByLocale": {
+              "ru": "вентиляция",
+              "uk": "вентиляція"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i10:p3",
+            "target": "sweatshirt",
+            "meaningByLocale": {
+              "ru": "свитшот",
+              "uk": "світшот"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i10:p4",
+            "target": "towel",
+            "meaningByLocale": {
+              "ru": "полотенце",
+              "uk": "рушник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "workout",
+          "ventilation",
+          "sweatshirt",
+          "towel"
+        ],
+        "rightColumn": [
+          "тренировка",
+          "вентиляция",
+          "свитшот",
+          "полотенце"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i11:audio",
+          "transcript": "Is the ventilation working?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is the ventilation working?",
+        "orderedTokens": [
+          "Is",
+          "the",
+          "ventilation",
+          "working"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:word:deodorant",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — deodorant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:word:deodorant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — deodorant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:word:deodorant:audio",
+          "transcript": "deodorant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:word:deodorant:r1",
+            "targetText": "deodorant",
+            "meaningByLocale": {
+              "ru": "дезодорант. This is my deodorant. — «Это мой дезодорант». Название предмета в сумке.",
+              "uk": "дезодорант. This is my deodorant. — «Це мій дезодорант». Назва предмета в сумці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deodorant",
+          "definitionByLocale": {
+            "ru": "дезодорант. This is my deodorant. — «Это мой дезодорант». Название предмета в сумке.",
+            "uk": "дезодорант. This is my deodorant. — «Це мій дезодорант». Назва предмета в сумці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-19:i12:r1",
+          "text": "deodorant"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i12:r2",
+          "text": "detergent"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i12:r3",
+          "text": "decoration"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i12:audio",
+          "transcript": "deodorant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:i12:r1",
+            "targetText": "deodorant",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i12:r2",
+            "targetText": "detergent",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i12:r3",
+            "targetText": "decoration",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит deodorant",
+              "uk": "У записі звучить deodorant"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит deodorant",
+              "uk": "У записі звучить deodorant"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Среди вещей в сумке покажите свой дезодорант: «Это мой дезодорант»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i13:audio"
+      ],
+      "accessibilityLabel": "Среди вещей в сумке покажите свой дезодорант: «Это мой дезодорант»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i13:audio",
+          "transcript": "This is my deodorant."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is my deodorant.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Завершите просьбу не открывать окно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-19:i14:r1",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i14:r2",
+          "text": "opening"
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i14:r3",
+          "text": "opens"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Завершите просьбу не открывать окно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Завершите просьбу не открывать окно",
+          "uk": "Завершіть прохання не відчиняти вікно"
+        },
+        "gappedTargetPhrase": "Please don’t ___ the window.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-19:i14:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i14:r2",
+            "text": "opening"
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i14:r3",
+            "text": "opens"
+          }
+        ],
+        "testedDimension": "Завершите просьбу не открывать окно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-19:i14:r2",
+            "correct": false,
+            "testedDimension": "Завершите просьбу не открывать окно",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна базовая форма open.",
+              "uk": "Після don’t потрібна базова форма open."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i14:r3",
+            "correct": false,
+            "testedDimension": "Завершите просьбу не открывать окно",
+            "feedbackByLocale": {
+              "ru": "После don’t не добавляем -s.",
+              "uk": "Після don’t не додаємо -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-19:i15:r1",
+          "text": "I wear a sweatshirt."
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i15:r2",
+          "text": "I wear a fleece."
+        },
+        {
+          "responseId": "en:lesson-09:session-19:i15:r3",
+          "text": "I wear a tracksuit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i15:audio",
+          "transcript": "I wear a sweatshirt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-19:i15:r1",
+            "targetText": "I wear a sweatshirt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i15:r2",
+            "targetText": "I wear a fleece.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i15:r3",
+            "targetText": "I wear a tracksuit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-19:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wear a sweatshirt.",
+              "uk": "У записі звучить I wear a sweatshirt."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-19:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wear a sweatshirt.",
+              "uk": "У записі звучить I wear a sweatshirt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-19:i16:p1",
+            "target": "workout",
+            "meaningByLocale": {
+              "ru": "тренировка",
+              "uk": "тренування"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i16:p2",
+            "target": "ventilation",
+            "meaningByLocale": {
+              "ru": "вентиляция",
+              "uk": "вентиляція"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i16:p3",
+            "target": "sweatshirt",
+            "meaningByLocale": {
+              "ru": "свитшот",
+              "uk": "світшот"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-19:i16:p4",
+            "target": "deodorant",
+            "meaningByLocale": {
+              "ru": "дезодорант",
+              "uk": "дезодорант"
+            }
+          }
+        ],
+        "leftColumn": [
+          "workout",
+          "ventilation",
+          "sweatshirt",
+          "deodorant"
+        ],
+        "rightColumn": [
+          "тренировка",
+          "вентиляция",
+          "свитшот",
+          "дезодорант"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В автобусе душно. Спросите водителя: «Вентиляция работает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "В автобусе душно. Спросите водителя: «Вентиляция работает?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-19:i17:audio",
+          "transcript": "Is the ventilation working?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is the ventilation working?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "728a2fd1cfdf641d2dcfaab82a66ace4f8e50125060042ee2ca7110d7b9e5d00"
+}

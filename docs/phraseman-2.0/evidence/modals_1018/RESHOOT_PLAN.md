@@ -30,3 +30,6 @@ s33 (L01, карточки слов перед заданием, голос), L0
 
 ## 7. Завершение
 `font_scale` 1.0; язык ru; тема по умолчанию; `release`.
+
+## 0б. Заказ Дизайна 9568084d3 (поставить ПЕРВЫМ после «эмулятор свободен», до светлой темы)
+Свежий бандл → холодный старт. (1) [SCROLL-RESTORE]: язык ru → es → ru (через /settings_language), Настройки и Главная; ожидание: Настройки сверху (lang_change reset:true, tab_visible savedY=0), Главная не уезжает (при рывке — home:correct_to_top). (2) «Сегодня» → «назад» ×4: grep "[HOME-CHILD-COST]|[HOME-FOCUS-COST]|[BACK-BTN]" — теперь должны быть decision и arrived на «Сегодня» и строки стоимости детей Главной (header, continue_card, feature_tiles, video_rail, today_card).

@@ -4,40 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-52:i01",
+      "interactionId": "en:lesson-05:session-52:word:flippers",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flippers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:word:flippers:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flippers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:word:flippers:audio",
+          "transcript": "flippers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-52:word:flippers:r1",
+            "targetText": "flippers",
+            "meaningByLocale": {
+              "ru": "ласты. The flippers are in the bag. — «Ласты в сумке». Резиновая обувь для плавания, похожая на плавники.",
+              "uk": "ласти. The flippers are in the bag. — «Ласти в сумці». Гумове взуття для плавання, схоже на плавці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flippers",
+          "definitionByLocale": {
+            "ru": "ласты. The flippers are in the bag. — «Ласты в сумке». Резиновая обувь для плавания, похожая на плавники.",
+            "uk": "ласти. The flippers are in the bag. — «Ласти в сумці». Гумове взуття для плавання, схоже на плавці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про вагу: «Цей велосипед легкий»",
+      "prompt": "Молодший брат шукає ласти. Скажіть йому: «Ласти в сумці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про вагу: «Цей велосипед легкий»",
+      "accessibilityLabel": "Молодший брат шукає ласти. Скажіть йому: «Ласти в сумці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This bicycle is light.",
+        "targetPhrase": "The flippers are in the bag.",
         "localizedMeaning": {
-          "ru": "Скажите о весе: «Этот велосипед лёгкий»",
-          "uk": "Скажіть про вагу: «Цей велосипед легкий»"
+          "ru": "Младший брат ищет ласты. Скажите ему: «Ласты в сумке»",
+          "uk": "Молодший брат шукає ласти. Скажіть йому: «Ласти в сумці»"
         },
         "orderedTokens": [
-          "This",
-          "bicycle",
-          "is",
-          "light"
+          "The",
+          "flippers",
+          "are",
+          "in",
+          "the",
+          "bag"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-52:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть про вагу: «Цей велосипед легкий»",
+            "testedDimension": "Молодший брат шукає ласти. Скажіть йому: «Ласти в сумці»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This bicycle is light.`",
-              "uk": "тут потрібно `is` — `This bicycle is light.`"
+              "ru": "здесь нужно `are` — `The flippers are in the bag.`",
+              "uk": "тут потрібно `are` — `The flippers are in the bag.`"
             }
           }
         ],
@@ -49,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-52:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-52:word:armbands",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — armbands",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:word:armbands:audio"
+      ],
+      "accessibilityLabel": "Картка слова — armbands",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:word:armbands:audio",
+          "transcript": "armbands"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-52:word:armbands:r1",
+            "targetText": "armbands",
+            "meaningByLocale": {
+              "ru": "нарукавники для плавания. The armbands are small. — «Нарукавники маленькие». Надувные кольца на руки ребёнку.",
+              "uk": "нарукавники для плавання. The armbands are small. — «Нарукавники маленькі». Надувні кільця на руки дитині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "armbands",
+          "definitionByLocale": {
+            "ru": "нарукавники для плавания. The armbands are small. — «Нарукавники маленькие». Надувные кольца на руки ребёнку.",
+            "uk": "нарукавники для плавання. The armbands are small. — «Нарукавники маленькі». Надувні кільця на руки дитині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-52:i02:r1",
-          "text": "pool"
+          "text": "Whose armbands are these?"
         },
         {
           "responseId": "en:lesson-05:session-52:i02:r2",
-          "text": "park"
+          "text": "Where are the armbands?"
         },
         {
           "responseId": "en:lesson-05:session-52:i02:r3",
-          "text": "nursery"
+          "text": "Whose flippers are these?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i02:audio",
-          "transcript": "pool"
+          "transcript": "Whose armbands are these?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-52:i02:r1",
-            "targetText": "pool",
+            "targetText": "Whose armbands are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-52:i02:r2",
-            "targetText": "park",
+            "targetText": "Where are the armbands?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-52:i02:r3",
-            "targetText": "nursery",
+            "targetText": "Whose flippers are these?",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-52:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pool`, а в этом варианте — `park`.",
-              "uk": "У записі перше слово — `pool`, а в цьому варіанті — `park`."
+              "ru": "Это вопрос «Где нарукавники?», а в записи спрашивают о хозяине: `Whose`.",
+              "uk": "Це питання «Де нарукавники?», а в записі питають про господаря: `Whose`."
             }
           },
           {
             "responseId": "en:lesson-05:session-52:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pool`, а в этом варианте — `nursery`.",
-              "uk": "У записі перше слово — `pool`, а в цьому варіанті — `nursery`."
+              "ru": "В записи вещь — `armbands`, нарукавники, а в этом варианте — `flippers`, ласты.",
+              "uk": "У записі річ — `armbands`, нарукавники, а в цьому варіанті — `flippers`, ласти."
             }
           }
         ],
@@ -125,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-52:word:lifebelt",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lifebelt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:word:lifebelt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lifebelt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:word:lifebelt:audio",
+          "transcript": "lifebelt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-52:word:lifebelt:r1",
+            "targetText": "lifebelt",
+            "meaningByLocale": {
+              "ru": "спасательный круг. The lifebelt is red. — «Спасательный круг красный». Надувное кольцо, за которое держатся в воде.",
+              "uk": "рятувальне коло. The lifebelt is red. — «Рятувальне коло червоне». Надувне кільце, за яке тримаються у воді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lifebelt",
+          "definitionByLocale": {
+            "ru": "спасательный круг. The lifebelt is red. — «Спасательный круг красный». Надувное кольцо, за которое держатся в воде.",
+            "uk": "рятувальне коло. The lifebelt is red. — «Рятувальне коло червоне». Надувне кільце, за яке тримаються у воді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-52:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть басейн для плавання",
+      "prompt": "Рятувальник тримає коло. Воно належить сусідам. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-52:i03:r1",
-          "text": "pool"
+          "text": "theirs"
         },
         {
           "responseId": "en:lesson-05:session-52:i03:r2",
-          "text": "park"
+          "text": "their"
         },
         {
           "responseId": "en:lesson-05:session-52:i03:r3",
-          "text": "nursery"
+          "text": "they"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть басейн для плавання",
+      "accessibilityLabel": "Рятувальник тримає коло. Воно належить сусідам. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите бассейн для плавания",
-          "uk": "Назвіть басейн для плавання"
+          "ru": "Спасатель держит круг. Он принадлежит соседям. Выберите слово",
+          "uk": "Рятувальник тримає коло. Воно належить сусідам. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The lifebelt is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-52:i03:r1",
-            "text": "pool"
+            "text": "theirs"
           },
           {
             "responseId": "en:lesson-05:session-52:i03:r2",
-            "text": "park"
+            "text": "their"
           },
           {
             "responseId": "en:lesson-05:session-52:i03:r3",
-            "text": "nursery"
+            "text": "they"
           }
         ],
-        "testedDimension": "Назвіть басейн для плавання",
+        "testedDimension": "Рятувальник тримає коло. Воно належить сусідам. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-52:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть басейн для плавання",
+            "testedDimension": "Рятувальник тримає коло. Воно належить сусідам. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`park` — парк; бассейн — `pool`.",
-              "uk": "`park` — парк; басейн — `pool`."
+              "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+              "uk": "Без назви речі потрібно `theirs`, а не `their`."
             }
           },
           {
             "responseId": "en:lesson-05:session-52:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть басейн для плавання",
+            "testedDimension": "Рятувальник тримає коло. Воно належить сусідам. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`nursery` здесь — детский сад; бассейн — `pool`.",
-              "uk": "`nursery` тут — дитячий садок; басейн — `pool`."
+              "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+              "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
             }
           }
         ]
@@ -195,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +340,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-52:i04:p1",
-            "target": "pool",
+            "target": "flippers",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "ласты",
+              "uk": "ласти"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i04:p2",
-            "target": "bicycle",
+            "target": "armbands",
             "meaningByLocale": {
-              "ru": "велосипед",
-              "uk": "велосипед"
+              "ru": "нарукавники для плавания",
+              "uk": "нарукавники для плавання"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i04:p3",
-            "target": "stations",
+            "target": "lifebelt",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "спасательный круг",
+              "uk": "рятувальне коло"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i04:p4",
-            "target": "nursery",
+            "target": "deckchair",
             "meaningByLocale": {
-              "ru": "детский сад",
-              "uk": "дитячий садок"
+              "ru": "шезлонг",
+              "uk": "шезлонг"
             }
           }
         ],
         "leftColumn": [
-          "pool",
-          "bicycle",
-          "stations",
-          "nursery"
+          "flippers",
+          "armbands",
+          "lifebelt",
+          "deckchair"
         ],
         "rightColumn": [
-          "басейн",
-          "велосипед",
-          "станції",
-          "дитячий садок"
+          "ласти",
+          "нарукавники для плавання",
+          "рятувальне коло",
+          "шезлонг"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +398,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-52:word:deckchair",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — deckchair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:word:deckchair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — deckchair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:word:deckchair:audio",
+          "transcript": "deckchair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-52:word:deckchair:r1",
+            "targetText": "deckchair",
+            "meaningByLocale": {
+              "ru": "шезлонг. The deckchair is under the tree. — «Шезлонг под деревом». Складной лежак для отдыха на солнце.",
+              "uk": "шезлонг. The deckchair is under the tree. — «Шезлонг під деревом». Складний лежак для відпочинку на сонці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deckchair",
+          "definitionByLocale": {
+            "ru": "шезлонг. The deckchair is under the tree. — «Шезлонг под деревом». Складной лежак для отдыха на солнце.",
+            "uk": "шезлонг. The deckchair is under the tree. — «Шезлонг під деревом». Складний лежак для відпочинку на сонці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-52:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте брата й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i05:audio",
-          "transcript": "Where is the pool?"
+          "transcript": "The deckchair is under the tree."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the pool?",
+        "hiddenTargetPhrase": "The deckchair is under the tree.",
         "orderedTokens": [
-          "Where",
+          "The",
+          "deckchair",
           "is",
+          "under",
           "the",
-          "pool"
+          "tree"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте брата й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The deckchair is under the tree.`",
+              "uk": "тут потрібно `is` — `The deckchair is under the tree.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,42 +492,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Дитячий садок поруч із парком»",
+      "prompt": "Ласти лежать на піску вдалині. Спитайте сестру: «Чиї там ласти?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Дитячий садок поруч із парком»",
+      "accessibilityLabel": "Ласти лежать на піску вдалині. Спитайте сестру: «Чиї там ласти?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The nursery is next to the park.",
+        "targetPhrase": "Whose flippers are those?",
         "localizedMeaning": {
-          "ru": "Скажите «Детский сад рядом с парком»",
-          "uk": "Скажіть «Дитячий садок поруч із парком»"
+          "ru": "Ласты лежат на песке вдалеке. Спросите сестру: «Чьи там ласты?»",
+          "uk": "Ласти лежать на піску вдалині. Спитайте сестру: «Чиї там ласти?»"
         },
         "orderedTokens": [
-          "The",
-          "nursery",
-          "is",
-          "next",
-          "to",
-          "the",
-          "park"
+          "Whose",
+          "flippers",
+          "are",
+          "those"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Where"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-52:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Дитячий садок поруч із парком»",
+            "testedDimension": "Ласти лежать на піску вдалині. Спитайте сестру: «Чиї там ласти?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The nursery is next to the park.`",
-              "uk": "тут потрібно `is` — `The nursery is next to the park.`"
+              "ru": "здесь нужно `Whose` — `Whose flippers are those?`",
+              "uk": "тут потрібно `Whose` — `Whose flippers are those?`"
             }
           }
         ],
@@ -352,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Анна в басейні», маючи на увазі місце, а не обов’язково воду",
+      "prompt": "Сусідка питає, чий це шезлонг. Він її. Скажіть: «Шезлонг її»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Анна в басейні», маючи на увазі місце, а не обов’язково воду",
+      "accessibilityLabel": "Сусідка питає, чий це шезлонг. Він її. Скажіть: «Шезлонг її»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i07:audio",
-          "transcript": "Anna is at the pool."
+          "transcript": "The deckchair is hers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Anna is at the pool.",
+        "targetPhrase": "The deckchair is hers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -385,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, де станції",
+      "prompt": "Ласти лежать на піску. Вони ваші з братом. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-52:i08:r1",
-          "text": "are"
+          "text": "ours"
         },
         {
           "responseId": "en:lesson-05:session-52:i08:r2",
-          "text": "is"
+          "text": "our"
         },
         {
           "responseId": "en:lesson-05:session-52:i08:r3",
-          "text": "am"
+          "text": "we"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, де станції",
+      "accessibilityLabel": "Ласти лежать на піску. Вони ваші з братом. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, где станции",
-          "uk": "Запитайте, де станції"
+          "ru": "Ласты лежат на песке. Они ваши с братом. Выберите слово",
+          "uk": "Ласти лежать на піску. Вони ваші з братом. Виберіть слово"
         },
-        "gappedTargetPhrase": "Where ___ the stations?",
+        "gappedTargetPhrase": "The flippers are ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-52:i08:r1",
-            "text": "are"
+            "text": "ours"
           },
           {
             "responseId": "en:lesson-05:session-52:i08:r2",
-            "text": "is"
+            "text": "our"
           },
           {
             "responseId": "en:lesson-05:session-52:i08:r3",
-            "text": "am"
+            "text": "we"
           }
         ],
-        "testedDimension": "Запитайте, де станції",
+        "testedDimension": "Ласти лежать на піску. Вони ваші з братом. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-52:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте, де станції",
+            "testedDimension": "Ласти лежать на піску. Вони ваші з братом. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`stations` — множественное число: `are`.",
-              "uk": "`stations` — множина: `are`."
+              "ru": "Без названия вещи нужно `ours`, а не `our`.",
+              "uk": "Без назви речі потрібно `ours`, а не `our`."
             }
           },
           {
             "responseId": "en:lesson-05:session-52:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте, де станції",
+            "testedDimension": "Ласти лежать на піску. Вони ваші з братом. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `are`.",
-              "uk": "`am` використовується з `I`; тут `are`."
+              "ru": "`we` значит «мы», а «наши» без вещи — `ours`.",
+              "uk": "`we` означає «ми», а «наші» без речі — `ours`."
             }
           }
         ]
@@ -454,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, який транспорт називає Анна",
+      "prompt": "Послухайте рятувальника",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-52:i09:r1",
-          "text": "This is Tom's bicycle."
+          "text": "The lifebelt is theirs."
         },
         {
           "responseId": "en:lesson-05:session-52:i09:r2",
-          "text": "This is Tom's scooter."
+          "text": "The lifebelt is ours."
         },
         {
           "responseId": "en:lesson-05:session-52:i09:r3",
-          "text": "This is Tom's motorbike."
+          "text": "The deckchair is theirs."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, який транспорт називає Анна",
+      "accessibilityLabel": "Послухайте рятувальника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i09:audio",
-          "transcript": "This is Tom's bicycle."
+          "transcript": "The lifebelt is theirs."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-52:i09:r1",
-            "targetText": "This is Tom's bicycle.",
+            "targetText": "The lifebelt is theirs.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-52:i09:r2",
-            "targetText": "This is Tom's scooter.",
+            "targetText": "The lifebelt is ours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-52:i09:r3",
-            "targetText": "This is Tom's motorbike.",
+            "targetText": "The deckchair is theirs.",
             "meaningByLocale": null
           }
         ],
@@ -507,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-52:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, який транспорт називає Анна",
+            "testedDimension": "Послухайте рятувальника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `scooter`.",
-              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `scooter`."
+              "ru": "В записи последнее слово — `theirs`, а в этом варианте — `ours`.",
+              "uk": "У записі останнє слово — `theirs`, а в цьому варіанті — `ours`."
             }
           },
           {
             "responseId": "en:lesson-05:session-52:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, який транспорт називає Анна",
+            "testedDimension": "Послухайте рятувальника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `motorbike`.",
-              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `motorbike`."
+              "ru": "В записи вещь — `lifebelt`, спасательный круг, а в этом варианте — `deckchair`, шезлонг.",
+              "uk": "У записі річ — `lifebelt`, рятувальне коло, а в цьому варіанті — `deckchair`, шезлонг."
             }
           }
         ],
@@ -530,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -544,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-52:i10:p1",
-            "target": "pool",
+            "target": "flippers",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "ласты",
+              "uk": "ласти"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i10:p2",
-            "target": "light",
+            "target": "armbands",
             "meaningByLocale": {
-              "ru": "лёгкий по весу",
-              "uk": "легкий за вагою"
+              "ru": "нарукавники для плавания",
+              "uk": "нарукавники для плавання"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i10:p3",
-            "target": "nursery",
+            "target": "deckchair",
             "meaningByLocale": {
-              "ru": "детский сад",
-              "uk": "дитячий садок"
+              "ru": "шезлонг",
+              "uk": "шезлонг"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i10:p4",
-            "target": "bicycle",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "велосипед",
-              "uk": "велосипед"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           }
         ],
         "leftColumn": [
-          "pool",
-          "light",
-          "nursery",
-          "bicycle"
+          "flippers",
+          "armbands",
+          "deckchair",
+          "bag"
         ],
         "rightColumn": [
-          "басейн",
-          "легкий за вагою",
-          "дитячий садок",
-          "велосипед"
+          "ласти",
+          "нарукавники для плавання",
+          "шезлонг",
+          "сумка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -603,44 +788,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сестру й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сестру й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i11:audio",
-          "transcript": "The pool is near the park."
+          "transcript": "My sister's flippers are under the deckchair."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The pool is near the park.",
+        "hiddenTargetPhrase": "My sister's flippers are under the deckchair.",
         "orderedTokens": [
-          "The",
-          "pool",
-          "is",
-          "near",
+          "My",
+          "sister's",
+          "flippers",
+          "are",
+          "under",
           "the",
-          "park"
+          "deckchair"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "sister"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-52:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте сестру й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The pool is near the park.`",
-              "uk": "тут потрібно `is` — `The pool is near the park.`"
+              "ru": "здесь нужно `sister's` — `My sister's flippers are under the deckchair.`",
+              "uk": "тут потрібно `sister's` — `My sister's flippers are under the deckchair.`"
             }
           }
         ],
@@ -653,39 +839,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Велосипед належить Анні. Скажіть «Велосипед її»",
+      "prompt": "Ви шукаєте шезлонг. Спитайте сусідку: «Де шезлонг?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Велосипед належить Анні. Скажіть «Велосипед її»",
+      "accessibilityLabel": "Ви шукаєте шезлонг. Спитайте сусідку: «Де шезлонг?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bicycle is hers.",
+        "targetPhrase": "Where is the deckchair?",
         "localizedMeaning": {
-          "ru": "Велосипед принадлежит Анне. Скажите «Велосипед её»",
-          "uk": "Велосипед належить Анні. Скажіть «Велосипед її»"
+          "ru": "Вы ищете шезлонг. Спросите соседку: «Где шезлонг?»",
+          "uk": "Ви шукаєте шезлонг. Спитайте сусідку: «Де шезлонг?»"
         },
         "orderedTokens": [
-          "The",
-          "bicycle",
+          "Where",
           "is",
-          "hers"
+          "the",
+          "deckchair"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Whose"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-52:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Велосипед належить Анні. Скажіть «Велосипед її»",
+            "testedDimension": "Ви шукаєте шезлонг. Спитайте сусідку: «Де шезлонг?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bicycle is hers.`",
-              "uk": "тут потрібно `is` — `The bicycle is hers.`"
+              "ru": "здесь нужно `Where` — `Where is the deckchair?`",
+              "uk": "тут потрібно `Where` — `Where is the deckchair?`"
             }
           }
         ],
@@ -698,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть Анні «Твій велосипед тут»",
+      "prompt": "Брат питає, чиї нарукавники. Вони ваші. Скажіть: «Нарукавники мої»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть Анні «Твій велосипед тут»",
+      "accessibilityLabel": "Брат питає, чиї нарукавники. Вони ваші. Скажіть: «Нарукавники мої»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i13:audio",
-          "transcript": "Your bicycle is here."
+          "transcript": "The armbands are mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Your bicycle is here.",
+        "targetPhrase": "The armbands are mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -731,67 +917,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника велосипеда",
+      "prompt": "Рятувальник тримає коло й питає вас. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-52:i14:r1",
-          "text": "Whose"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-52:i14:r2",
-          "text": "Where"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-52:i14:r3",
-          "text": "Who"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника велосипеда",
+      "accessibilityLabel": "Рятувальник тримає коло й питає вас. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце велосипеда",
-          "uk": "Запитайте про власника велосипеда"
+          "ru": "Спасатель держит круг и спрашивает вас. Выберите слово",
+          "uk": "Рятувальник тримає коло й питає вас. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ bicycle is this?",
+        "gappedTargetPhrase": "Whose lifebelt ___ this?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-52:i14:r1",
-            "text": "Whose"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-52:i14:r2",
-            "text": "Where"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-52:i14:r3",
-            "text": "Who"
+            "text": "has"
           }
         ],
-        "testedDimension": "Запитайте про власника велосипеда",
+        "testedDimension": "Рятувальник тримає коло й питає вас. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-52:i14:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника велосипеда",
+            "testedDimension": "Рятувальник тримає коло й питає вас. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чий — `Whose`."
+              "ru": "Круг один, поэтому нужно `is`, а не `are`.",
+              "uk": "Коло одне, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-52:i14:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника велосипеда",
+            "testedDimension": "Рятувальник тримає коло й питає вас. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чий — `Whose`."
+              "ru": "`has` значит «имеет», а в вопросе «чей это круг?» нужно `is`.",
+              "uk": "`has` означає «має», а в питанні «чиє це коло?» потрібно `is`."
             }
           }
         ]
@@ -800,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить велосипед",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-52:i15:r1",
-          "text": "The bicycle is mine."
+          "text": "Are these flippers your sister's?"
         },
         {
           "responseId": "en:lesson-05:session-52:i15:r2",
-          "text": "The bicycle is hers."
+          "text": "Are these flippers your brother's?"
         },
         {
           "responseId": "en:lesson-05:session-52:i15:r3",
-          "text": "The bicycle is ours."
+          "text": "Are these armbands your sister's?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить велосипед",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i15:audio",
-          "transcript": "The bicycle is mine."
+          "transcript": "Are these flippers your sister's?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-52:i15:r1",
-            "targetText": "The bicycle is mine.",
+            "targetText": "Are these flippers your sister's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-52:i15:r2",
-            "targetText": "The bicycle is hers.",
+            "targetText": "Are these flippers your brother's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-52:i15:r3",
-            "targetText": "The bicycle is ours.",
+            "targetText": "Are these armbands your sister's?",
             "meaningByLocale": null
           }
         ],
@@ -853,19 +1039,19 @@
           {
             "responseId": "en:lesson-05:session-52:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить велосипед",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи хозяин — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+              "uk": "У записі господар — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
             }
           },
           {
             "responseId": "en:lesson-05:session-52:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить велосипед",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `ours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `ours`."
+              "ru": "В записи вещь — `flippers`, ласты, а в этом варианте — `armbands`, нарукавники.",
+              "uk": "У записі річ — `flippers`, ласти, а в цьому варіанті — `armbands`, нарукавники."
             }
           }
         ],
@@ -876,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -890,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-52:i16:p1",
-            "target": "pool",
+            "target": "flippers",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "ласты",
+              "uk": "ласти"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i16:p2",
-            "target": "light",
+            "target": "armbands",
             "meaningByLocale": {
-              "ru": "лёгкий по весу",
-              "uk": "легкий за вагою"
+              "ru": "нарукавники для плавания",
+              "uk": "нарукавники для плавання"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i16:p3",
-            "target": "stations",
+            "target": "lifebelt",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "спасательный круг",
+              "uk": "рятувальне коло"
             }
           },
           {
             "pairId": "en:lesson-05:session-52:i16:p4",
-            "target": "bicycle",
+            "target": "deckchair",
             "meaningByLocale": {
-              "ru": "велосипед",
-              "uk": "велосипед"
+              "ru": "шезлонг",
+              "uk": "шезлонг"
             }
           }
         ],
         "leftColumn": [
-          "pool",
-          "light",
-          "stations",
-          "bicycle"
+          "flippers",
+          "armbands",
+          "lifebelt",
+          "deckchair"
         ],
         "rightColumn": [
-          "басейн",
-          "легкий за вагою",
-          "станції",
-          "велосипед"
+          "ласти",
+          "нарукавники для плавання",
+          "рятувальне коло",
+          "шезлонг"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-52:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Біля входу до басейну стоїть велосипед. Запитайте друзів «Чий це велосипед?»",
+      "prompt": "Ви знайшли шезлонг біля води й хочете повернути його. Спитайте сусідку: «Чий це шезлонг?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-52:i17:audio"
       ],
-      "accessibilityLabel": "Біля входу до басейну стоїть велосипед. Запитайте друзів «Чий це велосипед?»",
+      "accessibilityLabel": "Ви знайшли шезлонг біля води й хочете повернути його. Спитайте сусідку: «Чий це шезлонг?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-52:i17:audio",
-          "transcript": "Whose bicycle is this?"
+          "transcript": "Whose deckchair is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose bicycle is this?",
+        "targetPhrase": "Whose deckchair is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -989,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b0fdb029820318761a1df3906a56ef2451f3b6aff2d0a8c58d48a51a1125118b"
+  "learnerFingerprint": "09c10846ee451e71fbe214d6786076ba412a1b6ac7e7a7f3b7f604eb1fa4a55a"
 }

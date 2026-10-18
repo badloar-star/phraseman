@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-55:word:mural",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mural",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:mural:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mural",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:mural:audio",
+            "transcript": "mural"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:mural:r1",
+              "targetText": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись. The mural is under the window. — «Роспись под окном». Большая картина, нарисованная прямо на стене.",
+                "uk": "настінний розпис. The mural is under the window. — «Розпис під вікном». Велика картина, намальована прямо на стіні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mural",
+            "definitionByLocale": {
+              "ru": "настенная роспись. The mural is under the window. — «Роспись под окном». Большая картина, нарисованная прямо на стене.",
+              "uk": "настінний розпис. The mural is under the window. — «Розпис під вікном». Велика картина, намальована прямо на стіні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Туристка ищет роспись. Скажите ей: «Роспись под окном»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Туристка ищет роспись. Скажите ей: «Роспись под окном»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The mural is under the window.",
+          "localizedMeaning": {
+            "ru": "Туристка ищет роспись. Скажите ей: «Роспись под окном»",
+            "uk": "Туристка шукає розпис. Скажіть їй: «Розпис під вікном»"
+          },
+          "orderedTokens": [
+            "The",
+            "mural",
+            "is",
+            "under",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Туристка ищет роспись. Скажите ей: «Роспись под окном»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The mural is under the window.`",
+                "uk": "тут потрібно `is` — `The mural is under the window.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:word:paintbrush",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — paintbrush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:paintbrush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — paintbrush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:paintbrush:audio",
+            "transcript": "paintbrush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:paintbrush:r1",
+              "targetText": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть. The paintbrush is on the shelf. — «Кисть на полке». Ею рисуют краской.",
+                "uk": "пензель. The paintbrush is on the shelf. — «Пензель на полиці». Ним малюють фарбою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paintbrush",
+            "definitionByLocale": {
+              "ru": "кисть. The paintbrush is on the shelf. — «Кисть на полке». Ею рисуют краской.",
+              "uk": "пензель. The paintbrush is on the shelf. — «Пензель на полиці». Ним малюють фарбою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте художницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i02:r1",
+            "text": "Whose paintbrush is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i02:r2",
+            "text": "Where is the paintbrush?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i02:r3",
+            "text": "Whose mural is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте художницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i02:audio",
+            "transcript": "Whose paintbrush is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:i02:r1",
+              "targetText": "Whose paintbrush is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i02:r2",
+              "targetText": "Where is the paintbrush?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i02:r3",
+              "targetText": "Whose mural is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте художницу",
+              "feedbackByLocale": {
+                "ru": "Это вопрос «Где кисть?», а в записи спрашивают о хозяине: `Whose`.",
+                "uk": "Це питання «Де пензель?», а в записі питають про господаря: `Whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте художницу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `paintbrush`, кисть, а в этом варианте — `mural`, роспись.",
+                "uk": "У записі річ — `paintbrush`, пензель, а в цьому варіанті — `mural`, розпис."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:word:easel",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — easel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:easel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — easel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:easel:audio",
+            "transcript": "easel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:easel:r1",
+              "targetText": "easel",
+              "meaningByLocale": {
+                "ru": "мольберт. The easel is near the wall. — «Мольберт возле стены». Подставка, на которую ставят картину во время рисования.",
+                "uk": "мольберт. The easel is near the wall. — «Мольберт біля стіни». Підставка, на яку ставлять картину під час малювання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "easel",
+            "definitionByLocale": {
+              "ru": "мольберт. The easel is near the wall. — «Мольберт возле стены». Подставка, на которую ставят картину во время рисования.",
+              "uk": "мольберт. The easel is near the wall. — «Мольберт біля стіни». Підставка, на яку ставлять картину під час малювання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прохожий спрашивает, чей мольберт. Он ваш с сестрой. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i03:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i03:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i03:r3",
+            "text": "we"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прохожий спрашивает, чей мольберт. Он ваш с сестрой. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прохожий спрашивает, чей мольберт. Он ваш с сестрой. Выберите слово",
+            "uk": "Перехожий питає, чий мольберт. Він ваш із сестрою. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The easel is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-55:i03:r1",
+              "text": "ours"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i03:r2",
+              "text": "our"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i03:r3",
+              "text": "we"
+            }
+          ],
+          "testedDimension": "Прохожий спрашивает, чей мольберт. Он ваш с сестрой. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Прохожий спрашивает, чей мольберт. Он ваш с сестрой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `ours`, а не `our`.",
+                "uk": "Без назви речі потрібно `ours`, а не `our`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Прохожий спрашивает, чей мольберт. Он ваш с сестрой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`we` значит «мы», а «наш» без вещи — `ours`.",
+                "uk": "`we` означає «ми», а «наш» без речі — `ours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-55:i04:p1",
+              "target": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись",
+                "uk": "настінний розпис"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i04:p2",
+              "target": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть",
+                "uk": "пензель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i04:p3",
+              "target": "easel",
+              "meaningByLocale": {
+                "ru": "мольберт",
+                "uk": "мольберт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i04:p4",
+              "target": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов",
+                "uk": "альбом для ескізів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mural",
+            "paintbrush",
+            "easel",
+            "sketchbook"
+          ],
+          "rightColumn": [
+            "настенная роспись",
+            "кисть",
+            "мольберт",
+            "альбом для эскизов"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:word:sketchbook",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sketchbook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:sketchbook:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sketchbook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:sketchbook:audio",
+            "transcript": "sketchbook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:sketchbook:r1",
+              "targetText": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов. The sketchbook is on the chair. — «Альбом для эскизов на стуле». Тетрадь с плотной бумагой для рисунков.",
+                "uk": "альбом для ескізів. The sketchbook is on the chair. — «Альбом для ескізів на стільці». Зошит із цупким папером для малюнків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sketchbook",
+            "definitionByLocale": {
+              "ru": "альбом для эскизов. The sketchbook is on the chair. — «Альбом для эскизов на стуле». Тетрадь с плотной бумагой для рисунков.",
+              "uk": "альбом для ескізів. The sketchbook is on the chair. — «Альбом для ескізів на стільці». Зошит із цупким папером для малюнків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте художницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте художницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i05:audio",
+            "transcript": "The sketchbook is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sketchbook is on the chair.",
+          "orderedTokens": [
+            "The",
+            "sketchbook",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте художницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sketchbook is on the chair.`",
+                "uk": "тут потрібно `is` — `The sketchbook is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кисть лежит на ступеньке далеко. Спросите художницу: «Чья там кисть?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кисть лежит на ступеньке далеко. Спросите художницу: «Чья там кисть?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose paintbrush is that?",
+          "localizedMeaning": {
+            "ru": "Кисть лежит на ступеньке далеко. Спросите художницу: «Чья там кисть?»",
+            "uk": "Пензель лежить на сходинці далеко. Спитайте художницю: «Чий там пензель?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "paintbrush",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Кисть лежит на ступеньке далеко. Спросите художницу: «Чья там кисть?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose paintbrush is that?`",
+                "uk": "тут потрібно `Whose` — `Whose paintbrush is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы дарите подруге свой альбом для эскизов. Скажите ей: «Альбом твой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Вы дарите подруге свой альбом для эскизов. Скажите ей: «Альбом твой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i07:audio",
+            "transcript": "The sketchbook is yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The sketchbook is yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Две кисти лежат на полу. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две кисти лежат на полу. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две кисти лежат на полу. Выберите слово",
+            "uk": "Два пензлі лежать на підлозі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The paintbrushes ___ on the floor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-55:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Две кисти лежат на полу. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Две кисти лежат на полу. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Кистей две, поэтому нужно `are`, а не `is`.",
+                "uk": "Пензлів два, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Две кисти лежат на полу. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь мы говорим, где лежат кисти: нужно `are`.",
+                "uk": "`has` означає «має», а тут ми кажемо, де лежать пензлі: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i09:r1",
+            "text": "The easel is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i09:r2",
+            "text": "The easel is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i09:r3",
+            "text": "The sketchbook is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i09:audio",
+            "transcript": "The easel is hers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:i09:r1",
+              "targetText": "The easel is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i09:r2",
+              "targetText": "The easel is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i09:r3",
+              "targetText": "The sketchbook is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hers`, а в этом варианте — `his`.",
+                "uk": "У записі останнє слово — `hers`, а в цьому варіанті — `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `easel`, мольберт, а в этом варианте — `sketchbook`, альбом для эскизов.",
+                "uk": "У записі річ — `easel`, мольберт, а в цьому варіанті — `sketchbook`, альбом для ескізів."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-55:i10:p1",
+              "target": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись",
+                "uk": "настінний розпис"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i10:p2",
+              "target": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть",
+                "uk": "пензель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i10:p3",
+              "target": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов",
+                "uk": "альбом для ескізів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mural",
+            "paintbrush",
+            "sketchbook",
+            "wall"
+          ],
+          "rightColumn": [
+            "настенная роспись",
+            "кисть",
+            "альбом для эскизов",
+            "стена"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сестру и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i11:audio",
+            "transcript": "My teacher's sketchbook is under the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My teacher's sketchbook is under the table.",
+          "orderedTokens": [
+            "My",
+            "teacher's",
+            "sketchbook",
+            "is",
+            "under",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "teacher"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сестру и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `teacher's` — `My teacher's sketchbook is under the table.`",
+                "uk": "тут потрібно `teacher's` — `My teacher's sketchbook is under the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Во дворе стоят два мольберта. Спросите художницу: «Чьи это мольберты?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Во дворе стоят два мольберта. Спросите художницу: «Чьи это мольберты?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose easels are these?",
+          "localizedMeaning": {
+            "ru": "Во дворе стоят два мольберта. Спросите художницу: «Чьи это мольберты?»",
+            "uk": "У дворі стоять два мольберти. Спитайте художницю: «Чиї це мольберти?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "easels",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Во дворе стоят два мольберта. Спросите художницу: «Чьи это мольберты?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose easels are these?`",
+                "uk": "тут потрібно `Whose` — `Whose easels are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Художница спрашивает, чья кисть. Она ваша. Скажите: «Кисть моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Художница спрашивает, чья кисть. Она ваша. Скажите: «Кисть моя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i13:audio",
+            "transcript": "The paintbrush is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The paintbrush is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает: «Is this easel yours?» Да, он ваш. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i14:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает: «Is this easel yours?» Да, он ваш. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает: «Is this easel yours?» Да, он ваш. Выберите слово",
+            "uk": "Подруга питає: «Is this easel yours?» Так, він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-55:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i14:r2",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает: «Is this easel yours?» Да, он ваш. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает: «Is this easel yours?» Да, он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После Yes ответ утвердительный: нужно `is`.",
+                "uk": "Після Yes відповідь ствердна: потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает: «Is this easel yours?» Да, он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а на вопрос «это твоё?» отвечаем `it is`.",
+                "uk": "`has` означає «має», а на питання «це твоє?» відповідаємо `it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте художницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i15:r1",
+            "text": "Is this paintbrush your teacher's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i15:r2",
+            "text": "Is this paintbrush your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i15:r3",
+            "text": "Is this easel your teacher's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте художницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i15:audio",
+            "transcript": "Is this paintbrush your teacher's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:i15:r1",
+              "targetText": "Is this paintbrush your teacher's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i15:r2",
+              "targetText": "Is this paintbrush your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i15:r3",
+              "targetText": "Is this easel your teacher's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте художницу",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `teacher's`, учительница, а в этом варианте — `sister's`, сестра.",
+                "uk": "У записі господар — `teacher's`, вчителька, а в цьому варіанті — `sister's`, сестра."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте художницу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `paintbrush`, кисть, а в этом варианте — `easel`, мольберт.",
+                "uk": "У записі річ — `paintbrush`, пензель, а в цьому варіанті — `easel`, мольберт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-55:i16:p1",
+              "target": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись",
+                "uk": "настінний розпис"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i16:p2",
+              "target": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть",
+                "uk": "пензель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i16:p3",
+              "target": "easel",
+              "meaningByLocale": {
+                "ru": "мольберт",
+                "uk": "мольберт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i16:p4",
+              "target": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов",
+                "uk": "альбом для ескізів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mural",
+            "paintbrush",
+            "easel",
+            "sketchbook"
+          ],
+          "rightColumn": [
+            "настенная роспись",
+            "кисть",
+            "мольберт",
+            "альбом для эскизов"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли альбом для эскизов у росписи и хотите вернуть его. Спросите художницу: «Чей это альбом?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли альбом для эскизов у росписи и хотите вернуть его. Спросите художницу: «Чей это альбом?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i17:audio",
+            "transcript": "Whose sketchbook is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose sketchbook is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-55:word:mural",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mural",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:mural:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mural",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:mural:audio",
+            "transcript": "mural"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:mural:r1",
+              "targetText": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись. The mural is under the window. — «Роспись под окном». Большая картина, нарисованная прямо на стене.",
+                "uk": "настінний розпис. The mural is under the window. — «Розпис під вікном». Велика картина, намальована прямо на стіні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mural",
+            "definitionByLocale": {
+              "ru": "настенная роспись. The mural is under the window. — «Роспись под окном». Большая картина, нарисованная прямо на стене.",
+              "uk": "настінний розпис. The mural is under the window. — «Розпис під вікном». Велика картина, намальована прямо на стіні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Туристка шукає розпис. Скажіть їй: «Розпис під вікном»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Туристка шукає розпис. Скажіть їй: «Розпис під вікном»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The mural is under the window.",
+          "localizedMeaning": {
+            "ru": "Туристка ищет роспись. Скажите ей: «Роспись под окном»",
+            "uk": "Туристка шукає розпис. Скажіть їй: «Розпис під вікном»"
+          },
+          "orderedTokens": [
+            "The",
+            "mural",
+            "is",
+            "under",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Туристка шукає розпис. Скажіть їй: «Розпис під вікном»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The mural is under the window.`",
+                "uk": "тут потрібно `is` — `The mural is under the window.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:word:paintbrush",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — paintbrush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:paintbrush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — paintbrush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:paintbrush:audio",
+            "transcript": "paintbrush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:paintbrush:r1",
+              "targetText": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть. The paintbrush is on the shelf. — «Кисть на полке». Ею рисуют краской.",
+                "uk": "пензель. The paintbrush is on the shelf. — «Пензель на полиці». Ним малюють фарбою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paintbrush",
+            "definitionByLocale": {
+              "ru": "кисть. The paintbrush is on the shelf. — «Кисть на полке». Ею рисуют краской.",
+              "uk": "пензель. The paintbrush is on the shelf. — «Пензель на полиці». Ним малюють фарбою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте художницю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i02:r1",
+            "text": "Whose paintbrush is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i02:r2",
+            "text": "Where is the paintbrush?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i02:r3",
+            "text": "Whose mural is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте художницю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i02:audio",
+            "transcript": "Whose paintbrush is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:i02:r1",
+              "targetText": "Whose paintbrush is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i02:r2",
+              "targetText": "Where is the paintbrush?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i02:r3",
+              "targetText": "Whose mural is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте художницю",
+              "feedbackByLocale": {
+                "ru": "Это вопрос «Где кисть?», а в записи спрашивают о хозяине: `Whose`.",
+                "uk": "Це питання «Де пензель?», а в записі питають про господаря: `Whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте художницю",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `paintbrush`, кисть, а в этом варианте — `mural`, роспись.",
+                "uk": "У записі річ — `paintbrush`, пензель, а в цьому варіанті — `mural`, розпис."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:word:easel",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — easel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:easel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — easel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:easel:audio",
+            "transcript": "easel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:easel:r1",
+              "targetText": "easel",
+              "meaningByLocale": {
+                "ru": "мольберт. The easel is near the wall. — «Мольберт возле стены». Подставка, на которую ставят картину во время рисования.",
+                "uk": "мольберт. The easel is near the wall. — «Мольберт біля стіни». Підставка, на яку ставлять картину під час малювання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "easel",
+            "definitionByLocale": {
+              "ru": "мольберт. The easel is near the wall. — «Мольберт возле стены». Подставка, на которую ставят картину во время рисования.",
+              "uk": "мольберт. The easel is near the wall. — «Мольберт біля стіни». Підставка, на яку ставлять картину під час малювання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перехожий питає, чий мольберт. Він ваш із сестрою. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i03:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i03:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i03:r3",
+            "text": "we"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перехожий питає, чий мольберт. Він ваш із сестрою. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прохожий спрашивает, чей мольберт. Он ваш с сестрой. Выберите слово",
+            "uk": "Перехожий питає, чий мольберт. Він ваш із сестрою. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The easel is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-55:i03:r1",
+              "text": "ours"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i03:r2",
+              "text": "our"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i03:r3",
+              "text": "we"
+            }
+          ],
+          "testedDimension": "Перехожий питає, чий мольберт. Він ваш із сестрою. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Перехожий питає, чий мольберт. Він ваш із сестрою. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `ours`, а не `our`.",
+                "uk": "Без назви речі потрібно `ours`, а не `our`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Перехожий питає, чий мольберт. Він ваш із сестрою. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`we` значит «мы», а «наш» без вещи — `ours`.",
+                "uk": "`we` означає «ми», а «наш» без речі — `ours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-55:i04:p1",
+              "target": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись",
+                "uk": "настінний розпис"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i04:p2",
+              "target": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть",
+                "uk": "пензель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i04:p3",
+              "target": "easel",
+              "meaningByLocale": {
+                "ru": "мольберт",
+                "uk": "мольберт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i04:p4",
+              "target": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов",
+                "uk": "альбом для ескізів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mural",
+            "paintbrush",
+            "easel",
+            "sketchbook"
+          ],
+          "rightColumn": [
+            "настінний розпис",
+            "пензель",
+            "мольберт",
+            "альбом для ескізів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:word:sketchbook",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sketchbook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:word:sketchbook:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sketchbook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:word:sketchbook:audio",
+            "transcript": "sketchbook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:word:sketchbook:r1",
+              "targetText": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов. The sketchbook is on the chair. — «Альбом для эскизов на стуле». Тетрадь с плотной бумагой для рисунков.",
+                "uk": "альбом для ескізів. The sketchbook is on the chair. — «Альбом для ескізів на стільці». Зошит із цупким папером для малюнків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sketchbook",
+            "definitionByLocale": {
+              "ru": "альбом для эскизов. The sketchbook is on the chair. — «Альбом для эскизов на стуле». Тетрадь с плотной бумагой для рисунков.",
+              "uk": "альбом для ескізів. The sketchbook is on the chair. — «Альбом для ескізів на стільці». Зошит із цупким папером для малюнків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте художницю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте художницю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i05:audio",
+            "transcript": "The sketchbook is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sketchbook is on the chair.",
+          "orderedTokens": [
+            "The",
+            "sketchbook",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте художницю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sketchbook is on the chair.`",
+                "uk": "тут потрібно `is` — `The sketchbook is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пензель лежить на сходинці далеко. Спитайте художницю: «Чий там пензель?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пензель лежить на сходинці далеко. Спитайте художницю: «Чий там пензель?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose paintbrush is that?",
+          "localizedMeaning": {
+            "ru": "Кисть лежит на ступеньке далеко. Спросите художницу: «Чья там кисть?»",
+            "uk": "Пензель лежить на сходинці далеко. Спитайте художницю: «Чий там пензель?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "paintbrush",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Пензель лежить на сходинці далеко. Спитайте художницю: «Чий там пензель?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose paintbrush is that?`",
+                "uk": "тут потрібно `Whose` — `Whose paintbrush is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви даруєте подрузі свій альбом для ескізів. Скажіть їй: «Альбом твій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Ви даруєте подрузі свій альбом для ескізів. Скажіть їй: «Альбом твій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i07:audio",
+            "transcript": "The sketchbook is yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The sketchbook is yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Два пензлі лежать на підлозі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Два пензлі лежать на підлозі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две кисти лежат на полу. Выберите слово",
+            "uk": "Два пензлі лежать на підлозі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The paintbrushes ___ on the floor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-55:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Два пензлі лежать на підлозі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Два пензлі лежать на підлозі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Кистей две, поэтому нужно `are`, а не `is`.",
+                "uk": "Пензлів два, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Два пензлі лежать на підлозі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь мы говорим, где лежат кисти: нужно `are`.",
+                "uk": "`has` означає «має», а тут ми кажемо, де лежать пензлі: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i09:r1",
+            "text": "The easel is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i09:r2",
+            "text": "The easel is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i09:r3",
+            "text": "The sketchbook is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i09:audio",
+            "transcript": "The easel is hers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:i09:r1",
+              "targetText": "The easel is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i09:r2",
+              "targetText": "The easel is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i09:r3",
+              "targetText": "The sketchbook is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hers`, а в этом варианте — `his`.",
+                "uk": "У записі останнє слово — `hers`, а в цьому варіанті — `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `easel`, мольберт, а в этом варианте — `sketchbook`, альбом для эскизов.",
+                "uk": "У записі річ — `easel`, мольберт, а в цьому варіанті — `sketchbook`, альбом для ескізів."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-55:i10:p1",
+              "target": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись",
+                "uk": "настінний розпис"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i10:p2",
+              "target": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть",
+                "uk": "пензель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i10:p3",
+              "target": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов",
+                "uk": "альбом для ескізів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mural",
+            "paintbrush",
+            "sketchbook",
+            "wall"
+          ],
+          "rightColumn": [
+            "настінний розпис",
+            "пензель",
+            "альбом для ескізів",
+            "стіна"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сестру й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i11:audio",
+            "transcript": "My teacher's sketchbook is under the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My teacher's sketchbook is under the table.",
+          "orderedTokens": [
+            "My",
+            "teacher's",
+            "sketchbook",
+            "is",
+            "under",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "teacher"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сестру й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `teacher's` — `My teacher's sketchbook is under the table.`",
+                "uk": "тут потрібно `teacher's` — `My teacher's sketchbook is under the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У дворі стоять два мольберти. Спитайте художницю: «Чиї це мольберти?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У дворі стоять два мольберти. Спитайте художницю: «Чиї це мольберти?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose easels are these?",
+          "localizedMeaning": {
+            "ru": "Во дворе стоят два мольберта. Спросите художницу: «Чьи это мольберты?»",
+            "uk": "У дворі стоять два мольберти. Спитайте художницю: «Чиї це мольберти?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "easels",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У дворі стоять два мольберти. Спитайте художницю: «Чиї це мольберти?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose easels are these?`",
+                "uk": "тут потрібно `Whose` — `Whose easels are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Художниця питає, чий пензель. Він ваш. Скажіть: «Пензель мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Художниця питає, чий пензель. Він ваш. Скажіть: «Пензель мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i13:audio",
+            "transcript": "The paintbrush is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The paintbrush is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає: «Is this easel yours?» Так, він ваш. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i14:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає: «Is this easel yours?» Так, він ваш. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает: «Is this easel yours?» Да, он ваш. Выберите слово",
+            "uk": "Подруга питає: «Is this easel yours?» Так, він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-55:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i14:r2",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Подруга питає: «Is this easel yours?» Так, він ваш. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає: «Is this easel yours?» Так, він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После Yes ответ утвердительный: нужно `is`.",
+                "uk": "Після Yes відповідь ствердна: потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає: «Is this easel yours?» Так, він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а на вопрос «это твоё?» отвечаем `it is`.",
+                "uk": "`has` означає «має», а на питання «це твоє?» відповідаємо `it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте художницю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-55:i15:r1",
+            "text": "Is this paintbrush your teacher's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i15:r2",
+            "text": "Is this paintbrush your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-55:i15:r3",
+            "text": "Is this easel your teacher's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте художницю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i15:audio",
+            "transcript": "Is this paintbrush your teacher's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-55:i15:r1",
+              "targetText": "Is this paintbrush your teacher's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i15:r2",
+              "targetText": "Is this paintbrush your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i15:r3",
+              "targetText": "Is this easel your teacher's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте художницю",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `teacher's`, учительница, а в этом варианте — `sister's`, сестра.",
+                "uk": "У записі господар — `teacher's`, вчителька, а в цьому варіанті — `sister's`, сестра."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте художницю",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `paintbrush`, кисть, а в этом варианте — `easel`, мольберт.",
+                "uk": "У записі річ — `paintbrush`, пензель, а в цьому варіанті — `easel`, мольберт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-55:i16:p1",
+              "target": "mural",
+              "meaningByLocale": {
+                "ru": "настенная роспись",
+                "uk": "настінний розпис"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i16:p2",
+              "target": "paintbrush",
+              "meaningByLocale": {
+                "ru": "кисть",
+                "uk": "пензель"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i16:p3",
+              "target": "easel",
+              "meaningByLocale": {
+                "ru": "мольберт",
+                "uk": "мольберт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-55:i16:p4",
+              "target": "sketchbook",
+              "meaningByLocale": {
+                "ru": "альбом для эскизов",
+                "uk": "альбом для ескізів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mural",
+            "paintbrush",
+            "easel",
+            "sketchbook"
+          ],
+          "rightColumn": [
+            "настінний розпис",
+            "пензель",
+            "мольберт",
+            "альбом для ескізів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли альбом для ескізів біля розпису й хочете повернути його. Спитайте художницю: «Чий це альбом?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли альбом для ескізів біля розпису й хочете повернути його. Спитайте художницю: «Чий це альбом?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-55:i17:audio",
+            "transcript": "Whose sketchbook is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose sketchbook is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-55:word:mural",
+      "correctText": "mural",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i01",
+      "correctText": "The mural is under the window.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:word:paintbrush",
+      "correctText": "paintbrush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i02",
+      "correctText": "Whose paintbrush is this?",
+      "correctResponseId": "en:lesson-05:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:word:easel",
+      "correctText": "easel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i03",
+      "correctText": "ours",
+      "correctResponseId": "en:lesson-05:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:word:sketchbook",
+      "correctText": "sketchbook",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i05",
+      "correctText": "The sketchbook is on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i06",
+      "correctText": "Whose paintbrush is that?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i07",
+      "correctText": "The sketchbook is yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i09",
+      "correctText": "The easel is hers.",
+      "correctResponseId": "en:lesson-05:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i11",
+      "correctText": "My teacher's sketchbook is under the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i12",
+      "correctText": "Whose easels are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i13",
+      "correctText": "The paintbrush is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-55:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i15",
+      "correctText": "Is this paintbrush your teacher's?",
+      "correctResponseId": "en:lesson-05:session-55:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:i17",
+      "correctText": "Whose sketchbook is this?",
+      "correctResponseId": null
+    }
+  ]
+}

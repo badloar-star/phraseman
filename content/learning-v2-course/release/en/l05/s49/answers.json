@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-49:word:garage",
+    "correctText": "garage",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-49:i01",
-    "correctText": "This locker is cheap.",
+    "correctText": "This is my garage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:word:tyre",
+    "correctText": "tyre",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i02",
-    "correctText": "garage",
+    "correctText": "Whose tyre is this?",
     "correctResponseId": "en:lesson-05:session-49:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-49:word:chain",
+    "correctText": "chain",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-49:i03",
-    "correctText": "garage",
+    "correctText": "ours",
     "correctResponseId": "en:lesson-05:session-49:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-49:i04",
-    "correctText": "en:lesson-05:session-49:i04:p1=garage\nen:lesson-05:session-49:i04:p2=locker\nen:lesson-05:session-49:i04:p3=hospital\nen:lesson-05:session-49:i04:p4=canal",
+    "correctText": "en:lesson-05:session-49:i04:p1=garage\nen:lesson-05:session-49:i04:p2=tyre\nen:lesson-05:session-49:i04:p3=chain\nen:lesson-05:session-49:i04:p4=brake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:word:brake",
+    "correctText": "brake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i05",
-    "correctText": "The bicycle is in the garage.",
+    "correctText": "The brake is on my bicycle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i06",
-    "correctText": "Whose garage is this?",
+    "correctText": "Whose garage is that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i07",
-    "correctText": "The locker is mine.",
+    "correctText": "The tyre is his.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i08",
-    "correctText": "ours",
+    "correctText": "his",
     "correctResponseId": "en:lesson-05:session-49:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-49:i09",
-    "correctText": "This is Tom's garage.",
+    "correctText": "The brake is hers.",
     "correctResponseId": "en:lesson-05:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-49:i10",
-    "correctText": "en:lesson-05:session-49:i10:p1=garage\nen:lesson-05:session-49:i10:p2=cheap\nen:lesson-05:session-49:i10:p3=canal\nen:lesson-05:session-49:i10:p4=locker",
+    "correctText": "en:lesson-05:session-49:i10:p1=tyre\nen:lesson-05:session-49:i10:p2=chain\nen:lesson-05:session-49:i10:p3=brake\nen:lesson-05:session-49:i10:p4=bicycle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i11",
-    "correctText": "The hospital is near the canal.",
+    "correctText": "My uncle's garage is big.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i12",
-    "correctText": "Where is the canal?",
+    "correctText": "Whose tyres are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i13",
-    "correctText": "Your bicycle is in the garage.",
+    "correctText": "The brake is yours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i14",
-    "correctText": "Whose",
+    "correctText": "isn't",
     "correctResponseId": "en:lesson-05:session-49:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-49:i15",
-    "correctText": "My garage is here.",
+    "correctText": "Is this chain your uncle's?",
     "correctResponseId": "en:lesson-05:session-49:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-49:i16",
-    "correctText": "en:lesson-05:session-49:i16:p1=garage\nen:lesson-05:session-49:i16:p2=cheap\nen:lesson-05:session-49:i16:p3=hospital\nen:lesson-05:session-49:i16:p4=locker",
+    "correctText": "en:lesson-05:session-49:i16:p1=garage\nen:lesson-05:session-49:i16:p2=tyre\nen:lesson-05:session-49:i16:p3=chain\nen:lesson-05:session-49:i16:p4=brake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-49:i17",
-    "correctText": "Whose garage is this?",
+    "correctText": "Whose tyre is this?",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-56",
   "learningOutcomeByLocale": {
-    "ru": "различать место и принадлежность и описывать знакомый район",
-    "uk": "розрізняти місце й належність та описувати знайомий район"
+    "ru": "самому спросить о хозяине вещи и ответить: whose, is или are, mine, yours, his, ours, theirs, 's",
+    "uk": "самому спитати про господаря речі та відповісти: whose, is чи are, mine, yours, his, ours, theirs, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Магазин и гараж",
-        "uk": "Магазин і гараж"
+        "ru": "Метла у калитки",
+        "uk": "Мітла біля хвіртки"
       },
       "bodyByLocale": {
-        "ru": "Повторим: `corner shop` — «магазин у дома», небольшой местный магазин; он не обязательно стоит на углу. `garage` — «гараж». `The garage is next to the corner shop` — «Гараж рядом с магазином у дома». `Whose garage is this?` — «Чей это гараж?» `The garage is ours` — «Гараж наш».",
-        "uk": "Повторимо: `corner shop` — «магазин біля дому», невеликий місцевий магазин; він не обов’язково стоїть на розі. `garage` — «гараж». `The garage is next to the corner shop` — «Гараж поруч із магазином біля дому». `Whose garage is this?` — «Чий це гараж?» `The garage is ours` — «Гараж наш»."
+        "ru": "Во дворе после праздника лежит много мусора, и соседи берутся за уборку. Вы замечаете у калитки метлу, но она не ваша. broom — «метла», ею подметают двор. Хозяина рядом не видно. Спросите соседа, чья она: Whose broom is that? — «Чья вон та метла?» Метла далеко, поэтому that.",
+        "uk": "У дворі після свята лежить багато сміття, і сусіди беруться за прибирання. Ви помічаєте біля хвіртки мітлу, але вона не ваша. broom — «мітла», нею підмітають двір. Господаря поруч не видно. Спитайте сусіда, чия вона: Whose broom is that? — «Чия та мітла там?» Мітла далеко, тому that."
       },
       "question": {
         "interactionId": "en:lesson-05:session-56:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце гаража.",
-          "uk": "Запитайте про власника гаража."
+          "ru": "Вы видите у калитки чужую метлу. Спросите соседа, чья она.",
+          "uk": "Ви бачите біля хвіртки чужу мітлу. Спитайте сусіда, чия вона."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-56:intro1:r1",
-              "text": "Whose garage is this?"
+              "text": "Whose broom is that?"
             },
             {
               "responseId": "en:lesson-05:session-56:intro1:r2",
-              "text": "Where is the garage?"
+              "text": "Where is the broom?"
             },
             {
               "responseId": "en:lesson-05:session-56:intro1:r3",
-              "text": "Whose garage are these?"
+              "text": "Whose broom is this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-56:intro1:r1",
-              "text": "Whose garage is this?"
+              "text": "Whose broom is that?"
             },
             {
               "responseId": "en:lesson-05:session-56:intro1:r2",
-              "text": "Where is the garage?"
+              "text": "Where is the broom?"
             },
             {
               "responseId": "en:lesson-05:session-56:intro1:r3",
-              "text": "Whose garage are these?"
+              "text": "Whose broom is this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце гаража.",
-          "uk": "Запитайте про власника гаража."
+          "ru": "Вы видите у калитки чужую метлу. Спросите соседа, чья она.",
+          "uk": "Ви бачите біля хвіртки чужу мітлу. Спитайте сусіда, чия вона."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Места для спорта",
-        "uk": "Місця для спорту"
+        "ru": "Швабра в подъезде",
+        "uk": "Швабра в під’їзді"
       },
       "bodyByLocale": {
-        "ru": "`stadium` — «стадион», `pool` — «бассейн» для плавания, `court` — спортивный «корт». `The pool is near the stadium` — «Бассейн возле стадиона». `Where is the court?` — «Где корт?» `Tom is at the pool` — «Том в бассейне» как месте, не обязательно в воде.",
-        "uk": "`stadium` — «стадіон», `pool` — «басейн» для плавання, `court` — спортивний «корт». `The pool is near the stadium` — «Басейн біля стадіону». `Where is the court?` — «Де корт?» `Tom is at the pool` — «Том у басейні» як місці, не обов’язково у воді."
+        "ru": "Другая соседка моет пол в подъезде после праздника и спрашивает, чья швабра стоит у входа. mop — «швабра», ею моют пол мокрой тряпкой. Вы знаете: швабру ей одолжила ваша тётя, они вместе убирали двор. Ответьте: The mop is my aunt's — «Швабра моей тёти».",
+        "uk": "Інша сусідка миє підлогу в під’їзді після свята й питає, чия швабра стоїть біля входу. mop — «швабра», нею миють підлогу мокрою ганчіркою. Ви знаєте: швабру їй позичила ваша тітка, вони разом прибирали двір. Відповідьте: The mop is my aunt's — «Швабра моєї тітки»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-56:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Бассейн возле стадиона».",
-          "uk": "Скажіть «Басейн біля стадіону»."
+          "ru": "Соседка спрашивает, чья швабра у входа. Её принесла ваша тётя. Скажите: «Швабра моей тёти».",
+          "uk": "Сусідка питає, чия швабра біля входу. Її принесла ваша тітка. Скажіть: «Швабра моєї тітки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-56:intro2:r1",
-              "text": "The pool is near the stadium."
+              "text": "The mop is my aunt's."
             },
             {
               "responseId": "en:lesson-05:session-56:intro2:r2",
-              "text": "The pool are near the stadium."
+              "text": "The mop is my aunt."
             },
             {
               "responseId": "en:lesson-05:session-56:intro2:r3",
-              "text": "The pool is in the stadium."
+              "text": "The mop is aunt's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-56:intro2:r1",
-              "text": "The pool is near the stadium."
+              "text": "The mop is my aunt's."
             },
             {
               "responseId": "en:lesson-05:session-56:intro2:r2",
-              "text": "The pool are near the stadium."
+              "text": "The mop is my aunt."
             },
             {
               "responseId": "en:lesson-05:session-56:intro2:r3",
-              "text": "The pool is in the stadium."
+              "text": "The mop is aunt's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Бассейн возле стадиона».",
-          "uk": "Скажіть «Басейн біля стадіону»."
+          "ru": "Соседка спрашивает, чья швабра у входа. Её принесла ваша тётя. Скажите: «Швабра моей тёти».",
+          "uk": "Сусідка питає, чия швабра біля входу. Її принесла ваша тітка. Скажіть: «Швабра моєї тітки»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ориентир на стене",
-        "uk": "Орієнтир на стіні"
+        "ru": "Совок для мусора",
+        "uk": "Совок для сміття"
       },
       "bodyByLocale": {
-        "ru": "`kiosk` — «киоск», `mural` — «настенная роспись». `The mural is near the kiosk` — «Настенная роспись возле киоска». `Where is the mural?` — «Где настенная роспись?» Роспись — удобное место встречи: сама она никуда не уйдёт. `This is Anna’s bag` — «Это сумка Анны».",
-        "uk": "`kiosk` — «кіоск», `mural` — «настінний розпис». `The mural is near the kiosk` — «Настінний розпис біля кіоску». `Where is the mural?` — «Де настінний розпис?» Розпис — зручне місце зустрічі: сам він нікуди не піде. `This is Anna’s bag` — «Це сумка Анни»."
+        "ru": "Сосед сметает мусор в кучу и просит что-нибудь, чтобы собрать его с земли. Вы приносите из дома плоскую лопатку с ручкой. dustpan — «совок для мусора», его держат у пола, пока подметают. Сосед спрашивает, чей он. Ответьте: The dustpan is mine — «Совок мой».",
+        "uk": "Сусід змітає сміття в купу й просить щось, щоб зібрати його із землі. Ви приносите з дому пласку лопатку з ручкою. dustpan — «совок для сміття», його тримають біля підлоги, поки підмітають. Сусід питає, чий він. Відповідьте: The dustpan is mine — «Совок мій»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-56:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где настенная роспись.",
-          "uk": "Запитайте, де настінний розпис."
+          "ru": "Сосед спрашивает, чей совок для мусора. Вы принесли его из дома. Скажите: «Совок мой».",
+          "uk": "Сусід питає, чий совок для сміття. Ви принесли його з дому. Скажіть: «Совок мій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-56:intro3:r1",
-              "text": "Where is the mural?"
+              "text": "The dustpan is mine."
             },
             {
               "responseId": "en:lesson-05:session-56:intro3:r2",
-              "text": "Whose mural is this?"
+              "text": "The dustpan is my."
             },
             {
               "responseId": "en:lesson-05:session-56:intro3:r3",
-              "text": "Where are the mural?"
+              "text": "The dustpan is his."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-56:intro3:r1",
-              "text": "Where is the mural?"
+              "text": "The dustpan is mine."
             },
             {
               "responseId": "en:lesson-05:session-56:intro3:r2",
-              "text": "Whose mural is this?"
+              "text": "The dustpan is my."
             },
             {
               "responseId": "en:lesson-05:session-56:intro3:r3",
-              "text": "Where are the mural?"
+              "text": "The dustpan is his."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где настенная роспись.",
-          "uk": "Запитайте, де настінний розпис."
+          "ru": "Сосед спрашивает, чей совок для мусора. Вы принесли его из дома. Скажите: «Совок мой».",
+          "uk": "Сусід питає, чий совок для сміття. Ви принесли його з дому. Скажіть: «Совок мій»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "285ea2fdcdae183b2eb7e517502c4a7430c8b3fcea0d45cd5efc0593a5d7df1d"
+  "introFingerprint": "14d6aa139f74f7472f3baf1ecba4f7787b2c0410c05d08b7c2c277fc61bcc0c0"
 }

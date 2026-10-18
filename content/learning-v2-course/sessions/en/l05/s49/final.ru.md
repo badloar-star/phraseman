@@ -1,136 +1,154 @@
-# Английский · Урок 5 · Занятие 49 — Велосипед в гараже
+# Английский · Урок 5 · Занятие 49 — Гараж у дяди
 
-**Ситуация.** Том показывает Анне гараж у дома и шкафчик для вещей. Затем друзья уточняют дорогу к каналу.
+**Ситуация.** Вы с двоюродным братом приехали к дяде. Во дворе гараж, а в нём детали от велосипеда: шина, цепь, тормоз. Нужно выяснить, что чьё: whose, mine, ours, his, yours или имя с 's.
 
-**Что вы освоите:** назвать место хранения и спросить о владельце помещения
-**Новые слова:** garage
+**Что вы освоите:** спросить, чей гараж, и ответить, чья деталь: whose, mine, ours, his, yours, 's
+**Новые слова:** garage, tyre, chain, brake
+**Возвращаются:** uncle, brother, cousin, bicycle
 
 ---
 
 ## Интро 1
 
-### Дом для транспорта
+### Новый гараж
 
-`garage` — «гараж», помещение для хранения машины или другого транспорта. `The bicycle is in the garage` — «Велосипед в гараже». `Whose garage is this?` — «Чей это гараж?» `This is Tom’s garage` — «Это гараж Тома». Велосипеду досталась целая комната, хотя он даже не платит за жильё.
+Вы с двоюродным братом идёте к дяде. У забора стоит новый гараж, которого раньше не было, и рядом никого нет. garage — «гараж», в нём держат машину или велосипед. Спросите брата, чей он: Whose garage is this? — «Чей это гараж?» Гараж один, поэтому is this.
 
-**Спросите, кому принадлежит гараж.**
+**Вы показываете на новый гараж у забора. Спросите двоюродного брата, чей он.**
 
 - ✅ **Whose garage is this?**
-- ❌ Where is the garage? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose garage are these? — *Один гараж: `is this`.*
+- ❌ Where is the garage? — *Это «Где гараж?». О хозяине спрашиваем с whose.*
+- ❌ Whose garage are this? — *Гараж один, поэтому нужно is this.*
 
 ---
 
 ## Интро 2
 
-### Шкафчик и цена
+### Новая шина
 
-`locker` — «шкафчик», `cheap` — «дешёвый», недорогой по цене. `This locker is cheap` — «Этот шкафчик дешёвый». Само слово `cheap` здесь описывает цену, а не доказывает плохое качество. `The locker is mine` — «Шкафчик мой».
+Дядя чинит ваш велосипед и показывает на новую шину у стены. Шина ещё в плёнке. tyre — «шина», резиновая часть колеса. Он спрашивает, чья она. Вы купили её вчера, поэтому она ваша. Ответьте одним словом вместо названия вещи: The tyre is mine — «Шина моя».
 
-**Скажите «Этот шкафчик дешёвый».**
+**Дядя спрашивает, чья шина у стены. Вы купили её вчера. Скажите: «Шина моя».**
 
-- ✅ **This locker is cheap.**
-- ❌ This locker are cheap. — *Один шкафчик: `is`.*
-- ❌ This locker is dangerous. — *`dangerous` — опасный; дешёвый — `cheap`.*
+- ✅ **The tyre is mine.**
+- ❌ The tyre is my. — *Без названия вещи нужно mine, а не my.*
+- ❌ The tyre is yours. — *yours — твоя, а шину купили вы: нужно mine.*
 
 ---
 
 ## Интро 3
 
-### Ориентиры по дороге
+### Цепь на полу
 
-`hospital` — «больница», `canal` — «канал», искусственный водный путь. `The hospital is near the canal` — «Больница возле канала». `Where is the canal?` — «Где канал?» `The garage is ours` — «Гараж наш»: `ours` используется без следующего названия вещи.
+На полу гаража лежит велосипедная цепь, вся в масле, и дядя хочет её убрать. Он спрашивает, чья она. Вы с двоюродным братом сняли её с общего велосипеда. chain — «цепь», она крутит колесо. Ответьте за двоих одним словом: The chain is ours — «Цепь наша».
 
-**Скажите «Гараж наш».**
+**Дядя спрашивает, чья цепь на полу. Она ваша с двоюродным братом. Скажите: «Цепь наша».**
 
-- ✅ **The garage is ours.**
-- ❌ The garage is our. — *Без следующего существительного нужна самостоятельная форма `ours`.*
-- ❌ The garage are ours. — *Один гараж: `is`.*
+- ✅ **The chain is ours.**
+- ❌ The chain is our. — *Без названия вещи нужно ours, а не our.*
+- ❌ The chain is theirs. — *theirs — их, а цепь ваша с братом: нужно ours.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите о цене: «Этот шкафчик дешёвый»**
+**1 · Карточка слова — garage**
+<!-- interaction_id: en:lesson-05:session-49:word:garage; family: word_card -->
+> **garage** — гараж. My uncle's garage is big. — «Гараж моего дяди большой». Здание, где держат машину или велосипед.
+
+**2 · Двоюродный брат спрашивает, чьё это здание. Скажите: «Это мой гараж»**
 <!-- interaction_id: en:lesson-05:session-49:i01; family: phrase_builder -->
-Плитки: `cheap` `is` `locker` `This` `are` → **This locker is cheap.**
-*(плитка `are` лишняя: здесь нужно `is` — `This locker is cheap.`)*
+Плитки: `garage` `my` `is` `This` `mine` → **This is my garage.**
+*(плитка `mine` лишняя: здесь нужно `my` — `This is my garage.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — tyre**
+<!-- interaction_id: en:lesson-05:session-49:word:tyre; family: word_card -->
+> **tyre** — шина. The tyre is on the bicycle. — «Шина на велосипеде». Резиновая часть колеса.
+
+**4 · Послушайте дядю**
 <!-- interaction_id: en:lesson-05:session-49:i02; family: listen_choose -->
-🔊 *garage* → **garage** · hospital · canal
-- hospital — *В записи первое слово — `garage`, а в этом варианте — `hospital`.*
-- canal — *В записи первое слово — `garage`, а в этом варианте — `canal`.*
+🔊 *Whose tyre is this?* → **Whose tyre is this?** · Whose tyre is that? · Whose garage is this?
+- Whose tyre is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose garage is this? — *В записи вещь — `tyre`, шина, а в этом варианте — `garage`, гараж.*
 
-**3 · Назовите гараж**
+**5 · Карточка слова — chain**
+<!-- interaction_id: en:lesson-05:session-49:word:chain; family: word_card -->
+> **chain** — цепь. The chain is under the bicycle. — «Цепь под велосипедом». Она соединяет педали с колесом.
+
+**6 · Дядя показывает цепь на полу. Она ваша с братом. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-49:i03; family: context_gap_grammar -->
-___ → **garage** · locker · hospital
-- locker — *`locker` — шкафчик; гараж — `garage`.*
-- hospital — *`hospital` — больница; гараж — `garage`.*
+The chain is ___. → **ours** · our · we
+- our — *Без названия вещи нужно `ours`, а не `our`.*
+- we — *`we` значит «мы», а «наш» без вещи — `ours`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-49:i04; family: speed_match -->
-garage — гараж · locker — шкафчик · hospital — больница · canal — канал
+garage — гараж · tyre — шина · chain — цепь · brake — тормоз
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — brake**
+<!-- interaction_id: en:lesson-05:session-49:word:brake; family: word_card -->
+> **brake** — тормоз. The brake is on my bicycle. — «Тормоз на моём велосипеде». Деталь, которая останавливает колесо.
+
+**9 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-49:i05; family: listen_build_dictation -->
-🔊 *The bicycle is in the garage.* Плитки: `garage` `the` `in` `is` `bicycle` `The` `are` → **The bicycle is in the garage.**
-*(плитка `are` лишняя: здесь нужно `is` — `The bicycle is in the garage.`)*
+🔊 *The brake is on my bicycle.* Плитки: `brake` `on` `my` `bicycle` `is` `The` `are` → **The brake is on my bicycle.**
+*(плитка `are` лишняя: здесь нужно `is` — `The brake is on my bicycle.`)*
 
-**6 · Спросите «Чей это гараж?»**
+**10 · Дядин гараж стоит далеко. Спросите брата: «Чей там гараж?»**
 <!-- interaction_id: en:lesson-05:session-49:i06; family: phrase_builder -->
-Плитки: `this` `is` `garage` `Whose` → **Whose garage is this?**
+Плитки: `garage` `that` `is` `Whose` `Where` → **Whose garage is that?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose garage is that?`)*
 
-**7 · Шкафчик принадлежит вам. Скажите «Шкафчик мой»**
+**11 · Двоюродный брат спрашивает, чья шина. Она его. Скажите: «Шина его»**
 <!-- interaction_id: en:lesson-05:session-49:i07; family: scripted_repeat_compare -->
-🎙 **The locker is mine.**
+🎙 **The tyre is his.**
 
-**8 · Гараж принадлежит вашей семье. Скажите «Гараж наш»**
+**12 · Дядя говорит о своём гараже. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-49:i08; family: context_gap_grammar -->
-The garage is ___. → **ours** · our · we
-- our — *Перед названием вещи — `our`; здесь самостоятельное `ours`.*
-- we — *`we` — мы; самостоятельное «наш» — `ours`.*
+The garage is ___. → **his** · hers · he
+- hers — *hers — её, а гараж дяди: нужно `his`.*
+- he — *Без названия вещи нужно `his`, а не `he`.*
 
-**9 · Послушайте, что принадлежит Тому**
+**13 · Послушайте двоюродного брата**
 <!-- interaction_id: en:lesson-05:session-49:i09; family: listen_choose -->
-🔊 *This is Tom's garage.* → **This is Tom's garage.** · This is Tom's locker. · This is Tom's bicycle.
-- This is Tom's locker. — *В записи последнее слово — `garage`, а в этом варианте — `locker`.*
-- This is Tom's bicycle. — *В записи последнее слово — `garage`, а в этом варианте — `bicycle`.*
+🔊 *The brake is hers.* → **The brake is hers.** · The brake is his. · The tyre is hers.
+- The brake is his. — *В записи последнее слово — `hers`, а в этом варианте — `his`.*
+- The tyre is hers. — *В записи вещь — `brake`, тормоз, а в этом варианте — `tyre`, шина.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-49:i10; family: speed_match -->
-garage — гараж · cheap — дешёвый · canal — канал · locker — шкафчик
+tyre — шина · chain — цепь · brake — тормоз · bicycle — велосипед
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте дядю и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-49:i11; family: listen_build_dictation -->
-🔊 *The hospital is near the canal.* Плитки: `canal` `the` `near` `is` `hospital` `The` `are` → **The hospital is near the canal.**
-*(плитка `are` лишняя: здесь нужно `is` — `The hospital is near the canal.`)*
+🔊 *My uncle's garage is big.* Плитки: `garage` `uncle's` `is` `big` `My` `uncle` → **My uncle's garage is big.**
+*(плитка `uncle` лишняя: здесь нужно `uncle's` — `My uncle's garage is big.`)*
 
-**12 · Спросите «Где канал?»**
+**16 · У стены стоят две шины. Спросите дядю: «Чьи это шины?»**
 <!-- interaction_id: en:lesson-05:session-49:i12; family: phrase_builder -->
-Плитки: `canal` `the` `is` `Where` → **Where is the canal?**
+Плитки: `tyres` `these` `are` `Whose` `Where` → **Whose tyres are these?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose tyres are these?`)*
 
-**13 · Скажите Анне «Твой велосипед в гараже»**
+**17 · Двоюродный брат берёт ваш тормоз. Скажите ему: «Тормоз твой»**
 <!-- interaction_id: en:lesson-05:session-49:i13; family: scripted_repeat_compare -->
-🎙 **Your bicycle is in the garage.**
+🎙 **The brake is yours.**
 
-**14 · Спросите о владельце гаража**
+**18 · Дядя спрашивает: «Is this garage yours?» Нет, гараж не ваш. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-49:i14; family: context_gap_grammar -->
-___ garage is this? → **Whose** · Where · Who
-- Where — *`Where` — где; чей — `Whose`.*
-- Who — *`Who` — кто; чей — `Whose`.*
+No, it ___ mine. → **isn't** · is · has
+- is — *После No ответ отрицательный: нужно `isn't`.*
+- has — *`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it isn't`.*
 
-**15 · Послушайте, чей гараж здесь**
+**19 · Послушайте брата**
 <!-- interaction_id: en:lesson-05:session-49:i15; family: listen_choose -->
-🔊 *My garage is here.* → **My garage is here.** · Your garage is here. · His garage is here.
-- Your garage is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His garage is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *Is this chain your uncle's?* → **Is this chain your uncle's?** · Is this chain your brother's? · Is this tyre your uncle's?
+- Is this chain your brother's? — *В записи хозяин — `uncle's`, дядя, а в этом варианте — `brother's`, брат.*
+- Is this tyre your uncle's? — *В записи вещь — `chain`, цепь, а в этом варианте — `tyre`, шина.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-49:i16; family: speed_match -->
-garage — гараж · cheap — дешёвый · hospital — больница · locker — шкафчик
+garage — гараж · tyre — шина · chain — цепь · brake — тормоз
 
-**17 · Вы хотите узнать владельца гаража у дома. Спросите «Чей это гараж?»**
+**21 · Вы нашли шину в гараже и хотите узнать, чья она. Спросите дядю: «Чья это шина?»**
 <!-- interaction_id: en:lesson-05:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose garage is this?**
-
+🎙 **Whose tyre is this?**

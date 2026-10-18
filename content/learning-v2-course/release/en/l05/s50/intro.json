@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-50",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце вещи и найти знакомые места",
-    "uk": "запитати про власника речі й знайти знайомі місця"
+    "ru": "спросить, где вещь и чья она, и ответить: whose, hers, his, mine, 's",
+    "uk": "спитати, де річ і чия вона, та відповісти: whose, hers, his, mine, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Самокат и цена",
-        "uk": "Самокат і ціна"
+        "ru": "Качели-балансир",
+        "uk": "Гойдалка-балансир"
       },
       "bodyByLocale": {
-        "ru": "Повторим: `scooter` — «самокат», `expensive` — «дорогой» по цене. `This scooter is expensive` — «Этот самокат дорогой». `Whose scooter is this?` — «Чей это самокат?» Высокая цена не подскажет имя владельца: для этого есть `Whose`.",
-        "uk": "Повторимо: `scooter` — «самокат», `expensive` — «дорогий» за ціною. `This scooter is expensive` — «Цей самокат дорогий». `Whose scooter is this?` — «Чий це самокат?» Висока ціна не підкаже ім’я власника: для цього є `Whose`."
+        "ru": "Младшая сестра просит покачаться, и вы ведёте её на детскую площадку. Вы там впервые и совсем не знаете, где что стоит. seesaw — «качели-балансир», доска на опоре, на которой качаются вдвоём. Спросите соседку: Where is the seesaw? — «Где качели?»",
+        "uk": "Молодша сестра просить покачатися, і ви ведете її на дитячий майданчик. Ви там уперше й зовсім не знаєте, де що стоїть. seesaw — «гойдалка-балансир», дошка на опорі, на якій гойдаються вдвох. Спитайте сусідку: Where is the seesaw? — «Де гойдалка?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-50:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце самоката.",
-          "uk": "Запитайте про власника самоката."
+          "ru": "Вы пришли на площадку с младшей сестрой. Спросите соседку, где качели-балансир.",
+          "uk": "Ви прийшли на майданчик із молодшою сестрою. Спитайте сусідку, де гойдалка-балансир."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-50:intro1:r1",
-              "text": "Whose scooter is this?"
+              "text": "Where is the seesaw?"
             },
             {
               "responseId": "en:lesson-05:session-50:intro1:r2",
-              "text": "Where is the scooter?"
+              "text": "Whose seesaw is this?"
             },
             {
               "responseId": "en:lesson-05:session-50:intro1:r3",
-              "text": "Whose scooter are these?"
+              "text": "Where are the seesaw?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-50:intro1:r1",
-              "text": "Whose scooter is this?"
+              "text": "Where is the seesaw?"
             },
             {
               "responseId": "en:lesson-05:session-50:intro1:r2",
-              "text": "Where is the scooter?"
+              "text": "Whose seesaw is this?"
             },
             {
               "responseId": "en:lesson-05:session-50:intro1:r3",
-              "text": "Whose scooter are these?"
+              "text": "Where are the seesaw?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце самоката.",
-          "uk": "Запитайте про власника самоката."
+          "ru": "Вы пришли на площадку с младшей сестрой. Спросите соседку, где качели-балансир.",
+          "uk": "Ви прийшли на майданчик із молодшою сестрою. Спитайте сусідку, де гойдалка-балансир."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "У реки",
-        "uk": "Біля річки"
+        "ru": "Обруч у скамейки",
+        "uk": "Обруч біля лави"
       },
       "bodyByLocale": {
-        "ru": "`playground` — «детская площадка», `river` — «река». `The playground is near the river` — «Детская площадка возле реки». `The scooter is next to the playground` — «Самокат рядом с детской площадкой». `Where is the river?` — «Где река?»",
-        "uk": "`playground` — «дитячий майданчик», `river` — «річка». `The playground is near the river` — «Дитячий майданчик біля річки». `The scooter is next to the playground` — «Самокат поруч із дитячим майданчиком». `Where is the river?` — «Де річка?»"
+        "ru": "К скамейке подкатился яркий обруч, и соседка спрашивает, чей он. hoop — «обруч», его крутят вокруг пояса или катят по земле. Вы видели, что с ним играла девочка из соседнего двора. Ответьте одним словом вместо названия вещи: The hoop is hers — «Обруч её».",
+        "uk": "До лави підкотився яскравий обруч, і сусідка питає, чий він. hoop — «обруч», його крутять навколо пояса або котять по землі. Ви бачили, що з ним гралася дівчинка із сусіднього двору. Відповідьте одним словом замість назви речі: The hoop is hers — «Обруч її»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-50:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Детская площадка возле реки».",
-          "uk": "Скажіть «Дитячий майданчик біля річки»."
+          "ru": "Соседка спрашивает, чей обруч у скамейки. С ним играла девочка. Скажите: «Обруч её».",
+          "uk": "Сусідка питає, чий обруч біля лави. З ним гралася дівчинка. Скажіть: «Обруч її»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-50:intro2:r1",
-              "text": "The playground is near the river."
+              "text": "The hoop is hers."
             },
             {
               "responseId": "en:lesson-05:session-50:intro2:r2",
-              "text": "The playground are near the river."
+              "text": "The hoop is his."
             },
             {
               "responseId": "en:lesson-05:session-50:intro2:r3",
-              "text": "The playground is in the river."
+              "text": "The hoop is she."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-50:intro2:r1",
-              "text": "The playground is near the river."
+              "text": "The hoop is hers."
             },
             {
               "responseId": "en:lesson-05:session-50:intro2:r2",
-              "text": "The playground are near the river."
+              "text": "The hoop is his."
             },
             {
               "responseId": "en:lesson-05:session-50:intro2:r3",
-              "text": "The playground is in the river."
+              "text": "The hoop is she."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Детская площадка возле реки».",
-          "uk": "Скажіть «Дитячий майданчик біля річки»."
+          "ru": "Соседка спрашивает, чей обруч у скамейки. С ним играла девочка. Скажите: «Обруч её».",
+          "uk": "Сусідка питає, чий обруч біля лави. З ним гралася дівчинка. Скажіть: «Обруч її»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кино и владельцы",
-        "uk": "Кіно й власники"
+        "ru": "Мел на асфальте",
+        "uk": "Крейда на асфальті"
       },
       "bodyByLocale": {
-        "ru": "`cinema` — «кинотеатр». `Where is the cinema?` — «Где кинотеатр?» `This is Anna’s scooter` — «Это самокат Анны». `The scooter is hers` — «Самокат её». `The scooter is ours` — «Самокат наш». Самостоятельные `hers` и `ours` уже заменяют сочетание с названием вещи.",
-        "uk": "`cinema` — «кінотеатр». `Where is the cinema?` — «Де кінотеатр?» `This is Anna’s scooter` — «Це самокат Анни». `The scooter is hers` — «Самокат її». `The scooter is ours` — «Самокат наш». Самостійні `hers` та `ours` уже замінюють сполучення з назвою речі."
+        "ru": "Мальчик рисует классики на асфальте и находит рядом лишний кусок мела. chalk — «мел», им рисуют на доске или на земле. Он спрашивает вас, чей мел. Вы узнали его: вчера мел принесла ваша сестра. Ответьте: The chalk is my sister's — «Мел моей сестры».",
+        "uk": "Хлопчик малює класики на асфальті й знаходить поруч зайвий шматок крейди. chalk — «крейда», нею малюють на дошці або на землі. Він питає вас, чия крейда. Ви впізнали її: учора крейду принесла ваша сестра. Відповідьте: The chalk is my sister's — «Крейда моєї сестри»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-50:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Самокат наш».",
-          "uk": "Скажіть «Самокат наш»."
+          "ru": "Мальчик спрашивает, чей мел на асфальте. Его принесла ваша сестра. Скажите: «Мел моей сестры».",
+          "uk": "Хлопчик питає, чия крейда на асфальті. Її принесла ваша сестра. Скажіть: «Крейда моєї сестри»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-50:intro3:r1",
-              "text": "The scooter is ours."
+              "text": "The chalk is my sister's."
             },
             {
               "responseId": "en:lesson-05:session-50:intro3:r2",
-              "text": "The scooter is our."
+              "text": "The chalk is my sister."
             },
             {
               "responseId": "en:lesson-05:session-50:intro3:r3",
-              "text": "The scooter are ours."
+              "text": "The chalk is sister's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-50:intro3:r1",
-              "text": "The scooter is ours."
+              "text": "The chalk is my sister's."
             },
             {
               "responseId": "en:lesson-05:session-50:intro3:r2",
-              "text": "The scooter is our."
+              "text": "The chalk is my sister."
             },
             {
               "responseId": "en:lesson-05:session-50:intro3:r3",
-              "text": "The scooter are ours."
+              "text": "The chalk is sister's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Самокат наш».",
-          "uk": "Скажіть «Самокат наш»."
+          "ru": "Мальчик спрашивает, чей мел на асфальте. Его принесла ваша сестра. Скажите: «Мел моей сестры».",
+          "uk": "Хлопчик питає, чия крейда на асфальті. Її принесла ваша сестра. Скажіть: «Крейда моєї сестри»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4ca241daf2e0f94f3a20881b8b08f2d1840c9bbe8a776c164180f9de504e874d"
+  "introFingerprint": "da4033a33baa4429c331c8631c7bdc13c5067e6e0bf1863527e6261eed108cf4"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-49:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Это «Где гараж?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де гараж?». Про господаря питаємо з whose."
         },
         "en:lesson-05:session-49:intro1:r3": {
-          "ru": "Один гараж: `is this`.",
-          "uk": "Один гараж: `is this`."
+          "ru": "Гараж один, поэтому нужно is this.",
+          "uk": "Гараж один, тому потрібно is this."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-49:intro2:r2": {
-          "ru": "Один шкафчик: `is`.",
-          "uk": "Одна шафка: `is`."
+          "ru": "Без названия вещи нужно mine, а не my.",
+          "uk": "Без назви речі потрібно mine, а не my."
         },
         "en:lesson-05:session-49:intro2:r3": {
-          "ru": "`dangerous` — опасный; дешёвый — `cheap`.",
-          "uk": "`dangerous` — небезпечний; дешевий — `cheap`."
+          "ru": "yours — твоя, а шину купили вы: нужно mine.",
+          "uk": "yours — твоя, а шину купили ви: потрібно mine."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-49:intro3:r2": {
-          "ru": "Без следующего существительного нужна самостоятельная форма `ours`.",
-          "uk": "Без наступного іменника потрібна самостійна форма `ours`."
+          "ru": "Без названия вещи нужно ours, а не our.",
+          "uk": "Без назви речі потрібно ours, а не our."
         },
         "en:lesson-05:session-49:intro3:r3": {
-          "ru": "Один гараж: `is`.",
-          "uk": "Один гараж: `is`."
+          "ru": "theirs — их, а цепь ваша с братом: нужно ours.",
+          "uk": "theirs — їхній, а ланцюг ваш із братом: потрібно ours."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4dbc54b85d7730de714f0a25008a43487a43ec938a237e5e5f868d12d1848935"
+  "auxiliaryFingerprint": "2af01ceaed90286598df8d675925b3f40cd622565215ce131df76ad696f5dc05"
 }

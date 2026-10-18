@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-56",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-56:word:broom",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — broom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:broom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — broom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:broom:audio",
+            "transcript": "broom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:broom:r1",
+              "targetText": "broom",
+              "meaningByLocale": {
+                "ru": "метла. The broom is behind the door. — «Метла за дверью». Палка с жёсткими прутьями для подметания.",
+                "uk": "мітла. The broom is behind the door. — «Мітла за дверима». Палиця з жорсткими прутами для підмітання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "broom",
+            "definitionByLocale": {
+              "ru": "метла. The broom is behind the door. — «Метла за дверью». Палка с жёсткими прутьями для подметания.",
+              "uk": "мітла. The broom is behind the door. — «Мітла за дверима». Палиця з жорсткими прутами для підмітання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед ищет метлу. Скажите ему: «Метла за дверью»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед ищет метлу. Скажите ему: «Метла за дверью»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The broom is behind the door.",
+          "localizedMeaning": {
+            "ru": "Сосед ищет метлу. Скажите ему: «Метла за дверью»",
+            "uk": "Сусід шукає мітлу. Скажіть йому: «Мітла за дверима»"
+          },
+          "orderedTokens": [
+            "The",
+            "broom",
+            "is",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед ищет метлу. Скажите ему: «Метла за дверью»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The broom is behind the door.`",
+                "uk": "тут потрібно `is` — `The broom is behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:word:mop",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:mop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:mop:audio",
+            "transcript": "mop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:mop:r1",
+              "targetText": "mop",
+              "meaningByLocale": {
+                "ru": "швабра. The mop is near the door. — «Швабра возле двери». Палка с тряпкой для мытья пола.",
+                "uk": "швабра. The mop is near the door. — «Швабра біля дверей». Палиця з ганчіркою для миття підлоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mop",
+            "definitionByLocale": {
+              "ru": "швабра. The mop is near the door. — «Швабра возле двери». Палка с тряпкой для мытья пола.",
+              "uk": "швабра. The mop is near the door. — «Швабра біля дверей». Палиця з ганчіркою для миття підлоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i02:r1",
+            "text": "Whose mop is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i02:r2",
+            "text": "Whose mop is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i02:r3",
+            "text": "Whose broom is that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i02:audio",
+            "transcript": "Whose mop is that?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:i02:r1",
+              "targetText": "Whose mop is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i02:r2",
+              "targetText": "Whose mop is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i02:r3",
+              "targetText": "Whose broom is that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `that`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `that`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `mop`, швабра, а в этом варианте — `broom`, метла.",
+                "uk": "У записі річ — `mop`, швабра, а в цьому варіанті — `broom`, мітла."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:word:dustpan",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dustpan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:dustpan:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dustpan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:dustpan:audio",
+            "transcript": "dustpan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:dustpan:r1",
+              "targetText": "dustpan",
+              "meaningByLocale": {
+                "ru": "совок для мусора. The dustpan is under the shelf. — «Совок для мусора под полкой». Плоская лопатка, в которую сметают мусор.",
+                "uk": "совок для сміття. The dustpan is under the shelf. — «Совок для сміття під полицею». Плоска лопатка, в яку змітають сміття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dustpan",
+            "definitionByLocale": {
+              "ru": "совок для мусора. The dustpan is under the shelf. — «Совок для мусора под полкой». Плоская лопатка, в которую сметают мусор.",
+              "uk": "совок для сміття. The dustpan is under the shelf. — «Совок для сміття під полицею». Плоска лопатка, в яку змітають сміття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Соседка спрашивает про совок для мусора. Он ваш. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i03:r3",
+            "text": "I"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка спрашивает про совок для мусора. Он ваш. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка спрашивает про совок для мусора. Он ваш. Выберите слово",
+            "uk": "Сусідка питає про совок для сміття. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The dustpan is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-56:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i03:r3",
+              "text": "I"
+            }
+          ],
+          "testedDimension": "Соседка спрашивает про совок для мусора. Он ваш. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Соседка спрашивает про совок для мусора. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Соседка спрашивает про совок для мусора. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`I` значит «я», а «мой» без вещи — `mine`.",
+                "uk": "`I` означає «я», а «мій» без речі — `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-56:i04:p1",
+              "target": "broom",
+              "meaningByLocale": {
+                "ru": "метла",
+                "uk": "мітла"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i04:p2",
+              "target": "mop",
+              "meaningByLocale": {
+                "ru": "швабра",
+                "uk": "швабра"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i04:p3",
+              "target": "dustpan",
+              "meaningByLocale": {
+                "ru": "совок для мусора",
+                "uk": "совок для сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i04:p4",
+              "target": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли",
+                "uk": "ганчірка для пилу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broom",
+            "mop",
+            "dustpan",
+            "duster"
+          ],
+          "rightColumn": [
+            "метла",
+            "швабра",
+            "совок для мусора",
+            "тряпка для пыли"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:word:duster",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — duster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:duster:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — duster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:duster:audio",
+            "transcript": "duster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:duster:r1",
+              "targetText": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли. The duster is on the shelf. — «Тряпка для пыли на полке». Мягкая ткань, которой вытирают пыль.",
+                "uk": "ганчірка для пилу. The duster is on the shelf. — «Ганчірка для пилу на полиці». М’яка тканина, якою витирають пил."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "duster",
+            "definitionByLocale": {
+              "ru": "тряпка для пыли. The duster is on the shelf. — «Тряпка для пыли на полке». Мягкая ткань, которой вытирают пыль.",
+              "uk": "ганчірка для пилу. The duster is on the shelf. — «Ганчірка для пилу на полиці». М’яка тканина, якою витирають пил."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i05:audio",
+            "transcript": "The duster is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The duster is on the shelf.",
+          "orderedTokens": [
+            "The",
+            "duster",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The duster is on the shelf.`",
+                "uk": "тут потрібно `is` — `The duster is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Метлы лежат у забора. Спросите соседа: «Чьи это метлы?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Метлы лежат у забора. Спросите соседа: «Чьи это метлы?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose brooms are these?",
+          "localizedMeaning": {
+            "ru": "Метлы лежат у забора. Спросите соседа: «Чьи это метлы?»",
+            "uk": "Мітли лежать біля паркану. Спитайте сусіда: «Чиї це мітли?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "brooms",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Метлы лежат у забора. Спросите соседа: «Чьи это метлы?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose brooms are these?`",
+                "uk": "тут потрібно `Whose` — `Whose brooms are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, чья тряпка для пыли. Она вашей тёти. Скажите: «Тряпка моей тёти»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, чья тряпка для пыли. Она вашей тёти. Скажите: «Тряпка моей тёти»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i07:audio",
+            "transcript": "The duster is my aunt's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The duster is my aunt's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Две швабры принадлежат соседям. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i08:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две швабры принадлежат соседям. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две швабры принадлежат соседям. Выберите слово",
+            "uk": "Дві швабри належать сусідам. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The mops are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-56:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i08:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Две швабры принадлежат соседям. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Две швабры принадлежат соседям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Две швабры принадлежат соседям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i09:r1",
+            "text": "The broom is ours."
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i09:r2",
+            "text": "The broom is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i09:r3",
+            "text": "The mop is ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i09:audio",
+            "transcript": "The broom is ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:i09:r1",
+              "targetText": "The broom is ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i09:r2",
+              "targetText": "The broom is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i09:r3",
+              "targetText": "The mop is ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ours`, а в этом варианте — `yours`.",
+                "uk": "У записі останнє слово — `ours`, а в цьому варіанті — `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `broom`, метла, а в этом варианте — `mop`, швабра.",
+                "uk": "У записі річ — `broom`, мітла, а в цьому варіанті — `mop`, швабра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-56:i10:p1",
+              "target": "broom",
+              "meaningByLocale": {
+                "ru": "метла",
+                "uk": "мітла"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i10:p2",
+              "target": "mop",
+              "meaningByLocale": {
+                "ru": "швабра",
+                "uk": "швабра"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i10:p3",
+              "target": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли",
+                "uk": "ганчірка для пилу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broom",
+            "mop",
+            "duster",
+            "shelf"
+          ],
+          "rightColumn": [
+            "метла",
+            "швабра",
+            "тряпка для пыли",
+            "полка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i11:audio",
+            "transcript": "My neighbour's mop is behind the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My neighbour's mop is behind the door.",
+          "orderedTokens": [
+            "My",
+            "neighbour's",
+            "mop",
+            "is",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "neighbour"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `neighbour's` — `My neighbour's mop is behind the door.`",
+                "uk": "тут потрібно `neighbour's` — `My neighbour's mop is behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ищете совок для мусора. Спросите соседа: «Где совок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете совок для мусора. Спросите соседа: «Где совок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the dustpan?",
+          "localizedMeaning": {
+            "ru": "Вы ищете совок для мусора. Спросите соседа: «Где совок?»",
+            "uk": "Ви шукаєте совок для сміття. Спитайте сусіда: «Де совок?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "dustpan"
+          ],
+          "authoredDistractorTokens": [
+            "Whose"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы ищете совок для мусора. Спросите соседа: «Где совок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the dustpan?`",
+                "uk": "тут потрібно `Where` — `Where is the dustpan?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы даёте соседу свою метлу. Скажите ему: «Метла твоя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Вы даёте соседу свою метлу. Скажите ему: «Метла твоя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i13:audio",
+            "transcript": "The broom is yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The broom is yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед спрашивает: «Is this duster yours?» Нет, тряпка не ваша. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i14:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает: «Is this duster yours?» Нет, тряпка не ваша. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает: «Is this duster yours?» Нет, тряпка не ваша. Выберите слово",
+            "uk": "Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово"
+          },
+          "gappedTargetPhrase": "No, it ___ mine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-56:i14:r1",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Сосед спрашивает: «Is this duster yours?» Нет, тряпка не ваша. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает: «Is this duster yours?» Нет, тряпка не ваша. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После No ответ отрицательный: нужно `isn't`.",
+                "uk": "Після No відповідь заперечна: потрібно `isn't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает: «Is this duster yours?» Нет, тряпка не ваша. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it isn't`.",
+                "uk": "`has` означає «має», а на питання «це ваше?» відповідаємо `it isn't`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i15:r1",
+            "text": "Is this mop your neighbour's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i15:r2",
+            "text": "Is this mop your aunt's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i15:r3",
+            "text": "Is this broom your neighbour's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i15:audio",
+            "transcript": "Is this mop your neighbour's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:i15:r1",
+              "targetText": "Is this mop your neighbour's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i15:r2",
+              "targetText": "Is this mop your aunt's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i15:r3",
+              "targetText": "Is this broom your neighbour's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `neighbour's`, сосед или соседка, а в этом варианте — `aunt's`, тётя.",
+                "uk": "У записі господар — `neighbour's`, сусід або сусідка, а в цьому варіанті — `aunt's`, тітка."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `mop`, швабра, а в этом варианте — `broom`, метла.",
+                "uk": "У записі річ — `mop`, швабра, а в цьому варіанті — `broom`, мітла."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-56:i16:p1",
+              "target": "broom",
+              "meaningByLocale": {
+                "ru": "метла",
+                "uk": "мітла"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i16:p2",
+              "target": "mop",
+              "meaningByLocale": {
+                "ru": "швабра",
+                "uk": "швабра"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i16:p3",
+              "target": "dustpan",
+              "meaningByLocale": {
+                "ru": "совок для мусора",
+                "uk": "совок для сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i16:p4",
+              "target": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли",
+                "uk": "ганчірка для пилу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broom",
+            "mop",
+            "dustpan",
+            "duster"
+          ],
+          "rightColumn": [
+            "метла",
+            "швабра",
+            "совок для мусора",
+            "тряпка для пыли"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли метлу во дворе и хотите вернуть её. Спросите соседа: «Чья это метла?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли метлу во дворе и хотите вернуть её. Спросите соседа: «Чья это метла?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i17:audio",
+            "transcript": "Whose broom is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose broom is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-56:word:broom",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — broom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:broom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — broom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:broom:audio",
+            "transcript": "broom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:broom:r1",
+              "targetText": "broom",
+              "meaningByLocale": {
+                "ru": "метла. The broom is behind the door. — «Метла за дверью». Палка с жёсткими прутьями для подметания.",
+                "uk": "мітла. The broom is behind the door. — «Мітла за дверима». Палиця з жорсткими прутами для підмітання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "broom",
+            "definitionByLocale": {
+              "ru": "метла. The broom is behind the door. — «Метла за дверью». Палка с жёсткими прутьями для подметания.",
+              "uk": "мітла. The broom is behind the door. — «Мітла за дверима». Палиця з жорсткими прутами для підмітання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід шукає мітлу. Скажіть йому: «Мітла за дверима»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід шукає мітлу. Скажіть йому: «Мітла за дверима»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The broom is behind the door.",
+          "localizedMeaning": {
+            "ru": "Сосед ищет метлу. Скажите ему: «Метла за дверью»",
+            "uk": "Сусід шукає мітлу. Скажіть йому: «Мітла за дверима»"
+          },
+          "orderedTokens": [
+            "The",
+            "broom",
+            "is",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід шукає мітлу. Скажіть йому: «Мітла за дверима»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The broom is behind the door.`",
+                "uk": "тут потрібно `is` — `The broom is behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:word:mop",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:mop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:mop:audio",
+            "transcript": "mop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:mop:r1",
+              "targetText": "mop",
+              "meaningByLocale": {
+                "ru": "швабра. The mop is near the door. — «Швабра возле двери». Палка с тряпкой для мытья пола.",
+                "uk": "швабра. The mop is near the door. — «Швабра біля дверей». Палиця з ганчіркою для миття підлоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mop",
+            "definitionByLocale": {
+              "ru": "швабра. The mop is near the door. — «Швабра возле двери». Палка с тряпкой для мытья пола.",
+              "uk": "швабра. The mop is near the door. — «Швабра біля дверей». Палиця з ганчіркою для миття підлоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i02:r1",
+            "text": "Whose mop is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i02:r2",
+            "text": "Whose mop is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i02:r3",
+            "text": "Whose broom is that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i02:audio",
+            "transcript": "Whose mop is that?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:i02:r1",
+              "targetText": "Whose mop is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i02:r2",
+              "targetText": "Whose mop is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i02:r3",
+              "targetText": "Whose broom is that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `that`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `that`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `mop`, швабра, а в этом варианте — `broom`, метла.",
+                "uk": "У записі річ — `mop`, швабра, а в цьому варіанті — `broom`, мітла."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:word:dustpan",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dustpan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:dustpan:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dustpan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:dustpan:audio",
+            "transcript": "dustpan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:dustpan:r1",
+              "targetText": "dustpan",
+              "meaningByLocale": {
+                "ru": "совок для мусора. The dustpan is under the shelf. — «Совок для мусора под полкой». Плоская лопатка, в которую сметают мусор.",
+                "uk": "совок для сміття. The dustpan is under the shelf. — «Совок для сміття під полицею». Плоска лопатка, в яку змітають сміття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dustpan",
+            "definitionByLocale": {
+              "ru": "совок для мусора. The dustpan is under the shelf. — «Совок для мусора под полкой». Плоская лопатка, в которую сметают мусор.",
+              "uk": "совок для сміття. The dustpan is under the shelf. — «Совок для сміття під полицею». Плоска лопатка, в яку змітають сміття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусідка питає про совок для сміття. Він ваш. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i03:r3",
+            "text": "I"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка питає про совок для сміття. Він ваш. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка спрашивает про совок для мусора. Он ваш. Выберите слово",
+            "uk": "Сусідка питає про совок для сміття. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The dustpan is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-56:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i03:r3",
+              "text": "I"
+            }
+          ],
+          "testedDimension": "Сусідка питає про совок для сміття. Він ваш. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Сусідка питає про совок для сміття. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Сусідка питає про совок для сміття. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`I` значит «я», а «мой» без вещи — `mine`.",
+                "uk": "`I` означає «я», а «мій» без речі — `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-56:i04:p1",
+              "target": "broom",
+              "meaningByLocale": {
+                "ru": "метла",
+                "uk": "мітла"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i04:p2",
+              "target": "mop",
+              "meaningByLocale": {
+                "ru": "швабра",
+                "uk": "швабра"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i04:p3",
+              "target": "dustpan",
+              "meaningByLocale": {
+                "ru": "совок для мусора",
+                "uk": "совок для сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i04:p4",
+              "target": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли",
+                "uk": "ганчірка для пилу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broom",
+            "mop",
+            "dustpan",
+            "duster"
+          ],
+          "rightColumn": [
+            "мітла",
+            "швабра",
+            "совок для сміття",
+            "ганчірка для пилу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:word:duster",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — duster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:word:duster:audio"
+        ],
+        "accessibilityLabel": "Картка слова — duster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:word:duster:audio",
+            "transcript": "duster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:word:duster:r1",
+              "targetText": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли. The duster is on the shelf. — «Тряпка для пыли на полке». Мягкая ткань, которой вытирают пыль.",
+                "uk": "ганчірка для пилу. The duster is on the shelf. — «Ганчірка для пилу на полиці». М’яка тканина, якою витирають пил."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "duster",
+            "definitionByLocale": {
+              "ru": "тряпка для пыли. The duster is on the shelf. — «Тряпка для пыли на полке». Мягкая ткань, которой вытирают пыль.",
+              "uk": "ганчірка для пилу. The duster is on the shelf. — «Ганчірка для пилу на полиці». М’яка тканина, якою витирають пил."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i05:audio",
+            "transcript": "The duster is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The duster is on the shelf.",
+          "orderedTokens": [
+            "The",
+            "duster",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The duster is on the shelf.`",
+                "uk": "тут потрібно `is` — `The duster is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мітли лежать біля паркану. Спитайте сусіда: «Чиї це мітли?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мітли лежать біля паркану. Спитайте сусіда: «Чиї це мітли?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose brooms are these?",
+          "localizedMeaning": {
+            "ru": "Метлы лежат у забора. Спросите соседа: «Чьи это метлы?»",
+            "uk": "Мітли лежать біля паркану. Спитайте сусіда: «Чиї це мітли?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "brooms",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Мітли лежать біля паркану. Спитайте сусіда: «Чиї це мітли?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose brooms are these?`",
+                "uk": "тут потрібно `Whose` — `Whose brooms are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, чия ганчірка для пилу. Вона вашої тітки. Скажіть: «Ганчірка моєї тітки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, чия ганчірка для пилу. Вона вашої тітки. Скажіть: «Ганчірка моєї тітки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i07:audio",
+            "transcript": "The duster is my aunt's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The duster is my aunt's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дві швабри належать сусідам. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i08:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві швабри належать сусідам. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две швабры принадлежат соседям. Выберите слово",
+            "uk": "Дві швабри належать сусідам. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The mops are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-56:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i08:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Дві швабри належать сусідам. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Дві швабри належать сусідам. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Дві швабри належать сусідам. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i09:r1",
+            "text": "The broom is ours."
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i09:r2",
+            "text": "The broom is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i09:r3",
+            "text": "The mop is ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i09:audio",
+            "transcript": "The broom is ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:i09:r1",
+              "targetText": "The broom is ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i09:r2",
+              "targetText": "The broom is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i09:r3",
+              "targetText": "The mop is ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ours`, а в этом варианте — `yours`.",
+                "uk": "У записі останнє слово — `ours`, а в цьому варіанті — `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `broom`, метла, а в этом варианте — `mop`, швабра.",
+                "uk": "У записі річ — `broom`, мітла, а в цьому варіанті — `mop`, швабра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-56:i10:p1",
+              "target": "broom",
+              "meaningByLocale": {
+                "ru": "метла",
+                "uk": "мітла"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i10:p2",
+              "target": "mop",
+              "meaningByLocale": {
+                "ru": "швабра",
+                "uk": "швабра"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i10:p3",
+              "target": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли",
+                "uk": "ганчірка для пилу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broom",
+            "mop",
+            "duster",
+            "shelf"
+          ],
+          "rightColumn": [
+            "мітла",
+            "швабра",
+            "ганчірка для пилу",
+            "полиця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i11:audio",
+            "transcript": "My neighbour's mop is behind the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My neighbour's mop is behind the door.",
+          "orderedTokens": [
+            "My",
+            "neighbour's",
+            "mop",
+            "is",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "neighbour"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `neighbour's` — `My neighbour's mop is behind the door.`",
+                "uk": "тут потрібно `neighbour's` — `My neighbour's mop is behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви шукаєте совок для сміття. Спитайте сусіда: «Де совок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте совок для сміття. Спитайте сусіда: «Де совок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the dustpan?",
+          "localizedMeaning": {
+            "ru": "Вы ищете совок для мусора. Спросите соседа: «Где совок?»",
+            "uk": "Ви шукаєте совок для сміття. Спитайте сусіда: «Де совок?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "dustpan"
+          ],
+          "authoredDistractorTokens": [
+            "Whose"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви шукаєте совок для сміття. Спитайте сусіда: «Де совок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the dustpan?`",
+                "uk": "тут потрібно `Where` — `Where is the dustpan?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви даєте сусідові свою мітлу. Скажіть йому: «Мітла твоя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Ви даєте сусідові свою мітлу. Скажіть йому: «Мітла твоя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i13:audio",
+            "transcript": "The broom is yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The broom is yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i14:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает: «Is this duster yours?» Нет, тряпка не ваша. Выберите слово",
+            "uk": "Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово"
+          },
+          "gappedTargetPhrase": "No, it ___ mine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-56:i14:r1",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После No ответ отрицательный: нужно `isn't`.",
+                "uk": "Після No відповідь заперечна: потрібно `isn't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it isn't`.",
+                "uk": "`has` означає «має», а на питання «це ваше?» відповідаємо `it isn't`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-56:i15:r1",
+            "text": "Is this mop your neighbour's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i15:r2",
+            "text": "Is this mop your aunt's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-56:i15:r3",
+            "text": "Is this broom your neighbour's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i15:audio",
+            "transcript": "Is this mop your neighbour's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-56:i15:r1",
+              "targetText": "Is this mop your neighbour's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i15:r2",
+              "targetText": "Is this mop your aunt's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i15:r3",
+              "targetText": "Is this broom your neighbour's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `neighbour's`, сосед или соседка, а в этом варианте — `aunt's`, тётя.",
+                "uk": "У записі господар — `neighbour's`, сусід або сусідка, а в цьому варіанті — `aunt's`, тітка."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `mop`, швабра, а в этом варианте — `broom`, метла.",
+                "uk": "У записі річ — `mop`, швабра, а в цьому варіанті — `broom`, мітла."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-56:i16:p1",
+              "target": "broom",
+              "meaningByLocale": {
+                "ru": "метла",
+                "uk": "мітла"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i16:p2",
+              "target": "mop",
+              "meaningByLocale": {
+                "ru": "швабра",
+                "uk": "швабра"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i16:p3",
+              "target": "dustpan",
+              "meaningByLocale": {
+                "ru": "совок для мусора",
+                "uk": "совок для сміття"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-56:i16:p4",
+              "target": "duster",
+              "meaningByLocale": {
+                "ru": "тряпка для пыли",
+                "uk": "ганчірка для пилу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broom",
+            "mop",
+            "dustpan",
+            "duster"
+          ],
+          "rightColumn": [
+            "мітла",
+            "швабра",
+            "совок для сміття",
+            "ганчірка для пилу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли мітлу у дворі й хочете повернути її. Спитайте сусіда: «Чия це мітла?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли мітлу у дворі й хочете повернути її. Спитайте сусіда: «Чия це мітла?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-56:i17:audio",
+            "transcript": "Whose broom is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose broom is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-56:word:broom",
+      "correctText": "broom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i01",
+      "correctText": "The broom is behind the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:word:mop",
+      "correctText": "mop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i02",
+      "correctText": "Whose mop is that?",
+      "correctResponseId": "en:lesson-05:session-56:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:word:dustpan",
+      "correctText": "dustpan",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i03",
+      "correctText": "mine",
+      "correctResponseId": "en:lesson-05:session-56:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:word:duster",
+      "correctText": "duster",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i05",
+      "correctText": "The duster is on the shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i06",
+      "correctText": "Whose brooms are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i07",
+      "correctText": "The duster is my aunt's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i08",
+      "correctText": "theirs",
+      "correctResponseId": "en:lesson-05:session-56:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i09",
+      "correctText": "The broom is ours.",
+      "correctResponseId": "en:lesson-05:session-56:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i11",
+      "correctText": "My neighbour's mop is behind the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i12",
+      "correctText": "Where is the dustpan?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i13",
+      "correctText": "The broom is yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i14",
+      "correctText": "isn't",
+      "correctResponseId": "en:lesson-05:session-56:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i15",
+      "correctText": "Is this mop your neighbour's?",
+      "correctResponseId": "en:lesson-05:session-56:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:i17",
+      "correctText": "Whose broom is this?",
+      "correctResponseId": null
+    }
+  ]
+}

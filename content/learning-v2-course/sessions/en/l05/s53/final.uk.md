@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 53 — Корт біля музею
+# Англійська · Урок 5 · Заняття 53 — Бадмінтон на корті
 
-**Ситуація.** Анна й Том шукають спортивний корт. Біля музею стоїть мотоцикл; Том хоче дізнатися, кому він належить.
+**Ситуація.** Ви з другом ідете грати в бадмінтон на відкритий корт. Там лежать сітка й волан, а на стіні висить табло. Треба зрозуміти, де що й чиє: whose, this чи that, yours, mine, theirs або ім’я з 's.
 
-**Що ви опануєте:** знайти спортивний майданчик і запитати про власника транспорту
-**Нові слова:** court
+**Що ви опануєте:** сказати, де корт, спитати про господаря речі та відповісти: whose, that, yours, mine, theirs, 's
+**Нові слова:** court, net, shuttlecock, scoreboard
+**Повертаються:** friend, cousin, school, bench, wall
 
 ---
 
 ## Інтро 1
 
-### Місце для гри
+### Де грати
 
-`court` тут — «корт», майданчик для спортивної гри, наприклад у теніс. `Where is the court?` — «Де корт?» `The court is near the museum` — «Корт біля музею». Слово має й інші значення, але тут ідеться про спортивний майданчик.
+Перехожий бачить ваші ракетки й питає, де тут можна пограти в бадмінтон. Ви там уже були. court — «корт», майданчик з розміткою для гри. Він за школою, куди веде доріжка від парку. Скажіть перехожому: The court is behind the school — «Корт за школою».
 
-**Запитайте, де корт.**
+**Перехожий питає, де можна пограти в бадмінтон. Корт за школою. Скажіть: «Корт за школою».**
 
-- ✅ **Where is the court?**
-- ❌ Whose court is this? — *Це запитання про власника; про місце запитуємо з `Where`.*
-- ❌ Where are the court? — *Один корт: `is`.*
+- ✅ **The court is behind the school.**
+- ❌ The court is behind school. — *Перед school потрібно the: the school.*
+- ❌ The court are behind the school. — *Корт один, тому потрібно is.*
 
 ---
 
 ## Інтро 2
 
-### Мотоцикл і повна сумка
+### Сітка на траві
 
-`motorbike` — «мотоцикл», `full` — «повний», заповнений. `This bag is full` — «Ця сумка повна». `Whose motorbike is this?` — «Чий це мотоцикл?» `The motorbike is hers` — «Мотоцикл її». Повна сумка — ще не доказ того, що ви взяли саме потрібні речі.
+Тренер розкладає на траві довгу сітку й не може згадати, хто її привіз. net — «сітка», її натягують посередині корту. Вона лежить далеко від вас, біля дальнього краю майданчика. Спитайте друга, чия вона: Whose net is that? — «Чия та сітка там?» Річ далеко, тому that.
 
-**Скажіть «Ця сумка повна».**
+**Тренер розкладає сітку біля дальнього краю майданчика. Спитайте друга, чия вона.**
 
-- ✅ **This bag is full.**
-- ❌ This bag are full. — *Одна сумка: `is`.*
-- ❌ This bag is heavy. — *`heavy` — важкий; повний — `full`. Наповненість і вага — різні ознаки.*
+- ✅ **Whose net is that?**
+- ❌ Whose net is this? — *this — це про річ поруч, а сітка лежить далеко: потрібно that.*
+- ❌ Where is the net? — *Це «Де сітка?». Про господаря питаємо з whose.*
 
 ---
 
 ## Інтро 3
 
-### Орієнтири на вулиці
+### Волан у траві
 
-`museum` — «музей», `police station` — «поліцейський відділок». `The museum is next to the police station` — «Музей поруч із поліцейським відділком». `This is Tom’s motorbike` — «Це мотоцикл Тома». `Your motorbike is here` — «Твій мотоцикл тут».
+У траві біля корту ви знаходите волан. shuttlecock — «волан», маленький «м’ячик» з пір’ям для бадмінтону. Поруч стоїть ваш друг, він грав тут із ранку. Ви хочете перевірити, чи не його це волан. Спитайте друга: Is this shuttlecock yours? — «Це твій волан?»
 
-**Скажіть «Музей поруч із поліцейським відділком».**
+**Ви знайшли волан у траві, поруч стоїть друг. Спитайте його: «Це твій волан?»**
 
-- ✅ **The museum is next to the police station.**
-- ❌ The museum are next to the police station. — *Один музей: `is`.*
-- ❌ The museum is in the police station. — *Поруч — `next to`; `in` означає всередині.*
+- ✅ **Is this shuttlecock yours?**
+- ❌ Is this shuttlecock your? — *Наприкінці питання потрібно yours, а не your.*
+- ❌ This shuttlecock is yours. — *Це ствердження, а вам потрібне питання: is ставимо перед this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Ця сумка повна»**
+**1 · Картка слова — court**
+<!-- interaction_id: en:lesson-05:session-53:word:court; family: word_card -->
+> **court** — корт. The court is near the school. — «Корт біля школи». Майданчик з розміткою для гри з воланом або м’ячем.
+
+**2 · Друг питає, де корт. Скажіть йому: «Корт біля школи»**
 <!-- interaction_id: en:lesson-05:session-53:i01; family: phrase_builder -->
-Плитки: `full` `is` `bag` `This` `are` → **This bag is full.**
-*(плитка `are` зайва: тут потрібно `is` — `This bag is full.`)*
+Плитки: `court` `near` `the` `school` `is` `The` `are` → **The court is near the school.**
+*(плитка `are` зайва: тут потрібно `is` — `The court is near the school.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — net**
+<!-- interaction_id: en:lesson-05:session-53:word:net; family: word_card -->
+> **net** — сітка. The net is on the bench. — «Сітка на лаві». Її натягують посередині корту.
+
+**4 · Послухайте тренера**
 <!-- interaction_id: en:lesson-05:session-53:i02; family: listen_choose -->
-🔊 *court* → **court** · pool · museum
-- pool — *У записі перше слово — `court`, а в цьому варіанті — `pool`.*
-- museum — *У записі перше слово — `court`, а в цьому варіанті — `museum`.*
+🔊 *Whose net is that?* → **Whose net is that?** · Whose net is this? · Whose court is that?
+- Whose net is this? — *У записі останнє слово — `that`, а в цьому варіанті — `this`.*
+- Whose court is that? — *У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт.*
 
-**3 · Назвіть корт**
+**5 · Картка слова — shuttlecock**
+<!-- interaction_id: en:lesson-05:session-53:word:shuttlecock; family: word_card -->
+> **shuttlecock** — волан. The shuttlecock is in my bag. — «Волан у моїй сумці». Легкий «м’ячик» з пір’ям для бадмінтону.
+
+**6 · Друг питає, чий волан. Він ваш. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-53:i03; family: context_gap_grammar -->
-___ → **court** · pool · museum
-- pool — *`pool` — басейн; корт — `court`.*
-- museum — *`museum` — музей; корт — `court`.*
+The shuttlecock is ___. → **mine** · my · I
+- my — *Без назви речі потрібно `mine`, а не `my`.*
+- I — *`I` означає «я», а «мій» без речі — `mine`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-53:i04; family: speed_match -->
-court — корт · motorbike — мотоцикл · museum — музей · police station — поліцейський відділок
+court — корт · net — сітка · shuttlecock — волан · scoreboard — табло
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — scoreboard**
+<!-- interaction_id: en:lesson-05:session-53:word:scoreboard; family: word_card -->
+> **scoreboard** — табло. The scoreboard is on the wall. — «Табло на стіні». Щит, на якому показують рахунок гри.
+
+**9 · Послухайте тренера й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-53:i05; family: listen_build_dictation -->
-🔊 *Where is the court?* Плитки: `court` `the` `is` `Where` → **Where is the court?**
+🔊 *The scoreboard is on the wall.* Плитки: `scoreboard` `on` `the` `wall` `is` `The` `are` → **The scoreboard is on the wall.**
+*(плитка `are` зайва: тут потрібно `is` — `The scoreboard is on the wall.`)*
 
-**6 · Скажіть «Музей поруч із поліцейським відділком»**
+**10 · Ви шукаєте табло. Спитайте друга: «Де табло?»**
 <!-- interaction_id: en:lesson-05:session-53:i06; family: phrase_builder -->
-Плитки: `station` `police` `the` `to` `next` `is` `museum` `The` `are` → **The museum is next to the police station.**
-*(плитка `are` зайва: тут потрібно `is` — `The museum is next to the police station.`)*
+Плитки: `scoreboard` `the` `is` `Where` `Whose` → **Where is the scoreboard?**
+*(плитка `Whose` зайва: тут потрібно `Where` — `Where is the scoreboard?`)*
 
-**7 · Скажіть «Корт біля музею»**
+**11 · Тренер питає, чия сітка. Вона вашого друга. Скажіть: «Сітка мого друга»**
 <!-- interaction_id: en:lesson-05:session-53:i07; family: scripted_repeat_compare -->
-🎙 **The court is near the museum.**
+🎙 **The net is my friend's.**
 
-**8 · Запитайте про власника мотоцикла**
+**12 · Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-53:i08; family: context_gap_grammar -->
-Whose motorbike ___ this? → **is** · are · am
-- are — *Один мотоцикл: `is this`.*
-- am — *`am` використовується з `I`; тут `is this`.*
+The shuttlecock is ___. → **theirs** · their · they
+- their — *Без назви речі потрібно `theirs`, а не `their`.*
+- they — *`they` означає «вони», а «їхній» без речі — `theirs`.*
 
-**9 · Послухайте, який транспорт називає Анна**
+**13 · Послухайте друга**
 <!-- interaction_id: en:lesson-05:session-53:i09; family: listen_choose -->
-🔊 *This is Tom's motorbike.* → **This is Tom's motorbike.** · This is Tom's bicycle. · This is Tom's scooter.
-- This is Tom's bicycle. — *У записі останнє слово — `motorbike`, а в цьому варіанті — `bicycle`.*
-- This is Tom's scooter. — *У записі останнє слово — `motorbike`, а в цьому варіанті — `scooter`.*
+🔊 *The net is hers.* → **The net is hers.** · The net is his. · The court is hers.
+- The net is his. — *У записі останнє слово — `hers`, а в цьому варіанті — `his`.*
+- The court is hers. — *У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-53:i10; family: speed_match -->
-court — корт · full — повний · police station — поліцейський відділок · motorbike — мотоцикл
+court — корт · net — сітка · scoreboard — табло · wall — стіна
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте друга й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-53:i11; family: listen_build_dictation -->
-🔊 *The motorbike is near the court.* Плитки: `court` `the` `near` `is` `motorbike` `The` `are` → **The motorbike is near the court.**
-*(плитка `are` зайва: тут потрібно `is` — `The motorbike is near the court.`)*
+🔊 *My friend's net is under the bench.* Плитки: `net` `friend's` `is` `under` `the` `bench` `My` `friend` → **My friend's net is under the bench.**
+*(плитка `friend` зайва: тут потрібно `friend's` — `My friend's net is under the bench.`)*
 
-**12 · Мотоцикл належить Анні. Скажіть «Мотоцикл її»**
+**16 · На корті лежать два волані. Спитайте друга: «Чиї це волани?»**
 <!-- interaction_id: en:lesson-05:session-53:i12; family: phrase_builder -->
-Плитки: `hers` `is` `motorbike` `The` `are` → **The motorbike is hers.**
-*(плитка `are` зайва: тут потрібно `is` — `The motorbike is hers.`)*
+Плитки: `shuttlecocks` `these` `are` `Whose` `Where` → **Whose shuttlecocks are these?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose shuttlecocks are these?`)*
 
-**13 · Скажіть Анні «Твій мотоцикл тут»**
+**17 · Ви дали другові свій волан. Він питає, чий волан тепер. Скажіть: «Волан твій»**
 <!-- interaction_id: en:lesson-05:session-53:i13; family: scripted_repeat_compare -->
-🎙 **Your motorbike is here.**
+🎙 **The shuttlecock is yours.**
 
-**14 · Запитайте, де корт**
+**18 · Тренер показує на корт і питає вас. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-53:i14; family: context_gap_grammar -->
-___ is the court? → **Where** · Whose · Who
-- Whose — *`Whose` — чий; де — `Where`.*
-- Who — *`Who` — хто; де — `Where`.*
+Whose court ___ this? → **is** · are · has
+- are — *Корт один, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «має», а в питанні «чий це корт?» потрібно `is`.*
 
-**15 · Послухайте, кому належить мотоцикл**
+**19 · Послухайте тренера**
 <!-- interaction_id: en:lesson-05:session-53:i15; family: listen_choose -->
-🔊 *The motorbike is mine.* → **The motorbike is mine.** · The motorbike is hers. · The motorbike is ours.
-- The motorbike is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
-- The motorbike is ours. — *У записі останнє слово — `mine`, а в цьому варіанті — `ours`.*
+🔊 *Is this net your friend's?* → **Is this net your friend's?** · Is this net your cousin's? · Is this court your friend's?
+- Is this net your cousin's? — *У записі господар — `friend's`, друг, а в цьому варіанті — `cousin's`, двоюрідний брат або сестра.*
+- Is this court your friend's? — *У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-53:i16; family: speed_match -->
-court — корт · full — повний · museum — музей · motorbike — мотоцикл
+court — корт · net — сітка · shuttlecock — волан · scoreboard — табло
 
-**17 · Ви хочете дізнатися, кому належить мотоцикл біля музею. Запитайте «Чий це мотоцикл?»**
+**21 · Ви знайшли сітку біля корту й хочете повернути її. Спитайте тренера: «Чия це сітка?»**
 <!-- interaction_id: en:lesson-05:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose motorbike is this?**
-
+🎙 **Whose net is this?**

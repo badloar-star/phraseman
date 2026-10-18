@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-52:word:flippers",
+    "correctText": "flippers",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-52:i01",
-    "correctText": "This bicycle is light.",
+    "correctText": "The flippers are in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-52:word:armbands",
+    "correctText": "armbands",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i02",
-    "correctText": "pool",
+    "correctText": "Whose armbands are these?",
     "correctResponseId": "en:lesson-05:session-52:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-52:word:lifebelt",
+    "correctText": "lifebelt",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-52:i03",
-    "correctText": "pool",
+    "correctText": "theirs",
     "correctResponseId": "en:lesson-05:session-52:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-52:i04",
-    "correctText": "en:lesson-05:session-52:i04:p1=pool\nen:lesson-05:session-52:i04:p2=bicycle\nen:lesson-05:session-52:i04:p3=stations\nen:lesson-05:session-52:i04:p4=nursery",
+    "correctText": "en:lesson-05:session-52:i04:p1=flippers\nen:lesson-05:session-52:i04:p2=armbands\nen:lesson-05:session-52:i04:p3=lifebelt\nen:lesson-05:session-52:i04:p4=deckchair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-52:word:deckchair",
+    "correctText": "deckchair",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i05",
-    "correctText": "Where is the pool?",
+    "correctText": "The deckchair is under the tree.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i06",
-    "correctText": "The nursery is next to the park.",
+    "correctText": "Whose flippers are those?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i07",
-    "correctText": "Anna is at the pool.",
+    "correctText": "The deckchair is hers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i08",
-    "correctText": "are",
+    "correctText": "ours",
     "correctResponseId": "en:lesson-05:session-52:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-52:i09",
-    "correctText": "This is Tom's bicycle.",
+    "correctText": "The lifebelt is theirs.",
     "correctResponseId": "en:lesson-05:session-52:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-52:i10",
-    "correctText": "en:lesson-05:session-52:i10:p1=pool\nen:lesson-05:session-52:i10:p2=light\nen:lesson-05:session-52:i10:p3=nursery\nen:lesson-05:session-52:i10:p4=bicycle",
+    "correctText": "en:lesson-05:session-52:i10:p1=flippers\nen:lesson-05:session-52:i10:p2=armbands\nen:lesson-05:session-52:i10:p3=deckchair\nen:lesson-05:session-52:i10:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i11",
-    "correctText": "The pool is near the park.",
+    "correctText": "My sister's flippers are under the deckchair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i12",
-    "correctText": "The bicycle is hers.",
+    "correctText": "Where is the deckchair?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i13",
-    "correctText": "Your bicycle is here.",
+    "correctText": "The armbands are mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i14",
-    "correctText": "Whose",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-52:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-52:i15",
-    "correctText": "The bicycle is mine.",
+    "correctText": "Are these flippers your sister's?",
     "correctResponseId": "en:lesson-05:session-52:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-52:i16",
-    "correctText": "en:lesson-05:session-52:i16:p1=pool\nen:lesson-05:session-52:i16:p2=light\nen:lesson-05:session-52:i16:p3=stations\nen:lesson-05:session-52:i16:p4=bicycle",
+    "correctText": "en:lesson-05:session-52:i16:p1=flippers\nen:lesson-05:session-52:i16:p2=armbands\nen:lesson-05:session-52:i16:p3=lifebelt\nen:lesson-05:session-52:i16:p4=deckchair",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-52:i17",
-    "correctText": "Whose bicycle is this?",
+    "correctText": "Whose deckchair is this?",
     "correctResponseId": null
   }
 ]

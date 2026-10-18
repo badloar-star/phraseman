@@ -1,137 +1,154 @@
-# Английский · Урок 5 · Занятие 52 — Велосипед у бассейна
+# Английский · Урок 5 · Занятие 52 — День на пляже
 
-**Ситуация.** Анна и Том ищут бассейн. У входа они замечают велосипед и уточняют, кому он принадлежит.
+**Ситуация.** Семья отдыхает на берегу. Ласты, нарукавники, спасательный круг и шезлонг достали из сумок, и нужно разобраться, что чьё: whose, are these, ours, theirs, hers, mine или имя с 's.
 
-**Что вы освоите:** спросить о месте и владельце велосипеда и описать его вес
-**Новые слова:** pool
+**Что вы освоите:** спросить, чьи вещи, и ответить: whose, are these, ours, theirs, hers, mine, 's
+**Новые слова:** flippers, armbands, lifebelt, deckchair
+**Возвращаются:** sister, brother, neighbour, bag, tree
 
 ---
 
 ## Интро 1
 
-### Место для плавания
+### Ласты из сумки
 
-`pool` здесь — «бассейн» для плавания. `Where is the pool?` — «Где бассейн?» `The pool is near the park` — «Бассейн возле парка». `Anna is at the pool` — «Анна в бассейне», то есть на территории бассейна; фраза не обязательно означает, что она уже в воде.
+Вы достаёте из общей сумки на берегу большие синие ласты. flippers — «ласты», их надевают на ноги, чтобы быстрее плыть. Вы не помните, чьи они: в сумке вещи всей семьи. Спросите брата: Whose flippers are these? — «Чьи это ласты?» Ласт две, поэтому are these.
 
-**Спросите, где бассейн.**
+**Вы держите в руках синие ласты из общей сумки. Спросите брата, чьи они.**
 
-- ✅ **Where is the pool?**
-- ❌ Whose pool is this? — *Это вопрос о владельце; о месте спрашиваем с `Where`.*
-- ❌ Where are the pool? — *Один бассейн: `is`.*
+- ✅ **Whose flippers are these?**
+- ❌ Where are the flippers? — *Это «Где ласты?». О хозяине спрашиваем с whose.*
+- ❌ Whose flippers is this? — *Ласт две, поэтому нужно are these.*
 
 ---
 
 ## Интро 2
 
-### Лёгкий велосипед
+### Нарукавники для малышки
 
-`bicycle` — «велосипед», `light` здесь — «лёгкий» по весу. `This bicycle is light` — «Этот велосипед лёгкий». `Whose bicycle is this?` — «Чей это велосипед?» `The bicycle is hers` — «Велосипед её». Лёгкий велосипед удобнее нести, но обычно от него ждут другой работы.
+Соседка с маленькой дочкой собирается к воде и спрашивает, чьи это жёлтые нарукавники на песке. armbands — «нарукавники», их надевают на руки ребёнку, чтобы он не тонул. Вы с сестрой купили их на прошлой неделе. Ответьте за двоих: The armbands are ours — «Нарукавники наши».
 
-**Скажите о весе: «Этот велосипед лёгкий».**
+**Соседка спрашивает, чьи нарукавники на песке. Их купили вы с сестрой. Скажите: «Нарукавники наши».**
 
-- ✅ **This bicycle is light.**
-- ❌ This bicycle are light. — *Один велосипед: `is`.*
-- ❌ This bicycle is heavy. — *`heavy` — тяжёлый; лёгкий — `light`.*
+- ✅ **The armbands are ours.**
+- ❌ The armbands is ours. — *Нарукавники два, поэтому нужно are.*
+- ❌ The armbands are our. — *Без названия вещи нужно ours, а не our.*
 
 ---
 
 ## Интро 3
 
-### Ориентиры в районе
+### Круг у воды
 
-`stations` — «станции», `nursery` здесь — «детский сад» для маленьких детей. `Where are the stations?` — «Где станции?» `The nursery is next to the park` — «Детский сад рядом с парком». `This is Tom’s bicycle` — «Это велосипед Тома».
+Спасатель на пляже подбирает у воды оранжевый спасательный круг и спрашивает, чей он. lifebelt — «спасательный круг», его бросают тому, кто устал плыть. Вы видели: круг принесла соседская семья. Ответьте одним словом вместо названия вещи: The lifebelt is theirs — «Круг их».
 
-**Спросите, где станции.**
+**Спасатель спрашивает, чей круг у воды. Его принесла соседская семья. Скажите: «Круг их».**
 
-- ✅ **Where are the stations?**
-- ❌ Where is the stations? — *Несколько станций: `stations`, нужна форма `are`.*
-- ❌ Whose stations are these? — *Это вопрос о владельце; о месте спрашиваем с `Where`.*
+- ✅ **The lifebelt is theirs.**
+- ❌ The lifebelt is their. — *Без названия вещи нужно theirs, а не their.*
+- ❌ The lifebelt is ours. — *ours — наш, а круг принесла соседская семья: нужно theirs.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите о весе: «Этот велосипед лёгкий»**
+**1 · Карточка слова — flippers**
+<!-- interaction_id: en:lesson-05:session-52:word:flippers; family: word_card -->
+> **flippers** — ласты. The flippers are in the bag. — «Ласты в сумке». Резиновая обувь для плавания, похожая на плавники.
+
+**2 · Младший брат ищет ласты. Скажите ему: «Ласты в сумке»**
 <!-- interaction_id: en:lesson-05:session-52:i01; family: phrase_builder -->
-Плитки: `light` `is` `bicycle` `This` `are` → **This bicycle is light.**
-*(плитка `are` лишняя: здесь нужно `is` — `This bicycle is light.`)*
+Плитки: `flippers` `in` `the` `bag` `are` `The` `is` → **The flippers are in the bag.**
+*(плитка `is` лишняя: здесь нужно `are` — `The flippers are in the bag.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — armbands**
+<!-- interaction_id: en:lesson-05:session-52:word:armbands; family: word_card -->
+> **armbands** — нарукавники для плавания. The armbands are small. — «Нарукавники маленькие». Надувные кольца на руки ребёнку.
+
+**4 · Послушайте соседку**
 <!-- interaction_id: en:lesson-05:session-52:i02; family: listen_choose -->
-🔊 *pool* → **pool** · park · nursery
-- park — *В записи первое слово — `pool`, а в этом варианте — `park`.*
-- nursery — *В записи первое слово — `pool`, а в этом варианте — `nursery`.*
+🔊 *Whose armbands are these?* → **Whose armbands are these?** · Where are the armbands? · Whose flippers are these?
+- Where are the armbands? — *Это вопрос «Где нарукавники?», а в записи спрашивают о хозяине: `Whose`.*
+- Whose flippers are these? — *В записи вещь — `armbands`, нарукавники, а в этом варианте — `flippers`, ласты.*
 
-**3 · Назовите бассейн для плавания**
+**5 · Карточка слова — lifebelt**
+<!-- interaction_id: en:lesson-05:session-52:word:lifebelt; family: word_card -->
+> **lifebelt** — спасательный круг. The lifebelt is red. — «Спасательный круг красный». Надувное кольцо, за которое держатся в воде.
+
+**6 · Спасатель держит круг. Он принадлежит соседям. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-52:i03; family: context_gap_grammar -->
-___ → **pool** · park · nursery
-- park — *`park` — парк; бассейн — `pool`.*
-- nursery — *`nursery` здесь — детский сад; бассейн — `pool`.*
+The lifebelt is ___. → **theirs** · their · they
+- their — *Без названия вещи нужно `theirs`, а не `their`.*
+- they — *`they` значит «они», а «их» без вещи — `theirs`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-52:i04; family: speed_match -->
-pool — бассейн · bicycle — велосипед · stations — станции · nursery — детский сад
+flippers — ласты · armbands — нарукавники для плавания · lifebelt — спасательный круг · deckchair — шезлонг
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — deckchair**
+<!-- interaction_id: en:lesson-05:session-52:word:deckchair; family: word_card -->
+> **deckchair** — шезлонг. The deckchair is under the tree. — «Шезлонг под деревом». Складной лежак для отдыха на солнце.
+
+**9 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-52:i05; family: listen_build_dictation -->
-🔊 *Where is the pool?* Плитки: `pool` `the` `is` `Where` → **Where is the pool?**
+🔊 *The deckchair is under the tree.* Плитки: `deckchair` `under` `the` `tree` `is` `The` `are` → **The deckchair is under the tree.**
+*(плитка `are` лишняя: здесь нужно `is` — `The deckchair is under the tree.`)*
 
-**6 · Скажите «Детский сад рядом с парком»**
+**10 · Ласты лежат на песке вдалеке. Спросите сестру: «Чьи там ласты?»**
 <!-- interaction_id: en:lesson-05:session-52:i06; family: phrase_builder -->
-Плитки: `park` `the` `to` `next` `is` `nursery` `The` `are` → **The nursery is next to the park.**
-*(плитка `are` лишняя: здесь нужно `is` — `The nursery is next to the park.`)*
+Плитки: `flippers` `those` `are` `Whose` `Where` → **Whose flippers are those?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose flippers are those?`)*
 
-**7 · Скажите «Анна в бассейне», имея в виду место, а не обязательно воду**
+**11 · Соседка спрашивает, чей это шезлонг. Он её. Скажите: «Шезлонг её»**
 <!-- interaction_id: en:lesson-05:session-52:i07; family: scripted_repeat_compare -->
-🎙 **Anna is at the pool.**
+🎙 **The deckchair is hers.**
 
-**8 · Спросите, где станции**
+**12 · Ласты лежат на песке. Они ваши с братом. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-52:i08; family: context_gap_grammar -->
-Where ___ the stations? → **are** · is · am
-- is — *`stations` — множественное число: `are`.*
-- am — *`am` используется с `I`; здесь `are`.*
+The flippers are ___. → **ours** · our · we
+- our — *Без названия вещи нужно `ours`, а не `our`.*
+- we — *`we` значит «мы», а «наши» без вещи — `ours`.*
 
-**9 · Послушайте, какой транспорт называет Анна**
+**13 · Послушайте спасателя**
 <!-- interaction_id: en:lesson-05:session-52:i09; family: listen_choose -->
-🔊 *This is Tom's bicycle.* → **This is Tom's bicycle.** · This is Tom's scooter. · This is Tom's motorbike.
-- This is Tom's scooter. — *В записи последнее слово — `bicycle`, а в этом варианте — `scooter`.*
-- This is Tom's motorbike. — *В записи последнее слово — `bicycle`, а в этом варианте — `motorbike`.*
+🔊 *The lifebelt is theirs.* → **The lifebelt is theirs.** · The lifebelt is ours. · The deckchair is theirs.
+- The lifebelt is ours. — *В записи последнее слово — `theirs`, а в этом варианте — `ours`.*
+- The deckchair is theirs. — *В записи вещь — `lifebelt`, спасательный круг, а в этом варианте — `deckchair`, шезлонг.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-52:i10; family: speed_match -->
-pool — бассейн · light — лёгкий по весу · nursery — детский сад · bicycle — велосипед
+flippers — ласты · armbands — нарукавники для плавания · deckchair — шезлонг · bag — сумка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте сестру и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-52:i11; family: listen_build_dictation -->
-🔊 *The pool is near the park.* Плитки: `park` `the` `near` `is` `pool` `The` `are` → **The pool is near the park.**
-*(плитка `are` лишняя: здесь нужно `is` — `The pool is near the park.`)*
+🔊 *My sister's flippers are under the deckchair.* Плитки: `flippers` `sister's` `are` `under` `the` `deckchair` `My` `sister` → **My sister's flippers are under the deckchair.**
+*(плитка `sister` лишняя: здесь нужно `sister's` — `My sister's flippers are under the deckchair.`)*
 
-**12 · Велосипед принадлежит Анне. Скажите «Велосипед её»**
+**16 · Вы ищете шезлонг. Спросите соседку: «Где шезлонг?»**
 <!-- interaction_id: en:lesson-05:session-52:i12; family: phrase_builder -->
-Плитки: `hers` `is` `bicycle` `The` `are` → **The bicycle is hers.**
-*(плитка `are` лишняя: здесь нужно `is` — `The bicycle is hers.`)*
+Плитки: `deckchair` `the` `is` `Where` `Whose` → **Where is the deckchair?**
+*(плитка `Whose` лишняя: здесь нужно `Where` — `Where is the deckchair?`)*
 
-**13 · Скажите Анне «Твой велосипед здесь»**
+**17 · Брат спрашивает, чьи нарукавники. Они ваши. Скажите: «Нарукавники мои»**
 <!-- interaction_id: en:lesson-05:session-52:i13; family: scripted_repeat_compare -->
-🎙 **Your bicycle is here.**
+🎙 **The armbands are mine.**
 
-**14 · Спросите о владельце велосипеда**
+**18 · Спасатель держит круг и спрашивает вас. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-52:i14; family: context_gap_grammar -->
-___ bicycle is this? → **Whose** · Where · Who
-- Where — *`Where` — где; чей — `Whose`.*
-- Who — *`Who` — кто; чей — `Whose`.*
+Whose lifebelt ___ this? → **is** · are · has
+- are — *Круг один, поэтому нужно `is`, а не `are`.*
+- has — *`has` значит «имеет», а в вопросе «чей это круг?» нужно `is`.*
 
-**15 · Послушайте, кому принадлежит велосипед**
+**19 · Послушайте соседку**
 <!-- interaction_id: en:lesson-05:session-52:i15; family: listen_choose -->
-🔊 *The bicycle is mine.* → **The bicycle is mine.** · The bicycle is hers. · The bicycle is ours.
-- The bicycle is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
-- The bicycle is ours. — *В записи последнее слово — `mine`, а в этом варианте — `ours`.*
+🔊 *Are these flippers your sister's?* → **Are these flippers your sister's?** · Are these flippers your brother's? · Are these armbands your sister's?
+- Are these flippers your brother's? — *В записи хозяин — `sister's`, сестра, а в этом варианте — `brother's`, брат.*
+- Are these armbands your sister's? — *В записи вещь — `flippers`, ласты, а в этом варианте — `armbands`, нарукавники.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-52:i16; family: speed_match -->
-pool — бассейн · light — лёгкий по весу · stations — станции · bicycle — велосипед
+flippers — ласты · armbands — нарукавники для плавания · lifebelt — спасательный круг · deckchair — шезлонг
 
-**17 · У входа в бассейн стоит велосипед. Спросите друзей «Чей это велосипед?»**
+**21 · Вы нашли шезлонг у воды и хотите вернуть его. Спросите соседку: «Чей это шезлонг?»**
 <!-- interaction_id: en:lesson-05:session-52:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose bicycle is this?**
-
+🎙 **Whose deckchair is this?**

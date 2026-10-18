@@ -1,137 +1,154 @@
-# Английский · Урок 5 · Занятие 53 — Корт возле музея
+# Английский · Урок 5 · Занятие 53 — Бадминтон на корте
 
-**Ситуация.** Анна и Том ищут спортивный корт. У музея стоит мотоцикл; Том хочет узнать его владельца.
+**Ситуация.** Вы с другом идёте играть в бадминтон на открытый корт. Там лежат сетка и волан, а на стене висит табло. Нужно понять, где что и чьё: whose, this или that, yours, mine, theirs или имя с 's.
 
-**Что вы освоите:** найти спортивную площадку и спросить о владельце транспорта
-**Новые слова:** court
+**Что вы освоите:** сказать, где корт, спросить о хозяине вещи и ответить: whose, that, yours, mine, theirs, 's
+**Новые слова:** court, net, shuttlecock, scoreboard
+**Возвращаются:** friend, cousin, school, bench, wall
 
 ---
 
 ## Интро 1
 
-### Место для игры
+### Где играть
 
-`court` здесь — «корт», площадка для спортивной игры, например в теннис. `Where is the court?` — «Где корт?» `The court is near the museum` — «Корт возле музея». У слова есть и другие значения, но здесь речь о спортивной площадке.
+Прохожий видит ваши ракетки и спрашивает, где здесь можно поиграть в бадминтон. Вы там уже были. court — «корт», площадка с разметкой для игры. Он находится за школой, куда ведёт дорожка от парка. Скажите прохожему: The court is behind the school — «Корт за школой».
 
-**Спросите, где корт.**
+**Прохожий спрашивает, где можно поиграть в бадминтон. Корт за школой. Скажите: «Корт за школой».**
 
-- ✅ **Where is the court?**
-- ❌ Whose court is this? — *Это вопрос о владельце; о месте спрашиваем с `Where`.*
-- ❌ Where are the court? — *Один корт: `is`.*
+- ✅ **The court is behind the school.**
+- ❌ The court is behind school. — *Перед school нужно the: the school.*
+- ❌ The court are behind the school. — *Корт один, поэтому нужно is.*
 
 ---
 
 ## Интро 2
 
-### Мотоцикл и полная сумка
+### Сетка на траве
 
-`motorbike` — «мотоцикл», `full` — «полный», заполненный. `This bag is full` — «Эта сумка полная». `Whose motorbike is this?` — «Чей это мотоцикл?» `The motorbike is hers` — «Мотоцикл её». Полная сумка — ещё не доказательство, что вы взяли именно нужные вещи.
+Тренер раскладывает на траве длинную сетку и не может вспомнить, кто её привёз. net — «сетка», её натягивают посередине корта. Она лежит далеко от вас, у дальнего края площадки. Спросите друга, чья она: Whose net is that? — «Чья вон та сетка?» Вещь далеко, поэтому that.
 
-**Скажите «Эта сумка полная».**
+**Тренер раскладывает сетку у дальнего края площадки. Спросите друга, чья она.**
 
-- ✅ **This bag is full.**
-- ❌ This bag are full. — *Одна сумка: `is`.*
-- ❌ This bag is heavy. — *`heavy` — тяжёлый; полный — `full`. Полнота и вес — разные признаки.*
+- ✅ **Whose net is that?**
+- ❌ Whose net is this? — *this — это про вещь рядом, а сетка лежит далеко: нужно that.*
+- ❌ Where is the net? — *Это «Где сетка?». О хозяине спрашиваем с whose.*
 
 ---
 
 ## Интро 3
 
-### Ориентиры на улице
+### Волан в траве
 
-`museum` — «музей», `police station` — «полицейский участок». `The museum is next to the police station` — «Музей рядом с полицейским участком». `This is Tom’s motorbike` — «Это мотоцикл Тома». `Your motorbike is here` — «Твой мотоцикл здесь».
+В траве возле корта вы находите волан. shuttlecock — «волан», маленький «мячик» с перьями для бадминтона. Рядом стоит ваш друг, он играл здесь с утра. Вы хотите проверить, не его ли это волан. Спросите друга: Is this shuttlecock yours? — «Это твой волан?»
 
-**Скажите «Музей рядом с полицейским участком».**
+**Вы нашли волан в траве, рядом стоит друг. Спросите его: «Это твой волан?»**
 
-- ✅ **The museum is next to the police station.**
-- ❌ The museum are next to the police station. — *Один музей: `is`.*
-- ❌ The museum is in the police station. — *Рядом — `next to`; `in` означает внутри.*
+- ✅ **Is this shuttlecock yours?**
+- ❌ Is this shuttlecock your? — *В конце вопроса нужно yours, а не your.*
+- ❌ This shuttlecock is yours. — *Это утверждение, а вам нужен вопрос: is ставим перед this.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Эта сумка полная»**
+**1 · Карточка слова — court**
+<!-- interaction_id: en:lesson-05:session-53:word:court; family: word_card -->
+> **court** — корт. The court is near the school. — «Корт возле школы». Площадка с разметкой для игры с воланом или мячом.
+
+**2 · Друг спрашивает, где корт. Скажите ему: «Корт возле школы»**
 <!-- interaction_id: en:lesson-05:session-53:i01; family: phrase_builder -->
-Плитки: `full` `is` `bag` `This` `are` → **This bag is full.**
-*(плитка `are` лишняя: здесь нужно `is` — `This bag is full.`)*
+Плитки: `court` `near` `the` `school` `is` `The` `are` → **The court is near the school.**
+*(плитка `are` лишняя: здесь нужно `is` — `The court is near the school.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — net**
+<!-- interaction_id: en:lesson-05:session-53:word:net; family: word_card -->
+> **net** — сетка. The net is on the bench. — «Сетка на скамейке». Её натягивают посередине корта.
+
+**4 · Послушайте тренера**
 <!-- interaction_id: en:lesson-05:session-53:i02; family: listen_choose -->
-🔊 *court* → **court** · pool · museum
-- pool — *В записи первое слово — `court`, а в этом варианте — `pool`.*
-- museum — *В записи первое слово — `court`, а в этом варианте — `museum`.*
+🔊 *Whose net is that?* → **Whose net is that?** · Whose net is this? · Whose court is that?
+- Whose net is this? — *В записи последнее слово — `that`, а в этом варианте — `this`.*
+- Whose court is that? — *В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.*
 
-**3 · Назовите корт**
+**5 · Карточка слова — shuttlecock**
+<!-- interaction_id: en:lesson-05:session-53:word:shuttlecock; family: word_card -->
+> **shuttlecock** — волан. The shuttlecock is in my bag. — «Волан в моей сумке». Лёгкий «мячик» с перьями для бадминтона.
+
+**6 · Друг спрашивает, чей волан. Он ваш. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-53:i03; family: context_gap_grammar -->
-___ → **court** · pool · museum
-- pool — *`pool` — бассейн; корт — `court`.*
-- museum — *`museum` — музей; корт — `court`.*
+The shuttlecock is ___. → **mine** · my · I
+- my — *Без названия вещи нужно `mine`, а не `my`.*
+- I — *`I` значит «я», а «мой» без вещи — `mine`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-53:i04; family: speed_match -->
-court — корт · motorbike — мотоцикл · museum — музей · police station — полицейский участок
+court — корт · net — сетка · shuttlecock — волан · scoreboard — табло
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — scoreboard**
+<!-- interaction_id: en:lesson-05:session-53:word:scoreboard; family: word_card -->
+> **scoreboard** — табло. The scoreboard is on the wall. — «Табло на стене». Щит, на котором показывают счёт игры.
+
+**9 · Послушайте тренера и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-53:i05; family: listen_build_dictation -->
-🔊 *Where is the court?* Плитки: `court` `the` `is` `Where` → **Where is the court?**
+🔊 *The scoreboard is on the wall.* Плитки: `scoreboard` `on` `the` `wall` `is` `The` `are` → **The scoreboard is on the wall.**
+*(плитка `are` лишняя: здесь нужно `is` — `The scoreboard is on the wall.`)*
 
-**6 · Скажите «Музей рядом с полицейским участком»**
+**10 · Вы ищете табло. Спросите друга: «Где табло?»**
 <!-- interaction_id: en:lesson-05:session-53:i06; family: phrase_builder -->
-Плитки: `station` `police` `the` `to` `next` `is` `museum` `The` `are` → **The museum is next to the police station.**
-*(плитка `are` лишняя: здесь нужно `is` — `The museum is next to the police station.`)*
+Плитки: `scoreboard` `the` `is` `Where` `Whose` → **Where is the scoreboard?**
+*(плитка `Whose` лишняя: здесь нужно `Where` — `Where is the scoreboard?`)*
 
-**7 · Скажите «Корт возле музея»**
+**11 · Тренер спрашивает, чья сетка. Она вашего друга. Скажите: «Сетка моего друга»**
 <!-- interaction_id: en:lesson-05:session-53:i07; family: scripted_repeat_compare -->
-🎙 **The court is near the museum.**
+🎙 **The net is my friend's.**
 
-**8 · Спросите о владельце мотоцикла**
+**12 · Две девочки принесли волан. Вы говорите о нём. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-53:i08; family: context_gap_grammar -->
-Whose motorbike ___ this? → **is** · are · am
-- are — *Один мотоцикл: `is this`.*
-- am — *`am` используется с `I`; здесь `is this`.*
+The shuttlecock is ___. → **theirs** · their · they
+- their — *Без названия вещи нужно `theirs`, а не `their`.*
+- they — *`they` значит «они», а «их» без вещи — `theirs`.*
 
-**9 · Послушайте, какой транспорт называет Анна**
+**13 · Послушайте друга**
 <!-- interaction_id: en:lesson-05:session-53:i09; family: listen_choose -->
-🔊 *This is Tom's motorbike.* → **This is Tom's motorbike.** · This is Tom's bicycle. · This is Tom's scooter.
-- This is Tom's bicycle. — *В записи последнее слово — `motorbike`, а в этом варианте — `bicycle`.*
-- This is Tom's scooter. — *В записи последнее слово — `motorbike`, а в этом варианте — `scooter`.*
+🔊 *The net is hers.* → **The net is hers.** · The net is his. · The court is hers.
+- The net is his. — *В записи последнее слово — `hers`, а в этом варианте — `his`.*
+- The court is hers. — *В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-53:i10; family: speed_match -->
-court — корт · full — полный · police station — полицейский участок · motorbike — мотоцикл
+court — корт · net — сетка · scoreboard — табло · wall — стена
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте друга и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-53:i11; family: listen_build_dictation -->
-🔊 *The motorbike is near the court.* Плитки: `court` `the` `near` `is` `motorbike` `The` `are` → **The motorbike is near the court.**
-*(плитка `are` лишняя: здесь нужно `is` — `The motorbike is near the court.`)*
+🔊 *My friend's net is under the bench.* Плитки: `net` `friend's` `is` `under` `the` `bench` `My` `friend` → **My friend's net is under the bench.**
+*(плитка `friend` лишняя: здесь нужно `friend's` — `My friend's net is under the bench.`)*
 
-**12 · Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»**
+**16 · На корте лежат два волана. Спросите друга: «Чьи это воланы?»**
 <!-- interaction_id: en:lesson-05:session-53:i12; family: phrase_builder -->
-Плитки: `hers` `is` `motorbike` `The` `are` → **The motorbike is hers.**
-*(плитка `are` лишняя: здесь нужно `is` — `The motorbike is hers.`)*
+Плитки: `shuttlecocks` `these` `are` `Whose` `Where` → **Whose shuttlecocks are these?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose shuttlecocks are these?`)*
 
-**13 · Скажите Анне «Твой мотоцикл здесь»**
+**17 · Вы дали другу свой волан. Он спрашивает, чей волан теперь. Скажите: «Волан твой»**
 <!-- interaction_id: en:lesson-05:session-53:i13; family: scripted_repeat_compare -->
-🎙 **Your motorbike is here.**
+🎙 **The shuttlecock is yours.**
 
-**14 · Спросите, где корт**
+**18 · Тренер показывает на корт и спрашивает вас. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-53:i14; family: context_gap_grammar -->
-___ is the court? → **Where** · Whose · Who
-- Whose — *`Whose` — чей; где — `Where`.*
-- Who — *`Who` — кто; где — `Where`.*
+Whose court ___ this? → **is** · are · has
+- are — *Корт один, поэтому нужно `is`, а не `are`.*
+- has — *`has` значит «имеет», а в вопросе «чей это корт?» нужно `is`.*
 
-**15 · Послушайте, кому принадлежит мотоцикл**
+**19 · Послушайте тренера**
 <!-- interaction_id: en:lesson-05:session-53:i15; family: listen_choose -->
-🔊 *The motorbike is mine.* → **The motorbike is mine.** · The motorbike is hers. · The motorbike is ours.
-- The motorbike is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
-- The motorbike is ours. — *В записи последнее слово — `mine`, а в этом варианте — `ours`.*
+🔊 *Is this net your friend's?* → **Is this net your friend's?** · Is this net your cousin's? · Is this court your friend's?
+- Is this net your cousin's? — *В записи хозяин — `friend's`, друг, а в этом варианте — `cousin's`, двоюродный брат или сестра.*
+- Is this court your friend's? — *В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-53:i16; family: speed_match -->
-court — корт · full — полный · museum — музей · motorbike — мотоцикл
+court — корт · net — сетка · shuttlecock — волан · scoreboard — табло
 
-**17 · Вы хотите узнать владельца мотоцикла у музея. Спросите «Чей это мотоцикл?»**
+**21 · Вы нашли сетку у корта и хотите вернуть её. Спросите тренера: «Чья это сетка?»**
 <!-- interaction_id: en:lesson-05:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose motorbike is this?**
-
+🎙 **Whose net is this?**

@@ -1,136 +1,154 @@
-# Англійська · Урок 5 · Заняття 56 — Знайомий район
+# Англійська · Урок 5 · Заняття 56 — Прибирання у дворі
 
-**Ситуація.** Анна й Том домовляються про зустріч. Вони уточнюють розташування знайомих місць і власника гаража.
+**Ситуація.** Після свята у дворі прибирають сусіди. Мітли, швабри й ганчірки зібрані разом, і ви самі вибираєте, як спитати про господаря та як відповісти: whose, is чи are, mine, yours, his, ours, theirs або ім’я з 's.
 
-**Що ви опануєте:** розрізняти місце й належність та описувати знайомий район
-**Нові слова:** —
+**Що ви опануєте:** самому спитати про господаря речі та відповісти: whose, is чи are, mine, yours, his, ours, theirs, 's
+**Нові слова:** broom, mop, dustpan, duster
+**Повертаються:** neighbour, aunt, door, shelf
 
 ---
 
 ## Інтро 1
 
-### Магазин і гараж
+### Мітла біля хвіртки
 
-Повторимо: `corner shop` — «магазин біля дому», невеликий місцевий магазин; він не обов’язково стоїть на розі. `garage` — «гараж». `The garage is next to the corner shop` — «Гараж поруч із магазином біля дому». `Whose garage is this?` — «Чий це гараж?» `The garage is ours` — «Гараж наш».
+У дворі після свята лежить багато сміття, і сусіди беруться за прибирання. Ви помічаєте біля хвіртки мітлу, але вона не ваша. broom — «мітла», нею підмітають двір. Господаря поруч не видно. Спитайте сусіда, чия вона: Whose broom is that? — «Чия та мітла там?» Мітла далеко, тому that.
 
-**Запитайте про власника гаража.**
+**Ви бачите біля хвіртки чужу мітлу. Спитайте сусіда, чия вона.**
 
-- ✅ **Whose garage is this?**
-- ❌ Where is the garage? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose garage are these? — *Один гараж: `is this`.*
+- ✅ **Whose broom is that?**
+- ❌ Where is the broom? — *Це «Де мітла?». Про господаря питаємо з whose.*
+- ❌ Whose broom is this? — *this — це про річ поруч, а мітла біля хвіртки далеко: потрібно that.*
 
 ---
 
 ## Інтро 2
 
-### Місця для спорту
+### Швабра в під’їзді
 
-`stadium` — «стадіон», `pool` — «басейн» для плавання, `court` — спортивний «корт». `The pool is near the stadium` — «Басейн біля стадіону». `Where is the court?` — «Де корт?» `Tom is at the pool` — «Том у басейні» як місці, не обов’язково у воді.
+Інша сусідка миє підлогу в під’їзді після свята й питає, чия швабра стоїть біля входу. mop — «швабра», нею миють підлогу мокрою ганчіркою. Ви знаєте: швабру їй позичила ваша тітка, вони разом прибирали двір. Відповідьте: The mop is my aunt's — «Швабра моєї тітки».
 
-**Скажіть «Басейн біля стадіону».**
+**Сусідка питає, чия швабра біля входу. Її принесла ваша тітка. Скажіть: «Швабра моєї тітки».**
 
-- ✅ **The pool is near the stadium.**
-- ❌ The pool are near the stadium. — *Один басейн: `is`.*
-- ❌ The pool is in the stadium. — *Тут біля: `near`; `in` означає всередині.*
+- ✅ **The mop is my aunt's.**
+- ❌ The mop is my aunt. — *Після aunt потрібно 's: my aunt's.*
+- ❌ The mop is aunt's. — *Перед aunt's потрібно my: my aunt's.*
 
 ---
 
 ## Інтро 3
 
-### Орієнтир на стіні
+### Совок для сміття
 
-`kiosk` — «кіоск», `mural` — «настінний розпис». `The mural is near the kiosk` — «Настінний розпис біля кіоску». `Where is the mural?` — «Де настінний розпис?» Розпис — зручне місце зустрічі: сам він нікуди не піде. `This is Anna’s bag` — «Це сумка Анни».
+Сусід змітає сміття в купу й просить щось, щоб зібрати його із землі. Ви приносите з дому пласку лопатку з ручкою. dustpan — «совок для сміття», його тримають біля підлоги, поки підмітають. Сусід питає, чий він. Відповідьте: The dustpan is mine — «Совок мій».
 
-**Запитайте, де настінний розпис.**
+**Сусід питає, чий совок для сміття. Ви принесли його з дому. Скажіть: «Совок мій».**
 
-- ✅ **Where is the mural?**
-- ❌ Whose mural is this? — *Це запитання про належність; про місце запитуємо з `Where`.*
-- ❌ Where are the mural? — *Один розпис: `is`.*
+- ✅ **The dustpan is mine.**
+- ❌ The dustpan is my. — *Без назви речі потрібно mine, а не my.*
+- ❌ The dustpan is his. — *his — його, а совок принесли ви: потрібно mine.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Гараж поруч із магазином біля дому»**
+**1 · Картка слова — broom**
+<!-- interaction_id: en:lesson-05:session-56:word:broom; family: word_card -->
+> **broom** — мітла. The broom is behind the door. — «Мітла за дверима». Палиця з жорсткими прутами для підмітання.
+
+**2 · Сусід шукає мітлу. Скажіть йому: «Мітла за дверима»**
 <!-- interaction_id: en:lesson-05:session-56:i01; family: phrase_builder -->
-Плитки: `shop` `corner` `the` `to` `next` `is` `garage` `The` `are` → **The garage is next to the corner shop.**
-*(плитка `are` зайва: тут потрібно `is` — `The garage is next to the corner shop.`)*
+Плитки: `broom` `behind` `the` `door` `is` `The` `are` → **The broom is behind the door.**
+*(плитка `are` зайва: тут потрібно `is` — `The broom is behind the door.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — mop**
+<!-- interaction_id: en:lesson-05:session-56:word:mop; family: word_card -->
+> **mop** — швабра. The mop is near the door. — «Швабра біля дверей». Палиця з ганчіркою для миття підлоги.
+
+**4 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-05:session-56:i02; family: listen_choose -->
-🔊 *stadium* → **stadium** · pool · court
-- pool — *У записі перше слово — `stadium`, а в цьому варіанті — `pool`.*
-- court — *У записі перше слово — `stadium`, а в цьому варіанті — `court`.*
+🔊 *Whose mop is that?* → **Whose mop is that?** · Whose mop is this? · Whose broom is that?
+- Whose mop is this? — *У записі останнє слово — `that`, а в цьому варіанті — `this`.*
+- Whose broom is that? — *У записі річ — `mop`, швабра, а в цьому варіанті — `broom`, мітла.*
 
-**3 · Запитайте про власника гаража**
+**5 · Картка слова — dustpan**
+<!-- interaction_id: en:lesson-05:session-56:word:dustpan; family: word_card -->
+> **dustpan** — совок для сміття. The dustpan is under the shelf. — «Совок для сміття під полицею». Плоска лопатка, в яку змітають сміття.
+
+**6 · Сусідка питає про совок для сміття. Він ваш. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-56:i03; family: context_gap_grammar -->
-___ garage is this? → **Whose** · Where · Who
-- Where — *`Where` — де; чий — `Whose`.*
-- Who — *`Who` — хто; чий — `Whose`.*
+The dustpan is ___. → **mine** · my · I
+- my — *Без назви речі потрібно `mine`, а не `my`.*
+- I — *`I` означає «я», а «мій» без речі — `mine`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-56:i04; family: speed_match -->
-corner shop — магазин біля дому · garage — гараж · stadium — стадіон · pool — басейн
+broom — мітла · mop — швабра · dustpan — совок для сміття · duster — ганчірка для пилу
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — duster**
+<!-- interaction_id: en:lesson-05:session-56:word:duster; family: word_card -->
+> **duster** — ганчірка для пилу. The duster is on the shelf. — «Ганчірка для пилу на полиці». М’яка тканина, якою витирають пил.
+
+**9 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-56:i05; family: listen_build_dictation -->
-🔊 *Where is the court?* Плитки: `court` `the` `is` `Where` → **Where is the court?**
+🔊 *The duster is on the shelf.* Плитки: `duster` `on` `the` `shelf` `is` `The` `are` → **The duster is on the shelf.**
+*(плитка `are` зайва: тут потрібно `is` — `The duster is on the shelf.`)*
 
-**6 · Скажіть «Настінний розпис біля кіоску»**
+**10 · Мітли лежать біля паркану. Спитайте сусіда: «Чиї це мітли?»**
 <!-- interaction_id: en:lesson-05:session-56:i06; family: phrase_builder -->
-Плитки: `kiosk` `the` `near` `is` `mural` `The` `are` → **The mural is near the kiosk.**
-*(плитка `are` зайва: тут потрібно `is` — `The mural is near the kiosk.`)*
+Плитки: `brooms` `these` `are` `Whose` `Where` → **Whose brooms are these?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose brooms are these?`)*
 
-**7 · Гараж належить вашій родині. Скажіть «Гараж наш»**
+**11 · Сусід питає, чия ганчірка для пилу. Вона вашої тітки. Скажіть: «Ганчірка моєї тітки»**
 <!-- interaction_id: en:lesson-05:session-56:i07; family: scripted_repeat_compare -->
-🎙 **The garage is ours.**
+🎙 **The duster is my aunt's.**
 
-**8 · Запитайте, де настінний розпис**
+**12 · Дві швабри належать сусідам. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-56:i08; family: context_gap_grammar -->
-___ is the mural? → **Where** · Whose · Who
-- Whose — *`Whose` — чий; де — `Where`.*
-- Who — *`Who` — хто; де — `Where`.*
+The mops are ___. → **theirs** · their · they
+- their — *Без назви речі потрібно `theirs`, а не `their`.*
+- they — *`they` означає «вони», а «їхній» без речі — `theirs`.*
 
-**9 · Послухайте, яку річ називає Том**
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-05:session-56:i09; family: listen_choose -->
-🔊 *This is Anna's bag.* → **This is Anna's bag.** · This is Anna's bicycle. · This is Anna's laptop.
-- This is Anna's bicycle. — *У записі останнє слово — `bag`, а в цьому варіанті — `bicycle`.*
-- This is Anna's laptop. — *У записі останнє слово — `bag`, а в цьому варіанті — `laptop`.*
+🔊 *The broom is ours.* → **The broom is ours.** · The broom is yours. · The mop is ours.
+- The broom is yours. — *У записі останнє слово — `ours`, а в цьому варіанті — `yours`.*
+- The mop is ours. — *У записі річ — `broom`, мітла, а в цьому варіанті — `mop`, швабра.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-56:i10; family: speed_match -->
-court — корт · kiosk — кіоск · mural — настінний розпис · garage — гараж
+broom — мітла · mop — швабра · duster — ганчірка для пилу · shelf — полиця
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-56:i11; family: listen_build_dictation -->
-🔊 *The pool is near the stadium.* Плитки: `stadium` `the` `near` `is` `pool` `The` `are` → **The pool is near the stadium.**
-*(плитка `are` зайва: тут потрібно `is` — `The pool is near the stadium.`)*
+🔊 *My neighbour's mop is behind the door.* Плитки: `mop` `neighbour's` `is` `behind` `the` `door` `My` `neighbour` → **My neighbour's mop is behind the door.**
+*(плитка `neighbour` зайва: тут потрібно `neighbour's` — `My neighbour's mop is behind the door.`)*
 
-**12 · Запитайте «Де магазин біля дому?»**
+**16 · Ви шукаєте совок для сміття. Спитайте сусіда: «Де совок?»**
 <!-- interaction_id: en:lesson-05:session-56:i12; family: phrase_builder -->
-Плитки: `shop` `corner` `the` `is` `Where` → **Where is the corner shop?**
+Плитки: `dustpan` `the` `is` `Where` `Whose` → **Where is the dustpan?**
+*(плитка `Whose` зайва: тут потрібно `Where` — `Where is the dustpan?`)*
 
-**13 · Скажіть «Том у басейні», маючи на увазі місце, а не обов’язково воду**
+**17 · Ви даєте сусідові свою мітлу. Скажіть йому: «Мітла твоя»**
 <!-- interaction_id: en:lesson-05:session-56:i13; family: scripted_repeat_compare -->
-🎙 **Tom is at the pool.**
+🎙 **The broom is yours.**
 
-**14 · Сумка належить Анні. Скажіть «Сумка її»**
+**18 · Сусід питає: «Is this duster yours?» Ні, ганчірка не ваша. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-56:i14; family: context_gap_grammar -->
-The bag is ___. → **hers** · her · she
-- her — *Без наступної назви речі потрібна самостійна форма `hers`.*
-- she — *`she` — вона; самостійне «її» — `hers`.*
+No, it ___ mine. → **isn't** · is · has
+- is — *Після No відповідь заперечна: потрібно `isn't`.*
+- has — *`has` означає «має», а на питання «це ваше?» відповідаємо `it isn't`.*
 
-**15 · Послухайте, де корт**
+**19 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-05:session-56:i15; family: listen_choose -->
-🔊 *The court is near the kiosk.* → **The court is near the kiosk.** · The court is near the garage. · The court is near the stadium.
-- The court is near the garage. — *У записі останнє слово — `kiosk`, а в цьому варіанті — `garage`.*
-- The court is near the stadium. — *У записі останнє слово — `kiosk`, а в цьому варіанті — `stadium`.*
+🔊 *Is this mop your neighbour's?* → **Is this mop your neighbour's?** · Is this mop your aunt's? · Is this broom your neighbour's?
+- Is this mop your aunt's? — *У записі господар — `neighbour's`, сусід або сусідка, а в цьому варіанті — `aunt's`, тітка.*
+- Is this broom your neighbour's? — *У записі річ — `mop`, швабра, а в цьому варіанті — `broom`, мітла.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-56:i16; family: speed_match -->
-corner shop — магазин біля дому · stadium — стадіон · mural — настінний розпис · court — корт
+broom — мітла · mop — швабра · dustpan — совок для сміття · duster — ганчірка для пилу
 
-**17 · Ви знайшли гараж, але хочете дізнатися, кому він належить. Запитайте «Чий це гараж?»**
+**21 · Ви знайшли мітлу у дворі й хочете повернути її. Спитайте сусіда: «Чия це мітла?»**
 <!-- interaction_id: en:lesson-05:session-56:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose garage is this?**
-
+🎙 **Whose broom is this?**

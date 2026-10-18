@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-51:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-51:intro1:r2": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "school — школа, а перед вами стадион: нужно stadium.",
+          "uk": "school — школа, а перед вами стадіон: потрібно stadium."
         },
         "en:lesson-05:session-51:intro1:r3": {
-          "ru": "Один стадион: `is`.",
-          "uk": "Один стадіон: `is`."
+          "ru": "Стадион один, поэтому нужно That is.",
+          "uk": "Стадіон один, тому потрібно That is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-51:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-51:intro2:r2": {
-          "ru": "Одна сумка: `is`.",
-          "uk": "Одна сумка: `is`."
+          "ru": "После cousin нужно 's: my cousin's.",
+          "uk": "Після cousin потрібно 's: my cousin's."
         },
         "en:lesson-05:session-51:intro2:r3": {
-          "ru": "`expensive` — дорогой по цене; тяжёлый — `heavy`.",
-          "uk": "`expensive` — дорогий за ціною; важкий — `heavy`."
+          "ru": "Перед cousin's нужно my: my cousin's.",
+          "uk": "Перед cousin's потрібно my: my cousin's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-51:intro3:r2": {
-          "ru": "Несколько библиотек: `libraries are`.",
-          "uk": "Кілька бібліотек: `libraries are`."
+          "ru": "Без названия вещи нужно yours, а не your.",
+          "uk": "Без назви речі потрібно yours, а не your."
         },
         "en:lesson-05:session-51:intro3:r3": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "mine — моя, а вы отдали программу сестре: нужно yours.",
+          "uk": "mine — моя, а ви віддали програму сестрі: потрібно yours."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "016b863530b31e75c8553a06e5d21d79436d3ed4abc93fffdaba04bc4a39f96a"
+  "auxiliaryFingerprint": "01a0b89dd6c9cf216bb784b3d0dc49491056e939691e65487a8ec8bc2ead59d4"
 }

@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 54 — Зустріч біля кіоску
+# Англійська · Урок 5 · Заняття 54 — Покупки біля кіоску
 
-**Ситуація.** Анна й Том шукають кіоск поруч із заправкою. Біля кіоску лежить смугаста сумка; друзі хочуть знайти її власника.
+**Ситуація.** Біля кіоску діти купують комікси, льодяники й кульки. Ви допомагаєте розібратися, що чиє: whose, короткі відповіді Yes, it is і No, it isn't, а також mine, yours, hers або ім’я з 's.
 
-**Що ви опануєте:** уточнити місце зустрічі й розрізняти знайоме, незнайоме та невідоме
-**Нові слова:** kiosk
+**Що ви опануєте:** відповісти на питання «Це твоє?» і спитати про господаря: Yes, it is; No, it isn't; whose; mine, yours, hers, 's
+**Нові слова:** kiosk, comic, lollipop, balloon
+**Повертаються:** sister, brother, bench, bag, table
 
 ---
 
 ## Інтро 1
 
-### Невелика торгова точка
+### Де купити воду
 
-`kiosk` — «кіоск», невелика торгова точка. `Where is the kiosk?` — «Де кіоск?» `petrol station` — «заправна станція»: `The kiosk is next to the petrol station` — «Кіоск поруч із заправною станцією». `ferry` — «пором»: `The ferry is here` — «Пором тут».
+Туристка хоче купити воду й питає, де це можна зробити. Ви часто ходите повз маленький магазинчик на розі. kiosk — «кіоск», так називають маленький магазин на вулиці, де продають воду, газети й солодощі. Скажіть їй: The kiosk is next to the bench — «Кіоск поруч із лавою».
 
-**Запитайте, де кіоск.**
+**Туристка питає, де купити воду. Кіоск поруч із лавою. Скажіть їй: «Кіоск поруч із лавою».**
 
-- ✅ **Where is the kiosk?**
-- ❌ Whose kiosk is this? — *Це запитання про власника; про місце запитуємо з `Where`.*
-- ❌ Where are the kiosk? — *Один кіоск: `is`.*
+- ✅ **The kiosk is next to the bench.**
+- ❌ The kiosk is next the bench. — *Між next і the потрібно to: next to.*
+- ❌ The kiosk are next to the bench. — *Кіоск один, тому потрібно is.*
 
 ---
 
 ## Інтро 2
 
-### Знайоме чи невідоме?
+### Чужий комікс
 
-`familiar` — «знайомий», упізнаваний: `This place is familiar` — «Це місце знайоме». `unfamiliar` — «незнайомий»: `This place is unfamiliar` — «Це місце незнайоме». `unknown` — «невідомий»: `His name is unknown` — «Його ім’я невідоме». Незнайоме вам місце може бути добре відоме іншим; `unknown` у прикладі означає, що відомостей про ім’я немає.
+Продавець у кіоску піднімає з прилавка товстий журнал із картинками й питає у вас: Is this comic yours? comic — «комікс», журнал з історіями в картинках. Ви дивитеся на обкладинку й розумієте, що купували інший. Відповідьте коротко: No, this comic isn't mine — «Ні, цей комікс не мій».
 
-**Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar.**
+**Продавець показує комікс і питає, чи ваш він. Ви купили інший. Скажіть: «Ні, цей комікс не мій».**
 
-- ✅ **This place is unfamiliar.**
-- ❌ This place is familiar. — *`familiar` — знайомий; незнайомий — `unfamiliar`.*
-- ❌ This place are unfamiliar. — *Одне місце: `is`.*
+- ✅ **No, this comic isn't mine.**
+- ❌ No, this comic isn't my. — *Без назви речі потрібно mine, а не my.*
+- ❌ Yes, this comic isn't mine. — *Після Yes не можна ставити isn't: Yes означає «так», а isn't — «не».*
 
 ---
 
 ## Інтро 3
 
-### Смугаста знахідка
+### Льодяник на прилавку
 
-`striped` — «смугастий»: `The bag is striped` — «Сумка смугаста». `Whose bag is this?` — «Чия це сумка?» `The bag is hers` — «Сумка її». Смужки допоможуть упізнати сумку, але прізвища власника вони не повідомляють.
+На прилавку кіоску лежить червоний льодяник на паличці, і поруч діти. lollipop — «льодяник на паличці». Продавець піднімає його й чекає, хто зізнається. Ви хочете дізнатися, чий він. Спитайте в продавця: Whose lollipop is this? — «Чий це льодяник?» Льодяник один, тому is this.
 
-**Скажіть «Сумка смугаста».**
+**Продавець тримає льодяник, поруч стоять діти. Спитайте в нього, чий це льодяник.**
 
-- ✅ **The bag is striped.**
-- ❌ The bag are striped. — *Одна сумка: `is`.*
-- ❌ The bag is full. — *`full` — повний; смугастий — `striped`.*
+- ✅ **Whose lollipop is this?**
+- ❌ Where is the lollipop? — *Це «Де льодяник?». Про господаря питаємо з whose.*
+- ❌ Whose lollipop are this? — *Льодяник один, тому потрібно is this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви впізнаєте місце. Скажіть «Це місце знайоме»**
+**1 · Картка слова — kiosk**
+<!-- interaction_id: en:lesson-05:session-54:word:kiosk; family: word_card -->
+> **kiosk** — кіоск. The kiosk is behind the bench. — «Кіоск за лавою». Маленький магазин на вулиці.
+
+**2 · Туристка шукає кіоск. Скажіть їй: «Кіоск за лавою»**
 <!-- interaction_id: en:lesson-05:session-54:i01; family: phrase_builder -->
-Плитки: `familiar` `is` `place` `This` `are` → **This place is familiar.**
-*(плитка `are` зайва: тут потрібно `is` — `This place is familiar.`)*
+Плитки: `kiosk` `behind` `the` `bench` `is` `The` `are` → **The kiosk is behind the bench.**
+*(плитка `are` зайва: тут потрібно `is` — `The kiosk is behind the bench.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — comic**
+<!-- interaction_id: en:lesson-05:session-54:word:comic; family: word_card -->
+> **comic** — комікс. The comic is on the table. — «Комікс на столі». Журнал з історіями в картинках.
+
+**4 · Послухайте продавця**
 <!-- interaction_id: en:lesson-05:session-54:i02; family: listen_choose -->
-🔊 *kiosk* → **kiosk** · ferry · garage
-- ferry — *У записі перше слово — `kiosk`, а в цьому варіанті — `ferry`.*
-- garage — *У записі перше слово — `kiosk`, а в цьому варіанті — `garage`.*
+🔊 *Is this comic yours?* → **Is this comic yours?** · Is this comic mine? · Is this kiosk yours?
+- Is this comic mine? — *У записі останнє слово — `yours`, а в цьому варіанті — `mine`.*
+- Is this kiosk yours? — *У записі річ — `comic`, комікс, а в цьому варіанті — `kiosk`, кіоск.*
 
-**3 · Назвіть кіоск**
+**5 · Картка слова — lollipop**
+<!-- interaction_id: en:lesson-05:session-54:word:lollipop; family: word_card -->
+> **lollipop** — льодяник на паличці. The lollipop is red. — «Льодяник червоний». Цукерка на тонкій паличці.
+
+**6 · Продавець питає, чий льодяник. Він вашої сестри. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-54:i03; family: context_gap_grammar -->
-___ → **kiosk** · ferry · garage
-- ferry — *`ferry` — пором; кіоск — `kiosk`.*
-- garage — *`garage` — гараж; кіоск — `kiosk`.*
+The lollipop is my ___. → **sister's** · sister · sisters
+- sister — *Після sister потрібно `'s`: my sister's.*
+- sisters — *Господиня одна, тому потрібно `sister's` з апострофом.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-54:i04; family: speed_match -->
-kiosk — кіоск · familiar — знайомий · unfamiliar — незнайомий · unknown — невідомий
+kiosk — кіоск · comic — комікс · lollipop — льодяник на паличці · balloon — повітряна кулька
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — balloon**
+<!-- interaction_id: en:lesson-05:session-54:word:balloon; family: word_card -->
+> **balloon** — повітряна кулька. The balloon is in the bag. — «Повітряна кулька в сумці». Легка кулька, яку надувають повітрям.
+
+**9 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-54:i05; family: listen_build_dictation -->
-🔊 *Where is the kiosk?* Плитки: `kiosk` `the` `is` `Where` → **Where is the kiosk?**
+🔊 *The balloon is in the bag.* Плитки: `balloon` `in` `the` `bag` `is` `The` `are` → **The balloon is in the bag.**
+*(плитка `are` зайва: тут потрібно `is` — `The balloon is in the bag.`)*
 
-**6 · Скажіть «Сумка смугаста»**
+**10 · Льодяник лежить на прилавку далеко. Спитайте продавця: «Чий там льодяник?»**
 <!-- interaction_id: en:lesson-05:session-54:i06; family: phrase_builder -->
-Плитки: `striped` `is` `bag` `The` `are` → **The bag is striped.**
-*(плитка `are` зайва: тут потрібно `is` — `The bag is striped.`)*
+Плитки: `lollipop` `that` `is` `Whose` `Where` → **Whose lollipop is that?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose lollipop is that?`)*
 
-**7 · Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar**
+**11 · Продавець питає, чия повітряна кулька. Вона ваша. Скажіть: «Кулька моя»**
 <!-- interaction_id: en:lesson-05:session-54:i07; family: scripted_repeat_compare -->
-🎙 **This place is unfamiliar.**
+🎙 **The balloon is mine.**
 
-**8 · Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»**
+**12 · Продавець показує дві кульки на столі. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-54:i08; family: context_gap_grammar -->
-His name is ___. → **unknown** · striped · full
-- striped — *`striped` — смугастий; невідомий — `unknown`.*
-- full — *`full` — повний; невідомий — `unknown`.*
+The balloons ___ on the table. → **are** · is · has
+- is — *Кульок дві, тому потрібно `are`, а не `is`.*
+- has — *`has` означає «має», а тут ми кажемо, де лежать кульки: потрібно `are`.*
 
-**9 · Послухайте, де пором**
+**13 · Послухайте сестру**
 <!-- interaction_id: en:lesson-05:session-54:i09; family: listen_choose -->
-🔊 *The ferry is near the kiosk.* → **The ferry is near the kiosk.** · The ferry is near the garage. · The ferry is near the stadium.
-- The ferry is near the garage. — *У записі останнє слово — `kiosk`, а в цьому варіанті — `garage`.*
-- The ferry is near the stadium. — *У записі останнє слово — `kiosk`, а в цьому варіанті — `stadium`.*
+🔊 *The lollipop is hers.* → **The lollipop is hers.** · The lollipop is his. · The balloon is hers.
+- The lollipop is his. — *У записі останнє слово — `hers`, а в цьому варіанті — `his`.*
+- The balloon is hers. — *У записі річ — `lollipop`, льодяник, а в цьому варіанті — `balloon`, кулька.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-54:i10; family: speed_match -->
-kiosk — кіоск · striped — смугастий · petrol station — заправна станція · ferry — пором
+kiosk — кіоск · comic — комікс · balloon — повітряна кулька · bag — сумка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-54:i11; family: listen_build_dictation -->
-🔊 *The kiosk is next to the petrol station.* Плитки: `station` `petrol` `the` `to` `next` `is` `kiosk` `The` `are` → **The kiosk is next to the petrol station.**
-*(плитка `are` зайва: тут потрібно `is` — `The kiosk is next to the petrol station.`)*
+🔊 *My brother's comic is on the table.* Плитки: `comic` `brother's` `is` `on` `the` `table` `My` `brother` → **My brother's comic is on the table.**
+*(плитка `brother` зайва: тут потрібно `brother's` — `My brother's comic is on the table.`)*
 
-**12 · Сумка належить Анні. Скажіть «Сумка її»**
+**16 · На прилавку лежать два льодяники. Спитайте продавця: «Чиї це льодяники?»**
 <!-- interaction_id: en:lesson-05:session-54:i12; family: phrase_builder -->
-Плитки: `hers` `is` `bag` `The` `are` → **The bag is hers.**
-*(плитка `are` зайва: тут потрібно `is` — `The bag is hers.`)*
+Плитки: `lollipops` `these` `are` `Whose` `Where` → **Whose lollipops are these?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose lollipops are these?`)*
 
-**13 · Запитайте «Де пором?»**
+**17 · Ви даруєте братові свій комікс. Скажіть йому: «Комікс твій»**
 <!-- interaction_id: en:lesson-05:session-54:i13; family: scripted_repeat_compare -->
-🎙 **Where is the ferry?**
+🎙 **The comic is yours.**
 
-**14 · Запитайте про власника сумки**
+**18 · Продавець питає: «Is this balloon yours?» Ні, кулька не ваша. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-54:i14; family: context_gap_grammar -->
-___ bag is this? → **Whose** · Where · Who
-- Where — *`Where` — де; чия — `Whose`.*
-- Who — *`Who` — хто; чия — `Whose`.*
+No, it ___ mine. → **isn't** · is · has
+- is — *Після No відповідь заперечна: потрібно `isn't`.*
+- has — *`has` означає «має», а на питання «це ваше?» відповідаємо `it isn't`.*
 
-**15 · Послухайте, як Анна описує місце**
+**19 · Послухайте продавця**
 <!-- interaction_id: en:lesson-05:session-54:i15; family: listen_choose -->
-🔊 *This place is unfamiliar.* → **This place is unfamiliar.** · This place is familiar. · This place is dangerous.
-- This place is familiar. — *У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`.*
-- This place is dangerous. — *У записі останнє слово — `unfamiliar`, а в цьому варіанті — `dangerous`.*
+🔊 *Is this balloon your sister's?* → **Is this balloon your sister's?** · Is this balloon your brother's? · Is this lollipop your sister's?
+- Is this balloon your brother's? — *У записі господар — `sister's`, сестра, а в цьому варіанті — `brother's`, брат.*
+- Is this lollipop your sister's? — *У записі річ — `balloon`, кулька, а в цьому варіанті — `lollipop`, льодяник.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-54:i16; family: speed_match -->
-kiosk — кіоск · unknown — невідомий · petrol station — заправна станція · striped — смугастий
+kiosk — кіоск · comic — комікс · lollipop — льодяник на паличці · balloon — повітряна кулька
 
-**17 · Ви знайшли смугасту сумку біля кіоску. Запитайте друзів «Чия це сумка?»**
+**21 · Ви знайшли комікс біля кіоску й хочете дізнатися, чий він. Спитайте продавця: «Чий це комікс?»**
 <!-- interaction_id: en:lesson-05:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose bag is this?**
-
+🎙 **Whose comic is this?**

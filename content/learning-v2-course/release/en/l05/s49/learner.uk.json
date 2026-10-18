@@ -4,40 +4,83 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-49:i01",
+      "interactionId": "en:lesson-05:session-49:word:garage",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:word:garage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:word:garage:audio",
+          "transcript": "garage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-49:word:garage:r1",
+            "targetText": "garage",
+            "meaningByLocale": {
+              "ru": "гараж. My uncle's garage is big. — «Гараж моего дяди большой». Здание, где держат машину или велосипед.",
+              "uk": "гараж. My uncle's garage is big. — «Гараж мого дядька великий». Будівля, де тримають машину або велосипед."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garage",
+          "definitionByLocale": {
+            "ru": "гараж. My uncle's garage is big. — «Гараж моего дяди большой». Здание, где держат машину или велосипед.",
+            "uk": "гараж. My uncle's garage is big. — «Гараж мого дядька великий». Будівля, де тримають машину або велосипед."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про ціну: «Ця шафка дешева»",
+      "prompt": "Двоюрідний брат питає, чия це будівля. Скажіть: «Це мій гараж»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про ціну: «Ця шафка дешева»",
+      "accessibilityLabel": "Двоюрідний брат питає, чия це будівля. Скажіть: «Це мій гараж»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This locker is cheap.",
+        "targetPhrase": "This is my garage.",
         "localizedMeaning": {
-          "ru": "Скажите о цене: «Этот шкафчик дешёвый»",
-          "uk": "Скажіть про ціну: «Ця шафка дешева»"
+          "ru": "Двоюродный брат спрашивает, чьё это здание. Скажите: «Это мой гараж»",
+          "uk": "Двоюрідний брат питає, чия це будівля. Скажіть: «Це мій гараж»"
         },
         "orderedTokens": [
           "This",
-          "locker",
           "is",
-          "cheap"
+          "my",
+          "garage"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "mine"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-49:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть про ціну: «Ця шафка дешева»",
+            "testedDimension": "Двоюрідний брат питає, чия це будівля. Скажіть: «Це мій гараж»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This locker is cheap.`",
-              "uk": "тут потрібно `is` — `This locker is cheap.`"
+              "ru": "здесь нужно `my` — `This is my garage.`",
+              "uk": "тут потрібно `my` — `This is my garage.`"
             }
           }
         ],
@@ -49,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-49:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-49:word:tyre",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — tyre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:word:tyre:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tyre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:word:tyre:audio",
+          "transcript": "tyre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-49:word:tyre:r1",
+            "targetText": "tyre",
+            "meaningByLocale": {
+              "ru": "шина. The tyre is on the bicycle. — «Шина на велосипеде». Резиновая часть колеса.",
+              "uk": "шина. The tyre is on the bicycle. — «Шина на велосипеді». Гумова частина колеса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tyre",
+          "definitionByLocale": {
+            "ru": "шина. The tyre is on the bicycle. — «Шина на велосипеде». Резиновая часть колеса.",
+            "uk": "шина. The tyre is on the bicycle. — «Шина на велосипеді». Гумова частина колеса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте дядька",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-49:i02:r1",
-          "text": "garage"
+          "text": "Whose tyre is this?"
         },
         {
           "responseId": "en:lesson-05:session-49:i02:r2",
-          "text": "hospital"
+          "text": "Whose tyre is that?"
         },
         {
           "responseId": "en:lesson-05:session-49:i02:r3",
-          "text": "canal"
+          "text": "Whose garage is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте дядька",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i02:audio",
-          "transcript": "garage"
+          "transcript": "Whose tyre is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-49:i02:r1",
-            "targetText": "garage",
+            "targetText": "Whose tyre is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-49:i02:r2",
-            "targetText": "hospital",
+            "targetText": "Whose tyre is that?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-49:i02:r3",
-            "targetText": "canal",
+            "targetText": "Whose garage is this?",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +189,19 @@
           {
             "responseId": "en:lesson-05:session-49:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте дядька",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `garage`, а в этом варианте — `hospital`.",
-              "uk": "У записі перше слово — `garage`, а в цьому варіанті — `hospital`."
+              "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
             }
           },
           {
             "responseId": "en:lesson-05:session-49:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте дядька",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `garage`, а в этом варианте — `canal`.",
-              "uk": "У записі перше слово — `garage`, а в цьому варіанті — `canal`."
+              "ru": "В записи вещь — `tyre`, шина, а в этом варианте — `garage`, гараж.",
+              "uk": "У записі річ — `tyre`, шина, а в цьому варіанті — `garage`, гараж."
             }
           }
         ],
@@ -125,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-49:word:chain",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:word:chain:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:word:chain:audio",
+          "transcript": "chain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-49:word:chain:r1",
+            "targetText": "chain",
+            "meaningByLocale": {
+              "ru": "цепь. The chain is under the bicycle. — «Цепь под велосипедом». Она соединяет педали с колесом.",
+              "uk": "ланцюг. The chain is under the bicycle. — «Ланцюг під велосипедом». Він з’єднує педалі з колесом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chain",
+          "definitionByLocale": {
+            "ru": "цепь. The chain is under the bicycle. — «Цепь под велосипедом». Она соединяет педали с колесом.",
+            "uk": "ланцюг. The chain is under the bicycle. — «Ланцюг під велосипедом». Він з’єднує педалі з колесом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-49:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть гараж",
+      "prompt": "Дядько показує ланцюг на підлозі. Він ваш із братом. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-49:i03:r1",
-          "text": "garage"
+          "text": "ours"
         },
         {
           "responseId": "en:lesson-05:session-49:i03:r2",
-          "text": "locker"
+          "text": "our"
         },
         {
           "responseId": "en:lesson-05:session-49:i03:r3",
-          "text": "hospital"
+          "text": "we"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть гараж",
+      "accessibilityLabel": "Дядько показує ланцюг на підлозі. Він ваш із братом. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите гараж",
-          "uk": "Назвіть гараж"
+          "ru": "Дядя показывает цепь на полу. Она ваша с братом. Выберите слово",
+          "uk": "Дядько показує ланцюг на підлозі. Він ваш із братом. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The chain is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-49:i03:r1",
-            "text": "garage"
+            "text": "ours"
           },
           {
             "responseId": "en:lesson-05:session-49:i03:r2",
-            "text": "locker"
+            "text": "our"
           },
           {
             "responseId": "en:lesson-05:session-49:i03:r3",
-            "text": "hospital"
+            "text": "we"
           }
         ],
-        "testedDimension": "Назвіть гараж",
+        "testedDimension": "Дядько показує ланцюг на підлозі. Він ваш із братом. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-49:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть гараж",
+            "testedDimension": "Дядько показує ланцюг на підлозі. Він ваш із братом. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`locker` — шкафчик; гараж — `garage`.",
-              "uk": "`locker` — шафка; гараж — `garage`."
+              "ru": "Без названия вещи нужно `ours`, а не `our`.",
+              "uk": "Без назви речі потрібно `ours`, а не `our`."
             }
           },
           {
             "responseId": "en:lesson-05:session-49:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть гараж",
+            "testedDimension": "Дядько показує ланцюг на підлозі. Він ваш із братом. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`hospital` — больница; гараж — `garage`.",
-              "uk": "`hospital` — лікарня; гараж — `garage`."
+              "ru": "`we` значит «мы», а «наш» без вещи — `ours`.",
+              "uk": "`we` означає «ми», а «наш» без речі — `ours`."
             }
           }
         ]
@@ -195,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -217,40 +346,40 @@
           },
           {
             "pairId": "en:lesson-05:session-49:i04:p2",
-            "target": "locker",
+            "target": "tyre",
             "meaningByLocale": {
-              "ru": "шкафчик",
-              "uk": "шафка"
+              "ru": "шина",
+              "uk": "шина"
             }
           },
           {
             "pairId": "en:lesson-05:session-49:i04:p3",
-            "target": "hospital",
+            "target": "chain",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "цепь",
+              "uk": "ланцюг"
             }
           },
           {
             "pairId": "en:lesson-05:session-49:i04:p4",
-            "target": "canal",
+            "target": "brake",
             "meaningByLocale": {
-              "ru": "канал",
-              "uk": "канал"
+              "ru": "тормоз",
+              "uk": "гальмо"
             }
           }
         ],
         "leftColumn": [
           "garage",
-          "locker",
-          "hospital",
-          "canal"
+          "tyre",
+          "chain",
+          "brake"
         ],
         "rightColumn": [
           "гараж",
-          "шафка",
-          "лікарня",
-          "канал"
+          "шина",
+          "ланцюг",
+          "гальмо"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,33 +396,76 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-49:word:brake",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — brake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:word:brake:audio"
+      ],
+      "accessibilityLabel": "Картка слова — brake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:word:brake:audio",
+          "transcript": "brake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-49:word:brake:r1",
+            "targetText": "brake",
+            "meaningByLocale": {
+              "ru": "тормоз. The brake is on my bicycle. — «Тормоз на моём велосипеде». Деталь, которая останавливает колесо.",
+              "uk": "гальмо. The brake is on my bicycle. — «Гальмо на моєму велосипеді». Деталь, яка зупиняє колесо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brake",
+          "definitionByLocale": {
+            "ru": "тормоз. The brake is on my bicycle. — «Тормоз на моём велосипеде». Деталь, которая останавливает колесо.",
+            "uk": "гальмо. The brake is on my bicycle. — «Гальмо на моєму велосипеді». Деталь, яка зупиняє колесо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-49:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте брата й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i05:audio",
-          "transcript": "The bicycle is in the garage."
+          "transcript": "The brake is on my bicycle."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The bicycle is in the garage.",
+        "hiddenTargetPhrase": "The brake is on my bicycle.",
         "orderedTokens": [
           "The",
-          "bicycle",
+          "brake",
           "is",
-          "in",
-          "the",
-          "garage"
+          "on",
+          "my",
+          "bicycle"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -302,10 +474,10 @@
           {
             "responseId": "en:lesson-05:session-49:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте брата й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bicycle is in the garage.`",
-              "uk": "тут потрібно `is` — `The bicycle is in the garage.`"
+              "ru": "здесь нужно `is` — `The brake is on my bicycle.`",
+              "uk": "тут потрібно `is` — `The brake is on my bicycle.`"
             }
           }
         ],
@@ -318,30 +490,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Чий це гараж?»",
+      "prompt": "Дядьків гараж стоїть далеко. Спитайте брата: «Чий там гараж?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Чий це гараж?»",
+      "accessibilityLabel": "Дядьків гараж стоїть далеко. Спитайте брата: «Чий там гараж?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose garage is this?",
+        "targetPhrase": "Whose garage is that?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это гараж?»",
-          "uk": "Запитайте «Чий це гараж?»"
+          "ru": "Дядин гараж стоит далеко. Спросите брата: «Чей там гараж?»",
+          "uk": "Дядьків гараж стоїть далеко. Спитайте брата: «Чий там гараж?»"
         },
         "orderedTokens": [
           "Whose",
           "garage",
           "is",
-          "this"
+          "that"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Дядьків гараж стоїть далеко. Спитайте брата: «Чий там гараж?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose garage is that?`",
+              "uk": "тут потрібно `Whose` — `Whose garage is that?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -351,25 +535,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Шафка належить вам. Скажіть «Шафка моя»",
+      "prompt": "Двоюрідний брат питає, чия шина. Вона його. Скажіть: «Шина його»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i07:audio"
       ],
-      "accessibilityLabel": "Шафка належить вам. Скажіть «Шафка моя»",
+      "accessibilityLabel": "Двоюрідний брат питає, чия шина. Вона його. Скажіть: «Шина його»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i07:audio",
-          "transcript": "The locker is mine."
+          "transcript": "The tyre is his."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The locker is mine.",
+        "targetPhrase": "The tyre is his.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -384,67 +568,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Гараж належить вашій родині. Скажіть «Гараж наш»",
+      "prompt": "Дядько говорить про свій гараж. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-49:i08:r1",
-          "text": "ours"
+          "text": "his"
         },
         {
           "responseId": "en:lesson-05:session-49:i08:r2",
-          "text": "our"
+          "text": "hers"
         },
         {
           "responseId": "en:lesson-05:session-49:i08:r3",
-          "text": "we"
+          "text": "he"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гараж належить вашій родині. Скажіть «Гараж наш»",
+      "accessibilityLabel": "Дядько говорить про свій гараж. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Гараж принадлежит вашей семье. Скажите «Гараж наш»",
-          "uk": "Гараж належить вашій родині. Скажіть «Гараж наш»"
+          "ru": "Дядя говорит о своём гараже. Выберите слово",
+          "uk": "Дядько говорить про свій гараж. Виберіть слово"
         },
         "gappedTargetPhrase": "The garage is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-49:i08:r1",
-            "text": "ours"
+            "text": "his"
           },
           {
             "responseId": "en:lesson-05:session-49:i08:r2",
-            "text": "our"
+            "text": "hers"
           },
           {
             "responseId": "en:lesson-05:session-49:i08:r3",
-            "text": "we"
+            "text": "he"
           }
         ],
-        "testedDimension": "Гараж належить вашій родині. Скажіть «Гараж наш»",
+        "testedDimension": "Дядько говорить про свій гараж. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-49:i08:r2",
             "correct": false,
-            "testedDimension": "Гараж належить вашій родині. Скажіть «Гараж наш»",
+            "testedDimension": "Дядько говорить про свій гараж. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Перед названием вещи — `our`; здесь самостоятельное `ours`.",
-              "uk": "Перед назвою речі — `our`; тут самостійне `ours`."
+              "ru": "hers — её, а гараж дяди: нужно `his`.",
+              "uk": "hers — її, а гараж дядька: потрібно `his`."
             }
           },
           {
             "responseId": "en:lesson-05:session-49:i08:r3",
             "correct": false,
-            "testedDimension": "Гараж належить вашій родині. Скажіть «Гараж наш»",
+            "testedDimension": "Дядько говорить про свій гараж. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`we` — мы; самостоятельное «наш» — `ours`.",
-              "uk": "`we` — ми; самостійне «наш» — `ours`."
+              "ru": "Без названия вещи нужно `his`, а не `he`.",
+              "uk": "Без назви речі потрібно `his`, а не `he`."
             }
           }
         ]
@@ -453,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що належить Томові",
+      "prompt": "Послухайте двоюрідного брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-49:i09:r1",
-          "text": "This is Tom's garage."
+          "text": "The brake is hers."
         },
         {
           "responseId": "en:lesson-05:session-49:i09:r2",
-          "text": "This is Tom's locker."
+          "text": "The brake is his."
         },
         {
           "responseId": "en:lesson-05:session-49:i09:r3",
-          "text": "This is Tom's bicycle."
+          "text": "The tyre is hers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що належить Томові",
+      "accessibilityLabel": "Послухайте двоюрідного брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i09:audio",
-          "transcript": "This is Tom's garage."
+          "transcript": "The brake is hers."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-49:i09:r1",
-            "targetText": "This is Tom's garage.",
+            "targetText": "The brake is hers.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-49:i09:r2",
-            "targetText": "This is Tom's locker.",
+            "targetText": "The brake is his.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-49:i09:r3",
-            "targetText": "This is Tom's bicycle.",
+            "targetText": "The tyre is hers.",
             "meaningByLocale": null
           }
         ],
@@ -506,19 +690,19 @@
           {
             "responseId": "en:lesson-05:session-49:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що належить Томові",
+            "testedDimension": "Послухайте двоюрідного брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `garage`, а в этом варианте — `locker`.",
-              "uk": "У записі останнє слово — `garage`, а в цьому варіанті — `locker`."
+              "ru": "В записи последнее слово — `hers`, а в этом варианте — `his`.",
+              "uk": "У записі останнє слово — `hers`, а в цьому варіанті — `his`."
             }
           },
           {
             "responseId": "en:lesson-05:session-49:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що належить Томові",
+            "testedDimension": "Послухайте двоюрідного брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `garage`, а в этом варианте — `bicycle`.",
-              "uk": "У записі останнє слово — `garage`, а в цьому варіанті — `bicycle`."
+              "ru": "В записи вещь — `brake`, тормоз, а в этом варианте — `tyre`, шина.",
+              "uk": "У записі річ — `brake`, гальмо, а в цьому варіанті — `tyre`, шина."
             }
           }
         ],
@@ -529,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -543,48 +727,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-49:i10:p1",
-            "target": "garage",
+            "target": "tyre",
             "meaningByLocale": {
-              "ru": "гараж",
-              "uk": "гараж"
+              "ru": "шина",
+              "uk": "шина"
             }
           },
           {
             "pairId": "en:lesson-05:session-49:i10:p2",
-            "target": "cheap",
+            "target": "chain",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "цепь",
+              "uk": "ланцюг"
             }
           },
           {
             "pairId": "en:lesson-05:session-49:i10:p3",
-            "target": "canal",
+            "target": "brake",
             "meaningByLocale": {
-              "ru": "канал",
-              "uk": "канал"
+              "ru": "тормоз",
+              "uk": "гальмо"
             }
           },
           {
             "pairId": "en:lesson-05:session-49:i10:p4",
-            "target": "locker",
+            "target": "bicycle",
             "meaningByLocale": {
-              "ru": "шкафчик",
-              "uk": "шафка"
+              "ru": "велосипед",
+              "uk": "велосипед"
             }
           }
         ],
         "leftColumn": [
-          "garage",
-          "cheap",
-          "canal",
-          "locker"
+          "tyre",
+          "chain",
+          "brake",
+          "bicycle"
         ],
         "rightColumn": [
-          "гараж",
-          "дешевий",
-          "канал",
-          "шафка"
+          "шина",
+          "ланцюг",
+          "гальмо",
+          "велосипед"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -602,44 +786,43 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте дядька й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте дядька й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i11:audio",
-          "transcript": "The hospital is near the canal."
+          "transcript": "My uncle's garage is big."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The hospital is near the canal.",
+        "hiddenTargetPhrase": "My uncle's garage is big.",
         "orderedTokens": [
-          "The",
-          "hospital",
+          "My",
+          "uncle's",
+          "garage",
           "is",
-          "near",
-          "the",
-          "canal"
+          "big"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "uncle"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-49:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте дядька й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The hospital is near the canal.`",
-              "uk": "тут потрібно `is` — `The hospital is near the canal.`"
+              "ru": "здесь нужно `uncle's` — `My uncle's garage is big.`",
+              "uk": "тут потрібно `uncle's` — `My uncle's garage is big.`"
             }
           }
         ],
@@ -652,30 +835,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Де канал?»",
+      "prompt": "Біля стіни стоять дві шини. Спитайте дядька: «Чиї це шини?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Де канал?»",
+      "accessibilityLabel": "Біля стіни стоять дві шини. Спитайте дядька: «Чиї це шини?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the canal?",
+        "targetPhrase": "Whose tyres are these?",
         "localizedMeaning": {
-          "ru": "Спросите «Где канал?»",
-          "uk": "Запитайте «Де канал?»"
+          "ru": "У стены стоят две шины. Спросите дядю: «Чьи это шины?»",
+          "uk": "Біля стіни стоять дві шини. Спитайте дядька: «Чиї це шини?»"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "canal"
+          "Whose",
+          "tyres",
+          "are",
+          "these"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Біля стіни стоять дві шини. Спитайте дядька: «Чиї це шини?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose tyres are these?`",
+              "uk": "тут потрібно `Whose` — `Whose tyres are these?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -685,25 +880,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть Анні «Твій велосипед у гаражі»",
+      "prompt": "Двоюрідний брат бере ваше гальмо. Скажіть йому: «Гальмо твоє»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть Анні «Твій велосипед у гаражі»",
+      "accessibilityLabel": "Двоюрідний брат бере ваше гальмо. Скажіть йому: «Гальмо твоє»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i13:audio",
-          "transcript": "Your bicycle is in the garage."
+          "transcript": "The brake is yours."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Your bicycle is in the garage.",
+        "targetPhrase": "The brake is yours.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -718,67 +913,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника гаража",
+      "prompt": "Дядько питає: «Is this garage yours?» Ні, гараж не ваш. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-49:i14:r1",
-          "text": "Whose"
+          "text": "isn't"
         },
         {
           "responseId": "en:lesson-05:session-49:i14:r2",
-          "text": "Where"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-49:i14:r3",
-          "text": "Who"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника гаража",
+      "accessibilityLabel": "Дядько питає: «Is this garage yours?» Ні, гараж не ваш. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце гаража",
-          "uk": "Запитайте про власника гаража"
+          "ru": "Дядя спрашивает: «Is this garage yours?» Нет, гараж не ваш. Выберите слово",
+          "uk": "Дядько питає: «Is this garage yours?» Ні, гараж не ваш. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ garage is this?",
+        "gappedTargetPhrase": "No, it ___ mine.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-49:i14:r1",
-            "text": "Whose"
+            "text": "isn't"
           },
           {
             "responseId": "en:lesson-05:session-49:i14:r2",
-            "text": "Where"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-49:i14:r3",
-            "text": "Who"
+            "text": "has"
           }
         ],
-        "testedDimension": "Запитайте про власника гаража",
+        "testedDimension": "Дядько питає: «Is this garage yours?» Ні, гараж не ваш. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-49:i14:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника гаража",
+            "testedDimension": "Дядько питає: «Is this garage yours?» Ні, гараж не ваш. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чий — `Whose`."
+              "ru": "После No ответ отрицательный: нужно `isn't`.",
+              "uk": "Після No відповідь заперечна: потрібно `isn't`."
             }
           },
           {
             "responseId": "en:lesson-05:session-49:i14:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника гаража",
+            "testedDimension": "Дядько питає: «Is this garage yours?» Ні, гараж не ваш. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чий — `Whose`."
+              "ru": "`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it isn't`.",
+              "uk": "`has` означає «має», а на питання «це ваше?» відповідаємо `it isn't`."
             }
           }
         ]
@@ -787,51 +982,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чий гараж тут",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-49:i15:r1",
-          "text": "My garage is here."
+          "text": "Is this chain your uncle's?"
         },
         {
           "responseId": "en:lesson-05:session-49:i15:r2",
-          "text": "Your garage is here."
+          "text": "Is this chain your brother's?"
         },
         {
           "responseId": "en:lesson-05:session-49:i15:r3",
-          "text": "His garage is here."
+          "text": "Is this tyre your uncle's?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чий гараж тут",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i15:audio",
-          "transcript": "My garage is here."
+          "transcript": "Is this chain your uncle's?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-49:i15:r1",
-            "targetText": "My garage is here.",
+            "targetText": "Is this chain your uncle's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-49:i15:r2",
-            "targetText": "Your garage is here.",
+            "targetText": "Is this chain your brother's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-49:i15:r3",
-            "targetText": "His garage is here.",
+            "targetText": "Is this tyre your uncle's?",
             "meaningByLocale": null
           }
         ],
@@ -840,19 +1035,19 @@
           {
             "responseId": "en:lesson-05:session-49:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чий гараж тут",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи хозяин — `uncle's`, дядя, а в этом варианте — `brother's`, брат.",
+              "uk": "У записі господар — `uncle's`, дядько, а в цьому варіанті — `brother's`, брат."
             }
           },
           {
             "responseId": "en:lesson-05:session-49:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чий гараж тут",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `chain`, цепь, а в этом варианте — `tyre`, шина.",
+              "uk": "У записі річ — `chain`, ланцюг, а в цьому варіанті — `tyre`, шина."
             }
           }
         ],
@@ -863,7 +1058,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -885,40 +1080,40 @@
           },
           {
             "pairId": "en:lesson-05:session-49:i16:p2",
-            "target": "cheap",
+            "target": "tyre",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "шина",
+              "uk": "шина"
             }
           },
           {
             "pairId": "en:lesson-05:session-49:i16:p3",
-            "target": "hospital",
+            "target": "chain",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "цепь",
+              "uk": "ланцюг"
             }
           },
           {
             "pairId": "en:lesson-05:session-49:i16:p4",
-            "target": "locker",
+            "target": "brake",
             "meaningByLocale": {
-              "ru": "шкафчик",
-              "uk": "шафка"
+              "ru": "тормоз",
+              "uk": "гальмо"
             }
           }
         ],
         "leftColumn": [
           "garage",
-          "cheap",
-          "hospital",
-          "locker"
+          "tyre",
+          "chain",
+          "brake"
         ],
         "rightColumn": [
           "гараж",
-          "дешевий",
-          "лікарня",
-          "шафка"
+          "шина",
+          "ланцюг",
+          "гальмо"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -936,25 +1131,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-49:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви хочете дізнатися, кому належить гараж біля будинку. Запитайте «Чий це гараж?»",
+      "prompt": "Ви знайшли шину в гаражі й хочете дізнатися, чия вона. Спитайте дядька: «Чия це шина?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-49:i17:audio"
       ],
-      "accessibilityLabel": "Ви хочете дізнатися, кому належить гараж біля будинку. Запитайте «Чий це гараж?»",
+      "accessibilityLabel": "Ви знайшли шину в гаражі й хочете дізнатися, чия вона. Спитайте дядька: «Чия це шина?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-49:i17:audio",
-          "transcript": "Whose garage is this?"
+          "transcript": "Whose tyre is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose garage is this?",
+        "targetPhrase": "Whose tyre is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -976,11 +1171,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7319ee24a00f49649d4f8c0ba124d9dd62c421ae8940f1b7746f1cd548f9adac"
+  "learnerFingerprint": "5522c079a50404fa3877d41531a42af6ec3c1ae46cb7624a80e2deef612c2903"
 }

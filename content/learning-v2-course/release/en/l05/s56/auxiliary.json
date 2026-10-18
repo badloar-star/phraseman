@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-56:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Это «Где метла?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де мітла?». Про господаря питаємо з whose."
         },
         "en:lesson-05:session-56:intro1:r3": {
-          "ru": "Один гараж: `is this`.",
-          "uk": "Один гараж: `is this`."
+          "ru": "this — это про вещь рядом, а метла у калитки далеко: нужно that.",
+          "uk": "this — це про річ поруч, а мітла біля хвіртки далеко: потрібно that."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-56:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-56:intro2:r2": {
-          "ru": "Один бассейн: `is`.",
-          "uk": "Один басейн: `is`."
+          "ru": "После aunt нужно 's: my aunt's.",
+          "uk": "Після aunt потрібно 's: my aunt's."
         },
         "en:lesson-05:session-56:intro2:r3": {
-          "ru": "Здесь возле: `near`; `in` означает внутри.",
-          "uk": "Тут біля: `near`; `in` означає всередині."
+          "ru": "Перед aunt's нужно my: my aunt's.",
+          "uk": "Перед aunt's потрібно my: my aunt's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-56:intro3:r2": {
-          "ru": "Это вопрос о принадлежности; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про належність; про місце запитуємо з `Where`."
+          "ru": "Без названия вещи нужно mine, а не my.",
+          "uk": "Без назви речі потрібно mine, а не my."
         },
         "en:lesson-05:session-56:intro3:r3": {
-          "ru": "Одна роспись: `is`.",
-          "uk": "Один розпис: `is`."
+          "ru": "his — его, а совок принесли вы: нужно mine.",
+          "uk": "his — його, а совок принесли ви: потрібно mine."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e73760aec5b85fe5a1b4f9d3cf2f44d6a412bc6e9f30493ed0516d719c39b94f"
+  "auxiliaryFingerprint": "981cc0126e5684d6a85e124cf8d5f0d75ada3b895e81f23db418d51d612faa11"
 }

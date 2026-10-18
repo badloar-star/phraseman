@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-50:word:seesaw",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — seesaw",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:seesaw:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — seesaw",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:seesaw:audio",
+            "transcript": "seesaw"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:seesaw:r1",
+              "targetText": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир. The seesaw is near the bench. — «Качели возле скамейки». Доска на опоре, на ней качаются двое.",
+                "uk": "гойдалка-балансир. The seesaw is near the bench. — «Гойдалка біля лави». Дошка на опорі, на ній гойдаються двоє."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seesaw",
+            "definitionByLocale": {
+              "ru": "качели-балансир. The seesaw is near the bench. — «Качели возле скамейки». Доска на опоре, на ней качаются двое.",
+              "uk": "гойдалка-балансир. The seesaw is near the bench. — «Гойдалка біля лави». Дошка на опорі, на ній гойдаються двоє."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Младшая сестра ищет качели. Скажите ей: «Качели возле скамейки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Младшая сестра ищет качели. Скажите ей: «Качели возле скамейки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The seesaw is near the bench.",
+          "localizedMeaning": {
+            "ru": "Младшая сестра ищет качели. Скажите ей: «Качели возле скамейки»",
+            "uk": "Молодша сестра шукає гойдалку. Скажіть їй: «Гойдалка біля лави»"
+          },
+          "orderedTokens": [
+            "The",
+            "seesaw",
+            "is",
+            "near",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Младшая сестра ищет качели. Скажите ей: «Качели возле скамейки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The seesaw is near the bench.`",
+                "uk": "тут потрібно `is` — `The seesaw is near the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:word:hoop",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hoop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:hoop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hoop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:hoop:audio",
+            "transcript": "hoop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:hoop:r1",
+              "targetText": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч. The hoop is on the bench. — «Обруч на скамейке». Кольцо, которое крутят вокруг пояса.",
+                "uk": "обруч. The hoop is on the bench. — «Обруч на лаві». Кільце, яке крутять навколо пояса."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hoop",
+            "definitionByLocale": {
+              "ru": "обруч. The hoop is on the bench. — «Обруч на скамейке». Кольцо, которое крутят вокруг пояса.",
+              "uk": "обруч. The hoop is on the bench. — «Обруч на лаві». Кільце, яке крутять навколо пояса."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i02:r1",
+            "text": "Whose hoop is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i02:r2",
+            "text": "Where is the hoop?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i02:r3",
+            "text": "Whose seesaw is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i02:audio",
+            "transcript": "Whose hoop is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:i02:r1",
+              "targetText": "Whose hoop is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i02:r2",
+              "targetText": "Where is the hoop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i02:r3",
+              "targetText": "Whose seesaw is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "Это вопрос «Где обруч?», а в записи спрашивают о хозяине: `Whose`.",
+                "uk": "Це питання «Де обруч?», а в записі питають про господаря: `Whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `hoop`, обруч, а в этом варианте — `seesaw`, качели.",
+                "uk": "У записі річ — `hoop`, обруч, а в цьому варіанті — `seesaw`, гойдалка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:word:chalk",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chalk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:chalk:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chalk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:chalk:audio",
+            "transcript": "chalk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:chalk:r1",
+              "targetText": "chalk",
+              "meaningByLocale": {
+                "ru": "мел. The chalk is in my bag. — «Мел в моей сумке». Белый стержень, которым рисуют на асфальте.",
+                "uk": "крейда. The chalk is in my bag. — «Крейда в моїй сумці». Білий стрижень, яким малюють на асфальті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chalk",
+            "definitionByLocale": {
+              "ru": "мел. The chalk is in my bag. — «Мел в моей сумке». Белый стержень, которым рисуют на асфальте.",
+              "uk": "крейда. The chalk is in my bag. — «Крейда в моїй сумці». Білий стрижень, яким малюють на асфальті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i03:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i03:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i03:r3",
+            "text": "she"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово",
+            "uk": "Хлопчик питає, чия крейда. Вона належить дівчинці з майданчика. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The chalk is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-50:i03:r1",
+              "text": "hers"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i03:r2",
+              "text": "her"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i03:r3",
+              "text": "she"
+            }
+          ],
+          "testedDimension": "Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `hers`, а не `her`.",
+                "uk": "Без назви речі потрібно `hers`, а не `her`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`she` значит «она», а «её» без вещи — `hers`.",
+                "uk": "`she` означає «вона», а «її» без речі — `hers`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-50:i04:p1",
+              "target": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир",
+                "uk": "гойдалка-балансир"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i04:p2",
+              "target": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч",
+                "uk": "обруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i04:p3",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i04:p4",
+              "target": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок",
+                "uk": "пісочний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "seesaw",
+            "hoop",
+            "chalk",
+            "sandcastle"
+          ],
+          "rightColumn": [
+            "качели-балансир",
+            "обруч",
+            "мел",
+            "песочный замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:word:sandcastle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sandcastle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:sandcastle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sandcastle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:sandcastle:audio",
+            "transcript": "sandcastle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:sandcastle:r1",
+              "targetText": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок. The sandcastle is under the tree. — «Песочный замок под деревом». Башня, которую дети строят из мокрого песка.",
+                "uk": "пісочний замок. The sandcastle is under the tree. — «Пісочний замок під деревом». Вежа, яку діти будують із мокрого піску."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandcastle",
+            "definitionByLocale": {
+              "ru": "песочный замок. The sandcastle is under the tree. — «Песочный замок под деревом». Башня, которую дети строят из мокрого песка.",
+              "uk": "пісочний замок. The sandcastle is under the tree. — «Пісочний замок під деревом». Вежа, яку діти будують із мокрого піску."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i05:audio",
+            "transcript": "The sandcastle is under the tree."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sandcastle is under the tree.",
+          "orderedTokens": [
+            "The",
+            "sandcastle",
+            "is",
+            "under",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sandcastle is under the tree.`",
+                "uk": "тут потрібно `is` — `The sandcastle is under the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Песочный замок стоит далеко. Спросите мальчика: «Чей там замок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Песочный замок стоит далеко. Спросите мальчика: «Чей там замок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose sandcastle is that?",
+          "localizedMeaning": {
+            "ru": "Песочный замок стоит далеко. Спросите мальчика: «Чей там замок?»",
+            "uk": "Пісочний замок стоїть далеко. Спитайте хлопчика: «Чий там замок?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "sandcastle",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Песочный замок стоит далеко. Спросите мальчика: «Чей там замок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose sandcastle is that?`",
+                "uk": "тут потрібно `Whose` — `Whose sandcastle is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, чей обруч. Он мальчика с площадки. Скажите: «Обруч его»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, чей обруч. Он мальчика с площадки. Скажите: «Обруч его»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i07:audio",
+            "transcript": "The hoop is his."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The hoop is his.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Две девочки построили песочный замок. Вы говорите о нём. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i08:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две девочки построили песочный замок. Вы говорите о нём. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две девочки построили песочный замок. Вы говорите о нём. Выберите слово",
+            "uk": "Дві дівчинки збудували пісочний замок. Ви говорите про нього. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The sandcastle is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-50:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i08:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Две девочки построили песочный замок. Вы говорите о нём. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Две девочки построили песочный замок. Вы говорите о нём. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Две девочки построили песочный замок. Вы говорите о нём. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте мальчика",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i09:r1",
+            "text": "The chalk is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i09:r2",
+            "text": "The chalk is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i09:r3",
+            "text": "The hoop is his."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте мальчика",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i09:audio",
+            "transcript": "The chalk is his."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:i09:r1",
+              "targetText": "The chalk is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i09:r2",
+              "targetText": "The chalk is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i09:r3",
+              "targetText": "The hoop is his.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте мальчика",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `his`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `his`, а в цьому варіанті — `hers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте мальчика",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `chalk`, мел, а в этом варианте — `hoop`, обруч.",
+                "uk": "У записі річ — `chalk`, крейда, а в цьому варіанті — `hoop`, обруч."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-50:i10:p1",
+              "target": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир",
+                "uk": "гойдалка-балансир"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i10:p2",
+              "target": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч",
+                "uk": "обруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i10:p3",
+              "target": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок",
+                "uk": "пісочний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "seesaw",
+            "hoop",
+            "sandcastle",
+            "bench"
+          ],
+          "rightColumn": [
+            "качели-балансир",
+            "обруч",
+            "песочный замок",
+            "скамейка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i11:audio",
+            "transcript": "My brother's hoop is under the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My brother's hoop is under the bench.",
+          "orderedTokens": [
+            "My",
+            "brother's",
+            "hoop",
+            "is",
+            "under",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `My brother's hoop is under the bench.`",
+                "uk": "тут потрібно `brother's` — `My brother's hoop is under the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На площадке лежат два обруча. Спросите соседку: «Чьи это обручи?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На площадке лежат два обруча. Спросите соседку: «Чьи это обручи?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose hoops are these?",
+          "localizedMeaning": {
+            "ru": "На площадке лежат два обруча. Спросите соседку: «Чьи это обручи?»",
+            "uk": "На майданчику лежать два обручі. Спитайте сусідку: «Чиї це обручі?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "hoops",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На площадке лежат два обруча. Спросите соседку: «Чьи это обручи?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose hoops are these?`",
+                "uk": "тут потрібно `Whose` — `Whose hoops are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, чей мел. Он ваш. Скажите: «Мел мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, чей мел. Он ваш. Скажите: «Мел мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i13:audio",
+            "transcript": "The chalk is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The chalk is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Девочка держит мел и спрашивает вас. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Девочка держит мел и спрашивает вас. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Девочка держит мел и спрашивает вас. Выберите слово",
+            "uk": "Дівчинка тримає крейду й питає вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose chalk ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-50:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Девочка держит мел и спрашивает вас. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i14:r2",
+              "correct": false,
+              "testedDimension": "Девочка держит мел и спрашивает вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Мел один, поэтому нужно `is`, а не `are`.",
+                "uk": "Крейда одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i14:r3",
+              "correct": false,
+              "testedDimension": "Девочка держит мел и спрашивает вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а в вопросе «чей это мел?» нужно `is`.",
+                "uk": "`has` означає «має», а в питанні «чия це крейда?» потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i15:r1",
+            "text": "Is this chalk your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i15:r2",
+            "text": "Is this chalk your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i15:r3",
+            "text": "Is this hoop your sister's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i15:audio",
+            "transcript": "Is this chalk your sister's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:i15:r1",
+              "targetText": "Is this chalk your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i15:r2",
+              "targetText": "Is this chalk your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i15:r3",
+              "targetText": "Is this hoop your sister's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `chalk`, мел, а в этом варианте — `hoop`, обруч.",
+                "uk": "У записі річ — `chalk`, крейда, а в цьому варіанті — `hoop`, обруч."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-50:i16:p1",
+              "target": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир",
+                "uk": "гойдалка-балансир"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i16:p2",
+              "target": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч",
+                "uk": "обруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i16:p3",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i16:p4",
+              "target": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок",
+                "uk": "пісочний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "seesaw",
+            "hoop",
+            "chalk",
+            "sandcastle"
+          ],
+          "rightColumn": [
+            "качели-балансир",
+            "обруч",
+            "мел",
+            "песочный замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли мел на асфальте и хотите вернуть его. Спросите ребят: «Чей это мел?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли мел на асфальте и хотите вернуть его. Спросите ребят: «Чей это мел?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i17:audio",
+            "transcript": "Whose chalk is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose chalk is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-50:word:seesaw",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — seesaw",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:seesaw:audio"
+        ],
+        "accessibilityLabel": "Картка слова — seesaw",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:seesaw:audio",
+            "transcript": "seesaw"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:seesaw:r1",
+              "targetText": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир. The seesaw is near the bench. — «Качели возле скамейки». Доска на опоре, на ней качаются двое.",
+                "uk": "гойдалка-балансир. The seesaw is near the bench. — «Гойдалка біля лави». Дошка на опорі, на ній гойдаються двоє."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seesaw",
+            "definitionByLocale": {
+              "ru": "качели-балансир. The seesaw is near the bench. — «Качели возле скамейки». Доска на опоре, на ней качаются двое.",
+              "uk": "гойдалка-балансир. The seesaw is near the bench. — «Гойдалка біля лави». Дошка на опорі, на ній гойдаються двоє."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Молодша сестра шукає гойдалку. Скажіть їй: «Гойдалка біля лави»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Молодша сестра шукає гойдалку. Скажіть їй: «Гойдалка біля лави»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The seesaw is near the bench.",
+          "localizedMeaning": {
+            "ru": "Младшая сестра ищет качели. Скажите ей: «Качели возле скамейки»",
+            "uk": "Молодша сестра шукає гойдалку. Скажіть їй: «Гойдалка біля лави»"
+          },
+          "orderedTokens": [
+            "The",
+            "seesaw",
+            "is",
+            "near",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Молодша сестра шукає гойдалку. Скажіть їй: «Гойдалка біля лави»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The seesaw is near the bench.`",
+                "uk": "тут потрібно `is` — `The seesaw is near the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:word:hoop",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hoop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:hoop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hoop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:hoop:audio",
+            "transcript": "hoop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:hoop:r1",
+              "targetText": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч. The hoop is on the bench. — «Обруч на скамейке». Кольцо, которое крутят вокруг пояса.",
+                "uk": "обруч. The hoop is on the bench. — «Обруч на лаві». Кільце, яке крутять навколо пояса."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hoop",
+            "definitionByLocale": {
+              "ru": "обруч. The hoop is on the bench. — «Обруч на скамейке». Кольцо, которое крутят вокруг пояса.",
+              "uk": "обруч. The hoop is on the bench. — «Обруч на лаві». Кільце, яке крутять навколо пояса."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i02:r1",
+            "text": "Whose hoop is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i02:r2",
+            "text": "Where is the hoop?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i02:r3",
+            "text": "Whose seesaw is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i02:audio",
+            "transcript": "Whose hoop is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:i02:r1",
+              "targetText": "Whose hoop is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i02:r2",
+              "targetText": "Where is the hoop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i02:r3",
+              "targetText": "Whose seesaw is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "Это вопрос «Где обруч?», а в записи спрашивают о хозяине: `Whose`.",
+                "uk": "Це питання «Де обруч?», а в записі питають про господаря: `Whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `hoop`, обруч, а в этом варианте — `seesaw`, качели.",
+                "uk": "У записі річ — `hoop`, обруч, а в цьому варіанті — `seesaw`, гойдалка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:word:chalk",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chalk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:chalk:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chalk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:chalk:audio",
+            "transcript": "chalk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:chalk:r1",
+              "targetText": "chalk",
+              "meaningByLocale": {
+                "ru": "мел. The chalk is in my bag. — «Мел в моей сумке». Белый стержень, которым рисуют на асфальте.",
+                "uk": "крейда. The chalk is in my bag. — «Крейда в моїй сумці». Білий стрижень, яким малюють на асфальті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chalk",
+            "definitionByLocale": {
+              "ru": "мел. The chalk is in my bag. — «Мел в моей сумке». Белый стержень, которым рисуют на асфальте.",
+              "uk": "крейда. The chalk is in my bag. — «Крейда в моїй сумці». Білий стрижень, яким малюють на асфальті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Хлопчик питає, чия крейда. Вона належить дівчинці з майданчика. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i03:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i03:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i03:r3",
+            "text": "she"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хлопчик питає, чия крейда. Вона належить дівчинці з майданчика. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово",
+            "uk": "Хлопчик питає, чия крейда. Вона належить дівчинці з майданчика. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The chalk is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-50:i03:r1",
+              "text": "hers"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i03:r2",
+              "text": "her"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i03:r3",
+              "text": "she"
+            }
+          ],
+          "testedDimension": "Хлопчик питає, чия крейда. Вона належить дівчинці з майданчика. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Хлопчик питає, чия крейда. Вона належить дівчинці з майданчика. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `hers`, а не `her`.",
+                "uk": "Без назви речі потрібно `hers`, а не `her`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Хлопчик питає, чия крейда. Вона належить дівчинці з майданчика. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`she` значит «она», а «её» без вещи — `hers`.",
+                "uk": "`she` означає «вона», а «її» без речі — `hers`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-50:i04:p1",
+              "target": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир",
+                "uk": "гойдалка-балансир"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i04:p2",
+              "target": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч",
+                "uk": "обруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i04:p3",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i04:p4",
+              "target": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок",
+                "uk": "пісочний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "seesaw",
+            "hoop",
+            "chalk",
+            "sandcastle"
+          ],
+          "rightColumn": [
+            "гойдалка-балансир",
+            "обруч",
+            "крейда",
+            "пісочний замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:word:sandcastle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sandcastle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:word:sandcastle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sandcastle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:word:sandcastle:audio",
+            "transcript": "sandcastle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:word:sandcastle:r1",
+              "targetText": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок. The sandcastle is under the tree. — «Песочный замок под деревом». Башня, которую дети строят из мокрого песка.",
+                "uk": "пісочний замок. The sandcastle is under the tree. — «Пісочний замок під деревом». Вежа, яку діти будують із мокрого піску."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandcastle",
+            "definitionByLocale": {
+              "ru": "песочный замок. The sandcastle is under the tree. — «Песочный замок под деревом». Башня, которую дети строят из мокрого песка.",
+              "uk": "пісочний замок. The sandcastle is under the tree. — «Пісочний замок під деревом». Вежа, яку діти будують із мокрого піску."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i05:audio",
+            "transcript": "The sandcastle is under the tree."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sandcastle is under the tree.",
+          "orderedTokens": [
+            "The",
+            "sandcastle",
+            "is",
+            "under",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sandcastle is under the tree.`",
+                "uk": "тут потрібно `is` — `The sandcastle is under the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пісочний замок стоїть далеко. Спитайте хлопчика: «Чий там замок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пісочний замок стоїть далеко. Спитайте хлопчика: «Чий там замок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose sandcastle is that?",
+          "localizedMeaning": {
+            "ru": "Песочный замок стоит далеко. Спросите мальчика: «Чей там замок?»",
+            "uk": "Пісочний замок стоїть далеко. Спитайте хлопчика: «Чий там замок?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "sandcastle",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Пісочний замок стоїть далеко. Спитайте хлопчика: «Чий там замок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose sandcastle is that?`",
+                "uk": "тут потрібно `Whose` — `Whose sandcastle is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, чий обруч. Він хлопчика з майданчика. Скажіть: «Обруч його»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, чий обруч. Він хлопчика з майданчика. Скажіть: «Обруч його»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i07:audio",
+            "transcript": "The hoop is his."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The hoop is his.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дві дівчинки збудували пісочний замок. Ви говорите про нього. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i08:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві дівчинки збудували пісочний замок. Ви говорите про нього. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две девочки построили песочный замок. Вы говорите о нём. Выберите слово",
+            "uk": "Дві дівчинки збудували пісочний замок. Ви говорите про нього. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The sandcastle is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-50:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i08:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Дві дівчинки збудували пісочний замок. Ви говорите про нього. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Дві дівчинки збудували пісочний замок. Ви говорите про нього. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Дві дівчинки збудували пісочний замок. Ви говорите про нього. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте хлопчика",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i09:r1",
+            "text": "The chalk is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i09:r2",
+            "text": "The chalk is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i09:r3",
+            "text": "The hoop is his."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте хлопчика",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i09:audio",
+            "transcript": "The chalk is his."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:i09:r1",
+              "targetText": "The chalk is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i09:r2",
+              "targetText": "The chalk is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i09:r3",
+              "targetText": "The hoop is his.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте хлопчика",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `his`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `his`, а в цьому варіанті — `hers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте хлопчика",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `chalk`, мел, а в этом варианте — `hoop`, обруч.",
+                "uk": "У записі річ — `chalk`, крейда, а в цьому варіанті — `hoop`, обруч."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-50:i10:p1",
+              "target": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир",
+                "uk": "гойдалка-балансир"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i10:p2",
+              "target": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч",
+                "uk": "обруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i10:p3",
+              "target": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок",
+                "uk": "пісочний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "seesaw",
+            "hoop",
+            "sandcastle",
+            "bench"
+          ],
+          "rightColumn": [
+            "гойдалка-балансир",
+            "обруч",
+            "пісочний замок",
+            "лавка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i11:audio",
+            "transcript": "My brother's hoop is under the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My brother's hoop is under the bench.",
+          "orderedTokens": [
+            "My",
+            "brother's",
+            "hoop",
+            "is",
+            "under",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `My brother's hoop is under the bench.`",
+                "uk": "тут потрібно `brother's` — `My brother's hoop is under the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На майданчику лежать два обручі. Спитайте сусідку: «Чиї це обручі?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На майданчику лежать два обручі. Спитайте сусідку: «Чиї це обручі?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose hoops are these?",
+          "localizedMeaning": {
+            "ru": "На площадке лежат два обруча. Спросите соседку: «Чьи это обручи?»",
+            "uk": "На майданчику лежать два обручі. Спитайте сусідку: «Чиї це обручі?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "hoops",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На майданчику лежать два обручі. Спитайте сусідку: «Чиї це обручі?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose hoops are these?`",
+                "uk": "тут потрібно `Whose` — `Whose hoops are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, чия крейда. Вона ваша. Скажіть: «Крейда моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, чия крейда. Вона ваша. Скажіть: «Крейда моя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i13:audio",
+            "transcript": "The chalk is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The chalk is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дівчинка тримає крейду й питає вас. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дівчинка тримає крейду й питає вас. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Девочка держит мел и спрашивает вас. Выберите слово",
+            "uk": "Дівчинка тримає крейду й питає вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose chalk ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-50:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дівчинка тримає крейду й питає вас. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i14:r2",
+              "correct": false,
+              "testedDimension": "Дівчинка тримає крейду й питає вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Мел один, поэтому нужно `is`, а не `are`.",
+                "uk": "Крейда одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i14:r3",
+              "correct": false,
+              "testedDimension": "Дівчинка тримає крейду й питає вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а в вопросе «чей это мел?» нужно `is`.",
+                "uk": "`has` означає «має», а в питанні «чия це крейда?» потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i15:r1",
+            "text": "Is this chalk your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i15:r2",
+            "text": "Is this chalk your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i15:r3",
+            "text": "Is this hoop your sister's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i15:audio",
+            "transcript": "Is this chalk your sister's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-50:i15:r1",
+              "targetText": "Is this chalk your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i15:r2",
+              "targetText": "Is this chalk your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i15:r3",
+              "targetText": "Is this hoop your sister's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-50:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-50:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `chalk`, мел, а в этом варианте — `hoop`, обруч.",
+                "uk": "У записі річ — `chalk`, крейда, а в цьому варіанті — `hoop`, обруч."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-50:i16:p1",
+              "target": "seesaw",
+              "meaningByLocale": {
+                "ru": "качели-балансир",
+                "uk": "гойдалка-балансир"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i16:p2",
+              "target": "hoop",
+              "meaningByLocale": {
+                "ru": "обруч",
+                "uk": "обруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i16:p3",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-50:i16:p4",
+              "target": "sandcastle",
+              "meaningByLocale": {
+                "ru": "песочный замок",
+                "uk": "пісочний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "seesaw",
+            "hoop",
+            "chalk",
+            "sandcastle"
+          ],
+          "rightColumn": [
+            "гойдалка-балансир",
+            "обруч",
+            "крейда",
+            "пісочний замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли крейду на асфальті й хочете повернути її. Спитайте дітей: «Чия це крейда?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли крейду на асфальті й хочете повернути її. Спитайте дітей: «Чия це крейда?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-50:i17:audio",
+            "transcript": "Whose chalk is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose chalk is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-50:word:seesaw",
+      "correctText": "seesaw",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i01",
+      "correctText": "The seesaw is near the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:word:hoop",
+      "correctText": "hoop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i02",
+      "correctText": "Whose hoop is this?",
+      "correctResponseId": "en:lesson-05:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:word:chalk",
+      "correctText": "chalk",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i03",
+      "correctText": "hers",
+      "correctResponseId": "en:lesson-05:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:word:sandcastle",
+      "correctText": "sandcastle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i05",
+      "correctText": "The sandcastle is under the tree.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i06",
+      "correctText": "Whose sandcastle is that?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i07",
+      "correctText": "The hoop is his.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i08",
+      "correctText": "theirs",
+      "correctResponseId": "en:lesson-05:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i09",
+      "correctText": "The chalk is his.",
+      "correctResponseId": "en:lesson-05:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i11",
+      "correctText": "My brother's hoop is under the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i12",
+      "correctText": "Whose hoops are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i13",
+      "correctText": "The chalk is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-50:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i15",
+      "correctText": "Is this chalk your sister's?",
+      "correctResponseId": "en:lesson-05:session-50:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i17",
+      "correctText": "Whose chalk is this?",
+      "correctResponseId": null
+    }
+  ]
+}

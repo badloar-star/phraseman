@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 51 — Зустріч біля стадіону
+# Англійська · Урок 5 · Заняття 51 — Перед матчем
 
-**Ситуація.** Анна й Том шукають місце зустрічі біля стадіону. Том несе важку сумку й уточнює, кому вона належить.
+**Ситуація.** Ви з двоюрідною сестрою йдете на футбольний матч. Біля стадіону ви знаходите прапор, програму та футболку й з’ясовуєте, що чиє: whose, yours, ours, hers або ім’я з 's.
 
-**Що ви опануєте:** запитати про міські місця й визначити власника сумки
-**Нові слова:** stadium
+**Що ви опануєте:** спитати про господаря речі та відповісти: whose, yours, ours, hers, 's
+**Нові слова:** stadium, flag, programme, jersey
+**Повертаються:** cousin, brother, ball, chair, park
 
 ---
 
 ## Інтро 1
 
-### Велике місце для спорту
+### Будівля за деревами
 
-`stadium` — «стадіон». `Where is the stadium?` — «Де стадіон?» `The stadium is near the river` — «Стадіон біля річки». `Tom is at the stadium` — «Том на стадіоні».
+Двоюрідна сестра кличе вас на футбольний матч. Ви йдете через парк, і за деревами показується величезна будівля з лампами на даху. Сестра питає, що це. stadium — «стадіон», велике поле з трибунами. Відповідьте їй: That is the stadium — «Це стадіон».
 
-**Запитайте, де стадіон.**
+**Сестра показує на величезну будівлю за деревами й питає, що це. Скажіть: «Це стадіон».**
 
-- ✅ **Where is the stadium?**
-- ❌ Whose stadium is this? — *Це запитання про власника; про місце запитуємо з `Where`.*
-- ❌ Where are the stadium? — *Один стадіон: `is`.*
+- ✅ **That is the stadium.**
+- ❌ That is the school. — *school — школа, а перед вами стадіон: потрібно stadium.*
+- ❌ That are the stadium. — *Стадіон один, тому потрібно That is.*
 
 ---
 
 ## Інтро 2
 
-### Важка сумка
+### Прапор на траві
 
-`heavy` — «важкий» за вагою. `This bag is heavy` — «Ця сумка важка». `Whose bag is this?` — «Чия це сумка?» `The bag is hers` — «Сумка її». Сумка важка, але це ще не означає, що всередині цілий стадіон.
+Біля входу на стадіон на траві лежить біло-червоний прапор, і контролер питає, чий він. flag — «прапор», уболівальники махають ним на трибунах. Ви знаєте: прапор приніс ваш двоюрідний брат, він уже пішов на свої місця. Відповідьте: The flag is my cousin's — «Прапор мого двоюрідного брата».
 
-**Скажіть «Ця сумка важка».**
+**Контролер питає, чий прапор на траві. Його приніс ваш двоюрідний брат. Скажіть: «Прапор мого двоюрідного брата».**
 
-- ✅ **This bag is heavy.**
-- ❌ This bag are heavy. — *Одна сумка: `is`.*
-- ❌ This bag is expensive. — *`expensive` — дорогий за ціною; важкий — `heavy`.*
+- ✅ **The flag is my cousin's.**
+- ❌ The flag is my cousin. — *Після cousin потрібно 's: my cousin's.*
+- ❌ The flag is cousin's. — *Перед cousin's потрібно my: my cousin's.*
 
 ---
 
 ## Інтро 3
 
-### Ще два орієнтири
+### Програма матчу
 
-`libraries` — «бібліотеки», `community centre` — «громадський центр», місце для зустрічей і занять мешканців району. `Where are the libraries?` — «Де бібліотеки?» `Anna is in the community centre` — «Анна в громадському центрі». `I have your bag` — «Твоя сумка в мене».
+На лаві біля входу сестра гортає програмку зі складами команд. programme — «програма матчу», невелика брошура, яку купують біля входу. Ви віддали їй свою ще зранку, щоб вона могла вибрати улюбленого гравця. Скажіть: The programme is yours — «Програма твоя».
 
-**Запитайте, де бібліотеки.**
+**Сестра гортає програмку, яку ви віддали їй зранку. Скажіть: «Програма твоя».**
 
-- ✅ **Where are the libraries?**
-- ❌ Where is the libraries? — *Кілька бібліотек: `libraries are`.*
-- ❌ Whose libraries are these? — *Це запитання про власника; про місце запитуємо з `Where`.*
+- ✅ **The programme is yours.**
+- ❌ The programme is your. — *Без назви речі потрібно yours, а не your.*
+- ❌ The programme is mine. — *mine — моя, а ви віддали програму сестрі: потрібно yours.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть про вагу: «Ця сумка важка»**
+**1 · Картка слова — stadium**
+<!-- interaction_id: en:lesson-05:session-51:word:stadium; family: word_card -->
+> **stadium** — стадіон. The stadium is near the park. — «Стадіон біля парку». Велике поле з трибунами для матчів.
+
+**2 · Сестра шукає стадіон. Скажіть їй: «Стадіон біля парку»**
 <!-- interaction_id: en:lesson-05:session-51:i01; family: phrase_builder -->
-Плитки: `heavy` `is` `bag` `This` `are` → **This bag is heavy.**
-*(плитка `are` зайва: тут потрібно `is` — `This bag is heavy.`)*
+Плитки: `stadium` `near` `the` `park` `is` `The` `are` → **The stadium is near the park.**
+*(плитка `are` зайва: тут потрібно `is` — `The stadium is near the park.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — flag**
+<!-- interaction_id: en:lesson-05:session-51:word:flag; family: word_card -->
+> **flag** — прапор. The flag is red. — «Прапор червоний». Полотнище, яким махають уболівальники.
+
+**4 · Послухайте контролера**
 <!-- interaction_id: en:lesson-05:session-51:i02; family: listen_choose -->
-🔊 *stadium* → **stadium** · cinema · garage
-- cinema — *У записі перше слово — `stadium`, а в цьому варіанті — `cinema`.*
-- garage — *У записі перше слово — `stadium`, а в цьому варіанті — `garage`.*
+🔊 *Whose flag is this?* → **Whose flag is this?** · Whose flag is that? · Whose bag is this?
+- Whose flag is that? — *У записі останнє слово — `this`, а в цьому варіанті — `that`.*
+- Whose bag is this? — *У записі річ — `flag`, прапор, а в цьому варіанті — `bag`, сумка.*
 
-**3 · Назвіть стадіон**
+**5 · Картка слова — programme**
+<!-- interaction_id: en:lesson-05:session-51:word:programme; family: word_card -->
+> **programme** — програма матчу. The programme is on the chair. — «Програма на стільці». Брошура зі списком гравців і часом матчу.
+
+**6 · Сестра питає про програму матчу. Вона ваша. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-51:i03; family: context_gap_grammar -->
-___ → **stadium** · cinema · garage
-- cinema — *`cinema` — кінотеатр; стадіон — `stadium`.*
-- garage — *`garage` — гараж; стадіон — `stadium`.*
+The programme is ___. → **mine** · my · I
+- my — *Без назви речі потрібно `mine`, а не `my`.*
+- I — *`I` означає «я», а «моя» без речі — `mine`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-51:i04; family: speed_match -->
-stadium — стадіон · heavy — важкий · libraries — бібліотеки · community centre — громадський центр
+stadium — стадіон · flag — прапор · programme — програма матчу · jersey — футболка гравця
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — jersey**
+<!-- interaction_id: en:lesson-05:session-51:word:jersey; family: word_card -->
+> **jersey** — футболка гравця. The jersey is under the chair. — «Футболка гравця під стільцем». Спортивна сорочка з номером.
+
+**9 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-51:i05; family: listen_build_dictation -->
-🔊 *Where is the stadium?* Плитки: `stadium` `the` `is` `Where` → **Where is the stadium?**
+🔊 *The jersey is on the chair.* Плитки: `jersey` `on` `the` `chair` `is` `The` `are` → **The jersey is on the chair.**
+*(плитка `are` зайва: тут потрібно `is` — `The jersey is on the chair.`)*
 
-**6 · Скажіть «Анна в громадському центрі»**
+**10 · На трибуні лежать дві футболки. Спитайте контролера: «Чиї це футболки?»**
 <!-- interaction_id: en:lesson-05:session-51:i06; family: phrase_builder -->
-Плитки: `centre` `community` `the` `in` `is` `Anna` `are` → **Anna is in the community centre.**
-*(плитка `are` зайва: тут потрібно `is` — `Anna is in the community centre.`)*
+Плитки: `jerseys` `these` `are` `Whose` `Where` → **Whose jerseys are these?**
+*(плитка `Where` зайва: тут потрібно `Whose` — `Whose jerseys are these?`)*
 
-**7 · Скажіть «Том на стадіоні»**
+**11 · Контролер питає, чия футболка. Вона вашого брата. Скажіть: «Футболка мого брата»**
 <!-- interaction_id: en:lesson-05:session-51:i07; family: scripted_repeat_compare -->
-🎙 **Tom is at the stadium.**
+🎙 **The jersey is my brother's.**
 
-**8 · Запитайте, де бібліотеки**
+**12 · Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-51:i08; family: context_gap_grammar -->
-Where ___ the libraries? → **are** · is · am
-- is — *`libraries` — множина: `are`.*
-- am — *`am` використовується з `I`; тут `are`.*
+The programmes are ___. → **ours** · our · we
+- our — *Без назви речі потрібно `ours`, а не `our`.*
+- we — *`we` означає «ми», а «наші» без речі — `ours`.*
 
-**9 · Послухайте, яку річ називає Том**
+**13 · Послухайте сестру**
 <!-- interaction_id: en:lesson-05:session-51:i09; family: listen_choose -->
-🔊 *This is Anna's bag.* → **This is Anna's bag.** · This is Anna's laptop. · This is Anna's violin.
-- This is Anna's laptop. — *У записі останнє слово — `bag`, а в цьому варіанті — `laptop`.*
-- This is Anna's violin. — *У записі останнє слово — `bag`, а в цьому варіанті — `violin`.*
+🔊 *The flag is yours.* → **The flag is yours.** · The flag is hers. · The jersey is yours.
+- The flag is hers. — *У записі останнє слово — `yours`, а в цьому варіанті — `hers`.*
+- The jersey is yours. — *У записі річ — `flag`, прапор, а в цьому варіанті — `jersey`, футболка.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-51:i10; family: speed_match -->
-stadium — стадіон · heavy — важкий · libraries — бібліотеки · community centre — громадський центр
+stadium — стадіон · flag — прапор · programme — програма матчу · ball — м’яч
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-51:i11; family: listen_build_dictation -->
-🔊 *The stadium is near the river.* Плитки: `river` `the` `near` `is` `stadium` `The` `are` → **The stadium is near the river.**
-*(плитка `are` зайва: тут потрібно `is` — `The stadium is near the river.`)*
+🔊 *My cousin's flag is under the chair.* Плитки: `flag` `cousin's` `is` `under` `the` `chair` `My` `cousin` → **My cousin's flag is under the chair.**
+*(плитка `cousin` зайва: тут потрібно `cousin's` — `My cousin's flag is under the chair.`)*
 
-**12 · Сумка належить Анні. Скажіть «Сумка її»**
+**16 · Ви шукаєте стадіон. Спитайте сестру: «Де стадіон?»**
 <!-- interaction_id: en:lesson-05:session-51:i12; family: phrase_builder -->
-Плитки: `hers` `is` `bag` `The` `are` → **The bag is hers.**
-*(плитка `are` зайва: тут потрібно `is` — `The bag is hers.`)*
+Плитки: `stadium` `the` `is` `Where` `Whose` → **Where is the stadium?**
+*(плитка `Whose` зайва: тут потрібно `Where` — `Where is the stadium?`)*
 
-**13 · Скажіть Анні «Твоя сумка в мене»**
+**17 · Сестра питає про програму матчу. Вона її. Скажіть: «Програма її»**
 <!-- interaction_id: en:lesson-05:session-51:i13; family: scripted_repeat_compare -->
-🎙 **I have your bag.**
+🎙 **The programme is hers.**
 
-**14 · Запитайте про власника сумки**
+**18 · Контролер тримає футболку й питає вас. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-51:i14; family: context_gap_grammar -->
-___ bag is this? → **Whose** · Where · Who
-- Where — *`Where` — де; чия — `Whose`.*
-- Who — *`Who` — хто; чия — `Whose`.*
+Whose jersey ___ this? → **is** · are · has
+- are — *Футболка одна, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «має», а в питанні «чия це футболка?» потрібно `is`.*
 
-**15 · Послухайте, кому належить сумка**
+**19 · Послухайте контролера**
 <!-- interaction_id: en:lesson-05:session-51:i15; family: listen_choose -->
-🔊 *The bag is mine.* → **The bag is mine.** · The bag is hers. · The bag is ours.
-- The bag is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
-- The bag is ours. — *У записі останнє слово — `mine`, а в цьому варіанті — `ours`.*
+🔊 *Is this jersey your cousin's?* → **Is this jersey your cousin's?** · Is this jersey your brother's? · Is this flag your cousin's?
+- Is this jersey your brother's? — *У записі господар — `cousin's`, двоюрідний брат або сестра, а в цьому варіанті — `brother's`, брат.*
+- Is this flag your cousin's? — *У записі річ — `jersey`, футболка, а в цьому варіанті — `flag`, прапор.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-51:i16; family: speed_match -->
-stadium — стадіон · heavy — важкий · libraries — бібліотеки · community centre — громадський центр
+stadium — стадіон · flag — прапор · programme — програма матчу · jersey — футболка гравця
 
-**17 · Ви знайшли сумку біля місця зустрічі. Запитайте друзів «Чия це сумка?»**
+**21 · Ви знайшли футболку на трибуні й хочете повернути її. Спитайте контролера: «Чия це футболка?»**
 <!-- interaction_id: en:lesson-05:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose bag is this?**
-
+🎙 **Whose jersey is this?**

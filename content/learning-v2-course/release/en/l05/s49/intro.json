@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-49",
   "learningOutcomeByLocale": {
-    "ru": "назвать место хранения и спросить о владельце помещения",
-    "uk": "назвати місце зберігання й запитати про власника приміщення"
+    "ru": "спросить, чей гараж, и ответить, чья деталь: whose, mine, ours, his, yours, 's",
+    "uk": "спитати, чий гараж, і відповісти, чия деталь: whose, mine, ours, his, yours, 's"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-05:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Дом для транспорта",
-        "uk": "Дім для транспорту"
+        "ru": "Новый гараж",
+        "uk": "Новий гараж"
       },
       "bodyByLocale": {
-        "ru": "`garage` — «гараж», помещение для хранения машины или другого транспорта. `The bicycle is in the garage` — «Велосипед в гараже». `Whose garage is this?` — «Чей это гараж?» `This is Tom’s garage` — «Это гараж Тома». Велосипеду досталась целая комната, хотя он даже не платит за жильё.",
-        "uk": "`garage` — «гараж», приміщення для зберігання машини чи іншого транспорту. `The bicycle is in the garage` — «Велосипед у гаражі». `Whose garage is this?` — «Чий це гараж?» `This is Tom’s garage` — «Це гараж Тома». Велосипедові дісталася ціла кімната, хоча він навіть не платить за житло."
+        "ru": "Вы с двоюродным братом идёте к дяде. У забора стоит новый гараж, которого раньше не было, и рядом никого нет. garage — «гараж», в нём держат машину или велосипед. Спросите брата, чей он: Whose garage is this? — «Чей это гараж?» Гараж один, поэтому is this.",
+        "uk": "Ви з двоюрідним братом ідете до дядька. Біля паркану стоїть новий гараж, якого раніше не було, і поруч нікого немає. garage — «гараж», у ньому тримають машину або велосипед. Спитайте брата, чий він: Whose garage is this? — «Чий це гараж?» Гараж один, тому is this."
       },
       "question": {
         "interactionId": "en:lesson-05:session-49:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, кому принадлежит гараж.",
-          "uk": "Запитайте, кому належить гараж."
+          "ru": "Вы показываете на новый гараж у забора. Спросите двоюродного брата, чей он.",
+          "uk": "Ви показуєте на новий гараж біля паркану. Спитайте двоюрідного брата, чий він."
         },
         "choicesByLocale": {
           "ru": [
@@ -36,7 +36,7 @@
             },
             {
               "responseId": "en:lesson-05:session-49:intro1:r3",
-              "text": "Whose garage are these?"
+              "text": "Whose garage are this?"
             }
           ],
           "uk": [
@@ -50,13 +50,13 @@
             },
             {
               "responseId": "en:lesson-05:session-49:intro1:r3",
-              "text": "Whose garage are these?"
+              "text": "Whose garage are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, кому принадлежит гараж.",
-          "uk": "Запитайте, кому належить гараж."
+          "ru": "Вы показываете на новый гараж у забора. Спросите двоюродного брата, чей он.",
+          "uk": "Ви показуєте на новий гараж біля паркану. Спитайте двоюрідного брата, чий він."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шкафчик и цена",
-        "uk": "Шафка й ціна"
+        "ru": "Новая шина",
+        "uk": "Нова шина"
       },
       "bodyByLocale": {
-        "ru": "`locker` — «шкафчик», `cheap` — «дешёвый», недорогой по цене. `This locker is cheap` — «Этот шкафчик дешёвый». Само слово `cheap` здесь описывает цену, а не доказывает плохое качество. `The locker is mine` — «Шкафчик мой».",
-        "uk": "`locker` — «шафка», `cheap` — «дешевий», недорогий за ціною. `This locker is cheap` — «Ця шафка дешева». Саме слово `cheap` тут описує ціну, а не доводить погану якість. `The locker is mine` — «Шафка моя»."
+        "ru": "Дядя чинит ваш велосипед и показывает на новую шину у стены. Шина ещё в плёнке. tyre — «шина», резиновая часть колеса. Он спрашивает, чья она. Вы купили её вчера, поэтому она ваша. Ответьте одним словом вместо названия вещи: The tyre is mine — «Шина моя».",
+        "uk": "Дядько лагодить ваш велосипед і показує на нову шину біля стіни. Шина ще в плівці. tyre — «шина», гумова частина колеса. Він питає, чия вона. Ви купили її вчора, тому вона ваша. Відповідьте одним словом замість назви речі: The tyre is mine — «Шина моя»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-49:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Этот шкафчик дешёвый».",
-          "uk": "Скажіть «Ця шафка дешева»."
+          "ru": "Дядя спрашивает, чья шина у стены. Вы купили её вчера. Скажите: «Шина моя».",
+          "uk": "Дядько питає, чия шина біля стіни. Ви купили її вчора. Скажіть: «Шина моя»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-49:intro2:r1",
-              "text": "This locker is cheap."
+              "text": "The tyre is mine."
             },
             {
               "responseId": "en:lesson-05:session-49:intro2:r2",
-              "text": "This locker are cheap."
+              "text": "The tyre is my."
             },
             {
               "responseId": "en:lesson-05:session-49:intro2:r3",
-              "text": "This locker is dangerous."
+              "text": "The tyre is yours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-49:intro2:r1",
-              "text": "This locker is cheap."
+              "text": "The tyre is mine."
             },
             {
               "responseId": "en:lesson-05:session-49:intro2:r2",
-              "text": "This locker are cheap."
+              "text": "The tyre is my."
             },
             {
               "responseId": "en:lesson-05:session-49:intro2:r3",
-              "text": "This locker is dangerous."
+              "text": "The tyre is yours."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Этот шкафчик дешёвый».",
-          "uk": "Скажіть «Ця шафка дешева»."
+          "ru": "Дядя спрашивает, чья шина у стены. Вы купили её вчера. Скажите: «Шина моя».",
+          "uk": "Дядько питає, чия шина біля стіни. Ви купили її вчора. Скажіть: «Шина моя»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ориентиры по дороге",
-        "uk": "Орієнтири дорогою"
+        "ru": "Цепь на полу",
+        "uk": "Ланцюг на підлозі"
       },
       "bodyByLocale": {
-        "ru": "`hospital` — «больница», `canal` — «канал», искусственный водный путь. `The hospital is near the canal` — «Больница возле канала». `Where is the canal?` — «Где канал?» `The garage is ours` — «Гараж наш»: `ours` используется без следующего названия вещи.",
-        "uk": "`hospital` — «лікарня», `canal` — «канал», штучний водний шлях. `The hospital is near the canal` — «Лікарня біля каналу». `Where is the canal?` — «Де канал?» `The garage is ours` — «Гараж наш»: `ours` використовується без наступної назви речі."
+        "ru": "На полу гаража лежит велосипедная цепь, вся в масле, и дядя хочет её убрать. Он спрашивает, чья она. Вы с двоюродным братом сняли её с общего велосипеда. chain — «цепь», она крутит колесо. Ответьте за двоих одним словом: The chain is ours — «Цепь наша».",
+        "uk": "На підлозі гаража лежить велосипедний ланцюг, увесь у маслі, і дядько хоче його прибрати. Він питає, чий він. Ви з двоюрідним братом зняли його зі спільного велосипеда. chain — «ланцюг», він крутить колесо. Відповідьте за двох одним словом: The chain is ours — «Ланцюг наш»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-49:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Гараж наш».",
-          "uk": "Скажіть «Гараж наш»."
+          "ru": "Дядя спрашивает, чья цепь на полу. Она ваша с двоюродным братом. Скажите: «Цепь наша».",
+          "uk": "Дядько питає, чий ланцюг на підлозі. Він ваш із двоюрідним братом. Скажіть: «Ланцюг наш»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-49:intro3:r1",
-              "text": "The garage is ours."
+              "text": "The chain is ours."
             },
             {
               "responseId": "en:lesson-05:session-49:intro3:r2",
-              "text": "The garage is our."
+              "text": "The chain is our."
             },
             {
               "responseId": "en:lesson-05:session-49:intro3:r3",
-              "text": "The garage are ours."
+              "text": "The chain is theirs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-49:intro3:r1",
-              "text": "The garage is ours."
+              "text": "The chain is ours."
             },
             {
               "responseId": "en:lesson-05:session-49:intro3:r2",
-              "text": "The garage is our."
+              "text": "The chain is our."
             },
             {
               "responseId": "en:lesson-05:session-49:intro3:r3",
-              "text": "The garage are ours."
+              "text": "The chain is theirs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Гараж наш».",
-          "uk": "Скажіть «Гараж наш»."
+          "ru": "Дядя спрашивает, чья цепь на полу. Она ваша с двоюродным братом. Скажите: «Цепь наша».",
+          "uk": "Дядько питає, чий ланцюг на підлозі. Він ваш із двоюрідним братом. Скажіть: «Ланцюг наш»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7aef73ac87bfa7a7d0726d9cad918538f68af46f920bc01c07c1ffb84dcb2fc8"
+  "introFingerprint": "5f513564ffd26d36a0ad4760c5b4e2706737ddb76a686c830e2f4100e2636d97"
 }

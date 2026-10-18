@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-53",
   "learningOutcomeByLocale": {
-    "ru": "найти спортивную площадку и спросить о владельце транспорта",
-    "uk": "знайти спортивний майданчик і запитати про власника транспорту"
+    "ru": "сказать, где корт, спросить о хозяине вещи и ответить: whose, that, yours, mine, theirs, 's",
+    "uk": "сказати, де корт, спитати про господаря речі та відповісти: whose, that, yours, mine, theirs, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для игры",
-        "uk": "Місце для гри"
+        "ru": "Где играть",
+        "uk": "Де грати"
       },
       "bodyByLocale": {
-        "ru": "`court` здесь — «корт», площадка для спортивной игры, например в теннис. `Where is the court?` — «Где корт?» `The court is near the museum` — «Корт возле музея». У слова есть и другие значения, но здесь речь о спортивной площадке.",
-        "uk": "`court` тут — «корт», майданчик для спортивної гри, наприклад у теніс. `Where is the court?` — «Де корт?» `The court is near the museum` — «Корт біля музею». Слово має й інші значення, але тут ідеться про спортивний майданчик."
+        "ru": "Прохожий видит ваши ракетки и спрашивает, где здесь можно поиграть в бадминтон. Вы там уже были. court — «корт», площадка с разметкой для игры. Он находится за школой, куда ведёт дорожка от парка. Скажите прохожему: The court is behind the school — «Корт за школой».",
+        "uk": "Перехожий бачить ваші ракетки й питає, де тут можна пограти в бадмінтон. Ви там уже були. court — «корт», майданчик з розміткою для гри. Він за школою, куди веде доріжка від парку. Скажіть перехожому: The court is behind the school — «Корт за школою»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, где корт.",
-          "uk": "Запитайте, де корт."
+          "ru": "Прохожий спрашивает, где можно поиграть в бадминтон. Корт за школой. Скажите: «Корт за школой».",
+          "uk": "Перехожий питає, де можна пограти в бадмінтон. Корт за школою. Скажіть: «Корт за школою»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-53:intro1:r1",
-              "text": "Where is the court?"
+              "text": "The court is behind the school."
             },
             {
               "responseId": "en:lesson-05:session-53:intro1:r2",
-              "text": "Whose court is this?"
+              "text": "The court is behind school."
             },
             {
               "responseId": "en:lesson-05:session-53:intro1:r3",
-              "text": "Where are the court?"
+              "text": "The court are behind the school."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-53:intro1:r1",
-              "text": "Where is the court?"
+              "text": "The court is behind the school."
             },
             {
               "responseId": "en:lesson-05:session-53:intro1:r2",
-              "text": "Whose court is this?"
+              "text": "The court is behind school."
             },
             {
               "responseId": "en:lesson-05:session-53:intro1:r3",
-              "text": "Where are the court?"
+              "text": "The court are behind the school."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где корт.",
-          "uk": "Запитайте, де корт."
+          "ru": "Прохожий спрашивает, где можно поиграть в бадминтон. Корт за школой. Скажите: «Корт за школой».",
+          "uk": "Перехожий питає, де можна пограти в бадмінтон. Корт за школою. Скажіть: «Корт за школою»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мотоцикл и полная сумка",
-        "uk": "Мотоцикл і повна сумка"
+        "ru": "Сетка на траве",
+        "uk": "Сітка на траві"
       },
       "bodyByLocale": {
-        "ru": "`motorbike` — «мотоцикл», `full` — «полный», заполненный. `This bag is full` — «Эта сумка полная». `Whose motorbike is this?` — «Чей это мотоцикл?» `The motorbike is hers` — «Мотоцикл её». Полная сумка — ещё не доказательство, что вы взяли именно нужные вещи.",
-        "uk": "`motorbike` — «мотоцикл», `full` — «повний», заповнений. `This bag is full` — «Ця сумка повна». `Whose motorbike is this?` — «Чий це мотоцикл?» `The motorbike is hers` — «Мотоцикл її». Повна сумка — ще не доказ того, що ви взяли саме потрібні речі."
+        "ru": "Тренер раскладывает на траве длинную сетку и не может вспомнить, кто её привёз. net — «сетка», её натягивают посередине корта. Она лежит далеко от вас, у дальнего края площадки. Спросите друга, чья она: Whose net is that? — «Чья вон та сетка?» Вещь далеко, поэтому that.",
+        "uk": "Тренер розкладає на траві довгу сітку й не може згадати, хто її привіз. net — «сітка», її натягують посередині корту. Вона лежить далеко від вас, біля дальнього краю майданчика. Спитайте друга, чия вона: Whose net is that? — «Чия та сітка там?» Річ далеко, тому that."
       },
       "question": {
         "interactionId": "en:lesson-05:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Эта сумка полная».",
-          "uk": "Скажіть «Ця сумка повна»."
+          "ru": "Тренер раскладывает сетку у дальнего края площадки. Спросите друга, чья она.",
+          "uk": "Тренер розкладає сітку біля дальнього краю майданчика. Спитайте друга, чия вона."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-53:intro2:r1",
-              "text": "This bag is full."
+              "text": "Whose net is that?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro2:r2",
-              "text": "This bag are full."
+              "text": "Whose net is this?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro2:r3",
-              "text": "This bag is heavy."
+              "text": "Where is the net?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-53:intro2:r1",
-              "text": "This bag is full."
+              "text": "Whose net is that?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro2:r2",
-              "text": "This bag are full."
+              "text": "Whose net is this?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro2:r3",
-              "text": "This bag is heavy."
+              "text": "Where is the net?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Эта сумка полная».",
-          "uk": "Скажіть «Ця сумка повна»."
+          "ru": "Тренер раскладывает сетку у дальнего края площадки. Спросите друга, чья она.",
+          "uk": "Тренер розкладає сітку біля дальнього краю майданчика. Спитайте друга, чия вона."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ориентиры на улице",
-        "uk": "Орієнтири на вулиці"
+        "ru": "Волан в траве",
+        "uk": "Волан у траві"
       },
       "bodyByLocale": {
-        "ru": "`museum` — «музей», `police station` — «полицейский участок». `The museum is next to the police station` — «Музей рядом с полицейским участком». `This is Tom’s motorbike` — «Это мотоцикл Тома». `Your motorbike is here` — «Твой мотоцикл здесь».",
-        "uk": "`museum` — «музей», `police station` — «поліцейський відділок». `The museum is next to the police station` — «Музей поруч із поліцейським відділком». `This is Tom’s motorbike` — «Це мотоцикл Тома». `Your motorbike is here` — «Твій мотоцикл тут»."
+        "ru": "В траве возле корта вы находите волан. shuttlecock — «волан», маленький «мячик» с перьями для бадминтона. Рядом стоит ваш друг, он играл здесь с утра. Вы хотите проверить, не его ли это волан. Спросите друга: Is this shuttlecock yours? — «Это твой волан?»",
+        "uk": "У траві біля корту ви знаходите волан. shuttlecock — «волан», маленький «м’ячик» з пір’ям для бадмінтону. Поруч стоїть ваш друг, він грав тут із ранку. Ви хочете перевірити, чи не його це волан. Спитайте друга: Is this shuttlecock yours? — «Це твій волан?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Музей рядом с полицейским участком».",
-          "uk": "Скажіть «Музей поруч із поліцейським відділком»."
+          "ru": "Вы нашли волан в траве, рядом стоит друг. Спросите его: «Это твой волан?»",
+          "uk": "Ви знайшли волан у траві, поруч стоїть друг. Спитайте його: «Це твій волан?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-53:intro3:r1",
-              "text": "The museum is next to the police station."
+              "text": "Is this shuttlecock yours?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro3:r2",
-              "text": "The museum are next to the police station."
+              "text": "Is this shuttlecock your?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro3:r3",
-              "text": "The museum is in the police station."
+              "text": "This shuttlecock is yours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-53:intro3:r1",
-              "text": "The museum is next to the police station."
+              "text": "Is this shuttlecock yours?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro3:r2",
-              "text": "The museum are next to the police station."
+              "text": "Is this shuttlecock your?"
             },
             {
               "responseId": "en:lesson-05:session-53:intro3:r3",
-              "text": "The museum is in the police station."
+              "text": "This shuttlecock is yours."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Музей рядом с полицейским участком».",
-          "uk": "Скажіть «Музей поруч із поліцейським відділком»."
+          "ru": "Вы нашли волан в траве, рядом стоит друг. Спросите его: «Это твой волан?»",
+          "uk": "Ви знайшли волан у траві, поруч стоїть друг. Спитайте його: «Це твій волан?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ebf636fa9287f6788ebb01219651a37b14c34a6e129134a1e2192c8cde769900"
+  "introFingerprint": "4a7424d0a7c7f3ce5056ddbb5ba05200980167903a82ef0319c4d0e759c16317"
 }

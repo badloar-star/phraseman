@@ -1,136 +1,154 @@
-# Английский · Урок 5 · Занятие 50 — Самокат у площадки
+# Английский · Урок 5 · Занятие 50 — Детская площадка
 
-**Ситуация.** Анна и Том гуляют у реки. Возле детской площадки стоит самокат; друзья хотят узнать, кому он принадлежит.
+**Ситуация.** Во дворе на площадке остались вещи детей: обруч, мел, песочный замок. Вы с соседкой выясняете, где что стоит и чьё это: whose, is или are, hers, his, mine или имя с 's.
 
-**Что вы освоите:** спросить о владельце вещи и найти знакомые места
-**Новые слова:** —
+**Что вы освоите:** спросить, где вещь и чья она, и ответить: whose, hers, his, mine, 's
+**Новые слова:** seesaw, hoop, chalk, sandcastle
+**Возвращаются:** sister, brother, neighbour, bench, tree
 
 ---
 
 ## Интро 1
 
-### Самокат и цена
+### Качели-балансир
 
-Повторим: `scooter` — «самокат», `expensive` — «дорогой» по цене. `This scooter is expensive` — «Этот самокат дорогой». `Whose scooter is this?` — «Чей это самокат?» Высокая цена не подскажет имя владельца: для этого есть `Whose`.
+Младшая сестра просит покачаться, и вы ведёте её на детскую площадку. Вы там впервые и совсем не знаете, где что стоит. seesaw — «качели-балансир», доска на опоре, на которой качаются вдвоём. Спросите соседку: Where is the seesaw? — «Где качели?»
 
-**Спросите о владельце самоката.**
+**Вы пришли на площадку с младшей сестрой. Спросите соседку, где качели-балансир.**
 
-- ✅ **Whose scooter is this?**
-- ❌ Where is the scooter? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose scooter are these? — *Один самокат: `is this`.*
+- ✅ **Where is the seesaw?**
+- ❌ Whose seesaw is this? — *Это «Чьи это качели?», а вы ищете место: нужно Where.*
+- ❌ Where are the seesaw? — *Качели одни, поэтому нужно is.*
 
 ---
 
 ## Интро 2
 
-### У реки
+### Обруч у скамейки
 
-`playground` — «детская площадка», `river` — «река». `The playground is near the river` — «Детская площадка возле реки». `The scooter is next to the playground` — «Самокат рядом с детской площадкой». `Where is the river?` — «Где река?»
+К скамейке подкатился яркий обруч, и соседка спрашивает, чей он. hoop — «обруч», его крутят вокруг пояса или катят по земле. Вы видели, что с ним играла девочка из соседнего двора. Ответьте одним словом вместо названия вещи: The hoop is hers — «Обруч её».
 
-**Скажите «Детская площадка возле реки».**
+**Соседка спрашивает, чей обруч у скамейки. С ним играла девочка. Скажите: «Обруч её».**
 
-- ✅ **The playground is near the river.**
-- ❌ The playground are near the river. — *Одна площадка: `is`.*
-- ❌ The playground is in the river. — *Возле реки — `near`; `in` означает внутри, в реке.*
+- ✅ **The hoop is hers.**
+- ❌ The hoop is his. — *his — его, а с обручем играла девочка: нужно hers.*
+- ❌ The hoop is she. — *Без названия вещи нужно hers, а не she.*
 
 ---
 
 ## Интро 3
 
-### Кино и владельцы
+### Мел на асфальте
 
-`cinema` — «кинотеатр». `Where is the cinema?` — «Где кинотеатр?» `This is Anna’s scooter` — «Это самокат Анны». `The scooter is hers` — «Самокат её». `The scooter is ours` — «Самокат наш». Самостоятельные `hers` и `ours` уже заменяют сочетание с названием вещи.
+Мальчик рисует классики на асфальте и находит рядом лишний кусок мела. chalk — «мел», им рисуют на доске или на земле. Он спрашивает вас, чей мел. Вы узнали его: вчера мел принесла ваша сестра. Ответьте: The chalk is my sister's — «Мел моей сестры».
 
-**Скажите «Самокат наш».**
+**Мальчик спрашивает, чей мел на асфальте. Его принесла ваша сестра. Скажите: «Мел моей сестры».**
 
-- ✅ **The scooter is ours.**
-- ❌ The scooter is our. — *Без следующего существительного нужна форма `ours`.*
-- ❌ The scooter are ours. — *Один самокат: `is`.*
+- ✅ **The chalk is my sister's.**
+- ❌ The chalk is my sister. — *После sister нужно 's: my sister's.*
+- ❌ The chalk is sister's. — *Перед sister's нужно my: my sister's.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите о цене: «Этот самокат дорогой»**
+**1 · Карточка слова — seesaw**
+<!-- interaction_id: en:lesson-05:session-50:word:seesaw; family: word_card -->
+> **seesaw** — качели-балансир. The seesaw is near the bench. — «Качели возле скамейки». Доска на опоре, на ней качаются двое.
+
+**2 · Младшая сестра ищет качели. Скажите ей: «Качели возле скамейки»**
 <!-- interaction_id: en:lesson-05:session-50:i01; family: phrase_builder -->
-Плитки: `expensive` `is` `scooter` `This` `are` → **This scooter is expensive.**
-*(плитка `are` лишняя: здесь нужно `is` — `This scooter is expensive.`)*
+Плитки: `seesaw` `near` `the` `bench` `is` `The` `are` → **The seesaw is near the bench.**
+*(плитка `are` лишняя: здесь нужно `is` — `The seesaw is near the bench.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — hoop**
+<!-- interaction_id: en:lesson-05:session-50:word:hoop; family: word_card -->
+> **hoop** — обруч. The hoop is on the bench. — «Обруч на скамейке». Кольцо, которое крутят вокруг пояса.
+
+**4 · Послушайте соседку**
 <!-- interaction_id: en:lesson-05:session-50:i02; family: listen_choose -->
-🔊 *playground* → **playground** · cinema · river
-- cinema — *В записи первое слово — `playground`, а в этом варианте — `cinema`.*
-- river — *В записи первое слово — `playground`, а в этом варианте — `river`.*
+🔊 *Whose hoop is this?* → **Whose hoop is this?** · Where is the hoop? · Whose seesaw is this?
+- Where is the hoop? — *Это вопрос «Где обруч?», а в записи спрашивают о хозяине: `Whose`.*
+- Whose seesaw is this? — *В записи вещь — `hoop`, обруч, а в этом варианте — `seesaw`, качели.*
 
-**3 · Спросите о владельце самоката**
+**5 · Карточка слова — chalk**
+<!-- interaction_id: en:lesson-05:session-50:word:chalk; family: word_card -->
+> **chalk** — мел. The chalk is in my bag. — «Мел в моей сумке». Белый стержень, которым рисуют на асфальте.
+
+**6 · Мальчик спрашивает, чей мел. Он принадлежит девочке с площадки. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-50:i03; family: context_gap_grammar -->
-___ scooter is this? → **Whose** · Where · Who
-- Where — *`Where` — где; чей — `Whose`.*
-- Who — *`Who` — кто; чей — `Whose`.*
+The chalk is ___. → **hers** · her · she
+- her — *Без названия вещи нужно `hers`, а не `her`.*
+- she — *`she` значит «она», а «её» без вещи — `hers`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-50:i04; family: speed_match -->
-playground — детская площадка · scooter — самокат · cinema — кинотеатр · river — река
+seesaw — качели-балансир · hoop — обруч · chalk — мел · sandcastle — песочный замок
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — sandcastle**
+<!-- interaction_id: en:lesson-05:session-50:word:sandcastle; family: word_card -->
+> **sandcastle** — песочный замок. The sandcastle is under the tree. — «Песочный замок под деревом». Башня, которую дети строят из мокрого песка.
+
+**9 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-50:i05; family: listen_build_dictation -->
-🔊 *The playground is near the river.* Плитки: `river` `the` `near` `is` `playground` `The` `are` → **The playground is near the river.**
-*(плитка `are` лишняя: здесь нужно `is` — `The playground is near the river.`)*
+🔊 *The sandcastle is under the tree.* Плитки: `sandcastle` `under` `the` `tree` `is` `The` `are` → **The sandcastle is under the tree.**
+*(плитка `are` лишняя: здесь нужно `is` — `The sandcastle is under the tree.`)*
 
-**6 · Спросите «Где кинотеатр?»**
+**10 · Песочный замок стоит далеко. Спросите мальчика: «Чей там замок?»**
 <!-- interaction_id: en:lesson-05:session-50:i06; family: phrase_builder -->
-Плитки: `cinema` `the` `is` `Where` → **Where is the cinema?**
+Плитки: `sandcastle` `that` `is` `Whose` `Where` → **Whose sandcastle is that?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose sandcastle is that?`)*
 
-**7 · Самокат принадлежит Анне. Скажите «Самокат её»**
+**11 · Соседка спрашивает, чей обруч. Он мальчика с площадки. Скажите: «Обруч его»**
 <!-- interaction_id: en:lesson-05:session-50:i07; family: scripted_repeat_compare -->
-🎙 **The scooter is hers.**
+🎙 **The hoop is his.**
 
-**8 · Самокат принадлежит вашей семье. Скажите «Самокат наш»**
+**12 · Две девочки построили песочный замок. Вы говорите о нём. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-50:i08; family: context_gap_grammar -->
-The scooter is ___. → **ours** · our · we
-- our — *Перед названием вещи — `our`; здесь самостоятельное `ours`.*
-- we — *`we` — мы; самостоятельное «наш» — `ours`.*
+The sandcastle is ___. → **theirs** · their · they
+- their — *Без названия вещи нужно `theirs`, а не `their`.*
+- they — *`they` значит «они», а «их» без вещи — `theirs`.*
 
-**9 · Послушайте, какой транспорт называет Том**
+**13 · Послушайте мальчика**
 <!-- interaction_id: en:lesson-05:session-50:i09; family: listen_choose -->
-🔊 *This is Anna's scooter.* → **This is Anna's scooter.** · This is Anna's bicycle. · This is Anna's motorbike.
-- This is Anna's bicycle. — *В записи последнее слово — `scooter`, а в этом варианте — `bicycle`.*
-- This is Anna's motorbike. — *В записи последнее слово — `scooter`, а в этом варианте — `motorbike`.*
+🔊 *The chalk is his.* → **The chalk is his.** · The chalk is hers. · The hoop is his.
+- The chalk is hers. — *В записи последнее слово — `his`, а в этом варианте — `hers`.*
+- The hoop is his. — *В записи вещь — `chalk`, мел, а в этом варианте — `hoop`, обруч.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-50:i10; family: speed_match -->
-playground — детская площадка · expensive — дорогой · river — река · scooter — самокат
+seesaw — качели-балансир · hoop — обруч · sandcastle — песочный замок · bench — скамейка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-50:i11; family: listen_build_dictation -->
-🔊 *The scooter is next to the playground.* Плитки: `playground` `the` `to` `next` `is` `scooter` `The` `are` → **The scooter is next to the playground.**
-*(плитка `are` лишняя: здесь нужно `is` — `The scooter is next to the playground.`)*
+🔊 *My brother's hoop is under the bench.* Плитки: `hoop` `brother's` `is` `under` `the` `bench` `My` `brother` → **My brother's hoop is under the bench.**
+*(плитка `brother` лишняя: здесь нужно `brother's` — `My brother's hoop is under the bench.`)*
 
-**12 · Спросите «Где река?»**
+**16 · На площадке лежат два обруча. Спросите соседку: «Чьи это обручи?»**
 <!-- interaction_id: en:lesson-05:session-50:i12; family: phrase_builder -->
-Плитки: `river` `the` `is` `Where` → **Where is the river?**
+Плитки: `hoops` `these` `are` `Whose` `Where` → **Whose hoops are these?**
+*(плитка `Where` лишняя: здесь нужно `Whose` — `Whose hoops are these?`)*
 
-**13 · Скажите Анне «Твой самокат здесь»**
+**17 · Соседка спрашивает, чей мел. Он ваш. Скажите: «Мел мой»**
 <!-- interaction_id: en:lesson-05:session-50:i13; family: scripted_repeat_compare -->
-🎙 **Your scooter is here.**
+🎙 **The chalk is mine.**
 
-**14 · Спросите, где кинотеатр**
+**18 · Девочка держит мел и спрашивает вас. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-50:i14; family: context_gap_grammar -->
-___ is the cinema? → **Where** · Whose · Who
-- Whose — *`Whose` — чей; где — `Where`.*
-- Who — *`Who` — кто; где — `Where`.*
+Whose chalk ___ this? → **is** · are · has
+- are — *Мел один, поэтому нужно `is`, а не `are`.*
+- has — *`has` значит «имеет», а в вопросе «чей это мел?» нужно `is`.*
 
-**15 · Послушайте, кому принадлежит самокат**
+**19 · Послушайте соседку**
 <!-- interaction_id: en:lesson-05:session-50:i15; family: listen_choose -->
-🔊 *The scooter is mine.* → **The scooter is mine.** · The scooter is hers. · The scooter is ours.
-- The scooter is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
-- The scooter is ours. — *В записи последнее слово — `mine`, а в этом варианте — `ours`.*
+🔊 *Is this chalk your sister's?* → **Is this chalk your sister's?** · Is this chalk your brother's? · Is this hoop your sister's?
+- Is this chalk your brother's? — *В записи хозяин — `sister's`, сестра, а в этом варианте — `brother's`, брат.*
+- Is this hoop your sister's? — *В записи вещь — `chalk`, мел, а в этом варианте — `hoop`, обруч.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-50:i16; family: speed_match -->
-playground — детская площадка · expensive — дорогой · cinema — кинотеатр · scooter — самокат
+seesaw — качели-балансир · hoop — обруч · chalk — мел · sandcastle — песочный замок
 
-**17 · Вы увидели самокат у площадки. Спросите друзей «Чей это самокат?»**
+**21 · Вы нашли мел на асфальте и хотите вернуть его. Спросите ребят: «Чей это мел?»**
 <!-- interaction_id: en:lesson-05:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose scooter is this?**
-
+🎙 **Whose chalk is this?**

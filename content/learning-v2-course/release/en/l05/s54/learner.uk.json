@@ -4,28 +4,73 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-54:i01",
+      "interactionId": "en:lesson-05:session-54:word:kiosk",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kiosk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:word:kiosk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kiosk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:word:kiosk:audio",
+          "transcript": "kiosk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-54:word:kiosk:r1",
+            "targetText": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск. The kiosk is behind the bench. — «Киоск за скамейкой». Маленький магазин на улице.",
+              "uk": "кіоск. The kiosk is behind the bench. — «Кіоск за лавою». Маленький магазин на вулиці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kiosk",
+          "definitionByLocale": {
+            "ru": "киоск. The kiosk is behind the bench. — «Киоск за скамейкой». Маленький магазин на улице.",
+            "uk": "кіоск. The kiosk is behind the bench. — «Кіоск за лавою». Маленький магазин на вулиці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви впізнаєте місце. Скажіть «Це місце знайоме»",
+      "prompt": "Туристка шукає кіоск. Скажіть їй: «Кіоск за лавою»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви впізнаєте місце. Скажіть «Це місце знайоме»",
+      "accessibilityLabel": "Туристка шукає кіоск. Скажіть їй: «Кіоск за лавою»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This place is familiar.",
+        "targetPhrase": "The kiosk is behind the bench.",
         "localizedMeaning": {
-          "ru": "Вы узнаёте место. Скажите «Это место знакомое»",
-          "uk": "Ви впізнаєте місце. Скажіть «Це місце знайоме»"
+          "ru": "Туристка ищет киоск. Скажите ей: «Киоск за скамейкой»",
+          "uk": "Туристка шукає кіоск. Скажіть їй: «Кіоск за лавою»"
         },
         "orderedTokens": [
-          "This",
-          "place",
+          "The",
+          "kiosk",
           "is",
-          "familiar"
+          "behind",
+          "the",
+          "bench"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -34,10 +79,10 @@
           {
             "responseId": "en:lesson-05:session-54:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ви впізнаєте місце. Скажіть «Це місце знайоме»",
+            "testedDimension": "Туристка шукає кіоск. Скажіть їй: «Кіоск за лавою»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This place is familiar.`",
-              "uk": "тут потрібно `is` — `This place is familiar.`"
+              "ru": "здесь нужно `is` — `The kiosk is behind the bench.`",
+              "uk": "тут потрібно `is` — `The kiosk is behind the bench.`"
             }
           }
         ],
@@ -49,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-54:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-54:word:comic",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — comic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:word:comic:audio"
+      ],
+      "accessibilityLabel": "Картка слова — comic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:word:comic:audio",
+          "transcript": "comic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-54:word:comic:r1",
+            "targetText": "comic",
+            "meaningByLocale": {
+              "ru": "комикс. The comic is on the table. — «Комикс на столе». Журнал с историями в картинках.",
+              "uk": "комікс. The comic is on the table. — «Комікс на столі». Журнал з історіями в картинках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "comic",
+          "definitionByLocale": {
+            "ru": "комикс. The comic is on the table. — «Комикс на столе». Журнал с историями в картинках.",
+            "uk": "комікс. The comic is on the table. — «Комікс на столі». Журнал з історіями в картинках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте продавця",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-54:i02:r1",
-          "text": "kiosk"
+          "text": "Is this comic yours?"
         },
         {
           "responseId": "en:lesson-05:session-54:i02:r2",
-          "text": "ferry"
+          "text": "Is this comic mine?"
         },
         {
           "responseId": "en:lesson-05:session-54:i02:r3",
-          "text": "garage"
+          "text": "Is this kiosk yours?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте продавця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i02:audio",
-          "transcript": "kiosk"
+          "transcript": "Is this comic yours?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-54:i02:r1",
-            "targetText": "kiosk",
+            "targetText": "Is this comic yours?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-54:i02:r2",
-            "targetText": "ferry",
+            "targetText": "Is this comic mine?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-54:i02:r3",
-            "targetText": "garage",
+            "targetText": "Is this kiosk yours?",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-54:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `kiosk`, а в этом варианте — `ferry`.",
-              "uk": "У записі перше слово — `kiosk`, а в цьому варіанті — `ferry`."
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
             }
           },
           {
             "responseId": "en:lesson-05:session-54:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `kiosk`, а в этом варианте — `garage`.",
-              "uk": "У записі перше слово — `kiosk`, а в цьому варіанті — `garage`."
+              "ru": "В записи вещь — `comic`, комикс, а в этом варианте — `kiosk`, киоск.",
+              "uk": "У записі річ — `comic`, комікс, а в цьому варіанті — `kiosk`, кіоск."
             }
           }
         ],
@@ -125,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-54:word:lollipop",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lollipop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:word:lollipop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lollipop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:word:lollipop:audio",
+          "transcript": "lollipop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-54:word:lollipop:r1",
+            "targetText": "lollipop",
+            "meaningByLocale": {
+              "ru": "леденец на палочке. The lollipop is red. — «Леденец красный». Конфета на тонкой палочке.",
+              "uk": "льодяник на паличці. The lollipop is red. — «Льодяник червоний». Цукерка на тонкій паличці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lollipop",
+          "definitionByLocale": {
+            "ru": "леденец на палочке. The lollipop is red. — «Леденец красный». Конфета на тонкой палочке.",
+            "uk": "льодяник на паличці. The lollipop is red. — «Льодяник червоний». Цукерка на тонкій паличці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-54:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть кіоск",
+      "prompt": "Продавець питає, чий льодяник. Він вашої сестри. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-54:i03:r1",
-          "text": "kiosk"
+          "text": "sister's"
         },
         {
           "responseId": "en:lesson-05:session-54:i03:r2",
-          "text": "ferry"
+          "text": "sister"
         },
         {
           "responseId": "en:lesson-05:session-54:i03:r3",
-          "text": "garage"
+          "text": "sisters"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть кіоск",
+      "accessibilityLabel": "Продавець питає, чий льодяник. Він вашої сестри. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите киоск",
-          "uk": "Назвіть кіоск"
+          "ru": "Продавец спрашивает, чей леденец. Он вашей сестры. Выберите слово",
+          "uk": "Продавець питає, чий льодяник. Він вашої сестри. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The lollipop is my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-54:i03:r1",
-            "text": "kiosk"
+            "text": "sister's"
           },
           {
             "responseId": "en:lesson-05:session-54:i03:r2",
-            "text": "ferry"
+            "text": "sister"
           },
           {
             "responseId": "en:lesson-05:session-54:i03:r3",
-            "text": "garage"
+            "text": "sisters"
           }
         ],
-        "testedDimension": "Назвіть кіоск",
+        "testedDimension": "Продавець питає, чий льодяник. Він вашої сестри. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-54:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть кіоск",
+            "testedDimension": "Продавець питає, чий льодяник. Він вашої сестри. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`ferry` — паром; киоск — `kiosk`.",
-              "uk": "`ferry` — пором; кіоск — `kiosk`."
+              "ru": "После sister нужно `'s`: my sister's.",
+              "uk": "Після sister потрібно `'s`: my sister's."
             }
           },
           {
             "responseId": "en:lesson-05:session-54:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть кіоск",
+            "testedDimension": "Продавець питає, чий льодяник. Він вашої сестри. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`garage` — гараж; киоск — `kiosk`.",
-              "uk": "`garage` — гараж; кіоск — `kiosk`."
+              "ru": "Хозяйка одна, поэтому нужно `sister's` с апострофом.",
+              "uk": "Господиня одна, тому потрібно `sister's` з апострофом."
             }
           }
         ]
@@ -195,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -217,40 +348,40 @@
           },
           {
             "pairId": "en:lesson-05:session-54:i04:p2",
-            "target": "familiar",
+            "target": "comic",
             "meaningByLocale": {
-              "ru": "знакомый",
-              "uk": "знайомий"
+              "ru": "комикс",
+              "uk": "комікс"
             }
           },
           {
             "pairId": "en:lesson-05:session-54:i04:p3",
-            "target": "unfamiliar",
+            "target": "lollipop",
             "meaningByLocale": {
-              "ru": "незнакомый",
-              "uk": "незнайомий"
+              "ru": "леденец на палочке",
+              "uk": "льодяник на паличці"
             }
           },
           {
             "pairId": "en:lesson-05:session-54:i04:p4",
-            "target": "unknown",
+            "target": "balloon",
             "meaningByLocale": {
-              "ru": "неизвестный",
-              "uk": "невідомий"
+              "ru": "воздушный шарик",
+              "uk": "повітряна кулька"
             }
           }
         ],
         "leftColumn": [
           "kiosk",
-          "familiar",
-          "unfamiliar",
-          "unknown"
+          "comic",
+          "lollipop",
+          "balloon"
         ],
         "rightColumn": [
           "кіоск",
-          "знайомий",
-          "незнайомий",
-          "невідомий"
+          "комікс",
+          "льодяник на паличці",
+          "повітряна кулька"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +398,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-54:word:balloon",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — balloon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:word:balloon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — balloon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:word:balloon:audio",
+          "transcript": "balloon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-54:word:balloon:r1",
+            "targetText": "balloon",
+            "meaningByLocale": {
+              "ru": "воздушный шарик. The balloon is in the bag. — «Воздушный шарик в сумке». Лёгкий шарик, который надувают воздухом.",
+              "uk": "повітряна кулька. The balloon is in the bag. — «Повітряна кулька в сумці». Легка кулька, яку надувають повітрям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "balloon",
+          "definitionByLocale": {
+            "ru": "воздушный шарик. The balloon is in the bag. — «Воздушный шарик в сумке». Лёгкий шарик, который надувают воздухом.",
+            "uk": "повітряна кулька. The balloon is in the bag. — «Повітряна кулька в сумці». Легка кулька, яку надувають повітрям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-54:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте продавця й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте продавця й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i05:audio",
-          "transcript": "Where is the kiosk?"
+          "transcript": "The balloon is in the bag."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the kiosk?",
+        "hiddenTargetPhrase": "The balloon is in the bag.",
         "orderedTokens": [
-          "Where",
+          "The",
+          "balloon",
           "is",
+          "in",
           "the",
-          "kiosk"
+          "bag"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте продавця й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The balloon is in the bag.`",
+              "uk": "тут потрібно `is` — `The balloon is in the bag.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,39 +492,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Сумка смугаста»",
+      "prompt": "Льодяник лежить на прилавку далеко. Спитайте продавця: «Чий там льодяник?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Сумка смугаста»",
+      "accessibilityLabel": "Льодяник лежить на прилавку далеко. Спитайте продавця: «Чий там льодяник?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bag is striped.",
+        "targetPhrase": "Whose lollipop is that?",
         "localizedMeaning": {
-          "ru": "Скажите «Сумка полосатая»",
-          "uk": "Скажіть «Сумка смугаста»"
+          "ru": "Леденец лежит на прилавке далеко. Спросите продавца: «Чей там леденец?»",
+          "uk": "Льодяник лежить на прилавку далеко. Спитайте продавця: «Чий там льодяник?»"
         },
         "orderedTokens": [
-          "The",
-          "bag",
+          "Whose",
+          "lollipop",
           "is",
-          "striped"
+          "that"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Where"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-54:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Сумка смугаста»",
+            "testedDimension": "Льодяник лежить на прилавку далеко. Спитайте продавця: «Чий там льодяник?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bag is striped.`",
-              "uk": "тут потрібно `is` — `The bag is striped.`"
+              "ru": "здесь нужно `Whose` — `Whose lollipop is that?`",
+              "uk": "тут потрібно `Whose` — `Whose lollipop is that?`"
             }
           }
         ],
@@ -349,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar",
+      "prompt": "Продавець питає, чия повітряна кулька. Вона ваша. Скажіть: «Кулька моя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar",
+      "accessibilityLabel": "Продавець питає, чия повітряна кулька. Вона ваша. Скажіть: «Кулька моя»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i07:audio",
-          "transcript": "This place is unfamiliar."
+          "transcript": "The balloon is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This place is unfamiliar.",
+        "targetPhrase": "The balloon is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -382,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+      "prompt": "Продавець показує дві кульки на столі. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-54:i08:r1",
-          "text": "unknown"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-54:i08:r2",
-          "text": "striped"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-54:i08:r3",
-          "text": "full"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+      "accessibilityLabel": "Продавець показує дві кульки на столі. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сведений об имени нет. Скажите «Его имя неизвестно»",
-          "uk": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»"
+          "ru": "Продавец показывает два шарика на столе. Выберите слово",
+          "uk": "Продавець показує дві кульки на столі. Виберіть слово"
         },
-        "gappedTargetPhrase": "His name is ___.",
+        "gappedTargetPhrase": "The balloons ___ on the table.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-54:i08:r1",
-            "text": "unknown"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-54:i08:r2",
-            "text": "striped"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-54:i08:r3",
-            "text": "full"
+            "text": "has"
           }
         ],
-        "testedDimension": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+        "testedDimension": "Продавець показує дві кульки на столі. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-54:i08:r2",
             "correct": false,
-            "testedDimension": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+            "testedDimension": "Продавець показує дві кульки на столі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`striped` — полосатый; неизвестный — `unknown`.",
-              "uk": "`striped` — смугастий; невідомий — `unknown`."
+              "ru": "Шариков два, поэтому нужно `are`, а не `is`.",
+              "uk": "Кульок дві, тому потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-54:i08:r3",
             "correct": false,
-            "testedDimension": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+            "testedDimension": "Продавець показує дві кульки на столі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`full` — полный; неизвестный — `unknown`.",
-              "uk": "`full` — повний; невідомий — `unknown`."
+              "ru": "`has` значит «имеет», а здесь мы говорим, где лежат шарики: нужно `are`.",
+              "uk": "`has` означає «має», а тут ми кажемо, де лежать кульки: потрібно `are`."
             }
           }
         ]
@@ -451,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де пором",
+      "prompt": "Послухайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-54:i09:r1",
-          "text": "The ferry is near the kiosk."
+          "text": "The lollipop is hers."
         },
         {
           "responseId": "en:lesson-05:session-54:i09:r2",
-          "text": "The ferry is near the garage."
+          "text": "The lollipop is his."
         },
         {
           "responseId": "en:lesson-05:session-54:i09:r3",
-          "text": "The ferry is near the stadium."
+          "text": "The balloon is hers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, де пором",
+      "accessibilityLabel": "Послухайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i09:audio",
-          "transcript": "The ferry is near the kiosk."
+          "transcript": "The lollipop is hers."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-54:i09:r1",
-            "targetText": "The ferry is near the kiosk.",
+            "targetText": "The lollipop is hers.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-54:i09:r2",
-            "targetText": "The ferry is near the garage.",
+            "targetText": "The lollipop is his.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-54:i09:r3",
-            "targetText": "The ferry is near the stadium.",
+            "targetText": "The balloon is hers.",
             "meaningByLocale": null
           }
         ],
@@ -504,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-54:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де пором",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `garage`.",
-              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `garage`."
+              "ru": "В записи последнее слово — `hers`, а в этом варианте — `his`.",
+              "uk": "У записі останнє слово — `hers`, а в цьому варіанті — `his`."
             }
           },
           {
             "responseId": "en:lesson-05:session-54:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де пором",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `stadium`.",
-              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `stadium`."
+              "ru": "В записи вещь — `lollipop`, леденец, а в этом варианте — `balloon`, шарик.",
+              "uk": "У записі річ — `lollipop`, льодяник, а в цьому варіанті — `balloon`, кулька."
             }
           }
         ],
@@ -527,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -549,40 +737,40 @@
           },
           {
             "pairId": "en:lesson-05:session-54:i10:p2",
-            "target": "striped",
+            "target": "comic",
             "meaningByLocale": {
-              "ru": "полосатый",
-              "uk": "смугастий"
+              "ru": "комикс",
+              "uk": "комікс"
             }
           },
           {
             "pairId": "en:lesson-05:session-54:i10:p3",
-            "target": "petrol station",
+            "target": "balloon",
             "meaningByLocale": {
-              "ru": "заправочная станция",
-              "uk": "заправна станція"
+              "ru": "воздушный шарик",
+              "uk": "повітряна кулька"
             }
           },
           {
             "pairId": "en:lesson-05:session-54:i10:p4",
-            "target": "ferry",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           }
         ],
         "leftColumn": [
           "kiosk",
-          "striped",
-          "petrol station",
-          "ferry"
+          "comic",
+          "balloon",
+          "bag"
         ],
         "rightColumn": [
           "кіоск",
-          "смугастий",
-          "заправна станція",
-          "пором"
+          "комікс",
+          "повітряна кулька",
+          "сумка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -600,46 +788,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте брата й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i11:audio",
-          "transcript": "The kiosk is next to the petrol station."
+          "transcript": "My brother's comic is on the table."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The kiosk is next to the petrol station.",
+        "hiddenTargetPhrase": "My brother's comic is on the table.",
         "orderedTokens": [
-          "The",
-          "kiosk",
+          "My",
+          "brother's",
+          "comic",
           "is",
-          "next",
-          "to",
+          "on",
           "the",
-          "petrol",
-          "station"
+          "table"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "brother"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-54:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте брата й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The kiosk is next to the petrol station.`",
-              "uk": "тут потрібно `is` — `The kiosk is next to the petrol station.`"
+              "ru": "здесь нужно `brother's` — `My brother's comic is on the table.`",
+              "uk": "тут потрібно `brother's` — `My brother's comic is on the table.`"
             }
           }
         ],
@@ -652,39 +839,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сумка належить Анні. Скажіть «Сумка її»",
+      "prompt": "На прилавку лежать два льодяники. Спитайте продавця: «Чиї це льодяники?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумка належить Анні. Скажіть «Сумка її»",
+      "accessibilityLabel": "На прилавку лежать два льодяники. Спитайте продавця: «Чиї це льодяники?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bag is hers.",
+        "targetPhrase": "Whose lollipops are these?",
         "localizedMeaning": {
-          "ru": "Сумка принадлежит Анне. Скажите «Сумка её»",
-          "uk": "Сумка належить Анні. Скажіть «Сумка її»"
+          "ru": "На прилавке лежат два леденца. Спросите продавца: «Чьи это леденцы?»",
+          "uk": "На прилавку лежать два льодяники. Спитайте продавця: «Чиї це льодяники?»"
         },
         "orderedTokens": [
-          "The",
-          "bag",
-          "is",
-          "hers"
+          "Whose",
+          "lollipops",
+          "are",
+          "these"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Where"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-54:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Сумка належить Анні. Скажіть «Сумка її»",
+            "testedDimension": "На прилавку лежать два льодяники. Спитайте продавця: «Чиї це льодяники?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bag is hers.`",
-              "uk": "тут потрібно `is` — `The bag is hers.`"
+              "ru": "здесь нужно `Whose` — `Whose lollipops are these?`",
+              "uk": "тут потрібно `Whose` — `Whose lollipops are these?`"
             }
           }
         ],
@@ -697,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте «Де пором?»",
+      "prompt": "Ви даруєте братові свій комікс. Скажіть йому: «Комікс твій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i13:audio"
       ],
-      "accessibilityLabel": "Запитайте «Де пором?»",
+      "accessibilityLabel": "Ви даруєте братові свій комікс. Скажіть йому: «Комікс твій»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i13:audio",
-          "transcript": "Where is the ferry?"
+          "transcript": "The comic is yours."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the ferry?",
+        "targetPhrase": "The comic is yours.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -730,67 +917,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника сумки",
+      "prompt": "Продавець питає: «Is this balloon yours?» Ні, кулька не ваша. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-54:i14:r1",
-          "text": "Whose"
+          "text": "isn't"
         },
         {
           "responseId": "en:lesson-05:session-54:i14:r2",
-          "text": "Where"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-54:i14:r3",
-          "text": "Who"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника сумки",
+      "accessibilityLabel": "Продавець питає: «Is this balloon yours?» Ні, кулька не ваша. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце сумки",
-          "uk": "Запитайте про власника сумки"
+          "ru": "Продавец спрашивает: «Is this balloon yours?» Нет, шарик не ваш. Выберите слово",
+          "uk": "Продавець питає: «Is this balloon yours?» Ні, кулька не ваша. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ bag is this?",
+        "gappedTargetPhrase": "No, it ___ mine.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-54:i14:r1",
-            "text": "Whose"
+            "text": "isn't"
           },
           {
             "responseId": "en:lesson-05:session-54:i14:r2",
-            "text": "Where"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-54:i14:r3",
-            "text": "Who"
+            "text": "has"
           }
         ],
-        "testedDimension": "Запитайте про власника сумки",
+        "testedDimension": "Продавець питає: «Is this balloon yours?» Ні, кулька не ваша. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-54:i14:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника сумки",
+            "testedDimension": "Продавець питає: «Is this balloon yours?» Ні, кулька не ваша. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чья — `Whose`.",
-              "uk": "`Where` — де; чия — `Whose`."
+              "ru": "После No ответ отрицательный: нужно `isn't`.",
+              "uk": "Після No відповідь заперечна: потрібно `isn't`."
             }
           },
           {
             "responseId": "en:lesson-05:session-54:i14:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника сумки",
+            "testedDimension": "Продавець питає: «Is this balloon yours?» Ні, кулька не ваша. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чья — `Whose`.",
-              "uk": "`Who` — хто; чия — `Whose`."
+              "ru": "`has` значит «имеет», а на вопрос «это ваше?» отвечаем `it isn't`.",
+              "uk": "`has` означає «має», а на питання «це ваше?» відповідаємо `it isn't`."
             }
           }
         ]
@@ -799,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, як Анна описує місце",
+      "prompt": "Послухайте продавця",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-54:i15:r1",
-          "text": "This place is unfamiliar."
+          "text": "Is this balloon your sister's?"
         },
         {
           "responseId": "en:lesson-05:session-54:i15:r2",
-          "text": "This place is familiar."
+          "text": "Is this balloon your brother's?"
         },
         {
           "responseId": "en:lesson-05:session-54:i15:r3",
-          "text": "This place is dangerous."
+          "text": "Is this lollipop your sister's?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, як Анна описує місце",
+      "accessibilityLabel": "Послухайте продавця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i15:audio",
-          "transcript": "This place is unfamiliar."
+          "transcript": "Is this balloon your sister's?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-54:i15:r1",
-            "targetText": "This place is unfamiliar.",
+            "targetText": "Is this balloon your sister's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-54:i15:r2",
-            "targetText": "This place is familiar.",
+            "targetText": "Is this balloon your brother's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-54:i15:r3",
-            "targetText": "This place is dangerous.",
+            "targetText": "Is this lollipop your sister's?",
             "meaningByLocale": null
           }
         ],
@@ -852,19 +1039,19 @@
           {
             "responseId": "en:lesson-05:session-54:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, як Анна описує місце",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `familiar`.",
-              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`."
+              "ru": "В записи хозяин — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+              "uk": "У записі господар — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
             }
           },
           {
             "responseId": "en:lesson-05:session-54:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, як Анна описує місце",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `dangerous`.",
-              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `dangerous`."
+              "ru": "В записи вещь — `balloon`, шарик, а в этом варианте — `lollipop`, леденец.",
+              "uk": "У записі річ — `balloon`, кулька, а в цьому варіанті — `lollipop`, льодяник."
             }
           }
         ],
@@ -875,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,40 +1084,40 @@
           },
           {
             "pairId": "en:lesson-05:session-54:i16:p2",
-            "target": "unknown",
+            "target": "comic",
             "meaningByLocale": {
-              "ru": "неизвестный",
-              "uk": "невідомий"
+              "ru": "комикс",
+              "uk": "комікс"
             }
           },
           {
             "pairId": "en:lesson-05:session-54:i16:p3",
-            "target": "petrol station",
+            "target": "lollipop",
             "meaningByLocale": {
-              "ru": "заправочная станция",
-              "uk": "заправна станція"
+              "ru": "леденец на палочке",
+              "uk": "льодяник на паличці"
             }
           },
           {
             "pairId": "en:lesson-05:session-54:i16:p4",
-            "target": "striped",
+            "target": "balloon",
             "meaningByLocale": {
-              "ru": "полосатый",
-              "uk": "смугастий"
+              "ru": "воздушный шарик",
+              "uk": "повітряна кулька"
             }
           }
         ],
         "leftColumn": [
           "kiosk",
-          "unknown",
-          "petrol station",
-          "striped"
+          "comic",
+          "lollipop",
+          "balloon"
         ],
         "rightColumn": [
           "кіоск",
-          "невідомий",
-          "заправна станція",
-          "смугастий"
+          "комікс",
+          "льодяник на паличці",
+          "повітряна кулька"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -948,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-54:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви знайшли смугасту сумку біля кіоску. Запитайте друзів «Чия це сумка?»",
+      "prompt": "Ви знайшли комікс біля кіоску й хочете дізнатися, чий він. Спитайте продавця: «Чий це комікс?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-54:i17:audio"
       ],
-      "accessibilityLabel": "Ви знайшли смугасту сумку біля кіоску. Запитайте друзів «Чия це сумка?»",
+      "accessibilityLabel": "Ви знайшли комікс біля кіоску й хочете дізнатися, чий він. Спитайте продавця: «Чий це комікс?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-54:i17:audio",
-          "transcript": "Whose bag is this?"
+          "transcript": "Whose comic is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose bag is this?",
+        "targetPhrase": "Whose comic is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -988,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b974bf5efc0c14635a24e26f67fe1be92486ae7d4af1db31f083b4995d3daac3"
+  "learnerFingerprint": "bd1540e70bebe111060a656a413950a1c0623136bf55c98bb7d796b7e8d202d7"
 }

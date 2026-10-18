@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-54:intro1:r2": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "Между next и the нужно to: next to.",
+          "uk": "Між next і the потрібно to: next to."
         },
         "en:lesson-05:session-54:intro1:r3": {
-          "ru": "Один киоск: `is`.",
-          "uk": "Один кіоск: `is`."
+          "ru": "Киоск один, поэтому нужно is.",
+          "uk": "Кіоск один, тому потрібно is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-54:intro2:r2": {
-          "ru": "`familiar` — знакомый; незнакомый — `unfamiliar`.",
-          "uk": "`familiar` — знайомий; незнайомий — `unfamiliar`."
+          "ru": "Без названия вещи нужно mine, а не my.",
+          "uk": "Без назви речі потрібно mine, а не my."
         },
         "en:lesson-05:session-54:intro2:r3": {
-          "ru": "Одно место: `is`.",
-          "uk": "Одне місце: `is`."
+          "ru": "После Yes нельзя ставить isn't: Yes значит «да», а isn't — «не».",
+          "uk": "Після Yes не можна ставити isn't: Yes означає «так», а isn't — «не»."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-54:intro3:r2": {
-          "ru": "Одна сумка: `is`.",
-          "uk": "Одна сумка: `is`."
+          "ru": "Это «Где леденец?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де льодяник?». Про господаря питаємо з whose."
         },
         "en:lesson-05:session-54:intro3:r3": {
-          "ru": "`full` — полный; полосатый — `striped`.",
-          "uk": "`full` — повний; смугастий — `striped`."
+          "ru": "Леденец один, поэтому нужно is this.",
+          "uk": "Льодяник один, тому потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d372e5bd6bc68c81b6815c3a6d7038e2392e22ae264e0b21b80444636529075c"
+  "auxiliaryFingerprint": "4bfc2ce1329bdaf648077ae640c2c5ed71ef476ac32fff958b2fa892224cc720"
 }

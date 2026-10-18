@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-53:word:court",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — court",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:court:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — court",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:court:audio",
+            "transcript": "court"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:court:r1",
+              "targetText": "court",
+              "meaningByLocale": {
+                "ru": "корт. The court is near the school. — «Корт возле школы». Площадка с разметкой для игры с воланом или мячом.",
+                "uk": "корт. The court is near the school. — «Корт біля школи». Майданчик з розміткою для гри з воланом або м’ячем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "court",
+            "definitionByLocale": {
+              "ru": "корт. The court is near the school. — «Корт возле школы». Площадка с разметкой для игры с воланом или мячом.",
+              "uk": "корт. The court is near the school. — «Корт біля школи». Майданчик з розміткою для гри з воланом або м’ячем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, где корт. Скажите ему: «Корт возле школы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, где корт. Скажите ему: «Корт возле школы»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The court is near the school.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, где корт. Скажите ему: «Корт возле школы»",
+            "uk": "Друг питає, де корт. Скажіть йому: «Корт біля школи»"
+          },
+          "orderedTokens": [
+            "The",
+            "court",
+            "is",
+            "near",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, где корт. Скажите ему: «Корт возле школы»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The court is near the school.`",
+                "uk": "тут потрібно `is` — `The court is near the school.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:word:net",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — net",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:net:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — net",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:net:audio",
+            "transcript": "net"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:net:r1",
+              "targetText": "net",
+              "meaningByLocale": {
+                "ru": "сетка. The net is on the bench. — «Сетка на скамейке». Её натягивают посередине корта.",
+                "uk": "сітка. The net is on the bench. — «Сітка на лаві». Її натягують посередині корту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "net",
+            "definitionByLocale": {
+              "ru": "сетка. The net is on the bench. — «Сетка на скамейке». Её натягивают посередине корта.",
+              "uk": "сітка. The net is on the bench. — «Сітка на лаві». Її натягують посередині корту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i02:r1",
+            "text": "Whose net is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i02:r2",
+            "text": "Whose net is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i02:r3",
+            "text": "Whose court is that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i02:audio",
+            "transcript": "Whose net is that?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:i02:r1",
+              "targetText": "Whose net is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i02:r2",
+              "targetText": "Whose net is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i02:r3",
+              "targetText": "Whose court is that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `that`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `that`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.",
+                "uk": "У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:word:shuttlecock",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shuttlecock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:shuttlecock:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shuttlecock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:shuttlecock:audio",
+            "transcript": "shuttlecock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:shuttlecock:r1",
+              "targetText": "shuttlecock",
+              "meaningByLocale": {
+                "ru": "волан. The shuttlecock is in my bag. — «Волан в моей сумке». Лёгкий «мячик» с перьями для бадминтона.",
+                "uk": "волан. The shuttlecock is in my bag. — «Волан у моїй сумці». Легкий «м’ячик» з пір’ям для бадмінтону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shuttlecock",
+            "definitionByLocale": {
+              "ru": "волан. The shuttlecock is in my bag. — «Волан в моей сумке». Лёгкий «мячик» с перьями для бадминтона.",
+              "uk": "волан. The shuttlecock is in my bag. — «Волан у моїй сумці». Легкий «м’ячик» з пір’ям для бадмінтону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спрашивает, чей волан. Он ваш. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i03:r3",
+            "text": "I"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, чей волан. Он ваш. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, чей волан. Он ваш. Выберите слово",
+            "uk": "Друг питає, чий волан. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The shuttlecock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-53:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i03:r3",
+              "text": "I"
+            }
+          ],
+          "testedDimension": "Друг спрашивает, чей волан. Он ваш. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, чей волан. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, чей волан. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`I` значит «я», а «мой» без вещи — `mine`.",
+                "uk": "`I` означає «я», а «мій» без речі — `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-53:i04:p1",
+              "target": "court",
+              "meaningByLocale": {
+                "ru": "корт",
+                "uk": "корт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i04:p2",
+              "target": "net",
+              "meaningByLocale": {
+                "ru": "сетка",
+                "uk": "сітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i04:p3",
+              "target": "shuttlecock",
+              "meaningByLocale": {
+                "ru": "волан",
+                "uk": "волан"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i04:p4",
+              "target": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло",
+                "uk": "табло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "court",
+            "net",
+            "shuttlecock",
+            "scoreboard"
+          ],
+          "rightColumn": [
+            "корт",
+            "сетка",
+            "волан",
+            "табло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:word:scoreboard",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scoreboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:scoreboard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scoreboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:scoreboard:audio",
+            "transcript": "scoreboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:scoreboard:r1",
+              "targetText": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло. The scoreboard is on the wall. — «Табло на стене». Щит, на котором показывают счёт игры.",
+                "uk": "табло. The scoreboard is on the wall. — «Табло на стіні». Щит, на якому показують рахунок гри."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scoreboard",
+            "definitionByLocale": {
+              "ru": "табло. The scoreboard is on the wall. — «Табло на стене». Щит, на котором показывают счёт игры.",
+              "uk": "табло. The scoreboard is on the wall. — «Табло на стіні». Щит, на якому показують рахунок гри."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тренера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i05:audio",
+            "transcript": "The scoreboard is on the wall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The scoreboard is on the wall.",
+          "orderedTokens": [
+            "The",
+            "scoreboard",
+            "is",
+            "on",
+            "the",
+            "wall"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тренера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The scoreboard is on the wall.`",
+                "uk": "тут потрібно `is` — `The scoreboard is on the wall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ищете табло. Спросите друга: «Где табло?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете табло. Спросите друга: «Где табло?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the scoreboard?",
+          "localizedMeaning": {
+            "ru": "Вы ищете табло. Спросите друга: «Где табло?»",
+            "uk": "Ви шукаєте табло. Спитайте друга: «Де табло?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "scoreboard"
+          ],
+          "authoredDistractorTokens": [
+            "Whose"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы ищете табло. Спросите друга: «Где табло?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the scoreboard?`",
+                "uk": "тут потрібно `Where` — `Where is the scoreboard?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер спрашивает, чья сетка. Она вашего друга. Скажите: «Сетка моего друга»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Тренер спрашивает, чья сетка. Она вашего друга. Скажите: «Сетка моего друга»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i07:audio",
+            "transcript": "The net is my friend's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The net is my friend's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Две девочки принесли волан. Вы говорите о нём. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i08:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две девочки принесли волан. Вы говорите о нём. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две девочки принесли волан. Вы говорите о нём. Выберите слово",
+            "uk": "Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The shuttlecock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-53:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i08:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Две девочки принесли волан. Вы говорите о нём. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Две девочки принесли волан. Вы говорите о нём. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Две девочки принесли волан. Вы говорите о нём. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i09:r1",
+            "text": "The net is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i09:r2",
+            "text": "The net is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i09:r3",
+            "text": "The court is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i09:audio",
+            "transcript": "The net is hers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:i09:r1",
+              "targetText": "The net is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i09:r2",
+              "targetText": "The net is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i09:r3",
+              "targetText": "The court is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hers`, а в этом варианте — `his`.",
+                "uk": "У записі останнє слово — `hers`, а в цьому варіанті — `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.",
+                "uk": "У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-53:i10:p1",
+              "target": "court",
+              "meaningByLocale": {
+                "ru": "корт",
+                "uk": "корт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i10:p2",
+              "target": "net",
+              "meaningByLocale": {
+                "ru": "сетка",
+                "uk": "сітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i10:p3",
+              "target": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло",
+                "uk": "табло"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "court",
+            "net",
+            "scoreboard",
+            "wall"
+          ],
+          "rightColumn": [
+            "корт",
+            "сетка",
+            "табло",
+            "стена"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i11:audio",
+            "transcript": "My friend's net is under the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My friend's net is under the bench.",
+          "orderedTokens": [
+            "My",
+            "friend's",
+            "net",
+            "is",
+            "under",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "friend"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `friend's` — `My friend's net is under the bench.`",
+                "uk": "тут потрібно `friend's` — `My friend's net is under the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На корте лежат два волана. Спросите друга: «Чьи это воланы?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На корте лежат два волана. Спросите друга: «Чьи это воланы?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose shuttlecocks are these?",
+          "localizedMeaning": {
+            "ru": "На корте лежат два волана. Спросите друга: «Чьи это воланы?»",
+            "uk": "На корті лежать два волані. Спитайте друга: «Чиї це волани?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "shuttlecocks",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На корте лежат два волана. Спросите друга: «Чьи это воланы?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose shuttlecocks are these?`",
+                "uk": "тут потрібно `Whose` — `Whose shuttlecocks are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы дали другу свой волан. Он спрашивает, чей волан теперь. Скажите: «Волан твой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Вы дали другу свой волан. Он спрашивает, чей волан теперь. Скажите: «Волан твой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i13:audio",
+            "transcript": "The shuttlecock is yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shuttlecock is yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тренер показывает на корт и спрашивает вас. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер показывает на корт и спрашивает вас. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тренер показывает на корт и спрашивает вас. Выберите слово",
+            "uk": "Тренер показує на корт і питає вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose court ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-53:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Тренер показывает на корт и спрашивает вас. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Тренер показывает на корт и спрашивает вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Корт один, поэтому нужно `is`, а не `are`.",
+                "uk": "Корт один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Тренер показывает на корт и спрашивает вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а в вопросе «чей это корт?» нужно `is`.",
+                "uk": "`has` означає «має», а в питанні «чий це корт?» потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i15:r1",
+            "text": "Is this net your friend's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i15:r2",
+            "text": "Is this net your cousin's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i15:r3",
+            "text": "Is this court your friend's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i15:audio",
+            "transcript": "Is this net your friend's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:i15:r1",
+              "targetText": "Is this net your friend's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i15:r2",
+              "targetText": "Is this net your cousin's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i15:r3",
+              "targetText": "Is this court your friend's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `friend's`, друг, а в этом варианте — `cousin's`, двоюродный брат или сестра.",
+                "uk": "У записі господар — `friend's`, друг, а в цьому варіанті — `cousin's`, двоюрідний брат або сестра."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.",
+                "uk": "У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-53:i16:p1",
+              "target": "court",
+              "meaningByLocale": {
+                "ru": "корт",
+                "uk": "корт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i16:p2",
+              "target": "net",
+              "meaningByLocale": {
+                "ru": "сетка",
+                "uk": "сітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i16:p3",
+              "target": "shuttlecock",
+              "meaningByLocale": {
+                "ru": "волан",
+                "uk": "волан"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i16:p4",
+              "target": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло",
+                "uk": "табло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "court",
+            "net",
+            "shuttlecock",
+            "scoreboard"
+          ],
+          "rightColumn": [
+            "корт",
+            "сетка",
+            "волан",
+            "табло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли сетку у корта и хотите вернуть её. Спросите тренера: «Чья это сетка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли сетку у корта и хотите вернуть её. Спросите тренера: «Чья это сетка?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i17:audio",
+            "transcript": "Whose net is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose net is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-53:word:court",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — court",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:court:audio"
+        ],
+        "accessibilityLabel": "Картка слова — court",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:court:audio",
+            "transcript": "court"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:court:r1",
+              "targetText": "court",
+              "meaningByLocale": {
+                "ru": "корт. The court is near the school. — «Корт возле школы». Площадка с разметкой для игры с воланом или мячом.",
+                "uk": "корт. The court is near the school. — «Корт біля школи». Майданчик з розміткою для гри з воланом або м’ячем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "court",
+            "definitionByLocale": {
+              "ru": "корт. The court is near the school. — «Корт возле школы». Площадка с разметкой для игры с воланом или мячом.",
+              "uk": "корт. The court is near the school. — «Корт біля школи». Майданчик з розміткою для гри з воланом або м’ячем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає, де корт. Скажіть йому: «Корт біля школи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, де корт. Скажіть йому: «Корт біля школи»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The court is near the school.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, где корт. Скажите ему: «Корт возле школы»",
+            "uk": "Друг питає, де корт. Скажіть йому: «Корт біля школи»"
+          },
+          "orderedTokens": [
+            "The",
+            "court",
+            "is",
+            "near",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає, де корт. Скажіть йому: «Корт біля школи»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The court is near the school.`",
+                "uk": "тут потрібно `is` — `The court is near the school.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:word:net",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — net",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:net:audio"
+        ],
+        "accessibilityLabel": "Картка слова — net",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:net:audio",
+            "transcript": "net"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:net:r1",
+              "targetText": "net",
+              "meaningByLocale": {
+                "ru": "сетка. The net is on the bench. — «Сетка на скамейке». Её натягивают посередине корта.",
+                "uk": "сітка. The net is on the bench. — «Сітка на лаві». Її натягують посередині корту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "net",
+            "definitionByLocale": {
+              "ru": "сетка. The net is on the bench. — «Сетка на скамейке». Её натягивают посередине корта.",
+              "uk": "сітка. The net is on the bench. — «Сітка на лаві». Її натягують посередині корту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i02:r1",
+            "text": "Whose net is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i02:r2",
+            "text": "Whose net is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i02:r3",
+            "text": "Whose court is that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i02:audio",
+            "transcript": "Whose net is that?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:i02:r1",
+              "targetText": "Whose net is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i02:r2",
+              "targetText": "Whose net is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i02:r3",
+              "targetText": "Whose court is that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `that`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `that`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.",
+                "uk": "У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:word:shuttlecock",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shuttlecock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:shuttlecock:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shuttlecock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:shuttlecock:audio",
+            "transcript": "shuttlecock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:shuttlecock:r1",
+              "targetText": "shuttlecock",
+              "meaningByLocale": {
+                "ru": "волан. The shuttlecock is in my bag. — «Волан в моей сумке». Лёгкий «мячик» с перьями для бадминтона.",
+                "uk": "волан. The shuttlecock is in my bag. — «Волан у моїй сумці». Легкий «м’ячик» з пір’ям для бадмінтону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shuttlecock",
+            "definitionByLocale": {
+              "ru": "волан. The shuttlecock is in my bag. — «Волан в моей сумке». Лёгкий «мячик» с перьями для бадминтона.",
+              "uk": "волан. The shuttlecock is in my bag. — «Волан у моїй сумці». Легкий «м’ячик» з пір’ям для бадмінтону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг питає, чий волан. Він ваш. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i03:r3",
+            "text": "I"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, чий волан. Він ваш. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, чей волан. Он ваш. Выберите слово",
+            "uk": "Друг питає, чий волан. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The shuttlecock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-53:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i03:r3",
+              "text": "I"
+            }
+          ],
+          "testedDimension": "Друг питає, чий волан. Він ваш. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг питає, чий волан. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг питає, чий волан. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`I` значит «я», а «мой» без вещи — `mine`.",
+                "uk": "`I` означає «я», а «мій» без речі — `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-53:i04:p1",
+              "target": "court",
+              "meaningByLocale": {
+                "ru": "корт",
+                "uk": "корт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i04:p2",
+              "target": "net",
+              "meaningByLocale": {
+                "ru": "сетка",
+                "uk": "сітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i04:p3",
+              "target": "shuttlecock",
+              "meaningByLocale": {
+                "ru": "волан",
+                "uk": "волан"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i04:p4",
+              "target": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло",
+                "uk": "табло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "court",
+            "net",
+            "shuttlecock",
+            "scoreboard"
+          ],
+          "rightColumn": [
+            "корт",
+            "сітка",
+            "волан",
+            "табло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:word:scoreboard",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scoreboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:word:scoreboard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scoreboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:word:scoreboard:audio",
+            "transcript": "scoreboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:word:scoreboard:r1",
+              "targetText": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло. The scoreboard is on the wall. — «Табло на стене». Щит, на котором показывают счёт игры.",
+                "uk": "табло. The scoreboard is on the wall. — «Табло на стіні». Щит, на якому показують рахунок гри."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scoreboard",
+            "definitionByLocale": {
+              "ru": "табло. The scoreboard is on the wall. — «Табло на стене». Щит, на котором показывают счёт игры.",
+              "uk": "табло. The scoreboard is on the wall. — «Табло на стіні». Щит, на якому показують рахунок гри."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тренера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i05:audio",
+            "transcript": "The scoreboard is on the wall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The scoreboard is on the wall.",
+          "orderedTokens": [
+            "The",
+            "scoreboard",
+            "is",
+            "on",
+            "the",
+            "wall"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тренера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The scoreboard is on the wall.`",
+                "uk": "тут потрібно `is` — `The scoreboard is on the wall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви шукаєте табло. Спитайте друга: «Де табло?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте табло. Спитайте друга: «Де табло?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the scoreboard?",
+          "localizedMeaning": {
+            "ru": "Вы ищете табло. Спросите друга: «Где табло?»",
+            "uk": "Ви шукаєте табло. Спитайте друга: «Де табло?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "scoreboard"
+          ],
+          "authoredDistractorTokens": [
+            "Whose"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви шукаєте табло. Спитайте друга: «Де табло?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the scoreboard?`",
+                "uk": "тут потрібно `Where` — `Where is the scoreboard?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер питає, чия сітка. Вона вашого друга. Скажіть: «Сітка мого друга»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Тренер питає, чия сітка. Вона вашого друга. Скажіть: «Сітка мого друга»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i07:audio",
+            "transcript": "The net is my friend's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The net is my friend's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i08:r3",
+            "text": "they"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две девочки принесли волан. Вы говорите о нём. Выберите слово",
+            "uk": "Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The shuttlecock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-53:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i08:r3",
+              "text": "they"
+            }
+          ],
+          "testedDimension": "Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `theirs`, а не `their`.",
+                "uk": "Без назви речі потрібно `theirs`, а не `their`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Дві дівчинки принесли волан. Ви говорите про нього. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`they` значит «они», а «их» без вещи — `theirs`.",
+                "uk": "`they` означає «вони», а «їхній» без речі — `theirs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i09:r1",
+            "text": "The net is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i09:r2",
+            "text": "The net is his."
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i09:r3",
+            "text": "The court is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i09:audio",
+            "transcript": "The net is hers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:i09:r1",
+              "targetText": "The net is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i09:r2",
+              "targetText": "The net is his.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i09:r3",
+              "targetText": "The court is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hers`, а в этом варианте — `his`.",
+                "uk": "У записі останнє слово — `hers`, а в цьому варіанті — `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.",
+                "uk": "У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-53:i10:p1",
+              "target": "court",
+              "meaningByLocale": {
+                "ru": "корт",
+                "uk": "корт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i10:p2",
+              "target": "net",
+              "meaningByLocale": {
+                "ru": "сетка",
+                "uk": "сітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i10:p3",
+              "target": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло",
+                "uk": "табло"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "court",
+            "net",
+            "scoreboard",
+            "wall"
+          ],
+          "rightColumn": [
+            "корт",
+            "сітка",
+            "табло",
+            "стіна"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i11:audio",
+            "transcript": "My friend's net is under the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My friend's net is under the bench.",
+          "orderedTokens": [
+            "My",
+            "friend's",
+            "net",
+            "is",
+            "under",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "friend"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `friend's` — `My friend's net is under the bench.`",
+                "uk": "тут потрібно `friend's` — `My friend's net is under the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На корті лежать два волані. Спитайте друга: «Чиї це волани?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На корті лежать два волані. Спитайте друга: «Чиї це волани?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose shuttlecocks are these?",
+          "localizedMeaning": {
+            "ru": "На корте лежат два волана. Спросите друга: «Чьи это воланы?»",
+            "uk": "На корті лежать два волані. Спитайте друга: «Чиї це волани?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "shuttlecocks",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На корті лежать два волані. Спитайте друга: «Чиї це волани?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose shuttlecocks are these?`",
+                "uk": "тут потрібно `Whose` — `Whose shuttlecocks are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви дали другові свій волан. Він питає, чий волан тепер. Скажіть: «Волан твій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Ви дали другові свій волан. Він питає, чий волан тепер. Скажіть: «Волан твій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i13:audio",
+            "transcript": "The shuttlecock is yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shuttlecock is yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тренер показує на корт і питає вас. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер показує на корт і питає вас. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тренер показывает на корт и спрашивает вас. Выберите слово",
+            "uk": "Тренер показує на корт і питає вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose court ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-53:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Тренер показує на корт і питає вас. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Тренер показує на корт і питає вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Корт один, поэтому нужно `is`, а не `are`.",
+                "uk": "Корт один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Тренер показує на корт і питає вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а в вопросе «чей это корт?» нужно `is`.",
+                "uk": "`has` означає «має», а в питанні «чий це корт?» потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i15:r1",
+            "text": "Is this net your friend's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i15:r2",
+            "text": "Is this net your cousin's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i15:r3",
+            "text": "Is this court your friend's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i15:audio",
+            "transcript": "Is this net your friend's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-53:i15:r1",
+              "targetText": "Is this net your friend's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i15:r2",
+              "targetText": "Is this net your cousin's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i15:r3",
+              "targetText": "Is this court your friend's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `friend's`, друг, а в этом варианте — `cousin's`, двоюродный брат или сестра.",
+                "uk": "У записі господар — `friend's`, друг, а в цьому варіанті — `cousin's`, двоюрідний брат або сестра."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `net`, сетка, а в этом варианте — `court`, корт.",
+                "uk": "У записі річ — `net`, сітка, а в цьому варіанті — `court`, корт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-53:i16:p1",
+              "target": "court",
+              "meaningByLocale": {
+                "ru": "корт",
+                "uk": "корт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i16:p2",
+              "target": "net",
+              "meaningByLocale": {
+                "ru": "сетка",
+                "uk": "сітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i16:p3",
+              "target": "shuttlecock",
+              "meaningByLocale": {
+                "ru": "волан",
+                "uk": "волан"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-53:i16:p4",
+              "target": "scoreboard",
+              "meaningByLocale": {
+                "ru": "табло",
+                "uk": "табло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "court",
+            "net",
+            "shuttlecock",
+            "scoreboard"
+          ],
+          "rightColumn": [
+            "корт",
+            "сітка",
+            "волан",
+            "табло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли сітку біля корту й хочете повернути її. Спитайте тренера: «Чия це сітка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли сітку біля корту й хочете повернути її. Спитайте тренера: «Чия це сітка?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-53:i17:audio",
+            "transcript": "Whose net is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose net is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-53:word:court",
+      "correctText": "court",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i01",
+      "correctText": "The court is near the school.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:word:net",
+      "correctText": "net",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i02",
+      "correctText": "Whose net is that?",
+      "correctResponseId": "en:lesson-05:session-53:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:word:shuttlecock",
+      "correctText": "shuttlecock",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i03",
+      "correctText": "mine",
+      "correctResponseId": "en:lesson-05:session-53:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:word:scoreboard",
+      "correctText": "scoreboard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i05",
+      "correctText": "The scoreboard is on the wall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i06",
+      "correctText": "Where is the scoreboard?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i07",
+      "correctText": "The net is my friend's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i08",
+      "correctText": "theirs",
+      "correctResponseId": "en:lesson-05:session-53:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i09",
+      "correctText": "The net is hers.",
+      "correctResponseId": "en:lesson-05:session-53:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i11",
+      "correctText": "My friend's net is under the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i12",
+      "correctText": "Whose shuttlecocks are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i13",
+      "correctText": "The shuttlecock is yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-53:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i15",
+      "correctText": "Is this net your friend's?",
+      "correctResponseId": "en:lesson-05:session-53:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i17",
+      "correctText": "Whose net is this?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-51",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-51:word:stadium",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stadium",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:stadium:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stadium",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:stadium:audio",
+            "transcript": "stadium"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:stadium:r1",
+              "targetText": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион. The stadium is near the park. — «Стадион возле парка». Большое поле с трибунами для матчей.",
+                "uk": "стадіон. The stadium is near the park. — «Стадіон біля парку». Велике поле з трибунами для матчів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stadium",
+            "definitionByLocale": {
+              "ru": "стадион. The stadium is near the park. — «Стадион возле парка». Большое поле с трибунами для матчей.",
+              "uk": "стадіон. The stadium is near the park. — «Стадіон біля парку». Велике поле з трибунами для матчів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра ищет стадион. Скажите ей: «Стадион возле парка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра ищет стадион. Скажите ей: «Стадион возле парка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The stadium is near the park.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет стадион. Скажите ей: «Стадион возле парка»",
+            "uk": "Сестра шукає стадіон. Скажіть їй: «Стадіон біля парку»"
+          },
+          "orderedTokens": [
+            "The",
+            "stadium",
+            "is",
+            "near",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра ищет стадион. Скажите ей: «Стадион возле парка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The stadium is near the park.`",
+                "uk": "тут потрібно `is` — `The stadium is near the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:word:flag",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:flag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:flag:audio",
+            "transcript": "flag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:flag:r1",
+              "targetText": "flag",
+              "meaningByLocale": {
+                "ru": "флаг. The flag is red. — «Флаг красный». Полотнище, которым машут болельщики.",
+                "uk": "прапор. The flag is red. — «Прапор червоний». Полотнище, яким махають уболівальники."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flag",
+            "definitionByLocale": {
+              "ru": "флаг. The flag is red. — «Флаг красный». Полотнище, которым машут болельщики.",
+              "uk": "прапор. The flag is red. — «Прапор червоний». Полотнище, яким махають уболівальники."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте контролёра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i02:r1",
+            "text": "Whose flag is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i02:r2",
+            "text": "Whose flag is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i02:r3",
+            "text": "Whose bag is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте контролёра",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i02:audio",
+            "transcript": "Whose flag is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:i02:r1",
+              "targetText": "Whose flag is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i02:r2",
+              "targetText": "Whose flag is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i02:r3",
+              "targetText": "Whose bag is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте контролёра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте контролёра",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `flag`, флаг, а в этом варианте — `bag`, сумка.",
+                "uk": "У записі річ — `flag`, прапор, а в цьому варіанті — `bag`, сумка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:word:programme",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — programme",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:programme:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — programme",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:programme:audio",
+            "transcript": "programme"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:programme:r1",
+              "targetText": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча. The programme is on the chair. — «Программа на стуле». Брошюра со списком игроков и временем матча.",
+                "uk": "програма матчу. The programme is on the chair. — «Програма на стільці». Брошура зі списком гравців і часом матчу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "programme",
+            "definitionByLocale": {
+              "ru": "программа матча. The programme is on the chair. — «Программа на стуле». Брошюра со списком игроков и временем матча.",
+              "uk": "програма матчу. The programme is on the chair. — «Програма на стільці». Брошура зі списком гравців і часом матчу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра спрашивает про программу матча. Она ваша. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i03:r3",
+            "text": "I"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра спрашивает про программу матча. Она ваша. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра спрашивает про программу матча. Она ваша. Выберите слово",
+            "uk": "Сестра питає про програму матчу. Вона ваша. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The programme is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-51:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i03:r3",
+              "text": "I"
+            }
+          ],
+          "testedDimension": "Сестра спрашивает про программу матча. Она ваша. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Сестра спрашивает про программу матча. Она ваша. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Сестра спрашивает про программу матча. Она ваша. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`I` значит «я», а «моя» без вещи — `mine`.",
+                "uk": "`I` означає «я», а «моя» без речі — `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-51:i04:p1",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i04:p2",
+              "target": "flag",
+              "meaningByLocale": {
+                "ru": "флаг",
+                "uk": "прапор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i04:p3",
+              "target": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча",
+                "uk": "програма матчу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i04:p4",
+              "target": "jersey",
+              "meaningByLocale": {
+                "ru": "футболка игрока",
+                "uk": "футболка гравця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stadium",
+            "flag",
+            "programme",
+            "jersey"
+          ],
+          "rightColumn": [
+            "стадион",
+            "флаг",
+            "программа матча",
+            "футболка игрока"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:word:jersey",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jersey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:jersey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jersey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:jersey:audio",
+            "transcript": "jersey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:jersey:r1",
+              "targetText": "jersey",
+              "meaningByLocale": {
+                "ru": "футболка игрока. The jersey is under the chair. — «Футболка игрока под стулом». Спортивная рубашка с номером.",
+                "uk": "футболка гравця. The jersey is under the chair. — «Футболка гравця під стільцем». Спортивна сорочка з номером."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jersey",
+            "definitionByLocale": {
+              "ru": "футболка игрока. The jersey is under the chair. — «Футболка игрока под стулом». Спортивная рубашка с номером.",
+              "uk": "футболка гравця. The jersey is under the chair. — «Футболка гравця під стільцем». Спортивна сорочка з номером."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сестру и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i05:audio",
+            "transcript": "The jersey is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The jersey is on the chair.",
+          "orderedTokens": [
+            "The",
+            "jersey",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сестру и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The jersey is on the chair.`",
+                "uk": "тут потрібно `is` — `The jersey is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На трибуне лежат две футболки. Спросите контролёра: «Чьи это футболки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На трибуне лежат две футболки. Спросите контролёра: «Чьи это футболки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose jerseys are these?",
+          "localizedMeaning": {
+            "ru": "На трибуне лежат две футболки. Спросите контролёра: «Чьи это футболки?»",
+            "uk": "На трибуні лежать дві футболки. Спитайте контролера: «Чиї це футболки?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "jerseys",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "На трибуне лежат две футболки. Спросите контролёра: «Чьи это футболки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose jerseys are these?`",
+                "uk": "тут потрібно `Whose` — `Whose jerseys are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Контролёр спрашивает, чья футболка. Она вашего брата. Скажите: «Футболка моего брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i07:audio"
+        ],
+        "accessibilityLabel": "Контролёр спрашивает, чья футболка. Она вашего брата. Скажите: «Футболка моего брата»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i07:audio",
+            "transcript": "The jersey is my brother's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The jersey is my brother's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец показывает две программы. Они ваши с сестрой. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i08:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i08:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i08:r3",
+            "text": "we"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает две программы. Они ваши с сестрой. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает две программы. Они ваши с сестрой. Выберите слово",
+            "uk": "Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The programmes are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-51:i08:r1",
+              "text": "ours"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i08:r2",
+              "text": "our"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i08:r3",
+              "text": "we"
+            }
+          ],
+          "testedDimension": "Продавец показывает две программы. Они ваши с сестрой. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавец показывает две программы. Они ваши с сестрой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `ours`, а не `our`.",
+                "uk": "Без назви речі потрібно `ours`, а не `our`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавец показывает две программы. Они ваши с сестрой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`we` значит «мы», а «наши» без вещи — `ours`.",
+                "uk": "`we` означає «ми», а «наші» без речі — `ours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i09:r1",
+            "text": "The flag is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i09:r2",
+            "text": "The flag is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i09:r3",
+            "text": "The jersey is yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i09:audio",
+            "transcript": "The flag is yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:i09:r1",
+              "targetText": "The flag is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i09:r2",
+              "targetText": "The flag is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i09:r3",
+              "targetText": "The jersey is yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `yours`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `hers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `flag`, флаг, а в этом варианте — `jersey`, футболка.",
+                "uk": "У записі річ — `flag`, прапор, а в цьому варіанті — `jersey`, футболка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-51:i10:p1",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i10:p2",
+              "target": "flag",
+              "meaningByLocale": {
+                "ru": "флаг",
+                "uk": "прапор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i10:p3",
+              "target": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча",
+                "uk": "програма матчу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i10:p4",
+              "target": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stadium",
+            "flag",
+            "programme",
+            "ball"
+          ],
+          "rightColumn": [
+            "стадион",
+            "флаг",
+            "программа матча",
+            "мяч"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i11:audio",
+            "transcript": "My cousin's flag is under the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's flag is under the chair.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "flag",
+            "is",
+            "under",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "cousin"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cousin's` — `My cousin's flag is under the chair.`",
+                "uk": "тут потрібно `cousin's` — `My cousin's flag is under the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ищете стадион. Спросите сестру: «Где стадион?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете стадион. Спросите сестру: «Где стадион?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the stadium?",
+          "localizedMeaning": {
+            "ru": "Вы ищете стадион. Спросите сестру: «Где стадион?»",
+            "uk": "Ви шукаєте стадіон. Спитайте сестру: «Де стадіон?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "stadium"
+          ],
+          "authoredDistractorTokens": [
+            "Whose"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы ищете стадион. Спросите сестру: «Где стадион?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the stadium?`",
+                "uk": "тут потрібно `Where` — `Where is the stadium?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает о программе матча. Она её. Скажите: «Программа её»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает о программе матча. Она её. Скажите: «Программа её»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i13:audio",
+            "transcript": "The programme is hers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The programme is hers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Контролёр держит футболку и спрашивает вас. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Контролёр держит футболку и спрашивает вас. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Контролёр держит футболку и спрашивает вас. Выберите слово",
+            "uk": "Контролер тримає футболку й питає вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose jersey ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-51:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Контролёр держит футболку и спрашивает вас. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i14:r2",
+              "correct": false,
+              "testedDimension": "Контролёр держит футболку и спрашивает вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Футболка одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Футболка одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i14:r3",
+              "correct": false,
+              "testedDimension": "Контролёр держит футболку и спрашивает вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а в вопросе «чья это футболка?» нужно `is`.",
+                "uk": "`has` означає «має», а в питанні «чия це футболка?» потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте контролёра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i15:r1",
+            "text": "Is this jersey your cousin's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i15:r2",
+            "text": "Is this jersey your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i15:r3",
+            "text": "Is this flag your cousin's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте контролёра",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i15:audio",
+            "transcript": "Is this jersey your cousin's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:i15:r1",
+              "targetText": "Is this jersey your cousin's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i15:r2",
+              "targetText": "Is this jersey your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i15:r3",
+              "targetText": "Is this flag your cousin's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте контролёра",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `cousin's`, двоюродный брат или сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `cousin's`, двоюрідний брат або сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте контролёра",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `jersey`, футболка, а в этом варианте — `flag`, флаг.",
+                "uk": "У записі річ — `jersey`, футболка, а в цьому варіанті — `flag`, прапор."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-51:i16:p1",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i16:p2",
+              "target": "flag",
+              "meaningByLocale": {
+                "ru": "флаг",
+                "uk": "прапор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i16:p3",
+              "target": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча",
+                "uk": "програма матчу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i16:p4",
+              "target": "jersey",
+              "meaningByLocale": {
+                "ru": "футболка игрока",
+                "uk": "футболка гравця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stadium",
+            "flag",
+            "programme",
+            "jersey"
+          ],
+          "rightColumn": [
+            "стадион",
+            "флаг",
+            "программа матча",
+            "футболка игрока"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли футболку на трибуне и хотите вернуть её. Спросите контролёра: «Чья это футболка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Вы нашли футболку на трибуне и хотите вернуть её. Спросите контролёра: «Чья это футболка?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i17:audio",
+            "transcript": "Whose jersey is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose jersey is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-51:word:stadium",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stadium",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:stadium:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stadium",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:stadium:audio",
+            "transcript": "stadium"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:stadium:r1",
+              "targetText": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион. The stadium is near the park. — «Стадион возле парка». Большое поле с трибунами для матчей.",
+                "uk": "стадіон. The stadium is near the park. — «Стадіон біля парку». Велике поле з трибунами для матчів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stadium",
+            "definitionByLocale": {
+              "ru": "стадион. The stadium is near the park. — «Стадион возле парка». Большое поле с трибунами для матчей.",
+              "uk": "стадіон. The stadium is near the park. — «Стадіон біля парку». Велике поле з трибунами для матчів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра шукає стадіон. Скажіть їй: «Стадіон біля парку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра шукає стадіон. Скажіть їй: «Стадіон біля парку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The stadium is near the park.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет стадион. Скажите ей: «Стадион возле парка»",
+            "uk": "Сестра шукає стадіон. Скажіть їй: «Стадіон біля парку»"
+          },
+          "orderedTokens": [
+            "The",
+            "stadium",
+            "is",
+            "near",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра шукає стадіон. Скажіть їй: «Стадіон біля парку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The stadium is near the park.`",
+                "uk": "тут потрібно `is` — `The stadium is near the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:word:flag",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:flag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:flag:audio",
+            "transcript": "flag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:flag:r1",
+              "targetText": "flag",
+              "meaningByLocale": {
+                "ru": "флаг. The flag is red. — «Флаг красный». Полотнище, которым машут болельщики.",
+                "uk": "прапор. The flag is red. — «Прапор червоний». Полотнище, яким махають уболівальники."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flag",
+            "definitionByLocale": {
+              "ru": "флаг. The flag is red. — «Флаг красный». Полотнище, которым машут болельщики.",
+              "uk": "прапор. The flag is red. — «Прапор червоний». Полотнище, яким махають уболівальники."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте контролера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i02:r1",
+            "text": "Whose flag is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i02:r2",
+            "text": "Whose flag is that?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i02:r3",
+            "text": "Whose bag is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте контролера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i02:audio",
+            "transcript": "Whose flag is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:i02:r1",
+              "targetText": "Whose flag is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i02:r2",
+              "targetText": "Whose flag is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i02:r3",
+              "targetText": "Whose bag is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте контролера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте контролера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `flag`, флаг, а в этом варианте — `bag`, сумка.",
+                "uk": "У записі річ — `flag`, прапор, а в цьому варіанті — `bag`, сумка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:word:programme",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — programme",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:programme:audio"
+        ],
+        "accessibilityLabel": "Картка слова — programme",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:programme:audio",
+            "transcript": "programme"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:programme:r1",
+              "targetText": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча. The programme is on the chair. — «Программа на стуле». Брошюра со списком игроков и временем матча.",
+                "uk": "програма матчу. The programme is on the chair. — «Програма на стільці». Брошура зі списком гравців і часом матчу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "programme",
+            "definitionByLocale": {
+              "ru": "программа матча. The programme is on the chair. — «Программа на стуле». Брошюра со списком игроков и временем матча.",
+              "uk": "програма матчу. The programme is on the chair. — «Програма на стільці». Брошура зі списком гравців і часом матчу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра питає про програму матчу. Вона ваша. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i03:r3",
+            "text": "I"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра питає про програму матчу. Вона ваша. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра спрашивает про программу матча. Она ваша. Выберите слово",
+            "uk": "Сестра питає про програму матчу. Вона ваша. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The programme is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-51:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i03:r3",
+              "text": "I"
+            }
+          ],
+          "testedDimension": "Сестра питає про програму матчу. Вона ваша. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Сестра питає про програму матчу. Вона ваша. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `mine`, а не `my`.",
+                "uk": "Без назви речі потрібно `mine`, а не `my`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Сестра питає про програму матчу. Вона ваша. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`I` значит «я», а «моя» без вещи — `mine`.",
+                "uk": "`I` означає «я», а «моя» без речі — `mine`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-51:i04:p1",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i04:p2",
+              "target": "flag",
+              "meaningByLocale": {
+                "ru": "флаг",
+                "uk": "прапор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i04:p3",
+              "target": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча",
+                "uk": "програма матчу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i04:p4",
+              "target": "jersey",
+              "meaningByLocale": {
+                "ru": "футболка игрока",
+                "uk": "футболка гравця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stadium",
+            "flag",
+            "programme",
+            "jersey"
+          ],
+          "rightColumn": [
+            "стадіон",
+            "прапор",
+            "програма матчу",
+            "футболка гравця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:word:jersey",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jersey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:word:jersey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jersey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:word:jersey:audio",
+            "transcript": "jersey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:word:jersey:r1",
+              "targetText": "jersey",
+              "meaningByLocale": {
+                "ru": "футболка игрока. The jersey is under the chair. — «Футболка игрока под стулом». Спортивная рубашка с номером.",
+                "uk": "футболка гравця. The jersey is under the chair. — «Футболка гравця під стільцем». Спортивна сорочка з номером."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jersey",
+            "definitionByLocale": {
+              "ru": "футболка игрока. The jersey is under the chair. — «Футболка игрока под стулом». Спортивная рубашка с номером.",
+              "uk": "футболка гравця. The jersey is under the chair. — «Футболка гравця під стільцем». Спортивна сорочка з номером."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сестру й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i05:audio",
+            "transcript": "The jersey is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The jersey is on the chair.",
+          "orderedTokens": [
+            "The",
+            "jersey",
+            "is",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сестру й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The jersey is on the chair.`",
+                "uk": "тут потрібно `is` — `The jersey is on the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На трибуні лежать дві футболки. Спитайте контролера: «Чиї це футболки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На трибуні лежать дві футболки. Спитайте контролера: «Чиї це футболки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose jerseys are these?",
+          "localizedMeaning": {
+            "ru": "На трибуне лежат две футболки. Спросите контролёра: «Чьи это футболки?»",
+            "uk": "На трибуні лежать дві футболки. Спитайте контролера: «Чиї це футболки?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "jerseys",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "На трибуні лежать дві футболки. Спитайте контролера: «Чиї це футболки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose jerseys are these?`",
+                "uk": "тут потрібно `Whose` — `Whose jerseys are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Контролер питає, чия футболка. Вона вашого брата. Скажіть: «Футболка мого брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i07:audio"
+        ],
+        "accessibilityLabel": "Контролер питає, чия футболка. Вона вашого брата. Скажіть: «Футболка мого брата»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i07:audio",
+            "transcript": "The jersey is my brother's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The jersey is my brother's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i08:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i08:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i08:r3",
+            "text": "we"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает две программы. Они ваши с сестрой. Выберите слово",
+            "uk": "Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The programmes are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-51:i08:r1",
+              "text": "ours"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i08:r2",
+              "text": "our"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i08:r3",
+              "text": "we"
+            }
+          ],
+          "testedDimension": "Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без названия вещи нужно `ours`, а не `our`.",
+                "uk": "Без назви речі потрібно `ours`, а не `our`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавець показує дві програми. Вони ваші з сестрою. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`we` значит «мы», а «наши» без вещи — `ours`.",
+                "uk": "`we` означає «ми», а «наші» без речі — `ours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i09:r1",
+            "text": "The flag is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i09:r2",
+            "text": "The flag is hers."
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i09:r3",
+            "text": "The jersey is yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i09:audio",
+            "transcript": "The flag is yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:i09:r1",
+              "targetText": "The flag is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i09:r2",
+              "targetText": "The flag is hers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i09:r3",
+              "targetText": "The jersey is yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `yours`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `hers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `flag`, флаг, а в этом варианте — `jersey`, футболка.",
+                "uk": "У записі річ — `flag`, прапор, а в цьому варіанті — `jersey`, футболка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-51:i10:p1",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i10:p2",
+              "target": "flag",
+              "meaningByLocale": {
+                "ru": "флаг",
+                "uk": "прапор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i10:p3",
+              "target": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча",
+                "uk": "програма матчу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i10:p4",
+              "target": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stadium",
+            "flag",
+            "programme",
+            "ball"
+          ],
+          "rightColumn": [
+            "стадіон",
+            "прапор",
+            "програма матчу",
+            "м’яч"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i11:audio",
+            "transcript": "My cousin's flag is under the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's flag is under the chair.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "flag",
+            "is",
+            "under",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "cousin"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cousin's` — `My cousin's flag is under the chair.`",
+                "uk": "тут потрібно `cousin's` — `My cousin's flag is under the chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви шукаєте стадіон. Спитайте сестру: «Де стадіон?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте стадіон. Спитайте сестру: «Де стадіон?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the stadium?",
+          "localizedMeaning": {
+            "ru": "Вы ищете стадион. Спросите сестру: «Где стадион?»",
+            "uk": "Ви шукаєте стадіон. Спитайте сестру: «Де стадіон?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "stadium"
+          ],
+          "authoredDistractorTokens": [
+            "Whose"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви шукаєте стадіон. Спитайте сестру: «Де стадіон?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is the stadium?`",
+                "uk": "тут потрібно `Where` — `Where is the stadium?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра питає про програму матчу. Вона її. Скажіть: «Програма її»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра питає про програму матчу. Вона її. Скажіть: «Програма її»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i13:audio",
+            "transcript": "The programme is hers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The programme is hers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Контролер тримає футболку й питає вас. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Контролер тримає футболку й питає вас. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Контролёр держит футболку и спрашивает вас. Выберите слово",
+            "uk": "Контролер тримає футболку й питає вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Whose jersey ___ this?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-51:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Контролер тримає футболку й питає вас. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i14:r2",
+              "correct": false,
+              "testedDimension": "Контролер тримає футболку й питає вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Футболка одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Футболка одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i14:r3",
+              "correct": false,
+              "testedDimension": "Контролер тримає футболку й питає вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а в вопросе «чья это футболка?» нужно `is`.",
+                "uk": "`has` означає «має», а в питанні «чия це футболка?» потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте контролера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-51:i15:r1",
+            "text": "Is this jersey your cousin's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i15:r2",
+            "text": "Is this jersey your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-51:i15:r3",
+            "text": "Is this flag your cousin's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте контролера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i15:audio",
+            "transcript": "Is this jersey your cousin's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-51:i15:r1",
+              "targetText": "Is this jersey your cousin's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i15:r2",
+              "targetText": "Is this jersey your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i15:r3",
+              "targetText": "Is this flag your cousin's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-51:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте контролера",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `cousin's`, двоюродный брат или сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `cousin's`, двоюрідний брат або сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-51:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте контролера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `jersey`, футболка, а в этом варианте — `flag`, флаг.",
+                "uk": "У записі річ — `jersey`, футболка, а в цьому варіанті — `flag`, прапор."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-51:i16:p1",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i16:p2",
+              "target": "flag",
+              "meaningByLocale": {
+                "ru": "флаг",
+                "uk": "прапор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i16:p3",
+              "target": "programme",
+              "meaningByLocale": {
+                "ru": "программа матча",
+                "uk": "програма матчу"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-51:i16:p4",
+              "target": "jersey",
+              "meaningByLocale": {
+                "ru": "футболка игрока",
+                "uk": "футболка гравця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stadium",
+            "flag",
+            "programme",
+            "jersey"
+          ],
+          "rightColumn": [
+            "стадіон",
+            "прапор",
+            "програма матчу",
+            "футболка гравця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли футболку на трибуні й хочете повернути її. Спитайте контролера: «Чия це футболка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли футболку на трибуні й хочете повернути її. Спитайте контролера: «Чия це футболка?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-51:i17:audio",
+            "transcript": "Whose jersey is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose jersey is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-51:word:stadium",
+      "correctText": "stadium",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i01",
+      "correctText": "The stadium is near the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:word:flag",
+      "correctText": "flag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i02",
+      "correctText": "Whose flag is this?",
+      "correctResponseId": "en:lesson-05:session-51:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:word:programme",
+      "correctText": "programme",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i03",
+      "correctText": "mine",
+      "correctResponseId": "en:lesson-05:session-51:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:word:jersey",
+      "correctText": "jersey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i05",
+      "correctText": "The jersey is on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i06",
+      "correctText": "Whose jerseys are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i07",
+      "correctText": "The jersey is my brother's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i08",
+      "correctText": "ours",
+      "correctResponseId": "en:lesson-05:session-51:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i09",
+      "correctText": "The flag is yours.",
+      "correctResponseId": "en:lesson-05:session-51:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i11",
+      "correctText": "My cousin's flag is under the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i12",
+      "correctText": "Where is the stadium?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i13",
+      "correctText": "The programme is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-51:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i15",
+      "correctText": "Is this jersey your cousin's?",
+      "correctResponseId": "en:lesson-05:session-51:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-51:i17",
+      "correctText": "Whose jersey is this?",
+      "correctResponseId": null
+    }
+  ]
+}

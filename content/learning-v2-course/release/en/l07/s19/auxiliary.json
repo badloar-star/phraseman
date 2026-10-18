@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-19:intro1:r2": {
-          "ru": "После `I` нужно `don’t`.",
-          "uk": "Після `I` потрібне `don’t`."
+          "ru": "После I нужно don't.",
+          "uk": "Після I потрібно don't."
         },
         "en:lesson-07:session-19:intro1:r3": {
-          "ru": "Перед действием нужно `don’t`, а не просто `not`.",
-          "uk": "Перед дією потрібне `don’t`, а не просто `not`."
+          "ru": "Перед действием нужно don't, а не просто not.",
+          "uk": "Перед дією потрібно don't, а не просто not."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-19:intro2:r2": {
-          "ru": "Один принтер: нужен вопрос с `does`.",
-          "uk": "Один принтер: потрібне запитання з `does`."
+          "ru": "Вместо the loudspeaker можно сказать it: нужно Does.",
+          "uk": "Замість the loudspeaker можна сказати it: потрібно Does."
         },
         "en:lesson-07:session-19:intro2:r3": {
-          "ru": "После `does` нужно `work`, без `s`.",
-          "uk": "Після `does` потрібне `work`, без `s`."
+          "ru": "После Does нужно have, а не has.",
+          "uk": "Після Does потрібно have, а не has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-19:intro3:r2": {
-          "ru": "`Bags` — множественное число, нужно `are`.",
-          "uk": "`Bags` — множина, потрібне `are`."
+          "ru": "Слово tweezers всегда во множественном числе: нужно are.",
+          "uk": "Слово tweezers завжди у множині: потрібно are."
         },
         "en:lesson-07:session-19:intro3:r3": {
-          "ru": "Без `no` фраза означает, что сумки здесь есть.",
-          "uk": "Без `no` фраза означає, що сумки тут є."
+          "ru": "Без no фраза говорит, что пинцет есть.",
+          "uk": "Без no фраза каже, що пінцет є."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5eb0029fba6750302266efb9a13612ad7956f8f3aaaea23ed9145fa9f2c8b379"
+  "auxiliaryFingerprint": "580b0e65876965ac69fc9e3cc5fa9e207000ac39b21649b6cd4b114c80c33d97"
 }

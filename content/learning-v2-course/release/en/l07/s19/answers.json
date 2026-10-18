@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-07:session-19:word:complain",
+    "correctText": "complain",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-19:i01",
-    "correctText": "I don’t complain.",
+    "correctText": "I don't complain.",
     "correctResponseId": null
   },
   {
@@ -11,57 +16,72 @@
   },
   {
     "interactionId": "en:lesson-07:session-19:i03",
-    "correctText": "don’t",
+    "correctText": "don't",
     "correctResponseId": "en:lesson-07:session-19:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-19:i04",
-    "correctText": "en:lesson-07:session-19:i04:p1=complain\nen:lesson-07:session-19:i04:p2=draw\nen:lesson-07:session-19:i04:p3=tablet\nen:lesson-07:session-19:i04:p4=bags",
+    "correctText": "en:lesson-07:session-19:i04:p1=complain\nen:lesson-07:session-19:i04:p2=work\nen:lesson-07:session-19:i04:p3=draw\nen:lesson-07:session-19:i04:p4=tablet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i05",
-    "correctText": "I don’t complain.",
+    "correctText": "I don't complain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:word:loudspeaker",
+    "correctText": "loudspeaker",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i06",
-    "correctText": "Does the printer work?",
+    "correctText": "Does the loudspeaker have a battery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:word:tweezers",
+    "correctText": "tweezers",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i07",
-    "correctText": "There are no bags here.",
+    "correctText": "There are no tweezers here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i08",
-    "correctText": "work",
+    "correctText": "have",
     "correctResponseId": "en:lesson-07:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-19:i09",
-    "correctText": "I don’t complain.",
+    "correctText": "I don't complain.",
     "correctResponseId": "en:lesson-07:session-19:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-19:i10",
-    "correctText": "en:lesson-07:session-19:i10:p1=printer\nen:lesson-07:session-19:i10:p2=complain\nen:lesson-07:session-19:i10:p3=draw\nen:lesson-07:session-19:i10:p4=tablet",
+    "correctText": "en:lesson-07:session-19:i10:p1=work\nen:lesson-07:session-19:i10:p2=tweezers\nen:lesson-07:session-19:i10:p3=complain\nen:lesson-07:session-19:i10:p4=loudspeaker",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i11",
-    "correctText": "Does the printer work?",
+    "correctText": "Does the loudspeaker have a battery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:word:plaster",
+    "correctText": "plaster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i12",
-    "correctText": "Do you have a tablet?",
+    "correctText": "Do you have a plaster?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i13",
-    "correctText": "The bags are here.",
+    "correctText": "The plaster is here.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-19:i15",
-    "correctText": "I don’t draw.",
+    "correctText": "Do you have a plaster?",
     "correctResponseId": "en:lesson-07:session-19:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-19:i16",
-    "correctText": "en:lesson-07:session-19:i16:p1=bags\nen:lesson-07:session-19:i16:p2=tablet\nen:lesson-07:session-19:i16:p3=complain\nen:lesson-07:session-19:i16:p4=printer",
+    "correctText": "en:lesson-07:session-19:i16:p1=loudspeaker\nen:lesson-07:session-19:i16:p2=plaster\nen:lesson-07:session-19:i16:p3=tweezers\nen:lesson-07:session-19:i16:p4=complain",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-19:i17",
-    "correctText": "Tom doesn’t complain.",
+    "correctText": "She doesn't complain.",
     "correctResponseId": null
   }
 ]

@@ -1,133 +1,154 @@
 # Английский · Урок 7 · Занятие 19 — Я не жалуюсь
 
-**Ситуация.** Вы рассказываете другу о своём отношении к неудобствам, уточняете, работает ли принтер, и ищете сумки.
+**Ситуация.** Вы не жалуетесь на длинную очередь, одалживаете громкоговоритель для пикника и ищете в аптечке пинцет. Вопрос о громкоговорителе начинаем с Does.
 
-**Что вы освоите:** говорить о привычках с don’t, задавать вопрос с does и сообщать об отсутствии вещей
-**Новые слова:** complain
+**Что вы освоите:** сказать, что вы не жалуетесь, спросить, есть ли батарея в устройстве, и сообщить, что чего-то нет
+**Новые слова:** complain, loudspeaker, tweezers, plaster
+**Возвращаются:** work, have, draw, tablet, drive, gossip
 
 ---
 
 ## Интро 1
 
-### Спокойно отношусь к неудобствам
+### Длинная очередь
 
-Друг спрашивает, часто ли вы жалуетесь на бытовые неудобства. `complain` — «жаловаться». `I don’t complain` — «Я не жалуюсь». Здесь речь о привычном поведении: после `I` ставим `don’t`, затем `complain`. Даже очередь не получает от вас отдельную жалобу за свою длину.
+В длинной очереди на почте все недовольно вздыхают, а стоящий рядом друг интересуется, как вы относитесь к таким неудобствам. complain — «жаловаться». Ответьте: I don't complain — «Я не жалуюсь». После I ставим don't, а complain без изменений.
 
-**Сообщите другу о своей привычке: «Я не жалуюсь».**
+**Друг спрашивает, не жалуетесь ли вы на очередь. Ответьте: «Я не жалуюсь».**
 
-- ✅ **I don’t complain.**
-- ❌ I doesn’t complain. — *После `I` нужно `don’t`.*
-- ❌ I not complain. — *Перед действием нужно `don’t`, а не просто `not`.*
+- ✅ **I don't complain.**
+- ❌ I doesn't complain. — *После I нужно don't.*
+- ❌ I not complain. — *Перед действием нужно don't, а не просто not.*
 
 ---
 
 ## Интро 2
 
-### Проверяем принтер
+### Звук на пикнике
 
-Вы хотите напечатать документ и спрашиваете коллегу о принтере. `Does the printer work?` — «Принтер работает?» В вопросе об одном принтере ставим `does` в начало. После `the printer` — `work`, без `s`.
+Вы берёте у соседа громкоговоритель для пикника. В парке нет розетки, поэтому заранее уточняете, есть ли у прибора батарея. loudspeaker — «громкоговоритель». Does the loudspeaker have a battery? — «У громкоговорителя есть батарея?» После Does ставим have, не has.
 
-**Спросите коллегу: «Принтер работает?»**
+**Вы берёте прибор в парк без розеток. Спросите соседа: «У громкоговорителя есть батарея?»**
 
-- ✅ **Does the printer work?**
-- ❌ Do the printer work? — *Один принтер: нужен вопрос с `does`.*
-- ❌ Does the printer works? — *После `does` нужно `work`, без `s`.*
+- ✅ **Does the loudspeaker have a battery?**
+- ❌ Do the loudspeaker have a battery? — *Вместо the loudspeaker можно сказать it: нужно Does.*
+- ❌ Does the loudspeaker has a battery? — *После Does нужно have, а не has.*
 
 ---
 
 ## Интро 3
 
-### Сумок здесь нет
+### Заноза в пальце
 
-Вы ищете сумки и проверили комнату. `There are no bags here` — «Здесь нет сумок». С `bags` используем `are no`: сумок в этом месте нет.
+Соседскому ребёнку в палец попала заноза, и вы хотите осторожно её вытащить. Вы открыли аптечку и перебрали всё по очереди: пинцета там нет. tweezers — «пинцет». There are no tweezers here — «Здесь нет пинцета». Слово tweezers всегда во множественном числе, поэтому are no.
 
-**Сообщите другу: «Здесь нет сумок».**
+**В аптечке нет пинцета. Скажите соседу: «Здесь нет пинцета».**
 
-- ✅ **There are no bags here.**
-- ❌ There is no bags here. — *`Bags` — множественное число, нужно `are`.*
-- ❌ There are bags here. — *Без `no` фраза означает, что сумки здесь есть.*
+- ✅ **There are no tweezers here.**
+- ❌ There is no tweezers here. — *Слово tweezers всегда во множественном числе: нужно are.*
+- ❌ There are tweezers here. — *Без no фраза говорит, что пинцет есть.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Сообщите «Я не жалуюсь»**
+**1 · Карточка слова — complain**
+<!-- interaction_id: en:lesson-07:session-19:word:complain; family: word_card -->
+> **complain** — жаловаться. We don't complain. — «Мы не жалуемся». Выражать недовольство — устно или письменно.
+
+**2 · Друг спрашивает про очередь. Скажите: «Я не жалуюсь»**
 <!-- interaction_id: en:lesson-07:session-19:i01; family: phrase_builder -->
-Плитки: `complain` `don’t` `I` → **I don’t complain.**
+Плитки: `complain` `don't` `I` `doesn't` → **I don't complain.**
+*(плитка `doesn't` лишняя: здесь нужно `don't` — `I don't complain.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-19:i02; family: listen_choose -->
-🔊 *complain* → **complain** · draw · printer
+🔊 *complain* → **complain** · draw · tablet
 - draw — *В записи первое слово — `complain`, а в этом варианте — `draw`.*
-- printer — *В записи первое слово — `complain`, а в этом варианте — `printer`.*
+- tablet — *В записи первое слово — `complain`, а в этом варианте — `tablet`.*
 
-**3 · Скажите «Я не жалуюсь»**
+**4 · Скажите «Я не жалуюсь». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-19:i03; family: context_gap_grammar -->
-I ___ complain. → **don’t** · doesn’t · not
-- doesn’t — *После `I` нужно `don’t`.*
-- not — *Для отрицания действия нужно `don’t`.*
+I ___ complain. → **don't** · doesn't · not
+- doesn't — *После `I` нужно `don't`.*
+- not — *Для отрицания действия нужно `don't`, а не просто `not`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-19:i04; family: speed_match -->
-complain — жаловаться · draw — рисовать · tablet — планшет · bags — сумки
+complain — жаловаться · work — работать · draw — рисовать · tablet — планшет
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-19:i05; family: listen_build_dictation -->
-🔊 *I don’t complain.* Плитки: `complain` `don’t` `I` → **I don’t complain.**
+🔊 *I don't complain.* Плитки: `complain` `don't` `I` `doesn't` → **I don't complain.**
+*(плитка `doesn't` лишняя: здесь нужно `don't` — `I don't complain.`)*
 
-**6 · Спросите «Принтер работает?»**
+**7 · Карточка слова — loudspeaker**
+<!-- interaction_id: en:lesson-07:session-19:word:loudspeaker; family: word_card -->
+> **loudspeaker** — громкоговоритель. The loudspeaker is big. — «Громкоговоритель большой». Прибор, который делает голос громким для многих людей.
+
+**8 · Вы берёте прибор в парк без розеток. Спросите соседа: «У громкоговорителя есть батарея?»**
 <!-- interaction_id: en:lesson-07:session-19:i06; family: phrase_builder -->
-Плитки: `work` `printer` `the` `Does` → **Does the printer work?**
+Плитки: `battery` `a` `have` `loudspeaker` `the` `Does` `Do` → **Does the loudspeaker have a battery?**
+*(плитка `Do` лишняя: здесь нужно `Does` — `Does the loudspeaker have a battery?`)*
 
-**7 · Сообщите «Здесь нет сумок»**
+**9 · Карточка слова — tweezers**
+<!-- interaction_id: en:lesson-07:session-19:word:tweezers; family: word_card -->
+> **tweezers** — пинцет. The tweezers are small. — «Пинцет маленький». Маленький инструмент из двух полосок, которым берут мелкие предметы.
+
+**10 · Вы открыли аптечку. Скажите соседу: «Здесь нет пинцета»**
 <!-- interaction_id: en:lesson-07:session-19:i07; family: scripted_repeat_compare -->
-🎙 **There are no bags here.**
+🎙 **There are no tweezers here.**
 
-**8 · Спросите «Принтер работает?»**
+**11 · Спросите соседа про громкоговоритель. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-19:i08; family: context_gap_grammar -->
-Does the printer ___? → **work** · works · is work
-- works — *После `does` нужно `work`.*
-- is work — *В этом вопросе нужно `work`, без `is`.*
+Does the loudspeaker ___ a battery? → **have** · has · is have
+- has — *После `Does` нужно `have`, а не `has`.*
+- is have — *В вопросе о наличии нужно `have`, без `is`.*
 
-**9 · Послушайте, чего не делает собеседник**
+**12 · Послушайте, чего не делает собеседник**
 <!-- interaction_id: en:lesson-07:session-19:i09; family: listen_choose -->
-🔊 *I don’t complain.* → **I don’t complain.** · I don’t gamble. · I don’t smoke.
-- I don’t gamble. — *В записи последнее слово — `complain`, а в этом варианте — `gamble`.*
-- I don’t smoke. — *В записи последнее слово — `complain`, а в этом варианте — `smoke`.*
+🔊 *I don't complain.* → **I don't complain.** · I don't drive. · I don't gossip.
+- I don't drive. — *В записи последнее слово — `complain`, а в этом варианте — `drive`.*
+- I don't gossip. — *В записи последнее слово — `complain`, а в этом варианте — `gossip`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-19:i10; family: speed_match -->
-printer — принтер · complain — жаловаться · draw — рисовать · tablet — планшет
+work — работать · tweezers — пинцет · complain — жаловаться · loudspeaker — громкоговоритель
 
-**11 · Послушайте и соберите вопрос**
+**14 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-19:i11; family: listen_build_dictation -->
-🔊 *Does the printer work?* Плитки: `work` `printer` `the` `Does` → **Does the printer work?**
+🔊 *Does the loudspeaker have a battery?* Плитки: `battery` `a` `have` `loudspeaker` `the` `Does` `Do` → **Does the loudspeaker have a battery?**
+*(плитка `Do` лишняя: здесь нужно `Does` — `Does the loudspeaker have a battery?`)*
 
-**12 · Спросите друга «У тебя есть планшет?»**
+**15 · Карточка слова — plaster**
+<!-- interaction_id: en:lesson-07:session-19:word:plaster; family: word_card -->
+> **plaster** — пластырь. I have a plaster. — «У меня есть пластырь». Липкая полоска, которой закрывают маленькую ранку.
+
+**16 · У ребёнка ссадина на пальце. Спросите соседа: «У тебя есть пластырь?»**
 <!-- interaction_id: en:lesson-07:session-19:i12; family: phrase_builder -->
-Плитки: `tablet` `a` `have` `you` `Do` → **Do you have a tablet?**
+Плитки: `plaster` `a` `have` `you` `Do` `Are` → **Do you have a plaster?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have a plaster?`)*
 
-**13 · Покажите другу «Сумки здесь»**
+**17 · Ребёнок ищет пластырь. Покажите на аптечку и скажите: «Пластырь здесь»**
 <!-- interaction_id: en:lesson-07:session-19:i13; family: scripted_repeat_compare -->
-🎙 **The bags are here.**
+🎙 **The plaster is here.**
 
-**14 · Сообщите «Здесь нет сумок»**
+**18 · Скажите соседу, что пинцета нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-19:i14; family: context_gap_grammar -->
-There ___ no bags here. → **are** · is · am
-- is — *С `bags` нужно `are`.*
-- am — *С `bags` нужно `are`.*
+There ___ no tweezers here. → **are** · is · am
+- is — *Слово `tweezers` всегда во множественном числе: нужно `are`.*
+- am — *Нужно `There are no`; `am` подходит только к `I`.*
 
-**15 · Послушайте, чего не делает собеседник**
+**19 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-07:session-19:i15; family: listen_choose -->
-🔊 *I don’t draw.* → **I don’t draw.** · I don’t complain. · I don’t drive.
-- I don’t complain. — *В записи последнее слово — `draw`, а в этом варианте — `complain`.*
-- I don’t drive. — *В записи последнее слово — `draw`, а в этом варианте — `drive`.*
+🔊 *Do you have a plaster?* → **Do you have a plaster?** · Do you have a tablet? · Does he have a plaster?
+- Do you have a tablet? — *В записи последнее слово — `plaster`, а в этом варианте — `tablet`.*
+- Does he have a plaster? — *В записи первое слово — `Do`, а в этом варианте — `Does`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-19:i16; family: speed_match -->
-bags — сумки · tablet — планшет · complain — жаловаться · printer — принтер
+loudspeaker — громкоговоритель · plaster — пластырь · tweezers — пинцет · complain — жаловаться
 
-**17 · Друг спрашивает о привычках Тома. Сообщите «Том не жалуется»**
+**21 · Сосед спрашивает, жалуется ли ваша подруга на очередь. Скажите: «Она не жалуется»**
 <!-- interaction_id: en:lesson-07:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom doesn’t complain.**
-
+🎙 **She doesn't complain.**

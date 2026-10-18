@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-19:i01",
+      "interactionId": "en:lesson-07:session-19:word:complain",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — complain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-19:word:complain:audio"
+      ],
+      "accessibilityLabel": "Картка слова — complain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-19:word:complain:audio",
+          "transcript": "complain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-19:word:complain:r1",
+            "targetText": "complain",
+            "meaningByLocale": {
+              "ru": "жаловаться. We don't complain. — «Мы не жалуемся». Выражать недовольство — устно или письменно.",
+              "uk": "скаржитися. We don't complain. — «Ми не скаржимося». Виявляти невдоволення — усно або письмово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "complain",
+          "definitionByLocale": {
+            "ru": "жаловаться. We don't complain. — «Мы не жалуемся». Выражать недовольство — устно или письменно.",
+            "uk": "скаржитися. We don't complain. — «Ми не скаржимося». Виявляти невдоволення — усно або письмово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Повідомте «Я не скаржуся»",
+      "prompt": "Друг питає про чергу. Скажіть: «Я не скаржуся»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Я не скаржуся»",
+      "accessibilityLabel": "Друг питає про чергу. Скажіть: «Я не скаржуся»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I don’t complain.",
+        "targetPhrase": "I don't complain.",
         "localizedMeaning": {
-          "ru": "Сообщите «Я не жалуюсь»",
-          "uk": "Повідомте «Я не скаржуся»"
+          "ru": "Друг спрашивает про очередь. Скажите: «Я не жалуюсь»",
+          "uk": "Друг питає про чергу. Скажіть: «Я не скаржуся»"
         },
         "orderedTokens": [
           "I",
-          "don’t",
+          "don't",
           "complain"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-19:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг питає про чергу. Скажіть: «Я не скаржуся»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't complain.`",
+              "uk": "тут потрібно `don't` — `I don't complain.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,7 +92,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -53,7 +108,7 @@
         },
         {
           "responseId": "en:lesson-07:session-19:i02:r3",
-          "text": "printer"
+          "text": "tablet"
         }
       ],
       "mediaIds": [],
@@ -81,7 +136,7 @@
           },
           {
             "responseId": "en:lesson-07:session-19:i02:r3",
-            "targetText": "printer",
+            "targetText": "tablet",
             "meaningByLocale": null
           }
         ],
@@ -101,8 +156,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `complain`, а в этом варианте — `printer`.",
-              "uk": "У записі перше слово — `complain`, а в цьому варіанті — `printer`."
+              "ru": "В записи первое слово — `complain`, а в этом варианте — `tablet`.",
+              "uk": "У записі перше слово — `complain`, а в цьому варіанті — `tablet`."
             }
           }
         ],
@@ -113,19 +168,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я не скаржуся»",
+      "prompt": "Скажіть «Я не скаржуся». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-19:i03:r1",
-          "text": "don’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-19:i03:r2",
-          "text": "doesn’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-19:i03:r3",
@@ -134,46 +189,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не скаржуся»",
+      "accessibilityLabel": "Скажіть «Я не скаржуся». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не жалуюсь»",
-          "uk": "Скажіть «Я не скаржуся»"
+          "ru": "Скажите «Я не жалуюсь». Выберите слово",
+          "uk": "Скажіть «Я не скаржуся». Виберіть слово"
         },
         "gappedTargetPhrase": "I ___ complain.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-19:i03:r1",
-            "text": "don’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-19:i03:r2",
-            "text": "doesn’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-19:i03:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Скажіть «Я не скаржуся»",
+        "testedDimension": "Скажіть «Я не скаржуся». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-19:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я не скаржуся»",
+            "testedDimension": "Скажіть «Я не скаржуся». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `don’t`.",
-              "uk": "Після `I` потрібне `don’t`."
+              "ru": "После `I` нужно `don't`.",
+              "uk": "Після `I` потрібно `don't`."
             }
           },
           {
             "responseId": "en:lesson-07:session-19:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я не скаржуся»",
+            "testedDimension": "Скажіть «Я не скаржуся». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия нужно `don’t`.",
-              "uk": "Для заперечення дії потрібне `don’t`."
+              "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+              "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
             }
           }
         ]
@@ -182,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,333 +259,14 @@
           },
           {
             "pairId": "en:lesson-07:session-19:i04:p2",
-            "target": "draw",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "рисовать",
-              "uk": "малювати"
+              "ru": "работать",
+              "uk": "працювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-19:i04:p3",
-            "target": "tablet",
-            "meaningByLocale": {
-              "ru": "планшет",
-              "uk": "планшет"
-            }
-          },
-          {
-            "pairId": "en:lesson-07:session-19:i04:p4",
-            "target": "bags",
-            "meaningByLocale": {
-              "ru": "сумки",
-              "uk": "сумки"
-            }
-          }
-        ],
-        "leftColumn": [
-          "complain",
-          "draw",
-          "tablet",
-          "bags"
-        ],
-        "rightColumn": [
-          "скаржитися",
-          "малювати",
-          "планшет",
-          "сумки"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-07:session-19:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-07:session-19:i05:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-07:session-19:i05:audio",
-          "transcript": "I don’t complain."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I don’t complain.",
-        "orderedTokens": [
-          "I",
-          "don’t",
-          "complain"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-07:session-19:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Принтер працює?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Принтер працює?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Does the printer work?",
-        "localizedMeaning": {
-          "ru": "Спросите «Принтер работает?»",
-          "uk": "Запитайте «Принтер працює?»"
-        },
-        "orderedTokens": [
-          "Does",
-          "the",
-          "printer",
-          "work"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-07:session-19:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Повідомте «Тут немає сумок»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-07:session-19:i07:audio"
-      ],
-      "accessibilityLabel": "Повідомте «Тут немає сумок»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-07:session-19:i07:audio",
-          "transcript": "There are no bags here."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "There are no bags here.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-07:session-19:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Запитайте «Принтер працює?»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-07:session-19:i08:r1",
-          "text": "work"
-        },
-        {
-          "responseId": "en:lesson-07:session-19:i08:r2",
-          "text": "works"
-        },
-        {
-          "responseId": "en:lesson-07:session-19:i08:r3",
-          "text": "is work"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Принтер працює?»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Спросите «Принтер работает?»",
-          "uk": "Запитайте «Принтер працює?»"
-        },
-        "gappedTargetPhrase": "Does the printer ___?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-07:session-19:i08:r1",
-            "text": "work"
-          },
-          {
-            "responseId": "en:lesson-07:session-19:i08:r2",
-            "text": "works"
-          },
-          {
-            "responseId": "en:lesson-07:session-19:i08:r3",
-            "text": "is work"
-          }
-        ],
-        "testedDimension": "Запитайте «Принтер працює?»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-07:session-19:i08:r2",
-            "correct": false,
-            "testedDimension": "Запитайте «Принтер працює?»",
-            "feedbackByLocale": {
-              "ru": "После `does` нужно `work`.",
-              "uk": "Після `does` потрібне `work`."
-            }
-          },
-          {
-            "responseId": "en:lesson-07:session-19:i08:r3",
-            "correct": false,
-            "testedDimension": "Запитайте «Принтер працює?»",
-            "feedbackByLocale": {
-              "ru": "В этом вопросе нужно `work`, без `is`.",
-              "uk": "У цьому запитанні потрібне `work`, без `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-07:session-19:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, чого не робить співрозмовник",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-07:session-19:i09:r1",
-          "text": "I don’t complain."
-        },
-        {
-          "responseId": "en:lesson-07:session-19:i09:r2",
-          "text": "I don’t gamble."
-        },
-        {
-          "responseId": "en:lesson-07:session-19:i09:r3",
-          "text": "I don’t smoke."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-07:session-19:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-07:session-19:i09:audio",
-          "transcript": "I don’t complain."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-07:session-19:i09:r1",
-            "targetText": "I don’t complain.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-07:session-19:i09:r2",
-            "targetText": "I don’t gamble.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-07:session-19:i09:r3",
-            "targetText": "I don’t smoke.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-07:session-19:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, чого не робить співрозмовник",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complain`, а в этом варианте — `gamble`.",
-              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `gamble`."
-            }
-          },
-          {
-            "responseId": "en:lesson-07:session-19:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, чого не робить співрозмовник",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complain`, а в этом варианте — `smoke`.",
-              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `smoke`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-07:session-19:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
-      "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-07:session-19:i10:p1",
-            "target": "printer",
-            "meaningByLocale": {
-              "ru": "принтер",
-              "uk": "принтер"
-            }
-          },
-          {
-            "pairId": "en:lesson-07:session-19:i10:p2",
-            "target": "complain",
-            "meaningByLocale": {
-              "ru": "жаловаться",
-              "uk": "скаржитися"
-            }
-          },
-          {
-            "pairId": "en:lesson-07:session-19:i10:p3",
             "target": "draw",
             "meaningByLocale": {
               "ru": "рисовать",
@@ -538,7 +274,7 @@
             }
           },
           {
-            "pairId": "en:lesson-07:session-19:i10:p4",
+            "pairId": "en:lesson-07:session-19:i04:p4",
             "target": "tablet",
             "meaningByLocale": {
               "ru": "планшет",
@@ -547,14 +283,14 @@
           }
         ],
         "leftColumn": [
-          "printer",
           "complain",
+          "work",
           "draw",
           "tablet"
         ],
         "rightColumn": [
-          "принтер",
           "скаржитися",
+          "працювати",
           "малювати",
           "планшет"
         ],
@@ -573,34 +309,45 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-19:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-07:session-19:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-07:session-19:i11:audio"
+        "en:lesson-07:session-19:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-07:session-19:i11:audio",
-          "transcript": "Does the printer work?"
+          "audioTargetId": "en:lesson-07:session-19:i05:audio",
+          "transcript": "I don't complain."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does the printer work?",
+        "hiddenTargetPhrase": "I don't complain.",
         "orderedTokens": [
-          "Does",
-          "the",
-          "printer",
-          "work"
+          "I",
+          "don't",
+          "complain"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-19:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't complain.`",
+              "uk": "тут потрібно `don't` — `I don't complain.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -609,32 +356,521 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-19:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-07:session-19:word:loudspeaker",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loudspeaker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-19:word:loudspeaker:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loudspeaker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-19:word:loudspeaker:audio",
+          "transcript": "loudspeaker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-19:word:loudspeaker:r1",
+            "targetText": "loudspeaker",
+            "meaningByLocale": {
+              "ru": "громкоговоритель. The loudspeaker is big. — «Громкоговоритель большой». Прибор, который делает голос громким для многих людей.",
+              "uk": "гучномовець. The loudspeaker is big. — «Гучномовець великий». Прилад, який робить голос гучним для багатьох людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loudspeaker",
+          "definitionByLocale": {
+            "ru": "громкоговоритель. The loudspeaker is big. — «Громкоговоритель большой». Прибор, который делает голос громким для многих людей.",
+            "uk": "гучномовець. The loudspeaker is big. — «Гучномовець великий». Прилад, який робить голос гучним для багатьох людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте друга «У тебе є планшет?»",
+      "prompt": "Ви берете прилад у парк без розеток. Спитайте сусіда: «У гучномовця є батарея?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте друга «У тебе є планшет?»",
+      "accessibilityLabel": "Ви берете прилад у парк без розеток. Спитайте сусіда: «У гучномовця є батарея?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a tablet?",
+        "targetPhrase": "Does the loudspeaker have a battery?",
         "localizedMeaning": {
-          "ru": "Спросите друга «У тебя есть планшет?»",
-          "uk": "Запитайте друга «У тебе є планшет?»"
+          "ru": "Вы берёте прибор в парк без розеток. Спросите соседа: «У громкоговорителя есть батарея?»",
+          "uk": "Ви берете прилад у парк без розеток. Спитайте сусіда: «У гучномовця є батарея?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "loudspeaker",
+          "have",
+          "a",
+          "battery"
+        ],
+        "authoredDistractorTokens": [
+          "Do"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-19:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви берете прилад у парк без розеток. Спитайте сусіда: «У гучномовця є батарея?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Does` — `Does the loudspeaker have a battery?`",
+              "uk": "тут потрібно `Does` — `Does the loudspeaker have a battery?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:word:tweezers",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tweezers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-19:word:tweezers:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tweezers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-19:word:tweezers:audio",
+          "transcript": "tweezers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-19:word:tweezers:r1",
+            "targetText": "tweezers",
+            "meaningByLocale": {
+              "ru": "пинцет. The tweezers are small. — «Пинцет маленький». Маленький инструмент из двух полосок, которым берут мелкие предметы.",
+              "uk": "пінцет. The tweezers are small. — «Пінцет маленький». Маленький інструмент із двох смужок, яким беруть дрібні предмети."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tweezers",
+          "definitionByLocale": {
+            "ru": "пинцет. The tweezers are small. — «Пинцет маленький». Маленький инструмент из двух полосок, которым берут мелкие предметы.",
+            "uk": "пінцет. The tweezers are small. — «Пінцет маленький». Маленький інструмент із двох смужок, яким беруть дрібні предмети."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви відкрили аптечку. Скажіть сусідові: «Тут немає пінцета»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Ви відкрили аптечку. Скажіть сусідові: «Тут немає пінцета»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-19:i07:audio",
+          "transcript": "There are no tweezers here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are no tweezers here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спитайте сусіда про гучномовець. Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-19:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-07:session-19:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-07:session-19:i08:r3",
+          "text": "is have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спитайте сусіда про гучномовець. Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите соседа про громкоговоритель. Выберите слово",
+          "uk": "Спитайте сусіда про гучномовець. Виберіть слово"
+        },
+        "gappedTargetPhrase": "Does the loudspeaker ___ a battery?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-19:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-19:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-19:i08:r3",
+            "text": "is have"
+          }
+        ],
+        "testedDimension": "Спитайте сусіда про гучномовець. Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Спитайте сусіда про гучномовець. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "После `Does` нужно `have`, а не `has`.",
+              "uk": "Після `Does` потрібно `have`, а не `has`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Спитайте сусіда про гучномовець. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В вопросе о наличии нужно `have`, без `is`.",
+              "uk": "У питанні про наявність потрібно `have`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чого не робить співрозмовник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-19:i09:r1",
+          "text": "I don't complain."
+        },
+        {
+          "responseId": "en:lesson-07:session-19:i09:r2",
+          "text": "I don't drive."
+        },
+        {
+          "responseId": "en:lesson-07:session-19:i09:r3",
+          "text": "I don't gossip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-19:i09:audio",
+          "transcript": "I don't complain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-19:i09:r1",
+            "targetText": "I don't complain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-19:i09:r2",
+            "targetText": "I don't drive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-19:i09:r3",
+            "targetText": "I don't gossip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complain`, а в этом варианте — `drive`.",
+              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `drive`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complain`, а в этом варианте — `gossip`.",
+              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `gossip`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-19:i10:p1",
+            "target": "work",
+            "meaningByLocale": {
+              "ru": "работать",
+              "uk": "працювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-19:i10:p2",
+            "target": "tweezers",
+            "meaningByLocale": {
+              "ru": "пинцет",
+              "uk": "пінцет"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-19:i10:p3",
+            "target": "complain",
+            "meaningByLocale": {
+              "ru": "жаловаться",
+              "uk": "скаржитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-19:i10:p4",
+            "target": "loudspeaker",
+            "meaningByLocale": {
+              "ru": "громкоговоритель",
+              "uk": "гучномовець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "work",
+          "tweezers",
+          "complain",
+          "loudspeaker"
+        ],
+        "rightColumn": [
+          "працювати",
+          "пінцет",
+          "скаржитися",
+          "гучномовець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть питання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть питання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-19:i11:audio",
+          "transcript": "Does the loudspeaker have a battery?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does the loudspeaker have a battery?",
+        "orderedTokens": [
+          "Does",
+          "the",
+          "loudspeaker",
+          "have",
+          "a",
+          "battery"
+        ],
+        "authoredDistractorTokens": [
+          "Do"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-19:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть питання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Does` — `Does the loudspeaker have a battery?`",
+              "uk": "тут потрібно `Does` — `Does the loudspeaker have a battery?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:word:plaster",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plaster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-19:word:plaster:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plaster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-19:word:plaster:audio",
+          "transcript": "plaster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-19:word:plaster:r1",
+            "targetText": "plaster",
+            "meaningByLocale": {
+              "ru": "пластырь. I have a plaster. — «У меня есть пластырь». Липкая полоска, которой закрывают маленькую ранку.",
+              "uk": "пластир. I have a plaster. — «У мене є пластир». Липка смужка, якою закривають малесеньку ранку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plaster",
+          "definitionByLocale": {
+            "ru": "пластырь. I have a plaster. — «У меня есть пластырь». Липкая полоска, которой закрывают маленькую ранку.",
+            "uk": "пластир. I have a plaster. — «У мене є пластир». Липка смужка, якою закривають малесеньку ранку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У дитини садно на пальці. Спитайте сусіда: «У тебе є пластир?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У дитини садно на пальці. Спитайте сусіда: «У тебе є пластир?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a plaster?",
+        "localizedMeaning": {
+          "ru": "У ребёнка ссадина на пальце. Спросите соседа: «У тебя есть пластырь?»",
+          "uk": "У дитини садно на пальці. Спитайте сусіда: «У тебе є пластир?»"
         },
         "orderedTokens": [
           "Do",
           "you",
           "have",
           "a",
-          "tablet"
+          "plaster"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-19:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "У дитини садно на пальці. Спитайте сусіда: «У тебе є пластир?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have a plaster?`",
+              "uk": "тут потрібно `Do` — `Do you have a plaster?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -644,25 +880,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажіть другові «Сумки тут»",
+      "prompt": "Дитина шукає пластир. Покажіть на аптечку й скажіть: «Пластир тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-19:i13:audio"
       ],
-      "accessibilityLabel": "Покажіть другові «Сумки тут»",
+      "accessibilityLabel": "Дитина шукає пластир. Покажіть на аптечку й скажіть: «Пластир тут»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-19:i13:audio",
-          "transcript": "The bags are here."
+          "transcript": "The plaster is here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The bags are here.",
+        "targetPhrase": "The plaster is here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -677,11 +913,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повідомте «Тут немає сумок»",
+      "prompt": "Скажіть сусідові, що пінцета немає. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-19:i14:r1",
@@ -698,14 +934,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Тут немає сумок»",
+      "accessibilityLabel": "Скажіть сусідові, що пінцета немає. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет сумок»",
-          "uk": "Повідомте «Тут немає сумок»"
+          "ru": "Скажите соседу, что пинцета нет. Выберите слово",
+          "uk": "Скажіть сусідові, що пінцета немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no bags here.",
+        "gappedTargetPhrase": "There ___ no tweezers here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-19:i14:r1",
@@ -720,24 +956,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Повідомте «Тут немає сумок»",
+        "testedDimension": "Скажіть сусідові, що пінцета немає. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-19:i14:r2",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає сумок»",
+            "testedDimension": "Скажіть сусідові, що пінцета немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `bags` нужно `are`.",
-              "uk": "З `bags` потрібне `are`."
+              "ru": "Слово `tweezers` всегда во множественном числе: нужно `are`.",
+              "uk": "Слово `tweezers` завжди у множині: потрібно `are`."
             }
           },
           {
             "responseId": "en:lesson-07:session-19:i14:r3",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає сумок»",
+            "testedDimension": "Скажіть сусідові, що пінцета немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `bags` нужно `are`.",
-              "uk": "З `bags` потрібне `are`."
+              "ru": "Нужно `There are no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There are no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -746,51 +982,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чого не робить співрозмовник",
+      "prompt": "Послухайте питання",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-19:i15:r1",
-          "text": "I don’t draw."
+          "text": "Do you have a plaster?"
         },
         {
           "responseId": "en:lesson-07:session-19:i15:r2",
-          "text": "I don’t complain."
+          "text": "Do you have a tablet?"
         },
         {
           "responseId": "en:lesson-07:session-19:i15:r3",
-          "text": "I don’t drive."
+          "text": "Does he have a plaster?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-19:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+      "accessibilityLabel": "Послухайте питання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-19:i15:audio",
-          "transcript": "I don’t draw."
+          "transcript": "Do you have a plaster?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-19:i15:r1",
-            "targetText": "I don’t draw.",
+            "targetText": "Do you have a plaster?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-19:i15:r2",
-            "targetText": "I don’t complain.",
+            "targetText": "Do you have a tablet?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-19:i15:r3",
-            "targetText": "I don’t drive.",
+            "targetText": "Does he have a plaster?",
             "meaningByLocale": null
           }
         ],
@@ -799,19 +1035,19 @@
           {
             "responseId": "en:lesson-07:session-19:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "testedDimension": "Послухайте питання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `draw`, а в этом варианте — `complain`.",
-              "uk": "У записі останнє слово — `draw`, а в цьому варіанті — `complain`."
+              "ru": "В записи последнее слово — `plaster`, а в этом варианте — `tablet`.",
+              "uk": "У записі останнє слово — `plaster`, а в цьому варіанті — `tablet`."
             }
           },
           {
             "responseId": "en:lesson-07:session-19:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "testedDimension": "Послухайте питання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `draw`, а в этом варианте — `drive`.",
-              "uk": "У записі останнє слово — `draw`, а в цьому варіанті — `drive`."
+              "ru": "В записи первое слово — `Do`, а в этом варианте — `Does`.",
+              "uk": "У записі перше слово — `Do`, а в цьому варіанті — `Does`."
             }
           }
         ],
@@ -822,7 +1058,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,48 +1072,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-19:i16:p1",
-            "target": "bags",
+            "target": "loudspeaker",
             "meaningByLocale": {
-              "ru": "сумки",
-              "uk": "сумки"
+              "ru": "громкоговоритель",
+              "uk": "гучномовець"
             }
           },
           {
             "pairId": "en:lesson-07:session-19:i16:p2",
-            "target": "tablet",
+            "target": "plaster",
             "meaningByLocale": {
-              "ru": "планшет",
-              "uk": "планшет"
+              "ru": "пластырь",
+              "uk": "пластир"
             }
           },
           {
             "pairId": "en:lesson-07:session-19:i16:p3",
+            "target": "tweezers",
+            "meaningByLocale": {
+              "ru": "пинцет",
+              "uk": "пінцет"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-19:i16:p4",
             "target": "complain",
             "meaningByLocale": {
               "ru": "жаловаться",
               "uk": "скаржитися"
             }
-          },
-          {
-            "pairId": "en:lesson-07:session-19:i16:p4",
-            "target": "printer",
-            "meaningByLocale": {
-              "ru": "принтер",
-              "uk": "принтер"
-            }
           }
         ],
         "leftColumn": [
-          "bags",
-          "tablet",
-          "complain",
-          "printer"
+          "loudspeaker",
+          "plaster",
+          "tweezers",
+          "complain"
         ],
         "rightColumn": [
-          "сумки",
-          "планшет",
-          "скаржитися",
-          "принтер"
+          "гучномовець",
+          "пластир",
+          "пінцет",
+          "скаржитися"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -895,25 +1131,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-19:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про звички Тома. Повідомте «Том не скаржиться»",
+      "prompt": "Сусід питає, чи скаржиться ваша подруга на чергу. Скажіть: «Вона не скаржиться»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-19:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує про звички Тома. Повідомте «Том не скаржиться»",
+      "accessibilityLabel": "Сусід питає, чи скаржиться ваша подруга на чергу. Скажіть: «Вона не скаржиться»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-19:i17:audio",
-          "transcript": "Tom doesn’t complain."
+          "transcript": "She doesn't complain."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom doesn’t complain.",
+        "targetPhrase": "She doesn't complain.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -935,11 +1171,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f7b6dbe491ac62b29c4b9ca62372bba849f5343d2d87d15543392ade95ddce98"
+  "learnerFingerprint": "9dc93117d9403df3904f481a606a4d140d0f7077b9d1e9436a377dd33abe0afb"
 }

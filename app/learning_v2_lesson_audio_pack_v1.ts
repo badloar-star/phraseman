@@ -4,9 +4,11 @@ import { learningV2EsSession1RemoteAudioFilesV1 } from "./learning_v2_es_session
 import { learningV2EsSession2RemoteAudioFilesV1 } from "./learning_v2_es_session2_production_audio_v1";
 import {
   learningV2FactoryHasAudibleAudioForContentHashV1,
+  learningV2FactorySessionClipHashesV1,
   learningV2FactoryWordAudioFileV1,
   learningV2FactoryRemoteAudioFilesForContentHashesV1,
 } from "./learning_v2_factory_production_audio_v1";
+import { fetchLearningV2RemoteAudioBytesV1, LearningV2RemoteAudioErrorV1 } from "./learning_v2_remote_audio_v1";
 import { lazyContent } from "./content_lazy";
 import { getStableId } from "./stable_id";
 import { learningV2Lesson1RemoteAudioFilesV1 } from "./learning_v2_lesson1_audio_assets";
@@ -15,6 +17,7 @@ import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/g
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 import type { LearningV2CourseSessionAudioFileV1 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
 import {
+  prepareLearningV2VoiceAudioOfflineBytesV1,
   replaceLearningV2VoiceAudioProtectedContentHashesV1,
   resolveLearningV2VoiceAudioOfflineCacheMaterialV1,
   resolvePreparedLearningV2VoiceAudioOfflineFileV1,
@@ -156,10 +159,13 @@ function filesForSession(
     const lesson = factoryLessonAudioIndex()[
       lessonOrdinal as keyof FactoryLessonAudioIndexV1
     ];
-    if (!lesson) return Object.freeze([]);
-    const session = lesson.sessions[sessionOrdinal as keyof typeof lesson.sessions];
-    if (!session) return Object.freeze([]);
-    return factoryFilesForIndexedHashes(session.contentHashes, `lesson:${lessonOrdinal}:session:${sessionOrdinal}`);
+    // зачем (звук по сети, владелец 18.10): индекс прогрева знает только урок 1 — клипы занятия любого урока берём ещё
+    // и из таблицы «один голос на задание», иначе уроки 2+ никогда не скачались бы.
+    const session = lesson?.sessions[sessionOrdinal as keyof typeof lesson.sessions];
+    const hashes = new Set<string>(session?.contentHashes ?? []);
+    for (const hash of learningV2FactorySessionClipHashesV1(lessonOrdinal, sessionOrdinal)) hashes.add(hash);
+    if (hashes.size === 0) return Object.freeze([]);
+    return factoryFilesForIndexedHashes([...hashes], `lesson:${lessonOrdinal}:session:${sessionOrdinal}`);
   }
   if (lessonOrdinal !== 1) return Object.freeze([]);
   if (sessionOrdinal === 1) return learningV2EsSession1RemoteAudioFilesV1();
@@ -178,38 +184,77 @@ async function runPool(length: number, work: (index: number) => Promise<void>): 
   }));
 }
 
-// зачем (D47, владелец): все способы СКАЧИВАНИЯ озвучки V2 убраны — файл
-// подготавливается ТОЛЬКО из того, что уже есть на устройстве (стартовый
-// бандл + то, что успело скачаться прежними версиями приложения). Сети здесь
-// больше нет вообще: раньше недостающий бандл-файл падал в сетевую закачку
-// (сетевой транспорт озвучки удалён целиком, PM-205),
-// именно это и было прогревом, убившим скорость старта (see D47/22.09).
-// Недостающий файл теперь просто пропускается: занятие открывается без него,
-// а `learning_v2_direct_session_player_v1.tsx` подставляет TTS телефона.
+// зачем (решение владельца 18.10 ≈06:15: «Аудио не идёт в бандл… Сжатия никакого!»; заменяет D47 «сети нет»): порядок —
+// стартовый бандл → уже скачанное (кэш на диске) → сеть (Storage, точная сверка sha256 и размера) → голос телефона.
+// Сеть — только при промахе локального, одна загрузка на файл навсегда (кэш), не больше NETWORK_SLOTS одновременно на
+// весь процесс, 404 запоминается до перезапуска (не долбим Storage файлом, которого там нет). Скорость старта не страдает:
+// подготовка — фоном, после первого кадра; занятие открывается и без файла, плеер подставит TTS
+// (`learning_v2_direct_session_player_v1.tsx`).
+const NETWORK_SLOTS = 6;
+let networkActive = 0;
+const networkWaiters: (() => void)[] = [];
+const remoteMissingHashes = new Set<string>();
+async function withNetworkSlot<T>(work: () => Promise<T>): Promise<T> {
+  while (networkActive >= NETWORK_SLOTS) await new Promise<void>((resolve) => networkWaiters.push(resolve));
+  networkActive += 1;
+  try {
+    return await work();
+  } finally {
+    networkActive -= 1;
+    networkWaiters.shift()?.();
+  }
+}
+
+type PrepareStatsV1 = { local: number; network: number; tts: number; reasons: Record<string, number> };
+
 async function prepareFiles(input: {
   readonly files: readonly LearningV2CourseSessionAudioFileV1[];
   readonly stableId: string;
   readonly account: AccountGenerationToken;
   readonly onProgress?: (completed: number, total: number) => void;
-}): Promise<void> {
+  readonly where?: string;
+}): Promise<PrepareStatsV1> {
   let completed = 0;
+  const stats: PrepareStatsV1 = { local: 0, network: 0, tts: 0, reasons: {} };
+  const startedAt = Date.now();
   input.onProgress?.(0, input.files.length);
   await runPool(input.files.length, async (index) => {
     if (!isCurrentAccountGeneration(input.account, input.stableId))
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
     const file = input.files[index]!;
     const identity = learningV2NativeDecoderIdentityForAudioFileV1(file, index);
-    const handle =
+    let handle =
       (await resolveLearningV2BootstrapAudioOfflineFileV1(identity)) ??
       (await resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity));
+    if (handle) stats.local += 1;
+    if (!handle && !remoteMissingHashes.has(file.contentHash)) {
+      try {
+        handle = await withNetworkSlot(() => prepareLearningV2VoiceAudioOfflineBytesV1({
+          identity,
+          loadBytes: () => fetchLearningV2RemoteAudioBytesV1({
+            objectPath: file.objectPath,
+            contentHash: file.contentHash,
+            byteSize: file.byteSize,
+            where: input.where ?? "lesson_audio_pack",
+          }),
+        }));
+        stats.network += 1;
+      } catch (error) {
+        const reason = error instanceof LearningV2RemoteAudioErrorV1 ? error.reason : "verify_or_write_failed";
+        stats.reasons[reason] = (stats.reasons[reason] ?? 0) + 1;
+        if (reason === "not_found") remoteMissingHashes.add(file.contentHash);
+        console.warn("[AUDIO-REMOTE] file_failed", JSON.stringify({ where: input.where, reason, contentHash: file.contentHash.slice(0, 12), detail: (error instanceof Error ? error.message : String(error)).slice(0, 160) }));
+      }
+    }
     if (!isCurrentAccountGeneration(input.account, input.stableId))
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
     if (!handle) {
       // Немой пропуск запрещён: без этой строки «тихая фраза» неотличима от
       // бага прогрева. TTS-фолбэк называет причину сам, эта — на уровне пака.
+      stats.tts += 1;
       console.warn(
         "[V2-AUDIO-TTS] lesson_audio_pack_file_not_local",
-        JSON.stringify({ contentHash: file.contentHash, objectPath: file.objectPath }),
+        JSON.stringify({ contentHash: file.contentHash, objectPath: file.objectPath, remoteMissing: remoteMissingHashes.has(file.contentHash) }),
       );
       completed += 1;
       input.onProgress?.(completed, input.files.length);
@@ -222,6 +267,55 @@ async function prepareFiles(input: {
     completed += 1;
     input.onProgress?.(completed, input.files.length);
   });
+  console.log("[AUDIO-REMOTE] pack_done", JSON.stringify({ where: input.where, files: input.files.length, ...stats, ms: Date.now() - startedAt })); // guard-ok: одна строка итога на пак
+  return stats;
+}
+
+// зачем (владелец 18.10, экономия Firebase): качаем не всё сразу, а урок вперёд — подготовив занятие, фоном и ОДИН раз на
+// урок ставим в очередь остаток текущего урока и весь следующий. Последовательно по занятиям, сеть делит общий лимит
+// NETWORK_SLOTS; смена аккаунта останавливает очередь. Старт откладывается, чтобы не мешать первому занятию.
+const LESSON_AHEAD_DELAY_MS = 4_000;
+const SESSIONS_PER_LESSON = 56;
+const LAST_LESSON = 32;
+const lessonAheadStarted = new Set<string>();
+function scheduleLessonAheadV1(input: {
+  readonly stableId: string;
+  readonly account: AccountGenerationToken;
+  readonly lessonOrdinal: number;
+  readonly sessionOrdinal: number;
+}): void {
+  const aheadKey = `${input.stableId}:en:${input.lessonOrdinal}`;
+  if (lessonAheadStarted.has(aheadKey)) return;
+  lessonAheadStarted.add(aheadKey);
+  const plan: { lessonOrdinal: number; sessionOrdinal: number }[] = [];
+  for (let s = input.sessionOrdinal + 1; s <= SESSIONS_PER_LESSON; s += 1) plan.push({ lessonOrdinal: input.lessonOrdinal, sessionOrdinal: s });
+  if (input.lessonOrdinal < LAST_LESSON) for (let s = 1; s <= SESSIONS_PER_LESSON; s += 1) plan.push({ lessonOrdinal: input.lessonOrdinal + 1, sessionOrdinal: s });
+  console.log("[AUDIO-REMOTE] lesson_ahead_scheduled", JSON.stringify({ lesson: input.lessonOrdinal, fromSession: input.sessionOrdinal + 1, nextLesson: input.lessonOrdinal < LAST_LESSON ? input.lessonOrdinal + 1 : null, sessions: plan.length, delayMs: LESSON_AHEAD_DELAY_MS }));
+  setTimeout(() => {
+    void (async () => {
+      const startedAt = Date.now();
+      const total: PrepareStatsV1 = { local: 0, network: 0, tts: 0, reasons: {} };
+      let sessions = 0;
+      for (const step of plan) {
+        if (!isCurrentAccountGeneration(input.account, input.stableId)) {
+          console.log("[AUDIO-REMOTE] lesson_ahead_stopped", JSON.stringify({ reason: "account_changed", done: sessions }));
+          return;
+        }
+        const files = filesForSession(step.lessonOrdinal, step.sessionOrdinal, "en");
+        if (files.length === 0) continue;
+        try {
+          const stats = await prepareFiles({ files, stableId: input.stableId, account: input.account, where: `ahead:l${step.lessonOrdinal}s${step.sessionOrdinal}` });
+          sessions += 1;
+          total.local += stats.local; total.network += stats.network; total.tts += stats.tts;
+          for (const [r, n] of Object.entries(stats.reasons)) total.reasons[r] = (total.reasons[r] ?? 0) + n;
+        } catch (error) {
+          console.warn("[AUDIO-REMOTE] lesson_ahead_session_failed", JSON.stringify({ lesson: step.lessonOrdinal, session: step.sessionOrdinal, reason: (error instanceof Error ? error.message : String(error)).slice(0, 160) }));
+          if (!isCurrentAccountGeneration(input.account, input.stableId)) return;
+        }
+      }
+      console.log("[AUDIO-REMOTE] lesson_ahead_done", JSON.stringify({ lesson: input.lessonOrdinal, sessions, ...total, ms: Date.now() - startedAt }));
+    })();
+  }, LESSON_AHEAD_DELAY_MS);
 }
 
 export function isLearningV2LessonAudioPackReadyV1(input: {
@@ -386,11 +480,14 @@ export async function prepareLearningV2SessionAudioPackV1(input: {
       stableId,
       account,
       onProgress: input.onProgress,
+      where: `session:l${input.lessonOrdinal}s${input.sessionOrdinal}`,
     });
     if (input.signal?.aborted)
       throw new Error("learning_v2_session_audio_pack_aborted");
     if (!isCurrentAccountGeneration(account, stableId))
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
+    // урок вперёд (владелец 18.10): фоном, один раз на урок; только английский курс фабрики
+    if (input.targetLanguage === "en") scheduleLessonAheadV1({ stableId, account, lessonOrdinal: input.lessonOrdinal, sessionOrdinal: input.sessionOrdinal });
     const body = {
       schemaVersion: LEARNING_V2_LESSON_AUDIO_PACK_SCHEMA_V1,
       lessonOrdinal: input.lessonOrdinal,
@@ -422,5 +519,6 @@ subscribeAccountGeneration(() => {
   sessionInFlight.clear();
   fileHashesByPack.clear();
   preparedFileUriByContentHash.clear();
+  lessonAheadStarted.clear();
   refreshProtectedHashes();
 });

@@ -95,6 +95,22 @@ export function learningV2FactoryHasAudibleAudioForContentHashV1(contentHash: st
   return factoryAudioTables().entryByContentHash.has(contentHash);
 }
 
+/**
+ * Хеши клипов одного занятия по таблице «один голос на задание» (ключи `lesson-LL:session:SS:…`: задания, интро, карточки).
+ * зачем (звук по сети, владелец 18.10): индекс прогрева знает только урок 1; чтобы скачать занятие любого урока, список
+ * его файлов берётся из той же таблицы, по которой плеер выбирает звук. Только слышимые записи.
+ */
+export function learningV2FactorySessionClipHashesV1(lessonOrdinal: number, sessionOrdinal: number): readonly string[] {
+  const prefix = `lesson-${String(lessonOrdinal).padStart(2, "0")}:session:${String(sessionOrdinal).padStart(2, "0")}:`;
+  const tables = factoryAudioTables();
+  const hashes = new Set<string>();
+  for (const [key, assignment] of Object.entries(tables.assignedVoiceByInteractionId)) {
+    if (!key.startsWith(prefix)) continue;
+    for (const hash of Object.values(assignment.clips)) if (tables.entryByContentHash.has(hash)) hashes.add(hash);
+  }
+  return Object.freeze([...hashes]);
+}
+
 export function learningV2FactoryRemoteAudioFilesForContentHashesV1(
   contentHashes: readonly string[],
 ): readonly LearningV2CourseSessionAudioFileV1[] {

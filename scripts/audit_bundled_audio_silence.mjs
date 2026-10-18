@@ -28,8 +28,25 @@ const RMS_QUIET_DB = -50;
 const LOG = "[AUDIO-SILENCE]";
 
 // 1) все require() звуковых файлов в коде приложения
-const sources = execFileSync("git", ["ls-files", "--", "app", "components", "modules", "hooks", "constants"], { cwd: ROOT, encoding: "utf8", maxBuffer: 64 << 20 })
-  .split(/\r?\n/u).filter((f) => /\.(ts|tsx|js)$/u.test(f));
+// зачем (репетиция утра 18.10): аудит гоняют и на копии HEAD без .git — тогда список исходников обходом папок
+function listSources() {
+  try {
+    return execFileSync("git", ["ls-files", "--", "app", "components", "modules", "hooks", "constants"], { cwd: ROOT, encoding: "utf8", maxBuffer: 64 << 20, stdio: ["ignore", "pipe", "ignore"] })
+      .split(/\r?\n/u).filter((f) => /\.(ts|tsx|js)$/u.test(f));
+  } catch (error) {
+    console.warn(`${LOG} не git-папка (${error instanceof Error ? error.message.split("\n")[0] : String(error)}) — список исходников обходом папок`);
+    const out = [];
+    const walk = (dir) => {
+      for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+        const rel = `${dir}/${entry.name}`;
+        if (entry.isDirectory()) { if (entry.name !== "node_modules") walk(rel); } else if (/\.(ts|tsx|js)$/u.test(entry.name)) out.push(rel);
+      }
+    };
+    for (const dir of ["app", "components", "modules", "hooks", "constants"]) if (fs.existsSync(path.join(ROOT, dir))) walk(dir);
+    return out;
+  }
+}
+const sources = listSources();
 const audio = new Map(); // абсолютный путь → { rel, from }
 for (const rel of sources) {
   const text = fs.readFileSync(path.join(ROOT, rel), "utf8");

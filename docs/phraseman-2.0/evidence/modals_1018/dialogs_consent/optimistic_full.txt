@@ -1,0 +1,5 @@
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"send_tap","step":"tap","key":"social_01","learnerTurn":0,"retryOfPending":false,"sessionReady":true}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"send_tap","step":"turn_id_ready","key":"social_01","ms":3}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"send_tap","step":"bubble_frame","key":"social_01","ms":128,"queuedUntilSession":false}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"send_tap","step":"server_reply","key":"social_01","ms":13169,"kind":"reply","replies":1}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"send_tap","step":"reply_frame","key":"social_01","ms":13268}'

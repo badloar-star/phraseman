@@ -1,7 +1,6 @@
-// зачем (координатор 15.10, страховка Ревизора перед подъёмом потолка урока 1): статически доказать, что КАЖДОЕ
-// выпущенное занятие (≤ потолка) прозвучит записанными голосами — без голоса телефона. С 18.10 (слово владельца, D47 отменено)
-// источник записи — сборка ИЛИ проверенная запись в Storage (снимок scripts/learning_v2_storage_audio_inventory.v1.json);
-// первые 5 занятий — только из сборки.
+// зачем (владелец 18.10): первые 5 занятий обязаны остаться полностью записанными и лежать в сборке.
+// Дальше запись используется первой, а отсутствующие фразы/слова произносит телефон; представленный MP3 по-прежнему
+// обязан пройти строгую проверку источника, размера и sha256 — повреждённый файл нельзя маскировать как fallback.
 // Ловит до EAS ровно те дыры, что всплыли 15.10 только на разборе: «I am free.» в s04/s06/s08 и слова s45
 // без голоса ash (строгая подготовка → fail(word_audio_missing), s45–s56 не открываются).
 //
@@ -41,7 +40,10 @@ import { createHash } from "node:crypto";
 import path from "node:path";
 import { LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1 } from "../app/learning_v2_bootstrap_audio_assets_v1.generated";
 import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
-import { learningV2FactoryWordAudioFileV1 } from "../app/learning_v2_factory_production_audio_v1";
+import {
+  learningV2FactoryMissingAudioInteractionIdsV1,
+  learningV2FactoryWordAudioFileV1,
+} from "../app/learning_v2_factory_production_audio_v1";
 import { LEARNING_V2_RELEASED_SESSION_COUNT_V1 } from "../app/learning_v2_session_availability_v1";
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../modules/learning-v2/content/course_topology_v1";
 import {
@@ -105,8 +107,8 @@ function sourceProblem(contentHash: string, courseIndex: number): Readonly<{ kin
   return inStorage.has(contentHash) ? null : { kind: "remote-availability", message: "нет ни в сборке, ни в Storage" };
 }
 
-describe("Learning V2 released sessions: complete recorded audio (build + Storage)", () => {
-  test("every released session's phrases and word cards are recorded and bundled", () => {
+describe("Learning V2 released sessions: recorded-first audio with device fallback", () => {
+  test("keeps the first five fully bundled and verifies every represented recording", () => {
     // зачем: перед подъёмом потолка можно заранее увидеть все дыры до занятия N —
     // LEARNING_V2_AUDIO_COMPLETE_THROUGH=56 npm run test:one -- tests/learning_v2_released_audio_completeness_guard.test.ts
     const probeThrough = Number(process.env.LEARNING_V2_AUDIO_COMPLETE_THROUGH ?? "");
@@ -146,9 +148,18 @@ describe("Learning V2 released sessions: complete recorded audio (build + Storag
         activeRootFingerprint: "0".repeat(64),
       } as never);
       if (!material) {
-        addProblem("material", `${where} → материал не собирается (фраза без записи вне таблицы пропусков) → см. [V2-BUNDLED] выше`);
+        addProblem("material", `${where} → материал не собирается`);
       } else {
         builtSessions += 1;
+        const missingInteractionIds = learningV2FactoryMissingAudioInteractionIdsV1(
+          material.learnerChild,
+        );
+        if (courseIndex < BUNDLE_ONLY_COURSE_SESSIONS && missingInteractionIds.length > 0) {
+          addProblem(
+            "recording",
+            `${where} → первые ${BUNDLE_ONLY_COURSE_SESSIONS} занятий требуют записи всех заданий: ${missingInteractionIds.join(", ")}`,
+          );
+        }
         const files = new Map<string, string>();
         collectAudioFiles(material.audioChild, files);
         phraseFiles += files.size;
@@ -171,7 +182,8 @@ describe("Learning V2 released sessions: complete recorded audio (build + Storag
         // Голос слова — как при подготовке занятия: ash, иначе записанный голос слова (17.10).
         const file = learningV2FactoryWordAudioFileV1(text);
         if (!file) {
-          addProblem("recording", `${where} → слово «${text}» → ни одного голоса → нет записи в таблице озвучки`);
+          if (courseIndex < BUNDLE_ONLY_COURSE_SESSIONS)
+            addProblem("recording", `${where} → слово «${text}» → первые ${BUNDLE_ONLY_COURSE_SESSIONS} занятий требуют запись`);
           continue;
         }
         accumulatedWordHashes.add(file.contentHash);

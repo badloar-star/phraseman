@@ -2,6 +2,7 @@ import { lazyContent } from "./content_lazy";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 import {
   materializeLearningV2CourseSessionAudioChildV1,
+  materializePartialLearningV2CourseSessionAudioChildV1,
   type LearningV2CourseSessionAudioFileV1,
   type LearningV2CourseSessionAudioFileInputV1,
   type LearningV2CourseSessionAudioVoiceIdV1,
@@ -152,7 +153,12 @@ function factoryVoicePlanV1(interactionId: string, transcripts: readonly string[
   const codexAssignment = tables.assignedVoiceByInteractionId[interactionId];
   if (
     codexAssignment &&
-    transcripts.every((transcript) => tables.entryByContentHash.has(codexAssignment.clips[transcript] ?? ""))
+    transcripts.every((transcript) => {
+      const entry = tables.entryByContentHash.get(
+        codexAssignment.clips[transcript] ?? "",
+      );
+      return entry?.transcript === transcript && entry.voiceId === codexAssignment.voice;
+    })
   )
     return Object.freeze({
       voices: Object.freeze([codexAssignment.voice]),
@@ -251,8 +257,27 @@ export function learningV2FactoryMissingAudioInteractionIdsV1(
 
 export function buildLearningV2FactoryBundledAudioChildV1(
   learner: LearningV2CourseSessionLearnerChildV1,
-): ReturnType<typeof materializeLearningV2CourseSessionAudioChildV1> | null {
+): ReturnType<typeof materializeLearningV2CourseSessionAudioChildV1> {
   const audioInteractions = learner.interactions.filter((interaction) => interaction.audioTargetIds.length > 0);
+  const recordedAudioInteractions = audioInteractions.filter((interaction) => {
+    const payload = interaction.modePayload;
+    const references = payload?.family === "sound_contrast"
+      ? [payload.audioA, payload.audioB].filter(
+          (candidate): candidate is NonNullable<typeof candidate> => candidate !== null,
+        )
+      : payload && "referenceAudio" in payload && payload.referenceAudio
+        ? [payload.referenceAudio]
+        : [];
+    if (
+      (payload?.family === "sound_contrast" && references.length !== 2) ||
+      (payload?.family !== "sound_contrast" && references.length !== 1)
+    )
+      throw new Error("learning_v2_factory_reference_audio_missing");
+    return factoryVoicePlanV1(
+      interaction.interactionId,
+      references.map((reference) => reference.transcript),
+    ) !== null;
+  });
   // зачем (координатор 15.10): видно, каким голосом звучит каждое задание и откуда он взят — одна строка на сборку.
   const voicePlans: { interactionId: string; assignedVoice: string; source: FactoryVoicePlanV1["source"] }[] = [];
   const planFor = (interactionId: string, transcripts: readonly string[]): FactoryVoicePlanV1 => {
@@ -260,10 +285,9 @@ export function buildLearningV2FactoryBundledAudioChildV1(
     voicePlans.push({ interactionId, assignedVoice: plan.voices.length === 1 ? plan.voices[0]! : "rotating", source: plan.source });
     return plan;
   };
-  try {
-    const child = materializeLearningV2CourseSessionAudioChildV1({
+  const child = materializePartialLearningV2CourseSessionAudioChildV1({
       learner,
-      interactions: audioInteractions.map((interaction) => {
+      interactions: recordedAudioInteractions.map((interaction) => {
       const payload = interaction.modePayload;
       if (payload?.family === "sound_contrast") {
         const references = [payload.audioA, payload.audioB].filter(
@@ -319,15 +343,12 @@ export function buildLearningV2FactoryBundledAudioChildV1(
         selectables: Object.freeze([]),
       });
       }),
-    });
-    console.log(`[V2-AUDIO-VOICE] plan ${JSON.stringify({ courseSessionId: learner.courseSessionId, interactions: voicePlans })}`); // guard-ok: одна строка на сборку озвучки
-    return child;
-  } catch (error) {
-    if (error instanceof Error && error.message === "learning_v2_factory_production_audio_missing") {
-      // зачем (инцидент 04.10): отказ из-за отсутствия записи в таблице озвучки был немым — теперь [V2-BUNDLED] пишет, что именно не нашли.
-      console.warn(`[V2-BUNDLED] audio_child_null reason=${error.message} audioInteractions=${audioInteractions.length}`);
-      return null;
-    }
-    throw error;
-  }
+  });
+  console.log(`[V2-AUDIO-VOICE] plan ${JSON.stringify({
+    courseSessionId: learner.courseSessionId,
+    recordedInteractions: recordedAudioInteractions.length,
+    deviceSpeechInteractions: audioInteractions.length - recordedAudioInteractions.length,
+    interactions: voicePlans,
+  })}`); // guard-ok: одна строка на сборку озвучки
+  return child;
 }

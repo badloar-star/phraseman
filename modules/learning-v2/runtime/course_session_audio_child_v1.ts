@@ -162,6 +162,7 @@ const ROOT_KEYS = Object.freeze([
   "audioFingerprint",
 ] as const);
 const handles = new WeakSet<object>();
+const partialHandles = new WeakSet<object>();
 
 // зачем (Ревизор 2.74): голый «audio_child_invalid» не говорил, какое задание и почему — отказ занятия не диагностировался.
 // Причина и задание дописываются в сообщение (префикс прежний — потребители ищут его подстрокой) и в журнал.
@@ -342,6 +343,7 @@ function exactInteraction(
 function validate(
   value: unknown,
   learner: LearningV2CourseSessionLearnerChildV1,
+  coverage: "complete" | "ordered_partial" = "complete",
 ): LearningV2CourseSessionAudioChildV1 {
   if (!record(value)) fail();
   exactKeys(value, ROOT_KEYS);
@@ -359,13 +361,27 @@ function validate(
   const expected = learner.interactions.filter(
     (entry) => entry.audioTargetIds.length > 0,
   );
+  const expectedIndexByInteractionId = new Map(
+    expected.map((entry, index) => [entry.interactionId, index] as const),
+  );
+  const representedExpectedIndexes = interactions.map((entry) =>
+    expectedIndexByInteractionId.get(entry.interactionId),
+  );
+  const coverageInvalid = coverage === "complete"
+    ? interactions.length !== expected.length || interactions.some(
+        (entry, index) => entry.interactionId !== expected[index]?.interactionId,
+      )
+    : representedExpectedIndexes.some(
+        (expectedIndex, index) =>
+          expectedIndex === undefined ||
+          (index > 0 && expectedIndex <= representedExpectedIndexes[index - 1]!),
+      );
   if (
-    interactions.length !== expected.length ||
-    interactions.some(
-      (entry, index) => entry.interactionId !== expected[index]?.interactionId,
-    ) ||
-    interactions.some((entry, index) => {
-      const learnerEntry = expected[index];
+    coverageInvalid ||
+    interactions.some((entry) => {
+      const learnerEntry = expected.find(
+        (candidate) => candidate.interactionId === entry.interactionId,
+      );
       if (!learnerEntry) return true;
       const allowed = new Set(
         learnerEntry.responseOptions.map((option) => option.responseId),
@@ -411,6 +427,7 @@ function validate(
     fail();
   const result = freeze(body);
   handles.add(result);
+  if (coverage === "ordered_partial") partialHandles.add(result);
   return result;
 }
 
@@ -475,6 +492,67 @@ export function materializeLearningV2CourseSessionAudioChildV1(
   );
 }
 
+/**
+ * Local EN runtime projection containing only interactions with real recorded
+ * files. The learner child remains complete; absent interactions are spoken by
+ * on-device speech. This handle cannot be encoded as a published audio child.
+ */
+export function materializePartialLearningV2CourseSessionAudioChildV1(
+  input: Readonly<{
+    learner: LearningV2CourseSessionLearnerChildV1;
+    interactions: readonly LearningV2CourseSessionInteractionAudioInputV1[];
+  }>,
+): LearningV2CourseSessionAudioChildV1 {
+  if (
+    !record(input) ||
+    Object.keys(input).sort().join("|") !== "interactions|learner"
+  )
+    fail();
+  const interactions = input.interactions.map((entry) => {
+    const selectables = entry.selectables.map((selectable) => {
+      const body = {
+        selectableId: selectable.selectableId,
+        audioTargetId: selectable.audioTargetId,
+        wordId: selectable.wordId,
+        wordOrdinal: selectable.wordOrdinal,
+        visibleTextHash: hashCanonicalBody(selectable.visibleText),
+        files: selectable.files.map(withFileFingerprint),
+      };
+      return { ...body, selectableFingerprint: hashCanonicalBody(body) };
+    });
+    const body = {
+      interactionId: entry.interactionId,
+      taskVoiceGroupFingerprint: entry.taskVoiceGroupFingerprint,
+      fullPhraseFiles: entry.fullPhraseFiles?.map(withFileFingerprint) ?? null,
+      selectables,
+    };
+    return { ...body, interactionAudioFingerprint: hashCanonicalBody(body) };
+  });
+  const body = {
+    schemaVersion: LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_SCHEMA_V1,
+    courseSessionId: input.learner.courseSessionId,
+    learnerFingerprint: input.learner.learnerFingerprint,
+    interactions,
+    interactionCount: interactions.length,
+    voiceIds: V2_REQUIRED_VOICE_IDS,
+    variantsPerAudioCoordinate: 4 as const,
+    selectionPolicy: "local_shuffled_round_robin" as const,
+    taskVoiceScope: "one_voice_per_interaction_for_phrase_and_words" as const,
+    serverRequestPerPlayback: false as const,
+    remoteTtsFallbackDuringSession: false as const,
+    answerPayload: "absent_by_exact_schema" as const,
+    correctnessAuthority: "none" as const,
+    audioByteAuthority: "none_active_release_readback_required" as const,
+    runtimeAuthority: "none_active_release_join_required" as const,
+    releaseAuthority: false as const,
+  };
+  return validate(
+    { ...body, audioFingerprint: hashCanonicalBody(body) },
+    input.learner,
+    "ordered_partial",
+  );
+}
+
 export function parseLearningV2CourseSessionAudioChildV1(
   raw: string,
   learner: LearningV2CourseSessionLearnerChildV1,
@@ -498,7 +576,7 @@ export function parseLearningV2CourseSessionAudioChildV1(
 export function encodeLearningV2CourseSessionAudioChildV1(
   child: LearningV2CourseSessionAudioChildV1,
 ): string {
-  if (!handles.has(child)) fail();
+  if (!handles.has(child) || partialHandles.has(child)) fail();
   const raw = canonicalJsonV1(child);
   if (
     utf8ByteLengthV1(raw) > LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1

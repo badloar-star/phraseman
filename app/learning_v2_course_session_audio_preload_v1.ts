@@ -352,43 +352,23 @@ async function preload(
         verifiedPhysicalAudioFiles.delete(oldest);
       }
     }
-    // зачем: владелец 22.09 — «занятие не подготовилось» на уроке 2. Раньше
-    // ОДИН недостающий MP3 отклонял подготовку целиком, и урок не открывался
-    // вовсе. Решение владельца: открывать без звука, звук догоняет фоном.
-    // Поэтому пропуск файла тут НЕ фатален — он уменьшает localFileCount,
-    // и вызывающий сам решает, что делать с неполной озвучкой.
-    let fileUri: string | null = null;
-    try {
-      fileUri = await verifiedFile;
-    } catch (error) {
-      // Немой catch запрещён: без причины «тихое занятие» не отличить от бага.
-      console.warn(
-        "[V2-AUDIO] file_unavailable",
-        JSON.stringify({
-          courseSessionId: audioChild.courseSessionId,
-          contentHash: file.contentHash,
-          objectPath: file.objectPath,
-          byteSize: file.byteSize,
-          reason: String(error),
-        }),
-      );
-    }
+    // Only an absent recording entry may use device speech. Once a file is
+    // represented by the audio child, offline resolution and integrity
+    // verification are mandatory and any error rejects session preparation.
+    const fileUri = await verifiedFile;
     if (!isCurrentAccountGeneration(account, account.stableId))
       fail("account_changed_after_file_fetch", {
         courseSessionId: audioChild.courseSessionId,
         index,
       });
-    if (fileUri !== null) localUris.set(file.fileFingerprint, fileUri);
+    localUris.set(file.fileFingerprint, fileUri);
   });
   if (localUris.size !== files.size)
-    console.warn(
-      "[V2-AUDIO] session_audio_incomplete",
-      JSON.stringify({
-        courseSessionId: audioChild.courseSessionId,
-        resolved: localUris.size,
-        expected: files.size,
-      }),
-    );
+    fail("audio_file_verification_incomplete", {
+      courseSessionId: audioChild.courseSessionId,
+      resolved: localUris.size,
+      expected: files.size,
+    });
   const body = {
     schemaVersion: LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_SCHEMA_V1,
     courseSessionId: audioChild.courseSessionId,

@@ -2,6 +2,7 @@ import {
   encodeLearningV2CourseSessionAudioChildV1,
   learningV2CourseSessionInteractionVoiceIndexV1,
   materializeLearningV2CourseSessionAudioChildV1,
+  materializePartialLearningV2CourseSessionAudioChildV1,
   parseLearningV2CourseSessionAudioChildV1,
   selectLearningV2CourseSessionInteractionAudioV1,
 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
@@ -112,6 +113,21 @@ describe("Learning V2 direct course-session audio child", () => {
       correctnessAuthority: "none",
       releaseAuthority: false,
     });
+  });
+
+  test("allows a local recorded subset without weakening the serialized full-audio contract", () => {
+    const childLearner = learner();
+    const partial = materializePartialLearningV2CourseSessionAudioChildV1({
+      learner: childLearner,
+      interactions: [],
+    });
+
+    expect(partial.interactions).toEqual([]);
+    expect(partial.learnerFingerprint).toBe(childLearner.learnerFingerprint);
+    expect(partial.remoteTtsFallbackDuringSession).toBe(false);
+    expect(() => encodeLearningV2CourseSessionAudioChildV1(partial)).toThrow(
+      "learning_v2_course_session_audio_child_invalid",
+    );
   });
 
   test("one selected voice is reused for full phrase and every tapped word", () => {

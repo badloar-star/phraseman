@@ -8,6 +8,7 @@ const account = Object.freeze({
 });
 let accountCurrent = true;
 let accountListener: (() => void) | null = null;
+let mockPreparedFileError: Error | null = null;
 
 jest.mock("expo-constants", () => ({
   __esModule: true,
@@ -46,8 +47,10 @@ jest.mock("../modules/learning-v2/progress/progress_account_scope", () => ({
 jest.mock(
   "../modules/learning-v2/runtime/voice_audio_offline_cache_v1",
   () => ({
-    resolvePreparedLearningV2VoiceAudioOfflineFileV1: async (identity: unknown) =>
-      Object.freeze({ identity }),
+    resolvePreparedLearningV2VoiceAudioOfflineFileV1: async (identity: unknown) => {
+      if (mockPreparedFileError) throw mockPreparedFileError;
+      return Object.freeze({ identity });
+    },
     prepareLearningV2VoiceAudioOfflineBytesV1: async ({
       identity,
       loadBytes,
@@ -73,7 +76,7 @@ import {
   resolveLearningV2CourseSessionFullPhraseAudioV1,
   resolveLearningV2CourseSessionSelectableAudioV1,
 } from "../app/learning_v2_course_session_audio_preload_v1";
-import { materializeLearningV2CourseSessionAudioChildV1 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
+import { materializePartialLearningV2CourseSessionAudioChildV1 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
 import { materializeLearningV2CourseSessionLearnerChildV1 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 /* eslint-enable import/first */
 
@@ -93,7 +96,7 @@ function fixture() {
         { responseId: `chip-${index + 1}`, text: `word${index + 1}` },
       ],
       mediaIds: [],
-      audioTargetIds: index === 0 ? [h("target")] : [],
+      audioTargetIds: index < 2 ? [h(`target-${index + 1}`)] : [],
       accessibilityLabel: `Neutral ${index + 1}`,
       scriptedAlternate: null,
       modePayload: null, // 48e9a2993: materialize проверяет modePayload строго (=== null), отсутствие поля = невалидный payload
@@ -111,7 +114,7 @@ function fixture() {
         contentType: "audio/mpeg" as const,
       };
     });
-  const audioChild = materializeLearningV2CourseSessionAudioChildV1({
+  const audioChild = materializePartialLearningV2CourseSessionAudioChildV1({
     learner,
     interactions: [
       {
@@ -121,7 +124,7 @@ function fixture() {
         selectables: [
           {
             selectableId: "chip-1",
-            audioTargetId: h("target"),
+            audioTargetId: h("target-1"),
             wordId: h("word"),
             wordOrdinal: 1,
             visibleText: "word1",
@@ -137,6 +140,7 @@ function fixture() {
 describe("Learning V2 direct course-session audio preload", () => {
   beforeEach(() => {
     accountCurrent = true;
+    mockPreparedFileError = null;
     accountListener?.();
   });
 
@@ -170,12 +174,23 @@ describe("Learning V2 direct course-session audio preload", () => {
     expect(phrase?.voiceId).toBe(word?.voiceId);
     expect(phrase?.fileUri).toMatch(/^file:\/\/\/cache\//u);
     expect(word?.fileUri).toMatch(/^file:\/\/\/cache\//u);
+    expect(resolveLearningV2CourseSessionFullPhraseAudioV1({
+      handle,
+      interactionId: "interaction-5",
+    })).toBeNull();
 
     const repeated = await preloadLearningV2CourseSessionAudioV1({
       ...value,
       sessionRunId: "run-neutral-1",
     });
     expect(repeated).toBe(handle);
+
+    mockPreparedFileError = new Error("voice_audio_offline_cache_integrity_mismatch");
+    accountListener?.();
+    await expect(preloadLearningV2CourseSessionAudioV1({
+      ...fixture(),
+      sessionRunId: "run-neutral-corrupt",
+    })).rejects.toThrow("voice_audio_offline_cache_integrity_mismatch");
   });
 
   test("invalidates the opaque preload when the account changes", async () => {

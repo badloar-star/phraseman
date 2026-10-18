@@ -1,11 +1,23 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1 } from "../app/learning_v2_factory_single_voice_v1.generated";
+jest.mock("@react-native-firebase/app", () => ({ getApp: jest.fn(() => ({})) }));
+jest.mock("@react-native-firebase/functions", () => ({ getFunctions: jest.fn(() => ({})), httpsCallable: jest.fn() }));
+jest.mock("../app/cloud_sync", () => ({ ensureAnonUser: jest.fn(async () => "stable-1") }));
+jest.mock("../app/stable_id", () => ({ peekStableId: jest.fn(() => "stable-1") }));
+jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
+  preloadLearningV2CourseSessionAudioV1: jest.fn(),
+  isLearningV2CourseSessionAudioPreloadHandleV1: jest.fn(() => true),
+  getLearningV2CourseSessionAudioPreloadSummaryV1: jest.fn(),
+}));
+
 import {
-  buildLearningV2FactoryBundledAudioChildV1,
+  learningV2FactoryMissingAudioInteractionIdsV1,
   learningV2FactoryRemoteAudioFileForTranscriptVoiceV1,
   learningV2FactoryWordAudioFileV1,
 } from "../app/learning_v2_factory_production_audio_v1";
+import { FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1 } from "../app/learning_v2_factory_single_voice_v1.generated";
+import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
+import { LEARNING_V2_RELEASED_SESSION_COUNT_V1 } from "../app/learning_v2_session_availability_v1";
 import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { materializeFactoryNativeLearningV2SessionV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 
@@ -21,10 +33,10 @@ const player = readFileSync("app/learning_v2_direct_session_player_v1.tsx", "utf
 const lessonPack = readFileSync("app/learning_v2_lesson_audio_pack_v1.ts", "utf8");
 
 assert.match(client, /buildLearningV2FactoryBundledAudioChildV1\(factory\.learnerChild\)/);
-assert.doesNotMatch(client, /audioDelivery: audioChild \? "published_mp3" as const : "device_speech" as const/);
-// зачем (05.10): с f2259e1e9 между условием и возвратом стоит лог [V2-BUNDLED] null step=audio_child — правило то же:
-// без полной озвучки сессия НЕ выдаётся (никакой подмены речью устройства).
-assert.match(client, /if \(!audioChild\) \{\s*console\.warn\(`\[V2-BUNDLED\] null step=audio_child[\s\S]{0,400}?\);\s*return null;\s*\}/);
+assert.doesNotMatch(client, /resolveLearningV2FactoryRuntimeAudioOmissionsV1/);
+assert.match(client, /recorded_mp3_first_with_device_speech_fallback/);
+assert.match(client, /if \(!__DEV__\) return null;\s*return bundledSessionMaterial\(locatorInput, true\);/);
+assert.doesNotMatch(client, /null step=audio_omission_policy|null step=audio_omission_materialize/);
 assert.match(preload, /resolvePreparedLearningV2VoiceAudioOfflineFileV1/);
 assert.doesNotMatch(preload, /downloadLearningV2ActivityAudioBytesV1|Asset\.fromModule/);
 assert.match(preload, /all_selected_mp3_verified_before_session_start/);
@@ -32,9 +44,12 @@ assert.match(preload, /resolveLearningV2CourseSessionSupplementalAudioV1/);
 assert.match(client, /supplementalAudio: Object\.freeze/);
 assert.match(client, /audioSummary\.supplementalAudioCount !== supplementalWordAudio\.size/);
 assert.match(client, /session\.sessionOrdinal <= locator\.sessionOrdinal/);
+assert.doesNotMatch(client, /fail\("word_audio_missing"/);
 assert.doesNotMatch(factoryAudio, /assetModule|BundledAudioModuleForObjectPath/);
 assert.match(factoryAudio, /\["ash", "onyx", "nova", "coral"\]/);
 assert.match(factoryAudio, /payload\?\.family === "sound_contrast"/);
+assert.match(factoryAudio, /materializePartialLearningV2CourseSessionAudioChildV1/);
+assert.match(factoryAudio, /entry\?\.transcript === transcript/);
 assert.match(generator, /https:\/\/api\.openai\.com\/v1\/audio\/speech/);
 assert.match(generator, /requireCodexOpenAiTtsOnly/);
 assert.match(generator, /PHRASEMAN_ALLOW_OPENAI_DEV_SPEND|requireOpenAiDevSpendGuard/);
@@ -47,6 +62,10 @@ assert.doesNotMatch(player, /material\?\.audioDelivery === "device_speech"/);
 assert.match(player, /resolveLearningV2CourseSessionSupplementalAudioV1/);
 assert.match(player, /playLocalAudio\(fullPhraseAudio\.fileUri, 0\.72\)/);
 assert.match(player, /fullPhraseAudio !== null \|\| previewPracticeSlowSpeechText !== null/);
+assert.match(
+  player,
+  /resolveLearningV2CourseSessionSelectableAudioV1\([\s\S]{0,500}?if \(selectableAudio\) \{[\s\S]{0,200}?playLocalAudio\(selectableAudio\.fileUri\)/,
+);
 assert.doesNotMatch(player, /Promise\.all\(words\.map/);
 assert.match(player, /managedAudio\.stop\(\);[\s\S]{0,500}setAudioRequest\(\{ fileUri, requestId, rate \}\)/);
 assert.match(lessonPack, /export function resolvePreparedLearningV2FactoryWordAudioV1/);
@@ -56,60 +75,114 @@ assert.match(
   /if \(!isCurrentAccountGeneration\(input\.account, input\.stableId\)\)[\s\S]{0,300}preparedFileUriByContentHash\.set/,
 );
 
-// зачем (координатор §46, 2026-10-01): assert.ok-сужение внутри цикла
-// зацикливает вывод типа (TS7022, набор не запускался вовсе). Тип берём
-// явно из сигнатуры — проверки те же.
-type FactoryAudioInteraction = NonNullable<
-  ReturnType<typeof buildLearningV2FactoryBundledAudioChildV1>
->["interactions"][number];
-
-for (const session of factoryNativeLearningV2AvailabilityV1().sessions) {
-  const material = materializeFactoryNativeLearningV2SessionV1({
+// зачем (18.10, класс А): выпуск V2 = 441 занятие (уроки 1–8), было 15 (только урок 1 до 16.10).
+assert.equal(LEARNING_V2_RELEASED_SESSION_COUNT_V1, 441);
+const activeSessions = factoryNativeLearningV2AvailabilityV1().sessions.filter(
+  (candidate) => candidate.lessonOrdinal >= 1,
+);
+assert.equal(activeSessions.length, LEARNING_V2_RELEASED_SESSION_COUNT_V1);
+for (const session of activeSessions) {
+  const rawMaterial = materializeFactoryNativeLearningV2SessionV1({
     lessonOrdinal: session.lessonOrdinal,
     sessionOrdinal: session.sessionOrdinal,
     interfaceLocale: "ru",
   });
-  assert.ok(material, `${session.courseSessionId} must materialize from the released catalog`);
-  const audioChild = buildLearningV2FactoryBundledAudioChildV1(material.learnerChild);
-  assert.ok(audioChild, `${session.courseSessionId} must never fall back to device speech`);
-  for (const interaction of material.learnerChild.interactions) {
-    if (interaction.family !== "scripted_repeat_compare") continue;
-    const audio: FactoryAudioInteraction | undefined = audioChild.interactions.find(
-      (candidate) => candidate.interactionId === interaction.interactionId,
+  assert.ok(rawMaterial, `${session.courseSessionId} must materialize from the released catalog`);
+  const material = bundledLearningV2CourseSessionMaterialV3({
+    environment: "production",
+    targetLanguage: "en",
+    studyTarget: "en",
+    learnerSourceLocale: "ru",
+    seasonId: "learning-v2",
+    lessonOrdinal: session.lessonOrdinal,
+    sessionOrdinal: session.sessionOrdinal,
+    activeRootFingerprint: "0".repeat(64),
+  } as never);
+  assert.ok(material, `${session.courseSessionId} must materialize through the public bundled runtime`);
+  const rawInteractionIds = rawMaterial.learnerChild.interactions.map((interaction) => interaction.interactionId);
+  const publicInteractionIds = material.learnerChild.interactions.map((interaction) => interaction.interactionId);
+  assert.deepEqual(
+    publicInteractionIds,
+    rawInteractionIds,
+    `${session.courseSessionId} must preserve every learner interaction even when audio is missing`,
+  );
+  assert.equal(material.audioDelivery, "recorded_mp3_first_with_device_speech_fallback");
+  const audioChild = material.audioChild;
+  assert.ok(audioChild, `${session.courseSessionId} must expose its recorded subset`);
+  assert.equal(audioChild.remoteTtsFallbackDuringSession, false);
+  const expectedAudioInteractionIds = material.learnerChild.interactions
+    .filter((interaction) => interaction.audioTargetIds.length > 0)
+    .map((interaction) => interaction.interactionId);
+  const missingAudioInteractionIds = learningV2FactoryMissingAudioInteractionIdsV1(
+    material.learnerChild,
+  );
+  if (session.lessonOrdinal === 1 && session.sessionOrdinal <= 5) {
+    assert.deepEqual(
+      missingAudioInteractionIds,
+      [],
+      `${session.courseSessionId} is launch-seed audio and must remain fully recorded`,
     );
+  }
+  assert.deepEqual(
+    audioChild.interactions.map((interaction) => interaction.interactionId),
+    expectedAudioInteractionIds.filter((interactionId) => !missingAudioInteractionIds.includes(interactionId)),
+    `${session.courseSessionId} audio child must contain exactly the complete recorded interactions`,
+  );
+  for (const audio of audioChild.interactions) {
+    const interaction = material.learnerChild.interactions.find(
+      (candidate) => candidate.interactionId === audio.interactionId,
+    );
+    assert.ok(interaction);
     const assigned = FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1[interaction.interactionId];
-    assert.ok(assigned, `${interaction.interactionId} must have an explicit voice assignment`);
-    assert.ok(audio?.fullPhraseFiles);
-    assert.equal(
-      audio.fullPhraseFiles.length,
-      1,
-      `${interaction.interactionId} must have its assigned published reference voice`,
-    );
-    const transcript = interaction.modePayload?.family === "scripted_repeat_compare"
-      ? interaction.modePayload.referenceAudio?.transcript
-      : null;
-    assert.ok(transcript);
+    assert.ok(assigned, `${interaction.interactionId} must have an explicit single-voice assignment`);
+    const payload = interaction.modePayload;
+    if (payload?.family === "sound_contrast") {
+      const references = [payload.audioA, payload.audioB];
+      assert.equal(audio.fullPhraseFiles, null);
+      assert.equal(audio.selectables.length, references.length);
+      for (const [index, selectable] of audio.selectables.entries()) {
+        const reference = references[index];
+        assert.ok(reference);
+        assert.equal(selectable.audioTargetId, reference.audioTargetId);
+        assert.equal(selectable.files.length, 1);
+        assert.equal(selectable.files[0]?.voiceId, assigned.voice);
+        for (const file of selectable.files) {
+          assert.equal(file.contentHash, assigned.clips[reference.transcript]);
+          assert.equal(
+            file.contentHash,
+            learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
+              reference.transcript,
+              file.voiceId,
+            )?.contentHash,
+          );
+        }
+      }
+      continue;
+    }
+    const reference = payload && "referenceAudio" in payload ? payload.referenceAudio : null;
+    assert.ok(reference);
+    assert.ok(audio.fullPhraseFiles);
+    assert.equal(audio.fullPhraseFiles.length, 1);
+    assert.equal(audio.fullPhraseFiles[0]?.voiceId, assigned.voice);
+    assert.deepEqual(audio.selectables, []);
     for (const file of audio.fullPhraseFiles) {
-      assert.equal(file.voiceId, assigned.voice);
-      assert.equal(file.contentHash, assigned.clips[transcript]);
+      assert.equal(file.contentHash, assigned.clips[reference.transcript]);
       assert.equal(
         file.contentHash,
         learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
-          transcript,
+          reference.transcript,
           file.voiceId,
         )?.contentHash,
       );
     }
   }
-  for (const encounters of Object.values(material.wordEncounterQueuesByInteractionId)) {
+  for (const encounters of Object.values(material.factoryWordEncounterQueues ?? {})) {
     for (const encounter of encounters) {
-      // Owner-approved 17.10 contract: words use their available published voice.
-      const wordAudio = learningV2FactoryWordAudioFileV1(encounter.save.targetText);
-      assert.ok(wordAudio, `${encounter.lexicalItemId} must have a published word recording`);
-      assert.equal(
-        wordAudio.contentHash,
-        learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(encounter.save.targetText, wordAudio.voiceId)?.contentHash,
-      );
+      if (session.lessonOrdinal === 1 && session.sessionOrdinal <= 5)
+        assert.ok(
+          learningV2FactoryWordAudioFileV1(encounter.save.targetText),
+          `${encounter.lexicalItemId} in launch-seed audio must have a word recording`,
+        );
     }
   }
 }
@@ -119,6 +192,14 @@ assert.match(player, /preparedWordAudioByText\[normalized\]/);
 assert.match(
   player,
   /preparedWordAudioByText\[normalized\]\s*\?\? resolvePreparedLearningV2FactoryWordAudioV1\(normalized\)/,
+);
+assert.match(
+  player,
+  /if \(fileUri\) \{\s*playLocalAudio\(fileUri\);\s*return;\s*\}\s*speakPreviewText\(normalized, `word-pocket:\$\{normalized\}`\)/,
+);
+assert.match(
+  player,
+  /if \(currentNewWordAudioUri\) playLocalAudio\(currentNewWordAudioUri\);\s*else\s*speakPreviewText\(/,
 );
 
 console.log("LEARNING V2 FACTORY PRODUCTION AUDIO CONTRACT: PASS");

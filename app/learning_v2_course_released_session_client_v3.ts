@@ -18,10 +18,8 @@ import {
 import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_session1_production_audio_v1";
 import {
   buildLearningV2FactoryBundledAudioChildV1,
-  learningV2FactoryMissingAudioInteractionIdsV1,
   learningV2FactoryWordAudioFileV1,
 } from "./learning_v2_factory_production_audio_v1";
-import { resolveLearningV2FactoryRuntimeAudioOmissionsV1 } from "./learning_v2_factory_runtime_audio_omissions_v1";
 import { buildLearningV2EsSession1BundledAudioChildV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { buildLearningV2EsSession2BundledAudioChildV1 } from "./learning_v2_es_session2_production_audio_v1";
 import { peekStableId } from "./stable_id";
@@ -127,7 +125,10 @@ export type LearningV2CourseReleasedSessionMaterialV3 = Readonly<{
   evaluatorCapsuleChild: LearningV2CourseSessionEvaluatorCapsuleChildV1;
   auxiliaryChild: LearningV2CourseSessionAuxiliaryChildV1;
   audioChild: LearningV2CourseSessionAudioChildV1 | null;
-  audioDelivery: "published_mp3" | "device_speech_preview";
+  audioDelivery:
+    | "published_mp3"
+    | "recorded_mp3_first_with_device_speech_fallback"
+    | "device_speech_preview";
   factorySourceFingerprint: string | null;
   factoryWordEncounterQueues: Readonly<Record<string, readonly LearningV2FactoryNativeNewWordEncounterV1[]>> | null;
   factoryPracticeSemantics: Readonly<Record<string, LearningV2FactoryNativePracticeSemanticV1>> | null;
@@ -167,8 +168,12 @@ export interface LearningV2CourseSessionReadySummaryV3 {
   readonly audioFingerprint: string;
   readonly textSource: "network" | "lkg" | "bundled_factory";
   readonly textReadiness: "canonical_children_parsed_and_account_scoped_cached";
-  readonly audioReadiness: "all_selected_mp3_hash_verified_local_files";
-  readonly startPolicy: "intro_may_open_only_after_text_and_audio_ready";
+  readonly audioReadiness:
+    | "all_selected_mp3_hash_verified_local_files"
+    | "recorded_mp3_hash_verified_device_speech_fallback_ready";
+  readonly startPolicy:
+    | "intro_may_open_only_after_text_and_audio_ready"
+    | "intro_may_open_after_recorded_audio_verified_device_speech_covers_missing";
   readonly answerPathTransport: "none";
   readonly serverAnswerAuthority: "none_answers_never_transported_or_rechecked";
   readonly releaseAuthority: false;
@@ -881,7 +886,7 @@ function bundledSessionMaterial(
     const requestedLocale = LEARNING_V2_INTERFACE_LOCALES.includes(
       locator.learnerSourceLocale as LearningV2InterfaceLocale,
     ) ? locator.learnerSourceLocale as LearningV2InterfaceLocale : "ru";
-    let factory = materializeFactoryNativeLearningV2SessionV1({
+    const factory = materializeFactoryNativeLearningV2SessionV1({
       lessonOrdinal: locator.lessonOrdinal,
       sessionOrdinal: locator.sessionOrdinal,
       interfaceLocale: requestedLocale,
@@ -891,35 +896,6 @@ function bundledSessionMaterial(
     if (!factory) {
       console.warn(`[V2-BUNDLED] null step=factory_native_materialize lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} locale=${requestedLocale}`);
       return null;
-    }
-    const missingAudioInteractionIds = learningV2FactoryMissingAudioInteractionIdsV1(
-      factory.learnerChild,
-    );
-    if (!deviceSpeechPreview && missingAudioInteractionIds.length > 0) {
-      const session = `en/l${String(locator.lessonOrdinal).padStart(2, "0")}/s${String(locator.sessionOrdinal).padStart(2, "0")}`;
-      const disabledInteractionIds = resolveLearningV2FactoryRuntimeAudioOmissionsV1({
-        session,
-        courseSessionId: factory.courseSessionId,
-        factorySourceFingerprint: factory.sourceFingerprint,
-        missingInteractionIds: missingAudioInteractionIds,
-      });
-      if (!disabledInteractionIds) {
-        console.warn(`[V2-BUNDLED] null step=audio_omission_policy lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal}`);
-        return null;
-      }
-      factory = materializeFactoryNativeLearningV2SessionV1({
-        lessonOrdinal: locator.lessonOrdinal,
-        sessionOrdinal: locator.sessionOrdinal,
-        interfaceLocale: requestedLocale,
-        disabledInteractionIds,
-      });
-      if (
-        !factory ||
-        learningV2FactoryMissingAudioInteractionIdsV1(factory.learnerChild).length > 0
-      ) {
-        console.warn(`[V2-BUNDLED] null step=audio_omission_materialize lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal}`);
-        return null;
-      }
     }
     const courseSessionId = factory.courseSessionId;
     const lessonId = learningV2CourseLessonIdV1(locator.lessonOrdinal);
@@ -938,14 +914,6 @@ function bundledSessionMaterial(
     const activeHeadFingerprint = courseIdentity.activeHeadFingerprint;
     const activeRootFingerprint = courseIdentity.activeRootFingerprint;
     const audioChild = deviceSpeechPreview ? null : buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild);
-    // A released session without a complete four-voice audio child is not a
-    // valid release. Never silently replace published speech with OS TTS.
-    if (!deviceSpeechPreview) {
-      if (!audioChild) {
-        console.warn(`[V2-BUNDLED] null step=audio_child lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} interactions=${factory.learnerChild.interactions.length} audioInteractions=${factory.learnerChild.interactions.filter((interaction) => interaction.audioTargetIds.length > 0).length}`);
-        return null;
-      }
-    }
     const audioFingerprint = audioChild?.audioFingerprint ?? hashCanonicalBody({
       delivery: "device_speech_preview", source: factory.sourceFingerprint,
     });
@@ -963,7 +931,9 @@ function bundledSessionMaterial(
       evaluatorCapsuleChild: factory.evaluatorCapsuleChild,
       auxiliaryChild: factory.auxiliaryChild,
       audioChild,
-      audioDelivery: deviceSpeechPreview ? "device_speech_preview" as const : "published_mp3" as const,
+      audioDelivery: deviceSpeechPreview
+        ? "device_speech_preview" as const
+        : "recorded_mp3_first_with_device_speech_fallback" as const,
       factorySourceFingerprint: factory.sourceFingerprint,
       factoryWordEncounterQueues: factory.wordEncounterQueuesByInteractionId,
       factoryPracticeSemantics: factory.practiceSemanticsByInteractionId,
@@ -1330,8 +1300,9 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       courseSessionId: result.material.courseSessionId,
       audioFingerprint,
     });
-    // Production always uses a complete, locally verified published MP3 set.
-    // Device speech remains a DEV-only authoring concern outside this release path.
+    // Every represented recording is verified locally before the session opens.
+    // Normal EN sessions leave missing recordings unrepresented so the player
+    // can speak those exact learner prompts with the device voice.
     const prepareWhere = {
       lesson: locator.lessonOrdinal,
       session: locator.sessionOrdinal,
@@ -1379,7 +1350,10 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
           text: encounter.save.targetText,
           voice: file?.voiceId ?? "none_recorded",
         };
-        if (!file) fail("word_audio_missing", wordWhere);
+        if (!file) {
+          console.warn("[V2-AUDIO] word_device_speech_fallback", JSON.stringify(wordWhere));
+          continue;
+        }
         const previous = supplementalWordAudio.get(encounter.lexicalItemId);
         if (previous && previous.fileFingerprint !== file.fileFingerprint) {
           fail("word_audio_conflict", {
@@ -1422,24 +1396,20 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
         supplementalExpected: supplementalWordAudio.size,
       });
     }
-    // зачем: владелец 22.09 — «занятие не подготовилось. проверь связь» на
-    // уроке 2 и вылет на Главную. Неполная озвучка ОТКЛОНЯЛА подготовку, и
-    // занятие не открывалось вовсе. Решение владельца: открывать без звука,
-    // звук догоняет фоном. Целостность отпечатков выше по-прежнему жёсткая —
-    // мягче стала только полнота набора файлов. Немое молчание запрещено:
-    // неполный звук всегда называет себя в логе.
+    // Missing recording entries were excluded before preload and use device
+    // speech. Every represented file must still resolve and verify locally;
+    // never label a partial or corrupt represented set as ready.
     if (!audioComplete) {
-      console.warn(
-        "[V2-AUDIO] opening_session_with_incomplete_audio",
-        JSON.stringify({
-          courseSessionId: result.material.courseSessionId,
-          localFileCount: audioSummary.localFileCount,
-          selectedFileCount: audioSummary.selectedFileCount,
-        }),
-      );
+      fail("audio_preload_incomplete", {
+        courseSessionId: result.material.courseSessionId,
+        localFileCount: audioSummary.localFileCount,
+        selectedFileCount: audioSummary.selectedFileCount,
+      });
     }
     audioFingerprint = result.material.audioChild.audioFingerprint;
     audioPreloadFingerprint = audioSummary.preloadFingerprint;
+    const deviceSpeechFallback = result.material.audioDelivery ===
+      "recorded_mp3_first_with_device_speech_fallback";
     const body = {
       schemaVersion: LEARNING_V2_COURSE_SESSION_READY_SCHEMA_V3,
       activeRootFingerprint: result.material.activeRootFingerprint,
@@ -1451,8 +1421,12 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       textSource: result.source,
       textReadiness:
         "canonical_children_parsed_and_account_scoped_cached" as const,
-      audioReadiness: "all_selected_mp3_hash_verified_local_files" as const,
-      startPolicy: "intro_may_open_only_after_text_and_audio_ready" as const,
+      audioReadiness: deviceSpeechFallback
+        ? "recorded_mp3_hash_verified_device_speech_fallback_ready" as const
+        : "all_selected_mp3_hash_verified_local_files" as const,
+      startPolicy: deviceSpeechFallback
+        ? "intro_may_open_after_recorded_audio_verified_device_speech_covers_missing" as const
+        : "intro_may_open_only_after_text_and_audio_ready" as const,
       answerPathTransport: "none" as const,
       serverAnswerAuthority:
         "none_answers_never_transported_or_rechecked" as const,

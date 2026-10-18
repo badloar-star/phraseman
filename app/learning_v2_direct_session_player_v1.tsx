@@ -1564,6 +1564,21 @@ export default function LearningV2DirectSessionPlayerV1() {
   const playSelectableAudio = useCallback(
     (selectableId: string) => {
       if (!practice) return;
+      if (activeAudioPreload) {
+        try {
+          const selectableAudio = resolveLearningV2CourseSessionSelectableAudioV1({
+            handle: activeAudioPreload,
+            interactionId: practice.interactionId,
+            selectableId,
+          });
+          if (selectableAudio) {
+            playLocalAudio(selectableAudio.fileUri);
+            return;
+          }
+        } catch (error: unknown) {
+          logPlayerSwallowed("selectable_audio", practice.interactionId, error);
+        }
+      }
       if (
         allowsDeviceSpeech &&
         practice.modePayload?.family === "sound_contrast"
@@ -1573,21 +1588,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           speechText,
           `practice:${practice.interactionId}:${selectableId}`,
         );
-        return;
       }
-      if (!activeAudioPreload) return;
-      try {
-        playLocalAudio(
-          resolveLearningV2CourseSessionSelectableAudioV1({
-            handle: activeAudioPreload,
-            interactionId: practice.interactionId,
-            selectableId,
-          })?.fileUri,
-        );
-      } catch (e) {
-      // The visible learner text remains usable if account-scoped audio was // invalidated during an account transition.
-      DebugLogger.error('learning_v2_direct_session_player_v1:speechText', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
     },
     [
       activeAudioPreload,

@@ -16,8 +16,10 @@ import { GestureDetector } from 'react-native-gesture-handler';
 import { CardsGallery, type GalleryCard } from '../../components/cards-grid/CardsGallery';
 import { cardsPerfCount, cardsPerfFlush } from '../../components/cards-grid/cardsPerfLog';
 import { useCardsGridStep } from '../../components/cards-grid/useCardsScale';
+import { useGalleryGrids } from '../../components/cards-grid/useGalleryGrids';
 import { ZoomBar } from '../../components/cards-grid/ZoomBar';
 import { GALLERY_DEFAULT_STEP } from '../../components/cards-grid/cardsGalleryLayout';
+import { strengthDotCount, type WordStrength } from './word_strength';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { PanelCta, PanelDock, SheetRow } from '../../components/mistakes-panel/PanelKit';
@@ -42,8 +44,8 @@ type Props = Readonly<{
   onOpenCard: (id: string) => void;
   /** packLanguage — язык набора карточки: по нему выбирается голос озвучки (R57 #7). */
   onSpeak: (text: string, packLanguage?: string) => void;
-  /** Совместимость с контейнером: «силы слова» на плитке больше нет (макет cards-v2, решение координатора 12.10). */
-  strengthForCard?: unknown;
+  /** Сила слова по EN карточки (word_strength.strengthFor): точки слева снизу на плитках 1 и 2 колонок (владелец 18.10: «с точечками», макет cards-gallery `.dots`); null — не тренировалась, точки пустые. */
+  strengthForCard?: ((en: string) => WordStrength | null) | null;
   onCardsViewed: (ids: string[]) => void;
   isEditableCustomCard: (item: CardItem) => boolean;
   onEditCard: (item: CardItem) => void;
@@ -103,12 +105,12 @@ const zoomCopyFor = (lang: Lang) => triLang(lang, {
   pl: { smaller: 'Mniejsze', larger: 'Większe', more: 'Więcej' },
 });
 
-/** Во время поиска результаты идут в две колонки (макет «Поиск», шаг 1). */
+/** Во время поиска результаты идут в две колонки (макет «Поиск», шаг 1); это не «первый вход»: он открывается горизонтальным видом (GALLERY_OPEN_STEP). */
 const SEARCH_STEP = GALLERY_DEFAULT_STEP;
 const TAG = '[CARDS-ZOOM]';
 
 export default function CollectionGalleryView({
-  cards, lang, header, hiddenByLimitCount, limitCta, onOpenPremiumLimit, onOpenCard, onSpeak, onCardsViewed,
+  cards, lang, header, strengthForCard, hiddenByLimitCount, limitCta, onOpenPremiumLimit, onOpenCard, onSpeak, onCardsViewed,
   isEditableCustomCard, onEditCard, onDeleteCardById, selectionMode, selectedIds, onToggleSelection, selectedCount, canCreatePack,
   selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
 }: Props) {
@@ -139,7 +141,15 @@ export default function CollectionGalleryView({
   const [rootWindowY, setRootWindowY] = useState(0);
   const viewedRef = useRef<string>('');
 
-  const items = useMemo<GalleryCard[]>(() => cards.map((card) => ({ id: card.id, front: card.en, back: resolveFlashcardBackText(card, lang) })), [cards, lang]);
+  // зачем (владелец 18.10): точки силы слова — 0…3 по тому же источнику, что прежняя плитка списка; нет данных — пустые точки, как на макете у ещё не выученных слов
+  const items = useMemo<GalleryCard[]>(() => cards.map((card) => {
+    const strength = strengthForCard ? strengthForCard(card.en) : null;
+    return { id: card.id, front: card.en, back: resolveFlashcardBackText(card, lang), dots: strength ? strengthDotCount(strength) : 0 };
+  }), [cards, lang, strengthForCard]);
+  // зачем (владелец 18.10): сетки по всем шагам с рядами под текст — их же используют докрутка щипка и окно отрисовки
+  const { grids, reportFix } = useGalleryGrids(items, width);
+  const gridsRef = useRef(grids);
+  gridsRef.current = grids;
   const byId = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
 
   const { step, setStep, gesture, morph, morphFrom } = useCardsGridStep({
@@ -148,6 +158,7 @@ export default function CollectionGalleryView({
     viewportH: screenH,
     sideInset: SIDE,
     getGridTop: () => gridTopRef.current,
+    getGrids: () => gridsRef.current,
     getScrollY: () => scrollYRef.current,
     scrollTo: (y) => {
       // зачем: докрутка при смене шага — мгновенная (плитки перетекают от прежних позиций с учётом этого сдвига)
@@ -278,6 +289,8 @@ export default function CollectionGalleryView({
               morphFrom={morphFrom}
               scrollY={Math.max(0, scrollY - gridTop)}
               viewportH={screenH}
+              grids={grids}
+              onFix={reportFix}
               onOpen={onTile}
               onSpeak={onSpeakTile}
               speakLabel={copy.speak}

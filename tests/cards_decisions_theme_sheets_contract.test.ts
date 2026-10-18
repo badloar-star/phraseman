@@ -9,15 +9,12 @@ describe('cards-007: выделение карточек', () => {
     expect(read('app/flashcards/CollectionGalleryView.tsx')).toContain('{!canCreatePack && selectedCount > 0 ? (');
     expect(read('app/flashcards/CollectionListView.tsx')).toContain('{!canCreatePack && selectedIds.size > 0 ? (');
   });
-  it('две колонки: перевод — до двух строк, а не «стоимость прое…» одной', () => {
+  it('две колонки: перевод показывается целиком (владелец 18.10 отменил «до двух строк»), без «стоимость прое…»', () => {
     const src = read('components/cards-grid/CardsGallery.tsx');
-    const at = src.indexOf('<View style={styles.col1}>');
+    const at = src.indexOf('<View style={[styles.col1, pad]}>');
     expect(at).toBeGreaterThan(0);
-    const col1 = src.slice(at, src.indexOf('{speakEl}', at));
-    expect(col1).toContain('numberOfLines={2}');
-    // список (одна колонка) остаётся однострочным
-    const row0 = src.slice(src.indexOf('<View style={styles.row0}>'), at);
-    expect(row0).toContain('numberOfLines={1}');
+    expect(src.slice(at, at + 120)).toContain('{trEl}');
+    expect(src).not.toMatch(/numberOfLines|ellipsizeMode/);
   });
 });
 

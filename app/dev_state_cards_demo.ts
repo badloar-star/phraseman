@@ -55,8 +55,19 @@ export function demoCardSource(index: number): Readonly<{ source: Flashcard['sou
   return { source: 'word' };
 }
 
-export function demoSavedFlashcards(lessons = false): Flashcard[] {
-  return MOCK_SAVED.slice(0, 64).map(([en, ru], i) => ({
+/**
+ * Длинные фразы реального набора (владелец 18.10: «Do you mind if I join you her…», перевод «Вы не против,» обрезан) — только для cards=demo_long: проверка, что текст
+ * на любом шаге ползунка «Сохранённых» помещается целиком. Кладутся ПЕРЕД обычными 64 словами (новее — выше).
+ */
+export const DEMO_LONG_PHRASES: readonly (readonly [string, string])[] = [
+  ['Do you mind if I join you here?', 'Вы не против, если я присоединюсь к вам?'],
+  ['Could you tell me how to get to the nearest metro station?', 'Не подскажете, как добраться до ближайшей станции метро?'],
+  ['I would like to make a reservation for two people tonight', 'Я хотел бы забронировать столик на двоих на сегодня вечером'],
+  ['Could I have the check, please? We are in a hurry', 'Можно счёт, пожалуйста? Мы спешим'],
+];
+
+export function demoSavedFlashcards(lessons = false, long = false): Flashcard[] {
+  const base = MOCK_SAVED.slice(0, 64).map(([en, ru], i) => ({
     id: `dev_demo_saved_${String(i + 1).padStart(2, '0')}`,
     en,
     ru,
@@ -67,6 +78,19 @@ export function demoSavedFlashcards(lessons = false): Flashcard[] {
     packLanguage: 'en',
     studyTarget: TARGET,
   }));
+  if (!long) return base;
+  const longCards = DEMO_LONG_PHRASES.map(([en, ru], i) => ({
+    id: `dev_demo_long_${i + 1}`,
+    en,
+    ru,
+    uk: ru,
+    source: 'word' as const,
+    addedAt: NOW_BASE + (200 - i) * 60_000,
+    packLanguage: 'en',
+    studyTarget: TARGET,
+  }));
+  // зачем: лимит Free 50 — показываются 50 самых старых, поэтому всего ровно 50 (4 длинные + 46 слов), иначе новые длинные фразы окажутся «скрытыми по лимиту»
+  return [...longCards, ...base.slice(0, 50 - longCards.length)] as Flashcard[];
 }
 
 type DemoOwnPack = Readonly<{ packId: string; title: string; count: number; level?: PackLevel; words: readonly string[]; pending?: boolean }>;
@@ -391,9 +415,10 @@ export async function applyDialogQuota(stableId: string, remaining: number | 're
 export async function resetCardsViewPrefs(): Promise<string> {
   assertDevBuild('cards view prefs');
   const { saveGalleryStep } = await import('../components/cards-grid/gallery_step_prefs');
-  const { GALLERY_DEFAULT_STEP } = await import('../components/cards-grid/cardsGalleryLayout');
+  // зачем (владелец 18.10 через координатора: «первый вход и сброс дают горизонтальный вид»): сброс вида ставит тот же шаг, с которого экран открывается у свежего человека
+  const { GALLERY_OPEN_STEP } = await import('../components/cards-grid/cardsGalleryLayout');
   const { setCollectionViewMode } = await import('./flashcards/collection_view_prefs');
-  saveGalleryStep(GALLERY_DEFAULT_STEP);
+  saveGalleryStep(GALLERY_OPEN_STEP);
   setCollectionViewMode('list');
   // зачем: черновик нового набора переживает перезапуск — кадр «Новый набор» после кадра «Новая карточка (Test)» открылся бы с чужим текстом
   const { clearCommunityPackCreateDraft } = await import('./community_packs/communityPackDraftStorage');
@@ -401,8 +426,8 @@ export async function resetCardsViewPrefs(): Promise<string> {
   // зачем (Макеты cards-section-012, 12.10): разовая подсказка «Зажми карточку…» висела поверх сетки на кадрах свежего гостя; фикстуры карточек помечают её увиденной (кадр cards-033 возвращает её параметром hint=show)
   const { flashcardsDeleteHintSeenKey } = await import('./target_storage_keys');
   await AsyncStorage.setItem(flashcardsDeleteHintSeenKey(TARGET), '1');
-  console.log('[DEV-STATE] cards view prefs', JSON.stringify({ galleryStep: GALLERY_DEFAULT_STEP, viewMode: 'list', packDraft: 'cleared', deleteHint: 'seen' })); // guard-ok: единичный лог на ссылку
-  return `step=${GALLERY_DEFAULT_STEP},list,draft=cleared,hint=seen`;
+  console.log('[DEV-STATE] cards view prefs', JSON.stringify({ galleryStep: GALLERY_OPEN_STEP, viewMode: 'list', packDraft: 'cleared', deleteHint: 'seen' })); // guard-ok: единичный лог на ссылку
+  return `step=${GALLERY_OPEN_STEP},list,draft=cleared,hint=seen`;
 }
 
 /** hint=show | seen: разовая подсказка «Зажми карточку…» — вернуть (кадр cards-033) или пометить увиденной. Только анонимный гость (ключ синхронизируется). */
@@ -465,7 +490,7 @@ export async function applyCardsEmpty(): Promise<CardsDemoResult> {
 // зачем (cards-gap-019 «В какой набор? — своих наборов нет»): noPacks — те же 64 сохранённые, но без своих наборов и «Продолжить».
 // зачем (Авторизация 12.10, съёмка R1 cards-026 «Мало карточек для блица»): `few` — в «Сохранённых» 3 карточки (меньше BLITZ_MIN_CARDS = 4), своих наборов нет,
 // поэтому на подготовке Блица единственная колода даёт подсказку «нужно минимум 4 карточки».
-export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPacks?: boolean; few?: boolean }> = {}): Promise<CardsDemoResult> {
+export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPacks?: boolean; few?: boolean; long?: boolean }> = {}): Promise<CardsDemoResult> {
   const applied: Record<string, string> = {};
   const skipped: Record<string, string> = {};
   const step = async (key: string, run: () => Promise<string>) => {
@@ -478,7 +503,7 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPa
   };
 
   try {
-    await assertWritableAccount(options.lessons === true ? 'cards=demo_lessons' : options.few === true ? 'cards=demo_few' : 'cards=demo');
+    await assertWritableAccount(options.lessons === true ? 'cards=demo_lessons' : options.few === true ? 'cards=demo_few' : options.long === true ? 'cards=demo_long' : 'cards=demo');
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     console.warn('[DEV-STATE] cards=demo mode=refused', reason); // guard-ok: причина отказа
@@ -487,7 +512,7 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPa
   await step('view', resetCardsViewPrefs);
   await step('saved', async () => {
     const { saveFlashcards } = await import('../hooks/use-flashcards');
-    const cards = options.few === true ? demoSavedFlashcards(false).slice(0, 3) : demoSavedFlashcards(options.lessons === true);
+    const cards = options.few === true ? demoSavedFlashcards(false).slice(0, 3) : demoSavedFlashcards(options.lessons === true, options.long === true);
     await saveFlashcards(cards, TARGET);
     return String(cards.length);
   });

@@ -9,7 +9,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { noteSwallowedHandler } from '../../app/swallow_log';
-import { GALLERY_DEFAULT_STEP, GALLERY_LAST_STEP } from './cardsGalleryLayout';
+import { GALLERY_LAST_STEP, GALLERY_OPEN_STEP } from './cardsGalleryLayout';
 
 export const GALLERY_STEP_KEY = 'fc_gallery_step_v1';
 const TAG = '[CARDS-ZOOM]';
@@ -30,9 +30,9 @@ export function peekGalleryStep(): number | null {
   return memory;
 }
 
-/** Шаг для первого кадра: из памяти, иначе по умолчанию. */
+/** Шаг для первого кадра: из памяти (выбор человека), иначе горизонтальный вид по макету. */
 export function initialGalleryStep(): number {
-  return memory ?? GALLERY_DEFAULT_STEP;
+  return memory ?? GALLERY_OPEN_STEP;
 }
 
 export function loadGalleryStep(): Promise<number | null> {

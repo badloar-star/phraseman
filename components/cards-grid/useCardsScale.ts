@@ -21,6 +21,7 @@ import {
   galleryLayoutFor,
   galleryScrollFor,
 } from './cardsGalleryLayout';
+import { gridScrollFor, type GalleryGrids } from './cardsGalleryGrid';
 import { initialGalleryStep, loadGalleryStep, peekGalleryStep, saveGalleryStep } from './gallery_step_prefs';
 
 const TAG = '[CARDS-ZOOM]';
@@ -68,6 +69,8 @@ export type GridHostApi = Readonly<{
   scrollTo: (y: number) => void;
   /** Горизонтальное поле сетки от края окна. */
   sideInset: number;
+  /** Сетки с рядами разной высоты (текст растит плитку): докрутка считается по ним; без них — прежняя раскладка с одной высотой на шаг. */
+  getGrids?: () => GalleryGrids | null;
 }>;
 
 export function useCardsGridStep(host: GridHostApi) {
@@ -107,7 +110,11 @@ export function useCardsGridStep(host: GridHostApi) {
     const fxGrid = (focal?.x ?? h.sideInset + h.width / 2) - h.sideInset;
     const prevLayout = galleryLayoutFor(prev, h.width);
     const nextLayout = galleryLayoutFor(target, h.width);
-    const scrollAfter = galleryScrollFor({ n: h.count, prev: prevLayout, next: nextLayout, fx: fxGrid, fvY, scrollY: scrollBefore, gridTop: h.getGridTop() });
+    const grids = h.getGrids?.() ?? null;
+    // зачем (владелец 18.10): ряды разной высоты — точка под пальцами остаётся на месте и при росте плиток под текст
+    const scrollAfter = grids
+      ? gridScrollFor({ n: h.count, prev: grids.grids[prev]!, next: grids.grids[target]!, fx: fxGrid, fvY, scrollY: scrollBefore, gridTop: h.getGridTop() })
+      : galleryScrollFor({ n: h.count, prev: prevLayout, next: nextLayout, fx: fxGrid, fvY, scrollY: scrollBefore, gridTop: h.getGridTop() });
     const delta = scrollAfter - scrollBefore;
     console.log(`${TAG} шаг ${prev}→${target} источник=${source} колонок ${prevLayout.cols}→${nextLayout.cols} карточек=${h.count} scroll ${Math.round(scrollBefore)}→${Math.round(scrollAfter)} фокус=(${Math.round(fxGrid)},${Math.round(fvY)}) быстро=${reduceMotion}`);
     stepRef.current = target;

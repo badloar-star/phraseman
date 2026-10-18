@@ -1,37 +1,37 @@
 /**
- * Галерея карточек — общий компонент списков «Карточек» (макет docs/design/v2-app/cards-v2.html, сетка `.zg` и горизонтальная плитка `.wc`).
+ * Галерея карточек — общий компонент списков «Карточек» (макет docs/design/v2-app/cards-v2.html, сетка `.zg` и горизонтальная плитка `.wc`; лицо плитки — cards-gallery.html `.face`).
  *
  * зачем (Карточки 2.0, владелец 12.10): плитки лежат абсолютно и пересчитываются от шага (1 / 2 / 3 / 5 колонок) на UI-потоке: смена шага — перетекание
  * 380 мс (позиция и размер каждой плитки идут из старой раскладки в новую), содержимое плитки проявляется после 22 % пути. Лицо плитки по шагу:
- * 1 колонка — озвучка слева, «EN», слово 26, перевод 15, «⋯» справа; 2 — слово 20 и перевод, озвучка внизу справа; 3 и 5 — только слово.
+ * 1 колонка — озвучка слева, «EN», фраза, перевод, «⋯» справа; 2 — фраза и перевод, озвучка внизу справа; 3 и 5 — только фраза. Точки силы слова — слева снизу на шагах 1 и 2.
  * Тап открывает карточку, долгое нажатие и «⋯» — действия. Рисуются только плитки в окне прокрутки (+ запас; на время перетекания — окно старой и новой раскладки).
- * Стиль «Тень»: плитку отделяет заливка плашки и тень темы, без обводки; цвета — токены темы.
+ * зачем (владелец 18.10, «текст ВСЕГДА помещается целиком», «карточки с градиентом и точками»): кегль и размеры — от ширины плитки (cardsGalleryFit), перенос по словам БЕЗ многоточия,
+ * высота ряда растёт под самую длинную фразу (cardsGalleryGrid); фон плитки — градиент цвета темы со стеклом, бликом и свечением (GalleryTileFace); настоящее число строк плитка
+ * сверяет с оценкой (onTextLayout) и при расхождении сообщает поправку (onFix).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
-import { PixelRatio, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
-import { PlateFill, nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
-import {
-  GALLERY_STEPS,
-  galleryHeight,
-  galleryLayoutFor,
-  galleryPosition,
-  galleryVisibleRange,
-  unionRange,
-} from './cardsGalleryLayout';
+import { plateBoxShadow } from '../v2/ShadowSurface';
+import { GALLERY_STEPS, unionRange } from './cardsGalleryLayout';
+import { FIT_MAX_FONT_SCALE } from './cardsGalleryFit';
+import { gridVisibleRange, type GalleryGrid, type GalleryGrids, type TileGeom } from './cardsGalleryGrid';
 import { cardsPerfCount, cardsPerfMark } from './cardsPerfLog';
+import { GalleryTileFace } from './GalleryTileFace';
+import { galleryFaceColors } from './galleryFaceColors';
 import type { GridMorph, GridState } from './useCardsScale';
+import { useGalleryGrids } from './useGalleryGrids';
 
 export type GalleryCard = Readonly<{
   id: string;
   front: string;
   /** Перевод (на плитке 1 и 2 колонок). */
   back?: string | null;
-  /** Больше не рисуются (макет cards-v2: на плитке только слово и перевод), поля оставлены для старых вызовов. */
   ipa?: string | null;
+  /** Сила слова: сколько точек горит (0…3); undefined — точек на плитке нет (чужие экраны). */
   dots?: number;
 }>;
 
@@ -59,6 +59,9 @@ type Props = Readonly<{
   selectedIds?: ReadonlySet<string>;
   /** Строка поиска: совпадение в слове подчёркивается (макет, кадр «Поиск»). */
   highlight?: string;
+  /** Готовые сетки (экран считает их сам, чтобы докрутка и окно шли по одним и тем же рядам); без них галерея считает свои. */
+  grids?: GalleryGrids;
+  onFix?: (cardId: string, step: number, extraPx: number) => void;
 }>;
 
 // зачем (макет «Поиск»): найденный кусок слова подчёркнут, остальное как обычно.
@@ -76,23 +79,17 @@ function renderFront(front: string, highlight?: string): React.ReactNode {
   );
 }
 
-/** Размеры текста плитки по шагу (макет `.zg.s0…s3`): подпись EN, слово, перевод. Числа заданы здесь, а не литералами в стилях. */
-const FACE = [
-  { lg: 12, lgLine: 14, w: 26, wLine: 32, wTop: 6, tr: 15, trLine: 20, trTop: 2 },
-  { lg: 11, lgLine: 14, w: 20, wLine: 25, wTop: 4, tr: 13.5, trLine: 18, trTop: 2 },
-  { lg: 0, lgLine: 0, w: 15, wLine: 19, wTop: 0, tr: 0, trLine: 0, trTop: 0 },
-  { lg: 0, lgLine: 0, w: 10.5, wLine: 13, wTop: 0, tr: 0, trLine: 0, trTop: 0 },
-] as const;
+/** Кнопка звука: 38 / 28 px в макете (× масштаб); на шагах 3 и 5 колонок её нет. */
 const SPEAK_SIZE = [38, 28, 0, 0] as const;
-// зачем: потолок системного масштаба шрифта в плитках 3/5 колонок — при 1.5 две строки слова (3 кол.) всё ещё лежат в плитке 62.
-const MINI_MAX_FONT_SCALE = 1.5;
+const DOT = 6;
 
-const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selected, highlight }: Readonly<{
+const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selected, highlight, onFix }: Readonly<{
   card: GalleryCard;
   index: number;
   step: number;
   morph: GridMorph;
-  width: number;
+  geoms: readonly TileGeom[];
+  gridStep: GalleryGrid;
   g: GlassTokens;
   onOpen: (id: string) => void;
   onSpeak?: (id: string) => void;
@@ -101,55 +98,65 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
   moreLabel?: string;
   selected?: boolean | undefined;
   highlight?: string;
+  onFix?: (cardId: string, step: number, extraPx: number) => void;
 }>) {
   cardsPerfCount('tile-render'); // зачем: [CARDS-PERF] сколько плиток перерисовано за прокрутку (memo должен их держать)
   const { from, to, t, shift } = morph;
   const style = useAnimatedStyle(() => {
-    const a = galleryLayoutFor(from.value, width);
-    const b = galleryLayoutFor(to.value, width);
-    const pa = galleryPosition(index, a);
-    const pb = galleryPosition(index, b);
+    const a = geoms[Math.round(from.value)]!;
+    const b = geoms[Math.round(to.value)]!;
     const k = t.value;
     return {
       width: a.w + (b.w - a.w) * k,
       height: a.h + (b.h - a.h) * k,
-      transform: [{ translateX: pa.x + (pb.x - pa.x) * k }, { translateY: (pa.y + shift.value) * (1 - k) + pb.y * k }],
+      transform: [{ translateX: a.x + (b.x - a.x) * k }, { translateY: (a.y + shift.value) * (1 - k) + b.y * k }],
     };
   });
   // зачем (макет: firstElementChild opacity 0 → 0 до 22 % → 1): содержимое плитки появляется после того, как плитка заняла почти новый размер
   const contentStyle = useAnimatedStyle(() => ({ opacity: t.value < 0.22 ? 0 : (t.value - 0.22) / 0.78 }));
-  const def = GALLERY_STEPS[step]!;
-  const f = FACE[step]!;
-  const radius = def.radius;
-  const showTranslation = step <= 1 && !!card.back;
-  const speakSize = SPEAK_SIZE[step]!;
+  const face = gridStep.face;
+  const geom = geoms[step]!;
+  const radius = GALLERY_STEPS[step]!.radius;
+  const colors = galleryFaceColors(g);
+  const showTranslation = face.translation && !!card.back;
+  const speakSize = Math.round(SPEAK_SIZE[step]! * face.k);
   const speakVisible = step <= 1 && !!onSpeak;
-  // зачем (сверка Макетов e4e4149d0): в плитках 3 и 5 колонок высота плитки фиксирована (62 / 37), длинное слово раньше ломало её переносом без границы.
-  // Режем по правилам: 2 строки (3 кол.) / 1 строка (5 кол.) + многоточие, БЕЗ adjustsFontSizeToFit; крупный шрифт ограничен 1.5, межстрочный растёт вместе с ним.
-  const miniStep = step >= 2;
-  const miniScale = miniStep ? Math.min(Math.max(PixelRatio.getFontScale(), 1), MINI_MAX_FONT_SCALE) : 1;
+  const est = gridStep.lines(index);
+  // зачем (владелец 18.10): настоящее число строк против оценки — если шрифт устройства шире таблицы, плитка получает поправку и вырастает, а не режет текст
+  const onWordLines = (lines: number) => { if (lines > est.wordLines) onFix?.(card.id, step, (lines - est.wordLines) * face.wordLine); };
+  const onTrLines = (lines: number) => { if (lines > est.trLines) onFix?.(card.id, step, (lines - est.trLines) * face.trLine); };
   const wordEl = (
     <Text
-      numberOfLines={step === 2 ? 2 : step === 3 ? 1 : undefined}
-      ellipsizeMode={miniStep ? 'tail' : undefined}
-      maxFontSizeMultiplier={miniStep ? MINI_MAX_FONT_SCALE : undefined}
-      style={[styles.word, { color: g.text, fontSize: f.w, lineHeight: miniStep ? Math.ceil(f.wLine * miniScale) : f.wLine, marginTop: f.wTop }, miniStep && styles.wordMini]}>
+      maxFontSizeMultiplier={FIT_MAX_FONT_SCALE}
+      onTextLayout={(e) => onWordLines(e.nativeEvent.lines.length)}
+      style={[styles.word, { color: colors.ink, fontSize: face.wordSize, lineHeight: face.wordLine, marginTop: face.wordTop }]}>
       {renderFront(card.front, highlight)}
     </Text>
   );
+  const trEl = showTranslation ? (
+    <Text
+      maxFontSizeMultiplier={FIT_MAX_FONT_SCALE}
+      onTextLayout={(e) => onTrLines(e.nativeEvent.lines.length)}
+      style={{ color: colors.inkSoft, fontSize: face.trSize, lineHeight: face.trLine, marginTop: face.trTop }}>{card.back}</Text>
+  ) : null;
+  const labelEl = face.label ? <Text style={[styles.lg, { color: colors.inkSoft, fontSize: face.lgSize, lineHeight: face.lgLine }]}>EN</Text> : null;
   const speakEl = speakVisible ? (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={speakLabel}
       hitSlop={8}
       onPress={() => onSpeak?.(card.id)}
-      style={[
-        step === 0 ? styles.speak0 : styles.speak1,
-        { width: speakSize, height: speakSize, borderRadius: speakSize / 2, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) },
-      ]}>
-      <Ionicons name="volume-high" size={step === 0 ? 18 : 14} color={g.text} />
+      style={[step === 0 ? styles.speak0 : [styles.speak1, { right: 12 * face.k, bottom: 12 * face.k }], { width: speakSize, height: speakSize, borderRadius: speakSize / 2, backgroundColor: colors.speakBg }]}>
+      <Ionicons name="volume-high" size={Math.round((step === 0 ? 18 : 14) * face.k)} color={colors.ink} />
     </Pressable>
   ) : null;
+  // зачем (владелец 18.10: «с точечками»; макет `.face .dots`: слева снизу, 6 px, зазор 4, заполненные — цвет акцента темы): силу слова показываем на шагах 1 и 2 колонки
+  const dotsEl = step <= 1 && card.dots !== undefined ? (
+    <View pointerEvents="none" accessible={false} importantForAccessibility="no-hide-descendants" testID={`fc-gallery-dots-${card.id}`} style={[styles.dots, { left: 14 * face.k, bottom: 11 * face.k }]}>
+      {[0, 1, 2].map((i) => <View key={i /* guard-ok: три статичные точки, порядок не меняется */} style={[styles.dot, { backgroundColor: i < (card.dots ?? 0) ? colors.dotOn : colors.dotOff }]} />)}
+    </View>
+  ) : null;
+  const pad = { paddingLeft: face.padL, paddingRight: face.padR, paddingTop: face.padV, paddingBottom: face.padV + face.foot };
   return (
     <Animated.View style={[styles.tile, style]}>
       <Pressable
@@ -160,33 +167,24 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
         onLongPress={onLongPress ? () => onLongPress(card.id) : undefined}
         style={({ pressed }) => [styles.press, { borderRadius: radius, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
         <View style={[styles.face, { borderRadius: radius }]}>
-          <PlateFill g={g} radius={radius} />
+          <GalleryTileFace g={g} w={geom.w} h={geom.h} />
           <Animated.View style={[StyleSheet.absoluteFill, contentStyle]}>
             {step === 0 ? (
-              <View style={styles.row0}>
+              <View style={[styles.row0, { paddingLeft: face.padL, paddingRight: face.padR, gap: 22 * face.k }]}>
                 {speakEl}
-                <View style={styles.text}>
-                  <Text style={[styles.lg, { color: g.secondary, fontSize: f.lg, lineHeight: f.lgLine }]}>EN</Text>
-                  {wordEl}
-                  {showTranslation ? <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
-                </View>
+                <View style={styles.text}>{labelEl}{wordEl}{trEl}</View>
                 {selected === undefined && onLongPress ? (
-                  <Pressable accessibilityRole="button" accessibilityLabel={moreLabel} hitSlop={10} onPress={() => onLongPress(card.id)} style={styles.more}>
-                    <Ionicons name="ellipsis-horizontal" size={20} color={g.secondary} />
+                  <Pressable accessibilityRole="button" accessibilityLabel={moreLabel} hitSlop={10} onPress={() => onLongPress(card.id)} style={[styles.more, { right: 18 * face.k, top: 14 * face.k }]}>
+                    <Ionicons name="ellipsis-horizontal" size={Math.round(20 * face.k)} color={colors.inkSoft} />
                   </Pressable>
                 ) : null}
               </View>
             ) : step === 1 ? (
-              <View style={styles.col1}>
-                <Text style={[styles.lg, { color: g.secondary, fontSize: f.lg, lineHeight: f.lgLine }]}>EN</Text>
-                {wordEl}
-                {/* зачем (координатор 13.10, cards-007): в двух колонках перевод «стоимость проезда» резался кнопкой звука («стоимость прое…»). Две строки вместо одной: полная подпись читается, высота плитки (96) вмещает 14+4+25+2+2×18; кнопка звука внизу справа второй строки не достаёт */}
-                {showTranslation ? <Text numberOfLines={2} ellipsizeMode="tail" style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
-                {speakEl}
-              </View>
+              <View style={[styles.col1, pad]}>{labelEl}{wordEl}{trEl}{speakEl}</View>
             ) : (
-              <View style={[styles.mini, { paddingHorizontal: step === 2 ? 12 : 7 }]}>{wordEl}</View>
+              <View style={[styles.mini, pad]}>{wordEl}</View>
             )}
+            {dotsEl}
           </Animated.View>
           {selected !== undefined ? (
             <View pointerEvents="none" style={[styles.check, selected ? { backgroundColor: g.accent } : { backgroundColor: g.dividerTone }]}>
@@ -199,21 +197,27 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
   );
 });
 
-function CardsGalleryInner({ g, cards, width, step: stepProp, morph: morphProp, morphFrom: morphFromProp, scale, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selectedIds, highlight }: Props) {
+function CardsGalleryInner({ g, cards, width, step: stepProp, morph: morphProp, morphFrom: morphFromProp, scale, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selectedIds, highlight, grids: gridsProp, onFix: onFixProp }: Props) {
   const step = stepProp ?? scale?.step ?? 1;
   const morph = (morphProp ?? scale?.morph) as GridMorph;
   const morphFrom = morphFromProp ?? scale?.morphFrom ?? null;
   const { to, live, fx, fy } = morph;
+  // зачем: экран, который сам считает сетки (Сохранённые), передаёт их сюда; остальные (предпросмотр набора сообщества) получают свои
+  const own = useGalleryGrids(gridsProp ? EMPTY_CARDS : cards, width);
+  const grids = gridsProp ?? own.grids;
+  const onFix = onFixProp ?? own.reportFix;
+  // зачем: в рабочий поток уходит только массив из четырёх высот, а не весь объект сеток (в нём функции и сотни чисел по рядам)
+  const heights = grids.heights;
   const heightStyle = useAnimatedStyle(() => ({
-    height: galleryHeight(cards.length, galleryLayoutFor(to.value, width)),
+    height: heights[Math.round(to.value)] ?? 0,
     // живой отклик щипка: сетка тянется за пальцами вокруг точки опоры (translate → scale → translate обратно)
     transform: [{ translateX: fx.value }, { translateY: fy.value }, { scale: live.value }, { translateX: -fx.value }, { translateY: -fy.value }],
   }));
   const range = useMemo(() => {
-    const now = galleryVisibleRange(cards.length, galleryLayoutFor(step, width), scrollY, viewportH);
+    const now = gridVisibleRange(grids.grids[step]!, cards.length, scrollY, viewportH);
     if (!morphFrom) return now;
-    return unionRange(now, galleryVisibleRange(cards.length, galleryLayoutFor(morphFrom.step, width), Math.max(0, morphFrom.scrollY), viewportH));
-  }, [cards.length, morphFrom, scrollY, step, viewportH, width]);
+    return unionRange(now, gridVisibleRange(grids.grids[morphFrom.step]!, cards.length, Math.max(0, morphFrom.scrollY), viewportH));
+  }, [cards.length, grids, morphFrom, scrollY, step, viewportH]);
   const visible = cards.slice(range.from, range.to);
   cardsPerfCount('gallery-render');
   cardsPerfMark('tiles-in-window', visible.length);
@@ -227,7 +231,8 @@ function CardsGalleryInner({ g, cards, width, step: stepProp, morph: morphProp, 
           index={range.from + offset}
           step={step}
           morph={morph}
-          width={width}
+          geoms={grids.geoms(range.from + offset)}
+          gridStep={grids.grids[step]!}
           g={g}
           onOpen={onOpen}
           onSpeak={onSpeak}
@@ -236,11 +241,14 @@ function CardsGalleryInner({ g, cards, width, step: stepProp, morph: morphProp, 
           highlight={highlight}
           onLongPress={onLongPress}
           selected={selectedIds ? selectedIds.has(card.id) : undefined}
+          onFix={onFix}
         />
       ))}
     </Animated.View>
   );
 }
+
+const EMPTY_CARDS: readonly GalleryCard[] = [];
 
 export const CardsGallery = memo(CardsGalleryInner);
 
@@ -250,18 +258,17 @@ const styles = StyleSheet.create({
   press: { flex: 1 },
   pressed: { transform: [{ scale: 0.97 }] },
   face: { flex: 1, overflow: 'hidden' },
-  row0: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 22, paddingLeft: 12, paddingRight: 46 },
-  col1: { flex: 1, justifyContent: 'center', paddingLeft: 16, paddingRight: 44 },
+  row0: { flex: 1, flexDirection: 'row', alignItems: 'center' },
+  col1: { flex: 1, justifyContent: 'center' },
   mini: { flex: 1, justifyContent: 'center' },
   text: { flex: 1, minWidth: 0 },
   lg: { fontWeight: '600' },
-  word: { fontWeight: '600', letterSpacing: -0.2 },
-  wordMini: { minWidth: 0, flexShrink: 1 },
-  // зачем (R1_DIFF_ONE_FIX, cards-v2-006 / cards-section-008): макет `.wc .tr` — white-space: nowrap + ellipsis; перевод «стоимость проезда» переносился на две строки и делал карточку выше соседних
-  tr: {},
+  word: { fontWeight: '600', letterSpacing: -0.2, minWidth: 0 },
   match: { textDecorationLine: 'underline' },
   speak0: { alignItems: 'center', justifyContent: 'center' },
-  speak1: { position: 'absolute', right: 12, bottom: 12, alignItems: 'center', justifyContent: 'center' },
-  more: { position: 'absolute', right: 18, top: 14 },
+  speak1: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
+  more: { position: 'absolute' },
+  dots: { position: 'absolute', flexDirection: 'row', gap: 4 },
+  dot: { width: DOT, height: DOT, borderRadius: DOT / 2 },
   check: { position: 'absolute', right: 6, top: 6, width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
 });

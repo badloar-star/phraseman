@@ -1,28 +1,23 @@
-// зачем (сверка Макетов e4e4149d0): слова в плитках 3 и 5 колонок «Сохранённых» режутся по правилам (numberOfLines + ellipsizeMode),
-// без adjustsFontSizeToFit; при шрифте 1.0 и 1.5 строки слова помещаются в фиксированную высоту плитки.
+// зачем (сверка Макетов e4e4149d0 → владелец 18.10): слова в плитках 3 и 5 колонок «Сохранённых» больше НЕ режутся многоточием: кегль от ширины плитки, перенос по словам,
+// плитка растёт под текст (cardsGalleryFit / cardsGalleryGrid), без adjustsFontSizeToFit. Тут — только исходник; числа и «помещается на любом шаге» — tests/saved_cards_fit.test.ts.
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { GALLERY_STEPS } from '../components/cards-grid/cardsGalleryLayout';
+import { stepFace, tileFit } from '../components/cards-grid/cardsGalleryFit';
 
 const src = readFileSync(join(__dirname, '..', 'components', 'cards-grid', 'CardsGallery.tsx'), 'utf8');
 
-function faceLine(step: number): number {
-  const rows = [...src.matchAll(/\{ lg: \d+, lgLine: \d+, w: [\d.]+, wLine: (\d+),/g)].map((m) => Number(m[1]));
-  return rows[step]!;
-}
-
 describe('слова в плитках 3 и 5 колонок', () => {
-  it('в исходнике: numberOfLines 2 / 1, многоточие, без adjustsFontSizeToFit', () => {
-    expect(src).toMatch(/numberOfLines=\{step === 2 \? 2 : step === 3 \? 1 : undefined\}/);
-    expect(src).toMatch(/ellipsizeMode=\{miniStep \? 'tail' : undefined\}/);
+  it('в исходнике: ни многоточия, ни numberOfLines, ни adjustsFontSizeToFit', () => {
     expect(src).not.toMatch(/adjustsFontSizeToFit=/);
+    expect(src).not.toMatch(/ellipsizeMode|numberOfLines/);
   });
 
-  it.each([[2, 2], [3, 1]])('шаг %i: %i строк(и) слова помещаются в плитку при шрифте 1.0 и 1.5', (step, lines) => {
-    const wLine = faceLine(step);
+  it.each([[2, 111], [3, 66]])('шаг %i: длинное слово занимает несколько строк и плитка вырастает под них при шрифте 1.0 и 1.5', (step, tileW) => {
     for (const scale of [1, 1.5]) {
-      const lineH = Math.ceil(wLine * Math.min(scale, 1.5));
-      expect(lineH * lines).toBeLessThanOrEqual(GALLERY_STEPS[step]!.h);
+      const face = stepFace(step, tileW, scale);
+      const fit = tileFit(face, 'Supercalifragilisticexpialidocious phrase', null);
+      expect(fit.wordLines).toBeGreaterThan(1);
+      expect(fit.h).toBeGreaterThanOrEqual(fit.wordLines * face.wordLine);
     }
   });
 });

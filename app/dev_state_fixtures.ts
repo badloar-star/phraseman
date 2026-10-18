@@ -112,7 +112,7 @@ export type DevStateRequest = Readonly<{
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
-  cards?: 'demo' | 'demo_lessons' | 'demo_nopacks' | 'demo_few' | 'custom50' | 'demo_published' | 'notranslation' | 'empty';
+  cards?: 'demo' | 'demo_lessons' | 'demo_long' | 'demo_nopacks' | 'demo_few' | 'custom50' | 'demo_published' | 'notranslation' | 'empty';
   /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
   /** Гипотеза падения qemu (координатор 14.10): off — все boxShadow стиля «Тень» выключены в памяти процесса, on — вернуть. */
   shadows?: 'on' | 'off';
@@ -415,7 +415,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     }
   }
   request.free = pick('free', ['on', 'off'] as const);
-  request.cards = pick('cards', ['demo', 'demo_lessons', 'demo_nopacks', 'demo_few', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
+  request.cards = pick('cards', ['demo', 'demo_lessons', 'demo_long', 'demo_nopacks', 'demo_few', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
   request.dialogMood = pick('dev_dialog_mood', [...DEV_DIALOG_MOODS, 'off'] as const);
@@ -854,10 +854,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       await applyDevStudyTarget(request.studyTarget!);
     });
   }
-  if (request.cards === 'demo' || request.cards === 'demo_lessons') {
+  if (request.cards === 'demo' || request.cards === 'demo_lessons' || request.cards === 'demo_long') {
     await step('cards', request.cards, async () => {
       const { applyCardsDemo } = await import('./dev_state_cards_demo');
-      const demo = await applyCardsDemo({ lessons: request.cards === 'demo_lessons' });
+      const demo = await applyCardsDemo({ lessons: request.cards === 'demo_lessons', long: request.cards === 'demo_long' });
       for (const [key, reason] of Object.entries(demo.skipped)) skipped[`cards.${key}`] = reason;
       return Object.keys(demo.skipped).length === 0;
     });

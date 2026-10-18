@@ -67,7 +67,8 @@
 .runtime-surface .gift-option.selected::before { background: radial-gradient(circle, var(--cta-ink) 0 3.5px, var(--cta) 4px); box-shadow: none; }
 .runtime-surface .gift-option .opt-info { flex: 1; min-width: 0; }
 .runtime-surface .gift-option .opt-title { font-size: 16px; font-weight: 700; line-height: 1.25; }
-.runtime-surface .gift-option .opt-sub { font-size: 13px; color: var(--sec); margin-top: 2px; }
+/* зачем (замер контраста 18.10, координатор): подпись тарифа на тёмной карточке давала 4,33:1 при цели 4,5 — чуть светлее токена --sec, только этот класс */
+.runtime-surface .gift-option .opt-sub { font-size: 13px; color: #A9ACB4; margin-top: 2px; }
 .runtime-surface .gift-option .opt-price { flex: none; min-width: 72px; text-align: right; font-size: 18px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .runtime-surface .gift-option .opt-price[data-price-pending] {
   color: transparent; min-height: 22px; border-radius: 999px;

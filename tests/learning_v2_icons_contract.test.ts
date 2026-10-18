@@ -10,6 +10,7 @@ import {
   learningV2LessonHueShift,
   learningV2LessonIcon,
 } from '../components/learning-v2/icons/learningV2Icons';
+import { learningV2ChapterIonIcon, learningV2LessonIonIcon } from '../components/learning-v2/icons/learningV2IonIcons';
 
 // зачем (владелец 17.10, координатор): у КАЖДОГО урока и КАЖДОЙ главы карты V2 своя иконка, у плашки главы — свой узор;
 // оттенки читаются в светлой и тёмной темах. Сторож не даёт урокам 1–8 остаться без рисунка и не даёт карте потерять подключение.
@@ -76,16 +77,40 @@ describe('иконки уроков и глав V2', () => {
     expect(learningV2LessonHueShift(1)).toBe(0);
   });
 
+  // зачем (Макеты fd6d10db8, эталон learning-v2-icons.html): 8 уроков × (1 + 7) = 64 значка outline без повторов; урок 9+ — запасной book-outline
+  it('значки Ionicons по эталону Макетов: 64 разных outline, у каждой главы свой', () => {
+    const all: string[] = [];
+    for (let lesson = 1; lesson <= 8; lesson += 1) {
+      all.push(String(learningV2LessonIonIcon(lesson)));
+      for (let chapter = 1; chapter <= 7; chapter += 1) all.push(String(learningV2ChapterIonIcon(lesson, chapter)));
+    }
+    expect(all).toHaveLength(64);
+    expect(new Set(all).size).toBe(64);
+    for (const icon of all) expect(icon.endsWith('-outline')).toBe(true);
+    expect(learningV2LessonIonIcon(1)).toBe('briefcase-outline');
+    expect(learningV2ChapterIonIcon(8, 7)).toBe('heart-outline');
+    expect(learningV2LessonIonIcon(9)).toBe('book-outline');
+  });
+
   it('OKLCH туда-обратно сохраняет цвет', () => {
     const back = hexToOklch('#5F5CB1')!;
     expect(oklchToHex(back[0], back[1], back[2]).toLowerCase()).toBe('#5f5cb1');
   });
 
-  it('карта V2 подключает плитку и узор главы и иконку урока, данные — из генератора макета', () => {
+  // зачем: владелец 18.10 — без текстур, иконки как в Диалогах, но свои: карта больше не рисует SVG-плитки и узор глав,
+  // вместо них плитка тоном текста 9 % с Ionicons по смыслу главы; без замка (закрытая глава — тот же значок цветом secondary).
+  it('карта V2: без текстур и SVG-плиток — плитка в стиле Диалогов со своим значком у урока и каждой главы', () => {
     const map = read('components/learning-v2/LearningV2ChaptersCourse.tsx');
-    expect(map).toContain('<LearningV2ChapterTile');
-    expect(map).toContain('<LearningV2ChapterPattern');
-    expect(map).toContain('learningV2LessonIcon(');
+    expect(map).not.toContain('<LearningV2ChapterTile');
+    expect(map).not.toContain('<LearningV2ChapterPattern');
+    expect(map).not.toContain('chapterPatternBand');
+    expect(map).toContain('learningV2LessonIonIcon(selectedLessonOrdinal)');
+    expect(map).toContain('learningV2ChapterIonIcon(selectedLessonOrdinal, chapter.chapterOrdinal)');
+    expect(map).toContain('glassTone(g.text, 0.09)');
+    expect(map).toMatch(/chapterTile: \{ width: 55, height: 55, borderRadius: 14/);
+    expect(map).toMatch(/lessonTile: \{ width: 46, height: 46, borderRadius: 12/);
+    expect(map).not.toMatch(/lock-closed" : "trophy-outline"/);
+    expect(map).toContain('color: chapterState === "locked" ? g.secondary : g.text');
     const data = read('components/learning-v2/icons/learningV2IconData.generated.ts');
     expect(data).toContain('СГЕНЕРИРОВАНО scripts/gen_learning_v2_icons.mjs');
     expect(fs.existsSync(path.join(root, 'docs/design/v2-app/learning-v2-icons.html'))).toBe(true);

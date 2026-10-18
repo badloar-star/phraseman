@@ -4,9 +4,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 import { lv2Alpha, lv2CardStyle, lv2NodePaint, useLv2Glass } from "./LearningV2Glass";
 import { nestedBoxShadow } from "../v2/ShadowSurface";
-import { LearningV2ChapterPattern } from "./icons/LearningV2ChapterPattern";
-import { LearningV2ChapterTile } from "./icons/LearningV2ChapterTile";
-import { learningV2ChapterHueShift, learningV2ChapterIcon, learningV2LessonHueShift, learningV2LessonIcon } from "./icons/learningV2Icons";
+// зачем: владелец 18.10 — без текстур, иконки как в Диалогах, но свои (плитка тоном текста 9 % и Ionicons, значки по смыслу главы)
+import { learningV2ChapterIonIcon, learningV2LessonIonIcon } from "./icons/learningV2IonIcons";
+import { glassTone } from "../dialogs/glass/glassTone";
 import PressableHybrid from "../PressableHybrid";
 import LearningV2MapNode from "../LearningV2MapNode";
 import CoinRewardFlight, { type CoinRewardFlightPoint } from "../rewards/CoinRewardFlight";
@@ -293,8 +293,8 @@ export default function LearningV2ChaptersCourse(props: Props) {
     </View>;
   }
 
-  // зачем (владелец 17.10, макет learning-v2-icons.html): у каждого урока своя иконка; нет рисунка (урок 9+) — шапка как была
-  const lessonIconShapes = learningV2LessonIcon(selectedLessonOrdinal);
+  // зачем: владелец 18.10 — без текстур, иконки как в Диалогах, но свои: у урока и каждой главы свой значок Ionicons на плитке тоном текста
+  const tileTone = glassTone(g.text, 0.09);
   return <View testID="learning-v2-chapters-course" onLayout={(e) => { logChaptersLayout(e); logLayout("root")(e); }} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
     {/* зачем (владелец 04.10, раунд 2 → вариант A «Два этажа»): строка 1 — «назад» + HUD (словарь, монеты, энергия);
         строка 2 — «Урок N» и тема 22px на всю ширину: длинная тема помещается в две строки и ничего не пересекает. */}
@@ -312,10 +312,10 @@ export default function LearningV2ChaptersCourse(props: Props) {
         <Text style={[styles.classicChipText, { color: g.text }]}>{props.legacyLessonsLabel}</Text>
       </PressableHybrid>
       </View>
-      {lessonIconShapes ? <View style={styles.lessonTitleRow}>
-        <LearningV2ChapterTile shapes={lessonIconShapes} hueShift={learningV2LessonHueShift(selectedLessonOrdinal)} state="open" g={g} size="small" testID="learning-v2-lesson-icon" />
+      <View style={styles.lessonTitleRow}>
+        <View style={[styles.lessonTile, { backgroundColor: tileTone }]} testID="learning-v2-lesson-icon"><Ionicons name={learningV2LessonIonIcon(selectedLessonOrdinal)} size={22} color={g.text} /></View>
         <Text accessibilityRole="header" style={[styles.lessonTitleWide, styles.lessonTitleFlex, { color: g.text }]}>{currentLessonTitle}</Text>
-      </View> : <Text accessibilityRole="header" style={[styles.lessonTitleWide, { color: g.text }]}>{currentLessonTitle}</Text>}
+      </View>
     </View>
     <ScrollView onLayout={logLayout("scroll")} onContentSizeChange={logContentSize} contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
       {chapterRows.map((chapter, chapterIndex) => {
@@ -328,16 +328,13 @@ export default function LearningV2ChaptersCourse(props: Props) {
           : chapterSessions.every((row) => row.state === "locked") ? "locked" : "open";
         const firstOrdinal = chapterSessions[0]?.sessionOrdinal ?? (chapter.chapterOrdinal - 1) * 8 + 1;
         const lastOrdinal = chapterSessions[chapterSessions.length - 1]?.sessionOrdinal ?? chapter.chapterOrdinal * 8;
-        // зачем (владелец 17.10): у каждой главы своя иконка и свой узор плашки; нет рисунка — прежние кубок/замок/галочка
-        const chapterIconShapes = learningV2ChapterIcon(selectedLessonOrdinal, chapter.chapterOrdinal);
-        const chapterHueShift = learningV2ChapterHueShift(chapter.chapterOrdinal);
+        // зачем: владелец 18.10 — значок главы по её смыслу; замка на плитке нет — закрытая глава тем же значком цветом secondary
+        const chapterIcon = learningV2ChapterIonIcon(selectedLessonOrdinal, chapter.chapterOrdinal);
         const sessionsWord = triLang(props.lang, { ru: "Занятия", en: "Sessions", uk: "Заняття", es: "Sesiones", "pt-BR": "Sessões", vi: "Phiên", id: "Sesi", tr: "Oturumlar", pl: "Sesje" });
         return <Lv2Reveal key={chapter.id} index={chapterIndex} play={introReveal} onLayout={logLayout(`chapter:${chapter.chapterOrdinal}`)} style={[styles.chapter, lv2CardStyle(g, 22)]}>
-          {/* узор — полосой под строкой главы (не под узлами занятий), тает к тексту; закрытая глава — тише */}
-          <View pointerEvents="none" style={styles.chapterPatternBand}><LearningV2ChapterPattern lessonOrdinal={selectedLessonOrdinal} chapterOrdinal={chapter.chapterOrdinal} hueShift={chapterHueShift} locked={chapterState === "locked"} g={g} /></View>
           <PressableHybrid variant="card" testID={`learning-v2-chapter-${chapter.chapterOrdinal}`} accessibilityLabel={`${triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} ${chapter.chapterOrdinal}`} onPress={() => toggleChapter(chapter.chapterOrdinal)} style={styles.chapterPress} contentStyle={styles.chapterPressContent}>
-            {chapterIconShapes ? <LearningV2ChapterTile shapes={chapterIconShapes} hueShift={chapterHueShift} state={chapterState} g={g} testID={`learning-v2-chapter-icon-${chapter.chapterOrdinal}`} /> : <View style={[styles.chapterTile, { backgroundColor: g.opaqueControl }]}><Ionicons name={chapterState === "done" ? "checkmark" : chapterState === "locked" ? "lock-closed" : "trophy-outline"} size={24} color={chapterState === "locked" ? g.mutedText : g.text} /></View>}
-            <View style={styles.chapterCopy}><Text style={[styles.chapterTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} {chapter.chapterOrdinal}</Text><Text style={[styles.chapterSub, { color: g.secondary }]}>{sessionsWord} {firstOrdinal}–{lastOrdinal}</Text></View>
+            <View style={[styles.chapterTile, { backgroundColor: tileTone }]} testID={`learning-v2-chapter-icon-${chapter.chapterOrdinal}`}><Ionicons name={chapterIcon} size={26} color={chapterState === "locked" ? g.secondary : g.text} /></View>
+            <View style={styles.chapterCopy}><Text style={[styles.chapterTitle, { color: chapterState === "locked" ? g.secondary : g.text }]}>{triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} {chapter.chapterOrdinal}</Text><Text style={[styles.chapterSub, { color: g.secondary }]}>{sessionsWord} {firstOrdinal}–{lastOrdinal}</Text></View>
             <Text style={[styles.chapterFrac, { color: g.secondary }]}><Text style={[styles.chapterFracDone, { color: g.text }]}>{completedCount}</Text>/8</Text>
             <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color={g.secondary} />
           </PressableHybrid>
@@ -399,8 +396,9 @@ const styles = StyleSheet.create({
   chapter: { overflow: "hidden", paddingBottom: 6 },
   chapterPress: { borderRadius: 22 },
   chapterPressContent: { minHeight: 84, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 14 },
-  chapterTile: { width: 55, height: 55, borderRadius: 16, alignItems: "center", justifyContent: "center" },
-  chapterPatternBand: { position: "absolute", left: 0, right: 0, top: 0, height: 96 },
+  // плитка как у мира Диалогов (DialogueV2CatalogueSection): 55, радиус 14; у заголовка урока — 46, радиус 12
+  chapterTile: { width: 55, height: 55, borderRadius: 14, alignItems: "center", justifyContent: "center" },
+  lessonTile: { width: 46, height: 46, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   lessonTitleRow: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 4 },
   lessonTitleFlex: { flex: 1, minWidth: 0 },
   chapterCopy: { flex: 1, minWidth: 0, gap: 4 },

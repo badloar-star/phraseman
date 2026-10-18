@@ -9,7 +9,9 @@ test('Saved route preserves the live feature-access decision and wires loading s
   const source = read('app/flashcards_collection.tsx');
   assert.ok(source.includes("useFeatureAccess('flashcards')"));
   assert.ok(source.includes('<SavedCollectionLoading'));
-  assert.ok(source.includes('loading && !packDeeplink'));
+  // перепин 18.10 (cards-039, Сверка 46232ea76; D158): условие «скелетон» живёт в чистой savedLoadBranch (ошибка важнее скелетона) — экран берёт ветку оттуда
+  assert.ok(source.includes("savedBranch.branch === 'skeleton'"));
+  assert.ok(source.includes('savedLoadBranch({'));
   assert.ok(source.includes('loadError={loadError}'));
   assert.ok(source.includes('searchActive={searchActive}'));
   assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)'));

@@ -79,6 +79,7 @@ import CollectionListView, {
   UndoDeleteSnackbar,
 } from './flashcards/CollectionListView';
 import { SavedCollectionLoading, SavedCollectionState } from './flashcards/SavedCollectionStates';
+import { savedLoadBranch } from './flashcards/saved_load_branch';
 import { resolveFlashcardListItemHeight } from './flashcards/FlashcardListItemChrome';
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
 // §5.3: два входа в набор — «Мои наборы» и каталог сообщества; «назад» ведёт ровно туда
@@ -1166,6 +1167,23 @@ export default function FlashcardsScreen() {
   const packCardsPending =
     !!packDeeplink && !collectionDataReady && (filteredCards.length === 0 || !currentMarketPack);
   const isEmpty = !loading && !packCardsPending && listCards.length === 0;
+  // зачем (cards-039, Сверка 46232ea76, координатор 18.10; D158): при пустом списке и сбое загрузки скелетон висел дольше 12 с, а «Сейчас недоступно» не появлялось — «загрузка идёт» проверялась раньше «загрузка упала».
+  // Ветку решает чистая savedLoadBranch (ошибка важнее скелетона), та же строка уходит в журнал [CARDS-LOAD] со значениями и причиной.
+  const savedBranch = savedLoadBranch({
+    savedCategory: activeCat === 'saved',
+    packDeeplink: !!packDeeplink,
+    loading,
+    loadError,
+    packCardsPending,
+    listCardsCount: listCards.length,
+  });
+  const savedBranchLogKey = `${savedBranch.branch}|${loading}|${loadError}|${listCards.length}|${packCardsPending}|${String(activeCat)}`;
+  const savedBranchLoggedRef = useRef('');
+  useEffect(() => {
+    if (activeCat !== 'saved' || savedBranchLoggedRef.current === savedBranchLogKey) return;
+    savedBranchLoggedRef.current = savedBranchLogKey;
+    console.log('[CARDS-LOAD] branch', JSON.stringify({ branch: savedBranch.branch, reason: savedBranch.reason, loading, loadError, collectionDataReady, listCards: listCards.length, savedCards: savedCards.length, customCards: customCards.length, packCardsPending, packDeeplink: !!packDeeplink, isEmpty })); // guard-ok: одна строка на смену ветки
+  }, [activeCat, collectionDataReady, customCards.length, isEmpty, listCards.length, loadError, loading, packCardsPending, packDeeplink, savedBranch.branch, savedBranch.reason, savedBranchLogKey, savedCards.length]);
   const bypassEmptyCustomCollection = shouldBypassEmptyCustomCollection({
     collectionDataReady,
     activeCat,
@@ -1678,9 +1696,9 @@ export default function FlashcardsScreen() {
         {savedSurface && (loading && listCards.length === 0 || isEmpty) ? (
           <View style={{ paddingHorizontal: 20 }}>{savedTitleBlock}</View>
         ) : null}
-        {activeCat === 'saved' && loading && !packDeeplink && listCards.length === 0 ? (
+        {savedBranch.branch === 'skeleton' ? (
           <SavedCollectionLoading lang={lang} />
-        ) : isEmpty && activeCat === 'saved' && !packDeeplink ? (
+        ) : savedBranch.branch === 'state' ? (
           <SavedCollectionState
             lang={lang}
             loadError={loadError}

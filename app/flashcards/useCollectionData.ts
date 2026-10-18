@@ -94,6 +94,9 @@ import {
   peekPublishedCommunityMarketPacks,
 } from '../community_packs/communityFirestore';
 import { getCanonicalUserId } from '../user_id_policy';
+
+/** Потолок загрузки «Сохранённых» без кэша (D158): тот же, что у useLoadGate; по его истечении — loadError и «Сейчас недоступно». */
+const CARDS_LOAD_CEILING_MS = LOAD_GATE_TOTAL_MS;
 import { noteSwallowed, noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Module-level cache — survives re-renders; warm via `primeFlashcardsCollectionCache` (хаб / root)
@@ -430,6 +433,19 @@ export function useCollectionData(opts: {
   );
   const [loadError, setLoadError] = useState(false);
 
+  // зачем (cards-039, Сверка 46232ea76, координатор 18.10; D158 «тихо ≠ бесконечно»): загрузка без кэша, которая не закончилась ни успехом, ни ошибкой (зависший запрос, нет сети),
+  // держала скелетон вечно. Потолок — тот же, что у useLoadGate (12 с): по его истечении экран получает loadError и показывает «Сейчас недоступно» + «Попробовать снова».
+  // Поздний успех loadAll сам снимет ошибку (setLoadError(false)), так что потолок ничего не ломает у медленной, но живой загрузки.
+  useEffect(() => {
+    if (!loading) return undefined;
+    const timer = setTimeout(() => {
+      console.warn('[CARDS-LOAD] ceiling', JSON.stringify({ afterMs: CARDS_LOAD_CEILING_MS, cacheSaved: _savedCardsCache !== null, cacheCustom: _customCardsCache !== null, action: 'loading→false, loadError→true' })); // guard-ok: потолок сработал — причина экрана ошибки
+      setLoading(false);
+      setLoadError(true);
+    }, CARDS_LOAD_CEILING_MS);
+    return () => clearTimeout(timer);
+  }, [loading]);
+
   // зачем (аудит §AUTH-0110, координатор 15.10): кэш модуля при смене цели уже сбрасывается по области (collectionCacheScope), а вот состояние хука жило со старой целью до конца loadAll —
   // экран показывал карточки, каталог и купленные наборы прежнего языка. Сброс по studyTarget (кроме первого монтирования): списки пустые, каталог — зерно новой цели, «готово» снято.
   const prevTargetRef = useRef(storageStudyTarget(studyTarget));
@@ -478,6 +494,7 @@ export function useCollectionData(opts: {
   const loadAll = useCallback(async () => {
     const loadAllStartedAt = Date.now();
     const accountToken = captureAccountGeneration();
+    console.log('[CARDS-LOAD] load:start', JSON.stringify({ cacheSaved: _savedCardsCache !== null, cacheCustom: _customCardsCache !== null, studyTarget: String(studyTarget), source: _savedCardsCache === null && _customCardsCache === null ? 'storage_cold' : 'cache_warm' })); // guard-ok: вход загрузки — откуда будут данные
     try {
       const userSid = await getCanonicalUserId().catch(noteSwallowedAs('useCollectionData:promise_7', null));
       if (!isCurrentAccountGeneration(accountToken)) return;
@@ -538,6 +555,7 @@ export function useCollectionData(opts: {
       setCardsIfChanged(setCustomCards, custom);
       setLoadError(false);
       if (!mustDelayForEmptyMarketOnly) setLoading(false);
+      console.log('[CARDS-LOAD] load:ok', JSON.stringify({ ms: Date.now() - loadAllStartedAt, saved: mappedSavedQuick.length, custom: custom.length, holdLoadingForMarket: mustDelayForEmptyMarketOnly, cacheHit: !!cacheHit })); // guard-ok: итог быстрой загрузки из хранилища
 
       // Міграція UK / транскрипції (важка) і маркет — паралельно; `setMarketCards` не чекає міграції
       // (інакше платні картки з’являються пізніше за «Збережені» / порожній список).
@@ -710,6 +728,7 @@ export function useCollectionData(opts: {
     } catch (error) {
       // зачем (бета-тест А4, 15.10, «никакого немого catch»): причину отказа загрузки коллекции видно в журнале, а не только по пустому экрану
       console.warn(`[FC-COLLECTION] load FAILED stale=${!isCurrentAccountGeneration(accountToken)} —`, error instanceof Error ? error.message : String(error)); // guard-ok: причина отказа в catch
+      console.warn('[CARDS-LOAD] load:failed', JSON.stringify({ ms: Date.now() - loadAllStartedAt, stale: !isCurrentAccountGeneration(accountToken), reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина сбоя загрузки
       if (!isCurrentAccountGeneration(accountToken)) return;
       setLoading(false);
       setLoadError(true);

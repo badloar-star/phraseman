@@ -40,7 +40,7 @@ type Props = Readonly<{
 
 // ⚠ ЖДУТ УТВЕРЖДЕНИЯ ПЕРЕВОДЧИКА (10). зачем (координатор 18.10): метка текущего урока на 9 языках; слова предложил Дизайн, коммит разрешён координатором с пометкой; при расхождении заменить здесь одну строку, сторож проверяет только наличие всех 9 языков
 const CURRENT_WORD: Record<Lang, string> = {
-  ru: "Текущий", uk: "Поточний", en: "Current", es: "Actual", "pt-BR": "Atual", vi: "Hiện tại", id: "Saat ini", tr: "Güncel", pl: "Bieżąca",
+  ru: "Текущий", uk: "Поточний", en: "Current", es: "Actual", "pt-BR": "Atual", vi: "Đang học", id: "Saat ini", tr: "Şu anki", pl: "Bieżąca", // зачем (переводчик 18.10): tr «Güncel» = «актуальный», vi «Hiện tại» = «настоящее время»
 };
 
 const RING_R = 18;

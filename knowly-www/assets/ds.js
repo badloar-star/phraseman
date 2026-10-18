@@ -24,12 +24,17 @@
       if (attr === 'dark' || attr === 'light') return attr;
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
+    /* зачем (координатор 18.10): подпись для экранного диктора следует языку сайта — pm:lang шлёт блок «Язык» ниже. */
     function syncLabel() {
-      var next = current() === 'light' ? 'тёмную' : 'светлую';
-      btn.setAttribute('aria-label', 'Переключить на ' + next + ' тему');
+      var light = current() === 'light';
+      var en = document.documentElement.getAttribute('lang') === 'en';
+      btn.setAttribute('aria-label', en
+        ? (light ? 'Switch to dark theme' : 'Switch to light theme')
+        : 'Переключить на ' + (light ? 'тёмную' : 'светлую') + ' тему');
       btn.setAttribute('aria-pressed', String(current() === 'dark'));
     }
     syncLabel();
+    document.addEventListener('pm:lang', syncLabel);
 
     btn.addEventListener('click', function () {
       var next = current() === 'light' ? 'dark' : 'light';
@@ -71,6 +76,10 @@
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       autoRuAria[el.getAttribute('data-i18n-aria')] = el.getAttribute('aria-label');
     });
+    var autoRuAlt = {};
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      autoRuAlt[el.getAttribute('data-i18n-alt')] = el.getAttribute('alt');
+    });
     var autoRuTitle = document.title;
 
     window.I18N = window.I18N || {};
@@ -99,6 +108,11 @@
         var key = el.getAttribute('data-i18n-aria');
         var value = dict[key] !== undefined ? dict[key] : autoRuAria[key];
         if (value !== undefined) el.setAttribute('aria-label', value);
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        var value = dict[key] !== undefined ? dict[key] : autoRuAlt[key];
+        if (value !== undefined) el.setAttribute('alt', value);
       });
       var title = dict['doc.title'] !== undefined && language !== 'ru' ? dict['doc.title'] : autoRuTitle;
       if (title) document.title = title;

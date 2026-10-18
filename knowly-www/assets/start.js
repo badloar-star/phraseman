@@ -155,10 +155,36 @@
 
   var root = null;
 
+  /* зачем (координатор 18.10, en-режим сайта 2.0): страница 2.0 кладёт в window.I18N.enRuntime
+     точные пары «русская строка → английская»; ds.js к этому моменту уже выставил <html lang>.
+     Нет пары — строка остаётся как есть (русский режим и квиз не меняются). */
+  function siteRuntimeEn(value) {
+    var map = window.I18N && window.I18N.enRuntime;
+    if (!map || document.documentElement.getAttribute('lang') !== 'en' || typeof value !== 'string') return null;
+    return Object.prototype.hasOwnProperty.call(map, value) ? map[value] : null;
+  }
+
   function localized(value) {
+    var en = siteRuntimeEn(value);
+    if (en !== null) return en;
     var i18n = window.KnowlySiteI18n;
     return i18n && typeof i18n.translateValue === 'function' ? i18n.translateValue(value) : value;
   }
+
+  /* зачем: пейвол рисуется один раз, а PayPal монтируется в него — перерисовка на лету сломала бы
+     кнопки оплаты. При смене языка в шапке перезагружаем страницу с ?lang=, чтобы язык не «откатился». */
+  document.addEventListener('pm:lang', function (e) {
+    var next = e && e.detail && e.detail.lang;
+    if (!root || !window.I18N || !window.I18N.enRuntime || !next) return;
+    if (next === (root.getAttribute('data-rendered-lang') || next)) return;
+    try {
+      var url = new URL(location.href);
+      url.searchParams.set('lang', next);
+      location.replace(url.toString());
+    } catch (err) {
+      console.log('[SITE-I18N] start.js: не удалось перезагрузить пейвол с новым языком', err);
+    }
+  });
 
   function h(tag, attrs, children) {
     var node = document.createElement(tag);
@@ -723,7 +749,7 @@
       comparisonTable(),
       h('div', { class: 'qplans' }, [
         planOption('monthly', 'Месяц', isGift ? 'разовый платёж — 31 день' : 'попробовать в своём темпе', p.monthly.label, isGift ? 'один раз' : 'в месяц', null),
-        planOption('yearly', 'Год', isGift ? 'разовый платёж — целый год' : 'самый популярный выбор', p.yearly.label, p.yearly.perMonth ? '≈ ' + p.yearly.perMonth + '/мес' : 'в год', 'Выгоднее 58%'),
+        planOption('yearly', 'Год', isGift ? 'разовый платёж — целый год' : 'самый популярный выбор', p.yearly.label, p.yearly.perMonth ? localized('≈ ') + p.yearly.perMonth + localized('/мес') : 'в год', 'Выгоднее 58%'),
         /* зачем: владелец 15.10 — тариф «навсегда» с сайта убран (оплата только месяц/год) */
       ]),
       h('div', { class: 'qpay-fields' }, [
@@ -770,6 +796,7 @@
     var step = QUIZ[Math.min(state.step, QUIZ.length - 1)];
     setProgress();
     root.innerHTML = '';
+    root.setAttribute('data-rendered-lang', document.documentElement.getAttribute('lang') || 'ru');
     var screen =
       step.type === 'intro' ? renderIntro()
         : step.type === 'q' ? renderQuestion(step)

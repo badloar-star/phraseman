@@ -28,6 +28,8 @@
     en: { site: 'Site theme', app: 'App theme', themes: 'Themes', look: 'Appearance', dark: 'Dark', light: 'Light', k: 'Intensity', theme: function (n) { return n + ' theme'; } }
   };
   function siteLang() {
+    // зачем: на русских страницах (гайды, «Россия») переключатель языка скрыт — шторка темы тоже по-русски.
+    if (document.documentElement.hasAttribute('data-site-ru-only')) return 'ru';
     try {
       var q = new URLSearchParams(location.search).get('lang');
       var v = q || localStorage.getItem('knowly_site_locale_v1') || 'ru';

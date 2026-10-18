@@ -4,26 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-40:i01",
+      "interactionId": "en:lesson-08:session-40:word:crush",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:word:crush:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:word:crush:audio",
+          "transcript": "crush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-40:word:crush:r1",
+            "targetText": "crush",
+            "meaningByLocale": {
+              "ru": "раздавить, смять давлением. Don’t crush the bread. — «Не раздави хлеб».",
+              "uk": "розчавити, зім’яти тиском. Don’t crush the bread. — «Не розчави хліб»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crush",
+          "definitionByLocale": {
+            "ru": "раздавить, смять давлением. Don’t crush the bread. — «Не раздави хлеб».",
+            "uk": "розчавити, зім’яти тиском. Don’t crush the bread. — «Не розчави хліб»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подарунок ще встигнете запакувати. Скажіть «Не поспішай»",
+      "prompt": "Скажіть «Не розчави хліб»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подарунок ще встигнете запакувати. Скажіть «Не поспішай»",
+      "accessibilityLabel": "Скажіть «Не розчави хліб»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t rush.",
+        "targetPhrase": "Don’t crush the bread.",
         "localizedMeaning": {
-          "ru": "Подарок ещё успеете упаковать. Скажите «Не торопись»",
-          "uk": "Подарунок ще встигнете запакувати. Скажіть «Не поспішай»"
+          "ru": "Скажите «Не раздави хлеб»",
+          "uk": "Скажіть «Не розчави хліб»"
         },
         "orderedTokens": [
           "Don’t",
-          "rush"
+          "crush",
+          "the",
+          "bread"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -36,7 +81,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +157,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Не пролий це»",
+      "prompt": "Виберіть форму для прохання «Не пролий це»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-40:i03:r1",
@@ -133,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Не пролий це»",
+      "accessibilityLabel": "Виберіть форму для прохання «Не пролий це»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Не пролей это»",
-          "uk": "Скажіть «Не пролий це»"
+          "ru": "Выберите форму для просьбы «Не пролей это»",
+          "uk": "Виберіть форму для прохання «Не пролий це»"
         },
         "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
@@ -155,12 +200,12 @@
             "text": "to spill"
           }
         ],
-        "testedDimension": "Скажіть «Не пролий це»",
+        "testedDimension": "Виберіть форму для прохання «Не пролий це»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-40:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Не пролий це»",
+            "testedDimension": "Виберіть форму для прохання «Не пролий це»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `spill`, без `s`.",
               "uk": "Після `don’t` потрібне `spill`, без `s`."
@@ -169,7 +214,7 @@
           {
             "responseId": "en:lesson-08:session-40:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Не пролий це»",
+            "testedDimension": "Виберіть форму для прохання «Не пролий це»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `spill`, без `to`.",
               "uk": "Після `don’t` потрібне `spill`, без `to`."
@@ -181,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -254,7 +299,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -288,27 +333,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-40:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-40:word:rip",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:word:rip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:word:rip:audio",
+          "transcript": "rip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-40:word:rip:r1",
+            "targetText": "rip",
+            "meaningByLocale": {
+              "ru": "рвать, разрывать. Don’t rip the letter. — «Не порви письмо».",
+              "uk": "рвати, розривати. Don’t rip the letter. — «Не порви лист»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rip",
+          "definitionByLocale": {
+            "ru": "рвать, разрывать. Don’t rip the letter. — «Не порви письмо».",
+            "uk": "рвати, розривати. Don’t rip the letter. — «Не порви лист»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг згинає листівку. Скажіть «Не згинай це»",
+      "prompt": "Скажіть «Не порви лист»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг згинає листівку. Скажіть «Не згинай це»",
+      "accessibilityLabel": "Скажіть «Не порви лист»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t bend it.",
+        "targetPhrase": "Don’t rip the letter.",
         "localizedMeaning": {
-          "ru": "Друг сгибает открытку. Скажите «Не сгибай это»",
-          "uk": "Друг згинає листівку. Скажіть «Не згинай це»"
+          "ru": "Скажите «Не порви письмо»",
+          "uk": "Скажіть «Не порви лист»"
         },
         "orderedTokens": [
           "Don’t",
-          "bend",
-          "it"
+          "rip",
+          "the",
+          "letter"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -320,26 +409,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-40:word:yank",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — yank",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:word:yank:audio"
+      ],
+      "accessibilityLabel": "Картка слова — yank",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:word:yank:audio",
+          "transcript": "yank"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-40:word:yank:r1",
+            "targetText": "yank",
+            "meaningByLocale": {
+              "ru": "резко дёргать. Don’t yank the cable. — «Не дёргай провод». Это резкий рывок, а не плавное движение.",
+              "uk": "різко смикати. Don’t yank the cable. — «Не смикай дріт». Це різкий ривок, а не плавний рух."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yank",
+          "definitionByLocale": {
+            "ru": "резко дёргать. Don’t yank the cable. — «Не дёргай провод». Это резкий рывок, а не плавное движение.",
+            "uk": "різко смикати. Don’t yank the cable. — «Не смикай дріт». Це різкий ривок, а не плавний рух."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-40:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви ще пояснюєте дорогу. Скажіть «Будь ласка, не перебивай»",
+      "prompt": "Дріт затиснутий під ніжкою ліжка. Скажіть «Не смикай дріт»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-40:i07:audio"
       ],
-      "accessibilityLabel": "Ви ще пояснюєте дорогу. Скажіть «Будь ласка, не перебивай»",
+      "accessibilityLabel": "Дріт затиснутий під ніжкою ліжка. Скажіть «Не смикай дріт»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-40:i07:audio",
-          "transcript": "Please don’t interrupt."
+          "transcript": "Don’t yank the cable."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Please don’t interrupt.",
+        "targetPhrase": "Don’t yank the cable.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -354,11 +486,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг рухає коробку по столу. Скажіть «Не подряпай це»",
+      "prompt": "Виберіть форму для прохання «Не подряпай це»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-40:i08:r1",
@@ -375,12 +507,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг рухає коробку по столу. Скажіть «Не подряпай це»",
+      "accessibilityLabel": "Виберіть форму для прохання «Не подряпай це»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг двигает коробку по столу. Скажите «Не поцарапай это»",
-          "uk": "Друг рухає коробку по столу. Скажіть «Не подряпай це»"
+          "ru": "Выберите форму для просьбы «Не поцарапай это»",
+          "uk": "Виберіть форму для прохання «Не подряпай це»"
         },
         "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
@@ -397,12 +529,12 @@
             "text": "to scratch"
           }
         ],
-        "testedDimension": "Друг рухає коробку по столу. Скажіть «Не подряпай це»",
+        "testedDimension": "Виберіть форму для прохання «Не подряпай це»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-40:i08:r2",
             "correct": false,
-            "testedDimension": "Друг рухає коробку по столу. Скажіть «Не подряпай це»",
+            "testedDimension": "Виберіть форму для прохання «Не подряпай це»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `scratch`, без `es`.",
               "uk": "Після `don’t` потрібне `scratch`, без `es`."
@@ -411,7 +543,7 @@
           {
             "responseId": "en:lesson-08:session-40:i08:r3",
             "correct": false,
-            "testedDimension": "Друг рухає коробку по столу. Скажіть «Не подряпай це»",
+            "testedDimension": "Виберіть форму для прохання «Не подряпай це»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `scratch`, без `to`.",
               "uk": "Після `don’t` потрібне `scratch`, без `to`."
@@ -423,7 +555,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -499,7 +631,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -572,8 +704,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -606,27 +738,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-40:word:overload",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overload",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:word:overload:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overload",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:word:overload:audio",
+          "transcript": "overload"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-40:word:overload:r1",
+            "targetText": "overload",
+            "meaningByLocale": {
+              "ru": "перегружать: помещать слишком большой груз. Don’t overload the lift. — «Не перегружай лифт».",
+              "uk": "перевантажувати: класти надто великий вантаж. Don’t overload the lift. — «Не перевантажуй ліфт»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overload",
+          "definitionByLocale": {
+            "ru": "перегружать: помещать слишком большой груз. Don’t overload the lift. — «Не перегружай лифт».",
+            "uk": "перевантажувати: класти надто великий вантаж. Don’t overload the lift. — «Не перевантажуй ліфт»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-40:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг знімає наліпку з телефона гострим предметом. Скажіть «Не подряпай це»",
+      "prompt": "У ліфт намагаються втиснути ще один важкий ящик. Скажіть «Не перевантажуй ліфт»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг знімає наліпку з телефона гострим предметом. Скажіть «Не подряпай це»",
+      "accessibilityLabel": "У ліфт намагаються втиснути ще один важкий ящик. Скажіть «Не перевантажуй ліфт»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t scratch it.",
+        "targetPhrase": "Don’t overload the lift.",
         "localizedMeaning": {
-          "ru": "Друг снимает наклейку с телефона острым предметом. Скажите «Не поцарапай это»",
-          "uk": "Друг знімає наліпку з телефона гострим предметом. Скажіть «Не подряпай це»"
+          "ru": "В лифт пытаются втиснуть ещё один тяжёлый ящик. Скажите «Не перегружай лифт»",
+          "uk": "У ліфт намагаються втиснути ще один важкий ящик. Скажіть «Не перевантажуй ліфт»"
         },
         "orderedTokens": [
           "Don’t",
-          "scratch",
-          "it"
+          "overload",
+          "the",
+          "lift"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -639,7 +815,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -672,11 +848,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросіть «Будь ласка, не перебивай»",
+      "prompt": "Виберіть слово для прохання «Будь ласка, не перебивай»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-40:i14:r1",
@@ -693,12 +869,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть «Будь ласка, не перебивай»",
+      "accessibilityLabel": "Виберіть слово для прохання «Будь ласка, не перебивай»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите «Пожалуйста, не перебивай»",
-          "uk": "Попросіть «Будь ласка, не перебивай»"
+          "ru": "Выберите слово для просьбы «Пожалуйста, не перебивай»",
+          "uk": "Виберіть слово для прохання «Будь ласка, не перебивай»"
         },
         "gappedTargetPhrase": "Please ___ interrupt.",
         "gapOptions": [
@@ -715,12 +891,12 @@
             "text": "not"
           }
         ],
-        "testedDimension": "Попросіть «Будь ласка, не перебивай»",
+        "testedDimension": "Виберіть слово для прохання «Будь ласка, не перебивай»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-40:i14:r2",
             "correct": false,
-            "testedDimension": "Попросіть «Будь ласка, не перебивай»",
+            "testedDimension": "Виберіть слово для прохання «Будь ласка, не перебивай»",
             "feedbackByLocale": {
               "ru": "В обращении нужно `don’t interrupt`.",
               "uk": "У звертанні потрібне `don’t interrupt`."
@@ -729,7 +905,7 @@
           {
             "responseId": "en:lesson-08:session-40:i14:r3",
             "correct": false,
-            "testedDimension": "Попросіть «Будь ласка, не перебивай»",
+            "testedDimension": "Виберіть слово для прохання «Будь ласка, не перебивай»",
             "feedbackByLocale": {
               "ru": "Для этой просьбы нужно `don’t`: `Please don’t interrupt`.",
               "uk": "Для цього прохання потрібне `don’t`: `Please don’t interrupt`."
@@ -741,7 +917,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +993,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -831,48 +1007,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-40:i16:p1",
-            "target": "thermostat",
+            "target": "crush",
             "meaningByLocale": {
-              "ru": "термостат",
-              "uk": "термостат"
+              "ru": "раздавить",
+              "uk": "розчавити"
             }
           },
           {
             "pairId": "en:lesson-08:session-40:i16:p2",
-            "target": "spill",
+            "target": "rip",
             "meaningByLocale": {
-              "ru": "проливать",
-              "uk": "проливати"
+              "ru": "разорвать",
+              "uk": "розірвати"
             }
           },
           {
             "pairId": "en:lesson-08:session-40:i16:p3",
-            "target": "interrupt",
+            "target": "yank",
             "meaningByLocale": {
-              "ru": "перебивать",
-              "uk": "перебивати"
+              "ru": "резко дёргать",
+              "uk": "різко смикати"
             }
           },
           {
             "pairId": "en:lesson-08:session-40:i16:p4",
-            "target": "shove",
+            "target": "overload",
             "meaningByLocale": {
-              "ru": "грубо толкать",
-              "uk": "грубо штовхати"
+              "ru": "перегружать",
+              "uk": "перевантажувати"
             }
           }
         ],
         "leftColumn": [
-          "thermostat",
-          "spill",
-          "interrupt",
-          "shove"
+          "crush",
+          "rip",
+          "yank",
+          "overload"
         ],
         "rightColumn": [
-          "термостат",
-          "проливати",
-          "перебивати",
-          "грубо штовхати"
+          "розчавити",
+          "розірвати",
+          "різко смикати",
+          "перевантажувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1066,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-40:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1106,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6a459219f3b36f07c362d5ca0273fd574cf7c6107a4ebd20f4f4b5dd401be66b"
+  "learnerFingerprint": "2c274c5d38f9479f1ef10b6f28ad632c65cda59b1ca07a34de4b4505dd381038"
 }

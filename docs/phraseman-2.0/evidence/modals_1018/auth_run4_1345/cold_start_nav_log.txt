@@ -1,0 +1,76 @@
+10-18 13:47:39.450 W/ReactNativeJS( 9817): '[ROUTE-EVAL] lessons module evaluated', '{"epochMs":1792327659449,"stack":["at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.p
+10-18 13:47:39.487 I/ReactNativeJS( 9817): [FIRESTORE-FIRST-TOUCH] installed default:locked(TypeError) getFirestore:locked(TypeError) ms=19050736
+10-18 13:47:42.285 I/ReactNativeJS( 9817): '[PERF-R1-NAV]', '{"event":"attached","attempt":0,"atMs":3830}'
+10-18 13:47:42.289 I/ReactNativeJS( 9817): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/ tab=/(tabs)/home routeIsTab=true"}
+10-18 13:47:42.377 W/ReactNativeJS( 9817): '[LESSON-EXIT] layout:pathname_root_or_empty pathname="/" lastPath=null ready=false rootNavigationReady=false', { [Stack] name: 'Stack' }
+10-18 13:47:42.696 I/ReactNativeJS( 9817): [PAYWALL-CLOSE-FREEZE] t=62695 tabs focus
+10-18 13:47:42.700 I/ReactNativeJS( 9817): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Kahq2M*[(tabs)#wApBc4*]","atMs":4245}'
+10-18 13:47:43.799 I/ReactNativeJS( 9817): '[SCROLL-RESTORE]', 'event', '{"screen":"home","event":"lang_change","sinceEventMs":0,"y":0,"contentH":932,"lang":"ru","setBy":"none_no_scrollTo_on_home"}'
+10-18 13:47:43.801 I/ReactNativeJS( 9817): '[SCROLL-RESTORE]', 'event', '{"screen":"home","event":"focus","sinceEventMs":0,"y":0,"contentH":932,"focusTick":1,"setBy":"none_no_scrollTo_on_home"}'
+10-18 13:47:44.295 I/ReactNativeJS( 9817): [FIRESTORE-FIRST-TOUCH] clear_start ms=19055543 touchesBefore=0
+10-18 13:47:44.297 I/ReactNativeJS( 9817): '[BOOT-RESTORE-DEFER]', '{"event":"identity","freshStatus":"pending_auth","freshPhase":"prepared","deleteLock":"empty","identityReady":true}'
+10-18 13:47:44.301 I/ReactNativeJS( 9817): '[BOOT-RESTORE-DEFER]', '{"event":"decision","defer":true,"reason":"deferred"}'
+10-18 13:47:44.859 I/ReactNativeJS( 9817): '[DEEPLINK-SETTINGS]', 'root_replace', '{"pathname":"/","initialLink":null,"target":"/(tabs)/home"}'
+10-18 13:47:44.870 W/ReactNativeJS( 9817): '[LESSON-EXIT] layout:rootIndex_replace_home pathname="/" ready=true rootNavigationReady=true effectiveShowOnboarding=false isBanned=false target=/(tabs)/home segments=[] tabsShellMounted
+10-18 13:47:45.003 I/ReactNativeJS( 9817): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":6548,"stack":"anonymous@156635:34 | forEach | anonymous@156635:25 | anonymous@153951:19 | apply |
+10-18 13:47:45.080 I/ReactNativeJS( 9817): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Kahq2M*[(tabs)#wApBc4*]","atMs":6625}'
+10-18 13:47:45.085 I/ReactNativeJS( 9817): '[BOOT-RESTORE-DEFER]', '{"event":"start","trigger":"idle","waitedMs":781,"dirtyKeys":0,"allKeysTouched":false}'
+10-18 13:47:45.887 I/ReactNativeJS( 9817): [ENERGY-RESTORE] runLoad: unlimited=true reason=premium_active
+10-18 13:47:46.000 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327524656 elapsedMs=141240 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:46.152 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327665896 elapsedMs=236 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:46.186 I/ReactNativeJS( 9817): [ENERGY-RESTORE] runLoad: unlimited=true reason=premium_active
+10-18 13:47:46.202 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327666132 elapsedMs=54 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:46.289 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327666186 elapsedMs=99 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:47.587 I/ReactNativeJS( 9817): '[MEM-TICK]', '{"tSec":8,"route":"/","heapMb":44,"gc":"33gc/453ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":138,"timeoutsByC
+10-18 13:47:47.596 W/ReactNativeJS( 9817): [LESSON-EXIT] layout:rootIndex_navigate_home_check currentRoute=(tabs) params={"screen":"home","params":{}} pathnameFromRender="/" action=keep
+10-18 13:47:47.675 I/ReactNativeJS( 9817): '[SCROLL-RESTORE]', 'content_height', '{"screen":"home","event":"focus","sinceEventMs":3875,"y":0,"contentH":1027,"before":932,"after":1027}'
+10-18 13:47:47.746 I/ReactNativeJS( 9817): [FIRESTORE-FIRST-TOUCH] clear_end failed touches=0 ms=19058995
+10-18 13:47:48.188 I/ReactNativeJS( 9817): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-18 13:47:48.188 W/ReactNativeJS( 9817): [PAYWALL] цены прогреты: нет кэша importMs=0 hydrateMs=349
+10-18 13:47:48.438 I/ReactNativeJS( 9817): [ENERGY-RESTORE] runLoad: unlimited=true reason=premium_active
+10-18 13:47:48.551 W/ReactNativeJS( 9817): [PLUS-TRANSFER] restore start {"trigger":"startup","attempt":2,"appUserID":"h:6d1649f5","reason":"stable_id_set","heldPlus":false,"t":19059799}
+10-18 13:47:48.671 W/ReactNativeJS( 9817): [PLUS-TRANSFER] restore result {"result":"retry","reason":"restore_failed","code":"3","attempt":2,"appUserID":"h:6d1649f5","t":19059918}
+10-18 13:47:48.674 W/ReactNativeJS( 9817): [WARNING] [PLUS-TRANSFER] restore result: [PLUS-TRANSFER] restore result {"result":"retry","reason":"restore_failed","code":"3","attempt":2,"appUserID":"h:6d1649f5","t":19059918}
+10-18 13:47:48.677 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327666285 elapsedMs=2365 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:48.793 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327668650 elapsedMs=131 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:48.916 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"custom_avatar_owned_v1","winner":"same","localLen":200,"cloudLen":200,"resultLen":200}'
+10-18 13:47:48.917 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"avatar_aura_owned_v1","winner":"same","localLen":68,"cloudLen":68,"resultLen":68}'
+10-18 13:47:48.921 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"active_days_v1","winner":"same","localLen":80,"cloudLen":80,"resultLen":80}'
+10-18 13:47:48.924 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_daily_phrase_read_count","winner":"same","localLen":2,"cloudLen":2,"resultLen":2}'
+10-18 13:47:48.925 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_daily_phrase_save_count","winner":"same","localLen":1,"cloudLen":1,"resultLen":1}'
+10-18 13:47:48.926 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_flashcards_saved_count","winner":"same","localLen":1,"cloudLen":1,"resultLen":1}'
+10-18 13:47:48.926 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_flashcards_flip_count","winner":"same","localLen":2,"cloudLen":2,"resultLen":2}'
+10-18 13:47:48.927 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_flashcards_source_set_v1","winner":"same","localLen":25,"cloudLen":25,"resultLen":25}'
+10-18 13:47:48.927 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_shards_spent_total","winner":"same","localLen":3,"cloudLen":3,"resultLen":3}'
+10-18 13:47:48.928 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_gift_sent_count","winner":"same","localLen":1,"cloudLen":1,"resultLen":1}'
+10-18 13:47:49.010 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievement_foundation_progress_v2","winner":"same","localLen":320,"cloudLen":320,"resultLen":320}'
+10-18 13:47:49.012 I/ReactNativeJS( 9817): '[LOGIN-BONUS-RESTORE]', '{"local":"{\\"lastDate\\":\\"2026-09-12\\",\\"consecutiveDays\\":2}","cloud":"{\\"lastDate\\":\\"2026-09-12\\",\\"consecutiveDays\\":2}","winner":"same"}'
+10-18 13:47:49.016 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"daily_stats","winner":"same","localLen":1333,"cloudLen":1333,"resultLen":1333}'
+10-18 13:47:49.018 I/ReactNativeJS( 9817): '[FREEZE-RESTORE]', '{"local":"{\\"active\\":false,\\"date\\":\\"2026-09-11\\"}","cloud":"{\\"active\\":false,\\"date\\":\\"2026-09-11\\"}","winner":"same"}'
+10-18 13:47:49.018 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"flashcards_owned_packs_v1","winner":"same","localLen":23,"cloudLen":23,"resultLen":23}'
+10-18 13:47:49.024 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"community_owned_pack_ids_v1","winner":"same","localLen":24,"cloudLen":24,"resultLen":24}'
+10-18 13:47:49.026 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"grandfathered_theme_modes_v1","winner":"same","localLen":2,"cloudLen":2,"resultLen":2}'
+10-18 13:47:49.029 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"user_stats_v1","winner":"same","localLen":427,"cloudLen":427,"resultLen":427}'
+10-18 13:47:49.029 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"phraseman_foreground_usage_ms_v1","winner":"same","localLen":8,"cloudLen":8,"resultLen":8}'
+10-18 13:47:49.031 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"phraseman_foreground_daily_ms_v1","winner":"same","localLen":705,"cloudLen":705,"resultLen":705}'
+10-18 13:47:49.117 I/ReactNativeJS( 9817): '[RESTORE-MERGE]', '{"key":"achievements_v1","winner":"same","localLen":3462,"cloudLen":3462,"resultLen":3462}'
+10-18 13:47:49.126 I/ReactNativeJS( 9817): '[ACH-RESTORE]', '{"localUnlocked":12,"cloudUnlocked":12,"wouldLose":[]}'
+10-18 13:47:49.471 I/ReactNativeJS( 9817): '[RESTORE-DIRTY]', '{"event":"guard","dirtyKeys":0,"kept":0}'
+10-18 13:47:49.588 I/ReactNativeJS( 9817): '[BOOT-RESTORE-APPLY]', '{"totalMs":1438,"tailMs":812,"lastPoint":"at:pending_events","points":{"at:authority":34,"at:stats_import":456,"at:stats_en":1,"at:stats_fr":22,"at:streak_reads":
+10-18 13:47:49.604 I/ReactNativeJS( 9817): '[MISTAKE-RESTORE]', '{"reason":"active_and_local","targets":["en"],"active":"en","withLocalEvents":["en"],"fullRestoreDone":true}'
+10-18 13:47:49.711 I/ReactNativeJS( 9817): '[BOOT-RESTORE-STEP]', '{"totalMs":4510,"syncMissingDocument":false,"lastStage":"mistake_rewards:it","stages":{"anon":5,"stable_link":6,"user_doc_read":2613,"migration_flag":314,"apply":1
+10-18 13:47:49.720 I/ReactNativeJS( 9817): '[BOOT-RESTORE]', '{"anonMs":102,"restoreMs":4521,"totalMs":4625,"status":"restored","failureReason":null}'
+10-18 13:47:49.914 I/ReactNativeJS( 9817): '[BOOT-RESTORE-DEFER]', '{"event":"done","trigger":"idle","status":"restored","shouldSync":true,"totalMs":5611}'
+10-18 13:47:49.946 I/ReactNativeJS( 9817): '[HOME-RESTORE-JUMP]', '{"memoryStreak":1,"storedStreak":1,"snapshotStreak":1,"snapshotSource":"live","runes":0,"homeActive":true,"willReload":"debounced_refresh_400ms"}'
+10-18 13:47:53.448 I/ReactNativeJS( 9817): [HOME-RESTORE-JUMP] refresh: requested active=true → loadData сейчас
+10-18 13:47:53.457 I/ReactNativeJS( 9817): '[MEM-TICK]', '{"tSec":13,"route":"/","heapMb":48,"gc":"152gc/838ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":34,"timeoutsBy
+10-18 13:47:54.100 I/ReactNativeJS( 9817): '[IDIOMS-LOAD] first require', '{"ms":53,"count":176,"gc":"0gc/0ms","caller":"at computeTomorrowPeek (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=fals
+10-18 13:47:58.555 I/ReactNativeJS( 9817): '[MEM-TICK]', '{"tSec":19,"route":"/","heapMb":60,"gc":"29gc/259ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":23,"timeoutsByC
+10-18 13:47:58.701 I/ReactNativeJS( 9817): [ENERGY-RESTORE] runLoad: unlimited=true reason=premium_active
+10-18 13:47:58.740 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327668781 elapsedMs=9920 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:58.882 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327678701 elapsedMs=144 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:59.001 I/ReactNativeJS( 9817): [ENERGY-RESTORE] runLoad: unlimited=true reason=premium_active
+10-18 13:47:59.025 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327678845 elapsedMs=156 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:59.135 I/ReactNativeJS( 9817): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792327679001 elapsedMs=109 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=true
+10-18 13:47:59.794 I/ReactNativeJS( 9817): '[SCROLL-RESTORE]', 'event', '{"screen":"settings","event":"lang_change","sinceEventMs":0,"y":0,"contentH":1635,"lang":"ru","savedYBefore":0,"reset":false}'
+10-18 13:48:03.575 I/ReactNativeJS( 9817): '[MEM-TICK]', '{"tSec":24,"route":"/","heapMb":64,"gc":"35gc/304ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":6,"timeoutsByCa

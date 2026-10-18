@@ -76,6 +76,17 @@
 .ph.lt .chbtn, .ph.lt .lang { background: rgba(255,255,255,.78); border-color: var(--line); color: var(--text); box-shadow: 0 6px 18px -10px rgba(51,51,87,.35); }
 .ph.lt .chav { background: linear-gradient(145deg, #E4E5F3, #CFD1E6); color: var(--text); }
 .ph.lt .cta:not(.gh):not(.dis):not(.red) { background-image: none; background: var(--cta); color: var(--cta-ink); box-shadow: 0 10px 22px -12px rgba(29,29,47,.55); }
+/* зачем (координатор 10:5x, единый эталон Видео): сетка роликов 2 колонки — как video-redesign #c1 и YoutubeVideoGridCard. */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; margin-top: 18px; }
+.g2 .thumb { border-radius: 14px; }
+.g2 .thumb .cap { left: 10px; top: 9px; right: 10px; font-size: 15px; line-height: 16px; }
+.g2 .thumb .du { right: 7px; bottom: 7px; }
+.g2 .gt { font-size: 15px; line-height: 20px; font-weight: 700; margin-top: 8px; }
+.g2 .gmr { display: flex; align-items: center; gap: 8px; min-height: 28px; }
+.g2 .gm { flex: 1; min-width: 0; font-size: 11px; line-height: 14px; color: var(--acc-text, var(--sec)); opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g2 .bm { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--control); display: flex; align-items: center; justify-content: center; color: var(--sec); }
+.g2 .bm.on { background: var(--text); color: var(--bg); }
+.old-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(242,118,107,.16); color: #F2766B; font-size: 12px; font-weight: 700; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -107,7 +118,13 @@ const hero = (state) => {
   return `<div class="hero" style="margin-top:18px"><div class="thumb" style="border-radius:14px"><span class="cap" style="top:48px">Sorry<br>to bother you</span><span class="pl">${icon('play', 's24')}</span></div>
     <div style="margin-top:12px"><div style="font-size:17px;font-weight:700">15 вежливых фраз для работы</div><div class="st">${state === 'soon' || state === 'check' ? icon('flag', 's16') : '<span class="live"></span>'}${B[0]} · ${B[1]}</div></div>${btn ? `<div style="margin-top:12px">${btn.replace('cta sm', 'cta sm').replace('style="width:auto"', state === 'soon' ? 'style="display:inline-flex;width:auto;height:40px;padding:0 16px;border-radius:20px"' : 'style="width:100%"')}</div>` : ''}</div>`;
 };
-const main = (o = {}) => phone(`${head(o.unread)}${tabs(0)}${o.note || ''}${o.hero === false ? '' : hero(o.hero || 'soon')}${packsRow}<div class="sec" style="margin-top:26px"><div class="ti">Новые видео</div></div><div class="stack" style="--g:18px;display:flex;flex-direction:column;gap:20px">${VIDS.map(vcard).join('')}</div>`, { time: '12:52', overlay: o.overlay || '' });
+// зачем (владелец 01.10, video-favorites-mockup.html; код lingman_videos savedRow): под премьерой — «Сохранённые видео · N роликов»
+const savedRow = `<div class="card t" style="margin-top:18px;display:flex;align-items:center;gap:14px;padding:12px 14px"><div class="tile">${icon('bookmark', 's20')}</div><div class="grow"><div style="font-size:16px;font-weight:700">Сохранённые видео</div><div style="font-size:14px;color:var(--sec);margin-top:2px">3 ролика</div></div><span style="color:var(--sec)">${icon('fwd', 's20')}</span></div>`;
+// зачем (владелец 11.10 video-redesign #c1; код YoutubeVideoGridCard): ролик в сетке — обложка с длительностью, название целиком, мета и закладка в одной строке
+const vgrid = ([cap, t, du, m], i) => `<div class="t"><div class="thumb"><span class="cap">${cap}</span><span class="du">${du}</span></div><div class="gt">${t}</div><div class="gmr"><div class="gm">${m}</div><span class="bm${i === 1 ? ' on' : ''}">${icon('bookmark', 's16')}</span></div></div>`;
+// УСТАРЕЛО (до 11.10): «Наборы из видео» под премьерой и «Новые видео» по одному ролику — оставлено для истории, блок «old» внизу страницы
+const mainOld = (o = {}) => phone(`${head(o.unread)}${tabs(0)}${o.note || ''}${o.hero === false ? '' : hero(o.hero || 'soon')}${packsRow}<div class="sec" style="margin-top:26px"><div class="ti">Новые видео</div></div><div class="stack" style="--g:18px;display:flex;flex-direction:column;gap:20px">${VIDS.map(vcard).join('')}</div>`, { time: '12:52', overlay: o.overlay || '' });
+const main = (o = {}) => phone(`${head(o.unread)}${tabs(0)}${o.note || ''}${o.hero === false ? '' : hero(o.hero || 'soon')}${savedRow}<div class="g2">${VIDS.map(vgrid).join('')}</div>`, { time: '12:52', overlay: o.overlay || '' });
 // зачем (координатор 13.10, video-001/video-008): в приложении вкладка «Видео» открывает страницу канала — «‹», название канала крупно в две строки, кнопка YouTube, чип автора, вкладки «Главная · Плейлисты · Наборы»; ролики и плейлисты — сетка в 2 колонки; «Все видео» убрано (video-007 removed_by_owner). Образец приведён к кадрам приложения.
 const chHead = (on) => `<div class="flex" style="align-items:flex-start;gap:12px"><span class="rb l t">${icon('back', 's20')}</span><div style="flex:1;font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Professor<br>Lingman</div><span class="rb l t">${icon('play', 's20')}</span></div><div style="margin-top:14px"><span class="chbtn t"><span class="chav">PL</span>Professor Lingman</span></div><div class="tabs3">${['Главная', 'Плейлисты', 'Наборы'].map((t, i) => `<div class="t${i === on ? ' on' : ''}">${t}</div>`).join('')}</div>`;
 const gcard = ([cap, t, du, m]) => `<div class="t"><div class="thumb"><span class="cap" style="font-size:15px;line-height:17px;left:10px;top:9px;right:30px">${cap}</span><span class="du">${du}</span></div><div class="vt" style="font-size:15px;line-height:19px">${t}</div><div class="vm">${m}</div></div>`;
@@ -162,6 +179,7 @@ document.getElementById('root').innerHTML =
   block('watch', 'Ролик: плеер, набор и фразы по таймкодам', 'Подсветка фразы идёт вместе с роликом (живой пример — первый телефон). «Добавить себе» — мгновенно, сеть догоняет.', [
     col('Смотрю ролик — фразы по таймкодам', watch({}) + replay('tc', 'Запустить ролик')), col('Добавить себе → «В моих наборах»', watch({}) + replay('add')), col('Набор добавлен', addedToast()),
     col('Фраза подробно', phraseSheet(false)), col('Фраза сохранена', phraseSheet(true)), col('Фразы грузятся', phrasesLoading()), col('Фразы не загрузились', phrasesError())]) +
+  block('old', 'Устарело — прежний главный экран<span class="old-tag">не эталон</span>', 'Так было до решений владельца 01.10 (строка «Сохранённые видео») и 11.10 (сетка в 2 колонки, «Наборы» — третьей вкладкой). Оставлено для истории; сверять по блоку выше.', [col('Было: «Наборы из видео» + «Новые видео»', mainOld({}))]) +
   block('state', 'Каталог — остальные состояния', '', [col('Загрузка', loading()), col('Пусто', empty()), col('Нет сети', offline()), col('Каталог давно не обновлялся', stale()), col('Ошибка', error()), col('Потянули вниз — повтор', pull())]);
 
 // ---- живые анимации ----

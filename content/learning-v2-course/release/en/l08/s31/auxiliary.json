@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-31:intro1:r2": {
-          "ru": "Для указания начните с `Wipe`, без `to`.",
-          "uk": "Для вказівки почніть із `Wipe`, без `to`."
+          "ru": "Для указания нужна начальная форма без s.",
+          "uk": "Для вказівки потрібна початкова форма без s."
         },
         "en:lesson-08:session-31:intro1:r3": {
-          "ru": "Нужно `Wipe`, без `s`.",
-          "uk": "Потрібне `Wipe`, без `s`."
+          "ru": "Для указания не нужно to.",
+          "uk": "Для вказівки не потрібне to."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-31:intro2:r2": {
-          "ru": "Для указания нужно `Turn`, без `s`.",
-          "uk": "Для вказівки потрібне `Turn`, без `s`."
+          "ru": "С одним пятном нужно is.",
+          "uk": "З однією плямою потрібне is."
         },
         "en:lesson-08:session-31:intro2:r3": {
-          "ru": "Начните с `Turn`, без `to`.",
-          "uk": "Почніть із `Turn`, без `to`."
+          "ru": "Перед исчисляемым smudge в единственном числе нужно a.",
+          "uk": "Перед злічуваним smudge в однині потрібне a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-31:intro3:r2": {
-          "ru": "После `can` нужно `reserve`, без `s`.",
-          "uk": "Після `can` потрібне `reserve`, без `s`."
+          "ru": "Для указания нужна начальная форма без s.",
+          "uk": "Для вказівки потрібна початкова форма без s."
         },
         "en:lesson-08:session-31:intro3:r3": {
-          "ru": "После `can` нужно `reserve`, без `to`.",
-          "uk": "Після `can` потрібне `reserve`, без `to`."
+          "ru": "Для указания не нужно to.",
+          "uk": "Для вказівки не потрібне to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "273bbb58403edb6261eb9f7240db07e097374c2f48dbcd142b8bf81cf9d3258b"
+  "auxiliaryFingerprint": "ed7ccacb2ffb5253e74c378e40561e65e83efc542873e9898b5c7dc4f728ac6b"
 }

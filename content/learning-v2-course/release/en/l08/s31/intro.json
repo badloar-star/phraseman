@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Чай на столе",
-        "uk": "Чай на столі"
+        "ru": "Чай возле тетради",
+        "uk": "Чай біля зошита"
       },
       "bodyByLocale": {
-        "ru": "Друг пролил немного чая на стол. Салфетка рядом. `Wipe` — «вытереть, протереть». `Wipe it` — «Вытри его». Здесь `it` — стол. Начните сразу с `Wipe`, без `to`. Стол уже попробовал чай — теперь ему нужна салфетка.",
-        "uk": "Друг розлив трохи чаю на стіл. Серветка поруч. `Wipe` — «витерти, протерти». `Wipe it` — «Витри його». Тут `it` — стіл. Почніть одразу з `Wipe`, без `to`. Стіл уже скуштував чай — тепер йому потрібна серветка."
+        "ru": "На столе возле тетради разлился чай. Друг уже убрал тетрадь, теперь вы показываете на стол. Wipe — «вытереть, протереть». `Wipe it` — «Вытри его». It заменяет table — стол. Для короткого указания начните с Wipe, без to и без s.",
+        "uk": "На столі біля зошита розлився чай. Друг уже прибрав зошит, тепер ви показуєте на стіл. Wipe — «витерти, протерти». `Wipe it` — «Витри його». It замінює table — стіл. Для короткої вказівки почніть із Wipe, без to і без s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-31:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу вытереть стол.",
-          "uk": "Скажіть другові витерти стіл."
+          "ru": "Скажите другу вытереть стол: «Вытри его».",
+          "uk": "Скажіть другові витерти стіл: «Витри його»."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-08:session-31:intro1:r2",
-              "text": "To wipe it."
+              "text": "Wipes it."
             },
             {
               "responseId": "en:lesson-08:session-31:intro1:r3",
-              "text": "Wipes it."
+              "text": "To wipe it."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-08:session-31:intro1:r2",
-              "text": "To wipe it."
+              "text": "Wipes it."
             },
             {
               "responseId": "en:lesson-08:session-31:intro1:r3",
-              "text": "Wipes it."
+              "text": "To wipe it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу вытереть стол.",
-          "uk": "Скажіть другові витерти стіл."
+          "ru": "Скажите другу вытереть стол: «Вытри его».",
+          "uk": "Скажіть другові витерти стіл: «Витри його»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дорога к машине",
-        "uk": "Дорога до машини"
+        "ru": "След на зеркале перед фотографией",
+        "uk": "Слід на дзеркалі перед фотографією"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте с другом к автостоянке. На ближайшем повороте нужно налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем `left`.",
-        "uk": "Ви йдете з другом до автостоянки. На найближчому повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім `left`."
+        "ru": "Перед фотографией в зеркале вы замечаете размытый след от пальца. Smudge — «пятно, размазанный след». `There is a smudge` — «Есть пятно». Вы говорите об одном следе, поэтому is и a smudge.",
+        "uk": "Перед фотографією в дзеркалі ви помічаєте розмитий слід від пальця. Smudge — «пляма, розмазаний слід». `There is a smudge` — «Є пляма». Ви говорите про один слід, тому is і a smudge."
       },
       "question": {
         "interactionId": "en:lesson-08:session-31:intro2:q",
         "promptByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Сообщите другу: «Есть пятно».",
+          "uk": "Повідомте другові: «Є пляма»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-31:intro2:r1",
-              "text": "Turn left."
+              "text": "There is a smudge."
             },
             {
               "responseId": "en:lesson-08:session-31:intro2:r2",
-              "text": "Turns left."
+              "text": "There are a smudge."
             },
             {
               "responseId": "en:lesson-08:session-31:intro2:r3",
-              "text": "To turn left."
+              "text": "There is smudge."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-31:intro2:r1",
-              "text": "Turn left."
+              "text": "There is a smudge."
             },
             {
               "responseId": "en:lesson-08:session-31:intro2:r2",
-              "text": "Turns left."
+              "text": "There are a smudge."
             },
             {
               "responseId": "en:lesson-08:session-31:intro2:r3",
-              "text": "To turn left."
+              "text": "There is smudge."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Сообщите другу: «Есть пятно».",
+          "uk": "Повідомте другові: «Є пляма»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Столик для ужина",
-        "uk": "Столик для вечері"
+        "ru": "Вода на стекле душевой",
+        "uk": "Вода на склі душової"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом хотите поужинать в популярном ресторане. Попросите его заранее забронировать столик: `Can you reserve a table?` — «Можешь забронировать столик?» После `Can you` нужно `reserve a table`, без `to`.",
-        "uk": "Ви з другом хочете повечеряти в популярному ресторані. Попросіть його заздалегідь забронювати столик: `Can you reserve a table?` — «Можеш забронювати столик?» Після `Can you` потрібне `reserve a table`, без `to`."
+        "ru": "После душа на стекле остались капли. Рядом висит скребок с резиновой кромкой. Squeegee — такой «скребок для воды». `Use the squeegee` — «Используй скребок для воды». Вы показываете на конкретный скребок, поэтому the.",
+        "uk": "Після душу на склі залишилися краплі. Поруч висить скребок із гумовою крайкою. Squeegee — такий «скребок для води». `Use the squeegee` — «Використай скребок для води». Ви показуєте на конкретний скребок, тому the."
       },
       "question": {
         "interactionId": "en:lesson-08:session-31:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга забронировать столик.",
-          "uk": "Попросіть друга забронювати столик."
+          "ru": "Предложите другу использовать скребок для воды.",
+          "uk": "Запропонуйте другові використати скребок для води."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-31:intro3:r1",
-              "text": "Can you reserve a table?"
+              "text": "Use the squeegee."
             },
             {
               "responseId": "en:lesson-08:session-31:intro3:r2",
-              "text": "Can you reserves a table?"
+              "text": "Uses the squeegee."
             },
             {
               "responseId": "en:lesson-08:session-31:intro3:r3",
-              "text": "Can you to reserve a table?"
+              "text": "To use the squeegee."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-31:intro3:r1",
-              "text": "Can you reserve a table?"
+              "text": "Use the squeegee."
             },
             {
               "responseId": "en:lesson-08:session-31:intro3:r2",
-              "text": "Can you reserves a table?"
+              "text": "Uses the squeegee."
             },
             {
               "responseId": "en:lesson-08:session-31:intro3:r3",
-              "text": "Can you to reserve a table?"
+              "text": "To use the squeegee."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга забронировать столик.",
-          "uk": "Попросіть друга забронювати столик."
+          "ru": "Предложите другу использовать скребок для воды.",
+          "uk": "Запропонуйте другові використати скребок для води."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8bedea6c7c82a13f271580c06aa9140e47b6d8fc7ffb617bc2abb047989b997a"
+  "introFingerprint": "d996fd223ba4a403c481940aa2f13bbeb19dd43718e03916d4b5ce2c4db748f2"
 }

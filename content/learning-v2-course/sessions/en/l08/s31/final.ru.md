@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 31 — Вытри стол
 
-**Ситуация.** Вы убираете пролитый чай, подсказываете дорогу к автостоянке и просите забронировать столик.
+**Ситуация.** Убрать чай со стола, заметить след на зеркале и собрать воду со стекла душевой.
 
 **Что вы освоите:** закрепить короткие указания со словом wipe
-**Новые слова:** wipe
+**Новые слова:** wipe, smudge, squeegee, disinfectant
 
 ---
 
 ## Интро 1
 
-### Чай на столе
+### Чай возле тетради
 
-Друг пролил немного чая на стол. Салфетка рядом. `Wipe` — «вытереть, протереть». `Wipe it` — «Вытри его». Здесь `it` — стол. Начните сразу с `Wipe`, без `to`. Стол уже попробовал чай — теперь ему нужна салфетка.
+На столе возле тетради разлился чай. Друг уже убрал тетрадь, теперь вы показываете на стол. Wipe — «вытереть, протереть». `Wipe it` — «Вытри его». It заменяет table — стол. Для короткого указания начните с Wipe, без to и без s.
 
-**Скажите другу вытереть стол.**
+**Скажите другу вытереть стол: «Вытри его».**
 
 - ✅ **Wipe it.**
-- ❌ To wipe it. — *Для указания начните с `Wipe`, без `to`.*
-- ❌ Wipes it. — *Нужно `Wipe`, без `s`.*
+- ❌ Wipes it. — *Для указания нужна начальная форма без s.*
+- ❌ To wipe it. — *Для указания не нужно to.*
 
 ---
 
 ## Интро 2
 
-### Дорога к машине
+### След на зеркале перед фотографией
 
-Вы идёте с другом к автостоянке. На ближайшем повороте нужно налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем `left`.
+Перед фотографией в зеркале вы замечаете размытый след от пальца. Smudge — «пятно, размазанный след». `There is a smudge` — «Есть пятно». Вы говорите об одном следе, поэтому is и a smudge.
 
-**Подскажите другу «Поверни налево».**
+**Сообщите другу: «Есть пятно».**
 
-- ✅ **Turn left.**
-- ❌ Turns left. — *Для указания нужно `Turn`, без `s`.*
-- ❌ To turn left. — *Начните с `Turn`, без `to`.*
+- ✅ **There is a smudge.**
+- ❌ There are a smudge. — *С одним пятном нужно is.*
+- ❌ There is smudge. — *Перед исчисляемым smudge в единственном числе нужно a.*
 
 ---
 
 ## Интро 3
 
-### Столик для ужина
+### Вода на стекле душевой
 
-Вы с другом хотите поужинать в популярном ресторане. Попросите его заранее забронировать столик: `Can you reserve a table?` — «Можешь забронировать столик?» После `Can you` нужно `reserve a table`, без `to`.
+После душа на стекле остались капли. Рядом висит скребок с резиновой кромкой. Squeegee — такой «скребок для воды». `Use the squeegee` — «Используй скребок для воды». Вы показываете на конкретный скребок, поэтому the.
 
-**Попросите друга забронировать столик.**
+**Предложите другу использовать скребок для воды.**
 
-- ✅ **Can you reserve a table?**
-- ❌ Can you reserves a table? — *После `can` нужно `reserve`, без `s`.*
-- ❌ Can you to reserve a table? — *После `can` нужно `reserve`, без `to`.*
+- ✅ **Use the squeegee.**
+- ❌ Uses the squeegee. — *Для указания нужна начальная форма без s.*
+- ❌ To use the squeegee. — *Для указания не нужно to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Дайте указание «Вытри его»**
+**1 · Карточка слова — wipe**
+<!-- interaction_id: en:lesson-08:session-31:word:wipe; family: word_card -->
+> **wipe** — вытереть, протереть. Wipe it. — «Вытри его». Провести салфеткой или тканью по поверхности.
+
+**2 · Дайте указание «Вытри его»**
 <!-- interaction_id: en:lesson-08:session-31:i01; family: phrase_builder -->
 Плитки: `it` `Wipe` → **Wipe it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-31:i02; family: listen_choose -->
 🔊 *wipe* → **wipe** · reserve · shower
 - reserve — *В записи первое слово — `wipe`, а в этом варианте — `reserve`.*
 - shower — *В записи первое слово — `wipe`, а в этом варианте — `shower`.*
 
-**3 · Дайте короткое указание вытереть стол**
+**4 · Выберите форму для указания вытереть стол**
 <!-- interaction_id: en:lesson-08:session-31:i03; family: context_gap_grammar -->
 ___ it. → **Wipe** · Wipes · To wipe
 - Wipes — *Для указания нужно `Wipe`, без `s`.*
 - To wipe — *Начните с `Wipe`, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-31:i04; family: speed_match -->
 wipe — вытереть · car park — автостоянка · visit — посещать · shower — принимать душ
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-31:i05; family: listen_build_dictation -->
 🔊 *Wipe it.* Плитки: `it` `Wipe` → **Wipe it.**
 
-**6 · Дайте короткое указание «Открой окно»**
+**7 · Карточка слова — smudge**
+<!-- interaction_id: en:lesson-08:session-31:word:smudge; family: word_card -->
+> **smudge** — размазанный след, пятно. There is a smudge. — «Есть пятно». Например, след от пальца на зеркале.
+
+**8 · Сообщите: «Есть пятно»**
 <!-- interaction_id: en:lesson-08:session-31:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `smudge` `a` `is` `There` → **There is a smudge.**
 
-**7 · На прогулке подскажите другу «Поверни налево»**
+**9 · Карточка слова — squeegee**
+<!-- interaction_id: en:lesson-08:session-31:word:squeegee; family: word_card -->
+> **squeegee** — скребок для воды. Use the squeegee. — «Используй скребок для воды». Резиновая кромка собирает воду со стекла.
+
+**10 · На стекле душевой вода. Скажите «Используй скребок для воды»**
 <!-- interaction_id: en:lesson-08:session-31:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Use the squeegee.**
 
-**8 · Дайте короткое указание открыть окно**
+**11 · Выберите форму для сообщения об одном пятне на зеркале**
 <!-- interaction_id: en:lesson-08:session-31:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для указания нужно `Open`, без `s`.*
-- To open — *Начните с `Open`, без `to`.*
+There ___ a smudge. → **is** · are · am
+- are — *С одним пятном нужно is.*
+- am — *Am используется с I, здесь нужно is.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-31:i09; family: listen_choose -->
 🔊 *Wipe it.* → **Wipe it.** · Wipe this. · Wipe that.
 - Wipe this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Wipe that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-31:i10; family: speed_match -->
-reserve — забронировать · wipe — вытереть · car park — автостоянка · visit — посещать
+wipe — вытереть · smudge — размазанный след · squeegee — скребок для воды · table — стол
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-31:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Use the squeegee.* Плитки: `squeegee` `the` `Use` → **Use the squeegee.**
 
-**12 · Попросите «Можешь забронировать столик?»**
+**15 · Карточка слова — disinfectant**
+<!-- interaction_id: en:lesson-08:session-31:word:disinfectant; family: word_card -->
+> **disinfectant** — дезинфицирующее средство. Pass me the disinfectant. — «Передай мне дезинфицирующее средство». Здесь речь о конкретном средстве, поэтому the.
+
+**16 · Вы убираете рабочую поверхность. Попросите «Передай мне дезинфицирующее средство»**
 <!-- interaction_id: en:lesson-08:session-31:i12; family: phrase_builder -->
-Плитки: `table` `a` `reserve` `you` `Can` → **Can you reserve a table?**
+Плитки: `disinfectant` `the` `me` `Pass` → **Pass me the disinfectant.**
 
-**13 · Вы рассказываете о своих привычках. Используйте shower: «Я часто принимаю душ»**
+**17 · Друг спрашивает, сможете ли вы вытереть стол. Скажите «Я могу вытереть его»**
 <!-- interaction_id: en:lesson-08:session-31:i13; family: scripted_repeat_compare -->
-🎙 **I often shower.**
+🎙 **I can wipe it.**
 
-**14 · Дайте указание повернуть налево**
+**18 · Выберите форму для указания использовать скребок для воды**
 <!-- interaction_id: en:lesson-08:session-31:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для указания нужно `Turn`, без `s`.*
-- To turn — *Начните с `Turn`, без `to`.*
+___ the squeegee. → **Use** · Uses · To use
+- Uses — *Для указания нужно Use, без s.*
+- To use — *Начните с Use, без to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-31:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *В записи последнее слово — `window`, а в этом варианте — `door`.*
-- Open the box. — *В записи последнее слово — `window`, а в этом варианте — `box`.*
+🔊 *There is a smudge.* → **There is a smudge.** · There is a table. · There is a box.
+- There is a table. — *В записи smudge — «пятно», а не table — «стол».*
+- There is a box. — *В записи smudge, а не box — «коробка».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-31:i16; family: speed_match -->
-wipe — вытереть · shower — принимать душ · reserve — забронировать · car park — автостоянка
+wipe — вытереть · smudge — размазанный след · squeegee — скребок для воды · disinfectant — дезинфицирующее средство
 
-**17 · Друг заметил пятно на экране телефона. У него есть салфетка для экрана. Покажите на экран и скажите «Протри его»**
+**21 · Друг заметил пятно на экране телефона. У него есть салфетка для экрана. Покажите на экран и скажите «Протри его»**
 <!-- interaction_id: en:lesson-08:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Wipe it.**
 

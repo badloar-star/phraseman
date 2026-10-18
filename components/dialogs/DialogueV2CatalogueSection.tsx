@@ -134,11 +134,13 @@ export function DialogueV2CatalogueSection({
               accessibilityLabel={`${world.title}, ${doneCount}/${totalCount}`}
               onPress={() => toggleWorld(world.id)}
               variant="flat"
-              style={{ flexDirection: 'row', alignItems: 'center', gap: expanded ? 16 : 22, minHeight: 55 }}
+              // зачем (Макеты 9e311920a, dialogs-001/002/004 «подпись в две строки, колонка текста уже»): в образце A1 `.flex` gap 12, а плитка
+              // отодвинута ещё на 10 (margin-right) — 22 только между плиткой и текстом; «0/13» и «›» стоят через 12. Раньше 22 было везде — текст терял 20.
+              style={{ flexDirection: 'row', alignItems: 'center', gap: expanded ? 16 : 12, minHeight: 55 }}
             >
               {/* зачем (сверка dialogs-004/-002, «плитка категории и строки без карточки/плитки»): в макете ступени тона — карточка категории 0x161618 → строка 0x1D1D1F (+5 %) → плитка 0x28282A (+9 %).
                   Токены темы (opaqueControl/opaqueCard) в тёмных темах почти равны фону карточки, и плитки/строки сливались; тон считаем от белого — ступени видны в любой теме. */}
-              <View style={{ width: 55, height: 55, borderRadius: 14, backgroundColor: glassTone(glass.text, TILE_TONE_ALPHA), alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ width: 55, height: 55, borderRadius: 14, marginRight: expanded ? 0 : 10, backgroundColor: glassTone(glass.text, TILE_TONE_ALPHA), alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name={worldIcon(world.id)} size={26} color={glass.text} />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>

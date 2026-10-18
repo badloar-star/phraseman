@@ -30,7 +30,15 @@ export function useDialogueHubQuota(): DialogueHubQuota {
     let alive = true;
     void readAiDialogMonthlyQuota(studyTarget, captureAccountGeneration().stableId).then((quota) => {
       if (!alive) return;
-      setRemaining(quota.status === 'allowed' ? quota.remaining : quota.status === 'exhausted' ? 0 : null);
+      // зачем (Макеты 9e311920a, dialogs-001: у Free на хабе нет «30/30», а в раскрытии — есть): зеркала нет или оно из прошлого месяца
+      // ('unknown') — ответов в этом месяце с телефона не было, показываем полный лимит, как уже делает DialogsTabContent (repliesLeftThisMonth).
+      // Сервер остаётся источником правды: после первой реплики зеркало перезапишется точным остатком.
+      const next = quota.status === 'allowed' ? quota.remaining
+        : quota.status === 'exhausted' ? 0
+          : quota.status === 'unknown' ? REVENUE_MONTHLY_LIMITS.ai_dialog_replies
+            : null;
+      console.log(`[DIALOGUE-V2] header:quota status=${quota.status} → pill=${next === null ? 'hidden' : `${next}/${REVENUE_MONTHLY_LIMITS.ai_dialog_replies}`}`);
+      setRemaining(next);
     }).catch((error: unknown) => {
       console.warn('[DIALOGUE-V2] header:quota → mirror read failed', error instanceof Error ? error.message : String(error));
     });

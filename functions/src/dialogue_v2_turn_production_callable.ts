@@ -73,6 +73,12 @@ import {
 } from './dialogue_v2_warm';
 import { enforceCallerRateWindow } from './caller_rate_window';
 import { reserveDailySpend } from './spend_cap';
+import {
+  createDialogueV2LatencyTrace,
+  currentDialogueV2LatencyTrace,
+  runWithDialogueV2LatencyTrace,
+  timedDialogueV2Step,
+} from './dialogue_v2_latency_trace';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
@@ -418,7 +424,8 @@ export function createDialogueV2ProviderGenerator(
       Promise.race([operation, deadlineFailurePromise])
     );
     try {
-      const configuredModel = await beforeDeadline(runtime.resolveModel());
+      const trace = currentDialogueV2LatencyTrace();
+      const configuredModel = await timedDialogueV2Step('model_config', () => beforeDeadline(runtime.resolveModel()));
       // зачем (Q113/§ координатора 02.10): ход с разбором держится на строгой схеме; модель без
       // JSON-режима (4.1-nano) её не умеет, и цели диалога вставали бы. Засчитывать цель без
       // модели — догадка, поэтому такие ходы ведёт основная модель диалогов (4o-mini, цена сопоставима).
@@ -437,7 +444,20 @@ export function createDialogueV2ProviderGenerator(
       }
 
       // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
-      await reserveDailySpend({ fn: 'dialogueV2TextTurn', kind: 'chat', model: configuration.model });
+      await timedDialogueV2Step('spend_cap', () => reserveDailySpend({ fn: 'dialogueV2TextTurn', kind: 'chat', model: configuration.model }));
+      // [DLG-V2-LATENCY] сборка промпта отдельно от сети: сколько сообщений и символов уходит модели (без самого текста).
+      const promptStartedAt = Date.now();
+      const messages = providerMessages(request, runtime.nowMs?.() ?? Date.now());
+      const maxTokens = coachingRequested ? coachingMaxTokens : PROVIDER_MAX_TOKENS;
+      const inputChars = messages.reduce((sum, message) => sum + message.content.length, 0);
+      trace?.record('prompt_build', Date.now() - promptStartedAt, {
+        messages: messages.length,
+        historyTurns: request.serverConversationContext?.length ?? 0,
+        systemChars: messages[0]?.content.length ?? 0,
+        inputChars,
+        approxInputTokens: Math.ceil(inputChars / 4),
+      });
+      const providerStartedAt = Date.now();
       const response = await beforeDeadline(runtime.fetchImpl(OPENAI_CHAT_URL, {
         method: 'POST',
         headers: {
@@ -446,8 +466,8 @@ export function createDialogueV2ProviderGenerator(
         },
         body: JSON.stringify({
           model: configuration.model,
-          max_tokens: coachingRequested ? coachingMaxTokens : PROVIDER_MAX_TOKENS,
-          messages: providerMessages(request, runtime.nowMs?.() ?? Date.now()),
+          max_tokens: maxTokens,
+          messages,
           temperature: 0.8,
           // зачем (баг 02.10): ход с разбором — строгая схема с обязательным «coaching»,
           // иначе модель на поздних ходах отвечает без него и цели диалога стоят.
@@ -457,8 +477,32 @@ export function createDialogueV2ProviderGenerator(
         }),
         signal: abortController.signal,
       }));
+      // первые байты: fetch разрешается на заголовках ответа — это время модели до начала выдачи
+      const firstByteMs = Date.now() - providerStartedAt;
+      trace?.record('provider_first_byte', firstByteMs, {
+        model: configuration.model,
+        maxTokens,
+        coaching: coachingRequested,
+        jsonMode: modelSupportsJsonObject(configuration.model),
+        deadlineMs: DIALOGUE_V2_PROVIDER_DEADLINE_MS,
+        status: providerStatus(response),
+      }, response.ok);
       if (!response.ok) throw new Error('provider_http_failure');
+      const bodyStartedAt = Date.now();
       const payload = await beforeDeadline(response.json());
+      // последние байты: тело целиком (без потоковой выдачи модель отдаёт ответ одним куском после генерации)
+      const usage = (payload as { usage?: { prompt_tokens?: unknown; completion_tokens?: unknown } } | null)?.usage;
+      trace?.record('provider_last_byte', Date.now() - bodyStartedAt, {
+        providerTotalMs: Date.now() - providerStartedAt,
+        promptTokens: typeof usage?.prompt_tokens === 'number' ? usage.prompt_tokens : null,
+        completionTokens: typeof usage?.completion_tokens === 'number' ? usage.completion_tokens : null,
+      });
+      trace?.note({
+        model: configuration.model,
+        maxTokens,
+        promptTokens: typeof usage?.prompt_tokens === 'number' ? usage.prompt_tokens : null,
+        completionTokens: typeof usage?.completion_tokens === 'number' ? usage.completion_tokens : null,
+      });
       // зачем: PM-231 (A3) — токены оплачены с этого момента; отчёт не бросает.
       await reportDialogueV2Usage(runtime.onUsage, payload, configuration.model, 'v2_text');
       const content = providerContent(
@@ -467,14 +511,24 @@ export function createDialogueV2ProviderGenerator(
       );
       if (!content) throw new Error('provider_shape_failure');
       return content;
-    } catch {
+    } catch (error) {
       // Never attach provider bodies, credentials, prompts, or learner text.
+      // зачем (запрет немого catch): причина отказа модели — только код, без тел и текста.
+      currentDialogueV2LatencyTrace()?.record('provider_failed', 0, {
+        reason: error === deadlineFailure ? 'deadline' : String((error as { message?: unknown })?.message ?? 'unknown').slice(0, 60),
+      }, false);
       throw new Error('dialogue_v2_provider_failed');
     } finally {
       clearTimeout(deadline);
       abortController.abort();
     }
   };
+}
+
+/** Код HTTP ответа модели для журнала: в типе транспорта его нет (Pick ok/json), у настоящего fetch — есть. */
+function providerStatus(response: unknown): number | null {
+  const status = (response as { status?: unknown } | null)?.status;
+  return typeof status === 'number' ? status : null;
 }
 
 function releaseRepository(
@@ -519,15 +573,15 @@ function productionDependencies(
   return Object.freeze({
     resolveRelease: async () => {
       const db = database();
-      if (await aiGloballyDisabled(db)) return null;
-      return loadDialogueV2CompletionReleaseCandidate(releaseRepository(db));
+      if (await timedDialogueV2Step('ai_gate', () => aiGloballyDisabled(db))) return null;
+      return timedDialogueV2Step('release_load', () => loadDialogueV2CompletionReleaseCandidate(releaseRepository(db)));
     },
     resolveStableAccountId: (authUid: string) => (
       resolveStableUidForAuth(database(), authUid)
     ),
-    resolvePremiumAccess: (stableAccountId: string, authUid: string) => (
+    resolvePremiumAccess: (stableAccountId: string, authUid: string) => timedDialogueV2Step('premium_access', () => (
       resolvePremiumAccess(database(), stableAccountId, Date.now(), authUid)
-    ),
+    )),
     resolveStructuredMemory: async (
       stableAccountId,
       authUid,
@@ -541,7 +595,7 @@ function productionDependencies(
       // не Plus — поэтому Free идёт с пустой памятью, без чтения Firestore.
       if (!isPremium) return FREE_EMPTY_STRUCTURED_MEMORY;
       const db = database();
-      const result = await executeDialogueV2MemoryRead({
+      const result = await timedDialogueV2Step('memory_read', () => executeDialogueV2MemoryRead({
         auth: { uid: authUid },
         data: { studyTarget, scenarioId },
       }, {
@@ -560,22 +614,22 @@ function productionDependencies(
         resolveRelease: () => loadDialogueV2CompletionReleaseCandidate(
           releaseRepository(db),
         ),
-      });
+      }));
       return Object.freeze({
         sharedSummary: result.sharedSummary,
         scenarioCheckpoint: result.scenarioCheckpoint,
       });
     },
-    enforceRateLimit: (authUid: string, stableAccountId: string) => (
+    enforceRateLimit: (authUid: string, stableAccountId: string) => timedDialogueV2Step('rate_limit_uid', () => (
       enforceRateLimit(authUid, stableAccountId)
-    ),
+    )),
     reserveMonthlyQuota: async (
       authUid: string,
       stableAccountId: string,
       isPremium: boolean,
     ) => {
       if (quotaTurn) {
-        return enforceDialogueV2TurnMonthlyQuota(
+        return timedDialogueV2Step('monthly_quota', () => enforceDialogueV2TurnMonthlyQuota(
           authUid,
           stableAccountId,
           isPremium,
@@ -586,7 +640,7 @@ function productionDependencies(
             quotaTurn.sessionId,
             quotaTurn.turnId,
           ),
-        );
+        ));
       }
       return reserveDialogueV2MonthlyQuota(
         enforceMonthlyQuota,
@@ -723,12 +777,15 @@ export function createDialogueV2SessionTextTurnHandler(
     if (!input) {
       throw new HttpsError('invalid-argument', 'dialogue_v2_turn_request_invalid');
     }
+    // зачем (координатор 18.10, R139 «ответ ≈13,3 с»): каждый шаг хода пишет [DLG-V2-LATENCY] со своей длительностью, в конце — сводка.
+    const trace = createDialogueV2LatencyTrace({ scenarioId: input.scenarioId, studyTarget: input.studyTarget });
+    const runTracedTurn = async (): Promise<Readonly<Record<string, unknown>>> => {
     // зачем (координатор 18.10, защита от накрутки счёта): потолок на uid уже есть (premium_dialog 60/ч), ферма анонимных uid с одного адреса упирается в окно на IP.
-    await enforceCallerRateWindow({ scope: 'dlg_turn', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 0, maxPerIp: 600 });
+    await trace.span('rate_window_ip', () => enforceCallerRateWindow({ scope: 'dlg_turn', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 0, maxPerIp: 600 }));
 
     let stableAccountId: string;
     try {
-      stableAccountId = await runtime.resolveStableAccountId(authUid);
+      stableAccountId = await trace.span('identity', () => runtime.resolveStableAccountId(authUid));
       if (typeof stableAccountId !== 'string' || stableAccountId.length < 1) {
         throw new Error('identity_invalid');
       }
@@ -744,6 +801,8 @@ export function createDialogueV2SessionTextTurnHandler(
     let coreResponse: DialogueV2TextTurnResponse | null = null;
     let coreFailure: unknown = null;
     let coreSucceeded = false;
+    const ledgerStartedAt = trace.elapsedMs();
+    let produceEndedAt: number | null = null;
     try {
       const ledgerResult = await runtime.runSessionTurn(
         Object.freeze({ authUid, stableAccountId }),
@@ -755,6 +814,9 @@ export function createDialogueV2SessionTextTurnHandler(
           userText: input.userMessage,
         }),
         async (serverTurn) => {
+          // чтение сессии и истории в журнале хода — от входа в ledger до вызова производителя ответа
+          trace.record('ledger_read', trace.elapsedMs() - ledgerStartedAt, { priorTurns: serverTurn.priorTurns.length });
+          trace.note({ historyTurns: serverTurn.priorTurns.length });
           const serverConversationContext = Object.freeze(serverTurn.priorTurns.map((turn) => {
             if (!turn.assistantReplies) throw new Error('dialogue_v2_context_invalid');
             return Object.freeze({
@@ -775,7 +837,7 @@ export function createDialogueV2SessionTextTurnHandler(
             reserveMonthlyQuota: async (uid, stableId, premium) => {
               // зачем (Ревизор 18.10, аудит накрутки п.3): бесплатные реплики — не больше 60 в сутки с одного IP, общий счёт с premiumDialogSend/Stream.
               if (!premium) {
-                await enforceCallerRateWindow({ scope: 'dlg_free_ip', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 0, maxPerIp: 60, windowMs: 24 * 60 * 60 * 1000 });
+                await trace.span('free_ip_window', () => enforceCallerRateWindow({ scope: 'dlg_free_ip', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 0, maxPerIp: 60, windowMs: 24 * 60 * 60 * 1000 }));
               }
               const next = await baseReserve(uid, stableId, premium);
               reservation = next;
@@ -790,16 +852,20 @@ export function createDialogueV2SessionTextTurnHandler(
             })),
           });
           try {
-            coreResponse = await execute(request, trackedDependencies);
+            coreResponse = await trace.span('core_turn', () => execute(request, trackedDependencies));
             coreSucceeded = true;
             return coreResponse.replies;
           } catch (error) {
             coreFailure = error;
             throw new Error('dialogue_v2_core_turn_failed');
+          } finally {
+            produceEndedAt = trace.elapsedMs();
           }
         },
       );
-      const preparedBotVoiceSelection = await runtime.selectPreparedBotVoiceAfterCommit(
+      // запись ответа в журнал сессии (транзакция ledger) — от конца производителя до возврата runTurn; повтор — без производителя
+      trace.record(produceEndedAt === null ? 'ledger_replay' : 'ledger_commit', trace.elapsedMs() - (produceEndedAt ?? ledgerStartedAt), { kind: ledgerResult.kind });
+      const preparedBotVoiceSelection = await trace.span('prepared_voice', () => runtime.selectPreparedBotVoiceAfterCommit(
         Object.freeze({ authUid, stableAccountId }),
         Object.freeze({
           sessionId: input.sessionId,
@@ -808,7 +874,7 @@ export function createDialogueV2SessionTextTurnHandler(
           scenarioId: input.scenarioId,
         }),
         ledgerResult,
-      ).catch(swallowed('dialogue_v2_turn_production_callable:selectPreparedBotVoiceAfterCommit', null));
+      )).catch(swallowed('dialogue_v2_turn_production_callable:selectPreparedBotVoiceAfterCommit', null));
 
       if (ledgerResult.kind === 'replay') {
         return Object.freeze({
@@ -861,6 +927,17 @@ export function createDialogueV2SessionTextTurnHandler(
       if (error instanceof DialogueV2SessionLedgerError) throw publicLedgerError(error);
       throw new HttpsError('unavailable', 'dialogue_v2_turn_unavailable');
     }
+    };
+    return runWithDialogueV2LatencyTrace(trace, async () => {
+      try {
+        const result = await runTracedTurn();
+        trace.finish('ok', { kind: result.kind ?? null, replayed: result.replayed ?? null });
+        return result;
+      } catch (error) {
+        trace.finish('failed', { error: describeTurnFailure(error) });
+        throw error;
+      }
+    });
   };
 }
 

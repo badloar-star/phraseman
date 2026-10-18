@@ -172,3 +172,19 @@ Outcome: координатор 03:53 — в снимке аудит давал 
 пропажа ВНУТРИ области; журнал [AUDIO-SILENCE] scope: найдено / в области / вне области. Без параметра поведение прежнее.
 Ночные и утренние скрипты зовут аудит с --only-prefix assets/audio/learning-v2-bootstrap-v1/ (то, что едет в сборку).
 Scope: scripts/audit_bundled_audio_silence.mjs, scratchpad. Rollback: git revert.
+
+## Дополнение: каталог session1-production-v1 (Ревизор 3.75) — каталоги исходников выводятся из таблиц
+
+Governance-ID: TG-539981B93633
+
+Outcome: координатор 04:06/04:45 — assets/audio/learning-v2/session1-production-v1 (3 исходника) отсутствовал в утренних
+скриптах (перенос варианта: SET_PATHS и цикл каталогов; перекодирование: parts_src; откат: DIRS и обратные списки; проверка
+годности). Вместо ещё одной ручной вставки каталоги исходников выводятся из таблиц (single-voice-v1.json + manifest.json,
+только записи набора сборки) — scratchpad source_dirs.cjs; все три скрипта и проверка годности берут список оттуда. Звуковые
+файлы и таблицы не трогаются, меняются только скрипты. Verification: репетиция в одноразовом хранилище — применение →
+аудит --only-prefix → откат, 3 файла session1-production-v1 побайтно совпадают после отката. Rollback: git revert копий скриптов.
+- Найдено при репетиции (04:5x): app/learning_v2_session1_production_audio_v1.ts (клиент выпуска v3 → L1 S1) держит
+  ЖЁСТКО прописанные хеши файлов session1-production-v1; вариант 64k перекодировал 3 из них (here-ash 758f2d08, here-onyx
+  466763eb, ready-onyx eebf91c8) — в новом наборе их хешей нет, модуль ссылался бы на удалённые файлы. Решение: исходники
+  session1-production-v1 не перекодируются (keep as is, журнал [REENCODE] skip reason=legacy_session1_hardcoded_hashes),
+  плюс пост-проверка скрипта: каждый хеш модуля session1 обязан быть в новом наборе, иначе код 1. Варианты 64/96 пересобрать.

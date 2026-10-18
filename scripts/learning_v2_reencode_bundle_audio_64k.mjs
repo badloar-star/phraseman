@@ -108,6 +108,8 @@ const remap = new Map(); // старый хеш → { hash, size }
 const byOldHash = new Map(); // старый хеш → перекодированные байты (одинаковые байты кодируем один раз)
 let skipped = 0;
 const skippedByKbps = new Map(); // битрейт исходника → сколько файлов оставлено как есть
+const KEEP_AS_IS_PREFIXES = ["assets/audio/learning-v2/session1-production-v1/"];
+const SESSION1_MODULE = "app/learning_v2_session1_production_audio_v1.ts";
 let missing = 0;
 let bytesBefore = 0;
 let bytesAfter = 0;
@@ -118,6 +120,15 @@ for (const [rel, oldHash] of sources) {
   if (sha256(before) !== oldHash) throw new Error(`${LOG} исходник ${rel} не совпадает с таблицей (${oldHash.slice(0, 8)}) — стоп, ничего не меняю дальше`);
   // зачем (координатор 18.10): исходник уже сжат (например shrink_audio V2 до 64k) — не пережимаем второй раз и не «поднимаем»
   // 64k до 96k: файл остаётся как есть, хеш в таблицах не меняется. Каждый пропуск — строка с битрейтом и итоговый счётчик.
+  // зачем (репетиция утра 18.10): app/learning_v2_session1_production_audio_v1.ts (клиент выпуска → L1 S1) держит жёстко
+  // прописанные хеши файлов session1-production-v1. Перекодирование сменило бы хеши, и модуль ссылался бы на удалённые
+  // файлы набора — первое занятие потеряло бы звук. Эти исходники (3 малых файла) оставляем как есть.
+  if (KEEP_AS_IS_PREFIXES.some((prefix) => rel.replace(/\\/gu, "/").startsWith(prefix))) {
+    skipped += 1;
+    skippedByKbps.set("legacy", (skippedByKbps.get("legacy") ?? 0) + 1);
+    console.log(`[REENCODE] skip reason=legacy_session1_hardcoded_hashes target_kbps=${KBPS} file=${rel}`);
+    continue;
+  }
   const srcBitrate = bitrateOf(file);
   if (srcBitrate <= TARGET_BITRATE * 1.1) {
     skipped += 1;
@@ -173,5 +184,14 @@ run("build_learning_v2_factory_lesson_audio_index.mjs");
 run("build_learning_v2_factory_audio_module.mjs", ["--check"]);
 run("build_learning_v2_factory_single_voice_module.mjs", ["--check"]);
 run("build_learning_v2_bootstrap_audio_pack.mjs", ["--check"]);
+// пост-проверка: каждый хеш модуля первого занятия (жёстко прописанный) обязан остаться в новом наборе сборки
+{
+  const bundleNow = fs.readFileSync(path.join(ROOT, BOOTSTRAP_MODULE), "utf8");
+  const s1Path = path.join(ROOT, SESSION1_MODULE);
+  const s1Hashes = fs.existsSync(s1Path) ? [...new Set([...fs.readFileSync(s1Path, "utf8").matchAll(/contentHash: "([0-9a-f]{64})"/gu)].map((m) => m[1]))] : [];
+  const lostFromBundle = s1Hashes.filter((h) => bundleHashes.has(h) && !bundleNow.includes(h));
+  console.log(`${LOG} пост-проверка модуля L1 S1: хешей ${s1Hashes.length}, из них были в наборе ${s1Hashes.filter((h) => bundleHashes.has(h)).length}, пропало из набора ${lostFromBundle.length}`);
+  if (lostFromBundle.length > 0) throw new Error(`${LOG} модуль ${SESSION1_MODULE} ссылается на хеши, которых больше нет в наборе: ${lostFromBundle.map((h) => h.slice(0, 8)).join(", ")}`);
+}
 run("build_learning_v2_factory_lesson_audio_index.mjs", ["--check"]);
 console.log(`${LOG} готово: дальше — ворота (learning_v2_plan_b_gates) и сторож полноты`);

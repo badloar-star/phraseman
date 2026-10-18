@@ -55,6 +55,10 @@ const manifest = JSON.parse(read("assets/audio/learning-v2/factory-production-v1
   }[];
 };
 const voices = ["ash", "onyx", "nova", "coral"] as const;
+const silentHashes = new Set((JSON.parse(read("app/learning_v2_factory_silent_audio_v1.json")) as {
+  entries: readonly { contentHash: string }[];
+}).entries.map((entry) => entry.contentHash));
+const bundleHashes = new Set([...read(bootstrapModulePath).matchAll(/contentHash: "([0-9a-f]{64})"/gu)].map((match) => match[1]!));
 const byCoordinate = new Map(
   manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry.contentHash]),
 );
@@ -91,7 +95,8 @@ for (const lessonName of readdirSync(releaseRoot).filter((name) => /^l\d{2}$/u.t
       for (const voice of voices) {
         const contentHash = byCoordinate.get(`${transcript}\u0000${voice}`);
         if (!contentHash) { complete = false; break; }
-        sessionHashes.add(contentHash);
+        // зачем (Ревизор 3.42, R125): как в генераторе — в индекс прогрева только слышимые файлы набора сборки
+        if (!silentHashes.has(contentHash) && bundleHashes.has(contentHash)) sessionHashes.add(contentHash);
       }
       if (!complete) break;
     }

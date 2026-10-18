@@ -87,6 +87,14 @@ function fileInputForEntry(entry: FactoryProductionAudioEntryV1): LearningV2Cour
   });
 }
 
+/**
+ * Есть ли слышимая запись с этим хешем (тихие из learning_v2_factory_silent_audio_v1.json сюда не входят).
+ * зачем (Ревизор 3.42, R125): прогрев урока заранее отсеивает незнакомые хеши и пишет причину, а не падает целиком.
+ */
+export function learningV2FactoryHasAudibleAudioForContentHashV1(contentHash: string): boolean {
+  return factoryAudioTables().entryByContentHash.has(contentHash);
+}
+
 export function learningV2FactoryRemoteAudioFilesForContentHashesV1(
   contentHashes: readonly string[],
 ): readonly LearningV2CourseSessionAudioFileV1[] {

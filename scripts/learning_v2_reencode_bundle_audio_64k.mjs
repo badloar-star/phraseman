@@ -126,10 +126,11 @@ console.log(`${LOG} таблицы: одного голоса ${svChanged} кл�
 
 run("build_learning_v2_factory_audio_module.mjs");
 run("build_learning_v2_factory_single_voice_module.mjs");
-run("build_learning_v2_factory_lesson_audio_index.mjs");
+// зачем (R125, 18.10): индекс прогрева фильтруется по набору сборки — строить его ПОСЛЕ набора
 run("build_learning_v2_bootstrap_audio_pack.mjs");
+run("build_learning_v2_factory_lesson_audio_index.mjs");
 run("build_learning_v2_factory_audio_module.mjs", ["--check"]);
 run("build_learning_v2_factory_single_voice_module.mjs", ["--check"]);
-run("build_learning_v2_factory_lesson_audio_index.mjs", ["--check"]);
 run("build_learning_v2_bootstrap_audio_pack.mjs", ["--check"]);
+run("build_learning_v2_factory_lesson_audio_index.mjs", ["--check"]);
 console.log(`${LOG} готово: дальше — ворота (learning_v2_plan_b_gates) и сторож полноты`);

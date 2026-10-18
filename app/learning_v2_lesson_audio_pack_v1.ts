@@ -3,6 +3,7 @@ import { learningV2NativeDecoderIdentityForAudioFileV1 } from "./learning_v2_aud
 import { learningV2EsSession1RemoteAudioFilesV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { learningV2EsSession2RemoteAudioFilesV1 } from "./learning_v2_es_session2_production_audio_v1";
 import {
+  learningV2FactoryHasAudibleAudioForContentHashV1,
   learningV2FactoryWordAudioFileV1,
   learningV2FactoryRemoteAudioFilesForContentHashesV1,
 } from "./learning_v2_factory_production_audio_v1";
@@ -96,6 +97,24 @@ function key(stableId: string, targetLanguage: "en" | "es", lessonOrdinal: numbe
   return `${stableId}:${targetLanguage}:${lessonOrdinal}`;
 }
 
+// зачем (Ревизор 3.42, R125, 18.10): в индексе прогрева L1 S1 оказался тихий хеш, рантайм его уже не знает, и
+// learningV2FactoryRemoteAudioFilesForContentHashesV1 бросал — падал прогрев всего занятия. Незнакомый хеш теперь
+// выкидывается здесь с причиной в логе; такой файл и так не звучал бы (плеер подставит голос телефона).
+function factoryFilesForIndexedHashes(
+  contentHashes: readonly string[],
+  where: string,
+): readonly LearningV2CourseSessionAudioFileV1[] {
+  const known = contentHashes.filter((contentHash) => learningV2FactoryHasAudibleAudioForContentHashV1(contentHash));
+  if (known.length !== contentHashes.length) {
+    const dropped = contentHashes.filter((contentHash) => !known.includes(contentHash));
+    console.warn(
+      "[V2-PREWARM] index_hash_unknown_dropped",
+      JSON.stringify({ where, dropped: dropped.length, total: contentHashes.length, sample: dropped.slice(0, 3) }),
+    );
+  }
+  return learningV2FactoryRemoteAudioFilesForContentHashesV1(known);
+}
+
 function filesForLesson(
   lessonOrdinal: number,
   targetLanguage: "en" | "es",
@@ -107,7 +126,7 @@ function filesForLesson(
       lessonOrdinal as keyof FactoryLessonAudioIndexV1
     ];
     if (!indexed) return Object.freeze({ files: Object.freeze([]), sessionCount: 0 });
-    for (const file of learningV2FactoryRemoteAudioFilesForContentHashesV1(indexed.contentHashes))
+    for (const file of factoryFilesForIndexedHashes(indexed.contentHashes, `lesson:${lessonOrdinal}`))
       byHash.set(file.contentHash, file);
     if (lessonOrdinal === 1) {
       for (const file of learningV2Lesson1RemoteAudioFilesV1()) byHash.set(file.contentHash, file);
@@ -140,7 +159,7 @@ function filesForSession(
     if (!lesson) return Object.freeze([]);
     const session = lesson.sessions[sessionOrdinal as keyof typeof lesson.sessions];
     if (!session) return Object.freeze([]);
-    return learningV2FactoryRemoteAudioFilesForContentHashesV1(session.contentHashes);
+    return factoryFilesForIndexedHashes(session.contentHashes, `lesson:${lessonOrdinal}:session:${sessionOrdinal}`);
   }
   if (lessonOrdinal !== 1) return Object.freeze([]);
   if (sessionOrdinal === 1) return learningV2EsSession1RemoteAudioFilesV1();

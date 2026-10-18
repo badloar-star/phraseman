@@ -144,7 +144,7 @@ export default function AccountDetailsScreen() {
 
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(() => peekLinkedAuthFromCurrentUser());
   const linkedAuthRef = useRef(linkedAuth);
-  const [memberSinceMs] = useState<number | null>(() => peekAccountCreatedAtMs());
+  const [memberSinceMs, setMemberSinceMs] = useState<number | null>(() => peekAccountCreatedAtMs());
 
   /** Тихая ревалидация: setState только при реальном изменении; смена
    *  «не привязан ↔ привязан» (меняет состав рядов) — через layout-анимацию. */
@@ -451,6 +451,13 @@ export default function AccountDetailsScreen() {
           animateNextLayoutTransition();
           linkedAuthRef.current = null;
           setLinkedAuth(null);
+          // зачем (прогон 18.10, evidence/signout_1018/04): экран остаётся открытым под окном входа и держал имя и дату
+          // «С нами с» прежнего аккаунта — новый гость видел «Delta 94030». Выход завершён, данные стёрты: сбрасываем
+          // состояние экрана; дальше имя снова ведёт снимок (эффект по snapshotName).
+          const nextMemberSince = peekAccountCreatedAtMs();
+          console.log('[ACC-NAME]', JSON.stringify({ step: 'signed_out_reset', snapshotPresent: Boolean(snapshotNameRef.current), memberSince: nextMemberSince !== null })); // guard-ok: без имени
+          setUserName('');
+          setMemberSinceMs(nextMemberSince);
           setAuthPromptVisible(true);
         }}
       />

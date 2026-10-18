@@ -29,6 +29,19 @@ describe('пейвол закрывается один, экран под ним
     expect(r.replace).not.toHaveBeenCalled();
   });
 
+  it('двойной тап по ✕ (Ревизор 18.10): второй вызов в пределах 900 мс ничего не закрывает', () => {
+    const nav = load();
+    nav.rememberNavigationPath('/(tabs)/home');
+    nav.rememberNavigationPath('/learning-v2/session/x?lessonOrdinal=1&sessionOrdinal=2');
+    nav.rememberNavigationPath('/premium_modal?context=x');
+    const r = router();
+    nav.dismissPaywallModal(r as never);
+    nav.dismissPaywallModal(r as never);
+    expect(r.dismiss).toHaveBeenCalledTimes(1);
+    expect(r.dismissTo).not.toHaveBeenCalled();
+    expect(r.replace).not.toHaveBeenCalled();
+  });
+
   it('пейвол поверх вкладки и холодный вход без истории идут прежней логикой', () => {
     const nav = load();
     nav.rememberNavigationPath('/premium_modal?context=x');

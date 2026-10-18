@@ -26,6 +26,11 @@ describe('детектор языка реплики в Диалогах', () =>
     ['Je voudrais un café', 'fr'],
     ['Ich möchte einen Kaffee', 'de'],
     ['', 'en'],
+    // зачем (Ревизор 18.10): короткие двусмысленные слова не делают английскую реплику испанской
+    ['No, thanks', 'en'],
+    ['No, no, no, thanks', 'en'],
+    ['Yes, I do', 'en'],
+    ['No, I do not have a car', 'en'],
   ] as const)('%s при изучении %s — пропускаем как обычно', (text, target) => {
     expect(detectDialogueOffLanguage(text, target).offLanguage).toBe(false);
   });

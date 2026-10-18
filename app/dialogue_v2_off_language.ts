@@ -32,6 +32,9 @@ const STOPWORDS: Readonly<Record<string, readonly string[]>> = {
   id: ['dan', 'yang', 'saya', 'kamu', 'tidak', 'ya', 'ini', 'itu', 'dengan', 'untuk', 'terima', 'kasih', 'halo', 'sangat', 'mau', 'ada', 'tapi', 'apa', 'bagaimana'],
 };
 
+/** Короткие слова, которые есть в нескольких языках (или в английском как «no», «a», «in») — не улика. */
+const AMBIGUOUS: ReadonlySet<string> = new Set(['no', 'a', 'i', 'o', 'e', 'y', 'de', 'la', 'le', 'un', 'una', 'in', 'do', 'to', 'me', 'mi', 'tu', 'ma', 'ne', 'na', 'w', 'z', 'ja', 'si', 'ok', 'ya', 'da', 'del', 'al', 'es', 'en', 'die', 'was', 'son', 'per', 'con', 'as']);
+
 const SETS = Object.fromEntries(Object.entries(STOPWORDS).map(([lang, words]) => [lang, new Set(words)])) as Record<string, Set<string>>;
 
 const NON_LATIN = /[Ѐ-ӿͰ-Ͽ֐-׿؀-ۿ฀-๿぀-ヿ㐀-鿿가-힯]/u;
@@ -47,7 +50,10 @@ export function detectDialogueOffLanguage(text: string, target: DialogueOffLangu
   }
   const words = text.toLowerCase().normalize('NFC').split(/[^\p{L}']+/u).filter(Boolean);
   if (words.length < 3) return { offLanguage: false, reason: 'too_short', detected: null };
-  const score = (lang: string) => words.reduce((sum, word) => sum + (SETS[lang]?.has(word) ? 1 : 0), 0);
+  // зачем (Ревизор 18.10): «No, no, no, thanks» при английском считалось испанским — «no» трижды. Считаем только РАЗНЫЕ слова,
+  // двусмысленные короткие (no/a/de/la/un/in/…) признаком чужого языка не считаем, и слово из списка изучаемого языка — тоже.
+  const distinct = [...new Set(words)].filter((word) => !AMBIGUOUS.has(word));
+  const score = (lang: string) => distinct.reduce((sum, word) => sum + (SETS[lang]?.has(word) && (lang === target || !SETS[target]?.has(word)) ? 1 : 0), 0);
   const targetScore = score(target);
   let best: string | null = null;
   let bestScore = 0;

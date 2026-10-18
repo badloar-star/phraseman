@@ -173,6 +173,8 @@ let navigationStack: NavigationEntry[] = [];
 let suppressNextRemember = false;
 let replaceTopOnNextRemember = false;
 let paywallDismissShouldReplace = false;
+const PAYWALL_DISMISS_LATCH_MS = 900;
+let lastPaywallDismissAtMs = 0;
 
 function pathnameOf(path: string): string {
   const end = path.search(/[?#]/);
@@ -558,6 +560,14 @@ export function dismissPaywallModal(
   router: ModalDismissRouter,
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
+  // зачем (Ревизор 18.10, 26e633d39): двойной тап по ✕ звал закрытие дважды — второй dismiss(1) снимал уже экран ПОД пейволом.
+  // Защёлка по времени (без таймера): повторный вызов в пределах 900 мс ничего не делает и пишет причину.
+  const nowMs = Date.now();
+  if (nowMs - lastPaywallDismissAtMs < PAYWALL_DISMISS_LATCH_MS) {
+    console.log('[PAYWALL-CLOSE]', JSON.stringify({ branch: 'ignored_double_close', sinceMs: nowMs - lastPaywallDismissAtMs })); // guard-ok: ранний выход называет причину
+    return;
+  }
+  lastPaywallDismissAtMs = nowMs;
   const leaving = currentEntry();
   // зачем (владелец 18.10 через координатора 09:58: «закрывает ТОЛЬКО шторку paywall, а вместе с ней закрывается урок/диалог/
   // тренировка»): зонд показал 19 из 132 — поверх урока Learning V2 (одноразовый адрес вычищался из истории, no_candidate) и

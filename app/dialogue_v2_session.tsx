@@ -180,6 +180,7 @@ function SessionContent() {
   const learnerTurnsRef = useRef(0);
   // зачем (владелец 18.10): ответы «не понимаю» на чужой язык не повторяются подряд; подпись — первый собеседник сценария.
   const offLanguageReplyIndexRef = useRef<number | null>(null);
+  const lastOffLanguageSendRef = useRef<{ text: string; at: number } | null>(null);
   // зачем (владелец 18.10): реплика не на изучаемом языке ходом не считается.
   learnerTurnsRef.current = messages.reduce((count, message) => (message.author === 'learner' && !message.offLanguage ? count + 1 : count), 0);
   const [draft, setDraft] = useState('');
@@ -640,6 +641,16 @@ function SessionContent() {
       const offLanguagePersonaLabel = model?.participants?.[0]?.displayName;
       const verdict = detectDialogueOffLanguage(userMessage, studyTarget);
       if (verdict.offLanguage) {
+        // зачем (Ревизор 18.10): двойной тап — тот же текст, пока черновик ещё не очистился, не даёт второго пузыря.
+        const now = Date.now();
+        if (lastOffLanguageSendRef.current && lastOffLanguageSendRef.current.text === userMessage && now - lastOffLanguageSendRef.current.at < 1500) {
+          console.log('[DIALOG-OFF-LANG] double_tap_ignored', JSON.stringify({ screen: 'session', ms: now - lastOffLanguageSendRef.current.at })); // guard-ok: ранний выход называет причину
+          return;
+        }
+        lastOffLanguageSendRef.current = { text: userMessage, at: now };
+        // как в обычной отправке: голосовое вложение этой реплики снимается, ошибка голоса гаснет
+        voice.takeVoiceAttachment(userMessage);
+        voice.clearFailure?.();
         const reply = pickDialogueNotUnderstoodReply(studyTarget, offLanguageReplyIndexRef.current);
         offLanguageReplyIndexRef.current = reply.index;
         console.log('[DIALOG-OFF-LANG]', JSON.stringify({ scenarioId, target: studyTarget, reason: verdict.reason, detected: verdict.detected, length: userMessage.length, replyIndex: reply.index, learnerTurn: learnerTurnsRef.current })); // guard-ok: ветка «не тот язык» называет решение

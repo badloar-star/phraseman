@@ -103,6 +103,7 @@ export default function DialogueV2FreeformRoute() {
   const [messages, setMessages] = useState<readonly DialogueV2FreeformMessage[]>(() => freeformOpeningMessages(studyTarget));
   // зачем (владелец 18.10): ответы «не понимаю» на чужой язык не повторяются подряд.
   const offLanguageReplyIndexRef = useRef<number | null>(null);
+  const lastOffLanguageSendRef = useRef<{ text: string; at: number } | null>(null);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
@@ -327,6 +328,16 @@ export default function DialogueV2FreeformRoute() {
       const target = targetRef.current;
       const verdict = detectDialogueOffLanguage(userMessage, target);
       if (verdict.offLanguage) {
+        // зачем (Ревизор 18.10): двойной тап — тот же текст, пока черновик ещё не очистился, не даёт второго пузыря.
+        const now = Date.now();
+        if (lastOffLanguageSendRef.current && lastOffLanguageSendRef.current.text === userMessage && now - lastOffLanguageSendRef.current.at < 1500) {
+          console.log('[DIALOG-OFF-LANG] double_tap_ignored', JSON.stringify({ screen: 'freeform', ms: now - lastOffLanguageSendRef.current.at })); // guard-ok: ранний выход называет причину
+          return;
+        }
+        lastOffLanguageSendRef.current = { text: userMessage, at: now };
+        // как в обычной отправке: голосовое вложение этой реплики снимается, ошибка голоса гаснет
+        voice.takeVoiceAttachment(userMessage);
+        voice.clearFailure?.();
         const reply = pickDialogueNotUnderstoodReply(target, offLanguageReplyIndexRef.current);
         offLanguageReplyIndexRef.current = reply.index;
         console.log('[DIALOG-OFF-LANG]', JSON.stringify({ screen: 'freeform', target, reason: verdict.reason, detected: verdict.detected, length: userMessage.length, replyIndex: reply.index })); // guard-ok: ветка «не тот язык» называет решение

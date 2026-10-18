@@ -1,19 +1,20 @@
 # Англійська · Урок 8 · Заняття 17 — Позич ручку
 
-**Ситуація.** Ви просите ручку, допомогу з коробкою та просите відчинити двері.
+**Ситуація.** Ви залишаєте запис у гостьовій книзі, знімаєте ремінь із валізи й просите перевірити пряжку рюкзака.
 
 **Що ви опануєте:** звернутися з проханням через Can you…?
-**Нові слова:** lend
+**Нові слова:** lend, unfasten, strap, buckle
+**Повертаються:** pen, pencil, book, drive
 
 ---
 
 ## Інтро 1
 
-### Ручка для анкети
+### Запис у гостьовій книзі
 
-Вам потрібно заповнити анкету, а ручки немає. Ви просите ручку в сусіда на хвилину. `Lend` — «позичити, дати на певний час». `Can you lend me a pen?` — «Можеш позичити мені ручку?» Почніть із `Can you`, потім `lend me a pen`. Тут це прохання. Ручка потрібна на хвилину, не в спадок.
+Після відвідин сімейної виставки ви хочете залишити відгук у гостьовій книзі. Ваша ручка не пише, і ви просите ручку в друга на хвилину. `Lend` — «позичити, дати на певний час». `Can you lend me a pen?` — «Можеш позичити мені ручку?» Почніть із `Can you`, потім `lend me a pen`. Тут це прохання. Ви візьмете ручку ненадовго й повернете її.
 
-**Попросіть сусіда позичити вам ручку.**
+**Попросіть друга позичити вам ручку.**
 
 - ✅ **Can you lend me a pen?**
 - ❌ You can lend me a pen. — *Це твердження. Для прохання почніть із `Can you`.*
@@ -23,111 +24,128 @@
 
 ## Інтро 2
 
-### Важка коробка
+### Ремінь навколо валізи
 
-Ви піднімаєте коробку, але самому незручно. Друг поруч. `Can you help me?` — «Можеш мені допомогти?» Спочатку `Can you`, потім `help me`.
+Після поїздки ви хочете відкрити валізу, але навколо неї затягнутий багажний ремінь. Друг знає, як влаштована застібка. Unfasten — «розстебнути», strap — «ремінь, лямка». Ви просите друга розстебнути цей ремінь: `Can you unfasten the strap?` — «Можеш розстебнути ремінь?» Після `Can you` потрібне `unfasten`, без `to`.
 
-**Попросіть друга допомогти вам.**
+**Попросіть друга розстебнути ремінь.**
 
-- ✅ **Can you help me?**
-- ❌ Can you helps me? — *Після `can` потрібне `help`, без `s`.*
-- ❌ You can help me. — *Для цього прохання почніть із `Can you`.*
+- ✅ **Can you unfasten the strap?**
+- ❌ Can you to unfasten the strap? — *Після can потрібне unfasten, без to.*
+- ❌ You can unfasten the strap. — *Для прохання почніть із Can you.*
 
 ---
 
 ## Інтро 3
 
-### Руки зайняті
+### Пряжка нового рюкзака
 
-Ви тримаєте коробку біля зачинених дверей. Друг стоїть поруч із дверима. `Can you open the door?` — «Можеш відчинити двері?» Після `Can you` додайте `open the door`.
+Ви перевіряєте новий рюкзак перед прогулянкою. Пряжка здається закритою, але ви не впевнені, що вона зафіксувалася. Buckle — «пряжка». Попросіть друга перевірити її: `Can you check the buckle?` — «Можеш перевірити пряжку?» Тут check означає «перевірити», а прохання починається з Can you.
 
-**Попросіть друга відчинити двері.**
+**Попросіть друга перевірити пряжку.**
 
-- ✅ **Can you open the door?**
-- ❌ Can you to open the door? — *Після `Can you` потрібне `open`, без `to`.*
-- ❌ You can open the door. — *Для прохання почніть із `Can you`.*
+- ✅ **Can you check the buckle?**
+- ❌ Can you checks the buckle? — *Після can потрібне check, без s.*
+- ❌ You can check the buckle. — *Для прохання почніть із Can you.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Попросіть «Можеш позичити мені ручку?»**
+**1 · Картка слова — lend**
+<!-- interaction_id: en:lesson-08:session-17:word:lend; family: word_card -->
+> **lend** — дати на певний час, позичити. Can you lend me a pen? — «Можеш позичити мені ручку?» Друг дає ручку вам, а ви потім повертаєте.
+
+**2 · Попросіть «Можеш позичити мені ручку?»**
 <!-- interaction_id: en:lesson-08:session-17:i01; family: phrase_builder -->
 Плитки: `pen` `a` `me` `lend` `you` `Can` → **Can you lend me a pen?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-17:i02; family: listen_choose -->
 🔊 *lend* → **lend** · drive · skate
 - drive — *У записі перше слово — `lend`, а в цьому варіанті — `drive`.*
 - skate — *У записі перше слово — `lend`, а в цьому варіанті — `skate`.*
 
-**3 · Попросіть позичити вам ручку**
+**4 · Виберіть форму для прохання позичити ручку**
 <!-- interaction_id: en:lesson-08:session-17:i03; family: context_gap_grammar -->
 Can you ___ me a pen? → **lend** · to lend · lends
 - to lend — *Після `can` потрібне `lend`, без `to`.*
 - lends — *Після `can` потрібне `lend`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-17:i04; family: speed_match -->
-lend — позичити · berry — ягода · drive — водити машину · skate — кататися на ковзанах
+lend — дати на певний час · pen — ручка · book — книжка · pencil — олівець
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-17:i05; family: listen_build_dictation -->
 🔊 *Can you lend me a pen?* Плитки: `pen` `a` `me` `lend` `you` `Can` → **Can you lend me a pen?**
 
-**6 · Попросіть «Можеш мені допомогти?»**
+**7 · Картка слова — unfasten**
+<!-- interaction_id: en:lesson-08:session-17:word:unfasten; family: word_card -->
+> **unfasten** — розстебнути. Can you unfasten it? — «Можеш це розстебнути?» Тут it замінює назву застібки, на яку ви показуєте.
+
+
+**8 · Ви показуєте другові застібку. Попросіть «Можеш це розстебнути?»**
 <!-- interaction_id: en:lesson-08:session-17:i06; family: phrase_builder -->
-Плитки: `me` `help` `you` `Can` → **Can you help me?**
+Плитки: `it` `unfasten` `you` `Can` → **Can you unfasten it?**
 
-**7 · Руки зайняті коробкою. Попросіть «Можеш відчинити двері?»**
+**9 · Картка слова — strap**
+<!-- interaction_id: en:lesson-08:session-17:word:strap; family: word_card -->
+> **strap** — ремінь, лямка. Can you unfasten the strap? — «Можеш розстебнути ремінь?» Тут — ремінь навколо багажу.
+
+**10 · Ремінь на валізі здається незакріпленим. Попросіть друга: «Можеш перевірити ремінь?»**
 <!-- interaction_id: en:lesson-08:session-17:i07; family: scripted_repeat_compare -->
-🎙 **Can you open the door?**
+🎙 **Can you check the strap?**
 
-**8 · Попросіть допомогти вам**
+**11 · Виберіть форму для прохання розстебнути ремінь**
 <!-- interaction_id: en:lesson-08:session-17:i08; family: context_gap_grammar -->
-Can you ___ me? → **help** · helps · to help
-- helps — *Після `can` потрібне `help`, без `s`.*
-- to help — *Після `can` потрібне `help`, без `to`.*
+Can you ___ the strap? → **unfasten** · unfastens · to unfasten
+- unfastens — *Після can потрібне unfasten, без s.*
+- to unfasten — *Після can потрібне unfasten, без to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-17:i09; family: listen_choose -->
 🔊 *Can you lend me a pen?* → **Can you lend me a pen?** · Can you lend me a pencil? · Can you lend me a book?
 - Can you lend me a pencil? — *У записі останнє слово — `pen`, а в цьому варіанті — `pencil`.*
 - Can you lend me a book? — *У записі останнє слово — `pen`, а в цьому варіанті — `book`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-17:i10; family: speed_match -->
-smoke — курити · lend — позичити · berry — ягода · drive — водити машину
+lend — дати на певний час · unfasten — розстебнути · strap — ремінь · pen — ручка
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-17:i11; family: listen_build_dictation -->
-🔊 *Can you help me?* Плитки: `me` `help` `you` `Can` → **Can you help me?**
+🔊 *Can you unfasten the strap?* Плитки: `strap` `the` `unfasten` `you` `Can` → **Can you unfasten the strap?**
 
-**12 · Попросіть «Можеш відчинити двері?»**
+**15 · Картка слова — buckle**
+<!-- interaction_id: en:lesson-08:session-17:word:buckle; family: word_card -->
+> **buckle** — пряжка. Can you check the buckle? — «Можеш перевірити пряжку?» Застібка, що з’єднує кінці ременя.
+
+**16 · Попросіть «Можеш перевірити пряжку?»**
 <!-- interaction_id: en:lesson-08:session-17:i12; family: phrase_builder -->
-Плитки: `door` `the` `open` `you` `Can` → **Can you open the door?**
+Плитки: `buckle` `the` `check` `you` `Can` → **Can you check the buckle?**
 
-**13 · Друг запитує про ваше вміння. Скажіть «Я вмію водити машину»**
+**17 · Друг запитує про ваше вміння. Скажіть «Я вмію водити машину»**
 <!-- interaction_id: en:lesson-08:session-17:i13; family: scripted_repeat_compare -->
 🎙 **I can drive.**
 
-**14 · Почніть прохання «Можеш позичити мені ручку?»**
+**18 · Почніть прохання «Можеш позичити мені ручку?»**
 <!-- interaction_id: en:lesson-08:session-17:i14; family: context_gap_grammar -->
 ___ you lend me a pen? → **Can** · Are · Is
 - Are — *У цьому проханні потрібне `Can you lend`, без `are`.*
 - Is — *Почніть із `Can you lend`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-17:i15; family: listen_choose -->
-🔊 *Can you open the door?* → **Can you open the door?** · Can you open the window? · Can you open the box?
-- Can you open the window? — *У записі останнє слово — `door`, а в цьому варіанті — `window`.*
-- Can you open the box? — *У записі останнє слово — `door`, а в цьому варіанті — `box`.*
+🔊 *Can you check the buckle?* → **Can you check the buckle?** · Can you check the strap? · Can you check the door?
+- Can you check the strap? — *У записі buckle — «пряжка», а не strap — «ремінь».*
+- Can you check the door? — *У записі buckle, а не door — «двері».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-17:i16; family: speed_match -->
-lend — позичити · smoke — курити · skate — кататися на ковзанах · berry — ягода
+lend — дати на певний час · unfasten — розстебнути · strap — ремінь · buckle — пряжка
 
-**17 · Ви хочете зробити начерк і потім стерти зайві лінії. У друга є олівець. Попросіть «Можеш позичити мені олівець?»**
+**21 · Ви хочете зробити начерк і потім стерти зайві лінії. У друга є олівець. Попросіть «Можеш позичити мені олівець?»**
 <!-- interaction_id: en:lesson-08:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Can you lend me a pencil?**
 

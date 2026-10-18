@@ -22,6 +22,15 @@ export function dialogueV2HubCopy(lang: Lang) {
       pl: `W tym miesiącu zostało ${remaining} z ${total} odpowiedzi`, fr: `Il reste ${remaining} réponses sur ${total} ce mois-ci`,
       de: `Diesen Monat noch ${remaining} von ${total} Antworten`,
     }),
+    // зачем (Ревизор 3.45): остаток ещё не известен телефону — диктор называет месячный лимит, а не выдуманный остаток.
+    quotaUnknownA11y: (total: number) => triLang(lang, {
+      ru: `Лимит — ${total} ответов в месяц`, uk: `Ліміт — ${total} відповідей на місяць`,
+      en: `Limit: ${total} replies a month`, es: `Límite: ${total} respuestas al mes`,
+      'pt-BR': `Limite: ${total} respostas por mês`, vi: `Giới hạn: ${total} lượt trả lời mỗi tháng`,
+      id: `Batas: ${total} balasan per bulan`, tr: `Sınır: ayda ${total} yanıt`,
+      pl: `Limit: ${total} odpowiedzi miesięcznie`, fr: `Limite : ${total} réponses par mois`,
+      de: `Limit: ${total} Antworten pro Monat`,
+    }),
     exhaustedTitle: triLang(lang, { ru: 'Plus снимает лимит ответов', uk: 'Plus знімає ліміт відповідей', en: 'Plus removes the reply limit', es: 'Plus quita el límite de respuestas', 'pt-BR': 'O Plus remove o limite de respostas', vi: 'Plus bỏ giới hạn lượt trả lời', id: 'Plus menghapus batas balasan', tr: 'Plus yanıt sınırını kaldırır', pl: 'Plus znosi limit odpowiedzi', fr: 'Plus supprime la limite de réponses', de: 'Plus hebt das Antwortlimit auf' }),
     exhaustedText: (total: number) => triLang(lang, {
       ru: `В этом месяце осталось 0 из ${total} ответов.`, uk: `Цього місяця залишилось 0 з ${total} відповідей.`,

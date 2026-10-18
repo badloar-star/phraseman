@@ -17,7 +17,10 @@ test('dialogue hub keeps back, title and live energy in one safe-area header row
   // 30.09 (макет hubHead): справа столбик — энергия и пилюля остатка «N/30» (у Plus её нет).
   assert.match(source, /<V2LargeTitle[\s\S]*right=\{headerRight\}/);
   // 30.09: пилюля энергии стеклянная (glass) — старая тёмная капсула выбивалась из тем 2.0.
-  assert.match(source, /const headerRight = \([\s\S]*<EnergyBar size=\{30\} glass solidBolt \/>[\s\S]*DialogueGlassQuotaPill/);
+  // 18.10 (dialogs-004/006): пилюля «N/30» вынесена в quotaPill — справа под энергией в обычной шапке, по центру под заголовком при раскрытой категории.
+  assert.match(source, /const quotaPill = quota \? \([\s\S]*<DialogueGlassQuotaPill/);
+  assert.match(source, /const headerRight = \([\s\S]*<EnergyBar size=\{30\} glass solidBolt \/>[\s\S]*\{subtitleHidden \? null : quotaPill\}/);
+  assert.match(source, /const centeredQuota = subtitleHidden && quotaPill/);
   assert.doesNotMatch(source, /paddingTop: 12, gap: 12/);
 });
 

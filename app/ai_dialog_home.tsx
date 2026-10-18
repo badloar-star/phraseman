@@ -64,20 +64,29 @@ function AiDialogHomeBody() {
   const quota = useDialogueHubQuota();
   const dialogueGlass = useDialogueGlass();
   const hubCopy = dialogueV2HubCopy(lang);
+  const quotaPill = quota ? (
+    <DialogueGlassQuotaPill
+      glass={dialogueGlass}
+      testID="ai-dialog-home-quota"
+      // зачем (Ревизор 3.45): остаток неизвестен телефону — «—/30», а не выдуманный полный лимит.
+      text={`${quota.remaining === null ? '—' : quota.remaining}/${quota.total}`}
+      accessibilityLabel={quota.remaining === null ? hubCopy.quotaUnknownA11y(quota.total) : hubCopy.quotaA11y(quota.remaining, quota.total)}
+    />
+  ) : null;
+  // зачем (Макеты 9e311920a, dialogs-004): у капсулы энергии зона нажатия 44 при видимой высоте 28 (по 8 сверху и снизу), поэтому
+  // при gap 14 «N/30» вставала на 50 ниже верха капсулы — на уровень второй строки подписи. В образце hubHead — 42 (28 + 14), отсюда gap 6.
   const headerRight = (
-    <View style={{ alignItems: 'flex-end', gap: 14 }}>
+    <View style={{ alignItems: 'flex-end', gap: 6 }}>
       {/* зачем (эмулятор 30.09): без glass тут жила старая тёмная капсула — в светлой теме чёрное пятно. */}
       <EnergyBar size={30} glass solidBolt />
-      {quota ? (
-        <DialogueGlassQuotaPill
-          glass={dialogueGlass}
-          testID="ai-dialog-home-quota"
-          text={`${quota.remaining}/${quota.total}`}
-          accessibilityLabel={hubCopy.quotaA11y(quota.remaining, quota.total)}
-        />
-      ) : null}
+      {subtitleHidden ? null : quotaPill}
     </View>
   );
+  // зачем (Макеты 9e311920a, dialogs-006; образец openCat): пока категория раскрыта, шапка свёрнута — справа только энергия,
+  // а «N/30» отдельной строкой по центру под заголовком (margin-top 10). Переход — та же layout-анимация хоста, что прячет подзаголовок.
+  const centeredQuota = subtitleHidden && quotaPill ? (
+    <View testID="ai-dialog-home-quota-centered" style={{ alignItems: 'center', marginTop: 10 }}>{quotaPill}</View>
+  ) : null;
   // зачем (координатор 12.10, п.72): хаб открыт с Главной — стрелка назад остаётся, хаптик есть, testID нужен роботу съёмки
   const backButton = <V2IconButton testID="ai-dialog-home-back" icon="chevron-back" accessibilityLabel={backLabel} onPress={() => {
     hapticTap();
@@ -103,6 +112,7 @@ function AiDialogHomeBody() {
           </View>
         </View>
       )}
+      {centeredQuota}
     </View>
   );
 

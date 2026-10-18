@@ -96,4 +96,17 @@ describe('(4) Настройки: «Ввести промокод» и «При�
     expect(src).toContain("if (!claimSettingsPush('promo_code_entry')) return;");
     expect(src).toContain("if (!claimSettingsPush('referrals')) return;");
   });
+
+  // 18.10 (аудит Карточек, длинные названия; решение координатора 07:14): сервер режет название до 200, шапка набора переносит
+  // его целиком — поле ограничено 80 символами, не больше серверного предела (иначе у автора оставалось бы длиннее, чем у всех).
+  it('pack title input is capped at 80 and never above what the server keeps', () => {
+    const src = read('app/community_pack_create.tsx');
+    const server = read('functions/src/community_packs.ts');
+    const serverMax = Number(/titleRu = \(sourceLang === 'ru' \? titleSingle : String\(raw\.titleRu \?\? ''\)\.trim\(\)\)\.slice\(0, (\d+)\)/.exec(server)?.[1]);
+    expect(serverMax).toBeGreaterThan(0);
+    expect(src).toContain('const PACK_TITLE_MAX_CHARS = 80;');
+    expect(80).toBeLessThanOrEqual(serverMax);
+    const input = src.slice(src.indexOf('ref={titleInputRef}'), src.indexOf('ref={titleInputRef}') + 900);
+    expect(input).toContain('maxLength={PACK_TITLE_MAX_CHARS}');
+  });
 });

@@ -91,6 +91,9 @@ import { consumeSavedCardSetStage } from './community_packs/savedCardSetStaging'
 import { noteSwallowedAs } from './swallow_log';
 import { PACK_ROW_DELETE_LOCK_MS, rowsWithout } from './community_packs/pack_rows_remove'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
+/** Предел названия в поле (координатор 18.10: шапка набора переносит название целиком, без многоточия — 80 держат её в 2–3 строки). Сервер режет до 200 (functions/src/community_packs.ts) — поле строже. */
+const PACK_TITLE_MAX_CHARS = 80;
+
 type Row = {
   id: string;
   en: string;
@@ -1218,6 +1221,10 @@ export default function CommunityPackCreateScreen() {
                     {...getTextInputSystemEditMenuProps()}
                     value={title}
                     onChangeText={setTitle}
+                    // зачем (аудит Карточек 18.10, длинные названия): сервер молча режет название до 200 символов (functions/src/community_packs.ts
+                    // .slice(0, 200)) — у автора на телефоне оставалось длиннее, чем у всех; а шапка набора переносит название целиком.
+                    // Поле строже сервера: 80 символов (решение координатора) — и сервер ничего не режет, и шапка не растёт на полэкрана.
+                    maxLength={PACK_TITLE_MAX_CHARS}
                     onFocus={bindScrollOnFocus(titleInputRef)}
                     placeholder={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pacote', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł zestawu')}
                     placeholderTextColor={kg.mutedText}

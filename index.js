@@ -15,6 +15,8 @@ import './app/async_storage_null_bind_guard';
 import './app/firebase_emulator_dev_boot';
 // [FS-READS] (координатор 15.10): dev-only перепись чтений Firestore с первого вызова; в релизе ветка __DEV__ вырезается.
 import './app/dev_firestore_read_counter_boot';
+// [AUDIO-PLAYERS] (координатор 18.10): dev-only перепись нативных звуковых плееров (create/release, живые по владельцам).
+import './app/dev_audio_players_census_boot';
 // зачем (inlineRequires, 2026-10-03): эти модули делают работу ПРИ ИМПОРТЕ, и она обязана начаться на старте, а не при
 // первом обращении: прогрев пиков энергии и рун ради первого кадра Главной (решение владельца 2026-08-24, PM-212 ALLOW)
 // и регистрация сетевых проб в паузе занятия. Голый import inlineRequires не откладывает.

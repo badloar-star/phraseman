@@ -2929,3 +2929,39 @@ describe('cleanupLegacyAuthIdentityDuplicates: stars of a hidden duplicate move 
     expect(store.users[dupId]?.identityHidden).toBe(true);
   });
 });
+
+// зачем (координатор 18.10, разбор fc30ae94a): функции в us-central1, база в eur3 — каждое чтение ≈ 120 мс через океан.
+// Возвращающийся вход Google раньше читал auth_links/{uid} 3–4 раза и метки удаления 4–5 раз подряд; теперь повтор за
+// вызов идёт из памяти, а транзакция привязки по-прежнему перечитывает всё сама.
+describe('ensureStableLinkForAuth: память чтений на вызов', () => {
+  const returningStore = () => ({
+    users: { 'stable-1': { firebaseAuthUid: 'g-1', linkedAuth: { providerUid: 'g-1', provider: 'google' } } },
+    auth_links: { 'g-1': { stable_id: 'stable-1' } },
+    leaderboard: { 'stable-1': { firebaseAuthUid: 'g-1' } },
+  });
+  const count = (reads: string[], path: string) => reads.filter((p) => p === path).length;
+
+  it('возвращающийся вход: каждый документ читается вне транзакции не больше одного раза', async () => {
+    const { db, docReads } = makeDbStub(returningStore());
+    await expect(ensureStableLinkForAuth(db as any, 'g-1', 'stable-1', 'google.com', { email: 'a@b.c', displayName: 'A' }))
+      .resolves.toMatchObject({ ok: true, stableUid: 'stable-1' });
+    // Одно чтение до транзакции + одно внутри транзакции привязки.
+    expect(count(docReads, 'auth_links/g-1')).toBeLessThanOrEqual(2);
+    expect(count(docReads, 'account_deletion_tombstones/stable-1')).toBeLessThanOrEqual(2);
+    expect(count(docReads, 'account_deletion_auth_markers/g-1')).toBeLessThanOrEqual(2);
+  });
+
+  it('память не переживает вызов: второй вход читает базу заново', async () => {
+    const { db, docReads } = makeDbStub(returningStore());
+    await ensureStableLinkForAuth(db as any, 'g-1', 'stable-1', 'google.com', { email: 'a@b.c', displayName: 'A' });
+    const first = count(docReads, 'auth_links/g-1');
+    await ensureStableLinkForAuth(db as any, 'g-1', 'stable-1', 'google.com', { email: 'a@b.c', displayName: 'A' });
+    expect(count(docReads, 'auth_links/g-1')).toBe(first * 2);
+  });
+
+  it('сбой чтения не запоминается: решение прежнее — identity_check_unavailable', async () => {
+    const { db } = makeDbStub(returningStore(), { readFaultAt: { 'auth_links/g-1': 1 } });
+    await expect(ensureStableLinkForAuth(db as any, 'g-1', 'stable-1', 'google.com', { email: 'a@b.c', displayName: 'A' }))
+      .rejects.toMatchObject({ code: 'unavailable', message: 'identity_check_unavailable' });
+  });
+});

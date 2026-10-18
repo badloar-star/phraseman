@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { restoreBanFromIdentityHash } from './banned_identity_hash';
 import { createHash, randomBytes, timingSafeEqual } from 'crypto';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
@@ -31,7 +32,7 @@ import {
   type PreparedAccountMergeStarsTransfer,
 } from './auth_merge_stars_transfer';
 import { beginStarLedgerTransactionAttempt, normalizeStars } from './stars_ledger';
-import { enforceCallerRateWindow } from './caller_rate_window';
+import { callerIpFromRawRequest, enforceCallerRateWindow, ipRateKey } from './caller_rate_window';
 
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -146,9 +147,38 @@ type StableIdentityReadAccess = Readonly<{
   ): Promise<admin.firestore.QuerySnapshot>;
 }>;
 
+/**
+ * Память чтений на ОДИН вызов ensureStableLinkForAuth.
+ *
+ * зачем (координатор 18.10, разбор fc30ae94a): функции в us-central1, база в eur3 — каждое чтение ≈ 120 мс через океан,
+ * а путь привязки читал auth_links/{uid} 3–4 раза и метки удаления 4–5 раз подряд. Здесь повторное чтение того же
+ * документа отвечает из памяти. Решения «пускать ли» это не ослабляет: транзакция repairIdentityDocumentsAtomically
+ * перечитывает и перепроверяет всё своими чтениями, а после любой записи пути память очищается.
+ * Вне вызова (нет хранилища) и для документов без пути — обычное чтение.
+ */
+const identityReadMemo = new AsyncLocalStorage<Map<string, Promise<admin.firestore.DocumentSnapshot>>>();
+
+function memoizedIdentityGet(ref: admin.firestore.DocumentReference): Promise<admin.firestore.DocumentSnapshot> {
+  const memo = identityReadMemo.getStore();
+  const path = (ref as { path?: unknown }).path;
+  if (!memo || typeof path !== 'string') return ref.get();
+  const hit = memo.get(path);
+  if (hit) return hit;
+  const read = ref.get();
+  memo.set(path, read);
+  // Неудачное чтение не запоминаем: повтор пойдёт в сеть, а ошибку получит тот, кто ждёт read.
+  read.catch(() => { if (memo.get(path) === read) memo.delete(path); });
+  return read;
+}
+
+/** После записи пути привязки прежние чтения устарели — следующее чтение идёт в сеть. */
+function invalidateIdentityReadMemo(): void {
+  identityReadMemo.getStore()?.clear();
+}
+
 function databaseIdentityReads(): StableIdentityReadAccess {
   return {
-    getDocument: (ref) => ref.get(),
+    getDocument: (ref) => memoizedIdentityGet(ref),
     getQuery: (query) => query.get(),
   };
 }
@@ -228,7 +258,7 @@ async function assertStableAccountMergeNotPending(
   stableIds: readonly string[],
 ): Promise<void> {
   for (const stableId of [...new Set(stableIds.map(normalizeStableId).filter(Boolean))]) {
-    const snapshot = await readIdentityOrThrow(db.collection(USERS).doc(stableId).get());
+    const snapshot = await readIdentityOrThrow(memoizedIdentityGet(db.collection(USERS).doc(stableId)));
     if (snapshot.exists && snapshot.data()?.mistakePracticeMergePending === true) {
       throw new HttpsError('failed-precondition', 'account_merge_pending');
     }
@@ -727,6 +757,7 @@ async function repairIdentityDocumentsAtomically(
   let transactionBaseline: StableOwnerProof | null = null;
 
   try {
+    // зачем: транзакция пишет users/auth_links — память чтений вызова после неё устарела.
     return await db.runTransaction(async (transaction) => {
       const [
         authMarkerSnap,
@@ -950,7 +981,7 @@ async function repairIdentityDocumentsAtomically(
       }
 
       return { userAuthUidChanged };
-    });
+    }).finally(invalidateIdentityReadMemo);
   } catch (error) {
     return throwIdentityCheckUnavailable(error);
   }
@@ -1034,31 +1065,34 @@ async function ensureStableIdentityPair(
     sourceStableIds: selection.sourceStableIds,
     ownerProof,
   });
-  await finishUserIdentityRepairBestEffort(
-    db,
-    selection.stableUid,
-    authUid,
-    repair.userAuthUidChanged,
-  );
-  if (!provider) return;
-  await upsertEmailContact(db, {
-    email: metadata?.email,
-    source: 'app',
-    provider,
-    providerUid: authUid,
-    stableId: selection.stableUid,
-    displayName: metadata?.displayName,
-    devicePlatform: metadata?.devicePlatform ?? 'web',
-    lastSignInAt: metadata?.lastSignInAt ?? Date.now(),
-  }).catch((error) => {
-    console.warn(JSON.stringify({
-      event: 'email_contact_app_upsert_failed',
-      stableId: selection.stableUid,
+  // зачем (координатор 18.10): уборка (leaderboard, дубли) и учёт почты для рассылок друг от друга не зависят и решению
+  // «кто ты» не нужны — идут одним заходом, а не подряд (≈ 1–2 × 120 мс через океан).
+  await Promise.all([
+    finishUserIdentityRepairBestEffort(
+      db,
+      selection.stableUid,
       authUid,
+      repair.userAuthUidChanged,
+    ),
+    provider ? upsertEmailContact(db, {
+      email: metadata?.email,
+      source: 'app',
       provider,
-      message: String(error?.message ?? error).slice(0, 160),
-    }));
-  });
+      providerUid: authUid,
+      stableId: selection.stableUid,
+      displayName: metadata?.displayName,
+      devicePlatform: metadata?.devicePlatform ?? 'web',
+      lastSignInAt: metadata?.lastSignInAt ?? Date.now(),
+    }).catch((error) => {
+      console.warn(JSON.stringify({
+        event: 'email_contact_app_upsert_failed',
+        stableId: selection.stableUid,
+        authUid,
+        provider,
+        message: String(error?.message ?? error).slice(0, 160),
+      }));
+    }) : Promise.resolve(),
+  ]);
 }
 
 export async function linkStableAuthUid(
@@ -1691,7 +1725,7 @@ async function resolveRequestedStableIdentity(
   stableId: string,
   options?: ResolveStableUidForAuthOptions,
 ): Promise<string> {
-  const requestedUserSnap = await readIdentityOrThrow(db.collection(USERS).doc(stableId).get());
+  const requestedUserSnap = await readIdentityOrThrow(memoizedIdentityGet(db.collection(USERS).doc(stableId)));
   const selection = selectionFromUserData(stableId, requestedUserSnap?.data() ?? {});
   return finalizeStableIdentitySelection(db, authUid, selection, options, true);
 }
@@ -1782,7 +1816,7 @@ export async function resolveStableUidForAuth(
     return resolveRequestedStableIdentity(db, authUid, stableId, options);
   }
 
-  const direct = await readIdentityOrThrow(db.collection(USERS).doc(authUid).get());
+  const direct = await readIdentityOrThrow(memoizedIdentityGet(db.collection(USERS).doc(authUid)));
   if (direct?.exists) {
     const directSelection = selectionFromUserData(authUid, direct.data() ?? {});
     if (directSelection.stableUid !== authUid) {
@@ -2133,6 +2167,8 @@ export function createAuthEnsureLinkTrace(now: () => number = Date.now): AuthEns
   };
 }
 
+type EnsureStableLinkResult = { ok: true; stableUid: string; authUid: string; identityReady: true };
+
 export async function ensureStableLinkForAuth(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -2142,7 +2178,23 @@ export async function ensureStableLinkForAuth(
   anonMergeNonce: string | null = null,
   callerAuthTimeMs: number | null = null,
   trace?: AuthEnsureLinkTrace,
-): Promise<{ ok: true; stableUid: string; authUid: string; identityReady: true }> {
+): Promise<EnsureStableLinkResult> {
+  // зачем (координатор 18.10): своя память чтений на каждый вызов — повторы auth_links/users/меток удаления идут из памяти.
+  return identityReadMemo.run(new Map(), () => ensureStableLinkForAuthOnce(
+    db, authUid, requestedStableId, signInProvider, metadata, anonMergeNonce, callerAuthTimeMs, trace,
+  ));
+}
+
+async function ensureStableLinkForAuthOnce(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  requestedStableId: unknown,
+  signInProvider: string,
+  metadata: AuthLinkMetadata | undefined,
+  anonMergeNonce: string | null,
+  callerAuthTimeMs: number | null,
+  trace: AuthEnsureLinkTrace | undefined,
+): Promise<EnsureStableLinkResult> {
   const stableId = normalizeStableId(requestedStableId);
   // зачем ([AUTH-ENSURE-LINK]): каждый выход функции называет свою ветку.
   const done = <T>(branch: string, result: T): T => { trace?.mark(`return:${branch}`); return result; };
@@ -2160,26 +2212,32 @@ export async function ensureStableLinkForAuth(
     throw new HttpsError('invalid-argument', 'stable_id_required');
   }
 
-  await assertAccountDeletionNotPending(db, authUid);
-  if (stableId) await assertStableDeletionNotPending(db, stableId);
-  trace?.mark('deletion_checks', { provider: provider ?? 'anonymous', hasStableId: Boolean(stableId) });
-
+  // зачем (координатор 18.10): проверки удаления по authUid и stableId и дочитка почты/имени из Auth независимы —
+  // одним заходом вместо трёх подряд (≈ 2 × 120 мс через океан). Дочитка только читает Auth; при отказе по удалению
+  // её результат просто не используется.
   // Добираем email/displayName из Firebase Auth, если клиент их не прислал —
   // иначе linkedAuth.email пишется null и юзера не найти по почте в админке.
-  metadata = await enrichMetadataFromAuth(authUid, provider, metadata);
+  const [, , enrichedMetadata] = await Promise.all([
+    assertAccountDeletionNotPending(db, authUid),
+    stableId ? assertStableDeletionNotPending(db, stableId) : Promise.resolve(),
+    enrichMetadataFromAuth(authUid, provider, metadata),
+  ]);
+  trace?.mark('deletion_checks', { provider: provider ?? 'anonymous', hasStableId: Boolean(stableId) });
+  metadata = enrichedMetadata;
   trace?.mark('metadata_enriched');
 
   if (provider) {
-    const existingLinkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
+    const existingLinkSnap = await readIdentityOrThrow(memoizedIdentityGet(db.collection(AUTH_LINKS).doc(authUid)));
     const linkedStableId = normalizeStableId(existingLinkSnap?.data()?.stable_id);
     if (linkedStableId) {
+      // users/{linkedStableId} читается ниже (живой ли документ) — берём его тем же заходом, что и метки удаления.
       const [linkedTombstone, linkedDenial] = await Promise.all([
-        readIdentityOrThrow(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(linkedStableId).get()),
-        readIdentityOrThrow(
+        readIdentityOrThrow(memoizedIdentityGet(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(linkedStableId))),
+        readIdentityOrThrow(memoizedIdentityGet(
           db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
-            .doc(accountDeletePermanentDenialId(linkedStableId))
-            .get(),
-        ),
+            .doc(accountDeletePermanentDenialId(linkedStableId)),
+        )),
+        readIdentityOrThrow(memoizedIdentityGet(db.collection(USERS).doc(linkedStableId))),
       ]);
       const linkedStableRetired = linkedTombstone.exists || linkedDenial.exists;
       // зачем ДО ротации (владелец, 2026-09-01): это главный путь входа через
@@ -2212,7 +2270,7 @@ export async function ensureStableLinkForAuth(
     // на живой аккаунт по providerUid). providerUid криптографически принадлежит
     // юзеру, мёртвый док всё равно пуст — захвата чужого нет.
     const linkedUserExists = linkedStableId
-      ? (await readIdentityOrThrow(db.collection(USERS).doc(linkedStableId).get())).exists
+      ? (await readIdentityOrThrow(memoizedIdentityGet(db.collection(USERS).doc(linkedStableId)))).exists
       : false;
     if (linkedStableId && linkedStableId !== stableId && !linkedUserExists) {
       console.warn(JSON.stringify({
@@ -2288,6 +2346,8 @@ export async function ensureStableLinkForAuth(
     }
 
     const bootstrap = await bootstrapMissingStableIdentity(db, authUid, stableId, provider, metadata);
+    // Создание личности могло записать users/auth_links — дальше читаем заново.
+    invalidateIdentityReadMemo();
     if (bootstrap.status === 'bootstrapped') {
       if (provider) {
         await upsertEmailContact(db, {
@@ -2462,13 +2522,14 @@ function recoveryHintLog(outcome: string, extra: Record<string, unknown> = {}): 
   console.log(JSON.stringify({ event: 'auth_recovery_hint', tag: '[AUTH-RECOVERY-HINT]', outcome, ...extra }));
 }
 
-/** IP вызывающего: первый адрес из x-forwarded-for, иначе rawRequest.ip; нет — пусто (лимит тогда только по uid). */
+/**
+ * IP вызывающего для лимита: общий помощник caller_rate_window — правый адрес x-forwarded-for без адресов инфраструктуры,
+ * IPv6 сведён к /64; нет — пусто (лимит тогда только по uid).
+ * зачем (разбор fc30ae94a, координатор 18.10): первый адрес цепочки клиент пишет сам — лимит 5/ч обходился подменой заголовка.
+ */
 export function recoveryHintClientIp(rawRequest: unknown): string {
-  const req = (rawRequest ?? {}) as { headers?: Record<string, unknown>; ip?: unknown };
-  const forwarded = req.headers?.['x-forwarded-for'];
-  const first = (Array.isArray(forwarded) ? String(forwarded[0] ?? '') : String(forwarded ?? '')).split(',')[0].trim();
-  const ip = first || (typeof req.ip === 'string' ? req.ip.trim() : '');
-  return ip.slice(0, 64);
+  const ip = callerIpFromRawRequest(rawRequest);
+  return ip ? ipRateKey(ip) : '';
 }
 
 /** Ответ наружу: только найден/привязан/тип входа — без почты (даже маскированной) и без идентификаторов. */

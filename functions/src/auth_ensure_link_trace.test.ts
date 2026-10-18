@@ -25,7 +25,12 @@ describe('[AUTH-ENSURE-LINK]', () => {
   });
 
   it('каждый выход ensureStableLinkForAuth назван веткой; обработчик пишет итог и сбой', () => {
-    const fn = SRC.slice(SRC.indexOf('export async function ensureStableLinkForAuth('), SRC.indexOf('\n}\n', SRC.indexOf('export async function ensureStableLinkForAuth(')));
+    // зачем (координатор 18.10): тело вынесено в ensureStableLinkForAuthOnce — снаружи только обёртка памяти чтений на вызов.
+    const start = SRC.indexOf('async function ensureStableLinkForAuthOnce(');
+    expect(start).toBeGreaterThan(0);
+    const fn = SRC.slice(start, SRC.indexOf('\n}\n', start));
+    const wrapper = SRC.slice(SRC.indexOf('export async function ensureStableLinkForAuth('), start);
+    expect(wrapper).toContain('identityReadMemo.run(new Map(), () => ensureStableLinkForAuthOnce(');
     expect(fn.match(/return done\('b\d+', \{ ok: true/g)?.length ?? 0).toBe(8);
     expect(fn).not.toMatch(/\n\s*return \{ ok: true/);
     expect(SRC).toContain("event: 'auth_ensure_link_done', tag: '[AUTH-ENSURE-LINK]'");

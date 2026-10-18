@@ -635,7 +635,9 @@ describe('auth_provider: процессные замки и причины в ca
   const source = readSource('app/auth_provider.ts');
 
   test('signInWithProvider: повторный тап присоединяется к идущему входу, каждый отказ пишет причину', () => {
-    const signIn = sliceBetween(source, 'export async function signInWithProvider(', 'const PROVIDER_SIGN_IN_STALE_MS');
+    // The following account-switch helper has its own authSwitchTrace logging.
+    // Count guards only inside signInWithProvider, not the adjacent helper.
+    const signIn = sliceBetween(source, 'export async function signInWithProvider(', 'async function completeDirectAccountSwitch(');
     expect(signIn).toMatch(/console\.log\(`\[AUTH-SIGNIN\] joined provider=\$\{provider\} reason=in_flight`\);\s*return providerSignInInFlight\.task;/);
     for (const reason of ['clean_recovery_transition_active', 'recovery_in_flight', 'native_reservation_held', 'in_flight_other', 'in_flight_stale']) {
       expect(signIn).toContain(`reason=${reason}`);

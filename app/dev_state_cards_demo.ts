@@ -99,10 +99,21 @@ function durationToSec(mmss: string): number {
   return (m || 0) * 60 + (s || 0);
 }
 
+// зачем (Макеты 18.10, замечание 18): кадр «Dos vídeos» в pt показывал русские названия — demoTitles клал ru во все языки.
+// Названия демо-роликов — на 9 языках [uk, en, es, pt-BR, vi, id, tr, pl]; прочие демо-наборы (их «пишут авторы») — как были.
+const DEMO_TITLE_I18N: Readonly<Record<string, readonly [string, string, string, string, string, string, string, string]>> = {
+  'Заказ в кафе': ['Замовлення в кав’ярні', 'Ordering at a café', 'Pedir en una cafetería', 'Pedido no café', 'Gọi món ở quán cà phê', 'Memesan di kafe', 'Kafede sipariş', 'Zamawianie w kawiarni'],
+  'Собеседование': ['Співбесіда', 'Job interview', 'Entrevista de trabajo', 'Entrevista de emprego', 'Phỏng vấn xin việc', 'Wawancara kerja', 'İş görüşmesi', 'Rozmowa o pracę'],
+  'В аэропорту': ['В аеропорту', 'At the airport', 'En el aeropuerto', 'No aeroporto', 'Ở sân bay', 'Di bandara', 'Havalimanında', 'Na lotnisku'],
+  'Первое свидание': ['Перше побачення', 'First date', 'Primera cita', 'Primeiro encontro', 'Buổi hẹn đầu tiên', 'Kencan pertama', 'İlk buluşma', 'Pierwsza randka'],
+  'Сериал: офис': ['Серіал: офіс', 'TV series: the office', 'Serie: la oficina', 'Série: o escritório', 'Phim bộ: văn phòng', 'Serial: kantor', 'Dizi: ofis', 'Serial: biuro'],
+};
+
 function demoTitles(title: string) {
+  const t = DEMO_TITLE_I18N[title];
   return {
-    codeName: title, titleRu: title, titleUk: title, titleEs: title,
-    titlePtBr: title, titleVi: title, titleId: title, titleTr: title, titlePl: title,
+    codeName: title, titleRu: title, titleUk: t?.[0] ?? title, titleEn: t?.[1] ?? title, titleEs: t?.[2] ?? title,
+    titlePtBr: t?.[3] ?? title, titleVi: t?.[4] ?? title, titleId: t?.[5] ?? title, titleTr: t?.[6] ?? title, titlePl: t?.[7] ?? title,
     descriptionRu: '', descriptionUk: '', descriptionEs: '',
   };
 }

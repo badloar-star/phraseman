@@ -38,6 +38,11 @@ describe('YouTube preview layout', () => {
     // «Напомнить» компактная, «Присоединиться» остаётся во всю ширину
     expect(heroSource).toContain('styles.cta, styles.ctaCompact');
     expect(heroSource).toContain("ctaCompact: { alignSelf: 'flex-start', minHeight: 40");
+    // Ревизор c3c420861 🟡: читалка получает слова («Через 7 часов 52 минуты»), а не сокращения; подпись — на самой строке состояния
+    expect(heroSource).toContain('premiereCountdownSpoken(lang, presentation.days, presentation.hours, presentation.minutes)');
+    expect(heroSource).toMatch(/testID="youtube-premiere-state" accessible accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel}/);
+    // шкала D145: вторичная строка под названием — 13/17 (не 14/19; Макеты 18.10)
+    expect(heroSource).toContain("stateText: { flex: 1, fontSize: 13, lineHeight: 17, fontWeight: '600' }");
   });
 
   // владелец 18.10: закладка карточки сетки ушла с обложки в правый край строки меты (круг 28), на обложке только длительность

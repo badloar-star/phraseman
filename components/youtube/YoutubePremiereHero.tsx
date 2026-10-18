@@ -18,7 +18,7 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
-import { cleanYoutubeTitle, premiereCountdownText } from '../../app/youtube_title_display';
+import { cleanYoutubeTitle, premiereCountdownSpoken, premiereCountdownText } from '../../app/youtube_title_display';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
@@ -118,7 +118,9 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
     // зачем (координатор 18.10): было «0д  7ч  52мин» (читалось «Од») — теперь «Через 7 ч 52 мин», ноль дней не печатаем
     ? premiereCountdownText(lang, presentation.days, presentation.hours, presentation.minutes, presentation.seconds)
     : copy.checking;
-  const countdownAccessibilityLabel = live ? copy.liveNow : `${copy.upcoming}. ${countdown}`;
+  // зачем (Ревизор c3c420861 🟡): читалка получает человеческий текст «Скоро премьера. Через 7 часов 52 минуты», а не сокращения «7 ч 52 мин»
+  const spokenCountdown = isCountdown ? premiereCountdownSpoken(lang, presentation.days, presentation.hours, presentation.minutes) : copy.checking;
+  const countdownAccessibilityLabel = live ? copy.liveNow : `${copy.upcoming}. ${spokenCountdown}`;
   const content = (
     <Animated.View
       testID="youtube-premiere-static"
@@ -150,7 +152,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
       <View testID="youtube-premiere-details" style={styles.details}>
         <Text style={[styles.title, { color: g.text }]}>{cleanYoutubeTitle(video.title)}</Text>
         {/* зачем: «⚑ Скоро премьера · через 7 ч 52 мин» одной строкой под названием; отсчёт — вложенный текст, читалка озвучивает строку целиком */}
-        <View testID="youtube-premiere-state" style={styles.stateRow}>
+        <View testID="youtube-premiere-state" accessible accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={styles.stateRow}>
           {live ? <View style={[styles.liveDot, { backgroundColor: g.text }]} /> : <Ionicons name="flag-outline" size={16} color={g.secondary} />}
           <Text style={[styles.stateText, { color: g.secondary }]}>
             {live ? copy.liveNow : copy.upcoming}
@@ -188,9 +190,9 @@ const styles = StyleSheet.create({
   image: { ...StyleSheet.absoluteFillObject },
   sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   details: { paddingTop: 12 },
-  // `.hero .st` макета: строка под названием, 14/19 вес 600, значок 16 и текст через 7 px.
+  // `.hero .st` макета: строка под названием, 13/17 вес 600 (шкала D145), значок 16 и текст через 7 px.
   stateRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 4 },
-  stateText: { flex: 1, fontSize: 14, lineHeight: 19, fontWeight: '600' },
+  stateText: { flex: 1, fontSize: 13, lineHeight: 17, fontWeight: '600' },
   liveDot: { width: 8, height: 8, borderRadius: 4 },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   cta: { minHeight: 44, marginTop: 12, borderRadius: 22, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },

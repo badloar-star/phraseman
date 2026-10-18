@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Плашка «Продолжить» — варианты</title>
+<style>
+  :root{
+    --bg:#EEF0F7; --card:#F8F8FC; --text:#14131C; --sec:#5C5C70; --track:#B9B9C6; --fill:#5B4BB8; --pill:#E6E6EE; --shadow:0 10px 30px rgba(60,50,120,.14),0 2px 6px rgba(60,50,120,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0C0D10; --card:#1C1E26; --text:#F4F3F8; --sec:#A8A9B8; --track:#3A3C4A; --fill:#8F82FF; --pill:#2A2C38; --shadow:0 10px 30px rgba(0,0,0,.45); }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.3 Inter,-apple-system,"Segoe UI",Roboto,sans-serif;padding:20px 20px 60px}
+  h1{font-size:22px;margin:4px 0 4px}
+  p.lead{color:var(--sec);margin:0 0 22px;font-size:14px}
+  .variant{max-width:390px;margin:0 auto 26px}
+  .tag{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sec);margin:0 0 8px 4px}
+  .card{position:relative;background:var(--card);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+  .book{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#d9d2c3,#f3efe6);display:grid;place-items:center;font-size:30px}
+  .pill{display:inline-block;background:var(--pill);border-radius:11px;padding:2px 10px;font-size:13px;font-weight:700}
+  .title{font-weight:700;font-size:16px;letter-spacing:-.3px}
+  .bar{height:6px;border-radius:3px;background:var(--track);overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--fill);border-radius:3px}
+  .cnt{font-size:14px;color:var(--sec);font-variant-numeric:tabular-nums}
+
+  /* A — как сейчас, но без стрелки: название сверху, под ним полоса и счётчик */
+  .a{min-height:96px;padding:14px 34% 14px 16px;display:flex;flex-direction:column;justify-content:center}
+  .a .row{display:flex;align-items:center;gap:12px;margin-top:8px;min-height:28px}
+  .a .row .bar{flex:1}
+  .a .art{position:absolute;right:0;top:0;bottom:0;width:32%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+
+  /* B — счётчик слева, полоса на всю ширину под текстом, плашка урока внизу арта */
+  .b{padding:16px;display:grid;grid-template-columns:1fr 72px;gap:6px 14px;align-items:center}
+  .b .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;font-size:14px;color:var(--sec)}
+  .b .meta b{color:var(--text);font-size:15px}
+  .b .art{grid-row:1 / span 2;grid-column:2;display:flex;flex-direction:column;align-items:center;gap:6px}
+
+  /* C — большое кольцо прогресса вместо полосы, арт справа */
+  .c{padding:14px 16px;display:flex;align-items:center;gap:14px}
+  .ring{position:relative;width:64px;height:64px;flex:none;border-radius:50%;background:conic-gradient(var(--fill) calc(var(--p)*1%),var(--track) 0);display:grid;place-items:center}
+  .ring::before{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--card)}
+  .ring span{position:relative;font-weight:800;font-size:15px}
+  .c .txt{flex:1;min-width:0}
+  .c .txt .cnt{margin-top:4px}
+  .c .art{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px}
+
+  /* D — сегментная полоса (50 уроков → 10 секций), крупная плашка урока слева */
+  .d{padding:16px}
+  .d .top{display:flex;align-items:center;gap:12px}
+  .d .top .title{flex:1}
+  .seg{display:flex;gap:4px;margin-top:14px}
+  .seg i{flex:1;height:8px;border-radius:4px;background:var(--track)}
+  .seg i.on{background:var(--fill)}
+  .d .foot{display:flex;justify-content:space-between;margin-top:10px}
+
+  /* E — компактная: арт-значок слева, одна строка, счётчик справа-вверху */
+  .e{padding:12px 16px;display:flex;align-items:center;gap:14px}
+  .e .txt{flex:1;min-width:0}
+  .e .head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .e .bar{margin-top:10px}
+  .e .small{width:48px;height:48px;border-radius:14px;font-size:24px}
+  .note{max-width:390px;margin:28px auto 0;color:var(--sec);font-size:13px}
+</style>
+</head>
+<body>
+<h1>Плашка «Продолжить» — стрелка убрана, 5 вариантов раскладки</h1>
+<p class="lead">Вся плашка — кнопка, отдельной стрелки нет. Светлая и тёмная схемы переключаются системной настройкой.</p>
+
+<div class="variant"><div class="tag">A · как сейчас, без стрелки (в приложении)</div>
+  <div class="card a">
+    <div class="title">Местоимения и глагол To Be</div>
+    <div class="row"><div class="bar"><i style="width:18%"></i></div><span class="cnt">9 / 50</span></div>
+    <div class="art"><div class="book">📖</div><span class="pill">Урок 1</span></div>
+  </div>
+</div>
+
+<div class="variant"><div class="tag">B · полоса на всю ширину, счётчик над ней</div>
+  <div class="card b">
+    <div>
+      <div class="title">Местоимения и глагол To Be</div>
+      <div class="meta"><span>Урок 1</span><b>9 из 50</b></div>
+      <div class="bar" style="margin-top:8px"><i style="width:18%"></i></div>
+    </div>
+    <div class="art"><div class="book">📖</div></div>
+  </div>
+</div>
+
+<div class="variant"><div class="tag">C · кольцо прогресса слева</div>
+  <div class="card c">
+    <div class="ring" style="--p:18"><span>18%</span></div>
+    <div class="txt"><div class="title">Местоимения и глагол To Be</div><div class="cnt">9 / 50 занятий</div></div>
+    <div class="art"><div class="book" style="width:56px;height:56px">📖</div><span class="pill">Урок 1</span></div>
+  </div>
+</div>
+
+<div class="variant"><div class="tag">D · сегментная полоса, плашка урока сверху</div>
+  <div class="card d">
+    <div class="top"><span class="pill">Урок 1</span><div class="title">Местоимения и глагол To Be</div></div>
+    <div class="seg"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="foot"><span class="cnt">9 / 50</span><span class="cnt">до конца — 41</span></div>
+  </div>
+</div>
+
+<div class="variant"><div class="tag">E · компактная, одна строка</div>
+  <div class="card e">
+    <div class="book small">📖</div>
+    <div class="txt">
+      <div class="head"><div class="title">Местоимения и глагол To Be</div><span class="cnt">9/50</span></div>
+      <div class="bar"><i style="width:18%"></i></div>
+    </div>
+  </div>
+</div>
+
+<p class="note">Выберите букву — разложу в приложении токенами темы (цвета, тени, радиусы — как у остальных плашек Главной), без обводок.</p>
+</body>
+</html>

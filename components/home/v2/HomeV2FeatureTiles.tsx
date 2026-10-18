@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useRef } from 'react';
-import { PixelRatio, StyleSheet, Text, View } from 'react-native';
+import { PixelRatio, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import type { LayoutChangeEvent, TextLayoutEvent } from 'react-native';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import V2Pressable from '../../v2/V2Pressable';
@@ -74,12 +74,22 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
     viewRenders += 1;
     console.log('[HOME-RENDER] tiles view', JSON.stringify({ wrapperRenders, viewRenders })); // guard-ok: счётчик рендеров плиток, только dev
   }
+  // зачем (слово владельца 18.10: «Пик оставляем, но показываем только три штуки в старом размере, как было, а остальные дальше — горизонтальный скролл»): при 4 плитках видны три плитки прежней ширины
+  // (как было при трёх), четвёртая (Пик) — за краем, прокрутка вбок. Ширина считается от окна, а не от замера: первый кадр = финальная геометрия.
+  const { width: windowW } = useWindowDimensions();
+  const tileW = Math.floor((windowW - V2.screenPad * 2 - TILE_GAP * 2) / 3);
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   // зачем (владелец 17.10, «Пик — кнопка-иконка»; эталон #four-tiles вариант (а)): 4 плитки — квадрат только с артом по центру, название ПОД плашкой.
   // На 360 dp внутри плашки ~72 dp название не помещается, а ужимать шрифт запрещено; длинное переносится, не обрезается.
   if (tiles.length === 4) {
     return (
-      <View testID="home-v2-feature-tiles" style={s.row}>
+      <ScrollView
+        testID="home-v2-feature-tiles"
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={s.scroller}
+        contentContainerStyle={s.scrollRow}
+      >
         {tiles.map((tile) => (
           <V2Pressable
             key={tile.key}
@@ -88,7 +98,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
             accessibilityLabel={`${tile.title}. ${tile.subtitle}`}
             onPress={() => press(tile.key)}
             scaleTo={0.96}
-            outerStyle={s.tileSlot}
+            outerStyle={[s.tileSlot, { width: tileW, flex: 0 }]}
           >
             <View pointerEvents="none">
               <View style={[s.iconPlate, glass]}>
@@ -105,7 +115,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
             <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
           </V2Pressable>
         ))}
-      </View>
+      </ScrollView>
     );
   }
   return (
@@ -156,9 +166,14 @@ function logTileLabel(kind: 'box' | 'lines', tile: HomeFeatureTile, lang: string
   }
 }
 
+const TILE_GAP = 10; // зачем: «Тень» 12.10 — между плашками ≥ 10, иначе тени слипаются
+
 const s = StyleSheet.create({
   // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются
-  row: { flexDirection: 'row', gap: 10 },
+  row: { flexDirection: 'row', gap: TILE_GAP },
+  // горизонтальная лента: выходит за поля страницы (отрицательный margin) и возвращает их отступом внутри, чтобы плитки скроллились до края экрана
+  scroller: { marginHorizontal: -V2.screenPad, flexGrow: 0 },
+  scrollRow: { flexDirection: 'row', gap: TILE_GAP, paddingHorizontal: V2.screenPad },
   tileSlot: { flex: 1 },
   // Квадрат от ширины ячейки — первый кадр сразу финальной геометрии, без замеров.
   tile: {

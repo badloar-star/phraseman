@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View, type ImageSourcePropType, type LayoutChangeEvent } from 'react-native';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
@@ -131,9 +130,6 @@ const HomeV2ContinueCardView = memo(function HomeV2ContinueCardView({ title, don
               )}
             </>
           )}
-          <View style={[s.arrow, { backgroundColor: colorWithAlpha(shadowGlass.buttonFill, BADGE_ON_ART_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}>
-            <Ionicons name="chevron-forward" size={16} color={p.text} />
-          </View>
         </View>
       </View>
     </V2Pressable>
@@ -178,8 +174,8 @@ const s = StyleSheet.create({
   copy: { flex: 1, justifyContent: 'center', paddingVertical: 14, paddingLeft: 16, paddingRight: '34%' },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700', letterSpacing: -0.3 },
   counter: { ...V2_TYPE.subtitle, fontVariant: ['tabular-nums'] },
-  progressRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8 },
+  // зачем (слово владельца 18.10, «убери стрелочку»): круглая стрелка справа убрана — карточка целиком кнопка; строка полосы держит прежние 28 dp, высота карточки не меняется
+  progressRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 8, minHeight: 28 },
   track: { flex: 1, height: V2.progress.height, borderRadius: V2.progress.height / 2, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: V2.progress.height / 2, minWidth: V2.progress.height * 2 },
-  arrow: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
 });

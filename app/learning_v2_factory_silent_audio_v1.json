@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "learning_v2_factory_silent_audio_v1",
+  "reason": "Сервис озвучки вернул пустоту: пиковый уровень ниже −45 дБ (ffmpeg volumedetect по всем 10 806 записям старого манифеста и таблицы одного голоса, 18.10, Ядро; совпадает с полным прогоном сессии переписывания). Такая запись не участвует в выборе звука — слово/задание берёт настоящую запись (другой голос из таблицы одного голоса), иначе запасной голос телефона. Убрать хеш, когда запись перегенерирована.",
+  "entries": [
+    {
+      "contentHash": "0091483c091117bb2dc661248e86c88aa238ff1cda7054966199aee7a76e8c7a",
+      "transcript": "sober",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -56.2
+    },
+    {
+      "contentHash": "0a3d7d0ad6e861f00c161772e9d53dbab47b3f0f4a85f76e7971e17b08d1efce",
+      "transcript": "job",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -55.7
+    },
+    {
+      "contentHash": "0c544464ea03b4ab0d83854317e0a672d8ac909fa7eaffddf133785efda8e757",
+      "transcript": "rug",
+      "voiceId": "nova",
+      "source": "manifest",
+      "maxVolumeDb": -54.9
+    },
+    {
+      "contentHash": "147f7060c8bae96393c9ddc990a0300a599cbfa58bbb6f2b3737beb9ed4d1e26",
+      "transcript": "fork",
+      "voiceId": "ash",
+      "source": "manifest",
+      "maxVolumeDb": -90.3
+    },
+    {
+      "contentHash": "215f954dbc2966f4471cfc8df4d8c55dc1e7134441e414bed573c38d8df39c21",
+      "transcript": "back",
+      "voiceId": "nova",
+      "source": "manifest",
+      "maxVolumeDb": -90.3
+    },
+    {
+      "contentHash": "3793d75d9e138045b0d61055d63e0aab4ae3289ae3e48a5ab82d051d27dde687",
+      "transcript": "family",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -90.3
+    },
+    {
+      "contentHash": "3bcd4463254210754a5185f9a1aea2c307066c27b9503cd6786691bddfde8566",
+      "transcript": "Am I audible?",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -54.9
+    },
+    {
+      "contentHash": "3ddda8a452e05f80827928b7df471a9265af9465c71744f50668bb5a968d45fc",
+      "transcript": "great",
+      "voiceId": "nova",
+      "source": "manifest",
+      "maxVolumeDb": -54.7
+    },
+    {
+      "contentHash": "3ff76cf5e2c3315025138404320c6f12c222d877869baad5c4ec4cdd0f96bbbd",
+      "transcript": "table",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -57.6
+    },
+    {
+      "contentHash": "459d211c7e883a0f86da825d5614daad577adc3de45fa99d9ede6781b0bf8c9a",
+      "transcript": "back",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -53.2
+    },
+    {
+      "contentHash": "5c6a9e4758f91ab68ad0f2c3a74fd9de8a60fee1ab1c4615ec90b5a59eec4c64",
+      "transcript": "seal",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -84.3
+    },
+    {
+      "contentHash": "684c6975523427faada4d3dfdab3b240b100f71ffccb9103ea70df903498dd2f",
+      "transcript": "vase",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -54.2
+    },
+    {
+      "contentHash": "713422c4a3beafb9b200a38e47abad29b5cd77a0f8b5255e85274c0129a3716e",
+      "transcript": "away",
+      "voiceId": "ash",
+      "source": "manifest",
+      "maxVolumeDb": -90.3
+    },
+    {
+      "contentHash": "862b437cf920c2674fc1134cc6025bd5365e32fd5a1de2b4d56067962d221886",
+      "transcript": "scared",
+      "voiceId": "ash",
+      "source": "manifest",
+      "maxVolumeDb": -90.3
+    },
+    {
+      "contentHash": "8be085d9dc1e301ebc198a38f5e79f5b0de423230dfc494e22aff3795ffcb48c",
+      "transcript": "true",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -55
+    },
+    {
+      "contentHash": "9569c415866f72517596c3aa2e4e6bbe4dde35d0c7b1225a78a3b2da4e91288c",
+      "transcript": "safe",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -54.5
+    },
+    {
+      "contentHash": "9b478f684e4f118599c5553c9cb0606c1f44c74fe1bf8e7d0078910978c3f239",
+      "transcript": "sheet",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -90.3
+    },
+    {
+      "contentHash": "a36fb6453a692fd915d3a02b5886044c2acfb943d149874f3fc6122fdd196dbe",
+      "transcript": "full",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -56
+    },
+    {
+      "contentHash": "a3cc6848573e301cf1d01044bf56ee2a836dc712a3481931ab3b6d9a8bc36c25",
+      "transcript": "He is rich.",
+      "voiceId": "onyx",
+      "source": "manifest",
+      "maxVolumeDb": -55
+    },
+    {
+      "contentHash": "bbc1b53e8c8439861c836005caf56a167c0b685ff7cd7a814b82c1391ff284ce",
+      "transcript": "ready",
+      "voiceId": "ash",
+      "source": "manifest",
+      "maxVolumeDb": -51.8
+    },
+    {
+      "contentHash": "c23b231d4a3bb74623fb1af0d99d440160bf9887e3147cba942f54d65bb83994",
+      "transcript": "funny",
+      "voiceId": "coral",
+      "source": "manifest",
+      "maxVolumeDb": -90.3
+    }
+  ]
+}

@@ -58,16 +58,22 @@ const voices = ["ash", "onyx", "nova", "coral"];
  * (resolveLearningV2FactoryRuntimeAudioOmissionsV1). Число пропусков печатается — немого пропуска нет.
  */
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+// зачем (18.10): пустые записи сервиса озвучки (app/learning_v2_factory_silent_audio_v1.json) в набор не берём — тот же
+// список, что исключает рантайм (learning_v2_factory_production_audio_v1); слово получает настоящую запись другого голоса.
+const silentHashes = new Set(JSON.parse(fs.readFileSync(path.join(root, "app/learning_v2_factory_silent_audio_v1.json"), "utf8")).entries.map((entry) => entry.contentHash));
+const audibleManifestEntries = manifest.entries.filter((entry) => !silentHashes.has(entry.contentHash));
+console.log(`[V2-BOOTSTRAP-AUDIO] silent excluded from manifest: ${manifest.entries.length - audibleManifestEntries.length} (listed ${silentHashes.size})`);
 const byCoordinate = new Map(
-  manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
+  audibleManifestEntries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
 );
-const byContentHash = new Map(manifest.entries.map((entry) => [entry.contentHash, entry]));
+const byContentHash = new Map(audibleManifestEntries.map((entry) => [entry.contentHash, entry]));
 // зачем (владелец 15.10, «один голос на задание»): записи Codex и назначенный голос задания — из того же
 // сгенерированного модуля, что читает приложение (scripts/build_learning_v2_factory_single_voice_module.mjs).
 // Манифест главнее, как в рантайме (learning_v2_factory_production_audio_v1).
 const singleVoiceText = fs.existsSync(singleVoiceModulePath) ? fs.readFileSync(singleVoiceModulePath, "utf8") : "";
 for (const match of singleVoiceText.matchAll(/transcript: ("(?:[^"\\]|\\.)*"), voiceId: "([a-z]+)" as const, contentHash: "([0-9a-f]{64})", byteSize: (\d+), assetPath: ("(?:[^"\\]|\\.)*")/gu)) {
   const entry = { transcript: JSON.parse(match[1]), voiceId: match[2], contentHash: match[3], byteSize: Number(match[4]), assetPath: JSON.parse(match[5]) };
+  if (silentHashes.has(entry.contentHash)) continue; // пустая запись Codex — как в рантайме
   const coordinate = `${entry.transcript}\u0000${entry.voiceId}`;
   if (!byCoordinate.has(coordinate)) byCoordinate.set(coordinate, entry);
   if (!byContentHash.has(entry.contentHash)) byContentHash.set(entry.contentHash, entry);

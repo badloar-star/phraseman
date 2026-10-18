@@ -49,7 +49,10 @@ describe('background tab pre-mount contract', () => {
     expect(source).toContain('const lastTouchAtRef = useRef(0);');
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS = 4;');
     // зачем (координатор 18.10, трасса 8ab4178b8): шаг не начинается, пока монтируется выбранная вкладка (премаунт соседей отнимал у неё JS-поток)
-    expect(source).toContain('const foregroundBusy = foregroundMountsRef.current.size > 0 || now < foregroundBusyUntilRef.current;');
+    // Ревизор 18.10: только срок (HOLD), без бесконечной отметки монтажа
+    expect(source).toContain('const foregroundBusy = now < foregroundBusyUntilRef.current;');
+    expect(source).not.toContain('foregroundMountsRef.current.size > 0 ||');
+    expect(source).toContain("stage: 'quiet_wait'");
     expect(source).toContain('const tickClean = !foregroundBusy && sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;');
     expect(source).toContain("reason: 'foreground_tab_mounting'");
     expect(source).toContain('cleanTicks = tickClean ? cleanTicks + 1 : 0;');

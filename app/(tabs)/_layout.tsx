@@ -225,16 +225,22 @@ function TabShellSkeleton({ title }: { title: Readonly<Record<string, string>> }
   const { theme: t, liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
   const g = liquidGlassTokens(liquidGlassThemeId);
-  const plate = { backgroundColor: g.plateFillFrom, borderRadius: 22 } as const;
+  // зачем (Макеты 18.10, 97258cc1e: «три одинаковые крупные плашки — при подмене всё прыгает»): геометрия как у настоящего экрана —
+  // шапка 40/46 (marginTop 10), карточка «Профиль» r22 ≈ 94 (поля 16 + имя 24 + подпись 2×18), подпись раздела (marginTop 26, 16, низ 10),
+  // группы r14 со строками по 60 (GROUPED_ROW_STYLE): «Профиль» — 3 строки, «Обучение» — 4.
+  const card = { backgroundColor: g.plateFillFrom, borderRadius: 22 } as const;
+  const group = { backgroundColor: g.plateFillFrom, borderRadius: 14 } as const;
+  const eyebrow = { marginTop: 26, marginBottom: 10, marginHorizontal: 4, width: 84, height: 16, borderRadius: 8, backgroundColor: g.plateFillFrom } as const;
   return (
     <View testID="tab-shell-skeleton" style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary, paddingHorizontal: 20 }]} collapsable={false}>
-      {/* геометрия шапки Настроек: marginTop 10, кегль 40/46 */}
       <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ marginTop: 10, color: g.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
         {title[lang] ?? title.en}
       </Text>
-      <View style={[plate, { marginTop: 22, height: 84 }]} />
-      <View style={[plate, { marginTop: 40, height: 168 }]} />
-      <View style={[plate, { marginTop: 40, height: 224 }]} />
+      <View style={[card, { marginTop: 22, height: 94 }]} />
+      <View style={eyebrow} />
+      <View style={[group, { height: 60 * 3 }]} />
+      <View style={eyebrow} />
+      <View style={[group, { height: 60 * 4 }]} />
     </View>
   );
 }
@@ -955,7 +961,11 @@ function ReleasedTabLayout() {
    * оставляем как есть: ждать там некому. Здесь же ждёт живой человек.
    */
   const mountNow = useCallback((idx: number) => {
-    if (idx < 0 || mountedTabsRef.current.has(idx) || foregroundMountsRef.current.has(idx)) return;
+    if (idx < 0 || mountedTabsRef.current.has(idx) || foregroundMountsRef.current.has(idx)) {
+      // зачем (Макеты 18.10: «deferred не печатался»): видно, что вкладку уже смонтировал фоновый премаунт — тогда отсрочке нечего ждать
+      if (idx >= 0) console.log('[TABS-PREMOUNT] foreground', JSON.stringify({ idx, phase: 'skip', reason: mountedTabsRef.current.has(idx) ? 'already_mounted' : 'already_mounting' })); // guard-ok: ранний выход логирует причину
+      return;
+    }
     const scheduled = scheduledMountsRef.current.get(idx);
     if (scheduled) {
       scheduled.cancel?.();
@@ -963,6 +973,7 @@ function ReleasedTabLayout() {
     }
     foregroundMountsRef.current.add(idx);
     foregroundBusyUntilRef.current = Date.now() + FOREGROUND_TAB_PREMOUNT_HOLD_MS;
+    console.log('[TABS-PREMOUNT] foreground', JSON.stringify({ idx, phase: 'begin', holdMs: FOREGROUND_TAB_PREMOUNT_HOLD_MS, mounted: mountedTabsRef.current.size })); // guard-ok: трасса отсрочки премаунта
     setVisitedTabs((prev) => addVisitedTab(prev, idx));
     // Cold require не выполняется в tap/layout-effect стеке: сначала React
     // коммитит непрозрачный shell выбранной вкладки, затем следующий кадр
@@ -974,6 +985,7 @@ function ReleasedTabLayout() {
         setMountedTabs((prev) => addVisitedTab(prev, idx));
         // запас после коммита выбранной вкладки — её первые кадры и эффекты идут без фоновых соседей
         foregroundBusyUntilRef.current = Math.max(foregroundBusyUntilRef.current, Date.now() + FOREGROUND_TAB_SETTLE_MS);
+        console.log('[TABS-PREMOUNT] foreground', JSON.stringify({ idx, phase: 'commit', busyLeftMs: foregroundBusyUntilRef.current - Date.now() })); // guard-ok: трасса отсрочки премаунта
       });
     });
   }, []);
@@ -1018,13 +1030,14 @@ function ReleasedTabLayout() {
       let lastTickAt = quietStartedAt;
       let cleanTicks = 0;
       let maxLagMs = 0;
+      let holdLogged = false;
       const startWork = (quiet: Record<string, number | string>) => {
         if (done) return;
         const workStartedAt = Date.now();
         inner = scheduleIdleTask(() => {
         // шаг уже ждал idle, а человек тем временем открыл вкладку — уступаем ей и возвращаемся к ожиданию тишины
-        if (foregroundMountsRef.current.size > 0 || Date.now() < foregroundBusyUntilRef.current) {
-          console.log('[TABS-PREMOUNT] deferred', JSON.stringify({ idx, reason: 'foreground_tab_mounting', foregroundMounts: [...foregroundMountsRef.current], busyLeftMs: Math.max(0, foregroundBusyUntilRef.current - Date.now()) })); // guard-ok: ранний выход шага премаунта
+        if (Date.now() < foregroundBusyUntilRef.current) {
+          console.log('[TABS-PREMOUNT] deferred', JSON.stringify({ idx, reason: 'foreground_tab_mounting', stage: 'idle_ready', foregroundMounts: [...foregroundMountsRef.current], busyLeftMs: Math.max(0, foregroundBusyUntilRef.current - Date.now()) })); // guard-ok: ранний выход шага премаунта
           setTimeout(pollQuiet, BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS);
           return;
         }
@@ -1067,7 +1080,12 @@ function ReleasedTabLayout() {
         const sinceTouchMs = lastTouchAtRef.current === 0 ? BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS : now - lastTouchAtRef.current;
         const quietWaitMs = now - quietStartedAt;
         maxLagMs = Math.max(maxLagMs, lastLagMs);
-        const foregroundBusy = foregroundMountsRef.current.size > 0 || now < foregroundBusyUntilRef.current;
+        // зачем (Ревизор 18.10): только срок — отметка монтажа без потолка могла бы заблокировать премаунт навсегда
+        const foregroundBusy = now < foregroundBusyUntilRef.current;
+        if (foregroundBusy && !holdLogged) {
+          holdLogged = true;
+          console.log('[TABS-PREMOUNT] deferred', JSON.stringify({ idx, reason: 'foreground_tab_mounting', stage: 'quiet_wait', foregroundMounts: [...foregroundMountsRef.current], busyLeftMs: foregroundBusyUntilRef.current - now })); // guard-ok: шаг ждёт выбранную вкладку
+        }
         const tickClean = !foregroundBusy && sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;
         cleanTicks = tickClean ? cleanTicks + 1 : 0;
         const isQuiet = cleanTicks >= BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS;

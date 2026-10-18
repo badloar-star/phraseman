@@ -1236,15 +1236,16 @@ function RegistrationPromptModal({
             showInlineError(
               triLang(lang, { ru: 'Нужен прежний аккаунт', uk: 'Потрібен попередній акаунт', en: 'You need your previous account', es: 'Necesitas la cuenta anterior', 'pt-BR': 'Use a conta anterior', vi: 'Cần tài khoản trước đây', id: 'Gunakan akun sebelumnya', tr: 'Önceki hesap gerekli', pl: 'Potrzebne jest poprzednie konto' }),
               triLang(lang, {
-                ru: 'Выбранный аккаунт не связан с этим прогрессом. Попробуй тот Google- или Apple-аккаунт, которым ты пользовался раньше. Локальные данные не изменены.',
-                uk: 'Вибраний акаунт не пов’язаний із цим прогресом. Спробуй той Google- або Apple-акаунт, яким користувався раніше. Локальні дані не змінено.',
-                en: 'The chosen account isn’t linked to this progress. Try the Google or Apple account you used before. Local data hasn’t changed.',
-                es: 'La cuenta elegida no está vinculada a este progreso. Prueba la cuenta de Google o Apple que usabas antes. Los datos locales no cambiaron.',
-                'pt-BR': 'A conta escolhida não está vinculada a este progresso. Tente a conta Google ou Apple que você usava antes. Os dados locais não foram alterados.',
-                vi: 'Tài khoản đã chọn không liên kết với tiến độ này. Hãy thử tài khoản Google hoặc Apple bạn đã dùng trước đây. Dữ liệu trên máy không thay đổi.',
-                id: 'Akun yang dipilih tidak tertaut ke progres ini. Coba akun Google atau Apple yang pernah digunakan. Data lokal tidak berubah.',
-                tr: 'Seçilen hesap bu ilerlemeye bağlı değil. Daha önce kullandığın Google veya Apple hesabını dene. Yerel veriler değişmedi.',
-                pl: 'Wybrane konto nie jest połączone z tym postępem. Spróbuj konta Google lub Apple używanego wcześniej. Dane lokalne nie zostały zmienione.',
+                // зачем (координатор 18.10, проход по текстам входа): «локальные данные» — слово разработчика; «пользовался» — мужской род (D188)
+                ru: 'Выбранный аккаунт не связан с этим прогрессом. Попробуй прежний Google- или Apple-аккаунт. Прогресс на этом телефоне не тронут.',
+                uk: 'Вибраний акаунт не пов’язаний із цим прогресом. Спробуй попередній Google- або Apple-акаунт. Прогрес на цьому телефоні не зачеплено.',
+                en: 'The chosen account isn’t linked to this progress. Try the Google or Apple account you used before. Your progress on this phone is untouched.',
+                es: 'La cuenta elegida no está vinculada a este progreso. Prueba la cuenta de Google o Apple que usabas antes. Tu progreso en este teléfono sigue intacto.',
+                'pt-BR': 'A conta escolhida não está vinculada a este progresso. Tente a conta Google ou Apple que você usava antes. Seu progresso neste celular continua intacto.',
+                vi: 'Tài khoản đã chọn không liên kết với tiến độ này. Hãy thử tài khoản Google hoặc Apple bạn đã dùng trước đây. Tiến độ trên điện thoại này vẫn nguyên vẹn.',
+                id: 'Akun yang dipilih tidak tertaut ke progres ini. Coba akun Google atau Apple yang pernah digunakan. Progres di ponsel ini tetap utuh.',
+                tr: 'Seçilen hesap bu ilerlemeye bağlı değil. Daha önce kullandığın Google veya Apple hesabını dene. Bu telefondaki ilerlemen olduğu gibi duruyor.',
+                pl: 'Wybrane konto nie jest połączone z tym postępem. Spróbuj konta Google lub Apple używanego wcześniej. Postęp na tym telefonie jest nienaruszony.',
               }),
             );
             return;

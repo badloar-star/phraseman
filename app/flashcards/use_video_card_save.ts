@@ -6,7 +6,11 @@
 // cloud_sync (запись на тап в Firestore не добавлена), новой серверной функции не нужно. Журнал — [VIDEO-CARD-SAVE].
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
+import { useRouter } from 'expo-router';
+
 import { actionToastTri, emitAppEvent } from '../events';
+import { trackEvent } from '../analytics';
+import { usePremium } from '../../components/PremiumContext';
 import { normalizePackLanguage, type PackLanguage } from './pack_languages';
 import type { CardItem } from './types';
 import { addFlashcard, loadFlashcards, removeFlashcard } from '../../hooks/use-flashcards';
@@ -56,6 +60,8 @@ export function videoCardSaveToast(reason: string, lang: Lang): void {
 
 export function useVideoCardSave(options: Readonly<{ lang: Lang; packLanguage?: PackLanguage | string | null; sourceTitle?: string | null; enabled?: boolean }>): VideoCardSave {
   const { lang, enabled = true } = options;
+  const router = useRouter();
+  const { hasPremiumAccess } = usePremium();
   const language = normalizePackLanguage(options.packLanguage ?? 'en');
   const sourceTitle = options.sourceTitle ?? undefined;
   const [savedKeys, setSavedKeys] = useState<ReadonlySet<string>>(() => new Set());
@@ -128,8 +134,15 @@ export function useVideoCardSave(options: Readonly<{ lang: Lang; packLanguage?: 
           return;
         }
         console.warn(LOG, 'rollback', JSON.stringify({ id: card.id, reason: result })); // guard-ok: откат называет причину
-        videoCardSaveToast(String(result), lang);
         setKey(key, false);
+        // зачем (координатор 18.10): лимит Free — не тихий отказ, а пейвол-шторка (премиум-модалка поверх экрана: её закрытие не закрывает экран под ней). Plus-лимит — обычный тост.
+        if (result === 'limit_reached' && !hasPremiumAccess) {
+          console.log(LOG, 'paywall', JSON.stringify({ id: card.id, context: 'flashcard_limit' })); // guard-ok: ветвление называет решение
+          void trackEvent('paywall_shown', { context: 'flashcard_limit', source: 'video_card_save' });
+          router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'video_card_save' } } as never);
+          return;
+        }
+        videoCardSaveToast(String(result), lang);
       } catch (error) {
         console.warn(LOG, 'rollback', JSON.stringify({ id: card.id, reason: 'threw', message: error instanceof Error ? error.message : String(error) })); // guard-ok: откат называет причину
         videoCardSaveToast('threw', lang);
@@ -138,7 +151,7 @@ export function useVideoCardSave(options: Readonly<{ lang: Lang; packLanguage?: 
         busyRef.current.delete(key);
       }
     })();
-  }, [language, lang, savedKeys, setKey, sourceTitle]);
+  }, [hasPremiumAccess, language, lang, router, savedKeys, setKey, sourceTitle]);
 
   const isSaved = useCallback((card: CardItem) => savedKeys.has(videoCardSaveKey(card.en)), [savedKeys]);
   const labels = useMemo(() => videoCardSaveLabels(lang), [lang]);

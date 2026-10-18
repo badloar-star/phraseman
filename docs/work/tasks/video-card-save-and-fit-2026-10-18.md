@@ -1,6 +1,7 @@
 # Task packet: «Сохранить» на каждой карточке из видео + длинная фраза помещается на карточку (владелец 18.10, координатор 09:36 / 10:10)
 
 Governance-ID: TG-4C91DD9F6F46
+Governance-ID: TG-0554BB043E21
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: «Карточки → Из видео», addFlashcard (hooks/use-flashcards), FlashcardListItem

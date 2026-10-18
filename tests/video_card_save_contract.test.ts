@@ -33,6 +33,9 @@ describe('«Сохранить» на карточках из видео', () =>
     expect(src).toContain("'rollback'");
     expect(src).toContain('removeFlashcard(found.id, language)');
     expect(src).toContain("const LOG = '[VIDEO-CARD-SAVE]';");
+    // зачем (координатор 18.10): лимит Free — пейвол-шторка, не тихий отказ; для Plus — прежний тост
+    expect(src).toContain("result === 'limit_reached' && !hasPremiumAccess");
+    expect(src).toContain("pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'video_card_save' }");
   });
 
   it('набор из видео: у каждой карточки своя кнопка-закладка, «Добавить +» набора осталась', () => {

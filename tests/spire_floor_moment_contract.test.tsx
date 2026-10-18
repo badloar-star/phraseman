@@ -49,6 +49,7 @@ import SpireFloorMoment from '../components/spire/moments/SpireFloorMoment';
 import type { SpireStepOutcome } from '../app/spire/use_spire_game';
 import type { SpireCoinsConfig } from '../modules/spire/config_contract';
 import { normalizeEol } from './helpers/read_source';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10, adc27e26e): тексты моментов склеивают число со словом
 
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const COINS = { perStep: 10, perFloorPerLevel: 10, guardianMultiplier: 2, summitBonus: 200 } as unknown as SpireCoinsConfig;
@@ -84,8 +85,8 @@ describe('m07 · вершина', () => {
     const onNext = jest.fn();
     await render(<SpireFloorMoment lang="ru" outcome={outcome({ kind: 'summit', floorBefore: 15 }, { floor: 16 })} coins={{ ...COINS, summitBonus: 250 } as SpireCoinsConfig} coinRank={5} onNext={onNext} onLater={jest.fn()} />);
     expect(screen.getByText('ВЕРШИНА')).toBeTruthy();
-    expect(screen.getByTestId('floor-moment-title').props.children).toBe('15 этаж');
-    expect(screen.getByTestId('floor-moment-bonus').props.children).toBe('+250 монет за вершину');
+    expect(screen.getByTestId('floor-moment-title').props.children).toBe(glueNumbers('15 этаж'));
+    expect(screen.getByTestId('floor-moment-bonus').props.children).toBe(glueNumbers('+250 монет за вершину'));
     await fireEvent.press(screen.getByTestId('floor-moment-next'));
     expect(onNext).toHaveBeenCalledTimes(1);
     expect(read('components/spire/moments/SpireFloorMoment.tsx').split('\n').filter((l) => !l.trim().startsWith('//')).join('\n')).not.toMatch(/\+200/);

@@ -70,6 +70,7 @@ jest.mock('../components/spire/useSpirePalette', () => ({
 
 import SpireWeekMomentHost, { spireWeekGapToTop5, spireWeekLadderRows } from '../components/spire/moments/SpireWeekMomentHost';
 import type { SpireWeekMomentShow } from '../app/spire/spire_week_moment_gate';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10, adc27e26e): тексты моментов склеивают число со словом
 
 type Result = SpireWeekMomentShow['result'];
 const result = (patch: Partial<Result>): Result => ({
@@ -178,8 +179,8 @@ describe('m01 вариант B «Короткая»: повторное повы
     const order: string[] = [];
     await render(<SpireWeekMomentHost lang="ru" decision={repeat({})} coinRank={5} onClose={() => { order.push('close'); }} onPlay={() => { order.push('play'); }} />);
     expect(screen.getByTestId('moment-promotion-short-title').props.children).toBe('Поднимаешься');
-    expect(String(screen.getByTestId('moment-promotion-short-overline').props.children)).toContain('ТОП-5 · ');
-    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe('5 место · 470 монет за неделю · +100');
+    expect(String(screen.getByTestId('moment-promotion-short-overline').props.children)).toContain(glueNumbers('ТОП-5 · '));
+    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe(`${glueNumbers('5 место · 470 монет за неделю')} · +100`); // зачем: склейка NBSP — внутри подставленной строки, хвост « · +N» добавляется после неё
     await fireEvent.press(screen.getByTestId('moment-promotion-short-play'));
     await fireEvent.press(screen.getByTestId('moment-promotion-short-play'));
     expect(order).toEqual(['close', 'play']);
@@ -187,7 +188,7 @@ describe('m01 вариант B «Короткая»: повторное повы
 
   it('без награды сервера строка без «+N»; без isRepeatPromotion остаётся обычный m01 (не короткий)', async () => {
     await render(<SpireWeekMomentHost lang="ru" decision={repeat({ promotionCoins: 0 })} coinRank={5} onClose={jest.fn()} />);
-    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe('5 место · 470 монет за неделю');
+    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe(glueNumbers('5 место · 470 монет за неделю'));
     await render(<SpireWeekMomentHost lang="ru" decision={decision('promoted', { promoted: true, prevTier: 1, newTier: 2, promotionCoins: 100 })} coinRank={5} onClose={jest.fn()} />);
     expect(screen.queryByTestId('moment-promotion-short-title')).toBeNull();
   });
@@ -199,8 +200,8 @@ describe('m01 вариант B «Короткая»: повторное повы
     await fireEvent.press(screen.getByTestId('moment-promotion-short-share'));
     expect(calls).toHaveLength(1);
     const message = String((calls[0]?.[0] as { message?: string } | undefined)?.message ?? '');
-    expect(message).toContain('5 место');
-    expect(message).toContain('470 монет за неделю');
+    expect(message).toContain(glueNumbers('5 место'));
+    expect(message).toContain(glueNumbers('470 монет за неделю'));
     expect(message).not.toMatch(/Марк|Ты\b/);
   });
 });

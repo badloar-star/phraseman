@@ -75,6 +75,9 @@ export type MomentPromotionProps = Readonly<{
 }>;
 
 /** Тайминг эталона, мс. */
+/** Зазор между низом башни и нижним блоком, px. */
+const FINAL_TOWER_GAP = 0;
+
 export const MOMENT_PROMO_TIMELINE = { flicker: 300, zone: 1600, topLine: 3000, act2: 4200, act3: 6200, marker: 7300, tag: 7700, final: 8800 } as const;
 const ZONE_SWEEP_MS = 1400;
 /** Длительность «стоп-кадра» эталона (`emFreeze 420ms steps(1)`), мс. */
@@ -203,7 +206,10 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
 
   // ── акт 3: башня ЦЕЛИКОМ (граница с ореолом внутри кадра); если экран низкий — масштаб ниже, не обрезка ──
   const towerTop = Math.max(insets.top + 28, 76);
-  const finalBlockH = 190 + Math.max(insets.bottom, 12);
+  // зачем (координатор 18.10, проверка выпуска, шрифт 1,3): нижний блок (лига, бонус, «Играть») считали ровно 190 — при 1,3 он ~226 и башня
+  // прижималась к названию лиги. Теперь — фактическая высота блока (onLayout; блок смонтирован с акта 3 невидимым); до замера — прежняя оценка.
+  const [finalMeasuredH, setFinalMeasuredH] = useState(0);
+  const finalBlockH = (finalMeasuredH > 0 ? finalMeasuredH : 190 + Math.max(insets.bottom, 12)) + FINAL_TOWER_GAP;
   const ratio = SPIRE_TOWER_GEOM.height / SPIRE_TW;
   // зачем (правило владельца 14.10 «башня не обрезается», сторож spire_static_tower_uncropped): нижняя граница 120 на экране 360×640 делала башню выше
   // доступного места — она вылезала за кадр. Ширина теперь только вписывается по высоте (минимум 60 — чтобы не выродилась).
@@ -266,15 +272,21 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
                 <Text style={[s.floorTagText, { color: p.text }]}>{momentText(lang, 'floorTag', { n: 1 })}</Text>
               </Animated.View>
             </Animated.View>
-            {phase.final ? (
-              <Animated.View style={[s.final, { paddingBottom: Math.max(insets.bottom, 12) + 24 }, finalStyle]} testID={`${testID}-final`}>
+            {/* блок смонтирован с акта 3 ради замера высоты; до финала невидим (finalIn = 0), не ловит касаний и скрыт от диктора */}
+            <Animated.View
+              pointerEvents={phase.final ? 'auto' : 'none'}
+              importantForAccessibility={phase.final ? 'auto' : 'no-hide-descendants'}
+              accessibilityElementsHidden={!phase.final}
+              onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); if (h !== finalMeasuredH) setFinalMeasuredH(h); }}
+              style={[s.final, { paddingBottom: Math.max(insets.bottom, 12) + 24 }, finalStyle]}
+              testID={phase.final ? `${testID}-final` : `${testID}-final-pending`}
+            >
                 <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]}>{league}</Text>
                 {bonusCoins > 0 ? <Text style={[s.pBonus, { color: p.textSecondary }]}>{momentText(lang, 'promoBonus', { n: bonusCoins })}</Text> : null}
                 <View style={s.playWrap}>
-                  <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={onPlay} testID={`${testID}-play`} />
+                  <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={onPlay} testID={phase.final ? `${testID}-play` : `${testID}-play-pending`} />
                 </View>
-              </Animated.View>
-            ) : null}
+            </Animated.View>
           </Animated.View>
         ) : null}
 

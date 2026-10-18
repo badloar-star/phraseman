@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { learningV2LessonIonIcon } from "./icons/learningV2IonIcons";
+import { glassTone } from "../dialogs/glass/glassTone";
 import Svg, { Circle } from "react-native-svg";
 import PressableHybrid from "../PressableHybrid";
 import { lv2Alpha, lv2CardStyle, useLv2Glass, type Lv2Glass } from "./LearningV2Glass";
@@ -86,6 +88,10 @@ const LessonRow = memo(function LessonRow({ row, level, pct, currentWord, g, onP
       style={[lv2CardStyle(g, 14), dim ? styles.dim : null]}
       contentStyle={styles.rowContent}
     >
+      {/* зачем: владелец 18.10 — единый стиль с картой и Диалогами: слева плитка урока тоном текста 9 % со значком урока (тот же, что у заголовка урока на карте) */}
+      <View style={[styles.lessonTile, { backgroundColor: glassTone(g.text, 0.09) }]} testID={`learning-v2-all-lessons-icon-${row.ordinal}`}>
+        <Ionicons name={learningV2LessonIonIcon(row.ordinal)} size={22} color={g.text} />
+      </View>
       <View style={styles.rowCopy}>
         {/* зачем ([BLEND-AUDIT] 18.10): у закрытой/готовящейся строки opacity 0,62 на всю строку — приглушённый mutedText под ним падал до 2,65:1; метка и значки берут g.text (под 0,62 ≥ 5,08:1), строка остаётся отличимой от открытой (название 2,51:1 к открытому) */}
         <Text style={[styles.rowMeta, { color: row.isCurrent || dim ? g.text : g.mutedText }]}>{meta}</Text>
@@ -192,6 +198,8 @@ const styles = StyleSheet.create({
   classicText: { flexShrink: 1 },
   rowContent: { minHeight: 70, paddingVertical: 9, paddingLeft: 18, paddingRight: 16, flexDirection: "row", alignItems: "center", gap: 16 },
   rowCopy: { flex: 1, minWidth: 0 },
+  // плитка урока как у заголовка урока на карте V2: 46, радиус 12 (размер в строке сверят Макеты по эталону «Все уроки»)
+  lessonTile: { width: 46, height: 46, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   rowMeta: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 0.4 },
   rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: "700", marginTop: 2 },
   ring: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },

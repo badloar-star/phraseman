@@ -5,6 +5,7 @@
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { lowChargeInk } from '../constants/energy_low_ink';
 import { streakStageColors } from '../components/streak/moments/streak_stage_colors';
+import { dialogueCtaPaint } from '../components/dialogs/glass/dialogue_cta_paint';
 import { streakSublineInk } from '../components/streak/moments/streak_subline_ink';
 import { feedbackInkSoftForLight } from '../constants/learningV2ModeFeedbackPalette';
 
@@ -173,6 +174,17 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Комбо урока: цифра нагрева', what: '3 «Искра» (accentTextSafe) к странице', min: TEXT, after: (t) => ratio(solid(t.accentTextSafe!), solid(t.bg!)) },
   { element: 'Комбо урока: цифра нагрева', what: '5 «Молния» (warn) к странице', min: TEXT, after: (t) => ratio(solid(t.warn!), solid(t.bg!)) },
   { element: 'Комбо урока: цифра нагрева', what: '10 «Гроза» (bad) к странице', min: TEXT, after: (t) => ratio(solid(t.bad!), solid(t.bg!)) },
+  // ── новинки 18.10 (20a6bf2ce «Не отправлено»/«Повторить», 9be415d23 «Сейчас недоступно», 6aaad5cea тост лайка, 27d17576e счётчик «0 /19»)
+  { element: 'Диалоги: «Не отправлено»', what: 'пометка (secondary 13px) к фону', min: TEXT, after: (t) => Math.min(...['bg', 'bgTop', 'bgBottom'].map((k) => ratio(solid(t.secondary!), solid(t[k]!)))) },
+  { element: 'Диалоги: плашка ошибки', what: 'текст (secondary) к плашке', min: TEXT, after: (t) => Math.min(ratio(solid(t.secondary!), solid(t.plateFillFrom!)), ratio(solid(t.secondary!), solid(t.plateFillTo!))) },
+  { element: 'Диалоги: «Повторить»', what: 'заливка к фону и плашке (dialogueCtaPaint)', min: GRAPHIC, before: (t) => Math.min(ratio(solid(t.accent!), solid(t.bg!)), ratio(solid(t.accent!), solid(t.plateFillFrom!)), ratio(solid(t.accent!), solid(t.plateFillTo!))), after: (t) => { const f = dialogueCtaPaint(t as never).fill; return Math.min(ratio(solid(f), solid(t.bg!)), ratio(solid(f), solid(t.plateFillFrom!)), ratio(solid(f), solid(t.plateFillTo!))); } },
+  { element: 'Диалоги: «Повторить»', what: 'подпись к заливке (dialogueCtaPaint)', min: TEXT, after: (t) => { const p = dialogueCtaPaint(t as never); return ratio(solid(p.ink), solid(p.fill)); } },
+  { element: 'Карточки: «Сейчас недоступно»', what: 'заголовок и подпись к фону', min: TEXT, after: (t) => Math.min(...['bg', 'bgTop', 'bgBottom'].flatMap((k) => [ratio(solid(t.text!), solid(t[k]!)), ratio(solid(t.secondary!), solid(t[k]!))])) },
+  { element: 'Карточки: «Сейчас недоступно»', what: 'значок к плитке opaqueControl', min: GRAPHIC, after: (t) => ratio(solid(t.text!), solid(t.opaqueControl!)) },
+  { element: 'Карточки: «Попробовать снова»', what: 'заливка ctaFill к фону', min: GRAPHIC, after: (t) => Math.min(...['bg', 'bgTop', 'bgBottom'].map((k) => ratio(solid(t.ctaFill!), solid(t[k]!)))) },
+  { element: 'Тост «Не удалось поставить лайк»', what: 'текст и подпись к карточке/плитке тоста', min: TEXT, after: (t) => Math.min(...['opaqueCard', 'opaqueControl'].flatMap((k) => [ratio(solid(t.text!), solid(t[k]!)), ratio(solid(t.secondary!), solid(t[k]!))])) },
+  { element: 'Тост «Не удалось поставить лайк»', what: 'значок ошибки (bad) к карточке', min: GRAPHIC, after: (t) => ratio(solid(t.bad!), solid(t.opaqueCard!)) },
+  { element: 'Диалоги: счётчик «0 /19»', what: 'число (text) и «/19» (secondary) к плашке', min: TEXT, after: (t) => Math.min(...['plateFillFrom', 'plateFillTo'].flatMap((k) => [ratio(solid(t.text!), solid(t[k]!)), ratio(solid(t.secondary!), solid(t[k]!))])) },
   // ── моменты серии (StreakMilestoneScreen): ореол шире и тусклее (095137518), золото d1000 = warn, звёзды d365 (f83d12491)
   { element: 'Момент серии', what: 'надпись-оверлайн (accentTextSafe) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.accentTextSafe!, t) },
   { element: 'Момент серии', what: 'заголовок (text) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.text!, t) },

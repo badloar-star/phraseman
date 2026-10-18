@@ -10,6 +10,7 @@ import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../v2/Shado
 import { ThemeAccentFill } from '../../v2/ThemeAccentFill';
 import SkeletonBlock from '../../SkeletonShimmer';
 import { glassTone } from './glassTone';
+import { dialogueCtaPaint } from './dialogue_cta_paint';
 import { NavIcon } from '../../v2/BackGlyph';
 
 // зачем (владелец 2026-09-30): V2-экраны «Диалогов» переносятся «1 в 1» по макету
@@ -120,7 +121,8 @@ export function DialogueGlassCta({
   const small = size === 'small';
   const light = !disabled && !ghost;
   // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
-  const ink = disabled ? glass.mutedText : light ? glass.accentInk : glass.text;
+  const paint = dialogueCtaPaint(glass);
+  const ink = disabled ? glass.mutedText : light ? paint.ink : glass.text;
   return (
     <PressableHybrid
       testID={testID}
@@ -135,14 +137,14 @@ export function DialogueGlassCta({
       contentStyle={[
         small ? styles.ctaSmall : styles.cta,
         {
-          backgroundColor: light ? glass.accent : glass.opaqueControl,
+          backgroundColor: light ? paint.fill : glass.opaqueControl,
           // зачем (стиль «Тень»): главная — цветная тень темы, вторичная — малая тень; выключенная плоская
           boxShadow: disabled ? undefined : light ? actionBoxShadow(glass) : nestedBoxShadow(glass),
           opacity: disabled || busy ? 0.72 : 1,
         },
       ]}
     >
-      {light ? <ThemeAccentFill glass={glass} radius={small ? 22 : 26} /> : null}
+      {light && paint.texture ? <ThemeAccentFill glass={glass} radius={small ? 22 : 26} /> : null}
       {icon ? <Ionicons name={icon} size={small ? 18 : 20} color={ink} /> : null}
       <Text maxFontSizeMultiplier={1.3} style={[small ? styles.ctaSmallText : styles.ctaText, { color: ink }]}>{label}</Text>
       {/* зачем (аудит кнопок R52): занятость — приглушение и отказ от тапов (как primaryBusy у V2DoneScreen); спиннеров в наборе диалогов нет (E2) */}

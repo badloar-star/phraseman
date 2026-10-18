@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-13:word:chess",
+    "correctText": "chess",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-13:i01",
-    "correctText": "Does the screen work?",
+    "correctText": "Does he play chess?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:word:tennis",
+    "correctText": "tennis",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i02",
-    "correctText": "screen",
+    "correctText": "Does she play tennis?",
     "correctResponseId": "en:lesson-07:session-13:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-13:i03",
-    "correctText": "work",
+    "correctText": "play",
     "correctResponseId": "en:lesson-07:session-13:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-13:i04",
-    "correctText": "en:lesson-07:session-13:i04:p1=screen\nen:lesson-07:session-13:i04:p2=window\nen:lesson-07:session-13:i04:p3=umbrella\nen:lesson-07:session-13:i04:p4=shift",
+    "correctText": "en:lesson-07:session-13:i04:p1=chess\nen:lesson-07:session-13:i04:p2=tennis\nen:lesson-07:session-13:i04:p3=racket\nen:lesson-07:session-13:i04:p4=ball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:word:golf",
+    "correctText": "golf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i05",
-    "correctText": "Does the screen work?",
+    "correctText": "Does your uncle play golf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:word:rugby",
+    "correctText": "rugby",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i06",
-    "correctText": "There is no umbrella near the window.",
+    "correctText": "Does he play rugby?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i07",
-    "correctText": "Does she start her shift early?",
+    "correctText": "Does your uncle play golf?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i08",
-    "correctText": "Do",
+    "correctText": "Does",
     "correctResponseId": "en:lesson-07:session-13:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-13:i09",
-    "correctText": "Does she start her shift early?",
+    "correctText": "Does he play rugby?",
     "correctResponseId": "en:lesson-07:session-13:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-13:i10",
-    "correctText": "en:lesson-07:session-13:i10:p1=swim\nen:lesson-07:session-13:i10:p2=screen\nen:lesson-07:session-13:i10:p3=window\nen:lesson-07:session-13:i10:p4=umbrella",
+    "correctText": "en:lesson-07:session-13:i10:p1=rugby\nen:lesson-07:session-13:i10:p2=ball\nen:lesson-07:session-13:i10:p3=stadium\nen:lesson-07:session-13:i10:p4=racket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i11",
-    "correctText": "Does it work?",
+    "correctText": "Does she play golf?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i12",
-    "correctText": "Do you have an umbrella?",
+    "correctText": "Does she play chess?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i13",
-    "correctText": "The screen is near the window.",
+    "correctText": "Does he play tennis?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i14",
-    "correctText": "swim",
+    "correctText": "play",
     "correctResponseId": "en:lesson-07:session-13:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-13:i15",
-    "correctText": "Do you swim here?",
+    "correctText": "Does your uncle play golf?",
     "correctResponseId": "en:lesson-07:session-13:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-13:i16",
-    "correctText": "en:lesson-07:session-13:i16:p1=screen\nen:lesson-07:session-13:i16:p2=shift\nen:lesson-07:session-13:i16:p3=swim\nen:lesson-07:session-13:i16:p4=umbrella",
+    "correctText": "en:lesson-07:session-13:i16:p1=golf\nen:lesson-07:session-13:i16:p2=tennis\nen:lesson-07:session-13:i16:p3=racket\nen:lesson-07:session-13:i16:p4=stadium",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-13:i17",
-    "correctText": "Does Anna swim here?",
+    "correctText": "Does he play rugby?",
     "correctResponseId": null
   }
 ]

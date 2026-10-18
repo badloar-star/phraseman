@@ -81,8 +81,8 @@
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
       "filename": "here-ash.mp3",
-      "byteSize": 42624,
-      "contentHash": "758f2d086d9a7db4841b6b6d4c4ffd5f013d6b1a3abdd8c8a132444c42cf76ca"
+      "byteSize": 32832,
+      "contentHash": "f9ed39647267c942bf688f0e858e2eca4b1b3e6da25c6860e10d717d5f1784a9"
     },
     {
       "transcriptId": "here",

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-17",
   "learningOutcomeByLocale": {
-    "ru": "сказать, чего вы не делаете, с don’t и чего не делает другой человек — с doesn’t",
-    "uk": "сказати, чого ви не робите, з don’t і чого не робить інша людина — з doesn’t"
+    "ru": "сказать, чего вы не делаете, с don't, и что вещь не работает, с doesn't",
+    "uk": "сказати, чого ви не робите, з don't, і що річ не працює, з doesn't"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "На перерыве",
-        "uk": "На перерві"
+        "ru": "Разговор у кофемашины",
+        "uk": "Розмова біля кавомашини"
       },
       "bodyByLocale": {
-        "ru": "`smoke` — «курить». Коллега предлагает сигарету. `I don’t smoke` — «Я не курю». Чтобы отрицать действие после `I`, ставим `don’t`, затем `smoke`. `Don’t` — короткая форма `do not`. Это сообщение о привычке.",
-        "uk": "`smoke` — «курити». Колега пропонує сигарету. `I don’t smoke` — «Я не курю». Щоб заперечити дію після `I`, ставимо `don’t`, потім `smoke`. `Don’t` — коротка форма `do not`. Це повідомлення про звичку."
+        "ru": "У кофемашины в офисной кухне коллеги шёпотом обсуждают личную жизнь начальника и ждут, что вы подхватите разговор. gossip — «сплетничать». Откажитесь: I don't gossip — «Я не сплетничаю». После I ставим don't, а gossip остаётся без изменений.",
+        "uk": "Біля кавомашини в офісній кухні колеги пошепки обговорюють особисте життя начальника й чекають, що ви підхопите розмову. gossip — «пліткувати». Відмовтеся: I don't gossip — «Я не пліткую». Після I ставимо don't, а gossip лишається без змін."
       },
       "question": {
         "interactionId": "en:lesson-07:session-17:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите коллеге «Я не курю».",
-          "uk": "Скажіть колезі «Я не курю»."
+          "ru": "Коллеги зовут вас присоединиться к разговору о начальнике. Откажитесь: «Я не сплетничаю».",
+          "uk": "Колеги кличуть вас долучитися до розмови про начальника. Відмовтеся: «Я не пліткую»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-17:intro1:r1",
-              "text": "I don’t smoke."
+              "text": "I don't gossip."
             },
             {
               "responseId": "en:lesson-07:session-17:intro1:r2",
-              "text": "I not smoke."
+              "text": "I doesn't gossip."
             },
             {
               "responseId": "en:lesson-07:session-17:intro1:r3",
-              "text": "I doesn’t smoke."
+              "text": "I not gossip."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-17:intro1:r1",
-              "text": "I don’t smoke."
+              "text": "I don't gossip."
             },
             {
               "responseId": "en:lesson-07:session-17:intro1:r2",
-              "text": "I not smoke."
+              "text": "I doesn't gossip."
             },
             {
               "responseId": "en:lesson-07:session-17:intro1:r3",
-              "text": "I doesn’t smoke."
+              "text": "I not gossip."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите коллеге «Я не курю».",
-          "uk": "Скажіть колезі «Я не курю»."
+          "ru": "Коллеги зовут вас присоединиться к разговору о начальнике. Откажитесь: «Я не сплетничаю».",
+          "uk": "Колеги кличуть вас долучитися до розмови про начальника. Відмовтеся: «Я не пліткую»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поездка с другом",
-        "uk": "Поїздка з другом"
+        "ru": "Медаль в ящике",
+        "uk": "Медаль у шухляді"
       },
       "bodyByLocale": {
-        "ru": "Друг рассчитывает, что вы его подвезёте. `I don’t drive` — «Я не вожу машину». После `I` снова `don’t`, затем `drive`. Это не обязательно означает, что вы не умеете водить: вы сообщаете, что не водите. Наличие куртки и ключей в кармане ещё не делает вас водителем.",
-        "uk": "Друг розраховує, що ви його підвезете. `I don’t drive` — «Я не воджу машину». Після `I` знову `don’t`, потім `drive`. Це не обов’язково означає, що ви не вмієте водити: ви повідомляєте, що не водите. Наявність куртки й ключів у кишені ще не робить вас водієм."
+        "ru": "Вы выиграли городской забег, но ничего не рассказали ни друзьям, ни родным. Подруга случайно нашла медаль в ящике вашего стола и удивилась вашему молчанию. brag — «хвастаться». I don't brag — «Я не хвастаюсь». Снова I, поэтому don't, а brag без изменений.",
+        "uk": "Ви виграли міський забіг, але нічого не розповіли ні друзям, ні рідним. Подруга випадково знайшла медаль у шухляді вашого столу й здивувалася вашому мовчанню. brag — «хвалитися». I don't brag — «Я не хвалюся». Знову I, тому don't, а brag без змін."
       },
       "question": {
         "interactionId": "en:lesson-07:session-17:intro2:q",
         "promptByLocale": {
-          "ru": "Объясните другу «Я не вожу машину».",
-          "uk": "Поясніть другові «Я не воджу машину»."
+          "ru": "Подруга нашла медаль и удивилась, что вы молчали. Объясните: «Я не хвастаюсь».",
+          "uk": "Подруга знайшла медаль і здивувалася, що ви мовчали. Поясніть: «Я не хвалюся»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-17:intro2:r1",
-              "text": "I don’t drive."
+              "text": "I don't brag."
             },
             {
               "responseId": "en:lesson-07:session-17:intro2:r2",
-              "text": "I am not drive."
+              "text": "I am not brag."
             },
             {
               "responseId": "en:lesson-07:session-17:intro2:r3",
-              "text": "I doesn’t drive."
+              "text": "I doesn't brag."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-17:intro2:r1",
-              "text": "I don’t drive."
+              "text": "I don't brag."
             },
             {
               "responseId": "en:lesson-07:session-17:intro2:r2",
-              "text": "I am not drive."
+              "text": "I am not brag."
             },
             {
               "responseId": "en:lesson-07:session-17:intro2:r3",
-              "text": "I doesn’t drive."
+              "text": "I doesn't brag."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните другу «Я не вожу машину».",
-          "uk": "Поясніть другові «Я не воджу машину»."
+          "ru": "Подруга нашла медаль и удивилась, что вы молчали. Объясните: «Я не хвастаюсь».",
+          "uk": "Подруга знайшла медаль і здивувалася, що ви мовчали. Поясніть: «Я не хвалюся»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Руководитель в другом офисе",
-        "uk": "Керівник в іншому офісі"
+        "ru": "Гудок молчит",
+        "uk": "Гудок мовчить"
       },
       "bodyByLocale": {
-        "ru": "Посетитель ищет руководителя, но тот работает в другом офисе. `He doesn’t work here` — «Он не работает здесь». После `he` ставим `doesn’t`, то есть `does not`, затем `work`, без `s`.",
-        "uk": "Відвідувач шукає керівника, але той працює в іншому офісі. `He doesn’t work here` — «Він не працює тут». Після `he` ставимо `doesn’t`, тобто `does not`, потім `work`, без `s`."
+        "ru": "Вы взяли машину брата. На узкой улице нажали на кнопку сигнала, но в ответ тишина. horn — «гудок». The horn doesn't work — «Гудок не работает». Вместо the horn можно сказать it. С he, she и it ставим doesn't, а после него действие без s: work.",
+        "uk": "Ви взяли машину брата. На вузькій вулиці натиснули кнопку сигналу, але у відповідь тиша. horn — «гудок». The horn doesn't work — «Гудок не працює». Замість the horn можна сказати it. З he, she та it ставимо doesn't, а після нього дію без s: work."
       },
       "question": {
         "interactionId": "en:lesson-07:session-17:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите посетителю «Он не работает здесь».",
-          "uk": "Скажіть відвідувачеві «Він не працює тут»."
+          "ru": "Вы нажали на сигнал, но звука нет. Скажите пассажиру: «Гудок не работает».",
+          "uk": "Ви натиснули на сигнал, але звуку немає. Скажіть пасажиру: «Гудок не працює»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-17:intro3:r1",
-              "text": "He doesn’t work here."
+              "text": "The horn doesn't work."
             },
             {
               "responseId": "en:lesson-07:session-17:intro3:r2",
-              "text": "He don’t work here."
+              "text": "The horn don't work."
             },
             {
               "responseId": "en:lesson-07:session-17:intro3:r3",
-              "text": "He doesn’t works here."
+              "text": "The horn doesn't works."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-17:intro3:r1",
-              "text": "He doesn’t work here."
+              "text": "The horn doesn't work."
             },
             {
               "responseId": "en:lesson-07:session-17:intro3:r2",
-              "text": "He don’t work here."
+              "text": "The horn don't work."
             },
             {
               "responseId": "en:lesson-07:session-17:intro3:r3",
-              "text": "He doesn’t works here."
+              "text": "The horn doesn't works."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите посетителю «Он не работает здесь».",
-          "uk": "Скажіть відвідувачеві «Він не працює тут»."
+          "ru": "Вы нажали на сигнал, но звука нет. Скажите пассажиру: «Гудок не работает».",
+          "uk": "Ви натиснули на сигнал, але звуку немає. Скажіть пасажиру: «Гудок не працює»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d431a98fb1f1decca1db50499c33b247d5cf1fcf56ff1cacd7f9679d1fc4900d"
+  "introFingerprint": "3a6c17617b1bf222584e48e1569ae19dd2494f24eb8ed4da95d060793dbf4a64"
 }

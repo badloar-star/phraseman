@@ -4,28 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-13:i01",
+      "interactionId": "en:lesson-07:session-13:word:chess",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chess",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-13:word:chess:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chess",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-13:word:chess:audio",
+          "transcript": "chess"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-13:word:chess:r1",
+            "targetText": "chess",
+            "meaningByLocale": {
+              "ru": "шахматы. Chess is quiet. — «Шахматы — тихое занятие». Игра на доске с чёрными и белыми фигурами.",
+              "uk": "шахи. Chess is quiet. — «Шахи — тиха справа». Гра на дошці з чорними й білими фігурами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chess",
+          "definitionByLocale": {
+            "ru": "шахматы. Chess is quiet. — «Шахматы — тихое занятие». Игра на доске с чёрными и белыми фигурами.",
+            "uk": "шахи. Chess is quiet. — «Шахи — тиха справа». Гра на дошці з чорними й білими фігурами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-13:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Экран работает?»",
+      "prompt": "Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Экран работает?»",
+      "accessibilityLabel": "Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does the screen work?",
+        "targetPhrase": "Does he play chess?",
         "localizedMeaning": {
-          "ru": "Спросите «Экран работает?»",
-          "uk": "Запитайте «Екран працює?»"
+          "ru": "Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»",
+          "uk": "Ви хочете покликати брата подруги в парк. Спитайте подругу: «Він грає в шахи?»"
         },
         "orderedTokens": [
           "Does",
-          "the",
-          "screen",
-          "work"
+          "he",
+          "play",
+          "chess"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,52 +80,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-13:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-13:word:tennis",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — tennis",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-13:word:tennis:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tennis",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-13:word:tennis:audio",
+          "transcript": "tennis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-13:word:tennis:r1",
+            "targetText": "tennis",
+            "meaningByLocale": {
+              "ru": "теннис. Tennis is popular. — «Теннис популярен». Игра, в которой мяч перебрасывают ракетками через сетку.",
+              "uk": "теніс. Tennis is popular. — «Теніс популярний». Гра, у якій м’яч перекидають ракетками через сітку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tennis",
+          "definitionByLocale": {
+            "ru": "теннис. Tennis is popular. — «Теннис популярен». Игра, в которой мяч перебрасывают ракетками через сетку.",
+            "uk": "теніс. Tennis is popular. — «Теніс популярний». Гра, у якій м’яч перекидають ракетками через сітку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-13:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-13:i02:r1",
-          "text": "screen"
+          "text": "Does she play tennis?"
         },
         {
           "responseId": "en:lesson-07:session-13:i02:r2",
-          "text": "window"
+          "text": "Does she play chess?"
         },
         {
           "responseId": "en:lesson-07:session-13:i02:r3",
-          "text": "umbrella"
+          "text": "Does he play tennis?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i02:audio",
-          "transcript": "screen"
+          "transcript": "Does she play tennis?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-13:i02:r1",
-            "targetText": "screen",
+            "targetText": "Does she play tennis?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-13:i02:r2",
-            "targetText": "window",
+            "targetText": "Does she play chess?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-13:i02:r3",
-            "targetText": "umbrella",
+            "targetText": "Does he play tennis?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +177,19 @@
           {
             "responseId": "en:lesson-07:session-13:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `screen`, а в этом варианте — `window`.",
-              "uk": "У записі перше слово — `screen`, а в цьому варіанті — `window`."
+              "ru": "В записи последнее слово — `tennis`, теннис, а в этом варианте — `chess`, шахматы.",
+              "uk": "У записі останнє слово — `tennis`, теніс, а в цьому варіанті — `chess`, шахи."
             }
           },
           {
             "responseId": "en:lesson-07:session-13:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `screen`, а в этом варианте — `umbrella`.",
-              "uk": "У записі перше слово — `screen`, а в цьому варіанті — `umbrella`."
+              "ru": "В записи второе слово — `she`, она, а в этом варианте — `he`, он.",
+              "uk": "У записі друге слово — `she`, вона, а в цьому варіанті — `he`, він."
             }
           }
         ],
@@ -114,67 +200,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите, работает ли экран",
+      "prompt": "Спросите подругу о её сестре. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-13:i03:r1",
-          "text": "work"
+          "text": "play"
         },
         {
           "responseId": "en:lesson-07:session-13:i03:r2",
-          "text": "works"
+          "text": "plays"
         },
         {
           "responseId": "en:lesson-07:session-13:i03:r3",
-          "text": "is work"
+          "text": "is play"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, работает ли экран",
+      "accessibilityLabel": "Спросите подругу о её сестре. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, работает ли экран",
-          "uk": "Запитайте, чи працює екран"
+          "ru": "Спросите подругу о её сестре. Выберите слово",
+          "uk": "Спитайте подругу про її сестру. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does the screen ___?",
+        "gappedTargetPhrase": "Does she ___ tennis?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-13:i03:r1",
-            "text": "work"
+            "text": "play"
           },
           {
             "responseId": "en:lesson-07:session-13:i03:r2",
-            "text": "works"
+            "text": "plays"
           },
           {
             "responseId": "en:lesson-07:session-13:i03:r3",
-            "text": "is work"
+            "text": "is play"
           }
         ],
-        "testedDimension": "Спросите, работает ли экран",
+        "testedDimension": "Спросите подругу о её сестре. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-13:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите, работает ли экран",
+            "testedDimension": "Спросите подругу о её сестре. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Does` нужно `work`.",
-              "uk": "Після `Does` потрібне `work`."
+              "ru": "После `Does` нужно `play`, без `s`.",
+              "uk": "Після `Does` потрібно `play`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-13:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите, работает ли экран",
+            "testedDimension": "Спросите подругу о её сестре. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Does the screen work?`, без `is`.",
-              "uk": "Потрібно `Does the screen work?`, без `is`."
+              "ru": "Нужно `Does she play?`, без `is`.",
+              "uk": "Потрібно `Does she play?`, без `is`."
             }
           }
         ]
@@ -183,7 +269,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +283,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-13:i04:p1",
-            "target": "screen",
+            "target": "chess",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "шахматы",
+              "uk": "шахи"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i04:p2",
-            "target": "window",
+            "target": "tennis",
             "meaningByLocale": {
-              "ru": "окно",
-              "uk": "вікно"
+              "ru": "теннис",
+              "uk": "теніс"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i04:p3",
-            "target": "umbrella",
+            "target": "racket",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "ракетка",
+              "uk": "ракетка"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i04:p4",
-            "target": "shift",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "рабочая смена",
-              "uk": "робоча зміна"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           }
         ],
         "leftColumn": [
-          "screen",
-          "window",
-          "umbrella",
-          "shift"
+          "chess",
+          "tennis",
+          "racket",
+          "ball"
         ],
         "rightColumn": [
-          "экран",
-          "окно",
-          "зонт",
-          "рабочая смена"
+          "шахматы",
+          "теннис",
+          "ракетка",
+          "мяч"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,31 +341,75 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-13:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-07:session-13:word:golf",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — golf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-13:word:golf:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — golf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-13:word:golf:audio",
+          "transcript": "golf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-13:word:golf:r1",
+            "targetText": "golf",
+            "meaningByLocale": {
+              "ru": "гольф. Golf is slow. — «Гольф неспешный». Игра, в которой мяч загоняют клюшкой в лунки.",
+              "uk": "гольф. Golf is slow. — «Гольф неспішний». Гра, у якій м’яч заганяють ключкою в лунки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "golf",
+          "definitionByLocale": {
+            "ru": "гольф. Golf is slow. — «Гольф неспешный». Игра, в которой мяч загоняют клюшкой в лунки.",
+            "uk": "гольф. Golf is slow. — «Гольф неспішний». Гра, у якій м’яч заганяють ключкою в лунки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-13:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте друга и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте друга и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i05:audio",
-          "transcript": "Does the screen work?"
+          "transcript": "Does your uncle play golf?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does the screen work?",
+        "hiddenTargetPhrase": "Does your uncle play golf?",
         "orderedTokens": [
           "Does",
-          "the",
-          "screen",
-          "work"
+          "your",
+          "uncle",
+          "play",
+          "golf"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -291,31 +421,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-13:word:rugby",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rugby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-13:word:rugby:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rugby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-13:word:rugby:audio",
+          "transcript": "rugby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-13:word:rugby:r1",
+            "targetText": "rugby",
+            "meaningByLocale": {
+              "ru": "регби. Rugby is tough. — «Регби жёсткое». Командная игра с овальным мячом.",
+              "uk": "регбі. Rugby is tough. — «Регбі жорстке». Командна гра з овальним м’ячем."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rugby",
+          "definitionByLocale": {
+            "ru": "регби. Rugby is tough. — «Регби жёсткое». Командная игра с овальным мячом.",
+            "uk": "регбі. Rugby is tough. — «Регбі жорстке». Командна гра з овальним м’ячем."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-13:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сообщите «Возле окна нет зонта»",
+      "prompt": "Брат друга собирается на стадион. Спросите друга: «Он играет в регби?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите «Возле окна нет зонта»",
+      "accessibilityLabel": "Брат друга собирается на стадион. Спросите друга: «Он играет в регби?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There is no umbrella near the window.",
+        "targetPhrase": "Does he play rugby?",
         "localizedMeaning": {
-          "ru": "Сообщите «Возле окна нет зонта»",
-          "uk": "Повідомте «Біля вікна немає парасолі»"
+          "ru": "Брат друга собирается на стадион. Спросите друга: «Он играет в регби?»",
+          "uk": "Брат друга збирається на стадіон. Спитайте друга: «Він грає в регбі?»"
         },
         "orderedTokens": [
-          "There",
-          "is",
-          "no",
-          "umbrella",
-          "near",
-          "the",
-          "window"
+          "Does",
+          "he",
+          "play",
+          "rugby"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -328,25 +498,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите об Анне «Она начинает свою смену рано?»",
+      "prompt": "Друг рассказывает о дяде. Спросите его: «Ваш дядя играет в гольф?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Спросите об Анне «Она начинает свою смену рано?»",
+      "accessibilityLabel": "Друг рассказывает о дяде. Спросите его: «Ваш дядя играет в гольф?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i07:audio",
-          "transcript": "Does she start her shift early?"
+          "transcript": "Does your uncle play golf?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does she start her shift early?",
+        "targetPhrase": "Does your uncle play golf?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -361,67 +531,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг показал вам бассейн. Спросите «Ты плаваешь здесь?»",
+      "prompt": "Спросите подругу о её брате. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-13:i08:r1",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-07:session-13:i08:r2",
           "text": "Does"
         },
         {
+          "responseId": "en:lesson-07:session-13:i08:r2",
+          "text": "Do"
+        },
+        {
           "responseId": "en:lesson-07:session-13:i08:r3",
-          "text": "Are"
+          "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг показал вам бассейн. Спросите «Ты плаваешь здесь?»",
+      "accessibilityLabel": "Спросите подругу о её брате. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг показал вам бассейн. Спросите «Ты плаваешь здесь?»",
-          "uk": "Друг показав вам басейн. Запитайте «Ти плаваєш тут?»"
+          "ru": "Спросите подругу о её брате. Выберите слово",
+          "uk": "Спитайте подругу про її брата. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you swim here?",
+        "gappedTargetPhrase": "___ he play chess?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-13:i08:r1",
-            "text": "Do"
-          },
-          {
-            "responseId": "en:lesson-07:session-13:i08:r2",
             "text": "Does"
           },
           {
+            "responseId": "en:lesson-07:session-13:i08:r2",
+            "text": "Do"
+          },
+          {
             "responseId": "en:lesson-07:session-13:i08:r3",
-            "text": "Are"
+            "text": "Is"
           }
         ],
-        "testedDimension": "Друг показал вам бассейн. Спросите «Ты плаваешь здесь?»",
+        "testedDimension": "Спросите подругу о её брате. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-13:i08:r2",
             "correct": false,
-            "testedDimension": "Друг показал вам бассейн. Спросите «Ты плаваешь здесь?»",
+            "testedDimension": "Спросите подругу о её брате. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `Do`.",
-              "uk": "З `you` потрібне `Do`."
+              "ru": "С `he` нужно `Does`.",
+              "uk": "З `he` потрібно `Does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-13:i08:r3",
             "correct": false,
-            "testedDimension": "Друг показал вам бассейн. Спросите «Ты плаваешь здесь?»",
+            "testedDimension": "Спросите подругу о её брате. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С действием `swim` здесь нужно `Do you swim?`.",
-              "uk": "З дією `swim` тут потрібно `Do you swim?`."
+              "ru": "С действием `play` нужно `Does`, а не `Is`.",
+              "uk": "З дією `play` потрібне `Does`, а не `Is`."
             }
           }
         ]
@@ -430,51 +600,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о смене",
+      "prompt": "Послушайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-13:i09:r1",
-          "text": "Does she start her shift early?"
+          "text": "Does he play rugby?"
         },
         {
           "responseId": "en:lesson-07:session-13:i09:r2",
-          "text": "Does she start her shift late?"
+          "text": "Does he play chess?"
         },
         {
           "responseId": "en:lesson-07:session-13:i09:r3",
-          "text": "Does she start her shift here?"
+          "text": "Does she play rugby?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о смене",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i09:audio",
-          "transcript": "Does she start her shift early?"
+          "transcript": "Does he play rugby?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-13:i09:r1",
-            "targetText": "Does she start her shift early?",
+            "targetText": "Does he play rugby?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-13:i09:r2",
-            "targetText": "Does she start her shift late?",
+            "targetText": "Does he play chess?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-13:i09:r3",
-            "targetText": "Does she start her shift here?",
+            "targetText": "Does she play rugby?",
             "meaningByLocale": null
           }
         ],
@@ -483,19 +653,19 @@
           {
             "responseId": "en:lesson-07:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о смене",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+              "ru": "В записи последнее слово — `rugby`, регби, а в этом варианте — `chess`, шахматы.",
+              "uk": "У записі останнє слово — `rugby`, регбі, а в цьому варіанті — `chess`, шахи."
             }
           },
           {
             "responseId": "en:lesson-07:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о смене",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+              "ru": "В записи второе слово — `he`, он, а в этом варианте — `she`, она.",
+              "uk": "У записі друге слово — `he`, він, а в цьому варіанті — `she`, вона."
             }
           }
         ],
@@ -506,8 +676,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -520,48 +690,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-13:i10:p1",
-            "target": "swim",
+            "target": "rugby",
             "meaningByLocale": {
-              "ru": "плавать",
-              "uk": "плавати"
+              "ru": "регби",
+              "uk": "регбі"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i10:p2",
-            "target": "screen",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i10:p3",
-            "target": "window",
+            "target": "stadium",
             "meaningByLocale": {
-              "ru": "окно",
-              "uk": "вікно"
+              "ru": "стадион",
+              "uk": "стадіон"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i10:p4",
-            "target": "umbrella",
+            "target": "racket",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "ракетка",
+              "uk": "ракетка"
             }
           }
         ],
         "leftColumn": [
-          "swim",
-          "screen",
-          "window",
-          "umbrella"
+          "rugby",
+          "ball",
+          "stadium",
+          "racket"
         ],
         "rightColumn": [
-          "плавать",
-          "экран",
-          "окно",
-          "зонт"
+          "регби",
+          "мяч",
+          "стадион",
+          "ракетка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -579,29 +749,30 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте подругу и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте подругу и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i11:audio",
-          "transcript": "Does it work?"
+          "transcript": "Does she play golf?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does it work?",
+        "hiddenTargetPhrase": "Does she play golf?",
         "orderedTokens": [
           "Does",
-          "it",
-          "work"
+          "she",
+          "play",
+          "golf"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -614,28 +785,27 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На улице дождь. Спросите друга «У тебя есть зонт?»",
+      "prompt": "Сестра подруги сидит за шахматной доской. Спросите подругу: «Она играет в шахматы?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На улице дождь. Спросите друга «У тебя есть зонт?»",
+      "accessibilityLabel": "Сестра подруги сидит за шахматной доской. Спросите подругу: «Она играет в шахматы?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have an umbrella?",
+        "targetPhrase": "Does she play chess?",
         "localizedMeaning": {
-          "ru": "На улице дождь. Спросите друга «У тебя есть зонт?»",
-          "uk": "Надворі дощ. Запитайте друга «У тебе є парасоля?»"
+          "ru": "Сестра подруги сидит за шахматной доской. Спросите подругу: «Она играет в шахматы?»",
+          "uk": "Сестра подруги сидить за шаховою дошкою. Спитайте подругу: «Вона грає в шахи?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "an",
-          "umbrella"
+          "Does",
+          "she",
+          "play",
+          "chess"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -648,25 +818,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Объясните коллеге «Экран возле окна»",
+      "prompt": "Брат подруги идёт на корт. Спросите подругу: «Он играет в теннис?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i13:audio"
       ],
-      "accessibilityLabel": "Объясните коллеге «Экран возле окна»",
+      "accessibilityLabel": "Брат подруги идёт на корт. Спросите подругу: «Он играет в теннис?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i13:audio",
-          "transcript": "The screen is near the window."
+          "transcript": "Does he play tennis?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The screen is near the window.",
+        "targetPhrase": "Does he play tennis?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -681,67 +851,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У бассейна спросите друга о Томе «Он плавает здесь?»",
+      "prompt": "Спросите друга о дяде. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-13:i14:r1",
-          "text": "swim"
+          "text": "play"
         },
         {
           "responseId": "en:lesson-07:session-13:i14:r2",
-          "text": "swims"
+          "text": "plays"
         },
         {
           "responseId": "en:lesson-07:session-13:i14:r3",
-          "text": "is swim"
+          "text": "is play"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У бассейна спросите друга о Томе «Он плавает здесь?»",
+      "accessibilityLabel": "Спросите друга о дяде. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "У бассейна спросите друга о Томе «Он плавает здесь?»",
-          "uk": "Біля басейну запитайте друга про Тома «Він плаває тут?»"
+          "ru": "Спросите друга о дяде. Выберите слово",
+          "uk": "Спитайте друга про дядька. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does he ___ here?",
+        "gappedTargetPhrase": "Does your uncle ___ golf?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-13:i14:r1",
-            "text": "swim"
+            "text": "play"
           },
           {
             "responseId": "en:lesson-07:session-13:i14:r2",
-            "text": "swims"
+            "text": "plays"
           },
           {
             "responseId": "en:lesson-07:session-13:i14:r3",
-            "text": "is swim"
+            "text": "is play"
           }
         ],
-        "testedDimension": "У бассейна спросите друга о Томе «Он плавает здесь?»",
+        "testedDimension": "Спросите друга о дяде. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-13:i14:r2",
             "correct": false,
-            "testedDimension": "У бассейна спросите друга о Томе «Он плавает здесь?»",
+            "testedDimension": "Спросите друга о дяде. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Does he` нужно `swim`.",
-              "uk": "Після `Does he` потрібне `swim`."
+              "ru": "После `Does` нужно `play`, без `s`.",
+              "uk": "Після `Does` потрібно `play`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-13:i14:r3",
             "correct": false,
-            "testedDimension": "У бассейна спросите друга о Томе «Он плавает здесь?»",
+            "testedDimension": "Спросите друга о дяде. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Does he swim?`, без `is`.",
-              "uk": "Потрібно `Does he swim?`, без `is`."
+              "ru": "Нужно `Does your uncle play?`, без `is`.",
+              "uk": "Потрібно `Does your uncle play?`, без `is`."
             }
           }
         ]
@@ -750,51 +920,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о месте для плавания",
+      "prompt": "Послушайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-13:i15:r1",
-          "text": "Do you swim here?"
+          "text": "Does your uncle play golf?"
         },
         {
           "responseId": "en:lesson-07:session-13:i15:r2",
-          "text": "Do you swim there?"
+          "text": "Does your uncle play chess?"
         },
         {
           "responseId": "en:lesson-07:session-13:i15:r3",
-          "text": "Do you swim outside?"
+          "text": "Does your brother play golf?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о месте для плавания",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i15:audio",
-          "transcript": "Do you swim here?"
+          "transcript": "Does your uncle play golf?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-13:i15:r1",
-            "targetText": "Do you swim here?",
+            "targetText": "Does your uncle play golf?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-13:i15:r2",
-            "targetText": "Do you swim there?",
+            "targetText": "Does your uncle play chess?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-13:i15:r3",
-            "targetText": "Do you swim outside?",
+            "targetText": "Does your brother play golf?",
             "meaningByLocale": null
           }
         ],
@@ -803,19 +973,19 @@
           {
             "responseId": "en:lesson-07:session-13:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о месте для плавания",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `golf`, гольф, а в этом варианте — `chess`, шахматы.",
+              "uk": "У записі останнє слово — `golf`, гольф, а в цьому варіанті — `chess`, шахи."
             }
           },
           {
             "responseId": "en:lesson-07:session-13:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о месте для плавания",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+              "ru": "В записи третье слово — `uncle`, дядя, а в этом варианте — `brother`, брат.",
+              "uk": "У записі третє слово — `uncle`, дядько, а в цьому варіанті — `brother`, брат."
             }
           }
         ],
@@ -826,7 +996,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -840,48 +1010,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-13:i16:p1",
-            "target": "screen",
+            "target": "golf",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "гольф",
+              "uk": "гольф"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i16:p2",
-            "target": "shift",
+            "target": "tennis",
             "meaningByLocale": {
-              "ru": "рабочая смена",
-              "uk": "робоча зміна"
+              "ru": "теннис",
+              "uk": "теніс"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i16:p3",
-            "target": "swim",
+            "target": "racket",
             "meaningByLocale": {
-              "ru": "плавать",
-              "uk": "плавати"
+              "ru": "ракетка",
+              "uk": "ракетка"
             }
           },
           {
             "pairId": "en:lesson-07:session-13:i16:p4",
-            "target": "umbrella",
+            "target": "stadium",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "стадион",
+              "uk": "стадіон"
             }
           }
         ],
         "leftColumn": [
-          "screen",
-          "shift",
-          "swim",
-          "umbrella"
+          "golf",
+          "tennis",
+          "racket",
+          "stadium"
         ],
         "rightColumn": [
-          "экран",
-          "рабочая смена",
-          "плавать",
-          "зонт"
+          "гольф",
+          "теннис",
+          "ракетка",
+          "стадион"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -899,25 +1069,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-13:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы пришли в другой бассейн. Уточните у знакомого «Анна плавает здесь?»",
+      "prompt": "Друг зовёт вас на матч. Спросите его о брате: «Он играет в регби?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-13:i17:audio"
       ],
-      "accessibilityLabel": "Вы пришли в другой бассейн. Уточните у знакомого «Анна плавает здесь?»",
+      "accessibilityLabel": "Друг зовёт вас на матч. Спросите его о брате: «Он играет в регби?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-13:i17:audio",
-          "transcript": "Does Anna swim here?"
+          "transcript": "Does he play rugby?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does Anna swim here?",
+        "targetPhrase": "Does he play rugby?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -939,11 +1109,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ad6c144843d714022f4bd2c419916fb3324587cac984a032b1d4abf50b12b80b"
+  "learnerFingerprint": "d8a2e71ec50204ea03f7b5390fcc308a5e23e8a549081eec1dbbcf40d64518eb"
 }

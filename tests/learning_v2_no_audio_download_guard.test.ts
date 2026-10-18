@@ -12,7 +12,7 @@ jest.mock("../app/account_generation", () => ({
 }));
 jest.mock("../app/stable_id", () => ({ getStableId: async () => "audio-test-user" }));
 jest.mock("../app/content_lazy", () => ({ lazyContent: (_name: string, load: () => unknown) => load }));
-jest.mock("../app/learning_v2_factory_lesson_audio_index_v1.generated", () => ({ LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1: {} }));
+jest.mock("../app/learning_v2_factory_lesson_audio_index_v1.generated", () => ({ LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1: { 1: { sessions: { 20: { contentHashes: ["l1s20-current"] } } } } }));
 jest.mock("../app/learning_v2_factory_production_audio_v1", () => ({
   learningV2FactoryHasAudibleAudioForContentHashV1: () => true,
   learningV2FactorySessionClipHashesV1: (lesson: number, session: number) => [`l${lesson}s${session}`],
@@ -114,6 +114,11 @@ describe("Learning V2: бандл, кэш и два занятия вперёд"
     mockAccountReset();
     await prepare(1, 6);
     expect(mockRemote).toHaveBeenCalledTimes(1);
+  });
+
+  test("актуальный индекс не дополняется устаревшими назначениями", async () => {
+    await prepare(1, 20);
+    expect(mockRemote.mock.calls.map(([input]) => (input as { objectPath: string }).objectPath)).toEqual(["l1s20-current"]);
   });
 
   test("переключение во время загрузки не помечает старую сессию готовой", async () => {

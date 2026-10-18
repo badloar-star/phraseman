@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-13:intro1:r2": {
-          "ru": "Один экран: `Does the screen`.",
-          "uk": "Один екран: `Does the screen`."
+          "ru": "С he нужно Does.",
+          "uk": "З he потрібно Does."
         },
         "en:lesson-07:session-13:intro1:r3": {
-          "ru": "После `Does` нужно `work`.",
-          "uk": "Після `Does` потрібне `work`."
+          "ru": "После Does нужно play, без s.",
+          "uk": "Після Does потрібно play, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-13:intro2:r2": {
-          "ru": "Один зонт: `There is no umbrella`.",
-          "uk": "Одна парасоля: `There is no umbrella`."
+          "ru": "С she нужно Does.",
+          "uk": "З she потрібно Does."
         },
         "en:lesson-07:session-13:intro2:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "После Does нужно play, без s.",
+          "uk": "Після Does потрібно play, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-13:intro3:r2": {
-          "ru": "С `she` нужно `Does`.",
-          "uk": "Із `she` потрібне `Does`."
+          "ru": "Дядя один: нужно Does.",
+          "uk": "Дядько один: потрібно Does."
         },
         "en:lesson-07:session-13:intro3:r3": {
-          "ru": "После `Does she` нужно `start`.",
-          "uk": "Після `Does she` потрібне `start`."
+          "ru": "После Does нужно play, без s.",
+          "uk": "Після Does потрібно play, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "40efc11ff3d4e2288f049ad438dc1fc8b30db4ee009d633ac7a3979bfec7a868"
+  "auxiliaryFingerprint": "5c3922c91f0c78aa585f71a314d72cd5fced0b7d3a449d969a7904097b675e65"
 }

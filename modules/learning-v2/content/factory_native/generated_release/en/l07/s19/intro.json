@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-19",
   "learningOutcomeByLocale": {
-    "ru": "говорить о привычках с don’t, задавать вопрос с does и сообщать об отсутствии вещей",
-    "uk": "говорити про звички з don’t, ставити запитання з does і повідомляти про відсутність речей"
+    "ru": "сказать, что вы не жалуетесь, спросить, есть ли батарея в устройстве, и сообщить, что чего-то нет",
+    "uk": "сказати, що ви не скаржитеся, спитати, чи є батарея у пристрої, і повідомити, що чогось немає"
   },
   "pages": [
     {
@@ -11,28 +11,28 @@
       "pageId": "en:lesson-07:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Спокойно отношусь к неудобствам",
-        "uk": "Спокійно ставлюся до незручностей"
+        "ru": "Длинная очередь",
+        "uk": "Довга черга"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы жалуетесь на бытовые неудобства. `complain` — «жаловаться». `I don’t complain` — «Я не жалуюсь». Здесь речь о привычном поведении: после `I` ставим `don’t`, затем `complain`. Даже очередь не получает от вас отдельную жалобу за свою длину.",
-        "uk": "Друг запитує, чи часто ви скаржитеся на побутові незручності. `complain` — «скаржитися». `I don’t complain` — «Я не скаржуся». Тут ідеться про звичну поведінку: після `I` ставимо `don’t`, потім `complain`. Навіть черга не отримує від вас окремої скарги за свою довжину."
+        "ru": "В длинной очереди на почте все недовольно вздыхают, а стоящий рядом друг интересуется, как вы относитесь к таким неудобствам. complain — «жаловаться». Ответьте: I don't complain — «Я не жалуюсь». После I ставим don't, а complain без изменений.",
+        "uk": "У довгій черзі на пошті всі невдоволено зітхають, а друг, що стоїть поруч, цікавиться, як ви ставитеся до таких незручностей. complain — «скаржитися». Дайте відповідь: I don't complain — «Я не скаржуся». Після I ставимо don't, а complain без змін."
       },
       "question": {
         "interactionId": "en:lesson-07:session-19:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите другу о своей привычке: «Я не жалуюсь».",
-          "uk": "Повідомте другові про свою звичку: «Я не скаржуся»."
+          "ru": "Друг спрашивает, не жалуетесь ли вы на очередь. Ответьте: «Я не жалуюсь».",
+          "uk": "Друг питає, чи не скаржитеся ви на чергу. Дайте відповідь: «Я не скаржуся»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-19:intro1:r1",
-              "text": "I don’t complain."
+              "text": "I don't complain."
             },
             {
               "responseId": "en:lesson-07:session-19:intro1:r2",
-              "text": "I doesn’t complain."
+              "text": "I doesn't complain."
             },
             {
               "responseId": "en:lesson-07:session-19:intro1:r3",
@@ -42,11 +42,11 @@
           "uk": [
             {
               "responseId": "en:lesson-07:session-19:intro1:r1",
-              "text": "I don’t complain."
+              "text": "I don't complain."
             },
             {
               "responseId": "en:lesson-07:session-19:intro1:r2",
-              "text": "I doesn’t complain."
+              "text": "I doesn't complain."
             },
             {
               "responseId": "en:lesson-07:session-19:intro1:r3",
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите другу о своей привычке: «Я не жалуюсь».",
-          "uk": "Повідомте другові про свою звичку: «Я не скаржуся»."
+          "ru": "Друг спрашивает, не жалуетесь ли вы на очередь. Ответьте: «Я не жалуюсь».",
+          "uk": "Друг питає, чи не скаржитеся ви на чергу. Дайте відповідь: «Я не скаржуся»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Проверяем принтер",
-        "uk": "Перевіряємо принтер"
+        "ru": "Звук на пикнике",
+        "uk": "Звук на пікніку"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите напечатать документ и спрашиваете коллегу о принтере. `Does the printer work?` — «Принтер работает?» В вопросе об одном принтере ставим `does` в начало. После `the printer` — `work`, без `s`.",
-        "uk": "Ви хочете надрукувати документ і запитуєте колегу про принтер. `Does the printer work?` — «Принтер працює?» У запитанні про один принтер ставимо `does` на початок. Після `the printer` — `work`, без `s`."
+        "ru": "Вы берёте у соседа громкоговоритель для пикника. В парке нет розетки, поэтому заранее уточняете, есть ли у прибора батарея. loudspeaker — «громкоговоритель». Does the loudspeaker have a battery? — «У громкоговорителя есть батарея?» После Does ставим have, не has.",
+        "uk": "Ви берете у сусіда гучномовець для пікніка. У парку немає розетки, тому заздалегідь уточнюєте, чи є у приладу батарея. loudspeaker — «гучномовець». Does the loudspeaker have a battery? — «У гучномовця є батарея?» Після Does ставимо have, а не has."
       },
       "question": {
         "interactionId": "en:lesson-07:session-19:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу: «Принтер работает?»",
-          "uk": "Запитайте колегу: «Принтер працює?»"
+          "ru": "Вы берёте прибор в парк без розеток. Спросите соседа: «У громкоговорителя есть батарея?»",
+          "uk": "Ви берете прилад у парк без розеток. Спитайте сусіда: «У гучномовця є батарея?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-19:intro2:r1",
-              "text": "Does the printer work?"
+              "text": "Does the loudspeaker have a battery?"
             },
             {
               "responseId": "en:lesson-07:session-19:intro2:r2",
-              "text": "Do the printer work?"
+              "text": "Do the loudspeaker have a battery?"
             },
             {
               "responseId": "en:lesson-07:session-19:intro2:r3",
-              "text": "Does the printer works?"
+              "text": "Does the loudspeaker has a battery?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-19:intro2:r1",
-              "text": "Does the printer work?"
+              "text": "Does the loudspeaker have a battery?"
             },
             {
               "responseId": "en:lesson-07:session-19:intro2:r2",
-              "text": "Do the printer work?"
+              "text": "Do the loudspeaker have a battery?"
             },
             {
               "responseId": "en:lesson-07:session-19:intro2:r3",
-              "text": "Does the printer works?"
+              "text": "Does the loudspeaker has a battery?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу: «Принтер работает?»",
-          "uk": "Запитайте колегу: «Принтер працює?»"
+          "ru": "Вы берёте прибор в парк без розеток. Спросите соседа: «У громкоговорителя есть батарея?»",
+          "uk": "Ви берете прилад у парк без розеток. Спитайте сусіда: «У гучномовця є батарея?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сумок здесь нет",
-        "uk": "Сумок тут немає"
+        "ru": "Заноза в пальце",
+        "uk": "Заноза в пальці"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете сумки и проверили комнату. `There are no bags here` — «Здесь нет сумок». С `bags` используем `are no`: сумок в этом месте нет.",
-        "uk": "Ви шукаєте сумки й перевірили кімнату. `There are no bags here` — «Тут немає сумок». З `bags` використовуємо `are no`: сумок у цьому місці немає."
+        "ru": "Соседскому ребёнку в палец попала заноза, и вы хотите осторожно её вытащить. Вы открыли аптечку и перебрали всё по очереди: пинцета там нет. tweezers — «пинцет». There are no tweezers here — «Здесь нет пинцета». Слово tweezers всегда во множественном числе, поэтому are no.",
+        "uk": "Сусідській дитині в палець потрапила заноза, і ви хочете обережно її витягти. Ви відкрили аптечку й перебрали все по черзі: пінцета там немає. tweezers — «пінцет». There are no tweezers here — «Тут немає пінцета». Слово tweezers завжди у множині, тому are no."
       },
       "question": {
         "interactionId": "en:lesson-07:session-19:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите другу: «Здесь нет сумок».",
-          "uk": "Повідомте другові: «Тут немає сумок»."
+          "ru": "В аптечке нет пинцета. Скажите соседу: «Здесь нет пинцета».",
+          "uk": "В аптечці немає пінцета. Скажіть сусідові: «Тут немає пінцета»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-19:intro3:r1",
-              "text": "There are no bags here."
+              "text": "There are no tweezers here."
             },
             {
               "responseId": "en:lesson-07:session-19:intro3:r2",
-              "text": "There is no bags here."
+              "text": "There is no tweezers here."
             },
             {
               "responseId": "en:lesson-07:session-19:intro3:r3",
-              "text": "There are bags here."
+              "text": "There are tweezers here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-19:intro3:r1",
-              "text": "There are no bags here."
+              "text": "There are no tweezers here."
             },
             {
               "responseId": "en:lesson-07:session-19:intro3:r2",
-              "text": "There is no bags here."
+              "text": "There is no tweezers here."
             },
             {
               "responseId": "en:lesson-07:session-19:intro3:r3",
-              "text": "There are bags here."
+              "text": "There are tweezers here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите другу: «Здесь нет сумок».",
-          "uk": "Повідомте другові: «Тут немає сумок»."
+          "ru": "В аптечке нет пинцета. Скажите соседу: «Здесь нет пинцета».",
+          "uk": "В аптечці немає пінцета. Скажіть сусідові: «Тут немає пінцета»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8535ca111341cd356cec26558785feaeeed9d16af8030108fb2631cafd147573"
+  "introFingerprint": "63a2b35a7822a4cce03248243c3eb311542bb11dab79e274420ab49574323dc8"
 }

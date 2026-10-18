@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-11",
   "learningOutcomeByLocale": {
-    "ru": "спросить об устройстве и работе человека, сообщить об отсутствии вещи",
-    "uk": "запитати про пристрій і роботу людини, повідомити про відсутність речі"
+    "ru": "спросить о работе магазина и о том, что он продаёт, с помощью Does",
+    "uk": "запитати про роботу магазину та про те, що він продає, за допомогою Does"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Перед печатью",
-        "uk": "Перед друком"
+        "ru": "Стрижка после работы",
+        "uk": "Стрижка після роботи"
       },
       "bodyByLocale": {
-        "ru": "`printer` — «принтер». Вы хотите распечатать плакат. `Does the printer work?` — «Принтер работает?» Один принтер — `Does the printer`, затем `work`, без `s`. Бумага уже в руках, но сначала убедимся, что принтер готов к работе, а не только к украшению стола.",
-        "uk": "`printer` — «принтер». Ви хочете надрукувати плакат. `Does the printer work?` — «Принтер працює?» Один принтер — `Does the printer`, потім `work`, без `s`. Папір уже в руках, але спочатку переконаємося, що принтер готовий до роботи, а не лише до прикрашання столу."
+        "ru": "Подруга хочет подстричься после работы, а её парикмахерская закрыта на ремонт. Вы вспоминаете салон на главной улице. salon — «салон красоты». Спросите администратора: Does the salon close late? — «Салон закрывается поздно?» После Does — close, без s.",
+        "uk": "Подруга хоче підстригтися після роботи, а її перукарня зачинена на ремонт. Ви згадуєте салон на головній вулиці. salon — «салон краси». Спитайте адміністратора: Does the salon close late? — «Салон зачиняється пізно?» Після Does — close, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-11:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу «Принтер работает?»",
-          "uk": "Запитайте колегу «Принтер працює?»"
+          "ru": "Подруга хочет подстричься после работы. Спросите администратора: «Салон закрывается поздно?»",
+          "uk": "Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-11:intro1:r1",
-              "text": "Does the printer work?"
+              "text": "Does the salon close late?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro1:r2",
-              "text": "Do the printer work?"
+              "text": "Do the salon close late?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro1:r3",
-              "text": "Does the printer works?"
+              "text": "Does the salon closes late?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-11:intro1:r1",
-              "text": "Does the printer work?"
+              "text": "Does the salon close late?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro1:r2",
-              "text": "Do the printer work?"
+              "text": "Do the salon close late?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro1:r3",
-              "text": "Does the printer works?"
+              "text": "Does the salon closes late?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу «Принтер работает?»",
-          "uk": "Запитайте колегу «Принтер працює?»"
+          "ru": "Подруга хочет подстричься после работы. Спросите администратора: «Салон закрывается поздно?»",
+          "uk": "Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "В этой комнате его нет",
-        "uk": "У цій кімнаті його немає"
+        "ru": "Открытка для брата",
+        "uk": "Листівка для брата"
       },
       "bodyByLocale": {
-        "ru": "Вы заглянули в соседнюю комнату в поисках принтера. `There is no printer in this room` — «В этой комнате нет принтера». Здесь сообщаем об отсутствии одной вещи: `There is no printer`. `In this room` уточняет, где вы проверили.",
-        "uk": "Ви зазирнули до сусідньої кімнати в пошуках принтера. `There is no printer in this room` — «У цій кімнаті немає принтера». Тут повідомляємо про відсутність однієї речі: `There is no printer`. `In this room` уточнює, де ви перевірили."
+        "ru": "Вы с подругой идёте по главной улице мимо книжного магазина. Вам нужна открытка для брата, а на витрине их не видно. bookshop — «книжный магазин». Спросите подругу: Does the bookshop sell postcards? — «Книжный магазин продаёт открытки?» Магазин один: Does, а sell без s.",
+        "uk": "Ви з подругою йдете головною вулицею повз книгарню. Вам потрібна листівка для брата, а на вітрині їх не видно. bookshop — «книгарня». Спитайте подругу: Does the bookshop sell postcards? — «Книгарня продає листівки?» Магазин один: Does, а sell без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-11:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите коллеге «В этой комнате нет принтера».",
-          "uk": "Скажіть колезі «У цій кімнаті немає принтера»."
+          "ru": "На витрине нет открыток. Спросите подругу: «Книжный магазин продаёт открытки?»",
+          "uk": "На вітрині немає листівок. Спитайте подругу: «Книгарня продає листівки?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-11:intro2:r1",
-              "text": "There is no printer in this room."
+              "text": "Does the bookshop sell postcards?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro2:r2",
-              "text": "There are no printer in this room."
+              "text": "Do the bookshop sell postcards?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro2:r3",
-              "text": "There no printer in this room."
+              "text": "Does the bookshop sells postcards?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-11:intro2:r1",
-              "text": "There is no printer in this room."
+              "text": "Does the bookshop sell postcards?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro2:r2",
-              "text": "There are no printer in this room."
+              "text": "Do the bookshop sell postcards?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro2:r3",
-              "text": "There no printer in this room."
+              "text": "Does the bookshop sells postcards?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите коллеге «В этой комнате нет принтера».",
-          "uk": "Скажіть колезі «У цій кімнаті немає принтера»."
+          "ru": "На витрине нет открыток. Спросите подругу: «Книжный магазин продаёт открытки?»",
+          "uk": "На вітрині немає листівок. Спитайте подругу: «Книгарня продає листівки?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто поможет",
-        "uk": "Хто допоможе"
+        "ru": "Огурцы для салата",
+        "uk": "Огірки для салату"
       },
       "bodyByLocale": {
-        "ru": "Коллега упомянул Анну, которая разбирается в принтерах. Вы уточняете `Does she work here?` — «Она работает здесь?» С `she` используем `Does`, а после него `work` без `s`. Мы спрашиваем о месте работы Анны.",
-        "uk": "Колега згадав Анну, яка розуміється на принтерах. Ви уточнюєте `Does she work here?` — «Вона працює тут?» Із `she` використовуємо `Does`, а після нього `work` без `s`. Ми запитуємо про місце роботи Анни."
+        "ru": "Вы готовите салат и ищете огурцы. Сосед говорит, что на углу овощами торгует один продавец. greengrocer — «продавец овощей и фруктов». Спросите соседа: Does the greengrocer sell cucumbers? — «Продавец овощей продаёт огурцы?» Продавец один, поэтому Does, а sell без s.",
+        "uk": "Ви готуєте салат і шукаєте огірки. Сусід каже, що на розі овочами торгує один продавець. greengrocer — «продавець овочів і фруктів». Спитайте сусіда: Does the greengrocer sell cucumbers? — «Продавець овочів продає огірки?» Продавець один, тому Does, а sell без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-11:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу «Она работает здесь?»",
-          "uk": "Запитайте колегу «Вона працює тут?»"
+          "ru": "Вам нужны огурцы для салата. Спросите соседа: «Продавец овощей продаёт огурцы?»",
+          "uk": "Вам потрібні огірки для салату. Спитайте сусіда: «Продавець овочів продає огірки?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-11:intro3:r1",
-              "text": "Does she work here?"
+              "text": "Does the greengrocer sell cucumbers?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro3:r2",
-              "text": "Do she work here?"
+              "text": "Do the greengrocer sell cucumbers?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro3:r3",
-              "text": "Does she works here?"
+              "text": "Does the greengrocer sells cucumbers?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-11:intro3:r1",
-              "text": "Does she work here?"
+              "text": "Does the greengrocer sell cucumbers?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro3:r2",
-              "text": "Do she work here?"
+              "text": "Do the greengrocer sell cucumbers?"
             },
             {
               "responseId": "en:lesson-07:session-11:intro3:r3",
-              "text": "Does she works here?"
+              "text": "Does the greengrocer sells cucumbers?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу «Она работает здесь?»",
-          "uk": "Запитайте колегу «Вона працює тут?»"
+          "ru": "Вам нужны огурцы для салата. Спросите соседа: «Продавец овощей продаёт огурцы?»",
+          "uk": "Вам потрібні огірки для салату. Спитайте сусіда: «Продавець овочів продає огірки?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "849f445cfa411b1fe60d5442f083b5960103c30688d99ae0925e9f8254f55442"
+  "introFingerprint": "53c2010d2f74f0ddb2d955fab8a05022b351ec48959ecd7cda0660fb31100699"
 }

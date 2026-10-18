@@ -14,7 +14,7 @@ export const LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_SCHEMA_V1 =
   "learning-v2-course-session-audio-child.v1" as const;
 export const LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1 =
   4 * 1024 * 1024;
-export const LEARNING_V2_COURSE_SESSION_AUDIO_FILE_MAX_BYTES_V1 = 64 * 1024;
+export const LEARNING_V2_COURSE_SESSION_AUDIO_FILE_MAX_BYTES_V1 = 256 * 1024;
 
 export type LearningV2CourseSessionAudioVoiceIdV1 =
   (typeof V2_REQUIRED_VOICE_IDS)[number];

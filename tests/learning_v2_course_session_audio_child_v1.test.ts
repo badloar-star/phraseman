@@ -50,12 +50,12 @@ function file(voiceId: "ash" | "onyx" | "nova" | "coral", suffix: string) {
   };
 }
 
-const fourFiles = (suffix: string) =>
+const fourFiles = (suffix: string, byteSize = 1024) =>
   (["ash", "onyx", "nova", "coral"] as const).map((voiceId) =>
-    file(voiceId, suffix),
+    ({ ...file(voiceId, suffix), byteSize }),
   );
 
-function material() {
+function material(byteSize = 1024) {
   const childLearner = learner();
   return {
     childLearner,
@@ -65,7 +65,7 @@ function material() {
         {
           interactionId: "interaction-4",
           taskVoiceGroupFingerprint: h("group"),
-          fullPhraseFiles: fourFiles("full"),
+          fullPhraseFiles: fourFiles("full", byteSize),
           selectables: [
             {
               selectableId: "word-1-a",
@@ -73,7 +73,7 @@ function material() {
               wordId: h("word-a"),
               wordOrdinal: 1,
               visibleText: "Word1",
-              files: fourFiles("word-a"),
+              files: fourFiles("word-a", byteSize),
             },
             {
               selectableId: "word-1-b",
@@ -81,7 +81,7 @@ function material() {
               wordId: h("word-b"),
               wordOrdinal: 2,
               visibleText: "chip1",
-              files: fourFiles("word-b"),
+              files: fourFiles("word-b", byteSize),
             },
           ],
         },
@@ -91,6 +91,11 @@ function material() {
 }
 
 describe("Learning V2 direct course-session audio child", () => {
+  test("accepts long course clips while rejecting files above the bounded limit", () => {
+    expect(() => material(182016)).not.toThrow();
+    expect(() => material(256 * 1024 + 1)).toThrow("learning_v2_course_session_audio_child_invalid");
+  });
+
   test("binds exact visible chips and four local variants without any answer authority", () => {
     const { child, childLearner } = material();
     const raw = encodeLearningV2CourseSessionAudioChildV1(child);

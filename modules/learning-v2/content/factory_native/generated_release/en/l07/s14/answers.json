@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-14:word:pupil",
+    "correctText": "pupil",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-14:i01",
-    "correctText": "Does the server work?",
+    "correctText": "Does the pupil wear a uniform?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:word:headmaster",
+    "correctText": "headmaster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i02",
-    "correctText": "server",
+    "correctText": "Does the headmaster teach?",
     "correctResponseId": "en:lesson-07:session-14:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-14:word:blackboard",
+    "correctText": "blackboard",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-14:i03",
-    "correctText": "work",
+    "correctText": "have",
     "correctResponseId": "en:lesson-07:session-14:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-14:i04",
-    "correctText": "en:lesson-07:session-14:i04:p1=server\nen:lesson-07:session-14:i04:p2=picture\nen:lesson-07:session-14:i04:p3=suitcase\nen:lesson-07:session-14:i04:p4=customer",
+    "correctText": "en:lesson-07:session-14:i04:p1=pupil\nen:lesson-07:session-14:i04:p2=headmaster\nen:lesson-07:session-14:i04:p3=blackboard\nen:lesson-07:session-14:i04:p4=chalk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:word:classroom",
+    "correctText": "classroom",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i05",
-    "correctText": "Does the server work?",
+    "correctText": "Does the classroom open early?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i06",
-    "correctText": "There is no server in this room.",
+    "correctText": "Does the headmaster teach?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i07",
-    "correctText": "Does Anna work here?",
+    "correctText": "Does the school have a blackboard?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i08",
-    "correctText": "Do",
+    "correctText": "Does",
     "correctResponseId": "en:lesson-07:session-14:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-14:i09",
-    "correctText": "Does Anna work here?",
+    "correctText": "Does the classroom have a blackboard?",
     "correctResponseId": "en:lesson-07:session-14:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-14:i10",
-    "correctText": "en:lesson-07:session-14:i10:p1=laugh\nen:lesson-07:session-14:i10:p2=server\nen:lesson-07:session-14:i10:p3=picture\nen:lesson-07:session-14:i10:p4=suitcase",
+    "correctText": "en:lesson-07:session-14:i10:p1=classroom\nen:lesson-07:session-14:i10:p2=chalk\nen:lesson-07:session-14:i10:p3=desk\nen:lesson-07:session-14:i10:p4=lesson",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i11",
-    "correctText": "Does it work?",
+    "correctText": "Does the pupil learn English?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i12",
-    "correctText": "Are you a customer?",
+    "correctText": "Does the headmaster work here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i13",
-    "correctText": "Do you have a suitcase?",
+    "correctText": "Does the pupil wear a uniform?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i14",
-    "correctText": "is",
+    "correctText": "learn",
     "correctResponseId": "en:lesson-07:session-14:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-14:i15",
-    "correctText": "Do you have a picture?",
+    "correctText": "Does the headmaster work here?",
     "correctResponseId": "en:lesson-07:session-14:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-14:i16",
-    "correctText": "en:lesson-07:session-14:i16:p1=server\nen:lesson-07:session-14:i16:p2=customer\nen:lesson-07:session-14:i16:p3=laugh\nen:lesson-07:session-14:i16:p4=suitcase",
+    "correctText": "en:lesson-07:session-14:i16:p1=pupil\nen:lesson-07:session-14:i16:p2=headmaster\nen:lesson-07:session-14:i16:p3=uniform\nen:lesson-07:session-14:i16:p4=lesson",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-14:i17",
-    "correctText": "Does the manager work here?",
+    "correctText": "Does the classroom open early?",
     "correctResponseId": null
   }
 ]

@@ -8,9 +8,11 @@
  * Весь курс сначала кодируется во временную папку; перед заменой повторно
  * проверяются входные хеши и сохраняются оригиналы для восстановления.
  * Запуск: node scripts/learning_v2_reencode_bundle_audio_64k.mjs
- *   [--root <папка>] [--dry] [--kbps 64|96] [--all-course]
+ *   [--root <папка>] [--dry] [--kbps 64|96]
+ *   [--all-course --selection <runtime-reference-report.json>]
  */
 import crypto from "node:crypto";
+import { loadRuntimeAudioSelection } from "./learning_v2_storage_audio_plan.mjs";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -23,6 +25,8 @@ const DRY = args.includes("--dry");
 const ALL_COURSE = args.includes("--all-course");
 const rootArg = args.indexOf("--root");
 const ROOT = path.resolve(rootArg >= 0 ? args[rootArg + 1] : path.join(path.dirname(fileURLToPath(import.meta.url)), ".."));
+const selectionArg = args.indexOf("--selection");
+const requiredHashes = ALL_COURSE ? loadRuntimeAudioSelection(ROOT, selectionArg >= 0 ? args[selectionArg + 1] : undefined) : null;
 const FFMPEG = process.env.FFMPEG
   ?? "C:/Users/badlo/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe";
 const FFPROBE = FFMPEG.replace(/ffmpeg(\.exe)?$/u, "ffprobe$1");
@@ -71,13 +75,17 @@ const manifest = readJson(MANIFEST);
 const sources = new Map();
 const silentHashes = new Set(JSON.parse(fs.readFileSync(path.join(ROOT, "app/learning_v2_factory_silent_audio_v1.json"), "utf8")).entries.map(entry => entry.contentHash));
 for (const assignment of Object.values(singleVoice.data.assignments ?? {}))
-  for (const clip of assignment.clips ?? []) if ((ALL_COURSE || bundleHashes.has(clip.contentHash)) && !silentHashes.has(clip.contentHash)) sources.set(clip.assetPath, clip.contentHash);
-for (const entry of manifest.data.entries ?? []) if ((ALL_COURSE || bundleHashes.has(entry.contentHash)) && !silentHashes.has(entry.contentHash)) sources.set(entry.assetPath, entry.contentHash);
+  for (const clip of assignment.clips ?? []) if ((ALL_COURSE ? requiredHashes.has(clip.contentHash) : bundleHashes.has(clip.contentHash)) && !silentHashes.has(clip.contentHash)) sources.set(clip.assetPath, clip.contentHash);
+for (const entry of manifest.data.entries ?? []) if ((ALL_COURSE ? requiredHashes.has(entry.contentHash) : bundleHashes.has(entry.contentHash)) && !silentHashes.has(entry.contentHash)) sources.set(entry.assetPath, entry.contentHash);
 if (ALL_COURSE) {
   const sharedHashes = new Set(sources.values());
   for (const entry of readJson("assets/audio/learning-v2/session1-production-v1/manifest.json").data.entries)
     if (sharedHashes.has(entry.contentHash))
       sources.set("assets/audio/learning-v2/session1-production-v1/" + entry.filename, entry.contentHash);
+}
+if (ALL_COURSE) {
+  const found = new Set(sources.values());
+  for (const hash of requiredHashes) if (!found.has(hash)) throw new Error("Selected audio source missing: " + hash);
 }
 console.log(`${LOG} в сборке ${bundleHashes.size} файлов, исходников ${sources.size}`);
 
@@ -242,7 +250,7 @@ run("build_learning_v2_factory_audio_module.mjs");
 run("build_learning_v2_factory_single_voice_module.mjs");
 // зачем (R125, 18.10): индекс прогрева фильтруется по набору сборки — строить его ПОСЛЕ набора
 run("build_learning_v2_bootstrap_audio_pack.mjs");
-run("build_learning_v2_factory_lesson_audio_index.mjs");
+if (!ALL_COURSE) run("build_learning_v2_factory_lesson_audio_index.mjs");
 run("build_learning_v2_factory_audio_module.mjs", ["--check"]);
 run("build_learning_v2_factory_single_voice_module.mjs", ["--check"]);
 run("build_learning_v2_bootstrap_audio_pack.mjs", ["--check"]);
@@ -295,5 +303,5 @@ if (ALL_COURSE) {
   if (missingLegacy.length) throw new Error(`${LOG} legacy references missing: ${missingLegacy.join(",")}`);
   console.log(`[POSTCHECK] legacy module and files match their table; bundle/Storage coverage is checked by the release guard`);
 }
-run("build_learning_v2_factory_lesson_audio_index.mjs", ["--check"]);
+if (!ALL_COURSE) run("build_learning_v2_factory_lesson_audio_index.mjs", ["--check"]);
 console.log(`${LOG} готово: дальше — ворота (learning_v2_plan_b_gates) и сторож полноты`);

@@ -15,6 +15,7 @@ import {
 import { evaluateLearningV2CourseSessionInteractionV1 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 import { createLearningV2CourseSessionDeviceRunV1 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
 import { adaptLearningV2DirectSessionIntroV1 } from "../app/learning_v2_direct_session_intro_adapter_v1";
+import { projectLearnerVisiblePromptV1 } from "../modules/learning-v2/content/learner_visible_text_v1";
 
 test("factory-native preserves legacy wrong-only and new all-response intro feedback", () => {
   const feedback = factoryNativeIntroResponseFeedbackByIdV1({
@@ -83,11 +84,11 @@ test("factory-native maps S01 i16 authored distractor feedback to the generated 
   assert.deepEqual(feedback.map((entry) => entry.responseId), ["lesson-01:session:01:i16:t04"]);
   assert.equal(
     feedback[0]?.feedbackByLocale.ru,
-    "Фраза строится по порядку: I → am → happy. В этой ситуации happy значит «рад / рада»; fine изменило бы смысл на «у меня всё хорошо».",
+    "happy означает «рад / рада» и говорит о радости; fine изменило бы смысл на «у меня всё хорошо».",
   );
   assert.equal(
     feedback[0]?.feedbackByLocale.uk,
-    "Фраза будується в такому порядку: I → am → happy. У цій ситуації happy означає «радий / рада»; fine змінило б зміст на «у мене все добре».",
+    "happy означає «радий / рада» й говорить про радість; fine змінило б зміст на «у мене все добре».",
   );
 });
 
@@ -113,6 +114,17 @@ test("factory-native preserves the complete S01 phrase and speed-match explanati
   assert.equal(projectedAnalysis?.meaningByLocale.ru, pair.analysisV1.meaningByLocale.ru);
   assert.equal(projectedAnalysis?.matchExplanationByLocale.uk, pair.analysisV1.matchExplanationByLocale.uk);
   assert.deepEqual(projectedAnalysis?.sourceRefs, pair.analysisV1.sourceRefs);
+});
+
+test("factory-native omits intentionally blank optional completion feedback without weakening locale validation", () => {
+  assert.deepEqual(
+    factoryNativeExplanationV1({ completionFeedbackByLocale: { ru: "", uk: "" } }),
+    {},
+  );
+  assert.throws(
+    () => factoryNativeExplanationV1({ completionFeedbackByLocale: { ru: "Текст", uk: "" } }),
+    /learning_v2_factory_native_locale_missing/u,
+  );
 });
 
 test("direct player reveals the authored ordered-token explanation only from the second wrong attempt", () => {
@@ -191,8 +203,25 @@ assert.equal(first.courseSessionId, "lesson-01:session:01");
 assert.equal(first.introChild.pages[0].bodyByLocale.ru.includes("`I`"), false);
 assert.equal(first.introChild.pages[0].bodyRunsByLocale?.ru.every((run) => run.semantic === "explanation"), true);
 assert.equal(first.learnerChild.interactions[0].interactionId, "lesson-01:session:01:i02");
-assert.equal(first.learnerChild.interactions[0].prompt, "Послушайте и выберите");
+assert.equal(first.learnerChild.interactions[0].prompt, /* зачем (18.10, класс А): имена сняты по правилу владельца «без имён, только роли» (16.10), Мира → начальница */ "Вставьте слово — начальница звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь");
 assert.equal(first.learnerChild.interactions[0].ordinal, 4);
+assert.equal(first.learnerChild.interactions.find((item) => item.interactionId === "lesson-01:session:01:i08")?.prompt, "Соедините пары");
+// The current S01 contains guided speaking; S02 retains the independent-check fixture.
+const independentRepeatSession = materializeFactoryNativeLearningV2SessionV1({ lessonOrdinal: 1, sessionOrdinal: 2, interfaceLocale: "ru" });
+assert.ok(independentRepeatSession);
+const firstIndependentRepeat = independentRepeatSession.learnerChild.interactions.find(
+  (interaction) => interaction.purpose === "independent_check"
+    && interaction.modePayload?.family === "scripted_repeat_compare",
+);
+assert.ok(firstIndependentRepeat?.modePayload?.family === "scripted_repeat_compare");
+assert.deepEqual(firstIndependentRepeat.modePayload.scriptedRepeatRevealPolicy, {
+  schemaVersion: "learning-v2-scripted-repeat-reveal-policy.v1",
+  revealAfter: "first_submitted_attempt",
+  answerExposedBeforeAttempt: false,
+  targetPhraseVisibleBeforeAttempt: false,
+  referenceAudioAvailableBeforeAttempt: false,
+  modelPlaybackAvailableBeforeAttempt: false,
+});
 assert.deepEqual(
   first.wordEncounterQueuesByInteractionId["lesson-01:session:01:i02"]?.map((entry) => entry.save.targetText),
   ["here"],
@@ -217,7 +246,7 @@ assert.equal(
   first.auxiliaryChild.entries[3].responseFeedbackById?.[
     "lesson-01:session:01:i02:r2"
   ]?.ru,
-  "Похоже звучит, но это «волосы». Слушайте гласную: here тянется «иэ».",
+  "Ready означает «готов / готова». Это подходит перед началом дела, но начальница спрашивает, добрались ли вы до офиса.",
 );
 const firstRun = createLearningV2CourseSessionDeviceRunV1({
   environment: "production",
@@ -260,9 +289,9 @@ const feedbackForDisplayedText = (text: string) => {
   return responseId ? firstAuxiliary.responseFeedbackById?.[responseId]?.ru : undefined;
 };
 assert.equal(feedbackForDisplayedText("I here."),
-  "Так можно по-русски, но не по-английски: потерялась скрепка am, и фраза рассыпалась.");
+  "Между `I` и `here` нужно `am`: `I am here`.");
 assert.equal(feedbackForDisplayedText("Am here."),
-  "Пропало I — непонятно, кто здесь. Скрепке нужен тот, кого она скрепляет.");
+  "Назовите себя словом `I`: `I am here`.");
 assert.equal(
   feedbackForDisplayedText("I am here."),
   undefined,
@@ -303,8 +332,8 @@ assert.equal(
   repairedMissingAuxiliary.auxiliaryChild.entries[0]?.responseFeedbackById?.[
     "lesson-01:session:08:intro1:r2"
   ]?.ru,
-  "После I нужно `am`: о себе говорим `I am`.",
-  "a release without auxiliary.json restores the reviewed explanation from the generated source manifest",
+  "Bored означает «Мне скучно», а вы волнуетесь.",
+  "the current release keeps authored feedback attached to its response",
 );
 
 const repairedPhraseScene = materializeFactoryNativeLearningV2SessionV1({
@@ -314,11 +343,11 @@ const repairedPhraseScene = materializeFactoryNativeLearningV2SessionV1({
 });
 assert.ok(repairedPhraseScene);
 const repairedPhrase = repairedPhraseScene.learnerChild.interactions.find((entry) =>
-  entry.interactionId.endsWith(":i02"));
+  entry.interactionId.endsWith(":i01"));
 assert.ok(repairedPhrase?.modePayload && repairedPhrase.modePayload.family === "phrase_builder");
 assert.equal(
   repairedPhrase.modePayload.localizedMeaning.ru,
-  "Женщина кутается в шарф и держит руки в карманах. Спутник спрашивает: «Ей холодно?» Соберите полный ответ «да».",
+  "Лена просит проверить список гостей выставки. Спросите, срочно ли это",
   "the reviewed source scene is retained as the phrase-builder explanation",
 );
 
@@ -335,21 +364,6 @@ assert.equal(
   unsupportedDisplayLocale.introChild.pages[0].titleByLocale.ru,
 );
 
-const withQueuedCards = availability.sessions
-  .map((row) => materializeFactoryNativeLearningV2SessionV1({
-    lessonOrdinal: row.lessonOrdinal,
-    sessionOrdinal: row.sessionOrdinal,
-    interfaceLocale: "uk",
-  }))
-  .find((session) => Object.values(session?.wordEncounterQueuesByInteractionId ?? {}).some((entries) => entries.length > 1));
-assert.ok(withQueuedCards, "at least one authored consecutive-card queue must survive");
-const queued = Object.values(withQueuedCards.wordEncounterQueuesByInteractionId).find((entries) => entries.length > 1);
-assert.ok(queued);
-assert.deepEqual(
-  queued.map((entry) => entry.orderWithinSession),
-  queued.map((_, index) => (queued[0]?.orderWithinSession ?? 1) + index),
-);
-
 const authoredEncounters: typeof first.wordEncounterQueuesByInteractionId[string][number][] = [];
 for (const row of availability.sessions) for (const interfaceLocale of ["ru", "uk"] as const) {
   const session = materializeFactoryNativeLearningV2SessionV1({
@@ -358,6 +372,21 @@ for (const row of availability.sessions) for (const interfaceLocale of ["ru", "u
     interfaceLocale,
   });
   assert.ok(session);
+  const sourceDirectory = path.resolve(__dirname, "../modules/learning-v2/content/factory_native/generated_release/en",
+    `l${String(row.lessonOrdinal).padStart(2, "0")}`, `s${String(row.sessionOrdinal).padStart(2, "0")}`);
+  const sourceLearner = JSON.parse(fs.readFileSync(path.join(sourceDirectory, interfaceLocale === "uk" ? "learner.uk.json" : "learner.json"), "utf8"));
+  const sourceAnswers = JSON.parse(fs.readFileSync(path.join(sourceDirectory, "answers.json"), "utf8"));
+  const sourceIntro = JSON.parse(fs.readFileSync(path.join(sourceDirectory, "intro.json"), "utf8"));
+  const sourcePrefix = sourceIntro.pages[0].pageId.replace(/:intro1$/u, "");
+  for (const projected of session.learnerChild.interactions) {
+    const sourceId = projected.interactionId.replace(session.courseSessionId, sourcePrefix);
+    const source = sourceLearner.interactions.find((item: { interactionId: string }) => item.interactionId === sourceId);
+    const answer = sourceAnswers.find((item: { interactionId: string }) => item.interactionId === sourceId);
+    assert.ok(source, `${projected.interactionId}: source interaction missing`);
+    assert.equal(projected.family, source.family, `${projected.interactionId}: task family changed`);
+    assert.equal(projected.prompt, projectLearnerVisiblePromptV1({ title: source.prompt, family: source.family,
+      correctText: answer?.correctText ?? "" }), `${projected.interactionId}/${interfaceLocale}: instruction belongs to another task`);
+  }
   assert.equal(session.learnerChild.interactions.length + 3, session.evaluatorCapsuleChild.entries.length);
   assert.deepEqual(
     session.evaluatorCapsuleChild.entries.map((entry) => entry.interactionId),
@@ -375,6 +404,13 @@ for (const row of availability.sessions) for (const interfaceLocale of ["ru", "u
       assert.ok(localizedFeedback.ru.trim());
       assert.ok(localizedFeedback.uk.trim());
     }
+  }
+  // Current cards may be separated by practice tasks. Validate every authored queue,
+  // including consecutive cards when present, without requiring an obsolete layout.
+  for (const queued of Object.values(session.wordEncounterQueuesByInteractionId)) {
+    assert.ok(queued.length > 0);
+    assert.deepEqual(queued.map((entry) => entry.orderWithinSession),
+      queued.map((_, index) => queued[0].orderWithinSession + index));
   }
   if (interfaceLocale === "ru") authoredEncounters.push(
     ...Object.values(session.wordEncounterQueuesByInteractionId).flat(),
@@ -421,8 +457,18 @@ for (const row of availability.sessions) for (const interfaceLocale of ["ru", "u
   }
 }
 
-const expectedEncounterCount = canonicalSessions.reduce((count, row) => {
-  const learner = JSON.parse(fs.readFileSync(row.learnerPath, "utf8")) as {
+// The factory runtime consumes Metro's generated_release assets, so the word-card
+// oracle must inspect those exact bytes rather than the separate authoring release
+// tree (which may contain sessions not yet regenerated into the app projection).
+const expectedEncounterCount = availability.sessions.reduce((count, row) => {
+  const learnerPath = path.resolve(
+    __dirname,
+    "../modules/learning-v2/content/factory_native/generated_release/en",
+    `l${String(row.lessonOrdinal).padStart(2, "0")}`,
+    `s${String(row.sessionOrdinal).padStart(2, "0")}`,
+    "learner.json",
+  );
+  const learner = JSON.parse(fs.readFileSync(learnerPath, "utf8")) as {
     interactions: { modePayload?: { isWordCard?: boolean } }[];
   };
   return count + learner.interactions.filter((item) => item.modePayload?.isWordCard === true).length;
@@ -433,14 +479,10 @@ const lexicalIds = (word: string) => new Set(authoredEncounters
   .filter((entry) => entry.save.targetText.toLocaleLowerCase("en") === word)
   .map((entry) => entry.lexicalItemId));
 assert.equal(lexicalIds("quiet").size, 1, "copy variants of one reviewed sense share unlock identity");
-for (const polysemous of ["busy", "full", "free", "late", "cold", "hot"])
-  assert.equal(lexicalIds(polysemous).size, 2, `${polysemous} keeps its two reviewed senses distinct`);
-const one = authoredEncounters.find((entry) =>
-  entry.save.targetText.toLocaleLowerCase("en") === "one");
-assert.equal(one?.save.meaningByLocale.ru,
-  "заменяет вещь, которую уже назвали. Вместо `Which bag?` говорят `Which one?`");
-assert.equal(one?.save.meaningByLocale.uk,
-  "заміняє річ, яку вже назвали. Замість `Which bag?` кажуть `Which one?`");
+assert.equal(lexicalIds("full").size, 1, "the single authored full sense keeps one unlock identity");
+for (const polysemous of ["busy", "free", "late", "cold", "hot"])
+  assert.equal(lexicalIds(polysemous).size, 1, `${polysemous} has one introduced sense in the current course`);
+assert.equal(lexicalIds("one").size, 0, "an absent legacy word card must not be invented");
 
 assert.equal(
   materializeFactoryNativeLearningV2SessionV1({

@@ -13,7 +13,9 @@
  * - ничего не удаляем, никакого --force; загрузка с ifGenerationMatch: 0 (сервер сам откажет, если объект появился);
  * - после загрузки — getMetadata: размер и sha256 обязаны совпасть.
  *
- * Запуск:
+ * --selection <runtime-reference-report.json> обязателен во всех режимах: только фактические
+ * ссылки всех открывающихся занятий, свежесть исходников проверяется перед сетью.
+ * Запуск (добавить --selection <report.json>):
  *   node scripts/publish_learning_v2_storage_audio_by_set.mjs            — сухой прогон: план, локальная сверка, объём
  *   node scripts/publish_learning_v2_storage_audio_by_set.mjs --apply [--limit N]  — выкладка (N — пробная партия)
  *   node scripts/publish_learning_v2_storage_audio_by_set.mjs --verify   — только проверка, что всё на месте
@@ -22,7 +24,7 @@
 import fs from "node:fs";
 import { applicationDefault, initializeApp } from "firebase-admin/app";
 import { getStorage } from "firebase-admin/storage";
-import { STORAGE_AUDIO_BUCKET, STORAGE_AUDIO_PACK, loadStorageAudioPlan, localSourceProblem } from "./learning_v2_storage_audio_plan.mjs";
+import { STORAGE_AUDIO_BUCKET, STORAGE_AUDIO_PACK, loadStorageAudioPlan, localSourceProblem, loadRuntimeAudioSelection, selectStorageAudioPlan } from "./learning_v2_storage_audio_plan.mjs";
 
 const LOG = "[V2-STORAGE-PUBLISH]";
 const ROOT = process.cwd();
@@ -36,7 +38,10 @@ const WORKERS = 8;
 if (apply && verifyOnly) { console.error(`${LOG} СТОП: выбери одно — --apply или --verify`); process.exit(1); }
 if (!(limit > 0)) { console.error(`${LOG} СТОП: --limit должен быть положительным, получено ${argValue("--limit")}`); process.exit(1); }
 
-const plan = loadStorageAudioPlan(ROOT);
+const candidates = loadStorageAudioPlan(ROOT);
+const required = loadRuntimeAudioSelection(ROOT, argValue("--selection"));
+const plan = selectStorageAudioPlan(candidates, required);
+console.log(`${LOG} candidates=${candidates.length} referenced=${plan.length} excluded=${candidates.length - plan.length}`);
 const totalBytes = plan.reduce((sum, entry) => sum + entry.byteSize, 0);
 console.log(`${LOG} режим=${apply ? "apply" : verifyOnly ? "verify" : "dry-run"} pack=${STORAGE_AUDIO_PACK} записей=${plan.length} (${(totalBytes / 1048576).toFixed(2)} МБ) limit=${limit}`);
 

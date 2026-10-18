@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-16:intro1:r2": {
-          "ru": "Один руководитель: `Does the manager`.",
-          "uk": "Один керівник: `Does the manager`."
+          "ru": "Фермер один: нужно Does.",
+          "uk": "Фермер один: потрібно Does."
         },
         "en:lesson-07:session-16:intro1:r3": {
-          "ru": "После `Does` нужно `work`.",
-          "uk": "Після `Does` потрібне `work`."
+          "ru": "После Does нужно live, без s.",
+          "uk": "Після Does потрібно live, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-16:intro2:r2": {
-          "ru": "Один принтер: `Does the printer`.",
-          "uk": "Один принтер: `Does the printer`."
+          "ru": "С you нужно Do.",
+          "uk": "З you потрібно Do."
         },
         "en:lesson-07:session-16:intro2:r3": {
-          "ru": "После `Does` нужно `work`.",
-          "uk": "Після `Does` потрібне `work`."
+          "ru": "После Do нужно have, не has.",
+          "uk": "Після Do потрібно have, не has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-16:intro3:r2": {
-          "ru": "Один экран: `There is no screen`.",
-          "uk": "Один екран: `There is no screen`."
+          "ru": "С they нужно Do.",
+          "uk": "З they потрібно Do."
         },
         "en:lesson-07:session-16:intro3:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "После Do нужно feed, без s.",
+          "uk": "Після Do потрібно feed, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bb4c0d681e690481514a59bf58c562fe40ce2e0c52cfd2af3c03c3b678904444"
+  "auxiliaryFingerprint": "8f3ca365279c3ddb4b6542f04606139d93df2a641564d1337eb98d0b37975a51"
 }

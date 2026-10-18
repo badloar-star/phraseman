@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-17:word:gossip",
+    "correctText": "gossip",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-17:i01",
-    "correctText": "I don’t smoke.",
+    "correctText": "I don't gossip.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i02",
-    "correctText": "smoke",
+    "correctText": "gossip",
     "correctResponseId": "en:lesson-07:session-17:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-17:i03",
-    "correctText": "don’t",
+    "correctText": "don't",
     "correctResponseId": "en:lesson-07:session-17:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-17:i04",
-    "correctText": "en:lesson-07:session-17:i04:p1=smoke\nen:lesson-07:session-17:i04:p2=drive\nen:lesson-07:session-17:i04:p3=jacket\nen:lesson-07:session-17:i04:p4=books",
+    "correctText": "en:lesson-07:session-17:i04:p1=gossip\nen:lesson-07:session-17:i04:p2=work\nen:lesson-07:session-17:i04:p3=cook\nen:lesson-07:session-17:i04:p4=jacket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:word:brag",
+    "correctText": "brag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i05",
-    "correctText": "I don’t smoke.",
+    "correctText": "I don't brag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:word:horn",
+    "correctText": "horn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i06",
-    "correctText": "I don’t drive.",
+    "correctText": "The horn doesn't work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i07",
-    "correctText": "He doesn’t work here.",
+    "correctText": "I don't brag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i08",
-    "correctText": "work",
+    "correctText": "doesn't",
     "correctResponseId": "en:lesson-07:session-17:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-17:i09",
-    "correctText": "I don’t smoke.",
+    "correctText": "I don't gossip.",
     "correctResponseId": "en:lesson-07:session-17:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-17:i10",
-    "correctText": "en:lesson-07:session-17:i10:p1=manager\nen:lesson-07:session-17:i10:p2=smoke\nen:lesson-07:session-17:i10:p3=drive\nen:lesson-07:session-17:i10:p4=jacket",
+    "correctText": "en:lesson-07:session-17:i10:p1=drive\nen:lesson-07:session-17:i10:p2=horn\nen:lesson-07:session-17:i10:p3=brag\nen:lesson-07:session-17:i10:p4=gossip",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i11",
-    "correctText": "He doesn’t work here.",
+    "correctText": "The horn doesn't work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:word:secret",
+    "correctText": "secret",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i12",
-    "correctText": "Do you have a jacket?",
+    "correctText": "Do you have a secret?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i13",
-    "correctText": "The books are here.",
+    "correctText": "I don't have secrets.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i14",
-    "correctText": "doesn’t",
+    "correctText": "Do",
     "correctResponseId": "en:lesson-07:session-17:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-17:i15",
-    "correctText": "I don’t drive.",
+    "correctText": "Do you have a secret?",
     "correctResponseId": "en:lesson-07:session-17:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-17:i16",
-    "correctText": "en:lesson-07:session-17:i16:p1=smoke\nen:lesson-07:session-17:i16:p2=books\nen:lesson-07:session-17:i16:p3=manager\nen:lesson-07:session-17:i16:p4=drive",
+    "correctText": "en:lesson-07:session-17:i16:p1=brag\nen:lesson-07:session-17:i16:p2=secret\nen:lesson-07:session-17:i16:p3=gossip\nen:lesson-07:session-17:i16:p4=horn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-17:i17",
-    "correctText": "Tom doesn’t drive.",
+    "correctText": "He doesn't gossip.",
     "correctResponseId": null
   }
 ]

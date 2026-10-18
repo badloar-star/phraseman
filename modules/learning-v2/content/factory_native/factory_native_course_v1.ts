@@ -897,16 +897,18 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     const answer = record(value);
     return [String(answer.interactionId), answer] as const;
   }));
-  const titleByOrdinalByLocale: ReadonlyMap<
+  // Authored heading numbers describe the current source order, not the numeric
+  // suffix of a stable interaction ID. Bind before omitting cards/disabled tasks.
+  const titleByInteractionIdByLocale: ReadonlyMap<
     LearningV2InterfaceLocale,
-    ReadonlyMap<number, string>
+    ReadonlyMap<string, string>
   > = new Map(LEARNING_V2_INTERFACE_LOCALES.map((locale): readonly [
     LearningV2InterfaceLocale,
-    ReadonlyMap<number, string>,
+    ReadonlyMap<string, string>,
   ] => [
     locale,
     new Map(row.practiceTitlesByAuthoredLocale[FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[locale]]
-      .map((entry): readonly [number, string] => [entry.ordinal, entry.title])),
+      .map((entry): readonly [string, string] => [String(record(rawInteractions[entry.ordinal - 1]).interactionId), entry.title])),
   ]));
   const interactions: LearningV2CourseSessionPracticeInteractionV1[] = [];
   const practiceSemantics = new Map<string, LearningV2FactoryNativePracticeSemanticV1>();
@@ -949,12 +951,11 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
       })));
     }
     const interactionId = remapId(oldInteractionId, oldPrefix, courseSessionId);
-    const ordinal = Number(String(oldInteractionId).match(/:i(\d+)$/u)?.[1]);
-    const title = titleByOrdinalByLocale.get(authoredLocale)?.get(ordinal) ?? String(raw.prompt);
+    const title = titleByInteractionIdByLocale.get(authoredLocale)?.get(oldInteractionId) ?? String(raw.prompt);
     const prompt = learnerPrompt(title, String(raw.family), String(answer.correctText ?? ""));
     const fallbackLocalizedScene = localized(Object.fromEntries(
       LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, learnerPrompt(
-        titleByOrdinalByLocale.get(locale)?.get(ordinal) ?? String(raw.prompt),
+        titleByInteractionIdByLocale.get(locale)?.get(oldInteractionId) ?? String(raw.prompt),
         String(raw.family),
         String(answer.correctText ?? ""),
       )]),
@@ -1106,8 +1107,8 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
       acceptedResponses,
     });
     const promptByLocale = localized({
-      ru: row.practiceTitlesByAuthoredLocale.ru.find((entry) => entry.ordinal === Number(oldId.match(/:i(\d+)$/u)?.[1]))?.title ?? interaction.prompt,
-      uk: row.practiceTitlesByAuthoredLocale.uk.find((entry) => entry.ordinal === Number(oldId.match(/:i(\d+)$/u)?.[1]))?.title ?? interaction.prompt,
+      ru: titleByInteractionIdByLocale.get("ru")?.get(oldId) ?? interaction.prompt,
+      uk: titleByInteractionIdByLocale.get("uk")?.get(oldId) ?? interaction.prompt,
     });
     const saveProjection = practiceSaveProjection(
       interaction,

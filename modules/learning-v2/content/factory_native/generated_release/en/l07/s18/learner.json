@@ -4,30 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-18:i01",
+      "interactionId": "en:lesson-07:session-18:word:go",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — go",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:word:go:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — go",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:word:go:audio",
+          "transcript": "go"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-18:word:go:r1",
+            "targetText": "go",
+            "meaningByLocale": {
+              "ru": "ходить, идти. I go there. — «Я туда хожу». Здесь говорим о посещении места.",
+              "uk": "ходити, йти. I go there. — «Я туди ходжу». Тут говоримо про відвідування місця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go",
+          "definitionByLocale": {
+            "ru": "ходить, идти. I go there. — «Я туда хожу». Здесь говорим о посещении места.",
+            "uk": "ходити, йти. I go there. — «Я туди ходжу». Тут говоримо про відвідування місця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Объясните «Я не играю в азартные игры»",
+      "prompt": "Объясните коллеге: «Я туда не хожу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Объясните «Я не играю в азартные игры»",
+      "accessibilityLabel": "Объясните коллеге: «Я туда не хожу»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I don’t gamble.",
+        "targetPhrase": "I don't go there.",
         "localizedMeaning": {
-          "ru": "Объясните «Я не играю в азартные игры»",
-          "uk": "Поясніть «Я не граю в азартні ігри»"
+          "ru": "Объясните коллеге: «Я туда не хожу»",
+          "uk": "Поясніть колезі: «Я туди не ходжу»"
         },
         "orderedTokens": [
           "I",
-          "don’t",
-          "gamble"
+          "don't",
+          "go",
+          "there"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Объясните коллеге: «Я туда не хожу»",
+            "feedbackByLocale": {
+              "ru": "после I нужно don't.",
+              "uk": "після I потрібно don't."
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-18:i02:r1",
-          "text": "gamble"
+          "text": "go"
         },
         {
           "responseId": "en:lesson-07:session-18:i02:r2",
-          "text": "smile"
+          "text": "cook"
         },
         {
           "responseId": "en:lesson-07:session-18:i02:r3",
-          "text": "gloves"
+          "text": "work"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-18:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i02:audio",
-          "transcript": "gamble"
+          "transcript": "go"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-18:i02:r1",
-            "targetText": "gamble",
+            "targetText": "go",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-18:i02:r2",
-            "targetText": "smile",
+            "targetText": "cook",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-18:i02:r3",
-            "targetText": "gloves",
+            "targetText": "work",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +146,19 @@
           {
             "responseId": "en:lesson-07:session-18:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `gamble`, а в этом варианте — `smile`.",
-              "uk": "У записі перше слово — `gamble`, а в цьому варіанті — `smile`."
+              "ru": "В записи `go`, а здесь `cook`.",
+              "uk": "У записі `go`, а тут `cook`."
             }
           },
           {
             "responseId": "en:lesson-07:session-18:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `gamble`, а в этом варианте — `gloves`.",
-              "uk": "У записі перше слово — `gamble`, а в цьому варіанті — `gloves`."
+              "ru": "В записи `go`, а здесь `work`.",
+              "uk": "У записі `go`, а тут `work`."
             }
           }
         ],
@@ -113,19 +169,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я не играю в азартные игры»",
+      "prompt": "Скажите «Я туда не хожу». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-18:i03:r1",
-          "text": "don’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-18:i03:r2",
-          "text": "doesn’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-18:i03:r3",
@@ -134,46 +190,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не играю в азартные игры»",
+      "accessibilityLabel": "Скажите «Я туда не хожу». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не играю в азартные игры»",
-          "uk": "Скажіть «Я не граю в азартні ігри»"
+          "ru": "Скажите «Я туда не хожу». Выберите слово",
+          "uk": "Скажіть «Я туди не ходжу». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ gamble.",
+        "gappedTargetPhrase": "I ___ go there.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-18:i03:r1",
-            "text": "don’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-18:i03:r2",
-            "text": "doesn’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-18:i03:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Скажите «Я не играю в азартные игры»",
+        "testedDimension": "Скажите «Я туда не хожу». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-18:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я не играю в азартные игры»",
+            "testedDimension": "Скажите «Я туда не хожу». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `don’t`.",
-              "uk": "Після `I` потрібне `don’t`."
+              "ru": "С I нужно don't.",
+              "uk": "З I потрібно don't."
             }
           },
           {
             "responseId": "en:lesson-07:session-18:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я не играю в азартные игры»",
+            "testedDimension": "Скажите «Я туда не хожу». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия нужно `don’t`.",
-              "uk": "Для заперечення дії потрібне `don’t`."
+              "ru": "В отрицании действия с I нужно don't.",
+              "uk": "У запереченні дії з I потрібно don't."
             }
           }
         ]
@@ -182,7 +238,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +252,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-18:i04:p1",
-            "target": "gamble",
+            "target": "go",
             "meaningByLocale": {
-              "ru": "играть в азартные игры",
-              "uk": "грати в азартні ігри"
+              "ru": "ходить, идти",
+              "uk": "ходити, йти"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i04:p2",
-            "target": "smile",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "улыбаться",
-              "uk": "усміхатися"
+              "ru": "работать",
+              "uk": "працювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i04:p3",
-            "target": "gloves",
+            "target": "cook",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "готовить",
+              "uk": "готувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i04:p4",
-            "target": "boxes",
+            "target": "drive",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "водить машину",
+              "uk": "водити машину"
             }
           }
         ],
         "leftColumn": [
-          "gamble",
-          "smile",
-          "gloves",
-          "boxes"
+          "go",
+          "work",
+          "cook",
+          "drive"
         ],
         "rightColumn": [
-          "играть в азартные игры",
-          "улыбаться",
-          "перчатки",
-          "коробки"
+          "ходить, идти",
+          "работать",
+          "готовить",
+          "водить машину"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +311,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,50 +326,118 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i05:audio",
-          "transcript": "I don’t gamble."
+          "transcript": "I don't go there."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I don’t gamble.",
+        "hiddenTargetPhrase": "I don't go there.",
         "orderedTokens": [
           "I",
-          "don’t",
-          "gamble"
+          "don't",
+          "go",
+          "there"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "после I нужно don't.",
+              "uk": "після I потрібно don't."
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:word:money",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — money",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:word:money:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — money",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:word:money:audio",
+          "transcript": "money"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-18:word:money:r1",
+            "targetText": "money",
+            "meaningByLocale": {
+              "ru": "деньги. I have money. — «У меня есть деньги». Money не считают как отдельные предметы: в этой фразе a не нужно.",
+              "uk": "гроші. I have money. — «У мене є гроші». Money не рахують як окремі предмети: у цій фразі a не потрібно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "money",
+          "definitionByLocale": {
+            "ru": "деньги. I have money. — «У меня есть деньги». Money не считают как отдельные предметы: в этой фразе a не нужно.",
+            "uk": "гроші. I have money. — «У мене є гроші». Money не рахують як окремі предмети: у цій фразі a не потрібно."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-18:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Предупредите «Устройство не работает»",
+      "prompt": "Объясните другу, почему покупка подождёт: «У меня нет денег»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Предупредите «Устройство не работает»",
+      "accessibilityLabel": "Объясните другу, почему покупка подождёт: «У меня нет денег»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The machine doesn’t work.",
+        "targetPhrase": "I don't have money.",
         "localizedMeaning": {
-          "ru": "Предупредите «Устройство не работает»",
-          "uk": "Попередьте «Пристрій не працює»"
+          "ru": "Объясните другу, почему покупка подождёт: «У меня нет денег»",
+          "uk": "Поясніть другу, чому покупка зачекає: «У мене немає грошей»"
         },
         "orderedTokens": [
-          "The",
-          "machine",
-          "doesn’t",
-          "work"
+          "I",
+          "don't",
+          "have",
+          "money"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Объясните другу, почему покупка подождёт: «У меня нет денег»",
+            "feedbackByLocale": {
+              "ru": "после don't нужно have.",
+              "uk": "після don't потрібно have."
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -322,26 +446,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-18:word:house",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — house",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:word:house:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — house",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:word:house:audio",
+          "transcript": "house"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-18:word:house:r1",
+            "targetText": "house",
+            "meaningByLocale": {
+              "ru": "дом. The house is small. — «Дом маленький». Здесь house — отдельное жилое здание, не квартира.",
+              "uk": "будинок. The house is small. — «Будинок маленький». Тут house — окрема житлова будівля, не квартира."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "house",
+          "definitionByLocale": {
+            "ru": "дом. The house is small. — «Дом маленький». Здесь house — отдельное жилое здание, не квартира.",
+            "uk": "будинок. The house is small. — «Будинок маленький». Тут house — окрема житлова будівля, не квартира."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-18:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Здесь нет перчаток»",
+      "prompt": "Исправьте предположение о жилье брата: «У него нет дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Здесь нет перчаток»",
+      "accessibilityLabel": "Исправьте предположение о жилье брата: «У него нет дома»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i07:audio",
-          "transcript": "There are no gloves here."
+          "transcript": "He doesn't have a house."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are no gloves here.",
+        "targetPhrase": "He doesn't have a house.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,67 +523,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сообщите «Устройство не работает»",
+      "prompt": "Скажите «У меня нет денег». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-18:i08:r1",
-          "text": "work"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-07:session-18:i08:r2",
-          "text": "works"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-07:session-18:i08:r3",
-          "text": "is work"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите «Устройство не работает»",
+      "accessibilityLabel": "Скажите «У меня нет денег». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Устройство не работает»",
-          "uk": "Повідомте «Пристрій не працює»"
+          "ru": "Скажите «У меня нет денег». Выберите слово",
+          "uk": "Скажіть «У мене немає грошей». Виберіть слово"
         },
-        "gappedTargetPhrase": "The machine doesn’t ___ .",
+        "gappedTargetPhrase": "I don't ___ money.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-18:i08:r1",
-            "text": "work"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-07:session-18:i08:r2",
-            "text": "works"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-07:session-18:i08:r3",
-            "text": "is work"
+            "text": "am"
           }
         ],
-        "testedDimension": "Сообщите «Устройство не работает»",
+        "testedDimension": "Скажите «У меня нет денег». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Сообщите «Устройство не работает»",
+            "testedDimension": "Скажите «У меня нет денег». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `doesn’t` нужно `work`.",
-              "uk": "Після `doesn’t` потрібне `work`."
+              "ru": "После don't нужно have.",
+              "uk": "Після don't потрібно have."
             }
           },
           {
             "responseId": "en:lesson-07:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Сообщите «Устройство не работает»",
+            "testedDimension": "Скажите «У меня нет денег». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `doesn’t work`, без `is`.",
-              "uk": "Потрібно `doesn’t work`, без `is`."
+              "ru": "Здесь говорим о наличии денег: have.",
+              "uk": "Тут говоримо про наявність грошей: have."
             }
           }
         ]
@@ -425,51 +592,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чего не делает собеседник",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-18:i09:r1",
-          "text": "I don’t gamble."
+          "text": "I don't have money."
         },
         {
           "responseId": "en:lesson-07:session-18:i09:r2",
-          "text": "I don’t smoke."
+          "text": "I have money."
         },
         {
           "responseId": "en:lesson-07:session-18:i09:r3",
-          "text": "I don’t drive."
+          "text": "He doesn't have money."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-18:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чего не делает собеседник",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i09:audio",
-          "transcript": "I don’t gamble."
+          "transcript": "I don't have money."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-18:i09:r1",
-            "targetText": "I don’t gamble.",
+            "targetText": "I don't have money.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-18:i09:r2",
-            "targetText": "I don’t smoke.",
+            "targetText": "I have money.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-18:i09:r3",
-            "targetText": "I don’t drive.",
+            "targetText": "He doesn't have money.",
             "meaningByLocale": null
           }
         ],
@@ -478,19 +645,19 @@
           {
             "responseId": "en:lesson-07:session-18:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чего не делает собеседник",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `gamble`, а в этом варианте — `smoke`.",
-              "uk": "У записі останнє слово — `gamble`, а в цьому варіанті — `smoke`."
+              "ru": "В записи `I don't have money.`, а здесь `I have money.`.",
+              "uk": "У записі `I don't have money.`, а тут `I have money.`."
             }
           },
           {
             "responseId": "en:lesson-07:session-18:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чего не делает собеседник",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `gamble`, а в этом варианте — `drive`.",
-              "uk": "У записі останнє слово — `gamble`, а в цьому варіанті — `drive`."
+              "ru": "В записи `I don't have money.`, а здесь `He doesn't have money.`.",
+              "uk": "У записі `I don't have money.`, а тут `He doesn't have money.`."
             }
           }
         ],
@@ -501,7 +668,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -515,48 +682,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-18:i10:p1",
-            "target": "machine",
+            "target": "go",
             "meaningByLocale": {
-              "ru": "устройство",
-              "uk": "пристрій"
+              "ru": "ходить, идти",
+              "uk": "ходити, йти"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i10:p2",
-            "target": "gamble",
+            "target": "money",
             "meaningByLocale": {
-              "ru": "играть в азартные игры",
-              "uk": "грати в азартні ігри"
+              "ru": "деньги",
+              "uk": "гроші"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i10:p3",
-            "target": "boxes",
+            "target": "house",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "дом",
+              "uk": "будинок"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i10:p4",
-            "target": "smile",
+            "target": "cook",
             "meaningByLocale": {
-              "ru": "улыбаться",
-              "uk": "усміхатися"
+              "ru": "готовить",
+              "uk": "готувати"
             }
           }
         ],
         "leftColumn": [
-          "machine",
-          "gamble",
-          "boxes",
-          "smile"
+          "go",
+          "money",
+          "house",
+          "cook"
         ],
         "rightColumn": [
-          "устройство",
-          "играть в азартные игры",
-          "коробки",
-          "улыбаться"
+          "ходить, идти",
+          "деньги",
+          "дом",
+          "готовить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,8 +741,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -589,18 +756,31 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i11:audio",
-          "transcript": "The machine doesn’t work."
+          "transcript": "He doesn't have a house."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The machine doesn’t work.",
+        "hiddenTargetPhrase": "He doesn't have a house.",
         "orderedTokens": [
-          "The",
-          "machine",
-          "doesn’t",
-          "work"
+          "He",
+          "doesn't",
+          "have",
+          "a",
+          "house"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "после doesn't нужно have.",
+              "uk": "після doesn't потрібно have."
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -609,31 +789,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-18:word:family",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — family",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:word:family:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — family",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:word:family:audio",
+          "transcript": "family"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-18:word:family:r1",
+            "targetText": "family",
+            "meaningByLocale": {
+              "ru": "семья. My family is here. — «Моя семья здесь». Люди, связанные родственными отношениями.",
+              "uk": "сім’я. My family is here. — «Моя сім’я тут». Люди, пов’язані родинними стосунками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "family",
+          "definitionByLocale": {
+            "ru": "семья. My family is here. — «Моя семья здесь». Люди, связанные родственными отношениями.",
+            "uk": "сім’я. My family is here. — «Моя сім’я тут». Люди, пов’язані родинними стосунками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-18:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед выходом спросите друга «У тебя есть перчатки?»",
+      "prompt": "Вы встречаете гостей вместе с родными. Скажите: «Моя семья здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед выходом спросите друга «У тебя есть перчатки?»",
+      "accessibilityLabel": "Вы встречаете гостей вместе с родными. Скажите: «Моя семья здесь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have gloves?",
+        "targetPhrase": "My family is here.",
         "localizedMeaning": {
-          "ru": "Перед выходом спросите друга «У тебя есть перчатки?»",
-          "uk": "Перед виходом запитайте друга «У тебе є рукавички?»"
+          "ru": "Вы встречаете гостей вместе с родными. Скажите: «Моя семья здесь»",
+          "uk": "Ви зустрічаєте гостей разом із рідними. Скажіть: «Моя сім’я тут»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "gloves"
+          "My",
+          "family",
+          "is",
+          "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы встречаете гостей вместе с родными. Скажите: «Моя семья здесь»",
+            "feedbackByLocale": {
+              "ru": "с My family нужно is.",
+              "uk": "з My family потрібно is."
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -643,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажите коллеге «Коробки здесь»",
+      "prompt": "Вы больше не посещаете магазин напротив. Скажите: «Я туда не хожу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-18:i13:audio"
       ],
-      "accessibilityLabel": "Покажите коллеге «Коробки здесь»",
+      "accessibilityLabel": "Вы больше не посещаете магазин напротив. Скажите: «Я туда не хожу»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i13:audio",
-          "transcript": "The boxes are here."
+          "transcript": "I don't go there."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The boxes are here.",
+        "targetPhrase": "I don't go there.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -676,67 +911,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Здесь нет перчаток»",
+      "prompt": "Скажите «У него нет дома». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-18:i14:r1",
-          "text": "are"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-18:i14:r2",
-          "text": "is"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-18:i14:r3",
-          "text": "am"
+          "text": "isn't"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Здесь нет перчаток»",
+      "accessibilityLabel": "Скажите «У него нет дома». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Здесь нет перчаток»",
-          "uk": "Скажіть «Тут немає рукавичок»"
+          "ru": "Скажите «У него нет дома». Выберите слово",
+          "uk": "Скажіть «У нього немає будинку». Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no gloves here.",
+        "gappedTargetPhrase": "He ___ have a house.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-18:i14:r1",
-            "text": "are"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-18:i14:r2",
-            "text": "is"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-18:i14:r3",
-            "text": "am"
+            "text": "isn't"
           }
         ],
-        "testedDimension": "Скажите «Здесь нет перчаток»",
+        "testedDimension": "Скажите «У него нет дома». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-18:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Здесь нет перчаток»",
+            "testedDimension": "Скажите «У него нет дома». Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Gloves` — множественное число: `are`.",
-              "uk": "`Gloves` — множина: `are`."
+              "ru": "С he нужно doesn't.",
+              "uk": "З he потрібно doesn't."
             }
           },
           {
             "responseId": "en:lesson-07:session-18:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Здесь нет перчаток»",
+            "testedDimension": "Скажите «У него нет дома». Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `gloves` нужно `are`.",
-              "uk": "З `gloves` потрібне `are`."
+              "ru": "Перед have в этом отрицании нужно doesn't.",
+              "uk": "Перед have у цьому запереченні потрібно doesn't."
             }
           }
         ]
@@ -745,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где нет перчаток",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-18:i15:r1",
-          "text": "There are no gloves here."
+          "text": "My family is here."
         },
         {
           "responseId": "en:lesson-07:session-18:i15:r2",
-          "text": "There are no gloves there."
+          "text": "My family is there."
         },
         {
           "responseId": "en:lesson-07:session-18:i15:r3",
-          "text": "There are no gloves upstairs."
+          "text": "My family is small."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-18:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где нет перчаток",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i15:audio",
-          "transcript": "There are no gloves here."
+          "transcript": "My family is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-18:i15:r1",
-            "targetText": "There are no gloves here.",
+            "targetText": "My family is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-18:i15:r2",
-            "targetText": "There are no gloves there.",
+            "targetText": "My family is there.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-18:i15:r3",
-            "targetText": "There are no gloves upstairs.",
+            "targetText": "My family is small.",
             "meaningByLocale": null
           }
         ],
@@ -798,19 +1033,19 @@
           {
             "responseId": "en:lesson-07:session-18:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где нет перчаток",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи `My family is here.`, а здесь `My family is there.`.",
+              "uk": "У записі `My family is here.`, а тут `My family is there.`."
             }
           },
           {
             "responseId": "en:lesson-07:session-18:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где нет перчаток",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи `My family is here.`, а здесь `My family is small.`.",
+              "uk": "У записі `My family is here.`, а тут `My family is small.`."
             }
           }
         ],
@@ -821,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -835,48 +1070,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-18:i16:p1",
-            "target": "gloves",
+            "target": "family",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "семья",
+              "uk": "сім’я"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i16:p2",
-            "target": "machine",
+            "target": "house",
             "meaningByLocale": {
-              "ru": "устройство",
-              "uk": "пристрій"
+              "ru": "дом",
+              "uk": "будинок"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i16:p3",
-            "target": "gamble",
+            "target": "money",
             "meaningByLocale": {
-              "ru": "играть в азартные игры",
-              "uk": "грати в азартні ігри"
+              "ru": "деньги",
+              "uk": "гроші"
             }
           },
           {
             "pairId": "en:lesson-07:session-18:i16:p4",
-            "target": "boxes",
+            "target": "go",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "ходить, идти",
+              "uk": "ходити, йти"
             }
           }
         ],
         "leftColumn": [
-          "gloves",
-          "machine",
-          "gamble",
-          "boxes"
+          "family",
+          "house",
+          "money",
+          "go"
         ],
         "rightColumn": [
-          "перчатки",
-          "устройство",
-          "играть в азартные игры",
-          "коробки"
+          "семья",
+          "дом",
+          "деньги",
+          "ходить, идти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -894,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-18:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг хочет пригласить Тома играть на деньги. Объясните «Том не играет в азартные игры»",
+      "prompt": "Друг предлагает вашему брату дорогую покупку, но платить ему нечем. Скажите: «У него нет денег»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-18:i17:audio"
       ],
-      "accessibilityLabel": "Друг хочет пригласить Тома играть на деньги. Объясните «Том не играет в азартные игры»",
+      "accessibilityLabel": "Друг предлагает вашему брату дорогую покупку, но платить ему нечем. Скажите: «У него нет денег»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-18:i17:audio",
-          "transcript": "Tom doesn’t gamble."
+          "transcript": "He doesn't have money."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom doesn’t gamble.",
+        "targetPhrase": "He doesn't have money.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -934,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d75c8df929c8ecb26b9b462e80e28c952a01ad95c258c47d2887b73194ec392e"
+  "learnerFingerprint": "4e74d54e165a0a41d86349935b8a2ed2adc54a18708a2354fea2c09baac4e833"
 }

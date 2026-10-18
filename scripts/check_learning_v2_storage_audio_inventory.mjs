@@ -13,11 +13,14 @@
  * (app/learning_v2_factory_silent_audio_v1.json) — тот же набор, что строит рантайм learning_v2_factory_production_audio_v1.
  * Путь объекта — как у клиента: learning-v2/voice-audio/<pack>/<hash transcript>/<hash voice>/<contentHash>.mp3.
  *
- * Запуск: node scripts/check_learning_v2_storage_audio_inventory.mjs [--write]
+ * --selection <runtime-reference-report.json> обязателен во всех режимах: только фактические
+ * ссылки всех открывающихся занятий, свежесть исходников проверяется перед сетью.
+ * Запуск (добавить --selection <report.json>): node scripts/check_learning_v2_storage_audio_inventory.mjs [--write]
  *   без --write — только печать итога по урокам; с --write — обновить снимок.
  * Нужны учётные данные Google по умолчанию (gcloud auth application-default login). Логи: [V2-STORAGE-CENSUS].
  */
 import fs from "node:fs";
+import { loadRuntimeAudioSelection } from "./learning_v2_storage_audio_plan.mjs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { applicationDefault, initializeApp } from "firebase-admin/app";
@@ -44,6 +47,10 @@ const singleVoice = fs.readFileSync(path.join(ROOT, "app/learning_v2_factory_sin
 for (const match of singleVoice.matchAll(/transcript: ("(?:[^"\\]|\\.)*"), voiceId: "([a-z]+)" as const, contentHash: "([0-9a-f]{64})", byteSize: (\d+)/gu)) {
   add({ transcript: JSON.parse(match[1]), voiceId: match[2], contentHash: match[3], byteSize: match[4] }, "single-voice");
 }
+const selectionArg = process.argv.indexOf("--selection");
+const required = loadRuntimeAudioSelection(ROOT, selectionArg >= 0 ? process.argv[selectionArg + 1] : undefined);
+for (const hash of required) if (!candidates.has(hash)) throw new Error("Required audio absent from local table: " + hash);
+for (const hash of candidates.keys()) if (!required.has(hash)) candidates.delete(hash);
 // Урок — по первому появлению записи в таблице голосов (ключ lesson/session/kind/index); для итога по урокам.
 const voiceTable = JSON.parse(fs.readFileSync(path.join(ROOT, "content/learning-v2-course/audio/en/single-voice-v1.json"), "utf8"));
 const lessonOf = new Map();

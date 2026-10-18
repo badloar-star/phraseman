@@ -23,19 +23,12 @@ const check = process.argv.includes("--check");
 const LAUNCH_SEED_SESSION_COUNT = 5;
 
 /**
- * Сколько занятий урока 1 едут озвученными в сборке = открытый потолок.
- *
- * зачем (координатор 15.10, урок 1 целиком в сборку 16.10): сети у озвучки нет (D47/PM-205), поэтому всё, чего
- * нет в этом наборе, звучало голосом телефона — s06–s15 уже в релизе 15.10. Число не зашито: берётся из потолка,
- * который сторож learning_v2_bundle_availability генерирует по реально собранным занятиям. Поднялся потолок —
- * перегенерируй набор, `--check` упадёт, пока этого не сделали. Всё, что выше потолка, в сборку не едет
- * (`.easignore` пропускает только эту папку). Посев при запуске по-прежнему только первых
- * LAUNCH_SEED_SESSION_COUNT занятий: остальное занятие готовит само по запросу, без лишней работы на старте.
+ * Решение владельца 18.10: в сборке только первые пять занятий.
+ * Остальной звук берётся из проверенного кэша или Storage. Перед сокращением
+ * набора все 4649 актуальных записей выложены и сверены по SHA256 и размеру.
+ * Число доступных занятий больше не увеличивает размер набора сборки.
  */
-const availabilityPath = path.join(root, "app/learning_v2_bundle_availability_v1.generated.ts");
-const ceilingMatch = /LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = (\d+);/u.exec(fs.readFileSync(availabilityPath, "utf8"));
-if (!ceilingMatch) throw new Error(`learning_v2_bootstrap_audio_ceiling_unreadable:${availabilityPath}`);
-const BOOTSTRAP_SESSION_COUNT = Math.max(LAUNCH_SEED_SESSION_COUNT, Number(ceilingMatch[1]));
+const BOOTSTRAP_SESSION_COUNT = LAUNCH_SEED_SESSION_COUNT;
 
 const contentRoot = path.join(root, "modules/learning-v2/content/factory_native/generated_release/en");
 const singleVoiceModulePath = path.join(root, "app/learning_v2_factory_single_voice_v1.generated.ts");

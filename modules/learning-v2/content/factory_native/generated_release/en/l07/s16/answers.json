@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-07:session-16:word:farmer",
+    "correctText": "farmer",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-16:i01",
-    "correctText": "Does the manager work here?",
+    "correctText": "Does the farmer live here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:word:parrot",
+    "correctText": "parrot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i02",
-    "correctText": "Does the printer work?",
+    "correctText": "Do you have a parrot?",
     "correctResponseId": "en:lesson-07:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:word:goldfish",
+    "correctText": "goldfish",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i03",
@@ -16,72 +31,77 @@
   },
   {
     "interactionId": "en:lesson-07:session-16:i04",
-    "correctText": "en:lesson-07:session-16:i04:p1=manager\nen:lesson-07:session-16:i04:p2=machine\nen:lesson-07:session-16:i04:p3=printer\nen:lesson-07:session-16:i04:p4=screen",
+    "correctText": "en:lesson-07:session-16:i04:p1=farmer\nen:lesson-07:session-16:i04:p2=parrot\nen:lesson-07:session-16:i04:p3=goldfish\nen:lesson-07:session-16:i04:p4=cage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:word:turtle",
+    "correctText": "turtle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i05",
-    "correctText": "Does the website work?",
+    "correctText": "Does the turtle sleep?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i06",
-    "correctText": "There is no screen in this room.",
+    "correctText": "Do you have a parrot?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i07",
-    "correctText": "Does the alarm work?",
+    "correctText": "Do they feed the goldfish early?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i08",
-    "correctText": "work",
+    "correctText": "Does",
     "correctResponseId": "en:lesson-07:session-16:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-16:i09",
-    "correctText": "Does the manager work here?",
+    "correctText": "Does the farmer live here?",
     "correctResponseId": "en:lesson-07:session-16:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-16:i10",
-    "correctText": "en:lesson-07:session-16:i10:p1=alarm\nen:lesson-07:session-16:i10:p2=server\nen:lesson-07:session-16:i10:p3=website\nen:lesson-07:session-16:i10:p4=printer",
+    "correctText": "en:lesson-07:session-16:i10:p1=parrot\nen:lesson-07:session-16:i10:p2=cage\nen:lesson-07:session-16:i10:p3=aquarium\nen:lesson-07:session-16:i10:p4=box",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i11",
-    "correctText": "Do they work here?",
+    "correctText": "Do you have a turtle?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i12",
-    "correctText": "Does the server work?",
+    "correctText": "There is no parrot in the cage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i13",
-    "correctText": "Do you have a printer?",
+    "correctText": "There is no turtle in the box.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i14",
-    "correctText": "is",
+    "correctText": "have",
     "correctResponseId": "en:lesson-07:session-16:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-16:i15",
-    "correctText": "Do you have a website?",
+    "correctText": "Does the turtle sleep?",
     "correctResponseId": "en:lesson-07:session-16:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-16:i16",
-    "correctText": "en:lesson-07:session-16:i16:p1=manager\nen:lesson-07:session-16:i16:p2=screen\nen:lesson-07:session-16:i16:p3=alarm\nen:lesson-07:session-16:i16:p4=website",
+    "correctText": "en:lesson-07:session-16:i16:p1=turtle\nen:lesson-07:session-16:i16:p2=goldfish\nen:lesson-07:session-16:i16:p3=farmer\nen:lesson-07:session-16:i16:p4=parrot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-16:i17",
-    "correctText": "Does the manager start early?",
+    "correctText": "Do they feed the goldfish early?",
     "correctResponseId": null
   }
 ]

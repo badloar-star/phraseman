@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-11:intro1:r2": {
-          "ru": "Один принтер: `Does the printer`.",
-          "uk": "Один принтер: `Does the printer`."
+          "ru": "Салон один: нужно Does.",
+          "uk": "Салон один: потрібно Does."
         },
         "en:lesson-07:session-11:intro1:r3": {
-          "ru": "После `Does` нужно `work`.",
-          "uk": "Після `Does` потрібне `work`."
+          "ru": "После Does нужно close, без s.",
+          "uk": "Після Does потрібно close, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-11:intro2:r2": {
-          "ru": "Один принтер: `There is no printer`.",
-          "uk": "Один принтер: `There is no printer`."
+          "ru": "Магазин один: нужно Does.",
+          "uk": "Магазин один: потрібно Does."
         },
         "en:lesson-07:session-11:intro2:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "После Does нужно sell, без s.",
+          "uk": "Після Does потрібно sell, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-11:intro3:r2": {
-          "ru": "С `she` нужен вопрос с `Does`.",
-          "uk": "Із `she` потрібне запитання з `Does`."
+          "ru": "Продавец один: нужно Does.",
+          "uk": "Продавець один: потрібно Does."
         },
         "en:lesson-07:session-11:intro3:r3": {
-          "ru": "После `Does she` нужно `work`.",
-          "uk": "Після `Does she` потрібне `work`."
+          "ru": "После Does нужно sell, без s.",
+          "uk": "Після Does потрібно sell, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "277050e7e1de7d78a0f2a7e0a2cc0a15a7ed12e0355018aa1be6281e9b708ad8"
+  "auxiliaryFingerprint": "d5f6c44175032e935a23cbccab4cfd511ecbdde2cd05fff11a6d96f6e1d565da"
 }

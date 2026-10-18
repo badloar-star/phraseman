@@ -159,11 +159,12 @@ function filesForSession(
     const lesson = factoryLessonAudioIndex()[
       lessonOrdinal as keyof FactoryLessonAudioIndexV1
     ];
-    // зачем (звук по сети, владелец 18.10): индекс прогрева знает только урок 1 — клипы занятия любого урока берём ещё
-    // и из таблицы «один голос на задание», иначе уроки 2+ никогда не скачались бы.
+    // Индекс содержит все опубликованные занятия, включая карточки слов.
     const session = lesson?.sessions[sessionOrdinal as keyof typeof lesson.sessions];
     const hashes = new Set<string>(session?.contentHashes ?? []);
-    for (const hash of learningV2FactorySessionClipHashesV1(lessonOrdinal, sessionOrdinal)) hashes.add(hash);
+    // Полный индекс текущего выпуска — точный список фактически используемых файлов.
+    // Резерв нужен только для ещё не попавшей в индекс сессии.
+    if (!session) for (const hash of learningV2FactorySessionClipHashesV1(lessonOrdinal, sessionOrdinal)) hashes.add(hash);
     if (hashes.size === 0) return Object.freeze([]);
     return factoryFilesForIndexedHashes([...hashes], `lesson:${lessonOrdinal}:session:${sessionOrdinal}`);
   }

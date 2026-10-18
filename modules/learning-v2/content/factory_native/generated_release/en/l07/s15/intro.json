@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-15",
   "learningOutcomeByLocale": {
-    "ru": "спросить о работе сайта и привычках людей, сообщить об отсутствии расписания",
-    "uk": "запитати про роботу сайту й звички людей, повідомити про відсутність розкладу"
+    "ru": "спросить о том, что готовит или продаёт один человек или место, с помощью Does",
+    "uk": "запитати про те, що готує або продає одна людина чи місце, за допомогою Does"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Страница не открывается",
-        "uk": "Сторінка не відкривається"
+        "ru": "Суп в кафе",
+        "uk": "Суп у кафе"
       },
       "bodyByLocale": {
-        "ru": "`website` — «веб-сайт», обычно просто «сайт». Вы пытаетесь открыть сайт клуба. `Does the website work?` — «Сайт работает?» Об одном сайте спрашиваем с `Does`, затем `the website work`. После `Does` к `work` не добавляем `s`.",
-        "uk": "`website` — «вебсайт», зазвичай просто «сайт». Ви намагаєтеся відкрити сайт клубу. `Does the website work?` — «Сайт працює?» Про один сайт запитуємо з `Does`, потім `the website work`. Після `Does` до `work` не додаємо `s`."
+        "ru": "Вы пришли в кафе у вокзала и хотите заказать суп на обед. Сотрудник за стойкой говорит, что на кухне сегодня работает повар. chef — «повар». Спросите: Does the chef cook soup? — «Повар готовит суп?» Повар один, поэтому Does, а cook без s.",
+        "uk": "Ви прийшли в кафе біля вокзалу й хочете замовити суп на обід. Працівник за стійкою каже, що на кухні сьогодні працює кухар. chef — «кухар». Спитайте: Does the chef cook soup? — «Кухар готує суп?» Кухар один, тому Does, а cook без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-15:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите друга «Сайт работает?»",
-          "uk": "Запитайте друга «Сайт працює?»"
+          "ru": "Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»",
+          "uk": "Ви хочете замовити суп. Спитайте працівника кафе: «Кухар готує суп?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-15:intro1:r1",
-              "text": "Does the website work?"
+              "text": "Does the chef cook soup?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro1:r2",
-              "text": "Do the website work?"
+              "text": "Do the chef cook soup?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro1:r3",
-              "text": "Does the website works?"
+              "text": "Does the chef cooks soup?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-15:intro1:r1",
-              "text": "Does the website work?"
+              "text": "Does the chef cook soup?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro1:r2",
-              "text": "Do the website work?"
+              "text": "Do the chef cook soup?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro1:r3",
-              "text": "Does the website works?"
+              "text": "Does the chef cooks soup?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга «Сайт работает?»",
-          "uk": "Запитайте друга «Сайт працює?»"
+          "ru": "Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»",
+          "uk": "Ви хочете замовити суп. Спитайте працівника кафе: «Кухар готує суп?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нужной информации нет",
-        "uk": "Потрібної інформації немає"
+        "ru": "Вывеска кафе",
+        "uk": "Вивіска кафе"
       },
       "bodyByLocale": {
-        "ru": "Сайт открылся, но вы не нашли расписание. `There is no schedule here` — «Здесь нет расписания». Это сообщение об отсутствии расписания, а не о поломке сайта. Сайт может работать прекрасно и всё равно не отвечать на ваш единственный вопрос.",
-        "uk": "Сайт відкрився, але ви не знайшли розклад. `There is no schedule here` — «Тут немає розкладу». Це повідомлення про відсутність розкладу, а не про несправність сайту. Сайт може працювати чудово й усе одно не відповідати на ваше єдине запитання."
+        "ru": "Вы с подругой ищете, где недорого пообедать. На вывеске нового кафе на углу нарисованы суши, но меню у входа нет, а внутри вы ещё не были. sushi — «суши». Спросите подругу: Does the cafe serve sushi? — «Кафе подаёт суши?» Кафе одно, поэтому Does, а serve без s.",
+        "uk": "Ви з подругою шукаєте, де недорого пообідати. На вивісці нового кафе на розі намальовані суші, але меню біля входу немає, а всередині ви ще не були. sushi — «суші». Спитайте подругу: Does the cafe serve sushi? — «Кафе подає суші?» Кафе одне, тому Does, а serve без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-15:intro2:q",
         "promptByLocale": {
-          "ru": "Сообщите другу «Здесь нет расписания».",
-          "uk": "Повідомте другові «Тут немає розкладу»."
+          "ru": "На вывеске нарисованы суши. Спросите подругу: «Кафе подаёт суши?»",
+          "uk": "На вивісці намальовані суші. Спитайте подругу: «Кафе подає суші?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-15:intro2:r1",
-              "text": "There is no schedule here."
+              "text": "Does the cafe serve sushi?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro2:r2",
-              "text": "There are no schedule here."
+              "text": "Do the cafe serve sushi?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro2:r3",
-              "text": "There no schedule here."
+              "text": "Does the cafe serves sushi?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-15:intro2:r1",
-              "text": "There is no schedule here."
+              "text": "Does the cafe serve sushi?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro2:r2",
-              "text": "There are no schedule here."
+              "text": "Do the cafe serve sushi?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro2:r3",
-              "text": "There no schedule here."
+              "text": "Does the cafe serves sushi?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите другу «Здесь нет расписания».",
-          "uk": "Повідомте другові «Тут немає розкладу»."
+          "ru": "На вывеске нарисованы суши. Спросите подругу: «Кафе подаёт суши?»",
+          "uk": "На вивісці намальовані суші. Спитайте подругу: «Кафе подає суші?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто выступает в клубе",
-        "uk": "Хто виступає в клубі"
+        "ru": "Киоск в парке",
+        "uk": "Кіоск у парку"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказал, что Анна поёт. Вы уточняете о клубе `Does she sing here?` — «Она поёт здесь?» С `she` используем `Does`, после него `sing`, без `s`. Спрашиваем, выступает ли она здесь обычно.",
-        "uk": "Друг розповів, що Анна співає. Ви уточнюєте про клуб `Does she sing here?` — «Вона співає тут?» Із `she` використовуємо `Does`, після нього `sing`, без `s`. Запитуємо, чи виступає вона тут зазвичай."
+        "ru": "Вы проголодались в парке. На углу стоит киоск, и оттуда вкусно пахнет жареным мясом, но что именно там продают, не видно. kebab — «кебаб». Спросите прохожего: Does the kiosk sell kebabs? — «Киоск продаёт кебаб?» Киоск один, поэтому Does, а sell без s.",
+        "uk": "Ви зголодніли в парку. На розі стоїть кіоск, і звідти смачно пахне смаженим м’ясом, але що саме там продають, не видно. kebab — «кебаб». Спитайте перехожого: Does the kiosk sell kebabs? — «Кіоск продає кебаб?» Кіоск один, тому Does, а sell без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-15:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите друга об Анне «Она поёт здесь?»",
-          "uk": "Запитайте друга про Анну «Вона співає тут?»"
+          "ru": "Вы проголодались в парке. Спросите прохожего: «Киоск продаёт кебаб?»",
+          "uk": "Ви зголодніли в парку. Спитайте перехожого: «Кіоск продає кебаб?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-15:intro3:r1",
-              "text": "Does she sing here?"
+              "text": "Does the kiosk sell kebabs?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro3:r2",
-              "text": "Do she sing here?"
+              "text": "Do the kiosk sell kebabs?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro3:r3",
-              "text": "Does she sings here?"
+              "text": "Does the kiosk sells kebabs?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-15:intro3:r1",
-              "text": "Does she sing here?"
+              "text": "Does the kiosk sell kebabs?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro3:r2",
-              "text": "Do she sing here?"
+              "text": "Do the kiosk sell kebabs?"
             },
             {
               "responseId": "en:lesson-07:session-15:intro3:r3",
-              "text": "Does she sings here?"
+              "text": "Does the kiosk sells kebabs?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга об Анне «Она поёт здесь?»",
-          "uk": "Запитайте друга про Анну «Вона співає тут?»"
+          "ru": "Вы проголодались в парке. Спросите прохожего: «Киоск продаёт кебаб?»",
+          "uk": "Ви зголодніли в парку. Спитайте перехожого: «Кіоск продає кебаб?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d1bbb4e52fa2d31036229699c1d8b10d01fa9aa3028628b0c704d952f2890dd3"
+  "introFingerprint": "692b6df68acdeb2c6f20d901ec6837b0ef85cb7f5478f839db295c69235836e9"
 }

@@ -56,3 +56,37 @@ export function localSourceProblem(root, entry) {
   if (sha !== entry.contentHash) return `sha256 ${sha.slice(0, 12)} ≠ ${entry.contentHash.slice(0, 12)}`;
   return null;
 }
+
+/** Только фактические ссылки материалов приложения. Устаревший снимок запрещён. */
+export function loadRuntimeAudioSelection(root, selectionPath) {
+  if (!selectionPath) throw new Error("Audio publication requires --selection <runtime-reference-report.json>");
+  const selection = JSON.parse(fs.readFileSync(selectionPath, "utf8"));
+  if (selection.schemaVersion !== "learning-v2-runtime-audio-selection.v1" ||
+      !selection.inputDigests || !selection.required || !Array.isArray(selection.problems) || selection.problems.length)
+    throw new Error("Audio selection is incomplete or has unresolved problems");
+  const availability = fs.readFileSync(path.join(root, "app/learning_v2_bundle_availability_v1.generated.ts"), "utf8");
+  const ceiling = Number(/LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = (\d+);/.exec(availability)?.[1]);
+  if (!ceiling || selection.ceiling !== ceiling || selection.builtSessions !== ceiling)
+    throw new Error("Audio selection does not cover every available session");
+  const inputs = Object.entries(selection.inputDigests);
+  if (!inputs.length) throw new Error("Audio selection has no source snapshot");
+  for (const [relative, expected] of inputs) {
+    const absolute = path.resolve(root, relative);
+    if (path.relative(root, absolute).startsWith("..") || !fs.existsSync(absolute))
+      throw new Error("Audio selection source missing: " + relative);
+    const actual = createHash("sha256").update(fs.readFileSync(absolute)).digest("hex");
+    if (actual !== expected) throw new Error("Audio selection is stale: " + relative);
+  }
+  const required = new Set(Object.keys(selection.required));
+  if (!required.size || [...required].some(hash => !/^[0-9a-f]{64}$/.test(hash)))
+    throw new Error("Invalid audio selection hashes");
+  return required;
+}
+
+export function selectStorageAudioPlan(plan, required) {
+  const selected = plan.filter(entry => required.has(entry.contentHash));
+  const available = new Set(selected.map(entry => entry.contentHash));
+  const missing = [...required].filter(hash => !available.has(hash));
+  if (missing.length) throw new Error("Selected audio has no local entry: " + missing.join(","));
+  return selected;
+}

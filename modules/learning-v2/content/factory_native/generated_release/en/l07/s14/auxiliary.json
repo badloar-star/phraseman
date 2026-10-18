@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-14:intro1:r2": {
-          "ru": "Один сервер: `Does the server`.",
-          "uk": "Один сервер: `Does the server`."
+          "ru": "Школьник один: нужно Does.",
+          "uk": "Школяр один: потрібно Does."
         },
         "en:lesson-07:session-14:intro1:r3": {
-          "ru": "После `Does` нужно `work`.",
-          "uk": "Після `Does` потрібне `work`."
+          "ru": "После Does нужно wear, без s.",
+          "uk": "Після Does потрібно wear, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-14:intro2:r2": {
-          "ru": "Один сервер: `There is no server`.",
-          "uk": "Один сервер: `There is no server`."
+          "ru": "Директор один: нужно Does.",
+          "uk": "Директор один: потрібно Does."
         },
         "en:lesson-07:session-14:intro2:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "После Does нужно teach, без s.",
+          "uk": "Після Does потрібно teach, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-14:intro3:r2": {
-          "ru": "Анна — она: `Does Anna`.",
-          "uk": "Анна — вона: `Does Anna`."
+          "ru": "После Does нужно have, не has.",
+          "uk": "Після Does потрібно have, не has."
         },
         "en:lesson-07:session-14:intro3:r3": {
-          "ru": "После `Does Anna` нужно `work`.",
-          "uk": "Після `Does Anna` потрібне `work`."
+          "ru": "Со словом school нужно Does.",
+          "uk": "Зі словом school потрібно Does."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "590f22b4e81b3c338f9544cde718a4f46b85783f94e75d2cc7ff8431ee390623"
+  "auxiliaryFingerprint": "d079ca2e3e6cec42a1e7fec4cd77153f136d60788f632566257ecbb4a2fbf32b"
 }

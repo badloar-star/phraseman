@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-15:word:chef",
+    "correctText": "chef",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-15:i01",
-    "correctText": "Does the website work?",
+    "correctText": "Does the chef cook soup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:word:sushi",
+    "correctText": "sushi",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i02",
-    "correctText": "website",
+    "correctText": "Does the cafe serve sushi?",
     "correctResponseId": "en:lesson-07:session-15:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-15:word:kebab",
+    "correctText": "kebab",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-15:i03",
-    "correctText": "work",
+    "correctText": "have",
     "correctResponseId": "en:lesson-07:session-15:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-15:i04",
-    "correctText": "en:lesson-07:session-15:i04:p1=website\nen:lesson-07:session-15:i04:p2=schedule\nen:lesson-07:session-15:i04:p3=coat\nen:lesson-07:session-15:i04:p4=helmet",
+    "correctText": "en:lesson-07:session-15:i04:p1=chef\nen:lesson-07:session-15:i04:p2=soup\nen:lesson-07:session-15:i04:p3=sushi\nen:lesson-07:session-15:i04:p4=kebab",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:word:noodles",
+    "correctText": "noodles",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i05",
-    "correctText": "Does the website work?",
+    "correctText": "Does the chef cook noodles?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i06",
-    "correctText": "There is no schedule here.",
+    "correctText": "Does the cafe serve sushi?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i07",
-    "correctText": "Does she sing here?",
+    "correctText": "Does the kiosk sell kebabs?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i08",
-    "correctText": "Do",
+    "correctText": "Does",
     "correctResponseId": "en:lesson-07:session-15:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-15:i09",
-    "correctText": "Does she sing here?",
+    "correctText": "Does the chef cook noodles?",
     "correctResponseId": "en:lesson-07:session-15:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-15:i10",
-    "correctText": "en:lesson-07:session-15:i10:p1=sing\nen:lesson-07:session-15:i10:p2=website\nen:lesson-07:session-15:i10:p3=coat\nen:lesson-07:session-15:i10:p4=schedule",
+    "correctText": "en:lesson-07:session-15:i10:p1=noodles\nen:lesson-07:session-15:i10:p2=soup\nen:lesson-07:session-15:i10:p3=rice\nen:lesson-07:session-15:i10:p4=pasta",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i11",
-    "correctText": "Does it work?",
+    "correctText": "Does the kiosk sell kebabs?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i12",
-    "correctText": "Do you have a helmet?",
+    "correctText": "Does the chef cook rice?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i13",
-    "correctText": "Whose coat is this?",
+    "correctText": "Does the cafe serve noodles?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i14",
-    "correctText": "sing",
+    "correctText": "serve",
     "correctResponseId": "en:lesson-07:session-15:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-15:i15",
-    "correctText": "Do you have a schedule?",
+    "correctText": "Does the kiosk sell kebabs?",
     "correctResponseId": "en:lesson-07:session-15:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-15:i16",
-    "correctText": "en:lesson-07:session-15:i16:p1=website\nen:lesson-07:session-15:i16:p2=helmet\nen:lesson-07:session-15:i16:p3=sing\nen:lesson-07:session-15:i16:p4=schedule",
+    "correctText": "en:lesson-07:session-15:i16:p1=chef\nen:lesson-07:session-15:i16:p2=sushi\nen:lesson-07:session-15:i16:p3=kebab\nen:lesson-07:session-15:i16:p4=noodles",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-15:i17",
-    "correctText": "Do they have a website?",
+    "correctText": "Does the chef cook noodles?",
     "correctResponseId": null
   }
 ]

@@ -1,5 +1,5 @@
 // зачем (Ревизор 3.42, R125, 18.10): индекс прогрева L1 S1 содержал тихий хеш — рантайм его уже не знает, и прогрев
-// занятия падал целиком. Сторож держит инвариант «индекс прогрева ⊂ набор сборки без тихих» и то, что прогрев сам
+// занятия падал целиком. Сторож держит инвариант «индекс прогрева ⊂ бандл + Storage без тихих» и то, что прогрев сам
 // отсеивает незнакомые хеши с причиной в логе [V2-PREWARM], а не бросает.
 import fs from "node:fs";
 import path from "node:path";
@@ -19,6 +19,8 @@ const bundleHashes = new Set(
   [...read("app/learning_v2_bootstrap_audio_assets_v1.generated.ts").matchAll(/contentHash: "([0-9a-f]{64})"/gu)].map((m) => m[1]!),
 );
 
+const storageHashes = new Set<string>(JSON.parse(read("scripts/learning_v2_storage_audio_inventory.v1.json")).presentContentHashes);
+
 type IndexedLesson = { contentHashes: readonly string[]; sessions: Record<number, { contentHashes: readonly string[] }> };
 const indexedHashes = (): { where: string; contentHash: string }[] =>
   Object.entries(LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1 as unknown as Record<string, IndexedLesson>).flatMap(([lesson, value]) => [
@@ -27,7 +29,7 @@ const indexedHashes = (): { where: string; contentHash: string }[] =>
       s.contentHashes.map((contentHash) => ({ where: `l${lesson}s${session}`, contentHash }))),
   ]);
 
-describe("Learning V2: индекс прогрева ⊂ набор сборки без тихих", () => {
+describe("Learning V2: индекс прогрева ⊂ бандл + Storage без тихих", () => {
   let log: jest.SpyInstance;
   beforeEach(() => { log = jest.spyOn(console, "log").mockImplementation(() => undefined); });
   afterEach(() => log.mockRestore());
@@ -40,8 +42,8 @@ describe("Learning V2: индекс прогрева ⊂ набор сборки
     expect(indexedHashes().filter((item) => silentHashes.has(item.contentHash))).toEqual([]);
   });
 
-  test("каждый хеш индекса лежит в наборе сборки", () => {
-    expect(indexedHashes().filter((item) => !bundleHashes.has(item.contentHash))).toEqual([]);
+  test("каждый хеш индекса доступен в наборе или проверенном Storage", () => {
+    expect(indexedHashes().filter((item) => !bundleHashes.has(item.contentHash) && !storageHashes.has(item.contentHash))).toEqual([]);
   });
 
   test("каждый хеш индекса рантайм знает — прогрев по индексу не бросает", () => {
@@ -63,9 +65,9 @@ describe("Learning V2: индекс прогрева ⊂ набор сборки
     expect(pack).not.toMatch(/learningV2FactoryRemoteAudioFilesForContentHashesV1\((?:indexed|session)\.contentHashes\)/u);
   });
 
-  test("генератор индекса фильтрует по набору сборки и списку тихих", () => {
+  test("генератор индекса использует свежий список фактических ссылок", () => {
     const generator = read("scripts/build_learning_v2_factory_lesson_audio_index.mjs");
-    expect(generator).toMatch(/learning_v2_factory_silent_audio_v1\.json/u);
-    expect(generator).toMatch(/learning_v2_bootstrap_audio_assets_v1\.generated\.ts/u);
+    expect(generator).toMatch(/loadRuntimeAudioSelection/u);
+    expect(generator).toMatch(/selection\.required/u);
   });
 });

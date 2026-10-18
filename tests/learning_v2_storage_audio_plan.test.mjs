@@ -6,7 +6,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { STORAGE_AUDIO_PACK, buildStorageAudioPlan, canonicalHash, localSourceProblem, storageObjectPathFor } from "../scripts/learning_v2_storage_audio_plan.mjs";
+import { STORAGE_AUDIO_PACK, buildStorageAudioPlan, canonicalHash, localSourceProblem, storageObjectPathFor, selectStorageAudioPlan } from "../scripts/learning_v2_storage_audio_plan.mjs";
 
 const sha = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
 const row = (transcript, voiceId, contentHash, byteSize, assetPath) =>
@@ -39,4 +39,10 @@ test("локальная сверка: годный файл → null; нет ф
   assert.match(localSourceProblem(dir, { ...good, assetPath: "none.mp3" }), /нет файла/);
   assert.match(localSourceProblem(dir, { ...good, byteSize: 1 }), /размер/);
   assert.match(localSourceProblem(dir, { ...good, contentHash: "0".repeat(64) }), /sha256/);
+});
+
+test("выкладка только записей текущих занятий; неизвестный обязательный файл останавливает её", () => {
+  const used = { contentHash: "a".repeat(64) }, unused = { contentHash: "b".repeat(64) };
+  assert.deepEqual(selectStorageAudioPlan([used, unused], new Set([used.contentHash])), [used]);
+  assert.throws(() => selectStorageAudioPlan([unused], new Set([used.contentHash])), /no local entry/);
 });

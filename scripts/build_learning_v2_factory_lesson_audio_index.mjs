@@ -1,77 +1,39 @@
 #!/usr/bin/env node
 import fs from "node:fs";
+import { loadRuntimeAudioSelection } from "./learning_v2_storage_audio_plan.mjs";
 import path from "node:path";
 
 const root = process.cwd();
 const check = process.argv.includes("--check");
-const releaseRoot = path.join(root, "content/learning-v2-course/release/en");
-const manifest = JSON.parse(fs.readFileSync(path.join(root, "assets/audio/learning-v2/factory-production-v1/manifest.json"), "utf8"));
-const byCoordinate = new Map(manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry.contentHash]));
-const voices = ["ash", "onyx", "nova", "coral"];
+// Решение владельца 18.10: индекс включает используемый звук всех занятий,
+// независимо от того, лежит он в первых пяти сессиях бандла или в Storage.
+const selectionPath = process.argv.includes("--selection")
+  ? process.argv[process.argv.indexOf("--selection") + 1]
+  : path.join(root, "scripts/learning_v2_runtime_audio_selection.v1.json");
+loadRuntimeAudioSelection(root, selectionPath);
+const selection = JSON.parse(fs.readFileSync(selectionPath, "utf8"));
 const lessons = {};
-// зачем (Ревизор 3.42, R125, 18.10): прогрев L1 S1 бросал ошибку — в индексе был тихий хеш, которого рантайм уже не знает
-// (learning_v2_factory_production_audio_v1 выкидывает тихие). Инвариант: индекс прогрева ⊂ набор сборки без тихих.
-// Состав занятий по-прежнему решают координаты манифеста (какие занятия «опубликованы» — не меняется), а в список
-// файлов попадают только хеши, которые реально лежат в наборе сборки и не тихие. Генерировать ПОСЛЕ набора сборки.
-const silentHashes = new Set(JSON.parse(fs.readFileSync(path.join(root, "app/learning_v2_factory_silent_audio_v1.json"), "utf8")).entries.map((entry) => entry.contentHash));
-const bundleHashes = new Set([...fs.readFileSync(path.join(root, "app/learning_v2_bootstrap_audio_assets_v1.generated.ts"), "utf8")
-  .matchAll(/contentHash: "([0-9a-f]{64})"/gu)].map((match) => match[1]));
-const dropped = { silent: 0, notInBundle: 0 };
-const keep = (contentHash) => {
-  if (silentHashes.has(contentHash)) { dropped.silent += 1; return false; }
-  if (!bundleHashes.has(contentHash)) { dropped.notInBundle += 1; return false; }
-  return true;
-};
-
-for (const lessonName of fs.readdirSync(releaseRoot).filter((name) => /^l\d{2}$/u.test(name)).sort()) {
-  const lessonOrdinal = Number(lessonName.slice(1));
-  const sessionDirs = fs.readdirSync(path.join(releaseRoot, lessonName)).filter((name) => /^s\d{2}$/u.test(name)).sort();
-  const hashes = new Set();
-  const sessionOrdinals = [];
-  const sessions = {};
-  for (const sessionDir of sessionDirs) {
-    const learnerPath = path.join(releaseRoot, lessonName, sessionDir, "learner.json");
-    if (!fs.existsSync(learnerPath)) continue;
-    const learner = JSON.parse(fs.readFileSync(learnerPath, "utf8"));
-    const transcripts = new Set();
-    const visit = (value) => {
-      if (Array.isArray(value)) return value.forEach(visit);
-      if (!value || typeof value !== "object") return;
-      if (value.isWordCard === true && typeof value.wordCard?.word === "string")
-        transcripts.add(value.wordCard.word.normalize("NFKC").trim());
-      if (typeof value.audioTargetId === "string" && typeof value.transcript === "string")
-        transcripts.add(value.transcript);
-      for (const child of Object.values(value)) visit(child);
-    };
-    visit(learner.interactions);
-    const sessionHashes = new Set();
-    let sessionComplete = true;
-    for (const transcript of transcripts) {
-      for (const voice of voices) {
-        const contentHash = byCoordinate.get(`${transcript}\u0000${voice}`);
-        if (!contentHash) { sessionComplete = false; break; }
-        if (keep(contentHash)) sessionHashes.add(contentHash);
-      }
-      if (!sessionComplete) break;
-    }
-    if (!sessionComplete) continue;
-    sessionOrdinals.push(Number(sessionDir.slice(1)));
-    sessions[Number(sessionDir.slice(1))] = {
-      contentHashes: [...sessionHashes].sort(),
-    };
-    for (const contentHash of sessionHashes) hashes.add(contentHash);
-  }
-  if (sessionOrdinals.length > 0) {
-    lessons[lessonOrdinal] = {
-      sessionCount: sessionOrdinals.length,
-      sessionOrdinals,
-      sessions,
-      contentHashes: [...hashes].sort(),
-    };
+for (let i = 0; i < selection.ceiling; i += 1) {
+  const lesson = Math.floor(i / 56) + 1, session = i % 56 + 1;
+  lessons[lesson] ??= { sessionCount: 0, sessionOrdinals: [], sessions: {}, contentHashes: [] };
+  lessons[lesson].sessionCount += 1;
+  lessons[lesson].sessionOrdinals.push(session);
+  lessons[lesson].sessions[session] = { contentHashes: [] };
+}
+for (const [hash, references] of Object.entries(selection.required)) {
+  for (const reference of references) {
+    const match = /^l(\d{2})s(\d{2})$/.exec(reference);
+    if (!match) throw new Error("Invalid session reference: " + reference);
+    const lesson = lessons[Number(match[1])], session = lesson?.sessions[Number(match[2])];
+    if (!session) throw new Error("Audio reference outside current course: " + reference);
+    session.contentHashes.push(hash);
   }
 }
-
-console.log(`[V2-PREWARM-INDEX] выкинуто: тихих ${dropped.silent}, нет в наборе сборки ${dropped.notInBundle} (набор ${bundleHashes.size}, тихих в списке ${silentHashes.size})`);
+for (const lesson of Object.values(lessons)) {
+  for (const session of Object.values(lesson.sessions)) session.contentHashes = [...new Set(session.contentHashes)].sort();
+  lesson.contentHashes = [...new Set(Object.values(lesson.sessions).flatMap(session => session.contentHashes))].sort();
+}
+console.log("[V2-PREWARM-INDEX] referenced sessions=" + selection.ceiling + " files=" + Object.keys(selection.required).length);
 const outputPath = path.join(root, "app/learning_v2_factory_lesson_audio_index_v1.generated.ts");
 const lines = [
   "/* Generated by scripts/build_learning_v2_factory_lesson_audio_index.mjs. */",
@@ -87,6 +49,7 @@ if (check) {
     throw new Error("learning_v2_factory_lesson_audio_index_stale");
   console.log(`factory lesson audio index PASS (${Object.keys(lessons).length} published lesson packs)`);
 } else {
-  fs.writeFileSync(outputPath, next, "utf8");
+  fs.writeFileSync(outputPath + ".tmp", next, "utf8");
+  fs.renameSync(outputPath + ".tmp", outputPath);
   console.log(`wrote ${path.relative(root, outputPath)} (${Object.keys(lessons).length} published lesson packs)`);
 }

@@ -23,7 +23,7 @@ const ENTRIES = Object.freeze<readonly ProductionAudioEntry[]>([
   { transcript: "am", voiceId: "onyx", contentHash: "e66ef86cf52943c0305ff6e1d46753477ddd1e6eec20c0aecfd5ed1587c82007", byteSize: 21888 },
   { transcript: "am", voiceId: "nova", contentHash: "e340822377f96a95a27d7571f30a417a147da387d112f7d5f351ce4c7d77dd58", byteSize: 33792 },
   { transcript: "am", voiceId: "coral", contentHash: "0259a36415626f0dccb662d60cd7df2dfffe667c26ecde9d2ec6fc1e88b005e7", byteSize: 25728 },
-  { transcript: "here", voiceId: "ash", contentHash: "758f2d086d9a7db4841b6b6d4c4ffd5f013d6b1a3abdd8c8a132444c42cf76ca", byteSize: 42624 },
+  { transcript: "here", voiceId: "ash", contentHash: "f9ed39647267c942bf688f0e858e2eca4b1b3e6da25c6860e10d717d5f1784a9", byteSize: 32832 },
   { transcript: "here", voiceId: "onyx", contentHash: "466763eb8efaae21630ce58e33301e771417bd0ac7ff21702afc6321efa8942f", byteSize: 21888 },
   { transcript: "here", voiceId: "nova", contentHash: "b14fc6fc4012cc40fe11944f0d5bb0dd0523d45f02a8ceed6b0a8c3f11c0c7c7", byteSize: 22656 },
   { transcript: "here", voiceId: "coral", contentHash: "d7087b0ae44e857f171d106905789b522ac0e902d7246f854fc344960d42c5d0", byteSize: 19968 },

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-12",
   "learningOutcomeByLocale": {
-    "ru": "спросить об устройстве и привычках человека, сообщить об отсутствии вещей",
-    "uk": "запитати про пристрій і звички людини, повідомити про відсутність речей"
+    "ru": "спросить о действии одного предмета или человека с помощью Does",
+    "uk": "запитати про дію одного предмета або людини за допомогою Does"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Проверяем будильник",
-        "uk": "Перевіряємо будильник"
+        "ru": "Автобус в соседний город",
+        "uk": "Автобус у сусіднє місто"
       },
       "bodyByLocale": {
-        "ru": "`alarm` здесь — «будильник». У слова есть и другие значения, но сейчас говорим об устройстве, которое вас разбудит. `Does the alarm work?` — «Будильник работает?» Один будильник: `Does the alarm`, затем `work`, без `s`. Лучше спросить вечером, чем выяснить ответ после начала смены.",
-        "uk": "`alarm` тут — «будильник». Слово має й інші значення, але зараз говоримо про пристрій, який вас розбудить. `Does the alarm work?` — «Будильник працює?» Один будильник: `Does the alarm`, потім `work`, без `s`. Краще запитати ввечері, ніж дізнатися відповідь після початку зміни."
+        "ru": "Вы собираетесь к подруге в соседний город и хотите приехать до обеда. На автовокзале вы видите междугородный автобус. coach — «междугородный автобус». Спросите у кассира: Does the coach leave early? — «Автобус отправляется рано?» После Does — leave, без s.",
+        "uk": "Ви збираєтеся до подруги в сусіднє місто й хочете приїхати до обіду. На автовокзалі ви бачите міжміський автобус. coach — «міжміський автобус». Спитайте в касира: Does the coach leave early? — «Автобус відправляється рано?» Після Does — leave, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-12:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите друга «Будильник работает?»",
-          "uk": "Запитайте друга «Будильник працює?»"
+          "ru": "Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»",
+          "uk": "Ви на автовокзалі. Спитайте в касира: «Автобус відправляється рано?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-12:intro1:r1",
-              "text": "Does the alarm work?"
+              "text": "Does the coach leave early?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro1:r2",
-              "text": "Do the alarm work?"
+              "text": "Do the coach leave early?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro1:r3",
-              "text": "Does the alarm works?"
+              "text": "Does the coach leaves early?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-12:intro1:r1",
-              "text": "Does the alarm work?"
+              "text": "Does the coach leave early?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro1:r2",
-              "text": "Do the alarm work?"
+              "text": "Do the coach leave early?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro1:r3",
-              "text": "Does the alarm works?"
+              "text": "Does the coach leaves early?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга «Будильник работает?»",
-          "uk": "Запитайте друга «Будильник працює?»"
+          "ru": "Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»",
+          "uk": "Ви на автовокзалі. Спитайте в касира: «Автобус відправляється рано?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Очки на столе",
-        "uk": "Окуляри на столі"
+        "ru": "Поздно вечером у станции",
+        "uk": "Пізно ввечері біля станції"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете очки, чтобы рассмотреть циферблат. Друг проверил стол. `There are no glasses on the table` — «На столе нет очков». С `glasses` используем `are`, даже если ищем одни очки. `On the table` уточняет место.",
-        "uk": "Ви шукаєте окуляри, щоб роздивитися циферблат. Друг перевірив стіл. `There are no glasses on the table` — «На столі немає окулярів». З `glasses` використовуємо `are`, навіть якщо шукаємо одні окуляри. `On the table` уточнює місце."
+        "ru": "Вы засиделись в гостях, а домой ехать далеко. Автобусы в такое время уже не ходят. У входа на станцию стоит прохожий. metro — «метро». Спросите его: Does the metro run late? — «Метро ходит допоздна?» Метро одно, поэтому в начале Does, а run без s.",
+        "uk": "Ви засиділися в гостях, а додому їхати далеко. Автобуси в такий час уже не ходять. Біля входу на станцію стоїть перехожий. metro — «метро». Спитайте його: Does the metro run late? — «Метро ходить допізна?» Метро одне, тому на початку Does, а run без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-12:intro2:q",
         "promptByLocale": {
-          "ru": "Сообщите «На столе нет очков».",
-          "uk": "Повідомте «На столі немає окулярів»."
+          "ru": "Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»",
+          "uk": "Ви засиділися в гостях. Спитайте перехожого: «Метро ходить допізна?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-12:intro2:r1",
-              "text": "There are no glasses on the table."
+              "text": "Does the metro run late?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro2:r2",
-              "text": "There is no glasses on the table."
+              "text": "Do the metro run late?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro2:r3",
-              "text": "There no glasses on the table."
+              "text": "Does the metro runs late?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-12:intro2:r1",
-              "text": "There are no glasses on the table."
+              "text": "Does the metro run late?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro2:r2",
-              "text": "There is no glasses on the table."
+              "text": "Do the metro run late?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro2:r3",
-              "text": "There no glasses on the table."
+              "text": "Does the metro runs late?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите «На столе нет очков».",
-          "uk": "Повідомте «На столі немає окулярів»."
+          "ru": "Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»",
+          "uk": "Ви засиділися в гостях. Спитайте перехожого: «Метро ходить допізна?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Раннее начало работы",
-        "uk": "Ранній початок роботи"
+        "ru": "Коллега из аэропорта",
+        "uk": "Колега з аеропорту"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает поставить будильник для Анны. Вы уточняете `Does she start early?` — «Она начинает рано?» Из разговора понятно, что речь о работе. С `she` вопрос начинается с `Does`, а `start` остаётся без `s`.",
-        "uk": "Друг пропонує поставити будильник для Анни. Ви уточнюєте `Does she start early?` — «Вона починає рано?» З розмови зрозуміло, що йдеться про роботу. Із `she` запитання починається з `Does`, а `start` залишається без `s`."
+        "ru": "Знакомая работает в аэропорту и по пути домой рассказывает вам о своих коллегах. Среди них есть один лётчик. pilot — «лётчик». Вы хотите знать, не соседи ли вы по району: Does the pilot live near here? — «Лётчик живёт рядом?» После Does — live, без s.",
+        "uk": "Знайома працює в аеропорту й дорогою додому розповідає вам про своїх колег. Серед них є один льотчик. pilot — «льотчик». Ви хочете знати, чи не сусіди ви по району: Does the pilot live near here? — «Льотчик живе поруч?» Після Does — live, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-12:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите друга об Анне «Она начинает рано?»",
-          "uk": "Запитайте друга про Анну «Вона починає рано?»"
+          "ru": "Знакомая рассказывает о лётчике. Спросите её: «Лётчик живёт рядом?»",
+          "uk": "Знайома розповідає про льотчика. Спитайте її: «Льотчик живе поруч?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-12:intro3:r1",
-              "text": "Does she start early?"
+              "text": "Does the pilot live near here?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro3:r2",
-              "text": "Do she start early?"
+              "text": "Is the pilot live near here?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro3:r3",
-              "text": "Does she starts early?"
+              "text": "Does the pilot lives near here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-12:intro3:r1",
-              "text": "Does she start early?"
+              "text": "Does the pilot live near here?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro3:r2",
-              "text": "Do she start early?"
+              "text": "Is the pilot live near here?"
             },
             {
               "responseId": "en:lesson-07:session-12:intro3:r3",
-              "text": "Does she starts early?"
+              "text": "Does the pilot lives near here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга об Анне «Она начинает рано?»",
-          "uk": "Запитайте друга про Анну «Вона починає рано?»"
+          "ru": "Знакомая рассказывает о лётчике. Спросите её: «Лётчик живёт рядом?»",
+          "uk": "Знайома розповідає про льотчика. Спитайте її: «Льотчик живе поруч?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b1aa61eec9a4fad03dac48de3fb98eefc79ef82b355552525ec396d4a1873829"
+  "introFingerprint": "43a9f8d9e4910abbe8f9da9874f785c7f5dd630cacb2cb5c0435f7b18a5c6f26"
 }

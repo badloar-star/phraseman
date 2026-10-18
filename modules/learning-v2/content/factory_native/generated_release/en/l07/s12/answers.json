@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-12:word:coach",
+    "correctText": "coach",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-12:i01",
-    "correctText": "Does the alarm work?",
+    "correctText": "Does the coach leave early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:word:metro",
+    "correctText": "metro",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i02",
-    "correctText": "alarm",
+    "correctText": "Does the metro run late?",
     "correctResponseId": "en:lesson-07:session-12:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-12:word:pilot",
+    "correctText": "pilot",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-12:i03",
-    "correctText": "work",
+    "correctText": "live",
     "correctResponseId": "en:lesson-07:session-12:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-12:i04",
-    "correctText": "en:lesson-07:session-12:i04:p1=alarm\nen:lesson-07:session-12:i04:p2=table\nen:lesson-07:session-12:i04:p3=notebook\nen:lesson-07:session-12:i04:p4=glasses",
+    "correctText": "en:lesson-07:session-12:i04:p1=coach\nen:lesson-07:session-12:i04:p2=metro\nen:lesson-07:session-12:i04:p3=pilot\nen:lesson-07:session-12:i04:p4=helmet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:word:cyclist",
+    "correctText": "cyclist",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i05",
-    "correctText": "Does the alarm work?",
+    "correctText": "Does the cyclist wear a helmet?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i06",
-    "correctText": "There are no glasses on the table.",
+    "correctText": "Does the metro run late?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i07",
-    "correctText": "Does she start early?",
+    "correctText": "Does the coach leave late?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i08",
-    "correctText": "Do",
+    "correctText": "Does",
     "correctResponseId": "en:lesson-07:session-12:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-12:i09",
-    "correctText": "Does she start early?",
+    "correctText": "Does the pilot live near here?",
     "correctResponseId": "en:lesson-07:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-12:i10",
-    "correctText": "en:lesson-07:session-12:i10:p1=paint\nen:lesson-07:session-12:i10:p2=alarm\nen:lesson-07:session-12:i10:p3=table\nen:lesson-07:session-12:i10:p4=notebook",
+    "correctText": "en:lesson-07:session-12:i10:p1=coach\nen:lesson-07:session-12:i10:p2=metro\nen:lesson-07:session-12:i10:p3=bus\nen:lesson-07:session-12:i10:p4=taxi",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i11",
-    "correctText": "Does it work?",
+    "correctText": "Does the pilot live near here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i12",
-    "correctText": "Do you have a notebook?",
+    "correctText": "Does the metro start early?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i13",
-    "correctText": "The alarm is on the table.",
+    "correctText": "Does the pilot work at the airport?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i14",
-    "correctText": "are",
+    "correctText": "leave",
     "correctResponseId": "en:lesson-07:session-12:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-12:i15",
-    "correctText": "Do you paint here?",
+    "correctText": "Does the cyclist wear a helmet?",
     "correctResponseId": "en:lesson-07:session-12:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-12:i16",
-    "correctText": "en:lesson-07:session-12:i16:p1=alarm\nen:lesson-07:session-12:i16:p2=glasses\nen:lesson-07:session-12:i16:p3=paint\nen:lesson-07:session-12:i16:p4=notebook",
+    "correctText": "en:lesson-07:session-12:i16:p1=pilot\nen:lesson-07:session-12:i16:p2=cyclist\nen:lesson-07:session-12:i16:p3=helmet\nen:lesson-07:session-12:i16:p4=airport",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-12:i17",
-    "correctText": "Does Anna paint here?",
+    "correctText": "Does the coach leave early?",
     "correctResponseId": null
   }
 ]

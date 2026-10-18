@@ -350,6 +350,14 @@ function rememberEntry(entry: NavigationEntry): void {
     return;
   }
 
+  // зачем (владелец 18.10, 09:58): пейвол — шторка ПОВЕРХ экрана, а не новая ветка. Без раздела (над экранами Диалогов V2)
+  // он обнулял историю, и при закрытии экран под ним был неизвестен — уходили на Главную. Кладём его сверху, историю не трогаем.
+  if (isNonBackTargetPath(entry.href) && current) {
+    navigationStack.push(entry);
+    trimHistory();
+    return;
+  }
+
   // Fixed child of a different branch and every unknown route start an isolated
   // segment. We never search deeper through a foreign branch for a familiar path.
   if (
@@ -551,6 +559,29 @@ export function dismissPaywallModal(
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
   const leaving = currentEntry();
+  // зачем (владелец 18.10 через координатора 09:58: «закрывает ТОЛЬКО шторку paywall, а вместе с ней закрывается урок/диалог/
+  // тренировка»): зонд показал 19 из 132 — поверх урока Learning V2 (одноразовый адрес вычищался из истории, no_candidate) и
+  // сессии/разговора/памяти/итога Диалогов (нет раздела, leaving_no_section) закрытие уходило в dismissTo(Главная) и снимало экран.
+  // Если под пейволом живой экран (не вкладка) и стек умеет закрыть один шаг — закрываем ТОЛЬКО пейвол.
+  const underlying = leaving && isNonBackTargetPath(leaving.href) && navigationStack.length > 1
+    ? navigationStack[navigationStack.length - 2]!
+    : null;
+  if (
+    underlying
+    && underlying.role !== 'root'
+    && !paywallDismissShouldReplace
+    && typeof router.canDismiss === 'function'
+    && typeof router.dismiss === 'function'
+    && router.canDismiss() === true
+  ) {
+    navigationStack.pop();
+    console.log('[PAYWALL-CLOSE]', JSON.stringify({ branch: 'dismiss(1)_underlying', underlying: pathnameOf(underlying.href), underlyingRole: underlying.role, underlyingSection: underlying.section ?? null, stack: navigationStack.map((e) => pathnameOf(e.href)) })); // guard-ok: какая ветка закрыла пейвол и что осталось под ним
+    paywallCloseMark('dismiss:call', 'branch=dismiss(1)_underlying');
+    router.dismiss(1);
+    paywallCloseMark('dismiss:returned', 'dismiss(1)_underlying');
+    return;
+  }
+  console.log('[PAYWALL-CLOSE]', JSON.stringify({ branch: 'candidate_logic', leaving: leaving ? pathnameOf(leaving.href) : null, underlying: underlying ? pathnameOf(underlying.href) : null, underlyingRole: underlying?.role ?? null, shouldReplace: paywallDismissShouldReplace, stack: navigationStack.map((e) => pathnameOf(e.href)) })); // guard-ok: почему не короткая ветка
   const candidate = popBackCandidate(leaving);
   const chosen = safeTarget(candidate, fallback);
   const shouldReplace = paywallDismissShouldReplace;

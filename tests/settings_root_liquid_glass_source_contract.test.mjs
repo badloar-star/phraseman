@@ -89,7 +89,8 @@ test('glass rows keep the approved row, tile, text and switch metrics without he
 
 test('sections and rows keep the macet order', () => {
   const order = [
-    'settings-profile-card', "'ПРОФИЛЬ'", 'settings-account-row', 'settings-language-row', 'settings-study-language-row',
+    // Сверка С8 (18.10): надзаголовок под карточкой профиля — «ОСНОВНОЕ», а не второй «ПРОФИЛЬ»
+    'settings-profile-card', "'ОСНОВНОЕ'", 'settings-account-row', 'settings-language-row', 'settings-study-language-row',
     "'ОБУЧЕНИЕ'", 'settings-edu-row', 'settings-notifications-row', 'settings-themes-row', 'settings-tap-haptics-row', 'settings-font-size-row',
     '"PHRASEMAN PLUS"', 'settings-plus-row', 'settings-promo-code-row', 'settings-invite-banner',
     "'ПОМОЩЬ'", 'settings-support-report-row', 'settings-privacy-row', 'settings-clear-cache-row', 'settings-rate-app-row',
@@ -100,7 +101,7 @@ test('sections and rows keep the macet order', () => {
 
 test('macet texts exist for all nine locales', () => {
   const required = {
-    eyebrowProfile: ["L('ПРОФИЛЬ', 'ПРОФІЛЬ', 'PROFILE', 'PERFIL', 'PERFIL', 'HỒ SƠ', 'PROFIL', 'PROFİL', 'PROFIL')"],
+    eyebrowGeneral: ["L('ОСНОВНОЕ', 'ОСНОВНЕ', 'GENERAL', 'GENERAL', 'GERAL', 'CHUNG', 'UMUM', 'GENEL', 'OGÓLNE')"],
     eyebrowLearning: ["'ОБУЧЕНИЕ'", "'НАВЧАННЯ'", "'LEARNING'", "'APRENDIZAJE'", "'APRENDIZADO'", "'HỌC TẬP'", "'PEMBELAJARAN'", "'ÖĞRENME'", "'NAUKA'"],
     eyebrowHelp: ["L('ПОМОЩЬ', 'ДОПОМОГА', 'HELP', 'AYUDA', 'AJUDA', 'TRỢ GIÚP', 'BANTUAN', 'YARDIM', 'POMOC')"],
     signIn: ["L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')"],

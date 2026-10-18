@@ -1146,7 +1146,9 @@ export default function SettingsMain() {
           ) : null}
         </PressableHybrid>
 
-        <SettingsGlassEyebrow wide glass={glass} title={L('ПРОФИЛЬ', 'ПРОФІЛЬ', 'PROFILE', 'PERFIL', 'PERFIL', 'HỒ SƠ', 'PROFIL', 'PROFİL', 'PROFIL')} />
+        {/* зачем (Сверка С8, 03_light_settings): без имени карточка выше называется «Профиль», и сразу под ней шёл надзаголовок
+            «ПРОФИЛЬ» — одно слово дважды подряд. Раздел — аккаунт и языки, по смыслу это «Основное» (как «Основные» в iOS). */}
+        <SettingsGlassEyebrow wide glass={glass} title={L('ОСНОВНОЕ', 'ОСНОВНЕ', 'GENERAL', 'GENERAL', 'GERAL', 'CHUNG', 'UMUM', 'GENEL', 'OGÓLNE')} />
         <SettingsGlassGroup glass={glass} testID="settings-group-profile">
           {/* зачем: раздел аккаунта — отдельный экран /account_details (данные, вход/выход, удаление);
               authReady защищает от кадра «Не привязан» до ответа. */}

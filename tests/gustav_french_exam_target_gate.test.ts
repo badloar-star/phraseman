@@ -39,7 +39,8 @@ describe('Gustav French exam target gate', () => {
     expect(finalExamSource).toContain('loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)');
     expect(finalExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
     expect(finalExamSource).toContain("'exam_questions_unavailable'");
-    expect(finalExamSource).toContain('FrenchLingmanExamUnavailable');
+    // зачем (владелец 18.10: «экранов-ошибок нигде»): закрытый язык — тихий уход назад, а не заглушка.
+    expect(finalExamSource).toContain("useSilentLeave(frenchExamBlocked, 'exam', 'french_gate_closed'");
     // зачем: система записи ошибок переписана: logMistake заменён захватом
     // через mistake_practice_capture. Тест сторожил старое имя и краснел,
     // хотя изоляция цела. Суть та же: ошибка экзамена записывается СО СВОИМ
@@ -52,7 +53,8 @@ describe('Gustav French exam target gate', () => {
     expect(finalExamSource.indexOf('loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)')).toBeLessThan(
       finalExamSource.indexOf('const q = questions[idx]||questions[0]'),
     );
-    expect(finalExamSource.indexOf('if (frenchExamBlocked) return (')).toBeLessThan(
+    expect(finalExamSource.indexOf('if (frenchExamBlocked) return <ScreenGradient')).toBeGreaterThan(-1);
+    expect(finalExamSource.indexOf('if (frenchExamBlocked) return <ScreenGradient')).toBeLessThan(
       finalExamSource.indexOf('const q = questions[idx]||questions[0]'),
     );
 
@@ -62,12 +64,13 @@ describe('Gustav French exam target gate', () => {
     expect(levelExamSource).toContain('loadFrenchRemoteLevelExamQuestions(lvl, frenchExamSourceLocale, INTRO_Q_COUNT)');
     expect(levelExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
     expect(levelExamSource).toContain("'exam_questions_unavailable'");
-    expect(levelExamSource).toContain('FrenchLevelExamUnavailable');
+    expect(levelExamSource).toContain("useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed'");
     // та же переписанная система, что и в финальном экзамене: ошибка уровня
     // записывается со своим языком, английская работа над ошибками не задета
     expect(levelExamSource).toContain('captureCurrentAccountObjectiveAttempt');
     expect(levelExamSource).toMatch(/captureCurrentAccountObjectiveAttempt\(\{[\s\S]{0,200}?studyTarget/);
-    expect(levelExamSource.indexOf('if (frenchExamBlocked) {')).toBeLessThan(
+    expect(levelExamSource.indexOf('if (silentLeaveFrench) {')).toBeGreaterThan(-1);
+    expect(levelExamSource.indexOf('if (silentLeaveFrench) {')).toBeLessThan(
       levelExamSource.indexOf("if (accessState !== 'allowed')"),
     );
 

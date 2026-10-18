@@ -63,6 +63,7 @@ import {
   ExamTile, ExamTrack, ExamVerdict, GlassTimerRing, examCardStyle, type ExamOptionState,
 } from '../components/level-exam/ExamGlassParts';
 import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const TIMER_SEC = 30;
@@ -1404,15 +1405,13 @@ export default function DiagnosticTest() {
     if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
 
-  if (frenchDiagnosticBlocked) {
-    return (
-      <FrenchDiagnosticUnavailable
-        lang={lang}
-        onBack={() => safeRouterBack(router)}
-        onLessons={() => router.replace('/lessons_list' as any)}
-        liquidGlassThemeId={liquidGlassThemeId}
-      />
-    );
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): тест для языка закрыт или вопросы не пришли после всех
+  // попыток (бэкофф) — тихо назад вместо заглушки «…ещё готовится» / «Сейчас недоступно». Вечного скелетона тоже нет:
+  // повторная загрузка — при следующем открытии теста.
+  const diagnosticSilentLeave = frenchDiagnosticBlocked || (questionsUnavailable && !questionsLoading);
+  useSilentLeave(diagnosticSilentLeave, 'diagnostic_test', frenchDiagnosticBlocked ? 'french_gate_closed' : 'questions_unavailable_after_retries', () => safeRouterBack(router));
+  if (diagnosticSilentLeave) {
+    return <ScreenGradient artBackdrop="diagnosticTest"><View style={{ flex: 1 }} /></ScreenGradient>;
   }
 
   const q = questions[idx] ?? questions[0];
@@ -1435,23 +1434,6 @@ export default function DiagnosticTest() {
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <ExamHeader glass={glass} title={s.diagnostic.start} onBack={() => safeRouterBack(router)} backLabel={diagnosticUi.back} />
-            {questionsUnavailable && !questionsLoading ? (
-              <View testID="diagnostic-questions-unavailable" style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingBottom: 60, gap: 18 }}>
-                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' })}
-                </Text>
-                <Pressable
-                  testID="diagnostic-questions-try-again"
-                  accessibilityRole="button"
-                  onPress={() => retryQuestions('tap')}
-                  style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 22, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.buttonFill, opacity: pressed ? 0.8 : 1 })}
-                >
-                  <Text style={{ color: glass.text, fontSize: 16, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
-                  </Text>
-                </Pressable>
-              </View>
-            ) : (
             <View style={{ padding: 16, paddingTop: 22 }}>
               <SkeletonBlock width="100%" height={6} borderRadius={3} />
               <SkeletonBlock width="100%" height={120} borderRadius={16} style={{ marginTop: 22 }} />
@@ -1460,7 +1442,6 @@ export default function DiagnosticTest() {
               <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
               <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
             </View>
-            )}
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>

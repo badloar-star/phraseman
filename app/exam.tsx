@@ -73,6 +73,7 @@ import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target
 import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
 import { DebugLogger } from './debug-logger';
 import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
@@ -861,14 +862,10 @@ export default function ExamScreen() {
   const score = choices.filter((c,i) => c !== null && c === questions[i]?.correct).length;
   const answered = choices.filter(c => c !== null).length;
   const pct = questions.length>0?Math.round(score/questions.length*100):0;
-  if (frenchExamBlocked) return (
-    <FrenchLingmanExamUnavailable
-      lang={lang}
-      onBack={() => safeRouterBack(router)}
-      onLessons={() => router.replace('/lessons_list' as any)}
-      liquidGlassThemeId={liquidGlassThemeId}
-    />
-  );
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): экзамен для закрытого языка — тихо назад вместо заглушки
+  // «…ещё готовится». Причина — в журнал [NO-ERROR-SCREEN].
+  useSilentLeave(frenchExamBlocked, 'exam', 'french_gate_closed', () => safeRouterBack(router));
+  if (frenchExamBlocked) return <ScreenGradient artBackdrop="exam"><View style={{ flex: 1 }} /></ScreenGradient>;
   const q = questions[idx]||questions[0];
   if (!q) return null;
   const chosen = choices[idx];

@@ -33,6 +33,7 @@ import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import ReportErrorButton, { REPORT_ERROR_ENABLED } from '../components/ReportErrorButton';
 import { getStableId } from './stable_id';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 
 /**
  * Карточка одной ошибки — «Ошибка», «Ошибка — шаги и история», «Меню ошибки» (макет docs/design/v2-app/mistakes-panel.html, вариант Б «Панель»).
@@ -172,6 +173,9 @@ export default function MistakeDetailScreen() {
 
   const goBack = useCallback(() => safeRouterBack(router, '/mistakes_list' as never), [router]);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): ошибки в журнале нет (удалена, скрыта, чужая ссылка) — тихо
+  // назад к списку вместо тупика «Эта ошибка больше не отслеживается».
+  useSilentLeave(detail === 'missing', 'mistake_detail', 'mistake_missing', goBack);
 
   // зачем (Optimistic UI): шторка закрывается и экран уходит назад сразу, запись события идёт фоном; при отказе — понятное сообщение.
   const hide = useCallback((reason: MistakeHideReason) => {
@@ -218,7 +222,6 @@ export default function MistakeDetailScreen() {
             <View style={[styles.plain, { paddingTop: insets.top + 8 }]}>
               <View style={styles.topbar}><BackButton g={g} label={copy.back} onPress={goBack} /></View>
               {/* зачем (координатор 15.10): тупик «Эта ошибка больше не отслеживается» — основная кнопка «К ошибкам» на всю ширину в общем виде тупиковых экранов, а не одна стрелка */}
-              {detail === 'missing' ? <View style={styles.missingWrap}><V2DeadEnd testID="mistake-detail-missing" body={copy.noData} actionLabel={copy.toMistakes} onAction={goBack} /></View> : null}
             </View>
           ) : (
             <>

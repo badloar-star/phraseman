@@ -21,7 +21,9 @@ describe('level exam access check deadline', () => {
       'utf8',
     );
 
-    expect(source).toContain("accessState === 'blocked' || identityUnavailable");
+    // зачем (владелец 18.10: «экранов-ошибок нигде»): «не открылся» — тихий уход, замок Plus/уровня — своя ветка.
+    expect(source).toContain("const silentLeave = identityUnavailable || contentUnavailable || (accessState === 'blocked' && accessBlockKind === 'error');");
+    expect(source).toContain("if (accessState === 'blocked') {");
     expect(source).toContain("accessState === 'checking' || phase === 'loading' || phase === 'intro'");
     expect(source).not.toContain('Готовим экзамен');
   });

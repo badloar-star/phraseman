@@ -40,7 +40,9 @@ test('mistake practice: skeleton instead of a full-screen spinner, calm unavaila
   expect(src).toContain('<MistakePracticeLoadingSkeleton />');
   expect(src).not.toMatch(/<ActivityIndicator/);
   expect(src).not.toContain('alert-circle-outline');
-  expect(src).toContain('testID="mistake-practice-try-again"');
+  // зачем (владелец 18.10: «экранов-ошибок нигде»): «Сейчас недоступно / Попробовать снова» убрано — тихий уход в «Мои ошибки».
+  expect(src).not.toContain('testID="mistake-practice-try-again"');
+  expect(src).toContain("useSilentLeave(mistakeSilentLeave, 'mistake_practice_session'");
   // Смена аккаунта больше не оставляет экран в вечной загрузке.
   expect(src).not.toMatch(/stale_account_generation'\)\s*return;/);
   // Потолок трогает только стадию подготовки; окно подтверждения энергии — нет.
@@ -103,8 +105,10 @@ test('French diagnostic: per-attempt ceiling, 1/3/8 s retries, calm «Сейча
   expect(src).toContain("from './load_gate_config'");
   expect(src).toContain('const backoffMs = loadGateBackoffMs(attempt);');
   expect(src).toContain('ceiling_${LOAD_GATE_TOTAL_MS}ms');
-  expect(src).toContain('testID="diagnostic-questions-unavailable"');
-  expect(src).toContain('testID="diagnostic-questions-try-again"');
+  // зачем (владелец 18.10: «экранов-ошибок нигде»): после всех попыток — тихий уход назад, без «Сейчас недоступно».
+  expect(src).not.toContain('testID="diagnostic-questions-unavailable"');
+  expect(src).toContain('questionsUnavailable && !questionsLoading');
+  expect(src).toContain("'questions_unavailable_after_retries'");
   expect(src).not.toContain('DIAG_RETRY_DELAY_MS = 20000');
   expect(src).not.toContain('остаётся скелетон');
 });

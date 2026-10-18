@@ -5,7 +5,7 @@
 // строка макета, пока Ядро не даст текст по причине (проп hint примет его без правки вида). Техническая причина —
 // только в дев-сборке; «Повторить» — только если плеер решил, что повтор что-то изменит.
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -46,6 +46,18 @@ function LearningV2SessionUnavailableBase({ title, hint, backLabel, closeLabel, 
   const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const lh = useLineScale();
+  // зачем (владелец 01.10 и 18.10 07:45: «экранов-ошибок нигде»): ученику экран «Сессия недоступна» не показываем —
+  // после первого кадра тихо уходим назад (onBack ведёт на карту урока). Вид с «Повторить» остаётся только для
+  // авторского превью: retry плеер передаёт лишь там, и автору нужна причина.
+  const silentExit = !retry;
+  const leftRef = useRef(false);
+  useEffect(() => {
+    if (!silentExit || leftRef.current) return;
+    leftRef.current = true;
+    console.warn(`[NO-ERROR-SCREEN] screen=learning_v2_session reason=${devReason ?? 'session_unavailable'} shown=silent_back`); // guard-ok: причина ухода называется всегда
+    onBack();
+  }, [devReason, onBack, silentExit]);
+  if (silentExit) return <View testID="learning-v2-session-unavailable-silent" style={[styles.screen, { backgroundColor: g.bg }]} />;
   return (
     <View testID="learning-v2-session-unavailable" style={[styles.screen, { backgroundColor: g.bg }]}>
       <View style={[styles.header, { paddingTop: insets.top + 8 }]}>

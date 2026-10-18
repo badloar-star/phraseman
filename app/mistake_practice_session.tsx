@@ -108,6 +108,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 // зачем (PM-134): SESSION_ATTEMPTS_MOTION был мёртвым импортом — константа анимации нигде не читалась в этом экране
 
 type Feedback = {
@@ -1410,6 +1411,12 @@ function MistakePracticeSessionScreen() {
     });
   }, [accountScope, hiddenUndo, persistSession, reviewPool, studyTarget]);
 
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): отработка не собралась (нет сети после повторов, язык не
+  // поддержан, сессия закончилась) — тихо назад в «Мои ошибки» вместо «Сейчас недоступно / Попробовать снова».
+  // Хаб показывает свой кэш, а при следующем входе подготовка повторится.
+  const mistakeSilentLeave = devFinaleWrong === null && !loading && Boolean(loadError || !session || (!entry && !complete));
+  useSilentLeave(mistakeSilentLeave, 'mistake_practice_session', loadError ? 'load_error' : !session ? 'no_session' : 'session_ended', () => leavePracticeRef.current());
+
   if (devFinaleWrong !== null) {
     // dev-кадр: тот же финал и тот же гейт «Ещё N», что у настоящей тренировки; переход в новую тренировку не делаем — id ошибок выдуманы
     const devMore = () => {
@@ -1439,26 +1446,8 @@ function MistakePracticeSessionScreen() {
   }
 
   if (loadError || !session || (!entry && !complete)) {
-    return (
-      <MistakePracticeScreenFrame centered>
-        {/* зачем (D158): спокойно — без красного значка ошибки; повтор только там, где он имеет смысл. */}
-        <Text accessibilityRole="header" style={[styles.errorTitle, { color: g.text, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
-        {/* зачем (координатор 03.10, D158 «тихо везде»): сбой — не повод для акцента. «Попробовать снова» — тихая кнопка,
-            «Вернуться» — текстовая ссылка. Акцент остаётся только когда занятие закончилось (действие с результатом). */}
-        <View style={styles.errorActions}>
-          {loadError && loadRetriable ? (
-            <PanelCta g={g} ghost testID="mistake-practice-try-again" label={copy.tryAgain} onPress={retryPrepare} />
-          ) : null}
-          {loadError && loadRetriable ? (
-            <Pressable accessibilityRole="button" style={({ pressed }) => [styles.textLink, pressed && { opacity: 0.6 }]} onPress={leavePractice}>
-              <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
-            </Pressable>
-          ) : (
-            <PanelCta g={g} label={copy.back} onPress={leavePractice} />
-          )}
-        </View>
-      </MistakePracticeScreenFrame>
-    );
+    // зачем: экран ошибки убран (владелец 18.10) — уход в «Мои ошибки» делает useSilentLeave выше; здесь только рамка без текста.
+    return <MistakePracticeScreenFrame centered><View /></MistakePracticeScreenFrame>;
   }
 
   // зачем (макет «Панель», итог: «Ещё N»; владелец 04.10): тап — сразу новая отработка ровно по ошибкам ЭТОЙ сессии с неверным ответом.

@@ -69,6 +69,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
@@ -670,6 +671,11 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     if (!sameOptions) setOptions(displayOptions);
   }, [activeVerb, displayOptions, options]);
 
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): очередь глаголов пуста (нет материала урока) — тихо назад
+  // в меню урока вместо «Тренировка не открылась». Очередь собирается синхронно, поэтому при обычном входе сюда не попадаем.
+  const irregularSilentLeave = !allDone && !activeVerb;
+  useSilentLeave(irregularSilentLeave, 'lesson_irregular_verbs', `empty_queue lesson=${lessonId} verbs=${verbs.length}`, () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any));
+
   if (allDone) return (
     <>
       {/* зачем (владелец 01.10): итог глаголов = общий экран завершения 2.0 по макету learn.html. */}
@@ -733,26 +739,8 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
 
   const verb = activeVerb;
   if (!verb) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
-        <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name="alert-circle-outline" size={26} color={glass.text} />
-        </View>
-        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center', marginTop: 18 }}>
-          {triLang(lang, {
-            ru: 'Тренировка не открылась. Вернись к уроку и начни её снова.',
-            uk: 'Тренування не відкрилося. Повернись до уроку і почни його знову.',
-            en: "Practice didn't open. Go back to the lesson and start it again.",
-            es: 'La práctica no se abrió. Vuelve a la lección y empiézala de nuevo.',
-            'pt-BR': 'O treino não abriu. Volte à lição e comece de novo.',
-            vi: 'Bài luyện chưa mở được. Hãy quay lại bài học và bắt đầu lại.',
-            id: 'Latihan belum terbuka. Kembali ke pelajaran dan mulai lagi.',
-            tr: 'Alıştırma açılmadı. Derse dön ve yeniden başla.',
-            pl: 'Trening się nie otworzył. Wróć do lekcji i zacznij od nowa.',
-          })}
-        </Text>
-      </View>
-    );
+    // зачем: экран ошибки убран (владелец 18.10) — уход назад делает useSilentLeave выше, здесь только пустой фон.
+    return <View style={{ flex: 1 }} />;
   }
 
   const form = FORM_SEQ[step];

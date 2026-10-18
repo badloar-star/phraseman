@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AppState, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -114,6 +114,38 @@ export default function MistakesHubScreen() {
     void load('focus', () => cancelled);
     return () => { cancelled = true; };
   }, [load]));
+
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»; правило п.2): снимок журнала не прочитался — без экрана
+  // «Сейчас недоступно». Показываем спокойное пустое состояние раздела, а чтение тихо повторяем: 3 попытки с паузами
+  // 2/5/10 с, затем — при возврате в приложение. Журнал локальный, сеть и Firestore не трогаются.
+  const silentRetryRef = useRef(0);
+  useEffect(() => {
+    if (!failed) {
+      silentRetryRef.current = 0;
+      return undefined;
+    }
+    const attempt = silentRetryRef.current;
+    const delays = [2000, 5000, 10000];
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    if (attempt < delays.length) {
+      console.warn(`[NO-ERROR-SCREEN] screen=mistakes_hub reason=snapshot_failed shown=calm_empty retry=${attempt + 1}/${delays.length} in=${delays[attempt]}ms`); // guard-ok: тихий повтор называет причину
+      timer = setTimeout(() => {
+        silentRetryRef.current = attempt + 1;
+        void load('silent_retry', () => false);
+      }, delays[attempt]);
+    } else {
+      console.warn('[NO-ERROR-SCREEN] screen=mistakes_hub reason=snapshot_failed shown=calm_empty retry=on_foreground'); // guard-ok: повторы исчерпаны, ждём возврата в приложение
+    }
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') return;
+      silentRetryRef.current = 0;
+      void load('foreground', () => false);
+    });
+    return () => {
+      if (timer) clearTimeout(timer);
+      sub.remove();
+    };
+  }, [failed, load]);
 
   // зачем (аудит 2026-09-21, одобрено владельцем): pull-to-refresh ставим ТОЛЬКО там, где жест стоит 0 чтений Firestore.
   // Журнал ошибок лежит на устройстве, поэтому жест пересчитывает локальный снимок и в сеть не идёт вовсе.
@@ -259,11 +291,12 @@ export default function MistakesHubScreen() {
       );
     }
     if (mode === 'failed') {
+      // зачем (владелец 18.10): вместо «Сейчас недоступно / Проверь интернет» — тот же спокойный вид, что у пустого журнала,
+      // без заголовка «Ошибок нет» (мы этого не знаем); чтение повторяется тихо (эффект выше).
       return (
-        <View style={styles.stateWrap}>
-          {centerRing(false, iconTile('wifi-outline', g.text))}
-          <Text style={[styles.stateTitle, { color: g.text }]}>{copy.offlineTitle}</Text>
-          <Text style={[styles.stateSub, { color: g.secondary }]}>{copy.offlineSub}</Text>
+        <View testID="mistakes-hub-calm-empty" style={styles.stateWrap}>
+          {centerRing(true, iconTile('checkmark', mpColors(g).ok))}
+          <Text style={[styles.stateSub, { color: g.secondary }]}>{copy.emptyFresh}</Text>
         </View>
       );
     }
@@ -318,7 +351,6 @@ export default function MistakesHubScreen() {
   const dockCta = (() => {
     if (mode === 'normal') return <PanelCta g={g} testID="mistakes-hub-start" label={`${copy.practice} ${Math.min(MISTAKE_PRACTICE_MAX_SESSION, readyCount)}`} onPress={openSheet} />;
     if (mode === 'loading') return <PanelCta g={g} label={copy.practice} onPress={() => undefined} disabled />;
-    if (mode === 'failed') return <PanelCta g={g} ghost label={copy.retry} onPress={() => { hapticTap(); void load('retry', () => false); }} />;
     return <PanelCta g={g} testID="mistakes-hub-to-lessons" label={copy.toLessons} onPress={() => { hapticTap(); router.push('/lessons_list' as never); }} />;
   })();
 

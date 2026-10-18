@@ -33,7 +33,8 @@ describe('Gustav French diagnostic target gate', () => {
     const runtimeSource = fs.readFileSync(path.join(ROOT, 'app', 'french_diagnostic_remote_runtime.ts'), 'utf8');
 
     expect(source).toContain('const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget)');
-    expect(source).toContain('FrenchDiagnosticUnavailable');
+    // зачем (владелец 18.10: «экранов-ошибок нигде»): закрытый язык — тихий уход назад, а не заглушка.
+    expect(source).toContain("useSilentLeave(diagnosticSilentLeave, 'diagnostic_test', frenchDiagnosticBlocked ? 'french_gate_closed'");
     expect(source).toContain('const isFrenchDiagnostic = storageStudyTarget(studyTarget) === \'fr\'');
     expect(source).toContain('loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20)');
     expect(source).toContain('frenchDiagnosticBlocked || isFrenchDiagnostic ? [] : pickQuestions()');

@@ -51,9 +51,11 @@ describe('общий вид тупиковых экранов', () => {
     expect(dead).not.toMatch(/fontSize: (22|16),/);
   });
 
-  it('mistake_detail без записи: кнопка «К ошибкам» ведёт назад к списку; ключ есть на всех 9 языках', () => {
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): тупик «Эта ошибка больше не отслеживается» убран — тихий уход к списку.
+  it('mistake_detail без записи: тихо назад к списку без тупика; ключ есть на всех 9 языках', () => {
     const src = read('app/mistake_detail.tsx');
-    expect(src).toContain('<V2DeadEnd testID="mistake-detail-missing" body={copy.noData} actionLabel={copy.toMistakes} onAction={goBack} />');
+    expect(src).toContain("useSilentLeave(detail === 'missing', 'mistake_detail', 'mistake_missing', goBack);");
+    expect(src).not.toContain('testID="mistake-detail-missing"');
     for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
       const line = src.split('\n').find((l) => l.startsWith(`  ${lang}: { back:`));
       expect([lang, !!line && line.includes(' toMistakes: ')]).toEqual([lang, true]);

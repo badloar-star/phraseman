@@ -42,7 +42,7 @@ describe('level exam v2 route contract', () => {
     expect(route).toContain("const showIntro = accessState === 'checking' || phase === 'loading' || phase === 'intro'");
   });
 
-  it('validates exam content before it can debit energy and gates unavailable locales visibly', () => {
+  it('validates exam content before it can debit energy and gates unavailable locales quietly (silent leave)', () => {
     const route = read('components/level-exam/LevelExamV2.tsx');
     // зачем (11.10): D72/D87 — энергия списывается не на «Начать», а в момент показа первого вопроса через единый
     // гейт (operationId = попытка, повтор не спишет дважды). Содержимое собирается и проверяется в startExam ДО этого.
@@ -55,7 +55,9 @@ describe('level exam v2 route contract', () => {
     expect(debit).toBeGreaterThan(begin);
     expect(route.slice(start, begin)).not.toMatch(/spendAmount|levelExamEnergyGate\.charge/);
     expect(route).toContain('setContentUnavailable(true)');
-    expect(route).toContain('Энергия не списана');
+    // зачем (владелец 18.10: «экранов-ошибок нигде»): закрытый язык — тихий уход к урокам до списания энергии, без экрана «пока готовится».
+    expect(route).toContain("'content_unavailable'");
+    expect(route).not.toContain('Энергия не списана');
   });
 
   it('never shows or debits exam energy for a verified Plus account', () => {

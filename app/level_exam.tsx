@@ -58,6 +58,7 @@ import {
   ExamTrack, examCardStyle, type ExamOptionState,
 } from '../components/level-exam/ExamGlassParts';
 import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 
@@ -947,6 +948,11 @@ export default function LevelExam() {
     safeRouterBack(router, '/lessons_list' as any);
   }, [pct, router]);
 
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): французский зачёт закрыт или доступ не проверился —
+  // тихо назад к урокам вместо заглушки «…ещё готовится» / «не проверился». Замок Plus/уровня — не ошибка, остаётся.
+  const silentLeaveFrench = frenchExamBlocked || (isFrenchExam && accessState === 'blocked' && accessBlockKind === 'error');
+  useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed' : 'access_check_failed', () => safeRouterBack(router, '/lessons_list' as any));
+
   if (!isFrenchExam && !frenchExamBlocked) {
     return (
       <LevelExamV2
@@ -954,19 +960,13 @@ export default function LevelExam() {
         lang={lang}
         accessState={accessState}
         blockedText={blockedText}
+        accessBlockKind={accessBlockKind}
       />
     );
   }
 
-  if (frenchExamBlocked) {
-    return (
-      <FrenchLevelExamUnavailable
-        lang={lang}
-        onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }}
-        onLessons={() => { hapticTap(); router.replace('/lessons_list' as any); }}
-        liquidGlassThemeId={liquidGlassThemeId}
-      />
-    );
+  if (silentLeaveFrench) {
+    return <ScreenGradient artBackdrop="exam"><View style={{ flex: 1 }} /></ScreenGradient>;
   }
 
   if (accessState !== 'allowed') {

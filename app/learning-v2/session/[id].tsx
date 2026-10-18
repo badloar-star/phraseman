@@ -1310,11 +1310,12 @@ function LearningV2LegacySessionScreen() {
     ) ||
     (!releasedPackageTask && !item)
   ) {
-    return (
-      <View style={styles.screen}>
-        <Text style={styles.error}>{copy.unavailable}</Text>
-      </View>
-    );
+    // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): старый путь без сессии/интро больше не рисует «Сессия
+    // недоступна» — тихо уводим на карту курса, причина — в журнал.
+    console.warn(
+      `[NO-ERROR-SCREEN] screen=learning_v2_session_route reason=${!session ? "no_session" : ordinal < 1 ? "bad_ordinal" : !releasedPackageTask && !item ? "no_task" : "no_intro"} shown=redirect_course`,
+    ); // guard-ok: причина ухода называется всегда
+    return <Redirect href={"/learning-v2/course" as never} />;
   }
   const closeSession = () => {
     stopAudioAttempt();

@@ -56,6 +56,7 @@ import LevelExamQuestionFrame from './LevelExamQuestionFrame';
 import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
+import { useSilentLeave } from '../../hooks/use_silent_leave';
 import { noteSwallowedAs, noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Numeric energy: экзамен стоит одно занятие (1 ⚡) за один старт.
@@ -68,6 +69,8 @@ type Props = {
   lang: Lang;
   accessState: 'checking' | 'allowed' | 'blocked';
   blockedText: string;
+  /** Почему закрыт: замок Plus/уровня показываем, а «не проверился» (error) — тихий уход. */
+  accessBlockKind?: 'premium' | 'level' | 'error';
 };
 
 type Phase = 'loading' | 'intro' | 'countdown' | 'quiz' | 'result';
@@ -112,7 +115,7 @@ function taskPrompt(task: LevelExamTask, lang: Lang): string {
   });
 }
 
-export default function LevelExamV2({ level, lang, accessState, blockedText }: Props) {
+export default function LevelExamV2({ level, lang, accessState, blockedText, accessBlockKind = 'level' }: Props) {
   // зачем: sourceLocale читает контент фраз экзамена — английского source нет
   // (см. app/source_locales.ts), сужаем на RU, как остальные контентные
   // фолбэки без en в проекте.
@@ -446,7 +449,13 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     safeRouterBack(router, '/lessons_list' as never);
   }, [router]);
 
-  if (accessState === 'blocked' || identityUnavailable || contentUnavailable) {
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): экзамен не открылся (нет личности, нет материала языка,
+  // доступ не проверился) — тихо назад к урокам вместо «Зачёт пока недоступен». Замок Plus/уровня — не ошибка, остаётся.
+  const silentLeave = identityUnavailable || contentUnavailable || (accessState === 'blocked' && accessBlockKind === 'error');
+  const silentLeaveReason = identityUnavailable ? 'identity_unavailable' : contentUnavailable ? 'content_unavailable' : 'access_check_failed';
+  useSilentLeave(silentLeave, 'level_exam_v2', silentLeaveReason, () => safeRouterBack(router, '/lessons_list' as never));
+  if (silentLeave) return <ScreenGradient artBackdrop="exam"><View style={styles.safeArea} /></ScreenGradient>;
+  if (accessState === 'blocked') {
     return (
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={styles.safeArea}>
@@ -456,11 +465,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
               glass={glass}
               icon="lock-closed-outline"
               title={triLang(lang, { ru: 'Зачёт пока недоступен', uk: 'Залік поки недоступний', en: 'Exam is not available yet', es: 'El examen aún no está disponible', 'pt-BR': 'O exame ainda não está disponível', vi: 'Bài thi chưa khả dụng', id: 'Ujian belum tersedia', tr: 'Sınav henüz kullanılamıyor', pl: 'Egzamin jeszcze niedostępny' })}
-              message={contentUnavailable
-                    ? triLang(lang, { ru: 'Экзамен для этого языка пока готовится. Энергия не списана.', uk: 'Іспит для цієї мови ще готується. Енергію не списано.', en: "The exam for this language is still being prepared. No energy was charged.", es: 'El examen para este idioma aún se está preparando. No se descontó energía.', 'pt-BR': 'O exame para este idioma ainda está sendo preparado. Nenhuma energia foi descontada.', vi: 'Bài thi cho ngôn ngữ này đang được chuẩn bị. Năng lượng chưa bị trừ.', id: 'Ujian untuk bahasa ini masih disiapkan. Energi tidak dikurangi.', tr: 'Bu dil için sınav hâlâ hazırlanıyor. Enerji düşülmedi.', pl: 'Egzamin dla tego języka jest jeszcze przygotowywany. Energia nie została pobrana.' })
-                    : identityUnavailable
-                    ? triLang(lang, { ru: 'Экзамен не открылся. Вернись и открой его снова.', uk: 'Іспит не відкрився. Повернися й відкрий його знову.', en: "The exam didn't open. Go back and open it again.", es: 'El examen no se abrió. Vuelve y ábrelo de nuevo.', 'pt-BR': 'O exame não abriu. Volte e abra de novo.', vi: 'Bài thi chưa mở được. Hãy quay lại và mở lại.', id: 'Ujian belum terbuka. Kembali dan buka lagi.', tr: 'Sınav açılmadı. Geri dön ve yeniden aç.', pl: 'Egzamin się nie otworzył. Wróć i otwórz go ponownie.' })
-                    : blockedText}
+              message={blockedText}
             />
           </View>
           <ExamFooter bottomInset={0}>

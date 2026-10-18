@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "pouring и using с am/is/are; знакомое pour в действии сейчас",
+    "uk": "pouring і using з am/is/are; знайоме pour у дії зараз"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мыло для узкого флакона",
+        "uk": "Мило для вузького флакона"
+      },
+      "bodyByLocale": {
+        "ru": "Вы переливаете жидкое мыло из большой упаковки во флакон с узким горлышком. Чтобы не пролить, вставили воронку. Funnel — «воронка». I am using a funnel — «Я пользуюсь воронкой». Using получается из use: перед -ing убираем e. Мыло должно попасть во флакон, а am — в предложение: оба нужны на своём месте.",
+        "uk": "Ви переливаєте рідке мило з великої упаковки у флакон із вузькою шийкою. Щоб не пролити, вставили лійку для переливання. Funnel — «лійка для переливання рідини». I am using a funnel — «Я користуюся лійкою для переливання». Using утворюється від use: перед -ing прибираємо e. Мило має потрапити у флакон, а am — у речення: обидва потрібні на своєму місці."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-03:intro1:r1",
+              "text": "I am using a funnel."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro1:r2",
+              "text": "I using a funnel."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro1:r3",
+              "text": "I am use a funnel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-03:intro1:r1",
+              "text": "I am using a funnel."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro1:r2",
+              "text": "I using a funnel."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro1:r3",
+              "text": "I am use a funnel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вода для опыта с цветом",
+        "uk": "Вода для досліду з кольором"
+      },
+      "bodyByLocale": {
+        "ru": "На занятии вы смешиваете цветную воду. Подруга сейчас наливает воду в лабораторный стакан. Beaker — «лабораторный стакан». She is pouring water into a beaker — «Она наливает воду в лабораторный стакан». Pour уже знакомо: «наливать»; pouring показывает действие сейчас. Into здесь значит «в», внутрь стакана.",
+        "uk": "На занятті ви змішуєте кольорову воду. Подруга зараз наливає воду в лабораторну склянку. Beaker — «лабораторна склянка». She is pouring water into a beaker — «Вона наливає воду в лабораторну склянку». Pour уже знайоме: «наливати»; pouring показує дію зараз. Into тут означає «в», усередину склянки."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-03:intro2:r1",
+              "text": "She is pouring water into a beaker."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro2:r2",
+              "text": "She pouring water into a beaker."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro2:r3",
+              "text": "She is pour water into a beaker."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-03:intro2:r1",
+              "text": "She is pouring water into a beaker."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro2:r2",
+              "text": "She pouring water into a beaker."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro2:r3",
+              "text": "She is pour water into a beaker."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Цветы на балконе",
+        "uk": "Квіти на балконі"
+      },
+      "bodyByLocale": {
+        "ru": "На балконе друг поливает цветы маленькой лейкой. Watering can — «лейка для полива». He is using a watering can — «Он пользуется лейкой». Watering can — одно название из двух слов. Сейчас друг пользуется вещью, поэтому he is using.",
+        "uk": "На балконі друг поливає квіти маленькою лійкою для поливу. Watering can — «лійка для поливу». He is using a watering can — «Він користується лійкою для поливу». Watering can — одна назва з двох слів. Зараз друг користується річчю, тому he is using."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-03:intro3:r1",
+              "text": "He is using a watering can."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro3:r2",
+              "text": "He using a watering can."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro3:r3",
+              "text": "He is use a watering can."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-03:intro3:r1",
+              "text": "He is using a watering can."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro3:r2",
+              "text": "He using a watering can."
+            },
+            {
+              "responseId": "en:lesson-09:session-03:intro3:r3",
+              "text": "He is use a watering can."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f67764551c8837f6f8b3d3b3d78e2a04dfe747e082078930826805f41efbd243"
+}

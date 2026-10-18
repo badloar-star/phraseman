@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-51:word:sell",
+    "correctText": "sell",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-51:i01",
     "correctText": "They sell lamps.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-06:session-51:word:pumpkin",
+    "correctText": "pumpkin",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-51:i02",
-    "correctText": "sell",
+    "correctText": "The pumpkin is big.",
     "correctResponseId": "en:lesson-06:session-51:i02:r1"
   },
   {
@@ -16,57 +26,67 @@
   },
   {
     "interactionId": "en:lesson-06:session-51:i04",
-    "correctText": "en:lesson-06:session-51:i04:p1=sell\nen:lesson-06:session-51:i04:p2=ineffective\nen:lesson-06:session-51:i04:p3=community centre\nen:lesson-06:session-51:i04:p4=stadium",
+    "correctText": "en:lesson-06:session-51:i04:p1=sell\nen:lesson-06:session-51:i04:p2=pumpkin\nen:lesson-06:session-51:i04:p3=lampshade\nen:lesson-06:session-51:i04:p4=muffin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:word:lampshade",
+    "correctText": "lampshade",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i05",
-    "correctText": "They sell lamps.",
+    "correctText": "The lampshade is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:word:muffin",
+    "correctText": "muffin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i06",
-    "correctText": "She sells lamps.",
+    "correctText": "The muffin is sweet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i07",
-    "correctText": "Whose lamp is this?",
+    "correctText": "The lampshade is near the lamp.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i08",
-    "correctText": "sell",
+    "correctText": "sells",
     "correctResponseId": "en:lesson-06:session-51:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-51:i09",
-    "correctText": "She sells lamps.",
+    "correctText": "The muffin is on the table.",
     "correctResponseId": "en:lesson-06:session-51:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-51:i10",
-    "correctText": "en:lesson-06:session-51:i10:p1=speak\nen:lesson-06:session-51:i10:p2=sell\nen:lesson-06:session-51:i10:p3=stadium\nen:lesson-06:session-51:i10:p4=ineffective",
+    "correctText": "en:lesson-06:session-51:i10:p1=lampshade\nen:lesson-06:session-51:i10:p2=sell\nen:lesson-06:session-51:i10:p3=muffin\nen:lesson-06:session-51:i10:p4=pumpkin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i11",
-    "correctText": "Whose lamp is this?",
+    "correctText": "She sells muffins.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i12",
-    "correctText": "He speaks English.",
+    "correctText": "Whose lampshade is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i13",
-    "correctText": "The stadium is here.",
+    "correctText": "The pumpkin is near the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i14",
-    "correctText": "are",
+    "correctText": "sells",
     "correctResponseId": "en:lesson-06:session-51:i14:r1"
   },
   {
@@ -76,12 +96,12 @@
   },
   {
     "interactionId": "en:lesson-06:session-51:i16",
-    "correctText": "en:lesson-06:session-51:i16:p1=community centre\nen:lesson-06:session-51:i16:p2=speak\nen:lesson-06:session-51:i16:p3=sell\nen:lesson-06:session-51:i16:p4=ineffective",
+    "correctText": "en:lesson-06:session-51:i16:p1=muffin\nen:lesson-06:session-51:i16:p2=lampshade\nen:lesson-06:session-51:i16:p3=pumpkin\nen:lesson-06:session-51:i16:p4=sell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-51:i17",
-    "correctText": "Anna sells newspapers.",
+    "correctText": "They sell lamps.",
     "correctResponseId": null
   }
 ]

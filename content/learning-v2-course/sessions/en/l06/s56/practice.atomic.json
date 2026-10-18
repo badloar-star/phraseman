@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-56",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-56:word:baker",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — baker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:baker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — baker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:baker:audio",
+            "transcript": "baker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:baker:r1",
+              "targetText": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь. He is a baker. — «Он пекарь». Человек, который печёт хлеб.",
+                "uk": "пекар. He is a baker. — «Він пекар». Людина, яка пече хліб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baker",
+            "definitionByLocale": {
+              "ru": "пекарь. He is a baker. — «Он пекарь». Человек, который печёт хлеб.",
+              "uk": "пекар. He is a baker. — «Він пекар». Людина, яка пече хліб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новый сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новый сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is a baker.",
+          "localizedMeaning": {
+            "ru": "Новый сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь»",
+            "uk": "Новий сусід питає, хто пече хліб. Скажіть: «Він пекар»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "a",
+            "baker"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Новый сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `He is a baker.`",
+                "uk": "тут потрібно `a` — `He is a baker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:word:tailor",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tailor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:tailor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tailor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:tailor:audio",
+            "transcript": "tailor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:tailor:r1",
+              "targetText": "tailor",
+              "meaningByLocale": {
+                "ru": "портной. The tailor is kind. — «Портной добрый». Мастер, который шьёт и чинит одежду.",
+                "uk": "кравець. The tailor is kind. — «Кравець добрий». Майстер, який шиє й лагодить одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tailor",
+            "definitionByLocale": {
+              "ru": "портной. The tailor is kind. — «Портной добрый». Мастер, который шьёт и чинит одежду.",
+              "uk": "кравець. The tailor is kind. — «Кравець добрий». Майстер, який шиє й лагодить одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i02:r1",
+            "text": "The tailor repairs uniforms."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i02:r2",
+            "text": "The tailor repairs gutters."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i02:r3",
+            "text": "The baker repairs uniforms."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i02:audio",
+            "transcript": "The tailor repairs uniforms."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:i02:r1",
+              "targetText": "The tailor repairs uniforms.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i02:r2",
+              "targetText": "The tailor repairs gutters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i02:r3",
+              "targetText": "The baker repairs uniforms.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `uniforms`, форма, а в этом варианте — `gutters`, желоба.",
+                "uk": "У записі останнє слово — `uniforms`, форма, а в цьому варіанті — `gutters`, жолоби."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `tailor`, портной, а в этом варианте — `baker`, пекарь.",
+                "uk": "У записі друге слово — `tailor`, кравець, а в цьому варіанті — `baker`, пекар."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:word:caretaker",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — caretaker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:caretaker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — caretaker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:caretaker:audio",
+            "transcript": "caretaker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:caretaker:r1",
+              "targetText": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома. The caretaker is friendly. — «Смотритель дома приветливый». Человек, который следит за порядком в доме и во дворе.",
+                "uk": "доглядач будинку. The caretaker is friendly. — «Доглядач будинку привітний». Людина, яка стежить за порядком у домі й на подвір’ї."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "caretaker",
+            "definitionByLocale": {
+              "ru": "смотритель дома. The caretaker is friendly. — «Смотритель дома приветливый». Человек, который следит за порядком в доме и во дворе.",
+              "uk": "доглядач будинку. The caretaker is friendly. — «Доглядач будинку привітний». Людина, яка стежить за порядком у домі й на подвір’ї."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i03:r1",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i03:r2",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i03:r3",
+            "text": "is wears"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+            "uk": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The caretaker ___ a uniform.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-56:i03:r1",
+              "text": "wears"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i03:r2",
+              "text": "wear"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i03:r3",
+              "text": "is wears"
+            }
+          ],
+          "testedDimension": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Смотритель один: нужно `wears`, с `s`.",
+                "uk": "Доглядач один: потрібно `wears`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `The caretaker wears`, без `is`.",
+                "uk": "Кажемо `The caretaker wears`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-56:i04:p1",
+              "target": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь",
+                "uk": "пекар"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i04:p2",
+              "target": "tailor",
+              "meaningByLocale": {
+                "ru": "портной",
+                "uk": "кравець"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i04:p3",
+              "target": "cane",
+              "meaningByLocale": {
+                "ru": "трость",
+                "uk": "ціпок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i04:p4",
+              "target": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома",
+                "uk": "доглядач будинку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "baker",
+            "tailor",
+            "cane",
+            "caretaker"
+          ],
+          "rightColumn": [
+            "пекарь",
+            "портной",
+            "трость",
+            "смотритель дома"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:word:cane",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cane",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:cane:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cane",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:cane:audio",
+            "transcript": "cane"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:cane:r1",
+              "targetText": "cane",
+              "meaningByLocale": {
+                "ru": "трость. The cane is old. — «Трость старая». Палка, на которую опираются при ходьбе.",
+                "uk": "ціпок. The cane is old. — «Ціпок старий». Палиця, на яку спираються під час ходьби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cane",
+            "definitionByLocale": {
+              "ru": "трость. The cane is old. — «Трость старая». Палка, на которую опираются при ходьбе.",
+              "uk": "ціпок. The cane is old. — «Ціпок старий». Палиця, на яку спираються під час ходьби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i05:audio",
+            "transcript": "The cane is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cane is here.",
+          "orderedTokens": [
+            "The",
+            "cane",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The cane is here.`",
+                "uk": "тут потрібно `is` — `The cane is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He delivers newspapers.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+            "uk": "Сусід питає про вашого брата. Скажіть: «Він доставляє газети»"
+          },
+          "orderedTokens": [
+            "He",
+            "delivers",
+            "newspapers"
+          ],
+          "authoredDistractorTokens": [
+            "deliver"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `delivers` — `He delivers newspapers.`",
+                "uk": "тут потрібно `delivers` — `He delivers newspapers.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли трость в холле. Спросите у людей рядом: «Чья это трость?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Вы нашли трость в холле. Спросите у людей рядом: «Чья это трость?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i07:audio",
+            "transcript": "Whose cane is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose cane is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i08:r1",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i08:r2",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i08:r3",
+            "text": "are wear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+            "uk": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ uniforms.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-56:i08:r1",
+              "text": "wear"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i08:r2",
+              "text": "wears"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i08:r3",
+              "text": "are wear"
+            }
+          ],
+          "testedDimension": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `we` нужно `wear`, без `s`.",
+                "uk": "Після `we` потрібно `wear`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `We wear`, без `are`.",
+                "uk": "Кажемо `We wear`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i09:r1",
+            "text": "She is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i09:r2",
+            "text": "He is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i09:r3",
+            "text": "She is a baker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i09:audio",
+            "transcript": "She is an artist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:i09:r1",
+              "targetText": "She is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i09:r2",
+              "targetText": "He is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i09:r3",
+              "targetText": "She is a baker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `artist`, художница, а в этом варианте — `baker`, пекарь.",
+                "uk": "У записі останнє слово — `artist`, художниця, а в цьому варіанті — `baker`, пекар."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-56:i10:p1",
+              "target": "cane",
+              "meaningByLocale": {
+                "ru": "трость",
+                "uk": "ціпок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i10:p2",
+              "target": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома",
+                "uk": "доглядач будинку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i10:p3",
+              "target": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь",
+                "uk": "пекар"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i10:p4",
+              "target": "tailor",
+              "meaningByLocale": {
+                "ru": "портной",
+                "uk": "кравець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cane",
+            "caretaker",
+            "baker",
+            "tailor"
+          ],
+          "rightColumn": [
+            "трость",
+            "смотритель дома",
+            "пекарь",
+            "портной"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i11:audio",
+            "transcript": "They repair uniforms."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They repair uniforms.",
+          "orderedTokens": [
+            "They",
+            "repair",
+            "uniforms"
+          ],
+          "authoredDistractorTokens": [
+            "repairs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `repair` — `They repair uniforms.`",
+                "uk": "тут потрібно `repair` — `They repair uniforms.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На стуле лежит форма. Спросите у коллег: «Чья это форма?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На стуле лежит форма. Спросите у коллег: «Чья это форма?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose uniform is this?",
+          "localizedMeaning": {
+            "ru": "На стуле лежит форма. Спросите у коллег: «Чья это форма?»",
+            "uk": "На стільці лежить форма. Спитайте в колег: «Чия це форма?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "uniform",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На стуле лежит форма. Спросите у коллег: «Чья это форма?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose uniform is this?`",
+                "uk": "тут потрібно `Whose` — `Whose uniform is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новый сосед спрашивает о вашей работе. Скажите: «Я ремонтирую крыши»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Новый сосед спрашивает о вашей работе. Скажите: «Я ремонтирую крыши»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i13:audio",
+            "transcript": "I repair roofs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I repair roofs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У дверей стоят две трости. Спросите: «Чьи это трости?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У дверей стоят две трости. Спросите: «Чьи это трости?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У дверей стоят две трости. Спросите: «Чьи это трости?»",
+            "uk": "Біля дверей стоять два ціпки. Спитайте: «Чиї це ціпки?»"
+          },
+          "gappedTargetPhrase": "Whose canes ___ these?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-56:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "У дверей стоят две трости. Спросите: «Чьи это трости?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "У дверей стоят две трости. Спросите: «Чьи это трости?»",
+              "feedbackByLocale": {
+                "ru": "Несколько тростей: `are these`.",
+                "uk": "Кілька ціпків: `are these`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "У дверей стоят две трости. Спросите: «Чьи это трости?»",
+              "feedbackByLocale": {
+                "ru": "`Am` подходит к `I`; здесь нужно `are`.",
+                "uk": "`Am` пасує до `I`; тут потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i15:r1",
+            "text": "He is a caretaker."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i15:r2",
+            "text": "She is a caretaker."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i15:r3",
+            "text": "He is a baker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i15:audio",
+            "transcript": "He is a caretaker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:i15:r1",
+              "targetText": "He is a caretaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i15:r2",
+              "targetText": "She is a caretaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i15:r3",
+              "targetText": "He is a baker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `caretaker`, смотритель дома, а в этом варианте — `baker`, пекарь.",
+                "uk": "У записі останнє слово — `caretaker`, доглядач будинку, а в цьому варіанті — `baker`, пекар."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-56:i16:p1",
+              "target": "tailor",
+              "meaningByLocale": {
+                "ru": "портной",
+                "uk": "кравець"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i16:p2",
+              "target": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь",
+                "uk": "пекар"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i16:p3",
+              "target": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома",
+                "uk": "доглядач будинку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i16:p4",
+              "target": "cane",
+              "meaningByLocale": {
+                "ru": "трость",
+                "uk": "ціпок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tailor",
+            "baker",
+            "caretaker",
+            "cane"
+          ],
+          "rightColumn": [
+            "портной",
+            "пекарь",
+            "смотритель дома",
+            "трость"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега порвал рабочую форму. Посоветуйте портного: «Портной ремонтирует форму»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Коллега порвал рабочую форму. Посоветуйте портного: «Портной ремонтирует форму»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i17:audio",
+            "transcript": "The tailor repairs uniforms."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The tailor repairs uniforms.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-56:word:baker",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — baker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:baker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — baker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:baker:audio",
+            "transcript": "baker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:baker:r1",
+              "targetText": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь. He is a baker. — «Он пекарь». Человек, который печёт хлеб.",
+                "uk": "пекар. He is a baker. — «Він пекар». Людина, яка пече хліб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baker",
+            "definitionByLocale": {
+              "ru": "пекарь. He is a baker. — «Он пекарь». Человек, который печёт хлеб.",
+              "uk": "пекар. He is a baker. — «Він пекар». Людина, яка пече хліб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новий сусід питає, хто пече хліб. Скажіть: «Він пекар»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новий сусід питає, хто пече хліб. Скажіть: «Він пекар»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is a baker.",
+          "localizedMeaning": {
+            "ru": "Новый сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь»",
+            "uk": "Новий сусід питає, хто пече хліб. Скажіть: «Він пекар»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "a",
+            "baker"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Новий сусід питає, хто пече хліб. Скажіть: «Він пекар»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `He is a baker.`",
+                "uk": "тут потрібно `a` — `He is a baker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:word:tailor",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tailor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:tailor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tailor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:tailor:audio",
+            "transcript": "tailor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:tailor:r1",
+              "targetText": "tailor",
+              "meaningByLocale": {
+                "ru": "портной. The tailor is kind. — «Портной добрый». Мастер, который шьёт и чинит одежду.",
+                "uk": "кравець. The tailor is kind. — «Кравець добрий». Майстер, який шиє й лагодить одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tailor",
+            "definitionByLocale": {
+              "ru": "портной. The tailor is kind. — «Портной добрый». Мастер, который шьёт и чинит одежду.",
+              "uk": "кравець. The tailor is kind. — «Кравець добрий». Майстер, який шиє й лагодить одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i02:r1",
+            "text": "The tailor repairs uniforms."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i02:r2",
+            "text": "The tailor repairs gutters."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i02:r3",
+            "text": "The baker repairs uniforms."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i02:audio",
+            "transcript": "The tailor repairs uniforms."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:i02:r1",
+              "targetText": "The tailor repairs uniforms.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i02:r2",
+              "targetText": "The tailor repairs gutters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i02:r3",
+              "targetText": "The baker repairs uniforms.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `uniforms`, форма, а в этом варианте — `gutters`, желоба.",
+                "uk": "У записі останнє слово — `uniforms`, форма, а в цьому варіанті — `gutters`, жолоби."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `tailor`, портной, а в этом варианте — `baker`, пекарь.",
+                "uk": "У записі друге слово — `tailor`, кравець, а в цьому варіанті — `baker`, пекар."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:word:caretaker",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — caretaker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:caretaker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — caretaker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:caretaker:audio",
+            "transcript": "caretaker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:caretaker:r1",
+              "targetText": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома. The caretaker is friendly. — «Смотритель дома приветливый». Человек, который следит за порядком в доме и во дворе.",
+                "uk": "доглядач будинку. The caretaker is friendly. — «Доглядач будинку привітний». Людина, яка стежить за порядком у домі й на подвір’ї."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "caretaker",
+            "definitionByLocale": {
+              "ru": "смотритель дома. The caretaker is friendly. — «Смотритель дома приветливый». Человек, который следит за порядком в доме и во дворе.",
+              "uk": "доглядач будинку. The caretaker is friendly. — «Доглядач будинку привітний». Людина, яка стежить за порядком у домі й на подвір’ї."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i03:r1",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i03:r2",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i03:r3",
+            "text": "is wears"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+            "uk": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The caretaker ___ a uniform.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-56:i03:r1",
+              "text": "wears"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i03:r2",
+              "text": "wear"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i03:r3",
+              "text": "is wears"
+            }
+          ],
+          "testedDimension": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Смотритель один: нужно `wears`, с `s`.",
+                "uk": "Доглядач один: потрібно `wears`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `The caretaker wears`, без `is`.",
+                "uk": "Кажемо `The caretaker wears`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-56:i04:p1",
+              "target": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь",
+                "uk": "пекар"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i04:p2",
+              "target": "tailor",
+              "meaningByLocale": {
+                "ru": "портной",
+                "uk": "кравець"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i04:p3",
+              "target": "cane",
+              "meaningByLocale": {
+                "ru": "трость",
+                "uk": "ціпок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i04:p4",
+              "target": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома",
+                "uk": "доглядач будинку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "baker",
+            "tailor",
+            "cane",
+            "caretaker"
+          ],
+          "rightColumn": [
+            "пекар",
+            "кравець",
+            "ціпок",
+            "доглядач будинку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:word:cane",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cane",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:word:cane:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cane",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:word:cane:audio",
+            "transcript": "cane"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:word:cane:r1",
+              "targetText": "cane",
+              "meaningByLocale": {
+                "ru": "трость. The cane is old. — «Трость старая». Палка, на которую опираются при ходьбе.",
+                "uk": "ціпок. The cane is old. — «Ціпок старий». Палиця, на яку спираються під час ходьби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cane",
+            "definitionByLocale": {
+              "ru": "трость. The cane is old. — «Трость старая». Палка, на которую опираются при ходьбе.",
+              "uk": "ціпок. The cane is old. — «Ціпок старий». Палиця, на яку спираються під час ходьби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i05:audio",
+            "transcript": "The cane is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cane is here.",
+          "orderedTokens": [
+            "The",
+            "cane",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The cane is here.`",
+                "uk": "тут потрібно `is` — `The cane is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід питає про вашого брата. Скажіть: «Він доставляє газети»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає про вашого брата. Скажіть: «Він доставляє газети»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He delivers newspapers.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+            "uk": "Сусід питає про вашого брата. Скажіть: «Він доставляє газети»"
+          },
+          "orderedTokens": [
+            "He",
+            "delivers",
+            "newspapers"
+          ],
+          "authoredDistractorTokens": [
+            "deliver"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід питає про вашого брата. Скажіть: «Він доставляє газети»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `delivers` — `He delivers newspapers.`",
+                "uk": "тут потрібно `delivers` — `He delivers newspapers.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли ціпок у холі. Спитайте в людей поруч: «Чий це ціпок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли ціпок у холі. Спитайте в людей поруч: «Чий це ціпок?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i07:audio",
+            "transcript": "Whose cane is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose cane is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i08:r1",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i08:r2",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i08:r3",
+            "text": "are wear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+            "uk": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ uniforms.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-56:i08:r1",
+              "text": "wear"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i08:r2",
+              "text": "wears"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i08:r3",
+              "text": "are wear"
+            }
+          ],
+          "testedDimension": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `we` нужно `wear`, без `s`.",
+                "uk": "Після `we` потрібно `wear`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `We wear`, без `are`.",
+                "uk": "Кажемо `We wear`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i09:r1",
+            "text": "She is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i09:r2",
+            "text": "He is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i09:r3",
+            "text": "She is a baker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i09:audio",
+            "transcript": "She is an artist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:i09:r1",
+              "targetText": "She is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i09:r2",
+              "targetText": "He is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i09:r3",
+              "targetText": "She is a baker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `artist`, художница, а в этом варианте — `baker`, пекарь.",
+                "uk": "У записі останнє слово — `artist`, художниця, а в цьому варіанті — `baker`, пекар."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-56:i10:p1",
+              "target": "cane",
+              "meaningByLocale": {
+                "ru": "трость",
+                "uk": "ціпок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i10:p2",
+              "target": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома",
+                "uk": "доглядач будинку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i10:p3",
+              "target": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь",
+                "uk": "пекар"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i10:p4",
+              "target": "tailor",
+              "meaningByLocale": {
+                "ru": "портной",
+                "uk": "кравець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cane",
+            "caretaker",
+            "baker",
+            "tailor"
+          ],
+          "rightColumn": [
+            "ціпок",
+            "доглядач будинку",
+            "пекар",
+            "кравець"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i11:audio",
+            "transcript": "They repair uniforms."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They repair uniforms.",
+          "orderedTokens": [
+            "They",
+            "repair",
+            "uniforms"
+          ],
+          "authoredDistractorTokens": [
+            "repairs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `repair` — `They repair uniforms.`",
+                "uk": "тут потрібно `repair` — `They repair uniforms.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На стільці лежить форма. Спитайте в колег: «Чия це форма?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На стільці лежить форма. Спитайте в колег: «Чия це форма?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose uniform is this?",
+          "localizedMeaning": {
+            "ru": "На стуле лежит форма. Спросите у коллег: «Чья это форма?»",
+            "uk": "На стільці лежить форма. Спитайте в колег: «Чия це форма?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "uniform",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На стільці лежить форма. Спитайте в колег: «Чия це форма?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose uniform is this?`",
+                "uk": "тут потрібно `Whose` — `Whose uniform is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новий сусід питає про вашу роботу. Скажіть: «Я ремонтую дахи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Новий сусід питає про вашу роботу. Скажіть: «Я ремонтую дахи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i13:audio",
+            "transcript": "I repair roofs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I repair roofs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Біля дверей стоять два ціпки. Спитайте: «Чиї це ціпки?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Біля дверей стоять два ціпки. Спитайте: «Чиї це ціпки?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У дверей стоят две трости. Спросите: «Чьи это трости?»",
+            "uk": "Біля дверей стоять два ціпки. Спитайте: «Чиї це ціпки?»"
+          },
+          "gappedTargetPhrase": "Whose canes ___ these?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-56:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Біля дверей стоять два ціпки. Спитайте: «Чиї це ціпки?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Біля дверей стоять два ціпки. Спитайте: «Чиї це ціпки?»",
+              "feedbackByLocale": {
+                "ru": "Несколько тростей: `are these`.",
+                "uk": "Кілька ціпків: `are these`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Біля дверей стоять два ціпки. Спитайте: «Чиї це ціпки?»",
+              "feedbackByLocale": {
+                "ru": "`Am` подходит к `I`; здесь нужно `are`.",
+                "uk": "`Am` пасує до `I`; тут потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i15:r1",
+            "text": "He is a caretaker."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i15:r2",
+            "text": "She is a caretaker."
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i15:r3",
+            "text": "He is a baker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i15:audio",
+            "transcript": "He is a caretaker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-56:i15:r1",
+              "targetText": "He is a caretaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i15:r2",
+              "targetText": "She is a caretaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i15:r3",
+              "targetText": "He is a baker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `caretaker`, смотритель дома, а в этом варианте — `baker`, пекарь.",
+                "uk": "У записі останнє слово — `caretaker`, доглядач будинку, а в цьому варіанті — `baker`, пекар."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-56:i16:p1",
+              "target": "tailor",
+              "meaningByLocale": {
+                "ru": "портной",
+                "uk": "кравець"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i16:p2",
+              "target": "baker",
+              "meaningByLocale": {
+                "ru": "пекарь",
+                "uk": "пекар"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i16:p3",
+              "target": "caretaker",
+              "meaningByLocale": {
+                "ru": "смотритель дома",
+                "uk": "доглядач будинку"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-56:i16:p4",
+              "target": "cane",
+              "meaningByLocale": {
+                "ru": "трость",
+                "uk": "ціпок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tailor",
+            "baker",
+            "caretaker",
+            "cane"
+          ],
+          "rightColumn": [
+            "кравець",
+            "пекар",
+            "доглядач будинку",
+            "ціпок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега порвав робочу форму. Порадьте кравця: «Кравець ремонтує форму»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Колега порвав робочу форму. Порадьте кравця: «Кравець ремонтує форму»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-56:i17:audio",
+            "transcript": "The tailor repairs uniforms."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The tailor repairs uniforms.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-56:word:baker",
+      "correctText": "baker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i01",
+      "correctText": "He is a baker.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:word:tailor",
+      "correctText": "tailor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i02",
+      "correctText": "The tailor repairs uniforms.",
+      "correctResponseId": "en:lesson-06:session-56:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:word:caretaker",
+      "correctText": "caretaker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i03",
+      "correctText": "wears",
+      "correctResponseId": "en:lesson-06:session-56:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:word:cane",
+      "correctText": "cane",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i05",
+      "correctText": "The cane is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i06",
+      "correctText": "He delivers newspapers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i07",
+      "correctText": "Whose cane is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i08",
+      "correctText": "wear",
+      "correctResponseId": "en:lesson-06:session-56:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i09",
+      "correctText": "She is an artist.",
+      "correctResponseId": "en:lesson-06:session-56:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i11",
+      "correctText": "They repair uniforms.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i12",
+      "correctText": "Whose uniform is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i13",
+      "correctText": "I repair roofs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-06:session-56:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i15",
+      "correctText": "He is a caretaker.",
+      "correctResponseId": "en:lesson-06:session-56:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i17",
+      "correctText": "The tailor repairs uniforms.",
+      "correctResponseId": null
+    }
+  ]
+}

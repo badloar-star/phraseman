@@ -1,133 +1,154 @@
-# Англійська · Урок 6 · Заняття 51 — Що продає Анна
+# Англійська · Урок 6 · Заняття 51 — Лампи, гарбузи й маффіни
 
-**Ситуація.** Ви з другом вибираєте магазин, де продаються лампи, а потім з’ясовуєте, кому належить лампа біля входу.
+**Ситуація.** Ви з другом їздите районом і дізнаєтеся, що де продають. Після they і we слово дії не змінюється, а після he і she отримує s.
 
-**Що ви опануєте:** розповісти про продаж речей і відрізнити продавця від власника
-**Нові слова:** sell
+**Що ви опануєте:** розповісти, хто що продає, і спитати, чия річ
+**Нові слова:** sell, pumpkin, lampshade, muffin
+**Повертаються:** lamp, shop, stall, friend, neighbour, table, bench
 
 ---
 
 ## Інтро 1
 
-### Магазин ламп
+### Лампа для кімнати
 
-Друг шукає лампу. Ви показуєте на магазин Анни й Тома. `sell` — «продавати». `They sell lamps` — «Вони продають лампи». Після `they` використовуємо `sell`, без `s`. У `lamps` літера `s` означає кілька ламп.
+Друг переїхав у нову кімнату, а там темно: потрібна лампа на стіл. Ви знаєте крамницю на розі, де працюють двоє братів, і радите зайти після роботи. sell — «продавати». They sell lamps — «Вони продають лампи». Після they слово лишається sell, без s.
 
-**Розкажіть другові «Вони продають лампи».**
+**Друг питає, де знайти лампу. Скажіть: «Вони продають лампи».**
 
 - ✅ **They sell lamps.**
-- ❌ They sells lamps. — *Після `they` потрібне `sell`.*
-- ❌ They are sell lamps. — *Потрібно `They sell`, без `are`.*
+- ❌ They sells lamps. — *Після they слово лишається sell, без s.*
+- ❌ They are sell lamps. — *Тут дія: They sell, без are.*
 
 ---
 
 ## Інтро 2
 
-### До кого підійти
+### Лоток край дороги
 
-Друг запитує, чим торгує Анна у своєму магазині. `She sells lamps` — «Вона продає лампи». Після `she` потрібне `sells`. Лампи в магазині можуть бути вимкнені, а фраза все одно правильна: ви розповідаєте, чим Анна торгує, а не чи ввімкнене світло.
+Суботнього ранку дорогою на дачу друг помічає край дороги лоток з величезними помаранчевими кулями, складеними гіркою, й питає, чим торгує жінка за ним. pumpkin — «гарбуз». She sells pumpkins — «Вона продає гарбузи». Після she до слова sell додаємо s: sells.
 
-**Покажіть на Анну: «Вона продає лампи».**
+**Друг питає, чим торгує жінка край дороги. Скажіть: «Вона продає гарбузи».**
 
-- ✅ **She sells lamps.**
-- ❌ She sell lamps. — *Після `she` потрібне `sells`.*
-- ❌ She is sells lamps. — *Потрібно `She sells`, без `is`.*
+- ✅ **She sells pumpkins.**
+- ❌ She sell pumpkins. — *Після she потрібно sells, з s.*
+- ❌ She is sells pumpkins. — *Тут дія: She sells, без is.*
 
 ---
 
 ## Інтро 3
 
-### Продавець чи власник
+### Речі після ремонту
 
-Біля входу стоїть лампа без цінника. Ви хочете дізнатися, кому вона належить. `Whose lamp is this?` — «Чия це лампа?» Це запитання про власника. Людина за столом може допомагати другові продавати речі, тому продавець і власник — не обов’язково одна людина.
+Ви допомагаєте подрузі розбирати речі після ремонту. На підвіконні стоїть абажур у пилу, і ніхто вже не пам’ятає, звідки він узявся. lampshade — «абажур». Спитати про власника можна так: Whose lampshade is this? — «Чий це абажур?» Річ одна: is this.
 
-**Дізнайтеся в людей поруч «Чия це лампа?»**
+**Ви розбираєте речі з подругою. Спитайте в неї: «Чий це абажур?»**
 
-- ✅ **Whose lamp is this?**
-- ❌ Where is this lamp? — *Це «Де ця лампа?», а потрібен власник.*
-- ❌ Whose lamp are these? — *Одна лампа: `is this`.*
+- ✅ **Whose lampshade is this?**
+- ❌ Who lampshade is this? — *Про власника питаємо Whose, а не Who.*
+- ❌ Whose lampshade are these? — *Абажур один: потрібно is this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Вони продають лампи»**
+**1 · Картка слова — sell**
+<!-- interaction_id: en:lesson-06:session-51:word:sell; family: word_card -->
+> **sell** — продавати. They sell lamps. — «Вони продають лампи». Віддавати річ покупцеві за гроші.
+
+**2 · Друг шукає лампу. Підкажіть: «Вони продають лампи»**
 <!-- interaction_id: en:lesson-06:session-51:i01; family: phrase_builder -->
-Плитки: `lamps` `sell` `They` → **They sell lamps.**
+Плитки: `lamps` `sell` `They` `sells` → **They sell lamps.**
+*(плитка `sells` зайва: тут потрібно `sell` — `They sell lamps.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — pumpkin**
+<!-- interaction_id: en:lesson-06:session-51:word:pumpkin; family: word_card -->
+> **pumpkin** — гарбуз. The pumpkin is big. — «Гарбуз великий». Великий круглий помаранчевий овоч з товстою шкіркою.
+
+**4 · Послухайте друга**
 <!-- interaction_id: en:lesson-06:session-51:i02; family: listen_choose -->
-🔊 *sell* → **sell** · speak · stadium
-- speak — *У записі перше слово — `sell`, а в цьому варіанті — `speak`.*
-- stadium — *У записі перше слово — `sell`, а в цьому варіанті — `stadium`.*
+🔊 *The pumpkin is big.* → **The pumpkin is big.** · The pumpkin is small. · The lamp is big.
+- The pumpkin is small. — *У записі останнє слово — `big`, велика, а в цьому варіанті — `small`, маленька.*
+- The lamp is big. — *У записі друге слово — `pumpkin`, гарбуз, а в цьому варіанті — `lamp`, лампа.*
 
-**3 · Скажіть «Вона продає лампи»**
+**5 · Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-51:i03; family: context_gap_grammar -->
-She ___ lamps. → **sells** · sell · is sells
-- sell — *Після `she` потрібне `sells`.*
-- is sells — *Потрібно `She sells`, без `is`.*
+She ___ pumpkins. → **sells** · sell · is sells
+- sell — *Після `she` потрібно `sells`, з `s`.*
+- is sells — *Кажемо `She sells`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-51:i04; family: speed_match -->
-sell — продавати · ineffective — недієвий · community centre — громадський центр · stadium — стадіон
+sell — продавати · pumpkin — гарбуз · lampshade — абажур · muffin — маффін
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — lampshade**
+<!-- interaction_id: en:lesson-06:session-51:word:lampshade; family: word_card -->
+> **lampshade** — абажур. The lampshade is on the lamp. — «Абажур на лампі». Ковпак, що закриває лампочку й пом’якшує світло.
+
+**8 · Послухайте друга й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-51:i05; family: listen_build_dictation -->
-🔊 *They sell lamps.* Плитки: `lamps` `sell` `They` → **They sell lamps.**
+🔊 *The lampshade is here.* Плитки: `here` `is` `lampshade` `The` `are` → **The lampshade is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The lampshade is here.`)*
 
-**6 · Скажіть «Вона продає лампи»**
+**9 · Картка слова — muffin**
+<!-- interaction_id: en:lesson-06:session-51:word:muffin; family: word_card -->
+> **muffin** — маффін. The muffin is sweet. — «Маффін солодкий». Невеликий кекс, який печуть у маленькій формі.
+
+**10 · Друг куштує маффін. Скажіть: «Маффін солодкий»**
 <!-- interaction_id: en:lesson-06:session-51:i06; family: phrase_builder -->
-Плитки: `lamps` `sells` `She` → **She sells lamps.**
+Плитки: `muffin` `sweet` `The` `is` `are` → **The muffin is sweet.**
+*(плитка `are` зайва: тут потрібно `is` — `The muffin is sweet.`)*
 
-**7 · Лампа стоїть біля входу. Запитайте «Чия це лампа?»**
+**11 · Подруга шукає абажур. Скажіть: «Абажур біля лампи»**
 <!-- interaction_id: en:lesson-06:session-51:i07; family: scripted_repeat_compare -->
-🎙 **Whose lamp is this?**
+🎙 **The lampshade is near the lamp.**
 
-**8 · Скажіть «Ми продаємо лампи»**
+**12 · Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-51:i08; family: context_gap_grammar -->
-We ___ lamps. → **sell** · sells · are sell
-- sells — *Після `we` потрібне `sell`.*
-- are sell — *Потрібно `We sell`, без `are`.*
+He ___ lamps. → **sells** · sell · is sells
+- sell — *Після `he` потрібно `sells`, з `s`.*
+- is sells — *Кажемо `He sells`, без `is`.*
 
-**9 · Послухайте, про кого розповідає друг**
+**13 · Послухайте друга**
 <!-- interaction_id: en:lesson-06:session-51:i09; family: listen_choose -->
-🔊 *She sells lamps.* → **She sells lamps.** · He sells lamps. · Anna sells lamps.
-- He sells lamps. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
-- Anna sells lamps. — *У записі перше слово — `She`, а в цьому варіанті — `Anna`.*
+🔊 *The muffin is on the table.* → **The muffin is on the table.** · The muffin is on the bench. · The pumpkin is on the table.
+- The muffin is on the bench. — *У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка.*
+- The pumpkin is on the table. — *У записі друге слово — `muffin`, маффін, а в цьому варіанті — `pumpkin`, гарбуз.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-51:i10; family: speed_match -->
-speak — говорити · sell — продавати · stadium — стадіон · ineffective — недієвий
+lampshade — абажур · sell — продавати · muffin — маффін · pumpkin — гарбуз
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте друга й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-51:i11; family: listen_build_dictation -->
-🔊 *Whose lamp is this?* Плитки: `this` `is` `lamp` `Whose` → **Whose lamp is this?**
+🔊 *She sells muffins.* Плитки: `muffins` `sells` `She` `sell` → **She sells muffins.**
+*(плитка `sell` зайва: тут потрібно `sells` — `She sells muffins.`)*
 
-**12 · Розкажіть про Анниного колегу «Він говорить англійською»**
+**16 · На дивані лежить абажур. Спитайте в подруги: «Чий це абажур?»**
 <!-- interaction_id: en:lesson-06:session-51:i12; family: phrase_builder -->
-Плитки: `English` `speaks` `He` → **He speaks English.**
+Плитки: `this` `is` `lampshade` `Whose` `Who` → **Whose lampshade is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose lampshade is this?`)*
 
-**13 · Покажіть другові на карті «Стадіон тут»**
+**17 · Друг питає, де гарбуз. Скажіть: «Гарбуз біля стола»**
 <!-- interaction_id: en:lesson-06:session-51:i13; family: scripted_repeat_compare -->
-🎙 **The stadium is here.**
+🎙 **The pumpkin is near the table.**
 
-**14 · Поруч стоять дві лампи. Запитайте «Чиї це лампи?»**
+**18 · Скажіть про сусідку: «Вона продає маффіни». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-51:i14; family: context_gap_grammar -->
-Whose lamps ___ these? → **are** · is · am
-- is — *Кілька ламп: `are these`.*
-- am — *`Am` підходить до `I`; тут потрібне `are`.*
+My neighbour ___ muffins. → **sells** · sell · is sells
+- sell — *Сусідка — вона: `My neighbour sells`.*
+- is sells — *Потрібно `My neighbour sells`, без `is`.*
 
-**15 · Послухайте, хто продає лампи**
+**19 · Послухайте, хто продає лампи**
 <!-- interaction_id: en:lesson-06:session-51:i15; family: listen_choose -->
 🔊 *They sell lamps.* → **They sell lamps.** · We sell lamps. · You sell lamps.
 - We sell lamps. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
 - You sell lamps. — *У записі перше слово — `They`, а в цьому варіанті — `You`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-51:i16; family: speed_match -->
-community centre — громадський центр · speak — говорити · sell — продавати · ineffective — недієвий
+muffin — маффін · lampshade — абажур · pumpkin — гарбуз · sell — продавати
 
-**17 · Сусід шукає, у кого купити газету. Підкажіть «Анна продає газети»**
+**21 · Друг питає, що продають у крамниці на розі. Дайте відповідь: «Вони продають лампи»**
 <!-- interaction_id: en:lesson-06:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Anna sells newspapers.**
-
+🎙 **They sell lamps.**

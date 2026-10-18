@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-49:intro1:r2": {
-          "ru": "О владельце спрашиваем `Whose`.",
-          "uk": "Про власника запитуємо `Whose`."
+          "ru": "О владельце спрашиваем Whose, а не Who.",
+          "uk": "Про власника питаємо Whose, а не Who."
         },
         "en:lesson-06:session-49:intro1:r3": {
-          "ru": "Одна газета: `is this`.",
-          "uk": "Одна газета: `is this`."
+          "ru": "Кроссворд один: нужно is this.",
+          "uk": "Кросворд один: потрібно is this."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-49:intro2:r2": {
-          "ru": "В конце без названия вещи нужно `mine`.",
-          "uk": "У кінці без назви речі потрібне `mine`."
+          "ru": "В конце без названия вещи нужно mine.",
+          "uk": "Наприкінці без назви речі потрібно mine."
         },
         "en:lesson-06:session-49:intro2:r3": {
-          "ru": "Одна газета: `is`.",
-          "uk": "Одна газета: `is`."
+          "ru": "Кофта одна: нужно is.",
+          "uk": "Кофта одна: потрібно is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-49:intro3:r2": {
-          "ru": "После `they` — `chat`, без `s`.",
-          "uk": "Після `they` — `chat`, без `s`."
+          "ru": "После they слово остаётся chat, без s.",
+          "uk": "Після they слово лишається chat, без s."
         },
         "en:lesson-06:session-49:intro3:r3": {
-          "ru": "Нужно `They chat`, без `are`.",
-          "uk": "Потрібно `They chat`, без `are`."
+          "ru": "Здесь действие: They chat, без are.",
+          "uk": "Тут дія: They chat, без are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "92b5e4a8dde11a4c5e4f0f5b52ae1d9ccb248daf6b96a3f6a1ea75a9be9ec2e5"
+  "auxiliaryFingerprint": "ec824dacb633cb015810c3250c4e5869d54be5cfcade6004bb875cafdb0779a7"
 }

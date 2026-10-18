@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-49:i01",
+      "interactionId": "en:lesson-06:session-49:word:crossword",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crossword",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:word:crossword:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crossword",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:word:crossword:audio",
+          "transcript": "crossword"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-49:word:crossword:r1",
+            "targetText": "crossword",
+            "meaningByLocale": {
+              "ru": "кроссворд. The crossword is in the newspaper. — «Кроссворд в газете». Игра, в которой слова вписывают в клетки.",
+              "uk": "кросворд. The crossword is in the newspaper. — «Кросворд у газеті». Гра, в якій слова вписують у клітинки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crossword",
+          "definitionByLocale": {
+            "ru": "кроссворд. The crossword is in the newspaper. — «Кроссворд в газете». Игра, в которой слова вписывают в клетки.",
+            "uk": "кросворд. The crossword is in the newspaper. — «Кросворд у газеті». Гра, в якій слова вписують у клітинки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Чия це газета?»",
+      "prompt": "Подруга показує на газету. Спитайте: «Чий це кросворд?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Чия це газета?»",
+      "accessibilityLabel": "Подруга показує на газету. Спитайте: «Чий це кросворд?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose newspaper is this?",
+        "targetPhrase": "Whose crossword is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чья это газета?»",
-          "uk": "Запитайте «Чия це газета?»"
+          "ru": "Подруга показывает на газету. Спросите: «Чей это кроссворд?»",
+          "uk": "Подруга показує на газету. Спитайте: «Чий це кросворд?»"
         },
         "orderedTokens": [
           "Whose",
-          "newspaper",
+          "crossword",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга показує на газету. Спитайте: «Чий це кросворд?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose crossword is this?`",
+              "uk": "тут потрібно `Whose` — `Whose crossword is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-49:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-49:word:cardigan",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — cardigan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:word:cardigan:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cardigan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:word:cardigan:audio",
+          "transcript": "cardigan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-49:word:cardigan:r1",
+            "targetText": "cardigan",
+            "meaningByLocale": {
+              "ru": "кофта на пуговицах. The cardigan is warm. — «Кофта тёплая». Вязаная кофта, которую застёгивают спереди.",
+              "uk": "кофта на ґудзиках. The cardigan is warm. — «Кофта тепла». В’язана кофта, яку застібають спереду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cardigan",
+          "definitionByLocale": {
+            "ru": "кофта на пуговицах. The cardigan is warm. — «Кофта тёплая». Вязаная кофта, которую застёгивают спереди.",
+            "uk": "кофта на ґудзиках. The cardigan is warm. — «Кофта тепла». В’язана кофта, яку застібають спереду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-49:i02:r1",
-          "text": "newspaper"
+          "text": "The crossword is on the bench."
         },
         {
           "responseId": "en:lesson-06:session-49:i02:r2",
-          "text": "canal"
+          "text": "The crossword is near the garage."
         },
         {
           "responseId": "en:lesson-06:session-49:i02:r3",
-          "text": "garage"
+          "text": "The cardigan is on the bench."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-49:i02:audio",
-          "transcript": "newspaper"
+          "transcript": "The crossword is on the bench."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-49:i02:r1",
-            "targetText": "newspaper",
+            "targetText": "The crossword is on the bench.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-49:i02:r2",
-            "targetText": "canal",
+            "targetText": "The crossword is near the garage.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-49:i02:r3",
-            "targetText": "garage",
+            "targetText": "The cardigan is on the bench.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +189,19 @@
           {
             "responseId": "en:lesson-06:session-49:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `newspaper`, а в этом варианте — `canal`.",
-              "uk": "У записі перше слово — `newspaper`, а в цьому варіанті — `canal`."
+              "ru": "В записи последнее слово — `bench`, скамейка, а в этом варианте — `garage`, гараж.",
+              "uk": "У записі останнє слово — `bench`, лавка, а в цьому варіанті — `garage`, гараж."
             }
           },
           {
             "responseId": "en:lesson-06:session-49:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `newspaper`, а в этом варианте — `garage`.",
-              "uk": "У записі перше слово — `newspaper`, а в цьому варіанті — `garage`."
+              "ru": "В записи первое важное слово — `crossword`, кроссворд, а в этом варианте — `cardigan`, кофта.",
+              "uk": "У записі перше важливе слово — `crossword`, кросворд, а в цьому варіанті — `cardigan`, кофта."
             }
           }
         ],
@@ -114,11 +212,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Ця газета моя»",
+      "prompt": "Скажіть «Ця кофта моя». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-49:i03:r1",
@@ -135,14 +233,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Ця газета моя»",
+      "accessibilityLabel": "Скажіть «Ця кофта моя». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Эта газета моя»",
-          "uk": "Скажіть «Ця газета моя»"
+          "ru": "Скажите «Эта кофта моя». Выберите слово",
+          "uk": "Скажіть «Ця кофта моя». Виберіть слово"
         },
-        "gappedTargetPhrase": "This newspaper is ___.",
+        "gappedTargetPhrase": "This cardigan is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-49:i03:r1",
@@ -157,21 +255,21 @@
             "text": "I"
           }
         ],
-        "testedDimension": "Скажіть «Ця газета моя»",
+        "testedDimension": "Скажіть «Ця кофта моя». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-49:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Ця газета моя»",
+            "testedDimension": "Скажіть «Ця кофта моя». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Без названия вещи дальше нужно `mine`.",
-              "uk": "Без назви речі далі потрібне `mine`."
+              "uk": "Без назви речі далі потрібно `mine`."
             }
           },
           {
             "responseId": "en:lesson-06:session-49:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Ця газета моя»",
+            "testedDimension": "Скажіть «Ця кофта моя». Виберіть слово",
             "feedbackByLocale": {
               "ru": "`I` — «я»; здесь «моя» — `mine`.",
               "uk": "`I` — «я»; тут «моя» — `mine`."
@@ -183,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +295,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-49:i04:p1",
-            "target": "newspaper",
+            "target": "chat",
             "meaningByLocale": {
-              "ru": "газета",
-              "uk": "газета"
+              "ru": "беседовать",
+              "uk": "бесідувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i04:p2",
-            "target": "unacceptable",
+            "target": "crossword",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "кроссворд",
+              "uk": "кросворд"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i04:p3",
-            "target": "canal",
+            "target": "cardigan",
             "meaningByLocale": {
-              "ru": "канал",
-              "uk": "канал"
+              "ru": "кофта на пуговицах",
+              "uk": "кофта на ґудзиках"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i04:p4",
-            "target": "garage",
+            "target": "kayak",
             "meaningByLocale": {
-              "ru": "гараж",
-              "uk": "гараж"
+              "ru": "каяк",
+              "uk": "каяк"
             }
           }
         ],
         "leftColumn": [
-          "newspaper",
-          "unacceptable",
-          "canal",
-          "garage"
+          "chat",
+          "crossword",
+          "cardigan",
+          "kayak"
         ],
         "rightColumn": [
-          "газета",
-          "неприйнятний",
-          "канал",
-          "гараж"
+          "бесідувати",
+          "кросворд",
+          "кофта на ґудзиках",
+          "каяк"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,65 +354,132 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-49:i05:audio",
-          "transcript": "My newspaper is here."
+          "transcript": "My cardigan is here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "My newspaper is here.",
+        "hiddenTargetPhrase": "My cardigan is here.",
         "orderedTokens": [
           "My",
-          "newspaper",
+          "cardigan",
           "is",
           "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My cardigan is here.`",
+              "uk": "тут потрібно `is` — `My cardigan is here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:word:chat",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:word:chat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:word:chat:audio",
+          "transcript": "chat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-49:word:chat:r1",
+            "targetText": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать. They chat on the bench. — «Они беседуют на скамейке». О неспешном разговоре двух людей.",
+              "uk": "бесідувати. They chat on the bench. — «Вони бесідують на лавці». Про неквапливу розмову двох людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chat",
+          "definitionByLocale": {
+            "ru": "беседовать. They chat on the bench. — «Они беседуют на скамейке». О неспешном разговоре двух людей.",
+            "uk": "бесідувати. They chat on the bench. — «Вони бесідують на лавці». Про неквапливу розмову двох людей."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-06:session-49:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вони розмовляють тут»",
+      "prompt": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони розмовляють тут»",
+      "accessibilityLabel": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They chat here.",
         "localizedMeaning": {
-          "ru": "Скажите «Они беседуют здесь»",
-          "uk": "Скажіть «Вони розмовляють тут»"
+          "ru": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»",
+          "uk": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»"
         },
         "orderedTokens": [
           "They",
           "chat",
           "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "chats"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `chat` — `They chat here.`",
+              "uk": "тут потрібно `chat` — `They chat here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,26 +488,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-49:word:kayak",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kayak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:word:kayak:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kayak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:word:kayak:audio",
+          "transcript": "kayak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-49:word:kayak:r1",
+            "targetText": "kayak",
+            "meaningByLocale": {
+              "ru": "каяк. The kayak is red. — «Каяк красный». Узкая лодка с одним веслом в двух лопастях, в ней сидят лицом вперёд.",
+              "uk": "каяк. The kayak is red. — «Каяк червоний». Вузький човен з одним веслом із двома лопатями, в ньому сидять обличчям уперед."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kayak",
+          "definitionByLocale": {
+            "ru": "каяк. The kayak is red. — «Каяк красный». Узкая лодка с одним веслом в двух лопастях, в ней сидят лицом вперёд.",
+            "uk": "каяк. The kayak is red. — «Каяк червоний». Вузький човен з одним веслом із двома лопатями, в ньому сидять обличчям уперед."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-49:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг шукає канал на карті. Покажіть «Канал тут»",
+      "prompt": "Подруга шукає каяк. Покажіть: «Каяк біля каналу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i07:audio"
       ],
-      "accessibilityLabel": "Друг шукає канал на карті. Покажіть «Канал тут»",
+      "accessibilityLabel": "Подруга шукає каяк. Покажіть: «Каяк біля каналу»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-49:i07:audio",
-          "transcript": "The canal is here."
+          "transcript": "The kayak is near the canal."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The canal is here.",
+        "targetPhrase": "The kayak is near the canal.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,11 +565,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Він розмовляє тут»",
+      "prompt": "Скажіть «Він бесідує тут». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-49:i08:r1",
@@ -378,12 +586,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він розмовляє тут»",
+      "accessibilityLabel": "Скажіть «Він бесідує тут». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он беседует здесь»",
-          "uk": "Скажіть «Він розмовляє тут»"
+          "ru": "Скажите «Он беседует здесь». Выберите слово",
+          "uk": "Скажіть «Він бесідує тут». Виберіть слово"
         },
         "gappedTargetPhrase": "He ___ here.",
         "gapOptions": [
@@ -400,12 +608,12 @@
             "text": "is chats"
           }
         ],
-        "testedDimension": "Скажіть «Він розмовляє тут»",
+        "testedDimension": "Скажіть «Він бесідує тут». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-49:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Він розмовляє тут»",
+            "testedDimension": "Скажіть «Він бесідує тут». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `he` — `chats`.",
               "uk": "Після `he` — `chats`."
@@ -414,7 +622,7 @@
           {
             "responseId": "en:lesson-06:session-49:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Він розмовляє тут»",
+            "testedDimension": "Скажіть «Він бесідує тут». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Нужно `He chats`, без `is`.",
               "uk": "Потрібно `He chats`, без `is`."
@@ -426,51 +634,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить гараж",
+      "prompt": "Послухайте, кому належить кофта",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-49:i09:r1",
-          "text": "This garage is mine."
+          "text": "This cardigan is mine."
         },
         {
           "responseId": "en:lesson-06:session-49:i09:r2",
-          "text": "This garage is yours."
+          "text": "This cardigan is yours."
         },
         {
           "responseId": "en:lesson-06:session-49:i09:r3",
-          "text": "This garage is hers."
+          "text": "This cardigan is hers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить гараж",
+      "accessibilityLabel": "Послухайте, кому належить кофта",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-49:i09:audio",
-          "transcript": "This garage is mine."
+          "transcript": "This cardigan is mine."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-49:i09:r1",
-            "targetText": "This garage is mine.",
+            "targetText": "This cardigan is mine.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-49:i09:r2",
-            "targetText": "This garage is yours.",
+            "targetText": "This cardigan is yours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-49:i09:r3",
-            "targetText": "This garage is hers.",
+            "targetText": "This cardigan is hers.",
             "meaningByLocale": null
           }
         ],
@@ -479,7 +687,7 @@
           {
             "responseId": "en:lesson-06:session-49:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить гараж",
+            "testedDimension": "Послухайте, кому належить кофта",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
               "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
@@ -488,7 +696,7 @@
           {
             "responseId": "en:lesson-06:session-49:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить гараж",
+            "testedDimension": "Послухайте, кому належить кофта",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
               "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
@@ -502,8 +710,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -516,10 +724,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-49:i10:p1",
-            "target": "newspaper",
+            "target": "cardigan",
             "meaningByLocale": {
-              "ru": "газета",
-              "uk": "газета"
+              "ru": "кофта на пуговицах",
+              "uk": "кофта на ґудзиках"
             }
           },
           {
@@ -527,37 +735,37 @@
             "target": "chat",
             "meaningByLocale": {
               "ru": "беседовать",
-              "uk": "розмовляти"
+              "uk": "бесідувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i10:p3",
-            "target": "garage",
+            "target": "kayak",
             "meaningByLocale": {
-              "ru": "гараж",
-              "uk": "гараж"
+              "ru": "каяк",
+              "uk": "каяк"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i10:p4",
-            "target": "unacceptable",
+            "target": "crossword",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "кроссворд",
+              "uk": "кросворд"
             }
           }
         ],
         "leftColumn": [
-          "newspaper",
+          "cardigan",
           "chat",
-          "garage",
-          "unacceptable"
+          "kayak",
+          "crossword"
         ],
         "rightColumn": [
-          "газета",
-          "розмовляти",
-          "гараж",
-          "неприйнятний"
+          "кофта на ґудзиках",
+          "бесідувати",
+          "каяк",
+          "кросворд"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,28 +783,28 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-49:i11:audio",
-          "transcript": "The garage is here."
+          "transcript": "The kayak is here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The garage is here.",
+        "hiddenTargetPhrase": "The kayak is here.",
         "orderedTokens": [
           "The",
-          "garage",
+          "kayak",
           "is",
           "here"
         ],
@@ -607,10 +815,10 @@
           {
             "responseId": "en:lesson-06:session-49:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The garage is here.`",
-              "uk": "тут потрібно `is` — `The garage is here.`"
+              "ru": "здесь нужно `is` — `The kayak is here.`",
+              "uk": "тут потрібно `is` — `The kayak is here.`"
             }
           }
         ],
@@ -623,30 +831,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сусід показує гараж. Запитайте «Чий це гараж?»",
+      "prompt": "Подруга показує на кофту на лавці. Спитайте: «Чия це кофта?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сусід показує гараж. Запитайте «Чий це гараж?»",
+      "accessibilityLabel": "Подруга показує на кофту на лавці. Спитайте: «Чия це кофта?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose garage is this?",
+        "targetPhrase": "Whose cardigan is this?",
         "localizedMeaning": {
-          "ru": "Сосед показывает гараж. Спросите «Чей это гараж?»",
-          "uk": "Сусід показує гараж. Запитайте «Чий це гараж?»"
+          "ru": "Подруга показывает на кофту на скамейке. Спросите: «Чья это кофта?»",
+          "uk": "Подруга показує на кофту на лавці. Спитайте: «Чия це кофта?»"
         },
         "orderedTokens": [
           "Whose",
-          "garage",
+          "cardigan",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга показує на кофту на лавці. Спитайте: «Чия це кофта?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose cardigan is this?`",
+              "uk": "тут потрібно `Whose` — `Whose cardigan is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -656,17 +876,17 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Ми розмовляємо тут»",
+      "prompt": "Подруга питає, чим ви зайняті із сусідкою. Скажіть: «Ми бесідуємо тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Ми розмовляємо тут»",
+      "accessibilityLabel": "Подруга питає, чим ви зайняті із сусідкою. Скажіть: «Ми бесідуємо тут»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -689,11 +909,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Анна розмовляє тут»",
+      "prompt": "Скажіть «Сусідка бесідує тут». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-49:i14:r1",
@@ -710,14 +930,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Анна розмовляє тут»",
+      "accessibilityLabel": "Скажіть «Сусідка бесідує тут». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Анна беседует здесь»",
-          "uk": "Скажіть «Анна розмовляє тут»"
+          "ru": "Скажите «Соседка беседует здесь». Выберите слово",
+          "uk": "Скажіть «Сусідка бесідує тут». Виберіть слово"
         },
-        "gappedTargetPhrase": "Anna ___ here.",
+        "gappedTargetPhrase": "My neighbour ___ here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-49:i14:r1",
@@ -732,24 +952,24 @@
             "text": "is chats"
           }
         ],
-        "testedDimension": "Скажіть «Анна розмовляє тут»",
+        "testedDimension": "Скажіть «Сусідка бесідує тут». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-49:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Анна розмовляє тут»",
+            "testedDimension": "Скажіть «Сусідка бесідує тут». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Анна — она: `Anna chats`.",
-              "uk": "Анна — вона: `Anna chats`."
+              "ru": "Соседка — она: `My neighbour chats`.",
+              "uk": "Сусідка — вона: `My neighbour chats`."
             }
           },
           {
             "responseId": "en:lesson-06:session-49:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Анна розмовляє тут»",
+            "testedDimension": "Скажіть «Сусідка бесідує тут». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Anna chats`, без `is`.",
-              "uk": "Потрібно `Anna chats`, без `is`."
+              "ru": "Нужно `My neighbour chats`, без `is`.",
+              "uk": "Потрібно `My neighbour chats`, без `is`."
             }
           }
         ]
@@ -758,51 +978,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить газета",
+      "prompt": "Послухайте, кому належить кросворд",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-49:i15:r1",
-          "text": "This newspaper is mine."
+          "text": "This crossword is mine."
         },
         {
           "responseId": "en:lesson-06:session-49:i15:r2",
-          "text": "This newspaper is yours."
+          "text": "This crossword is yours."
         },
         {
           "responseId": "en:lesson-06:session-49:i15:r3",
-          "text": "This newspaper is hers."
+          "text": "This crossword is hers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить газета",
+      "accessibilityLabel": "Послухайте, кому належить кросворд",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-49:i15:audio",
-          "transcript": "This newspaper is mine."
+          "transcript": "This crossword is mine."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-49:i15:r1",
-            "targetText": "This newspaper is mine.",
+            "targetText": "This crossword is mine.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-49:i15:r2",
-            "targetText": "This newspaper is yours.",
+            "targetText": "This crossword is yours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-49:i15:r3",
-            "targetText": "This newspaper is hers.",
+            "targetText": "This crossword is hers.",
             "meaningByLocale": null
           }
         ],
@@ -811,7 +1031,7 @@
           {
             "responseId": "en:lesson-06:session-49:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить газета",
+            "testedDimension": "Послухайте, кому належить кросворд",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
               "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
@@ -820,7 +1040,7 @@
           {
             "responseId": "en:lesson-06:session-49:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить газета",
+            "testedDimension": "Послухайте, кому належить кросворд",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
               "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
@@ -834,7 +1054,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -848,48 +1068,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-49:i16:p1",
-            "target": "newspaper",
+            "target": "kayak",
             "meaningByLocale": {
-              "ru": "газета",
-              "uk": "газета"
+              "ru": "каяк",
+              "uk": "каяк"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i16:p2",
-            "target": "canal",
+            "target": "chat",
             "meaningByLocale": {
-              "ru": "канал",
-              "uk": "канал"
+              "ru": "беседовать",
+              "uk": "бесідувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i16:p3",
-            "target": "unacceptable",
+            "target": "crossword",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "кроссворд",
+              "uk": "кросворд"
             }
           },
           {
             "pairId": "en:lesson-06:session-49:i16:p4",
-            "target": "chat",
+            "target": "cardigan",
             "meaningByLocale": {
-              "ru": "беседовать",
-              "uk": "розмовляти"
+              "ru": "кофта на пуговицах",
+              "uk": "кофта на ґудзиках"
             }
           }
         ],
         "leftColumn": [
-          "newspaper",
-          "canal",
-          "unacceptable",
-          "chat"
+          "kayak",
+          "chat",
+          "crossword",
+          "cardigan"
         ],
         "rightColumn": [
-          "газета",
-          "канал",
-          "неприйнятний",
-          "розмовляти"
+          "каяк",
+          "бесідувати",
+          "кросворд",
+          "кофта на ґудзиках"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -907,25 +1127,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед тим як піти, ви помітили газету на лавці. Запитайте людей поруч «Чия це газета?»",
+      "prompt": "Перед відходом ви помітили кросворд на лавці. Спитайте в людей поруч: «Чий це кросворд?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-49:i17:audio"
       ],
-      "accessibilityLabel": "Перед тим як піти, ви помітили газету на лавці. Запитайте людей поруч «Чия це газета?»",
+      "accessibilityLabel": "Перед відходом ви помітили кросворд на лавці. Спитайте в людей поруч: «Чий це кросворд?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-49:i17:audio",
-          "transcript": "Whose newspaper is this?"
+          "transcript": "Whose crossword is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose newspaper is this?",
+        "targetPhrase": "Whose crossword is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,11 +1167,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9526a84c4cccb05db18f13bc61473b053041ca2a67a4844d593235e4ed864bba"
+  "learnerFingerprint": "e4c0cb63f95f0f263bcaf6ea349f5402d0799cafbd0171553a64e386d80c0fb3"
 }

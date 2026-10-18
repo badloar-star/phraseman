@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-55:word:artist",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — artist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:artist:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — artist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:artist:audio",
+            "transcript": "artist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:artist:r1",
+              "targetText": "artist",
+              "meaningByLocale": {
+                "ru": "художник, художница. She is an artist. — «Она художница». Человек, который рисует картины.",
+                "uk": "художник, художниця. She is an artist. — «Вона художниця». Людина, яка малює картини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "artist",
+            "definitionByLocale": {
+              "ru": "художник, художница. She is an artist. — «Она художница». Человек, который рисует картины.",
+              "uk": "художник, художниця. She is an artist. — «Вона художниця». Людина, яка малює картини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг знакомит вас с соседкой. Скажите: «Она художница»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг знакомит вас с соседкой. Скажите: «Она художница»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is an artist.",
+          "localizedMeaning": {
+            "ru": "Друг знакомит вас с соседкой. Скажите: «Она художница»",
+            "uk": "Друг знайомить вас із сусідкою. Скажіть: «Вона художниця»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "an",
+            "artist"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг знакомит вас с соседкой. Скажите: «Она художница»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is an artist.`",
+                "uk": "тут потрібно `is` — `She is an artist.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i02:r1",
+            "text": "She is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i02:r2",
+            "text": "He is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i02:r3",
+            "text": "She is a nurse."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i02:audio",
+            "transcript": "She is an artist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:i02:r1",
+              "targetText": "She is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i02:r2",
+              "targetText": "He is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i02:r3",
+              "targetText": "She is a nurse.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `artist`, художница, а в этом варианте — `nurse`, медсестра.",
+                "uk": "У записі останнє слово — `artist`, художниця, а в цьому варіанті — `nurse`, медсестра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите «Она художница». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите «Она художница». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите «Она художница». Выберите слово",
+            "uk": "Скажіть «Вона художниця». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She is ___ artist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-55:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скажите «Она художница». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите «Она художница». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "В начале `artist` гласный звук: `an artist`.",
+                "uk": "На початку `artist` голосний звук: `an artist`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите «Она художница». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для профессии здесь нужно `an artist`.",
+                "uk": "Для професії тут потрібно `an artist`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-55:i04:p1",
+              "target": "artist",
+              "meaningByLocale": {
+                "ru": "художник",
+                "uk": "художник"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i04:p2",
+              "target": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет",
+                "uk": "портрет"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i04:p3",
+              "target": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок",
+                "uk": "начерк"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i04:p4",
+              "target": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея",
+                "uk": "галерея"
+              }
+            }
+          ],
+          "leftColumn": [
+            "artist",
+            "portrait",
+            "sketch",
+            "gallery"
+          ],
+          "rightColumn": [
+            "художник",
+            "портрет",
+            "набросок",
+            "галерея"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:word:portrait",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — portrait",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:portrait:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — portrait",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:portrait:audio",
+            "transcript": "portrait"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:portrait:r1",
+              "targetText": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет. The portrait is old. — «Портрет старый». Картина или рисунок, на которых изображён человек.",
+                "uk": "портрет. The portrait is old. — «Портрет старий». Картина або малюнок, на яких зображена людина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "portrait",
+            "definitionByLocale": {
+              "ru": "портрет. The portrait is old. — «Портрет старый». Картина или рисунок, на которых изображён человек.",
+              "uk": "портрет. The portrait is old. — «Портрет старий». Картина або малюнок, на яких зображена людина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i05:audio",
+            "transcript": "The portrait is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The portrait is here.",
+          "orderedTokens": [
+            "The",
+            "portrait",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The portrait is here.`",
+                "uk": "тут потрібно `is` — `The portrait is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This artist paints portraits.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+            "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»"
+          },
+          "orderedTokens": [
+            "This",
+            "artist",
+            "paints",
+            "portraits"
+          ],
+          "authoredDistractorTokens": [
+            "paint"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paints` — `This artist paints portraits.`",
+                "uk": "тут потрібно `paints` — `This artist paints portraits.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:word:sketch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sketch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:sketch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sketch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:sketch:audio",
+            "transcript": "sketch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:sketch:r1",
+              "targetText": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок. The sketch is small. — «Набросок маленький». Быстрый рисунок карандашом, который делают до большой работы.",
+                "uk": "начерк. The sketch is small. — «Начерк маленький». Швидкий малюнок олівцем, який роблять перед великою роботою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sketch",
+            "definitionByLocale": {
+              "ru": "набросок. The sketch is small. — «Набросок маленький». Быстрый рисунок карандашом, который делают до большой работы.",
+              "uk": "начерк. The sketch is small. — «Начерк маленький». Швидкий малюнок олівцем, який роблять перед великою роботою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли набросок на столе. Спросите у людей рядом: «Чей это набросок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Вы нашли набросок на столе. Спросите у людей рядом: «Чей это набросок?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i07:audio",
+            "transcript": "Whose sketch is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose sketch is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i08:r1",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i08:r2",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i08:r3",
+            "text": "are paint"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+            "uk": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ portraits.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-55:i08:r1",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i08:r2",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i08:r3",
+              "text": "are paint"
+            }
+          ],
+          "testedDimension": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `they` нужно `paint`, без `s`.",
+                "uk": "Після `they` потрібно `paint`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `They paint`, без `are`.",
+                "uk": "Потрібно `They paint`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:word:gallery",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gallery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:gallery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gallery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:gallery:audio",
+            "transcript": "gallery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:gallery:r1",
+              "targetText": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея. The gallery is big. — «Галерея большая». Зал или здание, где выставляют картины.",
+                "uk": "галерея. The gallery is big. — «Галерея велика». Зал або будівля, де виставляють картини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gallery",
+            "definitionByLocale": {
+              "ru": "галерея. The gallery is big. — «Галерея большая». Зал или здание, где выставляют картины.",
+              "uk": "галерея. The gallery is big. — «Галерея велика». Зал або будівля, де виставляють картини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i09:r1",
+            "text": "The gallery is near the library."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i09:r2",
+            "text": "The gallery is near the cinema."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i09:r3",
+            "text": "The garage is near the library."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i09:audio",
+            "transcript": "The gallery is near the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:i09:r1",
+              "targetText": "The gallery is near the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i09:r2",
+              "targetText": "The gallery is near the cinema.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i09:r3",
+              "targetText": "The garage is near the library.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `library`, библиотека, а в этом варианте — `cinema`, кинотеатр.",
+                "uk": "У записі останнє слово — `library`, бібліотека, а в цьому варіанті — `cinema`, кінотеатр."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `gallery`, галерея, а в этом варианте — `garage`, гараж.",
+                "uk": "У записі друге слово — `gallery`, галерея, а в цьому варіанті — `garage`, гараж."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-55:i10:p1",
+              "target": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея",
+                "uk": "галерея"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i10:p2",
+              "target": "artist",
+              "meaningByLocale": {
+                "ru": "художник",
+                "uk": "художник"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i10:p3",
+              "target": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет",
+                "uk": "портрет"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i10:p4",
+              "target": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок",
+                "uk": "начерк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gallery",
+            "artist",
+            "portrait",
+            "sketch"
+          ],
+          "rightColumn": [
+            "галерея",
+            "художник",
+            "портрет",
+            "набросок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i11:audio",
+            "transcript": "The sketch is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sketch is here.",
+          "orderedTokens": [
+            "The",
+            "sketch",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sketch is here.`",
+                "uk": "тут потрібно `is` — `The sketch is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У стены лежит перчатка. Спросите у людей рядом: «Чья это перчатка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У стены лежит перчатка. Спросите у людей рядом: «Чья это перчатка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose glove is this?",
+          "localizedMeaning": {
+            "ru": "У стены лежит перчатка. Спросите у людей рядом: «Чья это перчатка?»",
+            "uk": "Біля стіни лежить рукавичка. Спитайте в людей поруч: «Чия це рукавичка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "glove",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У стены лежит перчатка. Спросите у людей рядом: «Чья это перчатка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose glove is this?`",
+                "uk": "тут потрібно `Whose` — `Whose glove is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг ищет галерею. Скажите: «Галерея рядом с библиотекой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Друг ищет галерею. Скажите: «Галерея рядом с библиотекой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i13:audio",
+            "transcript": "The gallery is next to the library."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The gallery is next to the library.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i14:r1",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i14:r2",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i14:r3",
+            "text": "is paints"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+            "uk": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My neighbour ___ portraits.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-55:i14:r1",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i14:r2",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i14:r3",
+              "text": "is paints"
+            }
+          ],
+          "testedDimension": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Соседка — она: `My neighbour paints`.",
+                "uk": "Сусідка — вона: `My neighbour paints`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `My neighbour paints`, без `is`.",
+                "uk": "Потрібно `My neighbour paints`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, кому принадлежит набросок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i15:r1",
+            "text": "This sketch is mine."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i15:r2",
+            "text": "This sketch is yours."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i15:r3",
+            "text": "This sketch is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, кому принадлежит набросок",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i15:audio",
+            "transcript": "This sketch is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:i15:r1",
+              "targetText": "This sketch is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i15:r2",
+              "targetText": "This sketch is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i15:r3",
+              "targetText": "This sketch is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, кому принадлежит набросок",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, кому принадлежит набросок",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-55:i16:p1",
+              "target": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок",
+                "uk": "начерк"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i16:p2",
+              "target": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея",
+                "uk": "галерея"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i16:p3",
+              "target": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет",
+                "uk": "портрет"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i16:p4",
+              "target": "artist",
+              "meaningByLocale": {
+                "ru": "художник",
+                "uk": "художник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sketch",
+            "gallery",
+            "portrait",
+            "artist"
+          ],
+          "rightColumn": [
+            "набросок",
+            "галерея",
+            "портрет",
+            "художник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы знакомите коллегу с братом. Назовите его профессию: «Он художник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Вы знакомите коллегу с братом. Назовите его профессию: «Он художник»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i17:audio",
+            "transcript": "He is an artist."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is an artist.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-55:word:artist",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — artist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:artist:audio"
+        ],
+        "accessibilityLabel": "Картка слова — artist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:artist:audio",
+            "transcript": "artist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:artist:r1",
+              "targetText": "artist",
+              "meaningByLocale": {
+                "ru": "художник, художница. She is an artist. — «Она художница». Человек, который рисует картины.",
+                "uk": "художник, художниця. She is an artist. — «Вона художниця». Людина, яка малює картини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "artist",
+            "definitionByLocale": {
+              "ru": "художник, художница. She is an artist. — «Она художница». Человек, который рисует картины.",
+              "uk": "художник, художниця. She is an artist. — «Вона художниця». Людина, яка малює картини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг знайомить вас із сусідкою. Скажіть: «Вона художниця»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг знайомить вас із сусідкою. Скажіть: «Вона художниця»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is an artist.",
+          "localizedMeaning": {
+            "ru": "Друг знакомит вас с соседкой. Скажите: «Она художница»",
+            "uk": "Друг знайомить вас із сусідкою. Скажіть: «Вона художниця»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "an",
+            "artist"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг знайомить вас із сусідкою. Скажіть: «Вона художниця»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is an artist.`",
+                "uk": "тут потрібно `is` — `She is an artist.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i02:r1",
+            "text": "She is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i02:r2",
+            "text": "He is an artist."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i02:r3",
+            "text": "She is a nurse."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i02:audio",
+            "transcript": "She is an artist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:i02:r1",
+              "targetText": "She is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i02:r2",
+              "targetText": "He is an artist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i02:r3",
+              "targetText": "She is a nurse.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `artist`, художница, а в этом варианте — `nurse`, медсестра.",
+                "uk": "У записі останнє слово — `artist`, художниця, а в цьому варіанті — `nurse`, медсестра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть «Вона художниця». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть «Вона художниця». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите «Она художница». Выберите слово",
+            "uk": "Скажіть «Вона художниця». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She is ___ artist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-55:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скажіть «Вона художниця». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть «Вона художниця». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В начале `artist` гласный звук: `an artist`.",
+                "uk": "На початку `artist` голосний звук: `an artist`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть «Вона художниця». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для профессии здесь нужно `an artist`.",
+                "uk": "Для професії тут потрібно `an artist`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-55:i04:p1",
+              "target": "artist",
+              "meaningByLocale": {
+                "ru": "художник",
+                "uk": "художник"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i04:p2",
+              "target": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет",
+                "uk": "портрет"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i04:p3",
+              "target": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок",
+                "uk": "начерк"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i04:p4",
+              "target": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея",
+                "uk": "галерея"
+              }
+            }
+          ],
+          "leftColumn": [
+            "artist",
+            "portrait",
+            "sketch",
+            "gallery"
+          ],
+          "rightColumn": [
+            "художник",
+            "портрет",
+            "начерк",
+            "галерея"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:word:portrait",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — portrait",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:portrait:audio"
+        ],
+        "accessibilityLabel": "Картка слова — portrait",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:portrait:audio",
+            "transcript": "portrait"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:portrait:r1",
+              "targetText": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет. The portrait is old. — «Портрет старый». Картина или рисунок, на которых изображён человек.",
+                "uk": "портрет. The portrait is old. — «Портрет старий». Картина або малюнок, на яких зображена людина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "portrait",
+            "definitionByLocale": {
+              "ru": "портрет. The portrait is old. — «Портрет старый». Картина или рисунок, на которых изображён человек.",
+              "uk": "портрет. The portrait is old. — «Портрет старий». Картина або малюнок, на яких зображена людина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i05:audio",
+            "transcript": "The portrait is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The portrait is here.",
+          "orderedTokens": [
+            "The",
+            "portrait",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The portrait is here.`",
+                "uk": "тут потрібно `is` — `The portrait is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This artist paints portraits.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+            "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»"
+          },
+          "orderedTokens": [
+            "This",
+            "artist",
+            "paints",
+            "portraits"
+          ],
+          "authoredDistractorTokens": [
+            "paint"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paints` — `This artist paints portraits.`",
+                "uk": "тут потрібно `paints` — `This artist paints portraits.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:word:sketch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sketch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:sketch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sketch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:sketch:audio",
+            "transcript": "sketch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:sketch:r1",
+              "targetText": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок. The sketch is small. — «Набросок маленький». Быстрый рисунок карандашом, который делают до большой работы.",
+                "uk": "начерк. The sketch is small. — «Начерк маленький». Швидкий малюнок олівцем, який роблять перед великою роботою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sketch",
+            "definitionByLocale": {
+              "ru": "набросок. The sketch is small. — «Набросок маленький». Быстрый рисунок карандашом, который делают до большой работы.",
+              "uk": "начерк. The sketch is small. — «Начерк маленький». Швидкий малюнок олівцем, який роблять перед великою роботою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли начерк на столі. Спитайте в людей поруч: «Чий це начерк?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли начерк на столі. Спитайте в людей поруч: «Чий це начерк?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i07:audio",
+            "transcript": "Whose sketch is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose sketch is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i08:r1",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i08:r2",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i08:r3",
+            "text": "are paint"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+            "uk": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ portraits.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-55:i08:r1",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i08:r2",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i08:r3",
+              "text": "are paint"
+            }
+          ],
+          "testedDimension": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `they` нужно `paint`, без `s`.",
+                "uk": "Після `they` потрібно `paint`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `They paint`, без `are`.",
+                "uk": "Потрібно `They paint`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:word:gallery",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gallery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:word:gallery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gallery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:word:gallery:audio",
+            "transcript": "gallery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:word:gallery:r1",
+              "targetText": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея. The gallery is big. — «Галерея большая». Зал или здание, где выставляют картины.",
+                "uk": "галерея. The gallery is big. — «Галерея велика». Зал або будівля, де виставляють картини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gallery",
+            "definitionByLocale": {
+              "ru": "галерея. The gallery is big. — «Галерея большая». Зал или здание, где выставляют картины.",
+              "uk": "галерея. The gallery is big. — «Галерея велика». Зал або будівля, де виставляють картини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i09:r1",
+            "text": "The gallery is near the library."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i09:r2",
+            "text": "The gallery is near the cinema."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i09:r3",
+            "text": "The garage is near the library."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i09:audio",
+            "transcript": "The gallery is near the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:i09:r1",
+              "targetText": "The gallery is near the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i09:r2",
+              "targetText": "The gallery is near the cinema.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i09:r3",
+              "targetText": "The garage is near the library.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `library`, библиотека, а в этом варианте — `cinema`, кинотеатр.",
+                "uk": "У записі останнє слово — `library`, бібліотека, а в цьому варіанті — `cinema`, кінотеатр."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `gallery`, галерея, а в этом варианте — `garage`, гараж.",
+                "uk": "У записі друге слово — `gallery`, галерея, а в цьому варіанті — `garage`, гараж."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-55:i10:p1",
+              "target": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея",
+                "uk": "галерея"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i10:p2",
+              "target": "artist",
+              "meaningByLocale": {
+                "ru": "художник",
+                "uk": "художник"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i10:p3",
+              "target": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет",
+                "uk": "портрет"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i10:p4",
+              "target": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок",
+                "uk": "начерк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gallery",
+            "artist",
+            "portrait",
+            "sketch"
+          ],
+          "rightColumn": [
+            "галерея",
+            "художник",
+            "портрет",
+            "начерк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i11:audio",
+            "transcript": "The sketch is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sketch is here.",
+          "orderedTokens": [
+            "The",
+            "sketch",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sketch is here.`",
+                "uk": "тут потрібно `is` — `The sketch is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Біля стіни лежить рукавичка. Спитайте в людей поруч: «Чия це рукавичка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Біля стіни лежить рукавичка. Спитайте в людей поруч: «Чия це рукавичка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose glove is this?",
+          "localizedMeaning": {
+            "ru": "У стены лежит перчатка. Спросите у людей рядом: «Чья это перчатка?»",
+            "uk": "Біля стіни лежить рукавичка. Спитайте в людей поруч: «Чия це рукавичка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "glove",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Біля стіни лежить рукавичка. Спитайте в людей поруч: «Чия це рукавичка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose glove is this?`",
+                "uk": "тут потрібно `Whose` — `Whose glove is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг шукає галерею. Скажіть: «Галерея поруч із бібліотекою»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Друг шукає галерею. Скажіть: «Галерея поруч із бібліотекою»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i13:audio",
+            "transcript": "The gallery is next to the library."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The gallery is next to the library.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i14:r1",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i14:r2",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i14:r3",
+            "text": "is paints"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+            "uk": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My neighbour ___ portraits.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-55:i14:r1",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i14:r2",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i14:r3",
+              "text": "is paints"
+            }
+          ],
+          "testedDimension": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Соседка — она: `My neighbour paints`.",
+                "uk": "Сусідка — вона: `My neighbour paints`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `My neighbour paints`, без `is`.",
+                "uk": "Потрібно `My neighbour paints`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, кому належить начерк",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i15:r1",
+            "text": "This sketch is mine."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i15:r2",
+            "text": "This sketch is yours."
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i15:r3",
+            "text": "This sketch is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, кому належить начерк",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i15:audio",
+            "transcript": "This sketch is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-55:i15:r1",
+              "targetText": "This sketch is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i15:r2",
+              "targetText": "This sketch is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i15:r3",
+              "targetText": "This sketch is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, кому належить начерк",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, кому належить начерк",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-55:i16:p1",
+              "target": "sketch",
+              "meaningByLocale": {
+                "ru": "набросок",
+                "uk": "начерк"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i16:p2",
+              "target": "gallery",
+              "meaningByLocale": {
+                "ru": "галерея",
+                "uk": "галерея"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i16:p3",
+              "target": "portrait",
+              "meaningByLocale": {
+                "ru": "портрет",
+                "uk": "портрет"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-55:i16:p4",
+              "target": "artist",
+              "meaningByLocale": {
+                "ru": "художник",
+                "uk": "художник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sketch",
+            "gallery",
+            "portrait",
+            "artist"
+          ],
+          "rightColumn": [
+            "начерк",
+            "галерея",
+            "портрет",
+            "художник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайомите колегу з братом. Назвіть його професію: «Він художник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знайомите колегу з братом. Назвіть його професію: «Він художник»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-55:i17:audio",
+            "transcript": "He is an artist."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is an artist.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-55:word:artist",
+      "correctText": "artist",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i01",
+      "correctText": "She is an artist.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i02",
+      "correctText": "She is an artist.",
+      "correctResponseId": "en:lesson-06:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i03",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-06:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:word:portrait",
+      "correctText": "portrait",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i05",
+      "correctText": "The portrait is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i06",
+      "correctText": "This artist paints portraits.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:word:sketch",
+      "correctText": "sketch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i07",
+      "correctText": "Whose sketch is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i08",
+      "correctText": "paint",
+      "correctResponseId": "en:lesson-06:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:word:gallery",
+      "correctText": "gallery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i09",
+      "correctText": "The gallery is near the library.",
+      "correctResponseId": "en:lesson-06:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i11",
+      "correctText": "The sketch is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i12",
+      "correctText": "Whose glove is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i13",
+      "correctText": "The gallery is next to the library.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i14",
+      "correctText": "paints",
+      "correctResponseId": "en:lesson-06:session-55:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i15",
+      "correctText": "This sketch is mine.",
+      "correctResponseId": "en:lesson-06:session-55:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i17",
+      "correctText": "He is an artist.",
+      "correctResponseId": null
+    }
+  ]
+}

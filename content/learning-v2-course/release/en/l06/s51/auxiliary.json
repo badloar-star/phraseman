@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-51:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-51:intro1:r2": {
-          "ru": "После `they` нужно `sell`.",
-          "uk": "Після `they` потрібне `sell`."
+          "ru": "После they слово остаётся sell, без s.",
+          "uk": "Після they слово лишається sell, без s."
         },
         "en:lesson-06:session-51:intro1:r3": {
-          "ru": "Нужно `They sell`, без `are`.",
-          "uk": "Потрібно `They sell`, без `are`."
+          "ru": "Здесь действие: They sell, без are.",
+          "uk": "Тут дія: They sell, без are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-51:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-51:intro2:r2": {
-          "ru": "После `she` нужно `sells`.",
-          "uk": "Після `she` потрібне `sells`."
+          "ru": "После she нужно sells, с s.",
+          "uk": "Після she потрібно sells, з s."
         },
         "en:lesson-06:session-51:intro2:r3": {
-          "ru": "Нужно `She sells`, без `is`.",
-          "uk": "Потрібно `She sells`, без `is`."
+          "ru": "Здесь действие: She sells, без is.",
+          "uk": "Тут дія: She sells, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-51:intro3:r2": {
-          "ru": "Это «Где эта лампа?», а нужен владелец.",
-          "uk": "Це «Де ця лампа?», а потрібен власник."
+          "ru": "О владельце спрашиваем Whose, а не Who.",
+          "uk": "Про власника питаємо Whose, а не Who."
         },
         "en:lesson-06:session-51:intro3:r3": {
-          "ru": "Одна лампа: `is this`.",
-          "uk": "Одна лампа: `is this`."
+          "ru": "Абажур один: нужно is this.",
+          "uk": "Абажур один: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ebc874927c903fd69e61fdf2e4438923ae3293f6aeaffc917306dae511c84125"
+  "auxiliaryFingerprint": "17dd0582e9e558cdcc9c1fb857324aa65884365600ec1b87dc353393a52d9041"
 }

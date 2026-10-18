@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-06:session-56:word:baker",
+    "correctText": "baker",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-56:i01",
-    "correctText": "He delivers newspapers.",
+    "correctText": "He is a baker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:word:tailor",
+    "correctText": "tailor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i02",
-    "correctText": "They repair uniforms.",
+    "correctText": "The tailor repairs uniforms.",
     "correctResponseId": "en:lesson-06:session-56:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-56:word:caretaker",
+    "correctText": "caretaker",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-56:i03",
-    "correctText": "sells",
+    "correctText": "wears",
     "correctResponseId": "en:lesson-06:session-56:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-56:i04",
-    "correctText": "en:lesson-06:session-56:i04:p1=newspaper\nen:lesson-06:session-56:i04:p2=deliver\nen:lesson-06:session-56:i04:p3=sell\nen:lesson-06:session-56:i04:p4=corner shop",
+    "correctText": "en:lesson-06:session-56:i04:p1=baker\nen:lesson-06:session-56:i04:p2=tailor\nen:lesson-06:session-56:i04:p3=cane\nen:lesson-06:session-56:i04:p4=caretaker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:word:cane",
+    "correctText": "cane",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i05",
-    "correctText": "They repair uniforms.",
+    "correctText": "The cane is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i06",
-    "correctText": "She is an artist.",
+    "correctText": "He delivers newspapers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i07",
-    "correctText": "Whose uniform is this?",
+    "correctText": "Whose cane is this?",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-06:session-56:i09",
-    "correctText": "He delivers newspapers.",
+    "correctText": "She is an artist.",
     "correctResponseId": "en:lesson-06:session-56:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-56:i10",
-    "correctText": "en:lesson-06:session-56:i10:p1=wear\nen:lesson-06:session-56:i10:p2=uniform\nen:lesson-06:session-56:i10:p3=repair\nen:lesson-06:session-56:i10:p4=artist",
+    "correctText": "en:lesson-06:session-56:i10:p1=cane\nen:lesson-06:session-56:i10:p2=caretaker\nen:lesson-06:session-56:i10:p3=baker\nen:lesson-06:session-56:i10:p4=tailor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i11",
-    "correctText": "Whose newspaper is this?",
+    "correctText": "They repair uniforms.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i12",
-    "correctText": "The corner shop is here.",
+    "correctText": "Whose uniform is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i13",
-    "correctText": "I wear a uniform.",
+    "correctText": "I repair roofs.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-56:i15",
-    "correctText": "She is an artist.",
+    "correctText": "He is a caretaker.",
     "correctResponseId": "en:lesson-06:session-56:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-56:i16",
-    "correctText": "en:lesson-06:session-56:i16:p1=artist\nen:lesson-06:session-56:i16:p2=corner shop\nen:lesson-06:session-56:i16:p3=deliver\nen:lesson-06:session-56:i16:p4=repair",
+    "correctText": "en:lesson-06:session-56:i16:p1=tailor\nen:lesson-06:session-56:i16:p2=baker\nen:lesson-06:session-56:i16:p3=caretaker\nen:lesson-06:session-56:i16:p4=cane",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-56:i17",
-    "correctText": "She repairs uniforms.",
+    "correctText": "The tailor repairs uniforms.",
     "correctResponseId": null
   }
 ]

@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-06:session-52:word:wear",
+    "correctText": "wear",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-52:i01",
     "correctText": "She wears a hat.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-06:session-52:word:hood",
+    "correctText": "hood",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-52:i02",
-    "correctText": "wear",
+    "correctText": "She wears a hat.",
     "correctResponseId": "en:lesson-06:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-52:word:suit",
+    "correctText": "suit",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i03",
@@ -16,22 +31,27 @@
   },
   {
     "interactionId": "en:lesson-06:session-52:i04",
-    "correctText": "en:lesson-06:session-52:i04:p1=wear\nen:lesson-06:session-52:i04:p2=hat\nen:lesson-06:session-52:i04:p3=fair\nen:lesson-06:session-52:i04:p4=nursery",
+    "correctText": "en:lesson-06:session-52:i04:p1=wear\nen:lesson-06:session-52:i04:p2=hood\nen:lesson-06:session-52:i04:p3=skirt\nen:lesson-06:session-52:i04:p4=suit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i05",
-    "correctText": "She wears a hat.",
+    "correctText": "We wear hoods.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-52:word:skirt",
+    "correctText": "skirt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i06",
-    "correctText": "We wear hats.",
+    "correctText": "She wears a skirt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i07",
-    "correctText": "Whose hat is this?",
+    "correctText": "The suit is near the bench.",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-06:session-52:i09",
-    "correctText": "She wears a hat.",
+    "correctText": "This skirt is mine.",
     "correctResponseId": "en:lesson-06:session-52:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-52:i10",
-    "correctText": "en:lesson-06:session-52:i10:p1=pool\nen:lesson-06:session-52:i10:p2=wear\nen:lesson-06:session-52:i10:p3=hat\nen:lesson-06:session-52:i10:p4=fair",
+    "correctText": "en:lesson-06:session-52:i10:p1=skirt\nen:lesson-06:session-52:i10:p2=wear\nen:lesson-06:session-52:i10:p3=suit\nen:lesson-06:session-52:i10:p4=hood",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i11",
-    "correctText": "We wear hats.",
+    "correctText": "He wears a suit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i12",
-    "correctText": "The pool is here.",
+    "correctText": "Whose skirt is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i13",
-    "correctText": "The nursery is near the pool.",
+    "correctText": "I wear a hood.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-52:i15",
-    "correctText": "They wear hats.",
+    "correctText": "They wear hoods.",
     "correctResponseId": "en:lesson-06:session-52:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-52:i16",
-    "correctText": "en:lesson-06:session-52:i16:p1=nursery\nen:lesson-06:session-52:i16:p2=pool\nen:lesson-06:session-52:i16:p3=fair\nen:lesson-06:session-52:i16:p4=wear",
+    "correctText": "en:lesson-06:session-52:i16:p1=suit\nen:lesson-06:session-52:i16:p2=hood\nen:lesson-06:session-52:i16:p3=wear\nen:lesson-06:session-52:i16:p4=skirt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-52:i17",
-    "correctText": "Tom wears a hat.",
+    "correctText": "She wears a hat.",
     "correctResponseId": null
   }
 ]

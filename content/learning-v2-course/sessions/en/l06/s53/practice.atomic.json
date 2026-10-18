@@ -1,0 +1,2443 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-53:word:overalls",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overalls",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:overalls:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overalls",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:overalls:audio",
+            "transcript": "overalls"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:overalls:r1",
+              "targetText": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
+                "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overalls",
+            "definitionByLocale": {
+              "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
+              "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They wear overalls.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+            "uk": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»"
+          },
+          "orderedTokens": [
+            "They",
+            "wear",
+            "overalls"
+          ],
+          "authoredDistractorTokens": [
+            "wears"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `wear` — `They wear overalls.`",
+                "uk": "тут потрібно `wear` — `They wear overalls.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:word:earpiece",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — earpiece",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:earpiece:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — earpiece",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:earpiece:audio",
+            "transcript": "earpiece"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:earpiece:r1",
+              "targetText": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура. She wears an earpiece. — «Она носит гарнитуру». Маленький наушник, через который на работе слышат указания.",
+                "uk": "вушна гарнітура. She wears an earpiece. — «Вона носить гарнітуру». Маленький навушник, через який на роботі чують вказівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earpiece",
+            "definitionByLocale": {
+              "ru": "ушная гарнитура. She wears an earpiece. — «Она носит гарнитуру». Маленький наушник, через который на работе слышат указания.",
+              "uk": "вушна гарнітура. She wears an earpiece. — «Вона носить гарнітуру». Маленький навушник, через який на роботі чують вказівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i02:r1",
+            "text": "She wears an earpiece."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i02:r2",
+            "text": "She wears an apron."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i02:r3",
+            "text": "He wears an earpiece."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i02:audio",
+            "transcript": "She wears an earpiece."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:i02:r1",
+              "targetText": "She wears an earpiece.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i02:r2",
+              "targetText": "She wears an apron.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i02:r3",
+              "targetText": "He wears an earpiece.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earpiece`, гарнитура, а в этом варианте — `apron`, фартук.",
+                "uk": "У записі останнє слово — `earpiece`, гарнітура, а в цьому варіанті — `apron`, фартух."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+            "uk": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She wears ___ earpiece.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-53:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `earpiece` начинается с гласного звука, поэтому нужно `an`.",
+                "uk": "Слово `earpiece` починається з голосного звуку, тому потрібно `an`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Перед названием одной вещи здесь нужно `an`.",
+                "uk": "Перед назвою однієї речі тут потрібно `an`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-53:i04:p1",
+              "target": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон",
+                "uk": "робочий комбінезон"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i04:p2",
+              "target": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура",
+                "uk": "вушна гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i04:p3",
+              "target": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп",
+                "uk": "стетоскоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i04:p4",
+              "target": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк",
+                "uk": "козирок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "overalls",
+            "earpiece",
+            "stethoscope",
+            "visor"
+          ],
+          "rightColumn": [
+            "рабочий комбинезон",
+            "ушная гарнитура",
+            "стетоскоп",
+            "козырёк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:word:visor",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — visor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:visor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — visor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:visor:audio",
+            "transcript": "visor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:visor:r1",
+              "targetText": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк. The visor is green. — «Козырёк зелёный». Лента с козырьком, которая защищает глаза от яркого света.",
+                "uk": "козирок. The visor is green. — «Козирок зелений». Стрічка з козирком, яка захищає очі від яскравого світла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "visor",
+            "definitionByLocale": {
+              "ru": "козырёк. The visor is green. — «Козырёк зелёный». Лента с козырьком, которая защищает глаза от яркого света.",
+              "uk": "козирок. The visor is green. — «Козирок зелений». Стрічка з козирком, яка захищає очі від яскравого світла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте коллегу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i05:audio",
+            "transcript": "He wears a visor."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He wears a visor.",
+          "orderedTokens": [
+            "He",
+            "wears",
+            "a",
+            "visor"
+          ],
+          "authoredDistractorTokens": [
+            "wear"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `wears` — `He wears a visor.`",
+                "uk": "тут потрібно `wears` — `He wears a visor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She wears a uniform.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+            "uk": "Друг питає про форму. Скажіть: «Вона носить форму»"
+          },
+          "orderedTokens": [
+            "She",
+            "wears",
+            "a",
+            "uniform"
+          ],
+          "authoredDistractorTokens": [
+            "wear"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `wears` — `She wears a uniform.`",
+                "uk": "тут потрібно `wears` — `She wears a uniform.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:word:stethoscope",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stethoscope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:stethoscope:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stethoscope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:stethoscope:audio",
+            "transcript": "stethoscope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:stethoscope:r1",
+              "targetText": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодный». Трубка с наушниками, с помощью которой врач слушает сердце.",
+                "uk": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодний». Трубка з навушниками, за допомогою якої лікар слухає серце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stethoscope",
+            "definitionByLocale": {
+              "ru": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодный». Трубка с наушниками, с помощью которой врач слушает сердце.",
+              "uk": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодний». Трубка з навушниками, за допомогою якої лікар слухає серце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы нашли стетоскоп на стуле. Спросите у коллег: «Чей это стетоскоп?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Вы нашли стетоскоп на стуле. Спросите у коллег: «Чей это стетоскоп?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i07:audio",
+            "transcript": "Whose stethoscope is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose stethoscope is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i08:r1",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i08:r2",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i08:r3",
+            "text": "are wear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+            "uk": "Скажіть про робітників: «Вони носять козирки». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ visors.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-53:i08:r1",
+              "text": "wear"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i08:r2",
+              "text": "wears"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i08:r3",
+              "text": "are wear"
+            }
+          ],
+          "testedDimension": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `they` нужно `wear`, без `s`.",
+                "uk": "Після `they` потрібно `wear`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `They wear`, без `are`.",
+                "uk": "Кажемо `They wear`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, кому принадлежит стетоскоп",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i09:r1",
+            "text": "This stethoscope is mine."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i09:r2",
+            "text": "This stethoscope is yours."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i09:r3",
+            "text": "This stethoscope is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, кому принадлежит стетоскоп",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i09:audio",
+            "transcript": "This stethoscope is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:i09:r1",
+              "targetText": "This stethoscope is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i09:r2",
+              "targetText": "This stethoscope is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i09:r3",
+              "targetText": "This stethoscope is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, кому принадлежит стетоскоп",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, кому принадлежит стетоскоп",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-53:i10:p1",
+              "target": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп",
+                "uk": "стетоскоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i10:p2",
+              "target": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон",
+                "uk": "робочий комбінезон"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i10:p3",
+              "target": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк",
+                "uk": "козирок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i10:p4",
+              "target": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура",
+                "uk": "вушна гарнітура"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stethoscope",
+            "overalls",
+            "visor",
+            "earpiece"
+          ],
+          "rightColumn": [
+            "стетоскоп",
+            "рабочий комбинезон",
+            "козырёк",
+            "ушная гарнитура"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте коллегу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i11:audio",
+            "transcript": "The stethoscope is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The stethoscope is here.",
+          "orderedTokens": [
+            "The",
+            "stethoscope",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The stethoscope is here.`",
+                "uk": "тут потрібно `is` — `The stethoscope is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В раздевалке лежит форма. Спросите у коллег: «Чья это форма?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В раздевалке лежит форма. Спросите у коллег: «Чья это форма?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose uniform is this?",
+          "localizedMeaning": {
+            "ru": "В раздевалке лежит форма. Спросите у коллег: «Чья это форма?»",
+            "uk": "У роздягальні лежить форма. Спитайте в колег: «Чия це форма?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "uniform",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "В раздевалке лежит форма. Спросите у коллег: «Чья это форма?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose uniform is this?`",
+                "uk": "тут потрібно `Whose` — `Whose uniform is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новый коллега спрашивает, что вы носите на работе. Скажите: «Я ношу козырёк»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Новый коллега спрашивает, что вы носите на работе. Скажите: «Я ношу козырёк»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i13:audio",
+            "transcript": "I wear a visor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wear a visor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»",
+            "uk": "У роздягальні висять комбінезони. Спитайте: «Чиї це комбінезони?»"
+          },
+          "gappedTargetPhrase": "Whose overalls ___ these?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-53:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»",
+              "feedbackByLocale": {
+                "ru": "Комбинезоны — это несколько вещей: `are these`.",
+                "uk": "Комбінезони — це кілька речей: `are these`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»",
+              "feedbackByLocale": {
+                "ru": "`Am` подходит к `I`; здесь нужно `are`.",
+                "uk": "`Am` пасує до `I`; тут потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, кто носит комбинезоны",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i15:r1",
+            "text": "They wear overalls."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i15:r2",
+            "text": "We wear overalls."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i15:r3",
+            "text": "You wear overalls."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, кто носит комбинезоны",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i15:audio",
+            "transcript": "They wear overalls."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:i15:r1",
+              "targetText": "They wear overalls.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i15:r2",
+              "targetText": "We wear overalls.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i15:r3",
+              "targetText": "You wear overalls.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, кто носит комбинезоны",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, кто носит комбинезоны",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-53:i16:p1",
+              "target": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк",
+                "uk": "козирок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i16:p2",
+              "target": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп",
+                "uk": "стетоскоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i16:p3",
+              "target": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура",
+                "uk": "вушна гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i16:p4",
+              "target": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон",
+                "uk": "робочий комбінезон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "visor",
+            "stethoscope",
+            "earpiece",
+            "overalls"
+          ],
+          "rightColumn": [
+            "козырёк",
+            "стетоскоп",
+            "ушная гарнитура",
+            "рабочий комбинезон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, что вы носите на работе. Ответьте: «Я ношу форму»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, что вы носите на работе. Ответьте: «Я ношу форму»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i17:audio",
+            "transcript": "I wear a uniform."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wear a uniform.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-53:word:overalls",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overalls",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:overalls:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overalls",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:overalls:audio",
+            "transcript": "overalls"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:overalls:r1",
+              "targetText": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
+                "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overalls",
+            "definitionByLocale": {
+              "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
+              "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They wear overalls.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+            "uk": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»"
+          },
+          "orderedTokens": [
+            "They",
+            "wear",
+            "overalls"
+          ],
+          "authoredDistractorTokens": [
+            "wears"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `wear` — `They wear overalls.`",
+                "uk": "тут потрібно `wear` — `They wear overalls.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:word:earpiece",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — earpiece",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:earpiece:audio"
+        ],
+        "accessibilityLabel": "Картка слова — earpiece",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:earpiece:audio",
+            "transcript": "earpiece"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:earpiece:r1",
+              "targetText": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура. She wears an earpiece. — «Она носит гарнитуру». Маленький наушник, через который на работе слышат указания.",
+                "uk": "вушна гарнітура. She wears an earpiece. — «Вона носить гарнітуру». Маленький навушник, через який на роботі чують вказівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earpiece",
+            "definitionByLocale": {
+              "ru": "ушная гарнитура. She wears an earpiece. — «Она носит гарнитуру». Маленький наушник, через который на работе слышат указания.",
+              "uk": "вушна гарнітура. She wears an earpiece. — «Вона носить гарнітуру». Маленький навушник, через який на роботі чують вказівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i02:r1",
+            "text": "She wears an earpiece."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i02:r2",
+            "text": "She wears an apron."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i02:r3",
+            "text": "He wears an earpiece."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i02:audio",
+            "transcript": "She wears an earpiece."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:i02:r1",
+              "targetText": "She wears an earpiece.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i02:r2",
+              "targetText": "She wears an apron.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i02:r3",
+              "targetText": "He wears an earpiece.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earpiece`, гарнитура, а в этом варианте — `apron`, фартук.",
+                "uk": "У записі останнє слово — `earpiece`, гарнітура, а в цьому варіанті — `apron`, фартух."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+            "uk": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She wears ___ earpiece.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-53:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `earpiece` начинается с гласного звука, поэтому нужно `an`.",
+                "uk": "Слово `earpiece` починається з голосного звуку, тому потрібно `an`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Перед названием одной вещи здесь нужно `an`.",
+                "uk": "Перед назвою однієї речі тут потрібно `an`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-53:i04:p1",
+              "target": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон",
+                "uk": "робочий комбінезон"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i04:p2",
+              "target": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура",
+                "uk": "вушна гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i04:p3",
+              "target": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп",
+                "uk": "стетоскоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i04:p4",
+              "target": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк",
+                "uk": "козирок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "overalls",
+            "earpiece",
+            "stethoscope",
+            "visor"
+          ],
+          "rightColumn": [
+            "робочий комбінезон",
+            "вушна гарнітура",
+            "стетоскоп",
+            "козирок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:word:visor",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — visor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:visor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — visor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:visor:audio",
+            "transcript": "visor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:visor:r1",
+              "targetText": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк. The visor is green. — «Козырёк зелёный». Лента с козырьком, которая защищает глаза от яркого света.",
+                "uk": "козирок. The visor is green. — «Козирок зелений». Стрічка з козирком, яка захищає очі від яскравого світла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "visor",
+            "definitionByLocale": {
+              "ru": "козырёк. The visor is green. — «Козырёк зелёный». Лента с козырьком, которая защищает глаза от яркого света.",
+              "uk": "козирок. The visor is green. — «Козирок зелений». Стрічка з козирком, яка захищає очі від яскравого світла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте колегу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i05:audio",
+            "transcript": "He wears a visor."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He wears a visor.",
+          "orderedTokens": [
+            "He",
+            "wears",
+            "a",
+            "visor"
+          ],
+          "authoredDistractorTokens": [
+            "wear"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте колегу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `wears` — `He wears a visor.`",
+                "uk": "тут потрібно `wears` — `He wears a visor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає про форму. Скажіть: «Вона носить форму»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає про форму. Скажіть: «Вона носить форму»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She wears a uniform.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+            "uk": "Друг питає про форму. Скажіть: «Вона носить форму»"
+          },
+          "orderedTokens": [
+            "She",
+            "wears",
+            "a",
+            "uniform"
+          ],
+          "authoredDistractorTokens": [
+            "wear"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає про форму. Скажіть: «Вона носить форму»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `wears` — `She wears a uniform.`",
+                "uk": "тут потрібно `wears` — `She wears a uniform.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:word:stethoscope",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stethoscope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:word:stethoscope:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stethoscope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:word:stethoscope:audio",
+            "transcript": "stethoscope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:word:stethoscope:r1",
+              "targetText": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодный». Трубка с наушниками, с помощью которой врач слушает сердце.",
+                "uk": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодний». Трубка з навушниками, за допомогою якої лікар слухає серце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stethoscope",
+            "definitionByLocale": {
+              "ru": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодный». Трубка с наушниками, с помощью которой врач слушает сердце.",
+              "uk": "стетоскоп. The stethoscope is cold. — «Стетоскоп холодний». Трубка з навушниками, за допомогою якої лікар слухає серце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знайшли стетоскоп на стільці. Спитайте в колег: «Чий це стетоскоп?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Ви знайшли стетоскоп на стільці. Спитайте в колег: «Чий це стетоскоп?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i07:audio",
+            "transcript": "Whose stethoscope is this?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Whose stethoscope is this?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i08:r1",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i08:r2",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i08:r3",
+            "text": "are wear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+            "uk": "Скажіть про робітників: «Вони носять козирки». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ visors.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-53:i08:r1",
+              "text": "wear"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i08:r2",
+              "text": "wears"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i08:r3",
+              "text": "are wear"
+            }
+          ],
+          "testedDimension": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `they` нужно `wear`, без `s`.",
+                "uk": "Після `they` потрібно `wear`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `They wear`, без `are`.",
+                "uk": "Кажемо `They wear`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, кому належить стетоскоп",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i09:r1",
+            "text": "This stethoscope is mine."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i09:r2",
+            "text": "This stethoscope is yours."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i09:r3",
+            "text": "This stethoscope is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, кому належить стетоскоп",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i09:audio",
+            "transcript": "This stethoscope is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:i09:r1",
+              "targetText": "This stethoscope is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i09:r2",
+              "targetText": "This stethoscope is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i09:r3",
+              "targetText": "This stethoscope is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, кому належить стетоскоп",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, кому належить стетоскоп",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+                "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-53:i10:p1",
+              "target": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп",
+                "uk": "стетоскоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i10:p2",
+              "target": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон",
+                "uk": "робочий комбінезон"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i10:p3",
+              "target": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк",
+                "uk": "козирок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i10:p4",
+              "target": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура",
+                "uk": "вушна гарнітура"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stethoscope",
+            "overalls",
+            "visor",
+            "earpiece"
+          ],
+          "rightColumn": [
+            "стетоскоп",
+            "робочий комбінезон",
+            "козирок",
+            "вушна гарнітура"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте колегу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i11:audio",
+            "transcript": "The stethoscope is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The stethoscope is here.",
+          "orderedTokens": [
+            "The",
+            "stethoscope",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте колегу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The stethoscope is here.`",
+                "uk": "тут потрібно `is` — `The stethoscope is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У роздягальні лежить форма. Спитайте в колег: «Чия це форма?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У роздягальні лежить форма. Спитайте в колег: «Чия це форма?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose uniform is this?",
+          "localizedMeaning": {
+            "ru": "В раздевалке лежит форма. Спросите у коллег: «Чья это форма?»",
+            "uk": "У роздягальні лежить форма. Спитайте в колег: «Чия це форма?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "uniform",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У роздягальні лежить форма. Спитайте в колег: «Чия це форма?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose uniform is this?`",
+                "uk": "тут потрібно `Whose` — `Whose uniform is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новий колега питає, що ви носите на роботі. Скажіть: «Я ношу козирок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Новий колега питає, що ви носите на роботі. Скажіть: «Я ношу козирок»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i13:audio",
+            "transcript": "I wear a visor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wear a visor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У роздягальні висять комбінезони. Спитайте: «Чиї це комбінезони?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У роздягальні висять комбінезони. Спитайте: «Чиї це комбінезони?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»",
+            "uk": "У роздягальні висять комбінезони. Спитайте: «Чиї це комбінезони?»"
+          },
+          "gappedTargetPhrase": "Whose overalls ___ these?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-53:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "У роздягальні висять комбінезони. Спитайте: «Чиї це комбінезони?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "У роздягальні висять комбінезони. Спитайте: «Чиї це комбінезони?»",
+              "feedbackByLocale": {
+                "ru": "Комбинезоны — это несколько вещей: `are these`.",
+                "uk": "Комбінезони — це кілька речей: `are these`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "У роздягальні висять комбінезони. Спитайте: «Чиї це комбінезони?»",
+              "feedbackByLocale": {
+                "ru": "`Am` подходит к `I`; здесь нужно `are`.",
+                "uk": "`Am` пасує до `I`; тут потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, хто носить комбінезони",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i15:r1",
+            "text": "They wear overalls."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i15:r2",
+            "text": "We wear overalls."
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i15:r3",
+            "text": "You wear overalls."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, хто носить комбінезони",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i15:audio",
+            "transcript": "They wear overalls."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-53:i15:r1",
+              "targetText": "They wear overalls.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i15:r2",
+              "targetText": "We wear overalls.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i15:r3",
+              "targetText": "You wear overalls.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, хто носить комбінезони",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, хто носить комбінезони",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-53:i16:p1",
+              "target": "visor",
+              "meaningByLocale": {
+                "ru": "козырёк",
+                "uk": "козирок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i16:p2",
+              "target": "stethoscope",
+              "meaningByLocale": {
+                "ru": "стетоскоп",
+                "uk": "стетоскоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i16:p3",
+              "target": "earpiece",
+              "meaningByLocale": {
+                "ru": "ушная гарнитура",
+                "uk": "вушна гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-53:i16:p4",
+              "target": "overalls",
+              "meaningByLocale": {
+                "ru": "рабочий комбинезон",
+                "uk": "робочий комбінезон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "visor",
+            "stethoscope",
+            "earpiece",
+            "overalls"
+          ],
+          "rightColumn": [
+            "козирок",
+            "стетоскоп",
+            "вушна гарнітура",
+            "робочий комбінезон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега питає, що ви носите на роботі. Дайте відповідь: «Я ношу форму»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Колега питає, що ви носите на роботі. Дайте відповідь: «Я ношу форму»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-53:i17:audio",
+            "transcript": "I wear a uniform."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wear a uniform.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-53:word:overalls",
+      "correctText": "overalls",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i01",
+      "correctText": "They wear overalls.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:word:earpiece",
+      "correctText": "earpiece",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i02",
+      "correctText": "She wears an earpiece.",
+      "correctResponseId": "en:lesson-06:session-53:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i03",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-06:session-53:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:word:visor",
+      "correctText": "visor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i05",
+      "correctText": "He wears a visor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i06",
+      "correctText": "She wears a uniform.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:word:stethoscope",
+      "correctText": "stethoscope",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i07",
+      "correctText": "Whose stethoscope is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i08",
+      "correctText": "wear",
+      "correctResponseId": "en:lesson-06:session-53:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i09",
+      "correctText": "This stethoscope is mine.",
+      "correctResponseId": "en:lesson-06:session-53:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i11",
+      "correctText": "The stethoscope is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i12",
+      "correctText": "Whose uniform is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i13",
+      "correctText": "I wear a visor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-06:session-53:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i15",
+      "correctText": "They wear overalls.",
+      "correctResponseId": "en:lesson-06:session-53:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i17",
+      "correctText": "I wear a uniform.",
+      "correctResponseId": null
+    }
+  ]
+}

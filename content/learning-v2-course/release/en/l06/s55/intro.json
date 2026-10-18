@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-06:session-55",
   "learningOutcomeByLocale": {
     "ru": "назвать профессию художника, рассказать о его работе и найти владельца вещи",
-    "uk": "назвати професію художника, розповісти про його роботу й знайти власника речі"
+    "uk": "назвати професію художника, розповісти про його роботу і знайти власника речі"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кем работает Анна",
-        "uk": "Ким працює Анна"
+        "ru": "Новая соседка",
+        "uk": "Нова сусідка"
       },
       "bodyByLocale": {
-        "ru": "Друг представляет вам Анну. `artist` — «художник» или «художница». `She is an artist` — «Она художница». Перед `artist` нужно `an`: слово начинается с гласного звука. Здесь называем профессию, поэтому после `she` стоит `is`.",
-        "uk": "Друг знайомить вас з Анною. `artist` — «художник» або «художниця». `She is an artist` — «Вона художниця». Перед `artist` потрібне `an`: слово починається з голосного звука. Тут називаємо професію, тому після `she` стоїть `is`."
+        "ru": "Друг знакомит вас с соседкой с верхнего этажа. Вы уже слышали, как она целыми днями стучит и возится у себя в комнате, и спрашиваете, чем она занимается. artist — «художник, художница». She is an artist — «Она художница». Перед artist нужно an: слово начинается с гласного звука.",
+        "uk": "Друг знайомить вас із сусідкою з верхнього поверху. Ви вже чули, як вона цілими днями стукає й порається у своїй кімнаті, і питаєте, чим вона займається. artist — «художник, художниця». She is an artist — «Вона художниця». Перед artist потрібно an: слово починається з голосного звуку."
       },
       "question": {
         "interactionId": "en:lesson-06:session-55:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите об Анне «Она художница».",
-          "uk": "Скажіть про Анну «Вона художниця»."
+          "ru": "Друг объясняет, кем работает соседка. Скажите о ней: «Она художница».",
+          "uk": "Друг пояснює, ким працює сусідка. Скажіть про неї: «Вона художниця»."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-06:session-55:intro1:r2",
-              "text": "She an artist."
+              "text": "She is a artist."
             },
             {
               "responseId": "en:lesson-06:session-55:intro1:r3",
-              "text": "She is a artist."
+              "text": "She are an artist."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-06:session-55:intro1:r2",
-              "text": "She an artist."
+              "text": "She is a artist."
             },
             {
               "responseId": "en:lesson-06:session-55:intro1:r3",
-              "text": "She is a artist."
+              "text": "She are an artist."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите об Анне «Она художница».",
-          "uk": "Скажіть про Анну «Вона художниця»."
+          "ru": "Друг объясняет, кем работает соседка. Скажите о ней: «Она художница».",
+          "uk": "Друг пояснює, ким працює сусідка. Скажіть про неї: «Вона художниця»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что рисует Анна",
-        "uk": "Що малює Анна"
+        "ru": "Портреты на площади",
+        "uk": "Портрети на площі"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, чем занимается Анна как художница. `This artist paints murals` — «Эта художница создаёт настенные росписи». Здесь `paints` — рисует красками, а `murals` — настенные росписи. Одна художница, поэтому `paints` с `s`. Роспись домой под мышкой не унесёшь: она остаётся на стене.",
-        "uk": "Друг запитує, чим займається Анна як художниця. `This artist paints murals` — «Ця художниця створює настінні розписи». Тут `paints` — малює фарбами, а `murals` — настінні розписи. Одна художниця, тому `paints` із `s`. Розпис додому під пахвою не понесеш: він залишається на стіні."
+        "ru": "На площади у фонтана стоит художник с мольбертом, а вокруг него собрались прохожие. Друг не видит, что тот рисует, и спрашивает вас. portrait — «портрет». This artist paints portraits — «Этот художник рисует портреты». Художник один, поэтому paints с s.",
+        "uk": "На площі біля фонтану стоїть художник з мольбертом, а навколо нього зібралися перехожі. Друг не бачить, що той малює, і питає вас. portrait — «портрет». This artist paints portraits — «Цей художник малює портрети». Художник один, тому paints з s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-55:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите другу «Эта художница создаёт настенные росписи».",
-          "uk": "Розкажіть другові «Ця художниця створює настінні розписи»."
+          "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты».",
+          "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-55:intro2:r1",
-              "text": "This artist paints murals."
+              "text": "This artist paints portraits."
             },
             {
               "responseId": "en:lesson-06:session-55:intro2:r2",
-              "text": "This artist paint murals."
+              "text": "This artist paint portraits."
             },
             {
               "responseId": "en:lesson-06:session-55:intro2:r3",
-              "text": "This artist is paints murals."
+              "text": "This artist is paints portraits."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-55:intro2:r1",
-              "text": "This artist paints murals."
+              "text": "This artist paints portraits."
             },
             {
               "responseId": "en:lesson-06:session-55:intro2:r2",
-              "text": "This artist paint murals."
+              "text": "This artist paint portraits."
             },
             {
               "responseId": "en:lesson-06:session-55:intro2:r3",
-              "text": "This artist is paints murals."
+              "text": "This artist is paints portraits."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу «Эта художница создаёт настенные росписи».",
-          "uk": "Розкажіть другові «Ця художниця створює настінні розписи»."
+          "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты».",
+          "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Забытая перчатка",
-        "uk": "Забута рукавичка"
+        "ru": "Лист на столе",
+        "uk": "Аркуш на столі"
       },
       "bodyByLocale": {
-        "ru": "У стены с росписью лежит перчатка. Вы не знаете, кому она принадлежит. `Whose glove is this?` — «Чья это перчатка?» После `whose` называем вещь, а затем `is this`, если она одна.",
-        "uk": "Біля стіни з розписом лежить рукавичка. Ви не знаєте, кому вона належить. `Whose glove is this?` — «Чия це рукавичка?» Після `whose` називаємо річ, а потім `is this`, якщо вона одна."
+        "ru": "Вы пришли в студию за ключами. У окна на столе лежит лист с карандашным рисунком: лёгкий, быстрый, без красок. Художников рядом нет, а убирать лист нельзя. sketch — «набросок». Whose sketch is this? — «Чей это набросок?» Вещь одна: is this.",
+        "uk": "Ви прийшли до студії по ключі. Біля вікна на столі лежить аркуш з олівцевим малюнком: легкий, швидкий, без фарб. Художників поруч немає, а прибирати аркуш не можна. sketch — «начерк». Whose sketch is this? — «Чий це начерк?» Річ одна: is this."
       },
       "question": {
         "interactionId": "en:lesson-06:session-55:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите людей рядом «Чья это перчатка?»",
-          "uk": "Запитайте людей поруч «Чия це рукавичка?»"
+          "ru": "Вы нашли набросок на столе. Спросите у людей рядом: «Чей это набросок?»",
+          "uk": "Ви знайшли начерк на столі. Спитайте в людей поруч: «Чий це начерк?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-55:intro3:r1",
-              "text": "Whose glove is this?"
+              "text": "Whose sketch is this?"
             },
             {
               "responseId": "en:lesson-06:session-55:intro3:r2",
-              "text": "Where is this glove?"
+              "text": "Who sketch is this?"
             },
             {
               "responseId": "en:lesson-06:session-55:intro3:r3",
-              "text": "Whose glove are these?"
+              "text": "Whose sketch are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-55:intro3:r1",
-              "text": "Whose glove is this?"
+              "text": "Whose sketch is this?"
             },
             {
               "responseId": "en:lesson-06:session-55:intro3:r2",
-              "text": "Where is this glove?"
+              "text": "Who sketch is this?"
             },
             {
               "responseId": "en:lesson-06:session-55:intro3:r3",
-              "text": "Whose glove are these?"
+              "text": "Whose sketch are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите людей рядом «Чья это перчатка?»",
-          "uk": "Запитайте людей поруч «Чия це рукавичка?»"
+          "ru": "Вы нашли набросок на столе. Спросите у людей рядом: «Чей это набросок?»",
+          "uk": "Ви знайшли начерк на столі. Спитайте в людей поруч: «Чий це начерк?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "15777370e1b5a2c5a6db81d6e53b1a3a7dc8e0bebaabd9e39de533b6359ed486"
+  "introFingerprint": "eefaf3f6fff01416bfd8bcaed730e6a064e98fd110ff2789d0d0ee2442126f80"
 }

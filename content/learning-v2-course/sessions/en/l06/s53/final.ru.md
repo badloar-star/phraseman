@@ -1,133 +1,154 @@
-# Английский · Урок 6 · Занятие 53 — Форма для работы
+# Английский · Урок 6 · Занятие 53 — Что носят на работе
 
-**Ситуация.** Перед первым рабочим днём вы узнаёте, какую одежду носят коллеги, и разбираетесь с формой в раздевалке.
+**Ситуация.** Перед первым рабочим днём вы узнаёте, кто во что одет, и находите чужую вещь в раздевалке. Перед названием одной вещи ставим a или an: смотрим на первый звук слова.
 
-**Что вы освоите:** рассказать о рабочей форме и уточнить, кому она принадлежит
-**Новые слова:** uniform
+**Что вы освоите:** рассказать, кто что носит на работе, и спросить, чья вещь
+**Новые слова:** overalls, earpiece, stethoscope, visor
+**Возвращаются:** uniform, colleague, doctor, nurse, helmet, jacket, hat
 
 ---
 
 ## Интро 1
 
-### Что надевать на работу
+### Одежда на складе
 
-Вы спрашиваете друга об одежде сотрудников. `uniform` — «униформа», рабочая форма. `They wear uniforms` — «Они носят форму». В английской фразе `uniforms` означает несколько комплектов формы. По-русски здесь естественно сказать просто «форму».
+Друг устраивается на склад и спрашивает, во что там одеваются: ему не хочется портить свою одежду. Вы бывали там сами: все рабочие ходят в одинаковой одежде. overalls — «рабочий комбинезон». They wear overalls — «Они носят комбинезоны». После they слово остаётся wear, без s.
 
-**Расскажите о сотрудниках «Они носят форму».**
+**Друг спрашивает, что носят рабочие на складе. Скажите: «Они носят комбинезоны».**
 
-- ✅ **They wear uniforms.**
-- ❌ They wears uniforms. — *После `they` нужно `wear`.*
-- ❌ They are wear uniforms. — *Нужно `They wear`, без `are`.*
+- ✅ **They wear overalls.**
+- ❌ They wears overalls. — *После they слово остаётся wear, без s.*
+- ❌ They are wear overalls. — *Здесь действие: They wear, без are.*
 
 ---
 
 ## Интро 2
 
-### Форма Анны
+### Охранница у входа
 
-Друг спрашивает, носит ли Анна форму на работе. `She wears a uniform` — «Она носит форму». После `she` нужно `wears`. Перед `uniform` ставим `a`: слово начинается со звука «й», как английское `you`. Буква `u` есть, но сама по себе она не требует `an`.
+У входа в магазин стоит охранница и время от времени что-то говорит в рукав. Друг спрашивает, что у неё в ухе. earpiece — «ушная гарнитура». She wears an earpiece — «Она носит гарнитуру». Перед earpiece нужно an: слово начинается с гласного звука.
 
-**Ответьте об Анне «Она носит форму».**
+**Друг спрашивает про охранницу. Скажите: «Она носит гарнитуру».**
 
-- ✅ **She wears a uniform.**
-- ❌ She wear a uniform. — *После `she` нужно `wears`.*
-- ❌ She wears an uniform. — *Перед `uniform` нужно `a`, потому что первый звук — «й».*
+- ✅ **She wears an earpiece.**
+- ❌ She wears a earpiece. — *Перед гласным звуком нужно an, а не a.*
+- ❌ She wear an earpiece. — *После she нужно wears, с s.*
 
 ---
 
 ## Интро 3
 
-### Чей комплект на стуле
+### Находка в раздевалке
 
-В раздевалке на стуле лежит комплект формы. `Whose uniform is this?` — «Чья это форма?» Мы спрашиваем о владельце одного комплекта: `is this`. Форма без имени — ещё не подарок новому сотруднику, сначала узнаем, чья она.
+У раздевалки клиники на стуле лежит стетоскоп, а врачей поблизости нет. Вы пришли помогать с бумагами и не хотите оставлять находку без хозяина. stethoscope — «стетоскоп». Whose stethoscope is this? — «Чей это стетоскоп?» Вещь одна: is this.
 
-**Спросите коллег «Чья это форма?»**
+**Вы нашли стетоскоп на стуле. Спросите у коллег: «Чей это стетоскоп?»**
 
-- ✅ **Whose uniform is this?**
-- ❌ Where is this uniform? — *Это вопрос о месте, а нужен владелец: `Whose`.*
-- ❌ Whose uniform are these? — *Один комплект формы: `is this`.*
+- ✅ **Whose stethoscope is this?**
+- ❌ Who stethoscope is this? — *О владельце спрашиваем Whose, а не Who.*
+- ❌ Whose stethoscope are these? — *Стетоскоп один: нужно is this.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Они носят форму»**
+**1 · Карточка слова — overalls**
+<!-- interaction_id: en:lesson-06:session-53:word:overalls; family: word_card -->
+> **overalls** — рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.
+
+**2 · Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»**
 <!-- interaction_id: en:lesson-06:session-53:i01; family: phrase_builder -->
-Плитки: `uniforms` `wear` `They` → **They wear uniforms.**
+Плитки: `overalls` `wear` `They` `wears` → **They wear overalls.**
+*(плитка `wears` лишняя: здесь нужно `wear` — `They wear overalls.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — earpiece**
+<!-- interaction_id: en:lesson-06:session-53:word:earpiece; family: word_card -->
+> **earpiece** — ушная гарнитура. She wears an earpiece. — «Она носит гарнитуру». Маленький наушник, через который на работе слышат указания.
+
+**4 · Послушайте друга**
 <!-- interaction_id: en:lesson-06:session-53:i02; family: listen_choose -->
-🔊 *uniform* → **uniform** · pencil · court
-- pencil — *В записи первое слово — `uniform`, а в этом варианте — `pencil`.*
-- court — *В записи первое слово — `uniform`, а в этом варианте — `court`.*
+🔊 *She wears an earpiece.* → **She wears an earpiece.** · She wears an apron. · He wears an earpiece.
+- She wears an apron. — *В записи последнее слово — `earpiece`, гарнитура, а в этом варианте — `apron`, фартук.*
+- He wears an earpiece. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите «Она носит форму»**
+**5 · Скажите об охраннице: «Она носит гарнитуру». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-53:i03; family: context_gap_grammar -->
-She wears ___ uniform. → **a** · an · are
-- an — *Первый звук в `uniform` — «й», поэтому `a`.*
-- are — *Перед названием одного комплекта здесь нужно `a`.*
+She wears ___ earpiece. → **an** · a · are
+- a — *Слово `earpiece` начинается с гласного звука, поэтому нужно `an`.*
+- are — *Перед названием одной вещи здесь нужно `an`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-53:i04; family: speed_match -->
-uniform — униформа · unfair — несправедливый · police station — полицейский участок · court — корт
+overalls — рабочий комбинезон · earpiece — ушная гарнитура · stethoscope — стетоскоп · visor — козырёк
 
-**5 · Послушайте и соберите фразу**
+**7 · Карточка слова — visor**
+<!-- interaction_id: en:lesson-06:session-53:word:visor; family: word_card -->
+> **visor** — козырёк. The visor is green. — «Козырёк зелёный». Лента с козырьком, которая защищает глаза от яркого света.
+
+**8 · Послушайте коллегу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-53:i05; family: listen_build_dictation -->
-🔊 *They wear uniforms.* Плитки: `uniforms` `wear` `They` → **They wear uniforms.**
+🔊 *He wears a visor.* Плитки: `visor` `a` `wears` `He` `wear` → **He wears a visor.**
+*(плитка `wear` лишняя: здесь нужно `wears` — `He wears a visor.`)*
 
-**6 · Скажите об одежде Анны на работе «Она носит форму»**
+**9 · Друг спрашивает о форме. Скажите: «Она носит форму»**
 <!-- interaction_id: en:lesson-06:session-53:i06; family: phrase_builder -->
-Плитки: `uniform` `a` `wears` `She` → **She wears a uniform.**
+Плитки: `uniform` `a` `wears` `She` `wear` → **She wears a uniform.**
+*(плитка `wear` лишняя: здесь нужно `wears` — `She wears a uniform.`)*
 
-**7 · На стуле лежит форма. Спросите коллег «Чья это форма?»**
+**10 · Карточка слова — stethoscope**
+<!-- interaction_id: en:lesson-06:session-53:word:stethoscope; family: word_card -->
+> **stethoscope** — стетоскоп. The stethoscope is cold. — «Стетоскоп холодный». Трубка с наушниками, с помощью которой врач слушает сердце.
+
+**11 · Вы нашли стетоскоп на стуле. Спросите у коллег: «Чей это стетоскоп?»**
 <!-- interaction_id: en:lesson-06:session-53:i07; family: scripted_repeat_compare -->
-🎙 **Whose uniform is this?**
+🎙 **Whose stethoscope is this?**
 
-**8 · Скажите «Он носит форму»**
+**12 · Скажите о рабочих: «Они носят козырьки». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-53:i08; family: context_gap_grammar -->
-He ___ a uniform. → **wears** · wear · is wears
-- wear — *После `he` нужно `wears`.*
-- is wears — *Нужно `He wears`, без `is`.*
+They ___ visors. → **wear** · wears · are wear
+- wears — *После `they` нужно `wear`, без `s`.*
+- are wear — *Говорим `They wear`, без `are`.*
 
-**9 · Послушайте, о ком рассказывает коллега**
+**13 · Послушайте, кому принадлежит стетоскоп**
 <!-- interaction_id: en:lesson-06:session-53:i09; family: listen_choose -->
-🔊 *She wears a uniform.* → **She wears a uniform.** · He wears a uniform. · Anna wears a uniform.
-- He wears a uniform. — *В записи первое слово — `She`, а в этом варианте — `He`.*
-- Anna wears a uniform. — *В записи первое слово — `She`, а в этом варианте — `Anna`.*
+🔊 *This stethoscope is mine.* → **This stethoscope is mine.** · This stethoscope is yours. · This stethoscope is hers.
+- This stethoscope is yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
+- This stethoscope is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-53:i10; family: speed_match -->
-pencil — карандаш · uniform — униформа · court — корт · unfair — несправедливый
+stethoscope — стетоскоп · overalls — рабочий комбинезон · visor — козырёк · earpiece — ушная гарнитура
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте коллегу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-53:i11; family: listen_build_dictation -->
-🔊 *Whose uniform is this?* Плитки: `this` `is` `uniform` `Whose` → **Whose uniform is this?**
+🔊 *The stethoscope is here.* Плитки: `here` `is` `stethoscope` `The` `are` → **The stethoscope is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The stethoscope is here.`)*
 
-**12 · На рабочем столе остался карандаш. Спросите «Чей это карандаш?»**
+**16 · В раздевалке лежит форма. Спросите у коллег: «Чья это форма?»**
 <!-- interaction_id: en:lesson-06:session-53:i12; family: phrase_builder -->
-Плитки: `this` `is` `pencil` `Whose` → **Whose pencil is this?**
+Плитки: `this` `is` `uniform` `Whose` `Who` → **Whose uniform is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose uniform is this?`)*
 
-**13 · Покажите на карте «Полицейский участок возле корта»**
+**17 · Новый коллега спрашивает, что вы носите на работе. Скажите: «Я ношу козырёк»**
 <!-- interaction_id: en:lesson-06:session-53:i13; family: scripted_repeat_compare -->
-🎙 **The police station is near the court.**
+🎙 **I wear a visor.**
 
-**14 · В раздевалке два комплекта формы. Спросите, чьи они**
+**18 · В раздевалке висят комбинезоны. Спросите: «Чьи это комбинезоны?»**
 <!-- interaction_id: en:lesson-06:session-53:i14; family: context_gap_grammar -->
-Whose uniforms ___ these? → **are** · is · am
-- is — *Несколько комплектов: `are these`.*
+Whose overalls ___ these? → **are** · is · am
+- is — *Комбинезоны — это несколько вещей: `are these`.*
 - am — *`Am` подходит к `I`; здесь нужно `are`.*
 
-**15 · Послушайте, кто носит форму**
+**19 · Послушайте, кто носит комбинезоны**
 <!-- interaction_id: en:lesson-06:session-53:i15; family: listen_choose -->
-🔊 *They wear uniforms.* → **They wear uniforms.** · We wear uniforms. · You wear uniforms.
-- We wear uniforms. — *В записи первое слово — `They`, а в этом варианте — `We`.*
-- You wear uniforms. — *В записи первое слово — `They`, а в этом варианте — `You`.*
+🔊 *They wear overalls.* → **They wear overalls.** · We wear overalls. · You wear overalls.
+- We wear overalls. — *В записи первое слово — `They`, а в этом варианте — `We`.*
+- You wear overalls. — *В записи первое слово — `They`, а в этом варианте — `You`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-53:i16; family: speed_match -->
-uniform — униформа · police station — полицейский участок · pencil — карандаш · unfair — несправедливый
+visor — козырёк · stethoscope — стетоскоп · earpiece — ушная гарнитура · overalls — рабочий комбинезон
 
-**17 · Друг спрашивает о вашей одежде на новой работе. Ответьте «Я ношу форму»**
+**21 · Коллега спрашивает, что вы носите на работе. Ответьте: «Я ношу форму»**
 <!-- interaction_id: en:lesson-06:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I wear a uniform.**
-

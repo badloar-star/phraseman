@@ -1,134 +1,154 @@
 # Английский · Урок 6 · Занятие 54 — Кто ремонтирует крыши
 
-**Ситуация.** Сосед ищет мастеров для ремонта крыши. Вы рассказываете о работе Анны и Тома и объясняете, где встретиться.
+**Ситуация.** После бури вы ищете мастеров для крыши и показываете им двор. После I, we и they слово действия не меняется, а после he и she получает s.
 
-**Что вы освоите:** рассказать о работе мастеров и повторить вопрос о владельце вещи
-**Новые слова:** repair
+**Что вы освоите:** рассказать, кто что ремонтирует, и сказать, что рядом с чем стоит
+**Новые слова:** repair, gutter, chimney, plank
+**Возвращаются:** roof, ladder, neighbour, brother, sister, balcony, strong
 
 ---
 
 ## Интро 1
 
-### Нужны мастера
+### Течёт крыша
 
-Сосед спрашивает, чем занимается бригада Анны и Тома. `repair` — «ремонтировать». `They repair roofs` — «Они ремонтируют крыши». `Roofs` — несколько крыш. После `they` нужно `repair`, без `s`.
+После бури в вашем доме протекла крыша, и сосед по подъезду спрашивает, к кому обратиться. Вы знаете двух братьев, которые этим занимаются. repair — «ремонтировать». They repair roofs — «Они ремонтируют крыши». После they слово остаётся repair, без s.
 
-**Расскажите соседу «Они ремонтируют крыши».**
+**Сосед спрашивает, кто чинит крыши. Скажите: «Они ремонтируют крыши».**
 
 - ✅ **They repair roofs.**
-- ❌ They repairs roofs. — *После `they` нужно `repair`.*
-- ❌ They are repair roofs. — *Нужно `They repair`, без `are`.*
+- ❌ They repairs roofs. — *После they слово остаётся repair, без s.*
+- ❌ They are repair roofs. — *Здесь действие: They repair, без are.*
 
 ---
 
 ## Интро 2
 
-### Работа Анны
+### Вода льётся на балкон
 
-Сосед уточняет, чем занимается Анна. `She repairs roofs` — «Она ремонтирует крыши». После `she` к `repair` добавляем `s`: `repairs`. Это рассказ о её обычной работе. Ремонтировать крыши — профессия, а не обещание прямо сейчас забраться на соседский дом.
+Соседка с верхнего этажа жалуется: после каждого дождя вода льётся прямо на её балкон. Вы подсказываете, что этим занимается ваша сестра. gutter — «водосточный желоб». She repairs gutters — «Она ремонтирует желоба». После she к repair добавляем s: repairs.
 
-**Ответьте соседу «Она ремонтирует крыши».**
+**Соседка спрашивает, кто ей поможет. Скажите о сестре: «Она ремонтирует желоба».**
 
-- ✅ **She repairs roofs.**
-- ❌ She repair roofs. — *После `she` нужно `repairs`.*
-- ❌ She is repairs roofs. — *Нужно `She repairs`, без `is`.*
+- ✅ **She repairs gutters.**
+- ❌ She repair gutters. — *После she нужно repairs, с s.*
+- ❌ She is repairs gutters. — *Здесь действие: She repairs, без is.*
 
 ---
 
 ## Интро 3
 
-### Где встретиться
+### Где лестница
 
-Мастера договорились встретиться с вами у киоска. Вы объясняете соседу, где он находится. `The kiosk is next to the petrol station` — «Киоск рядом с заправочной станцией». `Next to` показывает, что места находятся рядом. Здесь описываем место киоска, поэтому нужно `is`.
+Мастера приехали и осматривают дом, но лестницы у них с собой нет. Вы показываете на дальний угол двора: она давно стоит у самой трубы. chimney — «дымовая труба». The ladder is next to the chimney — «Лестница рядом с трубой». Next to — «рядом с».
 
-**Объясните соседу «Киоск рядом с заправочной станцией».**
+**Мастера ищут лестницу. Скажите: «Лестница рядом с трубой».**
 
-- ✅ **The kiosk is next to the petrol station.**
-- ❌ The kiosk are next to the petrol station. — *Один киоск: `is`.*
-- ❌ The kiosk next to the petrol station. — *Для этой фразы нужно `is`: `The kiosk is`.*
+- ✅ **The ladder is next to the chimney.**
+- ❌ The ladder next to the chimney. — *Без is предложение не получается: нужно The ladder is.*
+- ❌ The ladder are next to the chimney. — *Лестница одна, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Они ремонтируют крыши»**
+**1 · Карточка слова — repair**
+<!-- interaction_id: en:lesson-06:session-54:word:repair; family: word_card -->
+> **repair** — ремонтировать. They repair roofs. — «Они ремонтируют крыши». Чинить то, что сломалось или протекает.
+
+**2 · Сосед ищет мастеров. Скажите: «Они ремонтируют крыши»**
 <!-- interaction_id: en:lesson-06:session-54:i01; family: phrase_builder -->
-Плитки: `roofs` `repair` `They` → **They repair roofs.**
+Плитки: `roofs` `repair` `They` `repairs` → **They repair roofs.**
+*(плитка `repairs` лишняя: здесь нужно `repair` — `They repair roofs.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — gutter**
+<!-- interaction_id: en:lesson-06:session-54:word:gutter; family: word_card -->
+> **gutter** — водосточный желоб. The gutter is full. — «Желоб полон». Жёлоб по краю крыши, по которому стекает дождевая вода.
+
+**4 · Послушайте мастера**
 <!-- interaction_id: en:lesson-06:session-54:i02; family: listen_choose -->
-🔊 *repair* → **repair** · reliable · kiosk
-- reliable — *В записи первое слово — `repair`, а в этом варианте — `reliable`.*
-- kiosk — *В записи первое слово — `repair`, а в этом варианте — `kiosk`.*
+🔊 *The gutter is on the roof.* → **The gutter is on the roof.** · The gutter is on the wall. · The ladder is on the roof.
+- The gutter is on the wall. — *В записи последнее слово — `roof`, крыша, а в этом варианте — `wall`, стена.*
+- The ladder is on the roof. — *В записи второе слово — `gutter`, желоб, а в этом варианте — `ladder`, лестница.*
 
-**3 · Скажите «Она ремонтирует крыши»**
+**5 · Скажите о сестре: «Она ремонтирует желоба». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-54:i03; family: context_gap_grammar -->
-She ___ roofs. → **repairs** · repair · is repairs
-- repair — *После `she` нужно `repairs`.*
-- is repairs — *Нужно `She repairs`, без `is`.*
+She ___ gutters. → **repairs** · repair · is repairs
+- repair — *После `she` нужно `repairs`, с `s`.*
+- is repairs — *Говорим `She repairs`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-54:i04; family: speed_match -->
-repair — ремонтировать · reliable — надёжный · petrol station — заправочная станция · kiosk — киоск
+repair — ремонтировать · gutter — водосточный желоб · chimney — дымовая труба · plank — доска
 
-**5 · Послушайте и соберите фразу**
+**7 · Карточка слова — plank**
+<!-- interaction_id: en:lesson-06:session-54:word:plank; family: word_card -->
+> **plank** — доска. The plank is long. — «Доска длинная». Длинный плоский кусок дерева.
+
+**8 · Послушайте мастера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-54:i05; family: listen_build_dictation -->
-🔊 *They repair roofs.* Плитки: `roofs` `repair` `They` → **They repair roofs.**
+🔊 *The plank is here.* Плитки: `here` `is` `plank` `The` `are` → **The plank is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The plank is here.`)*
 
-**6 · Скажите о работе Анны «Она ремонтирует крыши»**
+**9 · Сосед спрашивает о вас с братом. Скажите: «Мы ремонтируем крыши»**
 <!-- interaction_id: en:lesson-06:session-54:i06; family: phrase_builder -->
-Плитки: `roofs` `repairs` `She` → **She repairs roofs.**
+Плитки: `roofs` `repair` `We` `repairs` → **We repair roofs.**
+*(плитка `repairs` лишняя: здесь нужно `repair` — `We repair roofs.`)*
 
-**7 · Сосед сомневается в мастерах. Скажите «Они надёжные»**
+**10 · Карточка слова — chimney**
+<!-- interaction_id: en:lesson-06:session-54:word:chimney; family: word_card -->
+> **chimney** — дымовая труба. The chimney is tall. — «Труба высокая». Труба на крыше, через которую уходит дым.
+
+**11 · Мастера ищут лестницу. Скажите: «Лестница рядом с трубой»**
 <!-- interaction_id: en:lesson-06:session-54:i07; family: scripted_repeat_compare -->
-🎙 **They are reliable.**
+🎙 **The ladder is next to the chimney.**
 
-**8 · Скажите «Мы ремонтируем крыши»**
+**12 · Скажите о мастере: «Он ремонтирует желоба». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-54:i08; family: context_gap_grammar -->
-We ___ roofs. → **repair** · repairs · are repair
-- repairs — *После `we` нужно `repair`.*
-- are repair — *Нужно `We repair`, без `are`.*
+He ___ gutters. → **repairs** · repair · is repairs
+- repair — *После `he` нужно `repairs`, с `s`.*
+- is repairs — *Говорим `He repairs`, без `is`.*
 
-**9 · Послушайте, о ком рассказывает сосед**
+**13 · Послушайте мастера**
 <!-- interaction_id: en:lesson-06:session-54:i09; family: listen_choose -->
-🔊 *She repairs roofs.* → **She repairs roofs.** · He repairs roofs. · Anna repairs roofs.
-- He repairs roofs. — *В записи первое слово — `She`, а в этом варианте — `He`.*
-- Anna repairs roofs. — *В записи первое слово — `She`, а в этом варианте — `Anna`.*
+🔊 *The plank is next to the ladder.* → **The plank is next to the ladder.** · The plank is next to the chimney. · The gutter is next to the ladder.
+- The plank is next to the chimney. — *В записи последнее слово — `ladder`, лестница, а в этом варианте — `chimney`, труба.*
+- The gutter is next to the ladder. — *В записи второе слово — `plank`, доска, а в этом варианте — `gutter`, желоб.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-54:i10; family: speed_match -->
-mug — кружка · repair — ремонтировать · kiosk — киоск · reliable — надёжный
+chimney — дымовая труба · repair — ремонтировать · plank — доска · gutter — водосточный желоб
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте мастера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-54:i11; family: listen_build_dictation -->
-🔊 *The kiosk is here.* Плитки: `here` `is` `kiosk` `The` `are` → **The kiosk is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The kiosk is here.`)*
+🔊 *They repair gutters.* Плитки: `gutters` `repair` `They` `repairs` → **They repair gutters.**
+*(плитка `repairs` лишняя: здесь нужно `repair` — `They repair gutters.`)*
 
-**12 · После перерыва на столе осталась кружка. Спросите «Чья это кружка?»**
+**16 · Во дворе стоит лестница. Спросите у мастеров: «Чья это лестница?»**
 <!-- interaction_id: en:lesson-06:session-54:i12; family: phrase_builder -->
-Плитки: `this` `is` `mug` `Whose` → **Whose mug is this?**
+Плитки: `this` `is` `ladder` `Whose` `Who` → **Whose ladder is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose ladder is this?`)*
 
-**13 · Объясните соседу «Киоск рядом с заправочной станцией»**
+**17 · Сосед сомневается, справятся ли мастера. Скажите: «Они сильные»**
 <!-- interaction_id: en:lesson-06:session-54:i13; family: scripted_repeat_compare -->
-🎙 **The kiosk is next to the petrol station.**
+🎙 **They are strong.**
 
-**14 · Скажите о работе «Том ремонтирует крыши»**
+**18 · Скажите о соседке: «Она ремонтирует крыши». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-54:i14; family: context_gap_grammar -->
-Tom ___ roofs. → **repairs** · repair · is repairs
-- repair — *Том — он: `Tom repairs`.*
-- is repairs — *Нужно `Tom repairs`, без `is`.*
+My neighbour ___ roofs. → **repairs** · repair · is repairs
+- repair — *Соседка — она: `My neighbour repairs`.*
+- is repairs — *Нужно `My neighbour repairs`, без `is`.*
 
-**15 · Послушайте, кто ремонтирует крыши**
+**19 · Послушайте, кто ремонтирует крыши**
 <!-- interaction_id: en:lesson-06:session-54:i15; family: listen_choose -->
 🔊 *They repair roofs.* → **They repair roofs.** · We repair roofs. · You repair roofs.
 - We repair roofs. — *В записи первое слово — `They`, а в этом варианте — `We`.*
 - You repair roofs. — *В записи первое слово — `They`, а в этом варианте — `You`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-54:i16; family: speed_match -->
-repair — ремонтировать · petrol station — заправочная станция · mug — кружка · reliable — надёжный
+plank — доска · gutter — водосточный желоб · repair — ремонтировать · chimney — дымовая труба
 
-**17 · Новый знакомый спрашивает о вашей работе. Ответьте «Я ремонтирую крыши»**
+**21 · Новый знакомый спрашивает о вашей работе. Ответьте: «Я ремонтирую крыши»**
 <!-- interaction_id: en:lesson-06:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I repair roofs.**
-

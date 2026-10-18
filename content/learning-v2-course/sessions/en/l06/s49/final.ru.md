@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 49 — Газета на скамейке
+# Английский · Урок 6 · Занятие 49 — Кроссворд на скамейке
 
-**Ситуация.** Анна и Том встречаются у канала. На скамейке лежит газета, и они ищут её владельца.
+**Ситуация.** Вы с подругой гуляете вдоль канала. Чтобы спросить о владельце вещи, нужно слово Whose, а после he и she к слову действия добавляем s.
 
-**Что вы освоите:** назвать газету, спросить о владельце и повторить рассказ о привычке беседовать
-**Новые слова:** newspaper
+**Что вы освоите:** спросить, чья вещь, сказать «это моё» и рассказать, кто где беседует
+**Новые слова:** chat, crossword, cardigan, kayak
+**Возвращаются:** newspaper, canal, bench, garage, neighbour, friend
 
 ---
 
 ## Интро 1
 
-### Кто оставил газету
+### Кроссворд на скамейке
 
-На скамейке лежит газета. `newspaper` — «газета». `Whose newspaper is this?` — «Чья это газета?» Одна газета: `is this`. Страниц может быть двадцать, но газета всё равно одна — пересчитывать каждую перед вопросом не нужно.
+Вы с подругой идёте вдоль канала. На скамейке лежит газета с недорешённым кроссвордом: хозяин, видимо, отошёл ненадолго. crossword — «кроссворд». Чтобы узнать, чей он, говорим Whose crossword is this? — «Чей это кроссворд?» Вещь одна, поэтому is this.
 
-**Спросите людей рядом «Чья это газета?»**
+**Подруга показывает на кроссворд. Спросите у людей рядом: «Чей это кроссворд?»**
 
-- ✅ **Whose newspaper is this?**
-- ❌ Who newspaper is this? — *О владельце спрашиваем `Whose`.*
-- ❌ Whose newspaper are these? — *Одна газета: `is this`.*
+- ✅ **Whose crossword is this?**
+- ❌ Who crossword is this? — *О владельце спрашиваем Whose, а не Who.*
+- ❌ Whose crossword are these? — *Кроссворд один: нужно is this.*
 
 ---
 
 ## Интро 2
 
-### Я узнаю свою газету
+### Забытая кофта
 
-Том показывает вам газету, и вы узнаёте свою. `This newspaper is mine` — «Эта газета моя». `Mine` означает «моя» без повторения названия вещи. Если название идёт следом, нужно `my`: `my newspaper` — «моя газета».
+Утром вы гуляли у канала и замёрзли, а вечером подруга нашла на ограде тёплую вязаную кофту и протянула вам. Вы сразу её узнали: ваша. cardigan — «кофта на пуговицах». This cardigan is mine — «Эта кофта моя». Mine стоит в конце, без названия вещи.
 
-**Скажите Тому «Эта газета моя».**
+**Подруга спрашивает, чья это кофта. Скажите: «Эта кофта моя».**
 
-- ✅ **This newspaper is mine.**
-- ❌ This newspaper is my. — *В конце без названия вещи нужно `mine`.*
-- ❌ This newspaper are mine. — *Одна газета: `is`.*
+- ✅ **This cardigan is mine.**
+- ❌ This cardigan is my. — *В конце без названия вещи нужно mine.*
+- ❌ This cardigan are mine. — *Кофта одна: нужно is.*
 
 ---
 
 ## Интро 3
 
-### Место для разговоров
+### Разговоры на скамейке
 
-Друг спрашивает, почему Анна и Том часто встречаются у этой скамейки. `They chat here` — «Они беседуют здесь». После `they` — `chat`, без `s`. Если рассказываете только о Томе: `He chats here` — «Он беседует здесь». Теперь после `he` нужно `s`.
+Соседка спрашивает, почему двое стариков каждое утро сидят на скамейке у канала. Вы отвечаете: они давно знакомы и любят поговорить обо всём подряд. chat — «беседовать». They chat here — «Они беседуют здесь». После they слово остаётся chat, без s.
 
-**Расскажите другу об Анне и Томе «Они беседуют здесь».**
+**Соседка спрашивает, что делают двое на скамейке. Скажите: «Они беседуют здесь».**
 
 - ✅ **They chat here.**
-- ❌ They chats here. — *После `they` — `chat`, без `s`.*
-- ❌ They are chat here. — *Нужно `They chat`, без `are`.*
+- ❌ They chats here. — *После they слово остаётся chat, без s.*
+- ❌ They are chat here. — *Здесь действие: They chat, без are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Чья это газета?»**
+**1 · Карточка слова — crossword**
+<!-- interaction_id: en:lesson-06:session-49:word:crossword; family: word_card -->
+> **crossword** — кроссворд. The crossword is in the newspaper. — «Кроссворд в газете». Игра, в которой слова вписывают в клетки.
+
+**2 · Подруга показывает на газету. Спросите: «Чей это кроссворд?»**
 <!-- interaction_id: en:lesson-06:session-49:i01; family: phrase_builder -->
-Плитки: `this` `is` `newspaper` `Whose` → **Whose newspaper is this?**
+Плитки: `this` `is` `crossword` `Whose` `Who` → **Whose crossword is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose crossword is this?`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — cardigan**
+<!-- interaction_id: en:lesson-06:session-49:word:cardigan; family: word_card -->
+> **cardigan** — кофта на пуговицах. The cardigan is warm. — «Кофта тёплая». Вязаная кофта, которую застёгивают спереди.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-49:i02; family: listen_choose -->
-🔊 *newspaper* → **newspaper** · canal · garage
-- canal — *В записи первое слово — `newspaper`, а в этом варианте — `canal`.*
-- garage — *В записи первое слово — `newspaper`, а в этом варианте — `garage`.*
+🔊 *The crossword is on the bench.* → **The crossword is on the bench.** · The crossword is near the garage. · The cardigan is on the bench.
+- The crossword is near the garage. — *В записи последнее слово — `bench`, скамейка, а в этом варианте — `garage`, гараж.*
+- The cardigan is on the bench. — *В записи первое важное слово — `crossword`, кроссворд, а в этом варианте — `cardigan`, кофта.*
 
-**3 · Скажите «Эта газета моя»**
+**5 · Скажите «Эта кофта моя». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-49:i03; family: context_gap_grammar -->
-This newspaper is ___. → **mine** · my · I
+This cardigan is ___. → **mine** · my · I
 - my — *Без названия вещи дальше нужно `mine`.*
 - I — *`I` — «я»; здесь «моя» — `mine`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-49:i04; family: speed_match -->
-newspaper — газета · unacceptable — неприемлемый · canal — канал · garage — гараж
+chat — беседовать · crossword — кроссворд · cardigan — кофта на пуговицах · kayak — каяк
 
-**5 · Послушайте и соберите фразу**
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-49:i05; family: listen_build_dictation -->
-🔊 *My newspaper is here.* Плитки: `here` `is` `newspaper` `My` → **My newspaper is here.**
+🔊 *My cardigan is here.* Плитки: `here` `is` `cardigan` `My` `are` → **My cardigan is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `My cardigan is here.`)*
 
-**6 · Скажите «Они беседуют здесь»**
+**8 · Карточка слова — chat**
+<!-- interaction_id: en:lesson-06:session-49:word:chat; family: word_card -->
+> **chat** — беседовать. They chat on the bench. — «Они беседуют на скамейке». О неспешном разговоре двух людей.
+
+**9 · Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»**
 <!-- interaction_id: en:lesson-06:session-49:i06; family: phrase_builder -->
-Плитки: `here` `chat` `They` → **They chat here.**
+Плитки: `here` `chat` `They` `chats` → **They chat here.**
+*(плитка `chats` лишняя: здесь нужно `chat` — `They chat here.`)*
 
-**7 · Друг ищет канал на карте. Покажите «Канал здесь»**
+**10 · Карточка слова — kayak**
+<!-- interaction_id: en:lesson-06:session-49:word:kayak; family: word_card -->
+> **kayak** — каяк. The kayak is red. — «Каяк красный». Узкая лодка с одним веслом в двух лопастях, в ней сидят лицом вперёд.
+
+**11 · Подруга ищет каяк. Покажите: «Каяк возле канала»**
 <!-- interaction_id: en:lesson-06:session-49:i07; family: scripted_repeat_compare -->
-🎙 **The canal is here.**
+🎙 **The kayak is near the canal.**
 
-**8 · Скажите «Он беседует здесь»**
+**12 · Скажите «Он беседует здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-49:i08; family: context_gap_grammar -->
 He ___ here. → **chats** · chat · is chats
 - chat — *После `he` — `chats`.*
 - is chats — *Нужно `He chats`, без `is`.*
 
-**9 · Послушайте, кому принадлежит гараж**
+**13 · Послушайте, кому принадлежит кофта**
 <!-- interaction_id: en:lesson-06:session-49:i09; family: listen_choose -->
-🔊 *This garage is mine.* → **This garage is mine.** · This garage is yours. · This garage is hers.
-- This garage is yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
-- This garage is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
+🔊 *This cardigan is mine.* → **This cardigan is mine.** · This cardigan is yours. · This cardigan is hers.
+- This cardigan is yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
+- This cardigan is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-49:i10; family: speed_match -->
-newspaper — газета · chat — беседовать · garage — гараж · unacceptable — неприемлемый
+cardigan — кофта на пуговицах · chat — беседовать · kayak — каяк · crossword — кроссворд
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-49:i11; family: listen_build_dictation -->
-🔊 *The garage is here.* Плитки: `here` `is` `garage` `The` `are` → **The garage is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The garage is here.`)*
+🔊 *The kayak is here.* Плитки: `here` `is` `kayak` `The` `are` → **The kayak is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The kayak is here.`)*
 
-**12 · Сосед показывает гараж. Спросите «Чей это гараж?»**
+**16 · Подруга показывает на кофту на скамейке. Спросите: «Чья это кофта?»**
 <!-- interaction_id: en:lesson-06:session-49:i12; family: phrase_builder -->
-Плитки: `this` `is` `garage` `Whose` → **Whose garage is this?**
+Плитки: `this` `is` `cardigan` `Whose` `Who` → **Whose cardigan is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose cardigan is this?`)*
 
-**13 · Скажите «Мы беседуем здесь»**
+**17 · Подруга спрашивает, чем вы заняты с соседкой. Скажите: «Мы беседуем здесь»**
 <!-- interaction_id: en:lesson-06:session-49:i13; family: scripted_repeat_compare -->
 🎙 **We chat here.**
 
-**14 · Скажите «Анна беседует здесь»**
+**18 · Скажите «Соседка беседует здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-49:i14; family: context_gap_grammar -->
-Anna ___ here. → **chats** · chat · is chats
-- chat — *Анна — она: `Anna chats`.*
-- is chats — *Нужно `Anna chats`, без `is`.*
+My neighbour ___ here. → **chats** · chat · is chats
+- chat — *Соседка — она: `My neighbour chats`.*
+- is chats — *Нужно `My neighbour chats`, без `is`.*
 
-**15 · Послушайте, кому принадлежит газета**
+**19 · Послушайте, кому принадлежит кроссворд**
 <!-- interaction_id: en:lesson-06:session-49:i15; family: listen_choose -->
-🔊 *This newspaper is mine.* → **This newspaper is mine.** · This newspaper is yours. · This newspaper is hers.
-- This newspaper is yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
-- This newspaper is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
+🔊 *This crossword is mine.* → **This crossword is mine.** · This crossword is yours. · This crossword is hers.
+- This crossword is yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
+- This crossword is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-49:i16; family: speed_match -->
-newspaper — газета · canal — канал · unacceptable — неприемлемый · chat — беседовать
+kayak — каяк · chat — беседовать · crossword — кроссворд · cardigan — кофта на пуговицах
 
-**17 · Перед уходом вы заметили газету на скамейке. Спросите людей рядом «Чья это газета?»**
+**21 · Перед уходом вы заметили кроссворд на скамейке. Спросите у людей рядом: «Чей это кроссворд?»**
 <!-- interaction_id: en:lesson-06:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose newspaper is this?**
-
+🎙 **Whose crossword is this?**

@@ -1,9 +1,10 @@
 # Английский · Урок 6 · Занятие 50 — Доставка газет
 
-**Ситуация.** Вы знакомитесь с соседом, который доставляет газеты, и рассказываете о своей работе.
+**Ситуация.** Вы знакомитесь с новым соседом и рассказываете о своей работе. После I, we и they слово действия не меняется, а после he и she получает s.
 
-**Что вы освоите:** рассказать, кто доставляет газеты, и повторить вопрос о владельце
-**Новые слова:** deliver
+**Что вы освоите:** рассказать, кто чем занимается на работе, и сказать, что вы делите с другими
+**Новые слова:** deliver, bundle, share, cart
+**Возвращаются:** newspaper, brother, sister, neighbour, table, gate, bucket, parcel
 
 ---
 
@@ -11,123 +12,143 @@
 
 ### Моя работа
 
-Новый сосед спрашивает, чем вы занимаетесь. `deliver` — «доставлять». `I deliver newspapers` — «Я доставляю газеты». `Newspapers` — несколько газет, поэтому в конце слова добавлено `s`. Вы рассказываете о своей обычной работе.
+Новый сосед встречает вас на лестнице в шесть утра и удивляется: почему вы уже одеты и куда-то спешите. Вы объясняете, что каждое утро разносите свежие газеты по домам. deliver — «доставлять». I deliver newspapers — «Я доставляю газеты». После I слово остаётся deliver.
 
-**Скажите соседу «Я доставляю газеты».**
+**Новый сосед спрашивает, чем вы занимаетесь. Скажите: «Я доставляю газеты».**
 
 - ✅ **I deliver newspapers.**
-- ❌ I delivers newspapers. — *После `I` нужно `deliver`, без `s`.*
-- ❌ I am deliver newspapers. — *Здесь действие: `I deliver`, без `am`.*
+- ❌ I delivers newspapers. — *После I слово остаётся deliver, без s.*
+- ❌ I am deliver newspapers. — *Здесь действие: I deliver, без am.*
 
 ---
 
 ## Интро 2
 
-### Работа Тома
+### Брат на складе
 
-Друг спрашивает о работе Тома. `He delivers newspapers` — «Он доставляет газеты». После `he` к `deliver` добавляем `s`: `delivers`. У газет своё `s`, у глагола своё — одно за другое работу не выполнит.
+Друг видит, как ваш брат на рассвете тащит к воротам склада что-то тяжёлое, и спрашивает, что это. Вы объясняете: газеты, перевязанные верёвкой. bundle — «пачка, связка». My brother carries a bundle — «Брат несёт пачку». После brother слово carry меняется на carries.
 
-**Расскажите о Томе «Он доставляет газеты».**
+**Друг спрашивает, что несёт ваш брат. Скажите: «Брат несёт пачку».**
 
-- ✅ **He delivers newspapers.**
-- ❌ He deliver newspapers. — *После `he` нужно `delivers`.*
-- ❌ He is delivers newspapers. — *Нужно `He delivers`, без `is`.*
+- ✅ **My brother carries a bundle.**
+- ❌ My brother carry a bundle. — *После brother нужно carries, а не carry.*
+- ❌ My brother is carries a bundle. — *Здесь действие: brother carries, без is.*
 
 ---
 
 ## Интро 3
 
-### Общая комната
+### Один стол на двоих
 
-Коллега спрашивает, есть ли у вас с Томом отдельные комнаты. `We share a room` — «Мы пользуемся одной комнатой». `Share` здесь значит пользоваться вместе. После `we` — `share`, без `s`.
+В кафе после смены вы с братом ищете свободный стол, но все заняты. Незнакомая женщина машет вам рукой и просит присесть к ней: места хватит. share — «делить с кем-то». We share a table — «Мы делим один стол». После we слово остаётся share, без s.
 
-**Скажите коллеге «Мы пользуемся одной комнатой».**
+**Женщина спрашивает, как вы разместитесь. Скажите: «Мы делим один стол».**
 
-- ✅ **We share a room.**
-- ❌ We shares a room. — *После `we` нужно `share`.*
-- ❌ We are share a room. — *Нужно `We share`, без `are`.*
+- ✅ **We share a table.**
+- ❌ We shares a table. — *После we слово остаётся share, без s.*
+- ❌ We are share a table. — *Здесь действие: We share, без are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я доставляю газеты»**
+**1 · Карточка слова — deliver**
+<!-- interaction_id: en:lesson-06:session-50:word:deliver; family: word_card -->
+> **deliver** — доставлять. I deliver newspapers to the door. — «Я доставляю газеты к двери». Привозить вещь туда, где её ждут.
+
+**2 · Новый сосед спрашивает о вашей работе. Скажите: «Я доставляю газеты»**
 <!-- interaction_id: en:lesson-06:session-50:i01; family: phrase_builder -->
-Плитки: `newspapers` `deliver` `I` → **I deliver newspapers.**
+Плитки: `newspapers` `deliver` `I` `delivers` → **I deliver newspapers.**
+*(плитка `delivers` лишняя: здесь нужно `deliver` — `I deliver newspapers.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-50:i02; family: listen_choose -->
-🔊 *deliver* → **deliver** · share · river
-- share — *В записи первое слово — `deliver`, а в этом варианте — `share`.*
-- river — *В записи первое слово — `deliver`, а в этом варианте — `river`.*
+🔊 *My brother delivers newspapers.* → **My brother delivers newspapers.** · My brother delivers parcels. · My sister delivers newspapers.
+- My brother delivers parcels. — *В записи последнее слово — `newspapers`, газеты, а в этом варианте — `parcels`, посылки.*
+- My sister delivers newspapers. — *В записи второе слово — `brother`, брат, а в этом варианте — `sister`, сестра.*
 
-**3 · Скажите «Он доставляет газеты»**
+**4 · Скажите о брате: «Он доставляет газеты». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-50:i03; family: context_gap_grammar -->
 He ___ newspapers. → **delivers** · deliver · is delivers
-- deliver — *После `he` нужно `delivers`.*
-- is delivers — *Нужно `He delivers`, без `is`.*
+- deliver — *После `he` нужно `delivers`, с `s`.*
+- is delivers — *Говорим `He delivers`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-50:i04; family: speed_match -->
-deliver — доставлять · effective — действенный · river — река · share — пользоваться вместе
+deliver — доставлять · bundle — пачка, связка · share — делить с кем-то · cart — тележка
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — cart**
+<!-- interaction_id: en:lesson-06:session-50:word:cart; family: word_card -->
+> **cart** — тележка. The cart is here. — «Тележка здесь». Небольшая повозка на колёсах, на которой возят груз.
+
+**7 · Послушайте соседа и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-50:i05; family: listen_build_dictation -->
-🔊 *I deliver newspapers.* Плитки: `newspapers` `deliver` `I` → **I deliver newspapers.**
+🔊 *The cart is here.* Плитки: `here` `is` `cart` `The` `are` → **The cart is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The cart is here.`)*
 
-**6 · Скажите «Он доставляет газеты»**
+**8 · Карточка слова — share**
+<!-- interaction_id: en:lesson-06:session-50:word:share; family: word_card -->
+> **share** — делить с кем-то. We share a table. — «Мы делим стол». Когда одной вещью пользуются двое или больше людей.
+
+**9 · Друг спрашивает, как вы с братом едите в кафе. Скажите: «Мы делим стол»**
 <!-- interaction_id: en:lesson-06:session-50:i06; family: phrase_builder -->
-Плитки: `newspapers` `delivers` `He` → **He delivers newspapers.**
+Плитки: `a` `table` `share` `We` `shares` → **We share a table.**
+*(плитка `shares` лишняя: здесь нужно `share` — `We share a table.`)*
 
-**7 · Расскажите коллеге «Мы пользуемся одной комнатой»**
+**10 · Карточка слова — bundle**
+<!-- interaction_id: en:lesson-06:session-50:word:bundle; family: word_card -->
+> **bundle** — пачка, связка. The bundle is heavy. — «Пачка тяжёлая». Несколько одинаковых вещей, перевязанных вместе.
+
+**11 · Сосед спрашивает, что несёт брат. Скажите: «Брат несёт пачку»**
 <!-- interaction_id: en:lesson-06:session-50:i07; family: scripted_repeat_compare -->
-🎙 **We share a room.**
+🎙 **My brother carries a bundle.**
 
-**8 · Скажите «Они доставляют газеты»**
+**12 · Скажите о себе: «Я доставляю газеты». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-50:i08; family: context_gap_grammar -->
-They ___ newspapers. → **deliver** · delivers · are deliver
-- delivers — *После `they` нужно `deliver`.*
-- are deliver — *Нужно `They deliver`, без `are`.*
+I ___ newspapers. → **deliver** · delivers · am deliver
+- delivers — *После `I` нужно `deliver`, без `s`.*
+- am deliver — *Говорим `I deliver`, без `am`.*
 
-**9 · Послушайте, о ком рассказывает сосед**
+**13 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-50:i09; family: listen_choose -->
-🔊 *He delivers newspapers.* → **He delivers newspapers.** · She delivers newspapers. · Anna delivers newspapers.
-- She delivers newspapers. — *В записи первое слово — `He`, а в этом варианте — `She`.*
-- Anna delivers newspapers. — *В записи первое слово — `He`, а в этом варианте — `Anna`.*
+🔊 *He carries a bundle.* → **He carries a bundle.** · He carries a bucket. · She carries a bundle.
+- He carries a bucket. — *В записи последнее слово — `bundle`, пачка, а в этом варианте — `bucket`, ведро.*
+- She carries a bundle. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-50:i10; family: speed_match -->
-share — пользоваться вместе · river — река · deliver — доставлять · effective — действенный
+bundle — пачка, связка · cart — тележка · deliver — доставлять · share — делить с кем-то
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте соседа и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-50:i11; family: listen_build_dictation -->
-🔊 *We share a room.* Плитки: `room` `a` `share` `We` → **We share a room.**
+🔊 *They deliver newspapers.* Плитки: `newspapers` `deliver` `They` `delivers` → **They deliver newspapers.**
+*(плитка `delivers` лишняя: здесь нужно `deliver` — `They deliver newspapers.`)*
 
-**12 · На столе лежит газета. Спросите «Чья это газета?»**
+**16 · Сосед показывает на тележку у склада. Спросите: «Чья это тележка?»**
 <!-- interaction_id: en:lesson-06:session-50:i12; family: phrase_builder -->
-Плитки: `this` `is` `newspaper` `Whose` → **Whose newspaper is this?**
+Плитки: `this` `is` `cart` `Whose` `Who` → **Whose cart is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose cart is this?`)*
 
-**13 · Покажите другу на карте «Река здесь»**
+**17 · Друг спрашивает, где тележка. Скажите: «Тележка возле ворот»**
 <!-- interaction_id: en:lesson-06:session-50:i13; family: scripted_repeat_compare -->
-🎙 **The river is here.**
+🎙 **The cart is near the gate.**
 
-**14 · Скажите «Анна доставляет газеты»**
+**18 · Скажите о соседке: «Она доставляет газеты». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-50:i14; family: context_gap_grammar -->
-Anna ___ newspapers. → **delivers** · deliver · is delivers
-- deliver — *Анна — она: `Anna delivers`.*
-- is delivers — *Нужно `Anna delivers`, без `is`.*
+My neighbour ___ newspapers. → **delivers** · deliver · is delivers
+- deliver — *Соседка — она: `My neighbour delivers`.*
+- is delivers — *Нужно `My neighbour delivers`, без `is`.*
 
-**15 · Послушайте, кто пользуется комнатой вместе**
+**19 · Послушайте, кто делит стол**
 <!-- interaction_id: en:lesson-06:session-50:i15; family: listen_choose -->
-🔊 *We share a room.* → **We share a room.** · They share a room. · You share a room.
-- They share a room. — *В записи первое слово — `We`, а в этом варианте — `They`.*
-- You share a room. — *В записи первое слово — `We`, а в этом варианте — `You`.*
+🔊 *We share a table.* → **We share a table.** · They share a table. · You share a table.
+- They share a table. — *В записи первое слово — `We`, а в этом варианте — `They`.*
+- You share a table. — *В записи первое слово — `We`, а в этом варианте — `You`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-50:i16; family: speed_match -->
-effective — действенный · deliver — доставлять · share — пользоваться вместе · river — река
+share — делить с кем-то · deliver — доставлять · cart — тележка · bundle — пачка, связка
 
-**17 · Новый сосед спрашивает о вашей работе. Ответьте «Я доставляю газеты»**
+**21 · Сосед по лестнице спрашивает о вашей работе. Ответьте: «Я доставляю газеты»**
 <!-- interaction_id: en:lesson-06:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I deliver newspapers.**
-

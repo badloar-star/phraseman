@@ -1,27 +1,42 @@
 [
   {
+    "interactionId": "en:lesson-06:session-53:word:overalls",
+    "correctText": "overalls",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-53:i01",
-    "correctText": "They wear uniforms.",
+    "correctText": "They wear overalls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:word:earpiece",
+    "correctText": "earpiece",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-53:i02",
-    "correctText": "uniform",
+    "correctText": "She wears an earpiece.",
     "correctResponseId": "en:lesson-06:session-53:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-53:i03",
-    "correctText": "a",
+    "correctText": "an",
     "correctResponseId": "en:lesson-06:session-53:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-53:i04",
-    "correctText": "en:lesson-06:session-53:i04:p1=uniform\nen:lesson-06:session-53:i04:p2=unfair\nen:lesson-06:session-53:i04:p3=police station\nen:lesson-06:session-53:i04:p4=court",
+    "correctText": "en:lesson-06:session-53:i04:p1=overalls\nen:lesson-06:session-53:i04:p2=earpiece\nen:lesson-06:session-53:i04:p3=stethoscope\nen:lesson-06:session-53:i04:p4=visor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:word:visor",
+    "correctText": "visor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-53:i05",
-    "correctText": "They wear uniforms.",
+    "correctText": "He wears a visor.",
     "correctResponseId": null
   },
   {
@@ -30,38 +45,43 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-06:session-53:word:stethoscope",
+    "correctText": "stethoscope",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-53:i07",
-    "correctText": "Whose uniform is this?",
+    "correctText": "Whose stethoscope is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-53:i08",
-    "correctText": "wears",
+    "correctText": "wear",
     "correctResponseId": "en:lesson-06:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-53:i09",
-    "correctText": "She wears a uniform.",
+    "correctText": "This stethoscope is mine.",
     "correctResponseId": "en:lesson-06:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-53:i10",
-    "correctText": "en:lesson-06:session-53:i10:p1=pencil\nen:lesson-06:session-53:i10:p2=uniform\nen:lesson-06:session-53:i10:p3=court\nen:lesson-06:session-53:i10:p4=unfair",
+    "correctText": "en:lesson-06:session-53:i10:p1=stethoscope\nen:lesson-06:session-53:i10:p2=overalls\nen:lesson-06:session-53:i10:p3=visor\nen:lesson-06:session-53:i10:p4=earpiece",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-53:i11",
-    "correctText": "Whose uniform is this?",
+    "correctText": "The stethoscope is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-53:i12",
-    "correctText": "Whose pencil is this?",
+    "correctText": "Whose uniform is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-53:i13",
-    "correctText": "The police station is near the court.",
+    "correctText": "I wear a visor.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-06:session-53:i15",
-    "correctText": "They wear uniforms.",
+    "correctText": "They wear overalls.",
     "correctResponseId": "en:lesson-06:session-53:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-53:i16",
-    "correctText": "en:lesson-06:session-53:i16:p1=uniform\nen:lesson-06:session-53:i16:p2=police station\nen:lesson-06:session-53:i16:p3=pencil\nen:lesson-06:session-53:i16:p4=unfair",
+    "correctText": "en:lesson-06:session-53:i16:p1=visor\nen:lesson-06:session-53:i16:p2=stethoscope\nen:lesson-06:session-53:i16:p3=earpiece\nen:lesson-06:session-53:i16:p4=overalls",
     "correctResponseId": null
   },
   {

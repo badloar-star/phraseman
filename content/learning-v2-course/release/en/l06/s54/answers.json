@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-54:word:repair",
+    "correctText": "repair",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-54:i01",
     "correctText": "They repair roofs.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-06:session-54:word:gutter",
+    "correctText": "gutter",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-54:i02",
-    "correctText": "repair",
+    "correctText": "The gutter is on the roof.",
     "correctResponseId": "en:lesson-06:session-54:i02:r1"
   },
   {
@@ -16,52 +26,62 @@
   },
   {
     "interactionId": "en:lesson-06:session-54:i04",
-    "correctText": "en:lesson-06:session-54:i04:p1=repair\nen:lesson-06:session-54:i04:p2=reliable\nen:lesson-06:session-54:i04:p3=petrol station\nen:lesson-06:session-54:i04:p4=kiosk",
+    "correctText": "en:lesson-06:session-54:i04:p1=repair\nen:lesson-06:session-54:i04:p2=gutter\nen:lesson-06:session-54:i04:p3=chimney\nen:lesson-06:session-54:i04:p4=plank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-54:word:plank",
+    "correctText": "plank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-54:i05",
-    "correctText": "They repair roofs.",
+    "correctText": "The plank is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-54:i06",
-    "correctText": "She repairs roofs.",
+    "correctText": "We repair roofs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-54:word:chimney",
+    "correctText": "chimney",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-54:i07",
-    "correctText": "They are reliable.",
+    "correctText": "The ladder is next to the chimney.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-54:i08",
-    "correctText": "repair",
+    "correctText": "repairs",
     "correctResponseId": "en:lesson-06:session-54:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-54:i09",
-    "correctText": "She repairs roofs.",
+    "correctText": "The plank is next to the ladder.",
     "correctResponseId": "en:lesson-06:session-54:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-54:i10",
-    "correctText": "en:lesson-06:session-54:i10:p1=mug\nen:lesson-06:session-54:i10:p2=repair\nen:lesson-06:session-54:i10:p3=kiosk\nen:lesson-06:session-54:i10:p4=reliable",
+    "correctText": "en:lesson-06:session-54:i10:p1=chimney\nen:lesson-06:session-54:i10:p2=repair\nen:lesson-06:session-54:i10:p3=plank\nen:lesson-06:session-54:i10:p4=gutter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-54:i11",
-    "correctText": "The kiosk is here.",
+    "correctText": "They repair gutters.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-54:i12",
-    "correctText": "Whose mug is this?",
+    "correctText": "Whose ladder is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-54:i13",
-    "correctText": "The kiosk is next to the petrol station.",
+    "correctText": "They are strong.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-54:i16",
-    "correctText": "en:lesson-06:session-54:i16:p1=repair\nen:lesson-06:session-54:i16:p2=petrol station\nen:lesson-06:session-54:i16:p3=mug\nen:lesson-06:session-54:i16:p4=reliable",
+    "correctText": "en:lesson-06:session-54:i16:p1=plank\nen:lesson-06:session-54:i16:p2=gutter\nen:lesson-06:session-54:i16:p3=repair\nen:lesson-06:session-54:i16:p4=chimney",
     "correctResponseId": null
   },
   {

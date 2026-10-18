@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-53",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о рабочей форме и уточнить, кому она принадлежит",
-    "uk": "розповісти про робочу форму й уточнити, кому вона належить"
+    "ru": "рассказать, кто что носит на работе, и спросить, чья вещь",
+    "uk": "розповісти, хто що носить на роботі, і спитати, чия річ"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что надевать на работу",
-        "uk": "Що вдягати на роботу"
+        "ru": "Одежда на складе",
+        "uk": "Одяг на складі"
       },
       "bodyByLocale": {
-        "ru": "Вы спрашиваете друга об одежде сотрудников. `uniform` — «униформа», рабочая форма. `They wear uniforms` — «Они носят форму». В английской фразе `uniforms` означает несколько комплектов формы. По-русски здесь естественно сказать просто «форму».",
-        "uk": "Ви запитуєте друга про одяг працівників. `uniform` — «уніформа», робоча форма. `They wear uniforms` — «Вони носять форму». В англійській фразі `uniforms` означає кілька комплектів форми. Українською тут природно сказати просто «форму»."
+        "ru": "Друг устраивается на склад и спрашивает, во что там одеваются: ему не хочется портить свою одежду. Вы бывали там сами: все рабочие ходят в одинаковой одежде. overalls — «рабочий комбинезон». They wear overalls — «Они носят комбинезоны». После they слово остаётся wear, без s.",
+        "uk": "Друг влаштовується на склад і питає, у що там одягаються: йому не хочеться псувати свій одяг. Ви бували там самі: усі робітники ходять в однаковому вбранні. overalls — «робочий комбінезон». They wear overalls — «Вони носять комбінезони». Після they слово лишається wear, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите о сотрудниках «Они носят форму».",
-          "uk": "Розкажіть про працівників «Вони носять форму»."
+          "ru": "Друг спрашивает, что носят рабочие на складе. Скажите: «Они носят комбинезоны».",
+          "uk": "Друг питає, що носять робітники на складі. Скажіть: «Вони носять комбінезони»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-53:intro1:r1",
-              "text": "They wear uniforms."
+              "text": "They wear overalls."
             },
             {
               "responseId": "en:lesson-06:session-53:intro1:r2",
-              "text": "They wears uniforms."
+              "text": "They wears overalls."
             },
             {
               "responseId": "en:lesson-06:session-53:intro1:r3",
-              "text": "They are wear uniforms."
+              "text": "They are wear overalls."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-53:intro1:r1",
-              "text": "They wear uniforms."
+              "text": "They wear overalls."
             },
             {
               "responseId": "en:lesson-06:session-53:intro1:r2",
-              "text": "They wears uniforms."
+              "text": "They wears overalls."
             },
             {
               "responseId": "en:lesson-06:session-53:intro1:r3",
-              "text": "They are wear uniforms."
+              "text": "They are wear overalls."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о сотрудниках «Они носят форму».",
-          "uk": "Розкажіть про працівників «Вони носять форму»."
+          "ru": "Друг спрашивает, что носят рабочие на складе. Скажите: «Они носят комбинезоны».",
+          "uk": "Друг питає, що носять робітники на складі. Скажіть: «Вони носять комбінезони»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Форма Анны",
-        "uk": "Форма Анни"
+        "ru": "Охранница у входа",
+        "uk": "Охоронниця біля входу"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, носит ли Анна форму на работе. `She wears a uniform` — «Она носит форму». После `she` нужно `wears`. Перед `uniform` ставим `a`: слово начинается со звука «й», как английское `you`. Буква `u` есть, но сама по себе она не требует `an`.",
-        "uk": "Друг запитує, чи носить Анна форму на роботі. `She wears a uniform` — «Вона носить форму». Після `she` потрібне `wears`. Перед `uniform` ставимо `a`: слово починається зі звука «й», як англійське `you`. Літера `u` є, але сама по собі вона не вимагає `an`."
+        "ru": "У входа в магазин стоит охранница и время от времени что-то говорит в рукав. Друг спрашивает, что у неё в ухе. earpiece — «ушная гарнитура». She wears an earpiece — «Она носит гарнитуру». Перед earpiece нужно an: слово начинается с гласного звука.",
+        "uk": "Біля входу в магазин стоїть охоронниця й час від часу щось говорить у рукав. Друг питає, що в неї у вусі. earpiece — «вушна гарнітура». She wears an earpiece — «Вона носить гарнітуру». Перед earpiece потрібно an: слово починається з голосного звуку."
       },
       "question": {
         "interactionId": "en:lesson-06:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте об Анне «Она носит форму».",
-          "uk": "Дайте відповідь про Анну «Вона носить форму»."
+          "ru": "Друг спрашивает про охранницу. Скажите: «Она носит гарнитуру».",
+          "uk": "Друг питає про охоронницю. Скажіть: «Вона носить гарнітуру»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-53:intro2:r1",
-              "text": "She wears a uniform."
+              "text": "She wears an earpiece."
             },
             {
               "responseId": "en:lesson-06:session-53:intro2:r2",
-              "text": "She wear a uniform."
+              "text": "She wears a earpiece."
             },
             {
               "responseId": "en:lesson-06:session-53:intro2:r3",
-              "text": "She wears an uniform."
+              "text": "She wear an earpiece."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-53:intro2:r1",
-              "text": "She wears a uniform."
+              "text": "She wears an earpiece."
             },
             {
               "responseId": "en:lesson-06:session-53:intro2:r2",
-              "text": "She wear a uniform."
+              "text": "She wears a earpiece."
             },
             {
               "responseId": "en:lesson-06:session-53:intro2:r3",
-              "text": "She wears an uniform."
+              "text": "She wear an earpiece."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте об Анне «Она носит форму».",
-          "uk": "Дайте відповідь про Анну «Вона носить форму»."
+          "ru": "Друг спрашивает про охранницу. Скажите: «Она носит гарнитуру».",
+          "uk": "Друг питає про охоронницю. Скажіть: «Вона носить гарнітуру»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чей комплект на стуле",
-        "uk": "Чий комплект на стільці"
+        "ru": "Находка в раздевалке",
+        "uk": "Знахідка в роздягальні"
       },
       "bodyByLocale": {
-        "ru": "В раздевалке на стуле лежит комплект формы. `Whose uniform is this?` — «Чья это форма?» Мы спрашиваем о владельце одного комплекта: `is this`. Форма без имени — ещё не подарок новому сотруднику, сначала узнаем, чья она.",
-        "uk": "У роздягальні на стільці лежить комплект форми. `Whose uniform is this?` — «Чия це форма?» Ми запитуємо про власника одного комплекту: `is this`. Форма без імені — ще не подарунок новому працівникові, спочатку дізнаємося, чия вона."
+        "ru": "У раздевалки клиники на стуле лежит стетоскоп, а врачей поблизости нет. Вы пришли помогать с бумагами и не хотите оставлять находку без хозяина. stethoscope — «стетоскоп». Whose stethoscope is this? — «Чей это стетоскоп?» Вещь одна: is this.",
+        "uk": "Біля роздягальні клініки на стільці лежить стетоскоп, а лікарів поблизу немає. Ви прийшли допомагати з паперами й не хочете лишати знахідку без господаря. stethoscope — «стетоскоп». Whose stethoscope is this? — «Чий це стетоскоп?» Річ одна: is this."
       },
       "question": {
         "interactionId": "en:lesson-06:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллег «Чья это форма?»",
-          "uk": "Запитайте колег «Чия це форма?»"
+          "ru": "Вы нашли стетоскоп на стуле. Спросите у коллег: «Чей это стетоскоп?»",
+          "uk": "Ви знайшли стетоскоп на стільці. Спитайте в колег: «Чий це стетоскоп?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-53:intro3:r1",
-              "text": "Whose uniform is this?"
+              "text": "Whose stethoscope is this?"
             },
             {
               "responseId": "en:lesson-06:session-53:intro3:r2",
-              "text": "Where is this uniform?"
+              "text": "Who stethoscope is this?"
             },
             {
               "responseId": "en:lesson-06:session-53:intro3:r3",
-              "text": "Whose uniform are these?"
+              "text": "Whose stethoscope are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-53:intro3:r1",
-              "text": "Whose uniform is this?"
+              "text": "Whose stethoscope is this?"
             },
             {
               "responseId": "en:lesson-06:session-53:intro3:r2",
-              "text": "Where is this uniform?"
+              "text": "Who stethoscope is this?"
             },
             {
               "responseId": "en:lesson-06:session-53:intro3:r3",
-              "text": "Whose uniform are these?"
+              "text": "Whose stethoscope are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег «Чья это форма?»",
-          "uk": "Запитайте колег «Чия це форма?»"
+          "ru": "Вы нашли стетоскоп на стуле. Спросите у коллег: «Чей это стетоскоп?»",
+          "uk": "Ви знайшли стетоскоп на стільці. Спитайте в колег: «Чий це стетоскоп?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "43a2cb936912d9cb0fc4df8e5c3dcf013e88639561c222835c89f809482387bc"
+  "introFingerprint": "2ed99c41f3d9f1d14dd7f50902859df8f703881b53fceb2c8bf2b621163d3596"
 }

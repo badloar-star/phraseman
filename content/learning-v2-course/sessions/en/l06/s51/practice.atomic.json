@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-51",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-51:word:sell",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:sell:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:sell:audio",
+            "transcript": "sell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:sell:r1",
+              "targetText": "sell",
+              "meaningByLocale": {
+                "ru": "продавать. They sell lamps. — «Они продают лампы». Отдавать вещь покупателю за деньги.",
+                "uk": "продавати. They sell lamps. — «Вони продають лампи». Віддавати річ покупцеві за гроші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sell",
+            "definitionByLocale": {
+              "ru": "продавать. They sell lamps. — «Они продают лампы». Отдавать вещь покупателю за деньги.",
+              "uk": "продавати. They sell lamps. — «Вони продають лампи». Віддавати річ покупцеві за гроші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They sell lamps.",
+          "localizedMeaning": {
+            "ru": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+            "uk": "Друг шукає лампу. Підкажіть: «Вони продають лампи»"
+          },
+          "orderedTokens": [
+            "They",
+            "sell",
+            "lamps"
+          ],
+          "authoredDistractorTokens": [
+            "sells"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sell` — `They sell lamps.`",
+                "uk": "тут потрібно `sell` — `They sell lamps.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:word:pumpkin",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pumpkin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:pumpkin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pumpkin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:pumpkin:audio",
+            "transcript": "pumpkin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:pumpkin:r1",
+              "targetText": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква. The pumpkin is big. — «Тыква большая». Крупный круглый оранжевый овощ с толстой кожурой.",
+                "uk": "гарбуз. The pumpkin is big. — «Гарбуз великий». Великий круглий помаранчевий овоч з товстою шкіркою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pumpkin",
+            "definitionByLocale": {
+              "ru": "тыква. The pumpkin is big. — «Тыква большая». Крупный круглый оранжевый овощ с толстой кожурой.",
+              "uk": "гарбуз. The pumpkin is big. — «Гарбуз великий». Великий круглий помаранчевий овоч з товстою шкіркою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i02:r1",
+            "text": "The pumpkin is big."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i02:r2",
+            "text": "The pumpkin is small."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i02:r3",
+            "text": "The lamp is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i02:audio",
+            "transcript": "The pumpkin is big."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:i02:r1",
+              "targetText": "The pumpkin is big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i02:r2",
+              "targetText": "The pumpkin is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i02:r3",
+              "targetText": "The lamp is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, большая, а в этом варианте — `small`, маленькая.",
+                "uk": "У записі останнє слово — `big`, велика, а в цьому варіанті — `small`, маленька."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `pumpkin`, тыква, а в этом варианте — `lamp`, лампа.",
+                "uk": "У записі друге слово — `pumpkin`, гарбуз, а в цьому варіанті — `lamp`, лампа."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i03:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i03:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i03:r3",
+            "text": "is sells"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+            "uk": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ pumpkins.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-51:i03:r1",
+              "text": "sells"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i03:r2",
+              "text": "sell"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i03:r3",
+              "text": "is sells"
+            }
+          ],
+          "testedDimension": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `she` нужно `sells`, с `s`.",
+                "uk": "Після `she` потрібно `sells`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She sells`, без `is`.",
+                "uk": "Кажемо `She sells`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-51:i04:p1",
+              "target": "sell",
+              "meaningByLocale": {
+                "ru": "продавать",
+                "uk": "продавати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i04:p2",
+              "target": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква",
+                "uk": "гарбуз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i04:p3",
+              "target": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур",
+                "uk": "абажур"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i04:p4",
+              "target": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин",
+                "uk": "маффін"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sell",
+            "pumpkin",
+            "lampshade",
+            "muffin"
+          ],
+          "rightColumn": [
+            "продавать",
+            "тыква",
+            "абажур",
+            "маффин"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:word:lampshade",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lampshade",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:lampshade:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lampshade",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:lampshade:audio",
+            "transcript": "lampshade"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:lampshade:r1",
+              "targetText": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур. The lampshade is on the lamp. — «Абажур на лампе». Колпак, который закрывает лампочку и смягчает свет.",
+                "uk": "абажур. The lampshade is on the lamp. — «Абажур на лампі». Ковпак, що закриває лампочку й пом’якшує світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lampshade",
+            "definitionByLocale": {
+              "ru": "абажур. The lampshade is on the lamp. — «Абажур на лампе». Колпак, который закрывает лампочку и смягчает свет.",
+              "uk": "абажур. The lampshade is on the lamp. — «Абажур на лампі». Ковпак, що закриває лампочку й пом’якшує світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i05:audio",
+            "transcript": "The lampshade is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The lampshade is here.",
+          "orderedTokens": [
+            "The",
+            "lampshade",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The lampshade is here.`",
+                "uk": "тут потрібно `is` — `The lampshade is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:word:muffin",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — muffin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:muffin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — muffin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:muffin:audio",
+            "transcript": "muffin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:muffin:r1",
+              "targetText": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин. The muffin is sweet. — «Маффин сладкий». Небольшой кекс, который пекут в маленькой форме.",
+                "uk": "маффін. The muffin is sweet. — «Маффін солодкий». Невеликий кекс, який печуть у маленькій формі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "muffin",
+            "definitionByLocale": {
+              "ru": "маффин. The muffin is sweet. — «Маффин сладкий». Небольшой кекс, который пекут в маленькой форме.",
+              "uk": "маффін. The muffin is sweet. — «Маффін солодкий». Невеликий кекс, який печуть у маленькій формі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг пробует маффин. Скажите: «Маффин сладкий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг пробует маффин. Скажите: «Маффин сладкий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The muffin is sweet.",
+          "localizedMeaning": {
+            "ru": "Друг пробует маффин. Скажите: «Маффин сладкий»",
+            "uk": "Друг куштує маффін. Скажіть: «Маффін солодкий»"
+          },
+          "orderedTokens": [
+            "The",
+            "muffin",
+            "is",
+            "sweet"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг пробует маффин. Скажите: «Маффин сладкий»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The muffin is sweet.`",
+                "uk": "тут потрібно `is` — `The muffin is sweet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга ищет абажур. Скажите: «Абажур возле лампы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга ищет абажур. Скажите: «Абажур возле лампы»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i07:audio",
+            "transcript": "The lampshade is near the lamp."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lampshade is near the lamp.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i08:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i08:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i08:r3",
+            "text": "is sells"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+            "uk": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ lamps.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-51:i08:r1",
+              "text": "sells"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i08:r2",
+              "text": "sell"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i08:r3",
+              "text": "is sells"
+            }
+          ],
+          "testedDimension": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `sells`, с `s`.",
+                "uk": "Після `he` потрібно `sells`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He sells`, без `is`.",
+                "uk": "Кажемо `He sells`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i09:r1",
+            "text": "The muffin is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i09:r2",
+            "text": "The muffin is on the bench."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i09:r3",
+            "text": "The pumpkin is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i09:audio",
+            "transcript": "The muffin is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:i09:r1",
+              "targetText": "The muffin is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i09:r2",
+              "targetText": "The muffin is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i09:r3",
+              "targetText": "The pumpkin is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `muffin`, маффин, а в этом варианте — `pumpkin`, тыква.",
+                "uk": "У записі друге слово — `muffin`, маффін, а в цьому варіанті — `pumpkin`, гарбуз."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-51:i10:p1",
+              "target": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур",
+                "uk": "абажур"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i10:p2",
+              "target": "sell",
+              "meaningByLocale": {
+                "ru": "продавать",
+                "uk": "продавати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i10:p3",
+              "target": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин",
+                "uk": "маффін"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i10:p4",
+              "target": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква",
+                "uk": "гарбуз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lampshade",
+            "sell",
+            "muffin",
+            "pumpkin"
+          ],
+          "rightColumn": [
+            "абажур",
+            "продавать",
+            "маффин",
+            "тыква"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i11:audio",
+            "transcript": "She sells muffins."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She sells muffins.",
+          "orderedTokens": [
+            "She",
+            "sells",
+            "muffins"
+          ],
+          "authoredDistractorTokens": [
+            "sell"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sells` — `She sells muffins.`",
+                "uk": "тут потрібно `sells` — `She sells muffins.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На диване лежит абажур. Спросите у подруги: «Чей это абажур?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На диване лежит абажур. Спросите у подруги: «Чей это абажур?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose lampshade is this?",
+          "localizedMeaning": {
+            "ru": "На диване лежит абажур. Спросите у подруги: «Чей это абажур?»",
+            "uk": "На дивані лежить абажур. Спитайте в подруги: «Чий це абажур?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "lampshade",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На диване лежит абажур. Спросите у подруги: «Чей это абажур?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose lampshade is this?`",
+                "uk": "тут потрібно `Whose` — `Whose lampshade is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, где тыква. Скажите: «Тыква возле стола»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i13:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, где тыква. Скажите: «Тыква возле стола»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i13:audio",
+            "transcript": "The pumpkin is near the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The pumpkin is near the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i14:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i14:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i14:r3",
+            "text": "is sells"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+            "uk": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My neighbour ___ muffins.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-51:i14:r1",
+              "text": "sells"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i14:r2",
+              "text": "sell"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i14:r3",
+              "text": "is sells"
+            }
+          ],
+          "testedDimension": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Соседка — она: `My neighbour sells`.",
+                "uk": "Сусідка — вона: `My neighbour sells`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `My neighbour sells`, без `is`.",
+                "uk": "Потрібно `My neighbour sells`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, кто продаёт лампы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i15:r1",
+            "text": "They sell lamps."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i15:r2",
+            "text": "We sell lamps."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i15:r3",
+            "text": "You sell lamps."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, кто продаёт лампы",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i15:audio",
+            "transcript": "They sell lamps."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:i15:r1",
+              "targetText": "They sell lamps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i15:r2",
+              "targetText": "We sell lamps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i15:r3",
+              "targetText": "You sell lamps.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, кто продаёт лампы",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, кто продаёт лампы",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-51:i16:p1",
+              "target": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин",
+                "uk": "маффін"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i16:p2",
+              "target": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур",
+                "uk": "абажур"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i16:p3",
+              "target": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква",
+                "uk": "гарбуз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i16:p4",
+              "target": "sell",
+              "meaningByLocale": {
+                "ru": "продавать",
+                "uk": "продавати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "muffin",
+            "lampshade",
+            "pumpkin",
+            "sell"
+          ],
+          "rightColumn": [
+            "маффин",
+            "абажур",
+            "тыква",
+            "продавать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, что продают в магазине на углу. Ответьте: «Они продают лампы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, что продают в магазине на углу. Ответьте: «Они продают лампы»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i17:audio",
+            "transcript": "They sell lamps."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They sell lamps.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-51:word:sell",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:sell:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:sell:audio",
+            "transcript": "sell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:sell:r1",
+              "targetText": "sell",
+              "meaningByLocale": {
+                "ru": "продавать. They sell lamps. — «Они продают лампы». Отдавать вещь покупателю за деньги.",
+                "uk": "продавати. They sell lamps. — «Вони продають лампи». Віддавати річ покупцеві за гроші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sell",
+            "definitionByLocale": {
+              "ru": "продавать. They sell lamps. — «Они продают лампы». Отдавать вещь покупателю за деньги.",
+              "uk": "продавати. They sell lamps. — «Вони продають лампи». Віддавати річ покупцеві за гроші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг шукає лампу. Підкажіть: «Вони продають лампи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг шукає лампу. Підкажіть: «Вони продають лампи»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They sell lamps.",
+          "localizedMeaning": {
+            "ru": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+            "uk": "Друг шукає лампу. Підкажіть: «Вони продають лампи»"
+          },
+          "orderedTokens": [
+            "They",
+            "sell",
+            "lamps"
+          ],
+          "authoredDistractorTokens": [
+            "sells"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг шукає лампу. Підкажіть: «Вони продають лампи»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sell` — `They sell lamps.`",
+                "uk": "тут потрібно `sell` — `They sell lamps.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:word:pumpkin",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pumpkin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:pumpkin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pumpkin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:pumpkin:audio",
+            "transcript": "pumpkin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:pumpkin:r1",
+              "targetText": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква. The pumpkin is big. — «Тыква большая». Крупный круглый оранжевый овощ с толстой кожурой.",
+                "uk": "гарбуз. The pumpkin is big. — «Гарбуз великий». Великий круглий помаранчевий овоч з товстою шкіркою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pumpkin",
+            "definitionByLocale": {
+              "ru": "тыква. The pumpkin is big. — «Тыква большая». Крупный круглый оранжевый овощ с толстой кожурой.",
+              "uk": "гарбуз. The pumpkin is big. — «Гарбуз великий». Великий круглий помаранчевий овоч з товстою шкіркою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i02:r1",
+            "text": "The pumpkin is big."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i02:r2",
+            "text": "The pumpkin is small."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i02:r3",
+            "text": "The lamp is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i02:audio",
+            "transcript": "The pumpkin is big."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:i02:r1",
+              "targetText": "The pumpkin is big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i02:r2",
+              "targetText": "The pumpkin is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i02:r3",
+              "targetText": "The lamp is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, большая, а в этом варианте — `small`, маленькая.",
+                "uk": "У записі останнє слово — `big`, велика, а в цьому варіанті — `small`, маленька."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `pumpkin`, тыква, а в этом варианте — `lamp`, лампа.",
+                "uk": "У записі друге слово — `pumpkin`, гарбуз, а в цьому варіанті — `lamp`, лампа."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i03:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i03:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i03:r3",
+            "text": "is sells"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+            "uk": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ pumpkins.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-51:i03:r1",
+              "text": "sells"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i03:r2",
+              "text": "sell"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i03:r3",
+              "text": "is sells"
+            }
+          ],
+          "testedDimension": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `she` нужно `sells`, с `s`.",
+                "uk": "Після `she` потрібно `sells`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She sells`, без `is`.",
+                "uk": "Кажемо `She sells`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-51:i04:p1",
+              "target": "sell",
+              "meaningByLocale": {
+                "ru": "продавать",
+                "uk": "продавати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i04:p2",
+              "target": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква",
+                "uk": "гарбуз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i04:p3",
+              "target": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур",
+                "uk": "абажур"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i04:p4",
+              "target": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин",
+                "uk": "маффін"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sell",
+            "pumpkin",
+            "lampshade",
+            "muffin"
+          ],
+          "rightColumn": [
+            "продавати",
+            "гарбуз",
+            "абажур",
+            "маффін"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:word:lampshade",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lampshade",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:lampshade:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lampshade",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:lampshade:audio",
+            "transcript": "lampshade"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:lampshade:r1",
+              "targetText": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур. The lampshade is on the lamp. — «Абажур на лампе». Колпак, который закрывает лампочку и смягчает свет.",
+                "uk": "абажур. The lampshade is on the lamp. — «Абажур на лампі». Ковпак, що закриває лампочку й пом’якшує світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lampshade",
+            "definitionByLocale": {
+              "ru": "абажур. The lampshade is on the lamp. — «Абажур на лампе». Колпак, который закрывает лампочку и смягчает свет.",
+              "uk": "абажур. The lampshade is on the lamp. — «Абажур на лампі». Ковпак, що закриває лампочку й пом’якшує світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i05:audio",
+            "transcript": "The lampshade is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The lampshade is here.",
+          "orderedTokens": [
+            "The",
+            "lampshade",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The lampshade is here.`",
+                "uk": "тут потрібно `is` — `The lampshade is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:word:muffin",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — muffin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:word:muffin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — muffin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:word:muffin:audio",
+            "transcript": "muffin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:word:muffin:r1",
+              "targetText": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин. The muffin is sweet. — «Маффин сладкий». Небольшой кекс, который пекут в маленькой форме.",
+                "uk": "маффін. The muffin is sweet. — «Маффін солодкий». Невеликий кекс, який печуть у маленькій формі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "muffin",
+            "definitionByLocale": {
+              "ru": "маффин. The muffin is sweet. — «Маффин сладкий». Небольшой кекс, который пекут в маленькой форме.",
+              "uk": "маффін. The muffin is sweet. — «Маффін солодкий». Невеликий кекс, який печуть у маленькій формі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг куштує маффін. Скажіть: «Маффін солодкий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг куштує маффін. Скажіть: «Маффін солодкий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The muffin is sweet.",
+          "localizedMeaning": {
+            "ru": "Друг пробует маффин. Скажите: «Маффин сладкий»",
+            "uk": "Друг куштує маффін. Скажіть: «Маффін солодкий»"
+          },
+          "orderedTokens": [
+            "The",
+            "muffin",
+            "is",
+            "sweet"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг куштує маффін. Скажіть: «Маффін солодкий»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The muffin is sweet.`",
+                "uk": "тут потрібно `is` — `The muffin is sweet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шукає абажур. Скажіть: «Абажур біля лампи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга шукає абажур. Скажіть: «Абажур біля лампи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i07:audio",
+            "transcript": "The lampshade is near the lamp."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lampshade is near the lamp.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i08:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i08:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i08:r3",
+            "text": "is sells"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+            "uk": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ lamps.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-51:i08:r1",
+              "text": "sells"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i08:r2",
+              "text": "sell"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i08:r3",
+              "text": "is sells"
+            }
+          ],
+          "testedDimension": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `sells`, с `s`.",
+                "uk": "Після `he` потрібно `sells`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He sells`, без `is`.",
+                "uk": "Кажемо `He sells`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i09:r1",
+            "text": "The muffin is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i09:r2",
+            "text": "The muffin is on the bench."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i09:r3",
+            "text": "The pumpkin is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i09:audio",
+            "transcript": "The muffin is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:i09:r1",
+              "targetText": "The muffin is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i09:r2",
+              "targetText": "The muffin is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i09:r3",
+              "targetText": "The pumpkin is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `muffin`, маффин, а в этом варианте — `pumpkin`, тыква.",
+                "uk": "У записі друге слово — `muffin`, маффін, а в цьому варіанті — `pumpkin`, гарбуз."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-51:i10:p1",
+              "target": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур",
+                "uk": "абажур"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i10:p2",
+              "target": "sell",
+              "meaningByLocale": {
+                "ru": "продавать",
+                "uk": "продавати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i10:p3",
+              "target": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин",
+                "uk": "маффін"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i10:p4",
+              "target": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква",
+                "uk": "гарбуз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lampshade",
+            "sell",
+            "muffin",
+            "pumpkin"
+          ],
+          "rightColumn": [
+            "абажур",
+            "продавати",
+            "маффін",
+            "гарбуз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i11:audio",
+            "transcript": "She sells muffins."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She sells muffins.",
+          "orderedTokens": [
+            "She",
+            "sells",
+            "muffins"
+          ],
+          "authoredDistractorTokens": [
+            "sell"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sells` — `She sells muffins.`",
+                "uk": "тут потрібно `sells` — `She sells muffins.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На дивані лежить абажур. Спитайте в подруги: «Чий це абажур?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На дивані лежить абажур. Спитайте в подруги: «Чий це абажур?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose lampshade is this?",
+          "localizedMeaning": {
+            "ru": "На диване лежит абажур. Спросите у подруги: «Чей это абажур?»",
+            "uk": "На дивані лежить абажур. Спитайте в подруги: «Чий це абажур?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "lampshade",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На дивані лежить абажур. Спитайте в подруги: «Чий це абажур?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose lampshade is this?`",
+                "uk": "тут потрібно `Whose` — `Whose lampshade is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, де гарбуз. Скажіть: «Гарбуз біля стола»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i13:audio"
+        ],
+        "accessibilityLabel": "Друг питає, де гарбуз. Скажіть: «Гарбуз біля стола»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i13:audio",
+            "transcript": "The pumpkin is near the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The pumpkin is near the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i14:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i14:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i14:r3",
+            "text": "is sells"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+            "uk": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My neighbour ___ muffins.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-51:i14:r1",
+              "text": "sells"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i14:r2",
+              "text": "sell"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i14:r3",
+              "text": "is sells"
+            }
+          ],
+          "testedDimension": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Соседка — она: `My neighbour sells`.",
+                "uk": "Сусідка — вона: `My neighbour sells`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `My neighbour sells`, без `is`.",
+                "uk": "Потрібно `My neighbour sells`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, хто продає лампи",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i15:r1",
+            "text": "They sell lamps."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i15:r2",
+            "text": "We sell lamps."
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i15:r3",
+            "text": "You sell lamps."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, хто продає лампи",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i15:audio",
+            "transcript": "They sell lamps."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-51:i15:r1",
+              "targetText": "They sell lamps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i15:r2",
+              "targetText": "We sell lamps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i15:r3",
+              "targetText": "You sell lamps.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-51:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, хто продає лампи",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-51:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, хто продає лампи",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-51:i16:p1",
+              "target": "muffin",
+              "meaningByLocale": {
+                "ru": "маффин",
+                "uk": "маффін"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i16:p2",
+              "target": "lampshade",
+              "meaningByLocale": {
+                "ru": "абажур",
+                "uk": "абажур"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i16:p3",
+              "target": "pumpkin",
+              "meaningByLocale": {
+                "ru": "тыква",
+                "uk": "гарбуз"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-51:i16:p4",
+              "target": "sell",
+              "meaningByLocale": {
+                "ru": "продавать",
+                "uk": "продавати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "muffin",
+            "lampshade",
+            "pumpkin",
+            "sell"
+          ],
+          "rightColumn": [
+            "маффін",
+            "абажур",
+            "гарбуз",
+            "продавати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, що продають у крамниці на розі. Дайте відповідь: «Вони продають лампи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Друг питає, що продають у крамниці на розі. Дайте відповідь: «Вони продають лампи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-51:i17:audio",
+            "transcript": "They sell lamps."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They sell lamps.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-51:word:sell",
+      "correctText": "sell",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i01",
+      "correctText": "They sell lamps.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:word:pumpkin",
+      "correctText": "pumpkin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i02",
+      "correctText": "The pumpkin is big.",
+      "correctResponseId": "en:lesson-06:session-51:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i03",
+      "correctText": "sells",
+      "correctResponseId": "en:lesson-06:session-51:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:word:lampshade",
+      "correctText": "lampshade",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i05",
+      "correctText": "The lampshade is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:word:muffin",
+      "correctText": "muffin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i06",
+      "correctText": "The muffin is sweet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i07",
+      "correctText": "The lampshade is near the lamp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i08",
+      "correctText": "sells",
+      "correctResponseId": "en:lesson-06:session-51:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i09",
+      "correctText": "The muffin is on the table.",
+      "correctResponseId": "en:lesson-06:session-51:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i11",
+      "correctText": "She sells muffins.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i12",
+      "correctText": "Whose lampshade is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i13",
+      "correctText": "The pumpkin is near the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i14",
+      "correctText": "sells",
+      "correctResponseId": "en:lesson-06:session-51:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i15",
+      "correctText": "They sell lamps.",
+      "correctResponseId": "en:lesson-06:session-51:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i17",
+      "correctText": "They sell lamps.",
+      "correctResponseId": null
+    }
+  ]
+}

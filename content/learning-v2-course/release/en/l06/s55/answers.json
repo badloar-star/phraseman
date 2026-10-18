@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-55:word:artist",
+    "correctText": "artist",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-55:i01",
     "correctText": "She is an artist.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i02",
-    "correctText": "artist",
+    "correctText": "She is an artist.",
     "correctResponseId": "en:lesson-06:session-55:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-55:i03",
-    "correctText": "paints",
+    "correctText": "an",
     "correctResponseId": "en:lesson-06:session-55:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-55:i04",
-    "correctText": "en:lesson-06:session-55:i04:p1=artist\nen:lesson-06:session-55:i04:p2=unreliable\nen:lesson-06:session-55:i04:p3=shortcut\nen:lesson-06:session-55:i04:p4=mural",
+    "correctText": "en:lesson-06:session-55:i04:p1=artist\nen:lesson-06:session-55:i04:p2=portrait\nen:lesson-06:session-55:i04:p3=sketch\nen:lesson-06:session-55:i04:p4=gallery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-55:word:portrait",
+    "correctText": "portrait",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i05",
-    "correctText": "She is an artist.",
+    "correctText": "The portrait is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i06",
-    "correctText": "This artist paints murals.",
+    "correctText": "This artist paints portraits.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-55:word:sketch",
+    "correctText": "sketch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i07",
-    "correctText": "Whose glove is this?",
+    "correctText": "Whose sketch is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i08",
-    "correctText": "an",
+    "correctText": "paint",
     "correctResponseId": "en:lesson-06:session-55:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-55:word:gallery",
+    "correctText": "gallery",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-55:i09",
-    "correctText": "She is an artist.",
+    "correctText": "The gallery is near the library.",
     "correctResponseId": "en:lesson-06:session-55:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-55:i10",
-    "correctText": "en:lesson-06:session-55:i10:p1=glove\nen:lesson-06:session-55:i10:p2=artist\nen:lesson-06:session-55:i10:p3=mural\nen:lesson-06:session-55:i10:p4=unreliable",
+    "correctText": "en:lesson-06:session-55:i10:p1=gallery\nen:lesson-06:session-55:i10:p2=artist\nen:lesson-06:session-55:i10:p3=portrait\nen:lesson-06:session-55:i10:p4=sketch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i11",
-    "correctText": "This artist paints murals.",
+    "correctText": "The sketch is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i12",
-    "correctText": "The shortcut is here.",
+    "correctText": "Whose glove is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i13",
-    "correctText": "The mural is here.",
+    "correctText": "The gallery is next to the library.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i14",
-    "correctText": "paint",
+    "correctText": "paints",
     "correctResponseId": "en:lesson-06:session-55:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-55:i15",
-    "correctText": "Whose glove is this?",
+    "correctText": "This sketch is mine.",
     "correctResponseId": "en:lesson-06:session-55:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-55:i16",
-    "correctText": "en:lesson-06:session-55:i16:p1=artist\nen:lesson-06:session-55:i16:p2=shortcut\nen:lesson-06:session-55:i16:p3=glove\nen:lesson-06:session-55:i16:p4=unreliable",
+    "correctText": "en:lesson-06:session-55:i16:p1=sketch\nen:lesson-06:session-55:i16:p2=gallery\nen:lesson-06:session-55:i16:p3=portrait\nen:lesson-06:session-55:i16:p4=artist",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-55:i17",
-    "correctText": "Tom is an artist.",
+    "correctText": "He is an artist.",
     "correctResponseId": null
   }
 ]

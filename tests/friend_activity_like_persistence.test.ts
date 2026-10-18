@@ -32,7 +32,8 @@ describe('persistent friend activity likes', () => {
 
     // Лента активности удалена (2026-08-16): «дай пять» живёт в строке друга и
     // восстанавливается из тех же persistent-лайков одним запросом.
-    expect(friends).toContain('fetchActivityLikeStates()');
+    // 18.10: тот же один запрос, но через кэш на 30 мин (friend_activity_likes.fetchActivityLikeStatesCached)
+    expect(friends).toContain('fetchActivityLikeStatesCached()');
     expect(friends).toContain('state.eventId === PROFILE_LIKE_EVENT_ID');
     expect(friends).toContain("onAppEvent('profile_like_changed'");
     expect(friends).not.toContain('friend_activity_like_daily_limits');

@@ -34,14 +34,17 @@ describe('кэш профилей друзей: длинный срок для �
   });
   afterEach(() => { jest.restoreAllMocks(); });
 
-  it('через 20 минут: вкладка «Друзья» (5 мин) идёт в сеть, Шпиль (30 мин) берёт из кэша', async () => {
+  // 18.10 (координатор, Firebase-экономия владельца): вкладка «Друзья» тоже держит профили 30 мин (было 5).
+  it('через 20 минут и вкладка «Друзья», и Шпиль берут из кэша; через 31 минуту — сеть', async () => {
     await fetchFriendProfilesBatch(['a', 'b']);
     expect(mockProfilesCallable).toHaveBeenCalledTimes(1);
     now += 20 * MIN;
     await fetchFriendProfilesBatch(['a', 'b'], { maxAgeMs: FRIENDS_BATCH_LONG_TTL_MS });
+    await fetchFriendProfilesBatch(['a', 'b']);
     expect(mockProfilesCallable).toHaveBeenCalledTimes(1);
     expect(countFreshFriendProfiles(['a', 'b'], FRIENDS_BATCH_LONG_TTL_MS)).toBe(2);
-    expect(countFreshFriendProfiles(['a', 'b'])).toBe(0);
+    expect(countFreshFriendProfiles(['a', 'b'])).toBe(2);
+    now += 11 * MIN;
     await fetchFriendProfilesBatch(['a', 'b']);
     expect(mockProfilesCallable).toHaveBeenCalledTimes(2);
   });

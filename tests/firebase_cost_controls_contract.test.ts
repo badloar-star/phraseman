@@ -226,7 +226,8 @@ describe("Firebase cost controls", () => {
     expect(friendsScreenSource).not.toContain("fetchFriendsActivityFeed");
     expect(friendsScreenSource).not.toContain("collection('my_events')");
     // «Дай пять» в строке друга читает мои лайки ОДНИМ запросом, не по другу на каждого.
-    expect(friendsScreenSource).toContain("fetchActivityLikeStates()");
+    // 18.10 (координатор, Firebase-экономия): тот же один запрос — через кэш на 30 мин и только при открытой вкладке.
+    expect(friendsScreenSource).toContain("fetchActivityLikeStatesCached()");
     expect(friendsScreenSource).not.toContain("friendUids.map(async uid =>");
   });
 

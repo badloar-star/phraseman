@@ -99,7 +99,7 @@ import { useTabFocusTick, useTabNav } from '../TabContext';
 import {
   PROFILE_LIKE_EVENT_ID,
   fetchActivityLikeState,
-  fetchActivityLikeStates,
+  fetchActivityLikeStatesCached,
   removeFriendActivityLike,
   sendFriendActivityLike,
 } from '../friend_activity_likes';
@@ -2087,10 +2087,12 @@ export default function FriendsTabScreen() {
   const highFiveInFlightRef = useRef<Set<string>>(new Set());
   const hasFriends = friends.length > 0;
   useEffect(() => {
-    if (!hasFriends) return;
+    // зачем (координатор 18.10 08:22, Firebase-экономия владельца): вкладка монтируется на старте — лайки (2 запроса до 500 док.)
+    // читаем только при открытой вкладке и не чаще раза в 30 мин (кэш в friend_activity_likes, без force).
+    if (!hasFriends || !friendsRuntimeActive) return;
     let cancelled = false;
     // Один запрос на все мои лайки (≤500 док.), а не по чтению на каждого друга.
-    void fetchActivityLikeStates()
+    void fetchActivityLikeStatesCached()
       .then(states => {
         if (cancelled) return;
         setHighFivedUids(new Set(
@@ -2099,7 +2101,7 @@ export default function FriendsTabScreen() {
       })
       .catch(noteSwallowedHandler('friends:useEffect.fetchActivityLikeStates'));
     return () => { cancelled = true; };
-  }, [hasFriends]);
+  }, [friendsRuntimeActive, hasFriends]);
   // Карточка игрока тоже умеет ставить/снимать этот лайк — держим строку в согласии.
   useEffect(() => {
     const sub = onAppEvent('profile_like_changed', ({ targetUid, liked }) => {

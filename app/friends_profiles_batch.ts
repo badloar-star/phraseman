@@ -6,7 +6,7 @@
  * на 20 друзьях до 80 RTT в момент открытия таба. Стало: 1 callable на пачку
  * (до 100 uid), серверная сборка leaderboard + серверный кэш 60 c.
  *
- * Модульный TTL-кэш (5 мин) переживает ремаунты экрана — как peekProfilesCache(),
+ * Модульный TTL-кэш (30 мин для профилей, 5 мин для пустой записи после сбоя) переживает ремаунты экрана — как peekProfilesCache(),
  * но не дублирует его: friends.tsx продолжает вести свой ProfileCacheEntry-кэш,
  * этот модуль только снимает повторные сетевые вызовы внутри TTL.
  *
@@ -22,7 +22,7 @@ import { noteSwallowed } from './swallow_log'; // зачем: PM-229 — нем�
 const REGION = 'us-central1';
 const BATCH_CACHE_TTL_MS = 5 * 60 * 1000;
 // зачем (смета Firebase 13.10, п. 5; координатор): ряд «Друзья на этой неделе» в Шпиле входит в кэш на 30 мин — рейтинг друзей не меняется ежеминутно,
-// а каждый вход стоил 8 + 5 × F серверных чтений. Срок задаёт вызывающий (`maxAgeMs`); вкладка «Друзья» остаётся на 5 мин.
+// а каждый вход стоил 8 + 5 × F серверных чтений. С 18.10 (координатор, Firebase-экономия) это срок по умолчанию и для вкладки «Друзья»; `maxAgeMs` может его сократить.
 export const FRIENDS_BATCH_LONG_TTL_MS = 30 * 60 * 1000;
 const BATCH_CACHE_KEEP_MS = FRIENDS_BATCH_LONG_TTL_MS;
 const BATCH_CACHE_MAX_ENTRIES = 256;
@@ -106,7 +106,8 @@ async function fetchBatch(uids: string[]): Promise<Record<string, FriendProfileB
 }
 
 /** Сколько из uid лежат в кэше свежими при данном сроке (для журнала вызывающего; кэш не меняет). */
-export function countFreshFriendProfiles(uids: readonly string[], maxAgeMs: number = BATCH_CACHE_TTL_MS): number {
+// зачем (координатор 18.10 08:22, Firebase-экономия владельца): вкладка «Друзья» тоже держит профили 30 мин (было 5) — пустая запись после сбоя по-прежнему 5 мин.
+export function countFreshFriendProfiles(uids: readonly string[], maxAgeMs: number = FRIENDS_BATCH_LONG_TTL_MS): number {
   const now = Date.now();
   let fresh = 0;
   for (const uid of new Set(uids)) {
@@ -146,7 +147,8 @@ export async function fetchFriendProfilesBatch(
   for (const uid of unique) {
     const hit = batchCache.get(uid);
     // зачем: длинный срок только для записей с профилем — пустая запись (сбой вызова) живёт прежние 5 мин, иначе сбой спрятал бы друзей на 30 мин.
-    const ttl = options.maxAgeMs !== undefined && hit?.profile ? Math.max(BATCH_CACHE_TTL_MS, Math.min(options.maxAgeMs, BATCH_CACHE_KEEP_MS)) : BATCH_CACHE_TTL_MS;
+    // зачем (координатор 18.10 08:22): срок записи с профилем по умолчанию — 30 мин (и для вкладки «Друзья», не только для Шпиля)
+    const ttl = hit?.profile ? Math.max(BATCH_CACHE_TTL_MS, Math.min(options.maxAgeMs ?? FRIENDS_BATCH_LONG_TTL_MS, BATCH_CACHE_KEEP_MS)) : BATCH_CACHE_TTL_MS;
     if (!options.force && hit && now - hit.fetchedAt < ttl) {
       batchCache.delete(uid);
       batchCache.set(uid, hit);
@@ -156,6 +158,7 @@ export async function fetchFriendProfilesBatch(
     }
   }
 
+  console.log(`[COST-CUT] friends profiles hit=${unique.length - toFetch.length} miss=${toFetch.length} force=${options.force === true}`); // guard-ok: экономия чтений, только числа
   // Dedupe: uid уже в полёте — ждём тот же промис.
   const waiters: Promise<void>[] = [];
   const owners: string[] = [];

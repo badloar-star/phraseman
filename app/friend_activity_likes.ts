@@ -238,6 +238,38 @@ export async function fetchActivityLikeStates(limit = 500): Promise<FriendActivi
   return [...byKey.values()];
 }
 
+// зачем (координатор 18.10 08:22, Firebase-экономия владельца): fetchActivityLikeStates — два запроса до 500 документов. Вкладка «Друзья»
+// звала их на холодном старте. Теперь — только при открытой вкладке и не чаще раза в 30 мин; кэш по владельцу (canonical uid), чтобы после смены
+// аккаунта не отдать чужие лайки. Сердца не «откатываются»: успешный лайк/снятие правит кэш (patchActivityLikeStatesCache).
+export const ACTIVITY_LIKE_STATES_CACHE_TTL_MS = 30 * 60 * 1000;
+let likeStatesCache: Readonly<{ ownerUid: string; at: number; states: readonly FriendActivityLikeState[] }> | null = null;
+
+export async function fetchActivityLikeStatesCached(): Promise<FriendActivityLikeState[]> {
+  const ownerUid = await getCanonicalUserId();
+  const now = Date.now();
+  if (ownerUid && likeStatesCache && likeStatesCache.ownerUid === ownerUid && now - likeStatesCache.at < ACTIVITY_LIKE_STATES_CACHE_TTL_MS) {
+    console.log(`[COST-CUT] friends likes hit ageMs=${now - likeStatesCache.at} states=${likeStatesCache.states.length}`); // guard-ok: экономия чтений, только числа
+    return [...likeStatesCache.states];
+  }
+  const states = await fetchActivityLikeStates();
+  console.log(`[COST-CUT] friends likes miss reason=${!likeStatesCache ? 'empty' : likeStatesCache.ownerUid !== ownerUid ? 'other_owner' : 'expired'} states=${states.length}`); // guard-ok: экономия чтений, только числа
+  if (ownerUid && isFriendActivityLikesCloudEnabled()) likeStatesCache = { ownerUid, at: now, states: [...states] };
+  return states;
+}
+
+function patchActivityLikeStatesCache(targetUid: string, eventId: string, liked: boolean): void {
+  if (!likeStatesCache) return;
+  const key = activityLikeStateKey(targetUid, eventId);
+  const rest = likeStatesCache.states.filter((state) => activityLikeStateKey(state.targetUid, state.eventId) !== key);
+  const states = liked ? [...rest, { date: todayActivityLikeDateKeyUtc(), targetUid, eventId, createdAt: Date.now() }] : rest;
+  likeStatesCache = { ...likeStatesCache, states };
+}
+
+/** Только для тестов. */
+export function __resetActivityLikeStatesCacheForTests(): void {
+  likeStatesCache = null;
+}
+
 /** @deprecated Rolling-migration reader for the former one-like-per-day document. */
 export async function fetchTodayActivityLikeState(): Promise<FriendActivityLikeTodayState | null> {
   if (!isFriendActivityLikesCloudEnabled()) return null;
@@ -301,6 +333,7 @@ export async function sendFriendActivityLike(data: {
     eventId: data.eventId ?? '',
     senderDisplayName: data.senderDisplayName ?? '',
   });
+  patchActivityLikeStatesCache(data.targetUid, res.data?.eventId || data.eventId || PROFILE_LIKE_EVENT_ID, true);
   return res.data;
 }
 
@@ -332,6 +365,7 @@ export async function removeFriendActivityLike(data: {
     targetStableId: data.targetUid,
     eventId: data.eventId ?? '',
   });
+  patchActivityLikeStatesCache(data.targetUid, res.data?.eventId || data.eventId || PROFILE_LIKE_EVENT_ID, false);
   return res.data;
 }
 

@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Состояния входа</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,6 +133,20 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
 .oops .p { font-size: 16px; line-height: 21px; color: var(--text); margin-top: 2px; }
 .retry { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--cta); color: var(--cta-ink); font-size: 16px; font-weight: 700; margin: 12px 0 0 32px; }
 .retry .i { width: 16px; height: 16px; }
+/* блок 7 — панель кода из письма (код: recoveryPanel тоном opaqueControl, радиус 18, поля 16; поле 48/14; «Подтвердить» 48/24) */
+.rec { margin-top: 16px; border-radius: 18px; background: var(--tile); padding: 16px; display: flex; flex-direction: column; }
+.rec .rt { font-size: 16px; line-height: 21px; font-weight: 800; text-align: center; }
+.rec .rb2 { font-size: 13px; line-height: 19px; color: var(--sec); text-align: center; margin-top: 6px; }
+.rec .rx { min-height: 20px; font-size: 13px; line-height: 19px; color: var(--sec); text-align: center; margin-top: 12px; }
+.rec .rx b { color: var(--text); font-weight: 600; }
+.rec .fld { height: 48px; border-radius: 14px; background: var(--bg); padding: 0 14px; display: flex; align-items: center; font-size: 16px; font-weight: 500; margin-top: 8px; color: var(--text); letter-spacing: 0; }
+.rec .fld.ph2 { color: var(--muted); }
+.rec .cta2 { height: 48px; border-radius: 24px; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 12px; }
+.rec .cta2.off { opacity: .55; }
+.rec .snd { min-height: 44px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--text); margin-top: 4px; }
+.rec .snd.off { color: var(--muted); }
+.rec .note { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.rec .note .i { width: 15px; height: 15px; }
 </style>
 
 <div class="wrap">
@@ -176,6 +191,14 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
     <div><b>Переход.</b> После удачного входа шторка уезжает вниз, «Аккаунт» сразу показывает почту и способ входа — без отдельного экрана «успех» и без спиннера на весь экран.</div>
   </div>
 
+  <h2>7. Восстановление по коду из письма</h2>
+  <div class="row" id="r-rec"></div>
+  <div class="spec">
+    <div><b>Панель</b> — как в коде: тоном, радиус 18, поля 16; «Проверь почту» 16/800, текст 13/19 вторым цветом; строка срока; поле кода 48, радиус 14; «Подтвердить» 48, радиус 24; «Отправить код ещё раз» 13/700.</div>
+    <div><b>Код просрочен</b> — без красного: строка «Отправили новый код» вторым цветом с галочкой, поле пустое и снова доступно, отсчёт идёт заново. Повторную отправку делает приложение само.</div>
+    <div><b>Неверный код</b> — мягкая строка «Код не подошёл. Проверь все 6 цифр.» вторым цветом на месте строки срока; поле обычного тона (не красноватого), введённые цифры остаются, чтобы поправить одну.</div>
+  </div>
+
   <h2>Тексты</h2>
   <div class="tbl"><table>
     <tr><th>Место</th><th>Текст</th><th>Откуда</th></tr>
@@ -192,6 +215,11 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
     <tr><td>Окно выбора аккаунта закрыли</td><td>Ничего не показываем — окно входа как в покое, кнопки активны (решение координатора 18.10)</td><td>тихо, без карточки</td></tr>
     <tr><td>Сбой · другое</td><td>Вход не завершился. Попробуй ещё раз или выбери другой способ.</td><td>новое</td></tr>
     <tr><td>Кнопка повтора</td><td>Попробовать ещё раз</td><td>новое</td></tr>
+    <tr><td>Код из письма · заголовок / текст</td><td>Проверь почту · Если данные подходят, письмо с 6-значным кодом уже отправлено.</td><td>код</td></tr>
+    <tr><td>Код из письма · срок</td><td>Код действует ещё 4:52</td><td>код (сейчас «… N s»)</td></tr>
+    <tr><td>Код из письма · просрочен</td><td>Отправили новый код</td><td>новое (вместо «Срок действия кода истёк. Запроси новый код.» красным)</td></tr>
+    <tr><td>Код из письма · неверный</td><td>Код не подошёл. Проверь все 6 цифр.</td><td>код, вторым цветом вместо красного</td></tr>
+    <tr><td>Код из письма · кнопки</td><td>Подтвердить · Отправить код ещё раз · Повторная отправка через 0:41</td><td>код</td></tr>
   </table></div>
   <p class="lead">Отличия от кода сейчас: строка «Входим…» появляется с 3 с (в коде первая строка — с 8 с); ошибка — мягкая карточка над кнопками вместо красного текста под ними (прежний эталон accounts-gaps-states.html в этой части заменяется этим файлом).</p>
 </div>
@@ -250,4 +278,24 @@ pair('r-press', (c) => signIn(c, 'press'));
 pair('r-slow', (c) => signIn(c, 'slow'));
 pair('r-fail', (c) => signIn(c, 'fail'));
 pair('r-acc', (c) => accPhone(c));
+// зачем (координатор 18.10): три состояния панели кода, без красного
+const okI = '<svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const recPanel = (st) => {
+  const line = st === 'expired' ? `<div class="rx note" role="status">${okI}Отправили новый код</div>`
+    : st === 'wrong' ? '<div class="rx" role="status">Код не подошёл. Проверь все 6 цифр.</div>'
+    : '<div class="rx">Код действует ещё <b>4:52</b></div>';
+  const field = st === 'expired' ? '<div class="fld ph2">6-значный код</div>' : st === 'wrong' ? '<div class="fld">482913</div>' : '<div class="fld">48</div>';
+  const ready = st === 'wrong';
+  return `<div class="rec"><div class="rt">Проверь почту</div><div class="rb2">Если данные подходят, письмо с 6-значным кодом уже отправлено.</div>${line}${field}<div class="cta2${ready ? '' : ' off'}">Подтвердить</div><div class="snd${st === 'expired' ? ' off' : ''}">${st === 'expired' ? 'Повторная отправка через 0:59' : 'Отправить код ещё раз'}</div></div>`;
+};
+const recPhone = (cls, st) => `<div class="ph ${cls}" role="img" aria-label="Код из письма: ${st}">${sbar}<div class="scr under">${account(false)}</div><div class="scrim"></div>
+  <div class="sheet"><div class="grab"></div><div class="xr"><div class="x">${I.close}</div></div>
+    <div class="hd"><div class="ic"><img src="assets/streak/streak-feather-01.webp" alt=""></div><div><div class="st">Всё в безопасности</div><div class="ss">Твой путь сохранится и дождётся тебя</div></div></div>
+    ${recPanel(st)}
+    <div class="later">Позже</div>
+  </div><div class="hi"></div></div>`;
+document.getElementById('r-rec').innerHTML =
+  col('Ввод кода · тёмная', recPhone('', 'enter')) + col('Ввод кода · светлая', recPhone('lt', 'enter')) +
+  col('Код просрочен · тёмная', recPhone('', 'expired')) + col('Код просрочен · светлая', recPhone('lt', 'expired')) +
+  col('Неверный код · тёмная', recPhone('', 'wrong')) + col('Неверный код · светлая', recPhone('lt', 'wrong'));
 </script>

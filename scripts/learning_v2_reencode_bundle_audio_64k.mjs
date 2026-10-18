@@ -184,14 +184,29 @@ run("build_learning_v2_factory_lesson_audio_index.mjs");
 run("build_learning_v2_factory_audio_module.mjs", ["--check"]);
 run("build_learning_v2_factory_single_voice_module.mjs", ["--check"]);
 run("build_learning_v2_bootstrap_audio_pack.mjs", ["--check"]);
-// пост-проверка: каждый хеш модуля первого занятия (жёстко прописанный) обязан остаться в новом наборе сборки
+// пост-проверка (координатор 04:55, каскад): ЛЮБОЙ исходник приложения с жёстко прописанным хешем файла набора — не только
+// L1 S1 (SESSION1_MODULE) — после перекодирования должен по-прежнему находить этот хеш в наборе. Список модулей не ручной:
+// сканируются app, modules, components, hooks, constants (ts/tsx/js/json) на 64-hex из набора ДО перекодирования; модули,
+// которые этот скрипт сам пересобирает, исключены. Журнал [POSTCHECK]: модуль → хешей набора → пропало.
 {
-  const bundleNow = fs.readFileSync(path.join(ROOT, BOOTSTRAP_MODULE), "utf8");
-  const s1Path = path.join(ROOT, SESSION1_MODULE);
-  const s1Hashes = fs.existsSync(s1Path) ? [...new Set([...fs.readFileSync(s1Path, "utf8").matchAll(/contentHash: "([0-9a-f]{64})"/gu)].map((m) => m[1]))] : [];
-  const lostFromBundle = s1Hashes.filter((h) => bundleHashes.has(h) && !bundleNow.includes(h));
-  console.log(`${LOG} пост-проверка модуля L1 S1: хешей ${s1Hashes.length}, из них были в наборе ${s1Hashes.filter((h) => bundleHashes.has(h)).length}, пропало из набора ${lostFromBundle.length}`);
-  if (lostFromBundle.length > 0) throw new Error(`${LOG} модуль ${SESSION1_MODULE} ссылается на хеши, которых больше нет в наборе: ${lostFromBundle.map((h) => h.slice(0, 8)).join(", ")}`);
+  const REGENERATED = new Set([BOOTSTRAP_MODULE, "app/learning_v2_factory_single_voice_v1.generated.ts",
+    "app/learning_v2_factory_production_audio_entries_v1.generated.ts", "app/learning_v2_factory_lesson_audio_index_v1.generated.ts"]);
+  const bundleNow = new Set([...fs.readFileSync(path.join(ROOT, BOOTSTRAP_MODULE), "utf8").matchAll(/contentHash: "([0-9a-f]{64})"/gu)].map((m) => m[1]));
+  const holders = [];
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+      const rel = `${dir}/${entry.name}`;
+      if (entry.isDirectory()) { if (entry.name !== "node_modules") walk(rel); continue; }
+      if (!/\.(ts|tsx|js|json)$/u.test(entry.name) || REGENERATED.has(rel)) continue;
+      const held = new Set([...fs.readFileSync(path.join(ROOT, rel), "utf8").matchAll(/[0-9a-f]{64}/gu)].map((m) => m[0]).filter((h) => bundleHashes.has(h)));
+      if (held.size > 0) holders.push({ rel, held: [...held], lost: [...held].filter((h) => !bundleNow.has(h)) });
+    }
+  };
+  for (const dir of ["app", "modules", "components", "hooks", "constants"]) if (fs.existsSync(path.join(ROOT, dir))) walk(dir);
+  console.log(`[POSTCHECK] модулей с жёсткими хешами набора: ${holders.length}${holders.some((h) => h.rel === SESSION1_MODULE) ? " (включая L1 S1)" : ""}`);
+  for (const h of holders) console.log(`[POSTCHECK]   ${h.rel}: хешей набора ${h.held.length}, пропало из набора ${h.lost.length}`);
+  const broken = holders.filter((h) => h.lost.length > 0);
+  if (broken.length > 0) throw new Error(`[POSTCHECK] модули ссылаются на хеши, которых больше нет в наборе: ${broken.map((h) => `${h.rel} (${h.lost.map((x) => x.slice(0, 8)).join(", ")})`).join("; ")}`);
 }
 run("build_learning_v2_factory_lesson_audio_index.mjs", ["--check"]);
 console.log(`${LOG} готово: дальше — ворота (learning_v2_plan_b_gates) и сторож полноты`);

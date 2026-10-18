@@ -188,3 +188,13 @@ Outcome: координатор 04:06/04:45 — assets/audio/learning-v2/session
   466763eb, ready-onyx eebf91c8) — в новом наборе их хешей нет, модуль ссылался бы на удалённые файлы. Решение: исходники
   session1-production-v1 не перекодируются (keep as is, журнал [REENCODE] skip reason=legacy_session1_hardcoded_hashes),
   плюс пост-проверка скрипта: каждый хеш модуля session1 обязан быть в новом наборе, иначе код 1. Варианты 64/96 пересобрать.
+
+## Дополнение: пост-проверка по ВСЕМ модулям с жёсткими хешами (каскад, координатор 04:55)
+
+Governance-ID: TG-FFE9D2582267
+
+Outcome: модули с жёстко прописанными хешами файлов набора выводятся сканированием исходников (app, modules, components,
+hooks, constants — любые 64-hex, совпадающие с хешами набора ДО перекодирования), а не ручным списком. Пересобираемые
+перекодированием модули (bootstrap, single voice, entries, lesson index) исключаются. После перекодирования каждый такой
+хеш обязан остаться в новом наборе, иначе код 1; журнал [POSTCHECK] — модуль → хешей набора → пропало. Scope:
+scripts/learning_v2_reencode_bundle_audio_64k.mjs. Verification: сухой скан на HEAD + пересборка вариантов. Rollback: git revert.

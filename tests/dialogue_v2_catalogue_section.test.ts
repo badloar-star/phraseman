@@ -94,7 +94,7 @@ describe('DialogueV2CatalogueSection', () => {
     ).replace(/\r\n/g, '\n');
     expect(source).toContain("import { Image as RNImage, Text, View } from 'react-native';");
     expect(source).not.toContain("from 'expo-image'");
-    const rowStart = source.indexOf("<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>");
+    const rowStart = source.indexOf("<View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 2 }}>");
     expect(rowStart).toBeGreaterThan(-1);
     const coinAt = source.indexOf('<RNImage', rowStart);
     const labelAt = source.indexOf('{glueRankNumber(labels.lockedAtRank(item.rankRequired), item.rankRequired)}', rowStart);

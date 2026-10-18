@@ -271,18 +271,15 @@ export function DialogueV2CatalogueSection({
                           {item.title}
                         </Text>
                         {locked ? (
-                          // зачем (Макеты e051906a7, dialogs-006; координатор 18.10): монета ранга — сразу после строки ранга (labels.lockedAtRank) на любой длине
-                          // строки и при переносе (es «Se desbloquea en el rango N» на 1,3 уходила к правому краю, когда текст в ряду растягивался на всю ширину).
-                          // Это возможно только картинкой ВНУТРИ Text: inline в Text умеет только RN Image; выигрыш expo-image для 16 dp копеечный (R129).
-                          // Неразрывный пробел держит монету вместе с последним словом.
-                          // зачем (владелец 18.10, скрин iPhone): картинка ВНУТРИ переносящегося Text на iOS ставится не на свою строку и
-                          // наезжает на «Откроется». Монета ранга теперь стоит ПЕРЕД подписью отдельным элементом ряда — всегда у начала
-                          // текста, на любой длине и при переносе, без inline-картинки.
-                          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>
+                          // зачем (владелец 18.10, скрин iPhone): прежняя inline-картинка ВНУТРИ переносящегося Text на iOS вставала не на
+                          // свою строку и наезжала на «Откроется». Монета ранга — отдельный элемент ряда ПЕРЕД подписью: всегда у начала
+                          // текста, на любой длине. Выравнивание по первой строке (flex-start + сдвиг 1 dp: строка 18, монета 16), чтобы
+                          // при переносе подписи на 2 строки монета не уезжала в середину. Неразрывный пробел держит «ранге N» вместе.
+                          <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 2 }}>
                             <RNImage
                               testID={`dialogue-v2-catalogue-row-coin-${item.id}`}
                               source={coinRankRowForDisplay(item.rankRequired).source}
-                              style={{ width: 16, height: 16 }}
+                              style={{ width: 16, height: 16, marginTop: 1 }}
                               accessible={false}
                               onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}
                             />

@@ -119,6 +119,14 @@ function inviteDisplayName(invite: ReferralInvite, fallbackPrefix: string): stri
   return `${fallbackPrefix} #${shortInviteName(invite)}`;
 }
 
+/** Потолок скелета «Приглашённые друзья»: дальше — список или пустое состояние, загрузка идёт фоном. */
+const REFERRAL_LIST_SKELETON_CEILING_MS = 1500;
+
+/** Журнал списка приглашений [REFERRAL-LIST]: только этапы, флаги, числа и время — без uid и имён. */
+function logReferralList(stage: string, detail: Readonly<Record<string, unknown>> = {}): void {
+  console.log('[REFERRAL-LIST]', JSON.stringify({ stage, ...detail })); // guard-ok: этапы загрузки списка, без идентификаторов
+}
+
 /** Кэш последнего успешного списка приглашений — экран рисуется мгновенно, без скелетонов. */
 export default function ReferralsScreen() {
   const router = useRouter();
@@ -250,15 +258,21 @@ export default function ReferralsScreen() {
   }, [params.enter, marketingVisible]);
 
   const load = useCallback(async (options: { force?: boolean } = {}) => {
+    const force = !!options.force;
     if (!referralEnabled || referralSurface.emergencyStop) {
+      logReferralList('load:skip', { reason: !referralEnabled ? 'referral_disabled' : 'emergency_stop', force });
       setLoading(false);
       return;
     }
     const token = captureAccountGeneration();
     const requestScope = accountScopeKey(token);
-    if (requestScope !== renderAccountScope) return;
+    if (requestScope !== renderAccountScope) {
+      logReferralList('load:skip', { reason: 'account_scope_changed', force, phase: token.phase, hasRequestScope: !!requestScope, hasRenderScope: !!renderAccountScope });
+      return;
+    }
     const warm = readReferralInvites(token);
     const request = beginReferralInvitesRequest(token);
+    logReferralList('load:start', { force, phase: token.phase, hasScope: !!requestScope, warm: warm ? (warm.isFresh ? 'fresh' : 'stale') : 'none', warmCount: warm?.value.length ?? 0 });
     if (warm) {
       setLoadedAccountScope(requestScope);
       setInvites(warm.value);
@@ -266,11 +280,24 @@ export default function ReferralsScreen() {
     } else {
       setLoading(true);
     }
-    if (!options.force && warm?.isFresh) return;
+    if (!force && warm?.isFresh) {
+      logReferralList('load:done', { source: 'cache_fresh', count: warm.value.length });
+      return;
+    }
+    const startedAt = Date.now();
     try {
-      const state = await getClaimableReferralState({ force: options.force });
-    // ok:false = сеть/сервер не ответили — не затираем показанный кэш пустотой.
-      if (!state.ok || !commitReferralState(request, state.invites, state.drain)) return;
+      const state = await getClaimableReferralState({ force });
+      const ms = Date.now() - startedAt;
+      // ok:false = сеть/сервер не ответили — не затираем показанный кэш пустотой.
+      if (!state.ok) {
+        console.warn('[REFERRAL-LIST]', JSON.stringify({ stage: 'load:server_not_ok', force, ms, keptCache: !!warm })); // guard-ok: ранний выход называет причину
+        return;
+      }
+      if (!commitReferralState(request, state.invites, state.drain)) {
+        logReferralList('load:stale_response', { force, ms, count: state.invites.length, requestCurrent: isReferralInvitesRequestCurrent(request) });
+        return;
+      }
+      logReferralList('load:done', { source: 'server', count: state.invites.length, ms });
         const serverCredits = state.drain.availableCreditCount;
         const protectedCredits = Math.max(serverCredits, devGrantedCreditsFloorRef.current);
         if (serverCredits >= devGrantedCreditsFloorRef.current) {
@@ -282,10 +309,38 @@ export default function ReferralsScreen() {
         setDrain(protectedDrain);
         setHasServerDrain(true);
         setSpinCredits(protectedCredits);
+    } catch (error) {
+      console.warn('[REFERRAL-LIST]', JSON.stringify({ stage: 'load:failed', force, ms: Date.now() - startedAt, reason: error instanceof Error ? error.name : typeof error })); // guard-ok: catch называет причину
+      throw error;
     } finally {
-      if (isReferralInvitesRequestCurrent(request)) setLoading(false);
+      const current = isReferralInvitesRequestCurrent(request);
+      if (current) setLoading(false);
+      logReferralList('load:finally', { force, requestCurrent: current, loadingCleared: current });
     }
   }, [referralEnabled, referralSurface.emergencyStop, renderAccountScope]);
+
+  // зачем (владелец 18.10 08:49, iPhone: «Приглашённые друзья» — вечный скелет): скелет держался, пока loading ИЛИ пока
+  // ключ аккаунта загруженного списка не совпал с текущим (accountMatches). Если ключ пуст/сменился, а сервер не ответил —
+  // скелет не снимался никогда. Правило владельца: скелет не дольше ~1,5 с, дальше список или спокойное пустое состояние;
+  // загрузка продолжается фоном и при успехе тихо подставит список (данные чужого аккаунта не показываются — selectAccountScopedReferralState).
+  const [listCeilingPassed, setListCeilingPassed] = useState(false);
+  useEffect(() => {
+    setListCeilingPassed(false);
+    const timer = setTimeout(() => setListCeilingPassed(true), REFERRAL_LIST_SKELETON_CEILING_MS);
+    return () => clearTimeout(timer);
+  }, [renderAccountScope]);
+  const listView: 'skeleton' | 'list' | 'empty' = visibleLoading && !listCeilingPassed ? 'skeleton' : invites.length > 0 ? 'list' : 'empty';
+  useEffect(() => {
+    if (!referralUiVisible) return;
+    logReferralList('render', {
+      view: listView,
+      loading,
+      accountMatches: scopedReferralState.accountMatches,
+      hasRenderScope: !!renderAccountScope,
+      ceilingPassed: listCeilingPassed,
+      count: invites.length,
+    });
+  }, [invites.length, listCeilingPassed, listView, loading, referralUiVisible, renderAccountScope, scopedReferralState.accountMatches]);
 
   useEffect(() => {
     if (!referralEnabled || referralSurface.emergencyStop) {
@@ -841,13 +896,13 @@ export default function ReferralsScreen() {
             </Text>
           )}
 
-          {referralUiVisible && (visibleLoading ? (
+          {referralUiVisible && (listView === 'skeleton' ? (
             <View style={{ gap: 12 }}>
               {Array.from({ length: 3 }).map((_, i) => (
                 <SkeletonBlock key={`referral-skeleton-${i}`} width="100%" height={76} borderRadius={18} />
               ))}
             </View>
-          ) : invites.length > 0 ? (
+          ) : listView === 'list' ? (
             <View style={{ gap: 12 }}>
               {invites.map(renderInvite)}
             </View>

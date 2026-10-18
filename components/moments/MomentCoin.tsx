@@ -222,10 +222,20 @@ function SayBubble({ text, tone, big, pos, size, reduceMotion, bg, ink, plate }:
   const anchor = pos === 'l' ? [s.sayAnchorLeft, { right: size / 2 - 30 }] : s.sayAnchorCenter;
   return (
     <View style={anchor} pointerEvents="none">
-      <Animated.View style={[st, plate, bubbleShape, { backgroundColor: gold ? GOLD_MID : bg }]} accessible accessibilityLabel={text}>
-        {gold ? <LinearGradient colors={GOLD_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, bubbleShape, s.noPad]} /> : null}
-        <Text style={[s.sayText, big ? s.sayTextBig : null, { color: inkColor }]}>{text}</Text>
-        <View style={[s.sayTail, pos === 'l' ? s.sayTailLeft : null, { backgroundColor: gold ? GOLD_MID : bg }]} />
+      {/* зачем (Сверка 18.10, m06-A «Чисто!» и m17 «Получилось!»: у облачка нет хвостика к монете): хвост был ребёнком облачка со скруглением и тенью —
+          Android обрезает выступающего ребёнка по форме такого вида. Теперь хвост — соседний слой ПОД облачком в общей анимации: видна только его нижняя половина. */}
+      <Animated.View style={st} accessible accessibilityLabel={text}>
+        <View
+          style={[s.sayTail, pos === 'l' ? s.sayTailLeft : null, { backgroundColor: gold ? GOLD_MID : bg }]}
+          onLayout={(e) => {
+            const { x, y, width, height } = e.nativeEvent.layout;
+            console.log(`[MOMENT-SAY] tail ${JSON.stringify({ text, pos, gold, x: Math.round(x), y: Math.round(y), w: Math.round(width), h: Math.round(height) })}`); // guard-ok: строка на показ облачка
+          }}
+        />
+        <View style={[plate, bubbleShape, { backgroundColor: gold ? GOLD_MID : bg }]}>
+          {gold ? <LinearGradient colors={GOLD_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, bubbleShape, s.noPad]} /> : null}
+          <Text style={[s.sayText, big ? s.sayTextBig : null, { color: inkColor }]}>{text}</Text>
+        </View>
       </Animated.View>
     </View>
   );
@@ -381,7 +391,7 @@ const s = StyleSheet.create({
   // отличается полями, не кеглем; значки сна и эмоций 20/25 (≥19 — вне храповика, межстрочный ≥1,25×).
   sayText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   sayTextBig: { fontSize: 16, lineHeight: 21 },
-  sayTail: { position: 'absolute', left: '50%', bottom: -6, width: 12, height: 12, marginLeft: -14, borderRadius: 2, transform: [{ rotate: '45deg' }], zIndex: -1 },
+  sayTail: { position: 'absolute', left: '50%', bottom: -6, width: 12, height: 12, marginLeft: -14, borderRadius: 2, transform: [{ rotate: '45deg' }] },
   sayTailLeft: { left: undefined, right: 14, marginLeft: 0 },
   crownAnchor: { position: 'absolute', top: -22, left: 0, right: 0, alignItems: 'center', zIndex: 2 },
   glint: { position: 'absolute', width: 10, height: 10, borderRadius: 5, backgroundColor: '#FFFFFF', boxShadow: '0 0 10px #FFFFFF' }, // theme-exempt: блик металла

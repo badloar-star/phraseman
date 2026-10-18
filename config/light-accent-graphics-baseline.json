@@ -24,7 +24,7 @@
     "components/ui/v2_sheet.tsx": 1,
     "components/ui/v2_ui.tsx": 2
   },
-  "deepTotal": 320,
+  "deepTotal": 319,
   "deepCounts": {
     "app/(tabs)/home.tsx": 4,
     "app/(tabs)/lessons.tsx": 6,
@@ -115,7 +115,6 @@
     "components/youtube/YoutubeChannelPickerSheet.tsx": 2,
     "components/youtube/YoutubePlaylistGridCard.tsx": 1,
     "components/youtube/YoutubeVideoCard.tsx": 1,
-    "components/youtube/YoutubeVideoGridCard.tsx": 1,
     "components/youtube/YoutubeVideoPhrases.tsx": 2
   }
 }

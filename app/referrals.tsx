@@ -39,6 +39,7 @@ import type { RouletteWinData } from '../components/roulette_win_modal';
 import RouletteWinCelebration from '../components/roulette_win_celebration';
 import ReferralFriendRewardModal from '../components/referral_friend_reward_modal';
 import { useTheme } from '../components/ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -132,7 +133,10 @@ export default function ReferralsScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ enter?: string; source?: string }>();
   const closeFallback = params.source === 'settings' ? '/(tabs)/settings' : '/(tabs)/friends';
-  const { theme: t, f, ds } = useTheme();
+  const { theme: t, f, ds, liquidGlassThemeId } = useTheme();
+  // зачем ([BLEND-1018B] 18.10): «Получить приз» без ключей — пара неактивной кнопки темы (buttonFillDisabled/buttonInkDisabled),
+  // а не opaqueSheet + mutedText под прозрачностью 0,5: та давала заливку 1,00:1 к карточке и подпись 2,12:1 — кнопка исчезала.
+  const spinGlass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = makeL(lang as Lang);
   const renderToken = captureAccountGeneration();
@@ -767,13 +771,13 @@ export default function ReferralsScreen() {
                   }
                   void onSpin();
                 }}
-                style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, backgroundColor: spinCredits > 0 || spinning ? t.accent : t.bgSurface2 /* light-accent-ok: кнопка с подписью textOnGold на accent */, opacity: spinning ? 0.84 : spinCredits <= 0 ? 0.5 : 1 }}
+                style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, backgroundColor: spinCredits > 0 || spinning ? t.accent : spinGlass.buttonFillDisabled /* light-accent-ok: кнопка с подписью textOnGold на accent */, opacity: spinning ? 0.84 : 1 }}
               >
                 {/* зачем: владелец (2026-07-26) — никакого спиннера на «Получить приз»:
                     отклик на нажатие — мгновенное вращение дуги, кнопка лишь меняет
                     подпись на «Открываем…» и остаётся в цвете действия. */}
-                <Ionicons name="sparkles" size={18} color={spinCredits > 0 || spinning ? t.textOnGold : t.textMuted} />
-                <Text style={{ color: spinCredits > 0 || spinning ? t.textOnGold : t.textMuted, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
+                <Ionicons name="sparkles" size={18} color={spinCredits > 0 || spinning ? t.textOnGold : spinGlass.buttonInkDisabled} />
+                <Text style={{ color: spinCredits > 0 || spinning ? t.textOnGold : spinGlass.buttonInkDisabled, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                   {spinCtaLabel}
                 </Text>
               </KitTouchable>

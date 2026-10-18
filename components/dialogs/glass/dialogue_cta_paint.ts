@@ -16,6 +16,6 @@ type CtaTokens = Readonly<{
 export function dialogueCtaPaint(g: CtaTokens, extraSurfaces: readonly string[] = []): Readonly<{ fill: string; ink: string; texture: boolean }> {
   // зачем (Ревизор 18.10, DialogGoalsSheet/DialogWhySheet): кнопка в шторке лежит на opaqueSheet — шторка передаёт свою поверхность сюда, правило то же
   const surfaces = [g.bg, g.plateFillFrom, g.plateFillTo, ...extraSurfaces];
-  const merges = !!g.isLight && Math.min(...surfaces.map((s) => colorContrast(g.accent, s))) < 3;
-  return merges ? { fill: g.ctaFill, ink: g.ctaFillInk, texture: false } : { fill: g.accent, ink: g.accentInk, texture: true };
+  const merges = !!g.isLight && Math.min(...surfaces.map((s) => colorContrast(g.accent, s))) < 3; // light-accent-ok: сравнение сырого accent, чтобы заменить его там, где сливается
+  return merges ? { fill: g.ctaFill, ink: g.ctaFillInk, texture: false } : { fill: g.accent, ink: g.accentInk, texture: true }; // light-accent-ok: accent берётся только когда держит ≥ 3 к фону и плашкам
 }

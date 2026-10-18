@@ -1136,8 +1136,11 @@ function FlashcardListItemImpl({
                 testID={`fc-video-card-save-${item.id}`}
                 save={videoCardSave}
                 card={item}
-                ink={t.accentText}
-                backgroundColor={`${t.bgSurface}F0`}
+                // зачем ([BLEND-1018B] 18.10): значок на buttonFill — text (accentText давал до 2,89:1), сохранённый — accentGraphic
+                ink={g.text}
+                savedInk={g.accentGraphic}
+                // зачем ([BLEND-1018B] 18.10): bgSurface(=opaqueControl)×0,94 на карточке — до 1,16:1, кнопка сливалась; buttonFill держит тон ≥ 1,5
+                backgroundColor={g.buttonFill}
                 boxShadow={nestedBoxShadow(g)}
                 size={32}
               />

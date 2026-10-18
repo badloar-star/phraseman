@@ -80,7 +80,7 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
       {/* зачем (владелец 18.10): строка меты — «когда · просмотры» слева, закладка в правом краю; тап по тексту меты открывает ролик как и по обложке. */}
       <View style={styles.metaRow}>
         <Pressable accessible={false} importantForAccessibility="no" onPress={onWatch} style={styles.metaTap}>
-          {metaParts.length > 0 ? <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.meta, { color: g.accentText }]}>{metaParts.join(' · ')}</Text> : null}
+          {metaParts.length > 0 ? <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.meta, { color: g.accentTextSafe }]}>{metaParts.join(' · ')}</Text> : null}
         </Pressable>
         {onToggleSave ? (
           <Pressable
@@ -91,9 +91,9 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
             hitSlop={8}
             onPressIn={() => hapticTap()}
             onPress={onToggleSave}
-            style={({ pressed }) => [styles.bookmark, { backgroundColor: saved ? g.accent : g.opaqueControl }, pressed && styles.bookmarkPressed]}
+            style={({ pressed }) => [styles.bookmark, { backgroundColor: saved ? g.ctaFill : g.buttonFill }, pressed && styles.bookmarkPressed]}
           >
-            <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={16} color={saved ? g.accentInk : g.secondary} />
+            <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={16} color={saved ? g.ctaFillInk : g.text} />
           </Pressable>
         ) : null}
       </View>
@@ -125,5 +125,6 @@ const baseStyles = StyleSheet.create({
   bookmarkPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
   // владелец 11.10: название 13/17 вес 600 (2 строки, минимум две — ряды одной высоты), мета 11/14.
   title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },
-  meta: { fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85, minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
+  // зачем ([BLEND-1018B] 18.10): мета accentText ×0,85 давала до 3,80:1 к странице — accentTextSafe без прозрачности (≥ 4,5); закладка: buttonFill (opaqueControl = фон страницы в светлых), сохранённая — ctaFill/ctaFillInk
+  meta: { fontSize: 11, lineHeight: 14, fontWeight: '400', minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
 });

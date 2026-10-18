@@ -208,8 +208,10 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
                       save={cardSave}
                       card={card}
                       ink={g.text}
-                      savedInk={g.accentText}
-                      backgroundColor={g.dividerTone}
+                      // зачем ([BLEND-1018B] 18.10): сохранённый значок на buttonFill — accentGraphic (accentText давал до 2,89:1)
+                      savedInk={g.accentGraphic}
+                      // зачем ([BLEND-1018B] 18.10): вуаль dividerTone на плашке — 1,12:1, кнопка сливалась; buttonFill держит тон ≥ 1,5
+                      backgroundColor={g.buttonFill}
                       boxShadow={nestedBoxShadow(g)}
                     />
                     <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={6} onPress={() => onSpeak(card.en)} style={({ pressed }) => [styles.vol, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }, pressed && styles.pressed]}>

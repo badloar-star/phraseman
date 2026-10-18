@@ -139,7 +139,9 @@ describe('referral reward animation recovery', () => {
     // зачем (Макеты 18.10, кадр referral_01d66): при 0 ключей кнопка приглушена (opacity 0.5) и по тапу открывает «Как это работает»,
     // а не молчит; нажатие блокирует только идущий спин. onSpin по-прежнему сам выходит при spinCredits <= 0.
     expect(REFERRALS).toContain('disabled={spinning}');
-    expect(REFERRALS).toContain("opacity: spinning ? 0.84 : spinCredits <= 0 ? 0.5 : 1");
+    // зачем ([BLEND-1018B] 18.10): «приглушена» — парой неактивной кнопки темы, а не opacity 0,5 (та давала заливку 1,00:1 и подпись 2,12:1)
+    expect(REFERRALS).toContain('spinGlass.buttonFillDisabled');
+    expect(REFERRALS).toContain('spinGlass.buttonInkDisabled');
     expect(REFERRALS).toContain('setHowSheetOpen(true);');
     expect(REFERRALS).toContain('if (spinningRef.current || spinCredits <= 0) return;');
     expect(REFERRALS).toContain("L('Получить приз'");

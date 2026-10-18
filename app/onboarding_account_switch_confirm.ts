@@ -63,9 +63,9 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
     return triLang(lang, {
       ru: 'Смену аккаунта доделаем сами — это займёт немного времени.',
       uk: 'Зміну акаунта доробимо самі — це займе трохи часу.',
-      en: 'We’ll finish switching accounts on our own — it will take a moment.',
-      es: 'Terminaremos el cambio de cuenta por nuestra cuenta; tardará un momento.',
-      'pt-BR': 'Vamos concluir a troca de conta sozinhos — leva só um momento.',
+      en: 'We’ll finish switching accounts automatically — it will take a moment.',
+      es: 'Terminaremos el cambio de cuenta automáticamente; tardará un momento.',
+      'pt-BR': 'Vamos concluir a troca de conta automaticamente — leva só um momento.',
       vi: 'Chúng tôi sẽ tự hoàn tất việc đổi tài khoản — chỉ mất một chút thời gian.',
       id: 'Kami akan menyelesaikan pergantian akun sendiri — butuh sebentar.',
       tr: 'Hesap değişimini kendimiz tamamlayacağız — biraz zaman alacak.',

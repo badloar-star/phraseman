@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { hasClaimedPermission } from './admin/permissions';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { recordAiOperationUsage, type AiOperationUsage } from './ai_operation_billing';
+import { reserveDailySpend } from './spend_cap';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
@@ -82,6 +83,8 @@ export function splitDirectorDigestText(text: string): readonly string[] {
 }
 
 async function requestSpeech(input: DirectorDigestSpeechInput): Promise<DirectorDigestAudioClip> {
+  // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+  await reserveDailySpend({ fn: 'adminDirectorDigestAudio', kind: 'tts' });
   const response = await fetch(OPENAI_SPEECH_URL, {
     method: 'POST',
     headers: { Authorization: `Bearer ${OPENAI_API_KEY.value().trim()}`, 'Content-Type': 'application/json' },

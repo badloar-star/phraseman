@@ -69,6 +69,7 @@ import {
   resolveDialogGatesCached,
   resolveDialogIdentityCached,
 } from './premium_dialog_fastpath';
+import { reserveDailySpend } from './spend_cap';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export { createLiveReplyPublisher, extractPartialReply };
@@ -496,6 +497,8 @@ export const premiumDialogStream = onRequest({
             { role: 'system', content: DIALOG_REPEAT_RETRY_INSTRUCTION },
             ...messages.slice(1),
           ];
+      // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+      await reserveDailySpend({ fn: 'premiumDialogStream', kind: 'chat', model: dialogModel });
       const upstream = await fetch(OPENAI_CHAT_URL, {
         method: 'POST',
         headers: {

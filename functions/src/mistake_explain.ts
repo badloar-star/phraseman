@@ -42,6 +42,7 @@ import {
   OutputValidationRetriesExhausted,
   type MistakeOpenAiUsage,
 } from './explain/mistake_output_retry';
+import { reserveDailySpend } from './spend_cap';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -565,6 +566,8 @@ async function requestGeneration(
 ): Promise<RawGeneration> {
   let response: Response;
   try {
+    // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+    await reserveDailySpend({ fn: 'mistakeExplain', kind: 'chat', model, inTokens: 1500, outTokens: 500 });
     response = await fetch(OPENAI_CHAT_URL, {
       method: 'POST',
       headers: {

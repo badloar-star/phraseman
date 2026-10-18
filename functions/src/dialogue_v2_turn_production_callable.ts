@@ -72,6 +72,7 @@ import {
   logDialogueV2Warm,
 } from './dialogue_v2_warm';
 import { enforceCallerRateWindow } from './caller_rate_window';
+import { reserveDailySpend } from './spend_cap';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
@@ -435,6 +436,8 @@ export function createDialogueV2ProviderGenerator(
         throw new Error('provider_configuration_failure');
       }
 
+      // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+      await reserveDailySpend({ fn: 'dialogueV2TextTurn', kind: 'chat', model: configuration.model });
       const response = await beforeDeadline(runtime.fetchImpl(OPENAI_CHAT_URL, {
         method: 'POST',
         headers: {

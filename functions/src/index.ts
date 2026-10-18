@@ -1187,3 +1187,5 @@ export {
 export {
   adminAlertDailyDigestsCron,
 } from "./admin_alert_digests";
+// зачем (владелец 18.10: «не больше 20 $ в день в принципе»): аварийный выключатель платных функций по бюджету Cloud Billing (Pub/Sub billing-budget-alerts).
+export { spendCapBillingKillSwitch } from "./spend_cap_billing_kill_switch";

@@ -38,6 +38,7 @@ import {
   type CardTtsLanguage,
 } from './card_tts_core';
 import { CARD_TTS_JOBS, enqueueCardTtsJob, isValidCardTtsPackId } from './card_tts_jobs';
+import { reserveDailySpend } from './spend_cap';
 
 const REGION = 'us-central1';
 const COMMUNITY_PACKS = 'community_packs';
@@ -98,6 +99,8 @@ export async function requestCardSpeech(request: CardTtsSpeechRequest): Promise<
   const startedAt = Date.now();
   let response: Response;
   try {
+    // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+    await reserveDailySpend({ fn: 'cardTts', kind: 'tts' });
     response = await fetch(OPENAI_SPEECH_URL, {
       method: 'POST',
       headers: {

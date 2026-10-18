@@ -18,6 +18,7 @@ import {
   parseYoutubeVideoSnapshot,
   type YoutubeVideoSnapshot,
 } from '../../shared/youtube_catalog_contract';
+import { reserveDailySpend } from './spend_cap';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -567,6 +568,8 @@ export const adminParseVideoPhraseDocument = onCall({ region: REGION, enforceApp
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
   let response: Response;
   try {
+    // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+    await reserveDailySpend({ fn: 'adminVideoPhrases', kind: 'chat', model: config.model, inTokens: 8000, outTokens: 3000 });
     response = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' }, body: JSON.stringify({ model: config.model, temperature: 0, max_tokens: VIDEO_PHRASES_MAX_OUTPUT_TOKENS, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'Извлеки из документа фразы для изучения языка. Верни JSON {"phrases":[{"phrase":"...","translation":"...","explanation":"..."}]}. Только phrase, translation, explanation. Не добавляй examples, grammar, exercises. Сохрани порядок. Не выдумывай отсутствующие значения.' }, { role: 'user', content: sourceText }] }), signal: AbortSignal.timeout(PAID_AI_FETCH_TIMEOUT_MS.adminVideoPhrases) });
   } catch (error) {
     console.error('[AI-LIMIT] adminParseVideoPhraseDocument provider fetch failed', { reason: paidAiFetchFailureReason(error), timeoutMs: PAID_AI_FETCH_TIMEOUT_MS.adminVideoPhrases });

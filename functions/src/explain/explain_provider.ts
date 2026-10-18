@@ -9,6 +9,7 @@
  * caller (explain_phrase.ts) owns billing/Firestore and the judge can reuse this for its own call.
  */
 import { HttpsError } from 'firebase-functions/v2/https';
+import { reserveDailySpend } from '../spend_cap';
 
 import { swallowed } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
@@ -101,6 +102,8 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     await beforeRequest?.(attempt);
     try {
+      // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+      await reserveDailySpend({ fn: 'explainProvider', kind: 'chat', model: String((body as { model?: unknown }).model ?? ''), inTokens: 1500, outTokens: 600 });
       response = await fetch(OPENAI_CHAT_URL, {
         method: 'POST',
         headers: {

@@ -7,6 +7,7 @@ import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
 import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
+import { reserveDailySpend } from './spend_cap';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
@@ -168,6 +169,8 @@ async function withFreshPreviewUrls(job: Row): Promise<Row> {
 async function generateImage(apiKey: string, job: ReturnType<typeof normalizeAssetJobInput>, timeoutMs: number, model: unknown): Promise<Buffer> {
   let response: Response;
   try {
+    // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+    await reserveDailySpend({ fn: 'adminAssetStudio', kind: 'image' });
     response = await fetch('https://api.openai.com/v1/images/generations', {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },

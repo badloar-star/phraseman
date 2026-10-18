@@ -46,6 +46,7 @@ import {
   resolveDialogGatesCached,
   resolveDialogIdentityCached,
 } from './premium_dialog_fastpath';
+import { reserveDailySpend } from './spend_cap';
 
 import { reportSwallowedServer, swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 // A targeted/isolated deployment can load this module directly instead of lib/index.js.
@@ -1270,6 +1271,8 @@ export const premiumDialogSend = onCall({
             },
             ...messages.slice(1),
           ];
+      // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+      await reserveDailySpend({ fn: 'premiumDialogSend', kind: 'chat', model: dialogModel });
       const response = await fetch(OPENAI_CHAT_URL, {
         method: 'POST',
         headers: {
@@ -1769,6 +1772,8 @@ export const premiumDialogTranslate = onCall({
   let json: OpenAIChatResponse;
   let translation: string;
   try {
+    // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+    await reserveDailySpend({ fn: 'premiumDialogTranslate', kind: 'chat', model: translateModel, inTokens: 800, outTokens: 200 });
     const response = await fetch(OPENAI_CHAT_URL, {
       method: 'POST',
       headers: {

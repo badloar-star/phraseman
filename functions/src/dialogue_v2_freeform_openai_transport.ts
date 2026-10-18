@@ -12,6 +12,7 @@ import {
   reportDialogueV2Usage,
   type DialogueV2UsageReporter,
 } from './dialogue_v2_usage_billing';
+import { reserveDailySpend } from './spend_cap';
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const PROVIDER_MAX_TOKENS = 500;
@@ -192,6 +193,8 @@ export function createDialogueV2FreeformOpenAiTransport(
       const model = safeModel(await beforeDeadline(resolveModel()));
       if (!model || abortController.signal.aborted) throw fixedFailure();
 
+      // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+      await reserveDailySpend({ fn: 'dialogueV2FreeformTurn', kind: 'chat', model });
       const response = await beforeDeadline(fetchImpl(OPENAI_CHAT_URL, {
         method: 'POST',
         redirect: 'error',

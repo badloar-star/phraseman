@@ -30,6 +30,7 @@ import {
   makeFirestoreDialogueV2MemoryRepository,
   persistDialogueV2CompletionMemory,
 } from './dialogue_v2_memory_writer';
+import { reserveDailySpend } from './spend_cap';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -691,6 +692,8 @@ export const premiumDialogReview = onCall({
     let json: OpenAIChatResponse;
     let review: DialogReviewResult | null;
     try {
+      // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+      await reserveDailySpend({ fn: 'premiumDialogReview', kind: 'chat', model: dialogModel, inTokens: 4000, outTokens: 1200 });
       const response = await fetch(OPENAI_CHAT_URL, {
         method: 'POST',
         headers: {

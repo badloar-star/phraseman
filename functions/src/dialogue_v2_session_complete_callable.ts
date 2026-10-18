@@ -47,6 +47,7 @@ import {
 import { resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 import { enforceCallerRateWindow } from './caller_rate_window';
+import { reserveDailySpend } from './spend_cap';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
@@ -426,6 +427,8 @@ export function createDialogueV2CompletionAssessmentGenerator(
           || input.expiresAtMs - egressNowMs > 24 * 60 * 60 * 1_000) {
           throw new Error('completion_context_expired');
         }
+        // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+        await reserveDailySpend({ fn: 'dialogueV2SessionComplete', kind: 'chat', model, inTokens: 4000, outTokens: 1200 });
         const response = await beforeDeadline(runtime.fetchImpl(OPENAI_CHAT_URL, {
           method: 'POST',
           headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },

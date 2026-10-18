@@ -18,6 +18,8 @@ import { HttpsError } from 'firebase-functions/v2/https';
 export const CALLER_RATE_WINDOW_COLLECTION = 'callable_rate_windows';
 const LOG = '[ABUSE-LIMIT]';
 const DEFAULT_WINDOW_MS = 60 * 60 * 1000;
+/** Счётчик не держит дорогой вызов дольше 1,5 с: дольше — пропуск с журналом (fail-open). */
+const DB_TIMEOUT_MS = 1_500;
 
 /** IP вызывающего: первый адрес из x-forwarded-for, иначе rawRequest.ip; нет — пусто (тогда только uid). */
 export function callerIpFromRawRequest(rawRequest: unknown): string {
@@ -46,6 +48,8 @@ export type CallerRateWindowInput = Readonly<{
 
 /** Бросает HttpsError('resource-exhausted', `${scope}_rate_limited`) при превышении; иначе засчитывает вызов. */
 export async function enforceCallerRateWindow(input: CallerRateWindowInput): Promise<void> {
+  // зачем: в модульных тестах функций Firestore поднят без эмулятора — окно там не участвует, если тест не передал свою базу.
+  if (!input.db && typeof process !== 'undefined' && process.env.JEST_WORKER_ID) return;
   const windowMs = input.windowMs ?? DEFAULT_WINDOW_MS;
   const now = input.nowMs ?? Date.now();
   const ip = callerIpFromRawRequest(input.rawRequest);
@@ -65,7 +69,10 @@ export async function enforceCallerRateWindow(input: CallerRateWindowInput): Pro
   }
   let refused: { kind: 'u' | 'ip'; count: number; max: number } | null = null;
   try {
-    await db.runTransaction(async (tx) => {
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('caller_rate_window_timeout')), DB_TIMEOUT_MS); });
+    deadline.catch(() => undefined); // зачем: синхронный сбой транзакции не должен оставить таймер без обработчика
+    await Promise.race([deadline, db.runTransaction(async (tx) => {
       const refs = checks.map((check) => db.collection(CALLER_RATE_WINDOW_COLLECTION).doc(check.key));
       const snaps = await Promise.all(refs.map((ref) => tx.get(ref)));
       const states = snaps.map((snap) => {
@@ -89,7 +96,7 @@ export async function enforceCallerRateWindow(input: CallerRateWindowInput): Pro
           expiresAt: admin.firestore.Timestamp.fromMillis(states[index]!.windowStartMs + windowMs * 2),
         });
       });
-    });
+    })]).finally(() => { if (timer) clearTimeout(timer); });
   } catch (error: unknown) {
     console.warn(LOG, JSON.stringify({ scope: input.scope, decision: 'fail_open', reason: 'transaction_failed', detail: error instanceof Error ? error.message.slice(0, 120) : String(error) }));
     return;

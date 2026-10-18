@@ -1088,6 +1088,14 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Ядро 18.10 ([SPEND-CAP], functions/src/spend_cap.ts): дневной потолок расходов и флаг «платное выключено» — только сервер.
+    match /spend_cap_config/{document=**} {
+      allow read, write: if false;
+    }
+    match /spend_daily_shards/{document=**} {
+      allow read, write: if false;
+    }
+
     // Ядро 18.10 ([ABUSE-LIMIT], functions/src/caller_rate_window.ts): окна вызовов на uid/IP (хеши) — только сервер.
     match /callable_rate_windows/{document=**} {
       allow read, write: if false;
@@ -3422,6 +3430,8 @@ service cloud.firestore {
         // onboarding_level_daily своим явным правилом выше; писать в них может только сервер.
         && collection != 'auth_recovery_hint_rate_limits'
         && collection != 'callable_rate_windows'
+        && collection != 'spend_cap_config'
+        && collection != 'spend_daily_shards'
         && collection != 'onboarding_level_daily'
         && collection != 'onboarding_level_counted'
         // Raw Dialogue V2 session context is callable/Admin-SDK only. This

@@ -10,6 +10,7 @@ import {
   type V2VoiceTtsWorkOrderHandleV1,
 } from "./v2_voice_tts_work_order_v1";
 import { validateV2VoiceMp3CodecV1 } from "./v2_voice_mp3_codec_v1";
+import { reserveDailySpend } from '../spend_cap';
 
 export const V2_OPENAI_VOICE_TTS_ENDPOINT_V1 =
   "https://api.openai.com/v1/audio/speech" as const;
@@ -158,6 +159,8 @@ function validateItem(item: V2VoiceTtsWorkItemV1): void {
 async function defaultTransport(
   input: Parameters<V2OpenAiVoiceTtsTransportV1["request"]>[0],
 ): Promise<V2OpenAiVoiceTtsTransportResponseV1> {
+  // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+  await reserveDailySpend({ fn: 'contentFactoryVoiceTts', kind: 'tts' });
   const response = await fetch(input.endpoint, {
     method: "POST",
     headers: {

@@ -185,6 +185,13 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Тост «Не удалось поставить лайк»', what: 'текст и подпись к карточке/плитке тоста', min: TEXT, after: (t) => Math.min(...['opaqueCard', 'opaqueControl'].flatMap((k) => [ratio(solid(t.text!), solid(t[k]!)), ratio(solid(t.secondary!), solid(t[k]!))])) },
   { element: 'Тост «Не удалось поставить лайк»', what: 'значок ошибки (bad) к карточке', min: GRAPHIC, after: (t) => ratio(solid(t.bad!), solid(t.opaqueCard!)) },
   { element: 'Диалоги: счётчик «0 /19»', what: 'число (text) и «/19» (secondary) к плашке', min: TEXT, after: (t) => Math.min(...['plateFillFrom', 'plateFillTo'].flatMap((k) => [ratio(solid(t.text!), solid(t[k]!)), ratio(solid(t.secondary!), solid(t[k]!))])) },
+  // ── последние коммиты 18.10 07:00: тост рубежа Моментов (43fba2781: cardRaised = opaqueControl, p.text / p.textSecondary), плашка-подсказка m08 (bgSurface2 = opaqueSheet, текст g.text), окно согласия на ИИ (6962201b0: «Не сейчас» на buttonFill по opaqueSheet)
+  { element: 'Тост рубежа серии', what: 'заголовок (text) и подзаголовок (secondary) к плашке opaqueControl', min: TEXT, after: (t) => Math.min(ratio(solid(t.text!), solid(t.opaqueControl!)), ratio(solid(t.secondary!), solid(t.opaqueControl!))) },
+  { element: 'Тост рубежа серии', what: 'плашка (opaqueControl) к фону — тон (отделена тенью)', min: TONE, floor: 1.0, after: (t) => Math.min(ratio(solid(t.opaqueControl!), solid(t.bg!)), ratio(solid(t.opaqueControl!), solid(t.bgTop!))) },
+  { element: 'Комбо урока: плашка m08', what: 'текст (text) к плашке bgSurface2 = opaqueSheet', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.opaqueSheet!)) },
+  { element: 'Окно согласия на ИИ', what: 'абзац (text, 700) к листу opaqueSheet', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.opaqueSheet!)) },
+  { element: 'Окно согласия на ИИ', what: '«Не сейчас»: плашка buttonFill к листу — тон', min: TONE, after: (t) => ratio(solid(t.buttonFill!), solid(t.opaqueSheet!)) },
+  { element: 'Окно согласия на ИИ', what: '«Не сейчас»: подпись (text) к buttonFill', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.buttonFill!)) },
   // ── моменты серии (StreakMilestoneScreen): ореол шире и тусклее (095137518), золото d1000 = warn, звёзды d365 (f83d12491)
   { element: 'Момент серии', what: 'надпись-оверлайн (accentTextSafe) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.accentTextSafe!, t) },
   { element: 'Момент серии', what: 'заголовок (text) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.text!, t) },

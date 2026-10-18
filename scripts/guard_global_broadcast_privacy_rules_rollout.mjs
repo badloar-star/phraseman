@@ -63,7 +63,7 @@ async function verifyExactHomePollOverlay() {
   const rulesPath = path.join(outputDir, 'poll-overlay-firestore.rules');
   const configOutputPath = path.join(outputDir, 'poll-overlay-firebase.json');
   fs.writeFileSync(rulesPath, result.overlaySource, 'utf8');
-  fs.writeFileSync(configOutputPath, JSON.stringify({ firestore: { rules: '.codex-tmp/handoff-134/poll-overlay-firestore.rules' } }, null, 2) + '\n', 'utf8');
+  fs.writeFileSync(configOutputPath, JSON.stringify({ firestore: { rules: 'poll-overlay-firestore.rules' } }, null, 2) + '\n', 'utf8');
   process.stdout.write(`[home-poll-v2-rules] READY: live ruleset=${release.rulesetName} liveSha256=${manifest.expectedLiveSha256} overlaySha256=${manifest.expectedOverlaySha256} addedLines=13 output=${rulesPath}\n`);
 }
 

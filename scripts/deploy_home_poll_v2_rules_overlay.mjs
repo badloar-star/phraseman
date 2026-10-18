@@ -38,7 +38,7 @@ if (sha256(preparedRules) !== manifest.expectedOverlaySha256) {
   throw new Error('Pre-deploy prepared Rules hash mismatch.');
 }
 const generatedConfig = JSON.parse(fs.readFileSync(path.join(repoRoot, '.codex-tmp', 'handoff-134', 'poll-overlay-firebase.json'), 'utf8'));
-const exactConfig = { firestore: { rules: '.codex-tmp/handoff-134/poll-overlay-firestore.rules' } };
+const exactConfig = { firestore: { rules: 'poll-overlay-firestore.rules' } };
 if (JSON.stringify(generatedConfig) !== JSON.stringify(exactConfig)) {
   throw new Error('Pre-deploy Firebase config is not the fixed Rules-only config.');
 }

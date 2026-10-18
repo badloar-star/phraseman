@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "is melting / is not melting / Is it melting?",
+    "uk": "is melting / is not melting / Is it melting?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кубики становятся меньше",
+        "uk": "Кубики стають меншими"
+      },
+      "bodyByLocale": {
+        "ru": "В кафе вы добавили лёд в стакан воды и разговорились. Теперь кубики заметно меньше. Ice — «лёд». The ice is melting — «Лёд тает». Знакомое melt означает «таять, плавиться», а is melting показывает процесс сейчас. Ice здесь — вещество, поэтому is. Лёд уменьшился сам: никто не отпил кубик.",
+        "uk": "У кафе ви додали лід у склянку води й заговорилися. Тепер кубики помітно менші. Ice — «лід». The ice is melting — «Лід тане». Знайоме melt означає «танути, плавитися», а is melting показує процес зараз. Ice тут — речовина, тому is. Лід зменшився сам: ніхто не відпив кубик."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-29:intro1:r1",
+              "text": "The ice is melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro1:r2",
+              "text": "The ice are melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro1:r3",
+              "text": "The ice is melt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-29:intro1:r1",
+              "text": "The ice is melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro1:r2",
+              "text": "The ice are melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro1:r3",
+              "text": "The ice is melt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Глазурь ещё не готова",
+        "uk": "Глазур іще не готова"
+      },
+      "bodyByLocale": {
+        "ru": "Вы готовите украшение для торта. Друг наблюдает за миской, в которой постепенно плавятся кусочки шоколада, а вы пока раскладываете тарелки. Chocolate — «шоколад». Уточните у друга: Is the chocolate melting? — «Шоколад плавится?» В вопросе is стоит перед chocolate. Вы спрашиваете о процессе сейчас, а не о том, любит ли друг шоколад.",
+        "uk": "Ви готуєте оздобу для торта. Друг спостерігає за мискою, у якій поступово плавляться шматочки шоколаду, а ви поки розставляєте тарілки. Chocolate — «шоколад». Уточніть у друга: Is the chocolate melting? — «Шоколад плавиться?» У запитанні is стоїть перед chocolate. Ви питаєте про процес зараз, а не про те, чи любить друг шоколад."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-29:intro2:r1",
+              "text": "Is the chocolate melting?"
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro2:r2",
+              "text": "Are the chocolate melting?"
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro2:r3",
+              "text": "Is the chocolate melt?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-29:intro2:r1",
+              "text": "Is the chocolate melting?"
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro2:r2",
+              "text": "Are the chocolate melting?"
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro2:r3",
+              "text": "Is the chocolate melt?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Демонстрация у свечного мастера",
+        "uk": "Демонстрація у свічкаря"
+      },
+      "bodyByLocale": {
+        "ru": "В мастерской свечей преподаватель показывает две чаши: в нагретой воск становится жидким, а в холодной остаётся твёрдым. Wax — «воск». Указывая на холодную чашу, скажите: The wax is not melting — «Воск не плавится». Not после is отрицает процесс сейчас. Другая чаша может выглядеть иначе — мы говорим именно о той, на которую показываем.",
+        "uk": "У майстерні свічок викладач показує дві чаші: у нагрітій віск стає рідким, а в холодній залишається твердим. Wax — «віск». Указуючи на холодну чашу, скажіть: The wax is not melting — «Віск не плавиться». Not після is заперечує процес зараз. Інша чаша може виглядати інакше — ми говоримо саме про ту, на яку показуємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-29:intro3:r1",
+              "text": "The wax is not melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro3:r2",
+              "text": "The wax not melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro3:r3",
+              "text": "The wax is not melt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-29:intro3:r1",
+              "text": "The wax is not melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro3:r2",
+              "text": "The wax not melting."
+            },
+            {
+              "responseId": "en:lesson-09:session-29:intro3:r3",
+              "text": "The wax is not melt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "57f8983a2474a3dab363a808619cde0231ea4c23a1a9211646e295e99e93c972"
+}

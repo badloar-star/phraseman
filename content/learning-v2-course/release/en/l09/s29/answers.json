@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-29:word:ice",
+    "correctText": "ice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i01",
+    "correctText": "The ice is melting.",
+    "correctResponseId": "en:lesson-09:session-29:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i02",
+    "correctText": "The ice is melting now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i04",
+    "correctText": "en:lesson-09:session-29:i04:p1=ice\nen:lesson-09:session-29:i04:p2=melt\nen:lesson-09:session-29:i04:p3=cold\nen:lesson-09:session-29:i04:p4=water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i05",
+    "correctText": "Is the ice melting?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:word:chocolate",
+    "correctText": "chocolate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i06",
+    "correctText": "The chocolate is melting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:word:wax",
+    "correctText": "wax",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i07",
+    "correctText": "The wax is not melting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i08",
+    "correctText": "melting",
+    "correctResponseId": "en:lesson-09:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i09",
+    "correctText": "Is the wax melting?",
+    "correctResponseId": "en:lesson-09:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i10",
+    "correctText": "en:lesson-09:session-29:i10:p1=ice\nen:lesson-09:session-29:i10:p2=chocolate\nen:lesson-09:session-29:i10:p3=wax\nen:lesson-09:session-29:i10:p4=melt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i11",
+    "correctText": "I often eat chocolate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:word:popsicle",
+    "correctText": "popsicle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i12",
+    "correctText": "The popsicle is melting.",
+    "correctResponseId": "en:lesson-09:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i13",
+    "correctText": "The popsicle is melting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-09:session-29:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i15",
+    "correctText": "Don't touch the wax, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i16",
+    "correctText": "en:lesson-09:session-29:i16:p1=ice\nen:lesson-09:session-29:i16:p2=chocolate\nen:lesson-09:session-29:i16:p3=wax\nen:lesson-09:session-29:i16:p4=popsicle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-29:i17",
+    "correctText": "The popsicle is not melting.",
+    "correctResponseId": null
+  }
+]

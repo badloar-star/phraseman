@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-12:intro1:r2": {
-          "ru": "Перед `paint` здесь не нужно `am`.",
-          "uk": "Перед `paint` тут не потрібно `am`."
+          "ru": "Здесь действие, поэтому перед paint не нужно am.",
+          "uk": "Тут дія, тому перед paint не потрібно am."
         },
         "en:lesson-06:session-12:intro1:r3": {
-          "ru": "После `I` — `paint`, без `s`.",
-          "uk": "Після `I` — `paint`, без `s`."
+          "ru": "После I слово остаётся paint, без s.",
+          "uk": "Після I слово лишається paint, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-12:intro2:r2": {
-          "ru": "Одна тетрадь: `is`.",
-          "uk": "Один зошит: `is`."
+          "ru": "После they слово остаётся paint, без s.",
+          "uk": "Після they слово лишається paint, без s."
         },
         "en:lesson-06:session-12:intro2:r3": {
-          "ru": "`empty` — пустая; личная — `private`.",
-          "uk": "`empty` — порожній; особистий — `private`."
+          "ru": "Мастерская — помещение, они внутри: нужно in, а не on.",
+          "uk": "Майстерня — приміщення, вони всередині: потрібно in, а не on."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-12:intro3:r2": {
-          "ru": "После `they` — `paint`, без `s`.",
-          "uk": "Після `they` — `paint`, без `s`."
+          "ru": "После is вещь не названа, поэтому нужно mine, а не my.",
+          "uk": "Після is річ не названа, тому потрібно mine, а не my."
         },
         "en:lesson-06:session-12:intro3:r3": {
-          "ru": "Говорим `They paint`, без `are`.",
-          "uk": "Кажемо `They paint`, без `are`."
+          "ru": "Палитра одна, поэтому нужно is, а не are.",
+          "uk": "Палітра одна, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "debaa462682f591867a4245e11462f0e37a7189369fc1d7fb8d209f30375f8ba"
+  "auxiliaryFingerprint": "9f2ec42e0c5818c6d26cda31623292de378759200f11054b5200ec245f3e860a"
 }

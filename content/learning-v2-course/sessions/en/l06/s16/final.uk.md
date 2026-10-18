@@ -1,133 +1,154 @@
-# Англійська · Урок 6 · Заняття 16 — Наші заняття
+# Англійська · Урок 6 · Заняття 16 — Наш клуб
 
-**Ситуація.** Анна показує Томові місця, куди ходить із друзями: клас англійської, майстерню та басейн. Том хоче долучитися до занять.
+**Ситуація.** Подруга показує вам клуб, куди ходить після роботи: там є заняття з англійської, живопису, басейн і хор. Ви хочете долучитися. Нової граматики немає: ви самі вибираєте, коли слово дії без s, а коли потрібні am, is і are.
 
-**Що ви опануєте:** розповісти про знайомі заняття від свого імені й від імені групи
-**Нові слова:** —
+**Що ви опануєте:** самому вибрати між «слово дії без s» і «am, is, are» та розповісти про заняття клубу
+**Нові слова:** hobby, class, member, club
+**Повертаються:** start, practice, learn, paint, swim, sing, choir, pool, badge
 
 ---
 
 ## Інтро 1
 
-### Вчимося й вправляємося
+### Перше заняття
 
-Повторимо `learn` — «вчитися», «вивчати» та `practice` — «практикуватися». `We learn English` — «Ми вивчаємо англійську». `We practice here` — «Ми практикуємося тут». Ці дії можуть відбуватися разом: дізнаємося нове й вправляємося. Після `I`, `you`, `we`, `they` не додаємо до цих слів `s`.
+Подруга веде вас по клубу й показує першу кімнату: там сидить група й вчить англійську. Ви хочете ходити сюди ж. Подруга каже, що заняття йдуть увечері. class — «заняття, урок; група, яка вчиться разом». We learn English in class — «Ми вивчаємо англійську на занятті».
 
-**Скажіть «Ми вивчаємо англійську».**
+**Подруга питає, чим ви будете займатися в цій кімнаті. Скажіть: «Ми вивчаємо англійську на занятті».**
 
-- ✅ **We learn English.**
-- ❌ We learns English. — *Після `we` — `learn`, без `s`.*
-- ❌ We are learn English. — *Кажемо `We learn`, без `are`.*
+- ✅ **We learn English in class.**
+- ❌ We learns English in class. — *Після we слово лишається learn, без s.*
+- ❌ We are learn English in class. — *Тут дія: We learn, без are.*
 
 ---
 
 ## Інтро 2
 
-### Малюємо, плаваємо, співаємо
+### Улюблена справа
 
-`paint` — «малювати фарбами», `swim` — «плавати», `sing` — «співати». `I paint at home` — «Я малюю фарбами вдома». `swimming pool` — «басейн»; знайоме `pool` теж підходить, коли зрозуміло, що йдеться про плавання. `We swim in this swimming pool` — «Ми плаваємо в цьому басейні». Співати в душі зручно. У басейні краще спочатку виринути.
+У коридорі подруга питає, чим ви займаєтеся для задоволення, а не по роботі. Ви любите плавати, а подруга сама плаває щосуботи. hobby — «захоплення»: справа, якою займаються у вільний час. Коли називаємо, що це, потрібен is: Swimming is my hobby.
 
-**Скажіть «Я малюю фарбами вдома».**
+**Подруга питає, яке ваше захоплення. Скажіть: «Плавання — моє захоплення».**
 
-- ✅ **I paint at home.**
-- ❌ I paints at home. — *Після `I` — `paint`, без `s`.*
-- ❌ I am paint at home. — *Кажемо `I paint`, без `am`.*
+- ✅ **Swimming is my hobby.**
+- ❌ Swimming my hobby. — *Без is речення не виходить: потрібно Swimming is.*
+- ❌ Swimming are my hobby. — *Swimming — одна справа, тому потрібно is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Починаємо з гарного настрою
+### Біля стійки клубу
 
-`start` — «починати», `laugh` — «сміятися». `We start at nine` — «Ми починаємо о дев’ятій». `They laugh a lot` — «Вони багато сміються». `We sing here` — «Ми співаємо тут». Перед годиною використовуємо `at`, а перед діями `start`, `laugh`, `sing` тут не ставимо `am`, `is`, `are`.
+Подруга підводить вас до стійки. Адміністратор усміхається й питає, чи будете ви учасником: тоді у вас буде свій значок. Достатньо лише сказати про це адміністратору. member — «учасник, член». Коли називаємо, хто ми, після I потрібно am: I am a member.
 
-**Скажіть «Ми починаємо о дев’ятій».**
+**Адміністратор питає, чи станете ви учасником. Скажіть: «Я учасник».**
 
-- ✅ **We start at nine.**
-- ❌ We starts at nine. — *Після `we` — `start`, без `s`.*
-- ❌ We are start at nine. — *Кажемо `We start`, без `are`.*
+- ✅ **I am a member.**
+- ❌ I a member. — *Без am речення не виходить: потрібно I am.*
+- ❌ I are a member. — *Після I потрібно am, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Ми вивчаємо англійську»**
+**1 · Картка слова — class**
+<!-- interaction_id: en:lesson-06:session-16:word:class; family: word_card -->
+> **class** — захоплення. This is my new hobby. — «Це моє нове захоплення». Про справу, якою займаються у вільний час.
+
+**2 · Подруга питає про сусідів по групі. Скажіть: «Вони вивчають англійську на занятті»**
 <!-- interaction_id: en:lesson-06:session-16:i01; family: phrase_builder -->
-Плитки: `English` `learn` `We` → **We learn English.**
+Плитки: `learn` `English` `in` `class` `They` `are` → **They learn English in class.**
+*(плитка `are` зайва: тут потрібно `learn` — `They learn English in class.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — club**
+<!-- interaction_id: en:lesson-06:session-16:word:club; family: word_card -->
+> **club** — клуб. They are in the club. — «Вони в клубі». Про місце, де люди зустрічаються заради спільної справи.
+
+**4 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-16:i02; family: listen_choose -->
-🔊 *practice* → **practice** · paint · swim
-- paint — *У записі перше слово — `practice`, а в цьому варіанті — `paint`.*
-- swim — *У записі перше слово — `practice`, а в цьому варіанті — `swim`.*
+🔊 *I paint at the club.* → **I paint at the club.** · I swim at the club. · We paint at the club.
+- I swim at the club. — *У записі дія — `paint`, малювати фарбами, а в цьому варіанті — `swim`, плавати.*
+- We paint at the club. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**3 · Скажіть «Вони багато сміються»**
+**5 · Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-16:i03; family: context_gap_grammar -->
-They ___ a lot. → **laugh** · laughs · are laugh
-- laughs — *Після `they` — `laugh`, без `s`.*
-- are laugh — *Кажемо `They laugh`, без `are`.*
+We ___ in the club. → **swim** · swims · are swim
+- swims — *Після `we` — `swim`, без `s`.*
+- are swim — *Кажемо `We swim`, без `are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-16:i04; family: speed_match -->
-practice — практикуватися · learn — вчитися · paint — малювати фарбами · swim — плавати
+hobby — захоплення · class — заняття, урок · member — учасник, член клубу · club — клуб
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — member**
+<!-- interaction_id: en:lesson-06:session-16:word:member; family: word_card -->
+> **member** — учасник, член. We are members. — «Ми учасники». Про людину, яка входить до групи чи клубу.
+
+**8 · Послухайте адміністратора й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-16:i05; family: listen_build_dictation -->
-🔊 *We start at nine.* Плитки: `nine` `at` `start` `We` → **We start at nine.**
+🔊 *You are a member of the club.* Плитки: `are` `a` `member` `of` `the` `club` `You` `is` → **You are a member of the club.**
+*(плитка `is` зайва: тут потрібно `are` — `You are a member of the club.`)*
 
-**6 · Скажіть «Я малюю фарбами вдома»**
+**9 · Картка слова — hobby**
+<!-- interaction_id: en:lesson-06:session-16:word:hobby; family: word_card -->
+> **hobby** — заняття, урок. We are in class. — «Ми на занятті». Про заняття або про групу, яка вчиться разом.
+
+**10 · Подруга питає, що це для вас. Скажіть: «Це моє захоплення»**
 <!-- interaction_id: en:lesson-06:session-16:i06; family: phrase_builder -->
-Плитки: `home` `at` `paint` `I` → **I paint at home.**
+Плитки: `hobby` `my` `is` `This` `are` → **This is my hobby.**
+*(плитка `are` зайва: тут потрібно `is` — `This is my hobby.`)*
 
-**7 · Використайте повну назву swimming pool: «Ми плаваємо в цьому басейні»**
+**11 · Адміністратор питає, де ви зараз. Скажіть: «Ми на занятті»**
 <!-- interaction_id: en:lesson-06:session-16:i07; family: scripted_repeat_compare -->
-🎙 **We swim in this swimming pool.**
+🎙 **We are in class.**
 
-**8 · Покажіть Томові місце для співу: «Ти співаєш тут»**
+**12 · Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-16:i08; family: context_gap_grammar -->
-You ___ here. → **sing** · sings · are sing
-- sings — *Після `you` — `sing`, без `s`.*
-- are sing — *Кажемо `You sing`, без `are`.*
+My hobby ___ simple. → **is** · are · have
+- are — *Захоплення одне, тому потрібно `is`, а не `are`.*
+- have — *`have` означає «маємо», а тут треба сказати, яке захоплення: `is simple`.*
 
-**9 · Послухайте, о котрій вони починають**
+**13 · Послухайте адміністратора**
 <!-- interaction_id: en:lesson-06:session-16:i09; family: listen_choose -->
-🔊 *They start at ten.* → **They start at ten.** · They start at nine. · They start at eight.
-- They start at nine. — *У записі останнє слово — `ten`, а в цьому варіанті — `nine`.*
-- They start at eight. — *У записі останнє слово — `ten`, а в цьому варіанті — `eight`.*
+🔊 *I am a member of the club.* → **I am a member of the club.** · I am a member of the class. · We are members of the club.
+- I am a member of the class. — *У записі останнє слово — `club`, клуб, а в цьому варіанті — `class`, заняття.*
+- We are members of the club. — *У записі говорить одна людина, `I am a member`, а в цьому варіанті — `We are members`, кілька.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-16:i10; family: speed_match -->
-laugh — сміятися · sing — співати · start — починати · swimming pool — басейн
+member — учасник, член клубу · club — клуб · hobby — захоплення · class — заняття, урок
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-16:i11; family: listen_build_dictation -->
-🔊 *We practice here.* Плитки: `here` `practice` `We` → **We practice here.**
+🔊 *They practice English in class.* Плитки: `practice` `English` `in` `class` `They` `are` → **They practice English in class.**
+*(плитка `are` зайва: тут потрібно `practice` — `They practice English in class.`)*
 
-**12 · Біля басейну лежить шолом. Запитайте «Чий це шолом?»**
+**16 · Подруга показує на значок учасника на столі. Спитайте: «Чий це значок?»**
 <!-- interaction_id: en:lesson-06:session-16:i12; family: phrase_builder -->
-Плитки: `this` `is` `helmet` `Whose` → **Whose helmet is this?**
+Плитки: `badge` `this` `is` `Whose` `Who` → **Whose badge is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose badge is this?`)*
 
-**13 · Скажіть «Я багато сміюся»**
+**17 · Адміністратор питає, чим ви з подругою займаєтеся в клубі. Скажіть: «Ми малюємо фарбами в клубі»**
 <!-- interaction_id: en:lesson-06:session-16:i13; family: scripted_repeat_compare -->
-🎙 **I laugh a lot.**
+🎙 **We paint in the club.**
 
-**14 · Скажіть «Вони вивчають англійську»**
+**18 · Скажіть про себе: «Я починаю о четвертій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-16:i14; family: context_gap_grammar -->
-They ___ English. → **learn** · learns · are learn
-- learns — *Після `they` — `learn`, без `s`.*
-- are learn — *Кажемо `They learn`, без `are`.*
+I ___ at four. → **start** · starts · am start
+- starts — *Після `I` — `start`, без `s`.*
+- am start — *Кажемо `I start`, без `am`.*
 
-**15 · Послухайте, хто співає вдома**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-16:i15; family: listen_choose -->
-🔊 *We sing at home.* → **We sing at home.** · They sing at home. · You sing at home.
-- They sing at home. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
-- You sing at home. — *У записі перше слово — `We`, а в цьому варіанті — `You`.*
+🔊 *They sing in the choir.* → **They sing in the choir.** · They swim in the pool. · We sing in the choir.
+- They swim in the pool. — *У записі дія — `sing`, співати, а в цьому варіанті — `swim`, плавати.*
+- We sing in the choir. — *У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-16:i16; family: speed_match -->
-swimming pool — басейн · paint — малювати фарбами · swim — плавати · sing — співати
+club — клуб · hobby — захоплення · class — заняття, урок · member — учасник, член клубу
 
-**17 · Том хоче прийти на заняття з вашою групою. Повідомте час: «Ми починаємо о дев’ятій»**
+**21 · Подруга питає, чим ви займетеся в клубі. Скажіть за себе й подругу: «Ми малюємо фарбами й плаваємо»**
 <!-- interaction_id: en:lesson-06:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We start at nine.**
-
+🎙 **We paint and we swim.**

@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-11:word:learn",
+    "correctText": "learn",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-11:i01",
-    "correctText": "I learn English.",
+    "correctText": "They learn English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:word:language",
+    "correctText": "language",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i02",
-    "correctText": "learn",
+    "correctText": "I learn a language.",
     "correctResponseId": "en:lesson-06:session-11:i02:r1"
   },
   {
@@ -16,67 +26,77 @@
   },
   {
     "interactionId": "en:lesson-06:session-11:i04",
-    "correctText": "en:lesson-06:session-11:i04:p1=learn\nen:lesson-06:session-11:i04:p2=tram\nen:lesson-06:session-11:i04:p3=backpack\nen:lesson-06:session-11:i04:p4=parcel",
+    "correctText": "en:lesson-06:session-11:i04:p1=learn\nen:lesson-06:session-11:i04:p2=language\nen:lesson-06:session-11:i04:p3=passenger\nen:lesson-06:session-11:i04:p4=homework",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i05",
-    "correctText": "They learn English.",
+    "correctText": "You learn a new language.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:word:homework",
+    "correctText": "homework",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i06",
-    "correctText": "We are on the tram.",
+    "correctText": "This is my homework.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:word:passenger",
+    "correctText": "passenger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i07",
-    "correctText": "It is urgent.",
+    "correctText": "I am a passenger.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i08",
-    "correctText": "yours",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-11:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-11:i09",
-    "correctText": "My backpack is here.",
+    "correctText": "We learn English on the tram.",
     "correctResponseId": "en:lesson-06:session-11:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-11:i10",
-    "correctText": "en:lesson-06:session-11:i10:p1=learn\nen:lesson-06:session-11:i10:p2=urgent\nen:lesson-06:session-11:i10:p3=backpack\nen:lesson-06:session-11:i10:p4=parcel",
+    "correctText": "en:lesson-06:session-11:i10:p1=homework\nen:lesson-06:session-11:i10:p2=language\nen:lesson-06:session-11:i10:p3=learn\nen:lesson-06:session-11:i10:p4=passenger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i11",
-    "correctText": "The parcel is in my backpack.",
+    "correctText": "The passengers learn English.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i12",
-    "correctText": "Whose backpack is this?",
+    "correctText": "Whose homework is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i13",
-    "correctText": "You learn English.",
+    "correctText": "It is urgent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-11:i14",
-    "correctText": "learn",
+    "correctText": "are",
     "correctResponseId": "en:lesson-06:session-11:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-11:i15",
-    "correctText": "The tram is full.",
+    "correctText": "Whose homework is this?",
     "correctResponseId": "en:lesson-06:session-11:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-11:i16",
-    "correctText": "en:lesson-06:session-11:i16:p1=learn\nen:lesson-06:session-11:i16:p2=urgent\nen:lesson-06:session-11:i16:p3=tram\nen:lesson-06:session-11:i16:p4=parcel",
+    "correctText": "en:lesson-06:session-11:i16:p1=passenger\nen:lesson-06:session-11:i16:p2=learn\nen:lesson-06:session-11:i16:p3=homework\nen:lesson-06:session-11:i16:p4=language",
     "correctResponseId": null
   },
   {

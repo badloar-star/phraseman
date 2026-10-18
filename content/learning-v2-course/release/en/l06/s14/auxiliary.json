@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-14:intro1:r2": {
-          "ru": "После `we` — `laugh`, без `s`.",
-          "uk": "Після `we` — `laugh`, без `s`."
+          "ru": "После we слово остаётся laugh, без s.",
+          "uk": "Після we слово лишається laugh, без s."
         },
         "en:lesson-06:session-14:intro1:r3": {
-          "ru": "Говорим `We laugh`, без `are`.",
-          "uk": "Кажемо `We laugh`, без `are`."
+          "ru": "Здесь действие: We laugh, без are.",
+          "uk": "Тут дія: We laugh, без are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-14:intro2:r2": {
-          "ru": "С `it` — `is`.",
-          "uk": "З `it` — `is`."
+          "ru": "После it нужно is, а не are.",
+          "uk": "Після it потрібно is, а не are."
         },
         "en:lesson-06:session-14:intro2:r3": {
-          "ru": "`impossible` — невозможно; очевидно — `obvious`.",
-          "uk": "`impossible` — неможливо; очевидно — `obvious`."
+          "ru": "funny начинается с согласного звука, поэтому нужно a, а не an.",
+          "uk": "funny починається з приголосного звуку, тому потрібно a, а не an."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-14:intro3:r2": {
-          "ru": "Это вопрос о месте; о владельце — `Whose`.",
-          "uk": "Це запитання про місце; про власника — `Whose`."
+          "ru": "laundry — одно слово, поэтому нужно is, а не are.",
+          "uk": "laundry — одне слово, тому потрібно is, а не are."
         },
         "en:lesson-06:session-14:intro3:r3": {
-          "ru": "Один чемодан: `is this`.",
-          "uk": "Одна валіза: `is this`."
+          "ru": "Вещи внутри сушилки, поэтому нужно in, а не on.",
+          "uk": "Речі всередині сушарки, тому потрібно in, а не on."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f9e9c7bf2a2b2ab7620930240c18aae93229c87f22c7842db14c51056886b8ac"
+  "auxiliaryFingerprint": "2168e954928fef53a9ad02147d3fde6f1e2661158ceb0ddd4b84919fb6583c3b"
 }

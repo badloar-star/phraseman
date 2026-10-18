@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-16:word:class",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — class",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:class:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — class",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:class:audio",
+            "transcript": "class"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:class:r1",
+              "targetText": "class",
+              "meaningByLocale": {
+                "ru": "увлечение. This is my new hobby. — «Это моё новое увлечение». О деле, которым занимаются в свободное время.",
+                "uk": "захоплення. This is my new hobby. — «Це моє нове захоплення». Про справу, якою займаються у вільний час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "class",
+            "definitionByLocale": {
+              "ru": "увлечение. This is my new hobby. — «Это моё новое увлечение». О деле, которым занимаются в свободное время.",
+              "uk": "захоплення. This is my new hobby. — «Це моє нове захоплення». Про справу, якою займаються у вільний час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает о соседях по группе. Скажите: «Они изучают английский на занятии»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о соседях по группе. Скажите: «Они изучают английский на занятии»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They learn English in class.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о соседях по группе. Скажите: «Они изучают английский на занятии»",
+            "uk": "Подруга питає про сусідів по групі. Скажіть: «Вони вивчають англійську на занятті»"
+          },
+          "orderedTokens": [
+            "They",
+            "learn",
+            "English",
+            "in",
+            "class"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о соседях по группе. Скажите: «Они изучают английский на занятии»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `learn` — `They learn English in class.`",
+                "uk": "тут потрібно `learn` — `They learn English in class.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:word:club",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — club",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:club:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — club",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:club:audio",
+            "transcript": "club"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:club:r1",
+              "targetText": "club",
+              "meaningByLocale": {
+                "ru": "клуб. They are in the club. — «Они в клубе». О месте, где люди встречаются ради общего дела.",
+                "uk": "клуб. They are in the club. — «Вони в клубі». Про місце, де люди зустрічаються заради спільної справи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "club",
+            "definitionByLocale": {
+              "ru": "клуб. They are in the club. — «Они в клубе». О месте, где люди встречаются ради общего дела.",
+              "uk": "клуб. They are in the club. — «Вони в клубі». Про місце, де люди зустрічаються заради спільної справи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i02:r1",
+            "text": "I paint at the club."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i02:r2",
+            "text": "I swim at the club."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i02:r3",
+            "text": "We paint at the club."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i02:audio",
+            "transcript": "I paint at the club."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:i02:r1",
+              "targetText": "I paint at the club.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i02:r2",
+              "targetText": "I swim at the club.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i02:r3",
+              "targetText": "We paint at the club.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `paint`, рисовать красками, а в этом варианте — `swim`, плавать.",
+                "uk": "У записі дія — `paint`, малювати фарбами, а в цьому варіанті — `swim`, плавати."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i03:r1",
+            "text": "swim"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i03:r2",
+            "text": "swims"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i03:r3",
+            "text": "are swim"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово",
+            "uk": "Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ in the club.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-16:i03:r1",
+              "text": "swim"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i03:r2",
+              "text": "swims"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i03:r3",
+              "text": "are swim"
+            }
+          ],
+          "testedDimension": "Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `we` — `swim`, без `s`.",
+                "uk": "Після `we` — `swim`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `We swim`, без `are`.",
+                "uk": "Кажемо `We swim`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-16:i04:p1",
+              "target": "hobby",
+              "meaningByLocale": {
+                "ru": "увлечение",
+                "uk": "захоплення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i04:p2",
+              "target": "class",
+              "meaningByLocale": {
+                "ru": "занятие, урок",
+                "uk": "заняття, урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i04:p3",
+              "target": "member",
+              "meaningByLocale": {
+                "ru": "участник, член клуба",
+                "uk": "учасник, член клубу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i04:p4",
+              "target": "club",
+              "meaningByLocale": {
+                "ru": "клуб",
+                "uk": "клуб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hobby",
+            "class",
+            "member",
+            "club"
+          ],
+          "rightColumn": [
+            "увлечение",
+            "занятие, урок",
+            "участник, член клуба",
+            "клуб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:word:member",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — member",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:member:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — member",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:member:audio",
+            "transcript": "member"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:member:r1",
+              "targetText": "member",
+              "meaningByLocale": {
+                "ru": "участник, член. We are members. — «Мы участники». О человеке, который входит в группу или клуб.",
+                "uk": "учасник, член. We are members. — «Ми учасники». Про людину, яка входить до групи чи клубу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "member",
+            "definitionByLocale": {
+              "ru": "участник, член. We are members. — «Мы участники». О человеке, который входит в группу или клуб.",
+              "uk": "учасник, член. We are members. — «Ми учасники». Про людину, яка входить до групи чи клубу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте администратора и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i05:audio",
+            "transcript": "You are a member of the club."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You are a member of the club.",
+          "orderedTokens": [
+            "You",
+            "are",
+            "a",
+            "member",
+            "of",
+            "the",
+            "club"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `You are a member of the club.`",
+                "uk": "тут потрібно `are` — `You are a member of the club.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:word:hobby",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hobby",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:hobby:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hobby",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:hobby:audio",
+            "transcript": "hobby"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:hobby:r1",
+              "targetText": "hobby",
+              "meaningByLocale": {
+                "ru": "занятие, урок. We are in class. — «Мы на занятии». О занятии или о группе, которая учится вместе.",
+                "uk": "заняття, урок. We are in class. — «Ми на занятті». Про заняття або про групу, яка вчиться разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hobby",
+            "definitionByLocale": {
+              "ru": "занятие, урок. We are in class. — «Мы на занятии». О занятии или о группе, которая учится вместе.",
+              "uk": "заняття, урок. We are in class. — «Ми на занятті». Про заняття або про групу, яка вчиться разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что это для вас. Скажите: «Это моё увлечение»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что это для вас. Скажите: «Это моё увлечение»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my hobby.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что это для вас. Скажите: «Это моё увлечение»",
+            "uk": "Подруга питає, що це для вас. Скажіть: «Це моє захоплення»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "hobby"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, что это для вас. Скажите: «Это моё увлечение»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my hobby.`",
+                "uk": "тут потрібно `is` — `This is my hobby.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор спрашивает, где вы сейчас. Скажите: «Мы на занятии»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i07:audio"
+        ],
+        "accessibilityLabel": "Администратор спрашивает, где вы сейчас. Скажите: «Мы на занятии»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i07:audio",
+            "transcript": "We are in class."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are in class.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о своём увлечении: «Моё увлечение простое». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i08:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о своём увлечении: «Моё увлечение простое». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о своём увлечении: «Моё увлечение простое». Выберите слово",
+            "uk": "Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My hobby ___ simple.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-16:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i08:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Скажите о своём увлечении: «Моё увлечение простое». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о своём увлечении: «Моё увлечение простое». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Увлечение одно, поэтому нужно `is`, а не `are`.",
+                "uk": "Захоплення одне, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о своём увлечении: «Моё увлечение простое». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`have` значит «имеем», а здесь нужно сказать, какое увлечение: `is simple`.",
+                "uk": "`have` означає «маємо», а тут треба сказати, яке захоплення: `is simple`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте администратора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i09:r1",
+            "text": "I am a member of the club."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i09:r2",
+            "text": "I am a member of the class."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i09:r3",
+            "text": "We are members of the club."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i09:audio",
+            "transcript": "I am a member of the club."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:i09:r1",
+              "targetText": "I am a member of the club.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i09:r2",
+              "targetText": "I am a member of the class.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i09:r3",
+              "targetText": "We are members of the club.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте администратора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `club`, клуб, а в этом варианте — `class`, занятие.",
+                "uk": "У записі останнє слово — `club`, клуб, а в цьому варіанті — `class`, заняття."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте администратора",
+              "feedbackByLocale": {
+                "ru": "В записи говорит один человек, `I am a member`, а в этом варианте — `We are members`, несколько.",
+                "uk": "У записі говорить одна людина, `I am a member`, а в цьому варіанті — `We are members`, кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-16:i10:p1",
+              "target": "member",
+              "meaningByLocale": {
+                "ru": "участник, член клуба",
+                "uk": "учасник, член клубу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i10:p2",
+              "target": "club",
+              "meaningByLocale": {
+                "ru": "клуб",
+                "uk": "клуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i10:p3",
+              "target": "hobby",
+              "meaningByLocale": {
+                "ru": "увлечение",
+                "uk": "захоплення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i10:p4",
+              "target": "class",
+              "meaningByLocale": {
+                "ru": "занятие, урок",
+                "uk": "заняття, урок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "member",
+            "club",
+            "hobby",
+            "class"
+          ],
+          "rightColumn": [
+            "участник, член клуба",
+            "клуб",
+            "увлечение",
+            "занятие, урок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i11:audio",
+            "transcript": "They practice English in class."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They practice English in class.",
+          "orderedTokens": [
+            "They",
+            "practice",
+            "English",
+            "in",
+            "class"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `They practice English in class.`",
+                "uk": "тут потрібно `practice` — `They practice English in class.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на значок участника на столе. Спросите: «Чей это значок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на значок участника на столе. Спросите: «Чей это значок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose badge is this?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на значок участника на столе. Спросите: «Чей это значок?»",
+            "uk": "Подруга показує на значок учасника на столі. Спитайте: «Чий це значок?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "badge",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на значок участника на столе. Спросите: «Чей это значок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose badge is this?`",
+                "uk": "тут потрібно `Whose` — `Whose badge is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор спрашивает, чем вы с подругой занимаетесь в клубе. Скажите: «Мы рисуем красками в клубе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i13:audio"
+        ],
+        "accessibilityLabel": "Администратор спрашивает, чем вы с подругой занимаетесь в клубе. Скажите: «Мы рисуем красками в клубе»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i13:audio",
+            "transcript": "We paint in the club."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint in the club.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я начинаю в четыре». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i14:r1",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i14:r2",
+            "text": "starts"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i14:r3",
+            "text": "am start"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я начинаю в четыре». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я начинаю в четыре». Выберите слово",
+            "uk": "Скажіть про себе: «Я починаю о четвертій». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at four.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-16:i14:r1",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i14:r2",
+              "text": "starts"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i14:r3",
+              "text": "am start"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я начинаю в четыре». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я начинаю в четыре». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` — `start`, без `s`.",
+                "uk": "Після `I` — `start`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я начинаю в четыре». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I start`, без `am`.",
+                "uk": "Кажемо `I start`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i15:r1",
+            "text": "They sing in the choir."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i15:r2",
+            "text": "They swim in the pool."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i15:r3",
+            "text": "We sing in the choir."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i15:audio",
+            "transcript": "They sing in the choir."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:i15:r1",
+              "targetText": "They sing in the choir.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i15:r2",
+              "targetText": "They swim in the pool.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i15:r3",
+              "targetText": "We sing in the choir.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `sing`, петь, а в этом варианте — `swim`, плавать.",
+                "uk": "У записі дія — `sing`, співати, а в цьому варіанті — `swim`, плавати."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-16:i16:p1",
+              "target": "club",
+              "meaningByLocale": {
+                "ru": "клуб",
+                "uk": "клуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i16:p2",
+              "target": "hobby",
+              "meaningByLocale": {
+                "ru": "увлечение",
+                "uk": "захоплення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i16:p3",
+              "target": "class",
+              "meaningByLocale": {
+                "ru": "занятие, урок",
+                "uk": "заняття, урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i16:p4",
+              "target": "member",
+              "meaningByLocale": {
+                "ru": "участник, член клуба",
+                "uk": "учасник, член клубу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "club",
+            "hobby",
+            "class",
+            "member"
+          ],
+          "rightColumn": [
+            "клуб",
+            "увлечение",
+            "занятие, урок",
+            "участник, член клуба"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, чем вы займётесь в клубе. Скажите за себя и подругу: «Мы рисуем красками и плаваем»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, чем вы займётесь в клубе. Скажите за себя и подругу: «Мы рисуем красками и плаваем»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i17:audio",
+            "transcript": "We paint and we swim."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint and we swim.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-16:word:class",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — class",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:class:audio"
+        ],
+        "accessibilityLabel": "Картка слова — class",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:class:audio",
+            "transcript": "class"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:class:r1",
+              "targetText": "class",
+              "meaningByLocale": {
+                "ru": "увлечение. This is my new hobby. — «Это моё новое увлечение». О деле, которым занимаются в свободное время.",
+                "uk": "захоплення. This is my new hobby. — «Це моє нове захоплення». Про справу, якою займаються у вільний час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "class",
+            "definitionByLocale": {
+              "ru": "увлечение. This is my new hobby. — «Это моё новое увлечение». О деле, которым занимаются в свободное время.",
+              "uk": "захоплення. This is my new hobby. — «Це моє нове захоплення». Про справу, якою займаються у вільний час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає про сусідів по групі. Скажіть: «Вони вивчають англійську на занятті»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про сусідів по групі. Скажіть: «Вони вивчають англійську на занятті»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They learn English in class.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о соседях по группе. Скажите: «Они изучают английский на занятии»",
+            "uk": "Подруга питає про сусідів по групі. Скажіть: «Вони вивчають англійську на занятті»"
+          },
+          "orderedTokens": [
+            "They",
+            "learn",
+            "English",
+            "in",
+            "class"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає про сусідів по групі. Скажіть: «Вони вивчають англійську на занятті»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `learn` — `They learn English in class.`",
+                "uk": "тут потрібно `learn` — `They learn English in class.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:word:club",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — club",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:club:audio"
+        ],
+        "accessibilityLabel": "Картка слова — club",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:club:audio",
+            "transcript": "club"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:club:r1",
+              "targetText": "club",
+              "meaningByLocale": {
+                "ru": "клуб. They are in the club. — «Они в клубе». О месте, где люди встречаются ради общего дела.",
+                "uk": "клуб. They are in the club. — «Вони в клубі». Про місце, де люди зустрічаються заради спільної справи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "club",
+            "definitionByLocale": {
+              "ru": "клуб. They are in the club. — «Они в клубе». О месте, где люди встречаются ради общего дела.",
+              "uk": "клуб. They are in the club. — «Вони в клубі». Про місце, де люди зустрічаються заради спільної справи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i02:r1",
+            "text": "I paint at the club."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i02:r2",
+            "text": "I swim at the club."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i02:r3",
+            "text": "We paint at the club."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i02:audio",
+            "transcript": "I paint at the club."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:i02:r1",
+              "targetText": "I paint at the club.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i02:r2",
+              "targetText": "I swim at the club.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i02:r3",
+              "targetText": "We paint at the club.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `paint`, рисовать красками, а в этом варианте — `swim`, плавать.",
+                "uk": "У записі дія — `paint`, малювати фарбами, а в цьому варіанті — `swim`, плавати."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i03:r1",
+            "text": "swim"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i03:r2",
+            "text": "swims"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i03:r3",
+            "text": "are swim"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово",
+            "uk": "Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ in the club.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-16:i03:r1",
+              "text": "swim"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i03:r2",
+              "text": "swims"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i03:r3",
+              "text": "are swim"
+            }
+          ],
+          "testedDimension": "Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `we` — `swim`, без `s`.",
+                "uk": "Після `we` — `swim`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе й подругу: «Ми плаваємо в клубі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `We swim`, без `are`.",
+                "uk": "Кажемо `We swim`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-16:i04:p1",
+              "target": "hobby",
+              "meaningByLocale": {
+                "ru": "увлечение",
+                "uk": "захоплення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i04:p2",
+              "target": "class",
+              "meaningByLocale": {
+                "ru": "занятие, урок",
+                "uk": "заняття, урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i04:p3",
+              "target": "member",
+              "meaningByLocale": {
+                "ru": "участник, член клуба",
+                "uk": "учасник, член клубу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i04:p4",
+              "target": "club",
+              "meaningByLocale": {
+                "ru": "клуб",
+                "uk": "клуб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hobby",
+            "class",
+            "member",
+            "club"
+          ],
+          "rightColumn": [
+            "захоплення",
+            "заняття, урок",
+            "учасник, член клубу",
+            "клуб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:word:member",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — member",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:member:audio"
+        ],
+        "accessibilityLabel": "Картка слова — member",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:member:audio",
+            "transcript": "member"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:member:r1",
+              "targetText": "member",
+              "meaningByLocale": {
+                "ru": "участник, член. We are members. — «Мы участники». О человеке, который входит в группу или клуб.",
+                "uk": "учасник, член. We are members. — «Ми учасники». Про людину, яка входить до групи чи клубу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "member",
+            "definitionByLocale": {
+              "ru": "участник, член. We are members. — «Мы участники». О человеке, который входит в группу или клуб.",
+              "uk": "учасник, член. We are members. — «Ми учасники». Про людину, яка входить до групи чи клубу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте адміністратора й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i05:audio",
+            "transcript": "You are a member of the club."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You are a member of the club.",
+          "orderedTokens": [
+            "You",
+            "are",
+            "a",
+            "member",
+            "of",
+            "the",
+            "club"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `You are a member of the club.`",
+                "uk": "тут потрібно `are` — `You are a member of the club.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:word:hobby",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hobby",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:word:hobby:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hobby",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:word:hobby:audio",
+            "transcript": "hobby"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:word:hobby:r1",
+              "targetText": "hobby",
+              "meaningByLocale": {
+                "ru": "занятие, урок. We are in class. — «Мы на занятии». О занятии или о группе, которая учится вместе.",
+                "uk": "заняття, урок. We are in class. — «Ми на занятті». Про заняття або про групу, яка вчиться разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hobby",
+            "definitionByLocale": {
+              "ru": "занятие, урок. We are in class. — «Мы на занятии». О занятии или о группе, которая учится вместе.",
+              "uk": "заняття, урок. We are in class. — «Ми на занятті». Про заняття або про групу, яка вчиться разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що це для вас. Скажіть: «Це моє захоплення»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що це для вас. Скажіть: «Це моє захоплення»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my hobby.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что это для вас. Скажите: «Это моё увлечение»",
+            "uk": "Подруга питає, що це для вас. Скажіть: «Це моє захоплення»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "hobby"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, що це для вас. Скажіть: «Це моє захоплення»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my hobby.`",
+                "uk": "тут потрібно `is` — `This is my hobby.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор питає, де ви зараз. Скажіть: «Ми на занятті»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i07:audio"
+        ],
+        "accessibilityLabel": "Адміністратор питає, де ви зараз. Скажіть: «Ми на занятті»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i07:audio",
+            "transcript": "We are in class."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are in class.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i08:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о своём увлечении: «Моё увлечение простое». Выберите слово",
+            "uk": "Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My hobby ___ simple.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-16:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i08:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Увлечение одно, поэтому нужно `is`, а не `are`.",
+                "uk": "Захоплення одне, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про своє захоплення: «Моє захоплення просте». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`have` значит «имеем», а здесь нужно сказать, какое увлечение: `is simple`.",
+                "uk": "`have` означає «маємо», а тут треба сказати, яке захоплення: `is simple`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте адміністратора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i09:r1",
+            "text": "I am a member of the club."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i09:r2",
+            "text": "I am a member of the class."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i09:r3",
+            "text": "We are members of the club."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i09:audio",
+            "transcript": "I am a member of the club."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:i09:r1",
+              "targetText": "I am a member of the club.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i09:r2",
+              "targetText": "I am a member of the class.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i09:r3",
+              "targetText": "We are members of the club.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `club`, клуб, а в этом варианте — `class`, занятие.",
+                "uk": "У записі останнє слово — `club`, клуб, а в цьому варіанті — `class`, заняття."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора",
+              "feedbackByLocale": {
+                "ru": "В записи говорит один человек, `I am a member`, а в этом варианте — `We are members`, несколько.",
+                "uk": "У записі говорить одна людина, `I am a member`, а в цьому варіанті — `We are members`, кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-16:i10:p1",
+              "target": "member",
+              "meaningByLocale": {
+                "ru": "участник, член клуба",
+                "uk": "учасник, член клубу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i10:p2",
+              "target": "club",
+              "meaningByLocale": {
+                "ru": "клуб",
+                "uk": "клуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i10:p3",
+              "target": "hobby",
+              "meaningByLocale": {
+                "ru": "увлечение",
+                "uk": "захоплення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i10:p4",
+              "target": "class",
+              "meaningByLocale": {
+                "ru": "занятие, урок",
+                "uk": "заняття, урок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "member",
+            "club",
+            "hobby",
+            "class"
+          ],
+          "rightColumn": [
+            "учасник, член клубу",
+            "клуб",
+            "захоплення",
+            "заняття, урок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i11:audio",
+            "transcript": "They practice English in class."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They practice English in class.",
+          "orderedTokens": [
+            "They",
+            "practice",
+            "English",
+            "in",
+            "class"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `They practice English in class.`",
+                "uk": "тут потрібно `practice` — `They practice English in class.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на значок учасника на столі. Спитайте: «Чий це значок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на значок учасника на столі. Спитайте: «Чий це значок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose badge is this?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на значок участника на столе. Спросите: «Чей это значок?»",
+            "uk": "Подруга показує на значок учасника на столі. Спитайте: «Чий це значок?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "badge",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на значок учасника на столі. Спитайте: «Чий це значок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose badge is this?`",
+                "uk": "тут потрібно `Whose` — `Whose badge is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор питає, чим ви з подругою займаєтеся в клубі. Скажіть: «Ми малюємо фарбами в клубі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i13:audio"
+        ],
+        "accessibilityLabel": "Адміністратор питає, чим ви з подругою займаєтеся в клубі. Скажіть: «Ми малюємо фарбами в клубі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i13:audio",
+            "transcript": "We paint in the club."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint in the club.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я починаю о четвертій». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i14:r1",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i14:r2",
+            "text": "starts"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i14:r3",
+            "text": "am start"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я починаю о четвертій». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я начинаю в четыре». Выберите слово",
+            "uk": "Скажіть про себе: «Я починаю о четвертій». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at four.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-16:i14:r1",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i14:r2",
+              "text": "starts"
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i14:r3",
+              "text": "am start"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я починаю о четвертій». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я починаю о четвертій». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` — `start`, без `s`.",
+                "uk": "Після `I` — `start`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я починаю о четвертій». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I start`, без `am`.",
+                "uk": "Кажемо `I start`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i15:r1",
+            "text": "They sing in the choir."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i15:r2",
+            "text": "They swim in the pool."
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i15:r3",
+            "text": "We sing in the choir."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i15:audio",
+            "transcript": "They sing in the choir."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-16:i15:r1",
+              "targetText": "They sing in the choir.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i15:r2",
+              "targetText": "They swim in the pool.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i15:r3",
+              "targetText": "We sing in the choir.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-16:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `sing`, петь, а в этом варианте — `swim`, плавать.",
+                "uk": "У записі дія — `sing`, співати, а в цьому варіанті — `swim`, плавати."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-16:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-16:i16:p1",
+              "target": "club",
+              "meaningByLocale": {
+                "ru": "клуб",
+                "uk": "клуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i16:p2",
+              "target": "hobby",
+              "meaningByLocale": {
+                "ru": "увлечение",
+                "uk": "захоплення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i16:p3",
+              "target": "class",
+              "meaningByLocale": {
+                "ru": "занятие, урок",
+                "uk": "заняття, урок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-16:i16:p4",
+              "target": "member",
+              "meaningByLocale": {
+                "ru": "участник, член клуба",
+                "uk": "учасник, член клубу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "club",
+            "hobby",
+            "class",
+            "member"
+          ],
+          "rightColumn": [
+            "клуб",
+            "захоплення",
+            "заняття, урок",
+            "учасник, член клубу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чим ви займетеся в клубі. Скажіть за себе й подругу: «Ми малюємо фарбами й плаваємо»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чим ви займетеся в клубі. Скажіть за себе й подругу: «Ми малюємо фарбами й плаваємо»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-16:i17:audio",
+            "transcript": "We paint and we swim."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint and we swim.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-16:word:class",
+      "correctText": "class",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i01",
+      "correctText": "They learn English in class.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:word:club",
+      "correctText": "club",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i02",
+      "correctText": "I paint at the club.",
+      "correctResponseId": "en:lesson-06:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i03",
+      "correctText": "swim",
+      "correctResponseId": "en:lesson-06:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:word:member",
+      "correctText": "member",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i05",
+      "correctText": "You are a member of the club.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:word:hobby",
+      "correctText": "hobby",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i06",
+      "correctText": "This is my hobby.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i07",
+      "correctText": "We are in class.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i09",
+      "correctText": "I am a member of the club.",
+      "correctResponseId": "en:lesson-06:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i11",
+      "correctText": "They practice English in class.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i12",
+      "correctText": "Whose badge is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i13",
+      "correctText": "We paint in the club.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i14",
+      "correctText": "start",
+      "correctResponseId": "en:lesson-06:session-16:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i15",
+      "correctText": "They sing in the choir.",
+      "correctResponseId": "en:lesson-06:session-16:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i17",
+      "correctText": "We paint and we swim.",
+      "correctResponseId": null
+    }
+  ]
+}

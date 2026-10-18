@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-06:session-09:word:start",
+    "correctText": "start",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-09:i01",
-    "correctText": "I start at nine.",
+    "correctText": "I start at four.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i02",
-    "correctText": "start",
+    "correctText": "We start at three.",
     "correctResponseId": "en:lesson-06:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:word:shift",
+    "correctText": "shift",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i03",
@@ -16,52 +26,62 @@
   },
   {
     "interactionId": "en:lesson-06:session-09:i04",
-    "correctText": "en:lesson-06:session-09:i04:p1=start\nen:lesson-06:session-09:i04:p2=work\nen:lesson-06:session-09:i04:p3=dentist\nen:lesson-06:session-09:i04:p4=charger",
+    "correctText": "en:lesson-06:session-09:i04:p1=start\nen:lesson-06:session-09:i04:p2=shift\nen:lesson-06:session-09:i04:p3=appointment\nen:lesson-06:session-09:i04:p4=break",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i05",
-    "correctText": "You start at ten.",
+    "correctText": "You start the shift at four.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:word:appointment",
+    "correctText": "appointment",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i06",
-    "correctText": "They work here.",
+    "correctText": "We have an appointment at five.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i07",
-    "correctText": "I am a dentist.",
+    "correctText": "We start the shift at three.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:word:break",
+    "correctText": "break",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i08",
-    "correctText": "work",
+    "correctText": "have",
     "correctResponseId": "en:lesson-06:session-09:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-09:i09",
-    "correctText": "They start at eight.",
+    "correctText": "I have a break at four.",
     "correctResponseId": "en:lesson-06:session-09:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-09:i10",
-    "correctText": "en:lesson-06:session-09:i10:p1=start\nen:lesson-06:session-09:i10:p2=possible\nen:lesson-06:session-09:i10:p3=charger\nen:lesson-06:session-09:i10:p4=work",
+    "correctText": "en:lesson-06:session-09:i10:p1=shift\nen:lesson-06:session-09:i10:p2=break\nen:lesson-06:session-09:i10:p3=appointment\nen:lesson-06:session-09:i10:p4=start",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i11",
-    "correctText": "We have a charger.",
+    "correctText": "They have a break at three.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i12",
-    "correctText": "It is possible.",
+    "correctText": "I have a break at two.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i13",
-    "correctText": "We work in this neighbourhood.",
+    "correctText": "I work in a clinic.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-09:i15",
-    "correctText": "My charger is here.",
+    "correctText": "They start the shift at two.",
     "correctResponseId": "en:lesson-06:session-09:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-09:i16",
-    "correctText": "en:lesson-06:session-09:i16:p1=dentist\nen:lesson-06:session-09:i16:p2=possible\nen:lesson-06:session-09:i16:p3=start\nen:lesson-06:session-09:i16:p4=work",
+    "correctText": "en:lesson-06:session-09:i16:p1=start\nen:lesson-06:session-09:i16:p2=shift\nen:lesson-06:session-09:i16:p3=appointment\nen:lesson-06:session-09:i16:p4=break",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-09:i17",
-    "correctText": "We start at nine.",
+    "correctText": "We start at two.",
     "correctResponseId": null
   }
 ]

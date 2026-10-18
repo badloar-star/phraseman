@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-10",
   "learningOutcomeByLocale": {
-    "ru": "сказать, что вы практикуете английский, и найти нужные вещи",
-    "uk": "сказати, що ви практикуєте англійську, і знайти потрібні речі"
+    "ru": "сказать, что вы практикуете английский, и спросить, чья бронь",
+    "uk": "сказати, що ви практикуєте англійську, і спитати, чия це бронь"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Учимся, когда говорим",
-        "uk": "Вчимося, коли говоримо"
+        "ru": "У стойки до смены",
+        "uk": "Біля стійки до зміни"
       },
       "bodyByLocale": {
-        "ru": "`practice` — «практиковаться». `I practice English` — «Я практикую английский»: например, говорю или выполняю упражнения. Просто носить учебник в сумке — ещё не практиковаться, даже если сумка тяжёлая. Здесь американское написание `practice`; в британском английском для действия пишут `practise`.",
-        "uk": "`practice` — «практикуватися». `I practice English` — «Я практикую англійську»: наприклад, говорю або виконую вправи. Просто носити підручник у сумці — ще не практикуватися, навіть якщо сумка важка. Тут американське написання `practice`; у британській англійській для дії пишуть `practise`."
+        "ru": "Перед сменой вы стоите у стойки отеля. Гости приезжают из разных стран, и каждый день вы повторяете английские фразы. practice — «практиковаться, тренироваться»: I practice English — «Я практикую английский». После I слово practice остаётся без s.",
+        "uk": "Перед зміною ви стоїте біля стійки готелю. Гості приїжджають з різних країн, і щодня ви повторюєте англійські фрази. practice — «практикуватися, тренуватися»: I practice English — «Я практикую англійську». Після I слово practice лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-10:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я практикую английский».",
-          "uk": "Скажіть «Я практикую англійську»."
+          "ru": "Коллега спрашивает, чем вы заняты у стойки. Скажите: «Я практикую английский».",
+          "uk": "Колега питає, чим ви зайняті біля стійки. Скажіть: «Я практикую англійську»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я практикую английский».",
-          "uk": "Скажіть «Я практикую англійську»."
+          "ru": "Коллега спрашивает, чем вы заняты у стойки. Скажите: «Я практикую английский».",
+          "uk": "Колега питає, чим ви зайняті біля стійки. Скажіть: «Я практикую англійську»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вместе тоже без s",
-        "uk": "Разом теж без s"
+        "ru": "Приветствие для гостей",
+        "uk": "Привітання для гостей"
       },
       "bodyByLocale": {
-        "ru": "`We practice English` — «Мы практикуем английский». После `I`, `you`, `we`, `they` используем `practice`, без `s`. `We work in a hotel` — «Мы работаем в отеле». `It is impossible` — «Это невозможно»: так можно ответить, если предложение нельзя выполнить.",
-        "uk": "`We practice English` — «Ми практикуємо англійську». Після `I`, `you`, `we`, `they` використовуємо `practice`, без `s`. `We work in a hotel` — «Ми працюємо в готелі». `It is impossible` — «Це неможливо»: так можна відповісти, якщо пропозицію не можна виконати."
+        "ru": "Вы с коллегой встречаете гостей у входа и хотите приветствовать их без ошибок. Вы раз за разом повторяете одну и ту же фразу: Welcome to our hotel. phrase — «фраза». We practice this phrase — «Мы тренируем эту фразу». С we слово practice остаётся без s.",
+        "uk": "Ви з колегою зустрічаєте гостей біля входу й хочете привітати їх без помилок. Ви раз за разом повторюєте одну й ту саму фразу: Welcome to our hotel. phrase — «фраза». We practice this phrase — «Ми тренуємо цю фразу». З we слово practice лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-10:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы практикуем английский».",
-          "uk": "Скажіть «Ми практикуємо англійську»."
+          "ru": "Вы с коллегой повторяете приветствие для гостей. Скажите: «Мы тренируем эту фразу».",
+          "uk": "Ви з колегою повторюєте привітання для гостей. Скажіть: «Ми тренуємо цю фразу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-10:intro2:r1",
-              "text": "We practice English."
+              "text": "We practice this phrase."
             },
             {
               "responseId": "en:lesson-06:session-10:intro2:r2",
-              "text": "We practices English."
+              "text": "We practices this phrase."
             },
             {
               "responseId": "en:lesson-06:session-10:intro2:r3",
-              "text": "We are practice English."
+              "text": "We are practice this phrase."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-10:intro2:r1",
-              "text": "We practice English."
+              "text": "We practice this phrase."
             },
             {
               "responseId": "en:lesson-06:session-10:intro2:r2",
-              "text": "We practices English."
+              "text": "We practices this phrase."
             },
             {
               "responseId": "en:lesson-06:session-10:intro2:r3",
-              "text": "We are practice English."
+              "text": "We are practice this phrase."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы практикуем английский».",
-          "uk": "Скажіть «Ми практикуємо англійську»."
+          "ru": "Вы с коллегой повторяете приветствие для гостей. Скажите: «Мы тренируем эту фразу».",
+          "uk": "Ви з колегою повторюєте привітання для гостей. Скажіть: «Ми тренуємо цю фразу»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Перед сменой",
-        "uk": "Перед зміною"
+        "ru": "Бумага на столе",
+        "uk": "Папір на столі"
       },
       "bodyByLocale": {
-        "ru": "`pocket` — «карман», `folder` — «папка». `The key is in my pocket` — «Ключ у меня в кармане». `Whose folder is this?` — «Чья это папка?» `That folder is yours` — «Та папка твоя»: название вещи после `yours` не нужно.",
-        "uk": "`pocket` — «кишеня», `folder` — «папка». `The key is in my pocket` — «Ключ у мене в кишені». `Whose folder is this?` — «Чия це папка?» `That folder is yours` — «Та папка твоя»: назва речі після `yours` не потрібна."
+        "ru": "Гости стоят у стойки, а на столе лежит бумага с чьей-то бронью. Вы не знаете, кому она принадлежит. reservation — «бронь, бронирование». Чтобы узнать хозяина, спрашиваем: Whose reservation is this? — «Чья это бронь?» Слово Whose спрашивает о хозяине вещи.",
+        "uk": "Гості стоять біля стійки, а на столі лежить папір із чиєюсь бронню. Ви не знаєте, кому він належить. reservation — «бронь, бронювання». Щоб дізнатися господаря, питаємо: Whose reservation is this? — «Чия це бронь?» Слово Whose питає про господаря речі."
       },
       "question": {
         "interactionId": "en:lesson-06:session-10:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чья это папка?»",
-          "uk": "Запитайте «Чия це папка?»"
+          "ru": "На столе лежит бумага с бронью. Спросите гостей: «Чья это бронь?»",
+          "uk": "На столі лежить папір із бронню. Спитайте гостей: «Чия це бронь?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-10:intro3:r1",
-              "text": "Whose folder is this?"
+              "text": "Whose reservation is this?"
             },
             {
               "responseId": "en:lesson-06:session-10:intro3:r2",
-              "text": "Where is the folder?"
+              "text": "Where is the reservation?"
             },
             {
               "responseId": "en:lesson-06:session-10:intro3:r3",
-              "text": "Whose folder are these?"
+              "text": "Whose reservation are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-10:intro3:r1",
-              "text": "Whose folder is this?"
+              "text": "Whose reservation is this?"
             },
             {
               "responseId": "en:lesson-06:session-10:intro3:r2",
-              "text": "Where is the folder?"
+              "text": "Where is the reservation?"
             },
             {
               "responseId": "en:lesson-06:session-10:intro3:r3",
-              "text": "Whose folder are these?"
+              "text": "Whose reservation are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чья это папка?»",
-          "uk": "Запитайте «Чия це папка?»"
+          "ru": "На столе лежит бумага с бронью. Спросите гостей: «Чья это бронь?»",
+          "uk": "На столі лежить папір із бронню. Спитайте гостей: «Чия це бронь?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0c5ef13a15899f407d43fba84be9b83ec1d68f076de1f4f75b1cc3720759d751"
+  "introFingerprint": "be81b95f105901ae5fb1d54faa9beea8dd1805bdf8545499db0d69e11a574dbd"
 }

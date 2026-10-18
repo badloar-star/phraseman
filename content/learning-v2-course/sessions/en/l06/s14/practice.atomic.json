@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-14:word:laugh",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — laugh",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:laugh:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — laugh",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:laugh:audio",
+            "transcript": "laugh"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:laugh:r1",
+              "targetText": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться. They laugh at the joke. — «Они смеются над шуткой». О весёлом звуке, когда смешно. После I, you, we, they — без s.",
+                "uk": "сміятися. They laugh at the joke. — «Вони сміються з жарту». Про веселий звук, коли смішно. Після I, you, we, they — без s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laugh",
+            "definitionByLocale": {
+              "ru": "смеяться. They laugh at the joke. — «Они смеются над шуткой». О весёлом звуке, когда смешно. После I, you, we, they — без s.",
+              "uk": "сміятися. They laugh at the joke. — «Вони сміються з жарту». Про веселий звук, коли смішно. Після I, you, we, they — без s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Они смеются вместе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Они смеются вместе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They laugh together.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Они смеются вместе»",
+            "uk": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»"
+          },
+          "orderedTokens": [
+            "They",
+            "laugh",
+            "together"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Они смеются вместе»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `laugh` — `They laugh together.`",
+                "uk": "тут потрібно `laugh` — `They laugh together.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:word:joke",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — joke",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:joke:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — joke",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:joke:audio",
+            "transcript": "joke"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:joke:r1",
+              "targetText": "joke",
+              "meaningByLocale": {
+                "ru": "шутка, анекдот. We have a funny joke. — «У нас есть смешная шутка». О коротком рассказе, после которого смеются.",
+                "uk": "жарт, анекдот. We have a funny joke. — «У нас є смішний жарт». Про коротку розповідь, після якого сміються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "joke",
+            "definitionByLocale": {
+              "ru": "шутка, анекдот. We have a funny joke. — «У нас есть смешная шутка». О коротком рассказе, после которого смеются.",
+              "uk": "жарт, анекдот. We have a funny joke. — «У нас є смішний жарт». Про коротку розповідь, після якого сміються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i02:r1",
+            "text": "They laugh at the joke."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i02:r2",
+            "text": "They laugh at the jokes."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i02:r3",
+            "text": "We laugh at the joke."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i02:audio",
+            "transcript": "They laugh at the joke."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:i02:r1",
+              "targetText": "They laugh at the joke.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i02:r2",
+              "targetText": "They laugh at the jokes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i02:r3",
+              "targetText": "We laugh at the joke.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи `joke` — одна шутка, а в этом варианте `jokes` — несколько.",
+                "uk": "У записі `joke` — один жарт, а в цьому варіанті `jokes` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i03:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i03:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i03:r3",
+            "text": "are laugh"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
+            "uk": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ together.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-14:i03:r1",
+              "text": "laugh"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i03:r2",
+              "text": "laughs"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i03:r3",
+              "text": "are laugh"
+            }
+          ],
+          "testedDimension": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `we` — `laugh`, без `s`.",
+                "uk": "Після `we` — `laugh`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `We laugh`, без `are`.",
+                "uk": "Кажемо `We laugh`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-14:i04:p1",
+              "target": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться",
+                "uk": "сміятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i04:p2",
+              "target": "joke",
+              "meaningByLocale": {
+                "ru": "шутка",
+                "uk": "жарт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i04:p3",
+              "target": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё для стирки",
+                "uk": "білизна для прання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i04:p4",
+              "target": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laugh",
+            "joke",
+            "laundry",
+            "detergent"
+          ],
+          "rightColumn": [
+            "смеяться",
+            "шутка",
+            "бельё для стирки",
+            "стиральный порошок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i05:audio",
+            "transcript": "You laugh at my joke."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You laugh at my joke.",
+          "orderedTokens": [
+            "You",
+            "laugh",
+            "at",
+            "my",
+            "joke"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `laugh` — `You laugh at my joke.`",
+                "uk": "тут потрібно `laugh` — `You laugh at my joke.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:word:detergent",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — detergent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:detergent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — detergent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:detergent:audio",
+            "transcript": "detergent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:detergent:r1",
+              "targetText": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок. The detergent is on the shelf. — «Стиральный порошок на полке». О порошке или жидкости, которую кладут в машину.",
+                "uk": "пральний порошок. The detergent is on the shelf. — «Пральний порошок на полиці». Про порошок чи рідину, яку кладуть у машину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "detergent",
+            "definitionByLocale": {
+              "ru": "стиральный порошок. The detergent is on the shelf. — «Стиральный порошок на полке». О порошке или жидкости, которую кладут в машину.",
+              "uk": "пральний порошок. The detergent is on the shelf. — «Пральний порошок на полиці». Про порошок чи рідину, яку кладуть у машину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли на полке коробку порошка. Спросите соседку: «Чей это стиральный порошок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли на полке коробку порошка. Спросите соседку: «Чей это стиральный порошок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose detergent is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на полке коробку порошка. Спросите соседку: «Чей это стиральный порошок?»",
+            "uk": "Ви знайшли на полиці коробку порошку. Спитайте сусідку: «Чий це пральний порошок?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "detergent",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли на полке коробку порошка. Спросите соседку: «Чей это стиральный порошок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose detergent is this?`",
+                "uk": "тут потрібно `Whose` — `Whose detergent is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, где порошок. Скажите: «Стиральный порошок на полке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, где порошок. Скажите: «Стиральный порошок на полке»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i07:audio",
+            "transcript": "The detergent is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The detergent is on the shelf.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:word:laundry",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — laundry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:laundry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — laundry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:laundry:audio",
+            "transcript": "laundry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:laundry:r1",
+              "targetText": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё и одежда для стирки. The laundry is in the basket. — «Бельё в корзине». Слово не меняется: is, а не are.",
+                "uk": "білизна й одяг для прання. The laundry is in the basket. — «Білизна в кошику». Слово не змінюється: is, а не are."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laundry",
+            "definitionByLocale": {
+              "ru": "бельё и одежда для стирки. The laundry is in the basket. — «Бельё в корзине». Слово не меняется: is, а не are.",
+              "uk": "білизна й одяг для прання. The laundry is in the basket. — «Білизна в кошику». Слово не змінюється: is, а не are."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i08:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово",
+            "uk": "Скажіть, де ваша білизна: «Моя білизна в кошику». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My laundry ___ in the basket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-14:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i08:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `laundry` одно, поэтому нужно `is`, а не `are`.",
+                "uk": "Слово `laundry` одне, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`have` значит «имеем», а здесь нужно сказать, где бельё: `is`.",
+                "uk": "`have` означає «маємо», а тут треба сказати, де білизна: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i09:r1",
+            "text": "The laundry is in the dryer."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i09:r2",
+            "text": "The laundry is in the basket."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i09:r3",
+            "text": "The detergent is in the dryer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i09:audio",
+            "transcript": "The laundry is in the dryer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:i09:r1",
+              "targetText": "The laundry is in the dryer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i09:r2",
+              "targetText": "The laundry is in the basket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i09:r3",
+              "targetText": "The detergent is in the dryer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи бельё лежит `in the dryer`, в сушилке, а в этом варианте — `in the basket`, в корзине.",
+                "uk": "У записі білизна лежить `in the dryer`, у сушарці, а в цьому варіанті — `in the basket`, у кошику."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `laundry`, бельё, а в этом варианте — `detergent`, порошок.",
+                "uk": "У записі річ — `laundry`, білизна, а в цьому варіанті — `detergent`, порошок."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-14:i10:p1",
+              "target": "joke",
+              "meaningByLocale": {
+                "ru": "шутка",
+                "uk": "жарт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i10:p2",
+              "target": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё для стирки",
+                "uk": "білизна для прання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i10:p3",
+              "target": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i10:p4",
+              "target": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться",
+                "uk": "сміятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "joke",
+            "laundry",
+            "detergent",
+            "laugh"
+          ],
+          "rightColumn": [
+            "шутка",
+            "бельё для стирки",
+            "стиральный порошок",
+            "смеяться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i11:audio",
+            "transcript": "We have a funny joke."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a funny joke.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "funny",
+            "joke"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `We have a funny joke.`",
+                "uk": "тут потрібно `have` — `We have a funny joke.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка спрашивает, чьё бельё в корзине. Оно ваше. Скажите: «Это моё бельё»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка спрашивает, чьё бельё в корзине. Оно ваше. Скажите: «Это моё бельё»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my laundry.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает, чьё бельё в корзине. Оно ваше. Скажите: «Это моё бельё»",
+            "uk": "Сусідка питає, чия білизна в кошику. Вона ваша. Скажіть: «Це моя білизна»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "laundry"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка спрашивает, чьё бельё в корзине. Оно ваше. Скажите: «Это моё бельё»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my laundry.`",
+                "uk": "тут потрібно `is` — `This is my laundry.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посетительница спрашивает, что вы делаете. Скажите: «Я смеюсь над шуткой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Посетительница спрашивает, что вы делаете. Скажите: «Я смеюсь над шуткой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i13:audio",
+            "transcript": "I laugh at the joke."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I laugh at the joke.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i14:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i14:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i14:r3",
+            "text": "are laugh"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
+            "uk": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ at my joke.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-14:i14:r1",
+              "text": "laugh"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i14:r2",
+              "text": "laughs"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i14:r3",
+              "text": "are laugh"
+            }
+          ],
+          "testedDimension": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `you` — `laugh`, без `s`.",
+                "uk": "Після `you` — `laugh`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `You laugh`, без `are`.",
+                "uk": "Кажемо `You laugh`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i15:r1",
+            "text": "Whose laundry is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i15:r2",
+            "text": "Whose laundry are these?"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i15:r3",
+            "text": "Whose detergent is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i15:audio",
+            "transcript": "Whose laundry is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:i15:r1",
+              "targetText": "Whose laundry is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i15:r2",
+              "targetText": "Whose laundry are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i15:r3",
+              "targetText": "Whose detergent is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи `laundry is this` — всё сказано в единственном числе, а в этом варианте `laundry are these` — во множественном.",
+                "uk": "У записі `laundry is this` — все сказано в однині, а в цьому варіанті `laundry are these` — у множині."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `laundry`, бельё, а в этом варианте — `detergent`, порошок.",
+                "uk": "У записі річ — `laundry`, білизна, а в цьому варіанті — `detergent`, порошок."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-14:i16:p1",
+              "target": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i16:p2",
+              "target": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться",
+                "uk": "сміятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i16:p3",
+              "target": "joke",
+              "meaningByLocale": {
+                "ru": "шутка",
+                "uk": "жарт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i16:p4",
+              "target": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё для стирки",
+                "uk": "білизна для прання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "detergent",
+            "laugh",
+            "joke",
+            "laundry"
+          ],
+          "rightColumn": [
+            "стиральный порошок",
+            "смеяться",
+            "шутка",
+            "бельё для стирки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посетительница спрашивает, над чем вы смеётесь. Скажите за себя и соседку: «Мы смеёмся над шуткой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Посетительница спрашивает, над чем вы смеётесь. Скажите за себя и соседку: «Мы смеёмся над шуткой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i17:audio",
+            "transcript": "We laugh at the joke."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We laugh at the joke.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-14:word:laugh",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — laugh",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:laugh:audio"
+        ],
+        "accessibilityLabel": "Картка слова — laugh",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:laugh:audio",
+            "transcript": "laugh"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:laugh:r1",
+              "targetText": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться. They laugh at the joke. — «Они смеются над шуткой». О весёлом звуке, когда смешно. После I, you, we, they — без s.",
+                "uk": "сміятися. They laugh at the joke. — «Вони сміються з жарту». Про веселий звук, коли смішно. Після I, you, we, they — без s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laugh",
+            "definitionByLocale": {
+              "ru": "смеяться. They laugh at the joke. — «Они смеются над шуткой». О весёлом звуке, когда смешно. После I, you, we, they — без s.",
+              "uk": "сміятися. They laugh at the joke. — «Вони сміються з жарту». Про веселий звук, коли смішно. Після I, you, we, they — без s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They laugh together.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Они смеются вместе»",
+            "uk": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»"
+          },
+          "orderedTokens": [
+            "They",
+            "laugh",
+            "together"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `laugh` — `They laugh together.`",
+                "uk": "тут потрібно `laugh` — `They laugh together.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:word:joke",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — joke",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:joke:audio"
+        ],
+        "accessibilityLabel": "Картка слова — joke",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:joke:audio",
+            "transcript": "joke"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:joke:r1",
+              "targetText": "joke",
+              "meaningByLocale": {
+                "ru": "шутка, анекдот. We have a funny joke. — «У нас есть смешная шутка». О коротком рассказе, после которого смеются.",
+                "uk": "жарт, анекдот. We have a funny joke. — «У нас є смішний жарт». Про коротку розповідь, після якого сміються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "joke",
+            "definitionByLocale": {
+              "ru": "шутка, анекдот. We have a funny joke. — «У нас есть смешная шутка». О коротком рассказе, после которого смеются.",
+              "uk": "жарт, анекдот. We have a funny joke. — «У нас є смішний жарт». Про коротку розповідь, після якого сміються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i02:r1",
+            "text": "They laugh at the joke."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i02:r2",
+            "text": "They laugh at the jokes."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i02:r3",
+            "text": "We laugh at the joke."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i02:audio",
+            "transcript": "They laugh at the joke."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:i02:r1",
+              "targetText": "They laugh at the joke.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i02:r2",
+              "targetText": "They laugh at the jokes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i02:r3",
+              "targetText": "We laugh at the joke.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи `joke` — одна шутка, а в этом варианте `jokes` — несколько.",
+                "uk": "У записі `joke` — один жарт, а в цьому варіанті `jokes` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, они, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i03:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i03:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i03:r3",
+            "text": "are laugh"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
+            "uk": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ together.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-14:i03:r1",
+              "text": "laugh"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i03:r2",
+              "text": "laughs"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i03:r3",
+              "text": "are laugh"
+            }
+          ],
+          "testedDimension": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `we` — `laugh`, без `s`.",
+                "uk": "Після `we` — `laugh`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `We laugh`, без `are`.",
+                "uk": "Кажемо `We laugh`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-14:i04:p1",
+              "target": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться",
+                "uk": "сміятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i04:p2",
+              "target": "joke",
+              "meaningByLocale": {
+                "ru": "шутка",
+                "uk": "жарт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i04:p3",
+              "target": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё для стирки",
+                "uk": "білизна для прання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i04:p4",
+              "target": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laugh",
+            "joke",
+            "laundry",
+            "detergent"
+          ],
+          "rightColumn": [
+            "сміятися",
+            "жарт",
+            "білизна для прання",
+            "пральний порошок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i05:audio",
+            "transcript": "You laugh at my joke."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You laugh at my joke.",
+          "orderedTokens": [
+            "You",
+            "laugh",
+            "at",
+            "my",
+            "joke"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `laugh` — `You laugh at my joke.`",
+                "uk": "тут потрібно `laugh` — `You laugh at my joke.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:word:detergent",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — detergent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:detergent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — detergent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:detergent:audio",
+            "transcript": "detergent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:detergent:r1",
+              "targetText": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок. The detergent is on the shelf. — «Стиральный порошок на полке». О порошке или жидкости, которую кладут в машину.",
+                "uk": "пральний порошок. The detergent is on the shelf. — «Пральний порошок на полиці». Про порошок чи рідину, яку кладуть у машину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "detergent",
+            "definitionByLocale": {
+              "ru": "стиральный порошок. The detergent is on the shelf. — «Стиральный порошок на полке». О порошке или жидкости, которую кладут в машину.",
+              "uk": "пральний порошок. The detergent is on the shelf. — «Пральний порошок на полиці». Про порошок чи рідину, яку кладуть у машину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли на полиці коробку порошку. Спитайте сусідку: «Чий це пральний порошок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли на полиці коробку порошку. Спитайте сусідку: «Чий це пральний порошок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose detergent is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на полке коробку порошка. Спросите соседку: «Чей это стиральный порошок?»",
+            "uk": "Ви знайшли на полиці коробку порошку. Спитайте сусідку: «Чий це пральний порошок?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "detergent",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли на полиці коробку порошку. Спитайте сусідку: «Чий це пральний порошок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose detergent is this?`",
+                "uk": "тут потрібно `Whose` — `Whose detergent is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, де порошок. Скажіть: «Пральний порошок на полиці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, де порошок. Скажіть: «Пральний порошок на полиці»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i07:audio",
+            "transcript": "The detergent is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The detergent is on the shelf.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:word:laundry",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — laundry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:word:laundry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — laundry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:word:laundry:audio",
+            "transcript": "laundry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:word:laundry:r1",
+              "targetText": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё и одежда для стирки. The laundry is in the basket. — «Бельё в корзине». Слово не меняется: is, а не are.",
+                "uk": "білизна й одяг для прання. The laundry is in the basket. — «Білизна в кошику». Слово не змінюється: is, а не are."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laundry",
+            "definitionByLocale": {
+              "ru": "бельё и одежда для стирки. The laundry is in the basket. — «Бельё в корзине». Слово не меняется: is, а не are.",
+              "uk": "білизна й одяг для прання. The laundry is in the basket. — «Білизна в кошику». Слово не змінюється: is, а не are."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, де ваша білизна: «Моя білизна в кошику». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i08:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, де ваша білизна: «Моя білизна в кошику». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово",
+            "uk": "Скажіть, де ваша білизна: «Моя білизна в кошику». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My laundry ___ in the basket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-14:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i08:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Скажіть, де ваша білизна: «Моя білизна в кошику». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, де ваша білизна: «Моя білизна в кошику». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `laundry` одно, поэтому нужно `is`, а не `are`.",
+                "uk": "Слово `laundry` одне, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, де ваша білизна: «Моя білизна в кошику». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`have` значит «имеем», а здесь нужно сказать, где бельё: `is`.",
+                "uk": "`have` означає «маємо», а тут треба сказати, де білизна: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i09:r1",
+            "text": "The laundry is in the dryer."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i09:r2",
+            "text": "The laundry is in the basket."
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i09:r3",
+            "text": "The detergent is in the dryer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i09:audio",
+            "transcript": "The laundry is in the dryer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:i09:r1",
+              "targetText": "The laundry is in the dryer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i09:r2",
+              "targetText": "The laundry is in the basket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i09:r3",
+              "targetText": "The detergent is in the dryer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи бельё лежит `in the dryer`, в сушилке, а в этом варианте — `in the basket`, в корзине.",
+                "uk": "У записі білизна лежить `in the dryer`, у сушарці, а в цьому варіанті — `in the basket`, у кошику."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `laundry`, бельё, а в этом варианте — `detergent`, порошок.",
+                "uk": "У записі річ — `laundry`, білизна, а в цьому варіанті — `detergent`, порошок."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-14:i10:p1",
+              "target": "joke",
+              "meaningByLocale": {
+                "ru": "шутка",
+                "uk": "жарт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i10:p2",
+              "target": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё для стирки",
+                "uk": "білизна для прання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i10:p3",
+              "target": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i10:p4",
+              "target": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться",
+                "uk": "сміятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "joke",
+            "laundry",
+            "detergent",
+            "laugh"
+          ],
+          "rightColumn": [
+            "жарт",
+            "білизна для прання",
+            "пральний порошок",
+            "сміятися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i11:audio",
+            "transcript": "We have a funny joke."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a funny joke.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "funny",
+            "joke"
+          ],
+          "authoredDistractorTokens": [
+            "has"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `have` — `We have a funny joke.`",
+                "uk": "тут потрібно `have` — `We have a funny joke.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка питає, чия білизна в кошику. Вона ваша. Скажіть: «Це моя білизна»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка питає, чия білизна в кошику. Вона ваша. Скажіть: «Це моя білизна»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my laundry.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает, чьё бельё в корзине. Оно ваше. Скажите: «Это моё бельё»",
+            "uk": "Сусідка питає, чия білизна в кошику. Вона ваша. Скажіть: «Це моя білизна»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "laundry"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка питає, чия білизна в кошику. Вона ваша. Скажіть: «Це моя білизна»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my laundry.`",
+                "uk": "тут потрібно `is` — `This is my laundry.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Відвідувачка питає, що ви робите. Скажіть: «Я сміюся з жарту»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Відвідувачка питає, що ви робите. Скажіть: «Я сміюся з жарту»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i13:audio",
+            "transcript": "I laugh at the joke."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I laugh at the joke.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i14:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i14:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i14:r3",
+            "text": "are laugh"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
+            "uk": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ at my joke.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-14:i14:r1",
+              "text": "laugh"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i14:r2",
+              "text": "laughs"
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i14:r3",
+              "text": "are laugh"
+            }
+          ],
+          "testedDimension": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `you` — `laugh`, без `s`.",
+                "uk": "Після `you` — `laugh`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `You laugh`, без `are`.",
+                "uk": "Кажемо `You laugh`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i15:r1",
+            "text": "Whose laundry is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i15:r2",
+            "text": "Whose laundry are these?"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i15:r3",
+            "text": "Whose detergent is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i15:audio",
+            "transcript": "Whose laundry is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-14:i15:r1",
+              "targetText": "Whose laundry is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i15:r2",
+              "targetText": "Whose laundry are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i15:r3",
+              "targetText": "Whose detergent is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи `laundry is this` — всё сказано в единственном числе, а в этом варианте `laundry are these` — во множественном.",
+                "uk": "У записі `laundry is this` — все сказано в однині, а в цьому варіанті `laundry are these` — у множині."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `laundry`, бельё, а в этом варианте — `detergent`, порошок.",
+                "uk": "У записі річ — `laundry`, білизна, а в цьому варіанті — `detergent`, порошок."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-14:i16:p1",
+              "target": "detergent",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i16:p2",
+              "target": "laugh",
+              "meaningByLocale": {
+                "ru": "смеяться",
+                "uk": "сміятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i16:p3",
+              "target": "joke",
+              "meaningByLocale": {
+                "ru": "шутка",
+                "uk": "жарт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-14:i16:p4",
+              "target": "laundry",
+              "meaningByLocale": {
+                "ru": "бельё для стирки",
+                "uk": "білизна для прання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "detergent",
+            "laugh",
+            "joke",
+            "laundry"
+          ],
+          "rightColumn": [
+            "пральний порошок",
+            "сміятися",
+            "жарт",
+            "білизна для прання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Відвідувачка питає, з чого ви смієтеся. Скажіть за себе й сусідку: «Ми сміємося з жарту»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Відвідувачка питає, з чого ви смієтеся. Скажіть за себе й сусідку: «Ми сміємося з жарту»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-14:i17:audio",
+            "transcript": "We laugh at the joke."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We laugh at the joke.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-14:word:laugh",
+      "correctText": "laugh",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i01",
+      "correctText": "They laugh together.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:word:joke",
+      "correctText": "joke",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i02",
+      "correctText": "They laugh at the joke.",
+      "correctResponseId": "en:lesson-06:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i03",
+      "correctText": "laugh",
+      "correctResponseId": "en:lesson-06:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i05",
+      "correctText": "You laugh at my joke.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:word:detergent",
+      "correctText": "detergent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i06",
+      "correctText": "Whose detergent is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i07",
+      "correctText": "The detergent is on the shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:word:laundry",
+      "correctText": "laundry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i09",
+      "correctText": "The laundry is in the dryer.",
+      "correctResponseId": "en:lesson-06:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i11",
+      "correctText": "We have a funny joke.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i12",
+      "correctText": "This is my laundry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i13",
+      "correctText": "I laugh at the joke.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i14",
+      "correctText": "laugh",
+      "correctResponseId": "en:lesson-06:session-14:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i15",
+      "correctText": "Whose laundry is this?",
+      "correctResponseId": "en:lesson-06:session-14:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i17",
+      "correctText": "We laugh at the joke.",
+      "correctResponseId": null
+    }
+  ]
+}

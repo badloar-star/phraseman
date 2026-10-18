@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-11:i01",
+      "interactionId": "en:lesson-06:session-11:word:learn",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — learn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-11:word:learn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — learn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-11:word:learn:audio",
+          "transcript": "learn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-11:word:learn:r1",
+            "targetText": "learn",
+            "meaningByLocale": {
+              "ru": "учить, изучать. They learn English at school. — «Они изучают английский в школе». О том, как человек получает новые знания. После I, you, we, they — без s.",
+              "uk": "вчити, вивчати. They learn English at school. — «Вони вивчають англійську в школі». Про те, як людина здобуває нові знання. Після I, you, we, they — без s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "learn",
+          "definitionByLocale": {
+            "ru": "учить, изучать. They learn English at school. — «Они изучают английский в школе». О том, как человек получает новые знания. После I, you, we, they — без s.",
+            "uk": "вчити, вивчати. They learn English at school. — «Вони вивчають англійську в школі». Про те, як людина здобуває нові знання. Після I, you, we, they — без s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-11:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите, какой язык вы изучаете: «Я изучаю английский»",
+      "prompt": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите, какой язык вы изучаете: «Я изучаю английский»",
+      "accessibilityLabel": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I learn English.",
+        "targetPhrase": "They learn English.",
         "localizedMeaning": {
-          "ru": "Скажите, какой язык вы изучаете: «Я изучаю английский»",
-          "uk": "Скажіть, яку мову ви вивчаєте: «Я вивчаю англійську»"
+          "ru": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
+          "uk": "Подруга питає про ваших сусідів по курсах. Скажіть: «Вони вивчають англійську»"
         },
         "orderedTokens": [
-          "I",
+          "They",
           "learn",
           "English"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-11:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `learn` — `They learn English.`",
+              "uk": "тут потрібно `learn` — `They learn English.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-11:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-11:word:language",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — language",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-11:word:language:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — language",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-11:word:language:audio",
+          "transcript": "language"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-11:word:language:r1",
+            "targetText": "language",
+            "meaningByLocale": {
+              "ru": "язык. I learn a new language. — «Я изучаю новый язык». Об английском, русском или любом другом языке.",
+              "uk": "мова. I learn a new language. — «Я вивчаю нову мову». Про англійську, українську чи будь-яку іншу мову."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "language",
+          "definitionByLocale": {
+            "ru": "язык. I learn a new language. — «Я изучаю новый язык». Об английском, русском или любом другом языке.",
+            "uk": "мова. I learn a new language. — «Я вивчаю нову мову». Про англійську, українську чи будь-яку іншу мову."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-11:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-11:i02:r1",
-          "text": "learn"
+          "text": "I learn a language."
         },
         {
           "responseId": "en:lesson-06:session-11:i02:r2",
-          "text": "start"
+          "text": "I learn English."
         },
         {
           "responseId": "en:lesson-06:session-11:i02:r3",
-          "text": "work"
+          "text": "We learn a language."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-11:i02:audio",
-          "transcript": "learn"
+          "transcript": "I learn a language."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-11:i02:r1",
-            "targetText": "learn",
+            "targetText": "I learn a language.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-11:i02:r2",
-            "targetText": "start",
+            "targetText": "I learn English.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-11:i02:r3",
-            "targetText": "work",
+            "targetText": "We learn a language.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +188,19 @@
           {
             "responseId": "en:lesson-06:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `learn`, а в этом варианте — `start`.",
-              "uk": "У записі перше слово — `learn`, а в цьому варіанті — `start`."
+              "ru": "В записи последнее слово — `language`, язык, а в этом варианте — `English`, английский.",
+              "uk": "У записі останнє слово — `language`, мова, а в цьому варіанті — `English`, англійська."
             }
           },
           {
             "responseId": "en:lesson-06:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `learn`, а в этом варианте — `work`.",
-              "uk": "У записі перше слово — `learn`, а в цьому варіанті — `work`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -113,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Мы изучаем английский»",
+      "prompt": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-11:i03:r1",
@@ -129,19 +227,19 @@
         },
         {
           "responseId": "en:lesson-06:session-11:i03:r3",
-          "text": "are learn"
+          "text": "am learn"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Мы изучаем английский»",
+      "accessibilityLabel": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Мы изучаем английский»",
-          "uk": "Скажіть «Ми вивчаємо англійську»"
+          "ru": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
+          "uk": "Скажіть про себе: «Я вивчаю англійську в школі». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ English.",
+        "gappedTargetPhrase": "I ___ English at school.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-11:i03:r1",
@@ -153,27 +251,27 @@
           },
           {
             "responseId": "en:lesson-06:session-11:i03:r3",
-            "text": "are learn"
+            "text": "am learn"
           }
         ],
-        "testedDimension": "Скажите «Мы изучаем английский»",
+        "testedDimension": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-11:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Мы изучаем английский»",
+            "testedDimension": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `we` — `learn`, без `s`.",
-              "uk": "Після `we` — `learn`, без `s`."
+              "ru": "После `I` — `learn`, без `s`.",
+              "uk": "Після `I` — `learn`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-11:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Мы изучаем английский»",
+            "testedDimension": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `We learn`, без `are`.",
-              "uk": "Кажемо `We learn`, без `are`."
+              "ru": "Говорим `I learn`, без `am`.",
+              "uk": "Кажемо `I learn`, без `am`."
             }
           }
         ]
@@ -182,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,46 +296,46 @@
             "pairId": "en:lesson-06:session-11:i04:p1",
             "target": "learn",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "учить, изучать",
+              "uk": "вчити, вивчати"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i04:p2",
-            "target": "tram",
+            "target": "language",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "язык",
+              "uk": "мова"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i04:p3",
-            "target": "backpack",
+            "target": "passenger",
             "meaningByLocale": {
-              "ru": "рюкзак",
-              "uk": "рюкзак"
+              "ru": "пассажир",
+              "uk": "пасажир"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i04:p4",
-            "target": "parcel",
+            "target": "homework",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "домашнее задание",
+              "uk": "домашнє завдання"
             }
           }
         ],
         "leftColumn": [
           "learn",
-          "tram",
-          "backpack",
-          "parcel"
+          "language",
+          "passenger",
+          "homework"
         ],
         "rightColumn": [
-          "учиться",
-          "трамвай",
-          "рюкзак",
-          "посылка"
+          "учить, изучать",
+          "язык",
+          "пассажир",
+          "домашнее задание"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,75 +353,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-11:i05:audio",
-          "transcript": "They learn English."
+          "transcript": "You learn a new language."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They learn English.",
+        "hiddenTargetPhrase": "You learn a new language.",
         "orderedTokens": [
-          "They",
+          "You",
           "learn",
-          "English"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-11:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Мы в трамвае»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Мы в трамвае»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are on the tram.",
-        "localizedMeaning": {
-          "ru": "Скажите «Мы в трамвае»",
-          "uk": "Скажіть «Ми в трамваї»"
-        },
-        "orderedTokens": [
-          "We",
-          "are",
-          "on",
-          "the",
-          "tram"
+          "a",
+          "new",
+          "language"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-06:session-11:i06:tile:d1",
+            "responseId": "en:lesson-06:session-11:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Мы в трамвае»",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `We are on the tram.`",
-              "uk": "тут потрібно `are` — `We are on the tram.`"
+              "ru": "здесь нужно `learn` — `You learn a new language.`",
+              "uk": "тут потрібно `learn` — `You learn a new language.`"
             }
           }
         ],
@@ -335,26 +401,157 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-11:word:homework",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — homework",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-11:word:homework:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — homework",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-11:word:homework:audio",
+          "transcript": "homework"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-11:word:homework:r1",
+            "targetText": "homework",
+            "meaningByLocale": {
+              "ru": "домашнее задание. The homework is in the backpack. — «Домашнее задание в рюкзаке». Работа, которую делают дома после занятия.",
+              "uk": "домашнє завдання. The homework is in the backpack. — «Домашнє завдання в наплічнику». Робота, яку виконують удома після заняття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "homework",
+          "definitionByLocale": {
+            "ru": "домашнее задание. The homework is in the backpack. — «Домашнее задание в рюкзаке». Работа, которую делают дома после занятия.",
+            "uk": "домашнє завдання. The homework is in the backpack. — «Домашнє завдання в наплічнику». Робота, яку виконують удома після заняття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-11:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга показывает на рюкзак. Скажите: «Это моё домашнее задание»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга показывает на рюкзак. Скажите: «Это моё домашнее задание»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is my homework.",
+        "localizedMeaning": {
+          "ru": "Подруга показывает на рюкзак. Скажите: «Это моё домашнее задание»",
+          "uk": "Подруга показує на наплічник. Скажіть: «Це моє домашнє завдання»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "homework"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-11:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга показывает на рюкзак. Скажите: «Это моё домашнее задание»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is my homework.`",
+              "uk": "тут потрібно `is` — `This is my homework.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-11:word:passenger",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — passenger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-11:word:passenger:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — passenger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-11:word:passenger:audio",
+          "transcript": "passenger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-11:word:passenger:r1",
+            "targetText": "passenger",
+            "meaningByLocale": {
+              "ru": "пассажир. The passengers are on the tram. — «Пассажиры в трамвае». О человеке, который едет в транспорте, но не ведёт его.",
+              "uk": "пасажир. The passengers are on the tram. — «Пасажири в трамваї». Про людину, яка їде в транспорті, але не веде його."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "passenger",
+          "definitionByLocale": {
+            "ru": "пассажир. The passengers are on the tram. — «Пассажиры в трамвае». О человеке, который едет в транспорте, но не ведёт его.",
+            "uk": "пасажир. The passengers are on the tram. — «Пасажири в трамваї». Про людину, яка їде в транспорті, але не веде його."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-11:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Посылку необходимо передать немедленно. Скажите «Это срочно»",
+      "prompt": "Контролёр спрашивает, кто вы. Скажите: «Я пассажир»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i07:audio"
       ],
-      "accessibilityLabel": "Посылку необходимо передать немедленно. Скажите «Это срочно»",
+      "accessibilityLabel": "Контролёр спрашивает, кто вы. Скажите: «Я пассажир»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-11:i07:audio",
-          "transcript": "It is urgent."
+          "transcript": "I am a passenger."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is urgent.",
+        "targetPhrase": "I am a passenger.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -369,67 +566,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Та посылка твоя»",
+      "prompt": "Скажите, где лежит задание: «Домашнее задание в рюкзаке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-11:i08:r1",
-          "text": "yours"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-11:i08:r2",
-          "text": "your"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-11:i08:r3",
-          "text": "you"
+          "text": "have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Та посылка твоя»",
+      "accessibilityLabel": "Скажите, где лежит задание: «Домашнее задание в рюкзаке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Та посылка твоя»",
-          "uk": "Скажіть «Та посилка твоя»"
+          "ru": "Скажите, где лежит задание: «Домашнее задание в рюкзаке». Выберите слово",
+          "uk": "Скажіть, де лежить завдання: «Домашнє завдання в наплічнику». Виберіть слово"
         },
-        "gappedTargetPhrase": "That parcel is ___.",
+        "gappedTargetPhrase": "The homework ___ in the backpack.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-11:i08:r1",
-            "text": "yours"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-11:i08:r2",
-            "text": "your"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-11:i08:r3",
-            "text": "you"
+            "text": "have"
           }
         ],
-        "testedDimension": "Скажите «Та посылка твоя»",
+        "testedDimension": "Скажите, где лежит задание: «Домашнее задание в рюкзаке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-11:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Та посылка твоя»",
+            "testedDimension": "Скажите, где лежит задание: «Домашнее задание в рюкзаке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи после «твоя» нужно `yours`.",
-              "uk": "Без назви речі після «твоя» потрібно `yours`."
+              "ru": "Домашнее задание одно, поэтому нужно `is`, а не `are`.",
+              "uk": "Домашнє завдання одне, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-11:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Та посылка твоя»",
+            "testedDimension": "Скажите, где лежит задание: «Домашнее задание в рюкзаке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "`you` — ты или вы; здесь «твоя» — `yours`.",
-              "uk": "`you` — ти або ви; тут «твоя» — `yours`."
+              "ru": "`have` значит «имеем», а здесь нужно сказать, где лежит задание: `is`.",
+              "uk": "`have` означає «маємо», а тут треба сказати, де лежить завдання: `is`."
             }
           }
         ]
@@ -438,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей рюкзак здесь",
+      "prompt": "Послушайте пассажира",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-11:i09:r1",
-          "text": "My backpack is here."
+          "text": "We learn English on the tram."
         },
         {
           "responseId": "en:lesson-06:session-11:i09:r2",
-          "text": "Your backpack is here."
+          "text": "We learn English at school."
         },
         {
           "responseId": "en:lesson-06:session-11:i09:r3",
-          "text": "His backpack is here."
+          "text": "They learn English on the tram."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей рюкзак здесь",
+      "accessibilityLabel": "Послушайте пассажира",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-11:i09:audio",
-          "transcript": "My backpack is here."
+          "transcript": "We learn English on the tram."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-11:i09:r1",
-            "targetText": "My backpack is here.",
+            "targetText": "We learn English on the tram.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-11:i09:r2",
-            "targetText": "Your backpack is here.",
+            "targetText": "We learn English at school.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-11:i09:r3",
-            "targetText": "His backpack is here.",
+            "targetText": "They learn English on the tram.",
             "meaningByLocale": null
           }
         ],
@@ -491,19 +688,19 @@
           {
             "responseId": "en:lesson-06:session-11:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей рюкзак здесь",
+            "testedDimension": "Послушайте пассажира",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последние слова — `on the tram`, в трамвае, а в этом варианте — `at school`, в школе.",
+              "uk": "У записі останні слова — `on the tram`, у трамваї, а в цьому варіанті — `at school`, у школі."
             }
           },
           {
             "responseId": "en:lesson-06:session-11:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей рюкзак здесь",
+            "testedDimension": "Послушайте пассажира",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+              "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
             }
           }
         ],
@@ -514,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -528,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-11:i10:p1",
-            "target": "learn",
+            "target": "homework",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "домашнее задание",
+              "uk": "домашнє завдання"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i10:p2",
-            "target": "urgent",
+            "target": "language",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "язык",
+              "uk": "мова"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i10:p3",
-            "target": "backpack",
+            "target": "learn",
             "meaningByLocale": {
-              "ru": "рюкзак",
-              "uk": "рюкзак"
+              "ru": "учить, изучать",
+              "uk": "вчити, вивчати"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i10:p4",
-            "target": "parcel",
+            "target": "passenger",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "пассажир",
+              "uk": "пасажир"
             }
           }
         ],
         "leftColumn": [
+          "homework",
+          "language",
           "learn",
-          "urgent",
-          "backpack",
-          "parcel"
+          "passenger"
         ],
         "rightColumn": [
-          "учиться",
-          "срочный",
-          "рюкзак",
-          "посылка"
+          "домашнее задание",
+          "язык",
+          "учить, изучать",
+          "пассажир"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -587,32 +784,30 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте контролёра и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте контролёра и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-11:i11:audio",
-          "transcript": "The parcel is in my backpack."
+          "transcript": "The passengers learn English."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The parcel is in my backpack.",
+        "hiddenTargetPhrase": "The passengers learn English.",
         "orderedTokens": [
           "The",
-          "parcel",
-          "is",
-          "in",
-          "my",
-          "backpack"
+          "passengers",
+          "learn",
+          "English"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -621,10 +816,10 @@
           {
             "responseId": "en:lesson-06:session-11:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте контролёра и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The parcel is in my backpack.`",
-              "uk": "тут потрібно `is` — `The parcel is in my backpack.`"
+              "ru": "здесь нужно `learn` — `The passengers learn English.`",
+              "uk": "тут потрібно `learn` — `The passengers learn English.`"
             }
           }
         ],
@@ -637,30 +832,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это рюкзак?»",
+      "prompt": "На сиденье лежит чья-то тетрадь с заданием. Спросите пассажира: «Чьё это домашнее задание?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это рюкзак?»",
+      "accessibilityLabel": "На сиденье лежит чья-то тетрадь с заданием. Спросите пассажира: «Чьё это домашнее задание?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose backpack is this?",
+        "targetPhrase": "Whose homework is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это рюкзак?»",
-          "uk": "Запитайте «Чий це рюкзак?»"
+          "ru": "На сиденье лежит чья-то тетрадь с заданием. Спросите пассажира: «Чьё это домашнее задание?»",
+          "uk": "На сидінні лежить чийсь зошит із завданням. Спитайте пасажира: «Чиє це домашнє завдання?»"
         },
         "orderedTokens": [
           "Whose",
-          "backpack",
+          "homework",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-11:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "На сиденье лежит чья-то тетрадь с заданием. Спросите пассажира: «Чьё это домашнее задание?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose homework is this?`",
+              "uk": "тут потрібно `Whose` — `Whose homework is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -670,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите собеседнику «Ты изучаешь английский»",
+      "prompt": "Подруга спрашивает, надо ли делать задание сейчас. Скажите: «Это срочно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i13:audio"
       ],
-      "accessibilityLabel": "Скажите собеседнику «Ты изучаешь английский»",
+      "accessibilityLabel": "Подруга спрашивает, надо ли делать задание сейчас. Скажите: «Это срочно»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-11:i13:audio",
-          "transcript": "You learn English."
+          "transcript": "It is urgent."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You learn English.",
+        "targetPhrase": "It is urgent.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -703,67 +910,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Покажите класс вашей группы: «Они учатся здесь»",
+      "prompt": "Скажите о себе и подруге: «Мы пассажиры». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-11:i14:r1",
-          "text": "learn"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-11:i14:r2",
-          "text": "learns"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-11:i14:r3",
-          "text": "are learn"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажите класс вашей группы: «Они учатся здесь»",
+      "accessibilityLabel": "Скажите о себе и подруге: «Мы пассажиры». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Покажите класс вашей группы: «Они учатся здесь»",
-          "uk": "Покажіть клас вашої групи: «Вони вчаться тут»"
+          "ru": "Скажите о себе и подруге: «Мы пассажиры». Выберите слово",
+          "uk": "Скажіть про себе й подругу: «Ми пасажири». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "We ___ passengers.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-11:i14:r1",
-            "text": "learn"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-11:i14:r2",
-            "text": "learns"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-11:i14:r3",
-            "text": "are learn"
+            "text": "am"
           }
         ],
-        "testedDimension": "Покажите класс вашей группы: «Они учатся здесь»",
+        "testedDimension": "Скажите о себе и подруге: «Мы пассажиры». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-11:i14:r2",
             "correct": false,
-            "testedDimension": "Покажите класс вашей группы: «Они учатся здесь»",
+            "testedDimension": "Скажите о себе и подруге: «Мы пассажиры». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `learn`, без `s`.",
-              "uk": "Після `they` — `learn`, без `s`."
+              "ru": "После `we` нужно `are`, а не `is`.",
+              "uk": "Після `we` потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-06:session-11:i14:r3",
             "correct": false,
-            "testedDimension": "Покажите класс вашей группы: «Они учатся здесь»",
+            "testedDimension": "Скажите о себе и подруге: «Мы пассажиры». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `They learn`, без `are`.",
-              "uk": "Кажемо `They learn`, без `are`."
+              "ru": "`am` бывает только с `I`, а здесь `we`: нужно `are`.",
+              "uk": "`am` буває лише з `I`, а тут `we`: потрібно `are`."
             }
           }
         ]
@@ -772,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что Анна говорит о трамвае",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-11:i15:r1",
-          "text": "The tram is full."
+          "text": "Whose homework is this?"
         },
         {
           "responseId": "en:lesson-06:session-11:i15:r2",
-          "text": "The tram is empty."
+          "text": "Whose homework are these?"
         },
         {
           "responseId": "en:lesson-06:session-11:i15:r3",
-          "text": "The tram is late."
+          "text": "Whose backpack is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что Анна говорит о трамвае",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-11:i15:audio",
-          "transcript": "The tram is full."
+          "transcript": "Whose homework is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-11:i15:r1",
-            "targetText": "The tram is full.",
+            "targetText": "Whose homework is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-11:i15:r2",
-            "targetText": "The tram is empty.",
+            "targetText": "Whose homework are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-11:i15:r3",
-            "targetText": "The tram is late.",
+            "targetText": "Whose backpack is this?",
             "meaningByLocale": null
           }
         ],
@@ -825,19 +1032,19 @@
           {
             "responseId": "en:lesson-06:session-11:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о трамвае",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `full`, а в этом варианте — `empty`.",
-              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `empty`."
+              "ru": "В записи `homework is this` — одно задание, а в этом варианте `homework are these` — несколько.",
+              "uk": "У записі `homework is this` — одне завдання, а в цьому варіанті `homework are these` — кілька."
             }
           },
           {
             "responseId": "en:lesson-06:session-11:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о трамвае",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `full`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `late`."
+              "ru": "В записи вещь — `homework`, задание, а в этом варианте — `backpack`, рюкзак.",
+              "uk": "У записі річ — `homework`, завдання, а в цьому варіанті — `backpack`, наплічник."
             }
           }
         ],
@@ -848,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -862,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-11:i16:p1",
-            "target": "learn",
+            "target": "passenger",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "пассажир",
+              "uk": "пасажир"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i16:p2",
-            "target": "urgent",
+            "target": "learn",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "учить, изучать",
+              "uk": "вчити, вивчати"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i16:p3",
-            "target": "tram",
+            "target": "homework",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "домашнее задание",
+              "uk": "домашнє завдання"
             }
           },
           {
             "pairId": "en:lesson-06:session-11:i16:p4",
-            "target": "parcel",
+            "target": "language",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "язык",
+              "uk": "мова"
             }
           }
         ],
         "leftColumn": [
+          "passenger",
           "learn",
-          "urgent",
-          "tram",
-          "parcel"
+          "homework",
+          "language"
         ],
         "rightColumn": [
-          "учиться",
-          "срочный",
-          "трамвай",
-          "посылка"
+          "пассажир",
+          "учить, изучать",
+          "домашнее задание",
+          "язык"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -921,17 +1128,17 @@
     },
     {
       "interactionId": "en:lesson-06:session-11:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Пассажир спрашивает, какой язык вы с Томом изучаете. Скажите «Мы изучаем английский»",
+      "prompt": "Подруга спрашивает, что вы вдвоём делаете на курсах. Скажите: «Мы изучаем английский»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-11:i17:audio"
       ],
-      "accessibilityLabel": "Пассажир спрашивает, какой язык вы с Томом изучаете. Скажите «Мы изучаем английский»",
+      "accessibilityLabel": "Подруга спрашивает, что вы вдвоём делаете на курсах. Скажите: «Мы изучаем английский»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -961,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b1d5ca42798cbcc78ead1361927d977dfb7d2de88ce93602d3a3387cbfa04b06"
+  "learnerFingerprint": "c0e61df99d9bf2b6f3ebaa4b3965296365707325586f506e0f45ac81635ead7e"
 }

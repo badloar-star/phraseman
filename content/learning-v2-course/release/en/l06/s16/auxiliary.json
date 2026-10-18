@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-16:intro1:r2": {
-          "ru": "После `we` — `learn`, без `s`.",
-          "uk": "Після `we` — `learn`, без `s`."
+          "ru": "После we слово остаётся learn, без s.",
+          "uk": "Після we слово лишається learn, без s."
         },
         "en:lesson-06:session-16:intro1:r3": {
-          "ru": "Говорим `We learn`, без `are`.",
-          "uk": "Кажемо `We learn`, без `are`."
+          "ru": "Здесь действие: We learn, без are.",
+          "uk": "Тут дія: We learn, без are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-16:intro2:r2": {
-          "ru": "После `I` — `paint`, без `s`.",
-          "uk": "Після `I` — `paint`, без `s`."
+          "ru": "Без is предложение не получается: нужно Swimming is.",
+          "uk": "Без is речення не виходить: потрібно Swimming is."
         },
         "en:lesson-06:session-16:intro2:r3": {
-          "ru": "Говорим `I paint`, без `am`.",
-          "uk": "Кажемо `I paint`, без `am`."
+          "ru": "Swimming — одно дело, поэтому нужно is, а не are.",
+          "uk": "Swimming — одна справа, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-16:intro3:r2": {
-          "ru": "После `we` — `start`, без `s`.",
-          "uk": "Після `we` — `start`, без `s`."
+          "ru": "Без am предложение не получается: нужно I am.",
+          "uk": "Без am речення не виходить: потрібно I am."
         },
         "en:lesson-06:session-16:intro3:r3": {
-          "ru": "Говорим `We start`, без `are`.",
-          "uk": "Кажемо `We start`, без `are`."
+          "ru": "После I нужно am, а не are.",
+          "uk": "Після I потрібно am, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a698b593e43464de47b1deb9a432133ecbe821c4f501cfd24be6c59d5b7a92ca"
+  "auxiliaryFingerprint": "780d326b14c31a499abe2dccae2610576a11f168991beaffe1ddf71f65e5c334"
 }

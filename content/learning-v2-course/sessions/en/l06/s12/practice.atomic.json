@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-12",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-12:word:paint",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — paint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:paint:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — paint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:paint:audio",
+            "transcript": "paint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:paint:r1",
+              "targetText": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками. We paint at home. — «Мы рисуем красками дома». О рисовании красками, а не карандашом. После I, you, we, they — без s.",
+                "uk": "малювати фарбами. We paint at home. — «Ми малюємо фарбами вдома». Про малювання фарбами, а не олівцем. Після I, you, we, they — без s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paint",
+            "definitionByLocale": {
+              "ru": "рисовать красками. We paint at home. — «Мы рисуем красками дома». О рисовании красками, а не карандашом. После I, you, we, they — без s.",
+              "uk": "малювати фарбами. We paint at home. — «Ми малюємо фарбами вдома». Про малювання фарбами, а не олівцем. Після I, you, we, they — без s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We paint here.",
+          "localizedMeaning": {
+            "ru": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+            "uk": "Викладачка питає, де ви малюєте фарбами. Скажіть: «Ми малюємо фарбами тут»"
+          },
+          "orderedTokens": [
+            "We",
+            "paint",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paint` — `We paint here.`",
+                "uk": "тут потрібно `paint` — `We paint here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:word:studio",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — studio",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:studio:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — studio",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:studio:audio",
+            "transcript": "studio"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:studio:r1",
+              "targetText": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская, студия. We paint in the studio. — «Мы рисуем красками в мастерской». О комнате, где работает художник.",
+                "uk": "майстерня, студія. We paint in the studio. — «Ми малюємо фарбами в майстерні». Про кімнату, де працює художник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "studio",
+            "definitionByLocale": {
+              "ru": "мастерская, студия. We paint in the studio. — «Мы рисуем красками в мастерской». О комнате, где работает художник.",
+              "uk": "майстерня, студія. We paint in the studio. — «Ми малюємо фарбами в майстерні». Про кімнату, де працює художник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i02:r1",
+            "text": "I paint at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i02:r2",
+            "text": "I paint in the studio."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i02:r3",
+            "text": "We paint at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i02:audio",
+            "transcript": "I paint at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:i02:r1",
+              "targetText": "I paint at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i02:r2",
+              "targetText": "I paint in the studio.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i02:r3",
+              "targetText": "We paint at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последние слова — `at home`, дома, а в этом варианте — `in the studio`, в мастерской.",
+                "uk": "У записі останні слова — `at home`, вдома, а в цьому варіанті — `in the studio`, у майстерні."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i03:r1",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i03:r2",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i03:r3",
+            "text": "are paint"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+            "uk": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ in the studio.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-12:i03:r1",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i03:r2",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i03:r3",
+              "text": "are paint"
+            }
+          ],
+          "testedDimension": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `they` — `paint`, без `s`.",
+                "uk": "Після `they` — `paint`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `They paint`, без `are`.",
+                "uk": "Кажемо `They paint`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-12:i04:p1",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i04:p2",
+              "target": "canvas",
+              "meaningByLocale": {
+                "ru": "холст",
+                "uk": "полотно"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i04:p3",
+              "target": "palette",
+              "meaningByLocale": {
+                "ru": "палитра",
+                "uk": "палітра"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i04:p4",
+              "target": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская",
+                "uk": "майстерня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "paint",
+            "canvas",
+            "palette",
+            "studio"
+          ],
+          "rightColumn": [
+            "рисовать красками",
+            "холст",
+            "палитра",
+            "мастерская"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте преподавательницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте преподавательницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i05:audio",
+            "transcript": "You paint in the studio."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You paint in the studio.",
+          "orderedTokens": [
+            "You",
+            "paint",
+            "in",
+            "the",
+            "studio"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте преподавательницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paint` — `You paint in the studio.`",
+                "uk": "тут потрібно `paint` — `You paint in the studio.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:word:palette",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — palette",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:palette:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — palette",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:palette:audio",
+            "transcript": "palette"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:palette:r1",
+              "targetText": "palette",
+              "meaningByLocale": {
+                "ru": "палитра. The palette is on the table. — «Палитра на столе». О доске, на которой смешивают краски.",
+                "uk": "палітра. The palette is on the table. — «Палітра на столі». Про дошку, на якій змішують фарби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "palette",
+            "definitionByLocale": {
+              "ru": "палитра. The palette is on the table. — «Палитра на столе». О доске, на которой смешивают краски.",
+              "uk": "палітра. The palette is on the table. — «Палітра на столі». Про дошку, на якій змішують фарби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на палитру. Скажите: «Эта палитра моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на палитру. Скажите: «Эта палитра моя»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This palette is mine.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на палитру. Скажите: «Эта палитра моя»",
+            "uk": "Подруга показує на палітру. Скажіть: «Ця палітра моя»"
+          },
+          "orderedTokens": [
+            "This",
+            "palette",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "my"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на палитру. Скажите: «Эта палитра моя»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `This palette is mine.`",
+                "uk": "тут потрібно `mine` — `This palette is mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:word:canvas",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — canvas",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:canvas:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — canvas",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:canvas:audio",
+            "transcript": "canvas"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:canvas:r1",
+              "targetText": "canvas",
+              "meaningByLocale": {
+                "ru": "холст. The canvas is on the easel. — «Холст на мольберте». О плотной ткани, на которой рисуют красками.",
+                "uk": "полотно. The canvas is on the easel. — «Полотно на мольберті». Про щільну тканину, на якій малюють фарбами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "canvas",
+            "definitionByLocale": {
+              "ru": "холст. The canvas is on the easel. — «Холст на мольберте». О плотной ткани, на которой рисуют красками.",
+              "uk": "полотно. The canvas is on the easel. — «Полотно на мольберті». Про щільну тканину, на якій малюють фарбами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Преподавательница спрашивает, где ваш холст. Скажите: «Холст на мольберте»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i07:audio"
+        ],
+        "accessibilityLabel": "Преподавательница спрашивает, где ваш холст. Скажите: «Холст на мольберте»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i07:audio",
+            "transcript": "The canvas is on the easel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The canvas is on the easel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на ваш холст. Скажите: «Тот холст твой». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i08:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на ваш холст. Скажите: «Тот холст твой». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на ваш холст. Скажите: «Тот холст твой». Выберите слово",
+            "uk": "Подруга показує на ваше полотно. Скажіть: «Те полотно твоє». Виберіть слово"
+          },
+          "gappedTargetPhrase": "That canvas is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-12:i08:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i08:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i08:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Подруга показывает на ваш холст. Скажите: «Тот холст твой». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на ваш холст. Скажите: «Тот холст твой». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`your` требует вещи после себя. Без вещи нужно `yours`.",
+                "uk": "`your` потребує речі після себе. Без речі потрібно `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на ваш холст. Скажите: «Тот холст твой». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а нужно сказать «твой»: `yours`.",
+                "uk": "`you` означає «ти», а треба сказати «твій»: `yours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте преподавательницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i09:r1",
+            "text": "The palette is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i09:r2",
+            "text": "The palette is under the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i09:r3",
+            "text": "The canvas is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте преподавательницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i09:audio",
+            "transcript": "The palette is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:i09:r1",
+              "targetText": "The palette is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i09:r2",
+              "targetText": "The palette is under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i09:r3",
+              "targetText": "The canvas is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте преподавательницу",
+              "feedbackByLocale": {
+                "ru": "В записи палитра лежит `on`, на столе, а в этом варианте — `under`, под столом.",
+                "uk": "У записі палітра лежить `on`, на столі, а в цьому варіанті — `under`, під столом."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте преподавательницу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `palette`, палитра, а в этом варианте — `canvas`, холст.",
+                "uk": "У записі річ — `palette`, палітра, а в цьому варіанті — `canvas`, полотно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-12:i10:p1",
+              "target": "canvas",
+              "meaningByLocale": {
+                "ru": "холст",
+                "uk": "полотно"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i10:p2",
+              "target": "palette",
+              "meaningByLocale": {
+                "ru": "палитра",
+                "uk": "палітра"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i10:p3",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i10:p4",
+              "target": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская",
+                "uk": "майстерня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "canvas",
+            "palette",
+            "paint",
+            "studio"
+          ],
+          "rightColumn": [
+            "холст",
+            "палитра",
+            "рисовать красками",
+            "мастерская"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i11:audio",
+            "transcript": "They paint on a canvas."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They paint on a canvas.",
+          "orderedTokens": [
+            "They",
+            "paint",
+            "on",
+            "a",
+            "canvas"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paint` — `They paint on a canvas.`",
+                "uk": "тут потрібно `paint` — `They paint on a canvas.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли в мастерской чужой холст. Спросите ученика: «Чей это холст?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли в мастерской чужой холст. Спросите ученика: «Чей это холст?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose canvas is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли в мастерской чужой холст. Спросите ученика: «Чей это холст?»",
+            "uk": "Ви знайшли в майстерні чуже полотно. Спитайте учня: «Чиє це полотно?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "canvas",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли в мастерской чужой холст. Спросите ученика: «Чей это холст?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose canvas is this?`",
+                "uk": "тут потрібно `Whose` — `Whose canvas is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, где вы с сестрой рисуете красками. Вы рисуете дома. Скажите: «Мы рисуем красками дома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, где вы с сестрой рисуете красками. Вы рисуете дома. Скажите: «Мы рисуем красками дома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i13:audio",
+            "transcript": "We paint at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i14:r1",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i14:r2",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i14:r3",
+            "text": "am paint"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+            "uk": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-12:i14:r1",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i14:r2",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i14:r3",
+              "text": "am paint"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` — `paint`, без `s`.",
+                "uk": "Після `I` — `paint`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I paint`, без `am`.",
+                "uk": "Кажемо `I paint`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте ученика",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i15:r1",
+            "text": "Whose canvas is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i15:r2",
+            "text": "Whose canvas are these?"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i15:r3",
+            "text": "Whose palette is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте ученика",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i15:audio",
+            "transcript": "Whose canvas is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:i15:r1",
+              "targetText": "Whose canvas is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i15:r2",
+              "targetText": "Whose canvas are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i15:r3",
+              "targetText": "Whose palette is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте ученика",
+              "feedbackByLocale": {
+                "ru": "В записи `canvas is this` — один холст, а в этом варианте `canvas are these` — несколько.",
+                "uk": "У записі `canvas is this` — одне полотно, а в цьому варіанті `canvas are these` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте ученика",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `canvas`, холст, а в этом варианте — `palette`, палитра.",
+                "uk": "У записі річ — `canvas`, полотно, а в цьому варіанті — `palette`, палітра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-12:i16:p1",
+              "target": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская",
+                "uk": "майстерня"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i16:p2",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i16:p3",
+              "target": "palette",
+              "meaningByLocale": {
+                "ru": "палитра",
+                "uk": "палітра"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i16:p4",
+              "target": "canvas",
+              "meaningByLocale": {
+                "ru": "холст",
+                "uk": "полотно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "studio",
+            "paint",
+            "palette",
+            "canvas"
+          ],
+          "rightColumn": [
+            "мастерская",
+            "рисовать красками",
+            "палитра",
+            "холст"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новая ученица спрашивает, что вы делаете в мастерской. Скажите за всю группу: «Мы рисуем красками в мастерской»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Новая ученица спрашивает, что вы делаете в мастерской. Скажите за всю группу: «Мы рисуем красками в мастерской»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i17:audio",
+            "transcript": "We paint in the studio."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint in the studio.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-12:word:paint",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — paint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:paint:audio"
+        ],
+        "accessibilityLabel": "Картка слова — paint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:paint:audio",
+            "transcript": "paint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:paint:r1",
+              "targetText": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками. We paint at home. — «Мы рисуем красками дома». О рисовании красками, а не карандашом. После I, you, we, they — без s.",
+                "uk": "малювати фарбами. We paint at home. — «Ми малюємо фарбами вдома». Про малювання фарбами, а не олівцем. Після I, you, we, they — без s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paint",
+            "definitionByLocale": {
+              "ru": "рисовать красками. We paint at home. — «Мы рисуем красками дома». О рисовании красками, а не карандашом. После I, you, we, they — без s.",
+              "uk": "малювати фарбами. We paint at home. — «Ми малюємо фарбами вдома». Про малювання фарбами, а не олівцем. Після I, you, we, they — без s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Викладачка питає, де ви малюєте фарбами. Скажіть: «Ми малюємо фарбами тут»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Викладачка питає, де ви малюєте фарбами. Скажіть: «Ми малюємо фарбами тут»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We paint here.",
+          "localizedMeaning": {
+            "ru": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+            "uk": "Викладачка питає, де ви малюєте фарбами. Скажіть: «Ми малюємо фарбами тут»"
+          },
+          "orderedTokens": [
+            "We",
+            "paint",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Викладачка питає, де ви малюєте фарбами. Скажіть: «Ми малюємо фарбами тут»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paint` — `We paint here.`",
+                "uk": "тут потрібно `paint` — `We paint here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:word:studio",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — studio",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:studio:audio"
+        ],
+        "accessibilityLabel": "Картка слова — studio",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:studio:audio",
+            "transcript": "studio"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:studio:r1",
+              "targetText": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская, студия. We paint in the studio. — «Мы рисуем красками в мастерской». О комнате, где работает художник.",
+                "uk": "майстерня, студія. We paint in the studio. — «Ми малюємо фарбами в майстерні». Про кімнату, де працює художник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "studio",
+            "definitionByLocale": {
+              "ru": "мастерская, студия. We paint in the studio. — «Мы рисуем красками в мастерской». О комнате, где работает художник.",
+              "uk": "майстерня, студія. We paint in the studio. — «Ми малюємо фарбами в майстерні». Про кімнату, де працює художник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i02:r1",
+            "text": "I paint at home."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i02:r2",
+            "text": "I paint in the studio."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i02:r3",
+            "text": "We paint at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i02:audio",
+            "transcript": "I paint at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:i02:r1",
+              "targetText": "I paint at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i02:r2",
+              "targetText": "I paint in the studio.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i02:r3",
+              "targetText": "We paint at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последние слова — `at home`, дома, а в этом варианте — `in the studio`, в мастерской.",
+                "uk": "У записі останні слова — `at home`, вдома, а в цьому варіанті — `in the studio`, у майстерні."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i03:r1",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i03:r2",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i03:r3",
+            "text": "are paint"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+            "uk": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ in the studio.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-12:i03:r1",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i03:r2",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i03:r3",
+              "text": "are paint"
+            }
+          ],
+          "testedDimension": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `they` — `paint`, без `s`.",
+                "uk": "Після `they` — `paint`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `They paint`, без `are`.",
+                "uk": "Кажемо `They paint`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-12:i04:p1",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i04:p2",
+              "target": "canvas",
+              "meaningByLocale": {
+                "ru": "холст",
+                "uk": "полотно"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i04:p3",
+              "target": "palette",
+              "meaningByLocale": {
+                "ru": "палитра",
+                "uk": "палітра"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i04:p4",
+              "target": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская",
+                "uk": "майстерня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "paint",
+            "canvas",
+            "palette",
+            "studio"
+          ],
+          "rightColumn": [
+            "малювати фарбами",
+            "полотно",
+            "палітра",
+            "майстерня"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте викладачку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте викладачку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i05:audio",
+            "transcript": "You paint in the studio."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You paint in the studio.",
+          "orderedTokens": [
+            "You",
+            "paint",
+            "in",
+            "the",
+            "studio"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте викладачку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paint` — `You paint in the studio.`",
+                "uk": "тут потрібно `paint` — `You paint in the studio.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:word:palette",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — palette",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:palette:audio"
+        ],
+        "accessibilityLabel": "Картка слова — palette",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:palette:audio",
+            "transcript": "palette"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:palette:r1",
+              "targetText": "palette",
+              "meaningByLocale": {
+                "ru": "палитра. The palette is on the table. — «Палитра на столе». О доске, на которой смешивают краски.",
+                "uk": "палітра. The palette is on the table. — «Палітра на столі». Про дошку, на якій змішують фарби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "palette",
+            "definitionByLocale": {
+              "ru": "палитра. The palette is on the table. — «Палитра на столе». О доске, на которой смешивают краски.",
+              "uk": "палітра. The palette is on the table. — «Палітра на столі». Про дошку, на якій змішують фарби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на палітру. Скажіть: «Ця палітра моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на палітру. Скажіть: «Ця палітра моя»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This palette is mine.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на палитру. Скажите: «Эта палитра моя»",
+            "uk": "Подруга показує на палітру. Скажіть: «Ця палітра моя»"
+          },
+          "orderedTokens": [
+            "This",
+            "palette",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "my"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на палітру. Скажіть: «Ця палітра моя»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `This palette is mine.`",
+                "uk": "тут потрібно `mine` — `This palette is mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:word:canvas",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — canvas",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:word:canvas:audio"
+        ],
+        "accessibilityLabel": "Картка слова — canvas",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:word:canvas:audio",
+            "transcript": "canvas"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:word:canvas:r1",
+              "targetText": "canvas",
+              "meaningByLocale": {
+                "ru": "холст. The canvas is on the easel. — «Холст на мольберте». О плотной ткани, на которой рисуют красками.",
+                "uk": "полотно. The canvas is on the easel. — «Полотно на мольберті». Про щільну тканину, на якій малюють фарбами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "canvas",
+            "definitionByLocale": {
+              "ru": "холст. The canvas is on the easel. — «Холст на мольберте». О плотной ткани, на которой рисуют красками.",
+              "uk": "полотно. The canvas is on the easel. — «Полотно на мольберті». Про щільну тканину, на якій малюють фарбами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Викладачка питає, де ваше полотно. Скажіть: «Полотно на мольберті»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i07:audio"
+        ],
+        "accessibilityLabel": "Викладачка питає, де ваше полотно. Скажіть: «Полотно на мольберті»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i07:audio",
+            "transcript": "The canvas is on the easel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The canvas is on the easel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на ваше полотно. Скажіть: «Те полотно твоє». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i08:r3",
+            "text": "you"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на ваше полотно. Скажіть: «Те полотно твоє». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на ваш холст. Скажите: «Тот холст твой». Выберите слово",
+            "uk": "Подруга показує на ваше полотно. Скажіть: «Те полотно твоє». Виберіть слово"
+          },
+          "gappedTargetPhrase": "That canvas is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-12:i08:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i08:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i08:r3",
+              "text": "you"
+            }
+          ],
+          "testedDimension": "Подруга показує на ваше полотно. Скажіть: «Те полотно твоє». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на ваше полотно. Скажіть: «Те полотно твоє». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`your` требует вещи после себя. Без вещи нужно `yours`.",
+                "uk": "`your` потребує речі після себе. Без речі потрібно `yours`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на ваше полотно. Скажіть: «Те полотно твоє». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`you` значит «ты», а нужно сказать «твой»: `yours`.",
+                "uk": "`you` означає «ти», а треба сказати «твій»: `yours`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте викладачку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i09:r1",
+            "text": "The palette is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i09:r2",
+            "text": "The palette is under the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i09:r3",
+            "text": "The canvas is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте викладачку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i09:audio",
+            "transcript": "The palette is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:i09:r1",
+              "targetText": "The palette is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i09:r2",
+              "targetText": "The palette is under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i09:r3",
+              "targetText": "The canvas is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте викладачку",
+              "feedbackByLocale": {
+                "ru": "В записи палитра лежит `on`, на столе, а в этом варианте — `under`, под столом.",
+                "uk": "У записі палітра лежить `on`, на столі, а в цьому варіанті — `under`, під столом."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте викладачку",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `palette`, палитра, а в этом варианте — `canvas`, холст.",
+                "uk": "У записі річ — `palette`, палітра, а в цьому варіанті — `canvas`, полотно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-12:i10:p1",
+              "target": "canvas",
+              "meaningByLocale": {
+                "ru": "холст",
+                "uk": "полотно"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i10:p2",
+              "target": "palette",
+              "meaningByLocale": {
+                "ru": "палитра",
+                "uk": "палітра"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i10:p3",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i10:p4",
+              "target": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская",
+                "uk": "майстерня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "canvas",
+            "palette",
+            "paint",
+            "studio"
+          ],
+          "rightColumn": [
+            "полотно",
+            "палітра",
+            "малювати фарбами",
+            "майстерня"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i11:audio",
+            "transcript": "They paint on a canvas."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They paint on a canvas.",
+          "orderedTokens": [
+            "They",
+            "paint",
+            "on",
+            "a",
+            "canvas"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `paint` — `They paint on a canvas.`",
+                "uk": "тут потрібно `paint` — `They paint on a canvas.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли в майстерні чуже полотно. Спитайте учня: «Чиє це полотно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли в майстерні чуже полотно. Спитайте учня: «Чиє це полотно?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose canvas is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли в мастерской чужой холст. Спросите ученика: «Чей это холст?»",
+            "uk": "Ви знайшли в майстерні чуже полотно. Спитайте учня: «Чиє це полотно?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "canvas",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли в майстерні чуже полотно. Спитайте учня: «Чиє це полотно?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose canvas is this?`",
+                "uk": "тут потрібно `Whose` — `Whose canvas is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, де ви із сестрою малюєте фарбами. Ви малюєте вдома. Скажіть: «Ми малюємо фарбами вдома»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, де ви із сестрою малюєте фарбами. Ви малюєте вдома. Скажіть: «Ми малюємо фарбами вдома»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i13:audio",
+            "transcript": "We paint at home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint at home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i14:r1",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i14:r2",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i14:r3",
+            "text": "am paint"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+            "uk": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-12:i14:r1",
+              "text": "paint"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i14:r2",
+              "text": "paints"
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i14:r3",
+              "text": "am paint"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` — `paint`, без `s`.",
+                "uk": "Після `I` — `paint`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I paint`, без `am`.",
+                "uk": "Кажемо `I paint`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте учня",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-12:i15:r1",
+            "text": "Whose canvas is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i15:r2",
+            "text": "Whose canvas are these?"
+          },
+          {
+            "responseId": "en:lesson-06:session-12:i15:r3",
+            "text": "Whose palette is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте учня",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i15:audio",
+            "transcript": "Whose canvas is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-12:i15:r1",
+              "targetText": "Whose canvas is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i15:r2",
+              "targetText": "Whose canvas are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i15:r3",
+              "targetText": "Whose palette is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-12:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте учня",
+              "feedbackByLocale": {
+                "ru": "В записи `canvas is this` — один холст, а в этом варианте `canvas are these` — несколько.",
+                "uk": "У записі `canvas is this` — одне полотно, а в цьому варіанті `canvas are these` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-12:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте учня",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `canvas`, холст, а в этом варианте — `palette`, палитра.",
+                "uk": "У записі річ — `canvas`, полотно, а в цьому варіанті — `palette`, палітра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-12:i16:p1",
+              "target": "studio",
+              "meaningByLocale": {
+                "ru": "мастерская",
+                "uk": "майстерня"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i16:p2",
+              "target": "paint",
+              "meaningByLocale": {
+                "ru": "рисовать красками",
+                "uk": "малювати фарбами"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i16:p3",
+              "target": "palette",
+              "meaningByLocale": {
+                "ru": "палитра",
+                "uk": "палітра"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-12:i16:p4",
+              "target": "canvas",
+              "meaningByLocale": {
+                "ru": "холст",
+                "uk": "полотно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "studio",
+            "paint",
+            "palette",
+            "canvas"
+          ],
+          "rightColumn": [
+            "майстерня",
+            "малювати фарбами",
+            "палітра",
+            "полотно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-12:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Нова учениця питає, що ви робите в майстерні. Скажіть за всю групу: «Ми малюємо фарбами в майстерні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Нова учениця питає, що ви робите в майстерні. Скажіть за всю групу: «Ми малюємо фарбами в майстерні»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-12:i17:audio",
+            "transcript": "We paint in the studio."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We paint in the studio.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-12:word:paint",
+      "correctText": "paint",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i01",
+      "correctText": "We paint here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:word:studio",
+      "correctText": "studio",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i02",
+      "correctText": "I paint at home.",
+      "correctResponseId": "en:lesson-06:session-12:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i03",
+      "correctText": "paint",
+      "correctResponseId": "en:lesson-06:session-12:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i05",
+      "correctText": "You paint in the studio.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:word:palette",
+      "correctText": "palette",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i06",
+      "correctText": "This palette is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:word:canvas",
+      "correctText": "canvas",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i07",
+      "correctText": "The canvas is on the easel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i08",
+      "correctText": "yours",
+      "correctResponseId": "en:lesson-06:session-12:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i09",
+      "correctText": "The palette is on the table.",
+      "correctResponseId": "en:lesson-06:session-12:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i11",
+      "correctText": "They paint on a canvas.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i12",
+      "correctText": "Whose canvas is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i13",
+      "correctText": "We paint at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i14",
+      "correctText": "paint",
+      "correctResponseId": "en:lesson-06:session-12:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i15",
+      "correctText": "Whose canvas is this?",
+      "correctResponseId": "en:lesson-06:session-12:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:i17",
+      "correctText": "We paint in the studio.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-13",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о плавании и спросить о владельце вещи",
-    "uk": "розповісти про плавання й запитати про власника речі"
+    "ru": "рассказать о плавании и спросить, чья вещь",
+    "uk": "розповісти про плавання й спитати, чия це річ"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Плавать",
-        "uk": "Плавати"
+        "ru": "Бассейн в дождь",
+        "uk": "Басейн у дощ"
       },
       "bodyByLocale": {
-        "ru": "`swim` — «плавать». `I swim in this pool` — «Я плаваю в этом бассейне»: говорим об обычном занятии. `We swim here` — «Мы плаваем здесь». Промокнуть под дождём — ещё не `swim`: для плавания придётся хотя бы зайти в воду.",
-        "uk": "`swim` — «плавати». `I swim in this pool` — «Я плаваю в цьому басейні»: говоримо про звичне заняття. `We swim here` — «Ми плаваємо тут». Промокнути під дощем — ще не `swim`: для плавання доведеться хоча б зайти у воду."
+        "ru": "Брат зовёт вас в бассейн, хотя на улице дождь. Вы оба любите плавать и ходите туда каждую неделю. Сегодня вы едете на такси, чтобы успеть до закрытия. swim — «плавать»: We swim here — «Мы плаваем здесь». После we слово swim остаётся без s, как и после I, you, they.",
+        "uk": "Брат кличе вас до басейну, хоча надворі дощ. Ви обоє любите плавати й ходите туди щотижня. Сьогодні ви їдете таксі, щоб устигнути до закриття. swim — «плавати»: We swim here — «Ми плаваємо тут». Після we слово swim лишається без s, як і після I, you, they."
       },
       "question": {
         "interactionId": "en:lesson-06:session-13:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы плаваем здесь».",
-          "uk": "Скажіть «Ми плаваємо тут»."
+          "ru": "Брат спрашивает, где вы обычно плаваете. Скажите: «Мы плаваем здесь».",
+          "uk": "Брат питає, де ви зазвичай плаваєте. Скажіть: «Ми плаваємо тут»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы плаваем здесь».",
-          "uk": "Скажіть «Ми плаваємо тут»."
+          "ru": "Брат спрашивает, где вы обычно плаваете. Скажите: «Мы плаваем здесь».",
+          "uk": "Брат питає, де ви зазвичай плаваєте. Скажіть: «Ми плаваємо тут»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Открыт для посетителей",
-        "uk": "Відкритий для відвідувачів"
+        "ru": "Свободная дорожка",
+        "uk": "Вільна доріжка"
       },
       "bodyByLocale": {
-        "ru": "`public` — «публичный», «общественный», доступный широкой публике. `This is a public pool` — «Это общественный бассейн». Он может быть платным: `public` не означает «бесплатный». `taxi` — «такси». `They are in the taxi` — «Они в такси»: место, поэтому нужно `are`.",
-        "uk": "`public` — «публічний», «громадський», доступний широкому загалу. `This is a public pool` — «Це громадський басейн». Він може бути платним: `public` не означає «безкоштовний». `taxi` — «таксі». `They are in the taxi` — «Вони в таксі»: місце, тому потрібно `are`."
+        "ru": "В бассейне несколько дорожек, и между ними натянуты верёвки. Инструктор показывает вам одну, у самой стены: там никого нет. Вы хотите занять её первыми, пока она свободна. lane — «дорожка в бассейне». Описываем её через is: This lane is free — «Эта дорожка свободна».",
+        "uk": "У басейні кілька доріжок, і між ними натягнуті мотузки. Інструктор показує вам одну, біля самої стіни: там нікого немає. Ви хочете зайняти її першими, поки вона вільна. lane — «доріжка в басейні». Описуємо її через is: This lane is free — «Ця доріжка вільна»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-13:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Это общественный бассейн».",
-          "uk": "Скажіть «Це громадський басейн»."
+          "ru": "Инструктор показывает на дорожку у стены. Скажите брату: «Эта дорожка свободна».",
+          "uk": "Інструктор показує на доріжку біля стіни. Скажіть братові: «Ця доріжка вільна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-13:intro2:r1",
-              "text": "This is a public pool."
+              "text": "This lane is free."
             },
             {
               "responseId": "en:lesson-06:session-13:intro2:r2",
-              "text": "This are a public pool."
+              "text": "This lane free."
             },
             {
               "responseId": "en:lesson-06:session-13:intro2:r3",
-              "text": "This is a private pool."
+              "text": "This lane are free."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-13:intro2:r1",
-              "text": "This is a public pool."
+              "text": "This lane is free."
             },
             {
               "responseId": "en:lesson-06:session-13:intro2:r2",
-              "text": "This are a public pool."
+              "text": "This lane free."
             },
             {
               "responseId": "en:lesson-06:session-13:intro2:r3",
-              "text": "This is a private pool."
+              "text": "This lane are free."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Это общественный бассейн».",
-          "uk": "Скажіть «Це громадський басейн»."
+          "ru": "Инструктор показывает на дорожку у стены. Скажите брату: «Эта дорожка свободна».",
+          "uk": "Інструктор показує на доріжку біля стіни. Скажіть братові: «Ця доріжка вільна»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Зонт и брелок",
-        "uk": "Парасоля й брелок"
+        "ru": "Плавки в раздевалке",
+        "uk": "Плавки в роздягальні"
       },
       "bodyByLocale": {
-        "ru": "`umbrella` — «зонт», `keychain` — «брелок». `The umbrella is wet` — «Зонт мокрый». `Whose keychain is this?` — «Чей это брелок?» `That umbrella is yours` — «Тот зонт твой»: после `yours` название вещи не нужно.",
-        "uk": "`umbrella` — «парасоля», `keychain` — «брелок». `The umbrella is wet` — «Парасоля мокра». `Whose keychain is this?` — «Чий це брелок?» `That umbrella is yours` — «Та парасоля твоя»: після `yours` назва речі не потрібна."
+        "ru": "В раздевалке брат достаёт из сумки плавки и спрашивает, чьи они. Он протягивает одну пару. trunks — «плавки»: слово всегда во множественном числе, как и по-русски. Даже одна пара — это trunks. Поэтому говорим These trunks are mine — «Эти плавки мои». Не This и не is.",
+        "uk": "У роздягальні брат дістає з сумки плавки й питає, чиї вони. Він простягає одну пару. trunks — «плавки»: слово завжди у множині, як і в українській. Навіть одна пара — це trunks. Тому кажемо These trunks are mine — «Ці плавки мої». Не This і не is."
       },
       "question": {
         "interactionId": "en:lesson-06:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чей это брелок?»",
-          "uk": "Запитайте «Чий це брелок?»"
+          "ru": "Брат достаёт плавки и спрашивает, чьи они. Скажите: «Эти плавки мои».",
+          "uk": "Брат дістає плавки й питає, чиї вони. Скажіть: «Ці плавки мої»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-13:intro3:r1",
-              "text": "Whose keychain is this?"
+              "text": "These trunks are mine."
             },
             {
               "responseId": "en:lesson-06:session-13:intro3:r2",
-              "text": "Where is the keychain?"
+              "text": "This trunks is mine."
             },
             {
               "responseId": "en:lesson-06:session-13:intro3:r3",
-              "text": "Whose keychain are these?"
+              "text": "These trunks is mine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-13:intro3:r1",
-              "text": "Whose keychain is this?"
+              "text": "These trunks are mine."
             },
             {
               "responseId": "en:lesson-06:session-13:intro3:r2",
-              "text": "Where is the keychain?"
+              "text": "This trunks is mine."
             },
             {
               "responseId": "en:lesson-06:session-13:intro3:r3",
-              "text": "Whose keychain are these?"
+              "text": "These trunks is mine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чей это брелок?»",
-          "uk": "Запитайте «Чий це брелок?»"
+          "ru": "Брат достаёт плавки и спрашивает, чьи они. Скажите: «Эти плавки мои».",
+          "uk": "Брат дістає плавки й питає, чиї вони. Скажіть: «Ці плавки мої»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "987af3b4915e84a6dfd834be686efc38a378e93ba242ff1607909f3615982202"
+  "introFingerprint": "83a159cbd3ce9c3135da30f5bf172500de64d0bb18f113e9aad5bcc6efceb141"
 }

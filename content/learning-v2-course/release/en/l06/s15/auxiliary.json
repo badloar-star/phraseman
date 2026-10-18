@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-15:intro1:r2": {
-          "ru": "После `we` — `sing`, без `s`.",
-          "uk": "Після `we` — `sing`, без `s`."
+          "ru": "После I слово остаётся sing, без s.",
+          "uk": "Після I слово лишається sing, без s."
         },
         "en:lesson-06:session-15:intro1:r3": {
-          "ru": "Говорим `We sing`, без `are`.",
-          "uk": "Кажемо `We sing`, без `are`."
+          "ru": "Здесь действие, поэтому перед sing не нужно am.",
+          "uk": "Тут дія, тому перед sing не потрібно am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-15:intro2:r2": {
-          "ru": "Здесь состояние: `They are silent`.",
-          "uk": "Тут стан: `They are silent`."
+          "ru": "После we нужно are, а не is.",
+          "uk": "Після we потрібно are, а не is."
         },
         "en:lesson-06:session-15:intro2:r3": {
-          "ru": "С `they` — `are`, не `is`.",
-          "uk": "З `they` — `are`, не `is`."
+          "ru": "Без are предложение не получается: когда говорим, где мы, нужно We are.",
+          "uk": "Без are речення не виходить: коли кажемо, де ми, потрібно We are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-15:intro3:r2": {
-          "ru": "Это вопрос о месте; о владельце — `Whose`.",
-          "uk": "Це запитання про місце; про власника — `Whose`."
+          "ru": "lyrics — слова песни, их несколько: нужно are, а не is.",
+          "uk": "lyrics — слова пісні, їх кілька: потрібно are, а не is."
         },
         "en:lesson-06:session-15:intro3:r3": {
-          "ru": "Один шлем: `is this`.",
-          "uk": "Один шолом: `is this`."
+          "ru": "Без are предложение не получается: нужно The lyrics are.",
+          "uk": "Без are речення не виходить: потрібно The lyrics are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7986aa3a83441df58418236bb10af85a644a522842a314fd2ab3fac810d4c4fb"
+  "auxiliaryFingerprint": "b5c188fbf3160c61c9cd6b8a48abdae75b1ca8be31763e22084abcb1e4894c40"
 }

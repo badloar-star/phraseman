@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-10",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-10:word:practice",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — practice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:practice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — practice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:practice:audio",
+            "transcript": "practice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:practice:r1",
+              "targetText": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться, тренироваться. They practice English in the hotel. — «Они практикуют английский в отеле». О занятиях, которые повторяют много раз.",
+                "uk": "практикуватися, тренуватися. They practice English in the hotel. — «Вони практикують англійську в готелі». Про заняття, які повторюють багато разів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "practice",
+            "definitionByLocale": {
+              "ru": "практиковаться, тренироваться. They practice English in the hotel. — «Они практикуют английский в отеле». О занятиях, которые повторяют много раз.",
+              "uk": "практикуватися, тренуватися. They practice English in the hotel. — «Вони практикують англійську в готелі». Про заняття, які повторюють багато разів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They practice English.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+            "uk": "Ви розповідаєте гостю про колег. Скажіть: «Вони практикують англійську»"
+          },
+          "orderedTokens": [
+            "They",
+            "practice",
+            "English"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `They practice English.`",
+                "uk": "тут потрібно `practice` — `They practice English.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:word:phrase",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — phrase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:phrase:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — phrase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:phrase:audio",
+            "transcript": "phrase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:phrase:r1",
+              "targetText": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза. You practice a new phrase. — «Ты тренируешь новую фразу». О коротком готовом выражении, которое удобно выучить целиком.",
+                "uk": "фраза. You practice a new phrase. — «Ти тренуєш нову фразу». Про короткий готовий вислів, який зручно вивчити цілком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "phrase",
+            "definitionByLocale": {
+              "ru": "фраза. You practice a new phrase. — «Ты тренируешь новую фразу». О коротком готовом выражении, которое удобно выучить целиком.",
+              "uk": "фраза. You practice a new phrase. — «Ти тренуєш нову фразу». Про короткий готовий вислів, який зручно вивчити цілком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i02:r1",
+            "text": "I practice English."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i02:r2",
+            "text": "I practice a phrase."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i02:r3",
+            "text": "We practice English."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i02:audio",
+            "transcript": "I practice English."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:i02:r1",
+              "targetText": "I practice English.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i02:r2",
+              "targetText": "I practice a phrase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i02:r3",
+              "targetText": "We practice English.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `English`, английский, а в этом варианте — `phrase`, фраза.",
+                "uk": "У записі останнє слово — `English`, англійська, а в цьому варіанті — `phrase`, фраза."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i03:r1",
+            "text": "practice"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i03:r2",
+            "text": "practices"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i03:r3",
+            "text": "are practice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+            "uk": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ a phrase here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-10:i03:r1",
+              "text": "practice"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i03:r2",
+              "text": "practices"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i03:r3",
+              "text": "are practice"
+            }
+          ],
+          "testedDimension": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `they` — `practice`, без `s`.",
+                "uk": "Після `they` — `practice`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `They practice`, без `are`.",
+                "uk": "Кажемо `They practice`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-10:i04:p1",
+              "target": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться",
+                "uk": "практикуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i04:p2",
+              "target": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i04:p3",
+              "target": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь",
+                "uk": "бронювання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i04:p4",
+              "target": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак",
+                "uk": "сніданок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "practice",
+            "phrase",
+            "reservation",
+            "breakfast"
+          ],
+          "rightColumn": [
+            "практиковаться",
+            "фраза",
+            "бронь",
+            "завтрак"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте коллегу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i05:audio",
+            "transcript": "You practice a phrase here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You practice a phrase here.",
+          "orderedTokens": [
+            "You",
+            "practice",
+            "a",
+            "phrase",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `You practice a phrase here.`",
+                "uk": "тут потрібно `practice` — `You practice a phrase here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:word:reservation",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reservation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:reservation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reservation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:reservation:audio",
+            "transcript": "reservation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:reservation:r1",
+              "targetText": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь, бронирование. The reservation is here. — «Бронь здесь». О номере или столике, заказанных заранее.",
+                "uk": "бронь, бронювання. The reservation is here. — «Бронь тут». Про номер чи столик, замовлені заздалегідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reservation",
+            "definitionByLocale": {
+              "ru": "бронь, бронирование. The reservation is here. — «Бронь здесь». О номере или столике, заказанных заранее.",
+              "uk": "бронь, бронювання. The reservation is here. — «Бронь тут». Про номер чи столик, замовлені заздалегідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость показывает на бумагу с бронью на другом столе. Спросите: «Чья это бронь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость показывает на бумагу с бронью на другом столе. Спросите: «Чья это бронь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose reservation is that?",
+          "localizedMeaning": {
+            "ru": "Гость показывает на бумагу с бронью на другом столе. Спросите: «Чья это бронь?»",
+            "uk": "Гість показує на папір із бронню на іншому столі. Спитайте: «Чия це бронь?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "reservation",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость показывает на бумагу с бронью на другом столе. Спросите: «Чья это бронь?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose reservation is that?`",
+                "uk": "тут потрібно `Whose` — `Whose reservation is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:word:breakfast",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — breakfast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:breakfast:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — breakfast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:breakfast:audio",
+            "transcript": "breakfast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:breakfast:r1",
+              "targetText": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак. We have breakfast here. — «Мы завтракаем здесь». О еде утром, в начале дня.",
+                "uk": "сніданок. We have breakfast here. — «Ми снідаємо тут». Про їжу вранці, на початку дня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "breakfast",
+            "definitionByLocale": {
+              "ru": "завтрак. We have breakfast here. — «Мы завтракаем здесь». О еде утром, в начале дня.",
+              "uk": "сніданок. We have breakfast here. — «Ми снідаємо тут». Про їжу вранці, на початку дня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, где вы завтракаете. Скажите: «Мы завтракаем здесь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i07:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, где вы завтракаете. Скажите: «Мы завтракаем здесь»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i07:audio",
+            "transcript": "We have breakfast here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have breakfast here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бумага с бронью лежит на столе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бумага с бронью лежит на столе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бумага с бронью лежит на столе. Выберите слово",
+            "uk": "Папір із бронню лежить на столі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The reservation ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-10:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Бумага с бронью лежит на столе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Бумага с бронью лежит на столе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Бронь одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Бронь одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Бумага с бронью лежит на столе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь нужно сказать, где бронь: `is`.",
+                "uk": "`has` означає «має», а тут треба сказати, де бронь: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i09:r1",
+            "text": "Whose reservation is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i09:r2",
+            "text": "Whose reservation is that?"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i09:r3",
+            "text": "Whose passport is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i09:audio",
+            "transcript": "Whose reservation is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:i09:r1",
+              "targetText": "Whose reservation is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i09:r2",
+              "targetText": "Whose reservation is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i09:r3",
+              "targetText": "Whose passport is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `reservation`, бронь, а в этом варианте — `passport`, паспорт.",
+                "uk": "У записі річ — `reservation`, бронь, а в цьому варіанті — `passport`, паспорт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-10:i10:p1",
+              "target": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь",
+                "uk": "бронювання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i10:p2",
+              "target": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак",
+                "uk": "сніданок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i10:p3",
+              "target": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i10:p4",
+              "target": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться",
+                "uk": "практикуватися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reservation",
+            "breakfast",
+            "phrase",
+            "practice"
+          ],
+          "rightColumn": [
+            "бронь",
+            "завтрак",
+            "фраза",
+            "практиковаться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте коллегу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i11:audio",
+            "transcript": "We practice English in the hotel."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We practice English in the hotel.",
+          "orderedTokens": [
+            "We",
+            "practice",
+            "English",
+            "in",
+            "the",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `We practice English in the hotel.`",
+                "uk": "тут потрібно `practice` — `We practice English in the hotel.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость показывает на столик с едой. Скажите ему: «Это ваш завтрак»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость показывает на столик с едой. Скажите ему: «Это ваш завтрак»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is your breakfast.",
+          "localizedMeaning": {
+            "ru": "Гость показывает на столик с едой. Скажите ему: «Это ваш завтрак»",
+            "uk": "Гість показує на столик з їжею. Скажіть йому: «Це ваш сніданок»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "your",
+            "breakfast"
+          ],
+          "authoredDistractorTokens": [
+            "you"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость показывает на столик с едой. Скажите ему: «Это ваш завтрак»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `your` — `This is your breakfast.`",
+                "uk": "тут потрібно `your` — `This is your breakfast.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, где вы работаете. Скажите: «Мы работаем в этом отеле»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i13:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, где вы работаете. Скажите: «Мы работаем в этом отеле»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i13:audio",
+            "transcript": "We work in this hotel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We work in this hotel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i14:r1",
+            "text": "practice"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i14:r2",
+            "text": "practices"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i14:r3",
+            "text": "are practice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+            "uk": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ a new phrase.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-10:i14:r1",
+              "text": "practice"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i14:r2",
+              "text": "practices"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i14:r3",
+              "text": "are practice"
+            }
+          ],
+          "testedDimension": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `you` — `practice`, без `s`.",
+                "uk": "Після `you` — `practice`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `You practice`, без `are`.",
+                "uk": "Кажемо `You practice`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i15:r1",
+            "text": "They have breakfast here."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i15:r2",
+            "text": "They have breakfast there."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i15:r3",
+            "text": "They have a reservation here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i15:audio",
+            "transcript": "They have breakfast here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:i15:r1",
+              "targetText": "They have breakfast here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i15:r2",
+              "targetText": "They have breakfast there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i15:r3",
+              "targetText": "They have a reservation here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+                "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи у гостей `breakfast`, завтрак, а в этом варианте — `reservation`, бронь.",
+                "uk": "У записі в гостей `breakfast`, сніданок, а в цьому варіанті — `reservation`, бронь."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-10:i16:p1",
+              "target": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак",
+                "uk": "сніданок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i16:p2",
+              "target": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i16:p3",
+              "target": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться",
+                "uk": "практикуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i16:p4",
+              "target": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь",
+                "uk": "бронювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "breakfast",
+            "phrase",
+            "practice",
+            "reservation"
+          ],
+          "rightColumn": [
+            "завтрак",
+            "фраза",
+            "практиковаться",
+            "бронь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новый гость спрашивает, что вы делаете у стойки. Скажите за себя и коллегу: «Мы практикуем английский»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Новый гость спрашивает, что вы делаете у стойки. Скажите за себя и коллегу: «Мы практикуем английский»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i17:audio",
+            "transcript": "We practice English."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We practice English.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-10:word:practice",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — practice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:practice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — practice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:practice:audio",
+            "transcript": "practice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:practice:r1",
+              "targetText": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться, тренироваться. They practice English in the hotel. — «Они практикуют английский в отеле». О занятиях, которые повторяют много раз.",
+                "uk": "практикуватися, тренуватися. They practice English in the hotel. — «Вони практикують англійську в готелі». Про заняття, які повторюють багато разів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "practice",
+            "definitionByLocale": {
+              "ru": "практиковаться, тренироваться. They practice English in the hotel. — «Они практикуют английский в отеле». О занятиях, которые повторяют много раз.",
+              "uk": "практикуватися, тренуватися. They practice English in the hotel. — «Вони практикують англійську в готелі». Про заняття, які повторюють багато разів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви розповідаєте гостю про колег. Скажіть: «Вони практикують англійську»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте гостю про колег. Скажіть: «Вони практикують англійську»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They practice English.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+            "uk": "Ви розповідаєте гостю про колег. Скажіть: «Вони практикують англійську»"
+          },
+          "orderedTokens": [
+            "They",
+            "practice",
+            "English"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте гостю про колег. Скажіть: «Вони практикують англійську»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `They practice English.`",
+                "uk": "тут потрібно `practice` — `They practice English.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:word:phrase",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — phrase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:phrase:audio"
+        ],
+        "accessibilityLabel": "Картка слова — phrase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:phrase:audio",
+            "transcript": "phrase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:phrase:r1",
+              "targetText": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза. You practice a new phrase. — «Ты тренируешь новую фразу». О коротком готовом выражении, которое удобно выучить целиком.",
+                "uk": "фраза. You practice a new phrase. — «Ти тренуєш нову фразу». Про короткий готовий вислів, який зручно вивчити цілком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "phrase",
+            "definitionByLocale": {
+              "ru": "фраза. You practice a new phrase. — «Ты тренируешь новую фразу». О коротком готовом выражении, которое удобно выучить целиком.",
+              "uk": "фраза. You practice a new phrase. — «Ти тренуєш нову фразу». Про короткий готовий вислів, який зручно вивчити цілком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i02:r1",
+            "text": "I practice English."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i02:r2",
+            "text": "I practice a phrase."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i02:r3",
+            "text": "We practice English."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i02:audio",
+            "transcript": "I practice English."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:i02:r1",
+              "targetText": "I practice English.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i02:r2",
+              "targetText": "I practice a phrase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i02:r3",
+              "targetText": "We practice English.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `English`, английский, а в этом варианте — `phrase`, фраза.",
+                "uk": "У записі останнє слово — `English`, англійська, а в цьому варіанті — `phrase`, фраза."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i03:r1",
+            "text": "practice"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i03:r2",
+            "text": "practices"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i03:r3",
+            "text": "are practice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+            "uk": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ a phrase here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-10:i03:r1",
+              "text": "practice"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i03:r2",
+              "text": "practices"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i03:r3",
+              "text": "are practice"
+            }
+          ],
+          "testedDimension": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `they` — `practice`, без `s`.",
+                "uk": "Після `they` — `practice`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `They practice`, без `are`.",
+                "uk": "Кажемо `They practice`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-10:i04:p1",
+              "target": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться",
+                "uk": "практикуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i04:p2",
+              "target": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i04:p3",
+              "target": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь",
+                "uk": "бронювання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i04:p4",
+              "target": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак",
+                "uk": "сніданок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "practice",
+            "phrase",
+            "reservation",
+            "breakfast"
+          ],
+          "rightColumn": [
+            "практикуватися",
+            "фраза",
+            "бронювання",
+            "сніданок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте колегу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i05:audio",
+            "transcript": "You practice a phrase here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You practice a phrase here.",
+          "orderedTokens": [
+            "You",
+            "practice",
+            "a",
+            "phrase",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте колегу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `You practice a phrase here.`",
+                "uk": "тут потрібно `practice` — `You practice a phrase here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:word:reservation",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reservation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:reservation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reservation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:reservation:audio",
+            "transcript": "reservation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:reservation:r1",
+              "targetText": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь, бронирование. The reservation is here. — «Бронь здесь». О номере или столике, заказанных заранее.",
+                "uk": "бронь, бронювання. The reservation is here. — «Бронь тут». Про номер чи столик, замовлені заздалегідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reservation",
+            "definitionByLocale": {
+              "ru": "бронь, бронирование. The reservation is here. — «Бронь здесь». О номере или столике, заказанных заранее.",
+              "uk": "бронь, бронювання. The reservation is here. — «Бронь тут». Про номер чи столик, замовлені заздалегідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість показує на папір із бронню на іншому столі. Спитайте: «Чия це бронь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість показує на папір із бронню на іншому столі. Спитайте: «Чия це бронь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose reservation is that?",
+          "localizedMeaning": {
+            "ru": "Гость показывает на бумагу с бронью на другом столе. Спросите: «Чья это бронь?»",
+            "uk": "Гість показує на папір із бронню на іншому столі. Спитайте: «Чия це бронь?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "reservation",
+            "is",
+            "that"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість показує на папір із бронню на іншому столі. Спитайте: «Чия це бронь?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose reservation is that?`",
+                "uk": "тут потрібно `Whose` — `Whose reservation is that?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:word:breakfast",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — breakfast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:word:breakfast:audio"
+        ],
+        "accessibilityLabel": "Картка слова — breakfast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:word:breakfast:audio",
+            "transcript": "breakfast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:word:breakfast:r1",
+              "targetText": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак. We have breakfast here. — «Мы завтракаем здесь». О еде утром, в начале дня.",
+                "uk": "сніданок. We have breakfast here. — «Ми снідаємо тут». Про їжу вранці, на початку дня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "breakfast",
+            "definitionByLocale": {
+              "ru": "завтрак. We have breakfast here. — «Мы завтракаем здесь». О еде утром, в начале дня.",
+              "uk": "сніданок. We have breakfast here. — «Ми снідаємо тут». Про їжу вранці, на початку дня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега питає, де ви снідаєте. Скажіть: «Ми снідаємо тут»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i07:audio"
+        ],
+        "accessibilityLabel": "Колега питає, де ви снідаєте. Скажіть: «Ми снідаємо тут»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i07:audio",
+            "transcript": "We have breakfast here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have breakfast here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Папір із бронню лежить на столі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Папір із бронню лежить на столі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бумага с бронью лежит на столе. Выберите слово",
+            "uk": "Папір із бронню лежить на столі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The reservation ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-10:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Папір із бронню лежить на столі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Папір із бронню лежить на столі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Бронь одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Бронь одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Папір із бронню лежить на столі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь нужно сказать, где бронь: `is`.",
+                "uk": "`has` означає «має», а тут треба сказати, де бронь: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i09:r1",
+            "text": "Whose reservation is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i09:r2",
+            "text": "Whose reservation is that?"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i09:r3",
+            "text": "Whose passport is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i09:audio",
+            "transcript": "Whose reservation is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:i09:r1",
+              "targetText": "Whose reservation is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i09:r2",
+              "targetText": "Whose reservation is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i09:r3",
+              "targetText": "Whose passport is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `reservation`, бронь, а в этом варианте — `passport`, паспорт.",
+                "uk": "У записі річ — `reservation`, бронь, а в цьому варіанті — `passport`, паспорт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-10:i10:p1",
+              "target": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь",
+                "uk": "бронювання"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i10:p2",
+              "target": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак",
+                "uk": "сніданок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i10:p3",
+              "target": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i10:p4",
+              "target": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться",
+                "uk": "практикуватися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reservation",
+            "breakfast",
+            "phrase",
+            "practice"
+          ],
+          "rightColumn": [
+            "бронювання",
+            "сніданок",
+            "фраза",
+            "практикуватися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте колегу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i11:audio",
+            "transcript": "We practice English in the hotel."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We practice English in the hotel.",
+          "orderedTokens": [
+            "We",
+            "practice",
+            "English",
+            "in",
+            "the",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте колегу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `practice` — `We practice English in the hotel.`",
+                "uk": "тут потрібно `practice` — `We practice English in the hotel.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість показує на столик з їжею. Скажіть йому: «Це ваш сніданок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість показує на столик з їжею. Скажіть йому: «Це ваш сніданок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is your breakfast.",
+          "localizedMeaning": {
+            "ru": "Гость показывает на столик с едой. Скажите ему: «Это ваш завтрак»",
+            "uk": "Гість показує на столик з їжею. Скажіть йому: «Це ваш сніданок»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "your",
+            "breakfast"
+          ],
+          "authoredDistractorTokens": [
+            "you"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість показує на столик з їжею. Скажіть йому: «Це ваш сніданок»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `your` — `This is your breakfast.`",
+                "uk": "тут потрібно `your` — `This is your breakfast.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, де ви працюєте. Скажіть: «Ми працюємо в цьому готелі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i13:audio"
+        ],
+        "accessibilityLabel": "Гість питає, де ви працюєте. Скажіть: «Ми працюємо в цьому готелі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i13:audio",
+            "transcript": "We work in this hotel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We work in this hotel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i14:r1",
+            "text": "practice"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i14:r2",
+            "text": "practices"
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i14:r3",
+            "text": "are practice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+            "uk": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ a new phrase.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-10:i14:r1",
+              "text": "practice"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i14:r2",
+              "text": "practices"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i14:r3",
+              "text": "are practice"
+            }
+          ],
+          "testedDimension": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `you` — `practice`, без `s`.",
+                "uk": "Після `you` — `practice`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `You practice`, без `are`.",
+                "uk": "Кажемо `You practice`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-10:i15:r1",
+            "text": "They have breakfast here."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i15:r2",
+            "text": "They have breakfast there."
+          },
+          {
+            "responseId": "en:lesson-06:session-10:i15:r3",
+            "text": "They have a reservation here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i15:audio",
+            "transcript": "They have breakfast here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-10:i15:r1",
+              "targetText": "They have breakfast here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i15:r2",
+              "targetText": "They have breakfast there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i15:r3",
+              "targetText": "They have a reservation here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-10:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+                "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-10:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостя",
+              "feedbackByLocale": {
+                "ru": "В записи у гостей `breakfast`, завтрак, а в этом варианте — `reservation`, бронь.",
+                "uk": "У записі в гостей `breakfast`, сніданок, а в цьому варіанті — `reservation`, бронь."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-10:i16:p1",
+              "target": "breakfast",
+              "meaningByLocale": {
+                "ru": "завтрак",
+                "uk": "сніданок"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i16:p2",
+              "target": "phrase",
+              "meaningByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i16:p3",
+              "target": "practice",
+              "meaningByLocale": {
+                "ru": "практиковаться",
+                "uk": "практикуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-10:i16:p4",
+              "target": "reservation",
+              "meaningByLocale": {
+                "ru": "бронь",
+                "uk": "бронювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "breakfast",
+            "phrase",
+            "practice",
+            "reservation"
+          ],
+          "rightColumn": [
+            "сніданок",
+            "фраза",
+            "практикуватися",
+            "бронювання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новий гість питає, що ви робите біля стійки. Скажіть за себе й колегу: «Ми практикуємо англійську»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Новий гість питає, що ви робите біля стійки. Скажіть за себе й колегу: «Ми практикуємо англійську»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-10:i17:audio",
+            "transcript": "We practice English."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We practice English.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-10:word:practice",
+      "correctText": "practice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i01",
+      "correctText": "They practice English.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:word:phrase",
+      "correctText": "phrase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i02",
+      "correctText": "I practice English.",
+      "correctResponseId": "en:lesson-06:session-10:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i03",
+      "correctText": "practice",
+      "correctResponseId": "en:lesson-06:session-10:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i05",
+      "correctText": "You practice a phrase here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:word:reservation",
+      "correctText": "reservation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i06",
+      "correctText": "Whose reservation is that?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:word:breakfast",
+      "correctText": "breakfast",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i07",
+      "correctText": "We have breakfast here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-10:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i09",
+      "correctText": "Whose reservation is this?",
+      "correctResponseId": "en:lesson-06:session-10:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i11",
+      "correctText": "We practice English in the hotel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i12",
+      "correctText": "This is your breakfast.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i13",
+      "correctText": "We work in this hotel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i14",
+      "correctText": "practice",
+      "correctResponseId": "en:lesson-06:session-10:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i15",
+      "correctText": "They have breakfast here.",
+      "correctResponseId": "en:lesson-06:session-10:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:i17",
+      "correctText": "We practice English.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-16",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о знакомых занятиях от своего лица и от лица группы",
-    "uk": "розповісти про знайомі заняття від свого імені й від імені групи"
+    "ru": "самому выбрать между «слово действия без s» и «am, is, are» и рассказать о занятиях клуба",
+    "uk": "самому вибрати між «слово дії без s» і «am, is, are» та розповісти про заняття клубу"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Учимся и упражняемся",
-        "uk": "Вчимося й вправляємося"
+        "ru": "Первое занятие",
+        "uk": "Перше заняття"
       },
       "bodyByLocale": {
-        "ru": "Повторим `learn` — «учиться», «изучать» и `practice` — «практиковаться». `We learn English` — «Мы изучаем английский». `We practice here` — «Мы практикуемся здесь». Эти действия могут идти вместе: узнаём новое и упражняемся. После `I`, `you`, `we`, `they` не добавляем к этим словам `s`.",
-        "uk": "Повторимо `learn` — «вчитися», «вивчати» та `practice` — «практикуватися». `We learn English` — «Ми вивчаємо англійську». `We practice here` — «Ми практикуємося тут». Ці дії можуть відбуватися разом: дізнаємося нове й вправляємося. Після `I`, `you`, `we`, `they` не додаємо до цих слів `s`."
+        "ru": "Подруга ведёт вас по клубу и показывает первую комнату: там сидит группа и учит английский. Вы хотите ходить сюда же. Подруга говорит, что занятия идут по вечерам. class — «занятие, урок; группа, которая учится вместе». We learn English in class — «Мы изучаем английский на занятии».",
+        "uk": "Подруга веде вас по клубу й показує першу кімнату: там сидить група й вчить англійську. Ви хочете ходити сюди ж. Подруга каже, що заняття йдуть увечері. class — «заняття, урок; група, яка вчиться разом». We learn English in class — «Ми вивчаємо англійську на занятті»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы изучаем английский».",
-          "uk": "Скажіть «Ми вивчаємо англійську»."
+          "ru": "Подруга спрашивает, чем вы будете заниматься в этой комнате. Скажите: «Мы изучаем английский на занятии».",
+          "uk": "Подруга питає, чим ви будете займатися в цій кімнаті. Скажіть: «Ми вивчаємо англійську на занятті»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-16:intro1:r1",
-              "text": "We learn English."
+              "text": "We learn English in class."
             },
             {
               "responseId": "en:lesson-06:session-16:intro1:r2",
-              "text": "We learns English."
+              "text": "We learns English in class."
             },
             {
               "responseId": "en:lesson-06:session-16:intro1:r3",
-              "text": "We are learn English."
+              "text": "We are learn English in class."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-16:intro1:r1",
-              "text": "We learn English."
+              "text": "We learn English in class."
             },
             {
               "responseId": "en:lesson-06:session-16:intro1:r2",
-              "text": "We learns English."
+              "text": "We learns English in class."
             },
             {
               "responseId": "en:lesson-06:session-16:intro1:r3",
-              "text": "We are learn English."
+              "text": "We are learn English in class."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы изучаем английский».",
-          "uk": "Скажіть «Ми вивчаємо англійську»."
+          "ru": "Подруга спрашивает, чем вы будете заниматься в этой комнате. Скажите: «Мы изучаем английский на занятии».",
+          "uk": "Подруга питає, чим ви будете займатися в цій кімнаті. Скажіть: «Ми вивчаємо англійську на занятті»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Рисуем, плаваем, поём",
-        "uk": "Малюємо, плаваємо, співаємо"
+        "ru": "Любимое дело",
+        "uk": "Улюблена справа"
       },
       "bodyByLocale": {
-        "ru": "`paint` — «рисовать красками», `swim` — «плавать», `sing` — «петь». `I paint at home` — «Я рисую красками дома». `swimming pool` — «бассейн»; знакомое `pool` тоже подходит, когда понятно, что речь о плавании. `We swim in this swimming pool` — «Мы плаваем в этом бассейне». Петь в душе удобно. В бассейне лучше сначала вынырнуть.",
-        "uk": "`paint` — «малювати фарбами», `swim` — «плавати», `sing` — «співати». `I paint at home` — «Я малюю фарбами вдома». `swimming pool` — «басейн»; знайоме `pool` теж підходить, коли зрозуміло, що йдеться про плавання. `We swim in this swimming pool` — «Ми плаваємо в цьому басейні». Співати в душі зручно. У басейні краще спочатку виринути."
+        "ru": "В коридоре подруга спрашивает, чем вы занимаетесь для удовольствия, а не по работе. Вы любите плавать, а подруга сама плавает по субботам. hobby — «увлечение»: дело, которым занимаются свободное время. Когда называем, что это, нужен is: Swimming is my hobby.",
+        "uk": "У коридорі подруга питає, чим ви займаєтеся для задоволення, а не по роботі. Ви любите плавати, а подруга сама плаває щосуботи. hobby — «захоплення»: справа, якою займаються у вільний час. Коли називаємо, що це, потрібен is: Swimming is my hobby."
       },
       "question": {
         "interactionId": "en:lesson-06:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Я рисую красками дома».",
-          "uk": "Скажіть «Я малюю фарбами вдома»."
+          "ru": "Подруга спрашивает, что ваше увлечение. Скажите: «Плавание — моё увлечение».",
+          "uk": "Подруга питає, яке ваше захоплення. Скажіть: «Плавання — моє захоплення»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-16:intro2:r1",
-              "text": "I paint at home."
+              "text": "Swimming is my hobby."
             },
             {
               "responseId": "en:lesson-06:session-16:intro2:r2",
-              "text": "I paints at home."
+              "text": "Swimming my hobby."
             },
             {
               "responseId": "en:lesson-06:session-16:intro2:r3",
-              "text": "I am paint at home."
+              "text": "Swimming are my hobby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-16:intro2:r1",
-              "text": "I paint at home."
+              "text": "Swimming is my hobby."
             },
             {
               "responseId": "en:lesson-06:session-16:intro2:r2",
-              "text": "I paints at home."
+              "text": "Swimming my hobby."
             },
             {
               "responseId": "en:lesson-06:session-16:intro2:r3",
-              "text": "I am paint at home."
+              "text": "Swimming are my hobby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я рисую красками дома».",
-          "uk": "Скажіть «Я малюю фарбами вдома»."
+          "ru": "Подруга спрашивает, что ваше увлечение. Скажите: «Плавание — моё увлечение».",
+          "uk": "Подруга питає, яке ваше захоплення. Скажіть: «Плавання — моє захоплення»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начинаем с хорошего настроения",
-        "uk": "Починаємо з гарного настрою"
+        "ru": "У стойки клуба",
+        "uk": "Біля стійки клубу"
       },
       "bodyByLocale": {
-        "ru": "`start` — «начинать», `laugh` — «смеяться». `We start at nine` — «Мы начинаем в девять». `They laugh a lot` — «Они много смеются». `We sing here` — «Мы поём здесь». Перед часом используем `at`, а перед действиями `start`, `laugh`, `sing` здесь не ставим `am`, `is`, `are`.",
-        "uk": "`start` — «починати», `laugh` — «сміятися». `We start at nine` — «Ми починаємо о дев’ятій». `They laugh a lot` — «Вони багато сміються». `We sing here` — «Ми співаємо тут». Перед годиною використовуємо `at`, а перед діями `start`, `laugh`, `sing` тут не ставимо `am`, `is`, `are`."
+        "ru": "Подруга подводит вас к стойке. Администратор улыбается и спрашивает, будете ли вы участником: тогда у вас будет свой значок. Нужно только сказать об этом администратору. member — «участник, член». Когда называем, кто мы, после I нужно am: I am a member.",
+        "uk": "Подруга підводить вас до стійки. Адміністратор усміхається й питає, чи будете ви учасником: тоді у вас буде свій значок. Достатньо лише сказати про це адміністратору. member — «учасник, член». Коли називаємо, хто ми, після I потрібно am: I am a member."
       },
       "question": {
         "interactionId": "en:lesson-06:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы начинаем в девять».",
-          "uk": "Скажіть «Ми починаємо о дев’ятій»."
+          "ru": "Администратор спрашивает, станете ли вы участником. Скажите: «Я участник».",
+          "uk": "Адміністратор питає, чи станете ви учасником. Скажіть: «Я учасник»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-16:intro3:r1",
-              "text": "We start at nine."
+              "text": "I am a member."
             },
             {
               "responseId": "en:lesson-06:session-16:intro3:r2",
-              "text": "We starts at nine."
+              "text": "I a member."
             },
             {
               "responseId": "en:lesson-06:session-16:intro3:r3",
-              "text": "We are start at nine."
+              "text": "I are a member."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-16:intro3:r1",
-              "text": "We start at nine."
+              "text": "I am a member."
             },
             {
               "responseId": "en:lesson-06:session-16:intro3:r2",
-              "text": "We starts at nine."
+              "text": "I a member."
             },
             {
               "responseId": "en:lesson-06:session-16:intro3:r3",
-              "text": "We are start at nine."
+              "text": "I are a member."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы начинаем в девять».",
-          "uk": "Скажіть «Ми починаємо о дев’ятій»."
+          "ru": "Администратор спрашивает, станете ли вы участником. Скажите: «Я участник».",
+          "uk": "Адміністратор питає, чи станете ви учасником. Скажіть: «Я учасник»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5bbab257e5c5681913e5745207b5c74f5d178cbe4c088611d4447b76f2101420"
+  "introFingerprint": "8eed1f82ef9fc69a3423a068ef06f94962689418cfbfb034f26c88e7e789cea6"
 }

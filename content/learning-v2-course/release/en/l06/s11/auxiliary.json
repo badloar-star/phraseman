@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-11:intro1:r2": {
-          "ru": "Перед `learn` здесь не нужно `am`.",
-          "uk": "Перед `learn` тут не потрібно `am`."
+          "ru": "После I слово остаётся learn, без s.",
+          "uk": "Після I слово лишається learn, без s."
         },
         "en:lesson-06:session-11:intro1:r3": {
-          "ru": "После `I` — `learn`, без `s`.",
-          "uk": "Після `I` — `learn`, без `s`."
+          "ru": "Здесь действие, поэтому перед learn не нужно am.",
+          "uk": "Тут дія, тому перед learn не потрібно am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-11:intro2:r2": {
-          "ru": "Когда говорим, где мы, нужно `We are`.",
-          "uk": "Коли кажемо, де ми, потрібно `We are`."
+          "ru": "Без are предложение не получается: когда называем, кто мы, нужно We are.",
+          "uk": "Без are речення не виходить: коли називаємо, хто ми, потрібно We are."
         },
         "en:lesson-06:session-11:intro2:r3": {
-          "ru": "С `we` — `are`, не `is`.",
-          "uk": "З `we` — `are`, не `is`."
+          "ru": "Здесь мы называем, кто мы, а не действие: нужно We are.",
+          "uk": "Тут ми називаємо, хто ми, а не дію: потрібно We are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-11:intro3:r2": {
-          "ru": "С `it` — `is`.",
-          "uk": "З `it` — `is`."
+          "ru": "Домашнее задание одно, поэтому нужно is, а не are.",
+          "uk": "Домашнє завдання одне, тому потрібно is, а не are."
         },
         "en:lesson-06:session-11:intro3:r3": {
-          "ru": "`impossible` — невозможно; срочно — `urgent`.",
-          "uk": "`impossible` — неможливо; терміново — `urgent`."
+          "ru": "has значит «имеет», а нужно сказать, какое оно: is urgent.",
+          "uk": "has означає «має», а потрібно сказати, яке воно: is urgent."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9aa1a9106649ee24073e3cf2c934807a2161c6e0f607e63386365f6ffec664ff"
+  "auxiliaryFingerprint": "1ef31826cb86a0dccf0b810b7556800cb548586cb4a8a8f2125253078fd8b0f6"
 }

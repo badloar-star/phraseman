@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-15",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о пении и различить действие и состояние",
-    "uk": "розповісти про спів і розрізнити дію та стан"
+    "ru": "рассказать, что вы поёте, и сказать, где вы и где слова песни",
+    "uk": "розповісти, що ви співаєте, і сказати, де ви й де слова пісні"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Петь",
-        "uk": "Співати"
+        "ru": "Зовут петь",
+        "uk": "Кличуть співати"
       },
       "bodyByLocale": {
-        "ru": "`sing` — «петь». `I sing at home` — «Я пою дома»: говорим о привычном занятии. `We sing here` — «Мы поём здесь». Для `sing` не нужен билет на большую сцену: ванная тоже считается, даже если зрители — только шампуни.",
-        "uk": "`sing` — «співати». `I sing at home` — «Я співаю вдома»: говоримо про звичне заняття. `We sing here` — «Ми співаємо тут». Для `sing` не потрібен квиток на велику сцену: ванна кімната теж рахується, навіть якщо глядачі — лише шампуні."
+        "ru": "После тренажёрного зала подруга зовёт вас на занятие пением. Вы часто поёте дома по утрам, когда готовите или убираете, и она хочет узнать, где вы это делаете. sing — «петь»: I sing at home — «Я пою дома». После I слово sing остаётся без s.",
+        "uk": "Після тренажерного залу подруга кличе вас на заняття зі співу. Ви часто співаєте вдома вранці, коли готуєте чи прибираєте, і вона хоче дізнатися, де ви це робите. sing — «співати»: I sing at home — «Я співаю вдома». Після I слово sing лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-15:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы поём здесь».",
-          "uk": "Скажіть «Ми співаємо тут»."
+          "ru": "Подруга спрашивает, где вы обычно поёте. Скажите: «Я пою дома».",
+          "uk": "Подруга питає, де ви зазвичай співаєте. Скажіть: «Я співаю вдома»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-15:intro1:r1",
-              "text": "We sing here."
+              "text": "I sing at home."
             },
             {
               "responseId": "en:lesson-06:session-15:intro1:r2",
-              "text": "We sings here."
+              "text": "I sings at home."
             },
             {
               "responseId": "en:lesson-06:session-15:intro1:r3",
-              "text": "We are sing here."
+              "text": "I am sing at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-15:intro1:r1",
-              "text": "We sing here."
+              "text": "I sing at home."
             },
             {
               "responseId": "en:lesson-06:session-15:intro1:r2",
-              "text": "We sings here."
+              "text": "I sings at home."
             },
             {
               "responseId": "en:lesson-06:session-15:intro1:r3",
-              "text": "We are sing here."
+              "text": "I am sing at home."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы поём здесь».",
-          "uk": "Скажіть «Ми співаємо тут»."
+          "ru": "Подруга спрашивает, где вы обычно поёте. Скажите: «Я пою дома».",
+          "uk": "Подруга питає, де ви зазвичай співаєте. Скажіть: «Я співаю вдома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Петь и молчать",
-        "uk": "Співати й мовчати"
+        "ru": "У пианино",
+        "uk": "Біля піаніно"
       },
       "bodyByLocale": {
-        "ru": "`silent` — «молчащий», «беззвучный»; о месте — «тихий», без слышимых звуков. `They are silent` — «Они молчат». Это состояние: после `they` нужно `are`. `They sing at home` — «Они поют дома»: действие `sing`, без `are`. `gym` — «тренажёрный зал».",
-        "uk": "`silent` — «мовчазний», «беззвучний»; про місце — «тихий», без чутних звуків. `They are silent` — «Вони мовчать». Це стан: після `they` потрібно `are`. `They sing at home` — «Вони співають удома»: дія `sing`, без `are`. `gym` — «тренажерний зал»."
+        "ru": "Вы заходите в комнату, где собирается хор. У пианино уже стоят люди, и подруга показывает, что вы теперь одни из них. choir — «хор». Люди приветливо кивают вам. Когда говорим, где мы, нужен are: We are in the choir — «Мы в хоре». Действие — другое: We sing.",
+        "uk": "Ви заходите в кімнату, де збирається хор. Біля піаніно вже стоять люди, і подруга показує, що ви тепер серед них. choir — «хор». Люди привітно кивають вам. Коли кажемо, де ми, потрібен are: We are in the choir — «Ми в хорі». Дія — інше: We sing."
       },
       "question": {
         "interactionId": "en:lesson-06:session-15:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Они молчат».",
-          "uk": "Скажіть «Вони мовчать»."
+          "ru": "Подруга спрашивает, где вы теперь поёте. Скажите: «Мы в хоре».",
+          "uk": "Подруга питає, де ви тепер співаєте. Скажіть: «Ми в хорі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-15:intro2:r1",
-              "text": "They are silent."
+              "text": "We are in the choir."
             },
             {
               "responseId": "en:lesson-06:session-15:intro2:r2",
-              "text": "They silent."
+              "text": "We is in the choir."
             },
             {
               "responseId": "en:lesson-06:session-15:intro2:r3",
-              "text": "They is silent."
+              "text": "We in the choir."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-15:intro2:r1",
-              "text": "They are silent."
+              "text": "We are in the choir."
             },
             {
               "responseId": "en:lesson-06:session-15:intro2:r2",
-              "text": "They silent."
+              "text": "We is in the choir."
             },
             {
               "responseId": "en:lesson-06:session-15:intro2:r3",
-              "text": "They is silent."
+              "text": "We in the choir."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Они молчат».",
-          "uk": "Скажіть «Вони мовчать»."
+          "ru": "Подруга спрашивает, где вы теперь поёте. Скажите: «Мы в хоре».",
+          "uk": "Подруга питає, де ви тепер співаєте. Скажіть: «Ми в хорі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вещи у двери",
-        "uk": "Речі біля дверей"
+        "ru": "Слова на стене",
+        "uk": "Слова на стіні"
       },
       "bodyByLocale": {
-        "ru": "`helmet` — «шлем», `calendar` — «календарь». `Whose helmet is this?` — «Чей это шлем?» `That helmet is yours` — «Тот шлем твой». `The calendar is on the wall` — «Календарь на стене». `We are at the gym` — «Мы в тренажёрном зале».",
-        "uk": "`helmet` — «шолом», `calendar` — «календар». `Whose helmet is this?` — «Чий це шолом?» `That helmet is yours` — «Той шолом твій». `The calendar is on the wall` — «Календар на стіні». `We are at the gym` — «Ми в тренажерному залі»."
+        "ru": "На стене висит лист со словами песни, которую вы разучиваете. Подруга ищет слова и не видит их из-за спин. Вы тоже ещё не выучили их наизусть, поэтому смотрите на лист. lyrics — «слова песни», всегда во множественном числе: The lyrics are on the wall — «Слова песни на стене».",
+        "uk": "На стіні висить аркуш зі словами пісні, яку ви розучуєте. Подруга шукає слова й не бачить їх через спини. Ви теж ще не вивчили їх напам’ять, тому дивитеся на аркуш. lyrics — «слова пісні», завжди в множині: The lyrics are on the wall — «Слова пісні на стіні»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-15:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чей это шлем?»",
-          "uk": "Запитайте «Чий це шолом?»"
+          "ru": "Подруга ищет слова песни. Скажите: «Слова песни на стене».",
+          "uk": "Подруга шукає слова пісні. Скажіть: «Слова пісні на стіні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-15:intro3:r1",
-              "text": "Whose helmet is this?"
+              "text": "The lyrics are on the wall."
             },
             {
               "responseId": "en:lesson-06:session-15:intro3:r2",
-              "text": "Where is the helmet?"
+              "text": "The lyrics is on the wall."
             },
             {
               "responseId": "en:lesson-06:session-15:intro3:r3",
-              "text": "Whose helmet are these?"
+              "text": "The lyrics on the wall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-15:intro3:r1",
-              "text": "Whose helmet is this?"
+              "text": "The lyrics are on the wall."
             },
             {
               "responseId": "en:lesson-06:session-15:intro3:r2",
-              "text": "Where is the helmet?"
+              "text": "The lyrics is on the wall."
             },
             {
               "responseId": "en:lesson-06:session-15:intro3:r3",
-              "text": "Whose helmet are these?"
+              "text": "The lyrics on the wall."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чей это шлем?»",
-          "uk": "Запитайте «Чий це шолом?»"
+          "ru": "Подруга ищет слова песни. Скажите: «Слова песни на стене».",
+          "uk": "Подруга шукає слова пісні. Скажіть: «Слова пісні на стіні»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c921678c24047a363ccf92361da069baa2e475f16d0077dc17a672c9854f273d"
+  "introFingerprint": "583ae2a270d1e73fe058289052548df390928c567828ac6ff1d84059737a35c5"
 }

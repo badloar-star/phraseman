@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-10:word:practice",
+    "correctText": "practice",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-10:i01",
-    "correctText": "I practice English.",
+    "correctText": "They practice English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:word:phrase",
+    "correctText": "phrase",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i02",
-    "correctText": "practice",
+    "correctText": "I practice English.",
     "correctResponseId": "en:lesson-06:session-10:i02:r1"
   },
   {
@@ -16,67 +26,77 @@
   },
   {
     "interactionId": "en:lesson-06:session-10:i04",
-    "correctText": "en:lesson-06:session-10:i04:p1=practice\nen:lesson-06:session-10:i04:p2=hotel\nen:lesson-06:session-10:i04:p3=pocket\nen:lesson-06:session-10:i04:p4=folder",
+    "correctText": "en:lesson-06:session-10:i04:p1=practice\nen:lesson-06:session-10:i04:p2=phrase\nen:lesson-06:session-10:i04:p3=reservation\nen:lesson-06:session-10:i04:p4=breakfast",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i05",
-    "correctText": "They practice English.",
+    "correctText": "You practice a phrase here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:word:reservation",
+    "correctText": "reservation",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i06",
-    "correctText": "We work in a hotel.",
+    "correctText": "Whose reservation is that?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:word:breakfast",
+    "correctText": "breakfast",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i07",
-    "correctText": "The key is in my pocket.",
+    "correctText": "We have breakfast here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i08",
-    "correctText": "yours",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-10:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-10:i09",
-    "correctText": "It is impossible.",
+    "correctText": "Whose reservation is this?",
     "correctResponseId": "en:lesson-06:session-10:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-10:i10",
-    "correctText": "en:lesson-06:session-10:i10:p1=practice\nen:lesson-06:session-10:i10:p2=impossible\nen:lesson-06:session-10:i10:p3=pocket\nen:lesson-06:session-10:i10:p4=folder",
+    "correctText": "en:lesson-06:session-10:i10:p1=reservation\nen:lesson-06:session-10:i10:p2=breakfast\nen:lesson-06:session-10:i10:p3=phrase\nen:lesson-06:session-10:i10:p4=practice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i11",
-    "correctText": "The folder is on the desk.",
+    "correctText": "We practice English in the hotel.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i12",
-    "correctText": "Whose folder is this?",
+    "correctText": "This is your breakfast.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i13",
-    "correctText": "You practice here.",
+    "correctText": "We work in this hotel.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-10:i14",
-    "correctText": "work",
+    "correctText": "practice",
     "correctResponseId": "en:lesson-06:session-10:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-10:i15",
-    "correctText": "My pocket is empty.",
+    "correctText": "They have breakfast here.",
     "correctResponseId": "en:lesson-06:session-10:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-10:i16",
-    "correctText": "en:lesson-06:session-10:i16:p1=practice\nen:lesson-06:session-10:i16:p2=impossible\nen:lesson-06:session-10:i16:p3=hotel\nen:lesson-06:session-10:i16:p4=folder",
+    "correctText": "en:lesson-06:session-10:i16:p1=breakfast\nen:lesson-06:session-10:i16:p2=phrase\nen:lesson-06:session-10:i16:p3=practice\nen:lesson-06:session-10:i16:p4=reservation",
     "correctResponseId": null
   },
   {

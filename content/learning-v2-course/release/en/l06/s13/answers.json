@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-13:word:swim",
+    "correctText": "swim",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-13:i01",
     "correctText": "I swim in this pool.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i02",
-    "correctText": "swim",
+    "correctText": "I swim in the pool.",
     "correctResponseId": "en:lesson-06:session-13:i02:r1"
   },
   {
@@ -16,52 +21,67 @@
   },
   {
     "interactionId": "en:lesson-06:session-13:i04",
-    "correctText": "en:lesson-06:session-13:i04:p1=swim\nen:lesson-06:session-13:i04:p2=public\nen:lesson-06:session-13:i04:p3=taxi\nen:lesson-06:session-13:i04:p4=umbrella",
+    "correctText": "en:lesson-06:session-13:i04:p1=swim\nen:lesson-06:session-13:i04:p2=lane\nen:lesson-06:session-13:i04:p3=float\nen:lesson-06:session-13:i04:p4=trunks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:word:lane",
+    "correctText": "lane",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i05",
-    "correctText": "They swim here.",
+    "correctText": "You swim in lane one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:word:trunks",
+    "correctText": "trunks",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i06",
-    "correctText": "This is a public pool.",
+    "correctText": "These trunks are yours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i07",
-    "correctText": "The umbrella is wet.",
+    "correctText": "My lane is free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:word:float",
+    "correctText": "float",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i08",
-    "correctText": "yours",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-13:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-13:i09",
-    "correctText": "My keychain is here.",
+    "correctText": "The float is in the locker.",
     "correctResponseId": "en:lesson-06:session-13:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-13:i10",
-    "correctText": "en:lesson-06:session-13:i10:p1=swim\nen:lesson-06:session-13:i10:p2=keychain\nen:lesson-06:session-13:i10:p3=umbrella\nen:lesson-06:session-13:i10:p4=public",
+    "correctText": "en:lesson-06:session-13:i10:p1=float\nen:lesson-06:session-13:i10:p2=trunks\nen:lesson-06:session-13:i10:p3=swim\nen:lesson-06:session-13:i10:p4=lane",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i11",
-    "correctText": "They are in the taxi.",
+    "correctText": "I swim in lane two.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i12",
-    "correctText": "Whose keychain is this?",
+    "correctText": "Whose float is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i13",
-    "correctText": "You swim in this pool.",
+    "correctText": "They swim in lane two.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-13:i15",
-    "correctText": "The taxi is here.",
+    "correctText": "These trunks are mine.",
     "correctResponseId": "en:lesson-06:session-13:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-13:i16",
-    "correctText": "en:lesson-06:session-13:i16:p1=swim\nen:lesson-06:session-13:i16:p2=public\nen:lesson-06:session-13:i16:p3=taxi\nen:lesson-06:session-13:i16:p4=keychain",
+    "correctText": "en:lesson-06:session-13:i16:p1=lane\nen:lesson-06:session-13:i16:p2=swim\nen:lesson-06:session-13:i16:p3=trunks\nen:lesson-06:session-13:i16:p4=float",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-13:i17",
-    "correctText": "We swim here.",
+    "correctText": "We swim in the pool.",
     "correctResponseId": null
   }
 ]

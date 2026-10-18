@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-12",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о рисовании красками и уточнить, кому принадлежат вещи",
-    "uk": "розповісти про малювання фарбами й уточнити, кому належать речі"
+    "ru": "рассказать, что вы рисуете красками, и сказать, чья вещь",
+    "uk": "розповісти, що ви малюєте фарбами, і сказати, чия це річ"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Рисовать красками",
-        "uk": "Малювати фарбами"
+        "ru": "Приглашение на живопись",
+        "uk": "Запрошення на живопис"
       },
       "bodyByLocale": {
-        "ru": "`paint` — «рисовать красками», а ещё «красить». `I paint at home` — «Я рисую красками дома». `We paint here` — «Мы рисуем красками здесь». Карандашом тоже можно нарисовать прекрасный портрет, но для `paint` понадобятся краски. Желательно на бумаге, а не только на рукавах.",
-        "uk": "`paint` — «малювати фарбами», а ще «фарбувати». `I paint at home` — «Я малюю фарбами вдома». `We paint here` — «Ми малюємо фарбами тут». Олівцем теж можна намалювати чудовий портрет, але для `paint` знадобляться фарби. Бажано на папері, а не лише на рукавах."
+        "ru": "Подруга зовёт вас на занятие живописью в мастерскую возле станции и спрашивает, где вы обычно рисуете красками. Вы делаете это по вечерам на кухне. paint — «рисовать красками»: I paint at home — «Я рисую красками дома». После I слово paint остаётся без s.",
+        "uk": "Подруга кличе вас на заняття з живопису в майстерню біля станції й питає, де ви зазвичай малюєте фарбами. Ви робите це ввечері на кухні. paint — «малювати фарбами»: I paint at home — «Я малюю фарбами вдома». Після I слово paint лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-12:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я рисую красками дома».",
-          "uk": "Скажіть «Я малюю фарбами вдома»."
+          "ru": "Подруга спрашивает, где вы обычно рисуете красками. Скажите: «Я рисую красками дома».",
+          "uk": "Подруга питає, де ви зазвичай малюєте фарбами. Скажіть: «Я малюю фарбами вдома»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я рисую красками дома».",
-          "uk": "Скажіть «Я малюю фарбами вдома»."
+          "ru": "Подруга спрашивает, где вы обычно рисуете красками. Скажите: «Я рисую красками дома».",
+          "uk": "Подруга питає, де ви зазвичай малюєте фарбами. Скажіть: «Я малюю фарбами вдома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Личная тетрадь",
-        "uk": "Особистий зошит"
+        "ru": "Группа в мастерской",
+        "uk": "Група в майстерні"
       },
       "bodyByLocale": {
-        "ru": "`notebook` — «тетрадь», `private` — «личный», не для посторонних. `This notebook is private` — «Эта тетрадь личная»: записи в ней не предназначены для чужих глаз. Это не просто «моя»: чужая тетрадь тоже может быть личной. `Whose notebook is this?` — «Чья это тетрадь?»",
-        "uk": "`notebook` — «зошит», `private` — «особистий», не для сторонніх. `This notebook is private` — «Цей зошит особистий»: записи в ньому не призначені для чужих очей. Це не просто «мій»: чужий зошит теж може бути особистим. `Whose notebook is this?` — «Чий це зошит?»"
+        "ru": "Вы заходите в большую светлую комнату, где проходят занятия. Преподавательница стоит у двери, а за столами сидят ученики с кистями. studio — «мастерская, студия». They paint in the studio — «Они рисуют красками в мастерской». После they слово paint без s.",
+        "uk": "Ви заходите у велику світлу кімнату, де проходять заняття. Викладачка стоїть біля дверей, а за столами сидять учні з пензлями. studio — «майстерня, студія». They paint in the studio — «Вони малюють фарбами в майстерні». Після they слово paint без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-12:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Эта тетрадь личная».",
-          "uk": "Скажіть «Цей зошит особистий»."
+          "ru": "Вы смотрите на учеников. Скажите подруге: «Они рисуют красками в мастерской».",
+          "uk": "Ви дивитеся на учнів. Скажіть подрузі: «Вони малюють фарбами в майстерні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-12:intro2:r1",
-              "text": "This notebook is private."
+              "text": "They paint in the studio."
             },
             {
               "responseId": "en:lesson-06:session-12:intro2:r2",
-              "text": "This notebook are private."
+              "text": "They paints in the studio."
             },
             {
               "responseId": "en:lesson-06:session-12:intro2:r3",
-              "text": "This notebook is empty."
+              "text": "They paint on the studio."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-12:intro2:r1",
-              "text": "This notebook is private."
+              "text": "They paint in the studio."
             },
             {
               "responseId": "en:lesson-06:session-12:intro2:r2",
-              "text": "This notebook are private."
+              "text": "They paints in the studio."
             },
             {
               "responseId": "en:lesson-06:session-12:intro2:r3",
-              "text": "This notebook is empty."
+              "text": "They paint on the studio."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Эта тетрадь личная».",
-          "uk": "Скажіть «Цей зошит особистий»."
+          "ru": "Вы смотрите на учеников. Скажите подруге: «Они рисуют красками в мастерской».",
+          "uk": "Ви дивитеся на учнів. Скажіть подрузі: «Вони малюють фарбами в майстерні»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "По дороге в мастерскую",
-        "uk": "Дорогою до майстерні"
+        "ru": "Чья палитра",
+        "uk": "Чия палітра"
       },
       "bodyByLocale": {
-        "ru": "`platform` — «платформа», здесь железнодорожная. `receipt` — «чек». `They are on the platform` — «Они на платформе»: место, поэтому нужно `are`. `They paint at home` — «Они рисуют красками дома»: действие, без `are`. `That receipt is yours` — «Тот чек твой».",
-        "uk": "`platform` — «платформа», тут залізнична. `receipt` — «чек». `They are on the platform` — «Вони на платформі»: місце, тому потрібно `are`. `They paint at home` — «Вони малюють фарбами вдома»: дія, без `are`. `That receipt is yours` — «Той чек твій»."
+        "ru": "На краю стола лежит деревянная доска с цветными пятнами краски. Преподавательница спрашивает, чья она, и вы узнаёте свою. palette — «палитра»: на ней смешивают краски. Если вещь ваша, говорим The palette is mine — «Палитра моя». Название вещи после mine не повторяем.",
+        "uk": "На краю столу лежить дерев’яна дошка з кольоровими плямами фарби. Викладачка питає, чия вона, і ви впізнаєте свою. palette — «палітра»: на ній змішують фарби. Якщо річ ваша, кажемо The palette is mine — «Палітра моя». Назву речі після mine не повторюємо."
       },
       "question": {
         "interactionId": "en:lesson-06:session-12:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Они рисуют красками дома».",
-          "uk": "Скажіть «Вони малюють фарбами вдома»."
+          "ru": "Преподавательница спрашивает, чья палитра на столе. Скажите: «Палитра моя».",
+          "uk": "Викладачка питає, чия палітра на столі. Скажіть: «Палітра моя»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-12:intro3:r1",
-              "text": "They paint at home."
+              "text": "The palette is mine."
             },
             {
               "responseId": "en:lesson-06:session-12:intro3:r2",
-              "text": "They paints at home."
+              "text": "The palette is my."
             },
             {
               "responseId": "en:lesson-06:session-12:intro3:r3",
-              "text": "They are paint at home."
+              "text": "The palette are mine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-12:intro3:r1",
-              "text": "They paint at home."
+              "text": "The palette is mine."
             },
             {
               "responseId": "en:lesson-06:session-12:intro3:r2",
-              "text": "They paints at home."
+              "text": "The palette is my."
             },
             {
               "responseId": "en:lesson-06:session-12:intro3:r3",
-              "text": "They are paint at home."
+              "text": "The palette are mine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Они рисуют красками дома».",
-          "uk": "Скажіть «Вони малюють фарбами вдома»."
+          "ru": "Преподавательница спрашивает, чья палитра на столе. Скажите: «Палитра моя».",
+          "uk": "Викладачка питає, чия палітра на столі. Скажіть: «Палітра моя»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e21ba406f31b78dde1bfee7f7dc4e628135f8f42366f1966a6617af157c5d364"
+  "introFingerprint": "9f2b356f81a565ab9ad738a44d20ac995bf0ac2264d1093de2c28423b68b6a5e"
 }

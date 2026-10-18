@@ -1,135 +1,154 @@
 # Английский · Урок 6 · Занятие 11 — Учимся по дороге
 
-**Ситуация.** Анна и Том едут на трамвае на занятия английским. В рюкзаке Тома лежит небольшая посылка, которую нужно передать после занятия.
+**Ситуация.** Вы с подругой едете на трамвае на вечерние курсы английского. В рюкзаке лежит домашнее задание, а рядом сидят другие пассажиры. Правило то же: после I, you, we, they слово действия остаётся без s.
 
-**Что вы освоите:** сказать, какой язык вы изучаете, уточнить владельца вещи и срочность дела
-**Новые слова:** learn
+**Что вы освоите:** сказать, что вы изучаете, назвать себя пассажиром и спросить, чьё задание
+**Новые слова:** learn, language, passenger, homework
+**Возвращаются:** tram, school, backpack, urgent
 
 ---
 
 ## Интро 1
 
-### Учиться и узнавать
+### Едем на курсы
 
-`learn` — «учиться», «изучать», получать новые знания или навыки. `I learn English` — «Я изучаю английский». Знакомое `practice` — практиковаться, упражняться: эти действия могут идти вместе. Узнали новое слово — уже чему-то научились. Вспомнили его без подсказки — есть повод гордиться, даже если это всего лишь «рюкзак».
+Вы едете на трамвае на вечерние курсы английского. Подруга впервые едет с вами и спрашивает, чем вы там занимаетесь. Вы ездите туда каждый вечер после работы. learn — «учить, изучать»: I learn English — «Я изучаю английский». После I слово learn остаётся без s.
 
-**Скажите «Я изучаю английский».**
+**Подруга спрашивает, чем вы занимаетесь на курсах. Скажите: «Я изучаю английский».**
 
 - ✅ **I learn English.**
-- ❌ I am learn English. — *Перед `learn` здесь не нужно `am`.*
-- ❌ I learns English. — *После `I` — `learn`, без `s`.*
+- ❌ I learns English. — *После I слово остаётся learn, без s.*
+- ❌ I am learn English. — *Здесь действие, поэтому перед learn не нужно am.*
 
 ---
 
 ## Интро 2
 
-### Мы и они
+### Полный трамвай
 
-`We learn English` — «Мы изучаем английский». После `I`, `you`, `we`, `they` используем `learn`, без `s`. `tram` — «трамвай», `backpack` — «рюкзак». `We are on the tram` — «Мы в трамвае»: так говорим, когда едем в нём. Здесь место, а не действие `learn`, поэтому нужно `are`.
+Трамвай полон, и контролёр просит пассажиров пройти вперёд. Подруга спрашивает, кто вы в этом трамвае: вы просто едете, а не работаете. passenger — «пассажир». Когда говорим, кто мы, нужен are: We are passengers — «Мы пассажиры». Действие — другое: We learn.
 
-**Скажите «Мы в трамвае».**
+**Подруга спрашивает, кто вы в трамвае. Скажите: «Мы пассажиры».**
 
-- ✅ **We are on the tram.**
-- ❌ We on the tram. — *Когда говорим, где мы, нужно `We are`.*
-- ❌ We is on the tram. — *С `we` — `are`, не `is`.*
+- ✅ **We are passengers.**
+- ❌ We passengers. — *Без are предложение не получается: когда называем, кто мы, нужно We are.*
+- ❌ We learn passengers. — *Здесь мы называем, кто мы, а не действие: нужно We are.*
 
 ---
 
 ## Интро 3
 
-### Срочное дело
+### Задание на завтра
 
-`parcel` — «посылка», `urgent` — «срочный», требующий быстрого действия. `It is urgent` — «Это срочно». `Whose backpack is this?` — «Чей это рюкзак?» `That parcel is yours` — «Та посылка твоя».
+На остановке подруга достаёт из рюкзака тетрадь: завтра работу нужно сдать, а она не готова. homework — «домашнее задание». Говорим о нём в единственном числе: My homework is urgent — «Моё домашнее задание срочное». Слово homework не меняется: s не нужно.
 
-**Скажите «Это срочно».**
+**Подруга спрашивает, как у вас со сроками. Скажите: «Моё домашнее задание срочное».**
 
-- ✅ **It is urgent.**
-- ❌ It are urgent. — *С `it` — `is`.*
-- ❌ It is impossible. — *`impossible` — невозможно; срочно — `urgent`.*
+- ✅ **My homework is urgent.**
+- ❌ My homework are urgent. — *Домашнее задание одно, поэтому нужно is, а не are.*
+- ❌ My homework has urgent. — *has значит «имеет», а нужно сказать, какое оно: is urgent.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите, какой язык вы изучаете: «Я изучаю английский»**
+**1 · Карточка слова — learn**
+<!-- interaction_id: en:lesson-06:session-11:word:learn; family: word_card -->
+> **learn** — учить, изучать. They learn English at school. — «Они изучают английский в школе». О том, как человек получает новые знания. После I, you, we, they — без s.
+
+**2 · Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»**
 <!-- interaction_id: en:lesson-06:session-11:i01; family: phrase_builder -->
-Плитки: `English` `learn` `I` → **I learn English.**
+Плитки: `English` `learn` `They` `are` → **They learn English.**
+*(плитка `are` лишняя: здесь нужно `learn` — `They learn English.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — language**
+<!-- interaction_id: en:lesson-06:session-11:word:language; family: word_card -->
+> **language** — язык. I learn a new language. — «Я изучаю новый язык». Об английском, русском или любом другом языке.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-11:i02; family: listen_choose -->
-🔊 *learn* → **learn** · start · work
-- start — *В записи первое слово — `learn`, а в этом варианте — `start`.*
-- work — *В записи первое слово — `learn`, а в этом варианте — `work`.*
+🔊 *I learn a language.* → **I learn a language.** · I learn English. · We learn a language.
+- I learn English. — *В записи последнее слово — `language`, язык, а в этом варианте — `English`, английский.*
+- We learn a language. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**3 · Скажите «Мы изучаем английский»**
+**5 · Скажите о себе: «Я изучаю английский в школе». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-11:i03; family: context_gap_grammar -->
-We ___ English. → **learn** · learns · are learn
-- learns — *После `we` — `learn`, без `s`.*
-- are learn — *Говорим `We learn`, без `are`.*
+I ___ English at school. → **learn** · learns · am learn
+- learns — *После `I` — `learn`, без `s`.*
+- am learn — *Говорим `I learn`, без `am`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-11:i04; family: speed_match -->
-learn — учиться · tram — трамвай · backpack — рюкзак · parcel — посылка
+learn — учить, изучать · language — язык · passenger — пассажир · homework — домашнее задание
 
-**5 · Послушайте и соберите фразу**
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-11:i05; family: listen_build_dictation -->
-🔊 *They learn English.* Плитки: `English` `learn` `They` → **They learn English.**
+🔊 *You learn a new language.* Плитки: `learn` `a` `new` `language` `You` `are` → **You learn a new language.**
+*(плитка `are` лишняя: здесь нужно `learn` — `You learn a new language.`)*
 
-**6 · Скажите «Мы в трамвае»**
+**8 · Карточка слова — homework**
+<!-- interaction_id: en:lesson-06:session-11:word:homework; family: word_card -->
+> **homework** — домашнее задание. The homework is in the backpack. — «Домашнее задание в рюкзаке». Работа, которую делают дома после занятия.
+
+**9 · Подруга показывает на рюкзак. Скажите: «Это моё домашнее задание»**
 <!-- interaction_id: en:lesson-06:session-11:i06; family: phrase_builder -->
-Плитки: `tram` `the` `on` `are` `We` `is` → **We are on the tram.**
-*(плитка `is` лишняя: здесь нужно `are` — `We are on the tram.`)*
+Плитки: `homework` `my` `is` `This` `are` → **This is my homework.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is my homework.`)*
 
-**7 · Посылку необходимо передать немедленно. Скажите «Это срочно»**
+**10 · Карточка слова — passenger**
+<!-- interaction_id: en:lesson-06:session-11:word:passenger; family: word_card -->
+> **passenger** — пассажир. The passengers are on the tram. — «Пассажиры в трамвае». О человеке, который едет в транспорте, но не ведёт его.
+
+**11 · Контролёр спрашивает, кто вы. Скажите: «Я пассажир»**
 <!-- interaction_id: en:lesson-06:session-11:i07; family: scripted_repeat_compare -->
+🎙 **I am a passenger.**
+
+**12 · Скажите, где лежит задание: «Домашнее задание в рюкзаке». Выберите слово**
+<!-- interaction_id: en:lesson-06:session-11:i08; family: context_gap_grammar -->
+The homework ___ in the backpack. → **is** · are · have
+- are — *Домашнее задание одно, поэтому нужно `is`, а не `are`.*
+- have — *`have` значит «имеем», а здесь нужно сказать, где лежит задание: `is`.*
+
+**13 · Послушайте пассажира**
+<!-- interaction_id: en:lesson-06:session-11:i09; family: listen_choose -->
+🔊 *We learn English on the tram.* → **We learn English on the tram.** · We learn English at school. · They learn English on the tram.
+- We learn English at school. — *В записи последние слова — `on the tram`, в трамвае, а в этом варианте — `at school`, в школе.*
+- They learn English on the tram. — *В записи первое слово — `We`, мы, а в этом варианте — `They`, они.*
+
+**14 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-06:session-11:i10; family: speed_match -->
+homework — домашнее задание · language — язык · learn — учить, изучать · passenger — пассажир
+
+**15 · Послушайте контролёра и соберите фразу**
+<!-- interaction_id: en:lesson-06:session-11:i11; family: listen_build_dictation -->
+🔊 *The passengers learn English.* Плитки: `passengers` `learn` `English` `The` `are` → **The passengers learn English.**
+*(плитка `are` лишняя: здесь нужно `learn` — `The passengers learn English.`)*
+
+**16 · На сиденье лежит чья-то тетрадь с заданием. Спросите пассажира: «Чьё это домашнее задание?»**
+<!-- interaction_id: en:lesson-06:session-11:i12; family: phrase_builder -->
+Плитки: `homework` `this` `is` `Whose` `Who` → **Whose homework is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose homework is this?`)*
+
+**17 · Подруга спрашивает, надо ли делать задание сейчас. Скажите: «Это срочно»**
+<!-- interaction_id: en:lesson-06:session-11:i13; family: scripted_repeat_compare -->
 🎙 **It is urgent.**
 
-**8 · Скажите «Та посылка твоя»**
-<!-- interaction_id: en:lesson-06:session-11:i08; family: context_gap_grammar -->
-That parcel is ___. → **yours** · your · you
-- your — *Без названия вещи после «твоя» нужно `yours`.*
-- you — *`you` — ты или вы; здесь «твоя» — `yours`.*
-
-**9 · Послушайте, чей рюкзак здесь**
-<!-- interaction_id: en:lesson-06:session-11:i09; family: listen_choose -->
-🔊 *My backpack is here.* → **My backpack is here.** · Your backpack is here. · His backpack is here.
-- Your backpack is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His backpack is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
-
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-06:session-11:i10; family: speed_match -->
-learn — учиться · urgent — срочный · backpack — рюкзак · parcel — посылка
-
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-06:session-11:i11; family: listen_build_dictation -->
-🔊 *The parcel is in my backpack.* Плитки: `backpack` `my` `in` `is` `parcel` `The` `are` → **The parcel is in my backpack.**
-*(плитка `are` лишняя: здесь нужно `is` — `The parcel is in my backpack.`)*
-
-**12 · Спросите «Чей это рюкзак?»**
-<!-- interaction_id: en:lesson-06:session-11:i12; family: phrase_builder -->
-Плитки: `this` `is` `backpack` `Whose` → **Whose backpack is this?**
-
-**13 · Скажите собеседнику «Ты изучаешь английский»**
-<!-- interaction_id: en:lesson-06:session-11:i13; family: scripted_repeat_compare -->
-🎙 **You learn English.**
-
-**14 · Покажите класс вашей группы: «Они учатся здесь»**
+**18 · Скажите о себе и подруге: «Мы пассажиры». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-11:i14; family: context_gap_grammar -->
-They ___ here. → **learn** · learns · are learn
-- learns — *После `they` — `learn`, без `s`.*
-- are learn — *Говорим `They learn`, без `are`.*
+We ___ passengers. → **are** · is · am
+- is — *После `we` нужно `are`, а не `is`.*
+- am — *`am` бывает только с `I`, а здесь `we`: нужно `are`.*
 
-**15 · Послушайте, что Анна говорит о трамвае**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-11:i15; family: listen_choose -->
-🔊 *The tram is full.* → **The tram is full.** · The tram is empty. · The tram is late.
-- The tram is empty. — *В записи последнее слово — `full`, а в этом варианте — `empty`.*
-- The tram is late. — *В записи последнее слово — `full`, а в этом варианте — `late`.*
+🔊 *Whose homework is this?* → **Whose homework is this?** · Whose homework are these? · Whose backpack is this?
+- Whose homework are these? — *В записи `homework is this` — одно задание, а в этом варианте `homework are these` — несколько.*
+- Whose backpack is this? — *В записи вещь — `homework`, задание, а в этом варианте — `backpack`, рюкзак.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-11:i16; family: speed_match -->
-learn — учиться · urgent — срочный · tram — трамвай · parcel — посылка
+passenger — пассажир · learn — учить, изучать · homework — домашнее задание · language — язык
 
-**17 · Пассажир спрашивает, какой язык вы с Томом изучаете. Скажите «Мы изучаем английский»**
+**21 · Подруга спрашивает, что вы вдвоём делаете на курсах. Скажите: «Мы изучаем английский»**
 <!-- interaction_id: en:lesson-06:session-11:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We learn English.**
-

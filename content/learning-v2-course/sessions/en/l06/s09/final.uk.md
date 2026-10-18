@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 9 — Починаємо о дев’ятій
+# Англійська · Урок 6 · Заняття 9 — Починаємо в другу зміну
 
-**Ситуація.** Анна й Том працюють у клініці. Новий працівник уточнює початок робочого дня; поряд на столі лежить зарядний пристрій.
+**Ситуація.** Ви щойно влаштувалися до клініки й працюєте в другій половині дня. Адміністратор пояснює, коли починається зміна, коли перерва і хто приходить на прийом. Після I, you, we, they слово дії лишається без s.
 
-**Що ви опануєте:** сказати, коли починається робота, від свого імені й від імені групи
-**Нові слова:** start
+**Що ви опануєте:** сказати, о котрій ви починаєте, від свого імені й від імені групи
+**Нові слова:** start, shift, appointment, break
+**Повертаються:** work, clinic
 
 ---
 
 ## Інтро 1
 
-### О котрій починаємо
+### Перший день у клініці
 
-`start` — «починати». `I start at nine` — «Я починаю о дев’ятій». Перед годиною ставимо `at`: `at nine` — «о дев’ятій». Тут ідеться про початок робочого дня. Кава о восьмій — ще не початок роботи, хоча іноді найважливіша підготовка.
+У перший робочий день адміністратор клініки питає, о котрій ви приходите. Ви працюєте в другій половині дня й приходите на другу. start — «починати»: I start at two — «Я починаю о другій». Перед часом ставимо at: at two — «о другій», at three — «о третій».
 
-**Скажіть «Я починаю о дев’ятій».**
+**Адміністратор клініки питає, о котрій ви починаєте. Скажіть: «Я починаю о другій».**
 
-- ✅ **I start at nine.**
-- ❌ I am start at nine. — *Перед `start` тут не потрібно `am`.*
-- ❌ I start at ten. — *`ten` — десять; дев’ять — `nine`.*
+- ✅ **I start at two.**
+- ❌ I am start at two. — *Тут дія, тому перед start не потрібно am.*
+- ❌ I starts at two. — *Після I слово лишається start, без s.*
 
 ---
 
 ## Інтро 2
 
-### Я, ти, ми, вони
+### Розклад на стіні
 
-Після `I`, `you`, `we`, `they` слово дії залишається таким: `start`, `work`. `We start at nine` — «Ми починаємо о дев’ятій». `They work here` — «Вони працюють тут». Не додавайте `s` і не вставляйте `am`, `is`, `are` перед цими діями.
+Медсестра показує розклад на стіні клініки. Вона й стоматолог працюють у другу зміну, а ви дивитеся, о котрій вона починається. shift — «зміна», робочі години. They start the shift at three — «Вони починають зміну о третій». Після they слово start лишається без s.
 
-**Скажіть «Вони працюють тут».**
+**Ви читаєте розклад. Скажіть: «Вони починають зміну о третій».**
 
-- ✅ **They work here.**
-- ❌ They works here. — *Після `they` — `work`, без `s`.*
-- ❌ They are work here. — *Тут дія: `They work`, без `are`.*
+- ✅ **They start the shift at three.**
+- ❌ They starts the shift at three. — *Після they слово лишається start, без s.*
+- ❌ They are start the shift at three. — *Тут дія: They start, без are.*
 
 ---
 
 ## Інтро 3
 
-### Робота й речі
+### Запис до стоматолога
 
-`dentist` — «стоматолог», `charger` — «зарядний пристрій», `possible` — «можливий». `I am a dentist` — «Я стоматолог»: тут називаємо професію, тому потрібно `am`. `We have a charger` — «У нас є зарядний пристрій». `It is possible` — «Це можливо».
+Ви прийшли до клініки на прийом до стоматолога. Біля стійки адміністратор питає вас, на котру годину ви записані. appointment — «прийом, запис до лікаря»: I have an appointment at four — «У мене прийом о четвертій». Перед appointment ставимо an, а не a.
 
-**Скажіть «Я стоматолог».**
+**Адміністратор питає, на яку годину ви записані. Скажіть: «У мене прийом о четвертій».**
 
-- ✅ **I am a dentist.**
-- ❌ I a dentist. — *Коли називаємо професію, після `I` потрібно `am`.*
-- ❌ I work a dentist. — *Тут називаємо професію: `I am a dentist`.*
+- ✅ **I have an appointment at four.**
+- ❌ I has an appointment at four. — *Після I потрібно have, а не has.*
+- ❌ I have a appointment at four. — *appointment починається з голосного звуку, тому перед ним an.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть про початок робочого дня: «Я починаю о дев’ятій»**
+**1 · Картка слова — start**
+<!-- interaction_id: en:lesson-06:session-09:word:start; family: word_card -->
+> **start** — починати. We start at two. — «Ми починаємо о другій». Про початок роботи, заняття чи зміни. Після I, you, we, they — без s.
+
+**2 · Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»**
 <!-- interaction_id: en:lesson-06:session-09:i01; family: phrase_builder -->
-Плитки: `nine` `at` `start` `I` → **I start at nine.**
+Плитки: `four` `at` `start` `I` `am` → **I start at four.**
+*(плитка `am` зайва: тут потрібно `start` — `I start at four.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте адміністратора**
 <!-- interaction_id: en:lesson-06:session-09:i02; family: listen_choose -->
-🔊 *start* → **start** · work · have
-- work — *У записі перше слово — `start`, а в цьому варіанті — `work`.*
-- have — *У записі перше слово — `start`, а в цьому варіанті — `have`.*
+🔊 *We start at three.* → **We start at three.** · We start at five. · They start at three.
+- We start at five. — *У записі останнє слово — `three`, а в цьому варіанті — `five`.*
+- They start at three. — *У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони.*
 
-**3 · Скажіть «Ми починаємо о дев’ятій»**
+**4 · Картка слова — shift**
+<!-- interaction_id: en:lesson-06:session-09:word:shift; family: word_card -->
+> **shift** — зміна. You start the shift at four. — «Ти починаєш зміну о четвертій». Про робочі години: буває перша й друга зміна.
+
+**5 · Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-09:i03; family: context_gap_grammar -->
-We ___ at nine. → **start** · starts · are start
+We ___ the shift at two. → **start** · starts · are start
 - starts — *Після `we` — `start`, без `s`.*
 - are start — *Кажемо `We start`, без `are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-09:i04; family: speed_match -->
-start — починати · work — працювати · dentist — стоматолог · charger — зарядний пристрій
+start — починати · shift — зміна · appointment — прийом (запис до лікаря) · break — перерва
 
-**5 · Послухайте й складіть фразу**
+**7 · Послухайте медсестру й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-09:i05; family: listen_build_dictation -->
-🔊 *You start at ten.* Плитки: `ten` `at` `start` `You` → **You start at ten.**
+🔊 *You start the shift at four.* Плитки: `start` `the` `shift` `at` `four` `You` `are` → **You start the shift at four.**
+*(плитка `are` зайва: тут потрібно `start` — `You start the shift at four.`)*
 
-**6 · Скажіть «Вони працюють тут»**
+**8 · Картка слова — appointment**
+<!-- interaction_id: en:lesson-06:session-09:word:appointment; family: word_card -->
+> **appointment** — прийом (запис до лікаря). You have an appointment at five. — «У тебе прийом о п’ятій». Про час, на який людина записана до лікаря.
+
+**9 · Вас із колегою записали до стоматолога. Скажіть адміністратору: «У нас прийом о п’ятій»**
 <!-- interaction_id: en:lesson-06:session-09:i06; family: phrase_builder -->
-Плитки: `here` `work` `They` → **They work here.**
+Плитки: `appointment` `at` `five` `have` `an` `We` `has` → **We have an appointment at five.**
+*(плитка `has` зайва: тут потрібно `have` — `We have an appointment at five.`)*
 
-**7 · Назвіть свою професію: «Я стоматолог»**
+**10 · Колега питає, о котрій ви з ним починаєте. Скажіть: «Ми починаємо зміну о третій»**
 <!-- interaction_id: en:lesson-06:session-09:i07; family: scripted_repeat_compare -->
-🎙 **I am a dentist.**
+🎙 **We start the shift at three.**
 
-**8 · Скажіть колезі «Ти працюєш у клініці»**
+**11 · Картка слова — break**
+<!-- interaction_id: en:lesson-06:session-09:word:break; family: word_card -->
+> **break** — перерва. We have a break at three. — «У нас перерва о третій». Про короткий відпочинок посеред роботи.
+
+**12 · Скажіть про колег: «У них перерва о третій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-09:i08; family: context_gap_grammar -->
-You ___ in a clinic. → **work** · works · are work
-- works — *Після `you` — `work`, без `s`.*
-- are work — *Кажемо `You work`, без `are`.*
+They ___ a break at three. → **have** · has · are have
+- has — *Після `they` потрібно `have`, а не `has`.*
+- are have — *Кажемо `They have`, без `are`.*
 
-**9 · Послухайте, о котрій вони починають**
+**13 · Послухайте колегу**
 <!-- interaction_id: en:lesson-06:session-09:i09; family: listen_choose -->
-🔊 *They start at eight.* → **They start at eight.** · They start at nine. · They start at ten.
-- They start at nine. — *У записі останнє слово — `eight`, а в цьому варіанті — `nine`.*
-- They start at ten. — *У записі останнє слово — `eight`, а в цьому варіанті — `ten`.*
+🔊 *I have a break at four.* → **I have a break at four.** · I have a break at five. · I have an appointment at four.
+- I have a break at five. — *У записі останнє слово — `four`, а в цьому варіанті — `five`.*
+- I have an appointment at four. — *У записі в колеги `break`, перерва, а в цьому варіанті — `appointment`, прийом у лікаря.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-09:i10; family: speed_match -->
-start — починати · possible — можливий · charger — зарядний пристрій · work — працювати
+shift — зміна · break — перерва · appointment — прийом (запис до лікаря) · start — починати
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте адміністратора й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-09:i11; family: listen_build_dictation -->
-🔊 *We have a charger.* Плитки: `charger` `a` `have` `We` → **We have a charger.**
+🔊 *They have a break at three.* Плитки: `have` `a` `break` `at` `three` `They` `has` → **They have a break at three.**
+*(плитка `has` зайва: тут потрібно `have` — `They have a break at three.`)*
 
-**12 · Колега уточнює, чи можна почати о десятій. Скажіть «Це можливо»**
+**16 · Колега питає, о котрій у вас перерва. Скажіть: «У мене перерва о другій»**
 <!-- interaction_id: en:lesson-06:session-09:i12; family: phrase_builder -->
-Плитки: `possible` `is` `It` `are` → **It is possible.**
-*(плитка `are` зайва: тут потрібно `is` — `It is possible.`)*
+Плитки: `break` `at` `two` `have` `a` `I` `are` → **I have a break at two.**
+*(плитка `are` зайва: тут потрібно `have` — `I have a break at two.`)*
 
-**13 · Скажіть про себе й колегу «Ми працюємо в цьому районі»**
+**17 · Адміністратор питає, де ви працюєте. Скажіть: «Я працюю в клініці»**
 <!-- interaction_id: en:lesson-06:session-09:i13; family: scripted_repeat_compare -->
-🎙 **We work in this neighbourhood.**
+🎙 **I work in a clinic.**
 
-**14 · Скажіть «Я починаю о восьмій»**
+**18 · Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-09:i14; family: context_gap_grammar -->
-I ___ at eight. → **start** · starts · am start
+I ___ the shift at four. → **start** · starts · am start
 - starts — *Після `I` — `start`, без `s`.*
 - am start — *Кажемо `I start`, без `am`.*
 
-**15 · Послухайте, чий зарядний пристрій тут**
+**19 · Послухайте медсестру**
 <!-- interaction_id: en:lesson-06:session-09:i15; family: listen_choose -->
-🔊 *My charger is here.* → **My charger is here.** · Your charger is here. · His charger is here.
-- Your charger is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His charger is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *They start the shift at two.* → **They start the shift at two.** · They start the shift at four. · They start the break at two.
+- They start the shift at four. — *У записі останнє слово — `two`, а в цьому варіанті — `four`.*
+- They start the break at two. — *У записі починається `shift`, зміна, а в цьому варіанті — `break`, перерва.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-09:i16; family: speed_match -->
-dentist — стоматолог · possible — можливий · start — починати · work — працювати
+start — починати · shift — зміна · appointment — прийом (запис до лікаря) · break — перерва
 
-**17 · Новий працівник запитує про початок вашого робочого дня. Скажіть за всю команду «Ми починаємо о дев’ятій»**
+**21 · Новий колега питає, о котрій ви з командою починаєте. Скажіть: «Ми починаємо о другій»**
 <!-- interaction_id: en:lesson-06:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We start at nine.**
-
+🎙 **We start at two.**

@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-12:word:paint",
+    "correctText": "paint",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-12:i01",
-    "correctText": "I paint at home.",
+    "correctText": "We paint here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:word:studio",
+    "correctText": "studio",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i02",
-    "correctText": "paint",
+    "correctText": "I paint at home.",
     "correctResponseId": "en:lesson-06:session-12:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-06:session-12:i04",
-    "correctText": "en:lesson-06:session-12:i04:p1=paint\nen:lesson-06:session-12:i04:p2=private\nen:lesson-06:session-12:i04:p3=notebook\nen:lesson-06:session-12:i04:p4=receipt",
+    "correctText": "en:lesson-06:session-12:i04:p1=paint\nen:lesson-06:session-12:i04:p2=canvas\nen:lesson-06:session-12:i04:p3=palette\nen:lesson-06:session-12:i04:p4=studio",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i05",
-    "correctText": "They paint at home.",
+    "correctText": "You paint in the studio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:word:palette",
+    "correctText": "palette",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i06",
-    "correctText": "Whose notebook is this?",
+    "correctText": "This palette is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:word:canvas",
+    "correctText": "canvas",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i07",
-    "correctText": "This notebook is private.",
+    "correctText": "The canvas is on the easel.",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-06:session-12:i09",
-    "correctText": "My notebook is here.",
+    "correctText": "The palette is on the table.",
     "correctResponseId": "en:lesson-06:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-12:i10",
-    "correctText": "en:lesson-06:session-12:i10:p1=paint\nen:lesson-06:session-12:i10:p2=platform\nen:lesson-06:session-12:i10:p3=private\nen:lesson-06:session-12:i10:p4=notebook",
+    "correctText": "en:lesson-06:session-12:i10:p1=canvas\nen:lesson-06:session-12:i10:p2=palette\nen:lesson-06:session-12:i10:p3=paint\nen:lesson-06:session-12:i10:p4=studio",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i11",
-    "correctText": "They are on the platform.",
+    "correctText": "They paint on a canvas.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i12",
-    "correctText": "The receipt is in my pocket.",
+    "correctText": "Whose canvas is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i13",
-    "correctText": "You paint here.",
+    "correctText": "We paint at home.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-12:i15",
-    "correctText": "The platform is empty.",
+    "correctText": "Whose canvas is this?",
     "correctResponseId": "en:lesson-06:session-12:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-12:i16",
-    "correctText": "en:lesson-06:session-12:i16:p1=paint\nen:lesson-06:session-12:i16:p2=private\nen:lesson-06:session-12:i16:p3=platform\nen:lesson-06:session-12:i16:p4=receipt",
+    "correctText": "en:lesson-06:session-12:i16:p1=studio\nen:lesson-06:session-12:i16:p2=paint\nen:lesson-06:session-12:i16:p3=palette\nen:lesson-06:session-12:i16:p4=canvas",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-12:i17",
-    "correctText": "We paint here.",
+    "correctText": "We paint in the studio.",
     "correctResponseId": null
   }
 ]

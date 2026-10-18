@@ -4,31 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-15:i01",
+      "interactionId": "en:lesson-06:session-15:word:sing",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:word:sing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:word:sing:audio",
+          "transcript": "sing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-15:word:sing:r1",
+            "targetText": "sing",
+            "meaningByLocale": {
+              "ru": "петь. They sing here. — «Они поют здесь». О пении голосом. После I, you, we, they — без s.",
+              "uk": "співати. They sing here. — «Вони співають тут». Про спів голосом. Після I, you, we, they — без s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sing",
+          "definitionByLocale": {
+            "ru": "петь. They sing here. — «Они поют здесь». О пении голосом. После I, you, we, they — без s.",
+            "uk": "співати. They sing here. — «Вони співають тут». Про спів голосом. Після I, you, we, they — без s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я пою дома»",
+      "prompt": "Подруга спрашивает о соседях по хору. Скажите: «Они поют здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я пою дома»",
+      "accessibilityLabel": "Подруга спрашивает о соседях по хору. Скажите: «Они поют здесь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I sing at home.",
+        "targetPhrase": "They sing here.",
         "localizedMeaning": {
-          "ru": "Скажите «Я пою дома»",
-          "uk": "Скажіть «Я співаю вдома»"
+          "ru": "Подруга спрашивает о соседях по хору. Скажите: «Они поют здесь»",
+          "uk": "Подруга питає про сусідів по хору. Скажіть: «Вони співають тут»"
         },
         "orderedTokens": [
-          "I",
+          "They",
           "sing",
-          "at",
-          "home"
+          "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает о соседях по хору. Скажите: «Они поют здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `sing` — `They sing here.`",
+              "uk": "тут потрібно `sing` — `They sing here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i02:r1",
-          "text": "sing"
+          "text": "I sing at home."
         },
         {
           "responseId": "en:lesson-06:session-15:i02:r2",
-          "text": "swim"
+          "text": "I sing at the gym."
         },
         {
           "responseId": "en:lesson-06:session-15:i02:r3",
-          "text": "work"
+          "text": "We sing at home."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i02:audio",
-          "transcript": "sing"
+          "transcript": "I sing at home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-15:i02:r1",
-            "targetText": "sing",
+            "targetText": "I sing at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-15:i02:r2",
-            "targetText": "swim",
+            "targetText": "I sing at the gym.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-15:i02:r3",
-            "targetText": "work",
+            "targetText": "We sing at home.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +145,19 @@
           {
             "responseId": "en:lesson-06:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `sing`, а в этом варианте — `swim`.",
-              "uk": "У записі перше слово — `sing`, а в цьому варіанті — `swim`."
+              "ru": "В записи последнее слово — `home`, дом, а в этом варианте — `gym`, зал.",
+              "uk": "У записі останнє слово — `home`, дім, а в цьому варіанті — `gym`, зал."
             }
           },
           {
             "responseId": "en:lesson-06:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `sing`, а в этом варианте — `work`.",
-              "uk": "У записі перше слово — `sing`, а в цьому варіанті — `work`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -114,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Мы поём здесь»",
+      "prompt": "Скажите о себе и подруге: «Мы поём здесь». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i03:r1",
@@ -135,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Мы поём здесь»",
+      "accessibilityLabel": "Скажите о себе и подруге: «Мы поём здесь». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Мы поём здесь»",
-          "uk": "Скажіть «Ми співаємо тут»"
+          "ru": "Скажите о себе и подруге: «Мы поём здесь». Выберите слово",
+          "uk": "Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово"
         },
         "gappedTargetPhrase": "We ___ here.",
         "gapOptions": [
@@ -157,12 +211,12 @@
             "text": "are sing"
           }
         ],
-        "testedDimension": "Скажите «Мы поём здесь»",
+        "testedDimension": "Скажите о себе и подруге: «Мы поём здесь». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-15:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Мы поём здесь»",
+            "testedDimension": "Скажите о себе и подруге: «Мы поём здесь». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `we` — `sing`, без `s`.",
               "uk": "Після `we` — `sing`, без `s`."
@@ -171,7 +225,7 @@
           {
             "responseId": "en:lesson-06:session-15:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Мы поём здесь»",
+            "testedDimension": "Скажите о себе и подруге: «Мы поём здесь». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `We sing`, без `are`.",
               "uk": "Кажемо `We sing`, без `are`."
@@ -183,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +259,40 @@
           },
           {
             "pairId": "en:lesson-06:session-15:i04:p2",
-            "target": "silent",
+            "target": "song",
             "meaningByLocale": {
-              "ru": "беззвучный",
-              "uk": "беззвучний"
+              "ru": "песня",
+              "uk": "пісня"
             }
           },
           {
             "pairId": "en:lesson-06:session-15:i04:p3",
-            "target": "gym",
+            "target": "choir",
             "meaningByLocale": {
-              "ru": "тренажёрный зал",
-              "uk": "тренажерний зал"
+              "ru": "хор",
+              "uk": "хор"
             }
           },
           {
             "pairId": "en:lesson-06:session-15:i04:p4",
-            "target": "helmet",
+            "target": "lyrics",
             "meaningByLocale": {
-              "ru": "шлем",
-              "uk": "шолом"
+              "ru": "слова песни",
+              "uk": "слова пісні"
             }
           }
         ],
         "leftColumn": [
           "sing",
-          "silent",
-          "gym",
-          "helmet"
+          "song",
+          "choir",
+          "lyrics"
         ],
         "rightColumn": [
           "петь",
-          "беззвучный",
-          "тренажёрный зал",
-          "шлем"
+          "песня",
+          "хор",
+          "слова песни"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +309,90 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-15:word:song",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — song",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:word:song:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — song",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:word:song:audio",
+          "transcript": "song"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-15:word:song:r1",
+            "targetText": "song",
+            "meaningByLocale": {
+              "ru": "песня. This song is old. — «Эта песня старая». О музыке со словами, которую поют.",
+              "uk": "пісня. This song is old. — «Ця пісня стара». Про музику зі словами, яку співають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "song",
+          "definitionByLocale": {
+            "ru": "песня. This song is old. — «Эта песня старая». О музыке со словами, которую поют.",
+            "uk": "пісня. This song is old. — «Ця пісня стара». Про музику зі словами, яку співають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-15:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i05:audio",
-          "transcript": "They sing at home."
+          "transcript": "You sing a song here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They sing at home.",
+        "hiddenTargetPhrase": "You sing a song here.",
         "orderedTokens": [
-          "They",
+          "You",
           "sing",
-          "at",
-          "home"
+          "a",
+          "song",
+          "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `sing` — `You sing a song here.`",
+              "uk": "тут потрібно `sing` — `You sing a song here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,27 +401,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-15:word:choir",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — choir",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:word:choir:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — choir",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:word:choir:audio",
+          "transcript": "choir"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-15:word:choir:r1",
+            "targetText": "choir",
+            "meaningByLocale": {
+              "ru": "хор. They are in the choir. — «Они в хоре». О группе людей, которые поют вместе.",
+              "uk": "хор. They are in the choir. — «Вони в хорі». Про групу людей, які співають разом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "choir",
+          "definitionByLocale": {
+            "ru": "хор. They are in the choir. — «Они в хоре». О группе людей, которые поют вместе.",
+            "uk": "хор. They are in the choir. — «Вони в хорі». Про групу людей, які співають разом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-15:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Они молчат»",
+      "prompt": "Подруга спрашивает, где ваши соседи. Скажите: «Они в хоре»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они молчат»",
+      "accessibilityLabel": "Подруга спрашивает, где ваши соседи. Скажите: «Они в хоре»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are silent.",
+        "targetPhrase": "They are in the choir.",
         "localizedMeaning": {
-          "ru": "Скажите «Они молчат»",
-          "uk": "Скажіть «Вони мовчать»"
+          "ru": "Подруга спрашивает, где ваши соседи. Скажите: «Они в хоре»",
+          "uk": "Подруга питає, де ваші сусіди. Скажіть: «Вони в хорі»"
         },
         "orderedTokens": [
           "They",
           "are",
-          "silent"
+          "in",
+          "the",
+          "choir"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -320,10 +475,10 @@
           {
             "responseId": "en:lesson-06:session-15:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Они молчат»",
+            "testedDimension": "Подруга спрашивает, где ваши соседи. Скажите: «Они в хоре»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are silent.`",
-              "uk": "тут потрібно `are` — `They are silent.`"
+              "ru": "здесь нужно `are` — `They are in the choir.`",
+              "uk": "тут потрібно `are` — `They are in the choir.`"
             }
           }
         ],
@@ -336,25 +491,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Мы в тренажёрном зале»",
+      "prompt": "Подруга спрашивает, чья это песня. Она ваша. Скажите: «Это моя песня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Мы в тренажёрном зале»",
+      "accessibilityLabel": "Подруга спрашивает, чья это песня. Она ваша. Скажите: «Это моя песня»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i07:audio",
-          "transcript": "We are at the gym."
+          "transcript": "This is my song."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are at the gym.",
+        "targetPhrase": "This is my song.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -368,68 +523,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-15:word:lyrics",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lyrics",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:word:lyrics:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lyrics",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:word:lyrics:audio",
+          "transcript": "lyrics"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-15:word:lyrics:r1",
+            "targetText": "lyrics",
+            "meaningByLocale": {
+              "ru": "слова песни. Whose lyrics are these? — «Чьи это слова песни?» Слово всегда во множественном числе: are, а не is.",
+              "uk": "слова пісні. Whose lyrics are these? — «Чиї це слова пісні?» Слово завжди в множині: are, а не is."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lyrics",
+          "definitionByLocale": {
+            "ru": "слова песни. Whose lyrics are these? — «Чьи это слова песни?» Слово всегда во множественном числе: are, а не is.",
+            "uk": "слова пісні. Whose lyrics are these? — «Чиї це слова пісні?» Слово завжди в множині: are, а не is."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-15:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Тот шлем твой»",
+      "prompt": "Скажите, где слова: «Слова песни на стене». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i08:r1",
-          "text": "yours"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-15:i08:r2",
-          "text": "your"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-15:i08:r3",
-          "text": "you"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Тот шлем твой»",
+      "accessibilityLabel": "Скажите, где слова: «Слова песни на стене». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Тот шлем твой»",
-          "uk": "Скажіть «Той шолом твій»"
+          "ru": "Скажите, где слова: «Слова песни на стене». Выберите слово",
+          "uk": "Скажіть, де слова: «Слова пісні на стіні». Виберіть слово"
         },
-        "gappedTargetPhrase": "That helmet is ___.",
+        "gappedTargetPhrase": "The lyrics ___ on the wall.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-15:i08:r1",
-            "text": "yours"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-15:i08:r2",
-            "text": "your"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-15:i08:r3",
-            "text": "you"
+            "text": "has"
           }
         ],
-        "testedDimension": "Скажите «Тот шлем твой»",
+        "testedDimension": "Скажите, где слова: «Слова песни на стене». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Тот шлем твой»",
+            "testedDimension": "Скажите, где слова: «Слова песни на стене». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи после «твой» нужно `yours`.",
-              "uk": "Без назви речі після «твій» потрібно `yours`."
+              "ru": "`lyrics` — слова, их несколько, поэтому нужно `are`, а не `is`.",
+              "uk": "`lyrics` — слова, їх кілька, тому потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-06:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Тот шлем твой»",
+            "testedDimension": "Скажите, где слова: «Слова песни на стене». Выберите слово",
             "feedbackByLocale": {
-              "ru": "`you` — ты или вы; здесь «твой» — `yours`.",
-              "uk": "`you` — ти або ви; тут «твій» — `yours`."
+              "ru": "`has` значит «имеет», а здесь нужно сказать, где слова: `are`.",
+              "uk": "`has` означає «має», а тут треба сказати, де слова: `are`."
             }
           }
         ]
@@ -438,51 +636,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей календарь здесь",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i09:r1",
-          "text": "My calendar is here."
+          "text": "This song is old."
         },
         {
           "responseId": "en:lesson-06:session-15:i09:r2",
-          "text": "Your calendar is here."
+          "text": "This song is new."
         },
         {
           "responseId": "en:lesson-06:session-15:i09:r3",
-          "text": "His calendar is here."
+          "text": "This choir is old."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей календарь здесь",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i09:audio",
-          "transcript": "My calendar is here."
+          "transcript": "This song is old."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-15:i09:r1",
-            "targetText": "My calendar is here.",
+            "targetText": "This song is old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-15:i09:r2",
-            "targetText": "Your calendar is here.",
+            "targetText": "This song is new.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-15:i09:r3",
-            "targetText": "His calendar is here.",
+            "targetText": "This choir is old.",
             "meaningByLocale": null
           }
         ],
@@ -491,19 +689,19 @@
           {
             "responseId": "en:lesson-06:session-15:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей календарь здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `old`, старая, а в этом варианте — `new`, новая.",
+              "uk": "У записі останнє слово — `old`, стара, а в цьому варіанті — `new`, нова."
             }
           },
           {
             "responseId": "en:lesson-06:session-15:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей календарь здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `song`, песня, а в этом варианте — `choir`, хор.",
+              "uk": "У записі річ — `song`, пісня, а в цьому варіанті — `choir`, хор."
             }
           }
         ],
@@ -514,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -528,6 +726,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-15:i10:p1",
+            "target": "choir",
+            "meaningByLocale": {
+              "ru": "хор",
+              "uk": "хор"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i10:p2",
+            "target": "lyrics",
+            "meaningByLocale": {
+              "ru": "слова песни",
+              "uk": "слова пісні"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i10:p3",
             "target": "sing",
             "meaningByLocale": {
               "ru": "петь",
@@ -535,41 +749,25 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-15:i10:p2",
-            "target": "silent",
-            "meaningByLocale": {
-              "ru": "беззвучный",
-              "uk": "беззвучний"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-15:i10:p3",
-            "target": "helmet",
-            "meaningByLocale": {
-              "ru": "шлем",
-              "uk": "шолом"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-15:i10:p4",
-            "target": "calendar",
+            "target": "song",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "песня",
+              "uk": "пісня"
             }
           }
         ],
         "leftColumn": [
+          "choir",
+          "lyrics",
           "sing",
-          "silent",
-          "helmet",
-          "calendar"
+          "song"
         ],
         "rightColumn": [
+          "хор",
+          "слова песни",
           "петь",
-          "беззвучный",
-          "шлем",
-          "календарь"
+          "песня"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -587,44 +785,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i11:audio",
-          "transcript": "The calendar is on the wall."
+          "transcript": "We have a new song."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The calendar is on the wall.",
+        "hiddenTargetPhrase": "We have a new song.",
         "orderedTokens": [
-          "The",
-          "calendar",
-          "is",
-          "on",
-          "the",
-          "wall"
+          "We",
+          "have",
+          "a",
+          "new",
+          "song"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "has"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-15:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The calendar is on the wall.`",
-              "uk": "тут потрібно `is` — `The calendar is on the wall.`"
+              "ru": "здесь нужно `have` — `We have a new song.`",
+              "uk": "тут потрібно `have` — `We have a new song.`"
             }
           }
         ],
@@ -637,30 +834,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это шлем?»",
+      "prompt": "Слова песни лежат на стуле. Спросите подругу: «Чьи это слова песни?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это шлем?»",
+      "accessibilityLabel": "Слова песни лежат на стуле. Спросите подругу: «Чьи это слова песни?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose helmet is this?",
+        "targetPhrase": "Whose lyrics are these?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это шлем?»",
-          "uk": "Запитайте «Чий це шолом?»"
+          "ru": "Слова песни лежат на стуле. Спросите подругу: «Чьи это слова песни?»",
+          "uk": "Слова пісні лежать на стільці. Спитайте подругу: «Чиї це слова пісні?»"
         },
         "orderedTokens": [
           "Whose",
-          "helmet",
-          "is",
-          "this"
+          "lyrics",
+          "are",
+          "these"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Слова песни лежат на стуле. Спросите подругу: «Чьи это слова песни?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose lyrics are these?`",
+              "uk": "тут потрібно `Whose` — `Whose lyrics are these?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -670,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажите другу место для выступления: «Ты поёшь здесь»",
+      "prompt": "Подруга спрашивает, что вы делаете после зала. Скажите: «Мы поём дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i13:audio"
       ],
-      "accessibilityLabel": "Покажите другу место для выступления: «Ты поёшь здесь»",
+      "accessibilityLabel": "Подруга спрашивает, что вы делаете после зала. Скажите: «Мы поём дома»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i13:audio",
-          "transcript": "You sing here."
+          "transcript": "We sing at home."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You sing here.",
+        "targetPhrase": "We sing at home.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -703,11 +912,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я пою здесь»",
+      "prompt": "Скажите подруге: «Ты поёшь песню». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i14:r1",
@@ -719,19 +928,19 @@
         },
         {
           "responseId": "en:lesson-06:session-15:i14:r3",
-          "text": "am sing"
+          "text": "are sing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я пою здесь»",
+      "accessibilityLabel": "Скажите подруге: «Ты поёшь песню». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я пою здесь»",
-          "uk": "Скажіть «Я співаю тут»"
+          "ru": "Скажите подруге: «Ты поёшь песню». Выберите слово",
+          "uk": "Скажіть подрузі: «Ти співаєш пісню». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ here.",
+        "gappedTargetPhrase": "You ___ a song.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-15:i14:r1",
@@ -743,27 +952,27 @@
           },
           {
             "responseId": "en:lesson-06:session-15:i14:r3",
-            "text": "am sing"
+            "text": "are sing"
           }
         ],
-        "testedDimension": "Скажите «Я пою здесь»",
+        "testedDimension": "Скажите подруге: «Ты поёшь песню». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-15:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я пою здесь»",
+            "testedDimension": "Скажите подруге: «Ты поёшь песню». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` — `sing`, без `s`.",
-              "uk": "Після `I` — `sing`, без `s`."
+              "ru": "После `you` — `sing`, без `s`.",
+              "uk": "Після `you` — `sing`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-15:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я пою здесь»",
+            "testedDimension": "Скажите подруге: «Ты поёшь песню». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `I sing`, без `am`.",
-              "uk": "Кажемо `I sing`, без `am`."
+              "ru": "Говорим `You sing`, без `are`.",
+              "uk": "Кажемо `You sing`, без `are`."
             }
           }
         ]
@@ -772,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что Том говорит о тренажёрном зале",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i15:r1",
-          "text": "The gym is open."
+          "text": "The lyrics are on the wall."
         },
         {
           "responseId": "en:lesson-06:session-15:i15:r2",
-          "text": "The gym is closed."
+          "text": "The lyrics are on the piano."
         },
         {
           "responseId": "en:lesson-06:session-15:i15:r3",
-          "text": "The gym is empty."
+          "text": "The song is on the wall."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что Том говорит о тренажёрном зале",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i15:audio",
-          "transcript": "The gym is open."
+          "transcript": "The lyrics are on the wall."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-15:i15:r1",
-            "targetText": "The gym is open.",
+            "targetText": "The lyrics are on the wall.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-15:i15:r2",
-            "targetText": "The gym is closed.",
+            "targetText": "The lyrics are on the piano.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-15:i15:r3",
-            "targetText": "The gym is empty.",
+            "targetText": "The song is on the wall.",
             "meaningByLocale": null
           }
         ],
@@ -825,19 +1034,19 @@
           {
             "responseId": "en:lesson-06:session-15:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что Том говорит о тренажёрном зале",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
-              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+              "ru": "В записи слова висят `on the wall`, на стене, а в этом варианте — `on the piano`, на пианино.",
+              "uk": "У записі слова висять `on the wall`, на стіні, а в цьому варіанті — `on the piano`, на піаніно."
             }
           },
           {
             "responseId": "en:lesson-06:session-15:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что Том говорит о тренажёрном зале",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `open`, а в этом варианте — `empty`.",
-              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `empty`."
+              "ru": "В записи на стене `lyrics`, слова песни, а в этом варианте — `song`, песня.",
+              "uk": "У записі на стіні `lyrics`, слова пісні, а в цьому варіанті — `song`, пісня."
             }
           }
         ],
@@ -848,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -862,6 +1071,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-15:i16:p1",
+            "target": "song",
+            "meaningByLocale": {
+              "ru": "песня",
+              "uk": "пісня"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i16:p2",
             "target": "sing",
             "meaningByLocale": {
               "ru": "петь",
@@ -869,41 +1086,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-15:i16:p2",
-            "target": "silent",
-            "meaningByLocale": {
-              "ru": "беззвучный",
-              "uk": "беззвучний"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-15:i16:p3",
-            "target": "gym",
+            "target": "lyrics",
             "meaningByLocale": {
-              "ru": "тренажёрный зал",
-              "uk": "тренажерний зал"
+              "ru": "слова песни",
+              "uk": "слова пісні"
             }
           },
           {
             "pairId": "en:lesson-06:session-15:i16:p4",
-            "target": "calendar",
+            "target": "choir",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "хор",
+              "uk": "хор"
             }
           }
         ],
         "leftColumn": [
+          "song",
           "sing",
-          "silent",
-          "gym",
-          "calendar"
+          "lyrics",
+          "choir"
         ],
         "rightColumn": [
+          "песня",
           "петь",
-          "беззвучный",
-          "тренажёрный зал",
-          "календарь"
+          "слова песни",
+          "хор"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -921,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-15:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажите другу комнату, где вы с Анной занимаетесь пением. Скажите «Мы поём здесь»",
+      "prompt": "Новая участница спрашивает, что вы делаете в этой комнате. Скажите за себя и подругу: «Мы поём в хоре»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-15:i17:audio"
       ],
-      "accessibilityLabel": "Покажите другу комнату, где вы с Анной занимаетесь пением. Скажите «Мы поём здесь»",
+      "accessibilityLabel": "Новая участница спрашивает, что вы делаете в этой комнате. Скажите за себя и подругу: «Мы поём в хоре»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-15:i17:audio",
-          "transcript": "We sing here."
+          "transcript": "We sing in the choir."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We sing here.",
+        "targetPhrase": "We sing in the choir.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -961,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "86630904dfa57919ccec41f632ec972d1db60fcd10846144d5f0fed0e80cc40a"
+  "learnerFingerprint": "db8483971b26d3653088bd95c9abf223bb7ff9c8f62828c10bc24630ae61f6cc"
 }

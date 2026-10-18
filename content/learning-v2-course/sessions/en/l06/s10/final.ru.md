@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 10 — Английский перед работой
+# Английский · Урок 6 · Занятие 10 — Английский перед сменой
 
-**Ситуация.** Анна и Том работают в отеле и тренируют английский перед сменой. Том ищет ключ, а Анна собирает папки.
+**Ситуация.** Вы работаете администратором в отеле и учите английский для разговоров с гостями. Перед сменой вы с коллегой тренируете фразы у стойки, а на столе лежат бумаги гостей. Правило то же: после I, you, we, they слово действия остаётся без s.
 
-**Что вы освоите:** сказать, что вы практикуете английский, и найти нужные вещи
-**Новые слова:** practice
+**Что вы освоите:** сказать, что вы практикуете английский, и спросить, чья бронь
+**Новые слова:** practice, phrase, reservation, breakfast
+**Возвращаются:** hotel, work, passport
 
 ---
 
 ## Интро 1
 
-### Учимся, когда говорим
+### У стойки до смены
 
-`practice` — «практиковаться». `I practice English` — «Я практикую английский»: например, говорю или выполняю упражнения. Просто носить учебник в сумке — ещё не практиковаться, даже если сумка тяжёлая. Здесь американское написание `practice`; в британском английском для действия пишут `practise`.
+Перед сменой вы стоите у стойки отеля. Гости приезжают из разных стран, и каждый день вы повторяете английские фразы. practice — «практиковаться, тренироваться»: I practice English — «Я практикую английский». После I слово practice остаётся без s.
 
-**Скажите «Я практикую английский».**
+**Коллега спрашивает, чем вы заняты у стойки. Скажите: «Я практикую английский».**
 
 - ✅ **I practice English.**
-- ❌ I am practice English. — *Перед `practice` здесь не нужно `am`.*
-- ❌ I practices English. — *После `I` — `practice`, без `s`.*
+- ❌ I am practice English. — *Здесь действие, поэтому перед practice не нужно am.*
+- ❌ I practices English. — *После I слово остаётся practice, без s.*
 
 ---
 
 ## Интро 2
 
-### Вместе тоже без s
+### Приветствие для гостей
 
-`We practice English` — «Мы практикуем английский». После `I`, `you`, `we`, `they` используем `practice`, без `s`. `We work in a hotel` — «Мы работаем в отеле». `It is impossible` — «Это невозможно»: так можно ответить, если предложение нельзя выполнить.
+Вы с коллегой встречаете гостей у входа и хотите приветствовать их без ошибок. Вы раз за разом повторяете одну и ту же фразу: Welcome to our hotel. phrase — «фраза». We practice this phrase — «Мы тренируем эту фразу». С we слово practice остаётся без s.
 
-**Скажите «Мы практикуем английский».**
+**Вы с коллегой повторяете приветствие для гостей. Скажите: «Мы тренируем эту фразу».**
 
-- ✅ **We practice English.**
-- ❌ We practices English. — *После `we` — `practice`, без `s`.*
-- ❌ We are practice English. — *Говорим `We practice`, без `are`.*
+- ✅ **We practice this phrase.**
+- ❌ We practices this phrase. — *После we слово остаётся practice, без s.*
+- ❌ We are practice this phrase. — *Здесь действие: We practice, без are.*
 
 ---
 
 ## Интро 3
 
-### Перед сменой
+### Бумага на столе
 
-`pocket` — «карман», `folder` — «папка». `The key is in my pocket` — «Ключ у меня в кармане». `Whose folder is this?` — «Чья это папка?» `That folder is yours` — «Та папка твоя»: название вещи после `yours` не нужно.
+Гости стоят у стойки, а на столе лежит бумага с чьей-то бронью. Вы не знаете, кому она принадлежит. reservation — «бронь, бронирование». Чтобы узнать хозяина, спрашиваем: Whose reservation is this? — «Чья это бронь?» Слово Whose спрашивает о хозяине вещи.
 
-**Спросите «Чья это папка?»**
+**На столе лежит бумага с бронью. Спросите гостей: «Чья это бронь?»**
 
-- ✅ **Whose folder is this?**
-- ❌ Where is the folder? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose folder are these? — *Одна папка: `is this`.*
+- ✅ **Whose reservation is this?**
+- ❌ Where is the reservation? — *Это вопрос «где?», а нужен вопрос «чья?»: Whose.*
+- ❌ Whose reservation are these? — *Бронь одна, поэтому нужно is this.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я практикую английский»**
+**1 · Карточка слова — practice**
+<!-- interaction_id: en:lesson-06:session-10:word:practice; family: word_card -->
+> **practice** — практиковаться, тренироваться. They practice English in the hotel. — «Они практикуют английский в отеле». О занятиях, которые повторяют много раз.
+
+**2 · Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»**
 <!-- interaction_id: en:lesson-06:session-10:i01; family: phrase_builder -->
-Плитки: `English` `practice` `I` → **I practice English.**
+Плитки: `English` `practice` `They` `are` → **They practice English.**
+*(плитка `are` лишняя: здесь нужно `practice` — `They practice English.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — phrase**
+<!-- interaction_id: en:lesson-06:session-10:word:phrase; family: word_card -->
+> **phrase** — фраза. You practice a new phrase. — «Ты тренируешь новую фразу». О коротком готовом выражении, которое удобно выучить целиком.
+
+**4 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-06:session-10:i02; family: listen_choose -->
-🔊 *practice* → **practice** · start · work
-- start — *В записи первое слово — `practice`, а в этом варианте — `start`.*
-- work — *В записи первое слово — `practice`, а в этом варианте — `work`.*
+🔊 *I practice English.* → **I practice English.** · I practice a phrase. · We practice English.
+- I practice a phrase. — *В записи последнее слово — `English`, английский, а в этом варианте — `phrase`, фраза.*
+- We practice English. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**3 · Скажите «Мы практикуем английский»**
+**5 · Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-10:i03; family: context_gap_grammar -->
-We ___ English. → **practice** · practices · are practice
-- practices — *После `we` — `practice`, без `s`.*
-- are practice — *Говорим `We practice`, без `are`.*
+They ___ a phrase here. → **practice** · practices · are practice
+- practices — *После `they` — `practice`, без `s`.*
+- are practice — *Говорим `They practice`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-10:i04; family: speed_match -->
-practice — практиковаться · hotel — отель · pocket — карман · folder — папка
+practice — практиковаться · phrase — фраза · reservation — бронь · breakfast — завтрак
 
-**5 · Послушайте и соберите фразу**
+**7 · Послушайте коллегу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-10:i05; family: listen_build_dictation -->
-🔊 *They practice English.* Плитки: `English` `practice` `They` → **They practice English.**
+🔊 *You practice a phrase here.* Плитки: `practice` `a` `phrase` `here` `You` `are` → **You practice a phrase here.**
+*(плитка `are` лишняя: здесь нужно `practice` — `You practice a phrase here.`)*
 
-**6 · Скажите «Мы работаем в отеле»**
+**8 · Карточка слова — reservation**
+<!-- interaction_id: en:lesson-06:session-10:word:reservation; family: word_card -->
+> **reservation** — бронь, бронирование. The reservation is here. — «Бронь здесь». О номере или столике, заказанных заранее.
+
+**9 · Гость показывает на бумагу с бронью на другом столе. Спросите: «Чья это бронь?»**
 <!-- interaction_id: en:lesson-06:session-10:i06; family: phrase_builder -->
-Плитки: `hotel` `a` `in` `work` `We` → **We work in a hotel.**
+Плитки: `reservation` `that` `is` `Whose` `Who` → **Whose reservation is that?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose reservation is that?`)*
 
-**7 · Скажите «Ключ у меня в кармане»**
+**10 · Карточка слова — breakfast**
+<!-- interaction_id: en:lesson-06:session-10:word:breakfast; family: word_card -->
+> **breakfast** — завтрак. We have breakfast here. — «Мы завтракаем здесь». О еде утром, в начале дня.
+
+**11 · Коллега спрашивает, где вы завтракаете. Скажите: «Мы завтракаем здесь»**
 <!-- interaction_id: en:lesson-06:session-10:i07; family: scripted_repeat_compare -->
-🎙 **The key is in my pocket.**
+🎙 **We have breakfast here.**
 
-**8 · Скажите «Та папка твоя»**
+**12 · Бумага с бронью лежит на столе. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-10:i08; family: context_gap_grammar -->
-That folder is ___. → **yours** · your · you
-- your — *После `your` нужно название вещи. Здесь «твоя» без него — `yours`.*
-- you — *`you` — ты или вы; здесь нужно `yours` — твоя.*
+The reservation ___ on the table. → **is** · are · has
+- are — *Бронь одна, поэтому нужно `is`, а не `are`.*
+- has — *`has` значит «имеет», а здесь нужно сказать, где бронь: `is`.*
 
-**9 · Послушайте ответ Анны на предложение Тома**
+**13 · Послушайте гостя**
 <!-- interaction_id: en:lesson-06:session-10:i09; family: listen_choose -->
-🔊 *It is impossible.* → **It is impossible.** · It is possible. · It is necessary.
-- It is possible. — *В записи последнее слово — `impossible`, а в этом варианте — `possible`.*
-- It is necessary. — *В записи последнее слово — `impossible`, а в этом варианте — `necessary`.*
+🔊 *Whose reservation is this?* → **Whose reservation is this?** · Whose reservation is that? · Whose passport is this?
+- Whose reservation is that? — *В записи последнее слово — `this`, а в этом варианте — `that`.*
+- Whose passport is this? — *В записи вещь — `reservation`, бронь, а в этом варианте — `passport`, паспорт.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-10:i10; family: speed_match -->
-practice — практиковаться · impossible — невозможный · pocket — карман · folder — папка
+reservation — бронь · breakfast — завтрак · phrase — фраза · practice — практиковаться
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте коллегу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-10:i11; family: listen_build_dictation -->
-🔊 *The folder is on the desk.* Плитки: `desk` `the` `on` `is` `folder` `The` `are` → **The folder is on the desk.**
-*(плитка `are` лишняя: здесь нужно `is` — `The folder is on the desk.`)*
+🔊 *We practice English in the hotel.* Плитки: `practice` `English` `in` `the` `hotel` `We` `are` → **We practice English in the hotel.**
+*(плитка `are` лишняя: здесь нужно `practice` — `We practice English in the hotel.`)*
 
-**12 · Спросите «Чья это папка?»**
+**16 · Гость показывает на столик с едой. Скажите ему: «Это ваш завтрак»**
 <!-- interaction_id: en:lesson-06:session-10:i12; family: phrase_builder -->
-Плитки: `this` `is` `folder` `Whose` → **Whose folder is this?**
+Плитки: `breakfast` `your` `is` `This` `you` → **This is your breakfast.**
+*(плитка `you` лишняя: здесь нужно `your` — `This is your breakfast.`)*
 
-**13 · Объясните коллеге, где место для упражнений: «Ты практикуешься здесь»**
+**17 · Гость спрашивает, где вы работаете. Скажите: «Мы работаем в этом отеле»**
 <!-- interaction_id: en:lesson-06:session-10:i13; family: scripted_repeat_compare -->
-🎙 **You practice here.**
+🎙 **We work in this hotel.**
 
-**14 · Скажите «Они работают в этом отеле»**
+**18 · Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-10:i14; family: context_gap_grammar -->
-They ___ in this hotel. → **work** · works · are work
-- works — *После `they` — `work`, без `s`.*
-- are work — *Говорим `They work`, без `are`.*
+You ___ a new phrase. → **practice** · practices · are practice
+- practices — *После `you` — `practice`, без `s`.*
+- are practice — *Говорим `You practice`, без `are`.*
 
-**15 · Послушайте, чей карман пустой**
+**19 · Послушайте гостя**
 <!-- interaction_id: en:lesson-06:session-10:i15; family: listen_choose -->
-🔊 *My pocket is empty.* → **My pocket is empty.** · Your pocket is empty. · His pocket is empty.
-- Your pocket is empty. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His pocket is empty. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *They have breakfast here.* → **They have breakfast here.** · They have breakfast there. · They have a reservation here.
+- They have breakfast there. — *В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.*
+- They have a reservation here. — *В записи у гостей `breakfast`, завтрак, а в этом варианте — `reservation`, бронь.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-10:i16; family: speed_match -->
-practice — практиковаться · impossible — невозможный · hotel — отель · folder — папка
+breakfast — завтрак · phrase — фраза · practice — практиковаться · reservation — бронь
 
-**17 · Коллега спрашивает, что вы с Томом делаете перед сменой. Скажите «Мы практикуем английский»**
+**21 · Новый гость спрашивает, что вы делаете у стойки. Скажите за себя и коллегу: «Мы практикуем английский»**
 <!-- interaction_id: en:lesson-06:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We practice English.**
-

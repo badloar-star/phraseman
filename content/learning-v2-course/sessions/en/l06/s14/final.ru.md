@@ -1,135 +1,154 @@
 # Английский · Урок 6 · Занятие 14 — Смешная история в прачечной
 
-**Ситуация.** Анна и Том встречаются в прачечной самообслуживания. Пока стирается одежда, они рассказывают смешные истории; возле Тома стоит чемодан, а в книге Анны лежит закладка.
+**Ситуация.** Вы с соседкой стираете вещи в прачечной самообслуживания. Пока крутится барабан, вы рассказываете друг другу смешные истории. Правило то же: после I, you, we, they слово действия остаётся без s.
 
-**Что вы освоите:** рассказать о смехе и уточнить место и владельца знакомых вещей
-**Новые слова:** laugh
+**Что вы освоите:** рассказать, над чем вы смеётесь, и сказать, где лежат вещи
+**Новые слова:** laugh, joke, laundry, detergent
+**Возвращаются:** dryer, basket, shelf, funny, together
 
 ---
 
 ## Интро 1
 
-### Смеяться
+### Смех у барабанов
 
-`laugh` — «смеяться». `We laugh a lot` — «Мы много смеёмся»: говорим о том, что бывает часто. В слове `laugh` буквы `gh` звучат как /f/. Это слово уже устроило маленькую шутку: написало две буквы, а произнесло один звук.
+Вы с соседкой сидите у стиральных машин в прачечной и ждёте. Соседка рассказывает смешную историю, и вы оба хохочете на всё помещение. Другие посетители оборачиваются. laugh — «смеяться»: We laugh together — «Мы смеёмся вместе». После we слово laugh остаётся без s.
 
-**Скажите «Мы много смеёмся».**
+**Посетительница спрашивает, почему у вас так шумно. Скажите: «Мы смеёмся вместе».**
 
-- ✅ **We laugh a lot.**
-- ❌ We laughs a lot. — *После `we` — `laugh`, без `s`.*
-- ❌ We are laugh a lot. — *Говорим `We laugh`, без `are`.*
+- ✅ **We laugh together.**
+- ❌ We laughs together. — *После we слово остаётся laugh, без s.*
+- ❌ We are laugh together. — *Здесь действие: We laugh, без are.*
 
 ---
 
 ## Интро 2
 
-### Пока стирается одежда
+### Шутка про носки
 
-`laundrette` — «прачечная самообслуживания»: посетители сами пользуются стиральными машинами. `We are in the laundrette` — «Мы в прачечной самообслуживания»: место, поэтому нужно `are`. `I laugh a lot` — «Я много смеюсь»: действие, без `am`. `It is obvious` — «Это очевидно», ясно без долгих объяснений.
+Соседка вспоминает случай с потерянным носком и рассказывает его как короткую шутку. Вы дослушали, все вокруг улыбаются, и даже посетитель у окна. Хочется сказать, что шутка удалась. joke — «шутка, анекдот». Описываем её через is: It is a funny joke — «Это смешная шутка».
 
-**Скажите «Это очевидно».**
+**Вы дослушали историю. Скажите соседке: «Это смешная шутка».**
 
-- ✅ **It is obvious.**
-- ❌ It are obvious. — *С `it` — `is`.*
-- ❌ It is impossible. — *`impossible` — невозможно; очевидно — `obvious`.*
+- ✅ **It is a funny joke.**
+- ❌ It are a funny joke. — *После it нужно is, а не are.*
+- ❌ It is an funny joke. — *funny начинается с согласного звука, поэтому нужно a, а не an.*
 
 ---
 
 ## Интро 3
 
-### Чемодан и книга
+### Вещи в сушилке
 
-`suitcase` — «чемодан», `bookmark` — «закладка». `Whose suitcase is this?` — «Чей это чемодан?» `The bookmark is in the book` — «Закладка в книге». `That suitcase is yours` — «Тот чемодан твой»: после `yours` название вещи не нужно.
+Стирка закончилась, и вы переложили мокрые вещи в сушилку. Она уже гудит, а корзина стоит рядом. Соседка уходит за кофе и спрашивает, где ваши вещи. laundry — «бельё и одежда для стирки». Слово не меняется: Our laundry is in the dryer — «Наше бельё в сушилке».
 
-**Спросите «Чей это чемодан?»**
+**Соседка спрашивает, где ваши вещи. Скажите: «Наше бельё в сушилке».**
 
-- ✅ **Whose suitcase is this?**
-- ❌ Where is the suitcase? — *Это вопрос о месте; о владельце — `Whose`.*
-- ❌ Whose suitcase are these? — *Один чемодан: `is this`.*
+- ✅ **Our laundry is in the dryer.**
+- ❌ Our laundry are in the dryer. — *laundry — одно слово, поэтому нужно is, а не are.*
+- ❌ Our laundry is on the dryer. — *Вещи внутри сушилки, поэтому нужно in, а не on.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я много смеюсь»**
+**1 · Карточка слова — laugh**
+<!-- interaction_id: en:lesson-06:session-14:word:laugh; family: word_card -->
+> **laugh** — смеяться. They laugh at the joke. — «Они смеются над шуткой». О весёлом звуке, когда смешно. После I, you, we, they — без s.
+
+**2 · Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Они смеются вместе»**
 <!-- interaction_id: en:lesson-06:session-14:i01; family: phrase_builder -->
-Плитки: `lot` `a` `laugh` `I` → **I laugh a lot.**
+Плитки: `laugh` `together` `They` `are` → **They laugh together.**
+*(плитка `are` лишняя: здесь нужно `laugh` — `They laugh together.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — joke**
+<!-- interaction_id: en:lesson-06:session-14:word:joke; family: word_card -->
+> **joke** — шутка, анекдот. We have a funny joke. — «У нас есть смешная шутка». О коротком рассказе, после которого смеются.
+
+**4 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-14:i02; family: listen_choose -->
-🔊 *laugh* → **laugh** · swim · work
-- swim — *В записи первое слово — `laugh`, а в этом варианте — `swim`.*
-- work — *В записи первое слово — `laugh`, а в этом варианте — `work`.*
+🔊 *They laugh at the joke.* → **They laugh at the joke.** · They laugh at the jokes. · We laugh at the joke.
+- They laugh at the jokes. — *В записи `joke` — одна шутка, а в этом варианте `jokes` — несколько.*
+- We laugh at the joke. — *В записи первое слово — `They`, они, а в этом варианте — `We`, мы.*
 
-**3 · Скажите «Мы много смеёмся»**
+**5 · Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-14:i03; family: context_gap_grammar -->
-We ___ a lot. → **laugh** · laughs · are laugh
+We ___ together. → **laugh** · laughs · are laugh
 - laughs — *После `we` — `laugh`, без `s`.*
 - are laugh — *Говорим `We laugh`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-14:i04; family: speed_match -->
-laugh — смеяться · obvious — очевидный · suitcase — чемодан · bookmark — закладка
+laugh — смеяться · joke — шутка · laundry — бельё для стирки · detergent — стиральный порошок
 
-**5 · Послушайте и соберите фразу**
+**7 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-14:i05; family: listen_build_dictation -->
-🔊 *They laugh a lot.* Плитки: `lot` `a` `laugh` `They` → **They laugh a lot.**
+🔊 *You laugh at my joke.* Плитки: `laugh` `at` `my` `joke` `You` `are` → **You laugh at my joke.**
+*(плитка `are` лишняя: здесь нужно `laugh` — `You laugh at my joke.`)*
 
-**6 · Скажите «Мы в прачечной самообслуживания»**
+**8 · Карточка слова — detergent**
+<!-- interaction_id: en:lesson-06:session-14:word:detergent; family: word_card -->
+> **detergent** — стиральный порошок. The detergent is on the shelf. — «Стиральный порошок на полке». О порошке или жидкости, которую кладут в машину.
+
+**9 · Вы нашли на полке коробку порошка. Спросите соседку: «Чей это стиральный порошок?»**
 <!-- interaction_id: en:lesson-06:session-14:i06; family: phrase_builder -->
-Плитки: `laundrette` `the` `in` `are` `We` `is` → **We are in the laundrette.**
-*(плитка `is` лишняя: здесь нужно `are` — `We are in the laundrette.`)*
+Плитки: `detergent` `this` `is` `Whose` `Who` → **Whose detergent is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose detergent is this?`)*
 
-**7 · Том объясняет причину, которая вам и так ясна. Скажите «Это очевидно»**
+**10 · Соседка спрашивает, где порошок. Скажите: «Стиральный порошок на полке»**
 <!-- interaction_id: en:lesson-06:session-14:i07; family: scripted_repeat_compare -->
-🎙 **It is obvious.**
+🎙 **The detergent is on the shelf.**
 
-**8 · Скажите «Тот чемодан твой»**
+**11 · Карточка слова — laundry**
+<!-- interaction_id: en:lesson-06:session-14:word:laundry; family: word_card -->
+> **laundry** — бельё и одежда для стирки. The laundry is in the basket. — «Бельё в корзине». Слово не меняется: is, а не are.
+
+**12 · Скажите, где ваше бельё: «Моё бельё в корзине». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-14:i08; family: context_gap_grammar -->
-That suitcase is ___. → **yours** · your · you
-- your — *Без названия вещи после «твой» нужно `yours`.*
-- you — *`you` — ты или вы; здесь «твой» — `yours`.*
+My laundry ___ in the basket. → **is** · are · have
+- are — *Слово `laundry` одно, поэтому нужно `is`, а не `are`.*
+- have — *`have` значит «имеем», а здесь нужно сказать, где бельё: `is`.*
 
-**9 · Послушайте, чья закладка здесь**
+**13 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-14:i09; family: listen_choose -->
-🔊 *My bookmark is here.* → **My bookmark is here.** · Your bookmark is here. · His bookmark is here.
-- Your bookmark is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His bookmark is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The laundry is in the dryer.* → **The laundry is in the dryer.** · The laundry is in the basket. · The detergent is in the dryer.
+- The laundry is in the basket. — *В записи бельё лежит `in the dryer`, в сушилке, а в этом варианте — `in the basket`, в корзине.*
+- The detergent is in the dryer. — *В записи вещь — `laundry`, бельё, а в этом варианте — `detergent`, порошок.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-14:i10; family: speed_match -->
-laugh — смеяться · laundrette — прачечная самообслуживания · suitcase — чемодан · obvious — очевидный
+joke — шутка · laundry — бельё для стирки · detergent — стиральный порошок · laugh — смеяться
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-14:i11; family: listen_build_dictation -->
-🔊 *The bookmark is in the book.* Плитки: `book` `the` `in` `is` `bookmark` `The` `are` → **The bookmark is in the book.**
-*(плитка `are` лишняя: здесь нужно `is` — `The bookmark is in the book.`)*
+🔊 *We have a funny joke.* Плитки: `have` `a` `funny` `joke` `We` `has` → **We have a funny joke.**
+*(плитка `has` лишняя: здесь нужно `have` — `We have a funny joke.`)*
 
-**12 · Спросите «Чей это чемодан?»**
+**16 · Соседка спрашивает, чьё бельё в корзине. Оно ваше. Скажите: «Это моё бельё»**
 <!-- interaction_id: en:lesson-06:session-14:i12; family: phrase_builder -->
-Плитки: `this` `is` `suitcase` `Whose` → **Whose suitcase is this?**
+Плитки: `laundry` `my` `is` `This` `are` → **This is my laundry.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is my laundry.`)*
 
-**13 · Скажите другу «Ты много смеёшься»**
+**17 · Посетительница спрашивает, что вы делаете. Скажите: «Я смеюсь над шуткой»**
 <!-- interaction_id: en:lesson-06:session-14:i13; family: scripted_repeat_compare -->
-🎙 **You laugh a lot.**
+🎙 **I laugh at the joke.**
 
-**14 · Скажите «Я много смеюсь»**
+**18 · Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-14:i14; family: context_gap_grammar -->
-I ___ a lot. → **laugh** · laughs · am laugh
-- laughs — *После `I` — `laugh`, без `s`.*
-- am laugh — *Говорим `I laugh`, без `am`.*
+You ___ at my joke. → **laugh** · laughs · are laugh
+- laughs — *После `you` — `laugh`, без `s`.*
+- are laugh — *Говорим `You laugh`, без `are`.*
 
-**15 · Послушайте, что Анна говорит о прачечной**
+**19 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-14:i15; family: listen_choose -->
-🔊 *The laundrette is open.* → **The laundrette is open.** · The laundrette is closed. · The laundrette is empty.
-- The laundrette is closed. — *В записи последнее слово — `open`, а в этом варианте — `closed`.*
-- The laundrette is empty. — *В записи последнее слово — `open`, а в этом варианте — `empty`.*
+🔊 *Whose laundry is this?* → **Whose laundry is this?** · Whose laundry are these? · Whose detergent is this?
+- Whose laundry are these? — *В записи `laundry is this` — всё сказано в единственном числе, а в этом варианте `laundry are these` — во множественном.*
+- Whose detergent is this? — *В записи вещь — `laundry`, бельё, а в этом варианте — `detergent`, порошок.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-14:i16; family: speed_match -->
-laugh — смеяться · obvious — очевидный · laundrette — прачечная самообслуживания · bookmark — закладка
+detergent — стиральный порошок · laugh — смеяться · joke — шутка · laundry — бельё для стирки
 
-**17 · Расскажите о встречах с Томом: «Мы много смеёмся»**
+**21 · Посетительница спрашивает, над чем вы смеётесь. Скажите за себя и соседку: «Мы смеёмся над шуткой»**
 <!-- interaction_id: en:lesson-06:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We laugh a lot.**
-
+🎙 **We laugh at the joke.**

@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 43 — Часто шью
+# Английский · Урок 7 · Занятие 43 — Рабочие привычки
 
-**Ситуация.** Вы рассказываете о шитье, поездках на работу и звонках знакомой.
+**Ситуация.** Вы рассказываете о привычках на работе: пишете коллеге по почте, готовите отчёт дома, успеваете к сроку и замечаете, когда начальник работает допоздна.
 
-**Что вы освоите:** использовать often и usually перед действием
-**Новые слова:** sew
+**Что вы освоите:** говорить о привычках, ставя often или usually перед действием
+**Новые слова:** email, report, deadline, boss
+**Возвращаются:** colleague, sister, write, home, work, late, printer, folder
 
 ---
 
 ## Интро 1
 
-### Шитьё в свободное время
+### Коллега в другом городе
 
-Друг спрашивает о вашем увлечении шитьём. `sew` — «шить». `I often sew` — «Я часто шью». `Often` означает «часто» и стоит перед действием `sew`. Пуговицы дома могут чувствовать себя увереннее.
+Ваш коллега работает в другом городе, и руководитель спрашивает, как вы с ним связываетесь. email — «писать по электронной почте». Вы не видитесь каждый день, поэтому чаще пишете письма: I often email my colleague — «Я часто пишу коллеге по почте». Слово often стоит перед email.
 
-**Расскажите другу: «Я часто шью».**
+**Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».**
 
-- ✅ **I often sew.**
-- ❌ I often sews. — *После `I` нужно `sew`.*
-- ❌ I often sewing. — *Здесь нужна форма `sew`.*
+- ✅ **I often email my colleague.**
+- ❌ I often emails my colleague. — *После I нужно email, без s.*
+- ❌ I often emailing my colleague. — *Для привычки после I often нужно email.*
 
 ---
 
 ## Интро 2
 
-### Работа вне дома
+### Еженедельный отчёт
 
-Коллега спрашивает, работаете ли вы дома или ездите на работу. `I usually commute` — «Я обычно езжу на работу». `Usually` стоит перед `commute`. В этом разговоре речь о регулярной дороге из дома на работу.
+Каждую пятницу вы готовите один и тот же вид отчёта о работе команды. Новый руководитель спрашивает, где вы обычно его пишете. report — «отчёт». В офисе шумно, а дома тихо, поэтому вы отвечаете: I usually write the report at home — «Я обычно пишу отчёт дома». Слово usually стоит перед write.
 
-**Ответьте: «Я обычно езжу на работу».**
+**Начальник спрашивает про отчёт. Скажите ему: «Я обычно пишу отчёт дома».**
 
-- ✅ **I usually commute.**
-- ❌ I usually commutes. — *После `I` нужно `commute`.*
-- ❌ I usually commuting. — *Здесь нужна форма `commute`.*
+- ✅ **I usually write the report at home.**
+- ❌ I usually writes the report at home. — *После I нужно write, без s.*
+- ❌ I usually writing the report at home. — *Для привычки после I usually нужно write.*
 
 ---
 
 ## Интро 3
 
-### Знакомая часто звонит
+### Срок для клиента
 
-Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` у действия остаётся окончание `s`.
+Новый клиент спрашивает о вашей работе с предыдущими заказчиками: обычно ли команда заканчивает работу к согласованному сроку. deadline — «крайний срок». Фраза meet the deadline значит «успеть к сроку». Команда старается не подводить клиентов: We usually meet the deadline — «Мы обычно успеваем к сроку».
 
-**Скажите о знакомой: «Она часто звонит».**
+**Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *После `she` нужно `calls`.*
-- ❌ She often calling. — *Здесь нужна форма `calls`.*
+- ✅ **We usually meet the deadline.**
+- ❌ We usually meets the deadline. — *После we нужно meet, без s.*
+- ❌ We usually meeting the deadline. — *Для привычки после We usually нужно meet.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я часто шью»**
+**1 · Карточка слова — email**
+<!-- interaction_id: en:lesson-07:session-43:word:email; family: word_card -->
+> **email** — писать по электронной почте. I often email my colleague. — «Я часто пишу коллеге по почте». Отправлять электронное письмо. После email можно назвать адресата или то, что отправляете. Конверт искать не придётся.
+
+**2 · Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».**
 <!-- interaction_id: en:lesson-07:session-43:i01; family: phrase_builder -->
-Плитки: `sew` `often` `I` → **I often sew.**
+Плитки: `colleague` `my` `email` `often` `I` → **I often email my colleague.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте руководителя**
 <!-- interaction_id: en:lesson-07:session-43:i02; family: listen_choose -->
-🔊 *sew* → **sew** · speak · commute
-- speak — *В записи первое слово — `sew`, а в этом варианте — `speak`.*
-- commute — *В записи первое слово — `sew`, а в этом варианте — `commute`.*
+🔊 *I often email my colleague.* → **I often email my colleague.** · I often email my sister. · I often call my colleague.
+- I often email my sister. — *В записи последнее слово — `colleague`, коллега, а в этом варианте — `sister`, сестра.*
+- I often call my colleague. — *В записи третье слово — `email`, писать по электронной почте, а в этом варианте — `call`, звонить.*
 
-**3 · Скажите «Я часто шью»**
+**4 · Руководитель спрашивает о связи с коллегой. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-43:i03; family: context_gap_grammar -->
-I often ___. → **sew** · sews · sewing
-- sews — *После `I` нужно `sew`.*
-- sewing — *Здесь нужна форма `sew`.*
+I often ___ my colleague. → **email** · emails · emailing
+- emails — *После `I` нужно `email`, без `s`.*
+- emailing — *Здесь нужна форма `email`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-43:i04; family: speed_match -->
-sew — шить · speak — говорить · commute — ездить на работу или учёбу · bedrooms — спальни
+email — писать по электронной почте · colleague — коллега · home — дом · work — работать
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — report**
+<!-- interaction_id: en:lesson-07:session-43:word:report; family: word_card -->
+> **report** — отчёт. I usually write the report at home. — «Я обычно пишу отчёт дома». Отчёт о результатах или событиях; здесь — о работе команды.
+
+**7 · Послушайте начальника и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-43:i05; family: listen_build_dictation -->
-🔊 *I often sew.* Плитки: `sew` `often` `I` → **I often sew.**
+🔊 *I usually write the report at home.* Плитки: `home` `at` `report` `the` `write` `usually` `I` → **I usually write the report at home.**
 
-**6 · Скажите о работе вне дома «Я обычно езжу на работу»**
+**8 · Карточка слова — deadline**
+<!-- interaction_id: en:lesson-07:session-43:word:deadline; family: word_card -->
+> **deadline** — крайний срок. We usually meet the deadline. — «Мы обычно успеваем к сроку». Момент, к которому нужно закончить дело: это может быть дата или точное время.
+
+**9 · Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку».**
 <!-- interaction_id: en:lesson-07:session-43:i06; family: phrase_builder -->
-Плитки: `commute` `usually` `I` → **I usually commute.**
+Плитки: `deadline` `the` `meet` `usually` `We` → **We usually meet the deadline.**
 
-**7 · Скажите о знакомой «Она часто звонит»**
+**10 · Карточка слова — boss**
+<!-- interaction_id: en:lesson-07:session-43:word:boss; family: word_card -->
+> **boss** — начальник. My boss usually works late. — «Мой начальник обычно работает допоздна». Человек, который руководит вашей работой.
+
+**11 · Коллега спрашивает о вашем начальнике. Скажите: «Мой начальник обычно работает допоздна».**
 <!-- interaction_id: en:lesson-07:session-43:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **My boss usually works late.**
 
-**8 · Скажите «Она часто звонит»**
+**12 · Коллега спрашивает о начальнике. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-43:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *После `she` нужно `calls`.*
-- calling — *Здесь нужна форма `calls`.*
+My boss usually ___ late. → **works** · work · working
+- work — *После `my boss` нужно `works`.*
+- working — *Здесь нужна форма `works`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте клиента**
 <!-- interaction_id: en:lesson-07:session-43:i09; family: listen_choose -->
-🔊 *I often sew.* → **I often sew.** · I often bake. · I often iron.
-- I often bake. — *В записи последнее слово — `sew`, а в этом варианте — `bake`.*
-- I often iron. — *В записи последнее слово — `sew`, а в этом варианте — `iron`.*
+🔊 *We usually meet the deadline.* → **We usually meet the deadline.** · We usually meet the boss. · We often meet the deadline.
+- We usually meet the boss. — *В записи последнее слово — `deadline`, крайний срок, а в этом варианте — `boss`, начальник.*
+- We often meet the deadline. — *В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-43:i10; family: speed_match -->
-bedrooms — спальни · sew — шить · speak — говорить · commute — ездить на работу или учёбу
+report — отчёт · deadline — крайний срок · boss — начальник · colleague — коллега
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте коллегу и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-43:i11; family: listen_build_dictation -->
-🔊 *I usually commute.* Плитки: `commute` `usually` `I` → **I usually commute.**
+🔊 *I often email the report.* Плитки: `report` `the` `email` `often` `I` → **I often email the report.**
 
-**12 · Спросите знакомого «Ты говоришь по-английски?»**
+**16 · Вы собираете материалы к совещанию. Спросите коллегу: «У вас есть отчёт?»**
 <!-- interaction_id: en:lesson-07:session-43:i12; family: phrase_builder -->
-Плитки: `English` `speak` `you` `Do` → **Do you speak English?**
+Плитки: `report` `a` `have` `you` `Do` → **Do you have a report?**
 
-**13 · Покажите гостю «Спальни наверху»**
+**17 · Начальник спрашивает, где вы пишете отчёт. Скажите: «Я обычно пишу отчёт дома».**
 <!-- interaction_id: en:lesson-07:session-43:i13; family: scripted_repeat_compare -->
-🎙 **The bedrooms are upstairs.**
+🎙 **I usually write the report at home.**
 
-**14 · Скажите «Я обычно езжу на работу»**
+**18 · Руководитель спрашивает о связи с коллегой. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-43:i14; family: context_gap_grammar -->
-I ___ commute. → **usually** · does · am
-- does — *Для «обычно» нужно `usually` перед `commute`.*
-- am — *Для «обычно» нужно `usually`; `am` перед `commute` не ставим.*
+I ___ email my colleague. → **often** · does · am
+- does — *Для «часто» нужно `often` перед `email`.*
+- am — *Для «часто» нужно `often`; `am` перед `email` не ставим.*
 
-**15 · Послушайте, где спальни**
+**19 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-07:session-43:i15; family: listen_choose -->
-🔊 *The bedrooms are upstairs.* → **The bedrooms are upstairs.** · The bedrooms are here. · The bedrooms are there.
-- The bedrooms are here. — *В записи последнее слово — `upstairs`, а в этом варианте — `here`.*
-- The bedrooms are there. — *В записи последнее слово — `upstairs`, а в этом варианте — `there`.*
+🔊 *Do you have a report?* → **Do you have a report?** · Do you have a printer? · Do you have a folder?
+- Do you have a printer? — *В записи последнее слово — `report`, отчёт, а в этом варианте — `printer`, принтер.*
+- Do you have a folder? — *В записи последнее слово — `report`, отчёт, а в этом варианте — `folder`, папка.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-43:i16; family: speed_match -->
-sew — шить · commute — ездить на работу или учёбу · bedrooms — спальни · speak — говорить
+boss — начальник · email — писать по электронной почте · deadline — крайний срок · report — отчёт
 
-**17 · Друг спрашивает об увлечении Тома шитьём. Скажите «Том часто шьёт»**
+**21 · Коллега спрашивает о вашей сестре. Скажите: «Моя сестра часто пишет своему начальнику по почте». Используйте email.**
 <!-- interaction_id: en:lesson-07:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often sews.**
-
+🎙 **My sister often emails her boss.**

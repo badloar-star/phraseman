@@ -4,29 +4,73 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-42:i01",
+      "interactionId": "en:lesson-07:session-42:word:try",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — try",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:word:try:audio"
+      ],
+      "accessibilityLabel": "Картка слова — try",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:word:try:audio",
+          "transcript": "try"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-42:word:try:r1",
+            "targetText": "try",
+            "meaningByLocale": {
+              "ru": "пробовать. С on получается try on — примерять. I usually try on the coat. — «Я обычно примеряю пальто». Надевать вещь в магазине, чтобы проверить, подходит ли она.",
+              "uk": "пробувати. З on отримуємо try on — приміряти. I usually try on the coat. — «Я зазвичай міряю пальто». Одягати річ у магазині, щоб перевірити, чи пасує вона."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "try",
+          "definitionByLocale": {
+            "ru": "пробовать. С on получается try on — примерять. I usually try on the coat. — «Я обычно примеряю пальто». Надевать вещь в магазине, чтобы проверить, подходит ли она.",
+            "uk": "пробувати. З on отримуємо try on — приміряти. I usually try on the coat. — «Я зазвичай міряю пальто». Одягати річ у магазині, щоб перевірити, чи пасує вона."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я зазвичай прикрашаю кімнату»",
+      "prompt": "Продавець питає про пальто. Скажіть йому: «Я зазвичай міряю пальто».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай прикрашаю кімнату»",
+      "accessibilityLabel": "Продавець питає про пальто. Скажіть йому: «Я зазвичай міряю пальто».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually decorate the room.",
+        "targetPhrase": "I usually try on the coat.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно украшаю комнату»",
-          "uk": "Скажіть «Я зазвичай прикрашаю кімнату»"
+          "ru": "Продавец спрашивает про пальто. Скажите ему: «Я обычно примеряю пальто».",
+          "uk": "Продавець питає про пальто. Скажіть йому: «Я зазвичай міряю пальто»."
         },
         "orderedTokens": [
           "I",
           "usually",
-          "decorate",
+          "try",
+          "on",
           "the",
-          "room"
+          "coat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -39,51 +83,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте продавця",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-42:i02:r1",
-          "text": "decorate"
+          "text": "I usually try on the coat."
         },
         {
           "responseId": "en:lesson-07:session-42:i02:r2",
-          "text": "share"
+          "text": "I usually try on the shirt."
         },
         {
           "responseId": "en:lesson-07:session-42:i02:r3",
-          "text": "volunteer"
+          "text": "I usually buy the coat."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте продавця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i02:audio",
-          "transcript": "decorate"
+          "transcript": "I usually try on the coat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-42:i02:r1",
-            "targetText": "decorate",
+            "targetText": "I usually try on the coat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-42:i02:r2",
-            "targetText": "share",
+            "targetText": "I usually try on the shirt.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-42:i02:r3",
-            "targetText": "volunteer",
+            "targetText": "I usually buy the coat.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +136,19 @@
           {
             "responseId": "en:lesson-07:session-42:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `decorate`, а в этом варианте — `share`.",
-              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `share`."
+              "ru": "В записи последнее слово — `coat`, пальто, а в этом варианте — `shirt`, рубашка.",
+              "uk": "У записі останнє слово — `coat`, пальто, а в цьому варіанті — `shirt`, сорочка."
             }
           },
           {
             "responseId": "en:lesson-07:session-42:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `decorate`, а в этом варианте — `volunteer`.",
-              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `volunteer`."
+              "ru": "В записи звучит `try on`, примерять, а в этом варианте — `buy`, покупать.",
+              "uk": "У записі звучить `try on`, приміряти, а в цьому варіанті — `buy`, купувати."
             }
           }
         ],
@@ -115,67 +159,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай прикрашаю кімнату»",
+      "prompt": "Продавець питає про примірочну. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-42:i03:r1",
-          "text": "decorate"
+          "text": "try"
         },
         {
           "responseId": "en:lesson-07:session-42:i03:r2",
-          "text": "decorates"
+          "text": "tries"
         },
         {
           "responseId": "en:lesson-07:session-42:i03:r3",
-          "text": "decorating"
+          "text": "trying"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай прикрашаю кімнату»",
+      "accessibilityLabel": "Продавець питає про примірочну. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно украшаю комнату»",
-          "uk": "Скажіть «Я зазвичай прикрашаю кімнату»"
+          "ru": "Продавец спрашивает о примерочной. Выберите слово",
+          "uk": "Продавець питає про примірочну. Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ the room.",
+        "gappedTargetPhrase": "I usually ___ on the coat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-42:i03:r1",
-            "text": "decorate"
+            "text": "try"
           },
           {
             "responseId": "en:lesson-07:session-42:i03:r2",
-            "text": "decorates"
+            "text": "tries"
           },
           {
             "responseId": "en:lesson-07:session-42:i03:r3",
-            "text": "decorating"
+            "text": "trying"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай прикрашаю кімнату»",
+        "testedDimension": "Продавець питає про примірочну. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-42:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай прикрашаю кімнату»",
+            "testedDimension": "Продавець питає про примірочну. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `decorate`.",
-              "uk": "Після `I` потрібне `decorate`."
+              "ru": "После `I` нужно `try`, без `s`.",
+              "uk": "Після `I` потрібно `try`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-42:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай прикрашаю кімнату»",
+            "testedDimension": "Продавець питає про примірочну. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `decorate`.",
-              "uk": "Тут потрібна форма `decorate`."
+              "ru": "Здесь нужна форма `try`.",
+              "uk": "Тут потрібна форма `try`."
             }
           }
         ]
@@ -184,7 +228,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +242,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-42:i04:p1",
-            "target": "decorate",
+            "target": "try",
             "meaningByLocale": {
-              "ru": "украшать",
-              "uk": "прикрашати"
+              "ru": "пробовать",
+              "uk": "пробувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i04:p2",
-            "target": "share",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "пользоваться вместе",
-              "uk": "користуватися разом"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i04:p3",
-            "target": "bathroom",
+            "target": "shirt",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "рубашка",
+              "uk": "сорочка"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i04:p4",
-            "target": "scooter",
+            "target": "buy",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "покупать",
+              "uk": "купувати"
             }
           }
         ],
         "leftColumn": [
-          "decorate",
-          "share",
-          "bathroom",
-          "scooter"
+          "try",
+          "coat",
+          "shirt",
+          "buy"
         ],
         "rightColumn": [
-          "прикрашати",
-          "користуватися разом",
-          "ванна кімната",
-          "самокат"
+          "пробувати",
+          "пальто",
+          "сорочка",
+          "купувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,65 +300,152 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-42:word:price",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:word:price:audio"
+      ],
+      "accessibilityLabel": "Картка слова — price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:word:price:audio",
+          "transcript": "price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-42:word:price:r1",
+            "targetText": "price",
+            "meaningByLocale": {
+              "ru": "цена. I usually check the price. — «Я обычно проверяю цену». Сколько денег нужно заплатить за вещь.",
+              "uk": "ціна. I usually check the price. — «Я зазвичай перевіряю ціну». Скільки грошей треба заплатити за річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "price",
+          "definitionByLocale": {
+            "ru": "цена. I usually check the price. — «Я обычно проверяю цену». Сколько денег нужно заплатить за вещь.",
+            "uk": "ціна. I usually check the price. — «Я зазвичай перевіряю ціну». Скільки грошей треба заплатити за річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-42:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i05:audio",
-          "transcript": "I usually decorate the room."
+          "transcript": "I usually check the price."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually decorate the room.",
+        "hiddenTargetPhrase": "I usually check the price.",
         "orderedTokens": [
           "I",
           "usually",
-          "decorate",
+          "check",
           "the",
-          "room"
+          "price"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:word:present",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — present",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:word:present:audio"
+      ],
+      "accessibilityLabel": "Картка слова — present",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:word:present:audio",
+          "transcript": "present"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-42:word:present:r1",
+            "targetText": "present",
+            "meaningByLocale": {
+              "ru": "подарок. I often buy a present. — «Я часто покупаю подарок». То, что дарят: к празднику или без повода.",
+              "uk": "подарунок. I often buy a present. — «Я часто купую подарунок». Те, що дарують: до свята або без приводу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "present",
+          "definitionByLocale": {
+            "ru": "подарок. I often buy a present. — «Я часто покупаю подарок». То, что дарят: к празднику или без повода.",
+            "uk": "подарунок. I often buy a present. — «Я часто купую подарунок». Те, що дарують: до свята або без приводу."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-42:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поясніть «Ми користуємося одним самокатом разом»",
+      "prompt": "Колега питає про покупки для друзів. Скажіть йому: «Я часто купую подарунок».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поясніть «Ми користуємося одним самокатом разом»",
+      "accessibilityLabel": "Колега питає про покупки для друзів. Скажіть йому: «Я часто купую подарунок».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We share a scooter.",
+        "targetPhrase": "I often buy a present.",
         "localizedMeaning": {
-          "ru": "Объясните «Мы пользуемся одним самокатом вместе»",
-          "uk": "Поясніть «Ми користуємося одним самокатом разом»"
+          "ru": "Коллега спрашивает о покупках для друзей. Скажите ему: «Я часто покупаю подарок».",
+          "uk": "Колега питає про покупки для друзів. Скажіть йому: «Я часто купую подарунок»."
         },
         "orderedTokens": [
-          "We",
-          "share",
+          "I",
+          "often",
+          "buy",
           "a",
-          "scooter"
+          "present"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -326,26 +457,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-42:word:cancel",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cancel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:word:cancel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cancel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:word:cancel:audio",
+          "transcript": "cancel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-42:word:cancel:r1",
+            "targetText": "cancel",
+            "meaningByLocale": {
+              "ru": "отменять. I often cancel orders. — «Я часто отменяю заказы». Отменять заказ, встречу или другое запланированное дело.",
+              "uk": "скасовувати. I often cancel orders. — «Я часто скасовую замовлення». Скасовувати замовлення, зустріч або іншу заплановану справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cancel",
+          "definitionByLocale": {
+            "ru": "отменять. I often cancel orders. — «Я часто отменяю заказы». Отменять заказ, встречу или другое запланированное дело.",
+            "uk": "скасовувати. I often cancel orders. — «Я часто скасовую замовлення». Скасовувати замовлення, зустріч або іншу заплановану справу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-42:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я часто допомагаю як волонтер»",
+      "prompt": "Продавець питає, що ви робите із зайвими замовленнями. Скажіть: «Я часто скасовую замовлення».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я часто допомагаю як волонтер»",
+      "accessibilityLabel": "Продавець питає, що ви робите із зайвими замовленнями. Скажіть: «Я часто скасовую замовлення».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i07:audio",
-          "transcript": "I often volunteer."
+          "transcript": "I often cancel orders."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often volunteer.",
+        "targetPhrase": "I often cancel orders.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -360,67 +534,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про спільне користування самокатом",
+      "prompt": "Подруга питає, що сестра робить із непотрібними замовленнями. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-42:i08:r1",
-          "text": "share"
+          "text": "cancels"
         },
         {
           "responseId": "en:lesson-07:session-42:i08:r2",
-          "text": "shares"
+          "text": "cancel"
         },
         {
           "responseId": "en:lesson-07:session-42:i08:r3",
-          "text": "sharing"
+          "text": "cancelling"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про спільне користування самокатом",
+      "accessibilityLabel": "Подруга питає, що сестра робить із непотрібними замовленнями. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о совместном пользовании самокатом",
-          "uk": "Скажіть про спільне користування самокатом"
+          "ru": "Подруга спрашивает, что сестра делает с ненужными заказами. Выберите слово",
+          "uk": "Подруга питає, що сестра робить із непотрібними замовленнями. Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ a scooter.",
+        "gappedTargetPhrase": "My sister often ___ orders.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-42:i08:r1",
-            "text": "share"
+            "text": "cancels"
           },
           {
             "responseId": "en:lesson-07:session-42:i08:r2",
-            "text": "shares"
+            "text": "cancel"
           },
           {
             "responseId": "en:lesson-07:session-42:i08:r3",
-            "text": "sharing"
+            "text": "cancelling"
           }
         ],
-        "testedDimension": "Скажіть про спільне користування самокатом",
+        "testedDimension": "Подруга питає, що сестра робить із непотрібними замовленнями. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-42:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть про спільне користування самокатом",
+            "testedDimension": "Подруга питає, що сестра робить із непотрібними замовленнями. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `we` нужно `share`.",
-              "uk": "Після `we` потрібне `share`."
+              "ru": "После `my sister` нужно `cancels`.",
+              "uk": "Після `my sister` потрібно `cancels`."
             }
           },
           {
             "responseId": "en:lesson-07:session-42:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть про спільне користування самокатом",
+            "testedDimension": "Подруга питає, що сестра робить із непотрібними замовленнями. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `share`.",
-              "uk": "Тут потрібна форма `share`."
+              "ru": "Здесь нужна форма `cancels`.",
+              "uk": "Тут потрібна форма `cancels`."
             }
           }
         ]
@@ -429,51 +603,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте продавця",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-42:i09:r1",
-          "text": "I usually decorate the room."
+          "text": "I often buy a present."
         },
         {
           "responseId": "en:lesson-07:session-42:i09:r2",
-          "text": "I usually decorate the kitchen."
+          "text": "I often buy a pencil."
         },
         {
           "responseId": "en:lesson-07:session-42:i09:r3",
-          "text": "I usually decorate the bathroom."
+          "text": "I often sell a present."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте продавця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i09:audio",
-          "transcript": "I usually decorate the room."
+          "transcript": "I often buy a present."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-42:i09:r1",
-            "targetText": "I usually decorate the room.",
+            "targetText": "I often buy a present.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-42:i09:r2",
-            "targetText": "I usually decorate the kitchen.",
+            "targetText": "I often buy a pencil.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-42:i09:r3",
-            "targetText": "I usually decorate the bathroom.",
+            "targetText": "I often sell a present.",
             "meaningByLocale": null
           }
         ],
@@ -482,19 +656,19 @@
           {
             "responseId": "en:lesson-07:session-42:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `room`, а в этом варианте — `kitchen`.",
-              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `kitchen`."
+              "ru": "В записи последнее слово — `present`, подарок, а в этом варианте — `pencil`, карандаш.",
+              "uk": "У записі останнє слово — `present`, подарунок, а в цьому варіанті — `pencil`, олівець."
             }
           },
           {
             "responseId": "en:lesson-07:session-42:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `room`, а в этом варианте — `bathroom`.",
-              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `bathroom`."
+              "ru": "В записи третье слово — `buy`, покупать, а в этом варианте — `sell`, продавать.",
+              "uk": "У записі третє слово — `buy`, купувати, а в цьому варіанті — `sell`, продавати."
             }
           }
         ],
@@ -505,8 +679,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -519,48 +693,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-42:i10:p1",
-            "target": "volunteer",
+            "target": "price",
             "meaningByLocale": {
-              "ru": "быть волонтёром",
-              "uk": "бути волонтером"
+              "ru": "цена",
+              "uk": "ціна"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i10:p2",
-            "target": "decorate",
+            "target": "present",
             "meaningByLocale": {
-              "ru": "украшать",
-              "uk": "прикрашати"
+              "ru": "подарок",
+              "uk": "подарунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i10:p3",
-            "target": "bathroom",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i10:p4",
-            "target": "share",
+            "target": "order",
             "meaningByLocale": {
-              "ru": "пользоваться вместе",
-              "uk": "користуватися разом"
+              "ru": "заказ",
+              "uk": "замовлення"
             }
           }
         ],
         "leftColumn": [
-          "volunteer",
-          "decorate",
-          "bathroom",
-          "share"
+          "price",
+          "present",
+          "coat",
+          "order"
         ],
         "rightColumn": [
-          "бути волонтером",
-          "прикрашати",
-          "ванна кімната",
-          "користуватися разом"
+          "ціна",
+          "подарунок",
+          "пальто",
+          "замовлення"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,30 +752,30 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте продавця й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте продавця й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i11:audio",
-          "transcript": "We share a scooter."
+          "transcript": "I often cancel orders."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We share a scooter.",
+        "hiddenTargetPhrase": "I often cancel orders.",
         "orderedTokens": [
-          "We",
-          "share",
-          "a",
-          "scooter"
+          "I",
+          "often",
+          "cancel",
+          "orders"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -614,28 +788,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед прогулянкою запитайте друга «У тебе є самокат?»",
+      "prompt": "Ви продавець, покупець хоче повернути річ. Спитайте: «У вас є чек?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед прогулянкою запитайте друга «У тебе є самокат?»",
+      "accessibilityLabel": "Ви продавець, покупець хоче повернути річ. Спитайте: «У вас є чек?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a scooter?",
+        "targetPhrase": "Do you have a receipt?",
         "localizedMeaning": {
-          "ru": "Перед прогулкой спросите друга «У тебя есть самокат?»",
-          "uk": "Перед прогулянкою запитайте друга «У тебе є самокат?»"
+          "ru": "Вы продавец, покупатель хочет вернуть вещь. Спросите: «У вас есть чек?»",
+          "uk": "Ви продавець, покупець хоче повернути річ. Спитайте: «У вас є чек?»"
         },
         "orderedTokens": [
           "Do",
           "you",
           "have",
           "a",
-          "scooter"
+          "receipt"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -648,25 +822,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажіть гостеві «Ванна кімната тут»",
+      "prompt": "Подруга вибирає тостер. Скажіть їй: «Я зазвичай перевіряю ціну».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i13:audio"
       ],
-      "accessibilityLabel": "Покажіть гостеві «Ванна кімната тут»",
+      "accessibilityLabel": "Подруга вибирає тостер. Скажіть їй: «Я зазвичай перевіряю ціну».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i13:audio",
-          "transcript": "The bathroom is here."
+          "transcript": "I usually check the price."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The bathroom is here.",
+        "targetPhrase": "I usually check the price.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -681,15 +855,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто допомагаю як волонтер»",
+      "prompt": "Продавець питає про примірочну. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-42:i14:r1",
-          "text": "often"
+          "text": "usually"
         },
         {
           "responseId": "en:lesson-07:session-42:i14:r2",
@@ -702,18 +876,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто допомагаю як волонтер»",
+      "accessibilityLabel": "Продавець питає про примірочну. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто помогаю как волонтёр»",
-          "uk": "Скажіть «Я часто допомагаю як волонтер»"
+          "ru": "Продавец спрашивает о примерочной. Выберите слово",
+          "uk": "Продавець питає про примірочну. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ volunteer.",
+        "gappedTargetPhrase": "I ___ try on the coat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-42:i14:r1",
-            "text": "often"
+            "text": "usually"
           },
           {
             "responseId": "en:lesson-07:session-42:i14:r2",
@@ -724,24 +898,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+        "testedDimension": "Продавець питає про примірочну. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-42:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+            "testedDimension": "Продавець питає про примірочну. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `volunteer`.",
-              "uk": "Для «часто» потрібне `often` перед `volunteer`."
+              "ru": "Для «обычно» нужно `usually` перед `try`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `try`."
             }
           },
           {
             "responseId": "en:lesson-07:session-42:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+            "testedDimension": "Продавець питає про примірочну. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `volunteer` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `volunteer` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `try` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `try` не ставимо."
             }
           }
         ]
@@ -750,51 +924,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де ванна кімната",
+      "prompt": "Послухайте продавця",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-42:i15:r1",
-          "text": "The bathroom is here."
+          "text": "Do you have a receipt?"
         },
         {
           "responseId": "en:lesson-07:session-42:i15:r2",
-          "text": "The bathroom is there."
+          "text": "Do you have a ticket?"
         },
         {
           "responseId": "en:lesson-07:session-42:i15:r3",
-          "text": "The bathroom is upstairs."
+          "text": "Do you have a coupon?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де ванна кімната",
+      "accessibilityLabel": "Послухайте продавця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i15:audio",
-          "transcript": "The bathroom is here."
+          "transcript": "Do you have a receipt?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-42:i15:r1",
-            "targetText": "The bathroom is here.",
+            "targetText": "Do you have a receipt?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-42:i15:r2",
-            "targetText": "The bathroom is there.",
+            "targetText": "Do you have a ticket?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-42:i15:r3",
-            "targetText": "The bathroom is upstairs.",
+            "targetText": "Do you have a coupon?",
             "meaningByLocale": null
           }
         ],
@@ -803,19 +977,19 @@
           {
             "responseId": "en:lesson-07:session-42:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де ванна кімната",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `receipt`, чек, а в этом варианте — `ticket`, билет.",
+              "uk": "У записі останнє слово — `receipt`, чек, а в цьому варіанті — `ticket`, квиток."
             }
           },
           {
             "responseId": "en:lesson-07:session-42:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де ванна кімната",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи последнее слово — `receipt`, чек, а в этом варианте — `coupon`, купон.",
+              "uk": "У записі останнє слово — `receipt`, чек, а в цьому варіанті — `coupon`, купон."
             }
           }
         ],
@@ -826,7 +1000,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -840,48 +1014,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-42:i16:p1",
-            "target": "decorate",
+            "target": "cancel",
             "meaningByLocale": {
-              "ru": "украшать",
-              "uk": "прикрашати"
+              "ru": "отменять",
+              "uk": "скасовувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i16:p2",
-            "target": "scooter",
+            "target": "try",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "пробовать",
+              "uk": "пробувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i16:p3",
-            "target": "volunteer",
+            "target": "price",
             "meaningByLocale": {
-              "ru": "быть волонтёром",
-              "uk": "бути волонтером"
+              "ru": "цена",
+              "uk": "ціна"
             }
           },
           {
             "pairId": "en:lesson-07:session-42:i16:p4",
-            "target": "bathroom",
+            "target": "present",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "подарок",
+              "uk": "подарунок"
             }
           }
         ],
         "leftColumn": [
-          "decorate",
-          "scooter",
-          "volunteer",
-          "bathroom"
+          "cancel",
+          "try",
+          "price",
+          "present"
         ],
         "rightColumn": [
-          "прикрашати",
-          "самокат",
-          "бути волонтером",
-          "ванна кімната"
+          "скасовувати",
+          "пробувати",
+          "ціна",
+          "подарунок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -899,25 +1073,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-42:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про підготовку кімнати до свят. Скажіть «Том зазвичай прикрашає кімнату»",
+      "prompt": "Подруга питає про вашу сестру. Скажіть: «Моя сестра часто скасовує замовлення».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-42:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує про підготовку кімнати до свят. Скажіть «Том зазвичай прикрашає кімнату»",
+      "accessibilityLabel": "Подруга питає про вашу сестру. Скажіть: «Моя сестра часто скасовує замовлення».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-42:i17:audio",
-          "transcript": "Tom usually decorates the room."
+          "transcript": "My sister often cancels orders."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually decorates the room.",
+        "targetPhrase": "My sister often cancels orders.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -939,11 +1113,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a7370bd40126870169f92d274cdbd2a6952e9abe19771ffc8f90d537b52776b8"
+  "learnerFingerprint": "206576d3d67dd3902d08a823f63c7a4f96ba8a9cdfc4e6003421e91865473a6e"
 }

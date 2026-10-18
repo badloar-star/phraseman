@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-43:word:email",
+    "correctText": "email",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-43:i01",
-    "correctText": "I often sew.",
+    "correctText": "I often email my colleague.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i02",
-    "correctText": "sew",
+    "correctText": "I often email my colleague.",
     "correctResponseId": "en:lesson-07:session-43:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-43:i03",
-    "correctText": "sew",
+    "correctText": "email",
     "correctResponseId": "en:lesson-07:session-43:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-43:i04",
-    "correctText": "en:lesson-07:session-43:i04:p1=sew\nen:lesson-07:session-43:i04:p2=speak\nen:lesson-07:session-43:i04:p3=commute\nen:lesson-07:session-43:i04:p4=bedrooms",
+    "correctText": "en:lesson-07:session-43:i04:p1=email\nen:lesson-07:session-43:i04:p2=colleague\nen:lesson-07:session-43:i04:p3=home\nen:lesson-07:session-43:i04:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:word:report",
+    "correctText": "report",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i05",
-    "correctText": "I often sew.",
+    "correctText": "I usually write the report at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:word:deadline",
+    "correctText": "deadline",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i06",
-    "correctText": "I usually commute.",
+    "correctText": "We usually meet the deadline.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:word:boss",
+    "correctText": "boss",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i07",
-    "correctText": "She often calls.",
+    "correctText": "My boss usually works late.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i08",
-    "correctText": "calls",
+    "correctText": "works",
     "correctResponseId": "en:lesson-07:session-43:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-43:i09",
-    "correctText": "I often sew.",
+    "correctText": "We usually meet the deadline.",
     "correctResponseId": "en:lesson-07:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-43:i10",
-    "correctText": "en:lesson-07:session-43:i10:p1=bedrooms\nen:lesson-07:session-43:i10:p2=sew\nen:lesson-07:session-43:i10:p3=speak\nen:lesson-07:session-43:i10:p4=commute",
+    "correctText": "en:lesson-07:session-43:i10:p1=report\nen:lesson-07:session-43:i10:p2=deadline\nen:lesson-07:session-43:i10:p3=boss\nen:lesson-07:session-43:i10:p4=colleague",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i11",
-    "correctText": "I usually commute.",
+    "correctText": "I often email the report.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i12",
-    "correctText": "Do you speak English?",
+    "correctText": "Do you have a report?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i13",
-    "correctText": "The bedrooms are upstairs.",
+    "correctText": "I usually write the report at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i14",
-    "correctText": "usually",
+    "correctText": "often",
     "correctResponseId": "en:lesson-07:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-43:i15",
-    "correctText": "The bedrooms are upstairs.",
+    "correctText": "Do you have a report?",
     "correctResponseId": "en:lesson-07:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-43:i16",
-    "correctText": "en:lesson-07:session-43:i16:p1=sew\nen:lesson-07:session-43:i16:p2=commute\nen:lesson-07:session-43:i16:p3=bedrooms\nen:lesson-07:session-43:i16:p4=speak",
+    "correctText": "en:lesson-07:session-43:i16:p1=boss\nen:lesson-07:session-43:i16:p2=email\nen:lesson-07:session-43:i16:p3=deadline\nen:lesson-07:session-43:i16:p4=report",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-43:i17",
-    "correctText": "Tom often sews.",
+    "correctText": "My sister often emails her boss.",
     "correctResponseId": null
   }
 ]

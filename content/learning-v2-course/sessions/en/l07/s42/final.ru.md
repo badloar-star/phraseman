@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 42 — Украшаю комнату
+# Английский · Урок 7 · Занятие 42 — В магазине
 
-**Ситуация.** Вы рассказываете о подготовке комнаты к праздникам, совместном пользовании самокатом и волонтёрской помощи.
+**Ситуация.** Вы рассказываете о привычках в магазине: примеряете одежду, смотрите на цену, покупаете подарки и отменяете лишние заказы.
 
-**Что вы освоите:** использовать usually и often перед привычными действиями
-**Новые слова:** decorate
+**Что вы освоите:** говорить о привычках, ставя often или usually перед действием
+**Новые слова:** try, price, cancel, present
+**Возвращаются:** coat, shirt, order, receipt, ticket, coupon, buy, sell, pencil, sister
 
 ---
 
 ## Интро 1
 
-### Комната к празднику
+### Примерочная
 
-Друг спрашивает, кто обычно украшает комнату перед домашними праздниками. `decorate` — «украшать». `I usually decorate the room` — «Я обычно украшаю комнату». `Usually` стоит перед `decorate`. Комната известна собеседникам, поэтому `the room`. Даже стул может почувствовать себя праздничным, если рядом появилась гирлянда.
+Вы выбираете одежду, и продавец спрашивает, берёте ли вы вещь сразу или сначала проверяете, как она сидит. try — «пробовать»; для примерки одежды говорим try on — «примерять». Вы почти всегда идёте в примерочную: I usually try on the coat — «Я обычно примеряю пальто». В этой фразе usually стоит перед try. На вешалке пальто сидит отлично. Осталось проверить, как оно сидит на вас.
 
-**Ответьте другу: «Я обычно украшаю комнату».**
+**Продавец спрашивает про пальто. Скажите ему: «Я обычно примеряю пальто».**
 
-- ✅ **I usually decorate the room.**
-- ❌ I usually decorates the room. — *После `I` нужно `decorate`.*
-- ❌ I usually decorating the room. — *Здесь нужна форма `decorate`.*
+- ✅ **I usually try on the coat.**
+- ❌ I usually tries on the coat. — *После I нужно try, без s.*
+- ❌ I usually trying on the coat. — *Для привычки после I usually нужно try on.*
 
 ---
 
 ## Интро 2
 
-### Один самокат на двоих
+### Ценник на тостере
 
-Вы с другом пользуетесь одним самокатом. `We share a scooter` — «Мы пользуемся одним самокатом вместе». `Share` здесь означает совместное пользование: самокат один, и вы можете брать его по очереди. После `we` используем `share`, без `s`.
+Подруга выбирает с вами тостер. Модели похожи, и она спрашивает, на что вы смотрите в первую очередь. price — «цена». Вы сразу находите ценник на коробке: I usually check the price — «Я обычно проверяю цену». Слово usually стоит перед check.
 
-**Объясните: «Мы пользуемся одним самокатом вместе».**
+**Подруга выбирает тостер. Скажите ей: «Я обычно проверяю цену».**
 
-- ✅ **We share a scooter.**
-- ❌ We shares a scooter. — *После `we` нужно `share`.*
-- ❌ We sharing a scooter. — *Здесь нужна форма `share`.*
+- ✅ **I usually check the price.**
+- ❌ I usually checks the price. — *После I нужно check, без s.*
+- ❌ I usually checking the price. — *Для привычки после I usually нужно check.*
 
 ---
 
 ## Интро 3
 
-### Помощь организации
+### Магазин подарков
 
-Друг спрашивает, часто ли вы помогаете местной организации без оплаты. `I often volunteer` — «Я часто помогаю как волонтёр». `Often` стоит перед действием `volunteer`.
+В большой компании друзей каждый месяц кто-нибудь празднует день рождения. Коллега замечает у вас очередной пакет из магазина подарков и спрашивает, часто ли вы покупаете подарки. present — «подарок». Вы заходите сюда почти каждый месяц: I often buy a present — «Я часто покупаю подарок». Слово often стоит перед buy.
 
-**Ответьте: «Я часто помогаю как волонтёр».**
+**Коллега спрашивает о покупках для друзей. Скажите ему: «Я часто покупаю подарок».**
 
-- ✅ **I often volunteer.**
-- ❌ I often volunteers. — *После `I` нужно `volunteer`.*
-- ❌ I often volunteering. — *Здесь нужна форма `volunteer`.*
+- ✅ **I often buy a present.**
+- ❌ I often buys a present. — *После I нужно buy, без s.*
+- ❌ I often buying a present. — *Для привычки после I often нужно buy.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я обычно украшаю комнату»**
+**1 · Карточка слова — try**
+<!-- interaction_id: en:lesson-07:session-42:word:try; family: word_card -->
+> **try** — пробовать. С on получается try on — примерять. I usually try on the coat. — «Я обычно примеряю пальто». Надевать вещь в магазине, чтобы проверить, подходит ли она.
+
+**2 · Продавец спрашивает про пальто. Скажите ему: «Я обычно примеряю пальто».**
 <!-- interaction_id: en:lesson-07:session-42:i01; family: phrase_builder -->
-Плитки: `room` `the` `decorate` `usually` `I` → **I usually decorate the room.**
+Плитки: `coat` `the` `on` `try` `usually` `I` → **I usually try on the coat.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте продавца**
 <!-- interaction_id: en:lesson-07:session-42:i02; family: listen_choose -->
-🔊 *decorate* → **decorate** · share · volunteer
-- share — *В записи первое слово — `decorate`, а в этом варианте — `share`.*
-- volunteer — *В записи первое слово — `decorate`, а в этом варианте — `volunteer`.*
+🔊 *I usually try on the coat.* → **I usually try on the coat.** · I usually try on the shirt. · I usually buy the coat.
+- I usually try on the shirt. — *В записи последнее слово — `coat`, пальто, а в этом варианте — `shirt`, рубашка.*
+- I usually buy the coat. — *В записи звучит `try on`, примерять, а в этом варианте — `buy`, покупать.*
 
-**3 · Скажите «Я обычно украшаю комнату»**
+**4 · Продавец спрашивает о примерочной. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-42:i03; family: context_gap_grammar -->
-I usually ___ the room. → **decorate** · decorates · decorating
-- decorates — *После `I` нужно `decorate`.*
-- decorating — *Здесь нужна форма `decorate`.*
+I usually ___ on the coat. → **try** · tries · trying
+- tries — *После `I` нужно `try`, без `s`.*
+- trying — *Здесь нужна форма `try`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-42:i04; family: speed_match -->
-decorate — украшать · share — пользоваться вместе · bathroom — ванная комната · scooter — самокат
+try — пробовать · coat — пальто · shirt — рубашка · buy — покупать
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — price**
+<!-- interaction_id: en:lesson-07:session-42:word:price; family: word_card -->
+> **price** — цена. I usually check the price. — «Я обычно проверяю цену». Сколько денег нужно заплатить за вещь.
+
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-42:i05; family: listen_build_dictation -->
-🔊 *I usually decorate the room.* Плитки: `room` `the` `decorate` `usually` `I` → **I usually decorate the room.**
+🔊 *I usually check the price.* Плитки: `price` `the` `check` `usually` `I` → **I usually check the price.**
 
-**6 · Объясните «Мы пользуемся одним самокатом вместе»**
+**8 · Карточка слова — present**
+<!-- interaction_id: en:lesson-07:session-42:word:present; family: word_card -->
+> **present** — подарок. I often buy a present. — «Я часто покупаю подарок». То, что дарят: к празднику или без повода.
+
+**9 · Коллега спрашивает о покупках для друзей. Скажите ему: «Я часто покупаю подарок».**
 <!-- interaction_id: en:lesson-07:session-42:i06; family: phrase_builder -->
-Плитки: `scooter` `a` `share` `We` → **We share a scooter.**
+Плитки: `present` `a` `buy` `often` `I` → **I often buy a present.**
 
-**7 · Скажите «Я часто помогаю как волонтёр»**
+**10 · Карточка слова — cancel**
+<!-- interaction_id: en:lesson-07:session-42:word:cancel; family: word_card -->
+> **cancel** — отменять. I often cancel orders. — «Я часто отменяю заказы». Отменять заказ, встречу или другое запланированное дело.
+
+**11 · Продавец спрашивает, что вы делаете с ненужными заказами. Скажите: «Я часто отменяю заказы».**
 <!-- interaction_id: en:lesson-07:session-42:i07; family: scripted_repeat_compare -->
-🎙 **I often volunteer.**
+🎙 **I often cancel orders.**
 
-**8 · Скажите о совместном пользовании самокатом**
+**12 · Подруга спрашивает, что сестра делает с ненужными заказами. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-42:i08; family: context_gap_grammar -->
-We ___ a scooter. → **share** · shares · sharing
-- shares — *После `we` нужно `share`.*
-- sharing — *Здесь нужна форма `share`.*
+My sister often ___ orders. → **cancels** · cancel · cancelling
+- cancel — *После `my sister` нужно `cancels`.*
+- cancelling — *Здесь нужна форма `cancels`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте продавца**
 <!-- interaction_id: en:lesson-07:session-42:i09; family: listen_choose -->
-🔊 *I usually decorate the room.* → **I usually decorate the room.** · I usually decorate the kitchen. · I usually decorate the bathroom.
-- I usually decorate the kitchen. — *В записи последнее слово — `room`, а в этом варианте — `kitchen`.*
-- I usually decorate the bathroom. — *В записи последнее слово — `room`, а в этом варианте — `bathroom`.*
+🔊 *I often buy a present.* → **I often buy a present.** · I often buy a pencil. · I often sell a present.
+- I often buy a pencil. — *В записи последнее слово — `present`, подарок, а в этом варианте — `pencil`, карандаш.*
+- I often sell a present. — *В записи третье слово — `buy`, покупать, а в этом варианте — `sell`, продавать.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-42:i10; family: speed_match -->
-volunteer — быть волонтёром · decorate — украшать · bathroom — ванная комната · share — пользоваться вместе
+price — цена · present — подарок · coat — пальто · order — заказ
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте продавца и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-42:i11; family: listen_build_dictation -->
-🔊 *We share a scooter.* Плитки: `scooter` `a` `share` `We` → **We share a scooter.**
+🔊 *I often cancel orders.* Плитки: `orders` `cancel` `often` `I` → **I often cancel orders.**
 
-**12 · Перед прогулкой спросите друга «У тебя есть самокат?»**
+**16 · Вы продавец, покупатель хочет вернуть вещь. Спросите: «У вас есть чек?»**
 <!-- interaction_id: en:lesson-07:session-42:i12; family: phrase_builder -->
-Плитки: `scooter` `a` `have` `you` `Do` → **Do you have a scooter?**
+Плитки: `receipt` `a` `have` `you` `Do` → **Do you have a receipt?**
 
-**13 · Покажите гостю «Ванная здесь»**
+**17 · Подруга выбирает тостер. Скажите ей: «Я обычно проверяю цену».**
 <!-- interaction_id: en:lesson-07:session-42:i13; family: scripted_repeat_compare -->
-🎙 **The bathroom is here.**
+🎙 **I usually check the price.**
 
-**14 · Скажите «Я часто помогаю как волонтёр»**
+**18 · Продавец спрашивает о примерочной. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-42:i14; family: context_gap_grammar -->
-I ___ volunteer. → **often** · does · am
-- does — *Для «часто» нужно `often` перед `volunteer`.*
-- am — *Для «часто» нужно `often`; `am` перед `volunteer` не ставим.*
+I ___ try on the coat. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `try`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `try` не ставим.*
 
-**15 · Послушайте, где ванная**
+**19 · Послушайте продавца**
 <!-- interaction_id: en:lesson-07:session-42:i15; family: listen_choose -->
-🔊 *The bathroom is here.* → **The bathroom is here.** · The bathroom is there. · The bathroom is upstairs.
-- The bathroom is there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The bathroom is upstairs. — *В записи последнее слово — `here`, а в этом варианте — `upstairs`.*
+🔊 *Do you have a receipt?* → **Do you have a receipt?** · Do you have a ticket? · Do you have a coupon?
+- Do you have a ticket? — *В записи последнее слово — `receipt`, чек, а в этом варианте — `ticket`, билет.*
+- Do you have a coupon? — *В записи последнее слово — `receipt`, чек, а в этом варианте — `coupon`, купон.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-42:i16; family: speed_match -->
-decorate — украшать · scooter — самокат · volunteer — быть волонтёром · bathroom — ванная комната
+cancel — отменять · try — пробовать · price — цена · present — подарок
 
-**17 · Друг спрашивает о подготовке комнаты к праздникам. Скажите «Том обычно украшает комнату»**
+**21 · Подруга спрашивает о вашей сестре. Скажите: «Моя сестра часто отменяет заказы».**
 <!-- interaction_id: en:lesson-07:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually decorates the room.**
-
+🎙 **My sister often cancels orders.**

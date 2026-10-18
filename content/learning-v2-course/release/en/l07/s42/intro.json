@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-42",
   "learningOutcomeByLocale": {
-    "ru": "использовать usually и often перед привычными действиями",
-    "uk": "використовувати usually й often перед звичними діями"
+    "ru": "говорить о привычках, ставя often или usually перед действием",
+    "uk": "говорити про звички, ставлячи often або usually перед дією"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Комната к празднику",
-        "uk": "Кімната до свята"
+        "ru": "Примерочная",
+        "uk": "Примірочна"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, кто обычно украшает комнату перед домашними праздниками. `decorate` — «украшать». `I usually decorate the room` — «Я обычно украшаю комнату». `Usually` стоит перед `decorate`. Комната известна собеседникам, поэтому `the room`. Даже стул может почувствовать себя праздничным, если рядом появилась гирлянда.",
-        "uk": "Друг запитує, хто зазвичай прикрашає кімнату перед домашніми святами. `decorate` — «прикрашати». `I usually decorate the room` — «Я зазвичай прикрашаю кімнату». `Usually` стоїть перед `decorate`. Кімната відома співрозмовникам, тому `the room`. Навіть стілець може відчути себе святковим, якщо поруч з’явилася гірлянда."
+        "ru": "Вы выбираете одежду, и продавец спрашивает, берёте ли вы вещь сразу или сначала проверяете, как она сидит. try — «пробовать»; для примерки одежды говорим try on — «примерять». Вы почти всегда идёте в примерочную: I usually try on the coat — «Я обычно примеряю пальто». В этой фразе usually стоит перед try. На вешалке пальто сидит отлично. Осталось проверить, как оно сидит на вас.",
+        "uk": "Ви вибираєте одяг, і продавець питає, чи берете ви річ одразу, чи спершу перевіряєте, як вона сидить. try — «пробувати»; для примірювання одягу кажемо try on — «приміряти». Ви майже завжди йдете в примірочну: I usually try on the coat — «Я зазвичай міряю пальто». У цій фразі usually стоїть перед try. На вішалці пальто сидить чудово. Залишилося перевірити, як воно сидить на вас."
       },
       "question": {
         "interactionId": "en:lesson-07:session-42:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу: «Я обычно украшаю комнату».",
-          "uk": "Відповідайте другові: «Я зазвичай прикрашаю кімнату»."
+          "ru": "Продавец спрашивает про пальто. Скажите ему: «Я обычно примеряю пальто».",
+          "uk": "Продавець питає про пальто. Скажіть йому: «Я зазвичай міряю пальто»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-42:intro1:r1",
-              "text": "I usually decorate the room."
+              "text": "I usually try on the coat."
             },
             {
               "responseId": "en:lesson-07:session-42:intro1:r2",
-              "text": "I usually decorates the room."
+              "text": "I usually tries on the coat."
             },
             {
               "responseId": "en:lesson-07:session-42:intro1:r3",
-              "text": "I usually decorating the room."
+              "text": "I usually trying on the coat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-42:intro1:r1",
-              "text": "I usually decorate the room."
+              "text": "I usually try on the coat."
             },
             {
               "responseId": "en:lesson-07:session-42:intro1:r2",
-              "text": "I usually decorates the room."
+              "text": "I usually tries on the coat."
             },
             {
               "responseId": "en:lesson-07:session-42:intro1:r3",
-              "text": "I usually decorating the room."
+              "text": "I usually trying on the coat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу: «Я обычно украшаю комнату».",
-          "uk": "Відповідайте другові: «Я зазвичай прикрашаю кімнату»."
+          "ru": "Продавец спрашивает про пальто. Скажите ему: «Я обычно примеряю пальто».",
+          "uk": "Продавець питає про пальто. Скажіть йому: «Я зазвичай міряю пальто»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Один самокат на двоих",
-        "uk": "Один самокат на двох"
+        "ru": "Ценник на тостере",
+        "uk": "Цінник на тостері"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом пользуетесь одним самокатом. `We share a scooter` — «Мы пользуемся одним самокатом вместе». `Share` здесь означает совместное пользование: самокат один, и вы можете брать его по очереди. После `we` используем `share`, без `s`.",
-        "uk": "Ви з другом користуєтеся одним самокатом. `We share a scooter` — «Ми користуємося одним самокатом разом». `Share` тут означає спільне користування: самокат один, і ви можете брати його по черзі. Після `we` використовуємо `share`, без `s`."
+        "ru": "Подруга выбирает с вами тостер. Модели похожи, и она спрашивает, на что вы смотрите в первую очередь. price — «цена». Вы сразу находите ценник на коробке: I usually check the price — «Я обычно проверяю цену». Слово usually стоит перед check.",
+        "uk": "Подруга вибирає з вами тостер. Моделі схожі, і вона питає, на що ви дивитеся насамперед. price — «ціна». Ви одразу знаходите цінник на коробці: I usually check the price — «Я зазвичай перевіряю ціну». Слово usually стоїть перед check."
       },
       "question": {
         "interactionId": "en:lesson-07:session-42:intro2:q",
         "promptByLocale": {
-          "ru": "Объясните: «Мы пользуемся одним самокатом вместе».",
-          "uk": "Поясніть: «Ми користуємося одним самокатом разом»."
+          "ru": "Подруга выбирает тостер. Скажите ей: «Я обычно проверяю цену».",
+          "uk": "Подруга вибирає тостер. Скажіть їй: «Я зазвичай перевіряю ціну»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-42:intro2:r1",
-              "text": "We share a scooter."
+              "text": "I usually check the price."
             },
             {
               "responseId": "en:lesson-07:session-42:intro2:r2",
-              "text": "We shares a scooter."
+              "text": "I usually checks the price."
             },
             {
               "responseId": "en:lesson-07:session-42:intro2:r3",
-              "text": "We sharing a scooter."
+              "text": "I usually checking the price."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-42:intro2:r1",
-              "text": "We share a scooter."
+              "text": "I usually check the price."
             },
             {
               "responseId": "en:lesson-07:session-42:intro2:r2",
-              "text": "We shares a scooter."
+              "text": "I usually checks the price."
             },
             {
               "responseId": "en:lesson-07:session-42:intro2:r3",
-              "text": "We sharing a scooter."
+              "text": "I usually checking the price."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните: «Мы пользуемся одним самокатом вместе».",
-          "uk": "Поясніть: «Ми користуємося одним самокатом разом»."
+          "ru": "Подруга выбирает тостер. Скажите ей: «Я обычно проверяю цену».",
+          "uk": "Подруга вибирає тостер. Скажіть їй: «Я зазвичай перевіряю ціну»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Помощь организации",
-        "uk": "Допомога організації"
+        "ru": "Магазин подарков",
+        "uk": "Магазин подарунків"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы помогаете местной организации без оплаты. `I often volunteer` — «Я часто помогаю как волонтёр». `Often` стоит перед действием `volunteer`.",
-        "uk": "Друг запитує, чи часто ви допомагаєте місцевій організації без оплати. `I often volunteer` — «Я часто допомагаю як волонтер». `Often` стоїть перед дією `volunteer`."
+        "ru": "В большой компании друзей каждый месяц кто-нибудь празднует день рождения. Коллега замечает у вас очередной пакет из магазина подарков и спрашивает, часто ли вы покупаете подарки. present — «подарок». Вы заходите сюда почти каждый месяц: I often buy a present — «Я часто покупаю подарок». Слово often стоит перед buy.",
+        "uk": "У великій компанії друзів щомісяця хтось святкує день народження. Колега помічає у вас черговий пакет із магазину подарунків і питає, чи часто ви купуєте подарунки. present — «подарунок». Ви заходите сюди майже щомісяця: I often buy a present — «Я часто купую подарунок». Слово often стоїть перед buy."
       },
       "question": {
         "interactionId": "en:lesson-07:session-42:intro3:q",
         "promptByLocale": {
-          "ru": "Ответьте: «Я часто помогаю как волонтёр».",
-          "uk": "Відповідайте: «Я часто допомагаю як волонтер»."
+          "ru": "Коллега спрашивает о покупках для друзей. Скажите ему: «Я часто покупаю подарок».",
+          "uk": "Колега питає про покупки для друзів. Скажіть йому: «Я часто купую подарунок»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-42:intro3:r1",
-              "text": "I often volunteer."
+              "text": "I often buy a present."
             },
             {
               "responseId": "en:lesson-07:session-42:intro3:r2",
-              "text": "I often volunteers."
+              "text": "I often buys a present."
             },
             {
               "responseId": "en:lesson-07:session-42:intro3:r3",
-              "text": "I often volunteering."
+              "text": "I often buying a present."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-42:intro3:r1",
-              "text": "I often volunteer."
+              "text": "I often buy a present."
             },
             {
               "responseId": "en:lesson-07:session-42:intro3:r2",
-              "text": "I often volunteers."
+              "text": "I often buys a present."
             },
             {
               "responseId": "en:lesson-07:session-42:intro3:r3",
-              "text": "I often volunteering."
+              "text": "I often buying a present."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте: «Я часто помогаю как волонтёр».",
-          "uk": "Відповідайте: «Я часто допомагаю як волонтер»."
+          "ru": "Коллега спрашивает о покупках для друзей. Скажите ему: «Я часто покупаю подарок».",
+          "uk": "Колега питає про покупки для друзів. Скажіть йому: «Я часто купую подарунок»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "29b64c496511b6b98d13facbfbb81fd9eb1a590d125bae0bba1cafec17c8557d"
+  "introFingerprint": "ecd86adfe63804736a98f30200e66918ee535aad82e3454a149044664b094da6"
 }

@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 42 — Прикрашаю кімнату
+# Англійська · Урок 7 · Заняття 42 — У магазині
 
-**Ситуація.** Ви розповідаєте про підготовку кімнати до свят, спільне користування самокатом і волонтерську допомогу.
+**Ситуація.** Ви розповідаєте про звички в магазині: приміряєте одяг, дивитеся на ціну, купуєте подарунки й скасовуєте зайві замовлення.
 
-**Що ви опануєте:** використовувати usually й often перед звичними діями
-**Нові слова:** decorate
+**Що ви опануєте:** говорити про звички, ставлячи often або usually перед дією
+**Нові слова:** try, price, cancel, present
+**Повертаються:** coat, shirt, order, receipt, ticket, coupon, buy, sell, pencil, sister
 
 ---
 
 ## Інтро 1
 
-### Кімната до свята
+### Примірочна
 
-Друг запитує, хто зазвичай прикрашає кімнату перед домашніми святами. `decorate` — «прикрашати». `I usually decorate the room` — «Я зазвичай прикрашаю кімнату». `Usually` стоїть перед `decorate`. Кімната відома співрозмовникам, тому `the room`. Навіть стілець може відчути себе святковим, якщо поруч з’явилася гірлянда.
+Ви вибираєте одяг, і продавець питає, чи берете ви річ одразу, чи спершу перевіряєте, як вона сидить. try — «пробувати»; для примірювання одягу кажемо try on — «приміряти». Ви майже завжди йдете в примірочну: I usually try on the coat — «Я зазвичай міряю пальто». У цій фразі usually стоїть перед try. На вішалці пальто сидить чудово. Залишилося перевірити, як воно сидить на вас.
 
-**Відповідайте другові: «Я зазвичай прикрашаю кімнату».**
+**Продавець питає про пальто. Скажіть йому: «Я зазвичай міряю пальто».**
 
-- ✅ **I usually decorate the room.**
-- ❌ I usually decorates the room. — *Після `I` потрібне `decorate`.*
-- ❌ I usually decorating the room. — *Тут потрібна форма `decorate`.*
+- ✅ **I usually try on the coat.**
+- ❌ I usually tries on the coat. — *Після I потрібно try, без s.*
+- ❌ I usually trying on the coat. — *Для звички після I usually потрібно try on.*
 
 ---
 
 ## Інтро 2
 
-### Один самокат на двох
+### Цінник на тостері
 
-Ви з другом користуєтеся одним самокатом. `We share a scooter` — «Ми користуємося одним самокатом разом». `Share` тут означає спільне користування: самокат один, і ви можете брати його по черзі. Після `we` використовуємо `share`, без `s`.
+Подруга вибирає з вами тостер. Моделі схожі, і вона питає, на що ви дивитеся насамперед. price — «ціна». Ви одразу знаходите цінник на коробці: I usually check the price — «Я зазвичай перевіряю ціну». Слово usually стоїть перед check.
 
-**Поясніть: «Ми користуємося одним самокатом разом».**
+**Подруга вибирає тостер. Скажіть їй: «Я зазвичай перевіряю ціну».**
 
-- ✅ **We share a scooter.**
-- ❌ We shares a scooter. — *Після `we` потрібне `share`.*
-- ❌ We sharing a scooter. — *Тут потрібна форма `share`.*
+- ✅ **I usually check the price.**
+- ❌ I usually checks the price. — *Після I потрібно check, без s.*
+- ❌ I usually checking the price. — *Для звички після I usually потрібно check.*
 
 ---
 
 ## Інтро 3
 
-### Допомога організації
+### Магазин подарунків
 
-Друг запитує, чи часто ви допомагаєте місцевій організації без оплати. `I often volunteer` — «Я часто допомагаю як волонтер». `Often` стоїть перед дією `volunteer`.
+У великій компанії друзів щомісяця хтось святкує день народження. Колега помічає у вас черговий пакет із магазину подарунків і питає, чи часто ви купуєте подарунки. present — «подарунок». Ви заходите сюди майже щомісяця: I often buy a present — «Я часто купую подарунок». Слово often стоїть перед buy.
 
-**Відповідайте: «Я часто допомагаю як волонтер».**
+**Колега питає про покупки для друзів. Скажіть йому: «Я часто купую подарунок».**
 
-- ✅ **I often volunteer.**
-- ❌ I often volunteers. — *Після `I` потрібне `volunteer`.*
-- ❌ I often volunteering. — *Тут потрібна форма `volunteer`.*
+- ✅ **I often buy a present.**
+- ❌ I often buys a present. — *Після I потрібно buy, без s.*
+- ❌ I often buying a present. — *Для звички після I often потрібно buy.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я зазвичай прикрашаю кімнату»**
+**1 · Картка слова — try**
+<!-- interaction_id: en:lesson-07:session-42:word:try; family: word_card -->
+> **try** — пробувати. З on отримуємо try on — приміряти. I usually try on the coat. — «Я зазвичай міряю пальто». Одягати річ у магазині, щоб перевірити, чи пасує вона.
+
+**2 · Продавець питає про пальто. Скажіть йому: «Я зазвичай міряю пальто».**
 <!-- interaction_id: en:lesson-07:session-42:i01; family: phrase_builder -->
-Плитки: `room` `the` `decorate` `usually` `I` → **I usually decorate the room.**
+Плитки: `coat` `the` `on` `try` `usually` `I` → **I usually try on the coat.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте продавця**
 <!-- interaction_id: en:lesson-07:session-42:i02; family: listen_choose -->
-🔊 *decorate* → **decorate** · share · volunteer
-- share — *У записі перше слово — `decorate`, а в цьому варіанті — `share`.*
-- volunteer — *У записі перше слово — `decorate`, а в цьому варіанті — `volunteer`.*
+🔊 *I usually try on the coat.* → **I usually try on the coat.** · I usually try on the shirt. · I usually buy the coat.
+- I usually try on the shirt. — *У записі останнє слово — `coat`, пальто, а в цьому варіанті — `shirt`, сорочка.*
+- I usually buy the coat. — *У записі звучить `try on`, приміряти, а в цьому варіанті — `buy`, купувати.*
 
-**3 · Скажіть «Я зазвичай прикрашаю кімнату»**
+**4 · Продавець питає про примірочну. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-42:i03; family: context_gap_grammar -->
-I usually ___ the room. → **decorate** · decorates · decorating
-- decorates — *Після `I` потрібне `decorate`.*
-- decorating — *Тут потрібна форма `decorate`.*
+I usually ___ on the coat. → **try** · tries · trying
+- tries — *Після `I` потрібно `try`, без `s`.*
+- trying — *Тут потрібна форма `try`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-42:i04; family: speed_match -->
-decorate — прикрашати · share — користуватися разом · bathroom — ванна кімната · scooter — самокат
+try — пробувати · coat — пальто · shirt — сорочка · buy — купувати
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — price**
+<!-- interaction_id: en:lesson-07:session-42:word:price; family: word_card -->
+> **price** — ціна. I usually check the price. — «Я зазвичай перевіряю ціну». Скільки грошей треба заплатити за річ.
+
+**7 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-42:i05; family: listen_build_dictation -->
-🔊 *I usually decorate the room.* Плитки: `room` `the` `decorate` `usually` `I` → **I usually decorate the room.**
+🔊 *I usually check the price.* Плитки: `price` `the` `check` `usually` `I` → **I usually check the price.**
 
-**6 · Поясніть «Ми користуємося одним самокатом разом»**
+**8 · Картка слова — present**
+<!-- interaction_id: en:lesson-07:session-42:word:present; family: word_card -->
+> **present** — подарунок. I often buy a present. — «Я часто купую подарунок». Те, що дарують: до свята або без приводу.
+
+**9 · Колега питає про покупки для друзів. Скажіть йому: «Я часто купую подарунок».**
 <!-- interaction_id: en:lesson-07:session-42:i06; family: phrase_builder -->
-Плитки: `scooter` `a` `share` `We` → **We share a scooter.**
+Плитки: `present` `a` `buy` `often` `I` → **I often buy a present.**
 
-**7 · Скажіть «Я часто допомагаю як волонтер»**
+**10 · Картка слова — cancel**
+<!-- interaction_id: en:lesson-07:session-42:word:cancel; family: word_card -->
+> **cancel** — скасовувати. I often cancel orders. — «Я часто скасовую замовлення». Скасовувати замовлення, зустріч або іншу заплановану справу.
+
+**11 · Продавець питає, що ви робите із зайвими замовленнями. Скажіть: «Я часто скасовую замовлення».**
 <!-- interaction_id: en:lesson-07:session-42:i07; family: scripted_repeat_compare -->
-🎙 **I often volunteer.**
+🎙 **I often cancel orders.**
 
-**8 · Скажіть про спільне користування самокатом**
+**12 · Подруга питає, що сестра робить із непотрібними замовленнями. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-42:i08; family: context_gap_grammar -->
-We ___ a scooter. → **share** · shares · sharing
-- shares — *Після `we` потрібне `share`.*
-- sharing — *Тут потрібна форма `share`.*
+My sister often ___ orders. → **cancels** · cancel · cancelling
+- cancel — *Після `my sister` потрібно `cancels`.*
+- cancelling — *Тут потрібна форма `cancels`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте продавця**
 <!-- interaction_id: en:lesson-07:session-42:i09; family: listen_choose -->
-🔊 *I usually decorate the room.* → **I usually decorate the room.** · I usually decorate the kitchen. · I usually decorate the bathroom.
-- I usually decorate the kitchen. — *У записі останнє слово — `room`, а в цьому варіанті — `kitchen`.*
-- I usually decorate the bathroom. — *У записі останнє слово — `room`, а в цьому варіанті — `bathroom`.*
+🔊 *I often buy a present.* → **I often buy a present.** · I often buy a pencil. · I often sell a present.
+- I often buy a pencil. — *У записі останнє слово — `present`, подарунок, а в цьому варіанті — `pencil`, олівець.*
+- I often sell a present. — *У записі третє слово — `buy`, купувати, а в цьому варіанті — `sell`, продавати.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-42:i10; family: speed_match -->
-volunteer — бути волонтером · decorate — прикрашати · bathroom — ванна кімната · share — користуватися разом
+price — ціна · present — подарунок · coat — пальто · order — замовлення
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-42:i11; family: listen_build_dictation -->
-🔊 *We share a scooter.* Плитки: `scooter` `a` `share` `We` → **We share a scooter.**
+🔊 *I often cancel orders.* Плитки: `orders` `cancel` `often` `I` → **I often cancel orders.**
 
-**12 · Перед прогулянкою запитайте друга «У тебе є самокат?»**
+**16 · Ви продавець, покупець хоче повернути річ. Спитайте: «У вас є чек?»**
 <!-- interaction_id: en:lesson-07:session-42:i12; family: phrase_builder -->
-Плитки: `scooter` `a` `have` `you` `Do` → **Do you have a scooter?**
+Плитки: `receipt` `a` `have` `you` `Do` → **Do you have a receipt?**
 
-**13 · Покажіть гостеві «Ванна кімната тут»**
+**17 · Подруга вибирає тостер. Скажіть їй: «Я зазвичай перевіряю ціну».**
 <!-- interaction_id: en:lesson-07:session-42:i13; family: scripted_repeat_compare -->
-🎙 **The bathroom is here.**
+🎙 **I usually check the price.**
 
-**14 · Скажіть «Я часто допомагаю як волонтер»**
+**18 · Продавець питає про примірочну. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-42:i14; family: context_gap_grammar -->
-I ___ volunteer. → **often** · does · am
-- does — *Для «часто» потрібне `often` перед `volunteer`.*
-- am — *Для «часто» потрібне `often`; `am` перед `volunteer` не ставимо.*
+I ___ try on the coat. → **usually** · does · am
+- does — *Для «зазвичай» потрібне `usually` перед `try`.*
+- am — *Для «зазвичай» потрібне `usually`; `am` перед `try` не ставимо.*
 
-**15 · Послухайте, де ванна кімната**
+**19 · Послухайте продавця**
 <!-- interaction_id: en:lesson-07:session-42:i15; family: listen_choose -->
-🔊 *The bathroom is here.* → **The bathroom is here.** · The bathroom is there. · The bathroom is upstairs.
-- The bathroom is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- The bathroom is upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Do you have a receipt?* → **Do you have a receipt?** · Do you have a ticket? · Do you have a coupon?
+- Do you have a ticket? — *У записі останнє слово — `receipt`, чек, а в цьому варіанті — `ticket`, квиток.*
+- Do you have a coupon? — *У записі останнє слово — `receipt`, чек, а в цьому варіанті — `coupon`, купон.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-42:i16; family: speed_match -->
-decorate — прикрашати · scooter — самокат · volunteer — бути волонтером · bathroom — ванна кімната
+cancel — скасовувати · try — пробувати · price — ціна · present — подарунок
 
-**17 · Друг запитує про підготовку кімнати до свят. Скажіть «Том зазвичай прикрашає кімнату»**
+**21 · Подруга питає про вашу сестру. Скажіть: «Моя сестра часто скасовує замовлення».**
 <!-- interaction_id: en:lesson-07:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually decorates the room.**
-
+🎙 **My sister often cancels orders.**

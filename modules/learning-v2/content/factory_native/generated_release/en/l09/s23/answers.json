@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-23:word:march",
+    "correctText": "march",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i01",
+    "correctText": "We often march.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i02",
+    "correctText": "march",
+    "correctResponseId": "en:lesson-09:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i04",
+    "correctText": "en:lesson-09:session-23:i04:p1=march\nen:lesson-09:session-23:i04:p2=drum\nen:lesson-09:session-23:i04:p3=music\nen:lesson-09:session-23:i04:p4=group",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i05",
+    "correctText": "We are marching.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:word:parade",
+    "correctText": "parade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i06",
+    "correctText": "This is a parade.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:word:drummer",
+    "correctText": "drummer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i07",
+    "correctText": "The drummer is not marching.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i08",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-09:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i09",
+    "correctText": "Are they marching?",
+    "correctResponseId": "en:lesson-09:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i10",
+    "correctText": "en:lesson-09:session-23:i10:p1=march\nen:lesson-09:session-23:i10:p2=parade\nen:lesson-09:session-23:i10:p3=drummer\nen:lesson-09:session-23:i10:p4=drum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i11",
+    "correctText": "Are they marching?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:word:baton",
+    "correctText": "baton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i12",
+    "correctText": "baton",
+    "correctResponseId": "en:lesson-09:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i13",
+    "correctText": "This is a baton.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i14",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-09:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i15",
+    "correctText": "The drummer is not marching.",
+    "correctResponseId": "en:lesson-09:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i16",
+    "correctText": "en:lesson-09:session-23:i16:p1=march\nen:lesson-09:session-23:i16:p2=parade\nen:lesson-09:session-23:i16:p3=drummer\nen:lesson-09:session-23:i16:p4=baton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-23:i17",
+    "correctText": "Are they marching?",
+    "correctResponseId": null
+  }
+]

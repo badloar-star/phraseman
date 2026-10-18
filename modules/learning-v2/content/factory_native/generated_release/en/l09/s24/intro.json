@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "is inspecting; Are you reading…?; Please don’t touch…",
+    "uk": "is inspecting; Are you reading…?; Please don’t touch…"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Название на корешке",
+        "uk": "Назва на корінці"
+      },
+      "bodyByLocale": {
+        "ru": "В букинистическом магазине продавец осматривает узкую часть книги, на которой напечатано название. Spine — «корешок книги» в этой ситуации. He is inspecting the spine — «Он осматривает корешок». Inspect уже знакомо; is inspecting показывает действие сейчас. У книги есть spine, но записывать её на зарядку не нужно: это не человеческий позвоночник.",
+        "uk": "У букіністичній крамниці продавець оглядає вузьку частину книжки, на якій надруковано назву. Spine — «корінець книжки» в цій ситуації. He is inspecting the spine — «Він оглядає корінець». Inspect уже знайоме; is inspecting показує дію зараз. У книжки є spine, але записувати її на зарядку не потрібно: це не людський хребет."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-24:intro1:r1",
+              "text": "He is inspecting the spine."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro1:r2",
+              "text": "He inspecting the spine."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro1:r3",
+              "text": "He is inspect the spine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-24:intro1:r1",
+              "text": "He is inspecting the spine."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro1:r2",
+              "text": "He inspecting the spine."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro1:r3",
+              "text": "He is inspect the spine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мягкая обложка в поезде",
+        "uk": "М’яка обкладинка в потязі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг в поезде держит небольшую книгу в мягкой обложке. Paperback — «книга в мягкой обложке». Спросите: Are you reading a paperback? — «Ты читаешь книгу в мягкой обложке?» Сначала are, затем you и reading. A paperback здесь означает одну книгу, а не только её обложку.",
+        "uk": "Друг у потязі тримає невелику книжку в м’якій обкладинці. Paperback — «книжка в м’якій обкладинці». Запитайте: Are you reading a paperback? — «Ти читаєш книжку в м’якій обкладинці?» Спочатку are, потім you і reading. A paperback тут означає одну книжку, а не лише її обкладинку."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-24:intro2:r1",
+              "text": "Are you reading a paperback?"
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro2:r2",
+              "text": "Is you reading a paperback?"
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro2:r3",
+              "text": "Are you read a paperback?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-24:intro2:r1",
+              "text": "Are you reading a paperback?"
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro2:r2",
+              "text": "Is you reading a paperback?"
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro2:r3",
+              "text": "Are you read a paperback?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Свежий переплёт",
+        "uk": "Нова палітурка"
+      },
+      "bodyByLocale": {
+        "ru": "В мастерской книгу только что переплели, и клей ещё не высох. Binding — «переплёт». Посетитель тянется к книге, и мастер просит: Please don’t touch the binding — «Пожалуйста, не трогайте переплёт». После don’t нужна базовая форма touch. Переплёт держит страницы вместе; spine — его узкая часть у сгиба страниц.",
+        "uk": "У майстерні книжку щойно переплели, і клей ще не висох. Binding — «палітурка». Відвідувач тягнеться до книжки, і майстер просить: Please don’t touch the binding — «Будь ласка, не торкайтеся палітурки». Після don’t потрібна базова форма touch. Палітурка тримає сторінки разом; spine — її вузька частина біля згину сторінок."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-24:intro3:r1",
+              "text": "Please don’t touch the binding."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro3:r2",
+              "text": "Please don’t touching the binding."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro3:r3",
+              "text": "Please don’t touches the binding."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-24:intro3:r1",
+              "text": "Please don’t touch the binding."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro3:r2",
+              "text": "Please don’t touching the binding."
+            },
+            {
+              "responseId": "en:lesson-09:session-24:intro3:r3",
+              "text": "Please don’t touches the binding."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b66b5d9009f93e270903407b6ce087d1185f4407b328afd327ec4dd15331c06d"
+}

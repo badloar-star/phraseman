@@ -3297,4 +3297,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is crawling / is not crawling; Is the snail crawling?","uk":"is crawling / is not crawling; Is the snail crawling?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 23,
+    sourceFingerprint: "9256a4c83dbddc829e754f77219b4e946e6906440281512f5078dbda038feef3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We are marching; The drummer is not marching; Are they marching?","uk":"We are marching; The drummer is not marching; Are they marching?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 24,
+    sourceFingerprint: "fa819f57dd3515348096d56a58bff7bc19def0db9b95f52138c8e05f22c34db8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is inspecting; Are you reading…?; Please don’t touch…","uk":"is inspecting; Are you reading…?; Please don’t touch…"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

@@ -58,6 +58,7 @@ export function useLoadGate(input: LoadGateInput): LoadGateHandle {
   const initial = persistAcrossMounts ? readPersisted(id) : { attempts: 0, exhausted: false, at: 0 };
   const attemptsRef = useRef(initial.attempts);
   const [exhausted, setExhaustedState] = useState(initial.exhausted);
+  const [epoch, setEpoch] = useState(0);
   const tag = `[LOAD-GATE:${id}]`;
 
   const remember = useCallback((attempts: number, nextExhausted: boolean) => {
@@ -100,9 +101,14 @@ export function useLoadGate(input: LoadGateInput): LoadGateHandle {
       } catch (error) {
         console.warn(tag, 'повтор упал', error instanceof Error ? error.message : String(error));
       }
+      // зачем (cards-039, Сверка 81d2dfe38, координатор 18.10 05:58): раньше эффект перезапускался ТОЛЬКО по смене status, а потребитель обязан был перевести status в 'loading' на время повтора.
+      // Потребитель, который отдавал воротам лишь 'error'|'ready' (SavedCollectionState), после первого повтора оставался в 'error' → следующая пауза не ставилась → вечный скелетон при повторяющемся сбое.
+      // Теперь после КАЖДОГО повтора эффект перезапускается по счётчику (epoch), независимо от status: следующая пауза ставится либо ворота исчерпываются. Контракт 'loading' остаётся рекомендацией (ставит потолок вместо паузы).
+      setEpoch((value) => value + 1);
     }, delayMs);
     return () => clearTimeout(timer);
-  }, [enabled, exhausted, id, persistAcrossMounts, remember, setExhausted, status, tag]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: epoch — только триггер перезапуска эффекта после повтора, в теле не читается
+  }, [enabled, epoch, exhausted, id, persistAcrossMounts, remember, setExhausted, status, tag]);
 
   const retryNow = useCallback((source: 'tap' | 'foreground') => {
     console.warn(tag, 'повтор после «Сейчас недоступно»', { source });

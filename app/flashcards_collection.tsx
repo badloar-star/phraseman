@@ -80,6 +80,7 @@ import CollectionListView, {
 } from './flashcards/CollectionListView';
 import { SavedCollectionLoading, SavedCollectionState } from './flashcards/SavedCollectionStates';
 import { savedLoadBranch } from './flashcards/saved_load_branch';
+import { useSavedLoadOffline } from './flashcards/useSavedLoadOffline';
 import { resolveFlashcardListItemHeight } from './flashcards/FlashcardListItemChrome';
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
 // §5.3: два входа в набор — «Мои наборы» и каталог сообщества; «назад» ведёт ровно туда
@@ -1169,6 +1170,8 @@ export default function FlashcardsScreen() {
   const isEmpty = !loading && !packCardsPending && listCards.length === 0;
   // зачем (cards-039, Сверка 46232ea76, координатор 18.10; D158): при пустом списке и сбое загрузки скелетон висел дольше 12 с, а «Сейчас недоступно» не появлялось — «загрузка идёт» проверялась раньше «загрузка упала».
   // Ветку решает чистая savedLoadBranch (ошибка важнее скелетона), та же строка уходит в журнал [CARDS-LOAD] со значениями и причиной.
+  // зачем (координатор 18.10 05:47): устройство без сети (NetInfo, запросов не добавляет) → «Сейчас недоступно» сразу после первой неудачи; потолок 12 с остаётся для «сеть есть, сервер молчит»
+  const savedDeviceOffline = useSavedLoadOffline(loadError);
   const savedBranch = savedLoadBranch({
     savedCategory: activeCat === 'saved',
     packDeeplink: !!packDeeplink,
@@ -1176,13 +1179,14 @@ export default function FlashcardsScreen() {
     loadError,
     packCardsPending,
     listCardsCount: listCards.length,
+    deviceOffline: savedDeviceOffline,
   });
-  const savedBranchLogKey = `${savedBranch.branch}|${loading}|${loadError}|${listCards.length}|${packCardsPending}|${String(activeCat)}`;
+  const savedBranchLogKey = `${savedBranch.branch}|${savedBranch.reason}|${loading}|${loadError}|${listCards.length}|${packCardsPending}|${String(activeCat)}`;
   const savedBranchLoggedRef = useRef('');
   useEffect(() => {
     if (activeCat !== 'saved' || savedBranchLoggedRef.current === savedBranchLogKey) return;
     savedBranchLoggedRef.current = savedBranchLogKey;
-    console.log('[CARDS-LOAD] branch', JSON.stringify({ branch: savedBranch.branch, reason: savedBranch.reason, loading, loadError, collectionDataReady, listCards: listCards.length, savedCards: savedCards.length, customCards: customCards.length, packCardsPending, packDeeplink: !!packDeeplink, isEmpty })); // guard-ok: одна строка на смену ветки
+    console.log('[CARDS-LOAD] branch', JSON.stringify({ branch: savedBranch.branch, reason: savedBranch.reason, loading, loadError, deviceOffline: savedDeviceOffline, collectionDataReady, listCards: listCards.length, savedCards: savedCards.length, customCards: customCards.length, packCardsPending, packDeeplink: !!packDeeplink, isEmpty })); // guard-ok: одна строка на смену ветки
   }, [activeCat, collectionDataReady, customCards.length, isEmpty, listCards.length, loadError, loading, packCardsPending, packDeeplink, savedBranch.branch, savedBranch.reason, savedBranchLogKey, savedCards.length]);
   const bypassEmptyCustomCollection = shouldBypassEmptyCustomCollection({
     collectionDataReady,
@@ -1702,6 +1706,7 @@ export default function FlashcardsScreen() {
           <SavedCollectionState
             lang={lang}
             loadError={loadError}
+            deviceOffline={savedDeviceOffline}
             searchActive={searchQuery.trim().length > 0}
             onCommunity={openCommunityPacks}
             onRetry={loadAll}

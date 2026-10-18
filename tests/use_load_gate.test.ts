@@ -129,3 +129,50 @@ test('persistAcrossMounts: the counter survives unmount during reload (no endles
   await act(async () => { jest.advanceTimersByTime(60_000); });
   expect(retry).toHaveBeenCalledTimes(3);
 });
+
+// зачем (cards-039, Сверка 81d2dfe38, координатор 18.10 05:58): потребитель, нарушивший контракт «retry переводит status в loading» (отдаёт воротам только 'error'),
+// не должен залипать: attempt 2 и 3 случаются сами (перезапуск по счётчику повторов), затем исчерпание → «Сейчас недоступно».
+test('retry after which the status stays error (consumer never reports loading): attempts 2 and 3 still happen, then exhausted', async () => {
+  const { retry, hook } = await setup({ status: 'error' });
+  await act(async () => { jest.advanceTimersByTime(1000); });
+  expect(retry).toHaveBeenCalledTimes(1);
+  // status НЕ меняется (всё ещё error) — раньше здесь наступала тишина
+  await act(async () => { jest.advanceTimersByTime(2999); });
+  expect(retry).toHaveBeenCalledTimes(1);
+  await act(async () => { jest.advanceTimersByTime(1); });
+  expect(retry).toHaveBeenCalledTimes(2);
+  await act(async () => { jest.advanceTimersByTime(8000); });
+  expect(retry).toHaveBeenCalledTimes(3);
+  expect(hook.result.current.exhausted).toBe(true);
+  await act(async () => { jest.advanceTimersByTime(60_000); });
+  expect(retry).toHaveBeenCalledTimes(3);
+});
+
+// зачем (координатор 18.10: PaywallPlus — priceGateStatus): потребитель, СОБЛЮДАЮЩИЙ контракт (на время повтора status 'loading', затем снова 'error'), с правкой epoch ведёт себя ровно как раньше:
+// те же моменты повторов и то же число (3), между ними ни одного лишнего вызова, после исчерпания тишина. Для пейвола это значит: запросов цен (reloadOfferings) — только запланированные попытки 1–3, без цикла.
+test('contract-following consumer (paywall-like): retry moments and count are unchanged by the epoch restart, no extra calls between attempts', async () => {
+  const { retry, hook } = await setup({ status: 'error' });
+  const reportAttempt = async (loadingMs: number) => {
+    await act(async () => { await hook.rerender({ status: 'loading' }); });
+    await act(async () => { jest.advanceTimersByTime(loadingMs); });
+    await act(async () => { await hook.rerender({ status: 'error' }); });
+  };
+  await act(async () => { jest.advanceTimersByTime(999); });
+  expect(retry).toHaveBeenCalledTimes(0);
+  await act(async () => { jest.advanceTimersByTime(1); });
+  expect(retry).toHaveBeenCalledTimes(1); // attempt 1 на 1 с
+  await reportAttempt(500); // загрузка цен 500 мс, затем снова сбой
+  await act(async () => { jest.advanceTimersByTime(2999); });
+  expect(retry).toHaveBeenCalledTimes(1);
+  await act(async () => { jest.advanceTimersByTime(1); });
+  expect(retry).toHaveBeenCalledTimes(2); // attempt 2: пауза 3 с ПОСЛЕ сбоя
+  await reportAttempt(500);
+  await act(async () => { jest.advanceTimersByTime(7999); });
+  expect(retry).toHaveBeenCalledTimes(2);
+  await act(async () => { jest.advanceTimersByTime(1); });
+  expect(retry).toHaveBeenCalledTimes(3); // attempt 3: пауза 8 с
+  await reportAttempt(500);
+  expect(hook.result.current.exhausted).toBe(true);
+  await act(async () => { jest.advanceTimersByTime(120_000); });
+  expect(retry).toHaveBeenCalledTimes(3); // после исчерпания — тишина, цикла нет
+});

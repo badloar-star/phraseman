@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
@@ -14,6 +14,8 @@ type Props = {
   searchActive: boolean;
   onCommunity: () => void;
   onRetry: () => unknown;
+  /** NetInfo: сети нет — «Сейчас недоступно» сразу после первой неудачи, автоповтор идёт фоном (cards-039, координатор 18.10). */
+  deviceOffline?: boolean;
 };
 
 function noop(): void {
@@ -45,14 +47,35 @@ export function SavedCollectionLoading({ lang }: { lang: Lang }) {
 // время самой загрузки, и локальный счётчик сбрасывался бы каждый круг.
 export function SavedCollectionState(props: Props) {
   const { lang, loadError, onRetry } = props;
+  // зачем (cards-039, Сверка 81d2dfe38, координатор 18.10 05:52): контракт useLoadGate — «retry() обязан перевести status в 'loading'»: эффект ворот перезапускается ТОЛЬКО по смене status. Раньше сюда уходило лишь 'error' | 'ready':
+  // после первого тихого повтора status оставался 'error', эффект не перезапускался, паузы attempt 2/3 не ставились, ворота не исчерпывались — скелетон вечно (журнал: attempt 1 → load:ok 10 мс → тишина 52 с).
+  // Теперь `retrying` живёт на время повтора (любой исход его снимает) и отдаётся воротам как 'loading'; по завершении status возвращается в 'error' → ворота ставят следующий повтор либо исчерпываются («Сейчас недоступно»).
+  const [retrying, setRetrying] = useState(false);
+  const aliveRef = useRef(true);
+  useEffect(() => () => { aliveRef.current = false; }, []);
   const retry = useCallback(() => {
     console.warn('[FC-SAVED] тихий повтор загрузки карточек');
-    try { void Promise.resolve(onRetry()).catch((e) => console.warn('[FC-SAVED] повтор отклонён', e)); }
-    catch (e) { console.warn('[FC-SAVED] повтор упал', e); }
+    setRetrying(true);
+    const settle = (outcome: string) => {
+      console.log('[CARDS-LOAD] retry:settled', JSON.stringify({ outcome, stillMounted: aliveRef.current })); // guard-ok: итог одного повтора
+      if (aliveRef.current) setRetrying(false);
+    };
+    try { Promise.resolve(onRetry()).then(() => settle('ok'), (e) => { console.warn('[FC-SAVED] повтор отклонён', e); settle('rejected'); }); }
+    catch (e) { console.warn('[FC-SAVED] повтор упал', e); settle('threw'); }
   }, [onRetry]);
-  const gate = useLoadGate({ id: 'fc-saved', status: loadError ? 'error' : 'ready', retry, persistAcrossMounts: true });
-  if (loadError && gate.exhausted) return <SavedCollectionUnavailable lang={lang} onRetry={() => gate.retryNow('tap')} />;
-  if (loadError) return <SavedCollectionLoading lang={lang} />;
+  const gateStatus = retrying ? 'loading' : loadError ? 'error' : 'ready';
+  const gate = useLoadGate({ id: 'fc-saved', status: gateStatus, retry, persistAcrossMounts: true });
+  // зачем (координатор 18.10 05:47): без сети (NetInfo) экран ошибки — сразу после первой неудачи; автоповтор useLoadGate при этом продолжается и при успехе тихо подставит список
+  const drawn = loadError && (gate.exhausted || props.deviceOffline) ? 'unavailable' : loadError ? 'skeleton' : 'empty';
+  const drawnKey = `${drawn}|${gateStatus}|${gate.exhausted}|${String(props.deviceOffline)}`;
+  const drawnLoggedRef = useRef('');
+  useEffect(() => {
+    if (drawnLoggedRef.current === drawnKey) return;
+    drawnLoggedRef.current = drawnKey;
+    console.log('[CARDS-LOAD] state:render', JSON.stringify({ drawn, loadError, retrying, gateStatus, gateExhausted: gate.exhausted, deviceOffline: !!props.deviceOffline })); // guard-ok: что рисует состояние и по каким флагам
+  }, [drawn, drawnKey, gate.exhausted, gateStatus, loadError, props.deviceOffline, retrying]);
+  if (drawn === 'unavailable') return <SavedCollectionUnavailable lang={lang} onRetry={() => gate.retryNow('tap')} />;
+  if (drawn === 'skeleton') return <SavedCollectionLoading lang={lang} />;
   return <SavedCollectionEmpty {...props} />;
 }
 

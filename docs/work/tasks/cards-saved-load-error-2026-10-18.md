@@ -2,6 +2,11 @@
 
 Governance-ID: TG-530F9E2FCFF7
 Governance-ID: TG-CC7B0FF72D0A
+Governance-ID: TG-F23BFE489E62
+Governance-ID: TG-C2198282E0FD
+Governance-ID: TG-ACDC1372A54F
+Governance-ID: TG-211699EE4A98
+Governance-ID: TG-6CD8434DE96B
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» (поручение координатора 18.10 05:22, 🔴, перед spire-009/dialogs-009)
 Related epic/enabler: D158 (тихий повтор не бесконечный), useLoadGate, [CARDS-LOAD]
@@ -19,6 +24,20 @@ Out of scope: вид пустого состояния (cards-009) и текст
 ## Architecture
 
 Выбор ветки вынесен в чистую функцию `savedLoadBranch(...)` → `skeleton | state | list`. Ошибка важнее скелетона: при `loadError` и пустом списке показывается `SavedCollectionState` (тихий скелетон на время автоповторов useLoadGate, затем «Сейчас недоступно» + «Попробовать снова»), даже если `loading` ещё true. Потолок: пока идёт первая загрузка без кэша и карточек нет, таймер LOAD_GATE_TOTAL_MS (12 с) переводит экран в `loadError` — вечной загрузки без сети не бывает.
+
+### Дополнение (координатор 18.10 05:47): офлайн — «Сейчас недоступно» сразу после первой неудачи
+
+12 с тихого скелетона без сети — долго. Если устройство заведомо офлайн (NetInfo уже в приложении — `catalogOfflineVerdict` из `app/flashcards/useCatalogOffline.ts`, новых зависимостей нет), экран при `loadError` показывает «Сейчас недоступно» + «Попробовать снова» сразу, а автоповтор useLoadGate идёт фоном; при успехе список подставляется тихо. Потолок 12 с остаётся для случая «сеть есть, сервер молчит». Журнал: `[CARDS-LOAD] branch … reason=offline_first_fail`. Реализация: хук `useSavedLoadOffline` (NetInfo.fetch на loadError, запросов в сеть не добавляет), параметр `deviceOffline` в `savedLoadBranch` и проп в `SavedCollectionState`.
+
+### Дополнение 2 (Сверка 81d2dfe38, координатор 18.10 05:52): ворота LOAD-GATE залипают после первого тихого повтора
+
+Журнал Сверки (cards=empty&fail=saved_load): branch=state «ошибка загрузки» → load:ok 76 мс (saved 0) → `[LOAD-GATE:fc-saved] тихий повтор attempt 1` → load:ok 10 мс → тишина (нет attempt 2/3, нет новых branch), скелетон 52 с. Ветка выбрана верно — экран её держит, но скелетон рисует SavedCollectionState (loadError, ворота не исчерпаны), а ворота не идут дальше.
+Причина: контракт useLoadGate — «retry() обязан перевести status в 'loading'; иначе следующий таймер обгонит запрос» (эффект ворот перезапускается только по смене status). SavedCollectionState отдавал воротам status только 'error' | 'ready' и никогда не 'loading': после повтора status остаётся 'error', эффект не перезапускается, следующая пауза бэкоффа не ставится, ворота не исчерпываются — вечный скелетон. Это не артефакт dev-флага: при реальном повторяющемся сбое (retry снова падает, loadError остаётся true) ворота встали бы так же.
+Исправление: SavedCollectionState сам ведёт `retrying` (true на время повтора, false по его завершении любым исходом) и отдаёт воротам status 'loading' на время повтора — после завершения status возвращается в 'error', эффект ворот перезапускается и ставит следующий повтор или исчерпывает (→ «Сейчас недоступно»). Журнал [CARDS-LOAD] state:render — что именно рисует состояние и по каким флагам.
+
+### Дополнение 3 (координатор 18.10 05:58): дефект класса — чиним сам useLoadGate
+
+Потребители `useLoadGate`: SavedCollectionStates, SavedTopCommunityPacks (`loading ? 'loading' : 'error'` по внешнему флагу), flashcards_my_packs (`loadStatus`), PaywallPlusScreen (`priceGateStatus`). Все зависят от контракта «retry переводит status в 'loading'»; нарушитель найден один (SavedCollectionState), но любой будущий потребитель мог повторить. Выбор по риску: чинить ВОРОТА, а не каждого потребителя — одна точка, правка в одну строку по смыслу: после каждого повтора эффект ворот перезапускается по счётчику (`epoch`), независимо от status. Потребители, соблюдающие контракт, ведут себя как раньше (status 'loading' ставит потолок вместо паузы); нарушители больше не залипают. Тест use_load_gate: «retry, после которого status остаётся error» → attempt 2 и 3 случаются, затем исчерпание. Правка SavedCollectionState (retrying) остаётся — она даёт воротам верный статус.
 
 ## Security and privacy
 

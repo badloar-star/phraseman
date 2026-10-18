@@ -19,6 +19,8 @@ export type SavedLoadBranchInput = Readonly<{
   packCardsPending: boolean;
   /** Сколько карточек в списке сейчас. */
   listCardsCount: number;
+  /** NetInfo: устройство заведомо без сети (хук useSavedLoadOffline). Нужен только для причины в журнале; «Сейчас недоступно» сразу показывает SavedCollectionState. */
+  deviceOffline?: boolean;
 }>;
 
 /** Ветка и причина — для решения на экране и для строки журнала. */
@@ -26,6 +28,8 @@ export function savedLoadBranch(input: SavedLoadBranchInput): { branch: SavedLoa
   if (!input.savedCategory) return { branch: 'list', reason: 'не категория «Сохранённые»' };
   if (input.packDeeplink) return { branch: 'list', reason: 'открыт набор по ссылке' };
   if (input.listCardsCount > 0) return { branch: 'list', reason: `карточек в списке: ${input.listCardsCount}` };
+  // зачем (координатор 18.10 05:47): без сети человек не ждёт 12 с тихого скелетона — «Сейчас недоступно» сразу после первой неудачи, автоповтор идёт фоном
+  if (input.loadError && input.deviceOffline) return { branch: 'state', reason: 'offline_first_fail' };
   if (input.loadError) return { branch: 'state', reason: input.loading ? 'ошибка загрузки (идёт повтор): ошибка важнее скелетона' : 'ошибка загрузки' };
   if (input.loading) return { branch: 'skeleton', reason: 'загрузка идёт, ошибки нет' };
   if (input.packCardsPending) return { branch: 'list', reason: 'ждут карточки набора' };

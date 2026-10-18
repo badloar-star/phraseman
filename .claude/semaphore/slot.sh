@@ -96,6 +96,7 @@ acquire(){
     if [ "$(now)" -ge "$deadline" ]; then break; fi
     sleep 3
   done
+  ev "WAIT timeout wait_s=$wait_s held=$(held)/$SLOTS why=$why"
   # зачем: одна строка, начинается с WAIT (вызывающие читают `grep -q '^GO'` и `tail -1`); код выхода 1 — НЕ запускай тяжёлое.
   echo "WAIT  занято $(held)/$SLOTS · НЕ запускай тяжёлое (код выхода 1): делай лёгкое, или slot.sh acquire --wait \"зачем\", или slot.sh run \"зачем\" -- команда"
   return 1
@@ -124,7 +125,9 @@ release(){
 
 # run [--wait[=СЕК]] "зачем" -- команда…
 run(){
-  local wopt="--wait" why=""
+  # зачем (координатор 18.10 03:22): полный jest держал слот 30 мин, а run ждал 600 с и молча отваливался с WAIT у Тем и Входа —
+  # у run ожидание по умолчанию 3600 с (acquire без --wait по-прежнему мгновенный).
+  local wopt="--wait=${PM_SLOT_WAIT:-3600}" why=""
   while [ $# -gt 0 ] && [ "$1" != "--" ]; do
     case "$1" in
       --wait|--wait=*) wopt="$1" ;;
@@ -137,7 +140,7 @@ run(){
   [ $# -gt 0 ] || { echo "usage: slot.sh run [--wait[=СЕК]] \"зачем\" -- команда…"; return 2; }
   # зачем (координатор 18.10 00:01): два `run` одной сессии подряд оба получали «GO (слот уже был у этой сессии)»
   # и шли параллельно — два tsc по 4,6 ГБ, на ПК оставалось 94 МБ. Прогоны `run` одной сессии — строго по одному.
-  local run_wait_s=${PM_SLOT_WAIT:-600}
+  local run_wait_s=${PM_SLOT_WAIT:-3600}
   case "$wopt" in --wait=*) run_wait_s="${wopt#--wait=}" ;; esac
   case "$run_wait_s" in ''|*[!0-9]*) run_wait_s=600 ;; esac
   local run_deadline=$(( $(now) + run_wait_s ))

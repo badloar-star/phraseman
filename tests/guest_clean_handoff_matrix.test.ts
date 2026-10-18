@@ -97,6 +97,16 @@ describe('guest clean handoff matrix', () => {
     await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(true);
   });
 
+  // зачем (эмулятор 18.10 10:39): гость лишь открыл первый урок — пустой achievements_state и last_opened_lesson=1 не прогресс.
+  it('fresh guest who only opened lesson 1 is still clean; an earned achievement or another lesson is not', async () => {
+    const unearned = JSON.stringify(Array.from({ length: 32 }, (_, i) => ({ id: `a${i}`, unlockedAt: null, notified: false, shardClaimed: true })));
+    const clean = { ...FRESH_GUEST, achievements_state: unearned, last_opened_lesson: '1' };
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(clean))).resolves.toBe(true);
+    const earned = JSON.stringify([{ id: 'a0', unlockedAt: 1792068000000, notified: true, shardClaimed: true }]);
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf({ ...clean, achievements_state: earned }))).resolves.toBe(false);
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf({ ...clean, last_opened_lesson: '4' }))).resolves.toBe(false);
+  });
+
   it('retry cursor prefix in the classifier equals the cursor module export', () => {
     const { LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX } = require('../app/guest_clean_classifier');
     const { LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX } = require('../app/learning_v2_completion_retry_cursor');

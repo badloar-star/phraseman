@@ -209,6 +209,10 @@ export function classifyGuestCleanKey(key: string, raw: string | null): GuestCle
   if (key === 'achievement_foundation_progress_v2') return isEmptyFoundationProgress(value) ? 'default' : 'progress';
   // зачем (прогон Сверки guest_clean_relapse_1516, 15:38): у свежего гостя эти четыре ключа — пустые заготовки, а не прогресс.
   if (key === 'achievements_v1') return isUnearnedAchievementList(value) ? 'default' : 'progress';
+  // зачем (эмулятор 18.10 10:39, сценарий №1): у свежего гостя achievements_state — та же пустая заготовка (все unlockedAt:null),
+  // а «открыт первый урок» без прохождения — метка навигации, как unlocked_lessons=[1]. Иное значение — прогресс.
+  if (key === 'achievements_state') return isUnearnedAchievementList(value) ? 'default' : 'progress';
+  if (key === 'last_opened_lesson') return value === '1' ? 'default' : 'progress';
   if (key.startsWith('client_shard_phone_state_outbox_v1:')) return isEmptyShardOutbox(value) ? 'default' : 'progress';
   if (key.startsWith('level_spin_star_projection_v1:')) return isEmptySpinProjection(value) ? 'default' : 'progress';
   if (key.startsWith(LEARNING_V2_INDEX_MARKER_KEY_PREFIX) && value.startsWith(LEARNING_V2_INDEX_MARKER_VALUE_PREFIX)) return 'service';

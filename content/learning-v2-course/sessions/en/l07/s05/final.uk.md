@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 5 — Коли починається зміна
+# Англійська · Урок 7 · Заняття 5 — Коли ви працюєте
 
-**Ситуація.** Ви знайомитеся з колегою перед роботою, запитуєте про його зміну й перевіряєте речі в роздягальні.
+**Ситуація.** Ви розпитуєте сусідів і друзів, у який час вони працюють: уночі, зранку, ввечері чи на вихідних. Питання про звички починаємо зі слова Do.
 
-**Що ви опануєте:** запитати про початок робочої зміни й наявність потрібних речей
-**Нові слова:** shift
+**Що ви опануєте:** спитати, коли людина працює, та сказати, що в цей час чогось немає
+**Нові слова:** night, evening, morning, weekend
+**Повертаються:** work, bus, here
 
 ---
 
 ## Інтро 1
 
-### Ранній початок
+### Сусід спить удень
 
-`shift` — «зміна», частина дня, коли людина працює. `Do you start your shift early?` — «Ви починаєте свою зміну рано?» `Start your shift` — почати свою зміну, `early` — рано. Після `Do you` використовуємо `start`, без `s`.
+Новий сусід спить удень: штори у його вікнах завжди засунуті, а додому він приходить, коли у дворі вже світло, і тихо проходить повз ваші двері. Вам цікаво, чому так. night — «ніч». Спитайте: Do you work at night? — «Ви працюєте вночі?» Перед night кажемо at.
 
-**Запитайте колегу «Ви починаєте свою зміну рано?»**
+**Сусід повертається додому на світанку. Спитайте в нього: «Ви працюєте вночі?»**
 
-- ✅ **Do you start your shift early?**
-- ❌ Are you start your shift early? — *Потрібно `Do you start?`, без `are`.*
-- ❌ Do you starts your shift early? — *Після `Do you` потрібне `start`.*
+- ✅ **Do you work at night?**
+- ❌ Are you work at night? — *Тут дія work, тому потрібно Do you work, без Are.*
+- ❌ Do you works at night? — *Після Do you слово work лишається без s.*
 
 ---
 
 ## Інтро 2
 
-### Речі для роботи
+### Майстерня по суботах
 
-Перед першим робочим днем колега перевіряє, чи все у вас є. `Do you have a uniform?` — «У вас є форма?» Після `Do you` потрібне `have`. Перед `uniform` стоїть `a`: перший звук у слові — «й». Наявність форми ще не означає, що зміна вже почалася: спочатку уточнюємо, чи є що вдягнути.
+Друг кличе вас у суботу в майстерню, де роблять меблі на замовлення. Ви не певні, що майстри бувають там на вихідних. weekend — «вихідні», субота й неділя. Спитайте: Do they work on weekends? — «Вони працюють на вихідних?» Тут weekends з s: вихідні бувають щотижня.
 
-**Запитайте нового працівника «У вас є форма?»**
+**Друг кличе вас у майстерню в суботу. Спитайте його: «Вони працюють на вихідних?»**
 
-- ✅ **Do you have a uniform?**
-- ❌ Are you have a uniform? — *Тут потрібно `Do you have?`.*
-- ❌ Do you have an uniform? — *Перед `uniform` потрібне `a`.*
+- ✅ **Do they work on weekends?**
+- ❌ Are they work on weekends? — *Тут дія work, тому потрібно Do they work, без Are.*
+- ❌ Do they works on weekends? — *Після Do they слово work лишається без s.*
 
 ---
 
 ## Інтро 3
 
-### Порожня шухляда
+### Автобус зранку
 
-Друг шукає брелок. Ви відкрили шухляду й переконалися, що його там немає. `There is no keychain in the drawer` — «У шухляді немає брелока». `There is no keychain` повідомляє про відсутність, а `in the drawer` уточнює місце. Шухляду перевірено — вдруге відкривати її заради дива поки не будемо.
+Подруга пропонує їздити на роботу разом, але біля вашого дому зранку автобус не ходить: ви багато разів перевіряли зупинку. morning — «ранок». There is no bus in the morning — «Зранку немає автобуса». Кажемо There is no і називаємо одну річ, а час доби додаємо наприкінці: in the morning.
 
-**Повідомте другові «У шухляді немає брелока».**
+**Подруга пропонує їздити разом. Скажіть їй: «Зранку немає автобуса».**
 
-- ✅ **There is no keychain in the drawer.**
-- ❌ There are no keychain in the drawer. — *Один брелок: `There is no keychain`.*
-- ❌ There no keychain in the drawer. — *Потрібно `There is no`, з `is`.*
+- ✅ **There is no bus in the morning.**
+- ❌ There are no bus in the morning. — *Слово bus стоїть в однині: потрібно There is no.*
+- ❌ There is no bus on the morning. — *З ранком кажемо in the morning.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «Ви починаєте свою зміну рано?»**
+**1 · Картка слова — night**
+<!-- interaction_id: en:lesson-07:session-05:word:night; family: word_card -->
+> **night** — ніч. I work at night. — «Я працюю вночі». Час, коли темно й більшість людей спить.
+
+**2 · Сусід повертається додому на світанку. Спитайте: «Ви працюєте вночі?»**
 <!-- interaction_id: en:lesson-07:session-05:i01; family: phrase_builder -->
-Плитки: `early` `shift` `your` `start` `you` `Do` → **Do you start your shift early?**
+Плитки: `night` `at` `work` `you` `Do` `Are` → **Do you work at night?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you work at night?`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — morning**
+<!-- interaction_id: en:lesson-07:session-05:word:morning; family: word_card -->
+> **morning** — ранок. We start in the morning. — «Ми починаємо зранку». Час після ночі, коли починається день.
+
+**4 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-07:session-05:i02; family: listen_choose -->
-🔊 *shift* → **shift** · map · drawer
-- map — *У записі перше слово — `shift`, а в цьому варіанті — `map`.*
-- drawer — *У записі перше слово — `shift`, а в цьому варіанті — `drawer`.*
+🔊 *I work at night.* → **I work at night.** · I work in the morning. · We work at night.
+- I work in the morning. — *У записі останнє слово — `night`, ніч, а в цьому варіанті — `morning`, ранок.*
+- We work at night. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**3 · Запитайте про ранній початок зміни**
+**5 · Картка слова — evening**
+<!-- interaction_id: en:lesson-07:session-05:word:evening; family: word_card -->
+> **evening** — вечір. We are at home in the evening. — «Ввечері ми вдома». Частина доби між днем і ніччю.
+
+**6 · Спитайте сусіда: «Ви працюєте ввечері?». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-05:i03; family: context_gap_grammar -->
-Do you ___ your shift early? → **start** · starts · are start
-- starts — *Після `Do you` потрібне `start`.*
-- are start — *Потрібно `Do you start?`, без `are`.*
+Do you ___ in the evening? → **work** · works · are work
+- works — *Після `Do you` потрібно `work`, без `s`.*
+- are work — *Потрібно `Do you work`, без `are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · Картка слова — weekend**
+<!-- interaction_id: en:lesson-07:session-05:word:weekend; family: word_card -->
+> **weekend** — вихідні. We are at home on weekends. — «На вихідних ми вдома». Субота й неділя.
+
+**8 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-05:i04; family: speed_match -->
-shift — робоча зміна · map — карта · drawer — шухляда · keychain — брелок
+night — ніч · evening — вечір · morning — ранок · weekend — вихідні
 
-**5 · Послухайте й складіть запитання**
+**9 · Послухайте сусіда й складіть питання**
 <!-- interaction_id: en:lesson-07:session-05:i05; family: listen_build_dictation -->
-🔊 *Do you start your shift early?* Плитки: `early` `shift` `your` `start` `you` `Do` → **Do you start your shift early?**
+🔊 *Do you work on weekends?* Плитки: `weekends` `on` `work` `you` `Do` `Are` → **Do you work on weekends?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you work on weekends?`)*
 
-**6 · Запитайте працівника «У вас є форма?»**
+**10 · Подруга каже, що її батьки сплять удень. Спитайте: «Вони працюють уночі?»**
 <!-- interaction_id: en:lesson-07:session-05:i06; family: phrase_builder -->
-Плитки: `uniform` `a` `have` `you` `Do` → **Do you have a uniform?**
+Плитки: `night` `at` `work` `they` `Do` `Are` → **Do they work at night?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do they work at night?`)*
 
-**7 · Повідомте «У шухляді немає брелока»**
+**11 · Подруга пропонує їздити на роботу разом. Скажіть їй: «Зранку немає автобуса»**
 <!-- interaction_id: en:lesson-07:session-05:i07; family: scripted_repeat_compare -->
-🎙 **There is no keychain in the drawer.**
+🎙 **There is no bus in the morning.**
 
-**8 · Біля входу запитайте людину «Ви працюєте тут?»**
+**12 · Спитайте про двох сусідів: «Вони працюють ввечері?». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-05:i08; family: context_gap_grammar -->
-___ you work here? → **Do** · Are · Is
-- Are — *З дією `work` тут потрібно `Do you work?`.*
-- Is — *Потрібно `Do you work?`.*
+___ they work in the evening? → **Do** · Are · Is
+- Are — *З `work` потрібно `Do they work`, без `Are`.*
+- Is — *З `they` потрібно `Do`, а `Is` сюди не пасує.*
 
-**9 · Послухайте запитання колеги про зміну**
+**13 · Послухайте питання подруги**
 <!-- interaction_id: en:lesson-07:session-05:i09; family: listen_choose -->
-🔊 *Do you start your shift early?* → **Do you start your shift early?** · Do you start your shift late? · Do you start your shift here?
-- Do you start your shift late? — *У записі останнє слово — `early`, а в цьому варіанті — `late`.*
-- Do you start your shift here? — *У записі останнє слово — `early`, а в цьому варіанті — `here`.*
+🔊 *Do you work in the morning?* → **Do you work in the morning?** · Do you work in the evening? · Do they work in the morning?
+- Do you work in the evening? — *У записі останнє слово — `morning`, ранок, а в цьому варіанті — `evening`, вечір.*
+- Do they work in the morning? — *У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-05:i10; family: speed_match -->
-uniform — уніформа · shift — робоча зміна · drawer — шухляда · keychain — брелок
+morning — ранок · weekend — вихідні · night — ніч · evening — вечір
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте подругу й складіть питання**
 <!-- interaction_id: en:lesson-07:session-05:i11; family: listen_build_dictation -->
-🔊 *Do you have a uniform?* Плитки: `uniform` `a` `have` `you` `Do` → **Do you have a uniform?**
+🔊 *Do they work in the morning?* Плитки: `morning` `the` `in` `work` `they` `Do` `Are` → **Do they work in the morning?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do they work in the morning?`)*
 
-**12 · Ви шукаєте дорогу до фабрики. Запитайте друга «У тебе є карта?»**
+**16 · Ввечері ви хочете покликати сусіда гуляти. Спитайте: «Ви працюєте ввечері?»**
 <!-- interaction_id: en:lesson-07:session-05:i12; family: phrase_builder -->
-Плитки: `map` `a` `have` `you` `Do` → **Do you have a map?**
+Плитки: `evening` `the` `in` `work` `you` `Do` `Are` → **Do you work in the evening?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you work in the evening?`)*
 
-**13 · Колега згадав Анну й Тома. Запитайте «Вони працюють тут?»**
+**17 · Подруга розповідає про двох колег. Спитайте: «Вони працюють на вихідних?»**
 <!-- interaction_id: en:lesson-07:session-05:i13; family: scripted_repeat_compare -->
-🎙 **Do they work here?**
+🎙 **Do they work on weekends?**
 
-**14 · Повідомте «У шухляді немає брелока»**
+**18 · Скажіть, що зранку автобуса немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-05:i14; family: context_gap_grammar -->
-There ___ no keychain in the drawer. → **is** · are · am
-- are — *Один брелок: `There is no keychain`.*
-- am — *Потрібно `There is no`; `am` підходить до `I`.*
+There ___ no bus in the morning. → **is** · are · am
+- are — *Слово bus стоїть в однині: потрібно `There is no`.*
+- am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
-**15 · Послухайте, про яку річ запитує друг**
+**19 · Послухайте питання про майстерню**
 <!-- interaction_id: en:lesson-07:session-05:i15; family: listen_choose -->
-🔊 *Do you have a map?* → **Do you have a map?** · Do you have a uniform? · Do you have a keychain?
-- Do you have a uniform? — *У записі останнє слово — `map`, а в цьому варіанті — `uniform`.*
-- Do you have a keychain? — *У записі останнє слово — `map`, а в цьому варіанті — `keychain`.*
+🔊 *Do they work here at night?* → **Do they work here at night?** · Do they work here in the morning? · Do they work there at night?
+- Do they work here in the morning? — *У записі останнє слово — `night`, ніч, а в цьому варіанті — `morning`, ранок.*
+- Do they work there at night? — *У записі четверте слово — `here`, тут, а в цьому варіанті — `there`, там.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-05:i16; family: speed_match -->
-shift — робоча зміна · uniform — уніформа · map — карта · keychain — брелок
+weekend — вихідні · night — ніч · evening — вечір · morning — ранок
 
-**17 · Ви хочете зустрітися з колегою вранці. Уточніть «Ви починаєте свою зміну пізно?»**
+**21 · Ви зустріли сусіда зранку біля під’їзду. Спитайте: «Ви працюєте зранку?»**
 <!-- interaction_id: en:lesson-07:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do you start your shift late?**
-
+🎙 **Do you work in the morning?**

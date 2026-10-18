@@ -4,28 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-11:i01",
+      "interactionId": "en:lesson-07:session-11:word:salon",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — salon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-11:word:salon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — salon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-11:word:salon:audio",
+          "transcript": "salon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-11:word:salon:r1",
+            "targetText": "salon",
+            "meaningByLocale": {
+              "ru": "салон красоты. The salon is small. — «Салон маленький». Место, где стригут и красят волосы.",
+              "uk": "салон краси. The salon is small. — «Салон маленький». Місце, де стрижуть і фарбують волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salon",
+          "definitionByLocale": {
+            "ru": "салон красоты. The salon is small. — «Салон маленький». Место, где стригут и красят волосы.",
+            "uk": "салон краси. The salon is small. — «Салон маленький». Місце, де стрижуть і фарбують волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-11:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Принтер працює?»",
+      "prompt": "Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Принтер працює?»",
+      "accessibilityLabel": "Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does the printer work?",
+        "targetPhrase": "Does the salon close late?",
         "localizedMeaning": {
-          "ru": "Спросите «Принтер работает?»",
-          "uk": "Запитайте «Принтер працює?»"
+          "ru": "Подруга хочет подстричься после работы. Спросите администратора: «Салон закрывается поздно?»",
+          "uk": "Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»"
         },
         "orderedTokens": [
           "Does",
           "the",
-          "printer",
-          "work"
+          "salon",
+          "close",
+          "late"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,52 +81,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-11:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-11:word:bookshop",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — bookshop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-11:word:bookshop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bookshop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-11:word:bookshop:audio",
+          "transcript": "bookshop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-11:word:bookshop:r1",
+            "targetText": "bookshop",
+            "meaningByLocale": {
+              "ru": "книжный магазин. The bookshop is old. — «Книжный магазин старый». Магазин, где продают книги.",
+              "uk": "книгарня. The bookshop is old. — «Книгарня стара». Магазин, де продають книжки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bookshop",
+          "definitionByLocale": {
+            "ru": "книжный магазин. The bookshop is old. — «Книжный магазин старый». Магазин, где продают книги.",
+            "uk": "книгарня. The bookshop is old. — «Книгарня стара». Магазин, де продають книжки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-11:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-11:i02:r1",
-          "text": "printer"
+          "text": "Does the bookshop sell postcards?"
         },
         {
           "responseId": "en:lesson-07:session-11:i02:r2",
-          "text": "backpack"
+          "text": "Does the bookshop sell parcels?"
         },
         {
           "responseId": "en:lesson-07:session-11:i02:r3",
-          "text": "poster"
+          "text": "Does the salon sell postcards?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i02:audio",
-          "transcript": "printer"
+          "transcript": "Does the bookshop sell postcards?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-11:i02:r1",
-            "targetText": "printer",
+            "targetText": "Does the bookshop sell postcards?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-11:i02:r2",
-            "targetText": "backpack",
+            "targetText": "Does the bookshop sell parcels?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-11:i02:r3",
-            "targetText": "poster",
+            "targetText": "Does the salon sell postcards?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +178,19 @@
           {
             "responseId": "en:lesson-07:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `printer`, а в этом варианте — `backpack`.",
-              "uk": "У записі перше слово — `printer`, а в цьому варіанті — `backpack`."
+              "ru": "В записи последнее слово — `postcards`, открытки, а в этом варианте — `parcels`, посылки.",
+              "uk": "У записі останнє слово — `postcards`, листівки, а в цьому варіанті — `parcels`, посилки."
             }
           },
           {
             "responseId": "en:lesson-07:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `printer`, а в этом варианте — `poster`.",
-              "uk": "У записі перше слово — `printer`, а в цьому варіанті — `poster`."
+              "ru": "В записи третье слово — `bookshop`, книжный магазин, а в этом варианте — `salon`, салон.",
+              "uk": "У записі третє слово — `bookshop`, книгарня, а в цьому варіанті — `salon`, салон."
             }
           }
         ],
@@ -113,68 +200,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-11:word:greengrocer",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — greengrocer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-11:word:greengrocer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — greengrocer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-11:word:greengrocer:audio",
+          "transcript": "greengrocer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-11:word:greengrocer:r1",
+            "targetText": "greengrocer",
+            "meaningByLocale": {
+              "ru": "продавец овощей и фруктов. The greengrocer is friendly. — «Продавец овощей приветливый». Человек, который торгует овощами и фруктами.",
+              "uk": "продавець овочів і фруктів. The greengrocer is friendly. — «Продавець овочів привітний». Людина, яка торгує овочами й фруктами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "greengrocer",
+          "definitionByLocale": {
+            "ru": "продавец овощей и фруктов. The greengrocer is friendly. — «Продавец овощей приветливый». Человек, который торгует овощами и фруктами.",
+            "uk": "продавець овочів і фруктів. The greengrocer is friendly. — «Продавець овочів привітний». Людина, яка торгує овочами й фруктами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-11:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, чи працює принтер",
+      "prompt": "Спитайте сусіда про овочі. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-11:i03:r1",
-          "text": "work"
+          "text": "sell"
         },
         {
           "responseId": "en:lesson-07:session-11:i03:r2",
-          "text": "works"
+          "text": "sells"
         },
         {
           "responseId": "en:lesson-07:session-11:i03:r3",
-          "text": "is work"
+          "text": "is sell"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, чи працює принтер",
+      "accessibilityLabel": "Спитайте сусіда про овочі. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, работает ли принтер",
-          "uk": "Запитайте, чи працює принтер"
+          "ru": "Спросите соседа об овощах. Выберите слово",
+          "uk": "Спитайте сусіда про овочі. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does the printer ___?",
+        "gappedTargetPhrase": "Does the greengrocer ___ cucumbers?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-11:i03:r1",
-            "text": "work"
+            "text": "sell"
           },
           {
             "responseId": "en:lesson-07:session-11:i03:r2",
-            "text": "works"
+            "text": "sells"
           },
           {
             "responseId": "en:lesson-07:session-11:i03:r3",
-            "text": "is work"
+            "text": "is sell"
           }
         ],
-        "testedDimension": "Запитайте, чи працює принтер",
+        "testedDimension": "Спитайте сусіда про овочі. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-11:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте, чи працює принтер",
+            "testedDimension": "Спитайте сусіда про овочі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `Does` нужно `work`.",
-              "uk": "Після `Does` потрібне `work`."
+              "ru": "После `Does` нужно `sell`, без `s`.",
+              "uk": "Після `Does` потрібно `sell`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-11:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте, чи працює принтер",
+            "testedDimension": "Спитайте сусіда про овочі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Does the printer work?`, без `is`.",
-              "uk": "Потрібно `Does the printer work?`, без `is`."
+              "ru": "Нужно `Does the greengrocer sell?`, без `is`.",
+              "uk": "Потрібно `Does the greengrocer sell?`, без `is`."
             }
           }
         ]
@@ -183,7 +313,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +327,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-11:i04:p1",
-            "target": "printer",
+            "target": "salon",
             "meaningByLocale": {
-              "ru": "принтер",
-              "uk": "принтер"
+              "ru": "салон красоты",
+              "uk": "салон краси"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i04:p2",
-            "target": "room",
+            "target": "bookshop",
             "meaningByLocale": {
-              "ru": "комната",
-              "uk": "кімната"
+              "ru": "книжный магазин",
+              "uk": "книгарня"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i04:p3",
-            "target": "backpack",
+            "target": "greengrocer",
             "meaningByLocale": {
-              "ru": "рюкзак",
-              "uk": "рюкзак"
+              "ru": "продавец овощей и фруктов",
+              "uk": "продавець овочів і фруктів"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i04:p4",
-            "target": "poster",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "плакат",
-              "uk": "плакат"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           }
         ],
         "leftColumn": [
-          "printer",
-          "room",
-          "backpack",
-          "poster"
+          "salon",
+          "bookshop",
+          "greengrocer",
+          "apple"
         ],
         "rightColumn": [
-          "принтер",
-          "кімната",
-          "рюкзак",
-          "плакат"
+          "салон краси",
+          "книгарня",
+          "продавець овочів і фруктів",
+          "яблуко"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,31 +385,75 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-11:word:optician",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — optician",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-11:word:optician:audio"
+      ],
+      "accessibilityLabel": "Картка слова — optician",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-11:word:optician:audio",
+          "transcript": "optician"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-11:word:optician:r1",
+            "targetText": "optician",
+            "meaningByLocale": {
+              "ru": "специалист по подбору очков. The optician is busy. — «Специалист по очкам занят». Человек, который подбирает и изготавливает очки.",
+              "uk": "фахівець із підбору окулярів. The optician is busy. — «Фахівець з окулярів зайнятий». Людина, яка підбирає та виготовляє окуляри."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "optician",
+          "definitionByLocale": {
+            "ru": "специалист по подбору очков. The optician is busy. — «Специалист по очкам занят». Человек, который подбирает и изготавливает очки.",
+            "uk": "фахівець із підбору окулярів. The optician is busy. — «Фахівець з окулярів зайнятий». Людина, яка підбирає та виготовляє окуляри."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-11:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте подругу й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте подругу й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i05:audio",
-          "transcript": "Does the printer work?"
+          "transcript": "Does the optician start early?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does the printer work?",
+        "hiddenTargetPhrase": "Does the optician start early?",
         "orderedTokens": [
           "Does",
           "the",
-          "printer",
-          "work"
+          "optician",
+          "start",
+          "early"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -292,30 +466,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Повідомте «У цій кімнаті немає принтера»",
+      "prompt": "Ви йдете по книжку до роботи. Спитайте сусіда: «Книгарня відчиняється рано?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «У цій кімнаті немає принтера»",
+      "accessibilityLabel": "Ви йдете по книжку до роботи. Спитайте сусіда: «Книгарня відчиняється рано?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There is no printer in this room.",
+        "targetPhrase": "Does the bookshop open early?",
         "localizedMeaning": {
-          "ru": "Сообщите «В этой комнате нет принтера»",
-          "uk": "Повідомте «У цій кімнаті немає принтера»"
+          "ru": "Вы идёте за книгой до работы. Спросите соседа: «Книжный магазин открывается рано?»",
+          "uk": "Ви йдете по книжку до роботи. Спитайте сусіда: «Книгарня відчиняється рано?»"
         },
         "orderedTokens": [
-          "There",
-          "is",
-          "no",
-          "printer",
-          "in",
-          "this",
-          "room"
+          "Does",
+          "the",
+          "bookshop",
+          "open",
+          "early"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -328,25 +500,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте про Анну «Вона працює тут?»",
+      "prompt": "Подруга чекає біля дверей. Спитайте адміністратора: «Салон зачиняється пізно?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте про Анну «Вона працює тут?»",
+      "accessibilityLabel": "Подруга чекає біля дверей. Спитайте адміністратора: «Салон зачиняється пізно?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i07:audio",
-          "transcript": "Does she work here?"
+          "transcript": "Does the salon close late?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does she work here?",
+        "targetPhrase": "Does the salon close late?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -361,67 +533,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте знайомого «Ти вивчаєш англійську тут?»",
+      "prompt": "Спитайте сусіда про яблука. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-11:i08:r1",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-07:session-11:i08:r2",
           "text": "Does"
         },
         {
+          "responseId": "en:lesson-07:session-11:i08:r2",
+          "text": "Do"
+        },
+        {
           "responseId": "en:lesson-07:session-11:i08:r3",
-          "text": "Are"
+          "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте знайомого «Ти вивчаєш англійську тут?»",
+      "accessibilityLabel": "Спитайте сусіда про яблука. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите знакомого «Ты изучаешь английский здесь?»",
-          "uk": "Запитайте знайомого «Ти вивчаєш англійську тут?»"
+          "ru": "Спросите соседа о яблоках. Выберите слово",
+          "uk": "Спитайте сусіда про яблука. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you learn English here?",
+        "gappedTargetPhrase": "___ the greengrocer sell apples?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-11:i08:r1",
-            "text": "Do"
-          },
-          {
-            "responseId": "en:lesson-07:session-11:i08:r2",
             "text": "Does"
           },
           {
+            "responseId": "en:lesson-07:session-11:i08:r2",
+            "text": "Do"
+          },
+          {
             "responseId": "en:lesson-07:session-11:i08:r3",
-            "text": "Are"
+            "text": "Is"
           }
         ],
-        "testedDimension": "Запитайте знайомого «Ти вивчаєш англійську тут?»",
+        "testedDimension": "Спитайте сусіда про яблука. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-11:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте знайомого «Ти вивчаєш англійську тут?»",
+            "testedDimension": "Спитайте сусіда про яблука. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `Do`.",
-              "uk": "З `you` потрібне `Do`."
+              "ru": "Продавец один: нужно `Does`.",
+              "uk": "Продавець один: потрібно `Does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-11:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте знайомого «Ти вивчаєш англійську тут?»",
+            "testedDimension": "Спитайте сусіда про яблука. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С действием `learn` здесь нужно `Do you learn?`.",
-              "uk": "З дією `learn` тут потрібно `Do you learn?`."
+              "ru": "С действием `sell` нужно `Does`, а не `Is`.",
+              "uk": "З дією `sell` потрібне `Does`, а не `Is`."
             }
           }
         ]
@@ -430,51 +602,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про пристрій",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-11:i09:r1",
-          "text": "Does the printer work?"
+          "text": "Does the optician start early?"
         },
         {
           "responseId": "en:lesson-07:session-11:i09:r2",
-          "text": "Does the printer open?"
+          "text": "Does the optician start late?"
         },
         {
           "responseId": "en:lesson-07:session-11:i09:r3",
-          "text": "Does the printer start?"
+          "text": "Does the barber start early?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про пристрій",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i09:audio",
-          "transcript": "Does the printer work?"
+          "transcript": "Does the optician start early?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-11:i09:r1",
-            "targetText": "Does the printer work?",
+            "targetText": "Does the optician start early?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-11:i09:r2",
-            "targetText": "Does the printer open?",
+            "targetText": "Does the optician start late?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-11:i09:r3",
-            "targetText": "Does the printer start?",
+            "targetText": "Does the barber start early?",
             "meaningByLocale": null
           }
         ],
@@ -483,19 +655,19 @@
           {
             "responseId": "en:lesson-07:session-11:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про пристрій",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `work`, а в этом варианте — `open`.",
-              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `open`."
+              "ru": "В записи последнее слово — `early`, рано, а в этом варианте — `late`, поздно.",
+              "uk": "У записі останнє слово — `early`, рано, а в цьому варіанті — `late`, пізно."
             }
           },
           {
             "responseId": "en:lesson-07:session-11:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про пристрій",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `work`, а в этом варианте — `start`.",
-              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `start`."
+              "ru": "В записи третье слово — `optician`, специалист по очкам, а в этом варианте — `barber`, парикмахер.",
+              "uk": "У записі третє слово — `optician`, фахівець з окулярів, а в цьому варіанті — `barber`, перукар."
             }
           }
         ],
@@ -506,8 +678,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -520,48 +692,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-11:i10:p1",
-            "target": "learn",
+            "target": "greengrocer",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "продавец овощей и фруктов",
+              "uk": "продавець овочів і фруктів"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i10:p2",
-            "target": "printer",
+            "target": "cucumber",
             "meaningByLocale": {
-              "ru": "принтер",
-              "uk": "принтер"
+              "ru": "огурец",
+              "uk": "огірок"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i10:p3",
-            "target": "room",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "комната",
-              "uk": "кімната"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i10:p4",
-            "target": "backpack",
+            "target": "onion",
             "meaningByLocale": {
-              "ru": "рюкзак",
-              "uk": "рюкзак"
+              "ru": "лук (луковица)",
+              "uk": "цибуля (цибулина)"
             }
           }
         ],
         "leftColumn": [
-          "learn",
-          "printer",
-          "room",
-          "backpack"
+          "greengrocer",
+          "cucumber",
+          "apple",
+          "onion"
         ],
         "rightColumn": [
-          "вчитися",
-          "принтер",
-          "кімната",
-          "рюкзак"
+          "продавець овочів і фруктів",
+          "огірок",
+          "яблуко",
+          "цибуля (цибулина)"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -579,30 +751,31 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте подругу й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте подругу й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i11:audio",
-          "transcript": "Does she work here?"
+          "transcript": "Does the greengrocer sell cucumbers?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does she work here?",
+        "hiddenTargetPhrase": "Does the greengrocer sell cucumbers?",
         "orderedTokens": [
           "Does",
-          "she",
-          "work",
-          "here"
+          "the",
+          "greengrocer",
+          "sell",
+          "cucumbers"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -615,28 +788,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед заняттям запитайте колегу «У вас є плакат?»",
+      "prompt": "Вам потрібна листівка для друга. Спитайте сусідку: «Книгарня продає листівки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед заняттям запитайте колегу «У вас є плакат?»",
+      "accessibilityLabel": "Вам потрібна листівка для друга. Спитайте сусідку: «Книгарня продає листівки?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a poster?",
+        "targetPhrase": "Does the bookshop sell postcards?",
         "localizedMeaning": {
-          "ru": "Перед занятием спросите коллегу «У вас есть плакат?»",
-          "uk": "Перед заняттям запитайте колегу «У вас є плакат?»"
+          "ru": "Вам нужна открытка для друга. Спросите соседку: «Книжный магазин продаёт открытки?»",
+          "uk": "Вам потрібна листівка для друга. Спитайте сусідку: «Книгарня продає листівки?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "poster"
+          "Does",
+          "the",
+          "bookshop",
+          "sell",
+          "postcards"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -649,25 +822,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Поясніть колезі «Плакат у моєму рюкзаку»",
+      "prompt": "Вам потрібні нові окуляри. Спитайте сусіда: «Фахівець з окулярів продає окуляри?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i13:audio"
       ],
-      "accessibilityLabel": "Поясніть колезі «Плакат у моєму рюкзаку»",
+      "accessibilityLabel": "Вам потрібні нові окуляри. Спитайте сусіда: «Фахівець з окулярів продає окуляри?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i13:audio",
-          "transcript": "The poster is in my backpack."
+          "transcript": "Does the optician sell glasses?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The poster is in my backpack.",
+        "targetPhrase": "Does the optician sell glasses?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -682,67 +855,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повідомте «Тут немає принтера»",
+      "prompt": "Спитайте адміністратора про салон. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-11:i14:r1",
-          "text": "is"
+          "text": "close"
         },
         {
           "responseId": "en:lesson-07:session-11:i14:r2",
-          "text": "are"
+          "text": "closes"
         },
         {
           "responseId": "en:lesson-07:session-11:i14:r3",
-          "text": "am"
+          "text": "is close"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Тут немає принтера»",
+      "accessibilityLabel": "Спитайте адміністратора про салон. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет принтера»",
-          "uk": "Повідомте «Тут немає принтера»"
+          "ru": "Спросите администратора о салоне. Выберите слово",
+          "uk": "Спитайте адміністратора про салон. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no printer here.",
+        "gappedTargetPhrase": "Does the salon ___ late?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-11:i14:r1",
-            "text": "is"
+            "text": "close"
           },
           {
             "responseId": "en:lesson-07:session-11:i14:r2",
-            "text": "are"
+            "text": "closes"
           },
           {
             "responseId": "en:lesson-07:session-11:i14:r3",
-            "text": "am"
+            "text": "is close"
           }
         ],
-        "testedDimension": "Повідомте «Тут немає принтера»",
+        "testedDimension": "Спитайте адміністратора про салон. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-11:i14:r2",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає принтера»",
+            "testedDimension": "Спитайте адміністратора про салон. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Один принтер: `There is no printer`.",
-              "uk": "Один принтер: `There is no printer`."
+              "ru": "После `Does` нужно `close`, без `s`.",
+              "uk": "Після `Does` потрібно `close`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-11:i14:r3",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає принтера»",
+            "testedDimension": "Спитайте адміністратора про салон. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `There is no`; `am` подходит к `I`.",
-              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+              "ru": "Нужно `Does the salon close?`, без `is`.",
+              "uk": "Потрібно `Does the salon close?`, без `is`."
             }
           }
         ]
@@ -751,51 +924,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про місце занять",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-11:i15:r1",
-          "text": "Do you learn English here?"
+          "text": "Does the greengrocer sell apples?"
         },
         {
           "responseId": "en:lesson-07:session-11:i15:r2",
-          "text": "Do you learn English there?"
+          "text": "Does the greengrocer sell onions?"
         },
         {
           "responseId": "en:lesson-07:session-11:i15:r3",
-          "text": "Do you learn English outside?"
+          "text": "Does the bookshop sell apples?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про місце занять",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i15:audio",
-          "transcript": "Do you learn English here?"
+          "transcript": "Does the greengrocer sell apples?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-11:i15:r1",
-            "targetText": "Do you learn English here?",
+            "targetText": "Does the greengrocer sell apples?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-11:i15:r2",
-            "targetText": "Do you learn English there?",
+            "targetText": "Does the greengrocer sell onions?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-11:i15:r3",
-            "targetText": "Do you learn English outside?",
+            "targetText": "Does the bookshop sell apples?",
             "meaningByLocale": null
           }
         ],
@@ -804,19 +977,19 @@
           {
             "responseId": "en:lesson-07:session-11:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про місце занять",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `apples`, яблоки, а в этом варианте — `onions`, лук.",
+              "uk": "У записі останнє слово — `apples`, яблука, а в цьому варіанті — `onions`, цибуля."
             }
           },
           {
             "responseId": "en:lesson-07:session-11:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про місце занять",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+              "ru": "В записи третье слово — `greengrocer`, продавец овощей, а в этом варианте — `bookshop`, книжный магазин.",
+              "uk": "У записі третє слово — `greengrocer`, продавець овочів, а в цьому варіанті — `bookshop`, книгарня."
             }
           }
         ],
@@ -827,7 +1000,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -841,48 +1014,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-11:i16:p1",
-            "target": "printer",
+            "target": "optician",
             "meaningByLocale": {
-              "ru": "принтер",
-              "uk": "принтер"
+              "ru": "специалист по подбору очков",
+              "uk": "фахівець із підбору окулярів"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i16:p2",
-            "target": "poster",
+            "target": "glasses",
             "meaningByLocale": {
-              "ru": "плакат",
-              "uk": "плакат"
+              "ru": "очки",
+              "uk": "окуляри"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i16:p3",
-            "target": "learn",
+            "target": "postcard",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "открытка",
+              "uk": "листівка"
             }
           },
           {
             "pairId": "en:lesson-07:session-11:i16:p4",
-            "target": "backpack",
+            "target": "salon",
             "meaningByLocale": {
-              "ru": "рюкзак",
-              "uk": "рюкзак"
+              "ru": "салон красоты",
+              "uk": "салон краси"
             }
           }
         ],
         "leftColumn": [
-          "printer",
-          "poster",
-          "learn",
-          "backpack"
+          "optician",
+          "glasses",
+          "postcard",
+          "salon"
         ],
         "rightColumn": [
-          "принтер",
-          "плакат",
-          "вчитися",
-          "рюкзак"
+          "фахівець із підбору окулярів",
+          "окуляри",
+          "листівка",
+          "салон краси"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -900,25 +1073,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-11:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви зустріли друга в мовній школі. Уточніть «Анна вивчає англійську тут?»",
+      "prompt": "Ви йдете вулицею разом із сусідкою. Спитайте її: «Книгарня зачиняється пізно?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-11:i17:audio"
       ],
-      "accessibilityLabel": "Ви зустріли друга в мовній школі. Уточніть «Анна вивчає англійську тут?»",
+      "accessibilityLabel": "Ви йдете вулицею разом із сусідкою. Спитайте її: «Книгарня зачиняється пізно?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-11:i17:audio",
-          "transcript": "Does Anna learn English here?"
+          "transcript": "Does the bookshop close late?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does Anna learn English here?",
+        "targetPhrase": "Does the bookshop close late?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -940,11 +1113,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7351936f4240930b2ca7164727675f652cc06e37b43a0ddfc44a1d982d565db6"
+  "learnerFingerprint": "116cf41faae2fc6b8f4114a97df3e15384c46f7e66c6415da11f3d447a567165"
 }

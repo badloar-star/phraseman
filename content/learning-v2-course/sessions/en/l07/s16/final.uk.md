@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 16 — Підготовка офісу до зустрічі
+# Англійська · Урок 7 · Заняття 16 — На фермі в подруги
 
-**Ситуація.** Ви приїхали до іншого офісу перед зустріччю. Треба знайти керівника, перевірити принтер і переконатися, що в кімнаті є екран.
+**Ситуація.** Ви приїхали на ферму до батьків подруги й розпитуєте про господарство та домашніх тварин. Усе, що ви дізналися про Do і Does у цьому уроці, збирається докупи.
 
-**Що ви опануєте:** самостійно вибрати Do або Does і повідомити про відсутність пристрою
-**Нові слова:** —
+**Що ви опануєте:** самостійно вибрати Do або Does і повідомити, що чогось немає
+**Нові слова:** farmer, parrot, goldfish, turtle
+**Повертаються:** cage, aquarium, box, live, sleep, feed, have
 
 ---
 
 ## Інтро 1
 
-### Хто допоможе на місці
+### Сусіднє подвір’я
 
-У незнайомому офісі ви шукаєте керівника. `Does the manager work here?` — «Керівник працює тут?» Про одного керівника запитуємо з `Does`, а далі використовуємо `work`, без `s`.
+Подруга кличе вас на ферму батьків на вихідні. Дорогою вона каже, що сусіднє подвір’я належить фермерові. farmer — «фермер». Ви хочете дізнатися, де він живе. Спитайте подругу: Does the farmer live here? — «Фермер живе тут?» The farmer можна замінити на he, тому тут Does.
 
-**Запитайте працівника «Керівник працює тут?»**
+**Ви під’їжджаєте до ферми. Спитайте подругу: «Фермер живе тут?»**
 
-- ✅ **Does the manager work here?**
-- ❌ Do the manager work here? — *Один керівник: `Does the manager`.*
-- ❌ Does the manager works here? — *Після `Does` потрібне `work`.*
+- ✅ **Does the farmer live here?**
+- ❌ Do the farmer live here? — *Фермер один: потрібно Does.*
+- ❌ Does the farmer lives here? — *Після Does потрібно live, без s.*
 
 ---
 
 ## Інтро 2
 
-### Надрукувати розклад
+### Птах у клітці
 
-Перед зустріччю потрібно надрукувати розклад. `Does the printer work?` — «Принтер працює?» Про пристрій теж запитуємо з `Does`. Після `Does the printer` потрібне `work`. Принтер може бути великим і дорогим, але запитання все одно коротке: чи працює він?
+Ви прийшли до батьків подруги. Із сусідньої кімнати чути, як птах повторює слова, але ви туди ще не заглядали: можливо, там увімкнений телевізор. parrot — «папуга». Спитайте господиню: Do you have a parrot? — «У вас є папуга?» З you потрібно Do.
 
-**Запитайте колегу «Принтер працює?»**
+**Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»**
 
-- ✅ **Does the printer work?**
-- ❌ Do the printer work? — *Один принтер: `Does the printer`.*
-- ❌ Does the printer works? — *Після `Does` потрібне `work`.*
+- ✅ **Do you have a parrot?**
+- ❌ Does you have a parrot? — *З you потрібно Do.*
+- ❌ Do you has a parrot? — *Після Do потрібно have, не has.*
 
 ---
 
 ## Інтро 3
 
-### Екран не знайшли
+### Акваріум у холі
 
-Ви перевірили кімнату для зустрічі. `There is no screen in this room` — «У цій кімнаті немає екрана». Так повідомляємо, що екрана тут немає: `There is no screen`. Ми не кажемо, що екран зламаний: у цій кімнаті його взагалі немає.
+У холі будинку стоїть акваріум, і в ньому плаває одна маленька золота рибка. Подруга каже, що батьки дбають про неї самі. goldfish — «золота рибка». Спитайте: Do they feed the goldfish early? — «Вони годують золоту рибку рано?» З they потрібно Do.
 
-**Повідомте колезі «У цій кімнаті немає екрана».**
+**Ви дивитеся на акваріум. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»**
 
-- ✅ **There is no screen in this room.**
-- ❌ There are no screen in this room. — *Один екран: `There is no screen`.*
-- ❌ There no screen in this room. — *Потрібно `There is no`, з `is`.*
+- ✅ **Do they feed the goldfish early?**
+- ❌ Does they feed the goldfish early? — *З they потрібно Do.*
+- ❌ Do they feeds the goldfish early? — *Після Do потрібно feed, без s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «Керівник працює тут?»**
+**1 · Картка слова — farmer**
+<!-- interaction_id: en:lesson-07:session-16:word:farmer; family: word_card -->
+> **farmer** — фермер. The farmer is strong. — «Фермер сильний». Людина, яка вирощує овочі або тримає тварин.
+
+**2 · Ви хочете дізнатися, де живе фермер. Спитайте подругу: «Фермер живе тут?»**
 <!-- interaction_id: en:lesson-07:session-16:i01; family: phrase_builder -->
-Плитки: `here` `work` `manager` `the` `Does` → **Does the manager work here?**
+Плитки: `here` `live` `farmer` `the` `Does` → **Does the farmer live here?**
 
-**2 · Послухайте запитання про принтер**
+**3 · Картка слова — parrot**
+<!-- interaction_id: en:lesson-07:session-16:word:parrot; family: word_card -->
+> **parrot** — папуга. The parrot is loud. — «Папуга гучний». Яскравий птах, який може повторювати слова.
+
+**4 · Послухайте господиню**
 <!-- interaction_id: en:lesson-07:session-16:i02; family: listen_choose -->
-🔊 *Does the printer work?* → **Does the printer work?** · Does the printer start? · Does the printer open?
-- Does the printer start? — *У записі останнє слово — `work`, а в цьому варіанті — `start`.*
-- Does the printer open? — *У записі останнє слово — `work`, а в цьому варіанті — `open`.*
+🔊 *Do you have a parrot?* → **Do you have a parrot?** · Do you have a cage? · Do they have a parrot?
+- Do you have a cage? — *У записі останнє слово — `parrot`, папуга, а в цьому варіанті — `cage`, клітка.*
+- Do they have a parrot? — *У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони.*
 
-**3 · Запитайте людину біля входу «Ви працюєте тут?»**
+**5 · Картка слова — goldfish**
+<!-- interaction_id: en:lesson-07:session-16:word:goldfish; family: word_card -->
+> **goldfish** — золота рибка. The goldfish is small. — «Золота рибка маленька». Невелика риба, яку тримають в акваріумі.
+
+**6 · Спитайте подругу про її батьків. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-16:i03; family: context_gap_grammar -->
-___ you work here? → **Do** · Does · Are
-- Does — *З `you` потрібне `Do`.*
-- Are — *З дією `work` тут потрібно `Do you work?`.*
+___ they feed the goldfish early? → **Do** · Does · Are
+- Does — *З `they` потрібно `Do`.*
+- Are — *З дією `feed` потрібне `Do`, а не `Are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-16:i04; family: speed_match -->
-manager — керівник · machine — пристрій · printer — принтер · screen — екран
+farmer — фермер · parrot — папуга · goldfish — золота рибка · cage — клітка
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — turtle**
+<!-- interaction_id: en:lesson-07:session-16:word:turtle; family: word_card -->
+> **turtle** — черепаха. The turtle is slow. — «Черепаха повільна». Тварина з твердим панциром на спині.
+
+**9 · Послухайте подругу й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-16:i05; family: listen_build_dictation -->
-🔊 *Does the website work?* Плитки: `work` `website` `the` `Does` → **Does the website work?**
+🔊 *Does the turtle sleep?* Плитки: `sleep` `turtle` `the` `Does` → **Does the turtle sleep?**
 
-**6 · Повідомте «У цій кімнаті немає екрана»**
+**10 · Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»**
 <!-- interaction_id: en:lesson-07:session-16:i06; family: phrase_builder -->
-Плитки: `room` `this` `in` `screen` `no` `is` `There` → **There is no screen in this room.**
+Плитки: `parrot` `a` `have` `you` `Do` → **Do you have a parrot?**
 
-**7 · Вам потрібно рано встати. Запитайте друга «Будильник працює?»**
+**11 · Ви стоїте біля акваріума. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»**
 <!-- interaction_id: en:lesson-07:session-16:i07; family: scripted_repeat_compare -->
-🎙 **Does the alarm work?**
+🎙 **Do they feed the goldfish early?**
 
-**8 · Запитайте про Анну «Вона працює тут?»**
+**12 · Спитайте подругу про черепаху. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-16:i08; family: context_gap_grammar -->
-Does she ___ here? → **work** · works · is work
-- works — *Після `Does she` потрібне `work`.*
-- is work — *Потрібно `Does she work?`, без `is`.*
+___ the turtle sleep? → **Does** · Do · Is
+- Do — *Черепаха одна: потрібно `Does`.*
+- Is — *З дією `sleep` потрібне `Does`, а не `Is`.*
 
-**9 · Послухайте запитання про місце роботи**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-16:i09; family: listen_choose -->
-🔊 *Does the manager work here?* → **Does the manager work here?** · Does the manager work there? · Does the manager work outside?
-- Does the manager work there? — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- Does the manager work outside? — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
+🔊 *Does the farmer live here?* → **Does the farmer live here?** · Does the farmer work here? · Do they live here?
+- Does the farmer work here? — *У записі четверте слово — `live`, жити, а в цьому варіанті — `work`, працювати.*
+- Do they live here? — *У записі перше слово — `Does`, запитання про одну людину, а в цьому варіанті — `Do`, запитання про кількох людей.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-16:i10; family: speed_match -->
-alarm — будильник · server — сервер · website — сайт · printer — принтер
+parrot — папуга · cage — клітка · aquarium — акваріум · box — коробка
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте господиню й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-16:i11; family: listen_build_dictation -->
-🔊 *Do they work here?* Плитки: `here` `work` `they` `Do` → **Do they work here?**
+🔊 *Do you have a turtle?* Плитки: `turtle` `a` `have` `you` `Do` → **Do you have a turtle?**
 
-**12 · Файл не відкривається. Запитайте колегу «Сервер працює?»**
+**16 · Клітка порожня. Скажіть господині: «У клітці немає папуги»**
 <!-- interaction_id: en:lesson-07:session-16:i12; family: phrase_builder -->
-Плитки: `work` `server` `the` `Does` → **Does the server work?**
+Плитки: `cage` `the` `in` `parrot` `no` `is` `There` → **There is no parrot in the cage.**
 
-**13 · У сусідній кімнаті запитайте працівника «У вас є принтер?»**
+**17 · Ви зазирнули в коробку. Скажіть подрузі: «У коробці немає черепахи»**
 <!-- interaction_id: en:lesson-07:session-16:i13; family: scripted_repeat_compare -->
-🎙 **Do you have a printer?**
+🎙 **There is no turtle in the box.**
 
-**14 · Ви шукаєте торговий автомат. Повідомте «Тут немає автомата»**
+**18 · Спитайте господиню про черепаху. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-16:i14; family: context_gap_grammar -->
-There ___ no machine here. → **is** · are · am
-- are — *Один автомат: `There is no machine`.*
-- am — *Потрібно `There is no`; `am` підходить до `I`.*
+Do you ___ a turtle? → **have** · has · is have
+- has — *Після `Do you` потрібно `have`, не `has`.*
+- is have — *Потрібно `Do you have?`, без `is`.*
 
-**15 · Послухайте, про що запитує відвідувач**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-16:i15; family: listen_choose -->
-🔊 *Do you have a website?* → **Do you have a website?** · Do you have a printer? · Do you have a server?
-- Do you have a printer? — *У записі останнє слово — `website`, а в цьому варіанті — `printer`.*
-- Do you have a server? — *У записі останнє слово — `website`, а в цьому варіанті — `server`.*
+🔊 *Does the turtle sleep?* → **Does the turtle sleep?** · Does the turtle work? · Does the parrot sleep?
+- Does the turtle work? — *У записі останнє слово — `sleep`, спати, а в цьому варіанті — `work`, працювати.*
+- Does the parrot sleep? — *У записі третє слово — `turtle`, черепаха, а в цьому варіанті — `parrot`, папуга.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-16:i16; family: speed_match -->
-manager — керівник · screen — екран · alarm — будильник · website — сайт
+turtle — черепаха · goldfish — золота рибка · farmer — фермер · parrot — папуга
 
-**17 · Ви хочете вранці застати керівника іншого офісу. Запитайте працівника «Керівник починає рано?»**
+**21 · Ви лишилися біля акваріума. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»**
 <!-- interaction_id: en:lesson-07:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does the manager start early?**
-
+🎙 **Do they feed the goldfish early?**

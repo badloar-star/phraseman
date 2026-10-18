@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-08:word:borrow",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — borrow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:borrow:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — borrow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:borrow:audio",
+            "transcript": "borrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:borrow:r1",
+              "targetText": "borrow",
+              "meaningByLocale": {
+                "ru": "брать на время. I borrow books. — «Я беру книги на время». О вещи, которую берут, а потом возвращают.",
+                "uk": "брати на деякий час. I borrow books. — «Я беру книжки на деякий час». Про річ, яку беруть, а потім повертають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "borrow",
+            "definitionByLocale": {
+              "ru": "брать на время. I borrow books. — «Я беру книги на время». О вещи, которую берут, а потом возвращают.",
+              "uk": "брати на деякий час. I borrow books. — «Я беру книжки на деякий час». Про річ, яку беруть, а потім повертають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед выходит из библиотеки с книгами. Спросите: «Вы берёте книги на время?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед выходит из библиотеки с книгами. Спросите: «Вы берёте книги на время?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you borrow books?",
+          "localizedMeaning": {
+            "ru": "Сосед выходит из библиотеки с книгами. Спросите: «Вы берёте книги на время?»",
+            "uk": "Сусід виходить із бібліотеки з книжками. Спитайте: «Ви берете книжки на деякий час?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "borrow",
+            "books"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед выходит из библиотеки с книгами. Спросите: «Вы берёте книги на время?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you borrow books?`",
+                "uk": "тут потрібно `Do` — `Do you borrow books?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i02:r1",
+            "text": "I borrow books."
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i02:r2",
+            "text": "I read books."
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i02:r3",
+            "text": "We borrow books."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i02:audio",
+            "transcript": "I borrow books."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:i02:r1",
+              "targetText": "I borrow books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i02:r2",
+              "targetText": "I read books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i02:r3",
+              "targetText": "We borrow books.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи слово действия — `borrow`, беру на время, а в этом варианте — `read`, читаю.",
+                "uk": "У записі слово дії — `borrow`, беру на деякий час, а в цьому варіанті — `read`, читаю."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:word:check",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:check:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:check:audio",
+            "transcript": "check"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:check:r1",
+              "targetText": "check",
+              "meaningByLocale": {
+                "ru": "проверять. They check the ticket. — «Они проверяют билет». О том, как смотрят, всё ли в порядке.",
+                "uk": "перевіряти. They check the ticket. — «Вони перевіряють квиток». Про те, як дивляться, чи все гаразд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check",
+            "definitionByLocale": {
+              "ru": "проверять. They check the ticket. — «Они проверяют билет». О том, как смотрят, всё ли в порядке.",
+              "uk": "перевіряти. They check the ticket. — «Вони перевіряють квиток». Про те, як дивляться, чи все гаразд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите про автобус: «Здесь проверяют билеты?». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i03:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i03:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i03:r3",
+            "text": "are check"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите про автобус: «Здесь проверяют билеты?». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите про автобус: «Здесь проверяют билеты?». Выберите слово",
+            "uk": "Спитайте про автобус: «Тут перевіряють квитки?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do they ___ tickets here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-08:i03:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i03:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i03:r3",
+              "text": "are check"
+            }
+          ],
+          "testedDimension": "Спросите про автобус: «Здесь проверяют билеты?». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите про автобус: «Здесь проверяют билеты?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Do they` нужно `check`, без `s`.",
+                "uk": "Після `Do they` потрібно `check`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите про автобус: «Здесь проверяют билеты?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do they check`, без `are`.",
+                "uk": "Потрібно `Do they check`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-08:i04:p1",
+              "target": "borrow",
+              "meaningByLocale": {
+                "ru": "брать на время",
+                "uk": "брати на час"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i04:p2",
+              "target": "check",
+              "meaningByLocale": {
+                "ru": "проверять",
+                "uk": "перевіряти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i04:p3",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i04:p4",
+              "target": "ticket",
+              "meaningByLocale": {
+                "ru": "билет",
+                "uk": "квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "borrow",
+            "check",
+            "book",
+            "ticket"
+          ],
+          "rightColumn": [
+            "брать на время",
+            "проверять",
+            "книга",
+            "билет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i05:audio",
+            "transcript": "Do you work in a factory?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you work in a factory?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "work",
+            "in",
+            "a",
+            "factory"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you work in a factory?`",
+                "uk": "тут потрібно `Do` — `Do you work in a factory?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг едет с вами на автобусе. Спросите: «Здесь проверяют билеты?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг едет с вами на автобусе. Спросите: «Здесь проверяют билеты?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they check tickets here?",
+          "localizedMeaning": {
+            "ru": "Друг едет с вами на автобусе. Спросите: «Здесь проверяют билеты?»",
+            "uk": "Друг їде з вами автобусом. Спитайте: «Тут перевіряють квитки?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "check",
+            "tickets",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг едет с вами на автобусе. Спросите: «Здесь проверяют билеты?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they check tickets here?`",
+                "uk": "тут потрібно `Do` — `Do they check tickets here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:word:guard",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:guard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:guard:audio",
+            "transcript": "guard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:guard:r1",
+              "targetText": "guard",
+              "meaningByLocale": {
+                "ru": "охранник. The guard is at the gate. — «Охранник у ворот». Человек, который следит за порядком у входа.",
+                "uk": "охоронець. The guard is at the gate. — «Охоронець біля воріт». Людина, яка стежить за порядком біля входу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guard",
+            "definitionByLocale": {
+              "ru": "охранник. The guard is at the gate. — «Охранник у ворот». Человек, который следит за порядком у входа.",
+              "uk": "охоронець. The guard is at the gate. — «Охоронець біля воріт». Людина, яка стежить за порядком біля входу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы вернулись поздно: ворота открыты, будка пуста. Скажите соседу: «У ворот нет охранника»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Вы вернулись поздно: ворота открыты, будка пуста. Скажите соседу: «У ворот нет охранника»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i07:audio",
+            "transcript": "There is no guard at the gate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is no guard at the gate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:word:count",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — count",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:count:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — count",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:count:audio",
+            "transcript": "count"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:count:r1",
+              "targetText": "count",
+              "meaningByLocale": {
+                "ru": "считать. We count the boxes. — «Мы считаем коробки». О том, как называют числа по порядку, пока предметы не закончатся.",
+                "uk": "рахувати. We count the boxes. — «Ми рахуємо коробки». Про те, як називають числа по черзі, поки предмети не закінчаться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "count",
+            "definitionByLocale": {
+              "ru": "считать. We count the boxes. — «Мы считаем коробки». О том, как называют числа по порядку, пока предметы не закончатся.",
+              "uk": "рахувати. We count the boxes. — «Ми рахуємо коробки». Про те, як називають числа по черзі, поки предмети не закінчаться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите соседа: «Вы считаете коробки?». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i08:r1",
+            "text": "count"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i08:r2",
+            "text": "counts"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i08:r3",
+            "text": "are count"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите соседа: «Вы считаете коробки?». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите соседа: «Вы считаете коробки?». Выберите слово",
+            "uk": "Спитайте сусіда: «Ви рахуєте коробки?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ boxes?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-08:i08:r1",
+              "text": "count"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i08:r2",
+              "text": "counts"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i08:r3",
+              "text": "are count"
+            }
+          ],
+          "testedDimension": "Спросите соседа: «Вы считаете коробки?». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Спросите соседа: «Вы считаете коробки?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Do you` нужно `count`, без `s`.",
+                "uk": "Після `Do you` потрібно `count`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Спросите соседа: «Вы считаете коробки?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do you count`, без `are`.",
+                "uk": "Потрібно `Do you count`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i09:r1",
+            "text": "Do they have a guard?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i09:r2",
+            "text": "Do they have a menu?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i09:r3",
+            "text": "Do you have a guard?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i09:audio",
+            "transcript": "Do they have a guard?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:i09:r1",
+              "targetText": "Do they have a guard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i09:r2",
+              "targetText": "Do they have a menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i09:r3",
+              "targetText": "Do you have a guard?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `guard`, охранник, а в этом варианте — `menu`, меню.",
+                "uk": "У записі останнє слово — `guard`, охоронець, а в цьому варіанті — `menu`, меню."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос соседа",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `they`, они, а в этом варианте — `you`, вы.",
+                "uk": "У записі друге слово — `they`, вони, а в цьому варіанті — `you`, ви."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-08:i10:p1",
+              "target": "count",
+              "meaningByLocale": {
+                "ru": "считать",
+                "uk": "рахувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i10:p2",
+              "target": "check",
+              "meaningByLocale": {
+                "ru": "проверять",
+                "uk": "перевіряти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i10:p3",
+              "target": "guard",
+              "meaningByLocale": {
+                "ru": "охранник",
+                "uk": "охоронець"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i10:p4",
+              "target": "borrow",
+              "meaningByLocale": {
+                "ru": "брать на время",
+                "uk": "брати на час"
+              }
+            }
+          ],
+          "leftColumn": [
+            "count",
+            "check",
+            "guard",
+            "borrow"
+          ],
+          "rightColumn": [
+            "считать",
+            "проверять",
+            "охранник",
+            "брать на время"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i11:audio",
+            "transcript": "Do they send packages?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they send packages?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "send",
+            "packages"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they send packages?`",
+                "uk": "тут потрібно `Do` — `Do they send packages?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед советует мастерскую. Спросите: «Они работают по выходным?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед советует мастерскую. Спросите: «Они работают по выходным?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they work on weekends?",
+          "localizedMeaning": {
+            "ru": "Сосед советует мастерскую. Спросите: «Они работают по выходным?»",
+            "uk": "Сусід радить майстерню. Спитайте: «Вони працюють на вихідних?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "work",
+            "on",
+            "weekends"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед советует мастерскую. Спросите: «Они работают по выходным?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they work on weekends?`",
+                "uk": "тут потрібно `Do` — `Do they work on weekends?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка показывает пачку талонов. Спросите: «Вы считаете талоны?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "Соседка показывает пачку талонов. Спросите: «Вы считаете талоны?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i13:audio",
+            "transcript": "Do you count vouchers?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you count vouchers?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите соседу, что охранника нет. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите соседу, что охранника нет. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите соседу, что охранника нет. Выберите слово",
+            "uk": "Скажіть сусіду, що охоронця немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no guard at the gate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-08:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажите соседу, что охранника нет. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите соседу, что охранника нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово guard стоит в единственном числе: нужно `There is no`.",
+                "uk": "Слово guard стоїть в однині: потрібно `There is no`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите соседу, что охранника нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос в районе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i15:r1",
+            "text": "Do you have a schedule?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i15:r2",
+            "text": "Do you have a voucher?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i15:r3",
+            "text": "Do they have a schedule?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос в районе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i15:audio",
+            "transcript": "Do you have a schedule?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:i15:r1",
+              "targetText": "Do you have a schedule?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i15:r2",
+              "targetText": "Do you have a voucher?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i15:r3",
+              "targetText": "Do they have a schedule?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос в районе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `schedule`, расписание, а в этом варианте — `voucher`, талон.",
+                "uk": "У записі останнє слово — `schedule`, розклад, а в цьому варіанті — `voucher`, талон."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос в районе",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-08:i16:p1",
+              "target": "factory",
+              "meaningByLocale": {
+                "ru": "фабрика",
+                "uk": "фабрика"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i16:p2",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i16:p3",
+              "target": "guard",
+              "meaningByLocale": {
+                "ru": "охранник",
+                "uk": "охоронець"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i16:p4",
+              "target": "check",
+              "meaningByLocale": {
+                "ru": "проверять",
+                "uk": "перевіряти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "factory",
+            "plumber",
+            "guard",
+            "check"
+          ],
+          "rightColumn": [
+            "фабрика",
+            "сантехник",
+            "охранник",
+            "проверять"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с другом идёте через двор. Спросите друга: «У них здесь есть охранник?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с другом идёте через двор. Спросите друга: «У них здесь есть охранник?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i17:audio",
+            "transcript": "Do they have a guard here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they have a guard here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-08:word:borrow",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — borrow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:borrow:audio"
+        ],
+        "accessibilityLabel": "Картка слова — borrow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:borrow:audio",
+            "transcript": "borrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:borrow:r1",
+              "targetText": "borrow",
+              "meaningByLocale": {
+                "ru": "брать на время. I borrow books. — «Я беру книги на время». О вещи, которую берут, а потом возвращают.",
+                "uk": "брати на деякий час. I borrow books. — «Я беру книжки на деякий час». Про річ, яку беруть, а потім повертають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "borrow",
+            "definitionByLocale": {
+              "ru": "брать на время. I borrow books. — «Я беру книги на время». О вещи, которую берут, а потом возвращают.",
+              "uk": "брати на деякий час. I borrow books. — «Я беру книжки на деякий час». Про річ, яку беруть, а потім повертають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід виходить із бібліотеки з книжками. Спитайте: «Ви берете книжки на деякий час?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід виходить із бібліотеки з книжками. Спитайте: «Ви берете книжки на деякий час?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you borrow books?",
+          "localizedMeaning": {
+            "ru": "Сосед выходит из библиотеки с книгами. Спросите: «Вы берёте книги на время?»",
+            "uk": "Сусід виходить із бібліотеки з книжками. Спитайте: «Ви берете книжки на деякий час?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "borrow",
+            "books"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід виходить із бібліотеки з книжками. Спитайте: «Ви берете книжки на деякий час?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you borrow books?`",
+                "uk": "тут потрібно `Do` — `Do you borrow books?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i02:r1",
+            "text": "I borrow books."
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i02:r2",
+            "text": "I read books."
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i02:r3",
+            "text": "We borrow books."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i02:audio",
+            "transcript": "I borrow books."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:i02:r1",
+              "targetText": "I borrow books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i02:r2",
+              "targetText": "I read books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i02:r3",
+              "targetText": "We borrow books.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи слово действия — `borrow`, беру на время, а в этом варианте — `read`, читаю.",
+                "uk": "У записі слово дії — `borrow`, беру на деякий час, а в цьому варіанті — `read`, читаю."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:word:check",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:check:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:check:audio",
+            "transcript": "check"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:check:r1",
+              "targetText": "check",
+              "meaningByLocale": {
+                "ru": "проверять. They check the ticket. — «Они проверяют билет». О том, как смотрят, всё ли в порядке.",
+                "uk": "перевіряти. They check the ticket. — «Вони перевіряють квиток». Про те, як дивляться, чи все гаразд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check",
+            "definitionByLocale": {
+              "ru": "проверять. They check the ticket. — «Они проверяют билет». О том, как смотрят, всё ли в порядке.",
+              "uk": "перевіряти. They check the ticket. — «Вони перевіряють квиток». Про те, як дивляться, чи все гаразд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте про автобус: «Тут перевіряють квитки?». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i03:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i03:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i03:r3",
+            "text": "are check"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте про автобус: «Тут перевіряють квитки?». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите про автобус: «Здесь проверяют билеты?». Выберите слово",
+            "uk": "Спитайте про автобус: «Тут перевіряють квитки?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do they ___ tickets here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-08:i03:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i03:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i03:r3",
+              "text": "are check"
+            }
+          ],
+          "testedDimension": "Спитайте про автобус: «Тут перевіряють квитки?». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Спитайте про автобус: «Тут перевіряють квитки?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Do they` нужно `check`, без `s`.",
+                "uk": "Після `Do they` потрібно `check`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Спитайте про автобус: «Тут перевіряють квитки?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do they check`, без `are`.",
+                "uk": "Потрібно `Do they check`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-08:i04:p1",
+              "target": "borrow",
+              "meaningByLocale": {
+                "ru": "брать на время",
+                "uk": "брати на час"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i04:p2",
+              "target": "check",
+              "meaningByLocale": {
+                "ru": "проверять",
+                "uk": "перевіряти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i04:p3",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i04:p4",
+              "target": "ticket",
+              "meaningByLocale": {
+                "ru": "билет",
+                "uk": "квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "borrow",
+            "check",
+            "book",
+            "ticket"
+          ],
+          "rightColumn": [
+            "брати на час",
+            "перевіряти",
+            "книжка",
+            "квиток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i05:audio",
+            "transcript": "Do you work in a factory?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you work in a factory?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "work",
+            "in",
+            "a",
+            "factory"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you work in a factory?`",
+                "uk": "тут потрібно `Do` — `Do you work in a factory?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг їде з вами автобусом. Спитайте: «Тут перевіряють квитки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг їде з вами автобусом. Спитайте: «Тут перевіряють квитки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they check tickets here?",
+          "localizedMeaning": {
+            "ru": "Друг едет с вами на автобусе. Спросите: «Здесь проверяют билеты?»",
+            "uk": "Друг їде з вами автобусом. Спитайте: «Тут перевіряють квитки?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "check",
+            "tickets",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг їде з вами автобусом. Спитайте: «Тут перевіряють квитки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they check tickets here?`",
+                "uk": "тут потрібно `Do` — `Do they check tickets here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:word:guard",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:guard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:guard:audio",
+            "transcript": "guard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:guard:r1",
+              "targetText": "guard",
+              "meaningByLocale": {
+                "ru": "охранник. The guard is at the gate. — «Охранник у ворот». Человек, который следит за порядком у входа.",
+                "uk": "охоронець. The guard is at the gate. — «Охоронець біля воріт». Людина, яка стежить за порядком біля входу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guard",
+            "definitionByLocale": {
+              "ru": "охранник. The guard is at the gate. — «Охранник у ворот». Человек, который следит за порядком у входа.",
+              "uk": "охоронець. The guard is at the gate. — «Охоронець біля воріт». Людина, яка стежить за порядком біля входу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви повернулися пізно: ворота відчинені, будка порожня. Скажіть сусіду: «Біля воріт немає охоронця»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Ви повернулися пізно: ворота відчинені, будка порожня. Скажіть сусіду: «Біля воріт немає охоронця»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i07:audio",
+            "transcript": "There is no guard at the gate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is no guard at the gate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:word:count",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — count",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:word:count:audio"
+        ],
+        "accessibilityLabel": "Картка слова — count",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:word:count:audio",
+            "transcript": "count"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:word:count:r1",
+              "targetText": "count",
+              "meaningByLocale": {
+                "ru": "считать. We count the boxes. — «Мы считаем коробки». О том, как называют числа по порядку, пока предметы не закончатся.",
+                "uk": "рахувати. We count the boxes. — «Ми рахуємо коробки». Про те, як називають числа по черзі, поки предмети не закінчаться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "count",
+            "definitionByLocale": {
+              "ru": "считать. We count the boxes. — «Мы считаем коробки». О том, как называют числа по порядку, пока предметы не закончатся.",
+              "uk": "рахувати. We count the boxes. — «Ми рахуємо коробки». Про те, як називають числа по черзі, поки предмети не закінчаться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте сусіда: «Ви рахуєте коробки?». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i08:r1",
+            "text": "count"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i08:r2",
+            "text": "counts"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i08:r3",
+            "text": "are count"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте сусіда: «Ви рахуєте коробки?». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите соседа: «Вы считаете коробки?». Выберите слово",
+            "uk": "Спитайте сусіда: «Ви рахуєте коробки?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ boxes?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-08:i08:r1",
+              "text": "count"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i08:r2",
+              "text": "counts"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i08:r3",
+              "text": "are count"
+            }
+          ],
+          "testedDimension": "Спитайте сусіда: «Ви рахуєте коробки?». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Спитайте сусіда: «Ви рахуєте коробки?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Do you` нужно `count`, без `s`.",
+                "uk": "Після `Do you` потрібно `count`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Спитайте сусіда: «Ви рахуєте коробки?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do you count`, без `are`.",
+                "uk": "Потрібно `Do you count`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i09:r1",
+            "text": "Do they have a guard?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i09:r2",
+            "text": "Do they have a menu?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i09:r3",
+            "text": "Do you have a guard?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i09:audio",
+            "transcript": "Do they have a guard?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:i09:r1",
+              "targetText": "Do they have a guard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i09:r2",
+              "targetText": "Do they have a menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i09:r3",
+              "targetText": "Do you have a guard?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `guard`, охранник, а в этом варианте — `menu`, меню.",
+                "uk": "У записі останнє слово — `guard`, охоронець, а в цьому варіанті — `menu`, меню."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `they`, они, а в этом варианте — `you`, вы.",
+                "uk": "У записі друге слово — `they`, вони, а в цьому варіанті — `you`, ви."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-08:i10:p1",
+              "target": "count",
+              "meaningByLocale": {
+                "ru": "считать",
+                "uk": "рахувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i10:p2",
+              "target": "check",
+              "meaningByLocale": {
+                "ru": "проверять",
+                "uk": "перевіряти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i10:p3",
+              "target": "guard",
+              "meaningByLocale": {
+                "ru": "охранник",
+                "uk": "охоронець"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i10:p4",
+              "target": "borrow",
+              "meaningByLocale": {
+                "ru": "брать на время",
+                "uk": "брати на час"
+              }
+            }
+          ],
+          "leftColumn": [
+            "count",
+            "check",
+            "guard",
+            "borrow"
+          ],
+          "rightColumn": [
+            "рахувати",
+            "перевіряти",
+            "охоронець",
+            "брати на час"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i11:audio",
+            "transcript": "Do they send packages?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they send packages?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "send",
+            "packages"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they send packages?`",
+                "uk": "тут потрібно `Do` — `Do they send packages?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід радить майстерню. Спитайте: «Вони працюють на вихідних?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід радить майстерню. Спитайте: «Вони працюють на вихідних?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they work on weekends?",
+          "localizedMeaning": {
+            "ru": "Сосед советует мастерскую. Спросите: «Они работают по выходным?»",
+            "uk": "Сусід радить майстерню. Спитайте: «Вони працюють на вихідних?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "work",
+            "on",
+            "weekends"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід радить майстерню. Спитайте: «Вони працюють на вихідних?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they work on weekends?`",
+                "uk": "тут потрібно `Do` — `Do they work on weekends?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка показує пачку талонів. Спитайте: «Ви рахуєте талони?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "Сусідка показує пачку талонів. Спитайте: «Ви рахуєте талони?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i13:audio",
+            "transcript": "Do you count vouchers?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you count vouchers?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть сусіду, що охоронця немає. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть сусіду, що охоронця немає. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите соседу, что охранника нет. Выберите слово",
+            "uk": "Скажіть сусіду, що охоронця немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no guard at the gate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-08:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажіть сусіду, що охоронця немає. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть сусіду, що охоронця немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово guard стоит в единственном числе: нужно `There is no`.",
+                "uk": "Слово guard стоїть в однині: потрібно `There is no`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть сусіду, що охоронця немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання в районі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-08:i15:r1",
+            "text": "Do you have a schedule?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i15:r2",
+            "text": "Do you have a voucher?"
+          },
+          {
+            "responseId": "en:lesson-07:session-08:i15:r3",
+            "text": "Do they have a schedule?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання в районі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i15:audio",
+            "transcript": "Do you have a schedule?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-08:i15:r1",
+              "targetText": "Do you have a schedule?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i15:r2",
+              "targetText": "Do you have a voucher?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i15:r3",
+              "targetText": "Do they have a schedule?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-08:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання в районі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `schedule`, расписание, а в этом варианте — `voucher`, талон.",
+                "uk": "У записі останнє слово — `schedule`, розклад, а в цьому варіанті — `voucher`, талон."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-08:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання в районі",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-08:i16:p1",
+              "target": "factory",
+              "meaningByLocale": {
+                "ru": "фабрика",
+                "uk": "фабрика"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i16:p2",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i16:p3",
+              "target": "guard",
+              "meaningByLocale": {
+                "ru": "охранник",
+                "uk": "охоронець"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-08:i16:p4",
+              "target": "check",
+              "meaningByLocale": {
+                "ru": "проверять",
+                "uk": "перевіряти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "factory",
+            "plumber",
+            "guard",
+            "check"
+          ],
+          "rightColumn": [
+            "фабрика",
+            "сантехнік",
+            "охоронець",
+            "перевіряти"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з другом ідете через двір. Спитайте друга: «У них тут є охоронець?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з другом ідете через двір. Спитайте друга: «У них тут є охоронець?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-08:i17:audio",
+            "transcript": "Do they have a guard here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they have a guard here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-08:word:borrow",
+      "correctText": "borrow",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i01",
+      "correctText": "Do you borrow books?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i02",
+      "correctText": "I borrow books.",
+      "correctResponseId": "en:lesson-07:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:word:check",
+      "correctText": "check",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i03",
+      "correctText": "check",
+      "correctResponseId": "en:lesson-07:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i05",
+      "correctText": "Do you work in a factory?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i06",
+      "correctText": "Do they check tickets here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:word:guard",
+      "correctText": "guard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i07",
+      "correctText": "There is no guard at the gate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:word:count",
+      "correctText": "count",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i08",
+      "correctText": "count",
+      "correctResponseId": "en:lesson-07:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i09",
+      "correctText": "Do they have a guard?",
+      "correctResponseId": "en:lesson-07:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i11",
+      "correctText": "Do they send packages?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i12",
+      "correctText": "Do they work on weekends?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i13",
+      "correctText": "Do you count vouchers?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-07:session-08:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i15",
+      "correctText": "Do you have a schedule?",
+      "correctResponseId": "en:lesson-07:session-08:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:i17",
+      "correctText": "Do they have a guard here?",
+      "correctResponseId": null
+    }
+  ]
+}

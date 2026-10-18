@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 6 — Покупатель у стойки
+# Английский · Урок 7 · Занятие 6 — Мастер у двери
 
-**Ситуация.** Вы впервые пришли в мастерскую. Уточняете, кто перед вами, спрашиваете о ремонте и помогаете найти ручку.
+**Ситуация.** К вам пришли мастера: нужно понять, кто они, и спросить, что они чинят. Вопрос Are you a plumber? уточняет профессию, Do you fix taps? — работу мастера.
 
-**Что вы освоите:** различать вопрос о человеке и вопрос о его действиях
-**Новые слова:** customer
+**Что вы освоите:** различать вопрос о человеке и вопрос о его действиях и сказать, что инструмента нет
+**Новые слова:** plumber, electrician, pliers, fix
+**Возвращаются:** tap, lamp, have, here
 
 ---
 
 ## Интро 1
 
-### Кто перед вами
+### Кто пришёл по вызову
 
-`customer` — «клиент» или «покупатель». У стойки стоит человек без рабочей формы. `Are you a customer?` — «Вы клиент?» Здесь называем, кто человек, поэтому начинаем с `Are you`. Не каждый, кто стоит за стойкой, уже устроился туда на работу.
+В дверь звонит человек в рабочей куртке и с тяжёлой сумкой. Вы вызывали мастера из-за протекающего крана, но не знаете, кого прислали. plumber — «сантехник». Чтобы узнать, кто он, говорим Are you a plumber? — «Вы сантехник?» В вопросе «Вы сантехник?» нужно Are you.
 
-**Спросите человека «Вы клиент?»**
+**Незнакомый мастер стоит у двери с сумкой. Спросите его: «Вы сантехник?»**
 
-- ✅ **Are you a customer?**
-- ❌ Do you a customer? — *Здесь нет действия: нужно `Are you a customer?`.*
-- ❌ Are you customer? — *Перед `customer` здесь нужно `a`.*
+- ✅ **Are you a plumber?**
+- ❌ Do you a plumber? — *Спрашиваем, кто человек, поэтому нужно Are you, без Do.*
+- ❌ Are you plumber? — *Здесь называем одного специалиста: a plumber, an electrician. В этом вопросе нужно a plumber.*
 
 ---
 
 ## Интро 2
 
-### Чем занимается мастерская
+### Лампа не включается
 
-Вы нашли сотрудника и хотите узнать, ремонтируют ли здесь велосипеды. `Do you repair bicycles?` — «Вы ремонтируете велосипеды?» Здесь спрашиваем о действии, поэтому `Do you repair`, без `are`. `Customer` называет человека, а `repair` — то, что он делает.
+Лампа в комнате перестала включаться. Сосед хвалит двух мастеров из соседнего подъезда, но вы не уверены, что они чинят именно лампы. fix — «чинить». Спросите соседа: Do they fix lamps? — «Они чинят лампы?» Здесь спрашиваем о действии, поэтому Do.
 
-**Спросите сотрудника «Вы ремонтируете велосипеды?»**
+**Сосед хвалит мастеров из соседнего подъезда. Спросите: «Они чинят лампы?»**
 
-- ✅ **Do you repair bicycles?**
-- ❌ Are you repair bicycles? — *С действием `repair` здесь нужно `Do you repair?`.*
-- ❌ Do you repairs bicycles? — *После `Do you` нужно `repair`.*
+- ✅ **Do they fix lamps?**
+- ❌ Are they fix lamps? — *Здесь действие fix, поэтому нужно Do they fix, без Are.*
+- ❌ Do they fixes lamps? — *После Do they слово fix остаётся без изменений.*
 
 ---
 
 ## Интро 3
 
-### Нужна ручка
+### Нужны плоскогубцы
 
-Покупателю нужно записать номер телефона. Вы проверили стол: `There is no pen here` — «Здесь нет ручки». Одна ручка — `There is no pen`. Эта фраза сообщает об отсутствии ручки, а не спрашивает о ней.
+Мастер уже работает у раковины и просит подать плоскогубцы. Вы осмотрели его сумку: там лежат только отвёртки и тряпка. pliers — «плоскогубцы». There are no pliers here — «Здесь нет плоскогубцев». Слово pliers, как и glasses, всегда с s: нужно are.
 
-**Скажите покупателю «Здесь нет ручки».**
+**Мастер просит плоскогубцы, а в сумке их нет. Скажите ему: «Здесь нет плоскогубцев».**
 
-- ✅ **There is no pen here.**
-- ❌ There are no pen here. — *Одна ручка: `There is no pen`.*
-- ❌ There no pen here. — *Нужно `There is no`, с `is`.*
+- ✅ **There are no pliers here.**
+- ❌ There is no pliers here. — *С pliers нужно are, как с glasses.*
+- ❌ There are not pliers here. — *Чтобы сказать, что плоскогубцев нет, здесь используем no pliers.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите человека у стойки «Вы клиент?»**
+**1 · Карточка слова — plumber**
+<!-- interaction_id: en:lesson-07:session-06:word:plumber; family: word_card -->
+> **plumber** — сантехник. The plumber is at the door. — «Сантехник у двери». Мастер, который чинит краны и трубы.
+
+**2 · У двери стоит мастер с сумкой. Спросите: «Вы сантехник?»**
 <!-- interaction_id: en:lesson-07:session-06:i01; family: phrase_builder -->
-Плитки: `customer` `a` `you` `Are` → **Are you a customer?**
+Плитки: `plumber` `a` `you` `Are` `Do` → **Are you a plumber?**
+*(плитка `Do` лишняя: здесь нужно `Are` — `Are you a plumber?`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — electrician**
+<!-- interaction_id: en:lesson-07:session-06:word:electrician; family: word_card -->
+> **electrician** — электрик. The electrician is in the office. — «Электрик в офисе». Мастер, который чинит проводку и лампы.
+
+**4 · Послушайте мастера**
 <!-- interaction_id: en:lesson-07:session-06:i02; family: listen_choose -->
-🔊 *customer* → **customer** · ceiling · bookmark
-- ceiling — *В записи первое слово — `customer`, а в этом варианте — `ceiling`.*
-- bookmark — *В записи первое слово — `customer`, а в этом варианте — `bookmark`.*
+🔊 *I am a plumber.* → **I am a plumber.** · I am an electrician. · We are plumbers.
+- I am an electrician. — *В записи последнее слово — `plumber`, сантехник, а в этом варианте — `electrician`, электрик.*
+- We are plumbers. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**3 · Спросите «Вы клиент?»**
+**5 · Карточка слова — fix**
+<!-- interaction_id: en:lesson-07:session-06:word:fix; family: word_card -->
+> **fix** — чинить. We fix lamps. — «Мы чиним лампы». О том, как сломанную вещь делают снова рабочей.
+
+**6 · Спросите мастера: «Вы чините краны?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-06:i03; family: context_gap_grammar -->
-___ you a customer? → **Are** · Do · Is
-- Do — *Называем, кто человек: `Are you a customer?`.*
-- Is — *С `you` нужно `are`.*
+Do you ___ taps? → **fix** · fixes · are fix
+- fixes — *После `Do you` нужно `fix`, без изменений.*
+- are fix — *Нужно `Do you fix`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-06:i04; family: speed_match -->
-customer — клиент · repair — ремонтировать · pen — ручка · bookmark — закладка
+plumber — сантехник · electrician — электрик · fix — чинить · tap — кран
 
-**5 · Послушайте и соберите вопрос**
+**8 · Послушайте мастера и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-06:i05; family: listen_build_dictation -->
-🔊 *Are you a customer?* Плитки: `customer` `a` `you` `Are` → **Are you a customer?**
+🔊 *Are you an electrician?* Плитки: `electrician` `an` `you` `Are` `Do` → **Are you an electrician?**
+*(плитка `Do` лишняя: здесь нужно `Are` — `Are you an electrician?`)*
 
-**6 · Спросите сотрудника «Вы ремонтируете велосипеды?»**
+**9 · Сосед знает двух мастеров. Спросите: «Они чинят лампы?»**
 <!-- interaction_id: en:lesson-07:session-06:i06; family: phrase_builder -->
-Плитки: `bicycles` `repair` `you` `Do` → **Do you repair bicycles?**
+Плитки: `lamps` `fix` `they` `Do` `Are` → **Do they fix lamps?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they fix lamps?`)*
 
-**7 · Покупатель ищет ручку. Сообщите «Здесь нет ручки»**
+**10 · Карточка слова — pliers**
+<!-- interaction_id: en:lesson-07:session-06:word:pliers; family: word_card -->
+> **pliers** — плоскогубцы. The pliers are in the bag. — «Плоскогубцы в сумке». Инструмент, которым берут и сжимают мелкие детали.
+
+**11 · Мастер просит плоскогубцы. Заглянув в сумку, скажите: «Здесь нет плоскогубцев»**
 <!-- interaction_id: en:lesson-07:session-06:i07; family: scripted_repeat_compare -->
-🎙 **There is no pen here.**
+🎙 **There are no pliers here.**
 
-**8 · Спросите о ремонте велосипедов**
+**12 · Спросите человека у двери: «Вы электрик?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-06:i08; family: context_gap_grammar -->
-___ you repair bicycles? → **Do** · Are · Is
-- Are — *С `repair` здесь нужно `Do you repair?`.*
-- Is — *Нужно `Do you repair?`.*
+___ you an electrician? → **Are** · Do · Is
+- Do — *Мы спрашиваем, кто этот человек, поэтому нужно `Are you`.*
+- Is — *С `you` нужно `Are`, а не `Is`.*
 
-**9 · Послушайте, кем интересуется сотрудник**
+**13 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-07:session-06:i09; family: listen_choose -->
-🔊 *Are you a customer?* → **Are you a customer?** · Are you a teacher? · Are you a doctor?
-- Are you a teacher? — *В записи последнее слово — `customer`, а в этом варианте — `teacher`.*
-- Are you a doctor? — *В записи последнее слово — `customer`, а в этом варианте — `doctor`.*
+🔊 *Do you fix lamps?* → **Do you fix lamps?** · Do you fix taps? · Do they fix lamps?
+- Do you fix taps? — *В записи последнее слово — `lamps`, лампы, а в этом варианте — `taps`, краны.*
+- Do they fix lamps? — *В записи второе слово — `you`, вы, а в этом варианте — `they`, они.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-06:i10; family: speed_match -->
-ceiling — потолок · customer — покупатель · repair — ремонтировать · pen — ручка
+electrician — электрик · fix — чинить · plumber — сантехник · pliers — плоскогубцы
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте соседа и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-06:i11; family: listen_build_dictation -->
-🔊 *Do you repair bicycles?* Плитки: `bicycles` `repair` `you` `Do` → **Do you repair bicycles?**
+🔊 *Do they fix taps?* Плитки: `taps` `fix` `they` `Do` `Are` → **Do they fix taps?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they fix taps?`)*
 
-**12 · Покупатель хочет записать номер. Спросите коллегу «У вас есть ручка?»**
+**16 · Мастер пришёл чинить кран. Спросите: «У вас есть плоскогубцы?»**
 <!-- interaction_id: en:lesson-07:session-06:i12; family: phrase_builder -->
-Плитки: `pen` `a` `have` `you` `Do` → **Do you have a pen?**
+Плитки: `pliers` `have` `you` `Do` `Are` → **Do you have pliers?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have pliers?`)*
 
-**13 · Друг советует другую мастерскую. Спросите «Они ремонтируют велосипеды?»**
+**17 · Вы встретили мастера у подъезда. Спросите: «Вы чините краны?»**
 <!-- interaction_id: en:lesson-07:session-06:i13; family: scripted_repeat_compare -->
-🎙 **Do they repair bicycles?**
+🎙 **Do you fix taps?**
 
-**14 · Вы проверили стол. Сообщите «Здесь нет закладки»**
+**18 · Скажите мастеру, что плоскогубцев нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-06:i14; family: context_gap_grammar -->
-There ___ no bookmark here. → **is** · are · am
-- are — *Одна закладка: `There is no bookmark`.*
-- am — *Нужно `There is no`; `am` подходит к `I`.*
+There ___ no pliers here. → **are** · is · am
+- is — *С `pliers` нужно `are`, как с `glasses`.*
+- am — *Нужно `There are no`; `am` подходит только к `I`.*
 
-**15 · Послушайте вопрос о вещи**
+**19 · Послушайте вопрос мастера**
 <!-- interaction_id: en:lesson-07:session-06:i15; family: listen_choose -->
-🔊 *Do you have a pen?* → **Do you have a pen?** · Do you have a bookmark? · Do you have a key?
-- Do you have a bookmark? — *В записи последнее слово — `pen`, а в этом варианте — `bookmark`.*
-- Do you have a key? — *В записи последнее слово — `pen`, а в этом варианте — `key`.*
+🔊 *Do you have pliers?* → **Do you have pliers?** · Do you have a lamp? · Do they have pliers?
+- Do you have a lamp? — *В записи последнее слово — `pliers`, плоскогубцы, а в этом варианте — `lamp`, лампа.*
+- Do they have pliers? — *В записи второе слово — `you`, вы, а в этом варианте — `they`, они.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-06:i16; family: speed_match -->
-customer — клиент · ceiling — потолок · bookmark — закладка · repair — ремонтировать
+pliers — плоскогубцы · plumber — сантехник · fix — чинить · electrician — электрик
 
-**17 · Вы звоните в строительную компанию. Узнайте «Вы ремонтируете крыши?»**
+**21 · Мастер пришёл по вызову. Узнайте, кто он: «Вы сантехник?»**
 <!-- interaction_id: en:lesson-07:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do you repair roofs?**
-
+🎙 **Are you a plumber?**

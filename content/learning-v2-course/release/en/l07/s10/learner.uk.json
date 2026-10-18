@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-10:i01",
+      "interactionId": "en:lesson-07:session-10:word:fan",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:word:fan:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:word:fan:audio",
+          "transcript": "fan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-10:word:fan:r1",
+            "targetText": "fan",
+            "meaningByLocale": {
+              "ru": "вентилятор. The fan is old. — «Вентилятор старый». Прибор, который гонит воздух и освежает комнату.",
+              "uk": "вентилятор. The fan is old. — «Вентилятор старий». Прилад, який жене повітря й освіжає кімнату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fan",
+          "definitionByLocale": {
+            "ru": "вентилятор. The fan is old. — «Вентилятор старый». Прибор, который гонит воздух и освежает комнату.",
+            "uk": "вентилятор. The fan is old. — «Вентилятор старий». Прилад, який жене повітря й освіжає кімнату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Автомат працює?»",
+      "prompt": "У кімнаті спекотно. Спитайте подругу: «Вентилятор працює?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Автомат працює?»",
+      "accessibilityLabel": "У кімнаті спекотно. Спитайте подругу: «Вентилятор працює?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does the machine work?",
+        "targetPhrase": "Does the fan work?",
         "localizedMeaning": {
-          "ru": "Спросите «Автомат работает?»",
-          "uk": "Запитайте «Автомат працює?»"
+          "ru": "В комнате жарко. Спросите подругу: «Вентилятор работает?»",
+          "uk": "У кімнаті спекотно. Спитайте подругу: «Вентилятор працює?»"
         },
         "orderedTokens": [
           "Does",
           "the",
-          "machine",
+          "fan",
           "work"
         ],
         "authoredDistractorTokens": [],
@@ -37,52 +80,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-10:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-10:word:stove",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — stove",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:word:stove:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stove",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:word:stove:audio",
+          "transcript": "stove"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-10:word:stove:r1",
+            "targetText": "stove",
+            "meaningByLocale": {
+              "ru": "плита. The stove is hot. — «Плита горячая». Кухонная плита, на которой готовят еду.",
+              "uk": "плита. The stove is hot. — «Плита гаряча». Кухонна плита, на якій готують їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stove",
+          "definitionByLocale": {
+            "ru": "плита. The stove is hot. — «Плита горячая». Кухонная плита, на которой готовят еду.",
+            "uk": "плита. The stove is hot. — «Плита гаряча». Кухонна плита, на якій готують їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте господиню",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-10:i02:r1",
-          "text": "machine"
+          "text": "Does the stove have an oven?"
         },
         {
           "responseId": "en:lesson-07:session-10:i02:r2",
-          "text": "pocket"
+          "text": "Does the stove have a fan?"
         },
         {
           "responseId": "en:lesson-07:session-10:i02:r3",
-          "text": "package"
+          "text": "Does the fan have an oven?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте господиню",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i02:audio",
-          "transcript": "machine"
+          "transcript": "Does the stove have an oven?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-10:i02:r1",
-            "targetText": "machine",
+            "targetText": "Does the stove have an oven?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-10:i02:r2",
-            "targetText": "pocket",
+            "targetText": "Does the stove have a fan?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-10:i02:r3",
-            "targetText": "package",
+            "targetText": "Does the fan have an oven?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +177,19 @@
           {
             "responseId": "en:lesson-07:session-10:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `machine`, а в этом варианте — `pocket`.",
-              "uk": "У записі перше слово — `machine`, а в цьому варіанті — `pocket`."
+              "ru": "В записи последнее слово — `oven`, духовка, а в этом варианте — `fan`, вентилятор.",
+              "uk": "У записі останнє слово — `oven`, духовка, а в цьому варіанті — `fan`, вентилятор."
             }
           },
           {
             "responseId": "en:lesson-07:session-10:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `machine`, а в этом варианте — `package`.",
-              "uk": "У записі перше слово — `machine`, а в цьому варіанті — `package`."
+              "ru": "В записи третье слово — `stove`, плита, а в этом варианте — `fan`, вентилятор.",
+              "uk": "У записі третє слово — `stove`, плита, а в цьому варіанті — `fan`, вентилятор."
             }
           }
         ],
@@ -114,67 +200,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, чи працює автомат",
+      "prompt": "Спитайте господиню про плиту. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-10:i03:r1",
-          "text": "work"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-07:session-10:i03:r2",
-          "text": "works"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-07:session-10:i03:r3",
-          "text": "is work"
+          "text": "is have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, чи працює автомат",
+      "accessibilityLabel": "Спитайте господиню про плиту. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, работает ли автомат",
-          "uk": "Запитайте, чи працює автомат"
+          "ru": "Спросите хозяйку о плите. Выберите слово",
+          "uk": "Спитайте господиню про плиту. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does the machine ___?",
+        "gappedTargetPhrase": "Does the stove ___ an oven?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-10:i03:r1",
-            "text": "work"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-07:session-10:i03:r2",
-            "text": "works"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-07:session-10:i03:r3",
-            "text": "is work"
+            "text": "is have"
           }
         ],
-        "testedDimension": "Запитайте, чи працює автомат",
+        "testedDimension": "Спитайте господиню про плиту. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-10:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте, чи працює автомат",
+            "testedDimension": "Спитайте господиню про плиту. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `Does` нужно `work`.",
-              "uk": "Після `Does` потрібне `work`."
+              "ru": "После `Does` нужно `have`, не `has`.",
+              "uk": "Після `Does` потрібно `have`, не `has`."
             }
           },
           {
             "responseId": "en:lesson-07:session-10:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте, чи працює автомат",
+            "testedDimension": "Спитайте господиню про плиту. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Does the machine work?`, без `is`.",
-              "uk": "Потрібно `Does the machine work?`, без `is`."
+              "ru": "Нужно `Does the stove have?`, без `is`.",
+              "uk": "Потрібно `Does the stove have?`, без `is`."
             }
           }
         ]
@@ -183,7 +269,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +283,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-10:i04:p1",
-            "target": "machine",
+            "target": "fan",
             "meaningByLocale": {
-              "ru": "устройство",
-              "uk": "пристрій"
+              "ru": "вентилятор",
+              "uk": "вентилятор"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i04:p2",
-            "target": "lock",
+            "target": "stove",
             "meaningByLocale": {
-              "ru": "замок",
-              "uk": "замок"
+              "ru": "плита",
+              "uk": "плита"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i04:p3",
-            "target": "pocket",
+            "target": "oven",
             "meaningByLocale": {
-              "ru": "карман",
-              "uk": "кишеня"
+              "ru": "духовка",
+              "uk": "духовка"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i04:p4",
-            "target": "package",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "дверь",
+              "uk": "двері"
             }
           }
         ],
         "leftColumn": [
-          "machine",
-          "lock",
-          "pocket",
-          "package"
+          "fan",
+          "stove",
+          "oven",
+          "door"
         ],
         "rightColumn": [
-          "пристрій",
-          "замок",
-          "кишеня",
-          "посилка"
+          "вентилятор",
+          "плита",
+          "духовка",
+          "двері"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,30 +341,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-10:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-07:session-10:word:buzzer",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — buzzer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:word:buzzer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — buzzer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:word:buzzer:audio",
+          "transcript": "buzzer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-10:word:buzzer:r1",
+            "targetText": "buzzer",
+            "meaningByLocale": {
+              "ru": "дверной зуммер. The buzzer is loud. — «Зуммер громкий». Кнопка и сигнал у входа в дом.",
+              "uk": "дверний зумер. The buzzer is loud. — «Зумер гучний». Кнопка й сигнал біля входу в дім."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buzzer",
+          "definitionByLocale": {
+            "ru": "дверной зуммер. The buzzer is loud. — «Зуммер громкий». Кнопка и сигнал у входа в дом.",
+            "uk": "дверний зумер. The buzzer is loud. — «Зумер гучний». Кнопка й сигнал біля входу в дім."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте господиню й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте господиню й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i05:audio",
-          "transcript": "Does the machine work?"
+          "transcript": "Does the buzzer work?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does the machine work?",
+        "hiddenTargetPhrase": "Does the buzzer work?",
         "orderedTokens": [
           "Does",
           "the",
-          "machine",
+          "buzzer",
           "work"
         ],
         "authoredDistractorTokens": [],
@@ -291,27 +420,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-10:word:bolt",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bolt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:word:bolt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bolt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:word:bolt:audio",
+          "transcript": "bolt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-10:word:bolt:r1",
+            "targetText": "bolt",
+            "meaningByLocale": {
+              "ru": "засов. The bolt is strong. — «Засов крепкий». Металлическая задвижка на двери.",
+              "uk": "засув. The bolt is strong. — «Засув міцний». Металева засувка на дверях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bolt",
+          "definitionByLocale": {
+            "ru": "засов. The bolt is strong. — «Засов крепкий». Металлическая задвижка на двери.",
+            "uk": "засув. The bolt is strong. — «Засув міцний». Металева засувка на дверях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-10:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажіть на автомат і запитайте «Він працює?»",
+      "prompt": "Ви замикаєте двері на ніч. Спитайте господиню: «Засув зачиняється?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть на автомат і запитайте «Він працює?»",
+      "accessibilityLabel": "Ви замикаєте двері на ніч. Спитайте господиню: «Засув зачиняється?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does it work?",
+        "targetPhrase": "Does the bolt close?",
         "localizedMeaning": {
-          "ru": "Покажите на автомат и спросите «Он работает?»",
-          "uk": "Покажіть на автомат і запитайте «Він працює?»"
+          "ru": "Вы запираете дверь на ночь. Спросите хозяйку: «Засов закрывается?»",
+          "uk": "Ви замикаєте двері на ніч. Спитайте господиню: «Засув зачиняється?»"
         },
         "orderedTokens": [
           "Does",
-          "it",
-          "work"
+          "the",
+          "bolt",
+          "close"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -324,25 +497,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Повідомте другові «У моїй кишені немає ключа»",
+      "prompt": "Господиня ввімкнула плиту. Спитайте її: «Плита працює?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i07:audio"
       ],
-      "accessibilityLabel": "Повідомте другові «У моїй кишені немає ключа»",
+      "accessibilityLabel": "Господиня ввімкнула плиту. Спитайте її: «Плита працює?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i07:audio",
-          "transcript": "There is no key in my pocket."
+          "transcript": "Does the stove work?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is no key in my pocket.",
+        "targetPhrase": "Does the stove work?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,11 +530,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про автомат «Він працює?»",
+      "prompt": "Спитайте сусідку про зумер. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-10:i08:r1",
@@ -378,14 +551,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про автомат «Він працює?»",
+      "accessibilityLabel": "Спитайте сусідку про зумер. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите об автомате «Он работает?»",
-          "uk": "Запитайте про автомат «Він працює?»"
+          "ru": "Спросите соседку о зуммере. Выберите слово",
+          "uk": "Спитайте сусідку про зумер. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ it work?",
+        "gappedTargetPhrase": "___ the buzzer work?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-10:i08:r1",
@@ -400,24 +573,24 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Запитайте про автомат «Він працює?»",
+        "testedDimension": "Спитайте сусідку про зумер. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-10:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте про автомат «Він працює?»",
+            "testedDimension": "Спитайте сусідку про зумер. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `it` нужно `Does`.",
-              "uk": "З `it` потрібне `Does`."
+              "ru": "Зуммер один: нужно `Does`.",
+              "uk": "Зумер один: потрібно `Does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-10:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте про автомат «Він працює?»",
+            "testedDimension": "Спитайте сусідку про зумер. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С действием `work` здесь нужно `Does it work?`.",
-              "uk": "З дією `work` тут потрібно `Does it work?`."
+              "ru": "С действием `work` нужно `Does`, а не `Is`.",
+              "uk": "З дією `work` потрібне `Does`, а не `Is`."
             }
           }
         ]
@@ -426,51 +599,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про пристрій",
+      "prompt": "Послухайте господиню",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-10:i09:r1",
-          "text": "Does the machine work?"
+          "text": "Does the bolt close?"
         },
         {
           "responseId": "en:lesson-07:session-10:i09:r2",
-          "text": "Does the machine open?"
+          "text": "Does the bolt open?"
         },
         {
           "responseId": "en:lesson-07:session-10:i09:r3",
-          "text": "Does the machine start?"
+          "text": "Does the fan close?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про пристрій",
+      "accessibilityLabel": "Послухайте господиню",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i09:audio",
-          "transcript": "Does the machine work?"
+          "transcript": "Does the bolt close?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-10:i09:r1",
-            "targetText": "Does the machine work?",
+            "targetText": "Does the bolt close?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-10:i09:r2",
-            "targetText": "Does the machine open?",
+            "targetText": "Does the bolt open?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-10:i09:r3",
-            "targetText": "Does the machine start?",
+            "targetText": "Does the fan close?",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +652,19 @@
           {
             "responseId": "en:lesson-07:session-10:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про пристрій",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `work`, а в этом варианте — `open`.",
-              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `open`."
+              "ru": "В записи последнее слово — `close`, закрываться, а в этом варианте — `open`, открываться.",
+              "uk": "У записі останнє слово — `close`, зачинятися, а в цьому варіанті — `open`, відчинятися."
             }
           },
           {
             "responseId": "en:lesson-07:session-10:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про пристрій",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `work`, а в этом варианте — `start`.",
-              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `start`."
+              "ru": "В записи третье слово — `bolt`, засов, а в этом варианте — `fan`, вентилятор.",
+              "uk": "У записі третє слово — `bolt`, засув, а в цьому варіанті — `fan`, вентилятор."
             }
           }
         ],
@@ -502,8 +675,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -516,48 +689,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-10:i10:p1",
-            "target": "practice",
+            "target": "bolt",
             "meaningByLocale": {
-              "ru": "практиковаться",
-              "uk": "практикуватися"
+              "ru": "засов",
+              "uk": "засув"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i10:p2",
-            "target": "machine",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "устройство",
-              "uk": "пристрій"
+              "ru": "дверь",
+              "uk": "двері"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i10:p3",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i10:p4",
             "target": "lock",
             "meaningByLocale": {
               "ru": "замок",
               "uk": "замок"
             }
-          },
-          {
-            "pairId": "en:lesson-07:session-10:i10:p4",
-            "target": "pocket",
-            "meaningByLocale": {
-              "ru": "карман",
-              "uk": "кишеня"
-            }
           }
         ],
         "leftColumn": [
-          "practice",
-          "machine",
-          "lock",
-          "pocket"
+          "bolt",
+          "door",
+          "key",
+          "lock"
         ],
         "rightColumn": [
-          "практикуватися",
-          "пристрій",
-          "замок",
-          "кишеня"
+          "засув",
+          "двері",
+          "ключ",
+          "замок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,25 +748,60 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте господиню й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте господиню й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i11:audio",
-          "transcript": "Does it work?"
+          "transcript": "Does the stove have an oven?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does it work?",
+        "hiddenTargetPhrase": "Does the stove have an oven?",
+        "orderedTokens": [
+          "Does",
+          "the",
+          "stove",
+          "have",
+          "an",
+          "oven"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Господиня показує на плиту. Спитайте її: «Вона працює?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Господиня показує на плиту. Спитайте її: «Вона працює?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does it work?",
+        "localizedMeaning": {
+          "ru": "Хозяйка показывает на плиту. Спросите её: «Она работает?»",
+          "uk": "Господиня показує на плиту. Спитайте її: «Вона працює?»"
+        },
         "orderedTokens": [
           "Does",
           "it",
@@ -609,60 +817,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-10:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Do you have a package?",
-        "localizedMeaning": {
-          "ru": "У стойки отправки спросите посетителя «У вас есть посылка?»",
-          "uk": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?»"
-        },
-        "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "package"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-07:session-10:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед купівлею замка запитайте продавця «Замок працює?»",
+      "prompt": "Ви тримаєте засув у руці. Спитайте господиню: «Він зачиняється?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i13:audio"
       ],
-      "accessibilityLabel": "Перед купівлею замка запитайте продавця «Замок працює?»",
+      "accessibilityLabel": "Ви тримаєте засув у руці. Спитайте господиню: «Він зачиняється?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i13:audio",
-          "transcript": "Does the lock work?"
+          "transcript": "Does it close?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does the lock work?",
+        "targetPhrase": "Does it close?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -677,67 +851,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дізнайтеся в друга, де він займається: «Ти практикуєшся тут?»",
+      "prompt": "Спитайте подругу про вентилятор. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-10:i14:r1",
-          "text": "practice"
+          "text": "work"
         },
         {
           "responseId": "en:lesson-07:session-10:i14:r2",
-          "text": "practices"
+          "text": "works"
         },
         {
           "responseId": "en:lesson-07:session-10:i14:r3",
-          "text": "are practice"
+          "text": "is work"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дізнайтеся в друга, де він займається: «Ти практикуєшся тут?»",
+      "accessibilityLabel": "Спитайте подругу про вентилятор. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Узнайте у друга, где он занимается: «Ты практикуешься здесь?»",
-          "uk": "Дізнайтеся в друга, де він займається: «Ти практикуєшся тут?»"
+          "ru": "Спросите подругу о вентиляторе. Выберите слово",
+          "uk": "Спитайте подругу про вентилятор. Виберіть слово"
         },
-        "gappedTargetPhrase": "Do you ___ here?",
+        "gappedTargetPhrase": "Does the fan ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-10:i14:r1",
-            "text": "practice"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-07:session-10:i14:r2",
-            "text": "practices"
+            "text": "works"
           },
           {
             "responseId": "en:lesson-07:session-10:i14:r3",
-            "text": "are practice"
+            "text": "is work"
           }
         ],
-        "testedDimension": "Дізнайтеся в друга, де він займається: «Ти практикуєшся тут?»",
+        "testedDimension": "Спитайте подругу про вентилятор. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-10:i14:r2",
             "correct": false,
-            "testedDimension": "Дізнайтеся в друга, де він займається: «Ти практикуєшся тут?»",
+            "testedDimension": "Спитайте подругу про вентилятор. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `Do you` нужно `practice`.",
-              "uk": "Після `Do you` потрібне `practice`."
+              "ru": "После `Does` нужно `work`, без `s`.",
+              "uk": "Після `Does` потрібно `work`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-10:i14:r3",
             "correct": false,
-            "testedDimension": "Дізнайтеся в друга, де він займається: «Ти практикуєшся тут?»",
+            "testedDimension": "Спитайте подругу про вентилятор. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do you practice?`, без `are`.",
-              "uk": "Потрібно `Do you practice?`, без `are`."
+              "ru": "Нужно `Does the fan work?`, без `is`.",
+              "uk": "Потрібно `Does the fan work?`, без `is`."
             }
           }
         ]
@@ -746,51 +920,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про замок",
+      "prompt": "Послухайте господиню",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-10:i15:r1",
-          "text": "Does the lock work?"
+          "text": "Does the buzzer work?"
         },
         {
           "responseId": "en:lesson-07:session-10:i15:r2",
-          "text": "Does the lock open?"
+          "text": "Does the buzzer close?"
         },
         {
           "responseId": "en:lesson-07:session-10:i15:r3",
-          "text": "Does the lock close?"
+          "text": "Does the bolt work?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про замок",
+      "accessibilityLabel": "Послухайте господиню",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i15:audio",
-          "transcript": "Does the lock work?"
+          "transcript": "Does the buzzer work?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-10:i15:r1",
-            "targetText": "Does the lock work?",
+            "targetText": "Does the buzzer work?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-10:i15:r2",
-            "targetText": "Does the lock open?",
+            "targetText": "Does the buzzer close?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-10:i15:r3",
-            "targetText": "Does the lock close?",
+            "targetText": "Does the bolt work?",
             "meaningByLocale": null
           }
         ],
@@ -799,19 +973,19 @@
           {
             "responseId": "en:lesson-07:session-10:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про замок",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `work`, а в этом варианте — `open`.",
-              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `open`."
+              "ru": "В записи последнее слово — `work`, работать, а в этом варианте — `close`, закрываться.",
+              "uk": "У записі останнє слово — `work`, працювати, а в цьому варіанті — `close`, зачинятися."
             }
           },
           {
             "responseId": "en:lesson-07:session-10:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про замок",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `work`, а в этом варианте — `close`.",
-              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `close`."
+              "ru": "В записи третье слово — `buzzer`, зуммер, а в этом варианте — `bolt`, засов.",
+              "uk": "У записі третє слово — `buzzer`, зумер, а в цьому варіанті — `bolt`, засув."
             }
           }
         ],
@@ -822,7 +996,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,48 +1010,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-10:i16:p1",
-            "target": "machine",
+            "target": "stove",
             "meaningByLocale": {
-              "ru": "устройство",
-              "uk": "пристрій"
+              "ru": "плита",
+              "uk": "плита"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i16:p2",
-            "target": "package",
+            "target": "fan",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "вентилятор",
+              "uk": "вентилятор"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i16:p3",
-            "target": "practice",
+            "target": "bolt",
             "meaningByLocale": {
-              "ru": "практиковаться",
-              "uk": "практикуватися"
+              "ru": "засов",
+              "uk": "засув"
             }
           },
           {
             "pairId": "en:lesson-07:session-10:i16:p4",
-            "target": "pocket",
+            "target": "buzzer",
             "meaningByLocale": {
-              "ru": "карман",
-              "uk": "кишеня"
+              "ru": "дверной зуммер",
+              "uk": "дверний зумер"
             }
           }
         ],
         "leftColumn": [
-          "machine",
-          "package",
-          "practice",
-          "pocket"
+          "stove",
+          "fan",
+          "bolt",
+          "buzzer"
         ],
         "rightColumn": [
-          "пристрій",
-          "посилка",
-          "практикуватися",
-          "кишеня"
+          "плита",
+          "вентилятор",
+          "засув",
+          "дверний зумер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -895,25 +1069,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-10:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг пропонує вам зарядний пристрій. Уточніть «Зарядний пристрій працює?»",
+      "prompt": "Ви в’їжджаєте в квартиру. Спитайте господиню: «Вентилятор працює?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-10:i17:audio"
       ],
-      "accessibilityLabel": "Друг пропонує вам зарядний пристрій. Уточніть «Зарядний пристрій працює?»",
+      "accessibilityLabel": "Ви в’їжджаєте в квартиру. Спитайте господиню: «Вентилятор працює?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-10:i17:audio",
-          "transcript": "Does the charger work?"
+          "transcript": "Does the fan work?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does the charger work?",
+        "targetPhrase": "Does the fan work?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -935,11 +1109,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "952dbaff57f1e088fb6c5968f7bc2a8ed5cd986a2d20ca214005fcd567ce2c80"
+  "learnerFingerprint": "51a4236e2cd3d2e10db372e02485e5a9169c7a9a40adf90e4ed793ff54a71b43"
 }

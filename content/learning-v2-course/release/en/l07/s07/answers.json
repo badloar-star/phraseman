@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-07:session-07:word:schedule",
+    "correctText": "schedule",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-07:i01",
     "correctText": "Do you have a schedule?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-07:session-07:word:voucher",
+    "correctText": "voucher",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-07:i02",
-    "correctText": "schedule",
+    "correctText": "We have a schedule.",
     "correctResponseId": "en:lesson-07:session-07:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-07:word:rent",
+    "correctText": "rent",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-07:i03",
-    "correctText": "Do",
+    "correctText": "rent",
     "correctResponseId": "en:lesson-07:session-07:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-07:i04",
-    "correctText": "en:lesson-07:session-07:i04:p1=schedule\nen:lesson-07:session-07:i04:p2=cup\nen:lesson-07:session-07:i04:p3=remote\nen:lesson-07:session-07:i04:p4=calendar",
+    "correctText": "en:lesson-07:session-07:i04:p1=schedule\nen:lesson-07:session-07:i04:p2=voucher\nen:lesson-07:session-07:i04:p3=rent\nen:lesson-07:session-07:i04:p4=easel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:word:join",
+    "correctText": "join",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-07:i05",
-    "correctText": "Do you have a schedule?",
+    "correctText": "Do you join the class?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-07:i06",
-    "correctText": "Do you work here?",
+    "correctText": "Do they rent easels?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-07:i07",
-    "correctText": "There is no schedule here.",
+    "correctText": "There is no voucher here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-07:i08",
-    "correctText": "work",
+    "correctText": "join",
     "correctResponseId": "en:lesson-07:session-07:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-07:i09",
-    "correctText": "Do you have a schedule?",
+    "correctText": "Do you have a voucher?",
     "correctResponseId": "en:lesson-07:session-07:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-07:i10",
-    "correctText": "en:lesson-07:session-07:i10:p1=artist\nen:lesson-07:session-07:i10:p2=schedule\nen:lesson-07:session-07:i10:p3=calendar\nen:lesson-07:session-07:i10:p4=cup",
+    "correctText": "en:lesson-07:session-07:i10:p1=join\nen:lesson-07:session-07:i10:p2=voucher\nen:lesson-07:session-07:i10:p3=schedule\nen:lesson-07:session-07:i10:p4=rent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-07:i11",
-    "correctText": "Do they work here?",
+    "correctText": "Do they join the class?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-07:i12",
-    "correctText": "Are you an artist?",
+    "correctText": "Do you have a voucher?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-07:i13",
-    "correctText": "Do you have a calendar?",
+    "correctText": "Do you rent easels?",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-07:session-07:i15",
-    "correctText": "Do you have a cup?",
+    "correctText": "Do they rent easels here?",
     "correctResponseId": "en:lesson-07:session-07:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-07:i16",
-    "correctText": "en:lesson-07:session-07:i16:p1=schedule\nen:lesson-07:session-07:i16:p2=artist\nen:lesson-07:session-07:i16:p3=remote\nen:lesson-07:session-07:i16:p4=cup",
+    "correctText": "en:lesson-07:session-07:i16:p1=rent\nen:lesson-07:session-07:i16:p2=schedule\nen:lesson-07:session-07:i16:p3=voucher\nen:lesson-07:session-07:i16:p4=join",
     "correctResponseId": null
   },
   {

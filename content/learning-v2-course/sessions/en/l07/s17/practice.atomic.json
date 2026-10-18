@@ -1,0 +1,2443 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-17:word:gossip",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gossip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:gossip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gossip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:gossip:audio",
+            "transcript": "gossip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:gossip:r1",
+              "targetText": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать. We don't gossip. — «Мы не сплетничаем». О том, как обсуждают чужие личные дела за спиной.",
+                "uk": "пліткувати. We don't gossip. — «Ми не пліткуємо». Про те, як обговорюють чужі особисті справи за спиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gossip",
+            "definitionByLocale": {
+              "ru": "сплетничать. We don't gossip. — «Мы не сплетничаем». О том, как обсуждают чужие личные дела за спиной.",
+              "uk": "пліткувати. We don't gossip. — «Ми не пліткуємо». Про те, як обговорюють чужі особисті справи за спиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллеги зовут обсудить начальника. Скажите: «Я не сплетничаю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллеги зовут обсудить начальника. Скажите: «Я не сплетничаю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't gossip.",
+          "localizedMeaning": {
+            "ru": "Коллеги зовут обсудить начальника. Скажите: «Я не сплетничаю»",
+            "uk": "Колеги кличуть обговорити начальника. Скажіть: «Я не пліткую»"
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "gossip"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Коллеги зовут обсудить начальника. Скажите: «Я не сплетничаю»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't gossip.`",
+                "uk": "тут потрібно `don't` — `I don't gossip.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i02:r1",
+            "text": "gossip"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i02:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i02:r3",
+            "text": "jacket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i02:audio",
+            "transcript": "gossip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:i02:r1",
+              "targetText": "gossip",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i02:r2",
+              "targetText": "cook",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i02:r3",
+              "targetText": "jacket",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `gossip`, а в этом варианте — `cook`.",
+                "uk": "У записі перше слово — `gossip`, а в цьому варіанті — `cook`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `gossip`, а в этом варианте — `jacket`.",
+                "uk": "У записі перше слово — `gossip`, а в цьому варіанті — `jacket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите «Я не сплетничаю». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i03:r1",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i03:r2",
+            "text": "doesn't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i03:r3",
+            "text": "not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите «Я не сплетничаю». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите «Я не сплетничаю». Выберите слово",
+            "uk": "Скажіть «Я не пліткую». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ gossip.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-17:i03:r1",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i03:r2",
+              "text": "doesn't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i03:r3",
+              "text": "not"
+            }
+          ],
+          "testedDimension": "Скажите «Я не сплетничаю». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите «Я не сплетничаю». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `don't`.",
+                "uk": "Після `I` потрібно `don't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите «Я не сплетничаю». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+                "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-17:i04:p1",
+              "target": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать",
+                "uk": "пліткувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i04:p2",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i04:p3",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить",
+                "uk": "готувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i04:p4",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gossip",
+            "work",
+            "cook",
+            "jacket"
+          ],
+          "rightColumn": [
+            "сплетничать",
+            "работать",
+            "готовить",
+            "куртка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:word:brag",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:brag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:brag:audio",
+            "transcript": "brag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:brag:r1",
+              "targetText": "brag",
+              "meaningByLocale": {
+                "ru": "хвастаться. They don't brag. — «Они не хвастаются». О том, как человек выставляет свои успехи напоказ.",
+                "uk": "хвалитися. They don't brag. — «Вони не хваляться». Про те, як людина виставляє свої успіхи напоказ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brag",
+            "definitionByLocale": {
+              "ru": "хвастаться. They don't brag. — «Они не хвастаются». О том, как человек выставляет свои успехи напоказ.",
+              "uk": "хвалитися. They don't brag. — «Вони не хваляться». Про те, як людина виставляє свої успіхи напоказ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i05:audio",
+            "transcript": "I don't brag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I don't brag.",
+          "orderedTokens": [
+            "I",
+            "don't",
+            "brag"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't brag.`",
+                "uk": "тут потрібно `don't` — `I don't brag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:word:horn",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — horn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:horn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — horn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:horn:audio",
+            "transcript": "horn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:horn:r1",
+              "targetText": "horn",
+              "meaningByLocale": {
+                "ru": "гудок, звуковой сигнал. The horn is loud. — «Гудок громкий». Устройство в машине, которое подаёт звуковой сигнал.",
+                "uk": "гудок, звуковий сигнал. The horn is loud. — «Гудок гучний». Пристрій у машині, що подає звуковий сигнал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "horn",
+            "definitionByLocale": {
+              "ru": "гудок, звуковой сигнал. The horn is loud. — «Гудок громкий». Устройство в машине, которое подаёт звуковой сигнал.",
+              "uk": "гудок, звуковий сигнал. The horn is loud. — «Гудок гучний». Пристрій у машині, що подає звуковий сигнал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы взяли машину брата и нажали на сигнал: тишина. Скажите пассажиру: «Гудок не работает»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы взяли машину брата и нажали на сигнал: тишина. Скажите пассажиру: «Гудок не работает»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The horn doesn't work.",
+          "localizedMeaning": {
+            "ru": "Вы взяли машину брата и нажали на сигнал: тишина. Скажите пассажиру: «Гудок не работает»",
+            "uk": "Ви взяли машину брата й натиснули на сигнал: тиша. Скажіть пасажиру: «Гудок не працює»"
+          },
+          "orderedTokens": [
+            "The",
+            "horn",
+            "doesn't",
+            "work"
+          ],
+          "authoredDistractorTokens": [
+            "don't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы взяли машину брата и нажали на сигнал: тишина. Скажите пассажиру: «Гудок не работает»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `doesn't` — `The horn doesn't work.`",
+                "uk": "тут потрібно `doesn't` — `The horn doesn't work.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга нашла вашу медаль и удивилась молчанию. Скажите: «Я не хвастаюсь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга нашла вашу медаль и удивилась молчанию. Скажите: «Я не хвастаюсь»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i07:audio",
+            "transcript": "I don't brag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't brag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите пассажиру «Гудок не работает». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i08:r1",
+            "text": "doesn't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i08:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i08:r3",
+            "text": "not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите пассажиру «Гудок не работает». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите пассажиру «Гудок не работает». Выберите слово",
+            "uk": "Скажіть пасажиру «Гудок не працює». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The horn ___ work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-17:i08:r1",
+              "text": "doesn't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i08:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i08:r3",
+              "text": "not"
+            }
+          ],
+          "testedDimension": "Скажите пассажиру «Гудок не работает». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите пассажиру «Гудок не работает». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С the horn, как с it, нужно `doesn't`.",
+                "uk": "З the horn, як з it, потрібно `doesn't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите пассажиру «Гудок не работает». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Перед `work` нужно `doesn't`, а не просто `not`.",
+                "uk": "Перед `work` потрібно `doesn't`, а не просто `not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, чего не делает собеседник",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i09:r1",
+            "text": "I don't gossip."
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i09:r2",
+            "text": "I don't brag."
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i09:r3",
+            "text": "I don't drive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, чего не делает собеседник",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i09:audio",
+            "transcript": "I don't gossip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:i09:r1",
+              "targetText": "I don't gossip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i09:r2",
+              "targetText": "I don't brag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i09:r3",
+              "targetText": "I don't drive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, чего не делает собеседник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gossip`, а в этом варианте — `brag`.",
+                "uk": "У записі останнє слово — `gossip`, а в цьому варіанті — `brag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, чего не делает собеседник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gossip`, а в этом варианте — `drive`.",
+                "uk": "У записі останнє слово — `gossip`, а в цьому варіанті — `drive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-17:i10:p1",
+              "target": "drive",
+              "meaningByLocale": {
+                "ru": "водить машину",
+                "uk": "водити машину"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i10:p2",
+              "target": "horn",
+              "meaningByLocale": {
+                "ru": "гудок, звуковой сигнал",
+                "uk": "гудок, звуковий сигнал"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i10:p3",
+              "target": "brag",
+              "meaningByLocale": {
+                "ru": "хвастаться",
+                "uk": "хвалитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i10:p4",
+              "target": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать",
+                "uk": "пліткувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "drive",
+            "horn",
+            "brag",
+            "gossip"
+          ],
+          "rightColumn": [
+            "водить машину",
+            "гудок, звуковой сигнал",
+            "хвастаться",
+            "сплетничать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i11:audio",
+            "transcript": "The horn doesn't work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The horn doesn't work.",
+          "orderedTokens": [
+            "The",
+            "horn",
+            "doesn't",
+            "work"
+          ],
+          "authoredDistractorTokens": [
+            "don't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `doesn't` — `The horn doesn't work.`",
+                "uk": "тут потрібно `doesn't` — `The horn doesn't work.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:word:secret",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — secret",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:secret:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — secret",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:secret:audio",
+            "transcript": "secret"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:secret:r1",
+              "targetText": "secret",
+              "meaningByLocale": {
+                "ru": "секрет, тайна. I have a secret. — «У меня есть секрет». То, что человек скрывает от других.",
+                "uk": "секрет, таємниця. I have a secret. — «У мене є секрет». Те, що людина приховує від інших."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "secret",
+            "definitionByLocale": {
+              "ru": "секрет, тайна. I have a secret. — «У меня есть секрет». То, что человек скрывает от других.",
+              "uk": "секрет, таємниця. I have a secret. — «У мене є секрет». Те, що людина приховує від інших."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг готов поделиться тайной. Спросите его: «У тебя есть секрет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг готов поделиться тайной. Спросите его: «У тебя есть секрет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a secret?",
+          "localizedMeaning": {
+            "ru": "Друг готов поделиться тайной. Спросите его: «У тебя есть секрет?»",
+            "uk": "Друг готовий поділитися таємницею. Спитайте його: «У тебе є секрет?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "secret"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг готов поделиться тайной. Спросите его: «У тебя есть секрет?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you have a secret?`",
+                "uk": "тут потрібно `Do` — `Do you have a secret?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг просит открыть ему тайну. Скажите: «У меня нет секретов»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i13:audio"
+        ],
+        "accessibilityLabel": "Друг просит открыть ему тайну. Скажите: «У меня нет секретов»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i13:audio",
+            "transcript": "I don't have secrets."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't have secrets.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите друга: «Ты сплетничаешь?». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i14:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i14:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите друга: «Ты сплетничаешь?». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите друга: «Ты сплетничаешь?». Выберите слово",
+            "uk": "Спитайте друга: «Ти пліткуєш?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ you gossip?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-17:i14:r1",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i14:r2",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Спросите друга: «Ты сплетничаешь?». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i14:r2",
+              "correct": false,
+              "testedDimension": "Спросите друга: «Ты сплетничаешь?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Do`.",
+                "uk": "З `you` потрібно `Do`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i14:r3",
+              "correct": false,
+              "testedDimension": "Спросите друга: «Ты сплетничаешь?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С действием `gossip` нужно `Do`, а не `Are`.",
+                "uk": "З дією `gossip` потрібно `Do`, а не `Are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i15:r1",
+            "text": "Do you have a secret?"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i15:r2",
+            "text": "Do you have a jacket?"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i15:r3",
+            "text": "Does he have a secret?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i15:audio",
+            "transcript": "Do you have a secret?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:i15:r1",
+              "targetText": "Do you have a secret?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i15:r2",
+              "targetText": "Do you have a jacket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i15:r3",
+              "targetText": "Does he have a secret?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `secret`, а в этом варианте — `jacket`.",
+                "uk": "У записі останнє слово — `secret`, а в цьому варіанті — `jacket`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Do`, а в этом варианте — `Does`.",
+                "uk": "У записі перше слово — `Do`, а в цьому варіанті — `Does`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-17:i16:p1",
+              "target": "brag",
+              "meaningByLocale": {
+                "ru": "хвастаться",
+                "uk": "хвалитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i16:p2",
+              "target": "secret",
+              "meaningByLocale": {
+                "ru": "секрет, тайна",
+                "uk": "секрет, таємниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i16:p3",
+              "target": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать",
+                "uk": "пліткувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i16:p4",
+              "target": "horn",
+              "meaningByLocale": {
+                "ru": "гудок, звуковой сигнал",
+                "uk": "гудок, звуковий сигнал"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brag",
+            "secret",
+            "gossip",
+            "horn"
+          ],
+          "rightColumn": [
+            "хвастаться",
+            "секрет, тайна",
+            "сплетничать",
+            "гудок, звуковой сигнал"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, сплетничает ли ваш брат. Скажите: «Он не сплетничает»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, сплетничает ли ваш брат. Скажите: «Он не сплетничает»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i17:audio",
+            "transcript": "He doesn't gossip."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't gossip.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-17:word:gossip",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gossip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:gossip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gossip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:gossip:audio",
+            "transcript": "gossip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:gossip:r1",
+              "targetText": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать. We don't gossip. — «Мы не сплетничаем». О том, как обсуждают чужие личные дела за спиной.",
+                "uk": "пліткувати. We don't gossip. — «Ми не пліткуємо». Про те, як обговорюють чужі особисті справи за спиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gossip",
+            "definitionByLocale": {
+              "ru": "сплетничать. We don't gossip. — «Мы не сплетничаем». О том, как обсуждают чужие личные дела за спиной.",
+              "uk": "пліткувати. We don't gossip. — «Ми не пліткуємо». Про те, як обговорюють чужі особисті справи за спиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колеги кличуть обговорити начальника. Скажіть: «Я не пліткую»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колеги кличуть обговорити начальника. Скажіть: «Я не пліткую»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't gossip.",
+          "localizedMeaning": {
+            "ru": "Коллеги зовут обсудить начальника. Скажите: «Я не сплетничаю»",
+            "uk": "Колеги кличуть обговорити начальника. Скажіть: «Я не пліткую»"
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "gossip"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Колеги кличуть обговорити начальника. Скажіть: «Я не пліткую»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't gossip.`",
+                "uk": "тут потрібно `don't` — `I don't gossip.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i02:r1",
+            "text": "gossip"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i02:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i02:r3",
+            "text": "jacket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i02:audio",
+            "transcript": "gossip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:i02:r1",
+              "targetText": "gossip",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i02:r2",
+              "targetText": "cook",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i02:r3",
+              "targetText": "jacket",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `gossip`, а в этом варианте — `cook`.",
+                "uk": "У записі перше слово — `gossip`, а в цьому варіанті — `cook`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `gossip`, а в этом варианте — `jacket`.",
+                "uk": "У записі перше слово — `gossip`, а в цьому варіанті — `jacket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть «Я не пліткую». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i03:r1",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i03:r2",
+            "text": "doesn't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i03:r3",
+            "text": "not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть «Я не пліткую». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите «Я не сплетничаю». Выберите слово",
+            "uk": "Скажіть «Я не пліткую». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ gossip.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-17:i03:r1",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i03:r2",
+              "text": "doesn't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i03:r3",
+              "text": "not"
+            }
+          ],
+          "testedDimension": "Скажіть «Я не пліткую». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть «Я не пліткую». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `don't`.",
+                "uk": "Після `I` потрібно `don't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть «Я не пліткую». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+                "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-17:i04:p1",
+              "target": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать",
+                "uk": "пліткувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i04:p2",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i04:p3",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить",
+                "uk": "готувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i04:p4",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gossip",
+            "work",
+            "cook",
+            "jacket"
+          ],
+          "rightColumn": [
+            "пліткувати",
+            "працювати",
+            "готувати",
+            "куртка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:word:brag",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:brag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:brag:audio",
+            "transcript": "brag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:brag:r1",
+              "targetText": "brag",
+              "meaningByLocale": {
+                "ru": "хвастаться. They don't brag. — «Они не хвастаются». О том, как человек выставляет свои успехи напоказ.",
+                "uk": "хвалитися. They don't brag. — «Вони не хваляться». Про те, як людина виставляє свої успіхи напоказ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brag",
+            "definitionByLocale": {
+              "ru": "хвастаться. They don't brag. — «Они не хвастаются». О том, как человек выставляет свои успехи напоказ.",
+              "uk": "хвалитися. They don't brag. — «Вони не хваляться». Про те, як людина виставляє свої успіхи напоказ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i05:audio",
+            "transcript": "I don't brag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I don't brag.",
+          "orderedTokens": [
+            "I",
+            "don't",
+            "brag"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't brag.`",
+                "uk": "тут потрібно `don't` — `I don't brag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:word:horn",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — horn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:horn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — horn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:horn:audio",
+            "transcript": "horn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:horn:r1",
+              "targetText": "horn",
+              "meaningByLocale": {
+                "ru": "гудок, звуковой сигнал. The horn is loud. — «Гудок громкий». Устройство в машине, которое подаёт звуковой сигнал.",
+                "uk": "гудок, звуковий сигнал. The horn is loud. — «Гудок гучний». Пристрій у машині, що подає звуковий сигнал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "horn",
+            "definitionByLocale": {
+              "ru": "гудок, звуковой сигнал. The horn is loud. — «Гудок громкий». Устройство в машине, которое подаёт звуковой сигнал.",
+              "uk": "гудок, звуковий сигнал. The horn is loud. — «Гудок гучний». Пристрій у машині, що подає звуковий сигнал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви взяли машину брата й натиснули на сигнал: тиша. Скажіть пасажиру: «Гудок не працює»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви взяли машину брата й натиснули на сигнал: тиша. Скажіть пасажиру: «Гудок не працює»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The horn doesn't work.",
+          "localizedMeaning": {
+            "ru": "Вы взяли машину брата и нажали на сигнал: тишина. Скажите пассажиру: «Гудок не работает»",
+            "uk": "Ви взяли машину брата й натиснули на сигнал: тиша. Скажіть пасажиру: «Гудок не працює»"
+          },
+          "orderedTokens": [
+            "The",
+            "horn",
+            "doesn't",
+            "work"
+          ],
+          "authoredDistractorTokens": [
+            "don't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви взяли машину брата й натиснули на сигнал: тиша. Скажіть пасажиру: «Гудок не працює»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `doesn't` — `The horn doesn't work.`",
+                "uk": "тут потрібно `doesn't` — `The horn doesn't work.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга знайшла вашу медаль і здивувалася мовчанню. Скажіть: «Я не хвалюся»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга знайшла вашу медаль і здивувалася мовчанню. Скажіть: «Я не хвалюся»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i07:audio",
+            "transcript": "I don't brag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't brag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть пасажиру «Гудок не працює». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i08:r1",
+            "text": "doesn't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i08:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i08:r3",
+            "text": "not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть пасажиру «Гудок не працює». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите пассажиру «Гудок не работает». Выберите слово",
+            "uk": "Скажіть пасажиру «Гудок не працює». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The horn ___ work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-17:i08:r1",
+              "text": "doesn't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i08:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i08:r3",
+              "text": "not"
+            }
+          ],
+          "testedDimension": "Скажіть пасажиру «Гудок не працює». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть пасажиру «Гудок не працює». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С the horn, как с it, нужно `doesn't`.",
+                "uk": "З the horn, як з it, потрібно `doesn't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть пасажиру «Гудок не працює». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Перед `work` нужно `doesn't`, а не просто `not`.",
+                "uk": "Перед `work` потрібно `doesn't`, а не просто `not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, чого не робить співрозмовник",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i09:r1",
+            "text": "I don't gossip."
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i09:r2",
+            "text": "I don't brag."
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i09:r3",
+            "text": "I don't drive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i09:audio",
+            "transcript": "I don't gossip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:i09:r1",
+              "targetText": "I don't gossip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i09:r2",
+              "targetText": "I don't brag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i09:r3",
+              "targetText": "I don't drive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, чого не робить співрозмовник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gossip`, а в этом варианте — `brag`.",
+                "uk": "У записі останнє слово — `gossip`, а в цьому варіанті — `brag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, чого не робить співрозмовник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gossip`, а в этом варианте — `drive`.",
+                "uk": "У записі останнє слово — `gossip`, а в цьому варіанті — `drive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-17:i10:p1",
+              "target": "drive",
+              "meaningByLocale": {
+                "ru": "водить машину",
+                "uk": "водити машину"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i10:p2",
+              "target": "horn",
+              "meaningByLocale": {
+                "ru": "гудок, звуковой сигнал",
+                "uk": "гудок, звуковий сигнал"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i10:p3",
+              "target": "brag",
+              "meaningByLocale": {
+                "ru": "хвастаться",
+                "uk": "хвалитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i10:p4",
+              "target": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать",
+                "uk": "пліткувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "drive",
+            "horn",
+            "brag",
+            "gossip"
+          ],
+          "rightColumn": [
+            "водити машину",
+            "гудок, звуковий сигнал",
+            "хвалитися",
+            "пліткувати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i11:audio",
+            "transcript": "The horn doesn't work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The horn doesn't work.",
+          "orderedTokens": [
+            "The",
+            "horn",
+            "doesn't",
+            "work"
+          ],
+          "authoredDistractorTokens": [
+            "don't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `doesn't` — `The horn doesn't work.`",
+                "uk": "тут потрібно `doesn't` — `The horn doesn't work.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:word:secret",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — secret",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:word:secret:audio"
+        ],
+        "accessibilityLabel": "Картка слова — secret",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:word:secret:audio",
+            "transcript": "secret"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:word:secret:r1",
+              "targetText": "secret",
+              "meaningByLocale": {
+                "ru": "секрет, тайна. I have a secret. — «У меня есть секрет». То, что человек скрывает от других.",
+                "uk": "секрет, таємниця. I have a secret. — «У мене є секрет». Те, що людина приховує від інших."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "secret",
+            "definitionByLocale": {
+              "ru": "секрет, тайна. I have a secret. — «У меня есть секрет». То, что человек скрывает от других.",
+              "uk": "секрет, таємниця. I have a secret. — «У мене є секрет». Те, що людина приховує від інших."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг готовий поділитися таємницею. Спитайте його: «У тебе є секрет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг готовий поділитися таємницею. Спитайте його: «У тебе є секрет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a secret?",
+          "localizedMeaning": {
+            "ru": "Друг готов поделиться тайной. Спросите его: «У тебя есть секрет?»",
+            "uk": "Друг готовий поділитися таємницею. Спитайте його: «У тебе є секрет?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "secret"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг готовий поділитися таємницею. Спитайте його: «У тебе є секрет?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you have a secret?`",
+                "uk": "тут потрібно `Do` — `Do you have a secret?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг просить відкрити йому таємницю. Скажіть: «У мене немає секретів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i13:audio"
+        ],
+        "accessibilityLabel": "Друг просить відкрити йому таємницю. Скажіть: «У мене немає секретів»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i13:audio",
+            "transcript": "I don't have secrets."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't have secrets.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте друга: «Ти пліткуєш?». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i14:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i14:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте друга: «Ти пліткуєш?». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите друга: «Ты сплетничаешь?». Выберите слово",
+            "uk": "Спитайте друга: «Ти пліткуєш?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ you gossip?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-17:i14:r1",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i14:r2",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Спитайте друга: «Ти пліткуєш?». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i14:r2",
+              "correct": false,
+              "testedDimension": "Спитайте друга: «Ти пліткуєш?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Do`.",
+                "uk": "З `you` потрібно `Do`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i14:r3",
+              "correct": false,
+              "testedDimension": "Спитайте друга: «Ти пліткуєш?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С действием `gossip` нужно `Do`, а не `Are`.",
+                "uk": "З дією `gossip` потрібно `Do`, а не `Are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-17:i15:r1",
+            "text": "Do you have a secret?"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i15:r2",
+            "text": "Do you have a jacket?"
+          },
+          {
+            "responseId": "en:lesson-07:session-17:i15:r3",
+            "text": "Does he have a secret?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i15:audio",
+            "transcript": "Do you have a secret?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-17:i15:r1",
+              "targetText": "Do you have a secret?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i15:r2",
+              "targetText": "Do you have a jacket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i15:r3",
+              "targetText": "Does he have a secret?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-17:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `secret`, а в этом варианте — `jacket`.",
+                "uk": "У записі останнє слово — `secret`, а в цьому варіанті — `jacket`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-17:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Do`, а в этом варианте — `Does`.",
+                "uk": "У записі перше слово — `Do`, а в цьому варіанті — `Does`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-17:i16:p1",
+              "target": "brag",
+              "meaningByLocale": {
+                "ru": "хвастаться",
+                "uk": "хвалитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i16:p2",
+              "target": "secret",
+              "meaningByLocale": {
+                "ru": "секрет, тайна",
+                "uk": "секрет, таємниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i16:p3",
+              "target": "gossip",
+              "meaningByLocale": {
+                "ru": "сплетничать",
+                "uk": "пліткувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-17:i16:p4",
+              "target": "horn",
+              "meaningByLocale": {
+                "ru": "гудок, звуковой сигнал",
+                "uk": "гудок, звуковий сигнал"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brag",
+            "secret",
+            "gossip",
+            "horn"
+          ],
+          "rightColumn": [
+            "хвалитися",
+            "секрет, таємниця",
+            "пліткувати",
+            "гудок, звуковий сигнал"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-17:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чи пліткує ваш брат. Скажіть: «Він не пліткує»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чи пліткує ваш брат. Скажіть: «Він не пліткує»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-17:i17:audio",
+            "transcript": "He doesn't gossip."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't gossip.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-17:word:gossip",
+      "correctText": "gossip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i01",
+      "correctText": "I don't gossip.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i02",
+      "correctText": "gossip",
+      "correctResponseId": "en:lesson-07:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i03",
+      "correctText": "don't",
+      "correctResponseId": "en:lesson-07:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:word:brag",
+      "correctText": "brag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i05",
+      "correctText": "I don't brag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:word:horn",
+      "correctText": "horn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i06",
+      "correctText": "The horn doesn't work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i07",
+      "correctText": "I don't brag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i08",
+      "correctText": "doesn't",
+      "correctResponseId": "en:lesson-07:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i09",
+      "correctText": "I don't gossip.",
+      "correctResponseId": "en:lesson-07:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i11",
+      "correctText": "The horn doesn't work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:word:secret",
+      "correctText": "secret",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i12",
+      "correctText": "Do you have a secret?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i13",
+      "correctText": "I don't have secrets.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i14",
+      "correctText": "Do",
+      "correctResponseId": "en:lesson-07:session-17:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i15",
+      "correctText": "Do you have a secret?",
+      "correctResponseId": "en:lesson-07:session-17:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:i17",
+      "correctText": "He doesn't gossip.",
+      "correctResponseId": null
+    }
+  ]
+}

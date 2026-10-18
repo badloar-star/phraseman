@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 10 — Этот автомат работает?
+# Английский · Урок 7 · Занятие 10 — Что работает в квартире
 
-**Ситуация.** Вы хотите купить воду в автомате и уточняете у сотрудника, работает ли он. Позже ищете ключ в кармане.
+**Ситуация.** Вы заселяетесь в съёмную квартиру и проверяете вместе с хозяйкой, что в ней исправно: вентилятор, плита, зуммер у входа и засов на двери.
 
-**Что вы освоите:** задавать вопросы с Does об устройстве и с Do о человеке
-**Новые слова:** machine
+**Что вы освоите:** спросить, работает ли один предмет, и что у него есть, с помощью Does
+**Новые слова:** fan, stove, buzzer, bolt
+**Возвращаются:** oven, door, key, lock, open, close
 
 ---
 
 ## Интро 1
 
-### Автомат у входа
+### Душная комната
 
-`machine` — «машина», «устройство»; здесь — торговый автомат. Вы хотите купить воду. `Does the machine work?` — «Автомат работает?» `Work` здесь значит «работать», исправно действовать. Одна машина: `Does the machine work`, без `s` у `work`.
+Вы пришли в гости к подруге. В комнате жарко, а окно не открывается. Подруга показывает на вентилятор в углу комнаты. fan — «вентилятор». Вы спрашиваете: Does the fan work? — «Вентилятор работает?» Прибор один, поэтому Does, а после него work, без s.
 
-**Спросите сотрудника «Автомат работает?»**
+**В комнате жарко. Спросите подругу: «Вентилятор работает?»**
 
-- ✅ **Does the machine work?**
-- ❌ Do the machine work? — *Один автомат: `Does the machine`.*
-- ❌ Does the machine works? — *После `Does` нужно `work`, без `s`.*
+- ✅ **Does the fan work?**
+- ❌ Do the fan work? — *Вентилятор один: нужно Does.*
+- ❌ Does the fan works? — *После Does нужно work, без s.*
 
 ---
 
 ## Интро 2
 
-### Тот же автомат
+### Плита в новой квартире
 
-Сотрудник подошёл к автомату вместе с вами. Уже понятно, о чём речь, поэтому можно спросить короче: `Does it work?` — «Он работает?» `It` заменяет название устройства. После `Does it` — `work`. Автомат может выглядеть бодро и ярко светиться, но воду всё равно не выдавать — вопрос полезный.
+Вы заселяетесь в съёмную квартиру и хотите испечь пирог к приезду друзей. Остальную кухню вы уже осмотрели, остаётся старая плита. stove — «плита». Спросите хозяйку, есть ли у неё духовка: Does the stove have an oven? — «У плиты есть духовка?» После Does — have, не has.
 
-**Спросите о показанном автомате «Он работает?»**
+**Вы хотите испечь пирог. Спросите хозяйку: «У плиты есть духовка?»**
 
-- ✅ **Does it work?**
-- ❌ Do it work? — *С `it` нужно `Does`.*
-- ❌ Does it works? — *После `Does it` нужно `work`.*
+- ✅ **Does the stove have an oven?**
+- ❌ Does the stove has an oven? — *После Does нужно have, не has.*
+- ❌ Do the stove have an oven? — *Плита одна: нужно Does.*
 
 ---
 
 ## Интро 3
 
-### Проверяем карман
+### Кнопка у подъезда
 
-У закрытой двери вы ищете ключ. `There is no key in my pocket` — «В моём кармане нет ключа». `In my pocket` уточняет место; об отсутствии одного ключа говорим `There is no key`. Это не значит, что ключа нет нигде: пока проверен только карман.
+Вы нажимаете кнопку у подъезда, а подруга в квартире не слышит сигнала. Рядом стоит соседка, которая живёт в этом доме. buzzer — «дверной зуммер», кнопка и сигнал у входа. Спросите: Does the buzzer work? — «Зуммер работает?» Зуммер один, поэтому Does.
 
-**Сообщите другу «В моём кармане нет ключа».**
+**Подруга не слышит сигнала. Спросите соседку: «Зуммер работает?»**
 
-- ✅ **There is no key in my pocket.**
-- ❌ There are no key in my pocket. — *Один ключ: `There is no key`.*
-- ❌ There no key in my pocket. — *Нужно `There is no`, с `is`.*
+- ✅ **Does the buzzer work?**
+- ❌ Do the buzzer work? — *Зуммер один: нужно Does.*
+- ❌ Is the buzzer work? — *С действием work нужен вопрос с Does, а не с Is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Автомат работает?»**
+**1 · Карточка слова — fan**
+<!-- interaction_id: en:lesson-07:session-10:word:fan; family: word_card -->
+> **fan** — вентилятор. The fan is old. — «Вентилятор старый». Прибор, который гонит воздух и освежает комнату.
+
+**2 · В комнате жарко. Спросите подругу: «Вентилятор работает?»**
 <!-- interaction_id: en:lesson-07:session-10:i01; family: phrase_builder -->
-Плитки: `work` `machine` `the` `Does` → **Does the machine work?**
+Плитки: `work` `fan` `the` `Does` → **Does the fan work?**
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — stove**
+<!-- interaction_id: en:lesson-07:session-10:word:stove; family: word_card -->
+> **stove** — плита. The stove is hot. — «Плита горячая». Кухонная плита, на которой готовят еду.
+
+**4 · Послушайте хозяйку**
 <!-- interaction_id: en:lesson-07:session-10:i02; family: listen_choose -->
-🔊 *machine* → **machine** · pocket · package
-- pocket — *В записи первое слово — `machine`, а в этом варианте — `pocket`.*
-- package — *В записи первое слово — `machine`, а в этом варианте — `package`.*
+🔊 *Does the stove have an oven?* → **Does the stove have an oven?** · Does the stove have a fan? · Does the fan have an oven?
+- Does the stove have a fan? — *В записи последнее слово — `oven`, духовка, а в этом варианте — `fan`, вентилятор.*
+- Does the fan have an oven? — *В записи третье слово — `stove`, плита, а в этом варианте — `fan`, вентилятор.*
 
-**3 · Спросите, работает ли автомат**
+**5 · Спросите хозяйку о плите. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-10:i03; family: context_gap_grammar -->
-Does the machine ___? → **work** · works · is work
-- works — *После `Does` нужно `work`.*
-- is work — *Нужно `Does the machine work?`, без `is`.*
+Does the stove ___ an oven? → **have** · has · is have
+- has — *После `Does` нужно `have`, не `has`.*
+- is have — *Нужно `Does the stove have?`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-10:i04; family: speed_match -->
-machine — устройство · lock — замок · pocket — карман · package — посылка
+fan — вентилятор · stove — плита · oven — духовка · door — дверь
 
-**5 · Послушайте и соберите вопрос**
+**7 · Карточка слова — buzzer**
+<!-- interaction_id: en:lesson-07:session-10:word:buzzer; family: word_card -->
+> **buzzer** — дверной зуммер. The buzzer is loud. — «Зуммер громкий». Кнопка и сигнал у входа в дом.
+
+**8 · Послушайте хозяйку и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-10:i05; family: listen_build_dictation -->
-🔊 *Does the machine work?* Плитки: `work` `machine` `the` `Does` → **Does the machine work?**
+🔊 *Does the buzzer work?* Плитки: `work` `buzzer` `the` `Does` → **Does the buzzer work?**
 
-**6 · Покажите на автомат и спросите «Он работает?»**
+**9 · Карточка слова — bolt**
+<!-- interaction_id: en:lesson-07:session-10:word:bolt; family: word_card -->
+> **bolt** — засов. The bolt is strong. — «Засов крепкий». Металлическая задвижка на двери.
+
+**10 · Вы запираете дверь на ночь. Спросите хозяйку: «Засов закрывается?»**
 <!-- interaction_id: en:lesson-07:session-10:i06; family: phrase_builder -->
+Плитки: `close` `bolt` `the` `Does` → **Does the bolt close?**
+
+**11 · Хозяйка включила плиту. Спросите её: «Плита работает?»**
+<!-- interaction_id: en:lesson-07:session-10:i07; family: scripted_repeat_compare -->
+🎙 **Does the stove work?**
+
+**12 · Спросите соседку о зуммере. Выберите слово**
+<!-- interaction_id: en:lesson-07:session-10:i08; family: context_gap_grammar -->
+___ the buzzer work? → **Does** · Do · Is
+- Do — *Зуммер один: нужно `Does`.*
+- Is — *С действием `work` нужно `Does`, а не `Is`.*
+
+**13 · Послушайте хозяйку**
+<!-- interaction_id: en:lesson-07:session-10:i09; family: listen_choose -->
+🔊 *Does the bolt close?* → **Does the bolt close?** · Does the bolt open? · Does the fan close?
+- Does the bolt open? — *В записи последнее слово — `close`, закрываться, а в этом варианте — `open`, открываться.*
+- Does the fan close? — *В записи третье слово — `bolt`, засов, а в этом варианте — `fan`, вентилятор.*
+
+**14 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-07:session-10:i10; family: speed_match -->
+bolt — засов · door — дверь · key — ключ · lock — замок
+
+**15 · Послушайте хозяйку и соберите вопрос**
+<!-- interaction_id: en:lesson-07:session-10:i11; family: listen_build_dictation -->
+🔊 *Does the stove have an oven?* Плитки: `oven` `have` `stove` `an` `the` `Does` → **Does the stove have an oven?**
+
+**16 · Хозяйка показывает на плиту. Спросите её: «Она работает?»**
+<!-- interaction_id: en:lesson-07:session-10:i12; family: phrase_builder -->
 Плитки: `work` `it` `Does` → **Does it work?**
 
-**7 · Сообщите другу «В моём кармане нет ключа»**
-<!-- interaction_id: en:lesson-07:session-10:i07; family: scripted_repeat_compare -->
-🎙 **There is no key in my pocket.**
-
-**8 · Спросите об автомате «Он работает?»**
-<!-- interaction_id: en:lesson-07:session-10:i08; family: context_gap_grammar -->
-___ it work? → **Does** · Do · Is
-- Do — *С `it` нужно `Does`.*
-- Is — *С действием `work` здесь нужно `Does it work?`.*
-
-**9 · Послушайте вопрос об устройстве**
-<!-- interaction_id: en:lesson-07:session-10:i09; family: listen_choose -->
-🔊 *Does the machine work?* → **Does the machine work?** · Does the machine open? · Does the machine start?
-- Does the machine open? — *В записи последнее слово — `work`, а в этом варианте — `open`.*
-- Does the machine start? — *В записи последнее слово — `work`, а в этом варианте — `start`.*
-
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-07:session-10:i10; family: speed_match -->
-practice — практиковаться · machine — устройство · lock — замок · pocket — карман
-
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-07:session-10:i11; family: listen_build_dictation -->
-🔊 *Does it work?* Плитки: `work` `it` `Does` → **Does it work?**
-
-**12 · У стойки отправки спросите посетителя «У вас есть посылка?»**
-<!-- interaction_id: en:lesson-07:session-10:i12; family: phrase_builder -->
-Плитки: `package` `a` `have` `you` `Do` → **Do you have a package?**
-
-**13 · Перед покупкой замка спросите продавца «Замок работает?»**
+**17 · Вы держите засов в руке. Спросите хозяйку: «Он закрывается?»**
 <!-- interaction_id: en:lesson-07:session-10:i13; family: scripted_repeat_compare -->
-🎙 **Does the lock work?**
+🎙 **Does it close?**
 
-**14 · Узнайте у друга, где он занимается: «Ты практикуешься здесь?»**
+**18 · Спросите подругу о вентиляторе. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-10:i14; family: context_gap_grammar -->
-Do you ___ here? → **practice** · practices · are practice
-- practices — *После `Do you` нужно `practice`.*
-- are practice — *Нужно `Do you practice?`, без `are`.*
+Does the fan ___? → **work** · works · is work
+- works — *После `Does` нужно `work`, без `s`.*
+- is work — *Нужно `Does the fan work?`, без `is`.*
 
-**15 · Послушайте вопрос о замке**
+**19 · Послушайте хозяйку**
 <!-- interaction_id: en:lesson-07:session-10:i15; family: listen_choose -->
-🔊 *Does the lock work?* → **Does the lock work?** · Does the lock open? · Does the lock close?
-- Does the lock open? — *В записи последнее слово — `work`, а в этом варианте — `open`.*
-- Does the lock close? — *В записи последнее слово — `work`, а в этом варианте — `close`.*
+🔊 *Does the buzzer work?* → **Does the buzzer work?** · Does the buzzer close? · Does the bolt work?
+- Does the buzzer close? — *В записи последнее слово — `work`, работать, а в этом варианте — `close`, закрываться.*
+- Does the bolt work? — *В записи третье слово — `buzzer`, зуммер, а в этом варианте — `bolt`, засов.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-10:i16; family: speed_match -->
-machine — устройство · package — посылка · practice — практиковаться · pocket — карман
+stove — плита · fan — вентилятор · bolt — засов · buzzer — дверной зуммер
 
-**17 · Друг предлагает вам зарядное устройство. Уточните «Зарядное устройство работает?»**
+**21 · Вы въезжаете в квартиру. Спросите хозяйку: «Вентилятор работает?»**
 <!-- interaction_id: en:lesson-07:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does the charger work?**
-
+🎙 **Does the fan work?**

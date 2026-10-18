@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-18",
   "learningOutcomeByLocale": {
-    "ru": "использовать don’t и doesn’t для отрицания действий и there are no для отсутствующих вещей",
-    "uk": "використовувати don’t і doesn’t для заперечення дій та there are no для відсутніх речей"
+    "ru": "сказать, куда вы не ходите и чего у вас или у другого человека нет",
+    "uk": "сказати, куди ви не ходите й чого у вас або в іншої людини немає"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Без ставок",
-        "uk": "Без ставок"
+        "ru": "Магазин, который вы обходите",
+        "uk": "Магазин, який ви оминаєте"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает сыграть на деньги. `gamble` — «играть в азартные игры». `I don’t gamble` — «Я не играю в азартные игры». После `don’t` ставим `gamble`. Вы объясняете свою привычку, а не запрещаете другу играть. Кошелёк может спокойно выдохнуть.",
-        "uk": "Друг пропонує зіграти на гроші. `gamble` — «грати в азартні ігри». `I don’t gamble` — «Я не граю в азартні ігри». Після `don’t` ставимо `gamble`. Ви пояснюєте свою звичку, а не забороняєте другові грати. Гаманець може спокійно видихнути."
+        "ru": "Коллега спрашивает, встречаете ли вы знакомых в магазине напротив. Там вам однажды нагрубили, и вы больше туда не заходите. go — «ходить, идти». I don't go there — «Я туда не хожу». После I ставим don't; go остаётся без изменений. Здесь речь о привычке.",
+        "uk": "Колега питає, чи зустрічаєте ви знайомих у магазині навпроти. Там вам одного разу нагрубили, і ви більше туди не заходите. go — «ходити, йти». I don't go there — «Я туди не ходжу». Після I ставимо don't; go лишається без змін. Тут ідеться про звичку."
       },
       "question": {
         "interactionId": "en:lesson-07:session-18:intro1:q",
         "promptByLocale": {
-          "ru": "Объясните другу, что вы не играете в азартные игры.",
-          "uk": "Поясніть другові, що ви не граєте в азартні ігри."
+          "ru": "Объясните коллеге: «Я туда не хожу».",
+          "uk": "Поясніть колезі: «Я туди не ходжу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-18:intro1:r1",
-              "text": "I don’t gamble."
+              "text": "I don't go there."
             },
             {
               "responseId": "en:lesson-07:session-18:intro1:r2",
-              "text": "I doesn’t gamble."
+              "text": "I doesn't go there."
             },
             {
               "responseId": "en:lesson-07:session-18:intro1:r3",
-              "text": "I not gamble."
+              "text": "I not go there."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-18:intro1:r1",
-              "text": "I don’t gamble."
+              "text": "I don't go there."
             },
             {
               "responseId": "en:lesson-07:session-18:intro1:r2",
-              "text": "I doesn’t gamble."
+              "text": "I doesn't go there."
             },
             {
               "responseId": "en:lesson-07:session-18:intro1:r3",
-              "text": "I not gamble."
+              "text": "I not go there."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните другу, что вы не играете в азартные игры.",
-          "uk": "Поясніть другові, що ви не граєте в азартні ігри."
+          "ru": "Объясните коллеге: «Я туда не хожу».",
+          "uk": "Поясніть колезі: «Я туди не ходжу»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Устройство не работает",
-        "uk": "Пристрій не працює"
+        "ru": "Покупка подождёт",
+        "uk": "Покупка зачекає"
       },
       "bodyByLocale": {
-        "ru": "Коллега собирается включить устройство, которое не работает. `The machine doesn’t work` — «Устройство не работает». `The machine` — одно устройство, поэтому используем `doesn’t`. После него — `work`, без `s`.",
-        "uk": "Колега збирається ввімкнути пристрій, який не працює. `The machine doesn’t work` — «Пристрій не працює». `The machine` — один пристрій, тому використовуємо `doesn’t`. Після нього — `work`, без `s`."
+        "ru": "Друг предлагает заказать вам велосипед сегодня. Вы сейчас без дохода, сбережения закончились, и платить за покупку нечем. money — «деньги». I don't have money — «У меня нет денег». После don't ставим have. В этой фразе money употребляется без a.",
+        "uk": "Друг пропонує замовити вам велосипед сьогодні. Ви зараз без доходу, заощадження закінчилися, і платити за покупку нічим. money — «гроші». I don't have money — «У мене немає грошей». Після don't ставимо have. У цій фразі money вживається без a."
       },
       "question": {
         "interactionId": "en:lesson-07:session-18:intro2:q",
         "promptByLocale": {
-          "ru": "Предупредите коллегу: «Устройство не работает».",
-          "uk": "Попередьте колегу: «Пристрій не працює»."
+          "ru": "Друг предлагает покупку. Объясните: «У меня нет денег».",
+          "uk": "Друг пропонує покупку. Поясніть: «У мене немає грошей»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-18:intro2:r1",
-              "text": "The machine doesn’t work."
+              "text": "I don't have money."
             },
             {
               "responseId": "en:lesson-07:session-18:intro2:r2",
-              "text": "The machine don’t work."
+              "text": "I doesn't have money."
             },
             {
               "responseId": "en:lesson-07:session-18:intro2:r3",
-              "text": "The machine doesn’t works."
+              "text": "I don't has money."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-18:intro2:r1",
-              "text": "The machine doesn’t work."
+              "text": "I don't have money."
             },
             {
               "responseId": "en:lesson-07:session-18:intro2:r2",
-              "text": "The machine don’t work."
+              "text": "I doesn't have money."
             },
             {
               "responseId": "en:lesson-07:session-18:intro2:r3",
-              "text": "The machine doesn’t works."
+              "text": "I don't has money."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предупредите коллегу: «Устройство не работает».",
-          "uk": "Попередьте колегу: «Пристрій не працює»."
+          "ru": "Друг предлагает покупку. Объясните: «У меня нет денег».",
+          "uk": "Друг пропонує покупку. Поясніть: «У мене немає грошей»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где перчатки?",
-        "uk": "Де рукавички?"
+        "ru": "Брат живёт в квартире",
+        "uk": "Брат живе у квартирі"
       },
       "bodyByLocale": {
-        "ru": "Вы проверили место, где обычно лежат перчатки, но не нашли их. `There are no gloves here` — «Здесь нет перчаток». `Gloves` — множественное число, поэтому `are no`. Эта фраза сообщает об отсутствии перчаток в этом месте.",
-        "uk": "Ви перевірили місце, де зазвичай лежать рукавички, але не знайшли їх. `There are no gloves here` — «Тут немає рукавичок». `Gloves` — множина, тому `are no`. Ця фраза повідомляє про відсутність рукавичок у цьому місці."
+        "ru": "Сосед хочет одолжить у вашего брата лестницу для крыши: он думает, что у брата собственный дом. Но брат живёт в квартире, своего дома у него нет. house — «дом», здание. He doesn't have a house — «У него нет дома». С he ставим doesn't; после него have, а не has.",
+        "uk": "Сусід хоче позичити у вашого брата драбину для даху: він думає, що у брата власний будинок. Але брат живе у квартирі, власного будинку в нього немає. house — «будинок», житлова будівля. He doesn't have a house — «У нього немає будинку». З he ставимо doesn't; після нього have, а не has."
       },
       "question": {
         "interactionId": "en:lesson-07:session-18:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите: «Здесь нет перчаток».",
-          "uk": "Скажіть: «Тут немає рукавичок»."
+          "ru": "Исправьте предположение соседа: «У него нет дома».",
+          "uk": "Виправте припущення сусіда: «У нього немає будинку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-18:intro3:r1",
-              "text": "There are no gloves here."
+              "text": "He doesn't have a house."
             },
             {
               "responseId": "en:lesson-07:session-18:intro3:r2",
-              "text": "There is no gloves here."
+              "text": "He don't have a house."
             },
             {
               "responseId": "en:lesson-07:session-18:intro3:r3",
-              "text": "There are gloves here."
+              "text": "He doesn't has a house."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-18:intro3:r1",
-              "text": "There are no gloves here."
+              "text": "He doesn't have a house."
             },
             {
               "responseId": "en:lesson-07:session-18:intro3:r2",
-              "text": "There is no gloves here."
+              "text": "He don't have a house."
             },
             {
               "responseId": "en:lesson-07:session-18:intro3:r3",
-              "text": "There are gloves here."
+              "text": "He doesn't has a house."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите: «Здесь нет перчаток».",
-          "uk": "Скажіть: «Тут немає рукавичок»."
+          "ru": "Исправьте предположение соседа: «У него нет дома».",
+          "uk": "Виправте припущення сусіда: «У нього немає будинку»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3eddf19a038780667728bcb6d7ef666b1ebb9851caacbef827ad00c02f817e3a"
+  "introFingerprint": "0d8b0bd0c6a054739e1afc063ebab10402402a80dd636d318bde2ffb9c5a8a74"
 }

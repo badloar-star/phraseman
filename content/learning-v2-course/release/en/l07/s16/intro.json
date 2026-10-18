@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-16",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно выбрать Do или Does и сообщить об отсутствии устройства",
-    "uk": "самостійно вибрати Do або Does і повідомити про відсутність пристрою"
+    "ru": "самостоятельно выбрать Do или Does и сообщить, что чего-то нет",
+    "uk": "самостійно вибрати Do або Does і повідомити, що чогось немає"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто поможет на месте",
-        "uk": "Хто допоможе на місці"
+        "ru": "Соседний двор",
+        "uk": "Сусіднє подвір’я"
       },
       "bodyByLocale": {
-        "ru": "В незнакомом офисе вы ищете руководителя. `Does the manager work here?` — «Руководитель работает здесь?» Об одном руководителе спрашиваем с `Does`, а дальше используем `work`, без `s`.",
-        "uk": "У незнайомому офісі ви шукаєте керівника. `Does the manager work here?` — «Керівник працює тут?» Про одного керівника запитуємо з `Does`, а далі використовуємо `work`, без `s`."
+        "ru": "Подруга зовёт вас на ферму родителей на выходные. По дороге она говорит, что соседний двор принадлежит фермеру. farmer — «фермер». Вы хотите узнать, где он живёт. Спросите подругу: Does the farmer live here? — «Фермер живёт здесь?» The farmer можно заменить на he, поэтому здесь Does.",
+        "uk": "Подруга кличе вас на ферму батьків на вихідні. Дорогою вона каже, що сусіднє подвір’я належить фермерові. farmer — «фермер». Ви хочете дізнатися, де він живе. Спитайте подругу: Does the farmer live here? — «Фермер живе тут?» The farmer можна замінити на he, тому тут Does."
       },
       "question": {
         "interactionId": "en:lesson-07:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите сотрудника «Руководитель работает здесь?»",
-          "uk": "Запитайте працівника «Керівник працює тут?»"
+          "ru": "Вы подъезжаете к ферме. Спросите подругу: «Фермер живёт здесь?»",
+          "uk": "Ви під’їжджаєте до ферми. Спитайте подругу: «Фермер живе тут?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-16:intro1:r1",
-              "text": "Does the manager work here?"
+              "text": "Does the farmer live here?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro1:r2",
-              "text": "Do the manager work here?"
+              "text": "Do the farmer live here?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro1:r3",
-              "text": "Does the manager works here?"
+              "text": "Does the farmer lives here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-16:intro1:r1",
-              "text": "Does the manager work here?"
+              "text": "Does the farmer live here?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro1:r2",
-              "text": "Do the manager work here?"
+              "text": "Do the farmer live here?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro1:r3",
-              "text": "Does the manager works here?"
+              "text": "Does the farmer lives here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите сотрудника «Руководитель работает здесь?»",
-          "uk": "Запитайте працівника «Керівник працює тут?»"
+          "ru": "Вы подъезжаете к ферме. Спросите подругу: «Фермер живёт здесь?»",
+          "uk": "Ви під’їжджаєте до ферми. Спитайте подругу: «Фермер живе тут?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Распечатать расписание",
-        "uk": "Надрукувати розклад"
+        "ru": "Птица в клетке",
+        "uk": "Птах у клітці"
       },
       "bodyByLocale": {
-        "ru": "Перед встречей нужно распечатать расписание. `Does the printer work?` — «Принтер работает?» Об устройстве тоже спрашиваем с `Does`. После `Does the printer` нужно `work`. Принтер может быть большим и дорогим, но вопрос всё равно короткий: работает ли он?",
-        "uk": "Перед зустріччю потрібно надрукувати розклад. `Does the printer work?` — «Принтер працює?» Про пристрій теж запитуємо з `Does`. Після `Does the printer` потрібне `work`. Принтер може бути великим і дорогим, але запитання все одно коротке: чи працює він?"
+        "ru": "Вы пришли к родителям подруги. Из соседней комнаты слышно, как птица повторяет слова, но в комнату вы ещё не заглядывали: возможно, там включён телевизор. parrot — «попугай». Спросите хозяйку: Do you have a parrot? — «У вас есть попугай?» С you нужно Do.",
+        "uk": "Ви прийшли до батьків подруги. Із сусідньої кімнати чути, як птах повторює слова, але ви туди ще не заглядали: можливо, там увімкнений телевізор. parrot — «папуга». Спитайте господиню: Do you have a parrot? — «У вас є папуга?» З you потрібно Do."
       },
       "question": {
         "interactionId": "en:lesson-07:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу «Принтер работает?»",
-          "uk": "Запитайте колегу «Принтер працює?»"
+          "ru": "Из соседней комнаты слышен голос птицы. Спросите хозяйку: «У вас есть попугай?»",
+          "uk": "Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-16:intro2:r1",
-              "text": "Does the printer work?"
+              "text": "Do you have a parrot?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro2:r2",
-              "text": "Do the printer work?"
+              "text": "Does you have a parrot?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro2:r3",
-              "text": "Does the printer works?"
+              "text": "Do you has a parrot?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-16:intro2:r1",
-              "text": "Does the printer work?"
+              "text": "Do you have a parrot?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro2:r2",
-              "text": "Do the printer work?"
+              "text": "Does you have a parrot?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro2:r3",
-              "text": "Does the printer works?"
+              "text": "Do you has a parrot?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу «Принтер работает?»",
-          "uk": "Запитайте колегу «Принтер працює?»"
+          "ru": "Из соседней комнаты слышен голос птицы. Спросите хозяйку: «У вас есть попугай?»",
+          "uk": "Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Экран не нашли",
-        "uk": "Екран не знайшли"
+        "ru": "Аквариум в холле",
+        "uk": "Акваріум у холі"
       },
       "bodyByLocale": {
-        "ru": "Вы проверили комнату для встречи. `There is no screen in this room` — «В этой комнате нет экрана». Так сообщаем, что экрана здесь нет: `There is no screen`. Мы не говорим, что экран сломан: в этой комнате его вообще нет.",
-        "uk": "Ви перевірили кімнату для зустрічі. `There is no screen in this room` — «У цій кімнаті немає екрана». Так повідомляємо, що екрана тут немає: `There is no screen`. Ми не кажемо, що екран зламаний: у цій кімнаті його взагалі немає."
+        "ru": "В холле дома стоит аквариум, и в нём плавает одна маленькая золотая рыбка. Подруга говорит, что родители заботятся о ней сами. goldfish — «золотая рыбка». Спросите: Do they feed the goldfish early? — «Они кормят золотую рыбку рано?» С they нужно Do.",
+        "uk": "У холі будинку стоїть акваріум, і в ньому плаває одна маленька золота рибка. Подруга каже, що батьки дбають про неї самі. goldfish — «золота рибка». Спитайте: Do they feed the goldfish early? — «Вони годують золоту рибку рано?» З they потрібно Do."
       },
       "question": {
         "interactionId": "en:lesson-07:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите коллеге «В этой комнате нет экрана».",
-          "uk": "Повідомте колезі «У цій кімнаті немає екрана»."
+          "ru": "Вы смотрите на аквариум. Спросите подругу о её родителях: «Они кормят золотую рыбку рано?»",
+          "uk": "Ви дивитеся на акваріум. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-16:intro3:r1",
-              "text": "There is no screen in this room."
+              "text": "Do they feed the goldfish early?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro3:r2",
-              "text": "There are no screen in this room."
+              "text": "Does they feed the goldfish early?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro3:r3",
-              "text": "There no screen in this room."
+              "text": "Do they feeds the goldfish early?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-16:intro3:r1",
-              "text": "There is no screen in this room."
+              "text": "Do they feed the goldfish early?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro3:r2",
-              "text": "There are no screen in this room."
+              "text": "Does they feed the goldfish early?"
             },
             {
               "responseId": "en:lesson-07:session-16:intro3:r3",
-              "text": "There no screen in this room."
+              "text": "Do they feeds the goldfish early?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите коллеге «В этой комнате нет экрана».",
-          "uk": "Повідомте колезі «У цій кімнаті немає екрана»."
+          "ru": "Вы смотрите на аквариум. Спросите подругу о её родителях: «Они кормят золотую рыбку рано?»",
+          "uk": "Ви дивитеся на акваріум. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f5c8e77d015032e2f64a768199fb21b418e2be90c59b9a5bf1813d81f873b80"
+  "introFingerprint": "ddca1dcff9af4017baa00da5b4d0ee2a8db258861d6d5db020ce737210abaac4"
 }

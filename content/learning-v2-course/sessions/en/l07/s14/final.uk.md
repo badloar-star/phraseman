@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 14 — Сервер в офісі
+# Англійська · Урок 7 · Заняття 14 — У школі в сусідки
 
-**Ситуація.** В офісі не відкривається файл із картинкою. Ви запитуєте колегу про сервер і шукаєте потрібного працівника.
+**Ситуація.** Ви допомагаєте сусідці з її сином-школярем і дорогою дізнаєтеся в школі, як там усе влаштовано: у що вдягнені школярі, що робить директор і що є в класі.
 
-**Що ви опануєте:** запитати про роботу сервера й людини, повторити повідомлення про відсутність
-**Нові слова:** server
+**Що ви опануєте:** запитати про дії однієї людини та про те, що є в місці, за допомогою Does
+**Нові слова:** pupil, headmaster, blackboard, classroom
+**Повертаються:** uniform, chalk, desk, lesson, wear, teach, learn
 
 ---
 
 ## Інтро 1
 
-### Файл не відкривається
+### Піджак на фотографії
 
-`server` тут — «сервер», комп’ютер, який надає файли або інші послуги іншим комп’ютерам. Файл із картинкою не відкривається. `Does the server work?` — «Сервер працює?» Один сервер: `Does the server`, потім `work`, без `s`.
+Син сусідки вже ходить до школи. На фотографії він у піджаку, і ви не знаєте, це шкільна форма чи вбрання для свята. pupil — «школяр». Спитайте вчительку: Does the pupil wear a uniform? — «Школяр носить форму?» Після Does кажемо wear, без s.
 
-**Запитайте колегу «Сервер працює?»**
+**Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»**
 
-- ✅ **Does the server work?**
-- ❌ Do the server work? — *Один сервер: `Does the server`.*
-- ❌ Does the server works? — *Після `Does` потрібне `work`.*
+- ✅ **Does the pupil wear a uniform?**
+- ❌ Do the pupil wear a uniform? — *Школяр один: потрібно Does.*
+- ❌ Does the pupil wears a uniform? — *Після Does потрібно wear, без s.*
 
 ---
 
 ## Інтро 2
 
-### Не та кімната
+### У приймальні школи
 
-Колега відправив вас подивитися сервер у сусідній кімнаті. Ви зазирнули: `There is no server in this room` — «У цій кімнаті немає сервера». `There is no server` повідомляє про відсутність, а `in this room` уточнює місце. Кімната може бути повною комп’ютерів, але потрібного сервера серед них усе одно не виявиться.
+Ви прийшли до школи записати дитину сусідки на наступний рік. У приймальні секретар каже, що директор зараз зайнятий. headmaster — «директор школи». Спитайте секретаря: Does the headmaster teach? — «Директор викладає?» Після Does — teach, без s.
 
-**Повідомте колезі «У цій кімнаті немає сервера».**
+**Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»**
 
-- ✅ **There is no server in this room.**
-- ❌ There are no server in this room. — *Один сервер: `There is no server`.*
-- ❌ There no server in this room. — *Потрібно `There is no`, з `is`.*
+- ✅ **Does the headmaster teach?**
+- ❌ Do the headmaster teach? — *Директор один: потрібно Does.*
+- ❌ Does the headmaster teaches? — *Після Does потрібно teach, без s.*
 
 ---
 
 ## Інтро 3
 
-### Хто розбереться
+### Гурток у школі
 
-Колега радить звернутися до Анни. Ви запитуєте `Does Anna work here?` — «Анна працює тут?» Анна — одна людина, тому `Does`. Після імені ставимо `work`, без `s`, як після `Does she`.
+Ви будете вести в школі гурток для малюків і готуєтеся до першого заняття. Вам потрібні дошка й крейда. blackboard — «шкільна дошка». Спитайте вчительку: Does the school have a blackboard? — «У школі є шкільна дошка?» Після Does — have, не has.
 
-**Запитайте колегу «Анна працює тут?»**
+**Ви готуєтеся до заняття. Спитайте вчительку: «У школі є шкільна дошка?»**
 
-- ✅ **Does Anna work here?**
-- ❌ Do Anna work here? — *Анна — вона: `Does Anna`.*
-- ❌ Does Anna works here? — *Після `Does Anna` потрібне `work`.*
+- ✅ **Does the school have a blackboard?**
+- ❌ Does the school has a blackboard? — *Після Does потрібно have, не has.*
+- ❌ Do the school have a blackboard? — *Зі словом school потрібно Does.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «Сервер працює?»**
+**1 · Картка слова — pupil**
+<!-- interaction_id: en:lesson-07:session-14:word:pupil; family: word_card -->
+> **pupil** — школяр. The pupil is young. — «Школяр маленький». Дитина, яка ходить до школи.
+
+**2 · Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»**
 <!-- interaction_id: en:lesson-07:session-14:i01; family: phrase_builder -->
-Плитки: `work` `server` `the` `Does` → **Does the server work?**
+Плитки: `uniform` `wear` `a` `pupil` `the` `Does` → **Does the pupil wear a uniform?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — headmaster**
+<!-- interaction_id: en:lesson-07:session-14:word:headmaster; family: word_card -->
+> **headmaster** — директор школи. The headmaster is strict. — «Директор суворий». Головна людина в школі.
+
+**4 · Послухайте секретаря**
 <!-- interaction_id: en:lesson-07:session-14:i02; family: listen_choose -->
-🔊 *server* → **server** · picture · suitcase
-- picture — *У записі перше слово — `server`, а в цьому варіанті — `picture`.*
-- suitcase — *У записі перше слово — `server`, а в цьому варіанті — `suitcase`.*
+🔊 *Does the headmaster teach?* → **Does the headmaster teach?** · Does the headmaster work? · Does the pupil teach?
+- Does the headmaster work? — *У записі останнє слово — `teach`, викладати, а в цьому варіанті — `work`, працювати.*
+- Does the pupil teach? — *У записі третє слово — `headmaster`, директор, а в цьому варіанті — `pupil`, школяр.*
 
-**3 · Запитайте, чи працює сервер**
+**5 · Картка слова — blackboard**
+<!-- interaction_id: en:lesson-07:session-14:word:blackboard; family: word_card -->
+> **blackboard** — шкільна дошка. The blackboard is clean. — «Дошка чиста». Темна дошка, на якій пишуть крейдою.
+
+**6 · Спитайте вчительку про школу. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-14:i03; family: context_gap_grammar -->
-Does the server ___? → **work** · works · is work
-- works — *Після `Does` потрібне `work`.*
-- is work — *Потрібно `Does the server work?`, без `is`.*
+Does the school ___ a blackboard? → **have** · has · is have
+- has — *Після `Does` потрібно `have`, не `has`.*
+- is have — *Потрібно `Does the school have?`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-14:i04; family: speed_match -->
-server — сервер · picture — картинка · suitcase — валіза · customer — клієнт
+pupil — школяр · headmaster — директор школи · blackboard — шкільна дошка · chalk — крейда
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — classroom**
+<!-- interaction_id: en:lesson-07:session-14:word:classroom; family: word_card -->
+> **classroom** — клас. The classroom is quiet. — «Клас тихий». Кімната в школі, де проходять уроки.
+
+**9 · Послухайте вчительку й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-14:i05; family: listen_build_dictation -->
-🔊 *Does the server work?* Плитки: `work` `server` `the` `Does` → **Does the server work?**
+🔊 *Does the classroom open early?* Плитки: `early` `open` `classroom` `the` `Does` → **Does the classroom open early?**
 
-**6 · Повідомте «У цій кімнаті немає сервера»**
+**10 · Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»**
 <!-- interaction_id: en:lesson-07:session-14:i06; family: phrase_builder -->
-Плитки: `room` `this` `in` `server` `no` `is` `There` → **There is no server in this room.**
+Плитки: `teach` `headmaster` `the` `Does` → **Does the headmaster teach?**
 
-**7 · Запитайте колегу «Анна працює тут?»**
+**11 · Ви готуєтеся до заняття. Спитайте вчительку: «У школі є шкільна дошка?»**
 <!-- interaction_id: en:lesson-07:session-14:i07; family: scripted_repeat_compare -->
-🎙 **Does Anna work here?**
+🎙 **Does the school have a blackboard?**
 
-**8 · Запитайте клієнта «У вас є картинка?»**
+**12 · Спитайте вчительку про школяра. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-14:i08; family: context_gap_grammar -->
-___ you have a picture? → **Do** · Does · Are
-- Does — *З `you` потрібне `Do`.*
-- Are — *З `have` тут потрібно `Do you have?`.*
+___ the pupil wear a uniform? → **Does** · Do · Is
+- Do — *Школяр один: потрібно `Does`.*
+- Is — *З дією `wear` потрібне `Does`, а не `Is`.*
 
-**9 · Послухайте запитання про місце роботи**
+**13 · Послухайте вчительку**
 <!-- interaction_id: en:lesson-07:session-14:i09; family: listen_choose -->
-🔊 *Does Anna work here?* → **Does Anna work here?** · Does Anna work there? · Does Anna work outside?
-- Does Anna work there? — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- Does Anna work outside? — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
+🔊 *Does the classroom have a blackboard?* → **Does the classroom have a blackboard?** · Does the classroom have a window? · Does the school have a blackboard?
+- Does the classroom have a window? — *У записі останнє слово — `blackboard`, шкільна дошка, а в цьому варіанті — `window`, вікно.*
+- Does the school have a blackboard? — *У записі третє слово — `classroom`, клас, а в цьому варіанті — `school`, школа.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-14:i10; family: speed_match -->
-laugh — сміятися · server — сервер · picture — картинка · suitcase — валіза
+classroom — клас · chalk — крейда · desk — письмовий стіл · lesson — урок
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте вчительку й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-14:i11; family: listen_build_dictation -->
-🔊 *Does it work?* Плитки: `work` `it` `Does` → **Does it work?**
+🔊 *Does the pupil learn English?* Плитки: `English` `learn` `pupil` `the` `Does` → **Does the pupil learn English?**
 
-**12 · Біля входу запитайте людину «Ви клієнт?»**
+**16 · Ви прийшли до школи у справах сусідки. Спитайте секретаря: «Директор працює тут?»**
 <!-- interaction_id: en:lesson-07:session-14:i12; family: phrase_builder -->
-Плитки: `customer` `a` `you` `Are` → **Are you a customer?**
+Плитки: `here` `work` `headmaster` `the` `Does` → **Does the headmaster work here?**
 
-**13 · Колега збирається в поїздку. Запитайте «У тебе є валіза?»**
+**17 · Син сусідки збирається до школи. Спитайте вчительку: «Школяр носить форму?»**
 <!-- interaction_id: en:lesson-07:session-14:i13; family: scripted_repeat_compare -->
-🎙 **Do you have a suitcase?**
+🎙 **Does the pupil wear a uniform?**
 
-**14 · Ви перевірили папку. Повідомте «Тут немає картинки»**
+**18 · Спитайте вчительку про англійську. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-14:i14; family: context_gap_grammar -->
-There ___ no picture here. → **is** · are · am
-- are — *Одна картинка: `There is no picture`.*
-- am — *Потрібно `There is no`; `am` підходить до `I`.*
+Does the pupil ___ English? → **learn** · learns · is learn
+- learns — *Після `Does` потрібно `learn`, без `s`.*
+- is learn — *Потрібно `Does the pupil learn?`, без `is`.*
 
-**15 · Послухайте запитання про річ**
+**19 · Послухайте секретаря**
 <!-- interaction_id: en:lesson-07:session-14:i15; family: listen_choose -->
-🔊 *Do you have a picture?* → **Do you have a picture?** · Do you have a suitcase? · Do you have a schedule?
-- Do you have a suitcase? — *У записі останнє слово — `picture`, а в цьому варіанті — `suitcase`.*
-- Do you have a schedule? — *У записі останнє слово — `picture`, а в цьому варіанті — `schedule`.*
+🔊 *Does the headmaster work here?* → **Does the headmaster work here?** · Does the headmaster live here? · Does the pupil work here?
+- Does the headmaster live here? — *У записі четверте слово — `work`, працювати, а в цьому варіанті — `live`, жити.*
+- Does the pupil work here? — *У записі третє слово — `headmaster`, директор, а в цьому варіанті — `pupil`, школяр.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-14:i16; family: speed_match -->
-server — сервер · customer — клієнт · laugh — сміятися · suitcase — валіза
+pupil — школяр · headmaster — директор школи · uniform — форма (одяг) · lesson — урок
 
-**17 · Ви приїхали до іншого офісу. Запитайте працівника «Керівник працює тут?»**
+**21 · Ви прийшли до школи завчасу. Спитайте вчительку: «Клас відчиняється рано?»**
 <!-- interaction_id: en:lesson-07:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does the manager work here?**
-
+🎙 **Does the classroom open early?**

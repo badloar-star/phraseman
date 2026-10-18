@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-01:intro1:r2": {
-          "ru": "С действием `work` здесь нужен вопрос `Do you work?`.",
-          "uk": "З дією `work` тут потрібне запитання `Do you work?`."
+          "ru": "Здесь действие work, поэтому нужно Do you work, без Are.",
+          "uk": "Тут дія work, тому потрібно Do you work, без Are."
         },
         "en:lesson-07:session-01:intro1:r3": {
-          "ru": "После `Do you` нужно `work`, без `s`.",
-          "uk": "Після `Do you` потрібне `work`, без `s`."
+          "ru": "После Do you слово work остаётся без s.",
+          "uk": "Після Do you слово work лишається без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-01:intro2:r2": {
-          "ru": "Здесь нужно `Do they work?`, без `are`.",
-          "uk": "Тут потрібно `Do they work?`, без `are`."
+          "ru": "Здесь действие work, поэтому нужно Do they work, без Are.",
+          "uk": "Тут дія work, тому потрібно Do they work, без Are."
         },
         "en:lesson-07:session-01:intro2:r3": {
-          "ru": "После `Do they` нужно `work`.",
-          "uk": "Після `Do they` потрібне `work`."
+          "ru": "После Do they слово work остаётся без s.",
+          "uk": "Після Do they слово work лишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-01:intro3:r2": {
-          "ru": "Нужно `Do you have?`, без `are`.",
-          "uk": "Потрібно `Do you have?`, без `are`."
+          "ru": "Слово courier стоит в единственном числе: нужно There is no.",
+          "uk": "Слово courier стоїть в однині: потрібно There is no."
         },
         "en:lesson-07:session-01:intro3:r3": {
-          "ru": "После `Do you` нужно `have`.",
-          "uk": "Після `Do you` потрібне `have`."
+          "ru": "После not здесь не хватает a. В выбранной конструкции используем no courier.",
+          "uk": "Після not тут бракує a. В обраній конструкції використовуємо no courier."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ffad9a04a62b3d8abdfbc101012a369dc249713848e8582b647ac0a0a67b34e3"
+  "auxiliaryFingerprint": "3d41fcb11363b960a780dfec4a2d1b486681408c2c2790049b33677e9860a7a9"
 }

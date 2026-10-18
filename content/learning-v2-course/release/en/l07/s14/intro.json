@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-14",
   "learningOutcomeByLocale": {
-    "ru": "спросить о работе сервера и человека, повторить сообщение об отсутствии",
-    "uk": "запитати про роботу сервера й людини, повторити повідомлення про відсутність"
+    "ru": "спросить о действиях одного человека и о том, что есть в месте, с помощью Does",
+    "uk": "запитати про дії однієї людини та про те, що є в місці, за допомогою Does"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Файл не открывается",
-        "uk": "Файл не відкривається"
+        "ru": "Пиджак на фотографии",
+        "uk": "Піджак на фотографії"
       },
       "bodyByLocale": {
-        "ru": "`server` здесь — «сервер», компьютер, который предоставляет файлы или другие услуги другим компьютерам. Файл с картинкой не открывается. `Does the server work?` — «Сервер работает?» Один сервер: `Does the server`, затем `work`, без `s`.",
-        "uk": "`server` тут — «сервер», комп’ютер, який надає файли або інші послуги іншим комп’ютерам. Файл із картинкою не відкривається. `Does the server work?` — «Сервер працює?» Один сервер: `Does the server`, потім `work`, без `s`."
+        "ru": "Сын соседки уже ходит в школу. На фотографии он в пиджаке, и вы не знаете, это школьная форма или наряд для праздника. pupil — «школьник». Спросите учительницу: Does the pupil wear a uniform? — «Школьник носит форму?» После Does говорим wear, без s.",
+        "uk": "Син сусідки вже ходить до школи. На фотографії він у піджаку, і ви не знаєте, це шкільна форма чи вбрання для свята. pupil — «школяр». Спитайте вчительку: Does the pupil wear a uniform? — «Школяр носить форму?» Після Does кажемо wear, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-14:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу «Сервер работает?»",
-          "uk": "Запитайте колегу «Сервер працює?»"
+          "ru": "Вы видите школьника на фотографии в пиджаке. Спросите учительницу: «Школьник носит форму?»",
+          "uk": "Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-14:intro1:r1",
-              "text": "Does the server work?"
+              "text": "Does the pupil wear a uniform?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro1:r2",
-              "text": "Do the server work?"
+              "text": "Do the pupil wear a uniform?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro1:r3",
-              "text": "Does the server works?"
+              "text": "Does the pupil wears a uniform?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-14:intro1:r1",
-              "text": "Does the server work?"
+              "text": "Does the pupil wear a uniform?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro1:r2",
-              "text": "Do the server work?"
+              "text": "Do the pupil wear a uniform?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro1:r3",
-              "text": "Does the server works?"
+              "text": "Does the pupil wears a uniform?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу «Сервер работает?»",
-          "uk": "Запитайте колегу «Сервер працює?»"
+          "ru": "Вы видите школьника на фотографии в пиджаке. Спросите учительницу: «Школьник носит форму?»",
+          "uk": "Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Не та комната",
-        "uk": "Не та кімната"
+        "ru": "В приёмной школы",
+        "uk": "У приймальні школи"
       },
       "bodyByLocale": {
-        "ru": "Коллега отправил вас посмотреть сервер в соседней комнате. Вы заглянули: `There is no server in this room` — «В этой комнате нет сервера». `There is no server` сообщает об отсутствии, а `in this room` уточняет место. Комната может быть полной компьютеров, но нужного сервера среди них всё равно не оказаться.",
-        "uk": "Колега відправив вас подивитися сервер у сусідній кімнаті. Ви зазирнули: `There is no server in this room` — «У цій кімнаті немає сервера». `There is no server` повідомляє про відсутність, а `in this room` уточнює місце. Кімната може бути повною комп’ютерів, але потрібного сервера серед них усе одно не виявиться."
+        "ru": "Вы пришли в школу записать ребёнка соседки на следующий год. В приёмной секретарь говорит, что директор сейчас занят. headmaster — «директор школы». Спросите секретаря: Does the headmaster teach? — «Директор преподаёт?» После Does — teach, без s.",
+        "uk": "Ви прийшли до школи записати дитину сусідки на наступний рік. У приймальні секретар каже, що директор зараз зайнятий. headmaster — «директор школи». Спитайте секретаря: Does the headmaster teach? — «Директор викладає?» Після Does — teach, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-14:intro2:q",
         "promptByLocale": {
-          "ru": "Сообщите коллеге «В этой комнате нет сервера».",
-          "uk": "Повідомте колезі «У цій кімнаті немає сервера»."
+          "ru": "Вы в приёмной школы. Спросите секретаря: «Директор преподаёт?»",
+          "uk": "Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-14:intro2:r1",
-              "text": "There is no server in this room."
+              "text": "Does the headmaster teach?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro2:r2",
-              "text": "There are no server in this room."
+              "text": "Do the headmaster teach?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro2:r3",
-              "text": "There no server in this room."
+              "text": "Does the headmaster teaches?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-14:intro2:r1",
-              "text": "There is no server in this room."
+              "text": "Does the headmaster teach?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro2:r2",
-              "text": "There are no server in this room."
+              "text": "Do the headmaster teach?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro2:r3",
-              "text": "There no server in this room."
+              "text": "Does the headmaster teaches?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите коллеге «В этой комнате нет сервера».",
-          "uk": "Повідомте колезі «У цій кімнаті немає сервера»."
+          "ru": "Вы в приёмной школы. Спросите секретаря: «Директор преподаёт?»",
+          "uk": "Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто разберётся",
-        "uk": "Хто розбереться"
+        "ru": "Кружок в школе",
+        "uk": "Гурток у школі"
       },
       "bodyByLocale": {
-        "ru": "Коллега советует обратиться к Анне. Вы спрашиваете `Does Anna work here?` — «Анна работает здесь?» Анна — один человек, поэтому `Does`. После имени ставим `work`, без `s`, как после `Does she`.",
-        "uk": "Колега радить звернутися до Анни. Ви запитуєте `Does Anna work here?` — «Анна працює тут?» Анна — одна людина, тому `Does`. Після імені ставимо `work`, без `s`, як після `Does she`."
+        "ru": "Вы будете вести в школе кружок для малышей и готовитесь к первому занятию. Вам нужны доска и мел. blackboard — «школьная доска». Спросите учительницу: Does the school have a blackboard? — «В школе есть школьная доска?» После Does — have, не has.",
+        "uk": "Ви будете вести в школі гурток для малюків і готуєтеся до першого заняття. Вам потрібні дошка й крейда. blackboard — «шкільна дошка». Спитайте вчительку: Does the school have a blackboard? — «У школі є шкільна дошка?» Після Does — have, не has."
       },
       "question": {
         "interactionId": "en:lesson-07:session-14:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу «Анна работает здесь?»",
-          "uk": "Запитайте колегу «Анна працює тут?»"
+          "ru": "Вы готовитесь к занятию. Спросите учительницу: «В школе есть школьная доска?»",
+          "uk": "Ви готуєтеся до заняття. Спитайте вчительку: «У школі є шкільна дошка?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-14:intro3:r1",
-              "text": "Does Anna work here?"
+              "text": "Does the school have a blackboard?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro3:r2",
-              "text": "Do Anna work here?"
+              "text": "Does the school has a blackboard?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro3:r3",
-              "text": "Does Anna works here?"
+              "text": "Do the school have a blackboard?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-14:intro3:r1",
-              "text": "Does Anna work here?"
+              "text": "Does the school have a blackboard?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro3:r2",
-              "text": "Do Anna work here?"
+              "text": "Does the school has a blackboard?"
             },
             {
               "responseId": "en:lesson-07:session-14:intro3:r3",
-              "text": "Does Anna works here?"
+              "text": "Do the school have a blackboard?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу «Анна работает здесь?»",
-          "uk": "Запитайте колегу «Анна працює тут?»"
+          "ru": "Вы готовитесь к занятию. Спросите учительницу: «В школе есть школьная доска?»",
+          "uk": "Ви готуєтеся до заняття. Спитайте вчительку: «У школі є шкільна дошка?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d0fb077e38747f3b5f9996bf0c5430a5f13a2c1b571ed36390c69b9546b987f7"
+  "introFingerprint": "ea1005926ce3a8c2fa654f5b11ad6e908d7c39043c194c123473bbd5b1034f87"
 }

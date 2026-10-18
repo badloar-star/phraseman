@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-09:i01",
+      "interactionId": "en:lesson-07:session-09:word:barber",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — barber",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-09:word:barber:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — barber",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-09:word:barber:audio",
+          "transcript": "barber"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-09:word:barber:r1",
+            "targetText": "barber",
+            "meaningByLocale": {
+              "ru": "мужской парикмахер. The barber is busy. — «Парикмахер занят». Мастер, который стрижёт мужчин.",
+              "uk": "чоловічий перукар. The barber is busy. — «Перукар зайнятий». Майстер, який стриже чоловіків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barber",
+          "definitionByLocale": {
+            "ru": "мужской парикмахер. The barber is busy. — «Парикмахер занят». Мастер, который стрижёт мужчин.",
+            "uk": "чоловічий перукар. The barber is busy. — «Перукар зайнятий». Майстер, який стриже чоловіків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-09:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Руководитель работает здесь?»",
+      "prompt": "Вы у входа в салон. Спросите прохожего: «Парикмахер работает здесь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Руководитель работает здесь?»",
+      "accessibilityLabel": "Вы у входа в салон. Спросите прохожего: «Парикмахер работает здесь?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does the manager work here?",
+        "targetPhrase": "Does the barber work here?",
         "localizedMeaning": {
-          "ru": "Спросите «Руководитель работает здесь?»",
-          "uk": "Запитайте «Керівник працює тут?»"
+          "ru": "Вы у входа в салон. Спросите прохожего: «Парикмахер работает здесь?»",
+          "uk": "Ви біля входу в салон. Спитайте перехожого: «Перукар працює тут?»"
         },
         "orderedTokens": [
           "Does",
           "the",
-          "manager",
+          "barber",
           "work",
           "here"
         ],
@@ -38,52 +81,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-09:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-09:word:postman",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — postman",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-09:word:postman:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — postman",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-09:word:postman:audio",
+          "transcript": "postman"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-09:word:postman:r1",
+            "targetText": "postman",
+            "meaningByLocale": {
+              "ru": "почтальон. The postman is here. — «Почтальон здесь». Человек, который приносит письма и посылки.",
+              "uk": "листоноша. The postman is here. — «Листоноша тут». Людина, яка приносить листи й посилки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "postman",
+          "definitionByLocale": {
+            "ru": "почтальон. The postman is here. — «Почтальон здесь». Человек, который приносит письма и посылки.",
+            "uk": "листоноша. The postman is here. — «Листоноша тут». Людина, яка приносить листи й посилки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-09:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-09:i02:r1",
-          "text": "manager"
+          "text": "Does the postman leave parcels here?"
         },
         {
           "responseId": "en:lesson-07:session-09:i02:r2",
-          "text": "charger"
+          "text": "Does the postman leave parcels there?"
         },
         {
           "responseId": "en:lesson-07:session-09:i02:r3",
-          "text": "door"
+          "text": "Does the barber leave parcels here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i02:audio",
-          "transcript": "manager"
+          "transcript": "Does the postman leave parcels here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-09:i02:r1",
-            "targetText": "manager",
+            "targetText": "Does the postman leave parcels here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-09:i02:r2",
-            "targetText": "charger",
+            "targetText": "Does the postman leave parcels there?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-09:i02:r3",
-            "targetText": "door",
+            "targetText": "Does the barber leave parcels here?",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +178,19 @@
           {
             "responseId": "en:lesson-07:session-09:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `manager`, а в этом варианте — `charger`.",
-              "uk": "У записі перше слово — `manager`, а в цьому варіанті — `charger`."
+              "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+              "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
             }
           },
           {
             "responseId": "en:lesson-07:session-09:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `manager`, а в этом варианте — `door`.",
-              "uk": "У записі перше слово — `manager`, а в цьому варіанті — `door`."
+              "ru": "В записи третье слово — `postman`, почтальон, а в этом варианте — `barber`, парикмахер.",
+              "uk": "У записі третє слово — `postman`, листоноша, а в цьому варіанті — `barber`, перукар."
             }
           }
         ],
@@ -114,68 +200,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-09:word:vet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-09:word:vet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-09:word:vet:audio",
+          "transcript": "vet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-09:word:vet:r1",
+            "targetText": "vet",
+            "meaningByLocale": {
+              "ru": "ветеринар. The vet is kind. — «Ветеринар добрый». Врач, который лечит животных.",
+              "uk": "ветеринар. The vet is kind. — «Ветеринар добрий». Лікар, який лікує тварин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vet",
+          "definitionByLocale": {
+            "ru": "ветеринар. The vet is kind. — «Ветеринар добрый». Врач, который лечит животных.",
+            "uk": "ветеринар. The vet is kind. — «Ветеринар добрий». Лікар, який лікує тварин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-09:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о работе руководителя",
+      "prompt": "Скажите соседке: «Ветеринар начинает рано?» Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-09:i03:r1",
-          "text": "work"
+          "text": "start"
         },
         {
           "responseId": "en:lesson-07:session-09:i03:r2",
-          "text": "works"
+          "text": "starts"
         },
         {
           "responseId": "en:lesson-07:session-09:i03:r3",
-          "text": "is work"
+          "text": "is start"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о работе руководителя",
+      "accessibilityLabel": "Скажите соседке: «Ветеринар начинает рано?» Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о работе руководителя",
-          "uk": "Запитайте про роботу керівника"
+          "ru": "Скажите соседке: «Ветеринар начинает рано?» Выберите слово",
+          "uk": "Скажіть сусідці: «Ветеринар починає рано?» Виберіть слово"
         },
-        "gappedTargetPhrase": "Does the manager ___ here?",
+        "gappedTargetPhrase": "Does the vet ___ early?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-09:i03:r1",
-            "text": "work"
+            "text": "start"
           },
           {
             "responseId": "en:lesson-07:session-09:i03:r2",
-            "text": "works"
+            "text": "starts"
           },
           {
             "responseId": "en:lesson-07:session-09:i03:r3",
-            "text": "is work"
+            "text": "is start"
           }
         ],
-        "testedDimension": "Спросите о работе руководителя",
+        "testedDimension": "Скажите соседке: «Ветеринар начинает рано?» Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите о работе руководителя",
+            "testedDimension": "Скажите соседке: «Ветеринар начинает рано?» Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Does` нужно `work`.",
-              "uk": "Після `Does` потрібне `work`."
+              "ru": "После `Does` нужно `start`, без `s`.",
+              "uk": "Після `Does` потрібно `start`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите о работе руководителя",
+            "testedDimension": "Скажите соседке: «Ветеринар начинает рано?» Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Does the manager work?`, без `is`.",
-              "uk": "Потрібно `Does the manager work?`, без `is`."
+              "ru": "Нужно `Does the vet start?`, без `is`.",
+              "uk": "Потрібно `Does the vet start?`, без `is`."
             }
           }
         ]
@@ -184,7 +313,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +327,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-09:i04:p1",
-            "target": "manager",
+            "target": "barber",
             "meaningByLocale": {
-              "ru": "руководитель",
-              "uk": "керівник"
+              "ru": "мужской парикмахер",
+              "uk": "чоловічий перукар"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i04:p2",
-            "target": "factory",
+            "target": "postman",
             "meaningByLocale": {
-              "ru": "фабрика",
-              "uk": "фабрика"
+              "ru": "почтальон",
+              "uk": "листоноша"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i04:p3",
-            "target": "charger",
+            "target": "vet",
             "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
+              "ru": "ветеринар",
+              "uk": "ветеринар"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i04:p4",
-            "target": "door",
+            "target": "puppy",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "щенок",
+              "uk": "цуценя"
             }
           }
         ],
         "leftColumn": [
-          "manager",
-          "factory",
-          "charger",
-          "door"
+          "barber",
+          "postman",
+          "vet",
+          "puppy"
         ],
         "rightColumn": [
-          "руководитель",
-          "фабрика",
-          "зарядное устройство",
-          "дверь"
+          "мужской парикмахер",
+          "почтальон",
+          "ветеринар",
+          "щенок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,30 +385,73 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-09:word:carpenter",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — carpenter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-09:word:carpenter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — carpenter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-09:word:carpenter:audio",
+          "transcript": "carpenter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-09:word:carpenter:r1",
+            "targetText": "carpenter",
+            "meaningByLocale": {
+              "ru": "плотник. The carpenter is strong. — «Плотник сильный». Мастер, который работает с деревом.",
+              "uk": "тесляр. The carpenter is strong. — «Тесляр сильний». Майстер, який працює з деревом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carpenter",
+          "definitionByLocale": {
+            "ru": "плотник. The carpenter is strong. — «Плотник сильный». Мастер, который работает с деревом.",
+            "uk": "тесляр. The carpenter is strong. — «Тесляр сильний». Майстер, який працює з деревом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-09:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте соседку и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте соседку и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i05:audio",
-          "transcript": "Does the manager work here?"
+          "transcript": "Does the carpenter work here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does the manager work here?",
+        "hiddenTargetPhrase": "Does the carpenter work here?",
         "orderedTokens": [
           "Does",
           "the",
-          "manager",
+          "carpenter",
           "work",
           "here"
         ],
@@ -294,29 +466,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите об Анне «Она работает на фабрике?»",
+      "prompt": "Щенок вялый. Спросите соседку: «Ветеринар живёт здесь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите об Анне «Она работает на фабрике?»",
+      "accessibilityLabel": "Щенок вялый. Спросите соседку: «Ветеринар живёт здесь?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does she work in a factory?",
+        "targetPhrase": "Does the vet live here?",
         "localizedMeaning": {
-          "ru": "Спросите об Анне «Она работает на фабрике?»",
-          "uk": "Запитайте про Анну «Вона працює на фабриці?»"
+          "ru": "Щенок вялый. Спросите соседку: «Ветеринар живёт здесь?»",
+          "uk": "Цуценя кволе. Спитайте сусідку: «Ветеринар живе тут?»"
         },
         "orderedTokens": [
           "Does",
-          "she",
-          "work",
-          "in",
-          "a",
-          "factory"
+          "the",
+          "vet",
+          "live",
+          "here"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -329,25 +500,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Уточните о начале работы руководителя «Он начинает рано?»",
+      "prompt": "Вы хотите подстричься до работы. Спросите знакомого: «Парикмахер начинает рано?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i07:audio"
       ],
-      "accessibilityLabel": "Уточните о начале работы руководителя «Он начинает рано?»",
+      "accessibilityLabel": "Вы хотите подстричься до работы. Спросите знакомого: «Парикмахер начинает рано?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i07:audio",
-          "transcript": "Does he start early?"
+          "transcript": "Does the barber start early?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does he start early?",
+        "targetPhrase": "Does the barber start early?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -362,11 +533,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите «Она работает здесь?»",
+      "prompt": "Спросите соседку о почтальоне. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-09:i08:r1",
@@ -383,14 +554,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Она работает здесь?»",
+      "accessibilityLabel": "Спросите соседку о почтальоне. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Она работает здесь?»",
-          "uk": "Запитайте «Вона працює тут?»"
+          "ru": "Спросите соседку о почтальоне. Выберите слово",
+          "uk": "Спитайте сусідку про листоношу. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ she work here?",
+        "gappedTargetPhrase": "___ the postman leave parcels here?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-09:i08:r1",
@@ -405,24 +576,24 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Спросите «Она работает здесь?»",
+        "testedDimension": "Спросите соседку о почтальоне. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-09:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите «Она работает здесь?»",
+            "testedDimension": "Спросите соседку о почтальоне. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `she` нужно `Does`.",
-              "uk": "Із `she` потрібне `Does`."
+              "ru": "Почтальон один: нужно `Does`.",
+              "uk": "Листоноша один: потрібно `Does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-09:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите «Она работает здесь?»",
+            "testedDimension": "Спросите соседку о почтальоне. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С действием `work` здесь нужно `Does she work?`.",
-              "uk": "З дією `work` тут потрібно `Does she work?`."
+              "ru": "С действием `leave` нужно `Does`, а не `Is`.",
+              "uk": "З дією `leave` потрібне `Does`, а не `Is`."
             }
           }
         ]
@@ -431,51 +602,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о начале работы",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-09:i09:r1",
-          "text": "Does he start early?"
+          "text": "Does the carpenter build shelves?"
         },
         {
           "responseId": "en:lesson-07:session-09:i09:r2",
-          "text": "Does he start late?"
+          "text": "Does the carpenter build benches?"
         },
         {
           "responseId": "en:lesson-07:session-09:i09:r3",
-          "text": "Does he start here?"
+          "text": "Does the postman build shelves?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о начале работы",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i09:audio",
-          "transcript": "Does he start early?"
+          "transcript": "Does the carpenter build shelves?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-09:i09:r1",
-            "targetText": "Does he start early?",
+            "targetText": "Does the carpenter build shelves?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-09:i09:r2",
-            "targetText": "Does he start late?",
+            "targetText": "Does the carpenter build benches?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-09:i09:r3",
-            "targetText": "Does he start here?",
+            "targetText": "Does the postman build shelves?",
             "meaningByLocale": null
           }
         ],
@@ -484,19 +655,19 @@
           {
             "responseId": "en:lesson-07:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о начале работы",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+              "ru": "В записи последнее слово — `shelves`, полки, а в этом варианте — `benches`, скамейки.",
+              "uk": "У записі останнє слово — `shelves`, полиці, а в цьому варіанті — `benches`, лавки."
             }
           },
           {
             "responseId": "en:lesson-07:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о начале работы",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+              "ru": "В записи третье слово — `carpenter`, плотник, а в этом варианте — `postman`, почтальон.",
+              "uk": "У записі третє слово — `carpenter`, тесляр, а в цьому варіанті — `postman`, листоноша."
             }
           }
         ],
@@ -507,8 +678,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -521,48 +692,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-09:i10:p1",
-            "target": "start",
+            "target": "carpenter",
             "meaningByLocale": {
-              "ru": "начинать",
-              "uk": "починати"
+              "ru": "плотник",
+              "uk": "тесляр"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i10:p2",
-            "target": "manager",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "руководитель",
-              "uk": "керівник"
+              "ru": "полка",
+              "uk": "полиця"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i10:p3",
-            "target": "factory",
+            "target": "parcel",
             "meaningByLocale": {
-              "ru": "фабрика",
-              "uk": "фабрика"
+              "ru": "посылка",
+              "uk": "посилка"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i10:p4",
-            "target": "charger",
+            "target": "puppy",
             "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
+              "ru": "щенок",
+              "uk": "цуценя"
             }
           }
         ],
         "leftColumn": [
-          "start",
-          "manager",
-          "factory",
-          "charger"
+          "carpenter",
+          "shelf",
+          "parcel",
+          "puppy"
         ],
         "rightColumn": [
-          "начинать",
-          "руководитель",
-          "фабрика",
-          "зарядное устройство"
+          "плотник",
+          "полка",
+          "посылка",
+          "щенок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -580,28 +751,29 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте соседку и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте соседку и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i11:audio",
-          "transcript": "Does she work here?"
+          "transcript": "Does the vet work here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does she work here?",
+        "hiddenTargetPhrase": "Does the vet work here?",
         "orderedTokens": [
           "Does",
-          "she",
+          "the",
+          "vet",
           "work",
           "here"
         ],
@@ -616,28 +788,29 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Телефон разрядился. Спросите сотрудника «У вас есть зарядное устройство?»",
+      "prompt": "Вы ждёте посылку. Спросите соседку: «Почтальон оставляет посылки здесь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Телефон разрядился. Спросите сотрудника «У вас есть зарядное устройство?»",
+      "accessibilityLabel": "Вы ждёте посылку. Спросите соседку: «Почтальон оставляет посылки здесь?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a charger?",
+        "targetPhrase": "Does the postman leave parcels here?",
         "localizedMeaning": {
-          "ru": "Телефон разрядился. Спросите сотрудника «У вас есть зарядное устройство?»",
-          "uk": "Телефон розрядився. Запитайте працівника «У вас є зарядний пристрій?»"
+          "ru": "Вы ждёте посылку. Спросите соседку: «Почтальон оставляет посылки здесь?»",
+          "uk": "Ви чекаєте посилку. Спитайте сусідку: «Листоноша залишає посилки тут?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "charger"
+          "Does",
+          "the",
+          "postman",
+          "leave",
+          "parcels",
+          "here"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -650,25 +823,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите коллеге «Дверь открыта»",
+      "prompt": "Вам нужна полка. Спросите соседа: «Плотник делает полки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i13:audio"
       ],
-      "accessibilityLabel": "Скажите коллеге «Дверь открыта»",
+      "accessibilityLabel": "Вам нужна полка. Спросите соседа: «Плотник делает полки?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i13:audio",
-          "transcript": "The door is open."
+          "transcript": "Does the carpenter build shelves?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The door is open.",
+        "targetPhrase": "Does the carpenter build shelves?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -683,11 +856,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о начале работы «Он начинает рано?»",
+      "prompt": "Спросите знакомого о парикмахере. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-09:i14:r1",
@@ -704,14 +877,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о начале работы «Он начинает рано?»",
+      "accessibilityLabel": "Спросите знакомого о парикмахере. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о начале работы «Он начинает рано?»",
-          "uk": "Запитайте про початок роботи «Він починає рано?»"
+          "ru": "Спросите знакомого о парикмахере. Выберите слово",
+          "uk": "Спитайте знайомого про перукаря. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does he ___ early?",
+        "gappedTargetPhrase": "Does the barber ___ early?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-09:i14:r1",
@@ -726,24 +899,24 @@
             "text": "is start"
           }
         ],
-        "testedDimension": "Спросите о начале работы «Он начинает рано?»",
+        "testedDimension": "Спросите знакомого о парикмахере. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-09:i14:r2",
             "correct": false,
-            "testedDimension": "Спросите о начале работы «Он начинает рано?»",
+            "testedDimension": "Спросите знакомого о парикмахере. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Does he` нужно `start`.",
-              "uk": "Після `Does he` потрібне `start`."
+              "ru": "После `Does` нужно `start`, без `s`.",
+              "uk": "Після `Does` потрібно `start`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-09:i14:r3",
             "correct": false,
-            "testedDimension": "Спросите о начале работы «Он начинает рано?»",
+            "testedDimension": "Спросите знакомого о парикмахере. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Does he start?`, без `is`.",
-              "uk": "Потрібно `Does he start?`, без `is`."
+              "ru": "Нужно `Does the barber start?`, без `is`.",
+              "uk": "Потрібно `Does the barber start?`, без `is`."
             }
           }
         ]
@@ -752,51 +925,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о месте работы",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-09:i15:r1",
-          "text": "Does she work here?"
+          "text": "Does the vet start early?"
         },
         {
           "responseId": "en:lesson-07:session-09:i15:r2",
-          "text": "Does she work there?"
+          "text": "Does the vet start late?"
         },
         {
           "responseId": "en:lesson-07:session-09:i15:r3",
-          "text": "Does she work outside?"
+          "text": "Does the barber start early?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о месте работы",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i15:audio",
-          "transcript": "Does she work here?"
+          "transcript": "Does the vet start early?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-09:i15:r1",
-            "targetText": "Does she work here?",
+            "targetText": "Does the vet start early?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-09:i15:r2",
-            "targetText": "Does she work there?",
+            "targetText": "Does the vet start late?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-09:i15:r3",
-            "targetText": "Does she work outside?",
+            "targetText": "Does the barber start early?",
             "meaningByLocale": null
           }
         ],
@@ -805,19 +978,19 @@
           {
             "responseId": "en:lesson-07:session-09:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о месте работы",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `early`, рано, а в этом варианте — `late`, поздно.",
+              "uk": "У записі останнє слово — `early`, рано, а в цьому варіанті — `late`, пізно."
             }
           },
           {
             "responseId": "en:lesson-07:session-09:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о месте работы",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+              "ru": "В записи третье слово — `vet`, ветеринар, а в этом варианте — `barber`, парикмахер.",
+              "uk": "У записі третє слово — `vet`, ветеринар, а в цьому варіанті — `barber`, перукар."
             }
           }
         ],
@@ -828,7 +1001,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -842,48 +1015,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-09:i16:p1",
-            "target": "manager",
+            "target": "vet",
             "meaningByLocale": {
-              "ru": "руководитель",
-              "uk": "керівник"
+              "ru": "ветеринар",
+              "uk": "ветеринар"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i16:p2",
-            "target": "door",
+            "target": "barber",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "мужской парикмахер",
+              "uk": "чоловічий перукар"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i16:p3",
-            "target": "start",
+            "target": "postman",
             "meaningByLocale": {
-              "ru": "начинать",
-              "uk": "починати"
+              "ru": "почтальон",
+              "uk": "листоноша"
             }
           },
           {
             "pairId": "en:lesson-07:session-09:i16:p4",
-            "target": "charger",
+            "target": "carpenter",
             "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
+              "ru": "плотник",
+              "uk": "тесляр"
             }
           }
         ],
         "leftColumn": [
-          "manager",
-          "door",
-          "start",
-          "charger"
+          "vet",
+          "barber",
+          "postman",
+          "carpenter"
         ],
         "rightColumn": [
-          "руководитель",
-          "дверь",
-          "начинать",
-          "зарядное устройство"
+          "ветеринар",
+          "мужской парикмахер",
+          "почтальон",
+          "плотник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -901,25 +1074,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-09:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В другой мастерской вы ищете знакомого Тома. Спросите сотрудника «Том работает здесь?»",
+      "prompt": "В магазине вы ищете мастера по дереву. Спросите продавца: «Плотник работает здесь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-09:i17:audio"
       ],
-      "accessibilityLabel": "В другой мастерской вы ищете знакомого Тома. Спросите сотрудника «Том работает здесь?»",
+      "accessibilityLabel": "В магазине вы ищете мастера по дереву. Спросите продавца: «Плотник работает здесь?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-09:i17:audio",
-          "transcript": "Does Tom work here?"
+          "transcript": "Does the carpenter work here?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does Tom work here?",
+        "targetPhrase": "Does the carpenter work here?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -941,11 +1114,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "90b456efa7d0fa24237f4a851bf9e2b0fea86d9c23fbf0a2be7816d3de2d6772"
+  "learnerFingerprint": "3e742b18d785172fd0afa216d5657487107d59604e6989234149c8221833fa75"
 }

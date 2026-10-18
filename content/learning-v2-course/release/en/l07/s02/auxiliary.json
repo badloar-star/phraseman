@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-02:intro1:r2": {
-          "ru": "Нужно `Do you have?`, без `are`.",
-          "uk": "Потрібно `Do you have?`, без `are`."
+          "ru": "Здесь нужно Do you have, без Are.",
+          "uk": "Тут потрібно Do you have, без Are."
         },
         "en:lesson-07:session-02:intro1:r3": {
-          "ru": "После `Do you` нужно `have`.",
-          "uk": "Після `Do you` потрібне `have`."
+          "ru": "После Do you слово have остаётся без изменений.",
+          "uk": "Після Do you слово have лишається без змін."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-02:intro2:r2": {
-          "ru": "После `Do they` нужно `deliver`.",
-          "uk": "Після `Do they` потрібне `deliver`."
+          "ru": "Здесь действие send, поэтому нужно Do they send, без Are.",
+          "uk": "Тут дія send, тому потрібно Do they send, без Are."
         },
         "en:lesson-07:session-02:intro2:r3": {
-          "ru": "Нужно `Do they deliver?`, без `are`.",
-          "uk": "Потрібно `Do they deliver?`, без `are`."
+          "ru": "После Do they слово send остаётся без s.",
+          "uk": "Після Do they слово send лишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-02:intro3:r2": {
-          "ru": "Одна посылка: `There is no package`.",
-          "uk": "Одна посилка: `There is no package`."
+          "ru": "После no слово a не нужно: There is no tape.",
+          "uk": "Після no слово a не потрібне: There is no tape."
         },
         "en:lesson-07:session-02:intro3:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "Говорим There is no tape, с is.",
+          "uk": "Кажемо There is no tape, з is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "04807aef92e9d24cb05e49b9795119b49a4f1c0b6d30c07a674df2740c720107"
+  "auxiliaryFingerprint": "1e606ead3e324e703764f3be2331ec53b7e7922909e871bb684d6124629b1bfd"
 }

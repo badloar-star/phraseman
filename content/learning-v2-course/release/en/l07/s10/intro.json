@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-10",
   "learningOutcomeByLocale": {
-    "ru": "задавать вопросы с Does об устройстве и с Do о человеке",
-    "uk": "ставити запитання з Does про пристрій і з Do про людину"
+    "ru": "спросить, работает ли один предмет, и что у него есть, с помощью Does",
+    "uk": "запитати, чи працює один предмет і що в нього є, за допомогою Does"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Автомат у входа",
-        "uk": "Автомат біля входу"
+        "ru": "Душная комната",
+        "uk": "Душна кімната"
       },
       "bodyByLocale": {
-        "ru": "`machine` — «машина», «устройство»; здесь — торговый автомат. Вы хотите купить воду. `Does the machine work?` — «Автомат работает?» `Work` здесь значит «работать», исправно действовать. Одна машина: `Does the machine work`, без `s` у `work`.",
-        "uk": "`machine` — «машина», «пристрій»; тут — торговий автомат. Ви хочете купити воду. `Does the machine work?` — «Автомат працює?» `Work` тут означає «працювати», справно діяти. Одна машина: `Does the machine work`, без `s` у `work`."
+        "ru": "Вы пришли в гости к подруге. В комнате жарко, а окно не открывается. Подруга показывает на вентилятор в углу комнаты. fan — «вентилятор». Вы спрашиваете: Does the fan work? — «Вентилятор работает?» Прибор один, поэтому Does, а после него work, без s.",
+        "uk": "Ви прийшли в гості до подруги. У кімнаті спекотно, а вікно не відчиняється. Подруга показує на вентилятор у кутку кімнати. fan — «вентилятор». Ви питаєте: Does the fan work? — «Вентилятор працює?» Прилад один, тому Does, а після нього work, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-10:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите сотрудника «Автомат работает?»",
-          "uk": "Запитайте працівника «Автомат працює?»"
+          "ru": "В комнате жарко. Спросите подругу: «Вентилятор работает?»",
+          "uk": "У кімнаті спекотно. Спитайте подругу: «Вентилятор працює?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-10:intro1:r1",
-              "text": "Does the machine work?"
+              "text": "Does the fan work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro1:r2",
-              "text": "Do the machine work?"
+              "text": "Do the fan work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro1:r3",
-              "text": "Does the machine works?"
+              "text": "Does the fan works?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-10:intro1:r1",
-              "text": "Does the machine work?"
+              "text": "Does the fan work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro1:r2",
-              "text": "Do the machine work?"
+              "text": "Do the fan work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro1:r3",
-              "text": "Does the machine works?"
+              "text": "Does the fan works?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите сотрудника «Автомат работает?»",
-          "uk": "Запитайте працівника «Автомат працює?»"
+          "ru": "В комнате жарко. Спросите подругу: «Вентилятор работает?»",
+          "uk": "У кімнаті спекотно. Спитайте подругу: «Вентилятор працює?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тот же автомат",
-        "uk": "Той самий автомат"
+        "ru": "Плита в новой квартире",
+        "uk": "Плита в новій квартирі"
       },
       "bodyByLocale": {
-        "ru": "Сотрудник подошёл к автомату вместе с вами. Уже понятно, о чём речь, поэтому можно спросить короче: `Does it work?` — «Он работает?» `It` заменяет название устройства. После `Does it` — `work`. Автомат может выглядеть бодро и ярко светиться, но воду всё равно не выдавать — вопрос полезный.",
-        "uk": "Працівник підійшов до автомата разом із вами. Уже зрозуміло, про що йдеться, тому можна запитати коротше: `Does it work?` — «Він працює?» `It` замінює назву пристрою. Після `Does it` — `work`. Автомат може виглядати бадьоро й яскраво світитися, але воду все одно не видавати — запитання корисне."
+        "ru": "Вы заселяетесь в съёмную квартиру и хотите испечь пирог к приезду друзей. Остальную кухню вы уже осмотрели, остаётся старая плита. stove — «плита». Спросите хозяйку, есть ли у неё духовка: Does the stove have an oven? — «У плиты есть духовка?» После Does — have, не has.",
+        "uk": "Ви заселяєтеся в орендовану квартиру й хочете спекти пиріг до приїзду друзів. Решту кухні ви вже оглянули, лишилася стара плита. stove — «плита». Спитайте господиню, чи є в неї духовка: Does the stove have an oven? — «У плити є духовка?» Після Does — have, не has."
       },
       "question": {
         "interactionId": "en:lesson-07:session-10:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите о показанном автомате «Он работает?»",
-          "uk": "Запитайте про показаний автомат «Він працює?»"
+          "ru": "Вы хотите испечь пирог. Спросите хозяйку: «У плиты есть духовка?»",
+          "uk": "Ви хочете спекти пиріг. Спитайте господиню: «У плити є духовка?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-10:intro2:r1",
-              "text": "Does it work?"
+              "text": "Does the stove have an oven?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro2:r2",
-              "text": "Do it work?"
+              "text": "Does the stove has an oven?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro2:r3",
-              "text": "Does it works?"
+              "text": "Do the stove have an oven?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-10:intro2:r1",
-              "text": "Does it work?"
+              "text": "Does the stove have an oven?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro2:r2",
-              "text": "Do it work?"
+              "text": "Does the stove has an oven?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro2:r3",
-              "text": "Does it works?"
+              "text": "Do the stove have an oven?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о показанном автомате «Он работает?»",
-          "uk": "Запитайте про показаний автомат «Він працює?»"
+          "ru": "Вы хотите испечь пирог. Спросите хозяйку: «У плиты есть духовка?»",
+          "uk": "Ви хочете спекти пиріг. Спитайте господиню: «У плити є духовка?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Проверяем карман",
-        "uk": "Перевіряємо кишеню"
+        "ru": "Кнопка у подъезда",
+        "uk": "Кнопка біля під’їзду"
       },
       "bodyByLocale": {
-        "ru": "У закрытой двери вы ищете ключ. `There is no key in my pocket` — «В моём кармане нет ключа». `In my pocket` уточняет место; об отсутствии одного ключа говорим `There is no key`. Это не значит, что ключа нет нигде: пока проверен только карман.",
-        "uk": "Біля зачинених дверей ви шукаєте ключ. `There is no key in my pocket` — «У моїй кишені немає ключа». `In my pocket` уточнює місце; про відсутність одного ключа кажемо `There is no key`. Це не означає, що ключа немає ніде: поки перевірено лише кишеню."
+        "ru": "Вы нажимаете кнопку у подъезда, а подруга в квартире не слышит сигнала. Рядом стоит соседка, которая живёт в этом доме. buzzer — «дверной зуммер», кнопка и сигнал у входа. Спросите: Does the buzzer work? — «Зуммер работает?» Зуммер один, поэтому Does.",
+        "uk": "Ви натискаєте кнопку біля під’їзду, а подруга в квартирі не чує сигналу. Поруч стоїть сусідка, яка живе в цьому домі. buzzer — «дверний зумер», кнопка й сигнал біля входу. Спитайте: Does the buzzer work? — «Зумер працює?» Зумер один, тому Does."
       },
       "question": {
         "interactionId": "en:lesson-07:session-10:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите другу «В моём кармане нет ключа».",
-          "uk": "Повідомте другові «У моїй кишені немає ключа»."
+          "ru": "Подруга не слышит сигнала. Спросите соседку: «Зуммер работает?»",
+          "uk": "Подруга не чує сигналу. Спитайте сусідку: «Зумер працює?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-10:intro3:r1",
-              "text": "There is no key in my pocket."
+              "text": "Does the buzzer work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro3:r2",
-              "text": "There are no key in my pocket."
+              "text": "Do the buzzer work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro3:r3",
-              "text": "There no key in my pocket."
+              "text": "Is the buzzer work?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-10:intro3:r1",
-              "text": "There is no key in my pocket."
+              "text": "Does the buzzer work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro3:r2",
-              "text": "There are no key in my pocket."
+              "text": "Do the buzzer work?"
             },
             {
               "responseId": "en:lesson-07:session-10:intro3:r3",
-              "text": "There no key in my pocket."
+              "text": "Is the buzzer work?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите другу «В моём кармане нет ключа».",
-          "uk": "Повідомте другові «У моїй кишені немає ключа»."
+          "ru": "Подруга не слышит сигнала. Спросите соседку: «Зуммер работает?»",
+          "uk": "Подруга не чує сигналу. Спитайте сусідку: «Зумер працює?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "04ca12c8aa8451939ecf86344ff77c1208072622d4884a8be7e6057a62a02e13"
+  "introFingerprint": "61dfe6f4a39535dfe5eeaf53078c0b4400ce6f53ef96baa5c2f5762e9a152949"
 }

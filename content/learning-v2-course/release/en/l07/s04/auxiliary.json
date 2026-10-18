@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-04:intro1:r2": {
-          "ru": "С `wear` здесь нужно `Do you wear?`.",
-          "uk": "З `wear` тут потрібно `Do you wear?`."
+          "ru": "Здесь нужно Do you have, без Are.",
+          "uk": "Тут потрібно Do you have, без Are."
         },
         "en:lesson-07:session-04:intro1:r3": {
-          "ru": "В этом значении говорим `glasses`, без `a`.",
-          "uk": "У цьому значенні кажемо `glasses`, без `a`."
+          "ru": "После Do you слово have остаётся без изменений.",
+          "uk": "Після Do you слово have лишається без змін."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-04:intro2:r2": {
-          "ru": "После `Do they` нужно `wear`.",
-          "uk": "Після `Do they` потрібне `wear`."
+          "ru": "Здесь нужно Do they have, без Are.",
+          "uk": "Тут потрібно Do they have, без Are."
         },
         "en:lesson-07:session-04:intro2:r3": {
-          "ru": "Нужно `Do they wear?`, без `are`.",
-          "uk": "Потрібно `Do they wear?`, без `are`."
+          "ru": "После Do they слово have остаётся без изменений.",
+          "uk": "Після Do they слово have лишається без змін."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-04:intro3:r2": {
-          "ru": "С `glasses` нужно `There are no`.",
-          "uk": "З `glasses` потрібно `There are no`."
+          "ru": "Слово bill стоит в единственном числе: нужно There is no.",
+          "uk": "Слово bill стоїть в однині: потрібно There is no."
         },
         "en:lesson-07:session-04:intro3:r3": {
-          "ru": "Нужно `There are no`, с `are`.",
-          "uk": "Потрібно `There are no`, з `are`."
+          "ru": "После not здесь не хватает a. В нашем ответе используем no bill.",
+          "uk": "Після not тут бракує a. У нашій відповіді використовуємо no bill."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "57bd89d7bcae6da0a5dd42861242f9b9bd1e30714f96748678880d02e9b8a3f2"
+  "auxiliaryFingerprint": "2b9a080e281146f29099a37531c692c307b524926f30e3116d1ef100d01f8edc"
 }

@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 2 — Посылка для отправки
+# Английский · Урок 7 · Занятие 2 — Посылка на почте
 
-**Ситуация.** Вы собираетесь отправить посылку и узнаёте, занимается ли знакомая служба доставкой.
+**Ситуация.** Вы помогаете посетителю почты, узнаёте о доставке и упаковываете подарок. В этих вопросах с you и they начинаем со слова Do.
 
-**Что вы освоите:** спросить о посылке и доставке с помощью Do you и Do they
-**Новые слова:** package
+**Что вы освоите:** спросить на почте о посылке и о том, что там делают, и сказать, что вещи нет
+**Новые слова:** package, send, tape, scale
+**Возвращаются:** have, weigh, letter, here
 
 ---
 
 ## Интро 1
 
-### Что принёс посетитель
+### Окошко на почте
 
-У стойки доставки посетитель держит коробку. `package` — «посылка». `Do you have a package?` — «У вас есть посылка?» Сначала `Do`, потом `you have`. Пока спрашиваем только о посылке, а не о том, что внутри: коробка сама анкету не заполнит.
+Вы помогаете на почте. Посетитель подошёл к окошку с большой сумкой, но ещё ничего не достал. Нужно понять, что он хочет отправить: письмо или коробку. package — «посылка». Спросите: Do you have a package? — «У вас есть посылка?» Сначала Do, затем you и have.
 
-**Спросите посетителя «У вас есть посылка?»**
+**Посетитель пришёл что-то отправить. Спросите его: «У вас есть посылка?»**
 
 - ✅ **Do you have a package?**
-- ❌ Are you have a package? — *Нужно `Do you have?`, без `are`.*
-- ❌ Do you has a package? — *После `Do you` нужно `have`.*
+- ❌ Are you have a package? — *Здесь нужно Do you have, без Are.*
+- ❌ Do you has a package? — *После Do you слово have остаётся без изменений.*
 
 ---
 
 ## Интро 2
 
-### Выбираем службу доставки
+### Совет друга
 
-Друг советует компанию, но вы ещё не знаете, что она доставляет. `Do they deliver packages?` — «Они доставляют посылки?» `Packages` — несколько посылок. После `Do they` нужно `deliver`, без `s`.
+Друг хочет отправить подарок родителям в другой город и советует вам службу, которой сам не раз пользовался. send — «отправлять». Вы уточняете, чем занимается эта служба: Do they send packages? — «Они отправляют посылки?» После they слово send без s.
 
-**Спросите друга о компании «Они доставляют посылки?»**
+**Друг советует службу доставки. Спросите о ней: «Они отправляют посылки?»**
 
-- ✅ **Do they deliver packages?**
-- ❌ Do they delivers packages? — *После `Do they` нужно `deliver`.*
-- ❌ Are they deliver packages? — *Нужно `Do they deliver?`, без `are`.*
+- ✅ **Do they send packages?**
+- ❌ Are they send packages? — *Здесь действие send, поэтому нужно Do they send, без Are.*
+- ❌ Do they sends packages? — *После Do they слово send остаётся без s.*
 
 ---
 
 ## Интро 3
 
-### Посылки нет
+### Нечем заклеить коробку
 
-Вы ищете посылку в комнате. `There is no package here` — «Здесь нет посылки». Это знакомый способ сообщить, что вещи здесь нет: `There is no` и название одной вещи. Такой ответ помогает понять, что искать нужно в другом месте.
+Вы с другом укладываете подарок в коробку. Всё готово, осталось заклеить крышку. Друг просит клейкую ленту, но вы осмотрели весь стол: пусто. tape — «клейкая лента». There is no tape here — «Здесь нет клейкой ленты». Ленту не считаем штуками, поэтому a не нужно.
 
-**Скажите человеку у двери «Здесь нет посылки».**
+**Друг просит клейкую ленту, а на столе её нет. Скажите: «Здесь нет клейкой ленты».**
 
-- ✅ **There is no package here.**
-- ❌ There are no package here. — *Одна посылка: `There is no package`.*
-- ❌ There no package here. — *Нужно `There is no`, с `is`.*
+- ✅ **There is no tape here.**
+- ❌ There is no a tape here. — *После no слово a не нужно: There is no tape.*
+- ❌ There are no tape here. — *Говорим There is no tape, с is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «У вас есть посылка?»**
+**1 · Карточка слова — package**
+<!-- interaction_id: en:lesson-07:session-02:word:package; family: word_card -->
+> **package** — посылка. The package is on the table. — «Посылка на столе». Коробка, которую отправляют или получают по почте.
+
+**2 · Вы помогаете на почте. Спросите посетителя: «У вас есть посылка?»**
 <!-- interaction_id: en:lesson-07:session-02:i01; family: phrase_builder -->
-Плитки: `package` `a` `have` `you` `Do` → **Do you have a package?**
+Плитки: `package` `a` `have` `you` `Do` `Are` → **Do you have a package?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have a package?`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — send**
+<!-- interaction_id: en:lesson-07:session-02:word:send; family: word_card -->
+> **send** — отправлять. We send letters. — «Мы отправляем письма». О том, что кладут в конверт или коробку и пересылают.
+
+**4 · Послушайте сотрудника**
 <!-- interaction_id: en:lesson-07:session-02:i02; family: listen_choose -->
-🔊 *package* → **package** · folder · apple
-- folder — *В записи первое слово — `package`, а в этом варианте — `folder`.*
-- apple — *В записи первое слово — `package`, а в этом варианте — `apple`.*
+🔊 *We send packages.* → **We send packages.** · We send letters. · They send packages.
+- We send letters. — *В записи последнее слово — `packages`, посылки, а в этом варианте — `letters`, письма.*
+- They send packages. — *В записи первое слово — `We`, мы, а в этом варианте — `They`, они.*
 
-**3 · Спросите «Они доставляют посылки?»**
+**5 · Спросите про службу доставки: «Они отправляют посылки?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-02:i03; family: context_gap_grammar -->
-Do they ___ packages? → **deliver** · delivers · are deliver
-- delivers — *После `Do they` нужно `deliver`.*
-- are deliver — *Нужно `Do they deliver?`, без `are`.*
+Do they ___ packages? → **send** · sends · are send
+- sends — *После `Do they` нужно `send`, без `s`.*
+- are send — *Нужно `Do they send`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-02:i04; family: speed_match -->
-package — посылка · deliver — доставлять · folder — папка · apple — яблоко
+package — посылка · send — отправлять · letter — письмо · weigh — взвешивать
 
-**5 · Послушайте и соберите вопрос**
+**7 · Послушайте сотрудника и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-02:i05; family: listen_build_dictation -->
-🔊 *Do you have a package?* Плитки: `package` `a` `have` `you` `Do` → **Do you have a package?**
+🔊 *Do you weigh packages?* Плитки: `packages` `weigh` `you` `Do` `Are` → **Do you weigh packages?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you weigh packages?`)*
 
-**6 · Спросите друга о службе «Они доставляют посылки?»**
+**8 · Друг советует службу доставки. Спросите: «Они отправляют посылки?»**
 <!-- interaction_id: en:lesson-07:session-02:i06; family: phrase_builder -->
-Плитки: `packages` `deliver` `they` `Do` → **Do they deliver packages?**
+Плитки: `packages` `send` `they` `Do` `Are` → **Do they send packages?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they send packages?`)*
 
-**7 · Вы проверили комнату. Сообщите «Здесь нет посылки»**
+**9 · Карточка слова — tape**
+<!-- interaction_id: en:lesson-07:session-02:word:tape; family: word_card -->
+> **tape** — клейкая лента. The tape is on the table. — «Клейкая лента на столе». Липкая полоса, которой заклеивают коробку.
+
+**10 · Вы упаковываете коробку и ищете ленту. Скажите другу: «Здесь нет клейкой ленты»**
 <!-- interaction_id: en:lesson-07:session-02:i07; family: scripted_repeat_compare -->
-🎙 **There is no package here.**
+🎙 **There is no tape here.**
 
-**8 · Перед встречей спросите коллегу «У вас есть папка?»**
+**11 · Карточка слова — scale**
+<!-- interaction_id: en:lesson-07:session-02:word:scale; family: word_card -->
+> **scale** — весы. The scale is near the counter. — «Весы рядом со стойкой». Прибор, на котором узнают вес посылки.
+
+**12 · Спросите сотрудника почты: «У вас есть весы?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-02:i08; family: context_gap_grammar -->
-___ you have a folder? → **Do** · Are · Is
-- Are — *С `have` здесь нужно `Do you have?`.*
-- Is — *Нужно `Do you have?`.*
+___ you have a scale? → **Do** · Are · Is
+- Are — *С `have` нужно `Do you have`, без `Are`.*
+- Is — *С `you` нужно `Do`, а `Is` сюда не подходит.*
 
-**9 · Послушайте, о какой вещи спрашивает сотрудник**
+**13 · Послушайте вопрос сотрудника**
 <!-- interaction_id: en:lesson-07:session-02:i09; family: listen_choose -->
-🔊 *Do you have a package?* → **Do you have a package?** · Do you have a folder? · Do you have a key?
-- Do you have a folder? — *В записи последнее слово — `package`, а в этом варианте — `folder`.*
-- Do you have a key? — *В записи последнее слово — `package`, а в этом варианте — `key`.*
+🔊 *Do you have a package?* → **Do you have a package?** · Do you have a scale? · Do they have a package?
+- Do you have a scale? — *В записи последнее слово — `package`, посылка, а в этом варианте — `scale`, весы.*
+- Do they have a package? — *В записи второе слово — `you`, вы, а в этом варианте — `they`, они.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-02:i10; family: speed_match -->
-apple — яблоко · folder — папка · package — посылка · deliver — доставлять
+tape — клейкая лента · scale — весы · package — посылка · send — отправлять
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте сотрудника и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-02:i11; family: listen_build_dictation -->
-🔊 *Do they deliver packages?* Плитки: `packages` `deliver` `they` `Do` → **Do they deliver packages?**
+🔊 *Do they weigh packages here?* Плитки: `packages` `weigh` `here` `they` `Do` `Are` → **Do they weigh packages here?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they weigh packages here?`)*
 
-**12 · Коллега собирает документы для группы. Спросите «У них есть папки?»**
+**16 · Коробку нужно заклеить. Спросите у друга: «У тебя есть клейкая лента?»**
 <!-- interaction_id: en:lesson-07:session-02:i12; family: phrase_builder -->
-Плитки: `folders` `have` `they` `Do` → **Do they have folders?**
+Плитки: `tape` `have` `you` `Do` `Are` → **Do you have tape?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have tape?`)*
 
-**13 · Вы собираете перекус. Спросите друга «У тебя есть яблоко?»**
+**17 · Вы стоите у окошка почты. Спросите сотрудника: «Вы отправляете посылки?»**
 <!-- interaction_id: en:lesson-07:session-02:i13; family: scripted_repeat_compare -->
-🎙 **Do you have an apple?**
+🎙 **Do you send packages?**
 
-**14 · Сообщите «Здесь нет посылки»**
+**18 · Скажите, что весов нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-02:i14; family: context_gap_grammar -->
-There ___ no package here. → **is** · are · am
-- are — *Одна посылка: `There is no package`.*
-- am — *Нужно `There is no`, а `am` подходит к `I`.*
+There ___ no scale here. → **is** · are · am
+- are — *Слово scale стоит в единственном числе: нужно `There is no`.*
+- am — *Нужно `There is no`; `am` подходит только к `I`.*
 
-**15 · Послушайте вопрос о доставке**
+**19 · Послушайте вопрос на почте**
 <!-- interaction_id: en:lesson-07:session-02:i15; family: listen_choose -->
-🔊 *Do they deliver here?* → **Do they deliver here?** · Do they deliver there? · Do they deliver newspapers?
-- Do they deliver there? — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- Do they deliver newspapers? — *В записи последнее слово — `here`, а в этом варианте — `newspapers`.*
+🔊 *Do they send packages here?* → **Do they send packages here?** · Do they send packages there? · Do they weigh packages here?
+- Do they send packages there? — *В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.*
+- Do they weigh packages here? — *В записи слово действия — `send`, отправляют, а в этом варианте — `weigh`, взвешивают.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-02:i16; family: speed_match -->
-deliver — доставлять · package — посылка · apple — яблоко · folder — папка
+scale — весы · tape — клейкая лента · send — отправлять · package — посылка
 
-**17 · Вы пришли в офис службы доставки. Обратитесь к сотруднику от имени клиента: «Вы доставляете посылки?»**
+**21 · Вы с другом пришли на почту. Узнайте у сотрудника, есть ли весы: «У вас есть весы?»**
 <!-- interaction_id: en:lesson-07:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do you deliver packages?**
-
+🎙 **Do you have a scale?**

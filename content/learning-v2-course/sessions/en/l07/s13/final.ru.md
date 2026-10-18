@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 13 — Экран перед встречей
+# Английский · Урок 7 · Занятие 13 — Кто во что играет
 
-**Ситуация.** Перед встречей вы проверяете экран в комнате, ищете зонт и уточняете время работы коллеги.
+**Ситуация.** Вы разговариваете с подругой и другом о том, кто из их родных чем увлекается: шахматами, теннисом, гольфом или регби.
 
-**Что вы освоите:** спросить, работает ли экран, и повторить вопросы о привычках
-**Новые слова:** screen
+**Что вы освоите:** спросить, во что играет один человек, с помощью Does
+**Новые слова:** chess, tennis, golf, rugby
+**Возвращаются:** racket, ball, stadium, uncle, brother, play
 
 ---
 
 ## Интро 1
 
-### Проверка экрана
+### Шахматисты в парке
 
-`screen` — «экран». Перед встречей вы хотите показать коллегам расписание. `Does the screen work?` — «Экран работает?» Об одном экране спрашиваем с `Does`, после названия устройства ставим `work`, без `s`. Чёрный экран может быть выключен или сломан — по цвету диагноз не поставишь.
+Вы с подругой гуляете по парку возле дома и смотрите, как на лавках играют в шахматы. Вы хотите позвать туда её брата, но не знаете, умеет ли он играть. chess — «шахматы». Спросите подругу: Does he play chess? — «Он играет в шахматы?» После Does — play, без s.
 
-**Спросите коллегу «Экран работает?»**
+**Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»**
 
-- ✅ **Does the screen work?**
-- ❌ Do the screen work? — *Один экран: `Does the screen`.*
-- ❌ Does the screen works? — *После `Does` нужно `work`.*
+- ✅ **Does he play chess?**
+- ❌ Do he play chess? — *С he нужно Does.*
+- ❌ Does he plays chess? — *После Does нужно play, без s.*
 
 ---
 
 ## Интро 2
 
-### Зонт у окна
+### Фото с ракеткой
 
-Друг ищет зонт возле окна. Вы посмотрели: `There is no umbrella near the window` — «Возле окна нет зонта». Об отсутствии одного зонта говорим `There is no umbrella`. `Near the window` уточняет место.
+Подруга показывает вам на телефоне фото: её сестра стоит на площадке с ракеткой. tennis — «теннис». Вы хотите узнать, это её спорт или случайный снимок. Спросите: Does she play tennis? — «Она играет в теннис?» С she нужно Does, а play без s.
 
-**Сообщите другу «Возле окна нет зонта».**
+**На фото сестра подруги с ракеткой. Спросите подругу: «Она играет в теннис?»**
 
-- ✅ **There is no umbrella near the window.**
-- ❌ There are no umbrella near the window. — *Один зонт: `There is no umbrella`.*
-- ❌ There no umbrella near the window. — *Нужно `There is no`, с `is`.*
+- ✅ **Does she play tennis?**
+- ❌ Do she play tennis? — *С she нужно Does.*
+- ❌ Does she plays tennis? — *После Does нужно play, без s.*
 
 ---
 
 ## Интро 3
 
-### Успеет ли коллега утром
+### Дядя за городом
 
-Вы планируете утреннюю встречу и уточняете время работы Анны. `Does she start her shift early?` — «Она начинает свою смену рано?» `Her shift` — «её смена», а после `Does she` нужно `start`, без `s`.
+Друг рассказывает про своего дядю: тот каждые выходные уезжает за город с длинными клюшками в сумке. Вы думаете, что это спорт, и хотите уточнить. golf — «гольф». Спросите друга: Does your uncle play golf? — «Ваш дядя играет в гольф?» Дядя один, поэтому Does, а play без s.
 
-**Спросите об Анне «Она начинает свою смену рано?»**
+**Друг рассказывает о дяде. Спросите друга: «Ваш дядя играет в гольф?»**
 
-- ✅ **Does she start her shift early?**
-- ❌ Do she start her shift early? — *С `she` нужно `Does`.*
-- ❌ Does she starts her shift early? — *После `Does she` нужно `start`.*
+- ✅ **Does your uncle play golf?**
+- ❌ Do your uncle play golf? — *Дядя один: нужно Does.*
+- ❌ Does your uncle plays golf? — *После Does нужно play, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Экран работает?»**
+**1 · Карточка слова — chess**
+<!-- interaction_id: en:lesson-07:session-13:word:chess; family: word_card -->
+> **chess** — шахматы. Chess is quiet. — «Шахматы — тихое занятие». Игра на доске с чёрными и белыми фигурами.
+
+**2 · Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»**
 <!-- interaction_id: en:lesson-07:session-13:i01; family: phrase_builder -->
-Плитки: `work` `screen` `the` `Does` → **Does the screen work?**
+Плитки: `chess` `play` `he` `Does` → **Does he play chess?**
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — tennis**
+<!-- interaction_id: en:lesson-07:session-13:word:tennis; family: word_card -->
+> **tennis** — теннис. Tennis is popular. — «Теннис популярен». Игра, в которой мяч перебрасывают ракетками через сетку.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-13:i02; family: listen_choose -->
-🔊 *screen* → **screen** · window · umbrella
-- window — *В записи первое слово — `screen`, а в этом варианте — `window`.*
-- umbrella — *В записи первое слово — `screen`, а в этом варианте — `umbrella`.*
+🔊 *Does she play tennis?* → **Does she play tennis?** · Does she play chess? · Does he play tennis?
+- Does she play chess? — *В записи последнее слово — `tennis`, теннис, а в этом варианте — `chess`, шахматы.*
+- Does he play tennis? — *В записи второе слово — `she`, она, а в этом варианте — `he`, он.*
 
-**3 · Спросите, работает ли экран**
+**5 · Спросите подругу о её сестре. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-13:i03; family: context_gap_grammar -->
-Does the screen ___? → **work** · works · is work
-- works — *После `Does` нужно `work`.*
-- is work — *Нужно `Does the screen work?`, без `is`.*
+Does she ___ tennis? → **play** · plays · is play
+- plays — *После `Does` нужно `play`, без `s`.*
+- is play — *Нужно `Does she play?`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-13:i04; family: speed_match -->
-screen — экран · window — окно · umbrella — зонт · shift — рабочая смена
+chess — шахматы · tennis — теннис · racket — ракетка · ball — мяч
 
-**5 · Послушайте и соберите вопрос**
+**7 · Карточка слова — golf**
+<!-- interaction_id: en:lesson-07:session-13:word:golf; family: word_card -->
+> **golf** — гольф. Golf is slow. — «Гольф неспешный». Игра, в которой мяч загоняют клюшкой в лунки.
+
+**8 · Послушайте друга и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-13:i05; family: listen_build_dictation -->
-🔊 *Does the screen work?* Плитки: `work` `screen` `the` `Does` → **Does the screen work?**
+🔊 *Does your uncle play golf?* Плитки: `golf` `play` `uncle` `your` `Does` → **Does your uncle play golf?**
 
-**6 · Сообщите «Возле окна нет зонта»**
+**9 · Карточка слова — rugby**
+<!-- interaction_id: en:lesson-07:session-13:word:rugby; family: word_card -->
+> **rugby** — регби. Rugby is tough. — «Регби жёсткое». Командная игра с овальным мячом.
+
+**10 · Брат друга собирается на стадион. Спросите друга: «Он играет в регби?»**
 <!-- interaction_id: en:lesson-07:session-13:i06; family: phrase_builder -->
-Плитки: `window` `the` `near` `umbrella` `no` `is` `There` → **There is no umbrella near the window.**
+Плитки: `rugby` `play` `he` `Does` → **Does he play rugby?**
 
-**7 · Спросите об Анне «Она начинает свою смену рано?»**
+**11 · Друг рассказывает о дяде. Спросите его: «Ваш дядя играет в гольф?»**
 <!-- interaction_id: en:lesson-07:session-13:i07; family: scripted_repeat_compare -->
-🎙 **Does she start her shift early?**
+🎙 **Does your uncle play golf?**
 
-**8 · Друг показал вам бассейн. Спросите «Ты плаваешь здесь?»**
+**12 · Спросите подругу о её брате. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-13:i08; family: context_gap_grammar -->
-___ you swim here? → **Do** · Does · Are
-- Does — *С `you` нужно `Do`.*
-- Are — *С действием `swim` здесь нужно `Do you swim?`.*
+___ he play chess? → **Does** · Do · Is
+- Do — *С `he` нужно `Does`.*
+- Is — *С действием `play` нужно `Does`, а не `Is`.*
 
-**9 · Послушайте вопрос о смене**
+**13 · Послушайте друга**
 <!-- interaction_id: en:lesson-07:session-13:i09; family: listen_choose -->
-🔊 *Does she start her shift early?* → **Does she start her shift early?** · Does she start her shift late? · Does she start her shift here?
-- Does she start her shift late? — *В записи последнее слово — `early`, а в этом варианте — `late`.*
-- Does she start her shift here? — *В записи последнее слово — `early`, а в этом варианте — `here`.*
+🔊 *Does he play rugby?* → **Does he play rugby?** · Does he play chess? · Does she play rugby?
+- Does he play chess? — *В записи последнее слово — `rugby`, регби, а в этом варианте — `chess`, шахматы.*
+- Does she play rugby? — *В записи второе слово — `he`, он, а в этом варианте — `she`, она.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-13:i10; family: speed_match -->
-swim — плавать · screen — экран · window — окно · umbrella — зонт
+rugby — регби · ball — мяч · stadium — стадион · racket — ракетка
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-13:i11; family: listen_build_dictation -->
-🔊 *Does it work?* Плитки: `work` `it` `Does` → **Does it work?**
+🔊 *Does she play golf?* Плитки: `golf` `play` `she` `Does` → **Does she play golf?**
 
-**12 · На улице дождь. Спросите друга «У тебя есть зонт?»**
+**16 · Сестра подруги сидит за шахматной доской. Спросите подругу: «Она играет в шахматы?»**
 <!-- interaction_id: en:lesson-07:session-13:i12; family: phrase_builder -->
-Плитки: `umbrella` `an` `have` `you` `Do` → **Do you have an umbrella?**
+Плитки: `chess` `play` `she` `Does` → **Does she play chess?**
 
-**13 · Объясните коллеге «Экран возле окна»**
+**17 · Брат подруги идёт на корт. Спросите подругу: «Он играет в теннис?»**
 <!-- interaction_id: en:lesson-07:session-13:i13; family: scripted_repeat_compare -->
-🎙 **The screen is near the window.**
+🎙 **Does he play tennis?**
 
-**14 · У бассейна спросите друга о Томе «Он плавает здесь?»**
+**18 · Спросите друга о дяде. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-13:i14; family: context_gap_grammar -->
-Does he ___ here? → **swim** · swims · is swim
-- swims — *После `Does he` нужно `swim`.*
-- is swim — *Нужно `Does he swim?`, без `is`.*
+Does your uncle ___ golf? → **play** · plays · is play
+- plays — *После `Does` нужно `play`, без `s`.*
+- is play — *Нужно `Does your uncle play?`, без `is`.*
 
-**15 · Послушайте вопрос о месте для плавания**
+**19 · Послушайте друга**
 <!-- interaction_id: en:lesson-07:session-13:i15; family: listen_choose -->
-🔊 *Do you swim here?* → **Do you swim here?** · Do you swim there? · Do you swim outside?
-- Do you swim there? — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- Do you swim outside? — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *Does your uncle play golf?* → **Does your uncle play golf?** · Does your uncle play chess? · Does your brother play golf?
+- Does your uncle play chess? — *В записи последнее слово — `golf`, гольф, а в этом варианте — `chess`, шахматы.*
+- Does your brother play golf? — *В записи третье слово — `uncle`, дядя, а в этом варианте — `brother`, брат.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-13:i16; family: speed_match -->
-screen — экран · shift — рабочая смена · swim — плавать · umbrella — зонт
+golf — гольф · tennis — теннис · racket — ракетка · stadium — стадион
 
-**17 · Вы пришли в другой бассейн. Уточните у знакомого «Анна плавает здесь?»**
+**21 · Друг зовёт вас на матч. Спросите его о брате: «Он играет в регби?»**
 <!-- interaction_id: en:lesson-07:session-13:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does Anna swim here?**
-
+🎙 **Does he play rugby?**

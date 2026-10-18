@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-07:session-04:word:menu",
+    "correctText": "menu",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-04:i01",
-    "correctText": "Do you wear glasses?",
+    "correctText": "Do you have a menu?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:word:bill",
+    "correctText": "bill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i02",
-    "correctText": "glasses",
+    "correctText": "We have a menu.",
     "correctResponseId": "en:lesson-07:session-04:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-04:word:waiter",
+    "correctText": "waiter",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-04:i03",
-    "correctText": "wear",
+    "correctText": "have",
     "correctResponseId": "en:lesson-07:session-04:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-04:i04",
-    "correctText": "en:lesson-07:session-04:i04:p1=glasses\nen:lesson-07:session-04:i04:p2=wear\nen:lesson-07:session-04:i04:p3=bag\nen:lesson-07:session-04:i04:p4=curtain",
+    "correctText": "en:lesson-07:session-04:i04:p1=menu\nen:lesson-07:session-04:i04:p2=bill\nen:lesson-07:session-04:i04:p3=waiter\nen:lesson-07:session-04:i04:p4=work",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i05",
-    "correctText": "Do you wear glasses?",
+    "correctText": "Do the waiters work here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i06",
-    "correctText": "Do they wear glasses?",
+    "correctText": "Do they have waiters?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i07",
-    "correctText": "There are no glasses here.",
+    "correctText": "There is no bill here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:word:cash",
+    "correctText": "cash",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-07:session-04:i09",
-    "correctText": "Do you wear glasses?",
+    "correctText": "Do you have a menu?",
     "correctResponseId": "en:lesson-07:session-04:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-04:i10",
-    "correctText": "en:lesson-07:session-04:i10:p1=receipt\nen:lesson-07:session-04:i10:p2=glasses\nen:lesson-07:session-04:i10:p3=bag\nen:lesson-07:session-04:i10:p4=curtain",
+    "correctText": "en:lesson-07:session-04:i10:p1=bill\nen:lesson-07:session-04:i10:p2=cash\nen:lesson-07:session-04:i10:p3=menu\nen:lesson-07:session-04:i10:p4=waiter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i11",
-    "correctText": "Do they have a receipt?",
+    "correctText": "Do they have cash?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i12",
-    "correctText": "Do you have a bag?",
+    "correctText": "Do they have a menu?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i13",
-    "correctText": "Do they have a receipt?",
+    "correctText": "Do they have waiters here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i14",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-07:session-04:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-04:i15",
-    "correctText": "Do you have a receipt?",
+    "correctText": "Do they have waiters here?",
     "correctResponseId": "en:lesson-07:session-04:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-04:i16",
-    "correctText": "en:lesson-07:session-04:i16:p1=glasses\nen:lesson-07:session-04:i16:p2=receipt\nen:lesson-07:session-04:i16:p3=curtain\nen:lesson-07:session-04:i16:p4=wear",
+    "correctText": "en:lesson-07:session-04:i16:p1=cash\nen:lesson-07:session-04:i16:p2=waiter\nen:lesson-07:session-04:i16:p3=bill\nen:lesson-07:session-04:i16:p4=menu",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-04:i17",
-    "correctText": "Do you have glasses?",
+    "correctText": "Do you have cash?",
     "correctResponseId": null
   }
 ]

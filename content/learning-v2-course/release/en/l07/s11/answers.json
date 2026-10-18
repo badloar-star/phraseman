@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-11:word:salon",
+    "correctText": "salon",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-11:i01",
-    "correctText": "Does the printer work?",
+    "correctText": "Does the salon close late?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:word:bookshop",
+    "correctText": "bookshop",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i02",
-    "correctText": "printer",
+    "correctText": "Does the bookshop sell postcards?",
     "correctResponseId": "en:lesson-07:session-11:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-11:word:greengrocer",
+    "correctText": "greengrocer",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-11:i03",
-    "correctText": "work",
+    "correctText": "sell",
     "correctResponseId": "en:lesson-07:session-11:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-11:i04",
-    "correctText": "en:lesson-07:session-11:i04:p1=printer\nen:lesson-07:session-11:i04:p2=room\nen:lesson-07:session-11:i04:p3=backpack\nen:lesson-07:session-11:i04:p4=poster",
+    "correctText": "en:lesson-07:session-11:i04:p1=salon\nen:lesson-07:session-11:i04:p2=bookshop\nen:lesson-07:session-11:i04:p3=greengrocer\nen:lesson-07:session-11:i04:p4=apple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:word:optician",
+    "correctText": "optician",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i05",
-    "correctText": "Does the printer work?",
+    "correctText": "Does the optician start early?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i06",
-    "correctText": "There is no printer in this room.",
+    "correctText": "Does the bookshop open early?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i07",
-    "correctText": "Does she work here?",
+    "correctText": "Does the salon close late?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i08",
-    "correctText": "Do",
+    "correctText": "Does",
     "correctResponseId": "en:lesson-07:session-11:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-11:i09",
-    "correctText": "Does the printer work?",
+    "correctText": "Does the optician start early?",
     "correctResponseId": "en:lesson-07:session-11:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-11:i10",
-    "correctText": "en:lesson-07:session-11:i10:p1=learn\nen:lesson-07:session-11:i10:p2=printer\nen:lesson-07:session-11:i10:p3=room\nen:lesson-07:session-11:i10:p4=backpack",
+    "correctText": "en:lesson-07:session-11:i10:p1=greengrocer\nen:lesson-07:session-11:i10:p2=cucumber\nen:lesson-07:session-11:i10:p3=apple\nen:lesson-07:session-11:i10:p4=onion",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i11",
-    "correctText": "Does she work here?",
+    "correctText": "Does the greengrocer sell cucumbers?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i12",
-    "correctText": "Do you have a poster?",
+    "correctText": "Does the bookshop sell postcards?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i13",
-    "correctText": "The poster is in my backpack.",
+    "correctText": "Does the optician sell glasses?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i14",
-    "correctText": "is",
+    "correctText": "close",
     "correctResponseId": "en:lesson-07:session-11:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-11:i15",
-    "correctText": "Do you learn English here?",
+    "correctText": "Does the greengrocer sell apples?",
     "correctResponseId": "en:lesson-07:session-11:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-11:i16",
-    "correctText": "en:lesson-07:session-11:i16:p1=printer\nen:lesson-07:session-11:i16:p2=poster\nen:lesson-07:session-11:i16:p3=learn\nen:lesson-07:session-11:i16:p4=backpack",
+    "correctText": "en:lesson-07:session-11:i16:p1=optician\nen:lesson-07:session-11:i16:p2=glasses\nen:lesson-07:session-11:i16:p3=postcard\nen:lesson-07:session-11:i16:p4=salon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-11:i17",
-    "correctText": "Does Anna learn English here?",
+    "correctText": "Does the bookshop close late?",
     "correctResponseId": null
   }
 ]

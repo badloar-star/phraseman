@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 12 — Будильник перед ранним подъёмом
+# Английский · Урок 7 · Занятие 12 — Дорога и транспорт
 
-**Ситуация.** Завтра вам рано вставать. Друг одолжил будильник, и вы уточняете, работает ли он, а затем ищете очки на столе.
+**Ситуация.** Вы планируете поездку к подруге и расспрашиваете людей о дороге: когда отправляется автобус, до скольки ходит метро и что делают лётчик и велосипедист.
 
-**Что вы освоите:** спросить об устройстве и привычках человека, сообщить об отсутствии вещей
-**Новые слова:** alarm
+**Что вы освоите:** спросить о действии одного предмета или человека с помощью Does
+**Новые слова:** coach, metro, pilot, cyclist
+**Возвращаются:** helmet, airport, bus, taxi, leave, run, wear
 
 ---
 
 ## Интро 1
 
-### Проверяем будильник
+### Автобус в соседний город
 
-`alarm` здесь — «будильник». У слова есть и другие значения, но сейчас говорим об устройстве, которое вас разбудит. `Does the alarm work?` — «Будильник работает?» Один будильник: `Does the alarm`, затем `work`, без `s`. Лучше спросить вечером, чем выяснить ответ после начала смены.
+Вы собираетесь к подруге в соседний город и хотите приехать до обеда. На автовокзале вы видите междугородный автобус. coach — «междугородный автобус». Спросите у кассира: Does the coach leave early? — «Автобус отправляется рано?» После Does — leave, без s.
 
-**Спросите друга «Будильник работает?»**
+**Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»**
 
-- ✅ **Does the alarm work?**
-- ❌ Do the alarm work? — *Один будильник: `Does the alarm`.*
-- ❌ Does the alarm works? — *После `Does` нужно `work`.*
+- ✅ **Does the coach leave early?**
+- ❌ Do the coach leave early? — *Автобус один: нужно Does.*
+- ❌ Does the coach leaves early? — *После Does нужно leave, без s.*
 
 ---
 
 ## Интро 2
 
-### Очки на столе
+### Поздно вечером у станции
 
-Вы ищете очки, чтобы рассмотреть циферблат. Друг проверил стол. `There are no glasses on the table` — «На столе нет очков». С `glasses` используем `are`, даже если ищем одни очки. `On the table` уточняет место.
+Вы засиделись в гостях, а домой ехать далеко. Автобусы в такое время уже не ходят. У входа на станцию стоит прохожий. metro — «метро». Спросите его: Does the metro run late? — «Метро ходит допоздна?» Метро одно, поэтому в начале Does, а run без s.
 
-**Сообщите «На столе нет очков».**
+**Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»**
 
-- ✅ **There are no glasses on the table.**
-- ❌ There is no glasses on the table. — *С `glasses` нужно `There are no`.*
-- ❌ There no glasses on the table. — *Нужно `There are no`, с `are`.*
+- ✅ **Does the metro run late?**
+- ❌ Do the metro run late? — *Метро одно: нужно Does.*
+- ❌ Does the metro runs late? — *После Does нужно run, без s.*
 
 ---
 
 ## Интро 3
 
-### Раннее начало работы
+### Коллега из аэропорта
 
-Друг предлагает поставить будильник для Анны. Вы уточняете `Does she start early?` — «Она начинает рано?» Из разговора понятно, что речь о работе. С `she` вопрос начинается с `Does`, а `start` остаётся без `s`.
+Знакомая работает в аэропорту и по пути домой рассказывает вам о своих коллегах. Среди них есть один лётчик. pilot — «лётчик». Вы хотите знать, не соседи ли вы по району: Does the pilot live near here? — «Лётчик живёт рядом?» После Does — live, без s.
 
-**Спросите друга об Анне «Она начинает рано?»**
+**Знакомая рассказывает о лётчике. Спросите её: «Лётчик живёт рядом?»**
 
-- ✅ **Does she start early?**
-- ❌ Do she start early? — *С `she` нужно `Does`.*
-- ❌ Does she starts early? — *После `Does she` нужно `start`.*
+- ✅ **Does the pilot live near here?**
+- ❌ Is the pilot live near here? — *С действием live нужен вопрос с Does, а не с Is.*
+- ❌ Does the pilot lives near here? — *После Does нужно live, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Будильник работает?»**
+**1 · Карточка слова — coach**
+<!-- interaction_id: en:lesson-07:session-12:word:coach; family: word_card -->
+> **coach** — междугородный автобус. The coach is big. — «Автобус большой». Автобус, который ездит между городами.
+
+**2 · Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»**
 <!-- interaction_id: en:lesson-07:session-12:i01; family: phrase_builder -->
-Плитки: `work` `alarm` `the` `Does` → **Does the alarm work?**
+Плитки: `early` `leave` `coach` `the` `Does` → **Does the coach leave early?**
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — metro**
+<!-- interaction_id: en:lesson-07:session-12:word:metro; family: word_card -->
+> **metro** — метро. The metro is fast. — «Метро быстрое». Подземный городской поезд.
+
+**4 · Послушайте прохожего**
 <!-- interaction_id: en:lesson-07:session-12:i02; family: listen_choose -->
-🔊 *alarm* → **alarm** · table · notebook
-- table — *В записи первое слово — `alarm`, а в этом варианте — `table`.*
-- notebook — *В записи первое слово — `alarm`, а в этом варианте — `notebook`.*
+🔊 *Does the metro run late?* → **Does the metro run late?** · Does the metro run early? · Does the coach run late?
+- Does the metro run early? — *В записи последнее слово — `late`, поздно, а в этом варианте — `early`, рано.*
+- Does the coach run late? — *В записи третье слово — `metro`, метро, а в этом варианте — `coach`, автобус.*
 
-**3 · Спросите, работает ли будильник**
+**5 · Карточка слова — pilot**
+<!-- interaction_id: en:lesson-07:session-12:word:pilot; family: word_card -->
+> **pilot** — лётчик. The pilot is calm. — «Лётчик спокойный». Человек, который управляет самолётом.
+
+**6 · Спросите знакомую о лётчике. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-12:i03; family: context_gap_grammar -->
-Does the alarm ___? → **work** · works · is work
-- works — *После `Does` нужно `work`.*
-- is work — *Нужно `Does the alarm work?`, без `is`.*
+Does the pilot ___ near here? → **live** · lives · is live
+- lives — *После `Does` нужно `live`, без `s`.*
+- is live — *Нужно `Does the pilot live?`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-12:i04; family: speed_match -->
-alarm — будильник · table — стол · notebook — тетрадь · glasses — очки
+coach — междугородный автобус · metro — метро · pilot — лётчик · helmet — шлем
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — cyclist**
+<!-- interaction_id: en:lesson-07:session-12:word:cyclist; family: word_card -->
+> **cyclist** — велосипедист. The cyclist is fast. — «Велосипедист быстрый». Человек, который едет на велосипеде.
+
+**9 · Послушайте знакомую и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-12:i05; family: listen_build_dictation -->
-🔊 *Does the alarm work?* Плитки: `work` `alarm` `the` `Does` → **Does the alarm work?**
+🔊 *Does the cyclist wear a helmet?* Плитки: `helmet` `wear` `a` `cyclist` `the` `Does` → **Does the cyclist wear a helmet?**
 
-**6 · Сообщите «На столе нет очков»**
+**10 · Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»**
 <!-- interaction_id: en:lesson-07:session-12:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `glasses` `no` `are` `There` → **There are no glasses on the table.**
+Плитки: `late` `run` `metro` `the` `Does` → **Does the metro run late?**
 
-**7 · Спросите о начале работы Анны «Она начинает рано?»**
+**11 · Вы не хотите вставать рано. Спросите у кассира: «Автобус отправляется поздно?»**
 <!-- interaction_id: en:lesson-07:session-12:i07; family: scripted_repeat_compare -->
-🎙 **Does she start early?**
+🎙 **Does the coach leave late?**
 
-**8 · В художественной мастерской спросите друга «Ты рисуешь здесь красками?»**
+**12 · Спросите знакомую о велосипедисте. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-12:i08; family: context_gap_grammar -->
-___ you paint here? → **Do** · Does · Are
-- Does — *С `you` нужно `Do`.*
-- Are — *С действием `paint` здесь нужно `Do you paint?`.*
+___ the cyclist wear a helmet? → **Does** · Do · Is
+- Do — *Велосипедист один: нужно `Does`.*
+- Is — *С действием `wear` нужно `Does`, а не `Is`.*
 
-**9 · Послушайте вопрос о начале работы**
+**13 · Послушайте знакомую**
 <!-- interaction_id: en:lesson-07:session-12:i09; family: listen_choose -->
-🔊 *Does she start early?* → **Does she start early?** · Does she start late? · Does she start here?
-- Does she start late? — *В записи последнее слово — `early`, а в этом варианте — `late`.*
-- Does she start here? — *В записи последнее слово — `early`, а в этом варианте — `here`.*
+🔊 *Does the pilot live near here?* → **Does the pilot live near here?** · Does the pilot work near here? · Does the cyclist live near here?
+- Does the pilot work near here? — *В записи четвёртое слово — `live`, жить, а в этом варианте — `work`, работать.*
+- Does the cyclist live near here? — *В записи третье слово — `pilot`, лётчик, а в этом варианте — `cyclist`, велосипедист.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-12:i10; family: speed_match -->
-paint — рисовать красками · alarm — будильник · table — стол · notebook — тетрадь
+coach — междугородный автобус · metro — метро · bus — автобус · taxi — такси
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте знакомую и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-12:i11; family: listen_build_dictation -->
-🔊 *Does it work?* Плитки: `work` `it` `Does` → **Does it work?**
+🔊 *Does the pilot live near here?* Плитки: `here` `near` `live` `pilot` `the` `Does` → **Does the pilot live near here?**
 
-**12 · Чтобы записать время встречи, спросите друга «У тебя есть тетрадь?»**
+**16 · Вам завтра рано на работу. Спросите прохожего: «Метро начинает работать рано?»**
 <!-- interaction_id: en:lesson-07:session-12:i12; family: phrase_builder -->
-Плитки: `notebook` `a` `have` `you` `Do` → **Do you have a notebook?**
+Плитки: `early` `start` `metro` `the` `Does` → **Does the metro start early?**
 
-**13 · Покажите другу «Будильник на столе»**
+**17 · Знакомая рассказывает о соседе. Спросите её: «Лётчик работает в аэропорту?»**
 <!-- interaction_id: en:lesson-07:session-12:i13; family: scripted_repeat_compare -->
-🎙 **The alarm is on the table.**
+🎙 **Does the pilot work at the airport?**
 
-**14 · Сообщите «Здесь нет очков»**
+**18 · Спросите у кассира об автобусе. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-12:i14; family: context_gap_grammar -->
-There ___ no glasses here. → **are** · is · am
-- is — *С `glasses` нужно `are`.*
-- am — *Нужно `There are no`; `am` подходит к `I`.*
+Does the coach ___ early? → **leave** · leaves · is leave
+- leaves — *После `Does` нужно `leave`, без `s`.*
+- is leave — *Нужно `Does the coach leave?`, без `is`.*
 
-**15 · Послушайте вопрос о месте работы художника**
+**19 · Послушайте знакомую**
 <!-- interaction_id: en:lesson-07:session-12:i15; family: listen_choose -->
-🔊 *Do you paint here?* → **Do you paint here?** · Do you paint there? · Do you paint outside?
-- Do you paint there? — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- Do you paint outside? — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *Does the cyclist wear a helmet?* → **Does the cyclist wear a helmet?** · Does the cyclist wear a hat? · Does the pilot wear a helmet?
+- Does the cyclist wear a hat? — *В записи последнее слово — `helmet`, шлем, а в этом варианте — `hat`, шляпа.*
+- Does the pilot wear a helmet? — *В записи третье слово — `cyclist`, велосипедист, а в этом варианте — `pilot`, лётчик.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-12:i16; family: speed_match -->
-alarm — будильник · glasses — очки · paint — рисовать красками · notebook — тетрадь
+pilot — лётчик · cyclist — велосипедист · helmet — шлем · airport — аэропорт
 
-**17 · Вы пришли в другую художественную мастерскую. Уточните у сотрудника «Анна рисует здесь красками?»**
+**21 · На автовокзале вы уточняете расписание. Спросите у кассира: «Автобус отправляется рано?»**
 <!-- interaction_id: en:lesson-07:session-12:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does Anna paint here?**
-
+🎙 **Does the coach leave early?**

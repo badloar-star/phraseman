@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 18 — Я не играю на деньги
+# Английский · Урок 7 · Занятие 18 — Куда я не хожу
 
-**Ситуация.** Вы отказываетесь играть на деньги, сообщаете о неработающем устройстве и ищете перчатки.
+**Ситуация.** Вы объясняете, почему не бываете в одном магазине, сообщаете другу, что пока не можете оплатить покупку, и исправляете неверное предположение о жилье брата.
 
-**Что вы освоите:** использовать don’t и doesn’t для отрицания действий и there are no для отсутствующих вещей
-**Новые слова:** gamble
+**Что вы освоите:** сказать, куда вы не ходите и чего у вас или у другого человека нет
+**Новые слова:** go, money, house, family
+**Возвращаются:** have, there, here, work, cook, drive
 
 ---
 
 ## Интро 1
 
-### Без ставок
+### Магазин, который вы обходите
 
-Друг предлагает сыграть на деньги. `gamble` — «играть в азартные игры». `I don’t gamble` — «Я не играю в азартные игры». После `don’t` ставим `gamble`. Вы объясняете свою привычку, а не запрещаете другу играть. Кошелёк может спокойно выдохнуть.
+Коллега спрашивает, встречаете ли вы знакомых в магазине напротив. Там вам однажды нагрубили, и вы больше туда не заходите. go — «ходить, идти». I don't go there — «Я туда не хожу». После I ставим don't; go остаётся без изменений. Здесь речь о привычке.
 
-**Объясните другу, что вы не играете в азартные игры.**
+**Объясните коллеге: «Я туда не хожу».**
 
-- ✅ **I don’t gamble.**
-- ❌ I doesn’t gamble. — *После `I` нужно `don’t`.*
-- ❌ I not gamble. — *Для отрицания действия нужно `don’t`.*
+- ✅ **I don't go there.**
+- ❌ I doesn't go there. — *С I нужно don't.*
+- ❌ I not go there. — *Перед go в этом отрицании нужно don't.*
 
 ---
 
 ## Интро 2
 
-### Устройство не работает
+### Покупка подождёт
 
-Коллега собирается включить устройство, которое не работает. `The machine doesn’t work` — «Устройство не работает». `The machine` — одно устройство, поэтому используем `doesn’t`. После него — `work`, без `s`.
+Друг предлагает заказать вам велосипед сегодня. Вы сейчас без дохода, сбережения закончились, и платить за покупку нечем. money — «деньги». I don't have money — «У меня нет денег». После don't ставим have. В этой фразе money употребляется без a.
 
-**Предупредите коллегу: «Устройство не работает».**
+**Друг предлагает покупку. Объясните: «У меня нет денег».**
 
-- ✅ **The machine doesn’t work.**
-- ❌ The machine don’t work. — *С одним устройством нужно `doesn’t`.*
-- ❌ The machine doesn’t works. — *После `doesn’t` нужно `work`, без `s`.*
+- ✅ **I don't have money.**
+- ❌ I doesn't have money. — *С I нужно don't.*
+- ❌ I don't has money. — *После don't нужно have, а не has.*
 
 ---
 
 ## Интро 3
 
-### Где перчатки?
+### Брат живёт в квартире
 
-Вы проверили место, где обычно лежат перчатки, но не нашли их. `There are no gloves here` — «Здесь нет перчаток». `Gloves` — множественное число, поэтому `are no`. Эта фраза сообщает об отсутствии перчаток в этом месте.
+Сосед хочет одолжить у вашего брата лестницу для крыши: он думает, что у брата собственный дом. Но брат живёт в квартире, своего дома у него нет. house — «дом», здание. He doesn't have a house — «У него нет дома». С he ставим doesn't; после него have, а не has.
 
-**Скажите: «Здесь нет перчаток».**
+**Исправьте предположение соседа: «У него нет дома».**
 
-- ✅ **There are no gloves here.**
-- ❌ There is no gloves here. — *С `gloves` нужно `are`.*
-- ❌ There are gloves here. — *Эта фраза говорит, что перчатки есть. Для «нет» добавьте `no`.*
+- ✅ **He doesn't have a house.**
+- ❌ He don't have a house. — *С he нужно doesn't.*
+- ❌ He doesn't has a house. — *После doesn't нужно have.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Объясните «Я не играю в азартные игры»**
+**1 · Карточка слова — go**
+<!-- interaction_id: en:lesson-07:session-18:word:go; family: word_card -->
+> **go** — ходить, идти. I go there. — «Я туда хожу». Здесь говорим о посещении места.
+
+**2 · Объясните коллеге: «Я туда не хожу»**
 <!-- interaction_id: en:lesson-07:session-18:i01; family: phrase_builder -->
-Плитки: `gamble` `don’t` `I` → **I don’t gamble.**
+Плитки: `there` `go` `don't` `I` `doesn't` → **I don't go there.**
+*(плитка `doesn't` лишняя: после I нужно don't.)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-07:session-18:i02; family: listen_choose -->
-🔊 *gamble* → **gamble** · smile · gloves
-- smile — *В записи первое слово — `gamble`, а в этом варианте — `smile`.*
-- gloves — *В записи первое слово — `gamble`, а в этом варианте — `gloves`.*
+🔊 *go* → **go** · cook · work
+- cook — *В записи `go`, а здесь `cook`.*
+- work — *В записи `go`, а здесь `work`.*
 
-**3 · Скажите «Я не играю в азартные игры»**
+**4 · Скажите «Я туда не хожу». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-18:i03; family: context_gap_grammar -->
-I ___ gamble. → **don’t** · doesn’t · not
-- doesn’t — *После `I` нужно `don’t`.*
-- not — *Для отрицания действия нужно `don’t`.*
+I ___ go there. → **don't** · doesn't · not
+- doesn't — *С I нужно don't.*
+- not — *В отрицании действия с I нужно don't.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-18:i04; family: speed_match -->
-gamble — играть в азартные игры · smile — улыбаться · gloves — перчатки · boxes — коробки
+go — ходить, идти · work — работать · cook — готовить · drive — водить машину
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-18:i05; family: listen_build_dictation -->
-🔊 *I don’t gamble.* Плитки: `gamble` `don’t` `I` → **I don’t gamble.**
+🔊 *I don't go there.* Плитки: `there` `go` `don't` `I` `doesn't` → **I don't go there.**
+*(плитка `doesn't` лишняя: после I нужно don't.)*
 
-**6 · Предупредите «Устройство не работает»**
+**7 · Карточка слова — money**
+<!-- interaction_id: en:lesson-07:session-18:word:money; family: word_card -->
+> **money** — деньги. I have money. — «У меня есть деньги». Money не считают как отдельные предметы: в этой фразе a не нужно.
+
+**8 · Объясните другу, почему покупка подождёт: «У меня нет денег»**
 <!-- interaction_id: en:lesson-07:session-18:i06; family: phrase_builder -->
-Плитки: `work` `doesn’t` `machine` `The` → **The machine doesn’t work.**
+Плитки: `money` `have` `don't` `I` `has` → **I don't have money.**
+*(плитка `has` лишняя: после don't нужно have.)*
 
-**7 · Скажите «Здесь нет перчаток»**
+**9 · Карточка слова — house**
+<!-- interaction_id: en:lesson-07:session-18:word:house; family: word_card -->
+> **house** — дом. The house is small. — «Дом маленький». Здесь house — отдельное жилое здание, не квартира.
+
+**10 · Исправьте предположение о жилье брата: «У него нет дома»**
 <!-- interaction_id: en:lesson-07:session-18:i07; family: scripted_repeat_compare -->
-🎙 **There are no gloves here.**
+🎙 **He doesn't have a house.**
 
-**8 · Сообщите «Устройство не работает»**
+**11 · Скажите «У меня нет денег». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-18:i08; family: context_gap_grammar -->
-The machine doesn’t ___ . → **work** · works · is work
-- works — *После `doesn’t` нужно `work`.*
-- is work — *Нужно `doesn’t work`, без `is`.*
+I don't ___ money. → **have** · has · am
+- has — *После don't нужно have.*
+- am — *Здесь говорим о наличии денег: have.*
 
-**9 · Послушайте, чего не делает собеседник**
+**12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-07:session-18:i09; family: listen_choose -->
-🔊 *I don’t gamble.* → **I don’t gamble.** · I don’t smoke. · I don’t drive.
-- I don’t smoke. — *В записи последнее слово — `gamble`, а в этом варианте — `smoke`.*
-- I don’t drive. — *В записи последнее слово — `gamble`, а в этом варианте — `drive`.*
+🔊 *I don't have money.* → **I don't have money.** · I have money. · He doesn't have money.
+- I have money. — *В записи `I don't have money.`, а здесь `I have money.`.*
+- He doesn't have money. — *В записи `I don't have money.`, а здесь `He doesn't have money.`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-18:i10; family: speed_match -->
-machine — устройство · gamble — играть в азартные игры · boxes — коробки · smile — улыбаться
+go — ходить, идти · money — деньги · house — дом · cook — готовить
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-18:i11; family: listen_build_dictation -->
-🔊 *The machine doesn’t work.* Плитки: `work` `doesn’t` `machine` `The` → **The machine doesn’t work.**
+🔊 *He doesn't have a house.* Плитки: `house` `a` `have` `doesn't` `He` `has` → **He doesn't have a house.**
+*(плитка `has` лишняя: после doesn't нужно have.)*
 
-**12 · Перед выходом спросите друга «У тебя есть перчатки?»**
+**15 · Карточка слова — family**
+<!-- interaction_id: en:lesson-07:session-18:word:family; family: word_card -->
+> **family** — семья. My family is here. — «Моя семья здесь». Люди, связанные родственными отношениями.
+
+**16 · Вы встречаете гостей вместе с родными. Скажите: «Моя семья здесь»**
 <!-- interaction_id: en:lesson-07:session-18:i12; family: phrase_builder -->
-Плитки: `gloves` `have` `you` `Do` → **Do you have gloves?**
+Плитки: `here` `is` `family` `My` `am` → **My family is here.**
+*(плитка `am` лишняя: с My family нужно is.)*
 
-**13 · Покажите коллеге «Коробки здесь»**
+**17 · Вы больше не посещаете магазин напротив. Скажите: «Я туда не хожу»**
 <!-- interaction_id: en:lesson-07:session-18:i13; family: scripted_repeat_compare -->
-🎙 **The boxes are here.**
+🎙 **I don't go there.**
 
-**14 · Скажите «Здесь нет перчаток»**
+**18 · Скажите «У него нет дома». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-18:i14; family: context_gap_grammar -->
-There ___ no gloves here. → **are** · is · am
-- is — *`Gloves` — множественное число: `are`.*
-- am — *С `gloves` нужно `are`.*
+He ___ have a house. → **doesn't** · don't · isn't
+- don't — *С he нужно doesn't.*
+- isn't — *Перед have в этом отрицании нужно doesn't.*
 
-**15 · Послушайте, где нет перчаток**
+**19 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-07:session-18:i15; family: listen_choose -->
-🔊 *There are no gloves here.* → **There are no gloves here.** · There are no gloves there. · There are no gloves upstairs.
-- There are no gloves there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- There are no gloves upstairs. — *В записи последнее слово — `here`, а в этом варианте — `upstairs`.*
+🔊 *My family is here.* → **My family is here.** · My family is there. · My family is small.
+- My family is there. — *В записи `My family is here.`, а здесь `My family is there.`.*
+- My family is small. — *В записи `My family is here.`, а здесь `My family is small.`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-18:i16; family: speed_match -->
-gloves — перчатки · machine — устройство · gamble — играть в азартные игры · boxes — коробки
+family — семья · house — дом · money — деньги · go — ходить, идти
 
-**17 · Друг хочет пригласить Тома играть на деньги. Объясните «Том не играет в азартные игры»**
+**21 · Друг предлагает вашему брату дорогую покупку, но платить ему нечем. Скажите: «У него нет денег»**
 <!-- interaction_id: en:lesson-07:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom doesn’t gamble.**
-
+🎙 **He doesn't have money.**

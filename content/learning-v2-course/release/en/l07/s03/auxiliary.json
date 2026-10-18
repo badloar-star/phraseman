@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-03:intro1:r2": {
-          "ru": "Здесь нужно `Do you have?`, без `are`.",
-          "uk": "Тут потрібно `Do you have?`, без `are`."
+          "ru": "Здесь действие print, поэтому нужно Do you print, без Are.",
+          "uk": "Тут дія print, тому потрібно Do you print, без Are."
         },
         "en:lesson-07:session-03:intro1:r3": {
-          "ru": "После `Do you` нужно `have`.",
-          "uk": "Після `Do you` потрібне `have`."
+          "ru": "После Do you слово print остаётся без s.",
+          "uk": "Після Do you слово print лишається без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-03:intro2:r2": {
-          "ru": "После `Do they` нужно `sell`.",
-          "uk": "Після `Do they` потрібне `sell`."
+          "ru": "Здесь действие copy, поэтому нужно Do they copy, без Are.",
+          "uk": "Тут дія copy, тому потрібно Do they copy, без Are."
         },
         "en:lesson-07:session-03:intro2:r3": {
-          "ru": "Нужно `Do they sell?`, без `are`.",
-          "uk": "Потрібно `Do they sell?`, без `are`."
+          "ru": "После Do they слово copy остаётся без изменений.",
+          "uk": "Після Do they слово copy лишається без змін."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-03:intro3:r2": {
-          "ru": "Один плакат: `There is no poster`.",
-          "uk": "Один плакат: `There is no poster`."
+          "ru": "После no слова a и an не нужны: There is no ink.",
+          "uk": "Після no слів a та an не потрібно: There is no ink."
         },
         "en:lesson-07:session-03:intro3:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "Говорим There is no ink, с is.",
+          "uk": "Кажемо There is no ink, з is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dab7883e9cdb08c4278f90a8e266fa0ef99d3f30f7d9c3183d83671b1f14c2c9"
+  "auxiliaryFingerprint": "b8f44b489aff3fffb922a097f3029f7078a4fbbdb57c00f6cffd1f3001116cff"
 }

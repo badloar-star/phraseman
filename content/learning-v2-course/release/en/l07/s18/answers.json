@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-18:word:go",
+    "correctText": "go",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-18:i01",
-    "correctText": "I don’t gamble.",
+    "correctText": "I don't go there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i02",
-    "correctText": "gamble",
+    "correctText": "go",
     "correctResponseId": "en:lesson-07:session-18:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-18:i03",
-    "correctText": "don’t",
+    "correctText": "don't",
     "correctResponseId": "en:lesson-07:session-18:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-18:i04",
-    "correctText": "en:lesson-07:session-18:i04:p1=gamble\nen:lesson-07:session-18:i04:p2=smile\nen:lesson-07:session-18:i04:p3=gloves\nen:lesson-07:session-18:i04:p4=boxes",
+    "correctText": "en:lesson-07:session-18:i04:p1=go\nen:lesson-07:session-18:i04:p2=work\nen:lesson-07:session-18:i04:p3=cook\nen:lesson-07:session-18:i04:p4=drive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i05",
-    "correctText": "I don’t gamble.",
+    "correctText": "I don't go there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:word:money",
+    "correctText": "money",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i06",
-    "correctText": "The machine doesn’t work.",
+    "correctText": "I don't have money.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:word:house",
+    "correctText": "house",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i07",
-    "correctText": "There are no gloves here.",
+    "correctText": "He doesn't have a house.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i08",
-    "correctText": "work",
+    "correctText": "have",
     "correctResponseId": "en:lesson-07:session-18:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-18:i09",
-    "correctText": "I don’t gamble.",
+    "correctText": "I don't have money.",
     "correctResponseId": "en:lesson-07:session-18:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-18:i10",
-    "correctText": "en:lesson-07:session-18:i10:p1=machine\nen:lesson-07:session-18:i10:p2=gamble\nen:lesson-07:session-18:i10:p3=boxes\nen:lesson-07:session-18:i10:p4=smile",
+    "correctText": "en:lesson-07:session-18:i10:p1=go\nen:lesson-07:session-18:i10:p2=money\nen:lesson-07:session-18:i10:p3=house\nen:lesson-07:session-18:i10:p4=cook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i11",
-    "correctText": "The machine doesn’t work.",
+    "correctText": "He doesn't have a house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:word:family",
+    "correctText": "family",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i12",
-    "correctText": "Do you have gloves?",
+    "correctText": "My family is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i13",
-    "correctText": "The boxes are here.",
+    "correctText": "I don't go there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i14",
-    "correctText": "are",
+    "correctText": "doesn't",
     "correctResponseId": "en:lesson-07:session-18:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-18:i15",
-    "correctText": "There are no gloves here.",
+    "correctText": "My family is here.",
     "correctResponseId": "en:lesson-07:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-18:i16",
-    "correctText": "en:lesson-07:session-18:i16:p1=gloves\nen:lesson-07:session-18:i16:p2=machine\nen:lesson-07:session-18:i16:p3=gamble\nen:lesson-07:session-18:i16:p4=boxes",
+    "correctText": "en:lesson-07:session-18:i16:p1=family\nen:lesson-07:session-18:i16:p2=house\nen:lesson-07:session-18:i16:p3=money\nen:lesson-07:session-18:i16:p4=go",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-18:i17",
-    "correctText": "Tom doesn’t gamble.",
+    "correctText": "He doesn't have money.",
     "correctResponseId": null
   }
 ]

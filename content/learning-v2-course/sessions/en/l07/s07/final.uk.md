@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 7 — Розклад занять
+# Англійська · Урок 7 · Заняття 7 — Студія малювання
 
-**Ситуація.** Ви прийшли до художньої майстерні й хочете дізнатися розклад занять. Працівник допомагає знайти потрібну інформацію.
+**Ситуація.** Ви записуєтеся до художньої студії й розпитуєте її працівників. У цих питаннях із you і they починаємо зі слова Do.
 
-**Що ви опануєте:** запитати про розклад і роботу людей, повідомити про відсутність речі
-**Нові слова:** schedule
+**Що ви опануєте:** спитати в студії про розклад, мольберти й заняття та сказати, що талона немає
+**Нові слова:** schedule, rent, join, voucher
+**Повертаються:** easel, class, brush, have, here
 
 ---
 
 ## Інтро 1
 
-### Коли проходять заняття
+### Коли заняття
 
-`schedule` — «розклад» або «графік». Ви хочете дізнатися час занять у майстерні. `Do you have a schedule?` — «У вас є розклад?» Спочатку `Do you`, потім `have`. Один розклад — `a schedule`.
+У художній студії на розі заняття йдуть у різний час, а на дверях нічого не висить. Ви підходите до стійки працівника, щоб вибрати зручний день. schedule — «розклад». Спитайте: Do you have a schedule? — «У вас є розклад?» Спочатку Do, потім you і have.
 
-**Запитайте працівника «У вас є розклад?»**
+**Ви біля стійки студії. Спитайте працівника: «У вас є розклад?»**
 
 - ✅ **Do you have a schedule?**
-- ❌ Are you have a schedule? — *Потрібно `Do you have?`, без `are`.*
-- ❌ Do you has a schedule? — *Після `Do you` потрібне `have`.*
+- ❌ Are you have a schedule? — *Тут потрібно Do you have, без Are.*
+- ❌ Do you has a schedule? — *Після Do you слово have лишається без змін.*
 
 ---
 
 ## Інтро 2
 
-### До кого звернутися
+### Мольберт на вихідні
 
-Біля входу стоїть людина з чашкою. Ви не знаєте, чи це працівник. `Do you work here?` — «Ви працюєте тут?» З дією `work` використовуємо `Do you`. Чашка в руках — ще не службове посвідчення, краще запитати.
+Друг хоче малювати на вихідних, але купувати свій мольберт йому дорого. Він чув, що в студії на сусідній вулиці можна взяти мольберт на деякий час. rent — «брати або давати напрокат за плату». Спитайте: Do they rent easels? — «Вони дають мольберти напрокат?» Після they слово rent без s.
 
-**Запитайте людину «Ви працюєте тут?»**
+**Друг хоче малювати на вихідних. Спитайте його про студію: «Вони дають мольберти напрокат?»**
 
-- ✅ **Do you work here?**
-- ❌ Are you work here? — *Потрібно `Do you work?`, без `are`.*
-- ❌ Do you works here? — *Після `Do you` потрібне `work`.*
+- ✅ **Do they rent easels?**
+- ❌ Are they rent easels? — *Тут дія rent, тому потрібно Do they rent, без Are.*
+- ❌ Do they rents easels? — *Після Do they слово rent лишається без s.*
 
 ---
 
 ## Інтро 3
 
-### Розкладу на столі немає
+### Порожній конверт
 
-Працівник попросив подивитися на столі. Ви перевірили: `There is no schedule here` — «Тут немає розкладу». Кажемо `There is no` і називаємо одну річ. Ця фраза повідомляє результат пошуку; вона не означає, що занять узагалі немає.
+Подруга подарувала вам талон на перше заняття в студії. Ви прийшли, дістали з сумки конверт, але він виявився порожнім: талон лишився вдома. voucher — «талон, ваучер». There is no voucher here — «Тут немає ваучера». Талон один, але після no слово a не потрібне.
 
-**Повідомте працівникові «Тут немає розкладу».**
+**Ви зазирнули в конверт: він порожній. Скажіть подрузі: «Тут немає ваучера».**
 
-- ✅ **There is no schedule here.**
-- ❌ There are no schedule here. — *Один розклад: `There is no schedule`.*
-- ❌ There no schedule here. — *Потрібно `There is no`, з `is`.*
+- ✅ **There is no voucher here.**
+- ❌ There is no a voucher here. — *Після no слово a не потрібне: There is no voucher.*
+- ❌ There are no voucher here. — *Слово voucher стоїть в однині: потрібно There is no.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «У вас є розклад?»**
+**1 · Картка слова — schedule**
+<!-- interaction_id: en:lesson-07:session-07:word:schedule; family: word_card -->
+> **schedule** — розклад. The schedule is on the desk. — «Розклад на письмовому столі». Список занять із днями й часом.
+
+**2 · Ви прийшли до художньої студії. Спитайте працівника: «У вас є розклад?»**
 <!-- interaction_id: en:lesson-07:session-07:i01; family: phrase_builder -->
-Плитки: `schedule` `a` `have` `you` `Do` → **Do you have a schedule?**
+Плитки: `schedule` `a` `have` `you` `Do` `Are` → **Do you have a schedule?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you have a schedule?`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — voucher**
+<!-- interaction_id: en:lesson-07:session-07:word:voucher; family: word_card -->
+> **voucher** — талон, ваучер. The voucher is in the envelope. — «Талон у конверті». Папірець, що дає право на заняття або покупку.
+
+**4 · Послухайте працівника**
 <!-- interaction_id: en:lesson-07:session-07:i02; family: listen_choose -->
-🔊 *schedule* → **schedule** · calendar · remote
-- calendar — *У записі перше слово — `schedule`, а в цьому варіанті — `calendar`.*
-- remote — *У записі перше слово — `schedule`, а в цьому варіанті — `remote`.*
+🔊 *We have a schedule.* → **We have a schedule.** · We have a voucher. · They have a schedule.
+- We have a voucher. — *У записі останнє слово — `schedule`, розклад, а в цьому варіанті — `voucher`, талон.*
+- They have a schedule. — *У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони.*
 
-**3 · Запитайте про розклад**
+**5 · Картка слова — rent**
+<!-- interaction_id: en:lesson-07:session-07:word:rent; family: word_card -->
+> **rent** — брати або давати напрокат. They rent easels. — «Вони дають мольберти напрокат». Про річ, яку беруть на деякий час за плату.
+
+**6 · Спитайте про студію: «Вони дають мольберти напрокат?». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-07:i03; family: context_gap_grammar -->
-___ you have a schedule? → **Do** · Are · Is
-- Are — *З `have` тут потрібно `Do you have?`.*
-- Is — *Потрібно `Do you have?`.*
+Do they ___ easels? → **rent** · rents · are rent
+- rents — *Після `Do they` потрібно `rent`, без `s`.*
+- are rent — *Потрібно `Do they rent`, без `are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-07:i04; family: speed_match -->
-schedule — розклад · cup — чашка · remote — пульт · calendar — календар
+schedule — розклад · voucher — талон · rent — брати або давати напрокат · easel — мольберт
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — join**
+<!-- interaction_id: en:lesson-07:session-07:word:join; family: word_card -->
+> **join** — долучатися, вступати. We join the class. — «Ми долучаємося до заняття». Стати учасником групи або робити щось разом з іншими.
+
+**9 · Друг питає про ваші звичайні суботи: чи долучаєтеся ви до заняття? Послухайте й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-07:i05; family: listen_build_dictation -->
-🔊 *Do you have a schedule?* Плитки: `schedule` `a` `have` `you` `Do` → **Do you have a schedule?**
+🔊 *Do you join the class?* Плитки: `class` `the` `join` `you` `Do` `Are` → **Do you join the class?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you join the class?`)*
 
-**6 · Запитайте людину біля входу «Ви працюєте тут?»**
+**10 · Друг хоче малювати на вихідних. Спитайте: «Вони дають мольберти напрокат?»**
 <!-- interaction_id: en:lesson-07:session-07:i06; family: phrase_builder -->
-Плитки: `here` `work` `you` `Do` → **Do you work here?**
+Плитки: `easels` `rent` `they` `Do` `Are` → **Do they rent easels?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do they rent easels?`)*
 
-**7 · Ви перевірили стіл. Повідомте «Тут немає розкладу»**
+**11 · Подруга подарувала вам талон на заняття. Зазирнувши в конверт, скажіть їй: «Тут немає ваучера»**
 <!-- interaction_id: en:lesson-07:session-07:i07; family: scripted_repeat_compare -->
-🎙 **There is no schedule here.**
+🎙 **There is no voucher here.**
 
-**8 · Запитайте про знайомих художників «Вони працюють тут?»**
+**12 · Щосуботи ви бачите сусідку біля студії. Спитайте про її звичку: «Ви долучаєтеся до заняття?» Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-07:i08; family: context_gap_grammar -->
-Do they ___ here? → **work** · works · are work
-- works — *Після `Do they` потрібне `work`.*
-- are work — *Потрібно `Do they work?`, без `are`.*
+Do you ___ the class? → **join** · joins · are join
+- joins — *Після `Do you` потрібно `join`, без `s`.*
+- are join — *Потрібно `Do you join`, без `are`.*
 
-**9 · Послухайте, що шукає відвідувач**
+**13 · Послухайте питання працівника**
 <!-- interaction_id: en:lesson-07:session-07:i09; family: listen_choose -->
-🔊 *Do you have a schedule?* → **Do you have a schedule?** · Do you have a calendar? · Do you have a remote?
-- Do you have a calendar? — *У записі останнє слово — `schedule`, а в цьому варіанті — `calendar`.*
-- Do you have a remote? — *У записі останнє слово — `schedule`, а в цьому варіанті — `remote`.*
+🔊 *Do you have a voucher?* → **Do you have a voucher?** · Do you have a schedule? · Do they have a voucher?
+- Do you have a schedule? — *У записі останнє слово — `voucher`, талон, а в цьому варіанті — `schedule`, розклад.*
+- Do they have a voucher? — *У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-07:i10; family: speed_match -->
-artist — художник · schedule — розклад · calendar — календар · cup — чашка
+join — долучатися · voucher — талон · schedule — розклад · rent — брати або давати напрокат
 
-**11 · Послухайте й складіть запитання**
+**15 · Сусід питає, чи беруть друзі участь у занятті щотижня. Послухайте й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-07:i11; family: listen_build_dictation -->
-🔊 *Do they work here?* Плитки: `here` `work` `they` `Do` → **Do they work here?**
+🔊 *Do they join the class?* Плитки: `class` `the` `join` `they` `Do` `Are` → **Do they join the class?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do they join the class?`)*
 
-**12 · У майстерні запитайте відвідувача «Ви художник?»**
+**16 · Подруга хоче потрапити на перше заняття. Спитайте: «У тебе є ваучер?»**
 <!-- interaction_id: en:lesson-07:session-07:i12; family: phrase_builder -->
-Плитки: `artist` `an` `you` `Are` → **Are you an artist?**
+Плитки: `voucher` `a` `have` `you` `Do` `Are` → **Do you have a voucher?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you have a voucher?`)*
 
-**13 · Щоб вибрати дату зустрічі, запитайте колегу «У вас є календар?»**
+**17 · Ви прийшли до студії. Спитайте працівника: «Ви даєте мольберти напрокат?»**
 <!-- interaction_id: en:lesson-07:session-07:i13; family: scripted_repeat_compare -->
-🎙 **Do you have a calendar?**
+🎙 **Do you rent easels?**
 
-**14 · Ви перевірили стіл біля екрана. Повідомте «Тут немає пульта»**
+**18 · Скажіть подрузі, що ваучера немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-07:i14; family: context_gap_grammar -->
-There ___ no remote here. → **is** · are · am
-- are — *Один пульт: `There is no remote`.*
-- am — *Потрібно `There is no`; `am` підходить до `I`.*
+There ___ no voucher here. → **is** · are · am
+- are — *Слово voucher стоїть в однині: потрібно `There is no`.*
+- am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
-**15 · Послухайте запитання про річ**
+**19 · Послухайте питання про студію**
 <!-- interaction_id: en:lesson-07:session-07:i15; family: listen_choose -->
-🔊 *Do you have a cup?* → **Do you have a cup?** · Do you have a schedule? · Do you have a calendar?
-- Do you have a schedule? — *У записі останнє слово — `cup`, а в цьому варіанті — `schedule`.*
-- Do you have a calendar? — *У записі останнє слово — `cup`, а в цьому варіанті — `calendar`.*
+🔊 *Do they rent easels here?* → **Do they rent easels here?** · Do they rent easels there? · Do they rent brushes here?
+- Do they rent easels there? — *У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там.*
+- Do they rent brushes here? — *У записі йдеться про мольберти, `easels`, а в цьому варіанті — про пензлі, `brushes`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-07:i16; family: speed_match -->
-schedule — розклад · artist — художник · remote — пульт · cup — чашка
+rent — брати або давати напрокат · schedule — розклад · voucher — талон · join — долучатися
 
-**17 · Друг записує батьків на заняття. Запитайте друга «У них є розклад?»**
+**21 · Друг записує батьків на заняття. Спитайте його: «У них є розклад?»**
 <!-- interaction_id: en:lesson-07:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Do they have a schedule?**
-

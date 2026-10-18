@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 3 — Где купить плакат
+# Английский · Урок 7 · Занятие 3 — Копицентр на углу
 
-**Ситуация.** Вы ищете плакат для комнаты и спрашиваете друга о магазине. Дома проверяете, есть ли место для него над столом.
+**Ситуация.** Вам нужно напечатать плакат, сделать копию ключа и найти чернила для принтера. В этих вопросах с you и they начинаем со слова Do.
 
-**Что вы освоите:** спросить о товаре в магазине и сообщить, что вещи нет
-**Новые слова:** poster
+**Что вы освоите:** спросить в копицентре, что там делают, и сказать, что вещи нет
+**Новые слова:** print, copy, scan, ink
+**Возвращаются:** poster, key, photo, letter, have, here
 
 ---
 
 ## Интро 1
 
-### Плакат для комнаты
+### Плакат нужно напечатать
 
-`poster` — «плакат». В магазине вы спрашиваете продавца `Do you have a poster?` — «У вас есть плакат?» Вопрос начинается с `Do you`, дальше `have`. Один плакат — `a poster`.
+Плакат для комнаты вы сделали на компьютере, и теперь его нужно перенести на бумагу. На углу вы нашли небольшой копицентр и вошли. print — «печатать». Спросите сотрудника: Do you print posters? — «Вы печатаете плакаты?» Сначала Do, затем you и print.
 
-**Спросите продавца «У вас есть плакат?»**
+**Вы вошли в копицентр с готовым плакатом. Спросите сотрудника: «Вы печатаете плакаты?»**
 
-- ✅ **Do you have a poster?**
-- ❌ Are you have a poster? — *Здесь нужно `Do you have?`, без `are`.*
-- ❌ Do you has a poster? — *После `Do you` нужно `have`.*
+- ✅ **Do you print posters?**
+- ❌ Are you print posters? — *Здесь действие print, поэтому нужно Do you print, без Are.*
+- ❌ Do you prints posters? — *После Do you слово print остаётся без s.*
 
 ---
 
 ## Интро 2
 
-### Магазин, который советует друг
+### Потерянный ключ
 
-Друг показывает вам магазин. Вы уточняете `Do they sell posters?` — «Они продают плакаты?» После `Do they` — `sell`, без `s`. В слове `posters` буква `s` нужна: речь о плакатах. Здесь мы узнаём, чем торгует магазин.
+Друг потерял запасной ключ от квартиры и хочет сделать новый. Он вспомнил мастерскую у вокзала, но не уверен, что там делают именно это. copy — «копировать, делать копию». Спросите: Do they copy keys? — «Они копируют ключи?» После they слово copy без изменений.
 
-**Спросите друга «Они продают плакаты?»**
+**Друг вспомнил мастерскую у вокзала. Спросите у него о ней: «Они копируют ключи?»**
 
-- ✅ **Do they sell posters?**
-- ❌ Do they sells posters? — *После `Do they` нужно `sell`.*
-- ❌ Are they sell posters? — *Нужно `Do they sell?`, без `are`.*
+- ✅ **Do they copy keys?**
+- ❌ Are they copy keys? — *Здесь действие copy, поэтому нужно Do they copy, без Are.*
+- ❌ Do they copies keys? — *После Do they слово copy остаётся без изменений.*
 
 ---
 
 ## Интро 3
 
-### Пустая стена
+### Пустые листы
 
-Друг спрашивает, висит ли у вас плакат над письменным столом. `There is no poster above the desk` — «Над письменным столом нет плаката». `There is no poster` сообщает, что плаката нет; `above the desk` уточняет место. Пустая стена пока изображает только пустую стену.
+Дома принтер вдруг начал выдавать пустые листы: закончились чернила. Брат просит достать новые из ящика, и вы открыли все ящики по очереди. ink — «чернила». There is no ink here — «Здесь нет чернил». Чернила не считаем штуками, поэтому a не нужно.
 
-**Скажите другу «Над письменным столом нет плаката».**
+**Брат просит достать чернила, но в ящиках их нет. Скажите ему: «Здесь нет чернил».**
 
-- ✅ **There is no poster above the desk.**
-- ❌ There are no poster above the desk. — *Один плакат: `There is no poster`.*
-- ❌ There no poster above the desk. — *Нужно `There is no`, с `is`.*
+- ✅ **There is no ink here.**
+- ❌ There is no an ink here. — *После no слова a и an не нужны: There is no ink.*
+- ❌ There are no ink here. — *Говорим There is no ink, с is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «У вас есть плакат?»**
+**1 · Карточка слова — print**
+<!-- interaction_id: en:lesson-07:session-03:word:print; family: word_card -->
+> **print** — печатать. We print photos. — «Мы печатаем фотографии». О том, как текст или картинку переносят на бумагу.
+
+**2 · Плакат готов на компьютере. Спросите сотрудника копицентра: «Вы печатаете плакаты?»**
 <!-- interaction_id: en:lesson-07:session-03:i01; family: phrase_builder -->
-Плитки: `poster` `a` `have` `you` `Do` → **Do you have a poster?**
+Плитки: `posters` `print` `you` `Do` `Are` → **Do you print posters?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you print posters?`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте сотрудника**
 <!-- interaction_id: en:lesson-07:session-03:i02; family: listen_choose -->
-🔊 *poster* → **poster** · parcel · desk
-- parcel — *В записи первое слово — `poster`, а в этом варианте — `parcel`.*
-- desk — *В записи первое слово — `poster`, а в этом варианте — `desk`.*
+🔊 *We print posters.* → **We print posters.** · We print letters. · They print posters.
+- We print letters. — *В записи последнее слово — `posters`, плакаты, а в этом варианте — `letters`, письма.*
+- They print posters. — *В записи первое слово — `We`, мы, а в этом варианте — `They`, они.*
 
-**3 · Спросите «Они продают плакаты?»**
+**4 · Карточка слова — copy**
+<!-- interaction_id: en:lesson-07:session-03:word:copy; family: word_card -->
+> **copy** — копировать, делать копию. They copy keys. — «Они копируют ключи». О том, как делают второй такой же предмет или лист.
+
+**5 · Спросите про мастерскую: «Они копируют ключи?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-03:i03; family: context_gap_grammar -->
-Do they ___ posters? → **sell** · sells · are sell
-- sells — *После `Do they` нужно `sell`.*
-- are sell — *Нужно `Do they sell?`, без `are`.*
+Do they ___ keys? → **copy** · copies · are copy
+- copies — *После `Do they` нужно `copy`, без изменений.*
+- are copy — *Нужно `Do they copy`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-03:i04; family: speed_match -->
-poster — плакат · sell — продавать · book — книга · desk — письменный стол
+print — печатать · copy — копировать · photo — фотография · key — ключ
 
-**5 · Послушайте и соберите вопрос**
+**7 · Карточка слова — scan**
+<!-- interaction_id: en:lesson-07:session-03:word:scan; family: word_card -->
+> **scan** — сканировать. I scan letters. — «Я сканирую письма». О том, как бумагу превращают в файл на компьютере.
+
+**8 · Послушайте сотрудника и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-03:i05; family: listen_build_dictation -->
-🔊 *Do you have a poster?* Плитки: `poster` `a` `have` `you` `Do` → **Do you have a poster?**
+🔊 *Do you scan photos?* Плитки: `photos` `scan` `you` `Do` `Are` → **Do you scan photos?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you scan photos?`)*
 
-**6 · Спросите друга о магазине «Они продают плакаты?»**
+**9 · Друг потерял запасной ключ. Спросите о мастерской: «Они копируют ключи?»**
 <!-- interaction_id: en:lesson-07:session-03:i06; family: phrase_builder -->
-Плитки: `posters` `sell` `they` `Do` → **Do they sell posters?**
+Плитки: `keys` `copy` `they` `Do` `Are` → **Do they copy keys?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they copy keys?`)*
 
-**7 · Опишите комнату «Над письменным столом нет плаката»**
+**10 · Карточка слова — ink**
+<!-- interaction_id: en:lesson-07:session-03:word:ink; family: word_card -->
+> **ink** — чернила. The ink is in the printer. — «Чернила в принтере». Жидкая краска, которой пишет ручка или принтер.
+
+**11 · Принтер печатает пустые листы. Проверив ящик, скажите брату: «Здесь нет чернил»**
 <!-- interaction_id: en:lesson-07:session-03:i07; family: scripted_repeat_compare -->
-🎙 **There is no poster above the desk.**
+🎙 **There is no ink here.**
 
-**8 · Спросите нового соседа «У вас есть письменный стол?»**
+**12 · Спросите сотрудника копицентра: «У вас есть принтер?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-03:i08; family: context_gap_grammar -->
-___ you have a desk? → **Do** · Are · Is
-- Are — *Нужно `Do you have?`, без `are`.*
-- Is — *С `you have` здесь нужно `Do`.*
+___ you have a printer? → **Do** · Are · Is
+- Are — *С `have` нужно `Do you have`, без `Are`.*
+- Is — *С `you` нужно `Do`, а `Is` сюда не подходит.*
 
-**9 · Послушайте, о какой вещи спрашивает друг**
+**13 · Послушайте вопрос сотрудника**
 <!-- interaction_id: en:lesson-07:session-03:i09; family: listen_choose -->
-🔊 *Do you have a poster?* → **Do you have a poster?** · Do you have a book? · Do you have a parcel?
-- Do you have a book? — *В записи последнее слово — `poster`, а в этом варианте — `book`.*
-- Do you have a parcel? — *В записи последнее слово — `poster`, а в этом варианте — `parcel`.*
+🔊 *Do you scan photos?* → **Do you scan photos?** · Do you scan letters? · Do they scan photos?
+- Do you scan letters? — *В записи последнее слово — `photos`, фотографии, а в этом варианте — `letters`, письма.*
+- Do they scan photos? — *В записи второе слово — `you`, вы, а в этом варианте — `they`, они.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-03:i10; family: speed_match -->
-parcel — посылка · poster — плакат · desk — письменный стол · sell — продавать
+ink — чернила · scan — сканировать · print — печатать · copy — копировать
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте друга и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-03:i11; family: listen_build_dictation -->
-🔊 *Do they sell books?* Плитки: `books` `sell` `they` `Do` → **Do they sell books?**
+🔊 *Do they print photos?* Плитки: `photos` `print` `they` `Do` `Are` → **Do they print photos?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they print photos?`)*
 
-**12 · У стойки отправки спросите посетителя «У вас есть посылка?» Используйте parcel**
+**16 · Принтеру нужны чернила. Спросите сотрудника: «У вас есть чернила?»**
 <!-- interaction_id: en:lesson-07:session-03:i12; family: phrase_builder -->
-Плитки: `parcel` `a` `have` `you` `Do` → **Do you have a parcel?**
+Плитки: `ink` `have` `you` `Do` `Are` → **Do you have ink?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have ink?`)*
 
-**13 · Друг советует магазин. Спросите «Они продают книги?»**
+**17 · Вы вошли в копицентр с книгой в руках. Спросите сотрудника: «Вы копируете страницы?»**
 <!-- interaction_id: en:lesson-07:session-03:i13; family: scripted_repeat_compare -->
-🎙 **Do they sell books?**
+🎙 **Do you copy pages?**
 
-**14 · Сообщите «Здесь нет плаката»**
+**18 · Скажите брату, что чернил нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-03:i14; family: context_gap_grammar -->
-There ___ no poster here. → **is** · are · am
-- are — *Один плакат: `There is no poster`.*
-- am — *Нужно `There is no`; `am` подходит к `I`.*
+There ___ no ink here. → **is** · are · am
+- are — *Чернила не считаем штуками: нужно `There is no`.*
+- am — *Нужно `There is no`; `am` подходит только к `I`.*
 
-**15 · Послушайте, о каком товаре спрашивает друг**
+**19 · Послушайте вопрос в копицентре**
 <!-- interaction_id: en:lesson-07:session-03:i15; family: listen_choose -->
-🔊 *Do they sell posters?* → **Do they sell posters?** · Do they sell books? · Do they sell newspapers?
-- Do they sell books? — *В записи последнее слово — `posters`, а в этом варианте — `books`.*
-- Do they sell newspapers? — *В записи последнее слово — `posters`, а в этом варианте — `newspapers`.*
+🔊 *Do you print photos here?* → **Do you print photos here?** · Do you print photos there? · Do you scan photos here?
+- Do you print photos there? — *В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.*
+- Do you scan photos here? — *В записи слово действия — `print`, печатаете, а в этом варианте — `scan`, сканируете.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-03:i16; family: speed_match -->
-poster — плакат · book — книга · parcel — посылка · sell — продавать
+copy — копировать · ink — чернила · scan — сканировать · print — печатать
 
-**17 · Вы вошли в незнакомый магазин. Спросите сотрудника «Вы продаёте плакаты?»**
+**21 · Вы с другом зашли в копицентр. Узнайте у сотрудника: «Вы печатаете фото?»**
 <!-- interaction_id: en:lesson-07:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do you sell posters?**
-
+🎙 **Do you print photos?**

@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 8 — Вопросы в новом районе
+# Английский · Урок 7 · Занятие 8 — Новый район
 
-**Ситуация.** Вы осваиваетесь в новом районе: знакомитесь с соседом, узнаёте о доставке и ищете расписание занятий.
+**Ситуация.** Вы осваиваетесь в новом районе: расспрашиваете соседей, ездите на автобусе и возвращаетесь домой поздно вечером. Всё, что вы узнали в этом уроке, собирается вместе.
 
-**Что вы освоите:** самостоятельно задать знакомые вопросы с Do и сообщить, что вещи нет
-**Новые слова:** —
+**Что вы освоите:** задавать вопросы с Do о людях и местах района и сказать, что человека нет
+**Новые слова:** guard, borrow, count, check
+**Возвращаются:** factory, package, plumber, menu, weekend, voucher, schedule, book, ticket, gate
 
 ---
 
 ## Интро 1
 
-### Новый сосед
+### Сосед с книгами
 
-Сосед упомянул фабрику. Уточните `Do you work in a factory?` — «Вы работаете на фабрике?» Для вопроса о действии ставим `Do you`, затем `work`. Не добавляем к `work` ни `s`, ни `are`.
+Вы только переехали в новый район. У входа в библиотеку вы встретили соседа: он выходит с целой стопкой книг под мышкой. Вы тоже хотите читать, но покупать книги дорого. borrow — «брать на время». Спросите: Do you borrow books? — «Вы берёте книги на время?»
 
-**Спросите соседа «Вы работаете на фабрике?»**
+**Сосед выходит из библиотеки с книгами. Спросите его: «Вы берёте книги на время?»**
 
-- ✅ **Do you work in a factory?**
-- ❌ Are you work in a factory? — *Нужно `Do you work?`, без `are`.*
-- ❌ Do you works in a factory? — *После `Do you` нужно `work`.*
+- ✅ **Do you borrow books?**
+- ❌ Are you borrow books? — *Здесь действие borrow, поэтому нужно Do you borrow, без Are.*
+- ❌ Do you borrows books? — *После Do you слово borrow остаётся без s.*
 
 ---
 
 ## Интро 2
 
-### Посылка у стойки
+### Поездка на автобусе
 
-В пункте отправки вы помогаете посетителю. `Do you have a package?` — «У вас есть посылка?» Здесь спрашиваем о вещи: после `Do you` ставим `have`. Большая коробка под мышкой подсказывает ответ, но уточнить всё равно можно.
+Вы с другом едете на автобусе по новому району. Друг говорит, что без билета здесь ездить нельзя, и вы достаёте проездной. check — «проверять». Спросите: Do they check tickets here? — «Здесь проверяют билеты?» Здесь they значит «те, кто работает в автобусе».
 
-**Спросите посетителя «У вас есть посылка?»**
+**Друг предупреждает о билетах. Спросите его: «Здесь проверяют билеты?»**
 
-- ✅ **Do you have a package?**
-- ❌ Are you have a package? — *Нужно `Do you have?`.*
-- ❌ Do you has a package? — *После `Do you` нужно `have`.*
+- ✅ **Do they check tickets here?**
+- ❌ Are they check tickets here? — *Здесь действие check, поэтому нужно Do they check, без Are.*
+- ❌ Do they checks tickets here? — *После Do they слово check остаётся без s.*
 
 ---
 
 ## Интро 3
 
-### Где расписание
+### Пустая будка
 
-В мастерской вам предложили посмотреть расписание на столе. Но там пусто. `There is no schedule here` — «Здесь нет расписания». Это сообщение об отсутствии одного расписания: `There is no`.
+Вы возвращаетесь домой поздно вечером. Ворота двора открыты настежь, а в будке рядом свет не горит. Сосед, который идёт с вами, удивляется. guard — «охранник». There is no guard at the gate — «У ворот нет охранника». Говорим There is no и называем одного человека.
 
-**Сообщите сотруднику «Здесь нет расписания».**
+**Сосед удивляется открытым воротам. Скажите ему: «У ворот нет охранника».**
 
-- ✅ **There is no schedule here.**
-- ❌ There are no schedule here. — *Одно расписание: `There is no schedule`.*
-- ❌ There no schedule here. — *Нужно `There is no`, с `is`.*
+- ✅ **There is no guard at the gate.**
+- ❌ There are no guard at the gate. — *Слово guard стоит в единственном числе: нужно There is no.*
+- ❌ There is not guard at the gate. — *После not здесь не хватает a. В нашем ответе используем no guard.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите соседа «Вы работаете на фабрике?»**
+**1 · Карточка слова — borrow**
+<!-- interaction_id: en:lesson-07:session-08:word:borrow; family: word_card -->
+> **borrow** — брать на время. I borrow books. — «Я беру книги на время». О вещи, которую берут, а потом возвращают.
+
+**2 · Сосед выходит из библиотеки с книгами. Спросите: «Вы берёте книги на время?»**
 <!-- interaction_id: en:lesson-07:session-08:i01; family: phrase_builder -->
-Плитки: `factory` `a` `in` `work` `you` `Do` → **Do you work in a factory?**
+Плитки: `books` `borrow` `you` `Do` `Are` → **Do you borrow books?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you borrow books?`)*
 
-**2 · Послушайте, о какой вещи спрашивает сотрудник**
+**3 · Послушайте соседа**
 <!-- interaction_id: en:lesson-07:session-08:i02; family: listen_choose -->
-🔊 *Do you have a package?* → **Do you have a package?** · Do you have a poster? · Do you have a schedule?
-- Do you have a poster? — *В записи последнее слово — `package`, а в этом варианте — `poster`.*
-- Do you have a schedule? — *В записи последнее слово — `package`, а в этом варианте — `schedule`.*
+🔊 *I borrow books.* → **I borrow books.** · I read books. · We borrow books.
+- I read books. — *В записи слово действия — `borrow`, беру на время, а в этом варианте — `read`, читаю.*
+- We borrow books. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**3 · Спросите о магазине «Они продают плакаты?»**
+**4 · Карточка слова — check**
+<!-- interaction_id: en:lesson-07:session-08:word:check; family: word_card -->
+> **check** — проверять. They check the ticket. — «Они проверяют билет». О том, как смотрят, всё ли в порядке.
+
+**5 · Спросите про автобус: «Здесь проверяют билеты?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-08:i03; family: context_gap_grammar -->
-Do they ___ posters? → **sell** · sells · are sell
-- sells — *После `Do they` нужно `sell`.*
-- are sell — *Нужно `Do they sell?`, без `are`.*
+Do they ___ tickets here? → **check** · checks · are check
+- checks — *После `Do they` нужно `check`, без `s`.*
+- are check — *Нужно `Do they check`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-08:i04; family: speed_match -->
-factory — фабрика · package — посылка · poster — плакат · schedule — расписание
+borrow — брать на время · check — проверять · book — книга · ticket — билет
 
-**5 · Послушайте и соберите вопрос**
+**7 · Послушайте соседа и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-08:i05; family: listen_build_dictation -->
-🔊 *Do you have a schedule?* Плитки: `schedule` `a` `have` `you` `Do` → **Do you have a schedule?**
+🔊 *Do you work in a factory?* Плитки: `factory` `a` `in` `work` `you` `Do` `Are` → **Do you work in a factory?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you work in a factory?`)*
 
-**6 · Спросите коллегу «Вы носите очки?»**
+**8 · Друг едет с вами на автобусе. Спросите: «Здесь проверяют билеты?»**
 <!-- interaction_id: en:lesson-07:session-08:i06; family: phrase_builder -->
-Плитки: `glasses` `wear` `you` `Do` → **Do you wear glasses?**
+Плитки: `tickets` `check` `here` `they` `Do` `Are` → **Do they check tickets here?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they check tickets here?`)*
 
-**7 · Вы проверили стол. Сообщите «Здесь нет расписания»**
+**9 · Карточка слова — guard**
+<!-- interaction_id: en:lesson-07:session-08:word:guard; family: word_card -->
+> **guard** — охранник. The guard is at the gate. — «Охранник у ворот». Человек, который следит за порядком у входа.
+
+**10 · Вы вернулись поздно: ворота открыты, будка пуста. Скажите соседу: «У ворот нет охранника»**
 <!-- interaction_id: en:lesson-07:session-08:i07; family: scripted_repeat_compare -->
-🎙 **There is no schedule here.**
+🎙 **There is no guard at the gate.**
 
-**8 · Спросите коллегу «Вы начинаете свою смену рано?»**
+**11 · Карточка слова — count**
+<!-- interaction_id: en:lesson-07:session-08:word:count; family: word_card -->
+> **count** — считать. We count the boxes. — «Мы считаем коробки». О том, как называют числа по порядку, пока предметы не закончатся.
+
+**12 · Спросите соседа: «Вы считаете коробки?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-08:i08; family: context_gap_grammar -->
-Do you ___ your shift early? → **start** · starts · are start
-- starts — *После `Do you` нужно `start`.*
-- are start — *Нужно `Do you start?`, без `are`.*
+Do you ___ boxes? → **count** · counts · are count
+- counts — *После `Do you` нужно `count`, без `s`.*
+- are count — *Нужно `Do you count`, без `are`.*
 
-**9 · Послушайте вопрос о месте работы**
+**13 · Послушайте вопрос соседа**
 <!-- interaction_id: en:lesson-07:session-08:i09; family: listen_choose -->
-🔊 *Do they work here?* → **Do they work here?** · Do they work there? · Do they work outside?
-- Do they work there? — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- Do they work outside? — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *Do they have a guard?* → **Do they have a guard?** · Do they have a menu? · Do you have a guard?
+- Do they have a menu? — *В записи последнее слово — `guard`, охранник, а в этом варианте — `menu`, меню.*
+- Do you have a guard? — *В записи второе слово — `they`, они, а в этом варианте — `you`, вы.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-08:i10; family: speed_match -->
-glasses — очки · shift — рабочая смена · customer — клиент · schedule — расписание
+count — считать · check — проверять · guard — охранник · borrow — брать на время
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте друга и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-08:i11; family: listen_build_dictation -->
-🔊 *Do they deliver packages?* Плитки: `packages` `deliver` `they` `Do` → **Do they deliver packages?**
+🔊 *Do they send packages?* Плитки: `packages` `send` `they` `Do` `Are` → **Do they send packages?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they send packages?`)*
 
-**12 · У стойки спросите человека «Вы клиент?»**
+**16 · Сосед советует мастерскую. Спросите: «Они работают по выходным?»**
 <!-- interaction_id: en:lesson-07:session-08:i12; family: phrase_builder -->
-Плитки: `customer` `a` `you` `Are` → **Are you a customer?**
+Плитки: `weekends` `on` `work` `they` `Do` `Are` → **Do they work on weekends?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they work on weekends?`)*
 
-**13 · В магазине спросите сотрудника «У вас есть плакат?»**
+**17 · Соседка показывает пачку талонов. Спросите: «Вы считаете талоны?»**
 <!-- interaction_id: en:lesson-07:session-08:i13; family: scripted_repeat_compare -->
-🎙 **Do you have a poster?**
+🎙 **Do you count vouchers?**
 
-**14 · Вы осмотрели стол. Сообщите «Здесь нет очков»**
+**18 · Скажите соседу, что охранника нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-08:i14; family: context_gap_grammar -->
-There ___ no glasses here. → **are** · is · am
-- is — *С `glasses` нужно `are`.*
-- am — *Нужно `There are no`; `am` подходит к `I`.*
+There ___ no guard at the gate. → **is** · are · am
+- are — *Слово guard стоит в единственном числе: нужно `There is no`.*
+- am — *Нужно `There is no`; `am` подходит только к `I`.*
 
-**15 · Послушайте, о ком спрашивает сотрудник**
+**19 · Послушайте вопрос в районе**
 <!-- interaction_id: en:lesson-07:session-08:i15; family: listen_choose -->
-🔊 *Are you a customer?* → **Are you a customer?** · Are you a teacher? · Are you a doctor?
-- Are you a teacher? — *В записи последнее слово — `customer`, а в этом варианте — `teacher`.*
-- Are you a doctor? — *В записи последнее слово — `customer`, а в этом варианте — `doctor`.*
+🔊 *Do you have a schedule?* → **Do you have a schedule?** · Do you have a voucher? · Do they have a schedule?
+- Do you have a voucher? — *В записи последнее слово — `schedule`, расписание, а в этом варианте — `voucher`, талон.*
+- Do they have a schedule? — *В записи второе слово — `you`, вы, а в этом варианте — `they`, они.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-08:i16; family: speed_match -->
-factory — фабрика · glasses — очки · shift — рабочая смена · customer — покупатель
+factory — фабрика · plumber — сантехник · guard — охранник · check — проверять
 
-**17 · В магазине у дома вы хотите получать газеты с доставкой. Спросите сотрудника «Вы доставляете газеты?»**
+**21 · Вы с другом идёте через двор. Спросите друга: «У них здесь есть охранник?»**
 <!-- interaction_id: en:lesson-07:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do you deliver newspapers?**
-
+🎙 **Do they have a guard here?**

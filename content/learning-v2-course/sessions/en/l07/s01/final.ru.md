@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 1 — Вы работаете на фабрике?
+# Английский · Урок 7 · Занятие 1 — Где работает сосед
 
-**Ситуация.** Вы знакомитесь с новым соседом и спрашиваете о его работе. Позже у двери уточняете, есть ли у него ключ.
+**Ситуация.** Вы знакомитесь с новым соседом и расспрашиваете его о работе. В этих вопросах с you и they начинаем со слова Do.
 
-**Что вы освоите:** задавать вопросы с Do you и Do they о работе и вещах
-**Новые слова:** factory
+**Что вы освоите:** спросить, где человек работает и водит ли он технику, и сказать, что кого-то нет
+**Новые слова:** factory, warehouse, courier, forklift
+**Возвращаются:** work, drive, have, key
 
 ---
 
 ## Интро 1
 
-### Работа нового соседа
+### Сосед идёт с работы
 
-`factory` — «фабрика». Сосед рассказывает о своей работе: `I work in a factory` — «Я работаю на фабрике». Чтобы спросить его об этом, скажите `Do you work in a factory?` — «Вы работаете на фабрике?» Ставим `Do`, затем `you`, затем `work`. Здесь `do` помогает задать вопрос и отдельно не переводится.
+На лестнице вы встретили нового соседа: он идёт с работы в тяжёлой куртке и выглядит усталым. Вы хотите узнать, где он работает. factory — «фабрика». Спросите: Do you work in a factory? — «Вы работаете на фабрике?» Сначала Do, затем you и work.
 
-**Спросите соседа «Вы работаете на фабрике?»**
+**Сосед идёт с работы. Спросите у него: «Вы работаете на фабрике?»**
 
 - ✅ **Do you work in a factory?**
-- ❌ Are you work in a factory? — *С действием `work` здесь нужен вопрос `Do you work?`.*
-- ❌ Do you works in a factory? — *После `Do you` нужно `work`, без `s`.*
+- ❌ Are you work in a factory? — *Здесь действие work, поэтому нужно Do you work, без Are.*
+- ❌ Do you works in a factory? — *После Do you слово work остаётся без s.*
 
 ---
 
 ## Интро 2
 
-### А где работают друзья
+### Братья соседа
 
-Сосед упомянул своих друзей. Вы хотите узнать, работают ли они на фабрике. `Do they work in a factory?` — «Они работают на фабрике?» После `Do` теперь стоит `they`, а `work` остаётся без `s`.
+Сосед рассказывает, что его два брата тоже работают, но не на фабрике, а там, где хранят товары для магазинов. warehouse — «склад». Чтобы спросить о двоих, говорим Do they work in a warehouse? — «Они работают на складе?» После they слово work без s.
 
-**Спросите о друзьях «Они работают на фабрике?»**
+**Сосед рассказывает о братьях. Спросите о них: «Они работают на складе?»**
 
-- ✅ **Do they work in a factory?**
-- ❌ Are they work in a factory? — *Здесь нужно `Do they work?`, без `are`.*
-- ❌ Do they works in a factory? — *После `Do they` нужно `work`.*
+- ✅ **Do they work in a warehouse?**
+- ❌ Are they work in a warehouse? — *Здесь действие work, поэтому нужно Do they work, без Are.*
+- ❌ Do they works in a warehouse? — *После Do they слово work остаётся без s.*
 
 ---
 
 ## Интро 3
 
-### Ключ от двери
+### Ожидание доставки
 
-Вы с соседом подошли к закрытой двери. `Do you have a key?` — «У вас есть ключ?» Здесь та же схема: `Do`, затем `you`, затем `have`. В русском вопросе нет слова «иметь», но в английском нужен `have`. Дверь не откроется от вежливости — сначала выясним, у кого ключ.
+Сосед ждёт доставку нового кресла и просит выглянуть во двор: приехал ли человек, который его привезёт. Вы смотрите: у подъезда пусто. courier — «курьер». There is no courier here — «Здесь нет курьера». Говорим There is no и называем одного человека.
 
-**Спросите соседа «У вас есть ключ?»**
+**Сосед ждёт доставку. Вы выглянули во двор. Скажите ему: «Здесь нет курьера».**
 
-- ✅ **Do you have a key?**
-- ❌ Are you have a key? — *Нужно `Do you have?`, без `are`.*
-- ❌ Do you has a key? — *После `Do you` нужно `have`.*
+- ✅ **There is no courier here.**
+- ❌ There are no courier here. — *Слово courier стоит в единственном числе: нужно There is no.*
+- ❌ There is not courier here. — *После not здесь не хватает a. В выбранной конструкции используем no courier.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Вы работаете на фабрике?»**
+**1 · Карточка слова — factory**
+<!-- interaction_id: en:lesson-07:session-01:word:factory; family: word_card -->
+> **factory** — фабрика. The factory is big. — «Фабрика большая». Место, где много людей делают вещи на станках.
+
+**2 · Сосед идёт с работы. Спросите: «Вы работаете на фабрике?»**
 <!-- interaction_id: en:lesson-07:session-01:i01; family: phrase_builder -->
-Плитки: `factory` `a` `in` `work` `you` `Do` → **Do you work in a factory?**
+Плитки: `factory` `a` `in` `work` `you` `Do` `Are` → **Do you work in a factory?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you work in a factory?`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — warehouse**
+<!-- interaction_id: en:lesson-07:session-01:word:warehouse; family: word_card -->
+> **warehouse** — склад. The warehouse is near the factory. — «Склад рядом с фабрикой». Большое помещение, где хранят товары.
+
+**4 · Послушайте соседа**
 <!-- interaction_id: en:lesson-07:session-01:i02; family: listen_choose -->
-🔊 *factory* → **factory** · key · newspaper
-- key — *В записи первое слово — `factory`, а в этом варианте — `key`.*
-- newspaper — *В записи первое слово — `factory`, а в этом варианте — `newspaper`.*
+🔊 *I work in a warehouse.* → **I work in a warehouse.** · I work in a factory. · We work in a warehouse.
+- I work in a factory. — *В записи последнее слово — `warehouse`, склад, а в этом варианте — `factory`, фабрика.*
+- We work in a warehouse. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**3 · Спросите о работе «Вы работаете на фабрике?»**
+**5 · Карточка слова — forklift**
+<!-- interaction_id: en:lesson-07:session-01:word:forklift; family: word_card -->
+> **forklift** — погрузчик. The forklift is in the warehouse. — «Погрузчик на складе». Машина с вилами, которой поднимают тяжёлые коробки.
+
+**6 · Спросите соседа: «Вы водите погрузчик?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-01:i03; family: context_gap_grammar -->
-___ you work in a factory? → **Do** · Are · Is
-- Are — *С действием `work` здесь нужно `Do you work?`.*
-- Is — *В этом вопросе нужно `Do you work?`.*
+Do you ___ a forklift? → **drive** · drives · are drive
+- drives — *После `Do you` нужно `drive`, без `s`.*
+- are drive — *Нужно `Do you drive`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-01:i04; family: speed_match -->
-factory — фабрика · work — работать · key — ключ · newspaper — газета
+factory — фабрика · warehouse — склад · key — ключ · forklift — погрузчик
 
-**5 · Послушайте и соберите вопрос**
+**8 · Послушайте соседа и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-01:i05; family: listen_build_dictation -->
-🔊 *Do you work in a factory?* Плитки: `factory` `a` `in` `work` `you` `Do` → **Do you work in a factory?**
+🔊 *Do you drive a forklift?* Плитки: `forklift` `a` `drive` `you` `Do` `Are` → **Do you drive a forklift?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you drive a forklift?`)*
 
-**6 · Спросите о друзьях соседа «Они работают на фабрике?»**
+**9 · Сосед говорит о братьях. Спросите: «Они работают на складе?»**
 <!-- interaction_id: en:lesson-07:session-01:i06; family: phrase_builder -->
-Плитки: `factory` `a` `in` `work` `they` `Do` → **Do they work in a factory?**
+Плитки: `warehouse` `a` `in` `work` `they` `Do` `Are` → **Do they work in a warehouse?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they work in a warehouse?`)*
 
-**7 · У двери спросите соседа «У вас есть ключ?»**
+**10 · Карточка слова — courier**
+<!-- interaction_id: en:lesson-07:session-01:word:courier; family: word_card -->
+> **courier** — курьер. The courier is here. — «Курьер здесь». Человек, который привозит заказы домой.
+
+**11 · Сосед спрашивает, приехала ли доставка. Скажите: «Здесь нет курьера»**
 <!-- interaction_id: en:lesson-07:session-01:i07; family: scripted_repeat_compare -->
-🎙 **Do you have a key?**
+🎙 **There is no courier here.**
 
-**8 · Спросите «Они работают на фабрике?»**
+**12 · Спросите о двух коллегах соседа: «Они работают на фабрике?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-01:i08; family: context_gap_grammar -->
 Do they ___ in a factory? → **work** · works · are work
-- works — *После `Do they` нужно `work`.*
-- are work — *Нужно `Do they work?`, без `are`.*
+- works — *После `Do they` нужно `work`, без `s`.*
+- are work — *Нужно `Do they work`, без `are`.*
 
-**9 · Послушайте, о какой вещи спрашивает сосед**
+**13 · Водитель привёз тяжёлые коробки и спрашивает работника склада о технике для разгрузки. Послушайте вопрос**
 <!-- interaction_id: en:lesson-07:session-01:i09; family: listen_choose -->
-🔊 *Do you have a key?* → **Do you have a key?** · Do you have a newspaper? · Do you have a uniform?
-- Do you have a newspaper? — *В записи последнее слово — `key`, а в этом варианте — `newspaper`.*
-- Do you have a uniform? — *В записи последнее слово — `key`, а в этом варианте — `uniform`.*
+🔊 *Do you have a forklift?* → **Do you have a forklift?** · Do you have a key? · Do they have a forklift?
+- Do you have a key? — *В записи последнее слово — `forklift`, погрузчик, а в этом варианте — `key`, ключ.*
+- Do they have a forklift? — *В записи второе слово — `you`, вы, а в этом варианте — `they`, они.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-01:i10; family: speed_match -->
-have — иметь · factory — фабрика · work — работать · key — ключ
+courier — курьер · forklift — погрузчик · factory — фабрика · warehouse — склад
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте соседа и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-01:i11; family: listen_build_dictation -->
-🔊 *Do you have a key?* Плитки: `key` `a` `have` `you` `Do` → **Do you have a key?**
+🔊 *Do they drive a forklift?* Плитки: `forklift` `a` `drive` `they` `Do` `Are` → **Do they drive a forklift?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they drive a forklift?`)*
 
-**12 · Сосед ждёт друзей у двери. Спросите «У них есть ключ?»**
+**16 · Сосед не может открыть дверь склада. Спросите: «У вас есть ключ?»**
 <!-- interaction_id: en:lesson-07:session-01:i12; family: phrase_builder -->
-Плитки: `key` `a` `have` `they` `Do` → **Do they have a key?**
+Плитки: `key` `a` `have` `you` `Do` `Are` → **Do you have a key?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have a key?`)*
 
-**13 · В мастерской спросите человека у входа «Вы работаете здесь?»**
+**17 · Вы встретили на лестнице соседа с другого этажа. Спросите: «Вы работаете на складе?»**
 <!-- interaction_id: en:lesson-07:session-01:i13; family: scripted_repeat_compare -->
-🎙 **Do you work here?**
+🎙 **Do you work in a warehouse?**
 
-**14 · Спросите соседа «У вас есть газета?»**
+**18 · Скажите соседу, что курьера нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-01:i14; family: context_gap_grammar -->
-Do you ___ a newspaper? → **have** · has · are have
-- has — *После `Do you` нужно `have`.*
-- are have — *Нужно `Do you have?`, без `are`.*
+There ___ no courier here. → **is** · are · am
+- are — *Слово courier стоит в единственном числе: нужно `There is no`.*
+- am — *Нужно `There is no`; `am` подходит только к `I`.*
 
-**15 · Послушайте, о каком месте спрашивает сосед**
+**19 · Послушайте вопрос соседа**
 <!-- interaction_id: en:lesson-07:session-01:i15; family: listen_choose -->
-🔊 *Do they work here?* → **Do they work here?** · Do they work there? · Do they work outside?
-- Do they work there? — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- Do they work outside? — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *Do they work here?* → **Do they work here?** · Do they work there? · Do they drive here?
+- Do they work there? — *В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.*
+- Do they drive here? — *В записи третье слово — `work`, работают, а в этом варианте — `drive`, приезжают сюда на машине.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-01:i16; family: speed_match -->
-factory — фабрика · newspaper — газета · have — иметь · work — работать
+warehouse — склад · factory — фабрика · forklift — погрузчик · courier — курьер
 
-**17 · В кафе друг указывает на соседний стол. Узнайте у друга «У них есть газета?»**
+**21 · Сосед рассказывает о двух коллегах. Спросите: «Они водят погрузчик?»**
 <!-- interaction_id: en:lesson-07:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do they have a newspaper?**
-
+🎙 **Do they drive a forklift?**

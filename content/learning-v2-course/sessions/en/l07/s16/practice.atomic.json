@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-16:word:farmer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — farmer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:farmer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — farmer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:farmer:audio",
+            "transcript": "farmer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:farmer:r1",
+              "targetText": "farmer",
+              "meaningByLocale": {
+                "ru": "фермер. The farmer is strong. — «Фермер сильный». Человек, который растит овощи или держит животных.",
+                "uk": "фермер. The farmer is strong. — «Фермер сильний». Людина, яка вирощує овочі або тримає тварин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "farmer",
+            "definitionByLocale": {
+              "ru": "фермер. The farmer is strong. — «Фермер сильный». Человек, который растит овощи или держит животных.",
+              "uk": "фермер. The farmer is strong. — «Фермер сильний». Людина, яка вирощує овочі або тримає тварин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите узнать, где живёт фермер. Спросите подругу: «Фермер живёт здесь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите узнать, где живёт фермер. Спросите подругу: «Фермер живёт здесь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the farmer live here?",
+          "localizedMeaning": {
+            "ru": "Вы хотите узнать, где живёт фермер. Спросите подругу: «Фермер живёт здесь?»",
+            "uk": "Ви хочете дізнатися, де живе фермер. Спитайте подругу: «Фермер живе тут?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "farmer",
+            "live",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:word:parrot",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — parrot",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:parrot:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — parrot",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:parrot:audio",
+            "transcript": "parrot"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:parrot:r1",
+              "targetText": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай. The parrot is loud. — «Попугай громкий». Яркая птица, которая может повторять слова.",
+                "uk": "папуга. The parrot is loud. — «Папуга гучний». Яскравий птах, який може повторювати слова."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parrot",
+            "definitionByLocale": {
+              "ru": "попугай. The parrot is loud. — «Попугай громкий». Яркая птица, которая может повторять слова.",
+              "uk": "папуга. The parrot is loud. — «Папуга гучний». Яскравий птах, який може повторювати слова."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте хозяйку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i02:r1",
+            "text": "Do you have a parrot?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i02:r2",
+            "text": "Do you have a cage?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i02:r3",
+            "text": "Do they have a parrot?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте хозяйку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i02:audio",
+            "transcript": "Do you have a parrot?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:i02:r1",
+              "targetText": "Do you have a parrot?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i02:r2",
+              "targetText": "Do you have a cage?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i02:r3",
+              "targetText": "Do they have a parrot?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте хозяйку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `parrot`, попугай, а в этом варианте — `cage`, клетка.",
+                "uk": "У записі останнє слово — `parrot`, папуга, а в цьому варіанті — `cage`, клітка."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте хозяйку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:word:goldfish",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — goldfish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:goldfish:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — goldfish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:goldfish:audio",
+            "transcript": "goldfish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:goldfish:r1",
+              "targetText": "goldfish",
+              "meaningByLocale": {
+                "ru": "золотая рыбка. The goldfish is small. — «Золотая рыбка маленькая». Небольшая рыба, которую держат в аквариуме.",
+                "uk": "золота рибка. The goldfish is small. — «Золота рибка маленька». Невелика риба, яку тримають в акваріумі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "goldfish",
+            "definitionByLocale": {
+              "ru": "золотая рыбка. The goldfish is small. — «Золотая рыбка маленькая». Небольшая рыба, которую держат в аквариуме.",
+              "uk": "золота рибка. The goldfish is small. — «Золота рибка маленька». Невелика риба, яку тримають в акваріумі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите подругу о её родителях. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i03:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i03:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите подругу о её родителях. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о её родителях. Выберите слово",
+            "uk": "Спитайте подругу про її батьків. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ they feed the goldfish early?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-16:i03:r1",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i03:r2",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Спросите подругу о её родителях. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите подругу о её родителях. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Do`.",
+                "uk": "З `they` потрібно `Do`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите подругу о её родителях. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С действием `feed` нужно `Do`, а не `Are`.",
+                "uk": "З дією `feed` потрібне `Do`, а не `Are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-16:i04:p1",
+              "target": "farmer",
+              "meaningByLocale": {
+                "ru": "фермер",
+                "uk": "фермер"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i04:p2",
+              "target": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай",
+                "uk": "папуга"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i04:p3",
+              "target": "goldfish",
+              "meaningByLocale": {
+                "ru": "золотая рыбка",
+                "uk": "золота рибка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i04:p4",
+              "target": "cage",
+              "meaningByLocale": {
+                "ru": "клетка",
+                "uk": "клітка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "farmer",
+            "parrot",
+            "goldfish",
+            "cage"
+          ],
+          "rightColumn": [
+            "фермер",
+            "попугай",
+            "золотая рыбка",
+            "клетка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:word:turtle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — turtle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:turtle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — turtle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:turtle:audio",
+            "transcript": "turtle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:turtle:r1",
+              "targetText": "turtle",
+              "meaningByLocale": {
+                "ru": "черепаха. The turtle is slow. — «Черепаха медленная». Животное с твёрдым панцирем на спине.",
+                "uk": "черепаха. The turtle is slow. — «Черепаха повільна». Тварина з твердим панциром на спині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turtle",
+            "definitionByLocale": {
+              "ru": "черепаха. The turtle is slow. — «Черепаха медленная». Животное с твёрдым панцирем на спине.",
+              "uk": "черепаха. The turtle is slow. — «Черепаха повільна». Тварина з твердим панциром на спині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i05:audio",
+            "transcript": "Does the turtle sleep?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the turtle sleep?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "turtle",
+            "sleep"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Из соседней комнаты слышен голос птицы. Спросите хозяйку: «У вас есть попугай?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Из соседней комнаты слышен голос птицы. Спросите хозяйку: «У вас есть попугай?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a parrot?",
+          "localizedMeaning": {
+            "ru": "Из соседней комнаты слышен голос птицы. Спросите хозяйку: «У вас есть попугай?»",
+            "uk": "Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "parrot"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы стоите у аквариума. Спросите подругу о её родителях: «Они кормят золотую рыбку рано?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i07:audio"
+        ],
+        "accessibilityLabel": "Вы стоите у аквариума. Спросите подругу о её родителях: «Они кормят золотую рыбку рано?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i07:audio",
+            "transcript": "Do they feed the goldfish early?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they feed the goldfish early?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите подругу о черепахе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i08:r1",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите подругу о черепахе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о черепахе. Выберите слово",
+            "uk": "Спитайте подругу про черепаху. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ the turtle sleep?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-16:i08:r1",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спросите подругу о черепахе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Спросите подругу о черепахе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Черепаха одна: нужно `Does`.",
+                "uk": "Черепаха одна: потрібно `Does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Спросите подругу о черепахе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С действием `sleep` нужно `Does`, а не `Is`.",
+                "uk": "З дією `sleep` потрібне `Does`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i09:r1",
+            "text": "Does the farmer live here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i09:r2",
+            "text": "Does the farmer work here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i09:r3",
+            "text": "Do they live here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i09:audio",
+            "transcript": "Does the farmer live here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:i09:r1",
+              "targetText": "Does the farmer live here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i09:r2",
+              "targetText": "Does the farmer work here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i09:r3",
+              "targetText": "Do they live here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `live`, жить, а в этом варианте — `work`, работать.",
+                "uk": "У записі четверте слово — `live`, жити, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Does`, вопрос об одном человеке, а в этом варианте — `Do`, вопрос о нескольких людях.",
+                "uk": "У записі перше слово — `Does`, запитання про одну людину, а в цьому варіанті — `Do`, запитання про кількох людей."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-16:i10:p1",
+              "target": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай",
+                "uk": "папуга"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i10:p2",
+              "target": "cage",
+              "meaningByLocale": {
+                "ru": "клетка",
+                "uk": "клітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i10:p3",
+              "target": "aquarium",
+              "meaningByLocale": {
+                "ru": "аквариум",
+                "uk": "акваріум"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i10:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "parrot",
+            "cage",
+            "aquarium",
+            "box"
+          ],
+          "rightColumn": [
+            "попугай",
+            "клетка",
+            "аквариум",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте хозяйку и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте хозяйку и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i11:audio",
+            "transcript": "Do you have a turtle?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have a turtle?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "turtle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Клетка пустая. Скажите хозяйке: «В клетке нет попугая»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клетка пустая. Скажите хозяйке: «В клетке нет попугая»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is no parrot in the cage.",
+          "localizedMeaning": {
+            "ru": "Клетка пустая. Скажите хозяйке: «В клетке нет попугая»",
+            "uk": "Клітка порожня. Скажіть господині: «У клітці немає папуги»"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "no",
+            "parrot",
+            "in",
+            "the",
+            "cage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы заглянули в коробку. Скажите подруге: «В коробке нет черепахи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i13:audio"
+        ],
+        "accessibilityLabel": "Вы заглянули в коробку. Скажите подруге: «В коробке нет черепахи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i13:audio",
+            "transcript": "There is no turtle in the box."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is no turtle in the box.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите хозяйку о черепахе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i14:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i14:r3",
+            "text": "is have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите хозяйку о черепахе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите хозяйку о черепахе. Выберите слово",
+            "uk": "Спитайте господиню про черепаху. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ a turtle?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-16:i14:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i14:r3",
+              "text": "is have"
+            }
+          ],
+          "testedDimension": "Спросите хозяйку о черепахе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i14:r2",
+              "correct": false,
+              "testedDimension": "Спросите хозяйку о черепахе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Do you` нужно `have`, не `has`.",
+                "uk": "Після `Do you` потрібно `have`, не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i14:r3",
+              "correct": false,
+              "testedDimension": "Спросите хозяйку о черепахе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do you have?`, без `is`.",
+                "uk": "Потрібно `Do you have?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i15:r1",
+            "text": "Does the turtle sleep?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i15:r2",
+            "text": "Does the turtle work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i15:r3",
+            "text": "Does the parrot sleep?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i15:audio",
+            "transcript": "Does the turtle sleep?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:i15:r1",
+              "targetText": "Does the turtle sleep?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i15:r2",
+              "targetText": "Does the turtle work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i15:r3",
+              "targetText": "Does the parrot sleep?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleep`, спать, а в этом варианте — `work`, работать.",
+                "uk": "У записі останнє слово — `sleep`, спати, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `turtle`, черепаха, а в этом варианте — `parrot`, попугай.",
+                "uk": "У записі третє слово — `turtle`, черепаха, а в цьому варіанті — `parrot`, папуга."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-16:i16:p1",
+              "target": "turtle",
+              "meaningByLocale": {
+                "ru": "черепаха",
+                "uk": "черепаха"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i16:p2",
+              "target": "goldfish",
+              "meaningByLocale": {
+                "ru": "золотая рыбка",
+                "uk": "золота рибка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i16:p3",
+              "target": "farmer",
+              "meaningByLocale": {
+                "ru": "фермер",
+                "uk": "фермер"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i16:p4",
+              "target": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай",
+                "uk": "папуга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "turtle",
+            "goldfish",
+            "farmer",
+            "parrot"
+          ],
+          "rightColumn": [
+            "черепаха",
+            "золотая рыбка",
+            "фермер",
+            "попугай"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы остались у аквариума. Спросите подругу о её родителях: «Они кормят золотую рыбку рано?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Вы остались у аквариума. Спросите подругу о её родителях: «Они кормят золотую рыбку рано?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i17:audio",
+            "transcript": "Do they feed the goldfish early?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they feed the goldfish early?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-16:word:farmer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — farmer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:farmer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — farmer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:farmer:audio",
+            "transcript": "farmer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:farmer:r1",
+              "targetText": "farmer",
+              "meaningByLocale": {
+                "ru": "фермер. The farmer is strong. — «Фермер сильный». Человек, который растит овощи или держит животных.",
+                "uk": "фермер. The farmer is strong. — «Фермер сильний». Людина, яка вирощує овочі або тримає тварин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "farmer",
+            "definitionByLocale": {
+              "ru": "фермер. The farmer is strong. — «Фермер сильный». Человек, который растит овощи или держит животных.",
+              "uk": "фермер. The farmer is strong. — «Фермер сильний». Людина, яка вирощує овочі або тримає тварин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете дізнатися, де живе фермер. Спитайте подругу: «Фермер живе тут?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете дізнатися, де живе фермер. Спитайте подругу: «Фермер живе тут?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the farmer live here?",
+          "localizedMeaning": {
+            "ru": "Вы хотите узнать, где живёт фермер. Спросите подругу: «Фермер живёт здесь?»",
+            "uk": "Ви хочете дізнатися, де живе фермер. Спитайте подругу: «Фермер живе тут?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "farmer",
+            "live",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:word:parrot",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — parrot",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:parrot:audio"
+        ],
+        "accessibilityLabel": "Картка слова — parrot",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:parrot:audio",
+            "transcript": "parrot"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:parrot:r1",
+              "targetText": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай. The parrot is loud. — «Попугай громкий». Яркая птица, которая может повторять слова.",
+                "uk": "папуга. The parrot is loud. — «Папуга гучний». Яскравий птах, який може повторювати слова."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parrot",
+            "definitionByLocale": {
+              "ru": "попугай. The parrot is loud. — «Попугай громкий». Яркая птица, которая может повторять слова.",
+              "uk": "папуга. The parrot is loud. — «Папуга гучний». Яскравий птах, який може повторювати слова."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте господиню",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i02:r1",
+            "text": "Do you have a parrot?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i02:r2",
+            "text": "Do you have a cage?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i02:r3",
+            "text": "Do they have a parrot?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте господиню",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i02:audio",
+            "transcript": "Do you have a parrot?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:i02:r1",
+              "targetText": "Do you have a parrot?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i02:r2",
+              "targetText": "Do you have a cage?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i02:r3",
+              "targetText": "Do they have a parrot?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте господиню",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `parrot`, попугай, а в этом варианте — `cage`, клетка.",
+                "uk": "У записі останнє слово — `parrot`, папуга, а в цьому варіанті — `cage`, клітка."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте господиню",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:word:goldfish",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — goldfish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:goldfish:audio"
+        ],
+        "accessibilityLabel": "Картка слова — goldfish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:goldfish:audio",
+            "transcript": "goldfish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:goldfish:r1",
+              "targetText": "goldfish",
+              "meaningByLocale": {
+                "ru": "золотая рыбка. The goldfish is small. — «Золотая рыбка маленькая». Небольшая рыба, которую держат в аквариуме.",
+                "uk": "золота рибка. The goldfish is small. — «Золота рибка маленька». Невелика риба, яку тримають в акваріумі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "goldfish",
+            "definitionByLocale": {
+              "ru": "золотая рыбка. The goldfish is small. — «Золотая рыбка маленькая». Небольшая рыба, которую держат в аквариуме.",
+              "uk": "золота рибка. The goldfish is small. — «Золота рибка маленька». Невелика риба, яку тримають в акваріумі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте подругу про її батьків. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i03:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i03:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте подругу про її батьків. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о её родителях. Выберите слово",
+            "uk": "Спитайте подругу про її батьків. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ they feed the goldfish early?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-16:i03:r1",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i03:r2",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Спитайте подругу про її батьків. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про її батьків. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Do`.",
+                "uk": "З `they` потрібно `Do`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про її батьків. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С действием `feed` нужно `Do`, а не `Are`.",
+                "uk": "З дією `feed` потрібне `Do`, а не `Are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-16:i04:p1",
+              "target": "farmer",
+              "meaningByLocale": {
+                "ru": "фермер",
+                "uk": "фермер"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i04:p2",
+              "target": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай",
+                "uk": "папуга"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i04:p3",
+              "target": "goldfish",
+              "meaningByLocale": {
+                "ru": "золотая рыбка",
+                "uk": "золота рибка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i04:p4",
+              "target": "cage",
+              "meaningByLocale": {
+                "ru": "клетка",
+                "uk": "клітка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "farmer",
+            "parrot",
+            "goldfish",
+            "cage"
+          ],
+          "rightColumn": [
+            "фермер",
+            "папуга",
+            "золота рибка",
+            "клітка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:word:turtle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — turtle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:word:turtle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — turtle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:word:turtle:audio",
+            "transcript": "turtle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:word:turtle:r1",
+              "targetText": "turtle",
+              "meaningByLocale": {
+                "ru": "черепаха. The turtle is slow. — «Черепаха медленная». Животное с твёрдым панцирем на спине.",
+                "uk": "черепаха. The turtle is slow. — «Черепаха повільна». Тварина з твердим панциром на спині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turtle",
+            "definitionByLocale": {
+              "ru": "черепаха. The turtle is slow. — «Черепаха медленная». Животное с твёрдым панцирем на спине.",
+              "uk": "черепаха. The turtle is slow. — «Черепаха повільна». Тварина з твердим панциром на спині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i05:audio",
+            "transcript": "Does the turtle sleep?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the turtle sleep?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "turtle",
+            "sleep"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a parrot?",
+          "localizedMeaning": {
+            "ru": "Из соседней комнаты слышен голос птицы. Спросите хозяйку: «У вас есть попугай?»",
+            "uk": "Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "parrot"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви стоїте біля акваріума. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i07:audio"
+        ],
+        "accessibilityLabel": "Ви стоїте біля акваріума. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i07:audio",
+            "transcript": "Do they feed the goldfish early?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they feed the goldfish early?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте подругу про черепаху. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i08:r1",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте подругу про черепаху. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о черепахе. Выберите слово",
+            "uk": "Спитайте подругу про черепаху. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ the turtle sleep?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-16:i08:r1",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спитайте подругу про черепаху. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про черепаху. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Черепаха одна: нужно `Does`.",
+                "uk": "Черепаха одна: потрібно `Does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про черепаху. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С действием `sleep` нужно `Does`, а не `Is`.",
+                "uk": "З дією `sleep` потрібне `Does`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i09:r1",
+            "text": "Does the farmer live here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i09:r2",
+            "text": "Does the farmer work here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i09:r3",
+            "text": "Do they live here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i09:audio",
+            "transcript": "Does the farmer live here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:i09:r1",
+              "targetText": "Does the farmer live here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i09:r2",
+              "targetText": "Does the farmer work here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i09:r3",
+              "targetText": "Do they live here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `live`, жить, а в этом варианте — `work`, работать.",
+                "uk": "У записі четверте слово — `live`, жити, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Does`, вопрос об одном человеке, а в этом варианте — `Do`, вопрос о нескольких людях.",
+                "uk": "У записі перше слово — `Does`, запитання про одну людину, а в цьому варіанті — `Do`, запитання про кількох людей."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-16:i10:p1",
+              "target": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай",
+                "uk": "папуга"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i10:p2",
+              "target": "cage",
+              "meaningByLocale": {
+                "ru": "клетка",
+                "uk": "клітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i10:p3",
+              "target": "aquarium",
+              "meaningByLocale": {
+                "ru": "аквариум",
+                "uk": "акваріум"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i10:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "parrot",
+            "cage",
+            "aquarium",
+            "box"
+          ],
+          "rightColumn": [
+            "папуга",
+            "клітка",
+            "акваріум",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте господиню й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте господиню й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i11:audio",
+            "transcript": "Do you have a turtle?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have a turtle?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "turtle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Клітка порожня. Скажіть господині: «У клітці немає папуги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клітка порожня. Скажіть господині: «У клітці немає папуги»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is no parrot in the cage.",
+          "localizedMeaning": {
+            "ru": "Клетка пустая. Скажите хозяйке: «В клетке нет попугая»",
+            "uk": "Клітка порожня. Скажіть господині: «У клітці немає папуги»"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "no",
+            "parrot",
+            "in",
+            "the",
+            "cage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви зазирнули в коробку. Скажіть подрузі: «У коробці немає черепахи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i13:audio"
+        ],
+        "accessibilityLabel": "Ви зазирнули в коробку. Скажіть подрузі: «У коробці немає черепахи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i13:audio",
+            "transcript": "There is no turtle in the box."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is no turtle in the box.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте господиню про черепаху. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i14:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i14:r3",
+            "text": "is have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте господиню про черепаху. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите хозяйку о черепахе. Выберите слово",
+            "uk": "Спитайте господиню про черепаху. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ a turtle?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-16:i14:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i14:r3",
+              "text": "is have"
+            }
+          ],
+          "testedDimension": "Спитайте господиню про черепаху. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i14:r2",
+              "correct": false,
+              "testedDimension": "Спитайте господиню про черепаху. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Do you` нужно `have`, не `has`.",
+                "uk": "Після `Do you` потрібно `have`, не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i14:r3",
+              "correct": false,
+              "testedDimension": "Спитайте господиню про черепаху. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do you have?`, без `is`.",
+                "uk": "Потрібно `Do you have?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i15:r1",
+            "text": "Does the turtle sleep?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i15:r2",
+            "text": "Does the turtle work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i15:r3",
+            "text": "Does the parrot sleep?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i15:audio",
+            "transcript": "Does the turtle sleep?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-16:i15:r1",
+              "targetText": "Does the turtle sleep?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i15:r2",
+              "targetText": "Does the turtle work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i15:r3",
+              "targetText": "Does the parrot sleep?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-16:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleep`, спать, а в этом варианте — `work`, работать.",
+                "uk": "У записі останнє слово — `sleep`, спати, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-16:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `turtle`, черепаха, а в этом варианте — `parrot`, попугай.",
+                "uk": "У записі третє слово — `turtle`, черепаха, а в цьому варіанті — `parrot`, папуга."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-16:i16:p1",
+              "target": "turtle",
+              "meaningByLocale": {
+                "ru": "черепаха",
+                "uk": "черепаха"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i16:p2",
+              "target": "goldfish",
+              "meaningByLocale": {
+                "ru": "золотая рыбка",
+                "uk": "золота рибка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i16:p3",
+              "target": "farmer",
+              "meaningByLocale": {
+                "ru": "фермер",
+                "uk": "фермер"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-16:i16:p4",
+              "target": "parrot",
+              "meaningByLocale": {
+                "ru": "попугай",
+                "uk": "папуга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "turtle",
+            "goldfish",
+            "farmer",
+            "parrot"
+          ],
+          "rightColumn": [
+            "черепаха",
+            "золота рибка",
+            "фермер",
+            "папуга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви лишилися біля акваріума. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Ви лишилися біля акваріума. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-16:i17:audio",
+            "transcript": "Do they feed the goldfish early?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they feed the goldfish early?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-16:word:farmer",
+      "correctText": "farmer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i01",
+      "correctText": "Does the farmer live here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:word:parrot",
+      "correctText": "parrot",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i02",
+      "correctText": "Do you have a parrot?",
+      "correctResponseId": "en:lesson-07:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:word:goldfish",
+      "correctText": "goldfish",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i03",
+      "correctText": "Do",
+      "correctResponseId": "en:lesson-07:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:word:turtle",
+      "correctText": "turtle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i05",
+      "correctText": "Does the turtle sleep?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i06",
+      "correctText": "Do you have a parrot?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i07",
+      "correctText": "Do they feed the goldfish early?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i08",
+      "correctText": "Does",
+      "correctResponseId": "en:lesson-07:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i09",
+      "correctText": "Does the farmer live here?",
+      "correctResponseId": "en:lesson-07:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i11",
+      "correctText": "Do you have a turtle?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i12",
+      "correctText": "There is no parrot in the cage.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i13",
+      "correctText": "There is no turtle in the box.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i14",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-07:session-16:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i15",
+      "correctText": "Does the turtle sleep?",
+      "correctResponseId": "en:lesson-07:session-16:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i17",
+      "correctText": "Do they feed the goldfish early?",
+      "correctResponseId": null
+    }
+  ]
+}

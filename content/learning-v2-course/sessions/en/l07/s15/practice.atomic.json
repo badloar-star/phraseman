@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-15:word:chef",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chef",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:chef:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chef",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:chef:audio",
+            "transcript": "chef"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:chef:r1",
+              "targetText": "chef",
+              "meaningByLocale": {
+                "ru": "повар. The chef is busy. — «Повар занят». Профессиональный повар, не обязательно главный на кухне.",
+                "uk": "кухар. The chef is busy. — «Кухар зайнятий». Професійний кухар, не обов’язково головний на кухні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chef",
+            "definitionByLocale": {
+              "ru": "повар. The chef is busy. — «Повар занят». Профессиональный повар, не обязательно главный на кухне.",
+              "uk": "кухар. The chef is busy. — «Кухар зайнятий». Професійний кухар, не обов’язково головний на кухні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the chef cook soup?",
+          "localizedMeaning": {
+            "ru": "Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»",
+            "uk": "Ви хочете замовити суп. Спитайте працівника кафе: «Кухар готує суп?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "chef",
+            "cook",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:word:sushi",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sushi",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:sushi:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sushi",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:sushi:audio",
+            "transcript": "sushi"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:sushi:r1",
+              "targetText": "sushi",
+              "meaningByLocale": {
+                "ru": "суши. The sushi is fresh. — «Суши свежие». Японское блюдо из риса с уксусной заправкой; добавки бывают рыбными или овощными.",
+                "uk": "суші. The sushi is fresh. — «Суші свіжі». Японська страва з рису з оцтовою заправкою; додатки бувають рибними або овочевими."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sushi",
+            "definitionByLocale": {
+              "ru": "суши. The sushi is fresh. — «Суши свежие». Японское блюдо из риса с уксусной заправкой; добавки бывают рыбными или овощными.",
+              "uk": "суші. The sushi is fresh. — «Суші свіжі». Японська страва з рису з оцтовою заправкою; додатки бувають рибними або овочевими."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i02:r1",
+            "text": "Does the cafe serve sushi?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i02:r2",
+            "text": "Does the cafe serve rice?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i02:r3",
+            "text": "Does the kiosk serve sushi?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i02:audio",
+            "transcript": "Does the cafe serve sushi?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:i02:r1",
+              "targetText": "Does the cafe serve sushi?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i02:r2",
+              "targetText": "Does the cafe serve rice?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i02:r3",
+              "targetText": "Does the kiosk serve sushi?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sushi`, суши, а в этом варианте — `rice`, рис.",
+                "uk": "У записі останнє слово — `sushi`, суші, а в цьому варіанті — `rice`, рис."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `cafe`, кафе, а в этом варианте — `kiosk`, киоск.",
+                "uk": "У записі третє слово — `cafe`, кафе, а в цьому варіанті — `kiosk`, кіоск."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:word:kebab",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kebab",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:kebab:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kebab",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:kebab:audio",
+            "transcript": "kebab"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:kebab:r1",
+              "targetText": "kebab",
+              "meaningByLocale": {
+                "ru": "кебаб. The kebab is spicy. — «Кебаб острый». Мясо, жареное на огне, обычно с лавашем.",
+                "uk": "кебаб. The kebab is spicy. — «Кебаб гострий». М’ясо, смажене на вогні, зазвичай із лавашем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kebab",
+            "definitionByLocale": {
+              "ru": "кебаб. The kebab is spicy. — «Кебаб острый». Мясо, жареное на огне, обычно с лавашем.",
+              "uk": "кебаб. The kebab is spicy. — «Кебаб гострий». М’ясо, смажене на вогні, зазвичай із лавашем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i03:r3",
+            "text": "is have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово",
+            "uk": "Ви не любите цибулю. Спитайте продавця: «У кебабі є цибуля?» Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the kebab ___ onion?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-15:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i03:r3",
+              "text": "is have"
+            }
+          ],
+          "testedDimension": "Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `have`, не `has`.",
+                "uk": "Після `Does` потрібно `have`, не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the kebab have?`, без `is`.",
+                "uk": "Потрібно `Does the kebab have?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-15:i04:p1",
+              "target": "chef",
+              "meaningByLocale": {
+                "ru": "повар",
+                "uk": "кухар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i04:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i04:p3",
+              "target": "sushi",
+              "meaningByLocale": {
+                "ru": "суши",
+                "uk": "суші"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i04:p4",
+              "target": "kebab",
+              "meaningByLocale": {
+                "ru": "кебаб",
+                "uk": "кебаб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "chef",
+            "soup",
+            "sushi",
+            "kebab"
+          ],
+          "rightColumn": [
+            "повар",
+            "суп",
+            "суши",
+            "кебаб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:word:noodles",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — noodles",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:noodles:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — noodles",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:noodles:audio",
+            "transcript": "noodles"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:noodles:r1",
+              "targetText": "noodles",
+              "meaningByLocale": {
+                "ru": "лапша. The noodles are hot. — «Лапша горячая». Длинные тонкие полоски из теста.",
+                "uk": "локшина. The noodles are hot. — «Локшина гаряча». Довгі тонкі смужки з тіста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "noodles",
+            "definitionByLocale": {
+              "ru": "лапша. The noodles are hot. — «Лапша горячая». Длинные тонкие полоски из теста.",
+              "uk": "локшина. The noodles are hot. — «Локшина гаряча». Довгі тонкі смужки з тіста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сотрудника кафе и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сотрудника кафе и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i05:audio",
+            "transcript": "Does the chef cook noodles?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the chef cook noodles?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "chef",
+            "cook",
+            "noodles"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с подругой ищете, где пообедать. Спросите её: «Кафе подаёт суши?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с подругой ищете, где пообедать. Спросите её: «Кафе подаёт суши?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the cafe serve sushi?",
+          "localizedMeaning": {
+            "ru": "Вы с подругой ищете, где пообедать. Спросите её: «Кафе подаёт суши?»",
+            "uk": "Ви з подругою шукаєте, де пообідати. Спитайте її: «Кафе подає суші?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "cafe",
+            "serve",
+            "sushi"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы идёте по парку. Спросите прохожего: «Киоск продаёт кебаб?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Вы идёте по парку. Спросите прохожего: «Киоск продаёт кебаб?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i07:audio",
+            "transcript": "Does the kiosk sell kebabs?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the kiosk sell kebabs?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите сотрудника кафе о супе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i08:r1",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите сотрудника кафе о супе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите сотрудника кафе о супе. Выберите слово",
+            "uk": "Спитайте працівника кафе про суп. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ the chef cook soup?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-15:i08:r1",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спросите сотрудника кафе о супе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Спросите сотрудника кафе о супе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Повар один: нужно `Does`.",
+                "uk": "Кухар один: потрібно `Does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Спросите сотрудника кафе о супе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С действием `cook` нужно `Does`, а не `Is`.",
+                "uk": "З дією `cook` потрібне `Does`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сотрудника кафе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i09:r1",
+            "text": "Does the chef cook noodles?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i09:r2",
+            "text": "Does the chef cook soup?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i09:r3",
+            "text": "Does the cafe cook noodles?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте сотрудника кафе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i09:audio",
+            "transcript": "Does the chef cook noodles?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:i09:r1",
+              "targetText": "Does the chef cook noodles?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i09:r2",
+              "targetText": "Does the chef cook soup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i09:r3",
+              "targetText": "Does the cafe cook noodles?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудника кафе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `noodles`, лапша, а в этом варианте — `soup`, суп.",
+                "uk": "У записі останнє слово — `noodles`, локшина, а в цьому варіанті — `soup`, суп."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудника кафе",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `chef`, повар, а в этом варианте — `cafe`, кафе.",
+                "uk": "У записі третє слово — `chef`, кухар, а в цьому варіанті — `cafe`, кафе."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-15:i10:p1",
+              "target": "noodles",
+              "meaningByLocale": {
+                "ru": "лапша",
+                "uk": "локшина"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i10:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i10:p3",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i10:p4",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            }
+          ],
+          "leftColumn": [
+            "noodles",
+            "soup",
+            "rice",
+            "pasta"
+          ],
+          "rightColumn": [
+            "лапша",
+            "суп",
+            "рис",
+            "макароны"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте прохожего и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте прохожего и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i11:audio",
+            "transcript": "Does the kiosk sell kebabs?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the kiosk sell kebabs?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "kiosk",
+            "sell",
+            "kebabs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у кухни кафе. Спросите сотрудника: «Повар готовит рис?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у кухни кафе. Спросите сотрудника: «Повар готовит рис?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the chef cook rice?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у кухни кафе. Спросите сотрудника: «Повар готовит рис?»",
+            "uk": "Ви стоїте біля кухні кафе. Спитайте працівника: «Кухар готує рис?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "chef",
+            "cook",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На вывеске нарисована лапша. Спросите подругу: «Кафе подаёт лапшу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "На вывеске нарисована лапша. Спросите подругу: «Кафе подаёт лапшу?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i13:audio",
+            "transcript": "Does the cafe serve noodles?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the cafe serve noodles?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите подругу о кафе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i14:r1",
+            "text": "serve"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i14:r2",
+            "text": "serves"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i14:r3",
+            "text": "is serve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите подругу о кафе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о кафе. Выберите слово",
+            "uk": "Спитайте подругу про кафе. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the cafe ___ sushi?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-15:i14:r1",
+              "text": "serve"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i14:r2",
+              "text": "serves"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i14:r3",
+              "text": "is serve"
+            }
+          ],
+          "testedDimension": "Спросите подругу о кафе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i14:r2",
+              "correct": false,
+              "testedDimension": "Спросите подругу о кафе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `serve`, без `s`.",
+                "uk": "Після `Does` потрібно `serve`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Спросите подругу о кафе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the cafe serve?`, без `is`.",
+                "uk": "Потрібно `Does the cafe serve?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте прохожего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i15:r1",
+            "text": "Does the kiosk sell kebabs?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i15:r2",
+            "text": "Does the kiosk sell sushi?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i15:r3",
+            "text": "Does the cafe sell kebabs?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте прохожего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i15:audio",
+            "transcript": "Does the kiosk sell kebabs?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:i15:r1",
+              "targetText": "Does the kiosk sell kebabs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i15:r2",
+              "targetText": "Does the kiosk sell sushi?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i15:r3",
+              "targetText": "Does the cafe sell kebabs?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `kebabs`, кебабы, а в этом варианте — `sushi`, суши.",
+                "uk": "У записі останнє слово — `kebabs`, кебаби, а в цьому варіанті — `sushi`, суші."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `kiosk`, киоск, а в этом варианте — `cafe`, кафе.",
+                "uk": "У записі третє слово — `kiosk`, кіоск, а в цьому варіанті — `cafe`, кафе."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-15:i16:p1",
+              "target": "chef",
+              "meaningByLocale": {
+                "ru": "повар",
+                "uk": "кухар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i16:p2",
+              "target": "sushi",
+              "meaningByLocale": {
+                "ru": "суши",
+                "uk": "суші"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i16:p3",
+              "target": "kebab",
+              "meaningByLocale": {
+                "ru": "кебаб",
+                "uk": "кебаб"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i16:p4",
+              "target": "noodles",
+              "meaningByLocale": {
+                "ru": "лапша",
+                "uk": "локшина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "chef",
+            "sushi",
+            "kebab",
+            "noodles"
+          ],
+          "rightColumn": [
+            "повар",
+            "суши",
+            "кебаб",
+            "лапша"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы пришли в кафе. Спросите сотрудника: «Повар готовит лапшу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Вы пришли в кафе. Спросите сотрудника: «Повар готовит лапшу?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i17:audio",
+            "transcript": "Does the chef cook noodles?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the chef cook noodles?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-15:word:chef",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chef",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:chef:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chef",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:chef:audio",
+            "transcript": "chef"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:chef:r1",
+              "targetText": "chef",
+              "meaningByLocale": {
+                "ru": "повар. The chef is busy. — «Повар занят». Профессиональный повар, не обязательно главный на кухне.",
+                "uk": "кухар. The chef is busy. — «Кухар зайнятий». Професійний кухар, не обов’язково головний на кухні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chef",
+            "definitionByLocale": {
+              "ru": "повар. The chef is busy. — «Повар занят». Профессиональный повар, не обязательно главный на кухне.",
+              "uk": "кухар. The chef is busy. — «Кухар зайнятий». Професійний кухар, не обов’язково головний на кухні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете замовити суп. Спитайте працівника кафе: «Кухар готує суп?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете замовити суп. Спитайте працівника кафе: «Кухар готує суп?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the chef cook soup?",
+          "localizedMeaning": {
+            "ru": "Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»",
+            "uk": "Ви хочете замовити суп. Спитайте працівника кафе: «Кухар готує суп?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "chef",
+            "cook",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:word:sushi",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sushi",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:sushi:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sushi",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:sushi:audio",
+            "transcript": "sushi"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:sushi:r1",
+              "targetText": "sushi",
+              "meaningByLocale": {
+                "ru": "суши. The sushi is fresh. — «Суши свежие». Японское блюдо из риса с уксусной заправкой; добавки бывают рыбными или овощными.",
+                "uk": "суші. The sushi is fresh. — «Суші свіжі». Японська страва з рису з оцтовою заправкою; додатки бувають рибними або овочевими."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sushi",
+            "definitionByLocale": {
+              "ru": "суши. The sushi is fresh. — «Суши свежие». Японское блюдо из риса с уксусной заправкой; добавки бывают рыбными или овощными.",
+              "uk": "суші. The sushi is fresh. — «Суші свіжі». Японська страва з рису з оцтовою заправкою; додатки бувають рибними або овочевими."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i02:r1",
+            "text": "Does the cafe serve sushi?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i02:r2",
+            "text": "Does the cafe serve rice?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i02:r3",
+            "text": "Does the kiosk serve sushi?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i02:audio",
+            "transcript": "Does the cafe serve sushi?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:i02:r1",
+              "targetText": "Does the cafe serve sushi?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i02:r2",
+              "targetText": "Does the cafe serve rice?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i02:r3",
+              "targetText": "Does the kiosk serve sushi?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sushi`, суши, а в этом варианте — `rice`, рис.",
+                "uk": "У записі останнє слово — `sushi`, суші, а в цьому варіанті — `rice`, рис."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `cafe`, кафе, а в этом варианте — `kiosk`, киоск.",
+                "uk": "У записі третє слово — `cafe`, кафе, а в цьому варіанті — `kiosk`, кіоск."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:word:kebab",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kebab",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:kebab:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kebab",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:kebab:audio",
+            "transcript": "kebab"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:kebab:r1",
+              "targetText": "kebab",
+              "meaningByLocale": {
+                "ru": "кебаб. The kebab is spicy. — «Кебаб острый». Мясо, жареное на огне, обычно с лавашем.",
+                "uk": "кебаб. The kebab is spicy. — «Кебаб гострий». М’ясо, смажене на вогні, зазвичай із лавашем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kebab",
+            "definitionByLocale": {
+              "ru": "кебаб. The kebab is spicy. — «Кебаб острый». Мясо, жареное на огне, обычно с лавашем.",
+              "uk": "кебаб. The kebab is spicy. — «Кебаб гострий». М’ясо, смажене на вогні, зазвичай із лавашем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не любите цибулю. Спитайте продавця: «У кебабі є цибуля?» Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i03:r3",
+            "text": "is have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не любите цибулю. Спитайте продавця: «У кебабі є цибуля?» Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово",
+            "uk": "Ви не любите цибулю. Спитайте продавця: «У кебабі є цибуля?» Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the kebab ___ onion?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-15:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i03:r3",
+              "text": "is have"
+            }
+          ],
+          "testedDimension": "Ви не любите цибулю. Спитайте продавця: «У кебабі є цибуля?» Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви не любите цибулю. Спитайте продавця: «У кебабі є цибуля?» Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `have`, не `has`.",
+                "uk": "Після `Does` потрібно `have`, не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви не любите цибулю. Спитайте продавця: «У кебабі є цибуля?» Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the kebab have?`, без `is`.",
+                "uk": "Потрібно `Does the kebab have?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-15:i04:p1",
+              "target": "chef",
+              "meaningByLocale": {
+                "ru": "повар",
+                "uk": "кухар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i04:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i04:p3",
+              "target": "sushi",
+              "meaningByLocale": {
+                "ru": "суши",
+                "uk": "суші"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i04:p4",
+              "target": "kebab",
+              "meaningByLocale": {
+                "ru": "кебаб",
+                "uk": "кебаб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "chef",
+            "soup",
+            "sushi",
+            "kebab"
+          ],
+          "rightColumn": [
+            "кухар",
+            "суп",
+            "суші",
+            "кебаб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:word:noodles",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — noodles",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:word:noodles:audio"
+        ],
+        "accessibilityLabel": "Картка слова — noodles",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:word:noodles:audio",
+            "transcript": "noodles"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:word:noodles:r1",
+              "targetText": "noodles",
+              "meaningByLocale": {
+                "ru": "лапша. The noodles are hot. — «Лапша горячая». Длинные тонкие полоски из теста.",
+                "uk": "локшина. The noodles are hot. — «Локшина гаряча». Довгі тонкі смужки з тіста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "noodles",
+            "definitionByLocale": {
+              "ru": "лапша. The noodles are hot. — «Лапша горячая». Длинные тонкие полоски из теста.",
+              "uk": "локшина. The noodles are hot. — «Локшина гаряча». Довгі тонкі смужки з тіста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте працівника кафе й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте працівника кафе й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i05:audio",
+            "transcript": "Does the chef cook noodles?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the chef cook noodles?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "chef",
+            "cook",
+            "noodles"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з подругою шукаєте, де пообідати. Спитайте її: «Кафе подає суші?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з подругою шукаєте, де пообідати. Спитайте її: «Кафе подає суші?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the cafe serve sushi?",
+          "localizedMeaning": {
+            "ru": "Вы с подругой ищете, где пообедать. Спросите её: «Кафе подаёт суши?»",
+            "uk": "Ви з подругою шукаєте, де пообідати. Спитайте її: «Кафе подає суші?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "cafe",
+            "serve",
+            "sushi"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви йдете парком. Спитайте перехожого: «Кіоск продає кебаб?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Ви йдете парком. Спитайте перехожого: «Кіоск продає кебаб?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i07:audio",
+            "transcript": "Does the kiosk sell kebabs?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the kiosk sell kebabs?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте працівника кафе про суп. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i08:r1",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте працівника кафе про суп. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите сотрудника кафе о супе. Выберите слово",
+            "uk": "Спитайте працівника кафе про суп. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ the chef cook soup?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-15:i08:r1",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спитайте працівника кафе про суп. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Спитайте працівника кафе про суп. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Повар один: нужно `Does`.",
+                "uk": "Кухар один: потрібно `Does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Спитайте працівника кафе про суп. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С действием `cook` нужно `Does`, а не `Is`.",
+                "uk": "З дією `cook` потрібне `Does`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте працівника кафе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i09:r1",
+            "text": "Does the chef cook noodles?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i09:r2",
+            "text": "Does the chef cook soup?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i09:r3",
+            "text": "Does the cafe cook noodles?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте працівника кафе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i09:audio",
+            "transcript": "Does the chef cook noodles?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:i09:r1",
+              "targetText": "Does the chef cook noodles?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i09:r2",
+              "targetText": "Does the chef cook soup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i09:r3",
+              "targetText": "Does the cafe cook noodles?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте працівника кафе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `noodles`, лапша, а в этом варианте — `soup`, суп.",
+                "uk": "У записі останнє слово — `noodles`, локшина, а в цьому варіанті — `soup`, суп."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте працівника кафе",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `chef`, повар, а в этом варианте — `cafe`, кафе.",
+                "uk": "У записі третє слово — `chef`, кухар, а в цьому варіанті — `cafe`, кафе."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-15:i10:p1",
+              "target": "noodles",
+              "meaningByLocale": {
+                "ru": "лапша",
+                "uk": "локшина"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i10:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i10:p3",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i10:p4",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            }
+          ],
+          "leftColumn": [
+            "noodles",
+            "soup",
+            "rice",
+            "pasta"
+          ],
+          "rightColumn": [
+            "локшина",
+            "суп",
+            "рис",
+            "макарони"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте перехожого й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте перехожого й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i11:audio",
+            "transcript": "Does the kiosk sell kebabs?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the kiosk sell kebabs?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "kiosk",
+            "sell",
+            "kebabs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля кухні кафе. Спитайте працівника: «Кухар готує рис?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля кухні кафе. Спитайте працівника: «Кухар готує рис?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the chef cook rice?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у кухни кафе. Спросите сотрудника: «Повар готовит рис?»",
+            "uk": "Ви стоїте біля кухні кафе. Спитайте працівника: «Кухар готує рис?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "chef",
+            "cook",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На вивісці намальована локшина. Спитайте подругу: «Кафе подає локшину?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "На вивісці намальована локшина. Спитайте подругу: «Кафе подає локшину?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i13:audio",
+            "transcript": "Does the cafe serve noodles?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the cafe serve noodles?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте подругу про кафе. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i14:r1",
+            "text": "serve"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i14:r2",
+            "text": "serves"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i14:r3",
+            "text": "is serve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте подругу про кафе. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о кафе. Выберите слово",
+            "uk": "Спитайте подругу про кафе. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the cafe ___ sushi?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-15:i14:r1",
+              "text": "serve"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i14:r2",
+              "text": "serves"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i14:r3",
+              "text": "is serve"
+            }
+          ],
+          "testedDimension": "Спитайте подругу про кафе. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i14:r2",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про кафе. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `serve`, без `s`.",
+                "uk": "Після `Does` потрібно `serve`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про кафе. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the cafe serve?`, без `is`.",
+                "uk": "Потрібно `Does the cafe serve?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте перехожого",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i15:r1",
+            "text": "Does the kiosk sell kebabs?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i15:r2",
+            "text": "Does the kiosk sell sushi?"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i15:r3",
+            "text": "Does the cafe sell kebabs?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте перехожого",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i15:audio",
+            "transcript": "Does the kiosk sell kebabs?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-15:i15:r1",
+              "targetText": "Does the kiosk sell kebabs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i15:r2",
+              "targetText": "Does the kiosk sell sushi?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i15:r3",
+              "targetText": "Does the cafe sell kebabs?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `kebabs`, кебабы, а в этом варианте — `sushi`, суши.",
+                "uk": "У записі останнє слово — `kebabs`, кебаби, а в цьому варіанті — `sushi`, суші."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `kiosk`, киоск, а в этом варианте — `cafe`, кафе.",
+                "uk": "У записі третє слово — `kiosk`, кіоск, а в цьому варіанті — `cafe`, кафе."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-15:i16:p1",
+              "target": "chef",
+              "meaningByLocale": {
+                "ru": "повар",
+                "uk": "кухар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i16:p2",
+              "target": "sushi",
+              "meaningByLocale": {
+                "ru": "суши",
+                "uk": "суші"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i16:p3",
+              "target": "kebab",
+              "meaningByLocale": {
+                "ru": "кебаб",
+                "uk": "кебаб"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-15:i16:p4",
+              "target": "noodles",
+              "meaningByLocale": {
+                "ru": "лапша",
+                "uk": "локшина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "chef",
+            "sushi",
+            "kebab",
+            "noodles"
+          ],
+          "rightColumn": [
+            "кухар",
+            "суші",
+            "кебаб",
+            "локшина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви прийшли в кафе. Спитайте працівника: «Кухар готує локшину?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Ви прийшли в кафе. Спитайте працівника: «Кухар готує локшину?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-15:i17:audio",
+            "transcript": "Does the chef cook noodles?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the chef cook noodles?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-15:word:chef",
+      "correctText": "chef",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i01",
+      "correctText": "Does the chef cook soup?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:word:sushi",
+      "correctText": "sushi",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i02",
+      "correctText": "Does the cafe serve sushi?",
+      "correctResponseId": "en:lesson-07:session-15:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:word:kebab",
+      "correctText": "kebab",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i03",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-07:session-15:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:word:noodles",
+      "correctText": "noodles",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i05",
+      "correctText": "Does the chef cook noodles?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i06",
+      "correctText": "Does the cafe serve sushi?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i07",
+      "correctText": "Does the kiosk sell kebabs?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i08",
+      "correctText": "Does",
+      "correctResponseId": "en:lesson-07:session-15:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i09",
+      "correctText": "Does the chef cook noodles?",
+      "correctResponseId": "en:lesson-07:session-15:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i11",
+      "correctText": "Does the kiosk sell kebabs?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i12",
+      "correctText": "Does the chef cook rice?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i13",
+      "correctText": "Does the cafe serve noodles?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i14",
+      "correctText": "serve",
+      "correctResponseId": "en:lesson-07:session-15:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i15",
+      "correctText": "Does the kiosk sell kebabs?",
+      "correctResponseId": "en:lesson-07:session-15:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i17",
+      "correctText": "Does the chef cook noodles?",
+      "correctResponseId": null
+    }
+  ]
+}

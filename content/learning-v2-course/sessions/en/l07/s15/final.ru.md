@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 15 — Расписание на сайте
+# Английский · Урок 7 · Занятие 15 — Что готовят в кафе
 
-**Ситуация.** Вы хотите посмотреть расписание занятий на сайте клуба, но страница не открывается. Друг помогает узнать, что происходит.
+**Ситуация.** Вы ищете, где вкусно поесть рядом с домом, и спрашиваете у людей: что готовит повар, что подают в кафе и что продают в киоске.
 
-**Что вы освоите:** спросить о работе сайта и привычках людей, сообщить об отсутствии расписания
-**Новые слова:** website
+**Что вы освоите:** спросить о том, что готовит или продаёт один человек или место, с помощью Does
+**Новые слова:** chef, noodles, sushi, kebab
+**Возвращаются:** soup, rice, pasta, cafe, kiosk, cook, serve, sell
 
 ---
 
 ## Интро 1
 
-### Страница не открывается
+### Суп в кафе
 
-`website` — «веб-сайт», обычно просто «сайт». Вы пытаетесь открыть сайт клуба. `Does the website work?` — «Сайт работает?» Об одном сайте спрашиваем с `Does`, затем `the website work`. После `Does` к `work` не добавляем `s`.
+Вы пришли в кафе у вокзала и хотите заказать суп на обед. Сотрудник за стойкой говорит, что на кухне сегодня работает повар. chef — «повар». Спросите: Does the chef cook soup? — «Повар готовит суп?» Повар один, поэтому Does, а cook без s.
 
-**Спросите друга «Сайт работает?»**
+**Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»**
 
-- ✅ **Does the website work?**
-- ❌ Do the website work? — *Один сайт: `Does the website`.*
-- ❌ Does the website works? — *После `Does` нужно `work`.*
+- ✅ **Does the chef cook soup?**
+- ❌ Do the chef cook soup? — *Повар один: нужно Does.*
+- ❌ Does the chef cooks soup? — *После Does нужно cook, без s.*
 
 ---
 
 ## Интро 2
 
-### Нужной информации нет
+### Вывеска кафе
 
-Сайт открылся, но вы не нашли расписание. `There is no schedule here` — «Здесь нет расписания». Это сообщение об отсутствии расписания, а не о поломке сайта. Сайт может работать прекрасно и всё равно не отвечать на ваш единственный вопрос.
+Вы с подругой ищете, где недорого пообедать. На вывеске нового кафе на углу нарисованы суши, но меню у входа нет, а внутри вы ещё не были. sushi — «суши». Спросите подругу: Does the cafe serve sushi? — «Кафе подаёт суши?» Кафе одно, поэтому Does, а serve без s.
 
-**Сообщите другу «Здесь нет расписания».**
+**На вывеске нарисованы суши. Спросите подругу: «Кафе подаёт суши?»**
 
-- ✅ **There is no schedule here.**
-- ❌ There are no schedule here. — *Одно расписание: `There is no schedule`.*
-- ❌ There no schedule here. — *Нужно `There is no`, с `is`.*
+- ✅ **Does the cafe serve sushi?**
+- ❌ Do the cafe serve sushi? — *Кафе одно: нужно Does.*
+- ❌ Does the cafe serves sushi? — *После Does нужно serve, без s.*
 
 ---
 
 ## Интро 3
 
-### Кто выступает в клубе
+### Киоск в парке
 
-Друг рассказал, что Анна поёт. Вы уточняете о клубе `Does she sing here?` — «Она поёт здесь?» С `she` используем `Does`, после него `sing`, без `s`. Спрашиваем, выступает ли она здесь обычно.
+Вы проголодались в парке. На углу стоит киоск, и оттуда вкусно пахнет жареным мясом, но что именно там продают, не видно. kebab — «кебаб». Спросите прохожего: Does the kiosk sell kebabs? — «Киоск продаёт кебаб?» Киоск один, поэтому Does, а sell без s.
 
-**Спросите друга об Анне «Она поёт здесь?»**
+**Вы проголодались в парке. Спросите прохожего: «Киоск продаёт кебаб?»**
 
-- ✅ **Does she sing here?**
-- ❌ Do she sing here? — *С `she` нужно `Does`.*
-- ❌ Does she sings here? — *После `Does she` нужно `sing`.*
+- ✅ **Does the kiosk sell kebabs?**
+- ❌ Do the kiosk sell kebabs? — *Киоск один: нужно Does.*
+- ❌ Does the kiosk sells kebabs? — *После Does нужно sell, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Сайт работает?»**
+**1 · Карточка слова — chef**
+<!-- interaction_id: en:lesson-07:session-15:word:chef; family: word_card -->
+> **chef** — повар. The chef is busy. — «Повар занят». Профессиональный повар, не обязательно главный на кухне.
+
+**2 · Вы хотите заказать суп. Спросите сотрудника кафе: «Повар готовит суп?»**
 <!-- interaction_id: en:lesson-07:session-15:i01; family: phrase_builder -->
-Плитки: `work` `website` `the` `Does` → **Does the website work?**
+Плитки: `soup` `cook` `chef` `the` `Does` → **Does the chef cook soup?**
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — sushi**
+<!-- interaction_id: en:lesson-07:session-15:word:sushi; family: word_card -->
+> **sushi** — суши. The sushi is fresh. — «Суши свежие». Японское блюдо из риса с уксусной заправкой; добавки бывают рыбными или овощными.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-15:i02; family: listen_choose -->
-🔊 *website* → **website** · schedule · helmet
-- schedule — *В записи первое слово — `website`, а в этом варианте — `schedule`.*
-- helmet — *В записи первое слово — `website`, а в этом варианте — `helmet`.*
+🔊 *Does the cafe serve sushi?* → **Does the cafe serve sushi?** · Does the cafe serve rice? · Does the kiosk serve sushi?
+- Does the cafe serve rice? — *В записи последнее слово — `sushi`, суши, а в этом варианте — `rice`, рис.*
+- Does the kiosk serve sushi? — *В записи третье слово — `cafe`, кафе, а в этом варианте — `kiosk`, киоск.*
 
-**3 · Спросите, работает ли сайт**
+**5 · Карточка слова — kebab**
+<!-- interaction_id: en:lesson-07:session-15:word:kebab; family: word_card -->
+> **kebab** — кебаб. The kebab is spicy. — «Кебаб острый». Мясо, жареное на огне, обычно с лавашем.
+
+**6 · Вы не любите лук. Спросите продавца: «В кебабе есть лук?» Выберите слово**
 <!-- interaction_id: en:lesson-07:session-15:i03; family: context_gap_grammar -->
-Does the website ___? → **work** · works · is work
-- works — *После `Does` нужно `work`.*
-- is work — *Нужно `Does the website work?`, без `is`.*
+Does the kebab ___ onion? → **have** · has · is have
+- has — *После `Does` нужно `have`, не `has`.*
+- is have — *Нужно `Does the kebab have?`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-15:i04; family: speed_match -->
-website — сайт · schedule — расписание · coat — пальто · helmet — шлем
+chef — повар · soup — суп · sushi — суши · kebab — кебаб
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — noodles**
+<!-- interaction_id: en:lesson-07:session-15:word:noodles; family: word_card -->
+> **noodles** — лапша. The noodles are hot. — «Лапша горячая». Длинные тонкие полоски из теста.
+
+**9 · Послушайте сотрудника кафе и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-15:i05; family: listen_build_dictation -->
-🔊 *Does the website work?* Плитки: `work` `website` `the` `Does` → **Does the website work?**
+🔊 *Does the chef cook noodles?* Плитки: `noodles` `cook` `chef` `the` `Does` → **Does the chef cook noodles?**
 
-**6 · Вы проверили сайт. Сообщите «Здесь нет расписания»**
+**10 · Вы с подругой ищете, где пообедать. Спросите её: «Кафе подаёт суши?»**
 <!-- interaction_id: en:lesson-07:session-15:i06; family: phrase_builder -->
-Плитки: `here` `schedule` `no` `is` `There` → **There is no schedule here.**
+Плитки: `sushi` `serve` `cafe` `the` `Does` → **Does the cafe serve sushi?**
 
-**7 · Спросите об Анне «Она поёт здесь?»**
+**11 · Вы идёте по парку. Спросите прохожего: «Киоск продаёт кебаб?»**
 <!-- interaction_id: en:lesson-07:session-15:i07; family: scripted_repeat_compare -->
-🎙 **Does she sing here?**
+🎙 **Does the kiosk sell kebabs?**
 
-**8 · Спросите знакомого о клубе «Ты поёшь здесь?»**
+**12 · Спросите сотрудника кафе о супе. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-15:i08; family: context_gap_grammar -->
-___ you sing here? → **Do** · Does · Are
-- Does — *С `you` нужно `Do`.*
-- Are — *С действием `sing` здесь нужно `Do you sing?`.*
+___ the chef cook soup? → **Does** · Do · Is
+- Do — *Повар один: нужно `Does`.*
+- Is — *С действием `cook` нужно `Does`, а не `Is`.*
 
-**9 · Послушайте вопрос о месте выступлений**
+**13 · Послушайте сотрудника кафе**
 <!-- interaction_id: en:lesson-07:session-15:i09; family: listen_choose -->
-🔊 *Does she sing here?* → **Does she sing here?** · Does she sing there? · Does she sing outside?
-- Does she sing there? — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- Does she sing outside? — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *Does the chef cook noodles?* → **Does the chef cook noodles?** · Does the chef cook soup? · Does the cafe cook noodles?
+- Does the chef cook soup? — *В записи последнее слово — `noodles`, лапша, а в этом варианте — `soup`, суп.*
+- Does the cafe cook noodles? — *В записи третье слово — `chef`, повар, а в этом варианте — `cafe`, кафе.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-15:i10; family: speed_match -->
-sing — петь · website — сайт · coat — пальто · schedule — расписание
+noodles — лапша · soup — суп · rice — рис · pasta — макароны
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте прохожего и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-15:i11; family: listen_build_dictation -->
-🔊 *Does it work?* Плитки: `work` `it` `Does` → **Does it work?**
+🔊 *Does the kiosk sell kebabs?* Плитки: `kebabs` `sell` `kiosk` `the` `Does` → **Does the kiosk sell kebabs?**
 
-**12 · Друг собирается ехать на велосипеде. Спросите «У тебя есть шлем?»**
+**16 · Вы стоите у кухни кафе. Спросите сотрудника: «Повар готовит рис?»**
 <!-- interaction_id: en:lesson-07:session-15:i12; family: phrase_builder -->
-Плитки: `helmet` `a` `have` `you` `Do` → **Do you have a helmet?**
+Плитки: `rice` `cook` `chef` `the` `Does` → **Does the chef cook rice?**
 
-**13 · У выхода осталось пальто. Спросите «Чьё это пальто?»**
+**17 · На вывеске нарисована лапша. Спросите подругу: «Кафе подаёт лапшу?»**
 <!-- interaction_id: en:lesson-07:session-15:i13; family: scripted_repeat_compare -->
-🎙 **Whose coat is this?**
+🎙 **Does the cafe serve noodles?**
 
-**14 · Спросите о выступлениях Тома «Том поёт здесь?»**
+**18 · Спросите подругу о кафе. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-15:i14; family: context_gap_grammar -->
-Does Tom ___ here? → **sing** · sings · is sing
-- sings — *После `Does Tom` нужно `sing`.*
-- is sing — *Нужно `Does Tom sing?`, без `is`.*
+Does the cafe ___ sushi? → **serve** · serves · is serve
+- serves — *После `Does` нужно `serve`, без `s`.*
+- is serve — *Нужно `Does the cafe serve?`, без `is`.*
 
-**15 · Послушайте, что нужно посетителю**
+**19 · Послушайте прохожего**
 <!-- interaction_id: en:lesson-07:session-15:i15; family: listen_choose -->
-🔊 *Do you have a schedule?* → **Do you have a schedule?** · Do you have a coat? · Do you have a helmet?
-- Do you have a coat? — *В записи последнее слово — `schedule`, а в этом варианте — `coat`.*
-- Do you have a helmet? — *В записи последнее слово — `schedule`, а в этом варианте — `helmet`.*
+🔊 *Does the kiosk sell kebabs?* → **Does the kiosk sell kebabs?** · Does the kiosk sell sushi? · Does the cafe sell kebabs?
+- Does the kiosk sell sushi? — *В записи последнее слово — `kebabs`, кебабы, а в этом варианте — `sushi`, суши.*
+- Does the cafe sell kebabs? — *В записи третье слово — `kiosk`, киоск, а в этом варианте — `cafe`, кафе.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-15:i16; family: speed_match -->
-website — сайт · helmet — шлем · sing — петь · schedule — расписание
+chef — повар · sushi — суши · kebab — кебаб · noodles — лапша
 
-**17 · Друг советует другую школу. Чтобы найти информацию о ней, спросите «У них есть сайт?»**
+**21 · Вы пришли в кафе. Спросите сотрудника: «Повар готовит лапшу?»**
 <!-- interaction_id: en:lesson-07:session-15:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do they have a website?**
-
+🎙 **Does the chef cook noodles?**

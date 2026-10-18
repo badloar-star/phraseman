@@ -4,28 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-12:i01",
+      "interactionId": "en:lesson-07:session-12:word:coach",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:word:coach:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:word:coach:audio",
+          "transcript": "coach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-12:word:coach:r1",
+            "targetText": "coach",
+            "meaningByLocale": {
+              "ru": "междугородный автобус. The coach is big. — «Автобус большой». Автобус, который ездит между городами.",
+              "uk": "міжміський автобус. The coach is big. — «Автобус великий». Автобус, який їздить між містами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coach",
+          "definitionByLocale": {
+            "ru": "междугородный автобус. The coach is big. — «Автобус большой». Автобус, который ездит между городами.",
+            "uk": "міжміський автобус. The coach is big. — «Автобус великий». Автобус, який їздить між містами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Будильник работает?»",
+      "prompt": "Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Будильник работает?»",
+      "accessibilityLabel": "Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does the alarm work?",
+        "targetPhrase": "Does the coach leave early?",
         "localizedMeaning": {
-          "ru": "Спросите «Будильник работает?»",
-          "uk": "Запитайте «Будильник працює?»"
+          "ru": "Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»",
+          "uk": "Ви на автовокзалі. Спитайте в касира: «Автобус відправляється рано?»"
         },
         "orderedTokens": [
           "Does",
           "the",
-          "alarm",
-          "work"
+          "coach",
+          "leave",
+          "early"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,52 +81,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-12:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-12:word:metro",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — metro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:word:metro:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — metro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:word:metro:audio",
+          "transcript": "metro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-12:word:metro:r1",
+            "targetText": "metro",
+            "meaningByLocale": {
+              "ru": "метро. The metro is fast. — «Метро быстрое». Подземный городской поезд.",
+              "uk": "метро. The metro is fast. — «Метро швидке». Підземний міський потяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "metro",
+          "definitionByLocale": {
+            "ru": "метро. The metro is fast. — «Метро быстрое». Подземный городской поезд.",
+            "uk": "метро. The metro is fast. — «Метро швидке». Підземний міський потяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте прохожего",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-12:i02:r1",
-          "text": "alarm"
+          "text": "Does the metro run late?"
         },
         {
           "responseId": "en:lesson-07:session-12:i02:r2",
-          "text": "table"
+          "text": "Does the metro run early?"
         },
         {
           "responseId": "en:lesson-07:session-12:i02:r3",
-          "text": "notebook"
+          "text": "Does the coach run late?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте прохожего",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i02:audio",
-          "transcript": "alarm"
+          "transcript": "Does the metro run late?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-12:i02:r1",
-            "targetText": "alarm",
+            "targetText": "Does the metro run late?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-12:i02:r2",
-            "targetText": "table",
+            "targetText": "Does the metro run early?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-12:i02:r3",
-            "targetText": "notebook",
+            "targetText": "Does the coach run late?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +178,19 @@
           {
             "responseId": "en:lesson-07:session-12:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте прохожего",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `alarm`, а в этом варианте — `table`.",
-              "uk": "У записі перше слово — `alarm`, а в цьому варіанті — `table`."
+              "ru": "В записи последнее слово — `late`, поздно, а в этом варианте — `early`, рано.",
+              "uk": "У записі останнє слово — `late`, пізно, а в цьому варіанті — `early`, рано."
             }
           },
           {
             "responseId": "en:lesson-07:session-12:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте прохожего",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `alarm`, а в этом варианте — `notebook`.",
-              "uk": "У записі перше слово — `alarm`, а в цьому варіанті — `notebook`."
+              "ru": "В записи третье слово — `metro`, метро, а в этом варианте — `coach`, автобус.",
+              "uk": "У записі третє слово — `metro`, метро, а в цьому варіанті — `coach`, автобус."
             }
           }
         ],
@@ -113,68 +200,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-12:word:pilot",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pilot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:word:pilot:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pilot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:word:pilot:audio",
+          "transcript": "pilot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-12:word:pilot:r1",
+            "targetText": "pilot",
+            "meaningByLocale": {
+              "ru": "лётчик. The pilot is calm. — «Лётчик спокойный». Человек, который управляет самолётом.",
+              "uk": "льотчик. The pilot is calm. — «Льотчик спокійний». Людина, яка керує літаком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pilot",
+          "definitionByLocale": {
+            "ru": "лётчик. The pilot is calm. — «Лётчик спокойный». Человек, который управляет самолётом.",
+            "uk": "льотчик. The pilot is calm. — «Льотчик спокійний». Людина, яка керує літаком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-12:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите, работает ли будильник",
+      "prompt": "Спросите знакомую о лётчике. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-12:i03:r1",
-          "text": "work"
+          "text": "live"
         },
         {
           "responseId": "en:lesson-07:session-12:i03:r2",
-          "text": "works"
+          "text": "lives"
         },
         {
           "responseId": "en:lesson-07:session-12:i03:r3",
-          "text": "is work"
+          "text": "is live"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, работает ли будильник",
+      "accessibilityLabel": "Спросите знакомую о лётчике. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, работает ли будильник",
-          "uk": "Запитайте, чи працює будильник"
+          "ru": "Спросите знакомую о лётчике. Выберите слово",
+          "uk": "Спитайте знайому про льотчика. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does the alarm ___?",
+        "gappedTargetPhrase": "Does the pilot ___ near here?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-12:i03:r1",
-            "text": "work"
+            "text": "live"
           },
           {
             "responseId": "en:lesson-07:session-12:i03:r2",
-            "text": "works"
+            "text": "lives"
           },
           {
             "responseId": "en:lesson-07:session-12:i03:r3",
-            "text": "is work"
+            "text": "is live"
           }
         ],
-        "testedDimension": "Спросите, работает ли будильник",
+        "testedDimension": "Спросите знакомую о лётчике. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-12:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите, работает ли будильник",
+            "testedDimension": "Спросите знакомую о лётчике. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Does` нужно `work`.",
-              "uk": "Після `Does` потрібне `work`."
+              "ru": "После `Does` нужно `live`, без `s`.",
+              "uk": "Після `Does` потрібно `live`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-12:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите, работает ли будильник",
+            "testedDimension": "Спросите знакомую о лётчике. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Does the alarm work?`, без `is`.",
-              "uk": "Потрібно `Does the alarm work?`, без `is`."
+              "ru": "Нужно `Does the pilot live?`, без `is`.",
+              "uk": "Потрібно `Does the pilot live?`, без `is`."
             }
           }
         ]
@@ -183,7 +313,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +327,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-12:i04:p1",
-            "target": "alarm",
+            "target": "coach",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "междугородный автобус",
+              "uk": "міжміський автобус"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i04:p2",
-            "target": "table",
+            "target": "metro",
             "meaningByLocale": {
-              "ru": "стол",
-              "uk": "стіл"
+              "ru": "метро",
+              "uk": "метро"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i04:p3",
-            "target": "notebook",
+            "target": "pilot",
             "meaningByLocale": {
-              "ru": "тетрадь",
-              "uk": "зошит"
+              "ru": "лётчик",
+              "uk": "льотчик"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i04:p4",
-            "target": "glasses",
+            "target": "helmet",
             "meaningByLocale": {
-              "ru": "очки",
-              "uk": "окуляри"
+              "ru": "шлем",
+              "uk": "шолом"
             }
           }
         ],
         "leftColumn": [
-          "alarm",
-          "table",
-          "notebook",
-          "glasses"
+          "coach",
+          "metro",
+          "pilot",
+          "helmet"
         ],
         "rightColumn": [
-          "будильник",
-          "стол",
-          "тетрадь",
-          "очки"
+          "междугородный автобус",
+          "метро",
+          "лётчик",
+          "шлем"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,31 +385,76 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-12:word:cyclist",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cyclist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:word:cyclist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cyclist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:word:cyclist:audio",
+          "transcript": "cyclist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-12:word:cyclist:r1",
+            "targetText": "cyclist",
+            "meaningByLocale": {
+              "ru": "велосипедист. The cyclist is fast. — «Велосипедист быстрый». Человек, который едет на велосипеде.",
+              "uk": "велосипедист. The cyclist is fast. — «Велосипедист швидкий». Людина, яка їде на велосипеді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cyclist",
+          "definitionByLocale": {
+            "ru": "велосипедист. The cyclist is fast. — «Велосипедист быстрый». Человек, который едет на велосипеде.",
+            "uk": "велосипедист. The cyclist is fast. — «Велосипедист швидкий». Людина, яка їде на велосипеді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-12:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте знакомую и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте знакомую и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i05:audio",
-          "transcript": "Does the alarm work?"
+          "transcript": "Does the cyclist wear a helmet?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does the alarm work?",
+        "hiddenTargetPhrase": "Does the cyclist wear a helmet?",
         "orderedTokens": [
           "Does",
           "the",
-          "alarm",
-          "work"
+          "cyclist",
+          "wear",
+          "a",
+          "helmet"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -292,30 +467,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сообщите «На столе нет очков»",
+      "prompt": "Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите «На столе нет очков»",
+      "accessibilityLabel": "Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There are no glasses on the table.",
+        "targetPhrase": "Does the metro run late?",
         "localizedMeaning": {
-          "ru": "Сообщите «На столе нет очков»",
-          "uk": "Повідомте «На столі немає окулярів»"
+          "ru": "Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»",
+          "uk": "Ви засиділися в гостях. Спитайте перехожого: «Метро ходить допізна?»"
         },
         "orderedTokens": [
-          "There",
-          "are",
-          "no",
-          "glasses",
-          "on",
+          "Does",
           "the",
-          "table"
+          "metro",
+          "run",
+          "late"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -328,25 +501,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите о начале работы Анны «Она начинает рано?»",
+      "prompt": "Вы не хотите вставать рано. Спросите у кассира: «Автобус отправляется поздно?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i07:audio"
       ],
-      "accessibilityLabel": "Спросите о начале работы Анны «Она начинает рано?»",
+      "accessibilityLabel": "Вы не хотите вставать рано. Спросите у кассира: «Автобус отправляется поздно?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i07:audio",
-          "transcript": "Does she start early?"
+          "transcript": "Does the coach leave late?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does she start early?",
+        "targetPhrase": "Does the coach leave late?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -361,67 +534,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+      "prompt": "Спросите знакомую о велосипедисте. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-12:i08:r1",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-07:session-12:i08:r2",
           "text": "Does"
         },
         {
+          "responseId": "en:lesson-07:session-12:i08:r2",
+          "text": "Do"
+        },
+        {
           "responseId": "en:lesson-07:session-12:i08:r3",
-          "text": "Are"
+          "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+      "accessibilityLabel": "Спросите знакомую о велосипедисте. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
-          "uk": "У художній майстерні запитайте друга «Ти малюєш тут фарбами?»"
+          "ru": "Спросите знакомую о велосипедисте. Выберите слово",
+          "uk": "Спитайте знайому про велосипедиста. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you paint here?",
+        "gappedTargetPhrase": "___ the cyclist wear a helmet?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-12:i08:r1",
-            "text": "Do"
-          },
-          {
-            "responseId": "en:lesson-07:session-12:i08:r2",
             "text": "Does"
           },
           {
+            "responseId": "en:lesson-07:session-12:i08:r2",
+            "text": "Do"
+          },
+          {
             "responseId": "en:lesson-07:session-12:i08:r3",
-            "text": "Are"
+            "text": "Is"
           }
         ],
-        "testedDimension": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+        "testedDimension": "Спросите знакомую о велосипедисте. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-12:i08:r2",
             "correct": false,
-            "testedDimension": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+            "testedDimension": "Спросите знакомую о велосипедисте. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `Do`.",
-              "uk": "З `you` потрібне `Do`."
+              "ru": "Велосипедист один: нужно `Does`.",
+              "uk": "Велосипедист один: потрібно `Does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-12:i08:r3",
             "correct": false,
-            "testedDimension": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+            "testedDimension": "Спросите знакомую о велосипедисте. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С действием `paint` здесь нужно `Do you paint?`.",
-              "uk": "З дією `paint` тут потрібно `Do you paint?`."
+              "ru": "С действием `wear` нужно `Does`, а не `Is`.",
+              "uk": "З дією `wear` потрібне `Does`, а не `Is`."
             }
           }
         ]
@@ -430,51 +603,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о начале работы",
+      "prompt": "Послушайте знакомую",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-12:i09:r1",
-          "text": "Does she start early?"
+          "text": "Does the pilot live near here?"
         },
         {
           "responseId": "en:lesson-07:session-12:i09:r2",
-          "text": "Does she start late?"
+          "text": "Does the pilot work near here?"
         },
         {
           "responseId": "en:lesson-07:session-12:i09:r3",
-          "text": "Does she start here?"
+          "text": "Does the cyclist live near here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о начале работы",
+      "accessibilityLabel": "Послушайте знакомую",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i09:audio",
-          "transcript": "Does she start early?"
+          "transcript": "Does the pilot live near here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-12:i09:r1",
-            "targetText": "Does she start early?",
+            "targetText": "Does the pilot live near here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-12:i09:r2",
-            "targetText": "Does she start late?",
+            "targetText": "Does the pilot work near here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-12:i09:r3",
-            "targetText": "Does she start here?",
+            "targetText": "Does the cyclist live near here?",
             "meaningByLocale": null
           }
         ],
@@ -483,19 +656,19 @@
           {
             "responseId": "en:lesson-07:session-12:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о начале работы",
+            "testedDimension": "Послушайте знакомую",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+              "ru": "В записи четвёртое слово — `live`, жить, а в этом варианте — `work`, работать.",
+              "uk": "У записі четверте слово — `live`, жити, а в цьому варіанті — `work`, працювати."
             }
           },
           {
             "responseId": "en:lesson-07:session-12:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о начале работы",
+            "testedDimension": "Послушайте знакомую",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+              "ru": "В записи третье слово — `pilot`, лётчик, а в этом варианте — `cyclist`, велосипедист.",
+              "uk": "У записі третє слово — `pilot`, льотчик, а в цьому варіанті — `cyclist`, велосипедист."
             }
           }
         ],
@@ -506,8 +679,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -520,48 +693,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-12:i10:p1",
-            "target": "paint",
+            "target": "coach",
             "meaningByLocale": {
-              "ru": "рисовать красками",
-              "uk": "малювати фарбами"
+              "ru": "междугородный автобус",
+              "uk": "міжміський автобус"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i10:p2",
-            "target": "alarm",
+            "target": "metro",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "метро",
+              "uk": "метро"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i10:p3",
-            "target": "table",
+            "target": "bus",
             "meaningByLocale": {
-              "ru": "стол",
-              "uk": "стіл"
+              "ru": "автобус",
+              "uk": "автобус"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i10:p4",
-            "target": "notebook",
+            "target": "taxi",
             "meaningByLocale": {
-              "ru": "тетрадь",
-              "uk": "зошит"
+              "ru": "такси",
+              "uk": "таксі"
             }
           }
         ],
         "leftColumn": [
-          "paint",
-          "alarm",
-          "table",
-          "notebook"
+          "coach",
+          "metro",
+          "bus",
+          "taxi"
         ],
         "rightColumn": [
-          "рисовать красками",
-          "будильник",
-          "стол",
-          "тетрадь"
+          "междугородный автобус",
+          "метро",
+          "автобус",
+          "такси"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -579,29 +752,32 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте знакомую и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте знакомую и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i11:audio",
-          "transcript": "Does it work?"
+          "transcript": "Does the pilot live near here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does it work?",
+        "hiddenTargetPhrase": "Does the pilot live near here?",
         "orderedTokens": [
           "Does",
-          "it",
-          "work"
+          "the",
+          "pilot",
+          "live",
+          "near",
+          "here"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -614,28 +790,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Чтобы записать время встречи, спросите друга «У тебя есть тетрадь?»",
+      "prompt": "Вам завтра рано на работу. Спросите прохожего: «Метро начинает работать рано?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Чтобы записать время встречи, спросите друга «У тебя есть тетрадь?»",
+      "accessibilityLabel": "Вам завтра рано на работу. Спросите прохожего: «Метро начинает работать рано?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a notebook?",
+        "targetPhrase": "Does the metro start early?",
         "localizedMeaning": {
-          "ru": "Чтобы записать время встречи, спросите друга «У тебя есть тетрадь?»",
-          "uk": "Щоб записати час зустрічі, запитайте друга «У тебе є зошит?»"
+          "ru": "Вам завтра рано на работу. Спросите прохожего: «Метро начинает работать рано?»",
+          "uk": "Вам завтра рано на роботу. Спитайте перехожого: «Метро починає працювати рано?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "notebook"
+          "Does",
+          "the",
+          "metro",
+          "start",
+          "early"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -648,25 +824,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажите другу «Будильник на столе»",
+      "prompt": "Знакомая рассказывает о соседе. Спросите её: «Лётчик работает в аэропорту?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i13:audio"
       ],
-      "accessibilityLabel": "Покажите другу «Будильник на столе»",
+      "accessibilityLabel": "Знакомая рассказывает о соседе. Спросите её: «Лётчик работает в аэропорту?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i13:audio",
-          "transcript": "The alarm is on the table."
+          "transcript": "Does the pilot work at the airport?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The alarm is on the table.",
+        "targetPhrase": "Does the pilot work at the airport?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -681,67 +857,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сообщите «Здесь нет очков»",
+      "prompt": "Спросите у кассира об автобусе. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-12:i14:r1",
-          "text": "are"
+          "text": "leave"
         },
         {
           "responseId": "en:lesson-07:session-12:i14:r2",
-          "text": "is"
+          "text": "leaves"
         },
         {
           "responseId": "en:lesson-07:session-12:i14:r3",
-          "text": "am"
+          "text": "is leave"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите «Здесь нет очков»",
+      "accessibilityLabel": "Спросите у кассира об автобусе. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет очков»",
-          "uk": "Повідомте «Тут немає окулярів»"
+          "ru": "Спросите у кассира об автобусе. Выберите слово",
+          "uk": "Спитайте в касира про автобус. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no glasses here.",
+        "gappedTargetPhrase": "Does the coach ___ early?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-12:i14:r1",
-            "text": "are"
+            "text": "leave"
           },
           {
             "responseId": "en:lesson-07:session-12:i14:r2",
-            "text": "is"
+            "text": "leaves"
           },
           {
             "responseId": "en:lesson-07:session-12:i14:r3",
-            "text": "am"
+            "text": "is leave"
           }
         ],
-        "testedDimension": "Сообщите «Здесь нет очков»",
+        "testedDimension": "Спросите у кассира об автобусе. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-12:i14:r2",
             "correct": false,
-            "testedDimension": "Сообщите «Здесь нет очков»",
+            "testedDimension": "Спросите у кассира об автобусе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `glasses` нужно `are`.",
-              "uk": "З `glasses` потрібне `are`."
+              "ru": "После `Does` нужно `leave`, без `s`.",
+              "uk": "Після `Does` потрібно `leave`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-12:i14:r3",
             "correct": false,
-            "testedDimension": "Сообщите «Здесь нет очков»",
+            "testedDimension": "Спросите у кассира об автобусе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `There are no`; `am` подходит к `I`.",
-              "uk": "Потрібно `There are no`; `am` підходить до `I`."
+              "ru": "Нужно `Does the coach leave?`, без `is`.",
+              "uk": "Потрібно `Does the coach leave?`, без `is`."
             }
           }
         ]
@@ -750,51 +926,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о месте работы художника",
+      "prompt": "Послушайте знакомую",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-12:i15:r1",
-          "text": "Do you paint here?"
+          "text": "Does the cyclist wear a helmet?"
         },
         {
           "responseId": "en:lesson-07:session-12:i15:r2",
-          "text": "Do you paint there?"
+          "text": "Does the cyclist wear a hat?"
         },
         {
           "responseId": "en:lesson-07:session-12:i15:r3",
-          "text": "Do you paint outside?"
+          "text": "Does the pilot wear a helmet?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о месте работы художника",
+      "accessibilityLabel": "Послушайте знакомую",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i15:audio",
-          "transcript": "Do you paint here?"
+          "transcript": "Does the cyclist wear a helmet?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-12:i15:r1",
-            "targetText": "Do you paint here?",
+            "targetText": "Does the cyclist wear a helmet?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-12:i15:r2",
-            "targetText": "Do you paint there?",
+            "targetText": "Does the cyclist wear a hat?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-12:i15:r3",
-            "targetText": "Do you paint outside?",
+            "targetText": "Does the pilot wear a helmet?",
             "meaningByLocale": null
           }
         ],
@@ -803,19 +979,19 @@
           {
             "responseId": "en:lesson-07:session-12:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о месте работы художника",
+            "testedDimension": "Послушайте знакомую",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `helmet`, шлем, а в этом варианте — `hat`, шляпа.",
+              "uk": "У записі останнє слово — `helmet`, шолом, а в цьому варіанті — `hat`, капелюх."
             }
           },
           {
             "responseId": "en:lesson-07:session-12:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о месте работы художника",
+            "testedDimension": "Послушайте знакомую",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+              "ru": "В записи третье слово — `cyclist`, велосипедист, а в этом варианте — `pilot`, лётчик.",
+              "uk": "У записі третє слово — `cyclist`, велосипедист, а в цьому варіанті — `pilot`, льотчик."
             }
           }
         ],
@@ -826,7 +1002,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -840,48 +1016,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-12:i16:p1",
-            "target": "alarm",
+            "target": "pilot",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "лётчик",
+              "uk": "льотчик"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i16:p2",
-            "target": "glasses",
+            "target": "cyclist",
             "meaningByLocale": {
-              "ru": "очки",
-              "uk": "окуляри"
+              "ru": "велосипедист",
+              "uk": "велосипедист"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i16:p3",
-            "target": "paint",
+            "target": "helmet",
             "meaningByLocale": {
-              "ru": "рисовать красками",
-              "uk": "малювати фарбами"
+              "ru": "шлем",
+              "uk": "шолом"
             }
           },
           {
             "pairId": "en:lesson-07:session-12:i16:p4",
-            "target": "notebook",
+            "target": "airport",
             "meaningByLocale": {
-              "ru": "тетрадь",
-              "uk": "зошит"
+              "ru": "аэропорт",
+              "uk": "аеропорт"
             }
           }
         ],
         "leftColumn": [
-          "alarm",
-          "glasses",
-          "paint",
-          "notebook"
+          "pilot",
+          "cyclist",
+          "helmet",
+          "airport"
         ],
         "rightColumn": [
-          "будильник",
-          "очки",
-          "рисовать красками",
-          "тетрадь"
+          "лётчик",
+          "велосипедист",
+          "шлем",
+          "аэропорт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -899,25 +1075,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-12:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы пришли в другую художественную мастерскую. Уточните у сотрудника «Анна рисует здесь красками?»",
+      "prompt": "На автовокзале вы уточняете расписание. Спросите у кассира: «Автобус отправляется рано?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-12:i17:audio"
       ],
-      "accessibilityLabel": "Вы пришли в другую художественную мастерскую. Уточните у сотрудника «Анна рисует здесь красками?»",
+      "accessibilityLabel": "На автовокзале вы уточняете расписание. Спросите у кассира: «Автобус отправляется рано?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-12:i17:audio",
-          "transcript": "Does Anna paint here?"
+          "transcript": "Does the coach leave early?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does Anna paint here?",
+        "targetPhrase": "Does the coach leave early?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -939,11 +1115,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e348f7d616b48dc475acf20bdb601500f87a2b47c8e7358e68e855562cb53c04"
+  "learnerFingerprint": "9c183c8f4c239ce94f88173d9e73a9a4305d57dc05fddca99f4a8c9cf31985ef"
 }

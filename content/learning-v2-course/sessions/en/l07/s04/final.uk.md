@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 4 — Ви носите окуляри?
+# Англійська · Урок 7 · Заняття 4 — Столик у кафе
 
-**Ситуація.** Ви знайомитеся з колегою й запитуєте про окуляри. Згодом допомагаєте другові знайти окуляри в кімнаті.
+**Ситуація.** Ви з подругою йдете обідати в кафе: потрібне меню, потрібен офіціант, а наприкінці треба розрахуватися. У цих питаннях із you і they починаємо зі слова Do.
 
-**Що ви опануєте:** запитати про окуляри й речі, повідомити про їх відсутність
-**Нові слова:** glasses
+**Що ви опануєте:** спитати в кафе про меню, офіціантів і готівку та сказати, що рахунку немає
+**Нові слова:** waiter, menu, cash, bill
+**Повертаються:** have, work, here
 
 ---
 
 ## Інтро 1
 
-### Знайомство з колегою
+### Столик без меню
 
-`glasses` — «окуляри». `Do you wear glasses?` — «Ви носите окуляри?» Це запитання про звичку. Після `Do you` ставимо `wear`. Слово `glasses` тут позначає окуляри для зору; перед ним не ставимо `a`.
+Ви з подругою зайняли вільний столик у кафе, але на ньому стоять лише сільничка та склянка із серветками. Без списку страв нічого не вибрати. menu — «меню». Спитайте в працівника, що проходить повз: Do you have a menu? — «У вас є меню?» Спочатку Do, потім you і have.
 
-**Запитайте колегу «Ви носите окуляри?»**
+**На столику немає меню. Спитайте працівника: «У вас є меню?»**
 
-- ✅ **Do you wear glasses?**
-- ❌ Are you wear glasses? — *З `wear` тут потрібно `Do you wear?`.*
-- ❌ Do you wear a glasses? — *У цьому значенні кажемо `glasses`, без `a`.*
+- ✅ **Do you have a menu?**
+- ❌ Are you have a menu? — *Тут потрібно Do you have, без Are.*
+- ❌ Do you has a menu? — *Після Do you слово have лишається без змін.*
 
 ---
 
 ## Інтро 2
 
-### Окуляри батьків
+### Кафе біля річки
 
-Друг розповідає про своїх батьків. Ви запитуєте `Do they wear glasses?` — «Вони носять окуляри?» Тепер після `Do` стоїть `they`, а `wear` залишається без `s`. Ідеться про те, чи носять батьки окуляри зазвичай, а не про те, де окуляри лежать.
+Друг радить кафе біля річки, де смачно годують. Ви не любите стояти в черзі біля стійки й хочете, щоб їжу приносили до столу. waiter — «офіціант». Спитайте в друга: Do they have waiters? — «У них є офіціанти?» Після they слово have без змін.
 
-**Запитайте про батьків «Вони носять окуляри?»**
+**Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»**
 
-- ✅ **Do they wear glasses?**
-- ❌ Do they wears glasses? — *Після `Do they` потрібне `wear`.*
-- ❌ Are they wear glasses? — *Потрібно `Do they wear?`, без `are`.*
+- ✅ **Do they have waiters?**
+- ❌ Are they have waiters? — *Тут потрібно Do they have, без Are.*
+- ❌ Do they has waiters? — *Після Do they слово have лишається без змін.*
 
 ---
 
 ## Інтро 3
 
-### Пошуки в кімнаті
+### Де ж рахунок
 
-Друг шукає окуляри. Ви оглянули стіл і кажете `There are no glasses here` — «Тут немає окулярів». З `glasses` потрібне `are`, навіть якщо шукаємо одні окуляри. Вони можуть виявитися в друга на голові, але стіл ви вже перевірили.
+Ви з подругою поїли й хочете заплатити. Працівник зайнятий біля іншого столика, і подруга просить перевірити, чи не лежить на вашому столі аркуш із сумою. bill — «рахунок». Ви дивитеся: There is no bill here — «Тут немає рахунку». Кажемо There is no і називаємо одну річ.
 
-**Повідомте другові «Тут немає окулярів».**
+**Подруга просить перевірити стіл. Рахунку там немає. Скажіть їй: «Тут немає рахунку».**
 
-- ✅ **There are no glasses here.**
-- ❌ There is no glasses here. — *З `glasses` потрібно `There are no`.*
-- ❌ There no glasses here. — *Потрібно `There are no`, з `are`.*
+- ✅ **There is no bill here.**
+- ❌ There are no bill here. — *Слово bill стоїть в однині: потрібно There is no.*
+- ❌ There is not bill here. — *Після not тут бракує a. У нашій відповіді використовуємо no bill.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «Ви носите окуляри?»**
+**1 · Картка слова — menu**
+<!-- interaction_id: en:lesson-07:session-04:word:menu; family: word_card -->
+> **menu** — меню. The menu is on the table. — «Меню на столі». Список страв і напоїв у кафе.
+
+**2 · Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»**
 <!-- interaction_id: en:lesson-07:session-04:i01; family: phrase_builder -->
-Плитки: `glasses` `wear` `you` `Do` → **Do you wear glasses?**
+Плитки: `menu` `a` `have` `you` `Do` `Are` → **Do you have a menu?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you have a menu?`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — bill**
+<!-- interaction_id: en:lesson-07:session-04:word:bill; family: word_card -->
+> **bill** — рахунок. The bill is on the table. — «Рахунок на столі». Папір із сумою, яку треба заплатити в кафе.
+
+**4 · Послухайте працівника**
 <!-- interaction_id: en:lesson-07:session-04:i02; family: listen_choose -->
-🔊 *glasses* → **glasses** · curtain · receipt
-- curtain — *У записі перше слово — `glasses`, а в цьому варіанті — `curtain`.*
-- receipt — *У записі перше слово — `glasses`, а в цьому варіанті — `receipt`.*
+🔊 *We have a menu.* → **We have a menu.** · We have a bill. · They have a menu.
+- We have a bill. — *У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок.*
+- They have a menu. — *У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони.*
 
-**3 · Запитайте «Вони носять окуляри?»**
+**5 · Картка слова — waiter**
+<!-- interaction_id: en:lesson-07:session-04:word:waiter; family: word_card -->
+> **waiter** — офіціант. The waiter is near the table. — «Офіціант біля столу». Людина, яка приносить їжу й напої до столу.
+
+**6 · Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-04:i03; family: context_gap_grammar -->
-Do they ___ glasses? → **wear** · wears · are wear
-- wears — *Після `Do they` потрібне `wear`.*
-- are wear — *Потрібно `Do they wear?`, без `are`.*
+Do they ___ a waiter? → **have** · has · are have
+- has — *Після `Do they` потрібно `have`, без змін.*
+- are have — *Потрібно `Do they have`, без `are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-04:i04; family: speed_match -->
-glasses — окуляри · wear — носити одяг на собі · bag — сумка · curtain — завіска
+menu — меню · bill — рахунок · waiter — офіціант · work — працювати
 
-**5 · Послухайте й складіть запитання**
+**8 · Послухайте подругу й складіть питання**
 <!-- interaction_id: en:lesson-07:session-04:i05; family: listen_build_dictation -->
-🔊 *Do you wear glasses?* Плитки: `glasses` `wear` `you` `Do` → **Do you wear glasses?**
+🔊 *Do the waiters work here?* Плитки: `waiters` `the` `work` `here` `Do` `Are` → **Do the waiters work here?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do the waiters work here?`)*
 
-**6 · Запитайте друга про батьків «Вони носять окуляри?»**
+**9 · Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»**
 <!-- interaction_id: en:lesson-07:session-04:i06; family: phrase_builder -->
-Плитки: `glasses` `wear` `they` `Do` → **Do they wear glasses?**
+Плитки: `waiters` `have` `they` `Do` `Are` → **Do they have waiters?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do they have waiters?`)*
 
-**7 · Ви перевірили стіл. Повідомте «Тут немає окулярів»**
+**10 · Ви поїли й хочете заплатити, але на столі порожньо. Скажіть подрузі: «Тут немає рахунку»**
 <!-- interaction_id: en:lesson-07:session-04:i07; family: scripted_repeat_compare -->
-🎙 **There are no glasses here.**
+🎙 **There is no bill here.**
 
-**8 · Перед виходом запитайте друга «У тебе є сумка?»**
+**11 · Картка слова — cash**
+<!-- interaction_id: en:lesson-07:session-04:word:cash; family: word_card -->
+> **cash** — готівка. I have cash. — «У мене є готівка». Паперові гроші та монети, не картка.
+
+**12 · Спитайте подругу: «У тебе є готівка?». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-04:i08; family: context_gap_grammar -->
-___ you have a bag? → **Do** · Are · Is
-- Are — *Потрібно `Do you have?`, без `are`.*
-- Is — *З `you have` тут потрібне `Do`.*
+___ you have cash? → **Do** · Are · Is
+- Are — *З `have` потрібно `Do you have`, без `Are`.*
+- Is — *З `you` потрібно `Do`, а `Is` сюди не пасує.*
 
-**9 · Послухайте, про що запитує колега**
+**13 · Послухайте питання подруги**
 <!-- interaction_id: en:lesson-07:session-04:i09; family: listen_choose -->
-🔊 *Do you wear glasses?* → **Do you wear glasses?** · Do you wear hats? · Do you wear uniforms?
-- Do you wear hats? — *У записі останнє слово — `glasses`, а в цьому варіанті — `hats`.*
-- Do you wear uniforms? — *У записі останнє слово — `glasses`, а в цьому варіанті — `uniforms`.*
+🔊 *Do you have a menu?* → **Do you have a menu?** · Do you have a bill? · Do they have a menu?
+- Do you have a bill? — *У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок.*
+- Do they have a menu? — *У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-04:i10; family: speed_match -->
-receipt — чек · glasses — окуляри · bag — сумка · curtain — завіска
+bill — рахунок · cash — готівка · menu — меню · waiter — офіціант
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте друга й складіть питання**
 <!-- interaction_id: en:lesson-07:session-04:i11; family: listen_build_dictation -->
-🔊 *Do they have a receipt?* Плитки: `receipt` `a` `have` `they` `Do` → **Do they have a receipt?**
+🔊 *Do they have cash?* Плитки: `cash` `have` `they` `Do` `Are` → **Do they have cash?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do they have cash?`)*
 
-**12 · Друг несе покупки в руках. Запитайте «У тебе є сумка?»**
+**16 · Друг чекає на вас біля кафе. Спитайте: «У них є меню?»**
 <!-- interaction_id: en:lesson-07:session-04:i12; family: phrase_builder -->
-Плитки: `bag` `a` `have` `you` `Do` → **Do you have a bag?**
+Плитки: `menu` `a` `have` `they` `Do` `Are` → **Do they have a menu?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do they have a menu?`)*
 
-**13 · Друг допомагає батькам повернути покупку. Запитайте «У них є чек?»**
+**17 · Друг розповідає про нове кафе. Спитайте: «У них тут є офіціанти?»**
 <!-- interaction_id: en:lesson-07:session-04:i13; family: scripted_repeat_compare -->
-🎙 **Do they have a receipt?**
+🎙 **Do they have waiters here?**
 
-**14 · Повідомте «Тут немає окулярів»**
+**18 · Скажіть подрузі, що рахунку немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-04:i14; family: context_gap_grammar -->
-There ___ no glasses here. → **are** · is · am
-- is — *З `glasses` потрібне `are`.*
-- am — *Потрібно `There are no`; `am` підходить до `I`.*
+There ___ no bill here. → **is** · are · am
+- are — *Слово bill стоїть в однині: потрібно `There is no`.*
+- am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
-**15 · Послухайте, яку річ шукає друг**
+**19 · Послухайте питання про кафе**
 <!-- interaction_id: en:lesson-07:session-04:i15; family: listen_choose -->
-🔊 *Do you have a receipt?* → **Do you have a receipt?** · Do you have a bag? · Do you have a curtain?
-- Do you have a bag? — *У записі останнє слово — `receipt`, а в цьому варіанті — `bag`.*
-- Do you have a curtain? — *У записі останнє слово — `receipt`, а в цьому варіанті — `curtain`.*
+🔊 *Do they have waiters here?* → **Do they have waiters here?** · Do they have waiters there? · Do they have menus here?
+- Do they have waiters there? — *У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там.*
+- Do they have menus here? — *У записі йдеться про офіціантів, `waiters`, а в цьому варіанті — про меню, `menus`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-04:i16; family: speed_match -->
-glasses — окуляри · receipt — чек · curtain — завіска · wear — носити на собі
+cash — готівка · waiter — офіціант · bill — рахунок · menu — меню
 
-**17 · Друг шукає окуляри перед читанням. Уточніть, чи є в нього окуляри: «У тебе є окуляри?»**
+**21 · Ви з подругою хочете розрахуватися. Спитайте подругу: «У тебе є готівка?»**
 <!-- interaction_id: en:lesson-07:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do you have glasses?**
-
+🎙 **Do you have cash?**

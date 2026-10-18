@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-06:word:plumber",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — plumber",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:plumber:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — plumber",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:plumber:audio",
+            "transcript": "plumber"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:plumber:r1",
+              "targetText": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник. The plumber is at the door. — «Сантехник у двери». Мастер, который чинит краны и трубы.",
+                "uk": "сантехнік. The plumber is at the door. — «Сантехнік біля дверей». Майстер, який лагодить крани й труби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plumber",
+            "definitionByLocale": {
+              "ru": "сантехник. The plumber is at the door. — «Сантехник у двери». Мастер, который чинит краны и трубы.",
+              "uk": "сантехнік. The plumber is at the door. — «Сантехнік біля дверей». Майстер, який лагодить крани й труби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У двери стоит мастер с сумкой. Спросите: «Вы сантехник?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У двери стоит мастер с сумкой. Спросите: «Вы сантехник?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are you a plumber?",
+          "localizedMeaning": {
+            "ru": "У двери стоит мастер с сумкой. Спросите: «Вы сантехник?»",
+            "uk": "Біля дверей стоїть майстер із сумкою. Спитайте: «Ви сантехнік?»"
+          },
+          "orderedTokens": [
+            "Are",
+            "you",
+            "a",
+            "plumber"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "У двери стоит мастер с сумкой. Спросите: «Вы сантехник?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are you a plumber?`",
+                "uk": "тут потрібно `Are` — `Are you a plumber?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:word:electrician",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — electrician",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:electrician:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — electrician",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:electrician:audio",
+            "transcript": "electrician"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:electrician:r1",
+              "targetText": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик. The electrician is in the office. — «Электрик в офисе». Мастер, который чинит проводку и лампы.",
+                "uk": "електрик. The electrician is in the office. — «Електрик в офісі». Майстер, який лагодить проводку й лампи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electrician",
+            "definitionByLocale": {
+              "ru": "электрик. The electrician is in the office. — «Электрик в офисе». Мастер, который чинит проводку и лампы.",
+              "uk": "електрик. The electrician is in the office. — «Електрик в офісі». Майстер, який лагодить проводку й лампи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте мастера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i02:r1",
+            "text": "I am a plumber."
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i02:r2",
+            "text": "I am an electrician."
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i02:r3",
+            "text": "We are plumbers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте мастера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i02:audio",
+            "transcript": "I am a plumber."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:i02:r1",
+              "targetText": "I am a plumber.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i02:r2",
+              "targetText": "I am an electrician.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i02:r3",
+              "targetText": "We are plumbers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте мастера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plumber`, сантехник, а в этом варианте — `electrician`, электрик.",
+                "uk": "У записі останнє слово — `plumber`, сантехнік, а в цьому варіанті — `electrician`, електрик."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте мастера",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:word:fix",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fix",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:fix:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fix",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:fix:audio",
+            "transcript": "fix"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:fix:r1",
+              "targetText": "fix",
+              "meaningByLocale": {
+                "ru": "чинить. We fix lamps. — «Мы чиним лампы». О том, как сломанную вещь делают снова рабочей.",
+                "uk": "лагодити. We fix lamps. — «Ми лагодимо лампи». Про те, як зламану річ роблять знову робочою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fix",
+            "definitionByLocale": {
+              "ru": "чинить. We fix lamps. — «Мы чиним лампы». О том, как сломанную вещь делают снова рабочей.",
+              "uk": "лагодити. We fix lamps. — «Ми лагодимо лампи». Про те, як зламану річ роблять знову робочою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите мастера: «Вы чините краны?». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i03:r1",
+            "text": "fix"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i03:r2",
+            "text": "fixes"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i03:r3",
+            "text": "are fix"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите мастера: «Вы чините краны?». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите мастера: «Вы чините краны?». Выберите слово",
+            "uk": "Спитайте майстра: «Ви лагодите крани?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ taps?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-06:i03:r1",
+              "text": "fix"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i03:r2",
+              "text": "fixes"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i03:r3",
+              "text": "are fix"
+            }
+          ],
+          "testedDimension": "Спросите мастера: «Вы чините краны?». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите мастера: «Вы чините краны?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Do you` нужно `fix`, без изменений.",
+                "uk": "Після `Do you` потрібно `fix`, без змін."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите мастера: «Вы чините краны?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do you fix`, без `are`.",
+                "uk": "Потрібно `Do you fix`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-06:i04:p1",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i04:p2",
+              "target": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик",
+                "uk": "електрик"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i04:p3",
+              "target": "fix",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i04:p4",
+              "target": "tap",
+              "meaningByLocale": {
+                "ru": "кран",
+                "uk": "кран"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plumber",
+            "electrician",
+            "fix",
+            "tap"
+          ],
+          "rightColumn": [
+            "сантехник",
+            "электрик",
+            "чинить",
+            "кран"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте мастера и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте мастера и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i05:audio",
+            "transcript": "Are you an electrician?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you an electrician?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "an",
+            "electrician"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте мастера и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are you an electrician?`",
+                "uk": "тут потрібно `Are` — `Are you an electrician?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед знает двух мастеров. Спросите: «Они чинят лампы?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед знает двух мастеров. Спросите: «Они чинят лампы?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they fix lamps?",
+          "localizedMeaning": {
+            "ru": "Сосед знает двух мастеров. Спросите: «Они чинят лампы?»",
+            "uk": "Сусід знає двох майстрів. Спитайте: «Вони лагодять лампи?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "fix",
+            "lamps"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед знает двух мастеров. Спросите: «Они чинят лампы?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they fix lamps?`",
+                "uk": "тут потрібно `Do` — `Do they fix lamps?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:word:pliers",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pliers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:pliers:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pliers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:pliers:audio",
+            "transcript": "pliers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:pliers:r1",
+              "targetText": "pliers",
+              "meaningByLocale": {
+                "ru": "плоскогубцы. The pliers are in the bag. — «Плоскогубцы в сумке». Инструмент, которым берут и сжимают мелкие детали.",
+                "uk": "плоскогубці. The pliers are in the bag. — «Плоскогубці в сумці». Інструмент, яким беруть і стискають дрібні деталі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pliers",
+            "definitionByLocale": {
+              "ru": "плоскогубцы. The pliers are in the bag. — «Плоскогубцы в сумке». Инструмент, которым берут и сжимают мелкие детали.",
+              "uk": "плоскогубці. The pliers are in the bag. — «Плоскогубці в сумці». Інструмент, яким беруть і стискають дрібні деталі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мастер просит плоскогубцы. Заглянув в сумку, скажите: «Здесь нет плоскогубцев»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Мастер просит плоскогубцы. Заглянув в сумку, скажите: «Здесь нет плоскогубцев»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i07:audio",
+            "transcript": "There are no pliers here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are no pliers here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите человека у двери: «Вы электрик?». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите человека у двери: «Вы электрик?». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите человека у двери: «Вы электрик?». Выберите слово",
+            "uk": "Спитайте людину біля дверей: «Ви електрик?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ you an electrician?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-06:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спросите человека у двери: «Вы электрик?». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Спросите человека у двери: «Вы электрик?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Мы спрашиваем, кто этот человек, поэтому нужно `Are you`.",
+                "uk": "Ми питаємо, хто ця людина, тому потрібно `Are you`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Спросите человека у двери: «Вы электрик?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Are`, а не `Is`.",
+                "uk": "З `you` потрібно `Are`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i09:r1",
+            "text": "Do you fix lamps?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i09:r2",
+            "text": "Do you fix taps?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i09:r3",
+            "text": "Do they fix lamps?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i09:audio",
+            "transcript": "Do you fix lamps?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:i09:r1",
+              "targetText": "Do you fix lamps?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i09:r2",
+              "targetText": "Do you fix taps?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i09:r3",
+              "targetText": "Do they fix lamps?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lamps`, лампы, а в этом варианте — `taps`, краны.",
+                "uk": "У записі останнє слово — `lamps`, лампи, а в цьому варіанті — `taps`, крани."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-06:i10:p1",
+              "target": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик",
+                "uk": "електрик"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i10:p2",
+              "target": "fix",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i10:p3",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i10:p4",
+              "target": "pliers",
+              "meaningByLocale": {
+                "ru": "плоскогубцы",
+                "uk": "плоскогубці"
+              }
+            }
+          ],
+          "leftColumn": [
+            "electrician",
+            "fix",
+            "plumber",
+            "pliers"
+          ],
+          "rightColumn": [
+            "электрик",
+            "чинить",
+            "сантехник",
+            "плоскогубцы"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i11:audio",
+            "transcript": "Do they fix taps?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they fix taps?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "fix",
+            "taps"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they fix taps?`",
+                "uk": "тут потрібно `Do` — `Do they fix taps?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мастер пришёл чинить кран. Спросите: «У вас есть плоскогубцы?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мастер пришёл чинить кран. Спросите: «У вас есть плоскогубцы?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have pliers?",
+          "localizedMeaning": {
+            "ru": "Мастер пришёл чинить кран. Спросите: «У вас есть плоскогубцы?»",
+            "uk": "Майстер прийшов лагодити кран. Спитайте: «У вас є плоскогубці?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "pliers"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Мастер пришёл чинить кран. Спросите: «У вас есть плоскогубцы?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you have pliers?`",
+                "uk": "тут потрібно `Do` — `Do you have pliers?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы встретили мастера у подъезда. Спросите: «Вы чините краны?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Вы встретили мастера у подъезда. Спросите: «Вы чините краны?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i13:audio",
+            "transcript": "Do you fix taps?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you fix taps?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите мастеру, что плоскогубцев нет. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите мастеру, что плоскогубцев нет. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите мастеру, что плоскогубцев нет. Выберите слово",
+            "uk": "Скажіть майстру, що плоскогубців немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no pliers here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-06:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажите мастеру, что плоскогубцев нет. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите мастеру, что плоскогубцев нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `pliers` нужно `are`, как с `glasses`.",
+                "uk": "З `pliers` потрібно `are`, як із `glasses`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите мастеру, что плоскогубцев нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There are no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There are no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос мастера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i15:r1",
+            "text": "Do you have pliers?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i15:r2",
+            "text": "Do you have a lamp?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i15:r3",
+            "text": "Do they have pliers?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос мастера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i15:audio",
+            "transcript": "Do you have pliers?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:i15:r1",
+              "targetText": "Do you have pliers?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i15:r2",
+              "targetText": "Do you have a lamp?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i15:r3",
+              "targetText": "Do they have pliers?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос мастера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pliers`, плоскогубцы, а в этом варианте — `lamp`, лампа.",
+                "uk": "У записі останнє слово — `pliers`, плоскогубці, а в цьому варіанті — `lamp`, лампа."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос мастера",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-06:i16:p1",
+              "target": "pliers",
+              "meaningByLocale": {
+                "ru": "плоскогубцы",
+                "uk": "плоскогубці"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i16:p2",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i16:p3",
+              "target": "fix",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i16:p4",
+              "target": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик",
+                "uk": "електрик"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pliers",
+            "plumber",
+            "fix",
+            "electrician"
+          ],
+          "rightColumn": [
+            "плоскогубцы",
+            "сантехник",
+            "чинить",
+            "электрик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мастер пришёл по вызову. Узнайте, кто он: «Вы сантехник?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Мастер пришёл по вызову. Узнайте, кто он: «Вы сантехник?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i17:audio",
+            "transcript": "Are you a plumber?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you a plumber?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-06:word:plumber",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — plumber",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:plumber:audio"
+        ],
+        "accessibilityLabel": "Картка слова — plumber",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:plumber:audio",
+            "transcript": "plumber"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:plumber:r1",
+              "targetText": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник. The plumber is at the door. — «Сантехник у двери». Мастер, который чинит краны и трубы.",
+                "uk": "сантехнік. The plumber is at the door. — «Сантехнік біля дверей». Майстер, який лагодить крани й труби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plumber",
+            "definitionByLocale": {
+              "ru": "сантехник. The plumber is at the door. — «Сантехник у двери». Мастер, который чинит краны и трубы.",
+              "uk": "сантехнік. The plumber is at the door. — «Сантехнік біля дверей». Майстер, який лагодить крани й труби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Біля дверей стоїть майстер із сумкою. Спитайте: «Ви сантехнік?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Біля дверей стоїть майстер із сумкою. Спитайте: «Ви сантехнік?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are you a plumber?",
+          "localizedMeaning": {
+            "ru": "У двери стоит мастер с сумкой. Спросите: «Вы сантехник?»",
+            "uk": "Біля дверей стоїть майстер із сумкою. Спитайте: «Ви сантехнік?»"
+          },
+          "orderedTokens": [
+            "Are",
+            "you",
+            "a",
+            "plumber"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Біля дверей стоїть майстер із сумкою. Спитайте: «Ви сантехнік?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are you a plumber?`",
+                "uk": "тут потрібно `Are` — `Are you a plumber?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:word:electrician",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — electrician",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:electrician:audio"
+        ],
+        "accessibilityLabel": "Картка слова — electrician",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:electrician:audio",
+            "transcript": "electrician"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:electrician:r1",
+              "targetText": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик. The electrician is in the office. — «Электрик в офисе». Мастер, который чинит проводку и лампы.",
+                "uk": "електрик. The electrician is in the office. — «Електрик в офісі». Майстер, який лагодить проводку й лампи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electrician",
+            "definitionByLocale": {
+              "ru": "электрик. The electrician is in the office. — «Электрик в офисе». Мастер, который чинит проводку и лампы.",
+              "uk": "електрик. The electrician is in the office. — «Електрик в офісі». Майстер, який лагодить проводку й лампи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте майстра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i02:r1",
+            "text": "I am a plumber."
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i02:r2",
+            "text": "I am an electrician."
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i02:r3",
+            "text": "We are plumbers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте майстра",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i02:audio",
+            "transcript": "I am a plumber."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:i02:r1",
+              "targetText": "I am a plumber.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i02:r2",
+              "targetText": "I am an electrician.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i02:r3",
+              "targetText": "We are plumbers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте майстра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plumber`, сантехник, а в этом варианте — `electrician`, электрик.",
+                "uk": "У записі останнє слово — `plumber`, сантехнік, а в цьому варіанті — `electrician`, електрик."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте майстра",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:word:fix",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fix",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:fix:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fix",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:fix:audio",
+            "transcript": "fix"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:fix:r1",
+              "targetText": "fix",
+              "meaningByLocale": {
+                "ru": "чинить. We fix lamps. — «Мы чиним лампы». О том, как сломанную вещь делают снова рабочей.",
+                "uk": "лагодити. We fix lamps. — «Ми лагодимо лампи». Про те, як зламану річ роблять знову робочою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fix",
+            "definitionByLocale": {
+              "ru": "чинить. We fix lamps. — «Мы чиним лампы». О том, как сломанную вещь делают снова рабочей.",
+              "uk": "лагодити. We fix lamps. — «Ми лагодимо лампи». Про те, як зламану річ роблять знову робочою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте майстра: «Ви лагодите крани?». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i03:r1",
+            "text": "fix"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i03:r2",
+            "text": "fixes"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i03:r3",
+            "text": "are fix"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте майстра: «Ви лагодите крани?». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите мастера: «Вы чините краны?». Выберите слово",
+            "uk": "Спитайте майстра: «Ви лагодите крани?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ taps?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-06:i03:r1",
+              "text": "fix"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i03:r2",
+              "text": "fixes"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i03:r3",
+              "text": "are fix"
+            }
+          ],
+          "testedDimension": "Спитайте майстра: «Ви лагодите крани?». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Спитайте майстра: «Ви лагодите крани?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Do you` нужно `fix`, без изменений.",
+                "uk": "Після `Do you` потрібно `fix`, без змін."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Спитайте майстра: «Ви лагодите крани?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do you fix`, без `are`.",
+                "uk": "Потрібно `Do you fix`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-06:i04:p1",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i04:p2",
+              "target": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик",
+                "uk": "електрик"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i04:p3",
+              "target": "fix",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i04:p4",
+              "target": "tap",
+              "meaningByLocale": {
+                "ru": "кран",
+                "uk": "кран"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plumber",
+            "electrician",
+            "fix",
+            "tap"
+          ],
+          "rightColumn": [
+            "сантехнік",
+            "електрик",
+            "лагодити",
+            "кран"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте майстра й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте майстра й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i05:audio",
+            "transcript": "Are you an electrician?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you an electrician?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "an",
+            "electrician"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте майстра й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are you an electrician?`",
+                "uk": "тут потрібно `Are` — `Are you an electrician?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід знає двох майстрів. Спитайте: «Вони лагодять лампи?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід знає двох майстрів. Спитайте: «Вони лагодять лампи?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they fix lamps?",
+          "localizedMeaning": {
+            "ru": "Сосед знает двух мастеров. Спросите: «Они чинят лампы?»",
+            "uk": "Сусід знає двох майстрів. Спитайте: «Вони лагодять лампи?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "fix",
+            "lamps"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід знає двох майстрів. Спитайте: «Вони лагодять лампи?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they fix lamps?`",
+                "uk": "тут потрібно `Do` — `Do they fix lamps?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:word:pliers",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pliers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:word:pliers:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pliers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:word:pliers:audio",
+            "transcript": "pliers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:word:pliers:r1",
+              "targetText": "pliers",
+              "meaningByLocale": {
+                "ru": "плоскогубцы. The pliers are in the bag. — «Плоскогубцы в сумке». Инструмент, которым берут и сжимают мелкие детали.",
+                "uk": "плоскогубці. The pliers are in the bag. — «Плоскогубці в сумці». Інструмент, яким беруть і стискають дрібні деталі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pliers",
+            "definitionByLocale": {
+              "ru": "плоскогубцы. The pliers are in the bag. — «Плоскогубцы в сумке». Инструмент, которым берут и сжимают мелкие детали.",
+              "uk": "плоскогубці. The pliers are in the bag. — «Плоскогубці в сумці». Інструмент, яким беруть і стискають дрібні деталі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Майстер просить плоскогубці. Зазирнувши в сумку, скажіть: «Тут немає плоскогубців»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Майстер просить плоскогубці. Зазирнувши в сумку, скажіть: «Тут немає плоскогубців»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i07:audio",
+            "transcript": "There are no pliers here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are no pliers here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте людину біля дверей: «Ви електрик?». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте людину біля дверей: «Ви електрик?». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите человека у двери: «Вы электрик?». Выберите слово",
+            "uk": "Спитайте людину біля дверей: «Ви електрик?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ you an electrician?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-06:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спитайте людину біля дверей: «Ви електрик?». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Спитайте людину біля дверей: «Ви електрик?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Мы спрашиваем, кто этот человек, поэтому нужно `Are you`.",
+                "uk": "Ми питаємо, хто ця людина, тому потрібно `Are you`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Спитайте людину біля дверей: «Ви електрик?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Are`, а не `Is`.",
+                "uk": "З `you` потрібно `Are`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i09:r1",
+            "text": "Do you fix lamps?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i09:r2",
+            "text": "Do you fix taps?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i09:r3",
+            "text": "Do they fix lamps?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i09:audio",
+            "transcript": "Do you fix lamps?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:i09:r1",
+              "targetText": "Do you fix lamps?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i09:r2",
+              "targetText": "Do you fix taps?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i09:r3",
+              "targetText": "Do they fix lamps?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lamps`, лампы, а в этом варианте — `taps`, краны.",
+                "uk": "У записі останнє слово — `lamps`, лампи, а в цьому варіанті — `taps`, крани."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-06:i10:p1",
+              "target": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик",
+                "uk": "електрик"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i10:p2",
+              "target": "fix",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i10:p3",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i10:p4",
+              "target": "pliers",
+              "meaningByLocale": {
+                "ru": "плоскогубцы",
+                "uk": "плоскогубці"
+              }
+            }
+          ],
+          "leftColumn": [
+            "electrician",
+            "fix",
+            "plumber",
+            "pliers"
+          ],
+          "rightColumn": [
+            "електрик",
+            "лагодити",
+            "сантехнік",
+            "плоскогубці"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i11:audio",
+            "transcript": "Do they fix taps?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they fix taps?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "fix",
+            "taps"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they fix taps?`",
+                "uk": "тут потрібно `Do` — `Do they fix taps?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Майстер прийшов лагодити кран. Спитайте: «У вас є плоскогубці?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майстер прийшов лагодити кран. Спитайте: «У вас є плоскогубці?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have pliers?",
+          "localizedMeaning": {
+            "ru": "Мастер пришёл чинить кран. Спросите: «У вас есть плоскогубцы?»",
+            "uk": "Майстер прийшов лагодити кран. Спитайте: «У вас є плоскогубці?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "pliers"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Майстер прийшов лагодити кран. Спитайте: «У вас є плоскогубці?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you have pliers?`",
+                "uk": "тут потрібно `Do` — `Do you have pliers?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви зустріли майстра біля під’їзду. Спитайте: «Ви лагодите крани?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Ви зустріли майстра біля під’їзду. Спитайте: «Ви лагодите крани?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i13:audio",
+            "transcript": "Do you fix taps?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you fix taps?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть майстру, що плоскогубців немає. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть майстру, що плоскогубців немає. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите мастеру, что плоскогубцев нет. Выберите слово",
+            "uk": "Скажіть майстру, що плоскогубців немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no pliers here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-06:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажіть майстру, що плоскогубців немає. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть майстру, що плоскогубців немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `pliers` нужно `are`, как с `glasses`.",
+                "uk": "З `pliers` потрібно `are`, як із `glasses`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть майстру, що плоскогубців немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There are no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There are no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання майстра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i15:r1",
+            "text": "Do you have pliers?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i15:r2",
+            "text": "Do you have a lamp?"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i15:r3",
+            "text": "Do they have pliers?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання майстра",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i15:audio",
+            "transcript": "Do you have pliers?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-06:i15:r1",
+              "targetText": "Do you have pliers?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i15:r2",
+              "targetText": "Do you have a lamp?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i15:r3",
+              "targetText": "Do they have pliers?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання майстра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pliers`, плоскогубцы, а в этом варианте — `lamp`, лампа.",
+                "uk": "У записі останнє слово — `pliers`, плоскогубці, а в цьому варіанті — `lamp`, лампа."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання майстра",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-06:i16:p1",
+              "target": "pliers",
+              "meaningByLocale": {
+                "ru": "плоскогубцы",
+                "uk": "плоскогубці"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i16:p2",
+              "target": "plumber",
+              "meaningByLocale": {
+                "ru": "сантехник",
+                "uk": "сантехнік"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i16:p3",
+              "target": "fix",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-06:i16:p4",
+              "target": "electrician",
+              "meaningByLocale": {
+                "ru": "электрик",
+                "uk": "електрик"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pliers",
+            "plumber",
+            "fix",
+            "electrician"
+          ],
+          "rightColumn": [
+            "плоскогубці",
+            "сантехнік",
+            "лагодити",
+            "електрик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Майстер прийшов за викликом. Дізнайтеся, хто він: «Ви сантехнік?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Майстер прийшов за викликом. Дізнайтеся, хто він: «Ви сантехнік?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-06:i17:audio",
+            "transcript": "Are you a plumber?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you a plumber?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-06:word:plumber",
+      "correctText": "plumber",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i01",
+      "correctText": "Are you a plumber?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:word:electrician",
+      "correctText": "electrician",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i02",
+      "correctText": "I am a plumber.",
+      "correctResponseId": "en:lesson-07:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:word:fix",
+      "correctText": "fix",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i03",
+      "correctText": "fix",
+      "correctResponseId": "en:lesson-07:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i05",
+      "correctText": "Are you an electrician?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i06",
+      "correctText": "Do they fix lamps?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:word:pliers",
+      "correctText": "pliers",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i07",
+      "correctText": "There are no pliers here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i08",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-07:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i09",
+      "correctText": "Do you fix lamps?",
+      "correctResponseId": "en:lesson-07:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i11",
+      "correctText": "Do they fix taps?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i12",
+      "correctText": "Do you have pliers?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i13",
+      "correctText": "Do you fix taps?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-07:session-06:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i15",
+      "correctText": "Do you have pliers?",
+      "correctResponseId": "en:lesson-07:session-06:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i17",
+      "correctText": "Are you a plumber?",
+      "correctResponseId": null
+    }
+  ]
+}

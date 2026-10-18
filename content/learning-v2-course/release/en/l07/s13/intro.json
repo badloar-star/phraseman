@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-13",
   "learningOutcomeByLocale": {
-    "ru": "спросить, работает ли экран, и повторить вопросы о привычках",
-    "uk": "запитати, чи працює екран, і повторити запитання про звички"
+    "ru": "спросить, во что играет один человек, с помощью Does",
+    "uk": "запитати, у що грає одна людина, за допомогою Does"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Проверка экрана",
-        "uk": "Перевірка екрана"
+        "ru": "Шахматисты в парке",
+        "uk": "Шахісти в парку"
       },
       "bodyByLocale": {
-        "ru": "`screen` — «экран». Перед встречей вы хотите показать коллегам расписание. `Does the screen work?` — «Экран работает?» Об одном экране спрашиваем с `Does`, после названия устройства ставим `work`, без `s`. Чёрный экран может быть выключен или сломан — по цвету диагноз не поставишь.",
-        "uk": "`screen` — «екран». Перед зустріччю ви хочете показати колегам розклад. `Does the screen work?` — «Екран працює?» Про один екран запитуємо з `Does`, після назви пристрою ставимо `work`, без `s`. Чорний екран може бути вимкнений або зламаний — за кольором діагноз не поставиш."
+        "ru": "Вы с подругой гуляете по парку возле дома и смотрите, как на лавках играют в шахматы. Вы хотите позвать туда её брата, но не знаете, умеет ли он играть. chess — «шахматы». Спросите подругу: Does he play chess? — «Он играет в шахматы?» После Does — play, без s.",
+        "uk": "Ви з подругою гуляєте парком біля дому і дивитеся, як на лавках грають у шахи. Ви хочете покликати туди її брата, але не знаєте, чи вміє він грати. chess — «шахи». Спитайте подругу: Does he play chess? — «Він грає в шахи?» Після Does — play, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-13:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу «Экран работает?»",
-          "uk": "Запитайте колегу «Екран працює?»"
+          "ru": "Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»",
+          "uk": "Ви хочете покликати брата подруги в парк. Спитайте подругу: «Він грає в шахи?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-13:intro1:r1",
-              "text": "Does the screen work?"
+              "text": "Does he play chess?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro1:r2",
-              "text": "Do the screen work?"
+              "text": "Do he play chess?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro1:r3",
-              "text": "Does the screen works?"
+              "text": "Does he plays chess?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-13:intro1:r1",
-              "text": "Does the screen work?"
+              "text": "Does he play chess?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro1:r2",
-              "text": "Do the screen work?"
+              "text": "Do he play chess?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro1:r3",
-              "text": "Does the screen works?"
+              "text": "Does he plays chess?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу «Экран работает?»",
-          "uk": "Запитайте колегу «Екран працює?»"
+          "ru": "Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»",
+          "uk": "Ви хочете покликати брата подруги в парк. Спитайте подругу: «Він грає в шахи?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Зонт у окна",
-        "uk": "Парасоля біля вікна"
+        "ru": "Фото с ракеткой",
+        "uk": "Фото з ракеткою"
       },
       "bodyByLocale": {
-        "ru": "Друг ищет зонт возле окна. Вы посмотрели: `There is no umbrella near the window` — «Возле окна нет зонта». Об отсутствии одного зонта говорим `There is no umbrella`. `Near the window` уточняет место.",
-        "uk": "Друг шукає парасолю біля вікна. Ви подивилися: `There is no umbrella near the window` — «Біля вікна немає парасолі». Про відсутність однієї парасолі кажемо `There is no umbrella`. `Near the window` уточнює місце."
+        "ru": "Подруга показывает вам на телефоне фото: её сестра стоит на площадке с ракеткой. tennis — «теннис». Вы хотите узнать, это её спорт или случайный снимок. Спросите: Does she play tennis? — «Она играет в теннис?» С she нужно Does, а play без s.",
+        "uk": "Подруга показує вам на телефоні фото: її сестра стоїть на майданчику з ракеткою. tennis — «теніс». Ви хочете дізнатися, це її спорт чи випадковий знімок. Спитайте: Does she play tennis? — «Вона грає в теніс?» З she потрібно Does, а play без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-13:intro2:q",
         "promptByLocale": {
-          "ru": "Сообщите другу «Возле окна нет зонта».",
-          "uk": "Повідомте другові «Біля вікна немає парасолі»."
+          "ru": "На фото сестра подруги с ракеткой. Спросите подругу: «Она играет в теннис?»",
+          "uk": "На фото сестра подруги з ракеткою. Спитайте подругу: «Вона грає в теніс?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-13:intro2:r1",
-              "text": "There is no umbrella near the window."
+              "text": "Does she play tennis?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro2:r2",
-              "text": "There are no umbrella near the window."
+              "text": "Do she play tennis?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro2:r3",
-              "text": "There no umbrella near the window."
+              "text": "Does she plays tennis?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-13:intro2:r1",
-              "text": "There is no umbrella near the window."
+              "text": "Does she play tennis?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro2:r2",
-              "text": "There are no umbrella near the window."
+              "text": "Do she play tennis?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro2:r3",
-              "text": "There no umbrella near the window."
+              "text": "Does she plays tennis?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите другу «Возле окна нет зонта».",
-          "uk": "Повідомте другові «Біля вікна немає парасолі»."
+          "ru": "На фото сестра подруги с ракеткой. Спросите подругу: «Она играет в теннис?»",
+          "uk": "На фото сестра подруги з ракеткою. Спитайте подругу: «Вона грає в теніс?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Успеет ли коллега утром",
-        "uk": "Чи встигне колега вранці"
+        "ru": "Дядя за городом",
+        "uk": "Дядько за містом"
       },
       "bodyByLocale": {
-        "ru": "Вы планируете утреннюю встречу и уточняете время работы Анны. `Does she start her shift early?` — «Она начинает свою смену рано?» `Her shift` — «её смена», а после `Does she` нужно `start`, без `s`.",
-        "uk": "Ви плануєте ранкову зустріч і уточнюєте час роботи Анни. `Does she start her shift early?` — «Вона починає свою зміну рано?» `Her shift` — «її зміна», а після `Does she` потрібне `start`, без `s`."
+        "ru": "Друг рассказывает про своего дядю: тот каждые выходные уезжает за город с длинными клюшками в сумке. Вы думаете, что это спорт, и хотите уточнить. golf — «гольф». Спросите друга: Does your uncle play golf? — «Ваш дядя играет в гольф?» Дядя один, поэтому Does, а play без s.",
+        "uk": "Друг розповідає про свого дядька: той щовихідних виїжджає за місто з довгими ключками в сумці. Ви думаєте, що це спорт, і хочете уточнити. golf — «гольф». Спитайте друга: Does your uncle play golf? — «Ваш дядько грає в гольф?» Дядько один, тому Does, а play без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите об Анне «Она начинает свою смену рано?»",
-          "uk": "Запитайте про Анну «Вона починає свою зміну рано?»"
+          "ru": "Друг рассказывает о дяде. Спросите друга: «Ваш дядя играет в гольф?»",
+          "uk": "Друг розповідає про дядька. Спитайте друга: «Ваш дядько грає в гольф?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-13:intro3:r1",
-              "text": "Does she start her shift early?"
+              "text": "Does your uncle play golf?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro3:r2",
-              "text": "Do she start her shift early?"
+              "text": "Do your uncle play golf?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro3:r3",
-              "text": "Does she starts her shift early?"
+              "text": "Does your uncle plays golf?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-13:intro3:r1",
-              "text": "Does she start her shift early?"
+              "text": "Does your uncle play golf?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro3:r2",
-              "text": "Do she start her shift early?"
+              "text": "Do your uncle play golf?"
             },
             {
               "responseId": "en:lesson-07:session-13:intro3:r3",
-              "text": "Does she starts her shift early?"
+              "text": "Does your uncle plays golf?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите об Анне «Она начинает свою смену рано?»",
-          "uk": "Запитайте про Анну «Вона починає свою зміну рано?»"
+          "ru": "Друг рассказывает о дяде. Спросите друга: «Ваш дядя играет в гольф?»",
+          "uk": "Друг розповідає про дядька. Спитайте друга: «Ваш дядько грає в гольф?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "943b98880c013909d80ef263021405f558590246d7b32099103177bed986a412"
+  "introFingerprint": "4b883d3092fe78e08eec0279b5fd210761d834016ca7086dd1f7d4bc3b53cefa"
 }

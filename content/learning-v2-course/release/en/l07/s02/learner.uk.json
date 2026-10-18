@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-02:i01",
+      "interactionId": "en:lesson-07:session-02:word:package",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — package",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:word:package:audio"
+      ],
+      "accessibilityLabel": "Картка слова — package",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:word:package:audio",
+          "transcript": "package"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-02:word:package:r1",
+            "targetText": "package",
+            "meaningByLocale": {
+              "ru": "посылка. The package is on the table. — «Посылка на столе». Коробка, которую отправляют или получают по почте.",
+              "uk": "посилка. The package is on the table. — «Посилка на столі». Коробка, яку надсилають або отримують поштою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "package",
+          "definitionByLocale": {
+            "ru": "посылка. The package is on the table. — «Посылка на столе». Коробка, которую отправляют или получают по почте.",
+            "uk": "посилка. The package is on the table. — «Посилка на столі». Коробка, яку надсилають або отримують поштою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «У вас є посилка?»",
+      "prompt": "Ви допомагаєте на пошті. Спитайте відвідувача: «У вас є посилка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «У вас є посилка?»",
+      "accessibilityLabel": "Ви допомагаєте на пошті. Спитайте відвідувача: «У вас є посилка?»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Do you have a package?",
         "localizedMeaning": {
-          "ru": "Спросите «У вас есть посылка?»",
-          "uk": "Запитайте «У вас є посилка?»"
+          "ru": "Вы помогаете на почте. Спросите посетителя: «У вас есть посылка?»",
+          "uk": "Ви допомагаєте на пошті. Спитайте відвідувача: «У вас є посилка?»"
         },
         "orderedTokens": [
           "Do",
@@ -28,8 +71,20 @@
           "a",
           "package"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви допомагаєте на пошті. Спитайте відвідувача: «У вас є посилка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have a package?`",
+              "uk": "тут потрібно `Do` — `Do you have a package?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-02:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-02:word:send",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — send",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:word:send:audio"
+      ],
+      "accessibilityLabel": "Картка слова — send",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:word:send:audio",
+          "transcript": "send"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-02:word:send:r1",
+            "targetText": "send",
+            "meaningByLocale": {
+              "ru": "отправлять. We send letters. — «Мы отправляем письма». О том, что кладут в конверт или коробку и пересылают.",
+              "uk": "надсилати. We send letters. — «Ми надсилаємо листи». Про те, що кладуть у конверт або коробку й пересилають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "send",
+          "definitionByLocale": {
+            "ru": "отправлять. We send letters. — «Мы отправляем письма». О том, что кладут в конверт или коробку и пересылают.",
+            "uk": "надсилати. We send letters. — «Ми надсилаємо листи». Про те, що кладуть у конверт або коробку й пересилають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте працівника",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-02:i02:r1",
-          "text": "package"
+          "text": "We send packages."
         },
         {
           "responseId": "en:lesson-07:session-02:i02:r2",
-          "text": "folder"
+          "text": "We send letters."
         },
         {
           "responseId": "en:lesson-07:session-02:i02:r3",
-          "text": "apple"
+          "text": "They send packages."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте працівника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-02:i02:audio",
-          "transcript": "package"
+          "transcript": "We send packages."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-02:i02:r1",
-            "targetText": "package",
+            "targetText": "We send packages.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-02:i02:r2",
-            "targetText": "folder",
+            "targetText": "We send letters.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-02:i02:r3",
-            "targetText": "apple",
+            "targetText": "They send packages.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +190,19 @@
           {
             "responseId": "en:lesson-07:session-02:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте працівника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `package`, а в этом варианте — `folder`.",
-              "uk": "У записі перше слово — `package`, а в цьому варіанті — `folder`."
+              "ru": "В записи последнее слово — `packages`, посылки, а в этом варианте — `letters`, письма.",
+              "uk": "У записі останнє слово — `packages`, посилки, а в цьому варіанті — `letters`, листи."
             }
           },
           {
             "responseId": "en:lesson-07:session-02:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте працівника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `package`, а в этом варианте — `apple`.",
-              "uk": "У записі перше слово — `package`, а в цьому варіанті — `apple`."
+              "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+              "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
             }
           }
         ],
@@ -115,67 +213,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Вони доставляють посилки?»",
+      "prompt": "Спитайте про службу доставки: «Вони надсилають посилки?». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-02:i03:r1",
-          "text": "deliver"
+          "text": "send"
         },
         {
           "responseId": "en:lesson-07:session-02:i03:r2",
-          "text": "delivers"
+          "text": "sends"
         },
         {
           "responseId": "en:lesson-07:session-02:i03:r3",
-          "text": "are deliver"
+          "text": "are send"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Вони доставляють посилки?»",
+      "accessibilityLabel": "Спитайте про службу доставки: «Вони надсилають посилки?». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Они доставляют посылки?»",
-          "uk": "Запитайте «Вони доставляють посилки?»"
+          "ru": "Спросите про службу доставки: «Они отправляют посылки?». Выберите слово",
+          "uk": "Спитайте про службу доставки: «Вони надсилають посилки?». Виберіть слово"
         },
         "gappedTargetPhrase": "Do they ___ packages?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-02:i03:r1",
-            "text": "deliver"
+            "text": "send"
           },
           {
             "responseId": "en:lesson-07:session-02:i03:r2",
-            "text": "delivers"
+            "text": "sends"
           },
           {
             "responseId": "en:lesson-07:session-02:i03:r3",
-            "text": "are deliver"
+            "text": "are send"
           }
         ],
-        "testedDimension": "Запитайте «Вони доставляють посилки?»",
+        "testedDimension": "Спитайте про службу доставки: «Вони надсилають посилки?». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-02:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Вони доставляють посилки?»",
+            "testedDimension": "Спитайте про службу доставки: «Вони надсилають посилки?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `Do they` нужно `deliver`.",
-              "uk": "Після `Do they` потрібне `deliver`."
+              "ru": "После `Do they` нужно `send`, без `s`.",
+              "uk": "Після `Do they` потрібно `send`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-02:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Вони доставляють посилки?»",
+            "testedDimension": "Спитайте про службу доставки: «Вони надсилають посилки?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do they deliver?`, без `are`.",
-              "uk": "Потрібно `Do they deliver?`, без `are`."
+              "ru": "Нужно `Do they send`, без `are`.",
+              "uk": "Потрібно `Do they send`, без `are`."
             }
           }
         ]
@@ -184,7 +282,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -206,40 +304,40 @@
           },
           {
             "pairId": "en:lesson-07:session-02:i04:p2",
-            "target": "deliver",
+            "target": "send",
             "meaningByLocale": {
-              "ru": "доставлять",
-              "uk": "доставляти"
+              "ru": "отправлять",
+              "uk": "надсилати"
             }
           },
           {
             "pairId": "en:lesson-07:session-02:i04:p3",
-            "target": "folder",
+            "target": "letter",
             "meaningByLocale": {
-              "ru": "папка",
-              "uk": "папка"
+              "ru": "письмо",
+              "uk": "лист"
             }
           },
           {
             "pairId": "en:lesson-07:session-02:i04:p4",
-            "target": "apple",
+            "target": "weigh",
             "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
+              "ru": "взвешивать",
+              "uk": "зважувати"
             }
           }
         ],
         "leftColumn": [
           "package",
-          "deliver",
-          "folder",
-          "apple"
+          "send",
+          "letter",
+          "weigh"
         ],
         "rightColumn": [
           "посилка",
-          "доставляти",
-          "папка",
-          "яблуко"
+          "надсилати",
+          "лист",
+          "зважувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -257,34 +355,45 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте працівника й складіть питання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте працівника й складіть питання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-02:i05:audio",
-          "transcript": "Do you have a package?"
+          "transcript": "Do you weigh packages?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you have a package?",
+        "hiddenTargetPhrase": "Do you weigh packages?",
         "orderedTokens": [
           "Do",
           "you",
-          "have",
-          "a",
-          "package"
+          "weigh",
+          "packages"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте працівника й складіть питання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you weigh packages?`",
+              "uk": "тут потрібно `Do` — `Do you weigh packages?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -294,30 +403,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте друга про службу «Вони доставляють посилки?»",
+      "prompt": "Друг радить службу доставки. Спитайте: «Вони надсилають посилки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте друга про службу «Вони доставляють посилки?»",
+      "accessibilityLabel": "Друг радить службу доставки. Спитайте: «Вони надсилають посилки?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do they deliver packages?",
+        "targetPhrase": "Do they send packages?",
         "localizedMeaning": {
-          "ru": "Спросите друга о службе «Они доставляют посылки?»",
-          "uk": "Запитайте друга про службу «Вони доставляють посилки?»"
+          "ru": "Друг советует службу доставки. Спросите: «Они отправляют посылки?»",
+          "uk": "Друг радить службу доставки. Спитайте: «Вони надсилають посилки?»"
         },
         "orderedTokens": [
           "Do",
           "they",
-          "deliver",
+          "send",
           "packages"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг радить службу доставки. Спитайте: «Вони надсилають посилки?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they send packages?`",
+              "uk": "тут потрібно `Do` — `Do they send packages?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -326,26 +447,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-02:word:tape",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:word:tape:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:word:tape:audio",
+          "transcript": "tape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-02:word:tape:r1",
+            "targetText": "tape",
+            "meaningByLocale": {
+              "ru": "клейкая лента. The tape is on the table. — «Клейкая лента на столе». Липкая полоса, которой заклеивают коробку.",
+              "uk": "клейка стрічка. The tape is on the table. — «Клейка стрічка на столі». Липка смужка, якою заклеюють коробку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tape",
+          "definitionByLocale": {
+            "ru": "клейкая лента. The tape is on the table. — «Клейкая лента на столе». Липкая полоса, которой заклеивают коробку.",
+            "uk": "клейка стрічка. The tape is on the table. — «Клейка стрічка на столі». Липка смужка, якою заклеюють коробку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-02:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви перевірили кімнату. Повідомте «Тут немає посилки»",
+      "prompt": "Ви пакуєте коробку й шукаєте стрічку. Скажіть другу: «Тут немає клейкої стрічки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i07:audio"
       ],
-      "accessibilityLabel": "Ви перевірили кімнату. Повідомте «Тут немає посилки»",
+      "accessibilityLabel": "Ви пакуєте коробку й шукаєте стрічку. Скажіть другу: «Тут немає клейкої стрічки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-02:i07:audio",
-          "transcript": "There is no package here."
+          "transcript": "There is no tape here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is no package here.",
+        "targetPhrase": "There is no tape here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -359,12 +523,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-02:word:scale",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:word:scale:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:word:scale:audio",
+          "transcript": "scale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-02:word:scale:r1",
+            "targetText": "scale",
+            "meaningByLocale": {
+              "ru": "весы. The scale is near the counter. — «Весы рядом со стойкой». Прибор, на котором узнают вес посылки.",
+              "uk": "ваги. The scale is near the counter. — «Ваги біля стійки». Прилад, на якому дізнаються вагу посилки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scale",
+          "definitionByLocale": {
+            "ru": "весы. The scale is near the counter. — «Весы рядом со стойкой». Прибор, на котором узнают вес посылки.",
+            "uk": "ваги. The scale is near the counter. — «Ваги біля стійки». Прилад, на якому дізнаються вагу посилки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-02:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перед зустріччю запитайте колегу «У вас є папка?»",
+      "prompt": "Спитайте працівника пошти: «У вас є ваги?». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-02:i08:r1",
@@ -381,14 +588,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед зустріччю запитайте колегу «У вас є папка?»",
+      "accessibilityLabel": "Спитайте працівника пошти: «У вас є ваги?». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перед встречей спросите коллегу «У вас есть папка?»",
-          "uk": "Перед зустріччю запитайте колегу «У вас є папка?»"
+          "ru": "Спросите сотрудника почты: «У вас есть весы?». Выберите слово",
+          "uk": "Спитайте працівника пошти: «У вас є ваги?». Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you have a folder?",
+        "gappedTargetPhrase": "___ you have a scale?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-02:i08:r1",
@@ -403,24 +610,24 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Перед зустріччю запитайте колегу «У вас є папка?»",
+        "testedDimension": "Спитайте працівника пошти: «У вас є ваги?». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-02:i08:r2",
             "correct": false,
-            "testedDimension": "Перед зустріччю запитайте колегу «У вас є папка?»",
+            "testedDimension": "Спитайте працівника пошти: «У вас є ваги?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `have` здесь нужно `Do you have?`.",
-              "uk": "З `have` тут потрібно `Do you have?`."
+              "ru": "С `have` нужно `Do you have`, без `Are`.",
+              "uk": "З `have` потрібно `Do you have`, без `Are`."
             }
           },
           {
             "responseId": "en:lesson-07:session-02:i08:r3",
             "correct": false,
-            "testedDimension": "Перед зустріччю запитайте колегу «У вас є папка?»",
+            "testedDimension": "Спитайте працівника пошти: «У вас є ваги?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do you have?`.",
-              "uk": "Потрібно `Do you have?`."
+              "ru": "С `you` нужно `Do`, а `Is` сюда не подходит.",
+              "uk": "З `you` потрібно `Do`, а `Is` сюди не пасує."
             }
           }
         ]
@@ -429,11 +636,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, про яку річ запитує працівник",
+      "prompt": "Послухайте питання працівника",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-02:i09:r1",
@@ -441,18 +648,18 @@
         },
         {
           "responseId": "en:lesson-07:session-02:i09:r2",
-          "text": "Do you have a folder?"
+          "text": "Do you have a scale?"
         },
         {
           "responseId": "en:lesson-07:session-02:i09:r3",
-          "text": "Do you have a key?"
+          "text": "Do they have a package?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, про яку річ запитує працівник",
+      "accessibilityLabel": "Послухайте питання працівника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -468,12 +675,12 @@
           },
           {
             "responseId": "en:lesson-07:session-02:i09:r2",
-            "targetText": "Do you have a folder?",
+            "targetText": "Do you have a scale?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-02:i09:r3",
-            "targetText": "Do you have a key?",
+            "targetText": "Do they have a package?",
             "meaningByLocale": null
           }
         ],
@@ -482,19 +689,19 @@
           {
             "responseId": "en:lesson-07:session-02:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, про яку річ запитує працівник",
+            "testedDimension": "Послухайте питання працівника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `package`, а в этом варианте — `folder`.",
-              "uk": "У записі останнє слово — `package`, а в цьому варіанті — `folder`."
+              "ru": "В записи последнее слово — `package`, посылка, а в этом варианте — `scale`, весы.",
+              "uk": "У записі останнє слово — `package`, посилка, а в цьому варіанті — `scale`, ваги."
             }
           },
           {
             "responseId": "en:lesson-07:session-02:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, про яку річ запитує працівник",
+            "testedDimension": "Послухайте питання працівника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `package`, а в этом варианте — `key`.",
-              "uk": "У записі останнє слово — `package`, а в цьому варіанті — `key`."
+              "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+              "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
             }
           }
         ],
@@ -505,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -519,18 +726,18 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-02:i10:p1",
-            "target": "apple",
+            "target": "tape",
             "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
+              "ru": "клейкая лента",
+              "uk": "клейка стрічка"
             }
           },
           {
             "pairId": "en:lesson-07:session-02:i10:p2",
-            "target": "folder",
+            "target": "scale",
             "meaningByLocale": {
-              "ru": "папка",
-              "uk": "папка"
+              "ru": "весы",
+              "uk": "ваги"
             }
           },
           {
@@ -543,24 +750,24 @@
           },
           {
             "pairId": "en:lesson-07:session-02:i10:p4",
-            "target": "deliver",
+            "target": "send",
             "meaningByLocale": {
-              "ru": "доставлять",
-              "uk": "доставляти"
+              "ru": "отправлять",
+              "uk": "надсилати"
             }
           }
         ],
         "leftColumn": [
-          "apple",
-          "folder",
+          "tape",
+          "scale",
           "package",
-          "deliver"
+          "send"
         ],
         "rightColumn": [
-          "яблуко",
-          "папка",
+          "клейка стрічка",
+          "ваги",
           "посилка",
-          "доставляти"
+          "надсилати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,33 +785,46 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте працівника й складіть питання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте працівника й складіть питання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-02:i11:audio",
-          "transcript": "Do they deliver packages?"
+          "transcript": "Do they weigh packages here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do they deliver packages?",
+        "hiddenTargetPhrase": "Do they weigh packages here?",
         "orderedTokens": [
           "Do",
           "they",
-          "deliver",
-          "packages"
+          "weigh",
+          "packages",
+          "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте працівника й складіть питання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they weigh packages here?`",
+              "uk": "тут потрібно `Do` — `Do they weigh packages here?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -614,30 +834,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега збирає документи для групи. Запитайте «У них є папки?»",
+      "prompt": "Коробку треба заклеїти. Спитайте в друга: «У тебе є клейка стрічка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега збирає документи для групи. Запитайте «У них є папки?»",
+      "accessibilityLabel": "Коробку треба заклеїти. Спитайте в друга: «У тебе є клейка стрічка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do they have folders?",
+        "targetPhrase": "Do you have tape?",
         "localizedMeaning": {
-          "ru": "Коллега собирает документы для группы. Спросите «У них есть папки?»",
-          "uk": "Колега збирає документи для групи. Запитайте «У них є папки?»"
+          "ru": "Коробку нужно заклеить. Спросите у друга: «У тебя есть клейкая лента?»",
+          "uk": "Коробку треба заклеїти. Спитайте в друга: «У тебе є клейка стрічка?»"
         },
         "orderedTokens": [
           "Do",
-          "they",
+          "you",
           "have",
-          "folders"
+          "tape"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Коробку треба заклеїти. Спитайте в друга: «У тебе є клейка стрічка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have tape?`",
+              "uk": "тут потрібно `Do` — `Do you have tape?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -647,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви збираєте перекус. Запитайте друга «У тебе є яблуко?»",
+      "prompt": "Ви стоїте біля віконця пошти. Спитайте працівника: «Ви надсилаєте посилки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i13:audio"
       ],
-      "accessibilityLabel": "Ви збираєте перекус. Запитайте друга «У тебе є яблуко?»",
+      "accessibilityLabel": "Ви стоїте біля віконця пошти. Спитайте працівника: «Ви надсилаєте посилки?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-02:i13:audio",
-          "transcript": "Do you have an apple?"
+          "transcript": "Do you send packages?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you have an apple?",
+        "targetPhrase": "Do you send packages?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -680,11 +912,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повідомте «Тут немає посилки»",
+      "prompt": "Скажіть, що ваг немає. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-02:i14:r1",
@@ -701,14 +933,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Тут немає посилки»",
+      "accessibilityLabel": "Скажіть, що ваг немає. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет посылки»",
-          "uk": "Повідомте «Тут немає посилки»"
+          "ru": "Скажите, что весов нет. Выберите слово",
+          "uk": "Скажіть, що ваг немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no package here.",
+        "gappedTargetPhrase": "There ___ no scale here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-02:i14:r1",
@@ -723,24 +955,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Повідомте «Тут немає посилки»",
+        "testedDimension": "Скажіть, що ваг немає. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-02:i14:r2",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає посилки»",
+            "testedDimension": "Скажіть, що ваг немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Одна посылка: `There is no package`.",
-              "uk": "Одна посилка: `There is no package`."
+              "ru": "Слово scale стоит в единственном числе: нужно `There is no`.",
+              "uk": "Слово scale стоїть в однині: потрібно `There is no`."
             }
           },
           {
             "responseId": "en:lesson-07:session-02:i14:r3",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає посилки»",
+            "testedDimension": "Скажіть, що ваг немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `There is no`, а `am` подходит к `I`.",
-              "uk": "Потрібно `There is no`, а `am` підходить до `I`."
+              "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -749,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про доставку",
+      "prompt": "Послухайте питання на пошті",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-02:i15:r1",
-          "text": "Do they deliver here?"
+          "text": "Do they send packages here?"
         },
         {
           "responseId": "en:lesson-07:session-02:i15:r2",
-          "text": "Do they deliver there?"
+          "text": "Do they send packages there?"
         },
         {
           "responseId": "en:lesson-07:session-02:i15:r3",
-          "text": "Do they deliver newspapers?"
+          "text": "Do they weigh packages here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про доставку",
+      "accessibilityLabel": "Послухайте питання на пошті",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-02:i15:audio",
-          "transcript": "Do they deliver here?"
+          "transcript": "Do they send packages here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-02:i15:r1",
-            "targetText": "Do they deliver here?",
+            "targetText": "Do they send packages here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-02:i15:r2",
-            "targetText": "Do they deliver there?",
+            "targetText": "Do they send packages there?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-02:i15:r3",
-            "targetText": "Do they deliver newspapers?",
+            "targetText": "Do they weigh packages here?",
             "meaningByLocale": null
           }
         ],
@@ -802,19 +1034,19 @@
           {
             "responseId": "en:lesson-07:session-02:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про доставку",
+            "testedDimension": "Послухайте питання на пошті",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+              "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
             }
           },
           {
             "responseId": "en:lesson-07:session-02:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про доставку",
+            "testedDimension": "Послухайте питання на пошті",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `newspapers`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `newspapers`."
+              "ru": "В записи слово действия — `send`, отправляют, а в этом варианте — `weigh`, взвешивают.",
+              "uk": "У записі слово дії — `send`, надсилають, а в цьому варіанті — `weigh`, зважують."
             }
           }
         ],
@@ -825,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-02:i16:p1",
-            "target": "deliver",
+            "target": "scale",
             "meaningByLocale": {
-              "ru": "доставлять",
-              "uk": "доставляти"
+              "ru": "весы",
+              "uk": "ваги"
             }
           },
           {
             "pairId": "en:lesson-07:session-02:i16:p2",
+            "target": "tape",
+            "meaningByLocale": {
+              "ru": "клейкая лента",
+              "uk": "клейка стрічка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i16:p3",
+            "target": "send",
+            "meaningByLocale": {
+              "ru": "отправлять",
+              "uk": "надсилати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i16:p4",
             "target": "package",
             "meaningByLocale": {
               "ru": "посылка",
               "uk": "посилка"
             }
-          },
-          {
-            "pairId": "en:lesson-07:session-02:i16:p3",
-            "target": "apple",
-            "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
-            }
-          },
-          {
-            "pairId": "en:lesson-07:session-02:i16:p4",
-            "target": "folder",
-            "meaningByLocale": {
-              "ru": "папка",
-              "uk": "папка"
-            }
           }
         ],
         "leftColumn": [
-          "deliver",
-          "package",
-          "apple",
-          "folder"
+          "scale",
+          "tape",
+          "send",
+          "package"
         ],
         "rightColumn": [
-          "доставляти",
-          "посилка",
-          "яблуко",
-          "папка"
+          "ваги",
+          "клейка стрічка",
+          "надсилати",
+          "посилка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -898,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-02:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви прийшли до офісу служби доставки. Зверніться до працівника від імені клієнта: «Ви доставляєте посилки?»",
+      "prompt": "Ви з другом прийшли на пошту. Дізнайтеся в працівника, чи є ваги: «У вас є ваги?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-02:i17:audio"
       ],
-      "accessibilityLabel": "Ви прийшли до офісу служби доставки. Зверніться до працівника від імені клієнта: «Ви доставляєте посилки?»",
+      "accessibilityLabel": "Ви з другом прийшли на пошту. Дізнайтеся в працівника, чи є ваги: «У вас є ваги?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-02:i17:audio",
-          "transcript": "Do you deliver packages?"
+          "transcript": "Do you have a scale?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you deliver packages?",
+        "targetPhrase": "Do you have a scale?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -938,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c29e8e68b831ae3cdc35c525eb94e9b07a72abbc34a4c45d8d28f302ee45ad0e"
+  "learnerFingerprint": "29097b359578c0c3a6a21ffcac529b31306e1e0d0cf48a92f438fd6b77918877"
 }

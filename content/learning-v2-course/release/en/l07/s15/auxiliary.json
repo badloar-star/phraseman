@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-15:intro1:r2": {
-          "ru": "Один сайт: `Does the website`.",
-          "uk": "Один сайт: `Does the website`."
+          "ru": "Повар один: нужно Does.",
+          "uk": "Кухар один: потрібно Does."
         },
         "en:lesson-07:session-15:intro1:r3": {
-          "ru": "После `Does` нужно `work`.",
-          "uk": "Після `Does` потрібне `work`."
+          "ru": "После Does нужно cook, без s.",
+          "uk": "Після Does потрібно cook, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-15:intro2:r2": {
-          "ru": "Одно расписание: `There is no schedule`.",
-          "uk": "Один розклад: `There is no schedule`."
+          "ru": "Кафе одно: нужно Does.",
+          "uk": "Кафе одне: потрібно Does."
         },
         "en:lesson-07:session-15:intro2:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "После Does нужно serve, без s.",
+          "uk": "Після Does потрібно serve, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-15:intro3:r2": {
-          "ru": "С `she` нужно `Does`.",
-          "uk": "Із `she` потрібне `Does`."
+          "ru": "Киоск один: нужно Does.",
+          "uk": "Кіоск один: потрібно Does."
         },
         "en:lesson-07:session-15:intro3:r3": {
-          "ru": "После `Does she` нужно `sing`.",
-          "uk": "Після `Does she` потрібне `sing`."
+          "ru": "После Does нужно sell, без s.",
+          "uk": "Після Does потрібно sell, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "72b731fa5bf4799189a802a2c6c4cbbfc5be6acbac51d2a1f02deb739de0683f"
+  "auxiliaryFingerprint": "83ff8cde1cdaaea91d21711f8198843a61200d2bba714444659379ad4b8ddd01"
 }

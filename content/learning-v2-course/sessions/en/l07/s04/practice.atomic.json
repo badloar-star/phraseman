@@ -1,0 +1,2451 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-04:word:menu",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — menu",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:menu:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — menu",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:menu:audio",
+            "transcript": "menu"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:menu:r1",
+              "targetText": "menu",
+              "meaningByLocale": {
+                "ru": "меню. The menu is on the table. — «Меню на столе». Список блюд и напитков в кафе.",
+                "uk": "меню. The menu is on the table. — «Меню на столі». Список страв і напоїв у кафе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "menu",
+            "definitionByLocale": {
+              "ru": "меню. The menu is on the table. — «Меню на столе». Список блюд и напитков в кафе.",
+              "uk": "меню. The menu is on the table. — «Меню на столі». Список страв і напоїв у кафе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы сели за столик без меню. Спросите сотрудника: «У вас есть меню?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сели за столик без меню. Спросите сотрудника: «У вас есть меню?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a menu?",
+          "localizedMeaning": {
+            "ru": "Вы сели за столик без меню. Спросите сотрудника: «У вас есть меню?»",
+            "uk": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "menu"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы сели за столик без меню. Спросите сотрудника: «У вас есть меню?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you have a menu?`",
+                "uk": "тут потрібно `Do` — `Do you have a menu?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:word:bill",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:bill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:bill:audio",
+            "transcript": "bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:bill:r1",
+              "targetText": "bill",
+              "meaningByLocale": {
+                "ru": "счёт. The bill is on the table. — «Счёт на столе». Бумага с суммой, которую нужно заплатить в кафе.",
+                "uk": "рахунок. The bill is on the table. — «Рахунок на столі». Папір із сумою, яку треба заплатити в кафе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bill",
+            "definitionByLocale": {
+              "ru": "счёт. The bill is on the table. — «Счёт на столе». Бумага с суммой, которую нужно заплатить в кафе.",
+              "uk": "рахунок. The bill is on the table. — «Рахунок на столі». Папір із сумою, яку треба заплатити в кафе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сотрудника",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i02:r1",
+            "text": "We have a menu."
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i02:r2",
+            "text": "We have a bill."
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i02:r3",
+            "text": "They have a menu."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте сотрудника",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i02:audio",
+            "transcript": "We have a menu."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:i02:r1",
+              "targetText": "We have a menu.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i02:r2",
+              "targetText": "We have a bill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i02:r3",
+              "targetText": "They have a menu.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудника",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.",
+                "uk": "У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сотрудника",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+                "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:word:waiter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waiter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:waiter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waiter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:waiter:audio",
+            "transcript": "waiter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:waiter:r1",
+              "targetText": "waiter",
+              "meaningByLocale": {
+                "ru": "официант. The waiter is near the table. — «Официант рядом со столом». Человек, который приносит еду и напитки к столу.",
+                "uk": "офіціант. The waiter is near the table. — «Офіціант біля столу». Людина, яка приносить їжу й напої до столу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waiter",
+            "definitionByLocale": {
+              "ru": "официант. The waiter is near the table. — «Официант рядом со столом». Человек, который приносит еду и напитки к столу.",
+              "uk": "офіціант. The waiter is near the table. — «Офіціант біля столу». Людина, яка приносить їжу й напої до столу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i03:r3",
+            "text": "are have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+            "uk": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do they ___ a waiter?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-04:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i03:r3",
+              "text": "are have"
+            }
+          ],
+          "testedDimension": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Do they` нужно `have`, без изменений.",
+                "uk": "Після `Do they` потрібно `have`, без змін."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do they have`, без `are`.",
+                "uk": "Потрібно `Do they have`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-04:i04:p1",
+              "target": "menu",
+              "meaningByLocale": {
+                "ru": "меню",
+                "uk": "меню"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i04:p2",
+              "target": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i04:p3",
+              "target": "waiter",
+              "meaningByLocale": {
+                "ru": "официант",
+                "uk": "офіціант"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i04:p4",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "menu",
+            "bill",
+            "waiter",
+            "work"
+          ],
+          "rightColumn": [
+            "меню",
+            "счёт",
+            "официант",
+            "работать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i05:audio",
+            "transcript": "Do the waiters work here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do the waiters work here?",
+          "orderedTokens": [
+            "Do",
+            "the",
+            "waiters",
+            "work",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do the waiters work here?`",
+                "uk": "тут потрібно `Do` — `Do the waiters work here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг советует кафе у реки. Спросите: «У них есть официанты?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг советует кафе у реки. Спросите: «У них есть официанты?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they have waiters?",
+          "localizedMeaning": {
+            "ru": "Друг советует кафе у реки. Спросите: «У них есть официанты?»",
+            "uk": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "have",
+            "waiters"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг советует кафе у реки. Спросите: «У них есть официанты?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they have waiters?`",
+                "uk": "тут потрібно `Do` — `Do they have waiters?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы поели и хотите заплатить, но на столе пусто. Скажите подруге: «Здесь нет счёта»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Вы поели и хотите заплатить, но на столе пусто. Скажите подруге: «Здесь нет счёта»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i07:audio",
+            "transcript": "There is no bill here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is no bill here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:word:cash",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cash",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:cash:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cash",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:cash:audio",
+            "transcript": "cash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:cash:r1",
+              "targetText": "cash",
+              "meaningByLocale": {
+                "ru": "наличные деньги. I have cash. — «У меня есть наличные». Бумажные деньги и монеты, не карта.",
+                "uk": "готівка. I have cash. — «У мене є готівка». Паперові гроші та монети, не картка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cash",
+            "definitionByLocale": {
+              "ru": "наличные деньги. I have cash. — «У меня есть наличные». Бумажные деньги и монеты, не карта.",
+              "uk": "готівка. I have cash. — «У мене є готівка». Паперові гроші та монети, не картка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+            "uk": "Спитайте подругу: «У тебе є готівка?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ you have cash?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-04:i08:r1",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i08:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `have` нужно `Do you have`, без `Are`.",
+                "uk": "З `have` потрібно `Do you have`, без `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Do`, а `Is` сюда не подходит.",
+                "uk": "З `you` потрібно `Do`, а `Is` сюди не пасує."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i09:r1",
+            "text": "Do you have a menu?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i09:r2",
+            "text": "Do you have a bill?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i09:r3",
+            "text": "Do they have a menu?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i09:audio",
+            "transcript": "Do you have a menu?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:i09:r1",
+              "targetText": "Do you have a menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i09:r2",
+              "targetText": "Do you have a bill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i09:r3",
+              "targetText": "Do they have a menu?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.",
+                "uk": "У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-04:i10:p1",
+              "target": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i10:p2",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные деньги",
+                "uk": "готівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i10:p3",
+              "target": "menu",
+              "meaningByLocale": {
+                "ru": "меню",
+                "uk": "меню"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i10:p4",
+              "target": "waiter",
+              "meaningByLocale": {
+                "ru": "официант",
+                "uk": "офіціант"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bill",
+            "cash",
+            "menu",
+            "waiter"
+          ],
+          "rightColumn": [
+            "счёт",
+            "наличные деньги",
+            "меню",
+            "официант"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i11:audio",
+            "transcript": "Do they have cash?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they have cash?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "have",
+            "cash"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they have cash?`",
+                "uk": "тут потрібно `Do` — `Do they have cash?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ждёт вас у кафе. Спросите: «У них есть меню?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ждёт вас у кафе. Спросите: «У них есть меню?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they have a menu?",
+          "localizedMeaning": {
+            "ru": "Друг ждёт вас у кафе. Спросите: «У них есть меню?»",
+            "uk": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "have",
+            "a",
+            "menu"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг ждёт вас у кафе. Спросите: «У них есть меню?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they have a menu?`",
+                "uk": "тут потрібно `Do` — `Do they have a menu?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг рассказывает о новом кафе. Спросите: «У них здесь есть официанты?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "Друг рассказывает о новом кафе. Спросите: «У них здесь есть официанты?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i13:audio",
+            "transcript": "Do they have waiters here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they have waiters here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите подруге, что счёта нет. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите подруге, что счёта нет. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите подруге, что счёта нет. Выберите слово",
+            "uk": "Скажіть подрузі, що рахунку немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no bill here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-04:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажите подруге, что счёта нет. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите подруге, что счёта нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово bill стоит в единственном числе: нужно `There is no`.",
+                "uk": "Слово bill стоїть в однині: потрібно `There is no`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите подруге, что счёта нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос о кафе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i15:r1",
+            "text": "Do they have waiters here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i15:r2",
+            "text": "Do they have waiters there?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i15:r3",
+            "text": "Do they have menus here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос о кафе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i15:audio",
+            "transcript": "Do they have waiters here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:i15:r1",
+              "targetText": "Do they have waiters here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i15:r2",
+              "targetText": "Do they have waiters there?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i15:r3",
+              "targetText": "Do they have menus here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос о кафе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+                "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос о кафе",
+              "feedbackByLocale": {
+                "ru": "В записи речь об официантах, `waiters`, а в этом варианте — о меню, `menus`.",
+                "uk": "У записі йдеться про офіціантів, `waiters`, а в цьому варіанті — про меню, `menus`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-04:i16:p1",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные деньги",
+                "uk": "готівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i16:p2",
+              "target": "waiter",
+              "meaningByLocale": {
+                "ru": "официант",
+                "uk": "офіціант"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i16:p3",
+              "target": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i16:p4",
+              "target": "menu",
+              "meaningByLocale": {
+                "ru": "меню",
+                "uk": "меню"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cash",
+            "waiter",
+            "bill",
+            "menu"
+          ],
+          "rightColumn": [
+            "наличные деньги",
+            "официант",
+            "счёт",
+            "меню"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с подругой хотите расплатиться. Спросите подругу: «У тебя есть наличные?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с подругой хотите расплатиться. Спросите подругу: «У тебя есть наличные?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i17:audio",
+            "transcript": "Do you have cash?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you have cash?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-04:word:menu",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — menu",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:menu:audio"
+        ],
+        "accessibilityLabel": "Картка слова — menu",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:menu:audio",
+            "transcript": "menu"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:menu:r1",
+              "targetText": "menu",
+              "meaningByLocale": {
+                "ru": "меню. The menu is on the table. — «Меню на столе». Список блюд и напитков в кафе.",
+                "uk": "меню. The menu is on the table. — «Меню на столі». Список страв і напоїв у кафе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "menu",
+            "definitionByLocale": {
+              "ru": "меню. The menu is on the table. — «Меню на столе». Список блюд и напитков в кафе.",
+              "uk": "меню. The menu is on the table. — «Меню на столі». Список страв і напоїв у кафе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a menu?",
+          "localizedMeaning": {
+            "ru": "Вы сели за столик без меню. Спросите сотрудника: «У вас есть меню?»",
+            "uk": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "menu"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you have a menu?`",
+                "uk": "тут потрібно `Do` — `Do you have a menu?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:word:bill",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:bill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:bill:audio",
+            "transcript": "bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:bill:r1",
+              "targetText": "bill",
+              "meaningByLocale": {
+                "ru": "счёт. The bill is on the table. — «Счёт на столе». Бумага с суммой, которую нужно заплатить в кафе.",
+                "uk": "рахунок. The bill is on the table. — «Рахунок на столі». Папір із сумою, яку треба заплатити в кафе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bill",
+            "definitionByLocale": {
+              "ru": "счёт. The bill is on the table. — «Счёт на столе». Бумага с суммой, которую нужно заплатить в кафе.",
+              "uk": "рахунок. The bill is on the table. — «Рахунок на столі». Папір із сумою, яку треба заплатити в кафе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте працівника",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i02:r1",
+            "text": "We have a menu."
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i02:r2",
+            "text": "We have a bill."
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i02:r3",
+            "text": "They have a menu."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте працівника",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i02:audio",
+            "transcript": "We have a menu."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:i02:r1",
+              "targetText": "We have a menu.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i02:r2",
+              "targetText": "We have a bill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i02:r3",
+              "targetText": "They have a menu.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте працівника",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.",
+                "uk": "У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте працівника",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+                "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:word:waiter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waiter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:waiter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waiter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:waiter:audio",
+            "transcript": "waiter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:waiter:r1",
+              "targetText": "waiter",
+              "meaningByLocale": {
+                "ru": "официант. The waiter is near the table. — «Официант рядом со столом». Человек, который приносит еду и напитки к столу.",
+                "uk": "офіціант. The waiter is near the table. — «Офіціант біля столу». Людина, яка приносить їжу й напої до столу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waiter",
+            "definitionByLocale": {
+              "ru": "официант. The waiter is near the table. — «Официант рядом со столом». Человек, который приносит еду и напитки к столу.",
+              "uk": "офіціант. The waiter is near the table. — «Офіціант біля столу». Людина, яка приносить їжу й напої до столу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i03:r3",
+            "text": "are have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+            "uk": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do they ___ a waiter?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-04:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i03:r3",
+              "text": "are have"
+            }
+          ],
+          "testedDimension": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Do they` нужно `have`, без изменений.",
+                "uk": "Після `Do they` потрібно `have`, без змін."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Do they have`, без `are`.",
+                "uk": "Потрібно `Do they have`, без `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-04:i04:p1",
+              "target": "menu",
+              "meaningByLocale": {
+                "ru": "меню",
+                "uk": "меню"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i04:p2",
+              "target": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i04:p3",
+              "target": "waiter",
+              "meaningByLocale": {
+                "ru": "официант",
+                "uk": "офіціант"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i04:p4",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "menu",
+            "bill",
+            "waiter",
+            "work"
+          ],
+          "rightColumn": [
+            "меню",
+            "рахунок",
+            "офіціант",
+            "працювати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i05:audio",
+            "transcript": "Do the waiters work here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do the waiters work here?",
+          "orderedTokens": [
+            "Do",
+            "the",
+            "waiters",
+            "work",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do the waiters work here?`",
+                "uk": "тут потрібно `Do` — `Do the waiters work here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they have waiters?",
+          "localizedMeaning": {
+            "ru": "Друг советует кафе у реки. Спросите: «У них есть официанты?»",
+            "uk": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "have",
+            "waiters"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they have waiters?`",
+                "uk": "тут потрібно `Do` — `Do they have waiters?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви поїли й хочете заплатити, але на столі порожньо. Скажіть подрузі: «Тут немає рахунку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Ви поїли й хочете заплатити, але на столі порожньо. Скажіть подрузі: «Тут немає рахунку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i07:audio",
+            "transcript": "There is no bill here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is no bill here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:word:cash",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cash",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:word:cash:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cash",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:word:cash:audio",
+            "transcript": "cash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:word:cash:r1",
+              "targetText": "cash",
+              "meaningByLocale": {
+                "ru": "наличные деньги. I have cash. — «У меня есть наличные». Бумажные деньги и монеты, не карта.",
+                "uk": "готівка. I have cash. — «У мене є готівка». Паперові гроші та монети, не картка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cash",
+            "definitionByLocale": {
+              "ru": "наличные деньги. I have cash. — «У меня есть наличные». Бумажные деньги и монеты, не карта.",
+              "uk": "готівка. I have cash. — «У мене є готівка». Паперові гроші та монети, не картка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+            "uk": "Спитайте подругу: «У тебе є готівка?». Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ you have cash?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-04:i08:r1",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i08:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `have` нужно `Do you have`, без `Are`.",
+                "uk": "З `have` потрібно `Do you have`, без `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Do`, а `Is` сюда не подходит.",
+                "uk": "З `you` потрібно `Do`, а `Is` сюди не пасує."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i09:r1",
+            "text": "Do you have a menu?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i09:r2",
+            "text": "Do you have a bill?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i09:r3",
+            "text": "Do they have a menu?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i09:audio",
+            "transcript": "Do you have a menu?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:i09:r1",
+              "targetText": "Do you have a menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i09:r2",
+              "targetText": "Do you have a bill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i09:r3",
+              "targetText": "Do they have a menu?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.",
+                "uk": "У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+                "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-04:i10:p1",
+              "target": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i10:p2",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные деньги",
+                "uk": "готівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i10:p3",
+              "target": "menu",
+              "meaningByLocale": {
+                "ru": "меню",
+                "uk": "меню"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i10:p4",
+              "target": "waiter",
+              "meaningByLocale": {
+                "ru": "официант",
+                "uk": "офіціант"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bill",
+            "cash",
+            "menu",
+            "waiter"
+          ],
+          "rightColumn": [
+            "рахунок",
+            "готівка",
+            "меню",
+            "офіціант"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i11:audio",
+            "transcript": "Do they have cash?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they have cash?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "have",
+            "cash"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they have cash?`",
+                "uk": "тут потрібно `Do` — `Do they have cash?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do they have a menu?",
+          "localizedMeaning": {
+            "ru": "Друг ждёт вас у кафе. Спросите: «У них есть меню?»",
+            "uk": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "they",
+            "have",
+            "a",
+            "menu"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do they have a menu?`",
+                "uk": "тут потрібно `Do` — `Do they have a menu?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг розповідає про нове кафе. Спитайте: «У них тут є офіціанти?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "Друг розповідає про нове кафе. Спитайте: «У них тут є офіціанти?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i13:audio",
+            "transcript": "Do they have waiters here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do they have waiters here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть подрузі, що рахунку немає. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть подрузі, що рахунку немає. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите подруге, что счёта нет. Выберите слово",
+            "uk": "Скажіть подрузі, що рахунку немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no bill here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-04:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажіть подрузі, що рахунку немає. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть подрузі, що рахунку немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово bill стоит в единственном числе: нужно `There is no`.",
+                "uk": "Слово bill стоїть в однині: потрібно `There is no`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть подрузі, що рахунку немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання про кафе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i15:r1",
+            "text": "Do they have waiters here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i15:r2",
+            "text": "Do they have waiters there?"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i15:r3",
+            "text": "Do they have menus here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання про кафе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i15:audio",
+            "transcript": "Do they have waiters here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-04:i15:r1",
+              "targetText": "Do they have waiters here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i15:r2",
+              "targetText": "Do they have waiters there?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i15:r3",
+              "targetText": "Do they have menus here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання про кафе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+                "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання про кафе",
+              "feedbackByLocale": {
+                "ru": "В записи речь об официантах, `waiters`, а в этом варианте — о меню, `menus`.",
+                "uk": "У записі йдеться про офіціантів, `waiters`, а в цьому варіанті — про меню, `menus`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-04:i16:p1",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные деньги",
+                "uk": "готівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i16:p2",
+              "target": "waiter",
+              "meaningByLocale": {
+                "ru": "официант",
+                "uk": "офіціант"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i16:p3",
+              "target": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-04:i16:p4",
+              "target": "menu",
+              "meaningByLocale": {
+                "ru": "меню",
+                "uk": "меню"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cash",
+            "waiter",
+            "bill",
+            "menu"
+          ],
+          "rightColumn": [
+            "готівка",
+            "офіціант",
+            "рахунок",
+            "меню"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з подругою хочете розрахуватися. Спитайте подругу: «У тебе є готівка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з подругою хочете розрахуватися. Спитайте подругу: «У тебе є готівка?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-04:i17:audio",
+            "transcript": "Do you have cash?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you have cash?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-04:word:menu",
+      "correctText": "menu",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i01",
+      "correctText": "Do you have a menu?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:word:bill",
+      "correctText": "bill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i02",
+      "correctText": "We have a menu.",
+      "correctResponseId": "en:lesson-07:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:word:waiter",
+      "correctText": "waiter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i03",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-07:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i05",
+      "correctText": "Do the waiters work here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i06",
+      "correctText": "Do they have waiters?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i07",
+      "correctText": "There is no bill here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:word:cash",
+      "correctText": "cash",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i08",
+      "correctText": "Do",
+      "correctResponseId": "en:lesson-07:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i09",
+      "correctText": "Do you have a menu?",
+      "correctResponseId": "en:lesson-07:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i11",
+      "correctText": "Do they have cash?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i12",
+      "correctText": "Do they have a menu?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i13",
+      "correctText": "Do they have waiters here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-07:session-04:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i15",
+      "correctText": "Do they have waiters here?",
+      "correctResponseId": "en:lesson-07:session-04:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i17",
+      "correctText": "Do you have cash?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 4 — Вы носите очки?
+# Английский · Урок 7 · Занятие 4 — Столик в кафе
 
-**Ситуация.** Вы знакомитесь с коллегой и спрашиваете об очках. Позже помогаете другу найти очки в комнате.
+**Ситуация.** Вы с подругой идёте обедать в кафе: нужно меню, нужен официант, а в конце нужно расплатиться. В этих вопросах с you и they начинаем со слова Do.
 
-**Что вы освоите:** спросить об очках и вещах, сообщить об их отсутствии
-**Новые слова:** glasses
+**Что вы освоите:** спросить в кафе о меню, официантах и наличных и сказать, что счёта нет
+**Новые слова:** waiter, menu, cash, bill
+**Возвращаются:** have, work, here
 
 ---
 
 ## Интро 1
 
-### Знакомство с коллегой
+### Столик без меню
 
-`glasses` — «очки». `Do you wear glasses?` — «Вы носите очки?» Это вопрос о привычке. После `Do you` ставим `wear`. Слово `glasses` здесь обозначает очки для зрения; перед ним не ставим `a`.
+Вы с подругой заняли свободный столик в кафе, но на нём стоят только солонка и стакан с салфетками. Без списка блюд ничего не выбрать. menu — «меню». Спросите у проходящего сотрудника: Do you have a menu? — «У вас есть меню?» Сначала Do, затем you и have.
 
-**Спросите коллегу «Вы носите очки?»**
+**На столике нет меню. Спросите сотрудника: «У вас есть меню?»**
 
-- ✅ **Do you wear glasses?**
-- ❌ Are you wear glasses? — *С `wear` здесь нужно `Do you wear?`.*
-- ❌ Do you wear a glasses? — *В этом значении говорим `glasses`, без `a`.*
+- ✅ **Do you have a menu?**
+- ❌ Are you have a menu? — *Здесь нужно Do you have, без Are.*
+- ❌ Do you has a menu? — *После Do you слово have остаётся без изменений.*
 
 ---
 
 ## Интро 2
 
-### Очки родителей
+### Кафе у реки
 
-Друг рассказывает о своих родителях. Вы спрашиваете `Do they wear glasses?` — «Они носят очки?» Теперь после `Do` стоит `they`, а `wear` остаётся без `s`. Речь о том, носят ли родители очки обычно, а не о том, где очки лежат.
+Друг советует кафе у реки, где вкусно кормят. Вы не любите стоять в очереди у стойки и хотите, чтобы еду приносили к столу. waiter — «официант». Спросите друга: Do they have waiters? — «У них есть официанты?» После they слово have без изменений.
 
-**Спросите о родителях «Они носят очки?»**
+**Друг советует кафе у реки. Спросите: «У них есть официанты?»**
 
-- ✅ **Do they wear glasses?**
-- ❌ Do they wears glasses? — *После `Do they` нужно `wear`.*
-- ❌ Are they wear glasses? — *Нужно `Do they wear?`, без `are`.*
+- ✅ **Do they have waiters?**
+- ❌ Are they have waiters? — *Здесь нужно Do they have, без Are.*
+- ❌ Do they has waiters? — *После Do they слово have остаётся без изменений.*
 
 ---
 
 ## Интро 3
 
-### Поиски в комнате
+### Где же счёт
 
-Друг ищет очки. Вы осмотрели стол и говорите `There are no glasses here` — «Здесь нет очков». С `glasses` нужно `are`, даже если ищем одни очки. Они могут оказаться у друга на голове, но стол вы уже проверили.
+Вы с подругой поели и хотите заплатить. Сотрудник занят у другого столика, и подруга просит проверить, не лежит ли на вашем столе листок с суммой. bill — «счёт». Вы смотрите: There is no bill here — «Здесь нет счёта». Говорим There is no и называем одну вещь.
 
-**Сообщите другу «Здесь нет очков».**
+**Подруга просит проверить стол. Счёта там нет. Скажите ей: «Здесь нет счёта».**
 
-- ✅ **There are no glasses here.**
-- ❌ There is no glasses here. — *С `glasses` нужно `There are no`.*
-- ❌ There no glasses here. — *Нужно `There are no`, с `are`.*
+- ✅ **There is no bill here.**
+- ❌ There are no bill here. — *Слово bill стоит в единственном числе: нужно There is no.*
+- ❌ There is not bill here. — *После not здесь не хватает a. В нашем ответе используем no bill.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Вы носите очки?»**
+**1 · Карточка слова — menu**
+<!-- interaction_id: en:lesson-07:session-04:word:menu; family: word_card -->
+> **menu** — меню. The menu is on the table. — «Меню на столе». Список блюд и напитков в кафе.
+
+**2 · Вы сели за столик без меню. Спросите сотрудника: «У вас есть меню?»**
 <!-- interaction_id: en:lesson-07:session-04:i01; family: phrase_builder -->
-Плитки: `glasses` `wear` `you` `Do` → **Do you wear glasses?**
+Плитки: `menu` `a` `have` `you` `Do` `Are` → **Do you have a menu?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have a menu?`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — bill**
+<!-- interaction_id: en:lesson-07:session-04:word:bill; family: word_card -->
+> **bill** — счёт. The bill is on the table. — «Счёт на столе». Бумага с суммой, которую нужно заплатить в кафе.
+
+**4 · Послушайте сотрудника**
 <!-- interaction_id: en:lesson-07:session-04:i02; family: listen_choose -->
-🔊 *glasses* → **glasses** · curtain · receipt
-- curtain — *В записи первое слово — `glasses`, а в этом варианте — `curtain`.*
-- receipt — *В записи первое слово — `glasses`, а в этом варианте — `receipt`.*
+🔊 *We have a menu.* → **We have a menu.** · We have a bill. · They have a menu.
+- We have a bill. — *В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.*
+- They have a menu. — *В записи первое слово — `We`, мы, а в этом варианте — `They`, они.*
 
-**3 · Спросите «Они носят очки?»**
+**5 · Карточка слова — waiter**
+<!-- interaction_id: en:lesson-07:session-04:word:waiter; family: word_card -->
+> **waiter** — официант. The waiter is near the table. — «Официант рядом со столом». Человек, который приносит еду и напитки к столу.
+
+**6 · Спросите о маленьком кафе: «У них есть официант?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-04:i03; family: context_gap_grammar -->
-Do they ___ glasses? → **wear** · wears · are wear
-- wears — *После `Do they` нужно `wear`.*
-- are wear — *Нужно `Do they wear?`, без `are`.*
+Do they ___ a waiter? → **have** · has · are have
+- has — *После `Do they` нужно `have`, без изменений.*
+- are have — *Нужно `Do they have`, без `are`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-04:i04; family: speed_match -->
-glasses — очки · wear — носить одежду на себе · bag — сумка · curtain — занавеска
+menu — меню · bill — счёт · waiter — официант · work — работать
 
-**5 · Послушайте и соберите вопрос**
+**8 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-04:i05; family: listen_build_dictation -->
-🔊 *Do you wear glasses?* Плитки: `glasses` `wear` `you` `Do` → **Do you wear glasses?**
+🔊 *Do the waiters work here?* Плитки: `waiters` `the` `work` `here` `Do` `Are` → **Do the waiters work here?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do the waiters work here?`)*
 
-**6 · Спросите друга о родителях «Они носят очки?»**
+**9 · Друг советует кафе у реки. Спросите: «У них есть официанты?»**
 <!-- interaction_id: en:lesson-07:session-04:i06; family: phrase_builder -->
-Плитки: `glasses` `wear` `they` `Do` → **Do they wear glasses?**
+Плитки: `waiters` `have` `they` `Do` `Are` → **Do they have waiters?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they have waiters?`)*
 
-**7 · Вы проверили стол. Сообщите «Здесь нет очков»**
+**10 · Вы поели и хотите заплатить, но на столе пусто. Скажите подруге: «Здесь нет счёта»**
 <!-- interaction_id: en:lesson-07:session-04:i07; family: scripted_repeat_compare -->
-🎙 **There are no glasses here.**
+🎙 **There is no bill here.**
 
-**8 · Перед выходом спросите друга «У тебя есть сумка?»**
+**11 · Карточка слова — cash**
+<!-- interaction_id: en:lesson-07:session-04:word:cash; family: word_card -->
+> **cash** — наличные деньги. I have cash. — «У меня есть наличные». Бумажные деньги и монеты, не карта.
+
+**12 · Спросите подругу: «У тебя есть наличные?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-04:i08; family: context_gap_grammar -->
-___ you have a bag? → **Do** · Are · Is
-- Are — *Нужно `Do you have?`, без `are`.*
-- Is — *С `you have` здесь нужно `Do`.*
+___ you have cash? → **Do** · Are · Is
+- Are — *С `have` нужно `Do you have`, без `Are`.*
+- Is — *С `you` нужно `Do`, а `Is` сюда не подходит.*
 
-**9 · Послушайте, о чём спрашивает коллега**
+**13 · Послушайте вопрос подруги**
 <!-- interaction_id: en:lesson-07:session-04:i09; family: listen_choose -->
-🔊 *Do you wear glasses?* → **Do you wear glasses?** · Do you wear hats? · Do you wear uniforms?
-- Do you wear hats? — *В записи последнее слово — `glasses`, а в этом варианте — `hats`.*
-- Do you wear uniforms? — *В записи последнее слово — `glasses`, а в этом варианте — `uniforms`.*
+🔊 *Do you have a menu?* → **Do you have a menu?** · Do you have a bill? · Do they have a menu?
+- Do you have a bill? — *В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.*
+- Do they have a menu? — *В записи второе слово — `you`, вы, а в этом варианте — `they`, они.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-04:i10; family: speed_match -->
-receipt — чек · glasses — очки · bag — сумка · curtain — занавеска
+bill — счёт · cash — наличные деньги · menu — меню · waiter — официант
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте друга и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-04:i11; family: listen_build_dictation -->
-🔊 *Do they have a receipt?* Плитки: `receipt` `a` `have` `they` `Do` → **Do they have a receipt?**
+🔊 *Do they have cash?* Плитки: `cash` `have` `they` `Do` `Are` → **Do they have cash?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they have cash?`)*
 
-**12 · Друг несёт покупки в руках. Спросите «У тебя есть сумка?»**
+**16 · Друг ждёт вас у кафе. Спросите: «У них есть меню?»**
 <!-- interaction_id: en:lesson-07:session-04:i12; family: phrase_builder -->
-Плитки: `bag` `a` `have` `you` `Do` → **Do you have a bag?**
+Плитки: `menu` `a` `have` `they` `Do` `Are` → **Do they have a menu?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do they have a menu?`)*
 
-**13 · Друг помогает родителям вернуть покупку. Спросите «У них есть чек?»**
+**17 · Друг рассказывает о новом кафе. Спросите: «У них здесь есть официанты?»**
 <!-- interaction_id: en:lesson-07:session-04:i13; family: scripted_repeat_compare -->
-🎙 **Do they have a receipt?**
+🎙 **Do they have waiters here?**
 
-**14 · Сообщите «Здесь нет очков»**
+**18 · Скажите подруге, что счёта нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-04:i14; family: context_gap_grammar -->
-There ___ no glasses here. → **are** · is · am
-- is — *С `glasses` нужно `are`.*
-- am — *Нужно `There are no`; `am` подходит к `I`.*
+There ___ no bill here. → **is** · are · am
+- are — *Слово bill стоит в единственном числе: нужно `There is no`.*
+- am — *Нужно `There is no`; `am` подходит только к `I`.*
 
-**15 · Послушайте, какую вещь ищет друг**
+**19 · Послушайте вопрос о кафе**
 <!-- interaction_id: en:lesson-07:session-04:i15; family: listen_choose -->
-🔊 *Do you have a receipt?* → **Do you have a receipt?** · Do you have a bag? · Do you have a curtain?
-- Do you have a bag? — *В записи последнее слово — `receipt`, а в этом варианте — `bag`.*
-- Do you have a curtain? — *В записи последнее слово — `receipt`, а в этом варианте — `curtain`.*
+🔊 *Do they have waiters here?* → **Do they have waiters here?** · Do they have waiters there? · Do they have menus here?
+- Do they have waiters there? — *В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.*
+- Do they have menus here? — *В записи речь об официантах, `waiters`, а в этом варианте — о меню, `menus`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-04:i16; family: speed_match -->
-glasses — очки · receipt — чек · curtain — занавеска · wear — носить на себе
+cash — наличные деньги · waiter — официант · bill — счёт · menu — меню
 
-**17 · Друг ищет очки перед чтением. Уточните, есть ли у него очки: «У тебя есть очки?»**
+**21 · Вы с подругой хотите расплатиться. Спросите подругу: «У тебя есть наличные?»**
 <!-- interaction_id: en:lesson-07:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Do you have glasses?**
-
+🎙 **Do you have cash?**

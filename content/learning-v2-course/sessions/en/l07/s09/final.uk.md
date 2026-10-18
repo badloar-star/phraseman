@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 9 — Керівник працює тут?
+# Англійська · Урок 7 · Заняття 9 — Хто працює поруч
 
-**Ситуація.** На фабриці ви шукаєте керівника й уточнюєте в працівника, де він працює та коли починає зміну.
+**Ситуація.** Ви роззираєтеся в новому районі й розпитуєте сусідів про місцевих майстрів: хто стриже, хто носить пошту, хто лікує тварин і хто робить полиці.
 
 **Що ви опануєте:** запитати про дію однієї людини за допомогою Does
-**Нові слова:** manager
+**Нові слова:** barber, postman, vet, carpenter
+**Повертаються:** parcel, shelf, bench, puppy, leave, build
 
 ---
 
 ## Інтро 1
 
-### Шукаємо керівника
+### Біля входу в салон
 
-`manager` — «керівник», «менеджер». Ви уточнюєте в працівника `Does the manager work here?` — «Керівник працює тут?» Про одного керівника запитуємо з `Does`, потім називаємо людину й ставимо `work`, без `s`.
+Ви йдете підстригтися. Біля входу в салон стоїть перехожий, і ви хочете зрозуміти, чи приймає майстер саме тут. barber — «чоловічий перукар». Про одного майстра питаємо з Does: Does the barber work here? — «Перукар працює тут?» Після Does слово work без s.
 
-**Запитайте працівника «Керівник працює тут?»**
+**Ви біля входу в салон. Спитайте перехожого: «Перукар працює тут?»**
 
-- ✅ **Does the manager work here?**
-- ❌ Do the manager work here? — *Один керівник: починаємо з `Does`.*
-- ❌ Does the manager works here? — *Після `Does` потрібне `work`, без `s`.*
+- ✅ **Does the barber work here?**
+- ❌ Do the barber work here? — *Перукар один: потрібно Does.*
+- ❌ Does the barber works here? — *Після Does потрібно work, без s.*
 
 ---
 
 ## Інтро 2
 
-### Робота Анни
+### Посилка біля дверей
 
-Друг розповів про Анну. Ви уточнюєте `Does she work in a factory?` — «Вона працює на фабриці?» Із `she` запитання починається з `Does`. Порівняйте: `She works` — «Вона працює», але `Does she work?` — «Вона працює?» Після `Does` літера `s` у `work` уже не потрібна.
+Ви чекаєте посилку, але дзвінка в двері так і не було. Сусідка каже, що посилки приносить листоноша. postman — «листоноша». Хочете дізнатися, чи залишає він їх унизу: Does the postman leave parcels here? — «Листоноша залишає посилки тут?» Після Does — leave, без s.
 
-**Запитайте друга «Вона працює на фабриці?»**
+**Сусідка розповідає про листоношу. Спитайте в неї: «Листоноша залишає посилки тут?»**
 
-- ✅ **Does she work in a factory?**
-- ❌ Do she work in a factory? — *Із `she` потрібне запитання з `Does`.*
-- ❌ Does she works in a factory? — *Після `Does` потрібне `work`.*
+- ✅ **Does the postman leave parcels here?**
+- ❌ Do the postman leave parcels here? — *Листоноша один: потрібно Does.*
+- ❌ Does the postman leaves parcels here? — *Після Does потрібно leave, без s.*
 
 ---
 
 ## Інтро 3
 
-### Коли приходить керівник
+### Кволе цуценя
 
-Ви хочете застати керівника вранці. `Does he start early?` — «Він починає рано?» З розмови зрозуміло, що йдеться про роботу. Після `Does he` ставимо `start`, без `s`. Ранній прихід ще не гарантує зустрічі: спочатку дізнаємося, чи рано приходить сам керівник.
+Цуценя у вас кволе й погано їсть, а на роботу вам рано. Сусідка радить ветеринара з сусідньої вулиці. vet — «ветеринар». Спитайте її, чи приймає він із самого ранку: Does the vet start early? — «Ветеринар починає рано?» Після Does — start, без s.
 
-**Запитайте працівника «Він починає рано?»**
+**Сусідка радить ветеринара. Спитайте в неї: «Ветеринар починає рано?»**
 
-- ✅ **Does he start early?**
-- ❌ Does he starts early? — *Після `Does he` потрібне `start`.*
-- ❌ Is he start early? — *З дією `start` тут потрібне запитання `Does he start?`.*
+- ✅ **Does the vet start early?**
+- ❌ Is the vet start early? — *З дією start потрібне запитання з Does, а не з Is.*
+- ❌ Does the vet starts early? — *Після Does потрібно start, без s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «Керівник працює тут?»**
+**1 · Картка слова — barber**
+<!-- interaction_id: en:lesson-07:session-09:word:barber; family: word_card -->
+> **barber** — чоловічий перукар. The barber is busy. — «Перукар зайнятий». Майстер, який стриже чоловіків.
+
+**2 · Ви біля входу в салон. Спитайте перехожого: «Перукар працює тут?»**
 <!-- interaction_id: en:lesson-07:session-09:i01; family: phrase_builder -->
-Плитки: `here` `work` `manager` `the` `Does` → **Does the manager work here?**
+Плитки: `here` `work` `barber` `the` `Does` → **Does the barber work here?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — postman**
+<!-- interaction_id: en:lesson-07:session-09:word:postman; family: word_card -->
+> **postman** — листоноша. The postman is here. — «Листоноша тут». Людина, яка приносить листи й посилки.
+
+**4 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-07:session-09:i02; family: listen_choose -->
-🔊 *manager* → **manager** · charger · door
-- charger — *У записі перше слово — `manager`, а в цьому варіанті — `charger`.*
-- door — *У записі перше слово — `manager`, а в цьому варіанті — `door`.*
+🔊 *Does the postman leave parcels here?* → **Does the postman leave parcels here?** · Does the postman leave parcels there? · Does the barber leave parcels here?
+- Does the postman leave parcels there? — *У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там.*
+- Does the barber leave parcels here? — *У записі третє слово — `postman`, листоноша, а в цьому варіанті — `barber`, перукар.*
 
-**3 · Запитайте про роботу керівника**
+**5 · Картка слова — vet**
+<!-- interaction_id: en:lesson-07:session-09:word:vet; family: word_card -->
+> **vet** — ветеринар. The vet is kind. — «Ветеринар добрий». Лікар, який лікує тварин.
+
+**6 · Скажіть сусідці: «Ветеринар починає рано?» Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-09:i03; family: context_gap_grammar -->
-Does the manager ___ here? → **work** · works · is work
-- works — *Після `Does` потрібне `work`.*
-- is work — *Потрібно `Does the manager work?`, без `is`.*
+Does the vet ___ early? → **start** · starts · is start
+- starts — *Після `Does` потрібно `start`, без `s`.*
+- is start — *Потрібно `Does the vet start?`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-09:i04; family: speed_match -->
-manager — керівник · factory — фабрика · charger — зарядний пристрій · door — двері
+barber — чоловічий перукар · postman — листоноша · vet — ветеринар · puppy — цуценя
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — carpenter**
+<!-- interaction_id: en:lesson-07:session-09:word:carpenter; family: word_card -->
+> **carpenter** — тесляр. The carpenter is strong. — «Тесляр сильний». Майстер, який працює з деревом.
+
+**9 · Послухайте сусідку й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-09:i05; family: listen_build_dictation -->
-🔊 *Does the manager work here?* Плитки: `here` `work` `manager` `the` `Does` → **Does the manager work here?**
+🔊 *Does the carpenter work here?* Плитки: `here` `work` `carpenter` `the` `Does` → **Does the carpenter work here?**
 
-**6 · Запитайте про Анну «Вона працює на фабриці?»**
+**10 · Цуценя кволе. Спитайте сусідку: «Ветеринар живе тут?»**
 <!-- interaction_id: en:lesson-07:session-09:i06; family: phrase_builder -->
-Плитки: `factory` `a` `in` `work` `she` `Does` → **Does she work in a factory?**
+Плитки: `here` `live` `vet` `the` `Does` → **Does the vet live here?**
 
-**7 · Уточніть про початок роботи керівника «Він починає рано?»**
+**11 · Ви хочете підстригтися до роботи. Спитайте знайомого: «Перукар починає рано?»**
 <!-- interaction_id: en:lesson-07:session-09:i07; family: scripted_repeat_compare -->
-🎙 **Does he start early?**
+🎙 **Does the barber start early?**
 
-**8 · Запитайте «Вона працює тут?»**
+**12 · Спитайте сусідку про листоношу. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-09:i08; family: context_gap_grammar -->
-___ she work here? → **Does** · Do · Is
-- Do — *Із `she` потрібне `Does`.*
-- Is — *З дією `work` тут потрібно `Does she work?`.*
+___ the postman leave parcels here? → **Does** · Do · Is
+- Do — *Листоноша один: потрібно `Does`.*
+- Is — *З дією `leave` потрібне `Does`, а не `Is`.*
 
-**9 · Послухайте запитання про початок роботи**
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-07:session-09:i09; family: listen_choose -->
-🔊 *Does he start early?* → **Does he start early?** · Does he start late? · Does he start here?
-- Does he start late? — *У записі останнє слово — `early`, а в цьому варіанті — `late`.*
-- Does he start here? — *У записі останнє слово — `early`, а в цьому варіанті — `here`.*
+🔊 *Does the carpenter build shelves?* → **Does the carpenter build shelves?** · Does the carpenter build benches? · Does the postman build shelves?
+- Does the carpenter build benches? — *У записі останнє слово — `shelves`, полиці, а в цьому варіанті — `benches`, лавки.*
+- Does the postman build shelves? — *У записі третє слово — `carpenter`, тесляр, а в цьому варіанті — `postman`, листоноша.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-09:i10; family: speed_match -->
-start — починати · manager — керівник · factory — фабрика · charger — зарядний пристрій
+carpenter — тесляр · shelf — полиця · parcel — посилка · puppy — цуценя
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте сусідку й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-09:i11; family: listen_build_dictation -->
-🔊 *Does she work here?* Плитки: `here` `work` `she` `Does` → **Does she work here?**
+🔊 *Does the vet work here?* Плитки: `here` `work` `vet` `the` `Does` → **Does the vet work here?**
 
-**12 · Телефон розрядився. Запитайте працівника «У вас є зарядний пристрій?»**
+**16 · Ви чекаєте посилку. Спитайте сусідку: «Листоноша залишає посилки тут?»**
 <!-- interaction_id: en:lesson-07:session-09:i12; family: phrase_builder -->
-Плитки: `charger` `a` `have` `you` `Do` → **Do you have a charger?**
+Плитки: `here` `leave` `parcels` `postman` `the` `Does` → **Does the postman leave parcels here?**
 
-**13 · Скажіть колезі «Двері відчинені»**
+**17 · Вам потрібна полиця. Спитайте сусіда: «Тесляр робить полиці?»**
 <!-- interaction_id: en:lesson-07:session-09:i13; family: scripted_repeat_compare -->
-🎙 **The door is open.**
+🎙 **Does the carpenter build shelves?**
 
-**14 · Запитайте про початок роботи «Він починає рано?»**
+**18 · Спитайте знайомого про перукаря. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-09:i14; family: context_gap_grammar -->
-Does he ___ early? → **start** · starts · is start
-- starts — *Після `Does he` потрібне `start`.*
-- is start — *Потрібно `Does he start?`, без `is`.*
+Does the barber ___ early? → **start** · starts · is start
+- starts — *Після `Does` потрібно `start`, без `s`.*
+- is start — *Потрібно `Does the barber start?`, без `is`.*
 
-**15 · Послухайте запитання про місце роботи**
+**19 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-07:session-09:i15; family: listen_choose -->
-🔊 *Does she work here?* → **Does she work here?** · Does she work there? · Does she work outside?
-- Does she work there? — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- Does she work outside? — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
+🔊 *Does the vet start early?* → **Does the vet start early?** · Does the vet start late? · Does the barber start early?
+- Does the vet start late? — *У записі останнє слово — `early`, рано, а в цьому варіанті — `late`, пізно.*
+- Does the barber start early? — *У записі третє слово — `vet`, ветеринар, а в цьому варіанті — `barber`, перукар.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-09:i16; family: speed_match -->
-manager — керівник · door — двері · start — починати · charger — зарядний пристрій
+vet — ветеринар · barber — чоловічий перукар · postman — листоноша · carpenter — тесляр
 
-**17 · В іншій майстерні ви шукаєте знайомого Тома. Запитайте працівника «Том працює тут?»**
+**21 · У магазині ви шукаєте майстра по дереву. Спитайте продавця: «Тесляр працює тут?»**
 <!-- interaction_id: en:lesson-07:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does Tom work here?**
-
+🎙 **Does the carpenter work here?**

@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 17 — Я не курю
+# Английский · Урок 7 · Занятие 17 — Я не сплетничаю
 
-**Ситуация.** На перерыве вы рассказываете коллеге о своих привычках. Позже объясняете, почему не можете подвезти друга, и уточняете место работы руководителя.
+**Ситуация.** Коллеги зовут вас обсудить начальника, подруга удивляется вашему молчанию о победе, а в машине брата не работает сигнал. Отрицание строим со словами don't и doesn't.
 
-**Что вы освоите:** сказать, чего вы не делаете, с don’t и чего не делает другой человек — с doesn’t
-**Новые слова:** smoke
+**Что вы освоите:** сказать, чего вы не делаете, с don't, и что вещь не работает, с doesn't
+**Новые слова:** gossip, brag, horn, secret
+**Возвращаются:** work, have, drive, cook, jacket
 
 ---
 
 ## Интро 1
 
-### На перерыве
+### Разговор у кофемашины
 
-`smoke` — «курить». Коллега предлагает сигарету. `I don’t smoke` — «Я не курю». Чтобы отрицать действие после `I`, ставим `don’t`, затем `smoke`. `Don’t` — короткая форма `do not`. Это сообщение о привычке.
+У кофемашины в офисной кухне коллеги шёпотом обсуждают личную жизнь начальника и ждут, что вы подхватите разговор. gossip — «сплетничать». Откажитесь: I don't gossip — «Я не сплетничаю». После I ставим don't, а gossip остаётся без изменений.
 
-**Скажите коллеге «Я не курю».**
+**Коллеги зовут вас присоединиться к разговору о начальнике. Откажитесь: «Я не сплетничаю».**
 
-- ✅ **I don’t smoke.**
-- ❌ I not smoke. — *Нужно `I don’t smoke`, а не просто `not`.*
-- ❌ I doesn’t smoke. — *После `I` нужно `don’t`.*
+- ✅ **I don't gossip.**
+- ❌ I doesn't gossip. — *После I нужно don't.*
+- ❌ I not gossip. — *Перед действием нужно don't, а не просто not.*
 
 ---
 
 ## Интро 2
 
-### Поездка с другом
+### Медаль в ящике
 
-Друг рассчитывает, что вы его подвезёте. `I don’t drive` — «Я не вожу машину». После `I` снова `don’t`, затем `drive`. Это не обязательно означает, что вы не умеете водить: вы сообщаете, что не водите. Наличие куртки и ключей в кармане ещё не делает вас водителем.
+Вы выиграли городской забег, но ничего не рассказали ни друзьям, ни родным. Подруга случайно нашла медаль в ящике вашего стола и удивилась вашему молчанию. brag — «хвастаться». I don't brag — «Я не хвастаюсь». Снова I, поэтому don't, а brag без изменений.
 
-**Объясните другу «Я не вожу машину».**
+**Подруга нашла медаль и удивилась, что вы молчали. Объясните: «Я не хвастаюсь».**
 
-- ✅ **I don’t drive.**
-- ❌ I am not drive. — *Здесь действие `drive`: нужно `I don’t drive`.*
-- ❌ I doesn’t drive. — *После `I` нужно `don’t`.*
+- ✅ **I don't brag.**
+- ❌ I am not brag. — *Здесь действие brag: нужно I don't brag.*
+- ❌ I doesn't brag. — *После I нужно don't.*
 
 ---
 
 ## Интро 3
 
-### Руководитель в другом офисе
+### Гудок молчит
 
-Посетитель ищет руководителя, но тот работает в другом офисе. `He doesn’t work here` — «Он не работает здесь». После `he` ставим `doesn’t`, то есть `does not`, затем `work`, без `s`.
+Вы взяли машину брата. На узкой улице нажали на кнопку сигнала, но в ответ тишина. horn — «гудок». The horn doesn't work — «Гудок не работает». Вместо the horn можно сказать it. С he, she и it ставим doesn't, а после него действие без s: work.
 
-**Скажите посетителю «Он не работает здесь».**
+**Вы нажали на сигнал, но звука нет. Скажите пассажиру: «Гудок не работает».**
 
-- ✅ **He doesn’t work here.**
-- ❌ He don’t work here. — *После `he` нужно `doesn’t`.*
-- ❌ He doesn’t works here. — *После `doesn’t` нужно `work`, без `s`.*
+- ✅ **The horn doesn't work.**
+- ❌ The horn don't work. — *С the horn, как с it, нужно doesn't.*
+- ❌ The horn doesn't works. — *После doesn't нужно work, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я не курю»**
+**1 · Карточка слова — gossip**
+<!-- interaction_id: en:lesson-07:session-17:word:gossip; family: word_card -->
+> **gossip** — сплетничать. We don't gossip. — «Мы не сплетничаем». О том, как обсуждают чужие личные дела за спиной.
+
+**2 · Коллеги зовут обсудить начальника. Скажите: «Я не сплетничаю»**
 <!-- interaction_id: en:lesson-07:session-17:i01; family: phrase_builder -->
-Плитки: `smoke` `don’t` `I` → **I don’t smoke.**
+Плитки: `gossip` `don't` `I` `doesn't` → **I don't gossip.**
+*(плитка `doesn't` лишняя: здесь нужно `don't` — `I don't gossip.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-17:i02; family: listen_choose -->
-🔊 *smoke* → **smoke** · drive · jacket
-- drive — *В записи первое слово — `smoke`, а в этом варианте — `drive`.*
-- jacket — *В записи первое слово — `smoke`, а в этом варианте — `jacket`.*
+🔊 *gossip* → **gossip** · cook · jacket
+- cook — *В записи первое слово — `gossip`, а в этом варианте — `cook`.*
+- jacket — *В записи первое слово — `gossip`, а в этом варианте — `jacket`.*
 
-**3 · Скажите «Я не курю»**
+**4 · Скажите «Я не сплетничаю». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-17:i03; family: context_gap_grammar -->
-I ___ smoke. → **don’t** · doesn’t · not
-- doesn’t — *После `I` нужно `don’t`.*
-- not — *Для отрицания действия нужно `don’t`, а не просто `not`.*
+I ___ gossip. → **don't** · doesn't · not
+- doesn't — *После `I` нужно `don't`.*
+- not — *Для отрицания действия нужно `don't`, а не просто `not`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-17:i04; family: speed_match -->
-smoke — курить · drive — водить машину · jacket — куртка · books — книги
+gossip — сплетничать · work — работать · cook — готовить · jacket — куртка
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — brag**
+<!-- interaction_id: en:lesson-07:session-17:word:brag; family: word_card -->
+> **brag** — хвастаться. They don't brag. — «Они не хвастаются». О том, как человек выставляет свои успехи напоказ.
+
+**7 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-17:i05; family: listen_build_dictation -->
-🔊 *I don’t smoke.* Плитки: `smoke` `don’t` `I` → **I don’t smoke.**
+🔊 *I don't brag.* Плитки: `brag` `don't` `I` `doesn't` → **I don't brag.**
+*(плитка `doesn't` лишняя: здесь нужно `don't` — `I don't brag.`)*
 
-**6 · Объясните другу «Я не вожу машину»**
+**8 · Карточка слова — horn**
+<!-- interaction_id: en:lesson-07:session-17:word:horn; family: word_card -->
+> **horn** — гудок, звуковой сигнал. The horn is loud. — «Гудок громкий». Устройство в машине, которое подаёт звуковой сигнал.
+
+**9 · Вы взяли машину брата и нажали на сигнал: тишина. Скажите пассажиру: «Гудок не работает»**
 <!-- interaction_id: en:lesson-07:session-17:i06; family: phrase_builder -->
-Плитки: `drive` `don’t` `I` → **I don’t drive.**
+Плитки: `work` `doesn't` `horn` `The` `don't` → **The horn doesn't work.**
+*(плитка `don't` лишняя: здесь нужно `doesn't` — `The horn doesn't work.`)*
 
-**7 · Скажите о руководителе «Он не работает здесь»**
+**10 · Подруга нашла вашу медаль и удивилась молчанию. Скажите: «Я не хвастаюсь»**
 <!-- interaction_id: en:lesson-07:session-17:i07; family: scripted_repeat_compare -->
-🎙 **He doesn’t work here.**
+🎙 **I don't brag.**
 
-**8 · Скажите «Он не работает здесь»**
+**11 · Скажите пассажиру «Гудок не работает». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-17:i08; family: context_gap_grammar -->
-He doesn’t ___ here. → **work** · works · is work
-- works — *После `doesn’t` нужно `work`.*
-- is work — *Нужно `He doesn’t work`, без `is`.*
+The horn ___ work. → **doesn't** · don't · not
+- don't — *С the horn, как с it, нужно `doesn't`.*
+- not — *Перед `work` нужно `doesn't`, а не просто `not`.*
 
-**9 · Послушайте, чего не делает собеседник**
+**12 · Послушайте, чего не делает собеседник**
 <!-- interaction_id: en:lesson-07:session-17:i09; family: listen_choose -->
-🔊 *I don’t smoke.* → **I don’t smoke.** · I don’t drive. · I don’t sing.
-- I don’t drive. — *В записи последнее слово — `smoke`, а в этом варианте — `drive`.*
-- I don’t sing. — *В записи последнее слово — `smoke`, а в этом варианте — `sing`.*
+🔊 *I don't gossip.* → **I don't gossip.** · I don't brag. · I don't drive.
+- I don't brag. — *В записи последнее слово — `gossip`, а в этом варианте — `brag`.*
+- I don't drive. — *В записи последнее слово — `gossip`, а в этом варианте — `drive`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-17:i10; family: speed_match -->
-manager — руководитель · smoke — курить · drive — водить машину · jacket — куртка
+drive — водить машину · horn — гудок, звуковой сигнал · brag — хвастаться · gossip — сплетничать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-17:i11; family: listen_build_dictation -->
-🔊 *He doesn’t work here.* Плитки: `here` `work` `doesn’t` `He` → **He doesn’t work here.**
+🔊 *The horn doesn't work.* Плитки: `work` `doesn't` `horn` `The` `don't` → **The horn doesn't work.**
+*(плитка `don't` лишняя: здесь нужно `doesn't` — `The horn doesn't work.`)*
 
-**12 · Перед выходом спросите друга «У тебя есть куртка?»**
+**15 · Карточка слова — secret**
+<!-- interaction_id: en:lesson-07:session-17:word:secret; family: word_card -->
+> **secret** — секрет, тайна. I have a secret. — «У меня есть секрет». То, что человек скрывает от других.
+
+**16 · Друг готов поделиться тайной. Спросите его: «У тебя есть секрет?»**
 <!-- interaction_id: en:lesson-07:session-17:i12; family: phrase_builder -->
-Плитки: `jacket` `a` `have` `you` `Do` → **Do you have a jacket?**
+Плитки: `secret` `a` `have` `you` `Do` `Are` → **Do you have a secret?**
+*(плитка `Are` лишняя: здесь нужно `Do` — `Do you have a secret?`)*
 
-**13 · Покажите коллеге «Книги здесь»**
+**17 · Друг просит открыть ему тайну. Скажите: «У меня нет секретов»**
 <!-- interaction_id: en:lesson-07:session-17:i13; family: scripted_repeat_compare -->
-🎙 **The books are here.**
+🎙 **I don't have secrets.**
 
-**14 · Скажите «Руководитель не работает здесь»**
+**18 · Спросите друга: «Ты сплетничаешь?». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-17:i14; family: context_gap_grammar -->
-The manager ___ work here. → **doesn’t** · don’t · not
-- don’t — *Один руководитель — он: `doesn’t`.*
-- not — *Перед `work` нужно `doesn’t`, а не просто `not`.*
+___ you gossip? → **Do** · Does · Are
+- Does — *С `you` нужно `Do`.*
+- Are — *С действием `gossip` нужно `Do`, а не `Are`.*
 
-**15 · Послушайте, чего не делает собеседник**
+**19 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-07:session-17:i15; family: listen_choose -->
-🔊 *I don’t drive.* → **I don’t drive.** · I don’t smoke. · I don’t swim.
-- I don’t smoke. — *В записи последнее слово — `drive`, а в этом варианте — `smoke`.*
-- I don’t swim. — *В записи последнее слово — `drive`, а в этом варианте — `swim`.*
+🔊 *Do you have a secret?* → **Do you have a secret?** · Do you have a jacket? · Does he have a secret?
+- Do you have a jacket? — *В записи последнее слово — `secret`, а в этом варианте — `jacket`.*
+- Does he have a secret? — *В записи первое слово — `Do`, а в этом варианте — `Does`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-17:i16; family: speed_match -->
-smoke — курить · books — книги · manager — руководитель · drive — водить машину
+brag — хвастаться · secret — секрет, тайна · gossip — сплетничать · horn — гудок, звуковой сигнал
 
-**17 · Друг предлагает попросить Тома отвезти вас домой. Объясните «Том не водит машину»**
+**21 · Подруга спрашивает, сплетничает ли ваш брат. Скажите: «Он не сплетничает»**
 <!-- interaction_id: en:lesson-07:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom doesn’t drive.**
-
+🎙 **He doesn't gossip.**

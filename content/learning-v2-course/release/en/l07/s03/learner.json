@@ -4,32 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-03:i01",
+      "interactionId": "en:lesson-07:session-03:word:print",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — print",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:word:print:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — print",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:word:print:audio",
+          "transcript": "print"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-03:word:print:r1",
+            "targetText": "print",
+            "meaningByLocale": {
+              "ru": "печатать. We print photos. — «Мы печатаем фотографии». О том, как текст или картинку переносят на бумагу.",
+              "uk": "друкувати. We print photos. — «Ми друкуємо фотографії». Про те, як текст або картинку переносять на папір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "print",
+          "definitionByLocale": {
+            "ru": "печатать. We print photos. — «Мы печатаем фотографии». О том, как текст или картинку переносят на бумагу.",
+            "uk": "друкувати. We print photos. — «Ми друкуємо фотографії». Про те, як текст або картинку переносять на папір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «У вас есть плакат?»",
+      "prompt": "Плакат готов на компьютере. Спросите сотрудника копицентра: «Вы печатаете плакаты?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «У вас есть плакат?»",
+      "accessibilityLabel": "Плакат готов на компьютере. Спросите сотрудника копицентра: «Вы печатаете плакаты?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a poster?",
+        "targetPhrase": "Do you print posters?",
         "localizedMeaning": {
-          "ru": "Спросите «У вас есть плакат?»",
-          "uk": "Запитайте «У вас є плакат?»"
+          "ru": "Плакат готов на компьютере. Спросите сотрудника копицентра: «Вы печатаете плакаты?»",
+          "uk": "Плакат готовий на комп’ютері. Спитайте працівника копіцентру: «Ви друкуєте плакати?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "have",
-          "a",
-          "poster"
+          "print",
+          "posters"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Плакат готов на компьютере. Спросите сотрудника копицентра: «Вы печатаете плакаты?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you print posters?`",
+              "uk": "тут потрібно `Do` — `Do you print posters?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -39,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте сотрудника",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-03:i02:r1",
-          "text": "poster"
+          "text": "We print posters."
         },
         {
           "responseId": "en:lesson-07:session-03:i02:r2",
-          "text": "parcel"
+          "text": "We print letters."
         },
         {
           "responseId": "en:lesson-07:session-03:i02:r3",
-          "text": "desk"
+          "text": "They print posters."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте сотрудника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i02:audio",
-          "transcript": "poster"
+          "transcript": "We print posters."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-03:i02:r1",
-            "targetText": "poster",
+            "targetText": "We print posters.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-03:i02:r2",
-            "targetText": "parcel",
+            "targetText": "We print letters.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-03:i02:r3",
-            "targetText": "desk",
+            "targetText": "They print posters.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +146,19 @@
           {
             "responseId": "en:lesson-07:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте сотрудника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `poster`, а в этом варианте — `parcel`.",
-              "uk": "У записі перше слово — `poster`, а в цьому варіанті — `parcel`."
+              "ru": "В записи последнее слово — `posters`, плакаты, а в этом варианте — `letters`, письма.",
+              "uk": "У записі останнє слово — `posters`, плакати, а в цьому варіанті — `letters`, листи."
             }
           },
           {
             "responseId": "en:lesson-07:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте сотрудника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `poster`, а в этом варианте — `desk`.",
-              "uk": "У записі перше слово — `poster`, а в цьому варіанті — `desk`."
+              "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+              "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
             }
           }
         ],
@@ -114,68 +168,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-03:word:copy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — copy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:word:copy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — copy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:word:copy:audio",
+          "transcript": "copy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-03:word:copy:r1",
+            "targetText": "copy",
+            "meaningByLocale": {
+              "ru": "копировать, делать копию. They copy keys. — «Они копируют ключи». О том, как делают второй такой же предмет или лист.",
+              "uk": "копіювати, робити копію. They copy keys. — «Вони копіюють ключі». Про те, як роблять другий такий самий предмет або аркуш."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "copy",
+          "definitionByLocale": {
+            "ru": "копировать, делать копию. They copy keys. — «Они копируют ключи». О том, как делают второй такой же предмет или лист.",
+            "uk": "копіювати, робити копію. They copy keys. — «Вони копіюють ключі». Про те, як роблять другий такий самий предмет або аркуш."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-03:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите «Они продают плакаты?»",
+      "prompt": "Спросите про мастерскую: «Они копируют ключи?». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-03:i03:r1",
-          "text": "sell"
+          "text": "copy"
         },
         {
           "responseId": "en:lesson-07:session-03:i03:r2",
-          "text": "sells"
+          "text": "copies"
         },
         {
           "responseId": "en:lesson-07:session-03:i03:r3",
-          "text": "are sell"
+          "text": "are copy"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Они продают плакаты?»",
+      "accessibilityLabel": "Спросите про мастерскую: «Они копируют ключи?». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Они продают плакаты?»",
-          "uk": "Запитайте «Вони продають плакати?»"
+          "ru": "Спросите про мастерскую: «Они копируют ключи?». Выберите слово",
+          "uk": "Спитайте про майстерню: «Вони копіюють ключі?». Виберіть слово"
         },
-        "gappedTargetPhrase": "Do they ___ posters?",
+        "gappedTargetPhrase": "Do they ___ keys?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-03:i03:r1",
-            "text": "sell"
+            "text": "copy"
           },
           {
             "responseId": "en:lesson-07:session-03:i03:r2",
-            "text": "sells"
+            "text": "copies"
           },
           {
             "responseId": "en:lesson-07:session-03:i03:r3",
-            "text": "are sell"
+            "text": "are copy"
           }
         ],
-        "testedDimension": "Спросите «Они продают плакаты?»",
+        "testedDimension": "Спросите про мастерскую: «Они копируют ключи?». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-03:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите «Они продают плакаты?»",
+            "testedDimension": "Спросите про мастерскую: «Они копируют ключи?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Do they` нужно `sell`.",
-              "uk": "Після `Do they` потрібне `sell`."
+              "ru": "После `Do they` нужно `copy`, без изменений.",
+              "uk": "Після `Do they` потрібно `copy`, без змін."
             }
           },
           {
             "responseId": "en:lesson-07:session-03:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите «Они продают плакаты?»",
+            "testedDimension": "Спросите про мастерскую: «Они копируют ключи?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do they sell?`, без `are`.",
-              "uk": "Потрібно `Do they sell?`, без `are`."
+              "ru": "Нужно `Do they copy`, без `are`.",
+              "uk": "Потрібно `Do they copy`, без `are`."
             }
           }
         ]
@@ -184,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +295,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-03:i04:p1",
-            "target": "poster",
+            "target": "print",
             "meaningByLocale": {
-              "ru": "плакат",
-              "uk": "плакат"
+              "ru": "печатать",
+              "uk": "друкувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i04:p2",
-            "target": "sell",
+            "target": "copy",
             "meaningByLocale": {
-              "ru": "продавать",
-              "uk": "продавати"
+              "ru": "копировать",
+              "uk": "копіювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i04:p3",
-            "target": "book",
+            "target": "photo",
             "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книга"
+              "ru": "фотография",
+              "uk": "фотографія"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i04:p4",
-            "target": "desk",
+            "target": "key",
             "meaningByLocale": {
-              "ru": "письменный стол",
-              "uk": "письмовий стіл"
+              "ru": "ключ",
+              "uk": "ключ"
             }
           }
         ],
         "leftColumn": [
-          "poster",
-          "sell",
-          "book",
-          "desk"
+          "print",
+          "copy",
+          "photo",
+          "key"
         ],
         "rightColumn": [
-          "плакат",
-          "продавать",
-          "книга",
-          "письменный стол"
+          "печатать",
+          "копировать",
+          "фотография",
+          "ключ"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,35 +353,89 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-03:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-07:session-03:word:scan",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:word:scan:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:word:scan:audio",
+          "transcript": "scan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-03:word:scan:r1",
+            "targetText": "scan",
+            "meaningByLocale": {
+              "ru": "сканировать. I scan letters. — «Я сканирую письма». О том, как бумагу превращают в файл на компьютере.",
+              "uk": "сканувати. I scan letters. — «Я сканую листи». Про те, як папір перетворюють на файл у комп’ютері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scan",
+          "definitionByLocale": {
+            "ru": "сканировать. I scan letters. — «Я сканирую письма». О том, как бумагу превращают в файл на компьютере.",
+            "uk": "сканувати. I scan letters. — «Я сканую листи». Про те, як папір перетворюють на файл у комп’ютері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте сотрудника и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте сотрудника и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i05:audio",
-          "transcript": "Do you have a poster?"
+          "transcript": "Do you scan photos?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you have a poster?",
+        "hiddenTargetPhrase": "Do you scan photos?",
         "orderedTokens": [
           "Do",
           "you",
-          "have",
-          "a",
-          "poster"
+          "scan",
+          "photos"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте сотрудника и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you scan photos?`",
+              "uk": "тут потрібно `Do` — `Do you scan photos?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -294,30 +445,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите друга о магазине «Они продают плакаты?»",
+      "prompt": "Друг потерял запасной ключ. Спросите о мастерской: «Они копируют ключи?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите друга о магазине «Они продают плакаты?»",
+      "accessibilityLabel": "Друг потерял запасной ключ. Спросите о мастерской: «Они копируют ключи?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do they sell posters?",
+        "targetPhrase": "Do they copy keys?",
         "localizedMeaning": {
-          "ru": "Спросите друга о магазине «Они продают плакаты?»",
-          "uk": "Запитайте друга про магазин «Вони продають плакати?»"
+          "ru": "Друг потерял запасной ключ. Спросите о мастерской: «Они копируют ключи?»",
+          "uk": "Друг загубив запасний ключ. Спитайте про майстерню: «Вони копіюють ключі?»"
         },
         "orderedTokens": [
           "Do",
           "they",
-          "sell",
-          "posters"
+          "copy",
+          "keys"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг потерял запасной ключ. Спросите о мастерской: «Они копируют ключи?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they copy keys?`",
+              "uk": "тут потрібно `Do` — `Do they copy keys?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -326,26 +489,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-03:word:ink",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ink",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:word:ink:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ink",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:word:ink:audio",
+          "transcript": "ink"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-03:word:ink:r1",
+            "targetText": "ink",
+            "meaningByLocale": {
+              "ru": "чернила. The ink is in the printer. — «Чернила в принтере». Жидкая краска, которой пишет ручка или принтер.",
+              "uk": "чорнило. The ink is in the printer. — «Чорнило в принтері». Рідка фарба, якою пише ручка або принтер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ink",
+          "definitionByLocale": {
+            "ru": "чернила. The ink is in the printer. — «Чернила в принтере». Жидкая краска, которой пишет ручка или принтер.",
+            "uk": "чорнило. The ink is in the printer. — «Чорнило в принтері». Рідка фарба, якою пише ручка або принтер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-03:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Опишите комнату «Над письменным столом нет плаката»",
+      "prompt": "Принтер печатает пустые листы. Проверив ящик, скажите брату: «Здесь нет чернил»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i07:audio"
       ],
-      "accessibilityLabel": "Опишите комнату «Над письменным столом нет плаката»",
+      "accessibilityLabel": "Принтер печатает пустые листы. Проверив ящик, скажите брату: «Здесь нет чернил»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i07:audio",
-          "transcript": "There is no poster above the desk."
+          "transcript": "There is no ink here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is no poster above the desk.",
+        "targetPhrase": "There is no ink here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -360,11 +566,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите нового соседа «У вас есть письменный стол?»",
+      "prompt": "Спросите сотрудника копицентра: «У вас есть принтер?». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-03:i08:r1",
@@ -381,14 +587,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите нового соседа «У вас есть письменный стол?»",
+      "accessibilityLabel": "Спросите сотрудника копицентра: «У вас есть принтер?». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите нового соседа «У вас есть письменный стол?»",
-          "uk": "Запитайте нового сусіда «У вас є письмовий стіл?»"
+          "ru": "Спросите сотрудника копицентра: «У вас есть принтер?». Выберите слово",
+          "uk": "Спитайте працівника копіцентру: «У вас є принтер?». Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you have a desk?",
+        "gappedTargetPhrase": "___ you have a printer?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-03:i08:r1",
@@ -403,24 +609,24 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Спросите нового соседа «У вас есть письменный стол?»",
+        "testedDimension": "Спросите сотрудника копицентра: «У вас есть принтер?». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-03:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите нового соседа «У вас есть письменный стол?»",
+            "testedDimension": "Спросите сотрудника копицентра: «У вас есть принтер?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do you have?`, без `are`.",
-              "uk": "Потрібно `Do you have?`, без `are`."
+              "ru": "С `have` нужно `Do you have`, без `Are`.",
+              "uk": "З `have` потрібно `Do you have`, без `Are`."
             }
           },
           {
             "responseId": "en:lesson-07:session-03:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите нового соседа «У вас есть письменный стол?»",
+            "testedDimension": "Спросите сотрудника копицентра: «У вас есть принтер?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `you have` здесь нужно `Do`.",
-              "uk": "З `you have` тут потрібне `Do`."
+              "ru": "С `you` нужно `Do`, а `Is` сюда не подходит.",
+              "uk": "З `you` потрібно `Do`, а `Is` сюди не пасує."
             }
           }
         ]
@@ -429,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, о какой вещи спрашивает друг",
+      "prompt": "Послушайте вопрос сотрудника",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-03:i09:r1",
-          "text": "Do you have a poster?"
+          "text": "Do you scan photos?"
         },
         {
           "responseId": "en:lesson-07:session-03:i09:r2",
-          "text": "Do you have a book?"
+          "text": "Do you scan letters?"
         },
         {
           "responseId": "en:lesson-07:session-03:i09:r3",
-          "text": "Do you have a parcel?"
+          "text": "Do they scan photos?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, о какой вещи спрашивает друг",
+      "accessibilityLabel": "Послушайте вопрос сотрудника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i09:audio",
-          "transcript": "Do you have a poster?"
+          "transcript": "Do you scan photos?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-03:i09:r1",
-            "targetText": "Do you have a poster?",
+            "targetText": "Do you scan photos?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-03:i09:r2",
-            "targetText": "Do you have a book?",
+            "targetText": "Do you scan letters?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-03:i09:r3",
-            "targetText": "Do you have a parcel?",
+            "targetText": "Do they scan photos?",
             "meaningByLocale": null
           }
         ],
@@ -482,19 +688,19 @@
           {
             "responseId": "en:lesson-07:session-03:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, о какой вещи спрашивает друг",
+            "testedDimension": "Послушайте вопрос сотрудника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `poster`, а в этом варианте — `book`.",
-              "uk": "У записі останнє слово — `poster`, а в цьому варіанті — `book`."
+              "ru": "В записи последнее слово — `photos`, фотографии, а в этом варианте — `letters`, письма.",
+              "uk": "У записі останнє слово — `photos`, фотографії, а в цьому варіанті — `letters`, листи."
             }
           },
           {
             "responseId": "en:lesson-07:session-03:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, о какой вещи спрашивает друг",
+            "testedDimension": "Послушайте вопрос сотрудника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `poster`, а в этом варианте — `parcel`.",
-              "uk": "У записі останнє слово — `poster`, а в цьому варіанті — `parcel`."
+              "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+              "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
             }
           }
         ],
@@ -505,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -519,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-03:i10:p1",
-            "target": "parcel",
+            "target": "ink",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "чернила",
+              "uk": "чорнило"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i10:p2",
-            "target": "poster",
+            "target": "scan",
             "meaningByLocale": {
-              "ru": "плакат",
-              "uk": "плакат"
+              "ru": "сканировать",
+              "uk": "сканувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i10:p3",
-            "target": "desk",
+            "target": "print",
             "meaningByLocale": {
-              "ru": "письменный стол",
-              "uk": "письмовий стіл"
+              "ru": "печатать",
+              "uk": "друкувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i10:p4",
-            "target": "sell",
+            "target": "copy",
             "meaningByLocale": {
-              "ru": "продавать",
-              "uk": "продавати"
+              "ru": "копировать",
+              "uk": "копіювати"
             }
           }
         ],
         "leftColumn": [
-          "parcel",
-          "poster",
-          "desk",
-          "sell"
+          "ink",
+          "scan",
+          "print",
+          "copy"
         ],
         "rightColumn": [
-          "посылка",
-          "плакат",
-          "письменный стол",
-          "продавать"
+          "чернила",
+          "сканировать",
+          "печатать",
+          "копировать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,33 +784,45 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте друга и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте друга и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i11:audio",
-          "transcript": "Do they sell books?"
+          "transcript": "Do they print photos?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do they sell books?",
+        "hiddenTargetPhrase": "Do they print photos?",
         "orderedTokens": [
           "Do",
           "they",
-          "sell",
-          "books"
+          "print",
+          "photos"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте друга и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they print photos?`",
+              "uk": "тут потрібно `Do` — `Do they print photos?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -614,31 +832,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У стойки отправки спросите посетителя «У вас есть посылка?» Используйте parcel",
+      "prompt": "Принтеру нужны чернила. Спросите сотрудника: «У вас есть чернила?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У стойки отправки спросите посетителя «У вас есть посылка?» Используйте parcel",
+      "accessibilityLabel": "Принтеру нужны чернила. Спросите сотрудника: «У вас есть чернила?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a parcel?",
+        "targetPhrase": "Do you have ink?",
         "localizedMeaning": {
-          "ru": "У стойки отправки спросите посетителя «У вас есть посылка?» Используйте parcel",
-          "uk": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?» Використайте parcel"
+          "ru": "Принтеру нужны чернила. Спросите сотрудника: «У вас есть чернила?»",
+          "uk": "Принтеру потрібне чорнило. Спитайте працівника: «У вас є чорнило?»"
         },
         "orderedTokens": [
           "Do",
           "you",
           "have",
-          "a",
-          "parcel"
+          "ink"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Принтеру нужны чернила. Спросите сотрудника: «У вас есть чернила?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have ink?`",
+              "uk": "тут потрібно `Do` — `Do you have ink?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -648,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг советует магазин. Спросите «Они продают книги?»",
+      "prompt": "Вы вошли в копицентр с книгой в руках. Спросите сотрудника: «Вы копируете страницы?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i13:audio"
       ],
-      "accessibilityLabel": "Друг советует магазин. Спросите «Они продают книги?»",
+      "accessibilityLabel": "Вы вошли в копицентр с книгой в руках. Спросите сотрудника: «Вы копируете страницы?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i13:audio",
-          "transcript": "Do they sell books?"
+          "transcript": "Do you copy pages?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do they sell books?",
+        "targetPhrase": "Do you copy pages?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -681,11 +910,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сообщите «Здесь нет плаката»",
+      "prompt": "Скажите брату, что чернил нет. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-03:i14:r1",
@@ -702,14 +931,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите «Здесь нет плаката»",
+      "accessibilityLabel": "Скажите брату, что чернил нет. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет плаката»",
-          "uk": "Повідомте «Тут немає плаката»"
+          "ru": "Скажите брату, что чернил нет. Выберите слово",
+          "uk": "Скажіть братові, що чорнила немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no poster here.",
+        "gappedTargetPhrase": "There ___ no ink here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-03:i14:r1",
@@ -724,24 +953,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Сообщите «Здесь нет плаката»",
+        "testedDimension": "Скажите брату, что чернил нет. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-03:i14:r2",
             "correct": false,
-            "testedDimension": "Сообщите «Здесь нет плаката»",
+            "testedDimension": "Скажите брату, что чернил нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Один плакат: `There is no poster`.",
-              "uk": "Один плакат: `There is no poster`."
+              "ru": "Чернила не считаем штуками: нужно `There is no`.",
+              "uk": "Чорнило не рахуємо штуками: потрібно `There is no`."
             }
           },
           {
             "responseId": "en:lesson-07:session-03:i14:r3",
             "correct": false,
-            "testedDimension": "Сообщите «Здесь нет плаката»",
+            "testedDimension": "Скажите брату, что чернил нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `There is no`; `am` подходит к `I`.",
-              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+              "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -750,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, о каком товаре спрашивает друг",
+      "prompt": "Послушайте вопрос в копицентре",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-03:i15:r1",
-          "text": "Do they sell posters?"
+          "text": "Do you print photos here?"
         },
         {
           "responseId": "en:lesson-07:session-03:i15:r2",
-          "text": "Do they sell books?"
+          "text": "Do you print photos there?"
         },
         {
           "responseId": "en:lesson-07:session-03:i15:r3",
-          "text": "Do they sell newspapers?"
+          "text": "Do you scan photos here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, о каком товаре спрашивает друг",
+      "accessibilityLabel": "Послушайте вопрос в копицентре",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i15:audio",
-          "transcript": "Do they sell posters?"
+          "transcript": "Do you print photos here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-03:i15:r1",
-            "targetText": "Do they sell posters?",
+            "targetText": "Do you print photos here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-03:i15:r2",
-            "targetText": "Do they sell books?",
+            "targetText": "Do you print photos there?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-03:i15:r3",
-            "targetText": "Do they sell newspapers?",
+            "targetText": "Do you scan photos here?",
             "meaningByLocale": null
           }
         ],
@@ -803,19 +1032,19 @@
           {
             "responseId": "en:lesson-07:session-03:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, о каком товаре спрашивает друг",
+            "testedDimension": "Послушайте вопрос в копицентре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `posters`, а в этом варианте — `books`.",
-              "uk": "У записі останнє слово — `posters`, а в цьому варіанті — `books`."
+              "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+              "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
             }
           },
           {
             "responseId": "en:lesson-07:session-03:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, о каком товаре спрашивает друг",
+            "testedDimension": "Послушайте вопрос в копицентре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `posters`, а в этом варианте — `newspapers`.",
-              "uk": "У записі останнє слово — `posters`, а в цьому варіанті — `newspapers`."
+              "ru": "В записи слово действия — `print`, печатаете, а в этом варианте — `scan`, сканируете.",
+              "uk": "У записі слово дії — `print`, друкуєте, а в цьому варіанті — `scan`, скануєте."
             }
           }
         ],
@@ -826,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -840,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-03:i16:p1",
-            "target": "poster",
+            "target": "copy",
             "meaningByLocale": {
-              "ru": "плакат",
-              "uk": "плакат"
+              "ru": "копировать",
+              "uk": "копіювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i16:p2",
-            "target": "book",
+            "target": "ink",
             "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книга"
+              "ru": "чернила",
+              "uk": "чорнило"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i16:p3",
-            "target": "parcel",
+            "target": "scan",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "сканировать",
+              "uk": "сканувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-03:i16:p4",
-            "target": "sell",
+            "target": "print",
             "meaningByLocale": {
-              "ru": "продавать",
-              "uk": "продавати"
+              "ru": "печатать",
+              "uk": "друкувати"
             }
           }
         ],
         "leftColumn": [
-          "poster",
-          "book",
-          "parcel",
-          "sell"
+          "copy",
+          "ink",
+          "scan",
+          "print"
         ],
         "rightColumn": [
-          "плакат",
-          "книга",
-          "посылка",
-          "продавать"
+          "копировать",
+          "чернила",
+          "сканировать",
+          "печатать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -899,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-03:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы вошли в незнакомый магазин. Спросите сотрудника «Вы продаёте плакаты?»",
+      "prompt": "Вы с другом зашли в копицентр. Узнайте у сотрудника: «Вы печатаете фото?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-03:i17:audio"
       ],
-      "accessibilityLabel": "Вы вошли в незнакомый магазин. Спросите сотрудника «Вы продаёте плакаты?»",
+      "accessibilityLabel": "Вы с другом зашли в копицентр. Узнайте у сотрудника: «Вы печатаете фото?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-03:i17:audio",
-          "transcript": "Do you sell posters?"
+          "transcript": "Do you print photos?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you sell posters?",
+        "targetPhrase": "Do you print photos?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -939,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a4c392e15afbdbeff414b0c85f7af7ada3d5a11779f85a1887e754d2b664663"
+  "learnerFingerprint": "10e97bb468aa3d61f048b0800286feb6eeaa24b6b08195f924850280b50866ac"
 }

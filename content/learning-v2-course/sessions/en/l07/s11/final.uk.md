@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 11 — Принтер для плаката
+# Англійська · Урок 7 · Заняття 11 — Магазини на головній вулиці
 
-**Ситуація.** Ви готуєте плакат для заняття й шукаєте справний принтер. Колега допомагає перевірити кабінет.
+**Ситуація.** Ви гуляєте головною вулицею району разом із подругою й з’ясовуєте, що де продають і коли відчиняється: салон, книгарня, овочева лавка й оптика.
 
-**Що ви опануєте:** запитати про пристрій і роботу людини, повідомити про відсутність речі
-**Нові слова:** printer
+**Що ви опануєте:** запитати про роботу магазину та про те, що він продає, за допомогою Does
+**Нові слова:** salon, bookshop, greengrocer, optician
+**Повертаються:** postcard, cucumber, apple, onion, glasses, sell, open, close
 
 ---
 
 ## Інтро 1
 
-### Перед друком
+### Стрижка після роботи
 
-`printer` — «принтер». Ви хочете надрукувати плакат. `Does the printer work?` — «Принтер працює?» Один принтер — `Does the printer`, потім `work`, без `s`. Папір уже в руках, але спочатку переконаємося, що принтер готовий до роботи, а не лише до прикрашання столу.
+Подруга хоче підстригтися після роботи, а її перукарня зачинена на ремонт. Ви згадуєте салон на головній вулиці. salon — «салон краси». Спитайте адміністратора: Does the salon close late? — «Салон зачиняється пізно?» Після Does — close, без s.
 
-**Запитайте колегу «Принтер працює?»**
+**Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»**
 
-- ✅ **Does the printer work?**
-- ❌ Do the printer work? — *Один принтер: `Does the printer`.*
-- ❌ Does the printer works? — *Після `Does` потрібне `work`.*
+- ✅ **Does the salon close late?**
+- ❌ Do the salon close late? — *Салон один: потрібно Does.*
+- ❌ Does the salon closes late? — *Після Does потрібно close, без s.*
 
 ---
 
 ## Інтро 2
 
-### У цій кімнаті його немає
+### Листівка для брата
 
-Ви зазирнули до сусідньої кімнати в пошуках принтера. `There is no printer in this room` — «У цій кімнаті немає принтера». Тут повідомляємо про відсутність однієї речі: `There is no printer`. `In this room` уточнює, де ви перевірили.
+Ви з подругою йдете головною вулицею повз книгарню. Вам потрібна листівка для брата, а на вітрині їх не видно. bookshop — «книгарня». Спитайте подругу: Does the bookshop sell postcards? — «Книгарня продає листівки?» Магазин один: Does, а sell без s.
 
-**Скажіть колезі «У цій кімнаті немає принтера».**
+**На вітрині немає листівок. Спитайте подругу: «Книгарня продає листівки?»**
 
-- ✅ **There is no printer in this room.**
-- ❌ There are no printer in this room. — *Один принтер: `There is no printer`.*
-- ❌ There no printer in this room. — *Потрібно `There is no`, з `is`.*
+- ✅ **Does the bookshop sell postcards?**
+- ❌ Do the bookshop sell postcards? — *Магазин один: потрібно Does.*
+- ❌ Does the bookshop sells postcards? — *Після Does потрібно sell, без s.*
 
 ---
 
 ## Інтро 3
 
-### Хто допоможе
+### Огірки для салату
 
-Колега згадав Анну, яка розуміється на принтерах. Ви уточнюєте `Does she work here?` — «Вона працює тут?» Із `she` використовуємо `Does`, а після нього `work` без `s`. Ми запитуємо про місце роботи Анни.
+Ви готуєте салат і шукаєте огірки. Сусід каже, що на розі овочами торгує один продавець. greengrocer — «продавець овочів і фруктів». Спитайте сусіда: Does the greengrocer sell cucumbers? — «Продавець овочів продає огірки?» Продавець один, тому Does, а sell без s.
 
-**Запитайте колегу «Вона працює тут?»**
+**Вам потрібні огірки для салату. Спитайте сусіда: «Продавець овочів продає огірки?»**
 
-- ✅ **Does she work here?**
-- ❌ Do she work here? — *Із `she` потрібне запитання з `Does`.*
-- ❌ Does she works here? — *Після `Does she` потрібне `work`.*
+- ✅ **Does the greengrocer sell cucumbers?**
+- ❌ Do the greengrocer sell cucumbers? — *Продавець один: потрібно Does.*
+- ❌ Does the greengrocer sells cucumbers? — *Після Does потрібно sell, без s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «Принтер працює?»**
+**1 · Картка слова — salon**
+<!-- interaction_id: en:lesson-07:session-11:word:salon; family: word_card -->
+> **salon** — салон краси. The salon is small. — «Салон маленький». Місце, де стрижуть і фарбують волосся.
+
+**2 · Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»**
 <!-- interaction_id: en:lesson-07:session-11:i01; family: phrase_builder -->
-Плитки: `work` `printer` `the` `Does` → **Does the printer work?**
+Плитки: `late` `close` `salon` `the` `Does` → **Does the salon close late?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — bookshop**
+<!-- interaction_id: en:lesson-07:session-11:word:bookshop; family: word_card -->
+> **bookshop** — книгарня. The bookshop is old. — «Книгарня стара». Магазин, де продають книжки.
+
+**4 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-11:i02; family: listen_choose -->
-🔊 *printer* → **printer** · backpack · poster
-- backpack — *У записі перше слово — `printer`, а в цьому варіанті — `backpack`.*
-- poster — *У записі перше слово — `printer`, а в цьому варіанті — `poster`.*
+🔊 *Does the bookshop sell postcards?* → **Does the bookshop sell postcards?** · Does the bookshop sell parcels? · Does the salon sell postcards?
+- Does the bookshop sell parcels? — *У записі останнє слово — `postcards`, листівки, а в цьому варіанті — `parcels`, посилки.*
+- Does the salon sell postcards? — *У записі третє слово — `bookshop`, книгарня, а в цьому варіанті — `salon`, салон.*
 
-**3 · Запитайте, чи працює принтер**
+**5 · Картка слова — greengrocer**
+<!-- interaction_id: en:lesson-07:session-11:word:greengrocer; family: word_card -->
+> **greengrocer** — продавець овочів і фруктів. The greengrocer is friendly. — «Продавець овочів привітний». Людина, яка торгує овочами й фруктами.
+
+**6 · Спитайте сусіда про овочі. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-11:i03; family: context_gap_grammar -->
-Does the printer ___? → **work** · works · is work
-- works — *Після `Does` потрібне `work`.*
-- is work — *Потрібно `Does the printer work?`, без `is`.*
+Does the greengrocer ___ cucumbers? → **sell** · sells · is sell
+- sells — *Після `Does` потрібно `sell`, без `s`.*
+- is sell — *Потрібно `Does the greengrocer sell?`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-11:i04; family: speed_match -->
-printer — принтер · room — кімната · backpack — рюкзак · poster — плакат
+salon — салон краси · bookshop — книгарня · greengrocer — продавець овочів і фруктів · apple — яблуко
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — optician**
+<!-- interaction_id: en:lesson-07:session-11:word:optician; family: word_card -->
+> **optician** — фахівець із підбору окулярів. The optician is busy. — «Фахівець з окулярів зайнятий». Людина, яка підбирає та виготовляє окуляри.
+
+**9 · Послухайте подругу й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-11:i05; family: listen_build_dictation -->
-🔊 *Does the printer work?* Плитки: `work` `printer` `the` `Does` → **Does the printer work?**
+🔊 *Does the optician start early?* Плитки: `early` `start` `optician` `the` `Does` → **Does the optician start early?**
 
-**6 · Повідомте «У цій кімнаті немає принтера»**
+**10 · Ви йдете по книжку до роботи. Спитайте сусіда: «Книгарня відчиняється рано?»**
 <!-- interaction_id: en:lesson-07:session-11:i06; family: phrase_builder -->
-Плитки: `room` `this` `in` `printer` `no` `is` `There` → **There is no printer in this room.**
+Плитки: `early` `open` `bookshop` `the` `Does` → **Does the bookshop open early?**
 
-**7 · Запитайте про Анну «Вона працює тут?»**
+**11 · Подруга чекає біля дверей. Спитайте адміністратора: «Салон зачиняється пізно?»**
 <!-- interaction_id: en:lesson-07:session-11:i07; family: scripted_repeat_compare -->
-🎙 **Does she work here?**
+🎙 **Does the salon close late?**
 
-**8 · Запитайте знайомого «Ти вивчаєш англійську тут?»**
+**12 · Спитайте сусіда про яблука. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-11:i08; family: context_gap_grammar -->
-___ you learn English here? → **Do** · Does · Are
-- Does — *З `you` потрібне `Do`.*
-- Are — *З дією `learn` тут потрібно `Do you learn?`.*
+___ the greengrocer sell apples? → **Does** · Do · Is
+- Do — *Продавець один: потрібно `Does`.*
+- Is — *З дією `sell` потрібне `Does`, а не `Is`.*
 
-**9 · Послухайте запитання про пристрій**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-11:i09; family: listen_choose -->
-🔊 *Does the printer work?* → **Does the printer work?** · Does the printer open? · Does the printer start?
-- Does the printer open? — *У записі останнє слово — `work`, а в цьому варіанті — `open`.*
-- Does the printer start? — *У записі останнє слово — `work`, а в цьому варіанті — `start`.*
+🔊 *Does the optician start early?* → **Does the optician start early?** · Does the optician start late? · Does the barber start early?
+- Does the optician start late? — *У записі останнє слово — `early`, рано, а в цьому варіанті — `late`, пізно.*
+- Does the barber start early? — *У записі третє слово — `optician`, фахівець з окулярів, а в цьому варіанті — `barber`, перукар.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-11:i10; family: speed_match -->
-learn — вчитися · printer — принтер · room — кімната · backpack — рюкзак
+greengrocer — продавець овочів і фруктів · cucumber — огірок · apple — яблуко · onion — цибуля (цибулина)
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте подругу й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-11:i11; family: listen_build_dictation -->
-🔊 *Does she work here?* Плитки: `here` `work` `she` `Does` → **Does she work here?**
+🔊 *Does the greengrocer sell cucumbers?* Плитки: `cucumbers` `sell` `greengrocer` `the` `Does` → **Does the greengrocer sell cucumbers?**
 
-**12 · Перед заняттям запитайте колегу «У вас є плакат?»**
+**16 · Вам потрібна листівка для друга. Спитайте сусідку: «Книгарня продає листівки?»**
 <!-- interaction_id: en:lesson-07:session-11:i12; family: phrase_builder -->
-Плитки: `poster` `a` `have` `you` `Do` → **Do you have a poster?**
+Плитки: `postcards` `sell` `bookshop` `the` `Does` → **Does the bookshop sell postcards?**
 
-**13 · Поясніть колезі «Плакат у моєму рюкзаку»**
+**17 · Вам потрібні нові окуляри. Спитайте сусіда: «Фахівець з окулярів продає окуляри?»**
 <!-- interaction_id: en:lesson-07:session-11:i13; family: scripted_repeat_compare -->
-🎙 **The poster is in my backpack.**
+🎙 **Does the optician sell glasses?**
 
-**14 · Повідомте «Тут немає принтера»**
+**18 · Спитайте адміністратора про салон. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-11:i14; family: context_gap_grammar -->
-There ___ no printer here. → **is** · are · am
-- are — *Один принтер: `There is no printer`.*
-- am — *Потрібно `There is no`; `am` підходить до `I`.*
+Does the salon ___ late? → **close** · closes · is close
+- closes — *Після `Does` потрібно `close`, без `s`.*
+- is close — *Потрібно `Does the salon close?`, без `is`.*
 
-**15 · Послухайте запитання про місце занять**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-11:i15; family: listen_choose -->
-🔊 *Do you learn English here?* → **Do you learn English here?** · Do you learn English there? · Do you learn English outside?
-- Do you learn English there? — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- Do you learn English outside? — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
+🔊 *Does the greengrocer sell apples?* → **Does the greengrocer sell apples?** · Does the greengrocer sell onions? · Does the bookshop sell apples?
+- Does the greengrocer sell onions? — *У записі останнє слово — `apples`, яблука, а в цьому варіанті — `onions`, цибуля.*
+- Does the bookshop sell apples? — *У записі третє слово — `greengrocer`, продавець овочів, а в цьому варіанті — `bookshop`, книгарня.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-11:i16; family: speed_match -->
-printer — принтер · poster — плакат · learn — вчитися · backpack — рюкзак
+optician — фахівець із підбору окулярів · glasses — окуляри · postcard — листівка · salon — салон краси
 
-**17 · Ви зустріли друга в мовній школі. Уточніть «Анна вивчає англійську тут?»**
+**21 · Ви йдете вулицею разом із сусідкою. Спитайте її: «Книгарня зачиняється пізно?»**
 <!-- interaction_id: en:lesson-07:session-11:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does Anna learn English here?**
-
+🎙 **Does the bookshop close late?**

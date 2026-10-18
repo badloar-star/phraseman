@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-14:word:pupil",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pupil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:pupil:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pupil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:pupil:audio",
+            "transcript": "pupil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:pupil:r1",
+              "targetText": "pupil",
+              "meaningByLocale": {
+                "ru": "школьник. The pupil is young. — «Школьник маленький». Ребёнок, который ходит в школу.",
+                "uk": "школяр. The pupil is young. — «Школяр маленький». Дитина, яка ходить до школи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pupil",
+            "definitionByLocale": {
+              "ru": "школьник. The pupil is young. — «Школьник маленький». Ребёнок, который ходит в школу.",
+              "uk": "школяр. The pupil is young. — «Школяр маленький». Дитина, яка ходить до школи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы видите школьника на фотографии в пиджаке. Спросите учительницу: «Школьник носит форму?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы видите школьника на фотографии в пиджаке. Спросите учительницу: «Школьник носит форму?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the pupil wear a uniform?",
+          "localizedMeaning": {
+            "ru": "Вы видите школьника на фотографии в пиджаке. Спросите учительницу: «Школьник носит форму?»",
+            "uk": "Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "pupil",
+            "wear",
+            "a",
+            "uniform"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:word:headmaster",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — headmaster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:headmaster:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — headmaster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:headmaster:audio",
+            "transcript": "headmaster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:headmaster:r1",
+              "targetText": "headmaster",
+              "meaningByLocale": {
+                "ru": "директор школы. The headmaster is strict. — «Директор строгий». Главный человек в школе.",
+                "uk": "директор школи. The headmaster is strict. — «Директор суворий». Головна людина в школі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headmaster",
+            "definitionByLocale": {
+              "ru": "директор школы. The headmaster is strict. — «Директор строгий». Главный человек в школе.",
+              "uk": "директор школи. The headmaster is strict. — «Директор суворий». Головна людина в школі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте секретаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i02:r1",
+            "text": "Does the headmaster teach?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i02:r2",
+            "text": "Does the headmaster work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i02:r3",
+            "text": "Does the pupil teach?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте секретаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i02:audio",
+            "transcript": "Does the headmaster teach?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:i02:r1",
+              "targetText": "Does the headmaster teach?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i02:r2",
+              "targetText": "Does the headmaster work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i02:r3",
+              "targetText": "Does the pupil teach?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `teach`, преподавать, а в этом варианте — `work`, работать.",
+                "uk": "У записі останнє слово — `teach`, викладати, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `headmaster`, директор, а в этом варианте — `pupil`, школьник.",
+                "uk": "У записі третє слово — `headmaster`, директор, а в цьому варіанті — `pupil`, школяр."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:word:blackboard",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blackboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:blackboard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blackboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:blackboard:audio",
+            "transcript": "blackboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:blackboard:r1",
+              "targetText": "blackboard",
+              "meaningByLocale": {
+                "ru": "школьная доска. The blackboard is clean. — «Доска чистая». Доска тёмного цвета, на которой пишут мелом.",
+                "uk": "шкільна дошка. The blackboard is clean. — «Дошка чиста». Темна дошка, на якій пишуть крейдою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blackboard",
+            "definitionByLocale": {
+              "ru": "школьная доска. The blackboard is clean. — «Доска чистая». Доска тёмного цвета, на которой пишут мелом.",
+              "uk": "шкільна дошка. The blackboard is clean. — «Дошка чиста». Темна дошка, на якій пишуть крейдою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите учительницу о школе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i03:r3",
+            "text": "is have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите учительницу о школе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите учительницу о школе. Выберите слово",
+            "uk": "Спитайте вчительку про школу. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the school ___ a blackboard?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-14:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i03:r3",
+              "text": "is have"
+            }
+          ],
+          "testedDimension": "Спросите учительницу о школе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите учительницу о школе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `have`, не `has`.",
+                "uk": "Після `Does` потрібно `have`, не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите учительницу о школе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the school have?`, без `is`.",
+                "uk": "Потрібно `Does the school have?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-14:i04:p1",
+              "target": "pupil",
+              "meaningByLocale": {
+                "ru": "школьник",
+                "uk": "школяр"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i04:p2",
+              "target": "headmaster",
+              "meaningByLocale": {
+                "ru": "директор школы",
+                "uk": "директор школи"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i04:p3",
+              "target": "blackboard",
+              "meaningByLocale": {
+                "ru": "школьная доска",
+                "uk": "шкільна дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i04:p4",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pupil",
+            "headmaster",
+            "blackboard",
+            "chalk"
+          ],
+          "rightColumn": [
+            "школьник",
+            "директор школы",
+            "школьная доска",
+            "мел"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:word:classroom",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — classroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:classroom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — classroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:classroom:audio",
+            "transcript": "classroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:classroom:r1",
+              "targetText": "classroom",
+              "meaningByLocale": {
+                "ru": "класс. The classroom is quiet. — «Класс тихий». Комната в школе, где проходят уроки.",
+                "uk": "клас. The classroom is quiet. — «Клас тихий». Кімната в школі, де проходять уроки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "classroom",
+            "definitionByLocale": {
+              "ru": "класс. The classroom is quiet. — «Класс тихий». Комната в школе, где проходят уроки.",
+              "uk": "клас. The classroom is quiet. — «Клас тихий». Кімната в школі, де проходять уроки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте учительницу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i05:audio",
+            "transcript": "Does the classroom open early?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the classroom open early?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "classroom",
+            "open",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы в приёмной школы. Спросите секретаря: «Директор преподаёт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы в приёмной школы. Спросите секретаря: «Директор преподаёт?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the headmaster teach?",
+          "localizedMeaning": {
+            "ru": "Вы в приёмной школы. Спросите секретаря: «Директор преподаёт?»",
+            "uk": "Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "headmaster",
+            "teach"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы готовитесь к занятию. Спросите учительницу: «В школе есть школьная доска?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Вы готовитесь к занятию. Спросите учительницу: «В школе есть школьная доска?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i07:audio",
+            "transcript": "Does the school have a blackboard?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the school have a blackboard?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите учительницу о школьнике. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i08:r1",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите учительницу о школьнике. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите учительницу о школьнике. Выберите слово",
+            "uk": "Спитайте вчительку про школяра. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ the pupil wear a uniform?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-14:i08:r1",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спросите учительницу о школьнике. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Спросите учительницу о школьнике. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Школьник один: нужно `Does`.",
+                "uk": "Школяр один: потрібно `Does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Спросите учительницу о школьнике. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С действием `wear` нужно `Does`, а не `Is`.",
+                "uk": "З дією `wear` потрібне `Does`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте учительницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i09:r1",
+            "text": "Does the classroom have a blackboard?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i09:r2",
+            "text": "Does the classroom have a window?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i09:r3",
+            "text": "Does the school have a blackboard?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i09:audio",
+            "transcript": "Does the classroom have a blackboard?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:i09:r1",
+              "targetText": "Does the classroom have a blackboard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i09:r2",
+              "targetText": "Does the classroom have a window?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i09:r3",
+              "targetText": "Does the school have a blackboard?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `blackboard`, школьная доска, а в этом варианте — `window`, окно.",
+                "uk": "У записі останнє слово — `blackboard`, шкільна дошка, а в цьому варіанті — `window`, вікно."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `classroom`, класс, а в этом варианте — `school`, школа.",
+                "uk": "У записі третє слово — `classroom`, клас, а в цьому варіанті — `school`, школа."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-14:i10:p1",
+              "target": "classroom",
+              "meaningByLocale": {
+                "ru": "класс",
+                "uk": "клас"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i10:p2",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i10:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i10:p4",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "classroom",
+            "chalk",
+            "desk",
+            "lesson"
+          ],
+          "rightColumn": [
+            "класс",
+            "мел",
+            "письменный стол",
+            "урок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте учительницу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i11:audio",
+            "transcript": "Does the pupil learn English?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the pupil learn English?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "pupil",
+            "learn",
+            "English"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы пришли в школу по делам соседки. Спросите секретаря: «Директор работает здесь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы пришли в школу по делам соседки. Спросите секретаря: «Директор работает здесь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the headmaster work here?",
+          "localizedMeaning": {
+            "ru": "Вы пришли в школу по делам соседки. Спросите секретаря: «Директор работает здесь?»",
+            "uk": "Ви прийшли до школи у справах сусідки. Спитайте секретаря: «Директор працює тут?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "headmaster",
+            "work",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сын соседки собирается в школу. Спросите учительницу: «Школьник носит форму?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Сын соседки собирается в школу. Спросите учительницу: «Школьник носит форму?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i13:audio",
+            "transcript": "Does the pupil wear a uniform?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the pupil wear a uniform?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите учительницу об английском. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i14:r1",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i14:r2",
+            "text": "learns"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i14:r3",
+            "text": "is learn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите учительницу об английском. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите учительницу об английском. Выберите слово",
+            "uk": "Спитайте вчительку про англійську. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the pupil ___ English?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-14:i14:r1",
+              "text": "learn"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i14:r2",
+              "text": "learns"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i14:r3",
+              "text": "is learn"
+            }
+          ],
+          "testedDimension": "Спросите учительницу об английском. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i14:r2",
+              "correct": false,
+              "testedDimension": "Спросите учительницу об английском. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `learn`, без `s`.",
+                "uk": "Після `Does` потрібно `learn`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i14:r3",
+              "correct": false,
+              "testedDimension": "Спросите учительницу об английском. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the pupil learn?`, без `is`.",
+                "uk": "Потрібно `Does the pupil learn?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте секретаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i15:r1",
+            "text": "Does the headmaster work here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i15:r2",
+            "text": "Does the headmaster live here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i15:r3",
+            "text": "Does the pupil work here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте секретаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i15:audio",
+            "transcript": "Does the headmaster work here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:i15:r1",
+              "targetText": "Does the headmaster work here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i15:r2",
+              "targetText": "Does the headmaster live here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i15:r3",
+              "targetText": "Does the pupil work here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `work`, работать, а в этом варианте — `live`, жить.",
+                "uk": "У записі четверте слово — `work`, працювати, а в цьому варіанті — `live`, жити."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `headmaster`, директор, а в этом варианте — `pupil`, школьник.",
+                "uk": "У записі третє слово — `headmaster`, директор, а в цьому варіанті — `pupil`, школяр."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-14:i16:p1",
+              "target": "pupil",
+              "meaningByLocale": {
+                "ru": "школьник",
+                "uk": "школяр"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i16:p2",
+              "target": "headmaster",
+              "meaningByLocale": {
+                "ru": "директор школы",
+                "uk": "директор школи"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i16:p3",
+              "target": "uniform",
+              "meaningByLocale": {
+                "ru": "форма (одежда)",
+                "uk": "форма (одяг)"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i16:p4",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pupil",
+            "headmaster",
+            "uniform",
+            "lesson"
+          ],
+          "rightColumn": [
+            "школьник",
+            "директор школы",
+            "форма (одежда)",
+            "урок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы пришли в школу пораньше. Спросите учительницу: «Класс открывается рано?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Вы пришли в школу пораньше. Спросите учительницу: «Класс открывается рано?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i17:audio",
+            "transcript": "Does the classroom open early?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the classroom open early?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-14:word:pupil",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pupil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:pupil:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pupil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:pupil:audio",
+            "transcript": "pupil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:pupil:r1",
+              "targetText": "pupil",
+              "meaningByLocale": {
+                "ru": "школьник. The pupil is young. — «Школьник маленький». Ребёнок, который ходит в школу.",
+                "uk": "школяр. The pupil is young. — «Школяр маленький». Дитина, яка ходить до школи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pupil",
+            "definitionByLocale": {
+              "ru": "школьник. The pupil is young. — «Школьник маленький». Ребёнок, который ходит в школу.",
+              "uk": "школяр. The pupil is young. — «Школяр маленький». Дитина, яка ходить до школи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the pupil wear a uniform?",
+          "localizedMeaning": {
+            "ru": "Вы видите школьника на фотографии в пиджаке. Спросите учительницу: «Школьник носит форму?»",
+            "uk": "Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "pupil",
+            "wear",
+            "a",
+            "uniform"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:word:headmaster",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — headmaster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:headmaster:audio"
+        ],
+        "accessibilityLabel": "Картка слова — headmaster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:headmaster:audio",
+            "transcript": "headmaster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:headmaster:r1",
+              "targetText": "headmaster",
+              "meaningByLocale": {
+                "ru": "директор школы. The headmaster is strict. — «Директор строгий». Главный человек в школе.",
+                "uk": "директор школи. The headmaster is strict. — «Директор суворий». Головна людина в школі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headmaster",
+            "definitionByLocale": {
+              "ru": "директор школы. The headmaster is strict. — «Директор строгий». Главный человек в школе.",
+              "uk": "директор школи. The headmaster is strict. — «Директор суворий». Головна людина в школі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте секретаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i02:r1",
+            "text": "Does the headmaster teach?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i02:r2",
+            "text": "Does the headmaster work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i02:r3",
+            "text": "Does the pupil teach?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте секретаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i02:audio",
+            "transcript": "Does the headmaster teach?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:i02:r1",
+              "targetText": "Does the headmaster teach?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i02:r2",
+              "targetText": "Does the headmaster work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i02:r3",
+              "targetText": "Does the pupil teach?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `teach`, преподавать, а в этом варианте — `work`, работать.",
+                "uk": "У записі останнє слово — `teach`, викладати, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `headmaster`, директор, а в этом варианте — `pupil`, школьник.",
+                "uk": "У записі третє слово — `headmaster`, директор, а в цьому варіанті — `pupil`, школяр."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:word:blackboard",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blackboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:blackboard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blackboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:blackboard:audio",
+            "transcript": "blackboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:blackboard:r1",
+              "targetText": "blackboard",
+              "meaningByLocale": {
+                "ru": "школьная доска. The blackboard is clean. — «Доска чистая». Доска тёмного цвета, на которой пишут мелом.",
+                "uk": "шкільна дошка. The blackboard is clean. — «Дошка чиста». Темна дошка, на якій пишуть крейдою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blackboard",
+            "definitionByLocale": {
+              "ru": "школьная доска. The blackboard is clean. — «Доска чистая». Доска тёмного цвета, на которой пишут мелом.",
+              "uk": "шкільна дошка. The blackboard is clean. — «Дошка чиста». Темна дошка, на якій пишуть крейдою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте вчительку про школу. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i03:r3",
+            "text": "is have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте вчительку про школу. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите учительницу о школе. Выберите слово",
+            "uk": "Спитайте вчительку про школу. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the school ___ a blackboard?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-14:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i03:r3",
+              "text": "is have"
+            }
+          ],
+          "testedDimension": "Спитайте вчительку про школу. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Спитайте вчительку про школу. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `have`, не `has`.",
+                "uk": "Після `Does` потрібно `have`, не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Спитайте вчительку про школу. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the school have?`, без `is`.",
+                "uk": "Потрібно `Does the school have?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-14:i04:p1",
+              "target": "pupil",
+              "meaningByLocale": {
+                "ru": "школьник",
+                "uk": "школяр"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i04:p2",
+              "target": "headmaster",
+              "meaningByLocale": {
+                "ru": "директор школы",
+                "uk": "директор школи"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i04:p3",
+              "target": "blackboard",
+              "meaningByLocale": {
+                "ru": "школьная доска",
+                "uk": "шкільна дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i04:p4",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pupil",
+            "headmaster",
+            "blackboard",
+            "chalk"
+          ],
+          "rightColumn": [
+            "школяр",
+            "директор школи",
+            "шкільна дошка",
+            "крейда"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:word:classroom",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — classroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:word:classroom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — classroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:word:classroom:audio",
+            "transcript": "classroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:word:classroom:r1",
+              "targetText": "classroom",
+              "meaningByLocale": {
+                "ru": "класс. The classroom is quiet. — «Класс тихий». Комната в школе, где проходят уроки.",
+                "uk": "клас. The classroom is quiet. — «Клас тихий». Кімната в школі, де проходять уроки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "classroom",
+            "definitionByLocale": {
+              "ru": "класс. The classroom is quiet. — «Класс тихий». Комната в школе, где проходят уроки.",
+              "uk": "клас. The classroom is quiet. — «Клас тихий». Кімната в школі, де проходять уроки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте вчительку й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i05:audio",
+            "transcript": "Does the classroom open early?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the classroom open early?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "classroom",
+            "open",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the headmaster teach?",
+          "localizedMeaning": {
+            "ru": "Вы в приёмной школы. Спросите секретаря: «Директор преподаёт?»",
+            "uk": "Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "headmaster",
+            "teach"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви готуєтеся до заняття. Спитайте вчительку: «У школі є шкільна дошка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Ви готуєтеся до заняття. Спитайте вчительку: «У школі є шкільна дошка?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i07:audio",
+            "transcript": "Does the school have a blackboard?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the school have a blackboard?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте вчительку про школяра. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i08:r1",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте вчительку про школяра. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите учительницу о школьнике. Выберите слово",
+            "uk": "Спитайте вчительку про школяра. Виберіть слово"
+          },
+          "gappedTargetPhrase": "___ the pupil wear a uniform?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-14:i08:r1",
+              "text": "Does"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i08:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Спитайте вчительку про школяра. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Спитайте вчительку про школяра. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Школьник один: нужно `Does`.",
+                "uk": "Школяр один: потрібно `Does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Спитайте вчительку про школяра. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С действием `wear` нужно `Does`, а не `Is`.",
+                "uk": "З дією `wear` потрібне `Does`, а не `Is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте вчительку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i09:r1",
+            "text": "Does the classroom have a blackboard?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i09:r2",
+            "text": "Does the classroom have a window?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i09:r3",
+            "text": "Does the school have a blackboard?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i09:audio",
+            "transcript": "Does the classroom have a blackboard?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:i09:r1",
+              "targetText": "Does the classroom have a blackboard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i09:r2",
+              "targetText": "Does the classroom have a window?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i09:r3",
+              "targetText": "Does the school have a blackboard?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `blackboard`, школьная доска, а в этом варианте — `window`, окно.",
+                "uk": "У записі останнє слово — `blackboard`, шкільна дошка, а в цьому варіанті — `window`, вікно."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `classroom`, класс, а в этом варианте — `school`, школа.",
+                "uk": "У записі третє слово — `classroom`, клас, а в цьому варіанті — `school`, школа."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-14:i10:p1",
+              "target": "classroom",
+              "meaningByLocale": {
+                "ru": "класс",
+                "uk": "клас"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i10:p2",
+              "target": "chalk",
+              "meaningByLocale": {
+                "ru": "мел",
+                "uk": "крейда"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i10:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i10:p4",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "classroom",
+            "chalk",
+            "desk",
+            "lesson"
+          ],
+          "rightColumn": [
+            "клас",
+            "крейда",
+            "письмовий стіл",
+            "урок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте вчительку й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i11:audio",
+            "transcript": "Does the pupil learn English?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does the pupil learn English?",
+          "orderedTokens": [
+            "Does",
+            "the",
+            "pupil",
+            "learn",
+            "English"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви прийшли до школи у справах сусідки. Спитайте секретаря: «Директор працює тут?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прийшли до школи у справах сусідки. Спитайте секретаря: «Директор працює тут?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does the headmaster work here?",
+          "localizedMeaning": {
+            "ru": "Вы пришли в школу по делам соседки. Спросите секретаря: «Директор работает здесь?»",
+            "uk": "Ви прийшли до школи у справах сусідки. Спитайте секретаря: «Директор працює тут?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "the",
+            "headmaster",
+            "work",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Син сусідки збирається до школи. Спитайте вчительку: «Школяр носить форму?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Син сусідки збирається до школи. Спитайте вчительку: «Школяр носить форму?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i13:audio",
+            "transcript": "Does the pupil wear a uniform?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the pupil wear a uniform?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте вчительку про англійську. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i14:r1",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i14:r2",
+            "text": "learns"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i14:r3",
+            "text": "is learn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте вчительку про англійську. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите учительницу об английском. Выберите слово",
+            "uk": "Спитайте вчительку про англійську. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does the pupil ___ English?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-14:i14:r1",
+              "text": "learn"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i14:r2",
+              "text": "learns"
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i14:r3",
+              "text": "is learn"
+            }
+          ],
+          "testedDimension": "Спитайте вчительку про англійську. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i14:r2",
+              "correct": false,
+              "testedDimension": "Спитайте вчительку про англійську. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `learn`, без `s`.",
+                "uk": "Після `Does` потрібно `learn`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i14:r3",
+              "correct": false,
+              "testedDimension": "Спитайте вчительку про англійську. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `Does the pupil learn?`, без `is`.",
+                "uk": "Потрібно `Does the pupil learn?`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте секретаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-14:i15:r1",
+            "text": "Does the headmaster work here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i15:r2",
+            "text": "Does the headmaster live here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-14:i15:r3",
+            "text": "Does the pupil work here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте секретаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i15:audio",
+            "transcript": "Does the headmaster work here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-14:i15:r1",
+              "targetText": "Does the headmaster work here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i15:r2",
+              "targetText": "Does the headmaster live here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i15:r3",
+              "targetText": "Does the pupil work here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `work`, работать, а в этом варианте — `live`, жить.",
+                "uk": "У записі четверте слово — `work`, працювати, а в цьому варіанті — `live`, жити."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте секретаря",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `headmaster`, директор, а в этом варианте — `pupil`, школьник.",
+                "uk": "У записі третє слово — `headmaster`, директор, а в цьому варіанті — `pupil`, школяр."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-14:i16:p1",
+              "target": "pupil",
+              "meaningByLocale": {
+                "ru": "школьник",
+                "uk": "школяр"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i16:p2",
+              "target": "headmaster",
+              "meaningByLocale": {
+                "ru": "директор школы",
+                "uk": "директор школи"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i16:p3",
+              "target": "uniform",
+              "meaningByLocale": {
+                "ru": "форма (одежда)",
+                "uk": "форма (одяг)"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-14:i16:p4",
+              "target": "lesson",
+              "meaningByLocale": {
+                "ru": "урок",
+                "uk": "урок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pupil",
+            "headmaster",
+            "uniform",
+            "lesson"
+          ],
+          "rightColumn": [
+            "школяр",
+            "директор школи",
+            "форма (одяг)",
+            "урок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви прийшли до школи завчасу. Спитайте вчительку: «Клас відчиняється рано?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Ви прийшли до школи завчасу. Спитайте вчительку: «Клас відчиняється рано?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-14:i17:audio",
+            "transcript": "Does the classroom open early?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the classroom open early?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-14:word:pupil",
+      "correctText": "pupil",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i01",
+      "correctText": "Does the pupil wear a uniform?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:word:headmaster",
+      "correctText": "headmaster",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i02",
+      "correctText": "Does the headmaster teach?",
+      "correctResponseId": "en:lesson-07:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:word:blackboard",
+      "correctText": "blackboard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i03",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-07:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:word:classroom",
+      "correctText": "classroom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i05",
+      "correctText": "Does the classroom open early?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i06",
+      "correctText": "Does the headmaster teach?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i07",
+      "correctText": "Does the school have a blackboard?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i08",
+      "correctText": "Does",
+      "correctResponseId": "en:lesson-07:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i09",
+      "correctText": "Does the classroom have a blackboard?",
+      "correctResponseId": "en:lesson-07:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i11",
+      "correctText": "Does the pupil learn English?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i12",
+      "correctText": "Does the headmaster work here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i13",
+      "correctText": "Does the pupil wear a uniform?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i14",
+      "correctText": "learn",
+      "correctResponseId": "en:lesson-07:session-14:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i15",
+      "correctText": "Does the headmaster work here?",
+      "correctResponseId": "en:lesson-07:session-14:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:i17",
+      "correctText": "Does the classroom open early?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -4,33 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-05:i01",
+      "interactionId": "en:lesson-07:session-05:word:night",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — night",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:word:night:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — night",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:word:night:audio",
+          "transcript": "night"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-05:word:night:r1",
+            "targetText": "night",
+            "meaningByLocale": {
+              "ru": "ночь. I work at night. — «Я работаю ночью». Время, когда темно и большинство людей спят.",
+              "uk": "ніч. I work at night. — «Я працюю вночі». Час, коли темно й більшість людей спить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "night",
+          "definitionByLocale": {
+            "ru": "ночь. I work at night. — «Я работаю ночью». Время, когда темно и большинство людей спят.",
+            "uk": "ніч. I work at night. — «Я працюю вночі». Час, коли темно й більшість людей спить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Вы начинаете свою смену рано?»",
+      "prompt": "Сосед возвращается домой на рассвете. Спросите: «Вы работаете ночью?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Вы начинаете свою смену рано?»",
+      "accessibilityLabel": "Сосед возвращается домой на рассвете. Спросите: «Вы работаете ночью?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you start your shift early?",
+        "targetPhrase": "Do you work at night?",
         "localizedMeaning": {
-          "ru": "Спросите «Вы начинаете свою смену рано?»",
-          "uk": "Запитайте «Ви починаєте свою зміну рано?»"
+          "ru": "Сосед возвращается домой на рассвете. Спросите: «Вы работаете ночью?»",
+          "uk": "Сусід повертається додому на світанку. Спитайте: «Ви працюєте вночі?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "start",
-          "your",
-          "shift",
-          "early"
+          "work",
+          "at",
+          "night"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед возвращается домой на рассвете. Спросите: «Вы работаете ночью?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you work at night?`",
+              "uk": "тут потрібно `Do` — `Do you work at night?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -39,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-05:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-05:word:morning",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — morning",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:word:morning:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — morning",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:word:morning:audio",
+          "transcript": "morning"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-05:word:morning:r1",
+            "targetText": "morning",
+            "meaningByLocale": {
+              "ru": "утро. We start in the morning. — «Мы начинаем утром». Время после ночи, когда начинается день.",
+              "uk": "ранок. We start in the morning. — «Ми починаємо зранку». Час після ночі, коли починається день."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "morning",
+          "definitionByLocale": {
+            "ru": "утро. We start in the morning. — «Мы начинаем утром». Время после ночи, когда начинается день.",
+            "uk": "ранок. We start in the morning. — «Ми починаємо зранку». Час після ночі, коли починається день."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-05:i02:r1",
-          "text": "shift"
+          "text": "I work at night."
         },
         {
           "responseId": "en:lesson-07:session-05:i02:r2",
-          "text": "map"
+          "text": "I work in the morning."
         },
         {
           "responseId": "en:lesson-07:session-05:i02:r3",
-          "text": "drawer"
+          "text": "We work at night."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i02:audio",
-          "transcript": "shift"
+          "transcript": "I work at night."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-05:i02:r1",
-            "targetText": "shift",
+            "targetText": "I work at night.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-05:i02:r2",
-            "targetText": "map",
+            "targetText": "I work in the morning.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-05:i02:r3",
-            "targetText": "drawer",
+            "targetText": "We work at night.",
             "meaningByLocale": null
           }
         ],
@@ -93,19 +190,19 @@
           {
             "responseId": "en:lesson-07:session-05:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `shift`, а в этом варианте — `map`.",
-              "uk": "У записі перше слово — `shift`, а в цьому варіанті — `map`."
+              "ru": "В записи последнее слово — `night`, ночь, а в этом варианте — `morning`, утро.",
+              "uk": "У записі останнє слово — `night`, ніч, а в цьому варіанті — `morning`, ранок."
             }
           },
           {
             "responseId": "en:lesson-07:session-05:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `shift`, а в этом варианте — `drawer`.",
-              "uk": "У записі перше слово — `shift`, а в цьому варіанті — `drawer`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -115,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-05:word:evening",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — evening",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:word:evening:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — evening",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:word:evening:audio",
+          "transcript": "evening"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-05:word:evening:r1",
+            "targetText": "evening",
+            "meaningByLocale": {
+              "ru": "вечер. We are at home in the evening. — «Вечером мы дома». Часть суток между днём и ночью.",
+              "uk": "вечір. We are at home in the evening. — «Ввечері ми вдома». Частина доби між днем і ніччю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "evening",
+          "definitionByLocale": {
+            "ru": "вечер. We are at home in the evening. — «Вечером мы дома». Часть суток между днём и ночью.",
+            "uk": "вечір. We are at home in the evening. — «Ввечері ми вдома». Частина доби між днем і ніччю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-05:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о раннем начале смены",
+      "prompt": "Спросите соседа: «Вы работаете вечером?». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-05:i03:r1",
-          "text": "start"
+          "text": "work"
         },
         {
           "responseId": "en:lesson-07:session-05:i03:r2",
-          "text": "starts"
+          "text": "works"
         },
         {
           "responseId": "en:lesson-07:session-05:i03:r3",
-          "text": "are start"
+          "text": "are work"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о раннем начале смены",
+      "accessibilityLabel": "Спросите соседа: «Вы работаете вечером?». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о раннем начале смены",
-          "uk": "Запитайте про ранній початок зміни"
+          "ru": "Спросите соседа: «Вы работаете вечером?». Выберите слово",
+          "uk": "Спитайте сусіда: «Ви працюєте ввечері?». Виберіть слово"
         },
-        "gappedTargetPhrase": "Do you ___ your shift early?",
+        "gappedTargetPhrase": "Do you ___ in the evening?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-05:i03:r1",
-            "text": "start"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-07:session-05:i03:r2",
-            "text": "starts"
+            "text": "works"
           },
           {
             "responseId": "en:lesson-07:session-05:i03:r3",
-            "text": "are start"
+            "text": "are work"
           }
         ],
-        "testedDimension": "Спросите о раннем начале смены",
+        "testedDimension": "Спросите соседа: «Вы работаете вечером?». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-05:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите о раннем начале смены",
+            "testedDimension": "Спросите соседа: «Вы работаете вечером?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Do you` нужно `start`.",
-              "uk": "Після `Do you` потрібне `start`."
+              "ru": "После `Do you` нужно `work`, без `s`.",
+              "uk": "Після `Do you` потрібно `work`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-05:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите о раннем начале смены",
+            "testedDimension": "Спросите соседа: «Вы работаете вечером?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do you start?`, без `are`.",
-              "uk": "Потрібно `Do you start?`, без `are`."
+              "ru": "Нужно `Do you work`, без `are`.",
+              "uk": "Потрібно `Do you work`, без `are`."
             }
           }
         ]
@@ -184,9 +324,52 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-05:i04",
-      "ordinal": 7,
+      "interactionId": "en:lesson-07:session-05:word:weekend",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — weekend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:word:weekend:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — weekend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:word:weekend:audio",
+          "transcript": "weekend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-05:word:weekend:r1",
+            "targetText": "weekend",
+            "meaningByLocale": {
+              "ru": "выходные. We are at home on weekends. — «По выходным мы дома». Суббота и воскресенье.",
+              "uk": "вихідні. We are at home on weekends. — «На вихідних ми вдома». Субота й неділя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "weekend",
+          "definitionByLocale": {
+            "ru": "выходные. We are at home on weekends. — «По выходным мы дома». Суббота и воскресенье.",
+            "uk": "вихідні. We are at home on weekends. — «На вихідних ми вдома». Субота й неділя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i04",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -199,48 +382,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-05:i04:p1",
-            "target": "shift",
+            "target": "night",
             "meaningByLocale": {
-              "ru": "рабочая смена",
-              "uk": "робоча зміна"
+              "ru": "ночь",
+              "uk": "ніч"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i04:p2",
-            "target": "map",
+            "target": "evening",
             "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
+              "ru": "вечер",
+              "uk": "вечір"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i04:p3",
-            "target": "drawer",
+            "target": "morning",
             "meaningByLocale": {
-              "ru": "ящик",
-              "uk": "шухляда"
+              "ru": "утро",
+              "uk": "ранок"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i04:p4",
-            "target": "keychain",
+            "target": "weekend",
             "meaningByLocale": {
-              "ru": "брелок",
-              "uk": "брелок"
+              "ru": "выходные",
+              "uk": "вихідні"
             }
           }
         ],
         "leftColumn": [
-          "shift",
-          "map",
-          "drawer",
-          "keychain"
+          "night",
+          "evening",
+          "morning",
+          "weekend"
         ],
         "rightColumn": [
-          "рабочая смена",
-          "карта",
-          "ящик",
-          "брелок"
+          "ночь",
+          "вечер",
+          "утро",
+          "выходные"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -258,35 +441,46 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте соседа и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте соседа и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i05:audio",
-          "transcript": "Do you start your shift early?"
+          "transcript": "Do you work on weekends?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you start your shift early?",
+        "hiddenTargetPhrase": "Do you work on weekends?",
         "orderedTokens": [
           "Do",
           "you",
-          "start",
-          "your",
-          "shift",
-          "early"
+          "work",
+          "on",
+          "weekends"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседа и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you work on weekends?`",
+              "uk": "тут потрібно `Do` — `Do you work on weekends?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -296,31 +490,43 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите сотрудника «У вас есть форма?»",
+      "prompt": "Подруга говорит, что её родители спят днём. Спросите: «Они работают ночью?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите сотрудника «У вас есть форма?»",
+      "accessibilityLabel": "Подруга говорит, что её родители спят днём. Спросите: «Они работают ночью?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a uniform?",
+        "targetPhrase": "Do they work at night?",
         "localizedMeaning": {
-          "ru": "Спросите сотрудника «У вас есть форма?»",
-          "uk": "Запитайте працівника «У вас є форма?»"
+          "ru": "Подруга говорит, что её родители спят днём. Спросите: «Они работают ночью?»",
+          "uk": "Подруга каже, що її батьки сплять удень. Спитайте: «Вони працюють уночі?»"
         },
         "orderedTokens": [
           "Do",
-          "you",
-          "have",
-          "a",
-          "uniform"
+          "they",
+          "work",
+          "at",
+          "night"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга говорит, что её родители спят днём. Спросите: «Они работают ночью?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they work at night?`",
+              "uk": "тут потрібно `Do` — `Do they work at night?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -330,25 +536,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сообщите «В ящике нет брелока»",
+      "prompt": "Подруга предлагает ездить на работу вместе. Скажите ей: «Утром нет автобуса»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i07:audio"
       ],
-      "accessibilityLabel": "Сообщите «В ящике нет брелока»",
+      "accessibilityLabel": "Подруга предлагает ездить на работу вместе. Скажите ей: «Утром нет автобуса»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i07:audio",
-          "transcript": "There is no keychain in the drawer."
+          "transcript": "There is no bus in the morning."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is no keychain in the drawer.",
+        "targetPhrase": "There is no bus in the morning.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -363,11 +569,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У входа спросите человека «Вы работаете здесь?»",
+      "prompt": "Спросите о двух соседях: «Они работают вечером?». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-05:i08:r1",
@@ -384,14 +590,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У входа спросите человека «Вы работаете здесь?»",
+      "accessibilityLabel": "Спросите о двух соседях: «Они работают вечером?». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "У входа спросите человека «Вы работаете здесь?»",
-          "uk": "Біля входу запитайте людину «Ви працюєте тут?»"
+          "ru": "Спросите о двух соседях: «Они работают вечером?». Выберите слово",
+          "uk": "Спитайте про двох сусідів: «Вони працюють ввечері?». Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you work here?",
+        "gappedTargetPhrase": "___ they work in the evening?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-05:i08:r1",
@@ -406,24 +612,24 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "У входа спросите человека «Вы работаете здесь?»",
+        "testedDimension": "Спросите о двух соседях: «Они работают вечером?». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-05:i08:r2",
             "correct": false,
-            "testedDimension": "У входа спросите человека «Вы работаете здесь?»",
+            "testedDimension": "Спросите о двух соседях: «Они работают вечером?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "С действием `work` здесь нужно `Do you work?`.",
-              "uk": "З дією `work` тут потрібно `Do you work?`."
+              "ru": "С `work` нужно `Do they work`, без `Are`.",
+              "uk": "З `work` потрібно `Do they work`, без `Are`."
             }
           },
           {
             "responseId": "en:lesson-07:session-05:i08:r3",
             "correct": false,
-            "testedDimension": "У входа спросите человека «Вы работаете здесь?»",
+            "testedDimension": "Спросите о двух соседях: «Они работают вечером?». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do you work?`.",
-              "uk": "Потрібно `Do you work?`."
+              "ru": "С `they` нужно `Do`, а `Is` сюда не подходит.",
+              "uk": "З `they` потрібно `Do`, а `Is` сюди не пасує."
             }
           }
         ]
@@ -432,51 +638,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос коллеги о смене",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-05:i09:r1",
-          "text": "Do you start your shift early?"
+          "text": "Do you work in the morning?"
         },
         {
           "responseId": "en:lesson-07:session-05:i09:r2",
-          "text": "Do you start your shift late?"
+          "text": "Do you work in the evening?"
         },
         {
           "responseId": "en:lesson-07:session-05:i09:r3",
-          "text": "Do you start your shift here?"
+          "text": "Do they work in the morning?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос коллеги о смене",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i09:audio",
-          "transcript": "Do you start your shift early?"
+          "transcript": "Do you work in the morning?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-05:i09:r1",
-            "targetText": "Do you start your shift early?",
+            "targetText": "Do you work in the morning?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-05:i09:r2",
-            "targetText": "Do you start your shift late?",
+            "targetText": "Do you work in the evening?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-05:i09:r3",
-            "targetText": "Do you start your shift here?",
+            "targetText": "Do they work in the morning?",
             "meaningByLocale": null
           }
         ],
@@ -485,19 +691,19 @@
           {
             "responseId": "en:lesson-07:session-05:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос коллеги о смене",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+              "ru": "В записи последнее слово — `morning`, утро, а в этом варианте — `evening`, вечер.",
+              "uk": "У записі останнє слово — `morning`, ранок, а в цьому варіанті — `evening`, вечір."
             }
           },
           {
             "responseId": "en:lesson-07:session-05:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос коллеги о смене",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+              "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+              "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
             }
           }
         ],
@@ -508,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -522,48 +728,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-05:i10:p1",
-            "target": "uniform",
+            "target": "morning",
             "meaningByLocale": {
-              "ru": "униформа",
-              "uk": "уніформа"
+              "ru": "утро",
+              "uk": "ранок"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i10:p2",
-            "target": "shift",
+            "target": "weekend",
             "meaningByLocale": {
-              "ru": "рабочая смена",
-              "uk": "робоча зміна"
+              "ru": "выходные",
+              "uk": "вихідні"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i10:p3",
-            "target": "drawer",
+            "target": "night",
             "meaningByLocale": {
-              "ru": "ящик",
-              "uk": "шухляда"
+              "ru": "ночь",
+              "uk": "ніч"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i10:p4",
-            "target": "keychain",
+            "target": "evening",
             "meaningByLocale": {
-              "ru": "брелок",
-              "uk": "брелок"
+              "ru": "вечер",
+              "uk": "вечір"
             }
           }
         ],
         "leftColumn": [
-          "uniform",
-          "shift",
-          "drawer",
-          "keychain"
+          "morning",
+          "weekend",
+          "night",
+          "evening"
         ],
         "rightColumn": [
-          "униформа",
-          "рабочая смена",
-          "ящик",
-          "брелок"
+          "утро",
+          "выходные",
+          "ночь",
+          "вечер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -581,34 +787,47 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте подругу и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте подругу и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i11:audio",
-          "transcript": "Do you have a uniform?"
+          "transcript": "Do they work in the morning?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you have a uniform?",
+        "hiddenTargetPhrase": "Do they work in the morning?",
         "orderedTokens": [
           "Do",
-          "you",
-          "have",
-          "a",
-          "uniform"
+          "they",
+          "work",
+          "in",
+          "the",
+          "morning"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they work in the morning?`",
+              "uk": "тут потрібно `Do` — `Do they work in the morning?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -618,31 +837,44 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы ищете дорогу к фабрике. Спросите друга «У тебя есть карта?»",
+      "prompt": "Вечером вы хотите позвать соседа гулять. Спросите: «Вы работаете вечером?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы ищете дорогу к фабрике. Спросите друга «У тебя есть карта?»",
+      "accessibilityLabel": "Вечером вы хотите позвать соседа гулять. Спросите: «Вы работаете вечером?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a map?",
+        "targetPhrase": "Do you work in the evening?",
         "localizedMeaning": {
-          "ru": "Вы ищете дорогу к фабрике. Спросите друга «У тебя есть карта?»",
-          "uk": "Ви шукаєте дорогу до фабрики. Запитайте друга «У тебе є карта?»"
+          "ru": "Вечером вы хотите позвать соседа гулять. Спросите: «Вы работаете вечером?»",
+          "uk": "Ввечері ви хочете покликати сусіда гуляти. Спитайте: «Ви працюєте ввечері?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "have",
-          "a",
-          "map"
+          "work",
+          "in",
+          "the",
+          "evening"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вечером вы хотите позвать соседа гулять. Спросите: «Вы работаете вечером?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you work in the evening?`",
+              "uk": "тут потрібно `Do` — `Do you work in the evening?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -652,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллега упомянул Анну и Тома. Спросите «Они работают здесь?»",
+      "prompt": "Подруга рассказывает о двух коллегах. Спросите: «Они работают по выходным?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i13:audio"
       ],
-      "accessibilityLabel": "Коллега упомянул Анну и Тома. Спросите «Они работают здесь?»",
+      "accessibilityLabel": "Подруга рассказывает о двух коллегах. Спросите: «Они работают по выходным?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i13:audio",
-          "transcript": "Do they work here?"
+          "transcript": "Do they work on weekends?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do they work here?",
+        "targetPhrase": "Do they work on weekends?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -685,11 +917,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сообщите «В ящике нет брелока»",
+      "prompt": "Скажите, что утром автобуса нет. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-05:i14:r1",
@@ -706,14 +938,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите «В ящике нет брелока»",
+      "accessibilityLabel": "Скажите, что утром автобуса нет. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «В ящике нет брелока»",
-          "uk": "Повідомте «У шухляді немає брелока»"
+          "ru": "Скажите, что утром автобуса нет. Выберите слово",
+          "uk": "Скажіть, що зранку автобуса немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no keychain in the drawer.",
+        "gappedTargetPhrase": "There ___ no bus in the morning.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-05:i14:r1",
@@ -728,24 +960,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Сообщите «В ящике нет брелока»",
+        "testedDimension": "Скажите, что утром автобуса нет. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-05:i14:r2",
             "correct": false,
-            "testedDimension": "Сообщите «В ящике нет брелока»",
+            "testedDimension": "Скажите, что утром автобуса нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Один брелок: `There is no keychain`.",
-              "uk": "Один брелок: `There is no keychain`."
+              "ru": "Слово bus стоит в единственном числе: нужно `There is no`.",
+              "uk": "Слово bus стоїть в однині: потрібно `There is no`."
             }
           },
           {
             "responseId": "en:lesson-07:session-05:i14:r3",
             "correct": false,
-            "testedDimension": "Сообщите «В ящике нет брелока»",
+            "testedDimension": "Скажите, что утром автобуса нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `There is no`; `am` подходит к `I`.",
-              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+              "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -754,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, о какой вещи спрашивает друг",
+      "prompt": "Послушайте вопрос о мастерской",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-05:i15:r1",
-          "text": "Do you have a map?"
+          "text": "Do they work here at night?"
         },
         {
           "responseId": "en:lesson-07:session-05:i15:r2",
-          "text": "Do you have a uniform?"
+          "text": "Do they work here in the morning?"
         },
         {
           "responseId": "en:lesson-07:session-05:i15:r3",
-          "text": "Do you have a keychain?"
+          "text": "Do they work there at night?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, о какой вещи спрашивает друг",
+      "accessibilityLabel": "Послушайте вопрос о мастерской",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i15:audio",
-          "transcript": "Do you have a map?"
+          "transcript": "Do they work here at night?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-05:i15:r1",
-            "targetText": "Do you have a map?",
+            "targetText": "Do they work here at night?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-05:i15:r2",
-            "targetText": "Do you have a uniform?",
+            "targetText": "Do they work here in the morning?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-05:i15:r3",
-            "targetText": "Do you have a keychain?",
+            "targetText": "Do they work there at night?",
             "meaningByLocale": null
           }
         ],
@@ -807,19 +1039,19 @@
           {
             "responseId": "en:lesson-07:session-05:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, о какой вещи спрашивает друг",
+            "testedDimension": "Послушайте вопрос о мастерской",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `map`, а в этом варианте — `uniform`.",
-              "uk": "У записі останнє слово — `map`, а в цьому варіанті — `uniform`."
+              "ru": "В записи последнее слово — `night`, ночь, а в этом варианте — `morning`, утро.",
+              "uk": "У записі останнє слово — `night`, ніч, а в цьому варіанті — `morning`, ранок."
             }
           },
           {
             "responseId": "en:lesson-07:session-05:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, о какой вещи спрашивает друг",
+            "testedDimension": "Послушайте вопрос о мастерской",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `map`, а в этом варианте — `keychain`.",
-              "uk": "У записі останнє слово — `map`, а в цьому варіанті — `keychain`."
+              "ru": "В записи четвёртое слово — `here`, здесь, а в этом варианте — `there`, там.",
+              "uk": "У записі четверте слово — `here`, тут, а в цьому варіанті — `there`, там."
             }
           }
         ],
@@ -830,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -844,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-05:i16:p1",
-            "target": "shift",
+            "target": "weekend",
             "meaningByLocale": {
-              "ru": "рабочая смена",
-              "uk": "робоча зміна"
+              "ru": "выходные",
+              "uk": "вихідні"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i16:p2",
-            "target": "uniform",
+            "target": "night",
             "meaningByLocale": {
-              "ru": "униформа",
-              "uk": "уніформа"
+              "ru": "ночь",
+              "uk": "ніч"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i16:p3",
-            "target": "map",
+            "target": "evening",
             "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
+              "ru": "вечер",
+              "uk": "вечір"
             }
           },
           {
             "pairId": "en:lesson-07:session-05:i16:p4",
-            "target": "keychain",
+            "target": "morning",
             "meaningByLocale": {
-              "ru": "брелок",
-              "uk": "брелок"
+              "ru": "утро",
+              "uk": "ранок"
             }
           }
         ],
         "leftColumn": [
-          "shift",
-          "uniform",
-          "map",
-          "keychain"
+          "weekend",
+          "night",
+          "evening",
+          "morning"
         ],
         "rightColumn": [
-          "рабочая смена",
-          "униформа",
-          "карта",
-          "брелок"
+          "выходные",
+          "ночь",
+          "вечер",
+          "утро"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -903,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-05:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы хотите встретиться с коллегой утром. Уточните «Вы начинаете свою смену поздно?»",
+      "prompt": "Вы встретили соседа утром у подъезда. Спросите: «Вы работаете утром?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-05:i17:audio"
       ],
-      "accessibilityLabel": "Вы хотите встретиться с коллегой утром. Уточните «Вы начинаете свою смену поздно?»",
+      "accessibilityLabel": "Вы встретили соседа утром у подъезда. Спросите: «Вы работаете утром?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-05:i17:audio",
-          "transcript": "Do you start your shift late?"
+          "transcript": "Do you work in the morning?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you start your shift late?",
+        "targetPhrase": "Do you work in the morning?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -943,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "92b9e9efde2bbbfd84a7ff21e0ba0ea359d74464bb82238f6d616f4231fcd2b9"
+  "learnerFingerprint": "919931ca43bca5d7ed0fc2300b70492931726fe61c33ce2e73a7183fda944e23"
 }

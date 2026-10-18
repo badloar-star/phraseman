@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 18 — Я не граю на гроші
+# Англійська · Урок 7 · Заняття 18 — Куди я не ходжу
 
-**Ситуація.** Ви відмовляєтеся грати на гроші, повідомляєте про несправний пристрій і шукаєте рукавички.
+**Ситуація.** Ви пояснюєте, чому не буваєте в одному магазині, повідомляєте другу, що поки не можете оплатити покупку, і виправляєте хибне припущення про житло брата.
 
-**Що ви опануєте:** використовувати don’t і doesn’t для заперечення дій та there are no для відсутніх речей
-**Нові слова:** gamble
+**Що ви опануєте:** сказати, куди ви не ходите й чого у вас або в іншої людини немає
+**Нові слова:** go, money, house, family
+**Повертаються:** have, there, here, work, cook, drive
 
 ---
 
 ## Інтро 1
 
-### Без ставок
+### Магазин, який ви оминаєте
 
-Друг пропонує зіграти на гроші. `gamble` — «грати в азартні ігри». `I don’t gamble` — «Я не граю в азартні ігри». Після `don’t` ставимо `gamble`. Ви пояснюєте свою звичку, а не забороняєте другові грати. Гаманець може спокійно видихнути.
+Колега питає, чи зустрічаєте ви знайомих у магазині навпроти. Там вам одного разу нагрубили, і ви більше туди не заходите. go — «ходити, йти». I don't go there — «Я туди не ходжу». Після I ставимо don't; go лишається без змін. Тут ідеться про звичку.
 
-**Поясніть другові, що ви не граєте в азартні ігри.**
+**Поясніть колезі: «Я туди не ходжу».**
 
-- ✅ **I don’t gamble.**
-- ❌ I doesn’t gamble. — *Після `I` потрібне `don’t`.*
-- ❌ I not gamble. — *Для заперечення дії потрібне `don’t`.*
+- ✅ **I don't go there.**
+- ❌ I doesn't go there. — *З I потрібно don't.*
+- ❌ I not go there. — *Перед go у цьому запереченні потрібно don't.*
 
 ---
 
 ## Інтро 2
 
-### Пристрій не працює
+### Покупка зачекає
 
-Колега збирається ввімкнути пристрій, який не працює. `The machine doesn’t work` — «Пристрій не працює». `The machine` — один пристрій, тому використовуємо `doesn’t`. Після нього — `work`, без `s`.
+Друг пропонує замовити вам велосипед сьогодні. Ви зараз без доходу, заощадження закінчилися, і платити за покупку нічим. money — «гроші». I don't have money — «У мене немає грошей». Після don't ставимо have. У цій фразі money вживається без a.
 
-**Попередьте колегу: «Пристрій не працює».**
+**Друг пропонує покупку. Поясніть: «У мене немає грошей».**
 
-- ✅ **The machine doesn’t work.**
-- ❌ The machine don’t work. — *З одним пристроєм потрібне `doesn’t`.*
-- ❌ The machine doesn’t works. — *Після `doesn’t` потрібне `work`, без `s`.*
+- ✅ **I don't have money.**
+- ❌ I doesn't have money. — *З I потрібно don't.*
+- ❌ I don't has money. — *Після don't потрібно have, а не has.*
 
 ---
 
 ## Інтро 3
 
-### Де рукавички?
+### Брат живе у квартирі
 
-Ви перевірили місце, де зазвичай лежать рукавички, але не знайшли їх. `There are no gloves here` — «Тут немає рукавичок». `Gloves` — множина, тому `are no`. Ця фраза повідомляє про відсутність рукавичок у цьому місці.
+Сусід хоче позичити у вашого брата драбину для даху: він думає, що у брата власний будинок. Але брат живе у квартирі, власного будинку в нього немає. house — «будинок», житлова будівля. He doesn't have a house — «У нього немає будинку». З he ставимо doesn't; після нього have, а не has.
 
-**Скажіть: «Тут немає рукавичок».**
+**Виправте припущення сусіда: «У нього немає будинку».**
 
-- ✅ **There are no gloves here.**
-- ❌ There is no gloves here. — *З `gloves` потрібне `are`.*
-- ❌ There are gloves here. — *Ця фраза означає, що рукавички є. Для «немає» додайте `no`.*
+- ✅ **He doesn't have a house.**
+- ❌ He don't have a house. — *З he потрібно doesn't.*
+- ❌ He doesn't has a house. — *Після doesn't потрібно have.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Поясніть «Я не граю в азартні ігри»**
+**1 · Картка слова — go**
+<!-- interaction_id: en:lesson-07:session-18:word:go; family: word_card -->
+> **go** — ходити, йти. I go there. — «Я туди ходжу». Тут говоримо про відвідування місця.
+
+**2 · Поясніть колезі: «Я туди не ходжу»**
 <!-- interaction_id: en:lesson-07:session-18:i01; family: phrase_builder -->
-Плитки: `gamble` `don’t` `I` → **I don’t gamble.**
+Плитки: `there` `go` `don't` `I` `doesn't` → **I don't go there.**
+*(плитка `doesn't` зайва: після I потрібно don't.)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-07:session-18:i02; family: listen_choose -->
-🔊 *gamble* → **gamble** · smile · gloves
-- smile — *У записі перше слово — `gamble`, а в цьому варіанті — `smile`.*
-- gloves — *У записі перше слово — `gamble`, а в цьому варіанті — `gloves`.*
+🔊 *go* → **go** · cook · work
+- cook — *У записі `go`, а тут `cook`.*
+- work — *У записі `go`, а тут `work`.*
 
-**3 · Скажіть «Я не граю в азартні ігри»**
+**4 · Скажіть «Я туди не ходжу». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-18:i03; family: context_gap_grammar -->
-I ___ gamble. → **don’t** · doesn’t · not
-- doesn’t — *Після `I` потрібне `don’t`.*
-- not — *Для заперечення дії потрібне `don’t`.*
+I ___ go there. → **don't** · doesn't · not
+- doesn't — *З I потрібно don't.*
+- not — *У запереченні дії з I потрібно don't.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-18:i04; family: speed_match -->
-gamble — грати в азартні ігри · smile — усміхатися · gloves — рукавички · boxes — коробки
+go — ходити, йти · work — працювати · cook — готувати · drive — водити машину
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-18:i05; family: listen_build_dictation -->
-🔊 *I don’t gamble.* Плитки: `gamble` `don’t` `I` → **I don’t gamble.**
+🔊 *I don't go there.* Плитки: `there` `go` `don't` `I` `doesn't` → **I don't go there.**
+*(плитка `doesn't` зайва: після I потрібно don't.)*
 
-**6 · Попередьте «Пристрій не працює»**
+**7 · Картка слова — money**
+<!-- interaction_id: en:lesson-07:session-18:word:money; family: word_card -->
+> **money** — гроші. I have money. — «У мене є гроші». Money не рахують як окремі предмети: у цій фразі a не потрібно.
+
+**8 · Поясніть другу, чому покупка зачекає: «У мене немає грошей»**
 <!-- interaction_id: en:lesson-07:session-18:i06; family: phrase_builder -->
-Плитки: `work` `doesn’t` `machine` `The` → **The machine doesn’t work.**
+Плитки: `money` `have` `don't` `I` `has` → **I don't have money.**
+*(плитка `has` зайва: після don't потрібно have.)*
 
-**7 · Скажіть «Тут немає рукавичок»**
+**9 · Картка слова — house**
+<!-- interaction_id: en:lesson-07:session-18:word:house; family: word_card -->
+> **house** — будинок. The house is small. — «Будинок маленький». Тут house — окрема житлова будівля, не квартира.
+
+**10 · Виправте припущення про житло брата: «У нього немає будинку»**
 <!-- interaction_id: en:lesson-07:session-18:i07; family: scripted_repeat_compare -->
-🎙 **There are no gloves here.**
+🎙 **He doesn't have a house.**
 
-**8 · Повідомте «Пристрій не працює»**
+**11 · Скажіть «У мене немає грошей». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-18:i08; family: context_gap_grammar -->
-The machine doesn’t ___ . → **work** · works · is work
-- works — *Після `doesn’t` потрібне `work`.*
-- is work — *Потрібно `doesn’t work`, без `is`.*
+I don't ___ money. → **have** · has · am
+- has — *Після don't потрібно have.*
+- am — *Тут говоримо про наявність грошей: have.*
 
-**9 · Послухайте, чого не робить співрозмовник**
+**12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-07:session-18:i09; family: listen_choose -->
-🔊 *I don’t gamble.* → **I don’t gamble.** · I don’t smoke. · I don’t drive.
-- I don’t smoke. — *У записі останнє слово — `gamble`, а в цьому варіанті — `smoke`.*
-- I don’t drive. — *У записі останнє слово — `gamble`, а в цьому варіанті — `drive`.*
+🔊 *I don't have money.* → **I don't have money.** · I have money. · He doesn't have money.
+- I have money. — *У записі `I don't have money.`, а тут `I have money.`.*
+- He doesn't have money. — *У записі `I don't have money.`, а тут `He doesn't have money.`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-18:i10; family: speed_match -->
-machine — пристрій · gamble — грати в азартні ігри · boxes — коробки · smile — усміхатися
+go — ходити, йти · money — гроші · house — будинок · cook — готувати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-18:i11; family: listen_build_dictation -->
-🔊 *The machine doesn’t work.* Плитки: `work` `doesn’t` `machine` `The` → **The machine doesn’t work.**
+🔊 *He doesn't have a house.* Плитки: `house` `a` `have` `doesn't` `He` `has` → **He doesn't have a house.**
+*(плитка `has` зайва: після doesn't потрібно have.)*
 
-**12 · Перед виходом запитайте друга «У тебе є рукавички?»**
+**15 · Картка слова — family**
+<!-- interaction_id: en:lesson-07:session-18:word:family; family: word_card -->
+> **family** — сім’я. My family is here. — «Моя сім’я тут». Люди, пов’язані родинними стосунками.
+
+**16 · Ви зустрічаєте гостей разом із рідними. Скажіть: «Моя сім’я тут»**
 <!-- interaction_id: en:lesson-07:session-18:i12; family: phrase_builder -->
-Плитки: `gloves` `have` `you` `Do` → **Do you have gloves?**
+Плитки: `here` `is` `family` `My` `am` → **My family is here.**
+*(плитка `am` зайва: з My family потрібно is.)*
 
-**13 · Покажіть колезі «Коробки тут»**
+**17 · Ви більше не відвідуєте магазин навпроти. Скажіть: «Я туди не ходжу»**
 <!-- interaction_id: en:lesson-07:session-18:i13; family: scripted_repeat_compare -->
-🎙 **The boxes are here.**
+🎙 **I don't go there.**
 
-**14 · Скажіть «Тут немає рукавичок»**
+**18 · Скажіть «У нього немає будинку». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-18:i14; family: context_gap_grammar -->
-There ___ no gloves here. → **are** · is · am
-- is — *`Gloves` — множина: `are`.*
-- am — *З `gloves` потрібне `are`.*
+He ___ have a house. → **doesn't** · don't · isn't
+- don't — *З he потрібно doesn't.*
+- isn't — *Перед have у цьому запереченні потрібно doesn't.*
 
-**15 · Послухайте, де немає рукавичок**
+**19 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-07:session-18:i15; family: listen_choose -->
-🔊 *There are no gloves here.* → **There are no gloves here.** · There are no gloves there. · There are no gloves upstairs.
-- There are no gloves there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- There are no gloves upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *My family is here.* → **My family is here.** · My family is there. · My family is small.
+- My family is there. — *У записі `My family is here.`, а тут `My family is there.`.*
+- My family is small. — *У записі `My family is here.`, а тут `My family is small.`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-18:i16; family: speed_match -->
-gloves — рукавички · machine — пристрій · gamble — грати в азартні ігри · boxes — коробки
+family — сім’я · house — будинок · money — гроші · go — ходити, йти
 
-**17 · Друг хоче запросити Тома грати на гроші. Поясніть «Том не грає в азартні ігри»**
+**21 · Друг пропонує вашому брату дорогу покупку, але платити йому нічим. Скажіть: «У нього немає грошей»**
 <!-- interaction_id: en:lesson-07:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom doesn’t gamble.**
-
+🎙 **He doesn't have money.**

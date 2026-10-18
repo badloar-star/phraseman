@@ -161,6 +161,7 @@ import {
 } from './account_switch_backup_restore';
 import { applyFutureKeptStashAfterReturn } from './flashcards_future_kept_stash';
 import { classifyPresyncBackupRefusal } from './presync_backup_refusal';
+import { presyncBackupWithQuietRetry, presyncUploadWithQuietRetry } from './presync_quiet_retry';
 import { clearPendingAuthLink, recordPendingAuthLink } from './pending_auth_link';
 import {
   assertNoCleanInstallRecoveryTransition,
@@ -3552,22 +3553,24 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         // свапа, в фоне (scheduleSameStablePostAuthRefresh ниже), со своим повтором.
         const presyncStarted = identityTraceClockMs();
         identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_start', { provider, timeoutMs: SIGNIN_CLOUD_SYNC_TIMEOUT_MS });
-        let presyncRefusal: string = 'not_uploaded';
-        let presyncUploaded = false;
-        let presyncErrorCode: string | null = null;
-        try {
-          presyncUploaded = await withTimeout(
-            forceSyncToCloud({
-              adoptOnIdentityMismatch: false,
-              onRefusal: (code) => { presyncRefusal = code; },
-            }),
-            SIGNIN_CLOUD_SYNC_TIMEOUT_MS,
-            'swap_presync',
-          );
-        } catch (e) {
-          presyncErrorCode = identityErrorCode(e);
-          presyncRefusal = presyncErrorCode.startsWith('timeout_') ? 'timeout' : 'error';
-        }
+        // зачем (владелец 18.10 «ни один вход без ошибки», патч Ядра 04): быстрый сбой выгрузки повторяется тихо (не таймаут).
+        const presync = await presyncUploadWithQuietRetry(async () => {
+          let refusal = 'not_uploaded';
+          try {
+            const uploaded = await withTimeout(
+              forceSyncToCloud({ adoptOnIdentityMismatch: false, onRefusal: (code) => { refusal = code; } }),
+              SIGNIN_CLOUD_SYNC_TIMEOUT_MS,
+              'swap_presync',
+            );
+            return { uploaded, refusal, errorCode: null };
+          } catch (e) {
+            const code = identityErrorCode(e);
+            return { uploaded: false, refusal: code.startsWith('timeout_') ? 'timeout' : 'error', errorCode: code };
+          }
+        });
+        const presyncUploaded = presync.uploaded;
+        const presyncRefusal: string = presync.refusal;
+        const presyncErrorCode: string | null = presync.errorCode;
         const presyncTookMs = identityTraceClockMs() - presyncStarted;
         if (!presyncUploaded) {
           // зачем (AA S2d раунд 2, H-S2d-2, вариант б): в этой ветке выгрузить гостя A
@@ -3576,25 +3579,26 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           // проверенная ДО стирания (записана и читается как копия именно A), без
           // права отодвинуть чужую копию; затем тот же серверный merge(A, B), что и до
           // S2d. Любой отказ копии → прежний отказ без стирания.
-          let backupCode: string | null = null;
           let backupPairs: number | null = null;
           let backupBytes: number | null = null;
-          try {
-            const saved = await saveAccountSwitchEmergencyBackup(
-              'sign_in_presync_not_uploaded_before_swap',
-              localStableId,
-            );
-            const summary = saved ? await readAccountSwitchEmergencyBackupSummary() : null;
-            backupPairs = summary?.pairCount ?? null;
-            backupBytes = summary?.bytes ?? null;
-            if (!saved) {
-              backupCode = 'account_switch_backup_unavailable';
-            } else if (summary?.stableId !== localStableId) {
-              backupCode = 'account_switch_backup_owner_mismatch';
+          // зачем (патч Ядра 04): сбой записи/проверки копии повторяется тихо; «нельзя по состоянию устройства» — нет.
+          const backup = await presyncBackupWithQuietRetry(async () => {
+            try {
+              const saved = await saveAccountSwitchEmergencyBackup(
+                'sign_in_presync_not_uploaded_before_swap',
+                localStableId,
+              );
+              const summary = saved ? await readAccountSwitchEmergencyBackupSummary() : null;
+              backupPairs = summary?.pairCount ?? null;
+              backupBytes = summary?.bytes ?? null;
+              if (!saved) return 'account_switch_backup_unavailable';
+              if (summary?.stableId !== localStableId) return 'account_switch_backup_owner_mismatch';
+              return null;
+            } catch (backupError) {
+              return identityErrorCode(backupError);
             }
-          } catch (backupError) {
-            backupCode = identityErrorCode(backupError);
-          }
+          });
+          const backupCode: string | null = backup.backupCode;
           if (backupCode !== null) {
             console.warn(`[SIGNIN] presync REFUSED ${presyncTookMs}ms reason=${presyncRefusal} backup=${backupCode}`);
             // Случай §126: Firebase УЖЕ держит провайдер-сессию — следующий тап упрётся
